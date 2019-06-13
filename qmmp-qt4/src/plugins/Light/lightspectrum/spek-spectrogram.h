@@ -16,11 +16,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef SPECTRUMSPEK_H
-#define SPECTRUMSPEK_H
+#ifndef LIGHTSPECTRUM_H
+#define LIGHTSPECTRUM_H
 
 #include <memory>
-#include <qmmp/spekfactory.h>
+#include <qmmp/lightfactory.h>
 
 #include "spek-palette.h"
 #include "spek-pipeline.h"
@@ -30,12 +30,12 @@ class FFT;
 class SpekHaveSampleEvent;
 struct spek_pipeline;
 
-class SpectrumSpek : public Spek
+class LightSpectrum : public Light
 {
     Q_OBJECT
 public:
-    explicit SpectrumSpek(QWidget *parent = nullptr);
-    ~SpectrumSpek();
+    explicit LightSpectrum(QWidget *parent = nullptr);
+    ~LightSpectrum();
 
     virtual void open(const QString &path) override;
     virtual void start() override;

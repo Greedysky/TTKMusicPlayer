@@ -16,23 +16,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALSPECTRUMSPEKFACTORY_H
-#define VISUALSPECTRUMSPEKFACTORY_H
+#include <qmmp/qmmp.h>
+#include "visuallightenvelopefactory.h"
+#include "lightenvelope.h"
 
-#include <qmmp/spekfactory.h>
-
-/**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
-*/
-class VisualSpectrumSpekFactory : public QObject, public SpekFactory
+const LightProperties VisualLightEnvelopeFactory::properties() const
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.SpekFactoryInterface.1.0")
-    Q_INTERFACES(SpekFactory)
-public:
-    virtual const SpekProperties properties() const override;
-    virtual Spek *create(QWidget *parent) override;
+    LightProperties properties;
+    properties.name = tr("Light Envelope Plugin");
+    properties.shortName = "lightenvelope";
+    properties.hasSettings = false;
+    return properties;
+}
 
-};
-
-#endif
+Light *VisualLightEnvelopeFactory::create(QWidget *parent)
+{
+    return new LightEnvelope(parent);
+}

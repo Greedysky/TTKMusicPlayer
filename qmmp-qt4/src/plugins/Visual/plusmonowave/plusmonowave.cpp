@@ -172,7 +172,7 @@ void PlusMonoWave::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    const float maxed = maxRange();
+    const float maxed = takeMaxRange();
 
     for(int j = 1; j < m_rows; ++j)
     {

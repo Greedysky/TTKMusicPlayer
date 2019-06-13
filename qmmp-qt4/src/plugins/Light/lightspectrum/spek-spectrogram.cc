@@ -32,8 +32,8 @@ enum
 static QString trim(const QString& s, int length, bool trim_end);
 static int bits_to_bands(int bits);
 
-SpectrumSpek::SpectrumSpek(QWidget *parent) :
-    Spek(parent),
+LightSpectrum::LightSpectrum(QWidget *parent) :
+    Light(parent),
     audio(new Audio()), // TODO: refactor
     fft(new FFT()),
     pipeline(NULL),
@@ -51,16 +51,16 @@ SpectrumSpek::SpectrumSpek(QWidget *parent) :
     lrange(LRANGE)
 {
     this->create_palette();
-    connect(SoundCore::instance(), SIGNAL(metaDataChanged()), SLOT(urlChanged()));
+    connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(urlChanged()));
 }
 
-SpectrumSpek::~SpectrumSpek()
+LightSpectrum::~LightSpectrum()
 {
-    qDebug() << "~SpectrumSpek";
+    qDebug() << "~LightSpectrum";
     this->stop();
 }
 
-void SpectrumSpek::open(const QString &path)
+void LightSpectrum::open(const QString &path)
 {
     this->path = path;
     this->stream = 0;
@@ -68,22 +68,22 @@ void SpectrumSpek::open(const QString &path)
     start();
 }
 
-void SpectrumSpek::paintEvent(QPaintEvent *event)
+void LightSpectrum::paintEvent(QPaintEvent *event)
 {
-    Spek::paintEvent(event);
+    Light::paintEvent(event);
     QPainter p(this);
     paint(&p);
 }
 
-void SpectrumSpek::resizeEvent(QResizeEvent *event)
+void LightSpectrum::resizeEvent(QResizeEvent *event)
 {
-    Spek::resizeEvent(event);
+    Light::resizeEvent(event);
     start();
 }
 
-void SpectrumSpek::contextMenuEvent(QContextMenuEvent *event)
+void LightSpectrum::contextMenuEvent(QContextMenuEvent *event)
 {
-    Spek::contextMenuEvent(event);
+    Light::contextMenuEvent(event);
     QMenu menu(this);
     QMenu typeMenu("Type", &menu);
     typeMenu.addAction("Spectrum")->setData(10);
@@ -110,7 +110,7 @@ static QString density_formatter(int unit)
     return QString("%1 dB").arg(-unit);
 }
 
-void SpectrumSpek::paint(QPainter *dc)
+void LightSpectrum::paint(QPainter *dc)
 {
     int w = width();
     int h = height();
@@ -201,7 +201,7 @@ void SpectrumSpek::paint(QPainter *dc)
 
 static void pipeline_cb(int bands, int sample, float *values, void *cb_data)
 {
-    SpectrumSpek *spek = static_cast<SpectrumSpek*>(cb_data);
+    LightSpectrum *spek = static_cast<LightSpectrum*>(cb_data);
     if(sample == -1) {
 //        spek->stop();
         return;
@@ -218,7 +218,7 @@ static void pipeline_cb(int bands, int sample, float *values, void *cb_data)
     spek->update();
 }
 
-void SpectrumSpek::start()
+void LightSpectrum::start()
 {
     if(this->path.isEmpty()) {
         return;
@@ -251,7 +251,7 @@ void SpectrumSpek::start()
     }
 }
 
-void SpectrumSpek::stop()
+void LightSpectrum::stop()
 {
     if(this->pipeline) {
         spek_pipeline_close(this->pipeline);
@@ -259,7 +259,7 @@ void SpectrumSpek::stop()
     }
 }
 
-void SpectrumSpek::typeChanged(QAction *action)
+void LightSpectrum::typeChanged(QAction *action)
 {
     switch(action->data().toInt())
     {
@@ -272,12 +272,12 @@ void SpectrumSpek::typeChanged(QAction *action)
     start();
 }
 
-void SpectrumSpek::urlChanged()
+void LightSpectrum::urlChanged()
 {
     open(SoundCore::instance()->path());
 }
 
-void SpectrumSpek::create_palette()
+void LightSpectrum::create_palette()
 {
     this->palette_image = QImage(RULER, bits_to_bands(this->fft_bits), QImage::Format_RGB32);
     for(int y = 0; y < bits_to_bands(this->fft_bits); y++) {

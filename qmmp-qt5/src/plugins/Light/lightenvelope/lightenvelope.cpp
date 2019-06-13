@@ -1,4 +1,4 @@
-#include "envelopespek.h"
+#include "lightenvelope.h"
 #include "inlines.h"
 #include "soundcore.h"
 
@@ -9,18 +9,18 @@
 #define VISUAL_NODE_SIZE 512 //samples
 #define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
 
-EnvelopeSpekThead::EnvelopeSpekThead(QObject *parent) :
+LightEnvelopeThead::LightEnvelopeThead(QObject *parent) :
     QThread(parent)
 {
     init();
 }
 
-EnvelopeSpekThead::~EnvelopeSpekThead()
+LightEnvelopeThead::~LightEnvelopeThead()
 {
     free();
 }
 
-bool EnvelopeSpekThead::init(const QString &path)
+bool LightEnvelopeThead::init(const QString &path)
 {
     free();
     init();
@@ -56,11 +56,11 @@ bool EnvelopeSpekThead::init(const QString &path)
     }
     if(!factory)
     {
-        qDebug("EnvelopeSpekThead: unsupported file format");
+        qDebug("LightEnvelopeThead: unsupported file format");
         return false;
     }
 
-    qDebug("EnvelopeSpekThead: selected decoder: %s",qPrintable(factory->properties().shortName));
+    qDebug("LightEnvelopeThead: selected decoder: %s",qPrintable(factory->properties().shortName));
     if(factory->properties().noInput && m_source->ioDevice())
     {
         m_source->ioDevice()->close();
@@ -69,7 +69,7 @@ bool EnvelopeSpekThead::init(const QString &path)
     Decoder *decoder = factory->create(m_source->path(), m_source->ioDevice());
     if(!decoder->initialize())
     {
-        qDebug("EnvelopeSpekThead: invalid file format");
+        qDebug("LightEnvelopeThead: invalid file format");
         delete decoder;
         return false;
     }
@@ -89,7 +89,7 @@ bool EnvelopeSpekThead::init(const QString &path)
     return true;
 }
 
-void EnvelopeSpekThead::stopAndQuitThread()
+void LightEnvelopeThead::stopAndQuitThread()
 {
     if(isRunning())
     {
@@ -99,13 +99,13 @@ void EnvelopeSpekThead::stopAndQuitThread()
     quit();
 }
 
-void EnvelopeSpekThead::start()
+void LightEnvelopeThead::start()
 {
     m_run = true;
     QThread::start();
 }
 
-void EnvelopeSpekThead::run()
+void LightEnvelopeThead::run()
 {
     qint64 len = 0;
     while (m_run && !m_finish)
@@ -129,7 +129,7 @@ void EnvelopeSpekThead::run()
     }
 }
 
-qint64 EnvelopeSpekThead::produceSound(unsigned char *data, quint64 size, quint32 brate)
+qint64 LightEnvelopeThead::produceSound(unsigned char *data, quint64 size, quint32 brate)
 {
     Buffer *b = m_recycler.get();
     quint64 sz = size < m_bks ? size : m_bks;
@@ -143,7 +143,7 @@ qint64 EnvelopeSpekThead::produceSound(unsigned char *data, quint64 size, quint3
     return sz;
 }
 
-void EnvelopeSpekThead::flush(bool final)
+void LightEnvelopeThead::flush(bool final)
 {
     ulong min = final ? 0 : m_bks;
     while ((!m_finish || !m_run) && m_output_at > min)
@@ -166,7 +166,7 @@ void EnvelopeSpekThead::flush(bool final)
     }
 }
 
-void EnvelopeSpekThead::free()
+void LightEnvelopeThead::free()
 {
     if(m_output_buf)
     {
@@ -176,7 +176,7 @@ void EnvelopeSpekThead::free()
     delete m_decoder;
 }
 
-void EnvelopeSpekThead::init()
+void LightEnvelopeThead::init()
 {
     m_sample_size = 0;
     m_bitrate = 0;
@@ -191,59 +191,59 @@ void EnvelopeSpekThead::init()
 }
 
 
-EnvelopeSpek::EnvelopeSpek(QWidget *parent) :
-    Spek(parent)
+LightEnvelope::LightEnvelope(QWidget *parent) :
+    Light(parent)
 {
     init();
 
     m_analyzer_falloff = 2.2;
-    setWindowTitle(tr("EnvelopeSpek"));
+    setWindowTitle(tr("LightEnvelope"));
     setMinimumSize(2*300-30, 105);
 
     m_buffer = new float[VISUAL_BUFFER_SIZE];
     m_vis_data = 0;
     m_x_scale = new int[2];
 
-    m_fspekThread = new EnvelopeSpekThead(this);
-    connect(m_fspekThread, SIGNAL(bufferChanged(Buffer*,int,quint64)), SLOT(bufferChanged(Buffer*,int,quint64)));
-    connect(m_fspekThread, SIGNAL(finished()), SLOT(finished()));
-    connect(SoundCore::instance(), SIGNAL(streamInfoChanged()), SLOT(mediaUrlChanged()));
+    m_lightThread = new LightEnvelopeThead(this);
+    connect(m_lightThread, SIGNAL(bufferChanged(Buffer*,int,quint64)), SLOT(bufferChanged(Buffer*,int,quint64)));
+    connect(m_lightThread, SIGNAL(finished()), SLOT(finished()));
+    connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
-EnvelopeSpek::~EnvelopeSpek()
+LightEnvelope::~LightEnvelope()
 {
-    qDebug() << "~EnvelopeSpek";
+    qDebug() << "~LightEnvelope";
     delete[] m_buffer;
     delete[] m_x_scale;
 
     this->stop();
-    delete m_fspekThread;
+    delete m_lightThread;
 }
 
-void EnvelopeSpek::open(const QString &path)
+void LightEnvelope::open(const QString &path)
 {
     init();
-    if(m_fspekThread->init(path))
+    if(m_lightThread->init(path))
     {
         start();
     }
     else
     {
-        qDebug("EnvelopeSpekThead: init error");
+        qDebug("LightEnvelopeThead: init error");
     }
 }
 
-void EnvelopeSpek::start()
+void LightEnvelope::start()
 {
-    m_fspekThread->start();
+    m_lightThread->start();
 }
 
-void EnvelopeSpek::stop()
+void LightEnvelope::stop()
 {
-    m_fspekThread->stopAndQuitThread();
+    m_lightThread->stopAndQuitThread();
 }
 
-void EnvelopeSpek::bufferChanged(Buffer *buffer, int chans, quint64 size)
+void LightEnvelope::bufferChanged(Buffer *buffer, int chans, quint64 size)
 {
     if(!buffer)
     {
@@ -279,25 +279,25 @@ void EnvelopeSpek::bufferChanged(Buffer *buffer, int chans, quint64 size)
     update();
 }
 
-void EnvelopeSpek::finished()
+void LightEnvelope::finished()
 {
     m_backgroundImage = m_backgroundImage.copy(0, 0, m_pixPos, m_rows);
     update();
 }
 
-void EnvelopeSpek::mediaUrlChanged()
+void LightEnvelope::mediaUrlChanged()
 {
     open(SoundCore::instance()->path());
 }
 
-void EnvelopeSpek::paintEvent(QPaintEvent *e)
+void LightEnvelope::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void EnvelopeSpek::init()
+void LightEnvelope::init()
 {
     m_pixPos = 0;
     m_buffer_at = 0;
@@ -306,7 +306,7 @@ void EnvelopeSpek::init()
     m_output_size = 0;
 }
 
-void EnvelopeSpek::process(float *buffer)
+void LightEnvelope::process(float *buffer)
 {
     if(m_pixPos >= m_output_size)
     {
@@ -370,7 +370,7 @@ void EnvelopeSpek::process(float *buffer)
     m_pixPos++;
 }
 
-void EnvelopeSpek::draw(QPainter *p)
+void LightEnvelope::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     if(!m_backgroundImage.isNull())

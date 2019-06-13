@@ -41,7 +41,7 @@ HEADERS += \
     audioconverter.h \
     dithering_p.h \
     visualbuffer_p.h \
-    spekfactory.h \
+    lightfactory.h \
     tagreadandwrite.h \
     qmmp_export.h \
     trackinfo.h
@@ -135,7 +135,7 @@ unix {
       audioconverter.h \
       dithering_p.h \
       visualbuffer_p.h \
-      spekfactory.h \
+      lightfactory.h \
       tagreadandwrite.h \
       qmmp_export.h \
       trackinfo.h

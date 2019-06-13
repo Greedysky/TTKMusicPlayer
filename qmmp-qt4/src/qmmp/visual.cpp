@@ -86,7 +86,7 @@ bool Visual::takeData(float *left, float *right)
     return node != 0;
 }
 
-float Visual::maxRange() const
+float Visual::takeMaxRange() const
 {
     float range = 1.0f;
     if(SoundCore::instance())

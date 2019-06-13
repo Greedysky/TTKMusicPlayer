@@ -269,7 +269,7 @@ void NormalSpaceWave::draw(QPainter *p)
 
     int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-    const float maxed = maxRange();
+    const float maxed = takeMaxRange();
 
     for(int j = 0; j < m_cols; ++j)
     {

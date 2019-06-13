@@ -1,18 +1,18 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Spek/envelopespek
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Spek/libenvelopespek.so
+TARGET=$$PLUGINS_PREFIX/Light/lightenvelope
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Light/liblightenvelope.so
 
 SOURCES += \
-        envelopespek.cpp \
+        lightenvelope.cpp \
         fft.c \
-        visualenvelopespekfactory.cpp
+        visuallightenvelopefactory.cpp
 
 HEADERS  += \
-        envelopespek.h \
+        lightenvelope.h \
         fft.h \
         inlines.h \
-        visualenvelopespekfactory.h
+        visuallightenvelopefactory.h
 
 win32:{
     INCLUDEPATH += ./

@@ -1,4 +1,4 @@
 include(../../../qmmp.pri)
 TEMPLATE = subdirs
 
-SUBDIRS += envelopespek spectrumspek
+SUBDIRS += lightenvelope lightspectrum

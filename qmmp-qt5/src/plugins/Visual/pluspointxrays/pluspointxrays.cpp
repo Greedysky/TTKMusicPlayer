@@ -195,7 +195,7 @@ void PlusPointXRays::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 3));
 
-    const float maxed = maxRange();
+    const float maxed = takeMaxRange();
 
     for(int i = 0; i<m_cols; ++i)
     {

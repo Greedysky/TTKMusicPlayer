@@ -16,11 +16,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef ENVELOPESPEK_H
-#define ENVELOPESPEK_H
+#ifndef LIGHTENVELOPE_H
+#define LIGHTENVELOPE_H
 
 #include <QThread>
-#include <qmmp/spekfactory.h>
+#include <qmmp/lightfactory.h>
 #include <qmmp/inputsource.h>
 #include <qmmp/decoderfactory.h>
 #include <qmmp/qmmpsettings.h>
@@ -29,12 +29,12 @@
 #include <qmmp/audioconverter.h>
 #include <qmmp/recycler_p.h>
 
-class EnvelopeSpekThead : public QThread
+class LightEnvelopeThead : public QThread
 {
     Q_OBJECT
 public:
-    explicit EnvelopeSpekThead(QObject *parent = nullptr);
-    ~EnvelopeSpekThead();
+    explicit LightEnvelopeThead(QObject *parent = nullptr);
+    ~LightEnvelopeThead();
 
     bool init(const QString &path);
     void stopAndQuitThread();
@@ -65,12 +65,12 @@ protected:
 
 };
 
-class EnvelopeSpek : public Spek
+class LightEnvelope : public Light
 {
     Q_OBJECT
 public:
-    explicit EnvelopeSpek(QWidget *parent = nullptr);
-    ~EnvelopeSpek();
+    explicit LightEnvelope(QWidget *parent = nullptr);
+    ~LightEnvelope();
 
     virtual void open(const QString &path) override;
     virtual void start() override;
@@ -88,7 +88,7 @@ protected:
     void draw(QPainter *p);
 
     QImage m_backgroundImage;
-    EnvelopeSpekThead *m_fspekThread;
+    LightEnvelopeThead *m_lightThread;
     double m_vis_data, m_analyzer_falloff;
     int *m_x_scale, m_buffer_at, m_cols, m_rows;
     float *m_buffer;

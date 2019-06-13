@@ -16,83 +16,83 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef SPEKFACTORY_H
-#define SPEKFACTORY_H
+#ifndef LIGHTFACTORY_H
+#define LIGHTFACTORY_H
 
 #include <QWidget>
 #include "qmmp_export.h"
 
-/*! @brief Helper class to spek widget.
+/*! @brief Helper class to light widget.
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT Spek : public QWidget
+class QMMP_EXPORT Light : public QWidget
 {
 public:
     /*!
      * Constructor.
      */
-    explicit Spek(QWidget *parent = nullptr) : QWidget(parent) {}
+    explicit Light(QWidget *parent = 0) : QWidget(parent) {}
     /*!
      * Destructor.
      */
-    virtual ~Spek() {}
+    virtual ~Light() {}
      /*!
-     * Open spek file path.
+     * Open light file path.
      * Subclass should reimplement this function.
      */
     virtual void open(const QString &path) = 0;
     /*!
-     * Start spek plugin.
+     * Start light plugin.
      * Subclass should reimplement this function.
      */
     virtual void start() = 0;
     /*!
-     * Stop spek plugin.
+     * Stop light plugin.
      * Subclass should reimplement this function.
      */
     virtual void stop() = 0;
 
 };
 
-/*! @brief Helper class to store spek plugin properies.
+/*! @brief Helper class to store light plugin properies.
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT SpekProperties
+class QMMP_EXPORT LightProperties
 {
 public:
     /*!
      * Constructor
      */
-    SpekProperties()
+    LightProperties()
     {
         hasSettings = false;
     }
-    QString name;      /*!< Spek plugin full name */
-    QString shortName; /*!< Spek plugin short name for internal usage */
+    QString name;      /*!< Light plugin full name */
+    QString shortName; /*!< Light plugin short name for internal usage */
     bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
-/*! @brief Spek plugin interface (Spek factory).
+/*! @brief Light plugin interface (Light factory).
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT SpekFactory
+class QMMP_EXPORT LightFactory
 {
 public:
     /*!
      * Destructor.
      */
-    virtual ~SpekFactory() {}
+    virtual ~LightFactory() {}
      /*!
-     * Returns Spek plugin properties.
+     * Returns Light plugin properties.
      */
-    virtual const SpekProperties properties() const = 0;
+    virtual const LightProperties properties() const = 0;
     /*!
-     * Creates Spek provided by plugin.
+     * Creates Light provided by plugin.
      * @param parent Parent object.
      */
-    virtual Spek *create(QWidget *parent) = 0;
+    virtual Light *create(QWidget *parent) = 0;
 
 };
 
-Q_DECLARE_INTERFACE(SpekFactory, "SpekFactory/1.0")
+Q_DECLARE_INTERFACE(LightFactory, "LightFactory/1.0")
 
 #endif

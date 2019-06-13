@@ -294,7 +294,7 @@ void PlusFoldWave::draw(QPainter *p)
     p->setPen(QPen(line, 1));
 
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-    const float maxed = maxRange();
+    const float maxed = takeMaxRange();
 
     int x = 0, x1 = 0;
     for(int j = 0; j < m_cols * 2; ++j)

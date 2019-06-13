@@ -156,7 +156,7 @@ void PlusMultiWave::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    const float maxed = maxRange();
+    const float maxed = takeMaxRange();
 
     if(m_cols != 0)
     {

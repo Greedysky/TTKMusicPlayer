@@ -135,9 +135,9 @@ protected:
      */
     bool takeData(float *left, float *right = nullptr);
     /*!
-     * Get visual maxed value range.
+     * Take visual maxed value range.
      */
-    float maxRange() const;
+    float takeMaxRange() const;
 
 private:
     static QList<VisualFactory*> *m_factories;

@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 
 !android {
-    SUBDIRS += Effect Visual Spek
+    SUBDIRS += Effect Visual Light
 }
 SUBDIRS += Input Output

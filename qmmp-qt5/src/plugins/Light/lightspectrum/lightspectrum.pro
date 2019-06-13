@@ -1,7 +1,7 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Spek/spectrumspek
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Spek/libspectrumspek.so
+TARGET=$$PLUGINS_PREFIX/Light/lightspectrum
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Light/liblightspectrum.so
 
 SOURCES += \
         spek-ruler.cc \
@@ -10,7 +10,7 @@ SOURCES += \
         spek-fft.cc \
         spek-palette.cc \
         spek-pipeline.cc \
-        visualspectrumspekfactory.cpp
+        visuallightspectrumfactory.cpp
 
 HEADERS  += \
         spek-audio.h \
@@ -19,7 +19,7 @@ HEADERS  += \
         spek-pipeline.h \
         spek-ruler.h \
         spek-spectrogram.h \
-        visualspectrumspekfactory.h
+        visuallightspectrumfactory.h
 
 INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 
