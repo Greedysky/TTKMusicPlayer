@@ -87,7 +87,7 @@ __inline__ int round_trick(float floatvalue_to_round)
   floattmp      = (int) 0x00FD8000L + (floatvalue_to_round);
   rounded_value = *(int*)(&floattmp) - (int)0x4B7D8000L;
 
-  if ( rounded_value != (short) rounded_value )
+  if( rounded_value != (short) rounded_value )
     rounded_value = ( rounded_value >> 31 ) ^ 0x7FFF;
   return rounded_value;
 }

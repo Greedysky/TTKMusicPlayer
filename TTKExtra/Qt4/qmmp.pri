@@ -43,5 +43,5 @@ HEADERS += \
     $$PWD/dithering_p.h \
     $$PWD/visualbuffer_p.h \
     $$PWD/tagreadandwrite.h \
-    $$PWD/spekfactory.h \
+    $$PWD/lightfactory.h \
     $$PWD/qmmp_export.h

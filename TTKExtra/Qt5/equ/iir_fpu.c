@@ -53,7 +53,7 @@ void clean_history()
   memset(data_history2, 0, sizeof(sXYData) * EQ_MAX_BANDS * EQ_CHANNELS);
   /* this is only needed if we use fpu code and there's no other place for
   the moment to init the dither array*/
-  //for (n = 0; n < 256; n++) {
+  //for(n = 0; n < 256; n++) {
   //    dither[n] = (rand() % 4) - 2;
   //}
   //di = 0;
@@ -73,7 +73,7 @@ __inline__ int iir(float *d, int samples, int nch)
   sample_t out[EQ_CHANNELS], pcm[EQ_CHANNELS];
 
   // Load the correct filter table according to the sampling rate if needed
-  /*if (srate != rate)
+  /*if(srate != rate)
   {
     band_count = eqcfg.band_num;
     rate = srate;
@@ -96,10 +96,10 @@ __inline__ int iir(float *d, int samples, int nch)
    * at the expense of extra CPU cycles
    */
 
-  for (index = 0; index < samples; index+=nch)
+  for(index = 0; index < samples; index+=nch)
   {
     /* For each channel */
-    for (channel = 0; channel < nch; channel++)
+    for(channel = 0; channel < nch; channel++)
     {
       pcm[channel] = data[index+channel];
       /* Preamp gain */
@@ -110,7 +110,7 @@ __inline__ int iir(float *d, int samples, int nch)
 
       out[channel] = 0.;
       /* For each band */
-      for (band = 0; band < band_count; band++)
+      for(band = 0; band < band_count; band++)
       {
           /* Optimization */
         if(gain[channel][band] > -1.0e-10 && gain[channel][band] < 1.0e-10)
@@ -136,10 +136,10 @@ __inline__ int iir(float *d, int samples, int nch)
         out[channel] +=  data_history[channel][band].y[i]*gain[channel][band]; // * 2.0;
       } /* For each band */
 
-      //if (eqcfg.extra_filtering)
+      //if(eqcfg.extra_filtering)
       {
         /* Filter the sample again */
-        for (band = 0; band < band_count; band++)
+        for(band = 0; band < band_count; band++)
         {
             /* Optimization */
           if(gain[channel][band] > -1.0e-10 && gain[channel][band] < 1.0e-10)
@@ -186,9 +186,9 @@ __inline__ int iir(float *d, int samples, int nch)
 #endif*/
 
       /* Limit the output */
-      /*if (tempgint < -32768)
+      /*if(tempgint < -32768)
         data[index+channel] = -32768;
-      else if (tempgint > 32767)
+      else if(tempgint > 32767)
         data[index+channel] = 32767;
       else
         data[index+channel] = tempgint;*/
@@ -214,7 +214,7 @@ __inline__ int iir(float *d, int samples, int nch)
 #ifdef BENCHMARK
   timex += get_counter();
   blength += length;
-  if (count++ == 1024)
+  if(count++ == 1024)
   {
     printf("FLOATING POINT: %f %d\n",timex/1024.0, blength/1024);
     blength = 0;

@@ -281,9 +281,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="envelopespekBox">
+          <widget class="QCheckBox" name="lightenvelopeBox">
            <property name="text">
-            <string>EnvelopeSpek</string>
+            <string>LightEnvelope</string>
            </property>
           </widget>
          </item>
@@ -400,11 +400,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="spekWidget">
+    <widget class="QWidget" name="lightWidget">
      <attribute name="title">
       <string>音质检测</string>
      </attribute>
-     <layout class="QVBoxLayout" name="spekLayout">
+     <layout class="QVBoxLayout" name="lightLayout">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -421,7 +421,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="spekFuncionts" native="true">
+       <widget class="QWidget" name="lightFuncionts" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -434,7 +434,7 @@
           <height>30</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="spekFunciontsLayout">
+        <layout class="QHBoxLayout" name="lightFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
@@ -448,9 +448,9 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="spectrumspekBox">
+          <widget class="QCheckBox" name="lightspectrumBox">
            <property name="text">
-            <string>SpectrumSpek</string>
+            <string>LightSpectrum</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -512,8 +512,8 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="spekAreaWidget" native="true">
-        <layout class="QVBoxLayout" name="spekAreaLayout">
+       <widget class="QWidget" name="lightAreaWidget" native="true">
+        <layout class="QVBoxLayout" name="lightAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>

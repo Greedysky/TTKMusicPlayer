@@ -90,9 +90,9 @@ protected:
      */
     void newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout);
     /*!
-     * New spek widget.
+     * New light widget.
      */
-    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url = QString());
+    void newLightWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url = QString());
     /*!
      * Adjust widget layout.
      */

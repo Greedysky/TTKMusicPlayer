@@ -14,7 +14,7 @@
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
-#include "spekfactory.h"
+#include "lightfactory.h"
 #include "soundcore.h"
 
 #define ITEM_DEFAULT_COUNT      3
@@ -51,13 +51,13 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->xraysBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->pointxraysBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->volumeWaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->envelopespekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->lightenvelopeBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->flashgoomBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->flashmeterBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_ui->spectrumspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->spectrumspekBox->hide();
+    m_ui->lightspectrumBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->lightspectrumBox->hide();
 
     m_ui->localFileButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -80,9 +80,9 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->xraysBox->setFocusPolicy(Qt::NoFocus);
     m_ui->pointxraysBox->setFocusPolicy(Qt::NoFocus);
     m_ui->volumeWaveBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->envelopespekBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->lightenvelopeBox->setFocusPolicy(Qt::NoFocus);
 
-    m_ui->spectrumspekBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->lightspectrumBox->setFocusPolicy(Qt::NoFocus);
     m_ui->flashgoomBox->setFocusPolicy(Qt::NoFocus);
     m_ui->flashmeterBox->setFocusPolicy(Qt::NoFocus);
 
@@ -108,7 +108,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     group1->addButton(m_ui->xraysBox, 3);
     group1->addButton(m_ui->pointxraysBox, 4);
     group1->addButton(m_ui->volumeWaveBox, 5);
-    group1->addButton(m_ui->envelopespekBox, 6);
+    group1->addButton(m_ui->lightenvelopeBox, 6);
     connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
 
     QButtonGroup *group2 = new QButtonGroup(this);
@@ -144,7 +144,7 @@ void MusicSpectrumWidget::tabIndexChanged(int index)
             adjustWidgetLayout(m_ui->dazzleLayout->count() - ITEM_DEFAULT_COUNT);
             break;
         case 3:
-            adjustWidgetLayout(m_ui->spekLayout->count() - ITEM_DEFAULT_COUNT);
+            adjustWidgetLayout(m_ui->lightLayout->count() - ITEM_DEFAULT_COUNT);
             break;
         default:
             break;
@@ -203,7 +203,7 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
             newSpectrumWidget(m_ui->volumeWaveBox, "plusvolumewave", m_ui->spectrumPlusAreaLayout);
             break;
         case 6:
-            newSpekWidget(m_ui->envelopespekBox, "envelopespek", m_ui->spectrumPlusAreaLayout);
+            newLightWidget(m_ui->lightenvelopeBox, "lightenvelope", m_ui->spectrumPlusAreaLayout);
             break;
         default: break;
     }
@@ -235,7 +235,7 @@ void MusicSpectrumWidget::show()
 
 void MusicSpectrumWidget::localFileButtonClicked()
 {
-    newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout);
+    newLightWidget(m_ui->lightspectrumBox, "lightspectrum", m_ui->lightAreaLayout);
 }
 
 void MusicSpectrumWidget::openFileButtonClicked()
@@ -247,7 +247,7 @@ void MusicSpectrumWidget::openFileButtonClicked()
     if(dialog.exec())
     {
         const QString &path = dialog.selectedFiles().last();
-        newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout, path);
+        newLightWidget(m_ui->lightspectrumBox, "lightspectrum", m_ui->lightAreaLayout, path);
     }
 }
 
@@ -289,30 +289,30 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
     }
 }
 
-void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url)
+void MusicSpectrumWidget::newLightWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url)
 {
     if(box->isChecked())
     {
         if(findSpectrumWidget(name) == -1)
         {
             QPluginLoader loader;
-            loader.setFileName(MusicUtils::QMMP::pluginPath("Spek", name));
+            loader.setFileName(MusicUtils::QMMP::pluginPath("Light", name));
             const QObject *obj = loader.instance();
-            SpekFactory *decoderfac = nullptr;
-            if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)))
+            LightFactory *decoderfac = nullptr;
+            if(obj && (decoderfac = MObject_cast(LightFactory*, obj)))
             {
-                Spek *spekWidget = decoderfac->create(this);
+                Light *lightWidget = decoderfac->create(this);
                 MusicSpectrum sp;
                 sp.m_name = name;
-                sp.m_obj = spekWidget;
+                sp.m_obj = lightWidget;
                 m_types << sp;
-                layout->addWidget(spekWidget);
+                layout->addWidget(lightWidget);
             }
         }
 
         const int index = findSpectrumWidget(name);
-        Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
-        spek->open(url.isEmpty() ? SoundCore::instance()->path() : url );
+        Light *light = MStatic_cast(Light*, m_types[index].m_obj);
+        light->open(url.isEmpty() ? SoundCore::instance()->path() : url );
     }
     else
     {
