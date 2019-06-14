@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include "fft.h"
 #include "inlines.h"
-#include "flashmeter.h"
+#include "floridmeter.h"
 
 #define DISTANCE    100
 
-FlashMeter::FlashMeter (QWidget *parent) : Visual (parent)
+FloridMeter::FloridMeter (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
@@ -17,7 +17,7 @@ FlashMeter::FlashMeter (QWidget *parent) : Visual (parent)
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle(tr("Flash Meter Widget"));
+    setWindowTitle(tr("Florid Meter Widget"));
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -28,7 +28,7 @@ FlashMeter::FlashMeter (QWidget *parent) : Visual (parent)
     clear();
 }
 
-FlashMeter::~FlashMeter()
+FloridMeter::~FloridMeter()
 {
     if(m_intern_vis_data)
     {
@@ -40,7 +40,7 @@ FlashMeter::~FlashMeter()
     }
 }
 
-void FlashMeter::start()
+void FloridMeter::start()
 {
     m_running = true;
     if(isVisible())
@@ -49,21 +49,21 @@ void FlashMeter::start()
     }
 }
 
-void FlashMeter::stop()
+void FloridMeter::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void FlashMeter::clear()
+void FloridMeter::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void FlashMeter::timeout()
+void FloridMeter::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -72,12 +72,12 @@ void FlashMeter::timeout()
     }
 }
 
-void FlashMeter::hideEvent(QHideEvent *)
+void FloridMeter::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void FlashMeter::showEvent(QShowEvent *)
+void FloridMeter::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -85,14 +85,14 @@ void FlashMeter::showEvent(QShowEvent *)
     }
 }
 
-void FlashMeter::paintEvent(QPaintEvent *e)
+void FloridMeter::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void FlashMeter::process()
+void FloridMeter::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -163,7 +163,7 @@ void FlashMeter::process()
     }
 }
 
-void FlashMeter::draw(QPainter *p)
+void FloridMeter::draw(QPainter *p)
 {
     if(m_cols == 0)
     {

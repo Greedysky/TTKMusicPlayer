@@ -16,24 +16,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALGOOMFACTORY_H
-#define VISUALGOOMFACTORY_H
+#ifndef FLORID_H
+#define FLORID_H
 
-#include <QObject>
-#include <qmmp/visualfactory.h>
-#include <qmmp/visual.h>
+#include "visual.h"
 
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
-class VisualGoomFactory : public QObject, public VisualFactory
+/*! @brief Helper class to florid widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class QMMP_EXPORT Florid : public Visual
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
-    Q_INTERFACES(VisualFactory)
 public:
-    virtual VisualProperties properties() const override;
-    virtual Visual *create(QWidget *parent) override;
+    /*!
+     * Constructor.
+     */
+    explicit Florid(QWidget *parent = nullptr);
+    /*!
+     * Destructor.
+     */
+    virtual ~Florid();
+     /*!
+     * Open background file path.
+     * Subclass should reimplement this function.
+     */
+    void backgroundPath(const QString &path);
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+
+protected:
+    QString m_backgroundPath;
 
 };
 

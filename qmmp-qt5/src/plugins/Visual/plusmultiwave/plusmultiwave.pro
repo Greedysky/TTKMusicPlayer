@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/plusmultiwave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libplusmultiwave.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += plusmultiwave.h \
            visualplusmultiwavefactory.h

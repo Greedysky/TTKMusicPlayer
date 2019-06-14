@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/outerewave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libouterewave.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += outerewave.h \
            visualouterewavefactory.h

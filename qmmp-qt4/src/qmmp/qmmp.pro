@@ -43,6 +43,7 @@ HEADERS += \
     visualbuffer_p.h \
     lightfactory.h \
     tagreadandwrite.h \
+    florid.h \
     qmmp_export.h \
     trackinfo.h
 
@@ -80,6 +81,7 @@ SOURCES += recycler.cpp \
     dithering.cpp \
     visualbuffer.cpp \
     tagreadandwrite.cpp \
+    florid.cpp \
     trackinfo.cpp
 
 unix:TARGET = ../../lib/$$TTKMusicPlayer/qmmp
@@ -138,6 +140,7 @@ unix {
       lightfactory.h \
       tagreadandwrite.h \
       qmmp_export.h \
+      florid.h \
       trackinfo.h
 
     devel.path = /include/qmmp

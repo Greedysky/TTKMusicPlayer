@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/outerrayswave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libouterrayswave.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += outerrayswave.h \
            visualouterrayswavefactory.h

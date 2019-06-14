@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/normalline
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libnormalline.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += normalline.h \
            visualnormallinefactory.h

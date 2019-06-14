@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/pluspointxrays
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libpluspointxrays.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += pluspointxrays.h \
            visualpluspointxraysfactory.h

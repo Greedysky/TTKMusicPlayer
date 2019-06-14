@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/plusfoldwave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libplusfoldwave.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += plusfoldwave.h \
            visualplusfoldwavefactory.h

@@ -3,15 +3,14 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Light/lightenvelope
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Light/liblightenvelope.so
 
+include(../../Visual/common/common.pri)
+
 SOURCES += \
         lightenvelope.cpp \
-        fft.c \
         visuallightenvelopefactory.cpp
 
 HEADERS  += \
         lightenvelope.h \
-        fft.h \
-        inlines.h \
         visuallightenvelopefactory.h
 
 win32:{

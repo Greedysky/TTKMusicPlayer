@@ -16,23 +16,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALFLASHMETERFACTORY_H
-#define VISUALFLASHMETERFACTORY_H
+#ifndef FLORID_H
+#define FLORID_H
 
-#include <QObject>
-#include <qmmp/visualfactory.h>
-#include <qmmp/visual.h>
+#include "visual.h"
 
-/**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
-*/
-class VisualFlashMeterFactory : public QObject, public VisualFactory
+/*! @brief Helper class to florid widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class QMMP_EXPORT Florid : public Visual
 {
-    Q_OBJECT
-    Q_INTERFACES(VisualFactory)
 public:
-    VisualProperties properties() const;
-    Visual *create(QWidget *parent);
+    /*!
+     * Constructor.
+     */
+    explicit Florid(QWidget *parent = nullptr);
+    /*!
+     * Destructor.
+     */
+    virtual ~Florid();
+     /*!
+     * Open background file path.
+     * Subclass should reimplement this function.
+     */
+    void backgroundPath(const QString &path);
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+
+protected:
+    QString m_backgroundPath;
 
 };
 

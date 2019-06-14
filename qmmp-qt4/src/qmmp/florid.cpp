@@ -16,25 +16,30 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALFLASHMETERFACTORY_H
-#define VISUALFLASHMETERFACTORY_H
+#include "florid.h"
+#include <QPainter>
 
-#include <QObject>
-#include <qmmp/visualfactory.h>
-#include <qmmp/visual.h>
-
-/**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
-*/
-class VisualFlashMeterFactory : public QObject, public VisualFactory
+Florid::Florid(QWidget *parent) :
+    Visual(parent)
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
-    Q_INTERFACES(VisualFactory)
-public:
-    virtual VisualProperties properties() const override;
-    virtual Visual *create(QWidget *parent) override;
 
-};
+}
 
-#endif
+Florid::~Florid()
+{
+
+}
+
+void Florid::backgroundPath(const QString &path)
+{
+    m_backgroundPath = path;
+}
+
+void Florid::paintEvent(QPaintEvent *)
+{
+    if(!m_backgroundPath.isEmpty())
+    {
+        QPainter painter(this);
+        painter.drawImage(0, 0, QImage(m_backgroundPath));
+    }
+}

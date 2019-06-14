@@ -20,7 +20,7 @@
 #define GOOMWIDGET_H
 
 #include <QImage>
-#include <qmmp/visual.h>
+#include <qmmp/florid.h>
 
 extern "C" {
 #include "goom.h"
@@ -35,10 +35,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-class GoomWidget : public Visual
+class GoomWidget : public Florid
 {
     Q_OBJECT
-
 public:
     GoomWidget(QWidget *parent = nullptr);
     virtual ~GoomWidget();
@@ -56,7 +55,7 @@ private:
     void clear();
     virtual void hideEvent(QHideEvent *) override;
     virtual void showEvent(QShowEvent *) override;
-    virtual void paintEvent(QPaintEvent *)  override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual void mousePressEvent(QMouseEvent *e) override;
     void createMenu();
 

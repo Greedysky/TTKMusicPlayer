@@ -1,10 +1,10 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/flashgoom
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libflashgoom.so
+TARGET=$$PLUGINS_PREFIX/Visual/floridgoom
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridgoom.so
 
 HEADERS += goomwidget.h \
-           visualgoomfactory.h \
+           visualfloridgoomfactory.h \
            cpu_info.h \
            default_scripts.h \
            drawmethods.h \
@@ -37,7 +37,7 @@ HEADERS += goomwidget.h \
            attributes.h
 
 SOURCES += goomwidget.cpp \
-           visualgoomfactory.cpp \
+           visualfloridgoomfactory.cpp \
            config_param.c \
            convolve_fx.c \
            cpu_info.c \

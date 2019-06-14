@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/normalhistogram
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libnormalhistogram.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += normalhistogram.h \
            visualnormalhistogramfactory.h

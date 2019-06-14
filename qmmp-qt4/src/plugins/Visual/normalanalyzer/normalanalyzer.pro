@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/normalanalyzer
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libnormalanalyzer.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += normalanalyzer.h \
            visualnormalanalyzerfactory.h

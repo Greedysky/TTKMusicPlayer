@@ -16,49 +16,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLASHMETER_H
-#define FLASHMETER_H
+#ifndef VISUALFLORIDGOOMFACTORY_H
+#define VISUALFLORIDGOOMFACTORY_H
 
+#include <QObject>
+#include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
-class FlashMeter : public Visual
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
+class VisualFloridGoomFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_INTERFACES(VisualFactory)
 public:
-    FlashMeter(QWidget *parent = nullptr);
-    virtual ~FlashMeter();
-
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
-private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *) override;
-
-    void process();
-    void draw(QPainter *p);
-
-    QTimer *m_timer;
-    double *m_intern_vis_data;
-    double m_analyzer_falloff;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_cols, m_rows;
-    bool m_running;
-
-    QSize m_cell_size;
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 

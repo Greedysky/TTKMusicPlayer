@@ -10,14 +10,14 @@
 #include <qmmp/qmmp.h>
 #include "goomwidget.h"
 
-GoomWidget::GoomWidget(QWidget *parent) : Visual (parent)
+GoomWidget::GoomWidget(QWidget *parent) : Florid (parent)
 {
     m_update = false;
     m_goom = 0;
     m_fps = 25;
     m_running = false;
 
-    setWindowTitle ("Flash Goom Widget");
+    setWindowTitle("Florid Goom Widget");
     setMinimumSize(150,150);
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL (timeout()), SLOT(timeout()));
@@ -124,7 +124,7 @@ void GoomWidget::showEvent(QShowEvent *)
 void GoomWidget::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.drawImage(0,0, m_image);
+    painter.drawImage(0, 0, m_image);
 }
 
 void GoomWidget::mousePressEvent(QMouseEvent *e)

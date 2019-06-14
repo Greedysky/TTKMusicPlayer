@@ -3,7 +3,7 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/normalspacewave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libnormalspacewave.so
 
-include(../common/Visual.pri)
+include(../common/common.pri)
 
 HEADERS += normalspacewave.h \
            visualnormalspacewavefactory.h
