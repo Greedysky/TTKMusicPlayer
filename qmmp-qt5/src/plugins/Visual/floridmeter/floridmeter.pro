@@ -11,8 +11,6 @@ HEADERS += floridmeter.h \
 SOURCES += floridmeter.cpp \
            visualfloridmeterfactory.cpp
 
-RESOURCES += img.qrc
-
 win32:{
     HEADERS += ../../../../src/qmmp/visual.h
     INCLUDEPATH += ./

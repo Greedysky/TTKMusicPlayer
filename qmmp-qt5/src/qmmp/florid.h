@@ -19,13 +19,62 @@
 #ifndef FLORID_H
 #define FLORID_H
 
+#include <QTimer>
 #include "visual.h"
+
+#define DISTANCE    100
+
+/*! @brief Helper class to round animation widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class QMMP_EXPORT RoundAnimationLabel : public QWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit RoundAnimationLabel(QWidget *parent = nullptr);
+    ~RoundAnimationLabel();
+
+    /*!
+     * Set rotating widget background pixmap.
+     */
+    void setPixmap(const QPixmap &pix);
+
+public slots:
+    /*!
+     * Start to rotating widget.
+     */
+    void start();
+    /*!
+     * Stop to rotating widget.
+     */
+    void stop();
+    /*!
+     * rotating timeout.
+     */
+    void timeout();
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+
+protected:
+    QPixmap m_pixmap;
+    QTimer m_timer;
+    int m_rotateAngle;
+};
+
 
 /*! @brief Helper class to florid widget.
  * @author Greedysky <greedysky@163.com>
  */
 class QMMP_EXPORT Florid : public Visual
 {
+    Q_OBJECT
 public:
     /*!
      * Constructor.
@@ -41,11 +90,20 @@ public:
      */
     void backgroundPath(const QString &path);
 
+public slots:
+    virtual void start() override;
+    virtual void stop() override;
+
 protected:
+    void gaussBlur(QImage &img, int radius);
+    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
 
 protected:
+    QImage m_image;
+    bool m_useImage;
     QString m_backgroundPath;
+    RoundAnimationLabel *m_roundLabel;
 
 };
 

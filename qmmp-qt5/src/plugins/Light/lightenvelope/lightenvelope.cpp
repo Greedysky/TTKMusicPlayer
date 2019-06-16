@@ -212,7 +212,7 @@ LightEnvelope::LightEnvelope(QWidget *parent) :
 
 LightEnvelope::~LightEnvelope()
 {
-    qDebug() << "~LightEnvelope";
+    qDebug() << "~Light";
     delete[] m_buffer;
     delete[] m_x_scale;
 

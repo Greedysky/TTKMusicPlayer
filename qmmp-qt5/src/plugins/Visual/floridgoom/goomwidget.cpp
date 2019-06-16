@@ -12,6 +12,7 @@
 
 GoomWidget::GoomWidget(QWidget *parent) : Florid (parent)
 {
+    m_useImage = false;
     m_update = false;
     m_goom = 0;
     m_fps = 25;
