@@ -35,6 +35,7 @@ public:
     virtual ~CircleClickLabel();
 
     void start(const QPoint &pos);
+    void setColor(const QColor &color);
 
 protected Q_SLOTS:
     void updateRender();
@@ -46,6 +47,7 @@ protected:
     QTimer *m_circleTimer;
     int m_crValue;
     QPoint m_pos;
+    QColor m_color;
 
 };
 
@@ -64,15 +66,15 @@ private slots:
     void timeout();
 
 private:
-    void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
 
-    void draw(QPainter *p);
-
+    int m_index;
     QTimer *m_timer;
     bool m_running;
+    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
+    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
     QList<CircleClickLabel*> m_labels;
 
 };

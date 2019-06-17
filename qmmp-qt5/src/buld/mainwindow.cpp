@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Visual::initialize(this);
     foreach(VisualFactory *var, Visual::factories())
     {
-        if(var->properties().shortName == "floridmeter")
+        if(var->properties().shortName == "floridautism")
         {
             Visual::setEnabled(var, true);
         }

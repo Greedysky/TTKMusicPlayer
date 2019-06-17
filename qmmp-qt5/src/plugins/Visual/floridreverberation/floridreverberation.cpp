@@ -167,7 +167,7 @@ void FloridReverberation::draw(QPainter *p)
     }
 
     p->setRenderHints(QPainter::Antialiasing);
-    p->setPen(QPen(QColor(64, 229, 255), 3));
+    p->setPen(QPen(m_averageColor, 3));
     p->translate(rect().center());
 
     qreal startAngle = 45;
@@ -175,8 +175,8 @@ void FloridReverberation::draw(QPainter *p)
     {
         p->save();
         p->rotate(startAngle);
-        QPointF bottomPot(0, DISTANCE);
-        QPointF topPot(0, DISTANCE + m_intern_vis_data[int( i * m_cols * 1.0 / DISTANCE)] * 0.5);
+        QPointF bottomPot(0, DISTANCE + 10);
+        QPointF topPot(0, DISTANCE + 10 + m_intern_vis_data[int( i * m_cols * 1.0 / DISTANCE)] * 0.3);
         p->drawLine(bottomPot, topPot);
         p->restore();
         startAngle += 3.6;

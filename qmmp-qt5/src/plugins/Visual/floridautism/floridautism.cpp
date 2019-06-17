@@ -7,10 +7,10 @@ CircleClickLabel::CircleClickLabel(QWidget *parent)
     : QWidget(parent)
 {
     m_circleOn = false;
-    m_crValue = 4;
+    m_crValue = DISTANCE;
 
     m_circleTimer = new QTimer(this);
-    m_circleTimer->setInterval(QMMP_VISUAL_INTERVAL);
+    m_circleTimer->setInterval(QMMP_VISUAL_INTERVAL*1.5);
     connect(m_circleTimer, SIGNAL(timeout()), SLOT(updateRender()));
 }
 
@@ -23,16 +23,21 @@ void CircleClickLabel::start(const QPoint &pos)
 {
     m_circleOn = true;
     m_pos = pos;
-    m_crValue = 4;
+    m_crValue = DISTANCE;
     m_circleTimer->start();
+}
+
+void CircleClickLabel::setColor(const QColor &color)
+{
+    m_color = color;
 }
 
 void CircleClickLabel::updateRender()
 {
     m_crValue += 2;
-    if(m_crValue >= 40)
+    if(m_crValue >= 2 * DISTANCE)
     {
-        m_crValue = 4;
+        m_crValue = DISTANCE;
         m_circleOn = false;
         m_circleTimer->stop();
     }
@@ -46,10 +51,10 @@ void CircleClickLabel::paintEvent(QPaintEvent *event)
     if(m_circleOn)
     {
         QPainter painter(this);
+        painter.setOpacity((2 * DISTANCE - m_crValue) * 0.8 / DISTANCE);
         painter.setRenderHint(QPainter::Antialiasing);
-        painter.setPen(QPen(QColor(20, 203, 232, 50), 3));
+        painter.setPen(QPen(m_color, 2));
         painter.drawEllipse(m_pos, m_crValue, m_crValue);
-        painter.setOpacity((40 - m_crValue) * 1.0 / 40);
     }
 }
 
@@ -57,15 +62,21 @@ void CircleClickLabel::paintEvent(QPaintEvent *event)
 
 FloridAutism::FloridAutism (QWidget *parent) : Florid (parent)
 {
+    m_index = 0;
     m_running = false;
 
     setWindowTitle(tr("Florid Autism Widget"));
+
+    for(int i=0; i<4; ++i)
+    {
+        CircleClickLabel *label = new CircleClickLabel(this);
+        label->setGeometry(0, 0, width(), height());
+        m_labels << label;
+    }
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-
-    clear();
+    m_timer->setInterval(700);
 }
 
 FloridAutism::~FloridAutism()
@@ -88,17 +99,25 @@ void FloridAutism::stop()
     Florid::stop();
     m_running = false;
     m_timer->stop();
-    clear();
-}
-
-void FloridAutism::clear()
-{
-    update();
 }
 
 void FloridAutism::timeout()
 {
-    update();
+    if(takeData(m_left_buffer, m_right_buffer))
+    {
+        Florid::start();
+        m_labels[m_index]->setColor(m_averageColor);
+        m_labels[m_index]->start(rect().center());
+        ++m_index;
+        if(m_index >= m_labels.count())
+        {
+            m_index = 0;
+        }
+    }
+    else
+    {
+        Florid::stop();
+    }
 }
 
 void FloridAutism::hideEvent(QHideEvent *)
@@ -117,13 +136,4 @@ void FloridAutism::showEvent(QShowEvent *)
 void FloridAutism::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
-    QPainter painter(this);
-    draw(&painter);
-}
-
-void FloridAutism::draw(QPainter *p)
-{
-    p->setRenderHints(QPainter::Antialiasing);
-    p->setPen(QPen(QColor(64, 229, 255), 3));
-    p->translate(rect().center());
 }

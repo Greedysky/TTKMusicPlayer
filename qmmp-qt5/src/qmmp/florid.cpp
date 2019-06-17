@@ -52,7 +52,10 @@ void RoundAnimationLabel::setPixmap(const QPixmap &pix)
 
 void RoundAnimationLabel::start()
 {
-    m_timer.start();
+    if(!m_timer.isActive())
+    {
+        m_timer.start();
+    }
 }
 
 void RoundAnimationLabel::stop()
@@ -238,16 +241,63 @@ void Florid::gaussBlur(QImage &img, int radius)
     free(listData);
 }
 
+void Florid::reRenderImage(QRgb &avg, const QImage *input)
+{
+   if(input->isNull())
+   {
+       return;
+   }
+
+   for(int w=0; w<input->width(); w++)
+   {
+       for(int h=0; h<input->height(); h++)
+       {
+           QRgb rgb = input->pixel(w, h);
+           avg += rgb;
+       }
+   }
+   avg /= (input->width()*input->height());
+}
+
+int Florid::colorBurnTransform(int c, int delta)
+{
+    if(0 > delta || delta > 0xFF)
+    {
+        return c;
+    }
+
+    int result = (c - (int)(c*delta)/(0xFF - delta));
+    if(result > 0xFF)
+    {
+        result = 0xFF;
+    }
+    else if(result < 0)
+    {
+        result = 0;
+    }
+    return result;
+}
+
 void Florid::resizeEvent(QResizeEvent *event)
 {
     Visual::resizeEvent(event);
     if(!m_backgroundPath.isEmpty())
     {
-        m_image.load(m_backgroundPath);
-        m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
+        if(m_image.load(m_backgroundPath))
+        {
+            QRgb average = 0;
+            reRenderImage(average, &m_image);
+            m_averageColor.setRgb(average);
 
-        gaussBlur(m_image, 60);
-        m_image = m_image.scaled(size());
+            m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
+
+            gaussBlur(m_image, 60);
+            m_image = m_image.scaled(size());
+        }
+        else
+        {
+            m_backgroundPath.clear();
+        }
     }
 }
 
