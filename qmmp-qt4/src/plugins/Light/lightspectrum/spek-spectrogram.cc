@@ -56,7 +56,7 @@ LightSpectrum::LightSpectrum(QWidget *parent) :
 
 LightSpectrum::~LightSpectrum()
 {
-    qDebug() << "~LightSpectrum";
+    qDebug() << "~Light";
     this->stop();
 }
 

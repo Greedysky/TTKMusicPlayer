@@ -40,14 +40,14 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
     m_sound->setPlaylist(list);
 
-//    Visual::initialize(this);
-//    foreach(VisualFactory *var, Visual::factories())
-//    {
-//        if(var->properties().shortName == "flashmeter")
-//        {
-//            Visual::setEnabled(var, true);
-//        }
-//    }
+    Visual::initialize(this);
+    foreach(VisualFactory *var, Visual::factories())
+    {
+        if(var->properties().shortName == "floridmeter")
+        {
+            Visual::setEnabled(var, true);
+        }
+    }
 }
 
 MainWindow::~MainWindow()

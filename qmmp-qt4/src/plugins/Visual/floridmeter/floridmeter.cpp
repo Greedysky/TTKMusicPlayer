@@ -7,8 +7,6 @@
 #include "inlines.h"
 #include "floridmeter.h"
 
-#define DISTANCE    100
-
 FloridMeter::FloridMeter (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
@@ -42,6 +40,7 @@ FloridMeter::~FloridMeter()
 
 void FloridMeter::start()
 {
+    Florid::start();
     m_running = true;
     if(isVisible())
     {
@@ -51,6 +50,7 @@ void FloridMeter::start()
 
 void FloridMeter::stop()
 {
+    Florid::stop();
     m_running = false;
     m_timer->stop();
     clear();
@@ -87,8 +87,8 @@ void FloridMeter::showEvent(QShowEvent *)
 
 void FloridMeter::paintEvent(QPaintEvent *e)
 {
+    Florid::paintEvent(e);
     QPainter painter(this);
-    painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
@@ -170,9 +170,7 @@ void FloridMeter::draw(QPainter *p)
         return;
     }
 
-    p->drawPixmap(rect(), QPixmap(":/img/bg"));
-
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    p->setRenderHints(QPainter::Antialiasing);
     p->setPen(QPen(QColor(64, 229, 255), 3));
     p->translate(rect().center());
 
@@ -182,7 +180,7 @@ void FloridMeter::draw(QPainter *p)
         p->save();
         p->rotate(startAngle);
         QPointF bottomPot(0, DISTANCE);
-        QPointF topPot(0, DISTANCE + m_intern_vis_data[int(i*m_cols*1.0/DISTANCE)]);
+        QPointF topPot(0, DISTANCE + m_intern_vis_data[int(i * m_cols * 1.0 / DISTANCE)] *0.5);
         p->drawLine(bottomPot, topPot);
         p->restore();
         startAngle += 3.6;
