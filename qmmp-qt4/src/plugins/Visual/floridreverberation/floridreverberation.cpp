@@ -1,13 +1,9 @@
-#include <QTimer>
 #include <QPainter>
-#include <QPaintEvent>
-#include <math.h>
-#include <stdlib.h>
 #include "fft.h"
 #include "inlines.h"
-#include "floridmeter.h"
+#include "floridreverberation.h"
 
-FloridMeter::FloridMeter (QWidget *parent) : Florid (parent)
+FloridReverberation::FloridReverberation (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
@@ -15,7 +11,7 @@ FloridMeter::FloridMeter (QWidget *parent) : Florid (parent)
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle(tr("Florid Meter Widget"));
+    setWindowTitle(tr("Florid Reverberation Widget"));
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -26,7 +22,7 @@ FloridMeter::FloridMeter (QWidget *parent) : Florid (parent)
     clear();
 }
 
-FloridMeter::~FloridMeter()
+FloridReverberation::~FloridReverberation()
 {
     if(m_intern_vis_data)
     {
@@ -38,7 +34,7 @@ FloridMeter::~FloridMeter()
     }
 }
 
-void FloridMeter::start()
+void FloridReverberation::start()
 {
     Florid::start();
     m_running = true;
@@ -48,7 +44,7 @@ void FloridMeter::start()
     }
 }
 
-void FloridMeter::stop()
+void FloridReverberation::stop()
 {
     Florid::stop();
     m_running = false;
@@ -56,14 +52,14 @@ void FloridMeter::stop()
     clear();
 }
 
-void FloridMeter::clear()
+void FloridReverberation::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void FloridMeter::timeout()
+void FloridReverberation::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -72,12 +68,12 @@ void FloridMeter::timeout()
     }
 }
 
-void FloridMeter::hideEvent(QHideEvent *)
+void FloridReverberation::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void FloridMeter::showEvent(QShowEvent *)
+void FloridReverberation::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -85,14 +81,14 @@ void FloridMeter::showEvent(QShowEvent *)
     }
 }
 
-void FloridMeter::paintEvent(QPaintEvent *e)
+void FloridReverberation::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
     QPainter painter(this);
     draw(&painter);
 }
 
-void FloridMeter::process()
+void FloridReverberation::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -163,7 +159,7 @@ void FloridMeter::process()
     }
 }
 
-void FloridMeter::draw(QPainter *p)
+void FloridReverberation::draw(QPainter *p)
 {
     if(m_cols == 0)
     {
@@ -180,7 +176,7 @@ void FloridMeter::draw(QPainter *p)
         p->save();
         p->rotate(startAngle);
         QPointF bottomPot(0, DISTANCE);
-        QPointF topPot(0, DISTANCE + m_intern_vis_data[int( i * m_cols * 1.0 / DISTANCE)] * 0.5);
+        QPointF topPot(0, DISTANCE + m_intern_vis_data[int(i * m_cols * 1.0 / DISTANCE)] *0.5);
         p->drawLine(bottomPot, topPot);
         p->restore();
         startAngle += 3.6;

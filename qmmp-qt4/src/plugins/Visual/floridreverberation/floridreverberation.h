@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDMETER_H
-#define FLORIDMETER_H
+#ifndef FLORIDREVERBERATION_H
+#define FLORIDREVERBERATION_H
 
 #include <qmmp/florid.h>
 
@@ -27,12 +27,12 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-class FloridMeter : public Florid
+class FloridReverberation : public Florid
 {
     Q_OBJECT
 public:
-    FloridMeter(QWidget *parent = nullptr);
-    virtual ~FloridMeter();
+    FloridReverberation(QWidget *parent = nullptr);
+    virtual ~FloridReverberation();
 
 public slots:
     virtual void start() override;

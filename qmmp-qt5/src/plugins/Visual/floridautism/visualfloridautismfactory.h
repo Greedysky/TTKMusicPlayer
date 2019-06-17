@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALFLORIDHMETERFACTORY_H
-#define VISUALFLORIDHMETERFACTORY_H
+#ifndef VISUALFLORIDAUTISMFACTORY_H
+#define VISUALFLORIDAUTISMFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,7 +26,7 @@
 /**
     @author Ilya Kotov <forkotov02@hotmail.ru>
 */
-class VisualFloridMeterFactory : public QObject, public VisualFactory
+class VisualFloridAutismFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")

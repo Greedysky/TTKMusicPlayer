@@ -1,15 +1,15 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/floridmeter
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridmeter.so
+TARGET=$$PLUGINS_PREFIX/Visual/floridautism
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridautism.so
 
 include(../common/common.pri)
 
-HEADERS += floridmeter.h \
-           visualfloridmeterfactory.h
+HEADERS += floridautism.h \
+           visualfloridautismfactory.h
            
-SOURCES += floridmeter.cpp \
-           visualfloridmeterfactory.cpp
+SOURCES += floridautism.cpp \
+           visualfloridautismfactory.cpp
 
 win32:{
     HEADERS += ../../../../src/qmmp/visual.h

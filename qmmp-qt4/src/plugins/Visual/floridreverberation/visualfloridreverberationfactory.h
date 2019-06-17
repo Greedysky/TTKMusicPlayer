@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALFLORIDHMETERFACTORY_H
-#define VISUALFLORIDHMETERFACTORY_H
+#ifndef VISUALFLORIDREVERBERATIONFACTORY_H
+#define VISUALFLORIDREVERBERATIONFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,7 +26,7 @@
 /**
     @author Ilya Kotov <forkotov02@hotmail.ru>
 */
-class VisualFloridMeterFactory : public QObject, public VisualFactory
+class VisualFloridReverberationFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
     Q_INTERFACES(VisualFactory)
