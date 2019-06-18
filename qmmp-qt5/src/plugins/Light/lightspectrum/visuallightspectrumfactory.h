@@ -21,9 +21,9 @@
 
 #include <qmmp/lightfactory.h>
 
-/**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
-*/
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class VisualLightSpectrumFactory : public QObject, public LightFactory
 {
     Q_OBJECT

@@ -26,6 +26,9 @@
 class AudioFile;
 enum class AudioError;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class Audio
 {
 public:
@@ -35,6 +38,9 @@ public:
     std::unique_ptr<AudioFile> open(const std::string& file_name, int stream);
 };
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class AudioFile
 {
 public:

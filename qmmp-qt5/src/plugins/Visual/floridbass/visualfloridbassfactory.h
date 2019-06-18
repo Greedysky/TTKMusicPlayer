@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALPLUSVOLUMEWAVEFACTORY_H
-#define VISUALPLUSVOLUMEWAVEFACTORY_H
+#ifndef VISUALFLORIDBASSFACTORY_H
+#define VISUALFLORIDBASSFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,13 +26,14 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualPlusVolumeWaveFactory : public QObject, public VisualFactory
+class VisualFloridBassFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
     Q_INTERFACES(VisualFactory)
 public:
-    VisualProperties properties() const;
-    Visual *create(QWidget *parent);
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 

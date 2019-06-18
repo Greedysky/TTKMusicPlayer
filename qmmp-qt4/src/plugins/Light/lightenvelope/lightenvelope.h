@@ -29,6 +29,9 @@
 #include <qmmp/audioconverter.h>
 #include <qmmp/recycler_p.h>
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class LightEnvelopeThead : public QThread
 {
     Q_OBJECT

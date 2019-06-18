@@ -23,9 +23,9 @@
 #include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 
-/**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
-*/
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class VisualFloridReverberationFactory : public QObject, public VisualFactory
 {
     Q_OBJECT

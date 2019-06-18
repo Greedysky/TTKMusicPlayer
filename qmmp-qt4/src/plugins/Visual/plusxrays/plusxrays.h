@@ -27,6 +27,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class PlusXRays : public Visual
 {
     Q_OBJECT

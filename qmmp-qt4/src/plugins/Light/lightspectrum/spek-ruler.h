@@ -22,6 +22,9 @@
 #include <QObject>
 #include <QPainter>
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class SpekRuler
 {
 public:

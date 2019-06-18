@@ -86,22 +86,39 @@ public:
     virtual ~Florid();
      /*!
      * Open background file path.
-     * Subclass should reimplement this function.
      */
     void backgroundPath(const QString &path);
 
 public slots:
+    /*!
+     * Starts visualization.
+     */
     virtual void start() override;
+    /*!
+     * Stops visualization.
+     */
     virtual void stop() override;
 
 protected:
+    /*!
+    * Gauss Blur.
+    */
     void gaussBlur(QImage &img, int radius);
+    /*!
+    * Rerender the image by color burn transform.
+    */
+    void reRenderImage(QRgb &avg, const QImage *input);
+    /*!
+     * Image color burn transform.
+     */
+    int colorBurnTransform(int c, int delta);
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
 
 protected:
     QImage m_image;
     bool m_useImage;
+    QColor m_averageColor;
     QString m_backgroundPath;
     RoundAnimationLabel *m_roundLabel;
 

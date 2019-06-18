@@ -30,6 +30,9 @@ class FFT;
 class SpekHaveSampleEvent;
 struct spek_pipeline;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class LightSpectrum : public Light
 {
     Q_OBJECT

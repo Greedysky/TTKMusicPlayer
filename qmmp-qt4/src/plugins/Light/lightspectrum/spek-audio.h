@@ -26,6 +26,9 @@
 class AudioFile;
 enum class AudioError;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class Audio
 {
 public:

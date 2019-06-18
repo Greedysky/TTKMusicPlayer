@@ -27,6 +27,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class PlusVolumeWave : public Visual
 {
     Q_OBJECT

@@ -28,6 +28,9 @@ extern "C" {
 
 class FFTPlan;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class FFT
 {
 public:

@@ -28,6 +28,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class NormalSpaceWave : public Visual
 {
     Q_OBJECT

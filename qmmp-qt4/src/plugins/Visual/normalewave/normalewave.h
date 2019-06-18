@@ -28,6 +28,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class NormalEWave : public Visual
 {
     Q_OBJECT
