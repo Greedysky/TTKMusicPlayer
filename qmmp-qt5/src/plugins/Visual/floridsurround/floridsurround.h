@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDBASS_H
-#define FLORIDBASS_H
+#ifndef FLORIDSURROUND_H
+#define FLORIDSURROUND_H
 
 #include <qmmp/florid.h>
 
@@ -30,12 +30,12 @@ class QShowEvent;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FloridBass : public Florid
+class FloridSurround : public Florid
 {
     Q_OBJECT
 public:
-    FloridBass(QWidget *parent = nullptr);
-    virtual ~FloridBass();
+    FloridSurround(QWidget *parent = nullptr);
+    virtual ~FloridSurround();
 
 public slots:
     virtual void start() override;

@@ -1,16 +1,16 @@
 #include <QPainter>
 #include "fft.h"
 #include "inlines.h"
-#include "floridbass.h"
+#include "floridsurround.h"
 
-FloridBass::FloridBass (QWidget *parent) : Florid (parent)
+FloridSurround::FloridSurround (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle(tr("Florid Bass Widget"));
+    setWindowTitle(tr("Florid Surround Widget"));
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -19,7 +19,7 @@ FloridBass::FloridBass (QWidget *parent) : Florid (parent)
     clear();
 }
 
-FloridBass::~FloridBass()
+FloridSurround::~FloridSurround()
 {
     if(m_intern_vis_data)
     {
@@ -27,7 +27,7 @@ FloridBass::~FloridBass()
     }
 }
 
-void FloridBass::start()
+void FloridSurround::start()
 {
     Florid::start();
     m_running = true;
@@ -37,7 +37,7 @@ void FloridBass::start()
     }
 }
 
-void FloridBass::stop()
+void FloridSurround::stop()
 {
     Florid::stop();
     m_running = false;
@@ -45,14 +45,14 @@ void FloridBass::stop()
     clear();
 }
 
-void FloridBass::clear()
+void FloridSurround::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void FloridBass::timeout()
+void FloridSurround::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -66,12 +66,12 @@ void FloridBass::timeout()
     }
 }
 
-void FloridBass::hideEvent(QHideEvent *)
+void FloridSurround::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void FloridBass::showEvent(QShowEvent *)
+void FloridSurround::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -79,14 +79,14 @@ void FloridBass::showEvent(QShowEvent *)
     }
 }
 
-void FloridBass::paintEvent(QPaintEvent *e)
+void FloridSurround::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
     QPainter painter(this);
     draw(&painter);
 }
 
-void FloridBass::process()
+void FloridSurround::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -116,7 +116,7 @@ void FloridBass::process()
     }
 }
 
-void FloridBass::draw(QPainter *p)
+void FloridSurround::draw(QPainter *p)
 {
     if(m_cols == 0)
     {
@@ -124,7 +124,6 @@ void FloridBass::draw(QPainter *p)
     }
 
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setPen(QPen(m_averageColor, 2));
     p->translate(rect().center());
 
     const float maxed = takeMaxRange();
@@ -140,13 +139,14 @@ void FloridBass::draw(QPainter *p)
             qSwap(h1, h2);
         }
 
+        p->setPen(QPen(Qt::red, 2));
         p->drawLine(0, DISTANCE + 10 + h1 * 0.03, 0, DISTANCE + 10 + h2 * 0.03);
 
-        if(h1 < 0)
-        {
-           h1 = 0;
-        }
-        p->drawLine(0, DISTANCE + 20, 0, DISTANCE + 20 + h1);
+        p->setPen(QPen(Qt::green, 2));
+        p->drawLine(0, DISTANCE + 10 + h1 * 0.06, 0, DISTANCE + 10 + h2 * 0.06);
+
+        p->setPen(QPen(Qt::blue, 2));
+        p->drawLine(0, DISTANCE + 10 + h1 * 0.09, 0, DISTANCE + 10 + h2 * 0.09);
 
         p->restore();
         startAngle += 360.0 / (m_rows * 2);

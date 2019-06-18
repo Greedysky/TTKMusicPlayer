@@ -63,8 +63,13 @@ void FloridReverberation::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
+        Florid::start();
         process();
         update();
+    }
+    else
+    {
+        Florid::stop();
     }
 }
 

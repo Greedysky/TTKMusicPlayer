@@ -16,49 +16,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDBASS_H
-#define FLORIDBASS_H
+#ifndef VISUALFLORIDSURROUNDFACTORY_H
+#define VISUALFLORIDSURROUNDFACTORY_H
 
-#include <qmmp/florid.h>
-
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
+#include <QObject>
+#include <qmmp/visualfactory.h>
+#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FloridBass : public Florid
+class VisualFloridSurroundFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    FloridBass(QWidget *parent = nullptr);
-    virtual ~FloridBass();
-
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
-private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *) override;
-
-    void process();
-    void draw(QPainter *p);
-
-    QTimer *m_timer;
-    int *m_intern_vis_data;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int m_cols, m_rows;
-    bool m_running;
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 
