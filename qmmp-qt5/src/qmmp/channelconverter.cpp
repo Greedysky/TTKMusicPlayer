@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,18 +22,14 @@
 
 ChannelConverter::ChannelConverter(ChannelMap out_map)
 {
-    m_disabled = true;
-    m_tmp_buf = nullptr;
-    m_channels = 0;
     m_out_map = out_map;
-    memset(m_reorder_array, 0, sizeof(m_reorder_array));
 }
 
 ChannelConverter::~ChannelConverter()
 {
     if(m_tmp_buf)
     {
-        delete[] m_tmp_buf;
+        delete [] m_tmp_buf;
         m_tmp_buf = nullptr;
     }
 }
@@ -45,13 +41,17 @@ void ChannelConverter::configure(quint32 srate, ChannelMap in_map)
     if((m_disabled = (in_map == m_out_map)))
         return;
 
-    m_channels = channels();
-    m_tmp_buf = new float[m_channels];
+    if((m_disabled = (in_map.count() == 1 && m_out_map.count() == 1)))
+        return;
 
-    QStringList reorderStringList;
-    for(int i = 0; i < m_channels; ++i)
+    m_in_map = in_map;
+    m_tmp_buf = new float[QMMP_BLOCK_FRAMES * in_map.count()];
+    m_tmp_size = QMMP_BLOCK_FRAMES * in_map.count();
+
+    QStringList reorderStringList;    
+    for(int i = 0; i < m_out_map.count(); ++i)
     {
-        m_reorder_array[i] = m_out_map.indexOf(in_map.at(i));
+        m_reorder_array[i] = m_out_map.indexOf(in_map.at(i % in_map.count()));
         reorderStringList << QString("%1").arg(m_reorder_array[i]);
     }
 
@@ -64,16 +64,35 @@ void ChannelConverter::applyEffect(Buffer *b)
     if(m_disabled)
         return;
 
-    unsigned long i = 0;
-    int j = 0;
+    int in_channels = m_in_map.count();
+    int out_channels = m_out_map.count();
 
-    float *data = b->data;
-    for(i = 0; i < b->samples / m_channels; ++i)
+    if(b->samples > m_tmp_size)
     {
-        memcpy(m_tmp_buf, data, m_channels * sizeof(float));
-        for(j = 0; j < m_channels; ++j)
-            data[j] = m_reorder_array[j] < 0 ? 0 : m_tmp_buf[m_reorder_array[j]];
-        data += m_channels;
+        delete [] m_tmp_buf;
+        m_tmp_buf = new float[b->samples];
+        m_tmp_size = b->samples;
+    }
+    memcpy(m_tmp_buf, b->data, b->samples * sizeof(float));
+
+    size_t samples = b->samples * out_channels / in_channels;
+    if(samples > b->size)
+    {
+        delete [] b->data;
+        b->data = new float[samples];
+        b->size = samples;
     }
 
+    float *in = m_tmp_buf;
+    float *out = b->data;
+
+    for(unsigned long i = 0; i < b->samples / in_channels; ++i)
+    {
+        for(int j = 0; j < out_channels; ++j)
+            out[j] = m_reorder_array[j] < 0 ? 0 : in[m_reorder_array[j]];
+        in += in_channels;
+        out += out_channels;
+    }
+
+    b->samples = samples;
 }

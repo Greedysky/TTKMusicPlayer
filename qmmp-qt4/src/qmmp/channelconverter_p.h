@@ -39,8 +39,8 @@ private:
     bool m_disabled;
     int m_reorder_array[9];
     float *m_tmp_buf;
-    int m_channels;
-    ChannelMap m_out_map;
+    size_t m_tmp_size;
+    ChannelMap m_out_map, m_in_map;
 };
 
 #endif // CHANNELCONVERTER_P_H

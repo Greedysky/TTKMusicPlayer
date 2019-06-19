@@ -35,6 +35,10 @@ extern "C"{
 static int ffmpeg_read(void *data, uint8_t *buf, int size)
 {
     DecoderFFmpeg *d = (DecoderFFmpeg*)data;
+#if (LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(57,84,101))
+    if(d->input()->atEnd())
+        return AVERROR_EOF;
+#endif
     return (int)d->input()->read((char*)buf, size);
 }
 
@@ -88,7 +92,6 @@ DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
     av_init_packet(&m_temp_pkt);
     m_input_buf = nullptr;
 }
-
 
 DecoderFFmpeg::~DecoderFFmpeg()
 {

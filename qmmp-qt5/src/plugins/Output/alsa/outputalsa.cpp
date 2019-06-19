@@ -131,6 +131,9 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     case Qmmp::PCM_S32LE:
         alsa_format = SND_PCM_FORMAT_S32_LE;
         break;
+    case Qmmp::PCM_FLOAT:
+        alsa_format = SND_PCM_FORMAT_FLOAT;
+        break;
     default:
         qWarning("OutputALSA: unsupported format detected");
         return false;

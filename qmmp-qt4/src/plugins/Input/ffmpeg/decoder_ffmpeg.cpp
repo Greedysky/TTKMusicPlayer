@@ -35,6 +35,10 @@ extern "C"{
 static int ffmpeg_read(void *data, uint8_t *buf, int size)
 {
     DecoderFFmpeg *d = (DecoderFFmpeg*)data;
+#if (LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(57,84,101))
+    if(d->input()->atEnd())
+        return AVERROR_EOF;
+#endif
     return (int)d->input()->read((char*)buf, size);
 }
 
@@ -156,7 +160,7 @@ bool DecoderFFmpeg::initialize()
     m_input_buf = (uchar*)av_malloc(INPUT_BUFFER_SIZE + FF_INPUT_BUFFER_PADDING_SIZE);
 #endif
 
-    m_stream = avio_alloc_context(m_input_buf, INPUT_BUFFER_SIZE, 0, this, ffmpeg_read, NULL, ffmpeg_seek);
+    m_stream = avio_alloc_context(m_input_buf, INPUT_BUFFER_SIZE, 0, this, ffmpeg_read, 0, ffmpeg_seek);
     if(!m_stream)
     {
         av_free(m_input_buf);

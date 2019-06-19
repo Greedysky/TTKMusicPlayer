@@ -36,11 +36,11 @@ public:
     virtual void applyEffect(Buffer *b) override;
 
 private:
-    bool m_disabled;
-    int m_reorder_array[9];
-    float *m_tmp_buf;
-    int m_channels;
-    ChannelMap m_out_map;
+    bool m_disabled = true;
+    int m_reorder_array[9] = { 0 };
+    float *m_tmp_buf = nullptr;
+    size_t m_tmp_size  = 0;
+    ChannelMap m_out_map, m_in_map;
 };
 
 #endif // CHANNELCONVERTER_P_H
