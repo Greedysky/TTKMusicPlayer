@@ -98,6 +98,7 @@ Florid::Florid(QWidget *parent) :
     setMinimumSize(580, 320);
 
     m_useImage = true;
+    m_averageColor = QColor(255, 255, 255);
     m_roundLabel = new RoundAnimationLabel(this);
 }
 

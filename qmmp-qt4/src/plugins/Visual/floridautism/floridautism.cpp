@@ -10,7 +10,7 @@ CircleClickLabel::CircleClickLabel(QWidget *parent)
     m_crValue = DISTANCE;
 
     m_circleTimer = new QTimer(this);
-    m_circleTimer->setInterval(QMMP_VISUAL_INTERVAL*1.5);
+    m_circleTimer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
     connect(m_circleTimer, SIGNAL(timeout()), SLOT(updateRender()));
 }
 
