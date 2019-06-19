@@ -139,13 +139,13 @@ void FloridSurround::draw(QPainter *p)
             qSwap(h1, h2);
         }
 
-        p->setPen(QPen(Qt::red, 2));
+        p->setPen(QPen(m_averageColor, 2));
         p->drawLine(0, DISTANCE + 10 + h1 * 0.03, 0, DISTANCE + 10 + h2 * 0.03);
 
-        p->setPen(QPen(Qt::green, 2));
+        p->setPen(QPen(QColor(m_averageColor.green(), m_averageColor.blue(), m_averageColor.red()), 2));
         p->drawLine(0, DISTANCE + 10 + h1 * 0.06, 0, DISTANCE + 10 + h2 * 0.06);
 
-        p->setPen(QPen(Qt::blue, 2));
+        p->setPen(QPen(QColor(m_averageColor.blue(), m_averageColor.red(), m_averageColor.green()), 2));
         p->drawLine(0, DISTANCE + 10 + h1 * 0.09, 0, DISTANCE + 10 + h2 * 0.09);
 
         p->restore();

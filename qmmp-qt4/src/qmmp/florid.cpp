@@ -107,13 +107,13 @@ Florid::~Florid()
 
 }
 
-void Florid::backgroundPath(const QString &path)
+void Florid::setPixmap(const QPixmap &pix)
 {
     if(!m_useImage)
     {
         return;
     }
-    m_backgroundPath = path;
+    m_image = pix.toImage();
 }
 
 void Florid::start()
@@ -260,33 +260,45 @@ void Florid::reRenderImage(QRgb &avg, const QImage *input)
    avg /= (input->width()*input->height());
 }
 
+int Florid::colorBurnTransform(int c, int delta)
+{
+    if(0 > delta || delta > 0xFF)
+    {
+        return c;
+    }
+
+    int result = (c - (int)(c*delta)/(0xFF - delta));
+    if(result > 0xFF)
+    {
+        result = 0xFF;
+    }
+    else if(result < 0)
+    {
+        result = 0;
+    }
+    return result;
+}
+
 void Florid::resizeEvent(QResizeEvent *event)
 {
     Visual::resizeEvent(event);
-    if(!m_backgroundPath.isEmpty())
+    if(!m_image.isNull())
     {
-        if(m_image.load(m_backgroundPath))
-        {
-            QRgb average = 0;
-            reRenderImage(average, &m_image);
-            m_averageColor.setRgb(average);
+        QRgb average = 0;
+        reRenderImage(average, &m_image);
+        m_averageColor.setRgb(average);
 
-            m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
+        m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
 
-            gaussBlur(m_image, 60);
-            m_image = m_image.scaled(size());
-        }
-        else
-        {
-            m_backgroundPath.clear();
-        }
+        gaussBlur(m_image, 60);
+        m_image = m_image.scaled(size());
     }
 }
 
 void Florid::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
-    if(!m_backgroundPath.isEmpty())
+    if(!m_image.isNull())
     {
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
         painter.drawImage(0, 0, m_image);

@@ -85,9 +85,9 @@ public:
      */
     virtual ~Florid();
      /*!
-     * Open background file path.
+     * Set background pixmap.
      */
-    void backgroundPath(const QString &path);
+    void setPixmap(const QPixmap &pix);
 
 public slots:
     /*!
@@ -119,7 +119,6 @@ protected:
     QImage m_image;
     bool m_useImage;
     QColor m_averageColor;
-    QString m_backgroundPath;
     RoundAnimationLabel *m_roundLabel;
 
 };
