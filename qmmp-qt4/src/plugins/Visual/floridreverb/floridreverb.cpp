@@ -1,9 +1,9 @@
 #include <QPainter>
 #include "fft.h"
 #include "inlines.h"
-#include "floridreverberation.h"
+#include "floridreverb.h"
 
-FloridReverberation::FloridReverberation (QWidget *parent) : Florid (parent)
+FloridReverb::FloridReverb (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
@@ -11,7 +11,7 @@ FloridReverberation::FloridReverberation (QWidget *parent) : Florid (parent)
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle(tr("Florid Reverberation Widget"));
+    setWindowTitle(tr("Florid Reverb Widget"));
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -22,7 +22,7 @@ FloridReverberation::FloridReverberation (QWidget *parent) : Florid (parent)
     clear();
 }
 
-FloridReverberation::~FloridReverberation()
+FloridReverb::~FloridReverb()
 {
     if(m_intern_vis_data)
     {
@@ -34,7 +34,7 @@ FloridReverberation::~FloridReverberation()
     }
 }
 
-void FloridReverberation::start()
+void FloridReverb::start()
 {
     Florid::start();
     m_running = true;
@@ -44,7 +44,7 @@ void FloridReverberation::start()
     }
 }
 
-void FloridReverberation::stop()
+void FloridReverb::stop()
 {
     Florid::stop();
     m_running = false;
@@ -52,14 +52,14 @@ void FloridReverberation::stop()
     clear();
 }
 
-void FloridReverberation::clear()
+void FloridReverb::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void FloridReverberation::timeout()
+void FloridReverb::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -73,12 +73,12 @@ void FloridReverberation::timeout()
     }
 }
 
-void FloridReverberation::hideEvent(QHideEvent *)
+void FloridReverb::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void FloridReverberation::showEvent(QShowEvent *)
+void FloridReverb::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -86,14 +86,14 @@ void FloridReverberation::showEvent(QShowEvent *)
     }
 }
 
-void FloridReverberation::paintEvent(QPaintEvent *e)
+void FloridReverb::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
     QPainter painter(this);
     draw(&painter);
 }
 
-void FloridReverberation::process()
+void FloridReverb::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -164,7 +164,7 @@ void FloridReverberation::process()
     }
 }
 
-void FloridReverberation::draw(QPainter *p)
+void FloridReverb::draw(QPainter *p)
 {
     if(m_cols == 0)
     {
@@ -181,7 +181,7 @@ void FloridReverberation::draw(QPainter *p)
         p->save();
         p->rotate(startAngle);
         QPointF bottomPot(0, DISTANCE + 10);
-        QPointF topPot(0, DISTANCE + 10 + m_intern_vis_data[int(i * m_cols * 1.0 / DISTANCE)] *0.5);
+        QPointF topPot(0, DISTANCE + 10 + m_intern_vis_data[int( i * m_cols * 1.0 / DISTANCE)] * 0.3);
         p->drawLine(bottomPot, topPot);
         p->restore();
         startAngle += 3.6;

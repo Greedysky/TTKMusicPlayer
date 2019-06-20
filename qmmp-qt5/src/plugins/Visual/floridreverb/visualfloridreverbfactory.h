@@ -16,52 +16,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDREVERBERATION_H
-#define FLORIDREVERBERATION_H
+#ifndef VISUALFLORIDHREVERBFACTORY_H
+#define VISUALFLORIDHREVERBFACTORY_H
 
-#include <qmmp/florid.h>
-
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
+#include <QObject>
+#include <qmmp/visualfactory.h>
+#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FloridReverberation : public Florid
+class VisualFloridReverbFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    FloridReverberation(QWidget *parent = nullptr);
-    virtual ~FloridReverberation();
-
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
-private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *) override;
-
-    void process();
-    void draw(QPainter *p);
-
-    QTimer *m_timer;
-    double *m_intern_vis_data;
-    double m_analyzer_falloff;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_cols, m_rows;
-    bool m_running;
-
-    QSize m_cell_size;
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 

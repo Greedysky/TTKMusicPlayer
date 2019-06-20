@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDREVERBERATION_H
-#define FLORIDREVERBERATION_H
+#ifndef FLORIDREVERB_H
+#define FLORIDREVERB_H
 
 #include <qmmp/florid.h>
 
@@ -30,12 +30,12 @@ class QShowEvent;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FloridReverberation : public Florid
+class FloridReverb : public Florid
 {
     Q_OBJECT
 public:
-    FloridReverberation(QWidget *parent = nullptr);
-    virtual ~FloridReverberation();
+    FloridReverb(QWidget *parent = nullptr);
+    virtual ~FloridReverb();
 
 public slots:
     virtual void start() override;

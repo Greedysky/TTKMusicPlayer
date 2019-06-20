@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALFLORIDHREVERBERATIONFACTORY_H
-#define VISUALFLORIDHREVERBERATIONFACTORY_H
+#ifndef VISUALFLORIDHREVERBFACTORY_H
+#define VISUALFLORIDHREVERBFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,10 +26,9 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualFloridReverberationFactory : public QObject, public VisualFactory
+class VisualFloridReverbFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
     Q_INTERFACES(VisualFactory)
 public:
     virtual VisualProperties properties() const override;

@@ -98,6 +98,7 @@ Florid::Florid(QWidget *parent) :
     setMinimumSize(580, 320);
 
     m_useImage = true;
+    m_scale = false;
     m_averageColor = QColor(255, 255, 255);
     m_roundLabel = new RoundAnimationLabel(this);
 }
@@ -113,6 +114,8 @@ void Florid::setPixmap(const QPixmap &pix)
     {
         return;
     }
+
+    m_scale = false;
     m_image = pix.toImage();
 }
 
@@ -242,22 +245,43 @@ void Florid::gaussBlur(QImage &img, int radius)
     free(listData);
 }
 
-void Florid::reRenderImage(QRgb &avg, const QImage *input)
+void Florid::reRenderImage(QColor &avg, const QImage *input)
 {
    if(input->isNull())
    {
        return;
    }
 
+   QRgb r = 0, g = 0, b = 0;
    for(int w=0; w<input->width(); w++)
    {
        for(int h=0; h<input->height(); h++)
        {
            QRgb rgb = input->pixel(w, h);
-           avg += rgb;
+           r += qRed(rgb);
+           g += qGreen(rgb);
+           b += qBlue(rgb);
        }
    }
-   avg /= (input->width()*input->height());
+
+   const int size = input->width() * input->height();
+   avg.setRed(r /= size);
+   avg.setGreen(g /= size);
+   avg.setBlue(b /= size);
+}
+
+void Florid::reRenderImage(int delta, const QImage *input, QImage *output)
+{
+    for(int w=0; w<input->width(); w++)
+    {
+        for(int h=0; h<input->height(); h++)
+        {
+            const QRgb rgb = input->pixel(w, h);
+            output->setPixel(w, h, qRgb(colorBurnTransform(qRed(rgb), delta),
+                                        colorBurnTransform(qGreen(rgb), delta),
+                                        colorBurnTransform(qBlue(rgb), delta)));
+        }
+    }
 }
 
 int Florid::colorBurnTransform(int c, int delta)
@@ -282,16 +306,13 @@ int Florid::colorBurnTransform(int c, int delta)
 void Florid::resizeEvent(QResizeEvent *event)
 {
     Visual::resizeEvent(event);
-    if(!m_image.isNull())
+    if(!m_image.isNull() && !m_scale)
     {
-        QRgb average = 0;
-        reRenderImage(average, &m_image);
-        m_averageColor.setRgb(average);
-
+        reRenderImage(m_averageColor, &m_image);
         m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
-
-        gaussBlur(m_image, 60);
-        m_image = m_image.scaled(size());
+        reRenderImage(50, &m_image, &m_image);
+        gaussBlur(m_image, 50);
+        m_scale = true;
     }
 }
 
@@ -301,7 +322,7 @@ void Florid::paintEvent(QPaintEvent *e)
     if(!m_image.isNull())
     {
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-        painter.drawImage(0, 0, m_image);
+        painter.drawImage(0, 0, m_image.scaled(size()));
 
         const QPoint &pt = rect().center();
         m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2*DISTANCE, 2*DISTANCE);

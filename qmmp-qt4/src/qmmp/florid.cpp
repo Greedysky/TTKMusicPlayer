@@ -244,20 +244,27 @@ void Florid::gaussBlur(QImage &img, int radius)
 
 void Florid::reRenderImage(QRgb &avg, const QImage *input)
 {
-   if(input->isNull())
-   {
-       return;
-   }
+    if(input->isNull())
+    {
+        return;
+    }
 
-   for(int w=0; w<input->width(); w++)
-   {
-       for(int h=0; h<input->height(); h++)
-       {
-           QRgb rgb = input->pixel(w, h);
-           avg += rgb;
-       }
-   }
-   avg /= (input->width()*input->height());
+    QRgb r = 0, g = 0, b = 0;
+    for(int w=0; w<input->width(); w++)
+    {
+        for(int h=0; h<input->height(); h++)
+        {
+            QRgb rgb = input->pixel(w, h);
+            r += qRed(rgb);
+            g += qGreen(rgb);
+            b += qBlue(rgb);
+        }
+    }
+    const int size = input->width() * input->height();
+    r /= size;
+    g /= size;
+    b /= size;
+    avg = qRgb(r, g, b);
 }
 
 int Florid::colorBurnTransform(int c, int delta)

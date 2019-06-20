@@ -127,26 +127,26 @@ void FloridSurround::draw(QPainter *p)
     p->translate(rect().center());
 
     const float maxed = takeMaxRange();
-    qreal startAngle = 0.0f;
+    qreal startAngle = 0;
     for(int i = 0; i < m_rows * 2; ++i)
     {
         p->save();
         p->rotate(startAngle);
-        int h1 = m_intern_vis_data[i] * maxed;
-        int h2 = m_intern_vis_data[i + 1] * maxed;
-        if(h1 > h2)
+        int value1 = m_intern_vis_data[i] * maxed;
+        int value2 = m_intern_vis_data[i + 1] * maxed;
+        if(value1 > value2)
         {
-            qSwap(h1, h2);
+            qSwap(value1, value2);
         }
 
         p->setPen(QPen(m_averageColor, 2));
-        p->drawLine(0, DISTANCE + 10 + h1 * 0.03, 0, DISTANCE + 10 + h2 * 0.03);
+        p->drawLine(0, DISTANCE + 10 + value1 * 0.03, 0, DISTANCE + 10 + value2 * 0.03);
 
         p->setPen(QPen(QColor(m_averageColor.green(), m_averageColor.blue(), m_averageColor.red()), 2));
-        p->drawLine(0, DISTANCE + 10 + h1 * 0.06, 0, DISTANCE + 10 + h2 * 0.06);
+        p->drawLine(0, DISTANCE + 10 + value1 * 0.06, 0, DISTANCE + 10 + value2 * 0.06);
 
         p->setPen(QPen(QColor(m_averageColor.blue(), m_averageColor.red(), m_averageColor.green()), 2));
-        p->drawLine(0, DISTANCE + 10 + h1 * 0.09, 0, DISTANCE + 10 + h2 * 0.09);
+        p->drawLine(0, DISTANCE + 10 + value1 * 0.09, 0, DISTANCE + 10 + value2 * 0.09);
 
         p->restore();
         startAngle += 360.0 / (m_rows * 2);
