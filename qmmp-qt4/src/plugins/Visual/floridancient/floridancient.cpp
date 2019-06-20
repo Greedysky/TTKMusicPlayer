@@ -3,65 +3,6 @@
 #include "inlines.h"
 #include "floridancient.h"
 
-#include <QPropertyAnimation>
-
-AncientLabel::AncientLabel(QWidget *parent)
-    : QWidget(parent)
-{
-    m_color = QColor(255, 255, 255);
-    m_opacity = 1;
-    m_pos = QPoint(0, 0);
-    m_size = 5;
-
-}
-
-void AncientLabel::start()
-{
-    const QPoint &center = rect().center();
-    int pos_x = qrand() / DISTANCE, pos_y = qrand() / DISTANCE;
-    if(pos_x % 2 == 0)
-    {
-        pos_x = -pos_x;
-    }
-    if(pos_y % 2 == 0)
-    {
-        pos_y = -pos_y;
-    }
-
-    QPropertyAnimation *posAnimation = new QPropertyAnimation(this, QByteArray(), this);
-    posAnimation->setLoopCount(-1);
-    posAnimation->setDuration(5000);
-    posAnimation->setEasingCurve(QEasingCurve::InQuad);
-    posAnimation->setStartValue(center);
-    posAnimation->setEndValue(center + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
-    connect(posAnimation, SIGNAL(valueChanged(QVariant)), SLOT(posValueChanged(QVariant)));
-
-    posAnimation->start();
-}
-
-void AncientLabel::setColor(const QColor &color)
-{
-    m_color = color;
-}
-
-void AncientLabel::posValueChanged(const QVariant &value)
-{
-    m_pos = value.toPoint();
-    update();
-}
-
-void AncientLabel::paintEvent(QPaintEvent *event)
-{
-    QWidget::paintEvent(event);
-    QPainter painter(this);
-    painter.setOpacity(m_opacity);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setBrush(m_color);
-    painter.drawEllipse(m_pos, m_size, m_size);
-}
-
-
-
 FloridAncient::FloridAncient (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
@@ -79,13 +20,6 @@ FloridAncient::FloridAncient (QWidget *parent) : Florid (parent)
     m_cell_size = QSize(6, 2);
 
     clear();
-
-    for(int i=0; i<20; ++i)
-    {
-        AncientLabel *label = new AncientLabel(this);
-        label->setGeometry(0, 0, width(), height());
-        m_labels << label;
-    }
 }
 
 FloridAncient::~FloridAncient()
@@ -107,12 +41,6 @@ void FloridAncient::start()
     if(isVisible())
     {
         m_timer->start();
-    }
-
-    for(int i=0; i<m_labels.size(); ++i)
-    {
-        m_labels[i]->setColor(m_averageColor);
-        m_labels[i]->start();
     }
 }
 
@@ -253,7 +181,7 @@ void FloridAncient::draw(QPainter *p)
         p->save();
         p->rotate(startAngle);
         const int value = m_intern_vis_data[int(i * 0.8)];
-        p->drawLine(0, DISTANCE + 5 + value * 0.2, 0.5, DISTANCE + 5 + value * 0.3);
+        p->drawLine(0, DISTANCE + 5 + value * 0.3, 0.5, DISTANCE + 5 + value * 0.5);
 
         p->restore();
         startAngle += 360.0 / m_cols;

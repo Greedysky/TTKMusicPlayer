@@ -14,7 +14,7 @@ FloridBass::FloridBass (QWidget *parent) : Florid (parent)
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
 
     clear();
 }
@@ -128,25 +128,25 @@ void FloridBass::draw(QPainter *p)
     p->translate(rect().center());
 
     const float maxed = takeMaxRange();
-    qreal startAngle = 0.0f;
+    qreal startAngle = 0;
     for(int i = 0; i < m_rows * 2; ++i)
     {
         p->save();
         p->rotate(startAngle);
-        int h1 = m_intern_vis_data[i] * maxed;
-        int h2 = m_intern_vis_data[i + 1] * maxed;
-        if(h1 > h2)
+        int value1 = m_intern_vis_data[i] * maxed;
+        int value2 = m_intern_vis_data[i + 1] * maxed;
+        if(value1 > value2)
         {
-            qSwap(h1, h2);
+            qSwap(value1, value2);
         }
 
-        p->drawLine(0, DISTANCE + 10 + h1 * 0.03, 0, DISTANCE + 10 + h2 * 0.03);
+        p->drawLine(0, DISTANCE + 10 + value1 * 0.03, 0, DISTANCE + 10 + value2 * 0.03);
 
-        if(h1 < 0)
+        if(value1 < 0)
         {
-           h1 = 0;
+           value1 = 0;
         }
-        p->drawLine(0, DISTANCE + 20, 0, DISTANCE + 20 + h1);
+        p->drawPoint(0, DISTANCE + 20 + value1);
 
         p->restore();
         startAngle += 360.0 / (m_rows * 2);

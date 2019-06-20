@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDANCIENT_H
-#define FLORIDANCIENT_H
+#ifndef FLORIDELECTRIC_H
+#define FLORIDELECTRIC_H
 
 #include <qmmp/florid.h>
 
@@ -30,38 +30,12 @@ class QShowEvent;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class AncientLabel : public QWidget
+class FloridElectric : public Florid
 {
     Q_OBJECT
 public:
-    explicit AncientLabel(QWidget *parent = nullptr);
-
-    void start();
-    void setColor(const QColor &color);
-
-protected Q_SLOTS:
-    void posValueChanged(const QVariant &value);
-
-protected:
-    virtual void paintEvent(QPaintEvent *event) override;
-
-    float m_opacity;
-    int m_size;
-    QPoint m_pos;
-    QColor m_color;
-
-};
-
-
-/*!
- * @author Greedysky <greedysky@163.com>
- */
-class FloridAncient : public Florid
-{
-    Q_OBJECT
-public:
-    FloridAncient(QWidget *parent = nullptr);
-    virtual ~FloridAncient();
+    FloridElectric(QWidget *parent = nullptr);
+    virtual ~FloridElectric();
 
 public slots:
     virtual void start() override;
@@ -88,7 +62,6 @@ private:
     bool m_running;
 
     QSize m_cell_size;
-    QList<AncientLabel*> m_labels;
 
 };
 

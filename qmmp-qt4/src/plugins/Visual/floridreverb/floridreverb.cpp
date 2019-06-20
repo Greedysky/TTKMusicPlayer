@@ -175,15 +175,15 @@ void FloridReverb::draw(QPainter *p)
     p->setPen(QPen(m_averageColor, 3));
     p->translate(rect().center());
 
-    qreal startAngle = 45;
+    qreal startAngle = 0;
     for(int i = 0; i < DISTANCE; ++i)
     {
         p->save();
         p->rotate(startAngle);
-        QPointF bottomPot(0, DISTANCE + 10);
-        QPointF topPot(0, DISTANCE + 10 + m_intern_vis_data[int( i * m_cols * 1.0 / DISTANCE)] * 0.3);
-        p->drawLine(bottomPot, topPot);
+        const double value = m_intern_vis_data[int(i * m_cols * 0.8 / DISTANCE)];
+        p->drawLine(0, DISTANCE + 10, 0, DISTANCE + 10 + value * 0.3);
+
         p->restore();
-        startAngle += 3.6;
+        startAngle += 360.0 / DISTANCE;
     }
 }

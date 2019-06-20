@@ -30,32 +30,6 @@ class QShowEvent;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class AncientLabel : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit AncientLabel(QWidget *parent = nullptr);
-
-    void start();
-    void setColor(const QColor &color);
-
-protected Q_SLOTS:
-    void posValueChanged(const QVariant &value);
-
-protected:
-    virtual void paintEvent(QPaintEvent *event) override;
-
-    float m_opacity;
-    int m_size;
-    QPoint m_pos;
-    QColor m_color;
-
-};
-
-
-/*!
- * @author Greedysky <greedysky@163.com>
- */
 class FloridAncient : public Florid
 {
     Q_OBJECT
@@ -88,7 +62,6 @@ private:
     bool m_running;
 
     QSize m_cell_size;
-    QList<AncientLabel*> m_labels;
 
 };
 

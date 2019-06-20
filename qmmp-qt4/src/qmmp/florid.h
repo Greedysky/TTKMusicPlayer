@@ -107,7 +107,11 @@ protected:
     /*!
     * Rerender the image by color burn transform.
     */
-    void reRenderImage(QRgb &avg, const QImage *input);
+    void reRenderImage(QColor &avg, const QImage *input);
+    /*!
+    * Rerender the image by color burn transform.
+    */
+    void reRenderImage(int delta, const QImage *input, QImage *output);
     /*!
      * Image color burn transform.
      */
@@ -117,7 +121,7 @@ protected:
 
 protected:
     QImage m_image;
-    bool m_useImage;
+    bool m_useImage, m_scale;
     QColor m_averageColor;
     RoundAnimationLabel *m_roundLabel;
 

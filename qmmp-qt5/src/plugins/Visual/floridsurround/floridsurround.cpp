@@ -126,14 +126,13 @@ void FloridSurround::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->translate(rect().center());
 
-    const float maxed = takeMaxRange();
     qreal startAngle = 0;
     for(int i = 0; i < m_rows * 2; ++i)
     {
         p->save();
         p->rotate(startAngle);
-        int value1 = m_intern_vis_data[i] * maxed;
-        int value2 = m_intern_vis_data[i + 1] * maxed;
+        int value1 = m_intern_vis_data[i];
+        int value2 = m_intern_vis_data[i + 1];
         if(value1 > value2)
         {
             qSwap(value1, value2);
