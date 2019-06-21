@@ -27,6 +27,36 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+class QPropertyAnimation;
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class ElectricLabel : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit ElectricLabel(QWidget *parent = nullptr);
+    virtual ~ElectricLabel();
+
+    void start();
+    void setColor(const QColor &color);
+
+protected Q_SLOTS:
+    void posValueChanged(const QVariant &value);
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+
+    float m_opacity;
+    int m_size;
+    QPoint m_pos;
+    QColor m_color;
+    QPropertyAnimation *m_posAnimation;
+
+};
+
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -62,6 +92,7 @@ private:
     bool m_running;
 
     QSize m_cell_size;
+    QList<ElectricLabel*> m_labels;
 
 };
 

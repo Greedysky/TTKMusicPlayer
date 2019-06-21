@@ -5,38 +5,49 @@
 
 #include <QPropertyAnimation>
 
+#define POINT_SIZE          8
+#define ANIMATION_SIZE      100
+#define ANIMATION_DURATION  10000
+
 AncientLabel::AncientLabel(QWidget *parent)
     : QWidget(parent)
 {
     m_color = QColor(255, 255, 255);
     m_opacity = 1;
     m_pos = QPoint(0, 0);
-    m_size = 5;
+    m_size = POINT_SIZE;
 
+    m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
+    m_posAnimation->setDuration(ANIMATION_DURATION);
+    m_posAnimation->setEasingCurve(QEasingCurve::InOutSine);
+
+    connect(m_posAnimation, SIGNAL(finished()), SLOT(finished()));
+    connect(m_posAnimation, SIGNAL(valueChanged(QVariant)), SLOT(posValueChanged(QVariant)));
+}
+
+AncientLabel::~AncientLabel()
+{
+    delete m_posAnimation;
 }
 
 void AncientLabel::start()
 {
-    const QPoint &center = rect().center();
-    int pos_x = qrand() / DISTANCE, pos_y = qrand() / DISTANCE;
-    if(pos_x % 2 == 0)
-    {
-        pos_x = -pos_x;
-    }
-    if(pos_y % 2 == 0)
-    {
-        pos_y = -pos_y;
-    }
+    QTimer::singleShot(qrand() % ANIMATION_DURATION, this, [this](){
+        const QPoint &center = rect().center();
+        int pos_x = qrand() % (DISTANCE * 2), pos_y = qrand() % (DISTANCE * 2);
+        if(pos_x % 2 == 0)
+        {
+            pos_x = -pos_x;
+        }
+        if(pos_y % 2 == 0)
+        {
+            pos_y = -pos_y;
+        }
 
-    QPropertyAnimation *posAnimation = new QPropertyAnimation(this, QByteArray(), this);
-    posAnimation->setLoopCount(-1);
-    posAnimation->setDuration(5000);
-    posAnimation->setEasingCurve(QEasingCurve::InQuad);
-    posAnimation->setStartValue(center);
-    posAnimation->setEndValue(center + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
-    connect(posAnimation, SIGNAL(valueChanged(QVariant)), SLOT(posValueChanged(QVariant)));
-
-    posAnimation->start();
+        m_posAnimation->setStartValue(center);
+        m_posAnimation->setEndValue(center + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
+        m_posAnimation->start();
+    });
 }
 
 void AncientLabel::setColor(const QColor &color)
@@ -44,9 +55,24 @@ void AncientLabel::setColor(const QColor &color)
     m_color = color;
 }
 
+void AncientLabel::finished()
+{
+    start();
+}
+
 void AncientLabel::posValueChanged(const QVariant &value)
 {
     m_pos = value.toPoint();
+
+    const QPoint &startPoint = m_posAnimation->startValue().toPoint();
+    const QPoint &endPoint = m_posAnimation->endValue().toPoint();
+    const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
+    const int currentLength = sqrt(pow(startPoint.x() - m_pos.x(), 2) + pow(startPoint.y() - m_pos.y(), 2));
+    const float delta = (totalLength - currentLength) * 1.0 / totalLength;
+
+    m_size = POINT_SIZE * delta;
+    m_opacity = delta;
+
     update();
 }
 
@@ -80,7 +106,7 @@ FloridAncient::FloridAncient (QWidget *parent) : Florid (parent)
 
     clear();
 
-    for(int i=0; i<20; ++i)
+    for(int i=0; i<ANIMATION_SIZE; ++i)
     {
         AncientLabel *label = new AncientLabel(this);
         label->setGeometry(0, 0, width(), height());
@@ -111,8 +137,9 @@ void FloridAncient::start()
 
     for(int i=0; i<m_labels.size(); ++i)
     {
-        m_labels[i]->setColor(m_averageColor);
-        m_labels[i]->start();
+        AncientLabel *label = m_labels[i];
+        label->setColor(m_averageColor);
+        label->start();
     }
 }
 
@@ -163,6 +190,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
     Florid::paintEvent(e);
     QPainter painter(this);
     draw(&painter);
+    paintRoundLabel();
 }
 
 void FloridAncient::process()
@@ -243,6 +271,7 @@ void FloridAncient::draw(QPainter *p)
         return;
     }
 
+    p->save();
     p->setRenderHints(QPainter::Antialiasing);
     p->setPen(QPen(m_averageColor, 3));
     p->translate(rect().center());
@@ -258,4 +287,5 @@ void FloridAncient::draw(QPainter *p)
         p->restore();
         startAngle += 360.0 / m_cols;
     }
+    p->restore();
 }

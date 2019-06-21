@@ -30,12 +30,12 @@ class QShowEvent;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class CircleClickLabel : public QWidget
+class AutismLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CircleClickLabel(QWidget *parent = nullptr);
-    virtual ~CircleClickLabel();
+    explicit AutismLabel(QWidget *parent = nullptr);
+    virtual ~AutismLabel();
 
     void start(const QPoint &pos);
     void setColor(const QColor &color);
@@ -81,7 +81,7 @@ private:
     bool m_running;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    QList<CircleClickLabel*> m_labels;
+    QList<AutismLabel*> m_labels;
 
 };
 

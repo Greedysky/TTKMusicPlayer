@@ -3,6 +3,83 @@
 #include "inlines.h"
 #include "floridelectric.h"
 
+#include <QPropertyAnimation>
+
+#define ANIMATION_SIZE      50
+#define ANIMATION_DURATION  5000
+
+ElectricLabel::ElectricLabel(QWidget *parent)
+    : QWidget(parent)
+{
+    m_color = QColor(255, 255, 255);
+    m_opacity = 1;
+    m_pos = QPoint(0, 0);
+    m_size = 5;
+
+    m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
+    m_posAnimation->setLoopCount(-1);
+    m_posAnimation->setDuration(ANIMATION_DURATION);
+    m_posAnimation->setEasingCurve(QEasingCurve::InQuad);
+
+    connect(m_posAnimation, SIGNAL(valueChanged(QVariant)), SLOT(posValueChanged(QVariant)));
+}
+
+ElectricLabel::~ElectricLabel()
+{
+    delete m_posAnimation;
+}
+
+void ElectricLabel::start()
+{
+    const QPoint &center = rect().center();
+    int pos_x = qrand() / DISTANCE, pos_y = qrand() / DISTANCE;
+    if(pos_x % 2 == 0)
+    {
+        pos_x = -pos_x;
+    }
+    if(pos_y % 2 == 0)
+    {
+        pos_y = -pos_y;
+    }
+
+    m_posAnimation->setStartValue(center);
+    m_posAnimation->setEndValue(center + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
+    m_posAnimation->start();
+}
+
+void ElectricLabel::setColor(const QColor &color)
+{
+    m_color = color;
+}
+
+void ElectricLabel::posValueChanged(const QVariant &value)
+{
+    m_pos = value.toPoint();
+
+    const QPoint &startPoint = m_posAnimation->startValue().toPoint();
+    const QPoint &endPoint = m_posAnimation->endValue().toPoint();
+    const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
+    const int currentLength = sqrt(pow(startPoint.x() - m_pos.x(), 2) + pow(startPoint.y() - m_pos.y(), 2));
+    const float delta = (totalLength - currentLength) * 1.0 / totalLength;
+
+    m_size *= delta;
+    m_opacity = delta;
+
+    update();
+}
+
+void ElectricLabel::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    QPainter painter(this);
+    painter.setOpacity(m_opacity);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setBrush(m_color);
+    painter.drawEllipse(m_pos, m_size, m_size);
+}
+
+
+
 FloridElectric::FloridElectric (QWidget *parent) : Florid (parent)
 {
     m_intern_vis_data = nullptr;
@@ -20,6 +97,13 @@ FloridElectric::FloridElectric (QWidget *parent) : Florid (parent)
     m_cell_size = QSize(6, 2);
 
     clear();
+
+    for(int i=0; i<ANIMATION_SIZE; ++i)
+    {
+        ElectricLabel *label = new ElectricLabel(this);
+        label->setGeometry(0, 0, width(), height());
+        m_labels << label;
+    }
 }
 
 FloridElectric::~FloridElectric()
@@ -41,6 +125,13 @@ void FloridElectric::start()
     if(isVisible())
     {
         m_timer->start();
+    }
+
+    for(int i=0; i<m_labels.size(); ++i)
+    {
+        ElectricLabel *label = m_labels[i];
+        label->setColor(m_averageColor);
+        label->start();
     }
 }
 

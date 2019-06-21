@@ -3,6 +3,8 @@
 #include "inlines.h"
 #include "floridautism.h"
 
+#define ANIMATION_SIZE  4
+
 AutismLabel::AutismLabel(QWidget *parent)
     : QWidget(parent)
 {
@@ -67,7 +69,7 @@ FloridAutism::FloridAutism (QWidget *parent) : Florid (parent)
 
     setWindowTitle(tr("Florid Autism Widget"));
 
-    for(int i=0; i<4; ++i)
+    for(int i=0; i<ANIMATION_SIZE; ++i)
     {
         AutismLabel *label = new AutismLabel(this);
         label->setGeometry(0, 0, width(), height());
@@ -106,8 +108,11 @@ void FloridAutism::timeout()
     if(takeData(m_left_buffer, m_right_buffer))
     {
         Florid::start();
-        m_labels[m_index]->setColor(m_averageColor);
-        m_labels[m_index]->start(rect().center());
+
+        AutismLabel *label = m_labels[m_index];
+        label->setColor(m_averageColor);
+        label->start(rect().center());
+
         ++m_index;
         if(m_index >= m_labels.count())
         {

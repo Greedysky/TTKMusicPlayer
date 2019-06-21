@@ -3,7 +3,7 @@
 #include "inlines.h"
 #include "floridautism.h"
 
-CircleClickLabel::CircleClickLabel(QWidget *parent)
+AutismLabel::AutismLabel(QWidget *parent)
     : QWidget(parent)
 {
     m_circleOn = false;
@@ -14,12 +14,12 @@ CircleClickLabel::CircleClickLabel(QWidget *parent)
     connect(m_circleTimer, SIGNAL(timeout()), SLOT(updateRender()));
 }
 
-CircleClickLabel::~CircleClickLabel()
+AutismLabel::~AutismLabel()
 {
     delete m_circleTimer;
 }
 
-void CircleClickLabel::start(const QPoint &pos)
+void AutismLabel::start(const QPoint &pos)
 {
     m_circleOn = true;
     m_pos = pos;
@@ -27,12 +27,12 @@ void CircleClickLabel::start(const QPoint &pos)
     m_circleTimer->start();
 }
 
-void CircleClickLabel::setColor(const QColor &color)
+void AutismLabel::setColor(const QColor &color)
 {
     m_color = color;
 }
 
-void CircleClickLabel::updateRender()
+void AutismLabel::updateRender()
 {
     m_crValue += 2;
     if(m_crValue >= 2 * DISTANCE)
@@ -45,7 +45,7 @@ void CircleClickLabel::updateRender()
     update();
 }
 
-void CircleClickLabel::paintEvent(QPaintEvent *event)
+void AutismLabel::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     if(m_circleOn)
@@ -69,7 +69,7 @@ FloridAutism::FloridAutism (QWidget *parent) : Florid (parent)
 
     for(int i=0; i<4; ++i)
     {
-        CircleClickLabel *label = new CircleClickLabel(this);
+        AutismLabel *label = new AutismLabel(this);
         label->setGeometry(0, 0, width(), height());
         m_labels << label;
     }
