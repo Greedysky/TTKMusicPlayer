@@ -116,13 +116,8 @@ protected:
      * Image color burn transform.
      */
     int colorBurnTransform(int c, int delta);
-    /*!
-     * Paint round label.
-     */
-    void paintRoundLabel();
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
-
 
 protected:
     QImage m_image;

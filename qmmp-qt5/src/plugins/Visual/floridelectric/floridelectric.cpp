@@ -5,34 +5,46 @@
 
 #include <QPropertyAnimation>
 
-#define ANIMATION_SIZE      50
-#define ANIMATION_DURATION  5000
+#define POINT_SIZE          8
+#define ANIMATION_SIZE      20
+#define ANIMATION_DURATION  10000
 
-ElectricLabel::ElectricLabel(QWidget *parent)
+ElectricPointLabel::ElectricPointLabel(QWidget *parent)
     : QWidget(parent)
 {
-    m_color = QColor(255, 255, 255);
+    m_color = QColor(255, 255, 255, 0);
     m_opacity = 1;
     m_pos = QPoint(0, 0);
     m_size = 5;
 
     m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
-    m_posAnimation->setLoopCount(-1);
     m_posAnimation->setDuration(ANIMATION_DURATION);
-    m_posAnimation->setEasingCurve(QEasingCurve::InQuad);
+    m_posAnimation->setEasingCurve(QEasingCurve::InOutSine);
 
+    connect(m_posAnimation, SIGNAL(finished()), SLOT(finished()));
     connect(m_posAnimation, SIGNAL(valueChanged(QVariant)), SLOT(posValueChanged(QVariant)));
 }
 
-ElectricLabel::~ElectricLabel()
+ElectricPointLabel::~ElectricPointLabel()
 {
     delete m_posAnimation;
 }
 
-void ElectricLabel::start()
+void ElectricPointLabel::start()
 {
-    const QPoint &center = rect().center();
-    int pos_x = qrand() / DISTANCE, pos_y = qrand() / DISTANCE;
+    QTimer::singleShot(qrand() % ANIMATION_DURATION, this, SLOT(timeout()));
+}
+
+void ElectricPointLabel::setColor(const QColor &color)
+{
+    m_color = color;
+}
+
+void ElectricPointLabel::timeout()
+{
+    m_pos = rect().center();
+    m_size = qrand() % DISTANCE / 5 + 1;
+    int pos_x = qrand() % (DISTANCE * 3), pos_y = qrand() % (DISTANCE * 3);
     if(pos_x % 2 == 0)
     {
         pos_x = -pos_x;
@@ -42,17 +54,17 @@ void ElectricLabel::start()
         pos_y = -pos_y;
     }
 
-    m_posAnimation->setStartValue(center);
-    m_posAnimation->setEndValue(center + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
+    m_posAnimation->setStartValue(m_pos);
+    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
     m_posAnimation->start();
 }
 
-void ElectricLabel::setColor(const QColor &color)
+void ElectricPointLabel::finished()
 {
-    m_color = color;
+    start();
 }
 
-void ElectricLabel::posValueChanged(const QVariant &value)
+void ElectricPointLabel::posValueChanged(const QVariant &value)
 {
     m_pos = value.toPoint();
 
@@ -61,61 +73,165 @@ void ElectricLabel::posValueChanged(const QVariant &value)
     const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
     const int currentLength = sqrt(pow(startPoint.x() - m_pos.x(), 2) + pow(startPoint.y() - m_pos.y(), 2));
     const float delta = (totalLength - currentLength) * 1.0 / totalLength;
-
-    m_size *= delta;
     m_opacity = delta;
 
     update();
 }
 
-void ElectricLabel::paintEvent(QPaintEvent *event)
+void ElectricPointLabel::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
+    if(m_pos == QPoint(0, 0))
+    {
+        return;
+    }
+
+    QPainter painter(this);
+    painter.setOpacity(m_opacity);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setPen(QPen(m_color, 2));
+    painter.drawEllipse(m_pos, m_size, m_size);
+}
+
+
+
+ElectricCircleLabel::ElectricCircleLabel(QWidget *parent)
+    : QWidget(parent)
+{
+    m_color = QColor(255, 255, 255, 0);
+    m_opacity = 1;
+    m_size = POINT_SIZE;
+
+    m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
+    m_posAnimation->setDuration(ANIMATION_DURATION / 2);
+    m_posAnimation->setEasingCurve(QEasingCurve::InOutSine);
+
+    connect(m_posAnimation, SIGNAL(finished()), SLOT(finished()));
+    connect(m_posAnimation, SIGNAL(valueChanged(QVariant)), SLOT(sizeValueChanged(QVariant)));
+}
+
+ElectricCircleLabel::~ElectricCircleLabel()
+{
+    delete m_posAnimation;
+}
+
+void ElectricCircleLabel::start()
+{
+    QTimer::singleShot(qrand() % (ANIMATION_DURATION / 2), this, SLOT(timeout()));
+}
+
+void ElectricCircleLabel::setColor(const QColor &color)
+{
+    m_color = color;
+}
+
+void ElectricCircleLabel::finished()
+{
+    start();
+}
+
+void ElectricCircleLabel::timeout()
+{
+    m_posAnimation->setStartValue(DISTANCE);
+    m_posAnimation->setKeyValueAt(0.5, DISTANCE + qrand() % (DISTANCE / 2));
+    m_posAnimation->setEndValue(DISTANCE);
+    m_posAnimation->start();
+}
+
+void ElectricCircleLabel::sizeValueChanged(const QVariant &value)
+{
+    m_size = value.toInt();
+    m_opacity = 1.3 - (m_size - DISTANCE) * 1.0 / (m_posAnimation->keyValueAt(0.5).toInt() - DISTANCE);
+
+    update();
+}
+
+void ElectricCircleLabel::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    if(m_size == POINT_SIZE)
+    {
+        return;
+    }
+
     QPainter painter(this);
     painter.setOpacity(m_opacity);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setBrush(m_color);
-    painter.drawEllipse(m_pos, m_size, m_size);
+    painter.setPen(QPen(m_color, 1));
+    painter.drawEllipse(rect().center(), m_size, m_size);
+}
+
+
+
+ElectricLabel::ElectricLabel(QWidget *parent)
+{
+    for(int i=0; i<ANIMATION_SIZE * 5; ++i)
+    {
+        ElectricPointLabel *label = new ElectricPointLabel(parent);
+        label->setGeometry(parent->geometry());
+        m_pointLabels << label;
+    }
+
+    for(int i=0; i<ANIMATION_SIZE; ++i)
+    {
+        ElectricCircleLabel *label = new ElectricCircleLabel(parent);
+        label->setGeometry(parent->geometry());
+        m_circleLabels << label;
+    }
+}
+
+ElectricLabel::~ElectricLabel()
+{
+    qDeleteAll(m_pointLabels);
+    qDeleteAll(m_circleLabels);
+}
+
+void ElectricLabel::start()
+{
+    foreach(ElectricPointLabel *label, m_pointLabels)
+    {
+        label->start();
+    }
+
+    foreach(ElectricCircleLabel *label, m_circleLabels)
+    {
+        label->start();
+    }
+}
+
+void ElectricLabel::setColor(const QColor &color)
+{
+    foreach(ElectricPointLabel *label, m_pointLabels)
+    {
+        label->setColor(color);
+    }
+
+    foreach(ElectricCircleLabel *label, m_circleLabels)
+    {
+        label->setColor(color);
+    }
 }
 
 
 
 FloridElectric::FloridElectric (QWidget *parent) : Florid (parent)
 {
-    m_intern_vis_data = nullptr;
-    m_x_scale = nullptr;
     m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     setWindowTitle(tr("Florid Electric Widget"));
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_analyzer_falloff = 1.2;
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    m_cell_size = QSize(6, 2);
 
-    clear();
-
-    for(int i=0; i<ANIMATION_SIZE; ++i)
-    {
-        ElectricLabel *label = new ElectricLabel(this);
-        label->setGeometry(0, 0, width(), height());
-        m_labels << label;
-    }
+    m_label = new ElectricLabel(this);
+    m_roundLabel->raise();
 }
 
 FloridElectric::~FloridElectric()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
-    if(m_x_scale)
-    {
-        delete[] m_x_scale;
-    }
+
 }
 
 void FloridElectric::start()
@@ -127,12 +243,7 @@ void FloridElectric::start()
         m_timer->start();
     }
 
-    for(int i=0; i<m_labels.size(); ++i)
-    {
-        ElectricLabel *label = m_labels[i];
-        label->setColor(m_averageColor);
-        label->start();
-    }
+    m_label->start();
 }
 
 void FloridElectric::stop()
@@ -140,23 +251,14 @@ void FloridElectric::stop()
     Florid::stop();
     m_running = false;
     m_timer->stop();
-    clear();
-}
-
-void FloridElectric::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
 }
 
 void FloridElectric::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
+        m_label->setColor(m_averageColor);
         Florid::start();
-        process();
-        update();
     }
     else
     {
@@ -180,102 +282,4 @@ void FloridElectric::showEvent(QShowEvent *)
 void FloridElectric::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
-    QPainter painter(this);
-    draw(&painter);
-}
-
-void FloridElectric::process()
-{
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
-    const int rows = (height() - 2) / m_cell_size.height();
-    const int cols = (width() - 2) / m_cell_size.width();
-
-    if(m_rows != rows || m_cols != cols)
-    {
-        m_rows = rows;
-        m_cols = cols;
-        if(m_intern_vis_data)
-        {
-            delete[] m_intern_vis_data;
-        }
-        if(m_x_scale)
-        {
-            delete[] m_x_scale;
-        }
-        m_intern_vis_data = new double[m_cols];
-        m_x_scale = new int[m_cols + 1];
-
-        for(int i = 0; i < m_cols; ++i)
-        {
-            m_intern_vis_data[i] = 0;
-        }
-        for(int i = 0; i < m_cols + 1; ++i)
-        {
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
-        }
-    }
-
-    short dest[256];
-    short y;
-    int k, magnitude;
-
-    calc_freq (dest, m_left_buffer);
-
-    const double y_scale = (double) 1.25 * m_rows / log(256);
-
-    for(int i = 0; i < m_cols; i++)
-    {
-        y = 0;
-        magnitude = 0;
-
-        if(m_x_scale[i] == m_x_scale[i + 1])
-        {
-            y = dest[i];
-        }
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
-        {
-            y = qMax(dest[k], y);
-        }
-
-        y >>= 7; //256
-
-        if(y)
-        {
-            magnitude = int(log (y) * y_scale);
-            magnitude = qBound(0, magnitude, m_rows);
-        }
-
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
-        m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
-    }
-}
-
-void FloridElectric::draw(QPainter *p)
-{
-    if(m_cols == 0)
-    {
-        return;
-    }
-
-    p->setRenderHints(QPainter::Antialiasing);
-    p->setPen(QPen(m_averageColor, 3));
-    p->translate(rect().center());
-
-    qreal startAngle = 0;
-    for(int i = 0; i < DISTANCE; ++i)
-    {
-        p->save();
-        p->rotate(startAngle);
-        const double value = m_intern_vis_data[int(i * m_cols * 1.0 / DISTANCE)];
-        p->drawLine(0, DISTANCE + 10, 0, DISTANCE + 10 + value * 0.3);
-        p->drawLine(0, DISTANCE + 10, 0, DISTANCE + 10 - value * 0.05);
-
-        p->restore();
-        startAngle += 360.0 / DISTANCE;
-    }
 }

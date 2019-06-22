@@ -32,17 +32,19 @@ class QPropertyAnimation;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class ElectricLabel : public QWidget
+class ElectricPointLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ElectricLabel(QWidget *parent = nullptr);
-    virtual ~ElectricLabel();
+    explicit ElectricPointLabel(QWidget *parent = nullptr);
+    virtual ~ElectricPointLabel();
 
     void start();
     void setColor(const QColor &color);
 
 protected Q_SLOTS:
+    void timeout();
+    void finished();
     void posValueChanged(const QVariant &value);
 
 protected:
@@ -53,6 +55,54 @@ protected:
     QPoint m_pos;
     QColor m_color;
     QPropertyAnimation *m_posAnimation;
+
+};
+
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class ElectricCircleLabel : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit ElectricCircleLabel(QWidget *parent = nullptr);
+    virtual ~ElectricCircleLabel();
+
+    void start();
+    void setColor(const QColor &color);
+
+protected Q_SLOTS:
+    void timeout();
+    void finished();
+    void sizeValueChanged(const QVariant &value);
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+
+    float m_opacity;
+    int m_size;
+    QColor m_color;
+    QPropertyAnimation *m_posAnimation;
+
+};
+
+
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class ElectricLabel
+{
+public:
+    explicit ElectricLabel(QWidget *parent = nullptr);
+    virtual ~ElectricLabel();
+
+    void start();
+    void setColor(const QColor &color);
+
+protected:
+    QList<ElectricPointLabel*> m_pointLabels;
+    QList<ElectricCircleLabel*> m_circleLabels;
 
 };
 
@@ -75,24 +125,16 @@ private slots:
     void timeout();
 
 private:
-    void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
 
-    void process();
-    void draw(QPainter *p);
-
     QTimer *m_timer;
-    double *m_intern_vis_data;
-    double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_cols, m_rows;
     bool m_running;
 
-    QSize m_cell_size;
-    QList<ElectricLabel*> m_labels;
+    ElectricLabel* m_label;
 
 };
 

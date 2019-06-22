@@ -5,7 +5,7 @@
 
 #include <QPropertyAnimation>
 
-#define POINT_SIZE          8
+#define POINT_SIZE          20
 #define ANIMATION_SIZE      100
 #define ANIMATION_DURATION  10000
 
@@ -15,7 +15,7 @@ AncientLabel::AncientLabel(QWidget *parent)
     m_color = QColor(255, 255, 255);
     m_opacity = 1;
     m_pos = QPoint(0, 0);
-    m_size = POINT_SIZE;
+    m_size = 5;
 
     m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
     m_posAnimation->setDuration(ANIMATION_DURATION);
@@ -32,27 +32,31 @@ AncientLabel::~AncientLabel()
 
 void AncientLabel::start()
 {
-    QTimer::singleShot(qrand() % ANIMATION_DURATION, this, [this](){
-        const QPoint &center = rect().center();
-        int pos_x = qrand() % (DISTANCE * 2), pos_y = qrand() % (DISTANCE * 2);
-        if(pos_x % 2 == 0)
-        {
-            pos_x = -pos_x;
-        }
-        if(pos_y % 2 == 0)
-        {
-            pos_y = -pos_y;
-        }
-
-        m_posAnimation->setStartValue(center);
-        m_posAnimation->setEndValue(center + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
-        m_posAnimation->start();
-    });
+    QTimer::singleShot(qrand() % ANIMATION_DURATION, this, SLOT(timeout()));
 }
 
 void AncientLabel::setColor(const QColor &color)
 {
     m_color = color;
+}
+
+void AncientLabel::timeout()
+{
+    m_pos = rect().center();
+    m_size = qrand() % POINT_SIZE + 1;
+    int pos_x = qrand() % (DISTANCE * 3), pos_y = qrand() % (DISTANCE * 3);
+    if(pos_x % 2 == 0)
+    {
+        pos_x = -pos_x;
+    }
+    if(pos_y % 2 == 0)
+    {
+        pos_y = -pos_y;
+    }
+
+    m_posAnimation->setStartValue(m_pos);
+    m_posAnimation->setEndValue(m_pos + QPoint(DISTANCE / 2 + pos_x, DISTANCE / 2 + pos_y));
+    m_posAnimation->start();
 }
 
 void AncientLabel::finished()
@@ -69,8 +73,6 @@ void AncientLabel::posValueChanged(const QVariant &value)
     const int totalLength = sqrt(pow(startPoint.x() - endPoint.x(), 2) + pow(startPoint.y() - endPoint.y(), 2));
     const int currentLength = sqrt(pow(startPoint.x() - m_pos.x(), 2) + pow(startPoint.y() - m_pos.y(), 2));
     const float delta = (totalLength - currentLength) * 1.0 / totalLength;
-
-    m_size = POINT_SIZE * delta;
     m_opacity = delta;
 
     update();
@@ -79,11 +81,21 @@ void AncientLabel::posValueChanged(const QVariant &value)
 void AncientLabel::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
+    if(m_pos == QPoint(0, 0))
+    {
+        return;
+    }
+
     QPainter painter(this);
     painter.setOpacity(m_opacity);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setBrush(m_color);
-    painter.drawEllipse(m_pos, m_size, m_size);
+    painter.setPen(QPen(m_color, 2));
+
+    QVector<QLine> points;
+    points << QLine(m_pos.x() - m_size, m_pos.y(), m_pos.x(), m_pos.y());
+    points << QLine(m_pos.x(), m_pos.y(), m_pos.x(), m_pos.y() + m_size);
+    points << QLine(m_pos.x() - m_size, m_pos.y(), m_pos.x(), m_pos.y() + m_size);
+    painter.drawLines(points);
 }
 
 
@@ -112,6 +124,7 @@ FloridAncient::FloridAncient (QWidget *parent) : Florid (parent)
         label->setGeometry(0, 0, width(), height());
         m_labels << label;
     }
+    m_roundLabel->raise();
 }
 
 FloridAncient::~FloridAncient()
@@ -137,9 +150,7 @@ void FloridAncient::start()
 
     for(int i=0; i<m_labels.size(); ++i)
     {
-        AncientLabel *label = m_labels[i];
-        label->setColor(m_averageColor);
-        label->start();
+        m_labels[i]->start();
     }
 }
 
@@ -162,6 +173,11 @@ void FloridAncient::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
+        for(int i=0; i<m_labels.size(); ++i)
+        {
+            m_labels[i]->setColor(m_averageColor);
+        }
+
         Florid::start();
         process();
         update();
@@ -190,7 +206,6 @@ void FloridAncient::paintEvent(QPaintEvent *e)
     Florid::paintEvent(e);
     QPainter painter(this);
     draw(&painter);
-    paintRoundLabel();
 }
 
 void FloridAncient::process()
@@ -279,9 +294,15 @@ void FloridAncient::draw(QPainter *p)
     qreal startAngle = 0;
     for(int i = 0; i < m_cols; ++i)
     {
+        int offset = i;
+        if(i >= m_cols / 2)
+        {
+            offset = m_cols - i;
+        }//mirror
+
         p->save();
         p->rotate(startAngle);
-        const int value = m_intern_vis_data[int(i * 0.8)];
+        const int value = m_intern_vis_data[int(offset * 0.8)];
         p->drawLine(0, DISTANCE + 5 + value * 0.2, 0.5, DISTANCE + 5 + value * 0.3);
 
         p->restore();

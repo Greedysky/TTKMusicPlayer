@@ -42,6 +42,7 @@ public:
     void setColor(const QColor &color);
 
 protected Q_SLOTS:
+    void timeout();
     void finished();
     void posValueChanged(const QVariant &value);
 

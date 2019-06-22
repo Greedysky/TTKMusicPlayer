@@ -303,15 +303,6 @@ int Florid::colorBurnTransform(int c, int delta)
     return result;
 }
 
-void Florid::paintRoundLabel()
-{
-    if(!m_image.isNull())
-    {
-        const QPoint &pt = rect().center();
-        m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2*DISTANCE, 2*DISTANCE);
-    }
-}
-
 void Florid::resizeEvent(QResizeEvent *event)
 {
     Visual::resizeEvent(event);
@@ -333,7 +324,8 @@ void Florid::paintEvent(QPaintEvent *e)
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
         painter.drawImage(0, 0, m_image.scaled(size()));
 
-        paintRoundLabel();
+        const QPoint &pt = rect().center();
+        m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2*DISTANCE, 2*DISTANCE);
     }
     else
     {
