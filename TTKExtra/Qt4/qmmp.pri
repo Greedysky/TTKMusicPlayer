@@ -44,4 +44,5 @@ HEADERS += \
     $$PWD/visualbuffer_p.h \
     $$PWD/tagreadandwrite.h \
     $$PWD/lightfactory.h \
-    $$PWD/qmmp_export.h
+    $$PWD/florid.h \
+    $$PWD/qmmp_export.h 

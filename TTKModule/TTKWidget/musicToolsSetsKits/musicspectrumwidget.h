@@ -23,7 +23,7 @@
 #include "musicabstractmovewidget.h"
 
 class Spek;
-class QCheckBox;
+class QAbstractButton;
 
 namespace Ui {
 class MusicSpectrumWidget;
@@ -68,9 +68,9 @@ public Q_SLOTS:
      */
     void spectrumPlusTypeChanged(int index);
     /*!
-     * Spectrum Dazzle Type Changed.
+     * Spectrum Florid Type Changed.
      */
-    void spectrumDazzleTypeChanged(int index);
+    void spectrumFloridTypeChanged(int index);
     /*!
      * Override show function.
      */
@@ -86,13 +86,29 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * New spectrum widget.
+     * Spectrum types list.
      */
-    void newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    static QStringList spectrumTypeList();
     /*!
-     * New light widget.
+     * Spectrum plus types list.
      */
-    void newLightWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url = QString());
+    static QStringList spectrumPlusTypeList();
+    /*!
+     * Spectrum florid types list.
+     */
+    static QStringList spectrumFloridTypeList();
+    /*!
+     * Create spectrum widget.
+     */
+    void createSpectrumWidget(QAbstractButton *box, const QString &name, QLayout *layout);
+    /*!
+     * Create light widget.
+     */
+    void createLightWidget(QAbstractButton *box, const QString &name, QLayout *layout, const QString &url = QString());
+    /*!
+     * Create florid widget.
+     */
+    void createFloridWidget(QAbstractButton *box, const QString &name, QLayout *layout);
     /*!
      * Adjust widget layout.
      */
@@ -104,7 +120,7 @@ protected:
     /*!
      * Show message box widget.
      */
-    void showMessageBoxWidget(QCheckBox *box);
+    void showMessageBoxWidget(QAbstractButton *box);
 
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;

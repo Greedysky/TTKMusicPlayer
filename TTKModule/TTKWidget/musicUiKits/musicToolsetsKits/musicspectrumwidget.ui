@@ -77,7 +77,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="spectrumWidget">
      <attribute name="title">
@@ -310,11 +310,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="dazzleWidget">
+    <widget class="QWidget" name="floridWidget">
      <attribute name="title">
       <string>炫光显示</string>
      </attribute>
-     <layout class="QVBoxLayout" name="dazzleLayout">
+     <layout class="QVBoxLayout" name="floridLayout">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -331,7 +331,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="dazzleFuncionts" native="true">
+       <widget class="QWidget" name="floridFuncionts" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -344,7 +344,7 @@
           <height>30</height>
          </size>
         </property>
-        <layout class="QHBoxLayout" name="dazzleFunciontsLayout">
+        <layout class="QHBoxLayout" name="floridFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
@@ -358,22 +358,63 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="flashgoomBox">
+          <widget class="QRadioButton" name="floridgoomBox">
            <property name="text">
             <string>Goom</string>
            </property>
            <property name="checked">
             <bool>false</bool>
            </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="flashmeterBox">
+          <widget class="QRadioButton" name="floridreverbBox">
            <property name="text">
-            <string>Meter</string>
+            <string>Reverb</string>
            </property>
            <property name="checked">
             <bool>false</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="floridautismBox">
+           <property name="text">
+            <string>Autism</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="floridbassBox">
+           <property name="text">
+            <string>Bass</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="floridsurroundBox">
+           <property name="text">
+            <string>Surround</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="floridancientBox">
+           <property name="text">
+            <string>Ancient</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="floridelectricBox">
+           <property name="text">
+            <string>Electric</string>
            </property>
           </widget>
          </item>
@@ -381,8 +422,8 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="dazzleAreaWidget" native="true">
-        <layout class="QVBoxLayout" name="dazzleAreaLayout">
+       <widget class="QWidget" name="floridAreaWidget" native="true">
+        <layout class="QVBoxLayout" name="floridAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>
