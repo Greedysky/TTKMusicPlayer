@@ -21,7 +21,7 @@ void MusicXMSongSuggestThread::startToSearch(const QString &text)
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_SUGGEST_URL, false).arg(text);
     m_interrupt = true;
-qDebug() << musicUrl;
+
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
