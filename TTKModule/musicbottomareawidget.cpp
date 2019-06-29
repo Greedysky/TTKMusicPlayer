@@ -132,7 +132,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->centerRightWidget->setVisible(!con);
     m_ui->bottomCenterWidget->setVisible(!con);
     m_ui->bottomRightWidget->setVisible(!con);
-    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? 322 : 220);
+    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? CONCISE_WIDTH_MIN : 220);
 
     m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
     m_ui->musicWindowConcise->setStyleSheet(con ? MusicUIObject::MKGBtnConciseOut : MusicUIObject::MKGBtnConciseIn);
@@ -150,8 +150,8 @@ void MusicBottomAreaWidget::setWindowConcise()
     if(con)
     {
         MusicApplication *app = MusicApplication::instance();
-        app->setMinimumSize(322, WINDOW_HEIGHT_MIN);
-        app->setMaximumSize(322, WINDOW_HEIGHT_MIN);
+        app->setMinimumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+        app->setMaximumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 
         m_ui->musicWindowConcise->move(245, 20);
         m_ui->musicWindowConcise->show();

@@ -1,5 +1,6 @@
 #include "musicripplespecturmobject.h"
 #include "musicqmmputils.h"
+#include "musicobject.h"
 
 #include "visual.h"
 
@@ -41,6 +42,7 @@ void MusicRippleSpecturmObject::show()
         m_visualWidget = vs->last();
         m_visualWidget->setMinimumHeight(65);
         m_visualWidget->setMaximumHeight(65);
+        m_visualWidget->setMinimumWidth(CONCISE_WIDTH_MIN);
 
         QVBoxLayout *layout = new QVBoxLayout(m_visualWidget);
         layout->setSpacing(0);
