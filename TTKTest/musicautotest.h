@@ -72,6 +72,9 @@ namespace MusicAutoTest
 }
 
 template <typename T>
+/*! @brief The class of the app test object.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicTest
 {
 public:
