@@ -3,6 +3,7 @@
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
+#include "musicstringutils.h"
 
 #include <QFile>
 #include <QButtonGroup>
@@ -77,11 +78,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     QFile file(":/emoji/db");
     if(file.open(QFile::ReadOnly))
     {
-#ifdef Q_OS_WIN
-       m_datas = QString(file.readAll()).split("\r\n");
-#else
-       m_datas = QString(file.readAll()).split("\n");
-#endif
+       m_datas = QString(file.readAll()).split( MusicUtils::String::splitLineKey() );
     }
     file.close();
 }

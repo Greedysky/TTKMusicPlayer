@@ -30,6 +30,10 @@ namespace MusicUtils
     namespace String
     {
         /*!
+         * Get new line split string key.
+         */
+        MUSIC_UTILS_EXPORT QString splitLineKey();
+        /*!
          * Remove given key in string, default is space.
          */
         MUSIC_UTILS_EXPORT QString removeStringBy(const QString &value, const QString &key = " ");

@@ -3,6 +3,15 @@
 
 #include <QColor>
 
+QString MusicUtils::String::splitLineKey()
+{
+#ifdef Q_OS_WIN
+    return "\r\n";
+#else
+    return "\n";
+#endif
+}
+
 QString MusicUtils::String::removeStringBy(const QString &value, const QString &key)
 {
     QString s = value;

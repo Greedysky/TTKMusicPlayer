@@ -4,6 +4,7 @@
 #endif
 #include <qmath.h>
 #include "musictime.h"
+#include "musicstringutils.h"
 #include "musicapplication.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictranslationthreadabstract.h"
@@ -138,11 +139,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
     const QString &getAllText = QString(krc.getDecodeString());
     //The lyrics by line into the lyrics list
-#ifdef Q_OS_WIN
-    foreach(const QString &oneLine, getAllText.split("\r\n"))
-#else
-    foreach(const QString &oneLine, getAllText.split("\n"))
-#endif
+    foreach(const QString &oneLine, getAllText.split( MusicUtils::String::splitLineKey() ))
     {
         matchLrcLine(oneLine);
     }
