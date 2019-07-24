@@ -5,7 +5,6 @@
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicdownloadwidget.h"
-#include "musicconnecttransferwidget.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
 
@@ -164,28 +163,6 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidget()
     shareWidget.exec();
 }
 
-void MusicSongsListAbstractTableWidget::musicSongKMicroWidget()
-{
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return;
-    }
-
-    MusicLeftAreaWidget::instance()->createSoundKMicroWidget( getCurrentSongName() );
-}
-
-void MusicSongsListAbstractTableWidget::musicSongTransferWidget()
-{
-    if(m_musicSongs->isEmpty() || !m_hasParentToolIndex)
-    {
-        return;
-    }
-
-    MusicConnectTransferWidget transferWidget;
-    transferWidget.redirectToCurrentSong(m_parentToolIndex, currentRow());
-    transferWidget.exec();
-}
-
 void MusicSongsListAbstractTableWidget::musicSongDownload()
 {
     if(rowCount() == 0 || currentRow() < 0)
@@ -198,7 +175,7 @@ void MusicSongsListAbstractTableWidget::musicSongDownload()
     download->show();
 }
 
-void MusicSongsListAbstractTableWidget::musicSongMovieFoundPy()
+void MusicSongsListAbstractTableWidget::musicSongPlayedMovieFound()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -208,7 +185,7 @@ void MusicSongsListAbstractTableWidget::musicSongMovieFoundPy()
     MusicRightAreaWidget::instance()->musicVideoButtonSearched(getSongName(m_playRowIndex), QString());
 }
 
-void MusicSongsListAbstractTableWidget::musicSimilarFoundWidgetPy()
+void MusicSongsListAbstractTableWidget::musicPlayedSimilarFoundWidget()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -218,7 +195,7 @@ void MusicSongsListAbstractTableWidget::musicSimilarFoundWidgetPy()
     MusicRightAreaWidget::instance()->musicSimilarFound( getSongName(m_playRowIndex) );
 }
 
-void MusicSongsListAbstractTableWidget::musicSongSharedWidgetPy()
+void MusicSongsListAbstractTableWidget::musicSongPlayedSharedWidget()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -233,7 +210,7 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidgetPy()
     shareWidget.exec();
 }
 
-void MusicSongsListAbstractTableWidget::musicSongKMicroWidgetPy()
+void MusicSongsListAbstractTableWidget::musicSongPlayedKMicroWidget()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -250,11 +227,8 @@ void MusicSongsListAbstractTableWidget::createMoreMenu(QMenu *menu)
     QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
     addMenu->addAction(tr("musicCloud"));
 
-    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), this, SLOT(musicSongTransferWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), this, SLOT(musicSongTransferWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), this, SLOT(musicSimilarFoundWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(musicSongSharedWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), this, SLOT(musicSongKMicroWidget()));
 }
 
 QString MusicSongsListAbstractTableWidget::getCurrentSongPath() const

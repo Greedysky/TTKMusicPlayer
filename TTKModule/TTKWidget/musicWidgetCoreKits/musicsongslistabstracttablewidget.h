@@ -112,33 +112,25 @@ public Q_SLOTS:
      */
     void musicSongSharedWidget();
     /*!
-     * Open music song KMicro widget.
-     */
-    void musicSongKMicroWidget();
-    /*!
-     * Open music song transfer widget.
-     */
-    void musicSongTransferWidget();
-    /*!
      * Open music song download widget.
      */
     void musicSongDownload();
     /*!
      * To search song mv by song name in play widget.
      */
-    void musicSongMovieFoundPy();
+    void musicSongPlayedMovieFound();
     /*!
      * Open music similar found widget in play widget.
      */
-    void musicSimilarFoundWidgetPy();
+    void musicPlayedSimilarFoundWidget();
     /*!
      * Open music song shared widget in play widget.
      */
-    void musicSongSharedWidgetPy();
+    void musicSongPlayedSharedWidget();
     /*!
      * Open music song KMicro widget in play widget.
      */
-    void musicSongKMicroWidgetPy();
+    void musicSongPlayedKMicroWidget();
 
 protected:
     /*!
