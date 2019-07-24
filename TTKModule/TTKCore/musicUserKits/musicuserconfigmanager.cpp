@@ -8,11 +8,11 @@ MusicUserConfigManager::MusicUserConfigManager(QObject *parent)
 
 void MusicUserConfigManager::readUserData(MusicUserRecords &records)
 {
-    QDomNodeList nodelist = m_document->elementsByTagName("userName");
-    for(int i=0; i<nodelist.count(); ++i)
+    const QDomNodeList &nodeList = m_document->elementsByTagName("userName");
+    for(int i=0; i<nodeList.count(); ++i)
     {
         MusicUserRecord record;
-        const QDomElement &element = nodelist.at(i).toElement();
+        const QDomElement &element = nodeList.at(i).toElement();
         record.m_uid = element.attribute("name");
         record.m_rememberFlag = (element.attribute("remember") == "1");
         record.m_autoFlag = (element.attribute("auto") == "1");

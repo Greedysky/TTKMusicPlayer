@@ -105,33 +105,33 @@ QString MusicAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName)
 
 QString MusicAbstractXml::readXmlAttributeByTagName(const QString &tagName, const QString &attrName) const
 {
-    const QDomNodeList &nodelist = m_document->elementsByTagName(tagName);
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    if(nodeList.isEmpty())
     {
         return QString();
     }
-    return nodelist.at(0).toElement().attribute(attrName);
+    return nodeList.at(0).toElement().attribute(attrName);
 }
 
 QString MusicAbstractXml::readXmlTextByTagName(const QString &tagName) const
 {
-    const QDomNodeList &nodelist = m_document->elementsByTagName(tagName);
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    if(nodeList.isEmpty())
     {
         return QString();
     }
-    return nodelist.at(0).toElement().text();
+    return nodeList.at(0).toElement().text();
 }
 
 MVariantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
 {
-    const QDomNodeList &nodelist = m_document->elementsByTagName(tagName);
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    if(nodeList.isEmpty())
     {
         return MVariantMap();
     }
 
-    const QDomNamedNodeMap &nodes = nodelist.at(0).toElement().attributes();
+    const QDomNamedNodeMap &nodes = nodeList.at(0).toElement().attributes();
     MVariantMap maps;
     for(int i=0; i<nodes.count(); ++i)
     {

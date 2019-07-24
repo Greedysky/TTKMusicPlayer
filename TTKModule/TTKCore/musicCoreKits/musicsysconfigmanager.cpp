@@ -468,14 +468,14 @@ void MusicSysConfigManager::writeSysConfigData()
 
 void MusicSysConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
 {
-    const QDomNodeList &nodelist = m_document->elementsByTagName("lastPlayIndex");
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName("lastPlayIndex");
+    if(nodeList.isEmpty())
     {
         key << "0" << "0" << "-1";
         return;
     }
 
-    const QDomElement &element = nodelist.at(0).toElement();
+    const QDomElement &element = nodeList.at(0).toElement();
     key << element.attribute("value") << element.text().split(',');
     if(key.count() != 3)
     {
@@ -486,13 +486,13 @@ void MusicSysConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
 
 QRect MusicSysConfigManager::readWindowGeometry() const
 {
-    const QDomNodeList &nodelist = m_document->elementsByTagName("geometry");
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName("geometry");
+    if(nodeList.isEmpty())
     {
         return QRect(0, 0, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
     }
 
-    const QDomElement &element = nodelist.at(0).toElement();
+    const QDomElement &element = nodeList.at(0).toElement();
     const QStringList &lists = element.attribute("value").split(",");
     if(lists.count() == 4)
     {

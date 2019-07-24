@@ -63,12 +63,12 @@ void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
 
 MusicSongs MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
-    const QDomNodeList &nodelist = node.childNodes();
+    const QDomNodeList &nodeList = node.childNodes();
 
     MusicSongs songs;
-    for(int i=0; i<nodelist.count(); i++)
+    for(int i=0; i<nodeList.count(); i++)
     {
-        const QDomElement &element = nodelist.at(i).toElement();
+        const QDomElement &element = nodeList.at(i).toElement();
         songs << MusicSong(element.text(),
                            element.attribute("playCount").toInt(),
                            element.attribute("time"),

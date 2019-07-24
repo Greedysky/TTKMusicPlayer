@@ -8,14 +8,14 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::
 
 void MusicDownloadRecordConfigManager::readDownloadData(MusicSongs &records)
 {
-    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
-    for(int i=0; i<nodelist.count(); ++i)
+    const QDomNodeList &nodeList = m_document->elementsByTagName("value");
+    for(int i=0; i<nodeList.count(); ++i)
     {
         MusicSong record;
-        record.setMusicName(nodelist.at(i).toElement().attribute("name"));
-        record.setMusicSizeStr(nodelist.at(i).toElement().attribute("size"));
-        record.setMusicAddTimeStr(nodelist.at(i).toElement().attribute("time"));
-        record.setMusicPath(nodelist.at(i).toElement().text());
+        record.setMusicName(nodeList.at(i).toElement().attribute("name"));
+        record.setMusicSizeStr(nodeList.at(i).toElement().attribute("size"));
+        record.setMusicAddTimeStr(nodeList.at(i).toElement().attribute("time"));
+        record.setMusicPath(nodeList.at(i).toElement().text());
         records << record;
     }
 }

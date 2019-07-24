@@ -16,47 +16,21 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += network xml
 
-include(../../TTKVersion.pri)
-unix:VERSION += $$TTKMusicPlayer
+INCLUDEPATH += $$PWD
 
-win32{
-    TARGET = ../../../bin/$$TTKMusicPlayer/TTKExtras
-    msvc{
-        LIBS += -luser32
-    }
-}
-unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKExtras
-TEMPLATE = lib
+HEADERS += \
+    $$PWD/dlnafinder.h \
+    $$PWD/dlnaclient.h \
+    $$PWD/dlnahelper.h \
+    $$PWD/dlnaservice.h \
+    $$PWD/dlnaxml.h
 
-win32:msvc{
-    CONFIG +=c++11
-}else{
-    QMAKE_CXXFLAGS += -std=c++11
-}
+SOURCES += \
+    $$PWD/dlnahelper.cpp \
+    $$PWD/dlnafinder.cpp \
+    $$PWD/dlnaclient.cpp \
+    $$PWD/dlnaservice.cpp \
+    $$PWD/dlnaxml.cpp
 
-win32{
-    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKUi
-}
-unix:!mac{
-    LIBS += -L../../lib/$$TTKMusicPlayer -lTTKUi
-}
-
-include(../TTKExtrasDefine.pri)
-
-include(qalg/QAlg.pri)
-include(qdlna/QDLNA.pri)
-include(qhttpserver/QHttpServer.pri)
-include(qhz2py/QHz2Py.pri)
-include(qimage/QImage.pri)
-include(qiniu/QiNiu.pri)
-include(qjson/QJson.pri)
-include(qkugou/QKuGou.pri)
-include(qrencode/QRencode.pri)
-include(qshortcut/QShortCut.pri)
-
-win32{
-    RC_FILE = TTKExtras.rc
-}
