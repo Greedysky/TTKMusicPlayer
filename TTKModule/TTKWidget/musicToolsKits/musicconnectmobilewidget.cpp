@@ -2,13 +2,17 @@
 #include "musicconnecttransferwidget.h"
 #include "musicanimationstackedwidget.h"
 #include "musicwidgetutils.h"
+#include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
 #include "musicotherdefine.h"
 
 #include "qrencode/qrcodewidget.h"
 
-#include <QPainter>
+#ifdef Q_OS_WIN
+#  include <qt_windows.h>
+#endif
 
+#include <QDebug>
 MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -79,39 +83,62 @@ void MusicConnectMobileWidget::initSecondWidget()
 {
     QWidget *secondWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(secondWidget);
+    ///////////////////////////////////////////////////////
+    QWidget *topWidget = new QWidget(secondWidget);
+    QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
 
-    QPushButton *backButton = new QPushButton(tr("< back"), secondWidget);
+    QPushButton *backButton = new QPushButton(tr("< "), topWidget);
     backButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
-    connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
+    connect(backButton, SIGNAL(clicked()), SLOT(changeStatckedWidgetFirst()));
+
+    QPushButton *deviceButton = new QPushButton(topWidget);
+    deviceButton->setStyleSheet(MusicUIObject::MKGTransferChangedDev);
+    deviceButton->setFixedSize(80, 20);
+    deviceButton->setCursor(Qt::PointingHandCursor);
+
+    topWidgetLayout->addWidget(backButton);
+    topWidgetLayout->addStretch(1);
+    topWidgetLayout->addWidget(deviceButton);
+    ///////////////////////////////////////////////////////
 
     QLabel *pixLabel = new QLabel(secondWidget);
-    pixLabel->setPixmap(QPixmap(":/toolSets/lb_wired_con"));
+    pixLabel->setPixmap(QPixmap(":/toolSets/lb_mobile_usb"));
 
     QLabel *label1 = new QLabel(tr("use Wired Mode"), secondWidget);
     label1->setStyleSheet(MusicUIObject::MFontStyle03);
-    QLabel *label2 = new QLabel(tr("android phone open usb debug"), secondWidget);
-    label2->setStyleSheet(MusicUIObject::MFontStyle03);
+    ///////////////////////////////////////////////////////
+    QWidget *buttonWidget = new QWidget(secondWidget);
+    QHBoxLayout *buttonWidgetLayout = new QHBoxLayout(buttonWidget);
 
-    QPushButton *openButton = new QPushButton(tr("transfer"), secondWidget);
-    openButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    openButton->setFixedSize(80, 40);
-    openButton->setCursor(Qt::PointingHandCursor);
-    connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+    QPushButton *importSong = new QPushButton(secondWidget);
+    importSong->setStyleSheet(MusicUIObject::MKGTransferSong);
+    importSong->setFixedSize(130, 96);
+    importSong->setCursor(Qt::PointingHandCursor);
+    connect(importSong, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+
+    QPushButton *importRing = new QPushButton(secondWidget);
+    importRing->setStyleSheet(MusicUIObject::MKGTransferRing);
+    importRing->setFixedSize(130, 96);
+    importRing->setCursor(Qt::PointingHandCursor);
+    connect(importRing, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+
+    buttonWidgetLayout->addWidget(importSong);
+    buttonWidgetLayout->addWidget(importRing);
 
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
-    openButton->setFocusPolicy(Qt::NoFocus);
+    importSong->setFocusPolicy(Qt::NoFocus);
+    importRing->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    vBox->addWidget(backButton);
+    vBox->addWidget(topWidget);
     vBox->addStretch(4);
     vBox->addWidget(pixLabel, 0, Qt::AlignCenter);
     vBox->addWidget(label1, 0, Qt::AlignCenter);
-    vBox->addWidget(label2, 0, Qt::AlignCenter);
     vBox->addStretch(2);
-    vBox->addWidget(openButton, 0, Qt::AlignCenter);
+    vBox->addWidget(buttonWidget, 0, Qt::AlignCenter);
     vBox->addStretch(3);
 
     secondWidget->setLayout(vBox);
@@ -124,7 +151,7 @@ void MusicConnectMobileWidget::initThirdWidget()
     QWidget *thirdWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(thirdWidget);
 
-    QPushButton *backButton = new QPushButton(tr("< back"), thirdWidget);
+    QPushButton *backButton = new QPushButton(tr("< "), thirdWidget);
     backButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
     backButton->setFixedSize(45, 25);
     backButton->setCursor(Qt::PointingHandCursor);
@@ -142,15 +169,8 @@ void MusicConnectMobileWidget::initThirdWidget()
     QLabel *label3 = new QLabel(tr("\t2. use scanning by mobile app"), thirdWidget);
     label3->setStyleSheet(MusicUIObject::MFontStyle03);
 
-    QPushButton *openButton = new QPushButton(tr("transfer"), thirdWidget);
-    openButton->setStyleSheet(MusicUIObject::MPushButtonStyle12);
-    openButton->setFixedSize(80, 40);
-    openButton->setCursor(Qt::PointingHandCursor);
-    connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Wifi()));
-
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
-    openButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     vBox->addWidget(backButton);
@@ -161,13 +181,13 @@ void MusicConnectMobileWidget::initThirdWidget()
     vBox->addStretch(1);
     vBox->addWidget(label2, 0, Qt::AlignVCenter);
     vBox->addWidget(label3, 0, Qt::AlignVCenter);
-    vBox->addStretch(2);
-    vBox->addWidget(openButton, 0, Qt::AlignCenter);
-    vBox->addStretch(3);
+    vBox->addStretch(5);
 
     thirdWidget->setLayout(vBox);
 
     m_stackedWidget->addWidget(thirdWidget);
+
+    getRemovableDrive();
 }
 
 void MusicConnectMobileWidget::changeStatckedWidgetFirst()
@@ -188,13 +208,121 @@ void MusicConnectMobileWidget::changeStatckedWidgetThird()
 void MusicConnectMobileWidget::openTransferFiles2Mobile()
 {
     MusicConnectTransferWidget w(this);
-    w.openTransferFiles(0);
     w.exec();
 }
 
-void MusicConnectMobileWidget::openTransferFiles2Wifi()
+bool MusicConnectMobileWidget::GetDisksProperty(const QString &drive)
 {
-    MusicConnectTransferWidget w(this);
-    w.openTransferFiles(1);
-    w.exec();
+#ifdef Q_OS_WIN
+    STORAGE_PROPERTY_QUERY query;
+    query.PropertyId = StorageDeviceProperty;
+    query.QueryType = PropertyStandardQuery;
+
+    QString name = drive;
+    name = "\\\\.\\" + name.left(name.size() - 1);
+
+    HANDLE hDevice = CreateFile(
+        name.toStdWString().c_str(),
+        GENERIC_READ | GENERIC_WRITE,
+        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        nullptr,
+        OPEN_EXISTING,
+        NULL,
+        nullptr
+    );
+
+    if(hDevice == INVALID_HANDLE_VALUE)
+    {
+        return false;
+    }
+
+    STORAGE_DESCRIPTOR_HEADER *pHeader = (STORAGE_DESCRIPTOR_HEADER *)malloc(sizeof(STORAGE_DESCRIPTOR_HEADER));
+    if(nullptr == pHeader)
+    {
+        return false;
+    }
+
+    DWORD bytes;
+    BOOL bResult = DeviceIoControl(
+        hDevice,
+        IOCTL_STORAGE_QUERY_PROPERTY,
+        &query,
+        sizeof(query),
+        pHeader,
+        sizeof(STORAGE_DESCRIPTOR_HEADER),
+        &bytes,
+        nullptr
+    );
+
+    if(!bResult)
+    {
+        free(pHeader);
+        CloseHandle(hDevice);
+        return false;
+    }
+
+    PSTORAGE_DEVICE_DESCRIPTOR pDev = (STORAGE_DEVICE_DESCRIPTOR *)malloc(pHeader->Size);
+    bResult = DeviceIoControl(
+        hDevice,
+        IOCTL_STORAGE_QUERY_PROPERTY,
+        &query,
+        sizeof(query),
+        pDev,
+        pHeader->Size,
+        &bytes,
+        nullptr
+    );
+
+    free(pHeader);
+    CloseHandle(hDevice);
+    if(pDev->BusType==BusTypeUsb)
+    {
+        free(pDev);
+        return true;
+    }
+
+    free(pDev);
+    return false;
+#else
+    return false;
+#endif
 }
+
+QString MusicConnectMobileWidget::getRemovableDrive()
+{
+#ifdef Q_OS_WIN
+    const QFileInfoList &drives = QDir::drives();
+    foreach(const QFileInfo &drive, drives)
+    {
+        const QString &path = drive.absoluteDir().absolutePath();
+        if(GetDriveTypeW(path.toStdWString().c_str()) == DRIVE_REMOVABLE)
+        {
+
+        }
+        else if(GetDriveTypeW(path.toStdWString().c_str()) == DRIVE_FIXED)
+        {
+            if(!GetDisksProperty(path))
+            {
+                continue;
+            }
+        }
+        else
+        {
+            continue;
+        }
+
+        ULARGE_INTEGER freeAvailable;
+        ULARGE_INTEGER totalNumberOfBytes;
+        ULARGE_INTEGER totalNumberOfFreeBytes;
+
+        if(GetDiskFreeSpaceEx(path.toStdWString().c_str(), &freeAvailable, &totalNumberOfBytes, &totalNumberOfFreeBytes))
+        {
+            qDebug() << path;
+            qDebug() << freeAvailable.QuadPart / MH_GB2B; //GB
+            qDebug() << totalNumberOfBytes.QuadPart / MH_GB2B; //GB
+        }
+    }
+#endif
+    return QString();
+}
+

@@ -56,10 +56,6 @@ private Q_SLOTS:
      * Open transfer files to mobile widget.
      */
     void openTransferFiles2Mobile();
-    /*!
-     * Open transfer files to wifi widget.
-     */
-    void openTransferFiles2Wifi();
 
 protected:
     /*!
@@ -78,6 +74,14 @@ protected:
      * Init connect to wire widget.
      */
     void initThirdWidget();
+    /*!
+     * Get removable drive property.
+     */
+    bool GetDisksProperty(const QString &drive);
+    /*!
+     * Get removable drive name.
+     */
+    QString getRemovableDrive();
 
     MusicAnimationStackedWidget *m_stackedWidget;
 

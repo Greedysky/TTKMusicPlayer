@@ -26,7 +26,6 @@
 #include "musicwidgetheaders.h"
 #include "musicabstractmovewidget.h"
 
-class QFileSystemWatcher;
 class MusicLocalSongsManagerThread;
 
 namespace Ui {
@@ -64,18 +63,6 @@ public Q_SLOTS:
      * Select all items.
      */
     void selectedAllItems(bool check);
-    /*!
-     * Watch dir enable or not.
-     */
-    void watchDirEnable(bool enable);
-    /*!
-     * Watch dir selected.
-     */
-    void watchDirSelected();
-    /*!
-     * Watch dir path changed.
-     */
-    void watchDirChanged(const QString &path);
     /*!
      * Music song audition play.
      */
@@ -165,7 +152,6 @@ protected:
     QFileInfoList m_fileNames;
     MusicLocalSongsManagerThread *m_thread;
     MIntListMap m_searchfileListCache;
-    QFileSystemWatcher *m_fileSystemWatcher;
 
 };
 

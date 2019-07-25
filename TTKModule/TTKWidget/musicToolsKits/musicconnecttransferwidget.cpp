@@ -43,14 +43,6 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferUSBFiles()));
 
-    m_ui->transferWIFIButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->transferWIFIButton->setCursor(QCursor(Qt::PointingHandCursor));
-
-    m_ui->switchButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->switchButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->switchButton, SIGNAL(clicked()), SLOT(switchDiffDevice()));
-
-    m_ui->lineWIFIEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
 
@@ -74,14 +66,6 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
     M_CONNECTION_PTR->removeValue(getClassName());
     delete m_buttonGroup;
     delete m_ui;
-}
-
-void MusicConnectTransferWidget::openTransferFiles(int mode)
-{
-    if(mode == 1)
-    {
-        switchDiffDevice();
-    }
 }
 
 void MusicConnectTransferWidget::redirectToCurrentSong(int toolIndex, int songIndex)
@@ -206,7 +190,6 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
         return;
     }
 
-    m_ui->switchButton->setEnabled(false);
     QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
     if(path.isEmpty())
     {
@@ -223,7 +206,6 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
         progress.setValue(i);
     }
 
-    m_ui->switchButton->setEnabled(true);
     if(m_ui->allSelectedcheckBox->isChecked())
     {
         m_ui->allSelectedcheckBox->click();
@@ -240,13 +222,6 @@ void MusicConnectTransferWidget::reflashRemovableDir()
     }
     m_ui->textUSBLabel->setText(QString("( %1 )").arg(path));
     m_ui->transferUSBButton->setEnabled( !path.isEmpty() );
-}
-
-void MusicConnectTransferWidget::switchDiffDevice()
-{
-    bool state = m_ui->switchButton->text() == tr("wifi");
-    m_ui->switchButton->setText(state ? tr("mobile") : tr("wifi"));
-    m_ui->stackedWidget->setCurrentIndex(state);
 }
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)

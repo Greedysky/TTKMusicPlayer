@@ -217,70 +217,7 @@ QLabel{background:transparent;}</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="wifiModeWidget">
-     <widget class="QLabel" name="iconWIFILabel">
-      <property name="geometry">
-       <rect>
-        <x>35</x>
-        <y>50</y>
-        <width>72</width>
-        <height>72</height>
-       </rect>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_wifi</pixmap>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="transferWIFIButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>210</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>transfer</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="WIFILabel">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>140</y>
-        <width>120</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>对方IP地址</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineWIFIEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>120</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="switchButton">
-    <property name="geometry">
-     <rect>
-      <x>495</x>
-      <y>10</y>
-      <width>100</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>wifi</string>
-    </property>
+    <widget class="QWidget" name="wifiModeWidget"/>
    </widget>
    <widget class="QWidget" name="playListLayoutWidget">
     <property name="geometry">

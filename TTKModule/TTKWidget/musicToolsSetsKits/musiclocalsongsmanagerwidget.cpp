@@ -15,7 +15,6 @@
 #  include <QtConcurrentRun>
 #endif
 #include <QButtonGroup>
-#include <QFileSystemWatcher>
 #include <QStyledItemDelegate>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
@@ -40,14 +39,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(m_ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
-
-    m_ui->watchDirCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle03);
-    m_ui->watchDirCheckBox->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->watchDirCheckBox, SIGNAL(clicked(bool)), SLOT(watchDirEnable(bool)));
-
-    m_ui->watchDirButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->watchDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    connect(m_ui->watchDirButton, SIGNAL(clicked()), SLOT(watchDirSelected()));
 
     m_ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_audition); }");
     m_ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_add); }");
@@ -107,14 +98,10 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     m_runTypeChanged = false;
     addDrivesList();
-    watchDirEnable(false);
     m_ui->filterComboBox->setCurrentIndex(-1);
 
     m_thread = new MusicLocalSongsManagerThread(this);
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)), SLOT(setSongNamePath(QFileInfoList)));
-
-    m_fileSystemWatcher = new QFileSystemWatcher(this);
-    connect(m_fileSystemWatcher, SIGNAL(directoryChanged(QString)), SLOT(watchDirChanged(QString)));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
@@ -128,7 +115,6 @@ MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
     clearAllItems();
     m_thread->stopAndQuitThread();
     delete m_thread;
-    delete m_fileSystemWatcher;
     delete m_ui;
 }
 
@@ -152,43 +138,6 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
         m_ui->allSelectedcheckBox->setText(tr("allcanceled"));
         m_ui->songlistsTable->selectAll();
     }
-}
-
-void MusicLocalSongsManagerWidget::watchDirEnable(bool enable)
-{
-    m_ui->watchDirButton->setEnabled(enable);
-    m_ui->watchDirFrequenceEdit->setEnabled(enable);
-
-    const QString &path = m_ui->watchPathLabel->text();
-    if(!path.isEmpty())
-    {
-        m_fileSystemWatcher->addPath(path);
-    }
-}
-
-void MusicLocalSongsManagerWidget::watchDirSelected()
-{
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
-    {
-        QString path = m_ui->watchPathLabel->text();
-        if(!path.isEmpty())
-        {
-            m_fileSystemWatcher->removePath(path);
-        }
-        path = dialog.directory().absolutePath();
-        m_ui->watchPathLabel->setText(path);
-        m_fileSystemWatcher->addPath(path);
-    }
-}
-
-void MusicLocalSongsManagerWidget::watchDirChanged(const QString &path)
-{
-    m_thread->stopAndQuitThread();
-    m_thread->setFindFilePath(path);
-    m_thread->start();
 }
 
 void MusicLocalSongsManagerWidget::auditionButtonClick()

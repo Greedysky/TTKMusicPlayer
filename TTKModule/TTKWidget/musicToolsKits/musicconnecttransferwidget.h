@@ -44,10 +44,6 @@ public:
     virtual ~MusicConnectTransferWidget();
 
     /*!
-     * Open transfer files by mode.
-     */
-    void openTransferFiles(int mode);
-    /*!
      * Redirect to current song.
      */
     void redirectToCurrentSong(int toolIndex, int songIndex);
@@ -75,10 +71,6 @@ public Q_SLOTS:
      * Reflash removable dir.
      */
     void reflashRemovableDir();
-    /*!
-     * Switch to different device.
-     */
-    void switchDiffDevice();
     /*!
      * Search file from list.
      */

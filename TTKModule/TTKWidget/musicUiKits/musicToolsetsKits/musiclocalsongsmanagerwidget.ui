@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>768</width>
-    <height>588</height>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>760</width>
-     <height>580</height>
+     <height>565</height>
     </rect>
    </property>
    <property name="text">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>555</height>
+     <height>540</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -106,7 +106,7 @@
      </rect>
     </property>
     <property name="text">
-     <string> 本地音乐文件（-）</string>
+     <string> 本地音乐文件（0）</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -141,45 +141,6 @@
      <string>按专辑显示</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="watchDirCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>500</y>
-      <width>110</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>监视文件夹</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="watchDirButton">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>527</y>
-      <width>45</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>路径</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="watchDirFrequenceEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>527</y>
-      <width>50</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:#6495ED;border: 1px solid #555;</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QWidget" name="toolWidget" native="true">
    <property name="geometry">
@@ -187,7 +148,7 @@
      <x>129</x>
      <y>29</y>
      <width>635</width>
-     <height>555</height>
+     <height>540</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -320,19 +281,6 @@ background:rgba(255,255,255,50)</string>
     <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>
     <widget class="MusicLocalSongsInfoTableWidget" name="songInfoTable"/>
    </widget>
-   <widget class="QLabel" name="watchPathLabel">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>525</y>
-      <width>635</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:#EEEEEE</string>
-    </property>
-   </widget>
    <zorder>backgroundMask2</zorder>
    <zorder>allSelectedcheckBox</zorder>
    <zorder>auditionButton</zorder>
@@ -342,7 +290,6 @@ background:rgba(255,255,255,50)</string>
    <zorder>searchLineLabel</zorder>
    <zorder>filterComboBox</zorder>
    <zorder>stackedWidget</zorder>
-   <zorder>watchPathLabel</zorder>
   </widget>
   <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">

@@ -146,6 +146,20 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_timer_down_clicked);}";
             
+    const QString MKGTransferSong = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_import_song_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_import_song_hover);}";
+            
+    const QString MKGTransferRing = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_import_ring_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_import_ring_hover);}";
+            
+    const QString MKGTransferChangedDev = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_change_dev_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_change_dev_hover);}";
 }
 
 #endif // MUSICTOOLSETSUIOBJECT_H
