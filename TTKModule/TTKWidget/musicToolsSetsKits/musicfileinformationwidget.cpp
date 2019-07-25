@@ -5,7 +5,7 @@
 #include "musicnumberutils.h"
 #include "musicsongtag.h"
 #include "musicmessagebox.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 
 #define ADVANCE_OFFSET  150
 
@@ -66,7 +66,7 @@ void MusicFileInformationWidget::musicOpenFileDir()
 
 void MusicFileInformationWidget::musicOpenImageFileDir()
 {
-    m_imagePath = MusicUtils::Widget::getOpenFileDialog(this);
+    m_imagePath = MusicUtils::File::getOpenFileDialog(this);
     if(m_imagePath.isEmpty())
     {
         return;

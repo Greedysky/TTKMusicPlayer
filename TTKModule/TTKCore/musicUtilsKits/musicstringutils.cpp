@@ -3,6 +3,71 @@
 
 #include <QColor>
 
+QString MusicUtils::String::lrcPrefix()
+{
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = LRC_DIR_FULL;
+    }
+    else
+    {
+        if(!QDir(path).exists())
+        {
+            QDir().mkpath(path);
+        }
+    }
+    return path;
+}
+
+QString MusicUtils::String::musicPrefix()
+{
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    if(path.isEmpty())
+    {
+        path = MUSIC_DIR_FULL;
+    }
+    else
+    {
+        if(!QDir(path).exists())
+        {
+            QDir().mkpath(path);
+        }
+    }
+    return path;
+}
+
+QString MusicUtils::String::StringPrefix(const QString &name)
+{
+    return StringPrefix(name, ".");
+}
+
+QString MusicUtils::String::StringPrefix(const QString &name, const QString &prefix)
+{
+    return name.left(name.indexOf(prefix));
+}
+
+QString MusicUtils::String::StringSuffix(const QString &name)
+{
+    return StringSuffix(name, ".");
+}
+
+QString MusicUtils::String::StringSuffix(const QString &name, const QString &suffix)
+{
+    return name.right(name.length() - name.lastIndexOf(suffix) - 1);
+}
+
+QString MusicUtils::String::StringSplite(const QString &name)
+{
+    return StringSplite(name, ".", "?");
+}
+
+QString MusicUtils::String::StringSplite(const QString &name, const QString &prefix, const QString &suffix)
+{
+    const QString &data = StringSuffix(name, prefix);
+    return StringPrefix(data, suffix);
+}
+
 QString MusicUtils::String::splitLineKey()
 {
 #ifdef Q_OS_WIN

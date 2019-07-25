@@ -20,10 +20,9 @@
  ================================================= */
 
 #include "musicobject.h"
-#include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils core.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
@@ -31,65 +30,13 @@ namespace MusicUtils
     namespace Core
     {
         /*!
-         * Get lrc dir prefix path.
+         * Sleep by millisecond.
          */
-        MUSIC_UTILS_EXPORT QString lrcPrefix();
-        /*!
-         * Get music dir prefix path.
-         */
-        MUSIC_UTILS_EXPORT QString musicPrefix();
-
-        /*!
-         * Get string prefix path.
-         */
-        MUSIC_UTILS_EXPORT QString StringPrefix(const QString &name);
-        /*!
-         * Get string prefix path.
-         */
-        MUSIC_UTILS_EXPORT QString StringPrefix(const QString &name, const QString &prefix);
-        /*!
-         * Get string suffix path.
-         */
-        MUSIC_UTILS_EXPORT QString StringSuffix(const QString &name);
-        /*!
-         * Get string suffix path.
-         */
-        MUSIC_UTILS_EXPORT QString StringSuffix(const QString &name, const QString &suffix);
-        /*!
-         * Get string splite path.
-         */
-        MUSIC_UTILS_EXPORT QString StringSplite(const QString &name);
-        /*!
-         * Get string splite path.
-         */
-        MUSIC_UTILS_EXPORT QString StringSplite(const QString &name, const QString &prefix, const QString &suffix);
-
-        /*!
-         * Get given dir size.
-         */
-        MUSIC_UTILS_EXPORT quint64 dirSize(const QString &dirName);
-        /*!
-         * Check given dir size is bigger than given size.
-         */
-        MUSIC_UTILS_EXPORT void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
-        /*!
-         * Get all files in given dir.
-         */
-        MUSIC_UTILS_EXPORT QFileInfoList getFileListByDir(const QString &dpath, bool recursively);
-        /*!
-         * Get all files in given dir.
-         */
-        MUSIC_UTILS_EXPORT QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
-        /*!
-         * Dir remove recursively.
-         */
-        MUSIC_UTILS_EXPORT bool removeRecursively(const QString &dir);
-
+        MUSIC_UTILS_EXPORT void sleep(int msecond);
         /*!
          * Get Language Name by given index.
          */
         MUSIC_UTILS_EXPORT QString getLanguageName(int index);
-
         /*!
          * App version check.
          */

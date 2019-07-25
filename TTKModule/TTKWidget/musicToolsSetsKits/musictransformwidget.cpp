@@ -1,8 +1,9 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
 #include "musicmessagebox.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 #include "musiccoreutils.h"
+#include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
 
 #include <QSound>
@@ -102,7 +103,7 @@ void MusicTransformWidget::initInputPath()
         }
         filter = filter.trimmed() + ")";
 
-        path = MusicUtils::Widget::getOpenFileDialog(this, filter);
+        path = MusicUtils::File::getOpenFileDialog(this, filter);
         if(path.isEmpty() || m_path.contains(path))
         {
             return;
@@ -120,7 +121,7 @@ void MusicTransformWidget::initInputPath()
         if(dialog.exec())
         {
             path = dialog.directory().absolutePath();
-            foreach(const QFileInfo &var, MusicUtils::Core::getFileListByDir(path, true))
+            foreach(const QFileInfo &var, MusicUtils::File::getFileListByDir(path, true))
             {
                 if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
                 {

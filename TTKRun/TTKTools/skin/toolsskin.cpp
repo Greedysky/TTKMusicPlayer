@@ -1,7 +1,7 @@
 #include "toolsskin.h"
 #include "ui_toolsskin.h"
 #include "musicextractwrap.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 #include "musiccolordialog.h"
 #include "musicbackgroundconfigmanager.h"
 
@@ -31,7 +31,7 @@ ToolsSkin::~ToolsSkin()
 
 void ToolsSkin::imageClicked()
 {
-    QString path = MusicUtils::Widget::getOpenFileDialog(this);
+    QString path = MusicUtils::File::getOpenFileDialog(this);
     if(path.isEmpty())
     {
         return;
@@ -56,7 +56,7 @@ void ToolsSkin::paletteClicked()
 
 void ToolsSkin::readClicked()
 {
-    QString path = MusicUtils::Widget::getOpenFileDialog(this, "TTKS Files (*.ttks)");
+    QString path = MusicUtils::File::getOpenFileDialog(this, "TTKS Files (*.ttks)");
     if(path.isEmpty())
     {
         return;
@@ -74,7 +74,7 @@ void ToolsSkin::readClicked()
 
 void ToolsSkin::writeClicked()
 {
-    QString path = MusicUtils::Widget::getSaveFileDialog(this, "TTKS Files (*.ttks)");
+    QString path = MusicUtils::File::getSaveFileDialog(this, "TTKS Files (*.ttks)");
     if(path.isEmpty())
     {
         return;

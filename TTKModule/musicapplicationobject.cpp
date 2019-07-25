@@ -17,7 +17,7 @@
 #include "musicgiflabelwidget.h"
 #include "musicotherdefine.h"
 #include "musicurlutils.h"
-#include "musiccoreutils.h"
+#include "musicfileutils.h"
 #include "musicalgorithmutils.h"
 #include "musicdownloadcounterpvthread.h"
 #include "musicdownloadqnconfighread.h"
@@ -421,5 +421,5 @@ void MusicApplicationObject::cleanUp()
     QFile::remove(MUSIC_NETWORK_TEST_FILE);
 
     ///remove daily pic theme
-    MusicUtils::Core::removeRecursively(STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
+    MusicUtils::File::removeRecursively(STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
 }

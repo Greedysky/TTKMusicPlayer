@@ -1,7 +1,7 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicinlinefloatuiobject.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 
 #include <qmath.h>
@@ -82,7 +82,7 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
 
 void MusicLrcFloatPhotoItem::exportArtPixmap()
 {
-    const QString &filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &filename = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         QPixmap pix(m_pixPath);

@@ -22,13 +22,47 @@
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils string.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
 {
     namespace String
     {
+        /*!
+         * Get lrc dir prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString lrcPrefix();
+        /*!
+         * Get music dir prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString musicPrefix();
+
+        /*!
+         * Get string prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringPrefix(const QString &name);
+        /*!
+         * Get string prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringPrefix(const QString &name, const QString &prefix);
+        /*!
+         * Get string suffix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSuffix(const QString &name);
+        /*!
+         * Get string suffix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSuffix(const QString &name, const QString &suffix);
+        /*!
+         * Get string splite path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSplite(const QString &name);
+        /*!
+         * Get string splite path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSplite(const QString &name, const QString &prefix, const QString &suffix);
+
         /*!
          * Get new line split string key.
          */

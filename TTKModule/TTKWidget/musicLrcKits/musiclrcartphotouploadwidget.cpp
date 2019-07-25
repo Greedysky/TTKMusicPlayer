@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicmessagebox.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 
 MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -57,7 +57,7 @@ void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 {
-    const QString &picPath = MusicUtils::Widget::getOpenFileDialog(this);
+    const QString &picPath = MusicUtils::File::getOpenFileDialog(this);
     if(picPath.isEmpty())
     {
         return;

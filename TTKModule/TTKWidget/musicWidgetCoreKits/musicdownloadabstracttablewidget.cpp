@@ -4,7 +4,7 @@
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
-#include "musiccoreutils.h"
+#include "musicstringutils.h"
 
 MusicDownloadAbstractTableWidget::MusicDownloadAbstractTableWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
@@ -114,7 +114,7 @@ void MusicDownloadAbstractTableWidget::createDownloadItem(const QString &name, q
 {
     setRowCount(rowCount() + 1);
     QString musicName = name;
-    musicName.remove(MusicUtils::Core::musicPrefix()).chop(4);
+    musicName.remove(MusicUtils::String::musicPrefix()).chop(4);
 
     MusicSong record;
     record.setMusicName(musicName);

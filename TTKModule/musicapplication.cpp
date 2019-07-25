@@ -20,6 +20,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
 #include "musiccoreutils.h"
+#include "musicfileutils.h"
 #include "musicplaylistmanager.h"
 #include "musicotherdefine.h"
 #include "musictinyuiobject.h"
@@ -172,7 +173,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
     }
 
     const QString &filename = getCurrentFileName();
-    const QString &prefix = MusicUtils::Core::lrcPrefix();
+    const QString &prefix = MusicUtils::String::lrcPrefix();
     const QString &path = QFile::exists(prefix + filename + LRC_FILE) ? (prefix + filename + LRC_FILE) : (prefix + filename + KRC_FILE);
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
 
@@ -567,7 +568,7 @@ void MusicApplication::musicImportSongsOnlyDir()
     if(dialog.exec())
     {
         QStringList fileList;
-        foreach(const QFileInfo &info, MusicUtils::Core::getFileListByDir(dialog.directory().absolutePath(), true))
+        foreach(const QFileInfo &info, MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if(MusicFormats::supportFormatsString().contains(info.suffix().toLower()))
             {
@@ -596,7 +597,7 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    const QString &fileName = MusicUtils::Widget::getSaveFileDialog(this, tr("Save List File"), MusicFormats::supportFormatsPlaylistString());
+    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, tr("Save List File"), MusicFormats::supportFormatsPlaylistString());
     if(!fileName.isEmpty())
     {
         const MusicSongItems &items = m_musicSongTreeWidget->getMusicLists();
@@ -966,7 +967,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
 void MusicApplication::musicCurrentLrcUpdated()
 {
     const QString &filename = getCurrentFileName();
-    QFile file(MusicUtils::Core::lrcPrefix() + filename + LRC_FILE);
+    QFile file(MusicUtils::String::lrcPrefix() + filename + LRC_FILE);
     if(file.exists())
     {
         file.remove();

@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils qmmp.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

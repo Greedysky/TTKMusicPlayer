@@ -5,6 +5,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicsongtag.h"
+#include "musicfileutils.h"
 #include "musicwidgetutils.h"
 #include "musictime.h"
 
@@ -88,7 +89,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     filter = filter.trimmed() + ")";
 
-    const QString &path = MusicUtils::Widget::getOpenFileDialog(this, filter);
+    const QString &path = MusicUtils::File::getOpenFileDialog(this, filter);
     if(path.isEmpty())
     {
         return;
@@ -121,7 +122,7 @@ void MusicSongRingtoneMaker::initInputPath()
 void MusicSongRingtoneMaker::initOutputPath()
 {
     QString value = QString("Files (*.%1 )").arg(m_ui->formatCombo->currentText().toLower());
-            value = MusicUtils::Widget::getSaveFileDialog(this, value);
+            value = MusicUtils::File::getSaveFileDialog(this, value);
     if(value.isEmpty())
     {
         return;

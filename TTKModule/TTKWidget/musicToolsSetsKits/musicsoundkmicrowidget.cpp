@@ -16,6 +16,7 @@
 #include "musicaudiorecordercore.h"
 #include "musiccodecutils.h"
 #include "musicotherdefine.h"
+#include "musicfileutils.h"
 #include "musictime.h"
 #include "musicsinglemanager.h"
 
@@ -162,7 +163,7 @@ void MusicSoundKMicroWidget::playFinished()
 
         recordStateChanged(false);
 
-        const QString &filename = MusicUtils::Widget::getSaveFileDialog(this, "Wav(*.wav)");
+        const QString &filename = MusicUtils::File::getSaveFileDialog(this, "Wav(*.wav)");
         if(!filename.isEmpty())
         {
             m_recordCore->addWavHeader(MusicUtils::Codec::toLocal8Bit(filename));

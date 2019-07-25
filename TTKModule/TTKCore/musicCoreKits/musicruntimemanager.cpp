@@ -3,6 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicqmmputils.h"
+#include "musicfileutils.h"
 #include "musiccoreutils.h"
 #include "musiccodecutils.h"
 
@@ -32,7 +33,7 @@ void MusicRunTimeManager::run() const
     xml->readConfig();
     xml->readSysConfigData();
 
-    MusicUtils::Core::checkCacheSize(
+    MusicUtils::File::checkCacheSize(
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt(),
                 M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());

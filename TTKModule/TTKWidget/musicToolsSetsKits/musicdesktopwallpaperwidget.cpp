@@ -7,8 +7,8 @@
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
 #include "musicnumberdefine.h"
-#include "musiccoreutils.h"
 #include "musicwidgetheaders.h"
+#include "musicfileutils.h"
 #include "musicsinglemanager.h"
 
 #include <QStyledItemDelegate>
@@ -213,7 +213,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
         {
             QStringList filters, imgs;
             filters << "*.bmp" << "*.jpg" <<"*.jpeg" << "*.png";
-            foreach(const QFileInfo &file, MusicUtils::Core::getFileListByDir(m_ui->urlLineEdit->text(), filters, true))
+            foreach(const QFileInfo &file, MusicUtils::File::getFileListByDir(m_ui->urlLineEdit->text(), filters, true))
             {
                 imgs << file.absoluteFilePath();
             }

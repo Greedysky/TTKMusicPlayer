@@ -3,7 +3,7 @@
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
-#include "musiccoreutils.h"
+#include "musicfileutils.h"
 #include "musicdownloadstatusobject.h"
 
 #include <QDir>
@@ -120,7 +120,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
     }
 
     m_ui->fuzzyButton->isChecked();
-    const QStringList &list = QDir(MusicUtils::Core::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+    const QStringList &list = QDir(MusicUtils::String::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
 
     MusicLocalDataItems items;
     foreach(const QString &var, list)
@@ -129,7 +129,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
         {
             MusicLocalDataItem item;
             item.m_name = var;
-            item.m_path = MusicUtils::Core::lrcPrefix() + var;
+            item.m_path = MusicUtils::String::lrcPrefix() + var;
             items << item;
         }
     }
@@ -144,7 +144,7 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    const QString &picPath = MusicUtils::Widget::getOpenFileDialog(this, "LRC (*.lrc)");
+    const QString &picPath = MusicUtils::File::getOpenFileDialog(this, "LRC (*.lrc)");
     if(picPath.isEmpty() || m_ui->searchedTable->contains(picPath))
     {
         return;
@@ -195,7 +195,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     const QByteArray dataIn(fileIn.readAll());
     fileIn.close();
 
-    QFile fileOut(QString("%1%2%3").arg(MusicUtils::Core::lrcPrefix()).arg(m_currentName).arg(LRC_FILE));
+    QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix()).arg(m_currentName).arg(LRC_FILE));
     if(!fileOut.open(QIODevice::WriteOnly))
     {
         M_LOGGER_ERROR("Lrc Output File Error!");

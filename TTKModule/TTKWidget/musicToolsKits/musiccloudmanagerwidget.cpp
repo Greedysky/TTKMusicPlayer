@@ -9,16 +9,15 @@
 #include "musiccloudfileinformationwidget.h"
 #include "musicdatadownloadthread.h"
 #include "musiccoreutils.h"
+#include "musicfileutils.h"
+#include "musicstringutils.h"
 #include "musicformats.h"
 #include "musictime.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
 #include "musicsourceupdatethread.h"
-#include <QThread>
-#if defined Q_OS_UNIX || defined Q_CC_MINGW
-# include <unistd.h>
-#endif
+
 #include "qiniu/qnconf.h"
 #include "qiniu/qnsimplelistdata.h"
 #include "qiniu/qnsimpleuploaddata.h"
@@ -272,7 +271,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicConfigChoiced).toString();
     const QString &url = m_qnUploadData->getDownloadUrl(MusicUtils::Algorithm::mdII(buketUrl, false), data.m_dataItem.m_name);
 
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(url, MusicUtils::Core::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
     download->setRecordType(MusicObject::RecordCloudDownload);
     download->startToDownload();
 }
@@ -280,7 +279,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
 void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
     const QString filter(MusicFormats::supportFormatsFilterDialogString().join(";;"));
-    const QStringList &paths = MusicUtils::Widget::getOpenFilesDialog(this, filter);
+    const QStringList &paths = MusicUtils::File::getOpenFilesDialog(this, filter);
     uploadFilesToServer(paths);
 }
 
@@ -292,7 +291,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
         delete m_openFileWidget;
         m_openFileWidget = nullptr;
 
-        foreach(const QFileInfo &info, MusicUtils::Core::getFileListByDir(path, MusicFormats::supportFormatsFilterString(), true))
+        foreach(const QFileInfo &info, MusicUtils::File::getFileListByDir(path, MusicFormats::supportFormatsFilterString(), true))
         {
             MusicCloudDataItem item;
             item.m_id = QString::number(MusicTime::timeStamp());
@@ -406,11 +405,9 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_dataItem.m_name = info.fileName().trimmed();
         item.m_dataItem.m_putTime = item.m_id.toULongLong();
         item.m_dataItem.m_size = info.size();
-#if defined Q_OS_WIN && defined TTK_GREATER_NEW
-        QThread::msleep(MT_MS);
-#else
-        usleep(MT_MS2US);
-#endif
+
+        MusicUtils::Core::sleep(MT_MS);
+
         createItem(item);
     }
 

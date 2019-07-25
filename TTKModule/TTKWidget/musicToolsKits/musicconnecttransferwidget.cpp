@@ -6,7 +6,6 @@
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicfilesenderserver.h"
 
 #include <QFile>
 #include <QTimer>
@@ -24,7 +23,6 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     m_currentIndex = -1;
     m_buttonGroup = nullptr;
-    m_sendServer = nullptr;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
@@ -47,7 +45,6 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     m_ui->transferWIFIButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->transferWIFIButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->transferWIFIButton, SIGNAL(clicked()), SLOT(startToTransferWIFIFiles()));
 
     m_ui->switchButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->switchButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -76,7 +73,6 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
     delete m_buttonGroup;
-    delete m_sendServer;
     delete m_ui;
 }
 
@@ -226,40 +222,6 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
         QFile::copy(names[i], QString("%1/%2").arg(path).arg(names[i].split("/").last()));
         progress.setValue(i);
     }
-
-    m_ui->switchButton->setEnabled(true);
-    if(m_ui->allSelectedcheckBox->isChecked())
-    {
-        m_ui->allSelectedcheckBox->click();
-    }
-    m_ui->playListTableWidget->setSelectedAllItems(false);
-}
-
-void MusicConnectTransferWidget::startToTransferWIFIFiles()
-{
-    const QStringList &names = getSelectedFiles();
-    if(names.isEmpty())
-    {
-        return;
-    }
-
-    QRegExp reg("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
-    const QString &address = m_ui->lineWIFIEdit->text();
-    if(!address.contains(reg))
-    {
-        MusicMessageBox message;
-        message.setText(tr("the ip address is incorrect!"));
-        message.exec();
-        return;
-    }
-
-    if(m_sendServer == nullptr)
-    {
-        m_sendServer = new MusicFileSenderServer(this);
-    }
-    m_ui->switchButton->setEnabled(false);
-    m_sendServer->setSendFiles(names);
-    m_sendServer->start();
 
     m_ui->switchButton->setEnabled(true);
     if(m_ui->allSelectedcheckBox->isChecked())

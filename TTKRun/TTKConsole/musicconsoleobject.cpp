@@ -1,7 +1,7 @@
 #include "musicconsoleobject.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
-#include "musiccoreutils.h"
+#include "musicfileutils.h"
 #include "musicformats.h"
 #include "musictkplconfigmanager.h"
 #include "musichotkeymanager.h"
@@ -122,7 +122,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         }
         else
         {
-            foreach(const QFileInfo &file, MusicUtils::Core::getFileListByDir(url, MusicFormats::supportFormatsFilterString(), true))
+            foreach(const QFileInfo &file, MusicUtils::File::getFileListByDir(url, MusicFormats::supportFormatsFilterString(), true))
             {
                 qDebug() << "Add play url path: " << file.absoluteFilePath();
                 m_musicPlaylist->appendMedia(0, file.absoluteFilePath());

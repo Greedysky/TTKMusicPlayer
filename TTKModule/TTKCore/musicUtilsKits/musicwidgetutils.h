@@ -25,7 +25,7 @@ class QComboBox;
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils widget.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
@@ -105,45 +105,6 @@ namespace MusicUtils
          * Image color burn transform.
          */
         MUSIC_UTILS_EXPORT int colorBurnTransform(int c, int delta);
-
-        /*!
-         * Get open file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get open file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get open file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj);
-
-        /*!
-         * Get open files dialog.
-         */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get open files dialog.
-         */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get open files dialog.
-         */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj);
-
-        /*!
-         * Get save file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get save file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get save file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj);
 
     }
 }

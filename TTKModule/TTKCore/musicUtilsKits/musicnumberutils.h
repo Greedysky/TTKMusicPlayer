@@ -22,7 +22,7 @@
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils number.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

@@ -2,14 +2,11 @@
 #include "musicsettingmanager.h"
 #include "musicdownloadmanager.h"
 #include "musicstringutils.h"
+#include "musiccoreutils.h"
 
+#include <QSslError>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
-#include <QThread>
-#if defined Q_OS_UNIX || defined Q_CC_MINGW
-# include <unistd.h>
-#endif
-#include <QSslError>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicNetworkAbstract(parent)
@@ -78,11 +75,7 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
         const int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
         if(limitValue != 0 && delta > limitValue*MH_KB)
         {
-#if defined Q_OS_WIN && defined TTK_GREATER_NEW
-            QThread::msleep(MT_S2MS - limitValue*MH_KB*MT_S2MS/delta);
-#else
-            usleep( (MT_S2MS - limitValue*MH_KB*MT_S2MS/delta)*MT_S2MS );
-#endif
+            MusicUtils::Core::sleep(MT_S2MS - limitValue*MH_KB*MT_S2MS/delta);
             delta = limitValue*MH_KB;
         }
     }

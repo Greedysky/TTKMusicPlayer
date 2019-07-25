@@ -3,6 +3,7 @@
 #include "musicuiobject.h"
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
+#include "musicfileutils.h"
 #include "musicwidgetutils.h"
 #include "musicalgorithmutils.h"
 
@@ -164,7 +165,7 @@ void MusicUserRecordWidget::confirmButtonClickedF()
 
 void MusicUserRecordWidget::openFileButtonClickedS()
 {
-    m_iconLocalPath = MusicUtils::Widget::getOpenFileDialog(this);
+    m_iconLocalPath = MusicUtils::File::getOpenFileDialog(this);
     if(m_iconLocalPath.isEmpty())
     {
         return;

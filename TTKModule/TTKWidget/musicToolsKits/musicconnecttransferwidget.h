@@ -27,7 +27,6 @@ namespace Ui {
 class MusicConnectTransferWidget;
 }
 class QButtonGroup;
-class MusicFileSenderServer;
 
 /*! @brief The class of the transfer file to mobile widget.
  * @author Greedysky <greedysky@163.com>
@@ -73,10 +72,6 @@ public Q_SLOTS:
      */
     void startToTransferUSBFiles();
     /*!
-     * Start to transfer wifi files.
-     */
-    void startToTransferWIFIFiles();
-    /*!
      * Reflash removable dir.
      */
     void reflashRemovableDir();
@@ -116,7 +111,6 @@ protected:
     MusicSongs m_currentSongs;
     QButtonGroup *m_buttonGroup;
     MIntListMap m_searchfileListCache;
-    MusicFileSenderServer *m_sendServer;
 
 };
 

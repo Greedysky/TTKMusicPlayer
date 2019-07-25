@@ -3,6 +3,7 @@
 #include "musicaudiorecordercore.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
+#include "musicfileutils.h"
 #include "musicwidgetutils.h"
 #include "musicsinglemanager.h"
 
@@ -138,7 +139,7 @@ void MusicSoundTouchWidget::rateSliderValueChanged(int value)
 
 void MusicSoundTouchWidget::openWavButtonClicked()
 {
-    const QString &filename = MusicUtils::Widget::getOpenFileDialog(this, "Wav(*.wav)");
+    const QString &filename = MusicUtils::File::getOpenFileDialog(this, "Wav(*.wav)");
     if(!filename.isEmpty())
     {
         m_ui->transformButton->setEnabled(true);

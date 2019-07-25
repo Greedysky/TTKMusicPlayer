@@ -8,7 +8,7 @@
 #include "musictopareawidget.h"
 #include "musicapplicationobject.h"
 #include "musicotherdefine.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 #include "musicsettingmanager.h"
 #include "musicextractwrap.h"
 
@@ -187,7 +187,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    QString customSkinPath = MusicUtils::Widget::getOpenFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
+    QString customSkinPath = MusicUtils::File::getOpenFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
     if(customSkinPath.isEmpty())
     {
         return;

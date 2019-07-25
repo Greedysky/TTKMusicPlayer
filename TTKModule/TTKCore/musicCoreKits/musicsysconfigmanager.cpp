@@ -1,6 +1,6 @@
 #include "musicsysconfigmanager.h"
 #include "musicsettingmanager.h"
-#include "musiccoreutils.h"
+#include "musicstringutils.h"
 
 #include <QRect>
 
@@ -187,10 +187,10 @@ void MusicSysConfigManager::readSysConfigData() const
 
     QString path = readXmlAttributeByTagNameValue("downloadMusicPath");
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,
-                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::Core::musicPrefix() : path);
+                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::String::musicPrefix() : path);
     path = readXmlAttributeByTagNameValue("downloadLrcPath");
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,
-                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::Core::lrcPrefix() : path);
+                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::String::lrcPrefix() : path);
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadCacheLimit").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced,

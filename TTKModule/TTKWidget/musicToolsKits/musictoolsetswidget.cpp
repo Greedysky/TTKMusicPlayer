@@ -12,7 +12,6 @@
 #include "musicmessagebox.h"
 #include "musicapplication.h"
 #include "musicrightareawidget.h"
-#include "musicsoundkmicrowidget.h"
 #include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
 #include "musicwebradioobject.h"
@@ -81,8 +80,7 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_gain", tr("gain"))
           << ItemPair(":/tools/lb_detect", tr("detect"))
           << ItemPair(":/tools/lb_soundtouch", tr("soundtouch"))
-          << ItemPair(":/tools/lb_radio", tr("radio"))
-          << ItemPair(":/tools/lb_ktv", tr("kmicro"));
+          << ItemPair(":/tools/lb_radio", tr("radio"));
 
     foreach(const ItemPair &pair, pairs)
     {
@@ -171,11 +169,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 message.setText(tr("Not Supported On Current Plantform!"));
                 message.exec();
 #endif
-                break;
-            }
-        case 12:
-            {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundKMicroWidget);
                 break;
             }
         default:
