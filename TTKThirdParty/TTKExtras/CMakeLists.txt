@@ -49,7 +49,7 @@ macro(_TO_FOUND_WEBENGINE module)
     set(USE_QT_WEBKIT_MODULE "2")
     message(STATUS "Message Found QT_WEBENGINE_MODULE component, build in KuGou by Qt webengine :" ${QT_WEBENGINE_MODULE})
   else()
-    message(STATUS "Message Not found QT_WEBENGINE_MODULE component, build in KuGou by no webkit")
+    message(STATUS "Message Not found QT_WEBENGINE_MODULE component, build in KuGou by no webengine")
   endif()
 endmacro(_TO_FOUND_WEBENGINE)
 
@@ -109,6 +109,17 @@ set(MUSIC_HEADERS
     qalg/cbc128.h
     qalg/qdeswrap.h
     qalg/qaeswrap.h
+    qdlna/dlnaclient.h
+    qdlna/dlnafinder.h
+    qdlna/dlnahelper.h
+    qdlna/dlnaservice.h
+    qdlna/dlnaxml.h
+    qhttpserver/http_parser.h
+    qhttpserver/qhttpconnection.h
+    qhttpserver/qhttprequest.h
+    qhttpserver/qhttpresponse.h
+    qhttpserver/qhttpserver.h
+    qhttpserver/qhttpserverfwd.h
     qhz2py/pinyinresource.h
     qhz2py/chinesehelper.h
     qhz2py/pinyinhelper.h
@@ -158,6 +169,16 @@ set(MUSIC_SOURCES
     qalg/cbc128.cpp
     qalg/qdeswrap.cpp
     qalg/qaeswrap.cpp
+    qdlna/dlnaclient.cpp
+    qdlna/dlnafinder.cpp
+    qdlna/dlnahelper.cpp
+    qdlna/dlnaservice.cpp
+    qdlna/dlnaxml.cpp
+    qhttpserver/http_parser.c
+    qhttpserver/qhttpconnection.cpp
+    qhttpserver/qhttprequest.cpp
+    qhttpserver/qhttpresponse.cpp
+    qhttpserver/qhttpserver.cpp
     qshortcut/qglobalshortcut.cpp
     qhz2py/pinyinresource.cpp
     qhz2py/chinesehelper.cpp
