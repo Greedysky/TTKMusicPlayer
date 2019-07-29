@@ -57,7 +57,8 @@ bool DLNAClient::connect()
         return false;
     }
 
-    if(!m_xml->fromString(HelperDLNA::removeHttpHeader(response)))
+    const QString &body = HelperDLNA::removeHttpHeader(response);
+    if(!m_xml->fromString(m_xml->tagNameToLower(body)))
     {
         return false;
     }

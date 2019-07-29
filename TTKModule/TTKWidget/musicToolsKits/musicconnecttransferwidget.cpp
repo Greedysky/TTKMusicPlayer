@@ -49,9 +49,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->transferUSBButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->transferWIFIButton->setFocusPolicy(Qt::NoFocus);
     m_ui->reflashUSBButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->switchButton->setFocusPolicy(Qt::NoFocus);
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 

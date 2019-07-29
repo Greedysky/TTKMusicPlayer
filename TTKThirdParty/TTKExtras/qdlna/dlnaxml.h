@@ -30,10 +30,12 @@ class MUSIC_EXTRAS_EXPORT DLNAXml
 {
 public:
     DLNAXml();
+    ~DLNAXml();
 
     bool fromString(const QString &data);
     QString toString() const;
 
+    QString tagNameToLower(const QString &data) const;
     QString readTagNameValue(const QString &tagName) const;
     DLNAService readServiceTag(const QString &type, const QString &tagName) const;
 
