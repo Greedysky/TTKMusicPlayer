@@ -46,6 +46,10 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->transferUSBButton->setFocusPolicy(Qt::NoFocus);
+<<<<<<< HEAD
+=======
+    m_ui->reflashUSBButton->setFocusPolicy(Qt::NoFocus);
+>>>>>>> 268d927b... Update dlna xml reader[475621]
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
