@@ -46,6 +46,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->transferUSBButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
     QTimer::singleShot(MT_MS, this, SLOT(initColumns()));

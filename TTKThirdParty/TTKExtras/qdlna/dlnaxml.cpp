@@ -3,14 +3,16 @@
 
 DLNAXml::DLNAXml()
 {
-    m_document = nullptr;
+    m_document = new QDomDocument;
+}
+
+DLNAXml::~DLNAXml()
+{
+    delete m_document;
 }
 
 bool DLNAXml::fromString(const QString &data)
 {
-    delete m_document;
-    m_document = new QDomDocument;
-
     if(!m_document->setContent(data))
     {
         return false;
@@ -25,6 +27,25 @@ QString DLNAXml::toString() const
         return QString();
     }
     return m_document->toString();
+}
+
+QString DLNAXml::tagNameToLower(const QString &data) const
+{
+    QString body = data;
+    int left = body.indexOf("<");
+    while(left != -1)
+    {
+      const int right = body.indexOf(">", left + 1);
+      if(right == -1)
+      {
+        continue;
+      }
+
+      const QString &sub = body.mid(left + 1, right - left - 1);
+      body.replace(left + 1, right - left - 1, sub.toLower());
+      left = body.indexOf("<", left + 1);
+    }
+    return body;
 }
 
 QString DLNAXml::readTagNameValue(const QString &tagName) const
