@@ -37,7 +37,7 @@ INCLUDEPATH += \
     $$PWD/../../../ \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits \
-    $$PWD/../../../TTKModule/TTKWidget/musicWidgetCoreKits \
+    $$PWD/../../../TTKModule/TTKWidget/musicCoreKits \
 
 win32:LIBS += -L../../../bin/$$TTKMusicPlayer -lTTKCore
 unix:LIBS += -L../../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
