@@ -91,8 +91,6 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->showArtButton->setFocusPolicy(Qt::NoFocus);
     m_ui->showAlbumButton->setFocusPolicy(Qt::NoFocus);
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->watchDirCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->watchDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 

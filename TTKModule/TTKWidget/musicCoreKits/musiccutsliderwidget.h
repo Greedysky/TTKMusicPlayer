@@ -116,9 +116,9 @@ protected:
      * Override the widget event.
      */
     virtual void paintEvent(QPaintEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *) override {}
-    virtual void mouseMoveEvent(QMouseEvent *) override {}
-    virtual void mouseReleaseEvent(QMouseEvent *) override {}
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     MusicMoveButton *m_leftControl, *m_rightControl;
     int m_width, m_height;

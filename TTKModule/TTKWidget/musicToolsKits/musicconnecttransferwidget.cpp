@@ -4,15 +4,13 @@
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicmessagebox.h"
+#include "musicdeviceinfocore.h"
 #include "musicprogresswidget.h"
 #include "musicsongssummariziedwidget.h"
 
 #include <QFile>
 #include <QTimer>
 #include <QButtonGroup>
-#ifdef Q_OS_WIN
-#  include <qt_windows.h>
-#endif
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -23,6 +21,9 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     m_currentIndex = -1;
     m_buttonGroup = nullptr;
+    m_currentDeviceItem = nullptr;
+    m_songCountLabel = m_ui->songCountLabel->text();
+    m_selectCountLabel = m_ui->selectCountLabel->text();
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
@@ -35,10 +36,6 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->allSelectedcheckBox->setText(tr("allselected"));
     connect(m_ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
-    m_ui->reflashUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->reflashUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->reflashUSBButton, SIGNAL(clicked()), SLOT(reflashRemovableDir()));
-
     m_ui->transferUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferUSBFiles()));
@@ -49,10 +46,6 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->transferUSBButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->transferWIFIButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->reflashUSBButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->switchButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
     QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
@@ -68,15 +61,11 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
     delete m_ui;
 }
 
-void MusicConnectTransferWidget::redirectToCurrentSong(int toolIndex, int songIndex)
+void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 {
-    if(toolIndex < 0 || songIndex < 0)
-    {
-        return;
-    }
-
-    currentPlaylistSelected(toolIndex);
-    m_ui->playListTableWidget->listCellClicked(songIndex, 0);
+    m_currentDeviceItem = item;
+    m_ui->deviceInfoLabel->setText(item->m_name + "(" + item->m_path + ")");
+    m_ui->songCountLabel->setText(m_songCountLabel.arg(0));
 }
 
 void MusicConnectTransferWidget::initColumns()
@@ -99,8 +88,6 @@ void MusicConnectTransferWidget::initColumns()
         m_ui->playListLayout->addWidget(button);
         m_buttonGroup->addButton(button, i);
     }
-
-    reflashRemovableDir();
 }
 
 void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
@@ -116,19 +103,19 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
 
 QStringList MusicConnectTransferWidget::getSelectedFiles()
 {
-    QStringList names;
+    QStringList paths;
     const MIntList list(m_ui->playListTableWidget->getSelectedItems());
     if(list.isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("please select one item"));
         message.exec();
-        return names;
+        return paths;
     }
 
     if(m_currentIndex == -1 || m_currentIndex > m_currentSongs.count())
     {
-        return names;
+        return paths;
     }
 
     foreach(int index, list)
@@ -138,26 +125,10 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
             const int count = m_ui->searchLineEdit->text().trimmed().count();
             index = m_searchfileListCache.value(count)[index];
         }
-        names << m_currentSongs[index].getMusicPath();
+        paths << m_currentSongs[index].getMusicPath();
     }
 
-    return names;
-}
-
-QString MusicConnectTransferWidget::getRemovableDrive()
-{
-#ifdef Q_OS_WIN
-    const QFileInfoList &drives = QDir::drives();
-    foreach(const QFileInfo &driver, drives)
-    {
-        const QString &path = driver.absoluteDir().absolutePath();
-        if(GetDriveTypeW(path.toStdWString().c_str()) == DRIVE_REMOVABLE)
-        {
-            return path;
-        }
-    }
-#endif
-    return QString();
+    return paths;
 }
 
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
@@ -174,6 +145,8 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
     m_ui->searchLineEdit->clear();
     m_currentSongs = songs[m_currentIndex = index].m_songs;
     createAllItems(m_currentSongs);
+
+    m_ui->songCountLabel->setText(m_songCountLabel.arg(m_currentSongs.count()));
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -193,7 +166,7 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
     QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
     if(path.isEmpty())
     {
-        path = getRemovableDrive();
+//        path = getRemovableDrive();
     }
 
     MusicProgressWidget progress;
@@ -213,17 +186,6 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
     m_ui->playListTableWidget->setSelectedAllItems(false);
 }
 
-void MusicConnectTransferWidget::reflashRemovableDir()
-{
-    QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
-    if(path.isEmpty())
-    {
-        path = getRemovableDrive();
-    }
-    m_ui->textUSBLabel->setText(QString("( %1 )").arg(path));
-    m_ui->transferUSBButton->setEnabled( !path.isEmpty() );
-}
-
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 {
     MIntList searchResult;
@@ -237,7 +199,7 @@ void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
     m_searchfileListCache.insert(index, searchResult);
 
     MusicSongs songs;
-    foreach(int index, searchResult)
+    foreach(const int index, searchResult)
     {
         songs.append(m_currentSongs[index]);
     }

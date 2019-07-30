@@ -184,3 +184,18 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(m_position - PAINT_HANDER/2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER)/2, PAINT_HANDER, PAINT_HANDER);
 
 }
+
+void MusicCutSliderWidget::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicCutSliderWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicCutSliderWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}

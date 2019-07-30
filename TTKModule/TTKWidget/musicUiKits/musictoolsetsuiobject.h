@@ -159,7 +159,13 @@ namespace MusicUIObject
     const QString MKGTransferChangedDev = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_change_dev_normal);} \
+            QPushButton::menu-indicator{ image:none;} \
             QPushButton:hover{ background-image: url(:/toolSets/btn_change_dev_hover);}";
+            
+    const QString MKGTransferRefreshDev = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_refresh_dev_normal);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_refresh_dev_hover);}";
 }
 
 #endif // MUSICTOOLSETSUIOBJECT_H
