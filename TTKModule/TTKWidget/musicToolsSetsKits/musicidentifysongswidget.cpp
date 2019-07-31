@@ -236,7 +236,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     m_detectedLabel = new QLabel(widget);
     m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
 
-    QLabel *text = new QLabel(tr("ShotCut:") + " Shift+Ctrl+T", widget);
+    QLabel *text = new QLabel(tr("ShotCut:") + " Shift + Ctrl + T", widget);
     text->setStyleSheet(MusicUIObject::MFontStyle03);
 
     widgetLayout->addStretch(2);

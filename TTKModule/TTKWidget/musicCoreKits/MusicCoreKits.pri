@@ -46,6 +46,7 @@ HEADERS  += \
     $$PWD/musicfloatabstractwidget.h \
     $$PWD/musicfoundabstractwidget.h \
     $$PWD/musiccutsliderwidget.h \
+    $$PWD/musictextsliderwidget.h \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
     $$PWD/musicemojilabelwidget.h \
@@ -92,6 +93,7 @@ SOURCES += \
     $$PWD/musicfloatabstractwidget.cpp \
     $$PWD/musicfoundabstractwidget.cpp \
     $$PWD/musiccutsliderwidget.cpp \
+    $$PWD/musictextsliderwidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \
     $$PWD/musicemojilabelwidget.cpp \

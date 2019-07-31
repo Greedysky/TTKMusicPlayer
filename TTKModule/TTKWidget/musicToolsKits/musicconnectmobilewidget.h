@@ -21,7 +21,9 @@
 
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
+#include "musicdeviceinfocore.h"
 
+class MusicTextSliderWidget;
 class MusicAnimationStackedWidget;
 
 /*! @brief The class of the connect mobile widget.
@@ -56,6 +58,14 @@ private Q_SLOTS:
      * Open transfer files to mobile widget.
      */
     void openTransferFiles2Mobile();
+    /*!
+     * Device type changed.
+     */
+    void deviceTypeChanged(QAction *action);
+    /*!
+     * Update device info.
+     */
+    void updateDeviceInfo();
 
 protected:
     /*!
@@ -74,15 +84,12 @@ protected:
      * Init connect to wire widget.
      */
     void initThirdWidget();
-    /*!
-     * Get removable drive property.
-     */
-    bool GetDisksProperty(const QString &drive);
-    /*!
-     * Get removable drive name.
-     */
-    QString getRemovableDrive();
 
+    QMenu m_popMenu;
+    QLabel *m_deviceInfoLabel;
+    MusicTextSliderWidget *m_deviceSizeLabel;
+    MusicDeviceInfoItem m_currentDeviceItem;
+    MusicDeviceInfoCore *m_deviceInfo;
     MusicAnimationStackedWidget *m_stackedWidget;
 
 };

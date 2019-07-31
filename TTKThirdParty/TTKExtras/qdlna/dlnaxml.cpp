@@ -38,7 +38,7 @@ QString DLNAXml::tagNameToLower(const QString &data) const
       const int right = body.indexOf(">", left + 1);
       if(right == -1)
       {
-        continue;
+        break;
       }
 
       const QString &sub = body.mid(left + 1, right - left - 1);

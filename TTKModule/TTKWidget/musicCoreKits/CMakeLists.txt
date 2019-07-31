@@ -24,6 +24,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicfloatabstractwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiccutsliderwidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musictextsliderwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicanimationstackedwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiclayoutanimationwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicopenfilewidget.h
@@ -68,6 +69,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicfloatabstractwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiccutsliderwidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musictextsliderwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicanimationstackedwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiclayoutanimationwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicopenfilewidget.cpp
