@@ -1,5 +1,6 @@
 #include "musicdeviceinfocore.h"
 #include "musicnumberdefine.h"
+#include "musicsemaphoreloop.h"
 
 #ifdef Q_OS_WIN
 #  include <QDir>
@@ -104,8 +105,8 @@ bool MusicDeviceInfoCore::GetDisksProperty(const QString &drive) const
 
 MusicDeviceInfoItems MusicDeviceInfoCore::getRemovableDrive()
 {
-#ifdef Q_OS_WIN
     m_items.clear();
+#ifdef Q_OS_WIN
     const QFileInfoList &drives = QDir::drives();
     foreach(const QFileInfo &drive, drives)
     {
@@ -161,6 +162,13 @@ MusicDeviceInfoItems MusicDeviceInfoCore::getRemovableDrive()
             m_items << item;
         }
     }
+#else
+    MusicSemaphoreLoop loop;
+    m_dfProcess->close();
+    m_dfProcess->start("df -h");
+    QObject::connect(m_dfProcess, SIGNAL(finished(int)), &loop, SLOT(quit()));
+    QObject::connect(m_dfProcess, SIGNAL(error(QProcess::ProcessError)), &loop, SLOT(quit()));
+    loop.exec();
 #endif
     return m_items;
 }
@@ -193,10 +201,12 @@ void MusicDeviceInfoCore::readData()
                 else if(index == 2)
                 {
                     all = data;
+                    all.remove("G");
                 }
                 else if(index == 3)
                 {
                     use = data;
+                    use.remove("G");
                 }
                 else if(index == 6)
                 {
@@ -209,8 +219,8 @@ void MusicDeviceInfoCore::readData()
                 MusicDeviceInfoItem item;
                 item.m_name = dev;
                 item.m_path = path;
-                item.m_availableBytes = use.toInt();
-                item.m_totalBytes = all.toInt();
+                item.m_availableBytes = use.toDouble();
+                item.m_totalBytes = all.toDouble();
                 m_items << item;
             }
         }

@@ -5,9 +5,4 @@
         <file alias="lb_no_webkit_radio">../TTKResource/lb_no_webkit_radio.png</file>
         <file alias="lb_no_webkit_mv">../TTKResource/lb_no_webkit_mv.png</file>
     </qresource>
-    <qresource prefix="/data">
-        <file alias="single_pinyin">../TTKResource/A_Hz2Py/single_pinyin</file>
-        <file alias="mutil_pinyin">../TTKResource/A_Hz2Py/mutil_pinyin</file>
-        <file alias="pinyin">../TTKResource/A_Hz2Py/pinyin</file>
-    </qresource>
 </RCC>

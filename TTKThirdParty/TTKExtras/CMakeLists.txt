@@ -120,9 +120,6 @@ set(MUSIC_HEADERS
     qhttpserver/qhttpresponse.h
     qhttpserver/qhttpserver.h
     qhttpserver/qhttpserverfwd.h
-    qhz2py/pinyinresource.h
-    qhz2py/chinesehelper.h
-    qhz2py/pinyinhelper.h
     qimage/gaussianblur.h
     qimage/qimagewrap.h
     qshortcut/qglobalshortcut.h
@@ -180,9 +177,6 @@ set(MUSIC_SOURCES
     qhttpserver/qhttpresponse.cpp
     qhttpserver/qhttpserver.cpp
     qshortcut/qglobalshortcut.cpp
-    qhz2py/pinyinresource.cpp
-    qhz2py/chinesehelper.cpp
-    qhz2py/pinyinhelper.cpp
     qimage/gaussianblur.cpp
     qimage/qimagewrap.cpp
     qkugou/kugouurl.cpp

@@ -77,6 +77,11 @@ namespace MusicUtils
         MUSIC_UTILS_EXPORT QStringList splitString(const QString &value, const QString &key = "-");
 
         /*!
+         * Check the given char is or not chinese character.
+         */
+        MUSIC_UTILS_EXPORT bool isChinese(const QChar &c);
+
+        /*!
          * Get song artist name.
          */
         MUSIC_UTILS_EXPORT QString artistName(const QString &value, const QString &key = "-");

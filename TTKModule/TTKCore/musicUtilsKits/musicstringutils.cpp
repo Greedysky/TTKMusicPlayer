@@ -98,6 +98,15 @@ QStringList MusicUtils::String::splitString(const QString &value, const QString 
     return strings;
 }
 
+bool MusicUtils::String::isChinese(const QChar &c)
+{
+#ifdef Q_CC_MSVC
+    return '\xa9\x96' == c || (c.unicode() >= 0x4e00 && c.unicode() <= 0x9fa5);
+#else
+    return L'〇' == c || (c.unicode() >= 0x4e00 && c.unicode() <= 0x9fa5);
+#endif
+}
+
 QString MusicUtils::String::artistName(const QString &value, const QString &key)
 {
     const QStringList &s = splitString(value);

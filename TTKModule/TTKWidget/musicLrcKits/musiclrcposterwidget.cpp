@@ -9,7 +9,6 @@
 #include "musicbackgroundconfigmanager.h"
 
 #include "qimage/qimagewrap.h"
-#include "qhz2py/chinesehelper.h"
 
 #include <qmath.h>
 #include <QPainter>
@@ -747,16 +746,15 @@ void MusicLrcPosterItemWidget::drawTheme15(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
 {
     QStringList splData;
-    ChineseHelper chinese;
     foreach(QString var, m_data)
     {
         QString afVar;
         var.replace(" ", " / ");
         for(int i=0; i<var.length(); ++i)
         {
-            QChar ch = var.at(i);
+            const QChar &ch = var.at(i);
             afVar.append(ch);
-            if(chinese.isChinese(ch))
+            if(MusicUtils::String::isChinese(ch))
             {
                 afVar.append(" / ");
             }
