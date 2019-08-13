@@ -11,6 +11,7 @@
 #include <QFile>
 #include <QTimer>
 #include <QButtonGroup>
+#include <QtDebug>
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -132,6 +133,20 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
     return paths;
 }
 
+void MusicConnectTransferWidget::itemSelectedChanged()
+{
+    const MIntList list(m_ui->playListTableWidget->getSelectedItems());
+    qint64 size = 0;
+
+    for(int i=0; i<list.count(); ++i)
+    {
+        size += m_currentSongs[ list[i] ].getMusicSize();
+    }
+
+    double dSize = (size * 100 / MH_MB2B) * 1.0 / 100;
+    m_ui->selectCountLabel->setText(m_selectCountLabel.arg(list.count()).arg(dSize));
+}
+
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
     MusicSongItems songs;
@@ -154,37 +169,38 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
 {
     m_ui->allSelectedcheckBox->setText(check ? tr("allcanceled") : tr("allselected"));
     m_ui->playListTableWidget->selectedAllItems(check);
+    itemSelectedChanged();
 }
 
 void MusicConnectTransferWidget::startToTransferUSBFiles()
 {
-    const QStringList &names = getSelectedFiles();
-    if(names.isEmpty())
-    {
-        return;
-    }
+//    const QStringList &names = getSelectedFiles();
+//    if(names.isEmpty())
+//    {
+//        return;
+//    }
 
-    QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
-    if(path.isEmpty())
-    {
-//        path = getRemovableDrive();
-    }
+//    QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
+//    if(path.isEmpty())
+//    {
+////        path = getRemovableDrive();
+//    }
 
-    MusicProgressWidget progress;
-    progress.show();
-    progress.setTitle(tr("Copy File Mode"));
-    progress.setRange(0, names.count());
-    for(int i=0; i<names.count(); ++i)
-    {
-        QFile::copy(names[i], QString("%1/%2").arg(path).arg(names[i].split("/").last()));
-        progress.setValue(i);
-    }
+//    MusicProgressWidget progress;
+//    progress.show();
+//    progress.setTitle(tr("Copy File Mode"));
+//    progress.setRange(0, names.count());
+//    for(int i=0; i<names.count(); ++i)
+//    {
+//        QFile::copy(names[i], QString("%1/%2").arg(path).arg(names[i].split("/").last()));
+//        progress.setValue(i);
+//    }
 
-    if(m_ui->allSelectedcheckBox->isChecked())
-    {
-        m_ui->allSelectedcheckBox->click();
-    }
-    m_ui->playListTableWidget->setSelectedAllItems(false);
+//    if(m_ui->allSelectedcheckBox->isChecked())
+//    {
+//        m_ui->allSelectedcheckBox->click();
+//    }
+//    m_ui->playListTableWidget->setSelectedAllItems(false);
 }
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)

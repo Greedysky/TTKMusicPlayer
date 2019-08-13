@@ -57,6 +57,10 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Button state changed.
+     */
+    void itemSelectedChanged();
+    /*!
      * Current playList selected.
      */
     void currentPlaylistSelected(int index);

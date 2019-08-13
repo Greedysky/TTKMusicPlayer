@@ -302,7 +302,7 @@ void MusicPlayedListPopWidget::initWidget()
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
-    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
     m_playedListWidget->setSongsFileName(&m_songLists);

@@ -12,6 +12,8 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 280);
     headerview->resizeSection(2, 43);
+
+    connect(m_checkBoxDelegate, SIGNAL(buttonChecked()), parent->parent(), SLOT(itemSelectedChanged()));
 }
 
 void MusicConnectTransferTableWidget::createAllItems(const MusicSongs &songs)

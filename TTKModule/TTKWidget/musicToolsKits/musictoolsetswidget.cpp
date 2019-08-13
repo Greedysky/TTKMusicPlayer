@@ -33,7 +33,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
-    setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     m_ui->listItemWidget->setIconSize(QSize(60, 60));
     m_ui->listItemWidget->setViewMode(QListView::IconMode);

@@ -13,8 +13,9 @@
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
 {
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::SingleSelection);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();

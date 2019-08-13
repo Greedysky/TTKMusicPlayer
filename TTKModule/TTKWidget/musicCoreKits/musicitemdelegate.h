@@ -98,6 +98,12 @@ public:
      */
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
+Q_SIGNALS:
+    /*!
+     * Button state changed.
+     */
+    void buttonChecked();
+
 protected:
     QCheckBox *m_checkBox;
 

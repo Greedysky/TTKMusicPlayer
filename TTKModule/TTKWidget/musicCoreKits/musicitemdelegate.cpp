@@ -55,6 +55,7 @@ MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
+    connect(m_checkBox, SIGNAL(stateChanged(int)), SIGNAL(buttonChecked()));
 }
 
 MusicCheckBoxDelegate::~MusicCheckBoxDelegate()

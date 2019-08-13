@@ -177,9 +177,12 @@ bool MusicAudioRecorderCore::error() const
 
 void MusicAudioRecorderCore::onRecordStart()
 {
-    m_mpOutputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
+    if(!m_mpOutputFile->isOpen())
+    {
+        m_mpOutputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
+        m_mpAudioInputFile = new QAudioInput(m_mFormatFile, this);
+    }
 
-    m_mpAudioInputFile = new QAudioInput(m_mFormatFile, this);
     if(m_mpAudioInputFile->error() != QAudio::NoError)
     {
         MusicMessageBox message;

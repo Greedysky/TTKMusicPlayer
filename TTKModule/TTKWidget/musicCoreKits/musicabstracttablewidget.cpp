@@ -16,6 +16,8 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     headerview->resizeSection(2, 45);
     verticalHeader()->setVisible(false);
 
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     setMouseTracking(true);  //Open the capture mouse function
     setStyleSheet(MusicUIObject::MTableWidgetStyle01 + MusicUIObject::MScrollBarStyle01 + MusicUIObject::MLineEditStyle01);
 
