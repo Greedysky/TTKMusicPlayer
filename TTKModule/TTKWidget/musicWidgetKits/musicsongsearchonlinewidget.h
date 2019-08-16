@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSearchTableWidget(QWidget *parent = 0);
+    explicit MusicSongSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongSearchTableWidget();
 
@@ -160,7 +160,7 @@ protected:
     /*!
      * Add search music to play list by index.
      */
-    void addSearchMusicToPlayList(int row);
+    void addSearchMusicToPlaylist(int row);
 
     bool m_queryAllRecords;
     int m_previousAuditionRow;
@@ -182,7 +182,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
+    explicit MusicSongSearchOnlineWidget(QWidget *parent = nullptr);
 
     ~MusicSongSearchOnlineWidget();
 

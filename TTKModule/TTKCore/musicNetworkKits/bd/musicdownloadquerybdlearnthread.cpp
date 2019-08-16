@@ -11,7 +11,7 @@
 MusicDownLoadQueryBDLearnThread::MusicDownLoadQueryBDLearnThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-    m_queryServer = "Baidu";
+    m_queryServer = QUERY_BD_INTERFACE;
 }
 
 void MusicDownLoadQueryBDLearnThread::startToSearch(QueryType type, const QString &text)
@@ -23,15 +23,15 @@ void MusicDownLoadQueryBDLearnThread::startToSearch(QueryType type, const QStrin
 
     Q_UNUSED(type);
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_URL, false).arg(text).arg(1).arg(30);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_URL, false).arg(text).arg(1).arg(30);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -53,18 +53,18 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["error_code"].toInt() == 22000 && value.contains("result"))
             {
                 value = value["result"].toMap();
-                QVariantList datas = value["items"].toList();
+                const QVariantList &datas = value["items"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -117,17 +117,15 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
         return;
     }
 
-    QString key = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_PA_URL, false).arg(info->m_songId)
-                  .arg(MusicTime::timeStamp());
-    QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
+    const QString &key = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_PA_URL, false).arg(info->m_songId).arg(MusicTime::timeStamp());
+    QString eKey = QString(QAesWrap().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Url::urlEncode(eKey);
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_INFO_URL, false).arg(key).arg(eKey);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_INFO_URL, false).arg(key).arg(eKey);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
@@ -143,7 +141,7 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
     QJson::Parser parser;
     bool ok;
 
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -168,13 +166,12 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::Mus
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
@@ -189,14 +186,14 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::Mus
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
         if(value["errorCode"].toInt() == 22000 && value.contains("data"))
         {
             value = value["data"].toMap();
-            QVariantList datas = value["songList"].toList();
+            const QVariantList &datas = value["songList"].toList();
             foreach(const QVariant &var, datas)
             {
                 if(var.isNull())

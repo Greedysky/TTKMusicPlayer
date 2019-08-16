@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,22 +21,19 @@
 #ifndef DECODERFACTORY_H
 #define DECODERFACTORY_H
 
-class QObject;
-class QString;
-class QIODevice;
-class QWidget;
-class QTranslator;
-class QStringList;
-
-class Decoder;
-class Output;
-class FileInfo;
-class MetaDataModel;
+#include <QObject>
+#include <QString>
+#include <QIODevice>
+#include <QStringList>
+#include "qmmp_export.h"
+#include "decoder.h"
+#include "metadatamodel.h"
+#include "trackinfo.h"
 
 /*! @brief Helper class to store input plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class DecoderProperties
+class QMMP_EXPORT DecoderProperties
 {
 public:
     /*!
@@ -44,7 +41,6 @@ public:
      */
     DecoderProperties()
     {
-        hasAbout = false;
         hasSettings = false;
         noInput = false;
         priority = 0;
@@ -56,7 +52,6 @@ public:
     QStringList contentTypes; /*!< Supported content types */
     QStringList protocols;    /*!< A list of supported protocols.
                                *   Should be empty if plugin uses stream input. */
-    bool hasAbout;            /*!< Should be \b true if plugin has about dialog, otherwise \b false */
     bool hasSettings;         /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
     bool noInput;             /*!< Should be \b true if plugin has own input, otherwise \b false */
     int priority;             /*!< Decoder priority. Decoders with lowest value will be used first */
@@ -64,7 +59,7 @@ public:
 /*! @brief Input plugin interface (decoder factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class DecoderFactory
+class QMMP_EXPORT DecoderFactory
 {
 public:
     /*!
@@ -76,31 +71,31 @@ public:
      */
     virtual bool canDecode(QIODevice *d) const = 0;
     /*!
-     * Returns general plugin properties.
+     * Returns decoder plugin properties.
      */
-    virtual const DecoderProperties properties() const = 0;
+    virtual DecoderProperties properties() const = 0;
     /*!
      * Creates decoder object.
      * @param path File path
      * @param input Input data (if required)
      */
-    virtual Decoder *create(const QString &path, QIODevice *input = 0) = 0;
+    virtual Decoder *create(const QString &path, QIODevice *input = nullptr) = 0;
     /*!
-     * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
+     * Extracts metadata and audio information from file \b path and returns a list of \b TrackInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue)
      * @param fileName File path.
-     * @param useMetaData Metadata usage (\b true - use, \b - do not use)
+     * @param parts parts of metadata which should be extracted from file.
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
-     * (useful to exclude cue data files from playlist)
+     * (useful to exclude cue data files from playlist).
      */
-    virtual QList<FileInfo *> createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredPaths) = 0;
+    virtual QList<TrackInfo *> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.
-     * @param parent Parent object.
+     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer.
      */
-    virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0) = 0;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) = 0;
 
 };
 

@@ -46,12 +46,11 @@ void MusicWebMVRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem 
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
-                                                        Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != "null")
+    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
     {
         download->startToDownload(item.m_coverUrl);
     }
@@ -148,7 +147,7 @@ void MusicWebMVRadioFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/LINE_SPACING_SIZE;
+        const int lineNumber = width()/LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -203,7 +202,7 @@ void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item
     connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
-    int lineNumber = width()/LINE_SPACING_SIZE;
+    const int lineNumber = width()/LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }

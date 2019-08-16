@@ -44,7 +44,7 @@ SerializerRunnable::SerializerRunnable(QObject* parent)
   qRegisterMetaType<QVariant>("QVariant");
 }
 
-void SerializerRunnable::setJsonObject( const QVariant& json )
+void SerializerRunnable::setJsonObject( const QVariant &json )
 {
   TTK_D(SerializerRunnable);
   d->json = json;

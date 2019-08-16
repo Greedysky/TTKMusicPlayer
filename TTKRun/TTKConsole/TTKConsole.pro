@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2018 Greedysky Studio
+# * Copyright (C) 2015 - 2019 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-DEFINES += MUSIC_LIBRARY
+DEFINES += TTK_LIBRARY
 
 win32{
     TARGET = ../../../bin/$$TTKMusicPlayer/TTKConsole
@@ -49,6 +49,7 @@ INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../ \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits \
+    $$PWD/../../TTKModule/TTKCore/musicPlaylistKits \
     $$PWD/../../TTKModule/TTKCore/musicUtilsKits
 
 SOURCES += \

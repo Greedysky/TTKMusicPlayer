@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,16 +35,16 @@ class QmmpPluginCache;
 /*! @brief The InputSource class provides the base interface class of transports.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class InputSource : public QObject
+class QMMP_EXPORT InputSource : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     /*!
      * Object contsructor.
-     * @param url Input source path or url.
+     * @param path Input source path or url.
      * @param parent Parent object.
      */
-    InputSource(const QString &url, QObject *parent = 0);
+    InputSource(const QString &path, QObject *parent = 0);
     /*!
      * Returns QIODevice-based object for I/O operations.
      * Subclass shoud reimplement this function.
@@ -72,7 +72,7 @@ public:
     /*!
      * Returns input source path or url.
      */
-    const QString url() const;
+    const QString path() const;
     /*!
      * Returns start position in ms;
      */
@@ -113,11 +113,11 @@ public:
     QHash<QString, QString> takeStreamInfo();
     /*!
      * Creates InputSource object.
-     * @param url Input source path or url.
+     * @param path Input source path or url.
      * @param parent Parent object.
      * Returns \b 0 if the given url is not supported.
      */
-    static InputSource *create(const QString &url, QObject *parent = 0);
+    static InputSource *create(const QString &path, QObject *parent = 0);
     /*!
      * Returns a list of transport factories.
      */
@@ -158,7 +158,7 @@ signals:
     void error();
 
 private:
-    QString m_url;
+    QString m_path;
     qint64 m_offset;
     QMap<Qmmp::MetaData, QString> m_metaData;
     QHash<QString, QString> m_streamInfo;

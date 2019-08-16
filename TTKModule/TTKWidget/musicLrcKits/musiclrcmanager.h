@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,16 +66,15 @@ public:
     /*!
      * Object contsructor.
      */
-    MusicLrcColor(const QList<QColor> &fg, const QList<QColor> &bg,
-                  MusicLrcColor::LrcColorType index = MusicLrcColor::Null);
+    MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, MusicLrcColor::LrcColorType index = MusicLrcColor::Null);
 
     /*!
      * Map index to color.
      */
     static MusicLrcColor mapIndexToColor(MusicLrcColor::LrcColorType index);
 
-    QList<QColor> m_fgColor;
-    QList<QColor> m_bgColor;
+    QList<QColor> m_frontColor;
+    QList<QColor> m_backColor;
     MusicLrcColor::LrcColorType m_index;
 
 };
@@ -91,7 +90,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManager(QWidget *parent = 0);
+    explicit MusicLrcManager(QWidget *parent = nullptr);
 
     virtual ~MusicLrcManager();
 

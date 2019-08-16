@@ -10,14 +10,9 @@ public:
     void insert(const QString &key, const QString &value);
     QString remove(const QString &key);
 
-    QMap<QString, QString> m_params;
+    MStringMap m_params;
     QString m_mimeType;
     qint32 m_crc32, m_checkCrc32;
-
-//    static const int NO_CRC32 = 0;
-//    static const int AUTO_CRC32 = 1;
-//    static const int WITH_CRC32 = 2;
-
 };
 
 QNPutExtraPrivate::QNPutExtraPrivate()
@@ -42,9 +37,8 @@ QString QNPutExtraPrivate::remove(const QString &key)
     return value;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QNPutExtra::QNPutExtra()
 {
     TTK_INIT_PRIVATE;

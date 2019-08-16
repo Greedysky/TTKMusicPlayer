@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,24 +40,24 @@ public:
     typedef struct MUSIC_TOOLSET_EXPORT HEADER
     {
         char RIFFNAME[4];
-        unsigned long nRIFFLength;
+        ulong nRIFFLength;
         char WAVNAME[4];
         char FMTNAME[4];
-        unsigned long nFMTLength;
-        unsigned short nAudioFormat;
-        unsigned short nChannleNumber;
-        unsigned long nSampleRate;
-        unsigned long nBytesPerSecond;
-        unsigned short nBytesPerSample;
-        unsigned short    nBitsPerSample;
-        char    DATANAME[4];
-        unsigned long   nDataLength;
+        ulong nFMTLength;
+        ushort nAudioFormat;
+        ushort nChannleNumber;
+        ulong nSampleRate;
+        ulong nBytesPerSecond;
+        ushort nBytesPerSample;
+        ushort nBitsPerSample;
+        char DATANAME[4];
+        ulong nDataLength;
     }HEADER;
 
     /*!
      * Object contsructor.
      */
-    explicit MusicAudioRecorderCore(QObject *parent = 0);
+    explicit MusicAudioRecorderCore(QObject *parent = nullptr);
 
     ~MusicAudioRecorderCore();
 

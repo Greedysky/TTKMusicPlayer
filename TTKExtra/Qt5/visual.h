@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef VISUAL_H
 #define VISUAL_H
 
@@ -25,7 +26,9 @@
 #include <QWidget>
 #include <QHash>
 #include <stddef.h>
+#include "qmmp_export.h"
 
+#define QMMP_VISUAL_INTERVAL  40
 #define QMMP_VISUAL_NODE_SIZE 512 //samples
 
 class VisualFactory;
@@ -34,7 +37,7 @@ class VisualBuffer;
 /*! @brief The Visual class provides the base interface class of visualizations.
  *  @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Visual : public QWidget
+class QMMP_EXPORT Visual : public QWidget
 {
     Q_OBJECT
 public:
@@ -43,7 +46,7 @@ public:
     * @param parent Parent object.
     * @param f Widget flags.
     */
-    Visual(QWidget *parent, Qt::WindowFlags f = 0);
+    Visual(QWidget *parent, Qt::WindowFlags f = Qt::WindowFlags());
     /*!
      * Destructor.
      */
@@ -82,7 +85,7 @@ public:
      * @param receiver Receiver object.
      * @param member A slot to receive changes of active visualizations list.
      */
-    static void initialize(QWidget *parent, QObject *receiver = 0, const char *member = 0);
+    static void initialize(QWidget *parent, QObject *receiver = nullptr, const char *member = nullptr);
     /*!
      * Returns a pointer to a list of created visual objects.
      */
@@ -122,7 +125,7 @@ protected:
      * QWidget's close event. Reimplementation should call base function.
      * @param event QCloseEvent insatance.
      */
-    virtual void closeEvent (QCloseEvent *event);
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Takes visualization data. Caller should allocate \b QMMP_VISUAL_NODE_SIZE
      * bytes for each channel. If buffer for right channel is not specified,
@@ -130,7 +133,11 @@ protected:
      * @param left Left channel buffer.
      * @param right Right channel buffer.
      */
-    bool takeData(float *left, float *right = 0);
+    bool takeData(float *left, float *right = nullptr);
+    /*!
+     * Take visual maxed value range.
+     */
+    float takeMaxRange() const;
 
 private:
     static QList<VisualFactory*> *m_factories;

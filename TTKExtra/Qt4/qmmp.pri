@@ -16,7 +16,7 @@ HEADERS += \
     $$PWD/effectfactory.h \
     $$PWD/statehandler.h \
     $$PWD/qmmp.h \
-    $$PWD/fileinfo.h \
+    $$PWD/trackinfo.h \
     $$PWD/metadatamodel.h \
     $$PWD/tagmodel.h \
     $$PWD/abstractengine.h \
@@ -43,5 +43,6 @@ HEADERS += \
     $$PWD/dithering_p.h \
     $$PWD/visualbuffer_p.h \
     $$PWD/tagreadandwrite.h \
-    $$PWD/spekfactory.h
-    
+    $$PWD/lightfactory.h \
+    $$PWD/florid.h \
+    $$PWD/qmmp_export.h 

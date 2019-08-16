@@ -90,7 +90,7 @@ void MusicSimilarFoundWidget::createLabels()
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("Like \"<font color=#158FE1> %1 </font>\" also like this").arg(m_songNameFull));
     grid->addWidget(firstLabel);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     grid->addWidget(m_container);
 
     m_mainWindow->layout()->addWidget(function);

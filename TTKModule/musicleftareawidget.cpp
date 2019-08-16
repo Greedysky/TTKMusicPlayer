@@ -13,8 +13,6 @@
 #include "musicsoundkmicrowidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
-///qmmp incldue
-#include "visual.h"
 
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
@@ -27,9 +25,6 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     m_qualityChoiceWidget = nullptr;
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
-    m_lrcWidgetShowFullScreen = true;
-
-    Visual::initialize(MusicApplication::instance());
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -48,6 +43,7 @@ MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+
     m_qualityChoiceWidget = new MusicQualityChoicePopWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(320, MusicAnimationStackedWidget::LeftToRight);
@@ -59,10 +55,8 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSound, SIGNAL(musicVolumeChanged(int)), MusicApplication::instance(), SLOT(musicVolumeChanged(int)));
     connect(ui->musicBestLove, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicAddSongToLovestListAt()));
     connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(),
-                                     SLOT(musicEnhancedMusicChanged(int)));
-    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget,
-                                     SLOT(setSliderStyleByType(int)));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(musicEnhancedMusicChanged(int)));
+    connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
     connect(ui->functionAnimationWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 
     ui->musicPrevious->setStyleSheet(MusicUIObject::MKGBtnPrevious);
@@ -118,14 +112,9 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
     m_soundKMicroWidget->show();
 }
 
-bool MusicLeftAreaWidget::isLrcWidgetShowFullScreen() const
-{
-    return !m_lrcWidgetShowFullScreen;
-}
-
 void MusicLeftAreaWidget::setTransparent(int index)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, index);
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced, index);
     m_ui->centerLeftWidget->setTransparent(index);
 }
 
@@ -225,31 +214,6 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     m_cloudSharedSongWidget->showMainWindow();
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
-}
-
-void MusicLeftAreaWidget::lrcWidgetShowFullScreen()
-{
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
-    {
-        return;
-    }
-
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
-    {
-        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
-    }
-
-    m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
-    m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->centerLeftWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->songsContainer->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->stackedFunctionWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->lrcDisplayAllButton->setVisible(m_lrcWidgetShowFullScreen);
-
-    m_ui->musiclrccontainerforinline->createFloatPlayWidget();
-    m_lrcWidgetShowFullScreen ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
-    m_ui->musiclrccontainerforinline->lrcWidgetShowFullScreen();
 }
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,82 +42,82 @@ public:
     /*!
      * Get query thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = nullptr);
     /*!
      * Get movie thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getMovieThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getMovieThread(QObject *parent = nullptr);
     /*!
      * Get album thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = nullptr);
     /*!
      * Get artist thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = nullptr);
     /*!
      * Get artist category thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getArtistListThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getArtistListThread(QObject *parent = nullptr);
     /*!
      * Get toplist thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getToplistThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getToplistThread(QObject *parent = nullptr);
     /*!
      * Get playlist thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = nullptr);
     /*!
      * Get recommend thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getRecommendThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getRecommendThread(QObject *parent = nullptr);
     /*!
      * Get similar song query thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getSimilarSongThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getSimilarSongThread(QObject *parent = nullptr);
 
     /*!
      * Get similar query thread object by type.
      */
-    MusicDownLoadSimilarThread *getSimilarArtistThread(QObject *parent = 0);
+    MusicDownLoadSimilarThread *getSimilarArtistThread(QObject *parent = nullptr);
     /*!
      * Get suggest thread object by type.
      */
-    MusicDownLoadSongSuggestThread *getSuggestThread(QObject *parent = 0);
+    MusicDownLoadSongSuggestThread *getSuggestThread(QObject *parent = nullptr);
     /*!
      * Get song comment thread object by type.
      */
-    MusicDownLoadCommentsThread *getSongCommentThread(QObject *parent = 0);
+    MusicDownLoadCommentsThread *getSongCommentThread(QObject *parent = nullptr);
     /*!
      * Get playlist comment thread object by type.
      */
-    MusicDownLoadCommentsThread *getPlaylistCommentThread(QObject *parent = 0);
+    MusicDownLoadCommentsThread *getPlaylistCommentThread(QObject *parent = nullptr);
     /*!
      * Get discover list thread object by type.
      */
-    MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = 0);
+    MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = nullptr);
     /*!
      * Get translation object by type.
      */
-    MusicTranslationThreadAbstract *getTranslationThread(QObject *parent = 0);
+    MusicTranslationThreadAbstract *getTranslationThread(QObject *parent = nullptr);
 
     /*!
      * Get download small picture object by type.
      */
     MusicDownLoadThreadAbstract *getDownloadSmallPicThread(const QString &url, const QString &save,
                                                            MusicObject::DownloadType type,
-                                                           QObject *parent = 0);
+                                                           QObject *parent = nullptr);
     /*!
      * Get download lrc object by type.
      */
     MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
                                                       MusicObject::DownloadType type,
-                                                      QObject *parent = 0);
+                                                      QObject *parent = nullptr);
     /*!
      * Get download big picture object by type.
      */
     MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
-                                                           QObject *parent = 0);
+                                                           QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

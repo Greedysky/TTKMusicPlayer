@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,13 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QtXml/QDomDocument>
-#include <QTextStream>
 #include <QFile>
+#include <QTextStream>
+#include <QtXml/QDomDocument>
 
-#include "musicglobaldefine.h"
 #include "musicsong.h"
-#include "musicobject.h"
 
 /*! @brief The class of the xml attribute.
  * @author Greedysky <greedysky@163.com>
@@ -54,7 +52,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractXml(QObject *parent = 0);
+    explicit MusicAbstractXml(QObject *parent = nullptr);
 
     ~MusicAbstractXml();
 
@@ -91,8 +89,7 @@ public:
     /*!
      * Read xml attribute by tagName and attribute name.
      */
-    QString readXmlAttributeByTagName(const QString &tagName,
-                                      const QString &attrName) const;
+    QString readXmlAttributeByTagName(const QString &tagName, const QString &attrName) const;
     /*!
      * Read xml attribute's text by tagName.
      */
@@ -100,7 +97,7 @@ public:
     /*!
      * Read xml attributes by tagName and default name "value".
      */
-    MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
+    MVariantMap readXmlAttributesByTagName(const QString &tagName) const;
     /*!
      * Create processing instruction in header.
      */
@@ -120,27 +117,23 @@ public:
     /*!
      * Append xml element nodes by node name.
      */
-    QDomElement writeDom(QDomElement &element, const QString &node);
+    QDomElement writeDomNode(QDomElement &element, const QString &node);
     /*!
      * Append xml element nodes by node name\ key name and value.
      */
-    QDomElement writeDomElement(QDomElement &element, const QString &node,
-                                const MusicXmlAttribute &attr);
+    QDomElement writeDomElement(QDomElement &element, const QString &node, const MusicXmlAttribute &attr);
     /*!
      * Append xml elements nodes by node name\ keys name and values.
      */
-    QDomElement writeDomElementMutil(QDomElement &element, const QString &node,
-                                     const MusicXmlAttributes &attrs);
+    QDomElement writeDomElementMutil(QDomElement &element, const QString &node, const MusicXmlAttributes &attrs);
     /*!
      * Append xml element nodes by node name\ key name \ value and attribute's text.
      */
-    QDomElement writeDomElementText(QDomElement &element, const QString &node,
-                                    const MusicXmlAttribute &attr, const QString &text);
+    QDomElement writeDomElementText(QDomElement &element, const QString &node, const MusicXmlAttribute &attr, const QString &text);
     /*!
      * Append xml elements nodes by node name\ keys name \ values and attribute's text.
      */
-    QDomElement writeDomElementMutilText(QDomElement &element, const QString &node,
-                                         const MusicXmlAttributes &attrs, const QString &text);
+    QDomElement writeDomElementMutilText(QDomElement &element, const QString &node, const MusicXmlAttributes &attrs, const QString &text);
     /*!
      * Append xml element nodes by node name and attribute's text.
      */

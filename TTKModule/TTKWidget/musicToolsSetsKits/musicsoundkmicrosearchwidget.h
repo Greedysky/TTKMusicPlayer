@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = 0);
+    explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSoundKMicroSearchTableWidget();
 
@@ -106,7 +106,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundKMicroSearchWidget(QWidget *parent = 0);
+    explicit MusicSoundKMicroSearchWidget(QWidget *parent = nullptr);
 
     ~MusicSoundKMicroSearchWidget();
 
@@ -128,6 +128,10 @@ public Q_SLOTS:
      * Set query MV flag.
      */
     void setQueryMovieFlag(int flag);
+    /*!
+     * Set current search song name.
+     */
+    void setCurrentSongName(const QString &name);
 
 protected:
     bool m_queryMovieMode;

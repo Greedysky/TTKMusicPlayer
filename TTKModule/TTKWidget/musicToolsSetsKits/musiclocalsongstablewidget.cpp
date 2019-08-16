@@ -1,8 +1,8 @@
 #include "musiclocalsongstablewidget.h"
 #include "musicnumberutils.h"
 
-#define ROW_HEIGHT 60
-#define MUSIC_INFO_ROLE Qt::UserRole + 1000
+#define MUSIC_INFO_ROLE     Qt::UserRole + 1000
+
 Q_DECLARE_METATYPE(QFileInfoList)
 
 MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
@@ -86,7 +86,7 @@ void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     createMoreMenu(&rightClickMenu);
 
-    bool empty = !m_musicSongs->isEmpty();
+    const bool empty = !m_musicSongs->isEmpty();
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
@@ -127,7 +127,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
     while(it.hasNext())
     {
         it.next();
-        setRowHeight(i, ROW_HEIGHT);
+        setRowHeight(i, ITEM_ROW_HEIGHT_XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         QPixmap pix(ART_DIR_FULL + it.key() + SKN_FILE);

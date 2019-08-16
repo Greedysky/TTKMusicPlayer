@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,12 +29,71 @@
 
 #define DOT                     "."
 
-///////////////////////////////////////
-#define APPNAME                 "TTKMusicPlayer"
-#define APPDOT                  "TTKMusicPlayer."
-#define APPCOME                 "TTKMusicPlayer.com"
-#define APPEXE                  "TTKMusicPlayer.exe"
-///////////////////////////////////////
+//
+#define TTS_FILE_PREFIX         "ttks"
+#define SKN_FILE_PREFIX         "skn"
+#define JPG_FILE_PREFIX         "jpg"
+#define BMP_FILE_PREFIX         "bmp"
+#define PNG_FILE_PREFIX         "png"
+#define LRC_FILE_PREFIX         "lrc"
+#define KRC_FILE_PREFIX         "krc"
+#define CFG_FILE_PREFIX         "ttk"
+#define EXE_FILE_PREFIX         "exe"
+#define XML_FILE_PREFIX         "xml"
+#define COM_FILE_PREFIX         "com"
+
+//playlist ext
+#define LST_FILE_PREFIX         "tkpl"
+#define M3U_FILE_PREFIX         "m3u"
+#define M3U8_FILE_PREFIX        "m3u8"
+#define PLS_FILE_PREFIX         "pls"
+#define WPL_FILE_PREFIX         "wpl"
+#define XSPF_FILE_PREFIX        "xspf"
+#define ASX_FILE_PREFIX         "asx"
+#define FPL_FILE_PREFIX         "fpl"
+#define KWL_FILE_PREFIX         "kwl"
+#define KGL_FILE_PREFIX         "kgl"
+
+//music ext
+#define AAC_FILE_PREFIX         "aac"
+#define WMA_FILE_PREFIX         "wma"
+#define MP3_FILE_PREFIX         "mp3"
+#define OGG_FILE_PREFIX         "ogg"
+#define APE_FILE_PREFIX         "ape"
+#define FLC_FILE_PREFIX         "flac"
+
+
+#define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
+#define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
+#define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
+#define BMP_FILE                STRCAT(DOT, BMP_FILE_PREFIX)
+#define PNG_FILE                STRCAT(DOT, PNG_FILE_PREFIX)
+#define LRC_FILE                STRCAT(DOT, LRC_FILE_PREFIX)
+#define KRC_FILE                STRCAT(DOT, KRC_FILE_PREFIX)
+#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
+#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
+#define LST_FILE                STRCAT(DOT, LST_FILE_PREFIX)
+#define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
+#define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
+#define COM_FILE                STRCAT(DOT, COM_FILE_PREFIX)
+
+//music ext
+#define AAC_FILE                STRCAT(DOT, AAC_FILE_PREFIX)
+#define WMA_FILE                STRCAT(DOT, WMA_FILE_PREFIX)
+#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
+#define OGG_FILE                STRCAT(DOT, OGG_FILE_PREFIX)
+#define APE_FILE                STRCAT(DOT, APE_FILE_PREFIX)
+#define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
+
+
+//
+#define APP_NAME                "TTKMusicPlayer"
+#define APP_DOT_NAME            STRCAT(APP_NAME, DOT)
+#define APP_COME_NAME           STRCAT(APP_NAME, COM_FILE)
+#define APP_EXE_NAME            STRCAT(APP_NAME, EXE_FILE)
+
+
+//
 #define APPDATA_DIR             "AppData/"
 #define DOWNLOADS_DIR           "Downloads/"
 
@@ -52,28 +111,6 @@
 #define PLUGINS_DIR             "MPlugins/"
 #define BACKGROUND_DIR          "MArt/background/"
 #define LANGUAGE_DIR            "MLanguage/"
-#define TEMPORARY_DIR           "temporary"
-
-
-#define TTS_FILE_PREFIX         "ttks"
-#define SKN_FILE_PREFIX         "skn"
-#define JPG_FILE_PREFIX         "jpg"
-#define BMP_FILE_PREFIX         "bmp"
-#define PNG_FILE_PREFIX         "png"
-#define LRC_FILE_PREFIX         "lrc"
-#define KRC_FILE_PREFIX         "krc"
-#define CFG_FILE_PREFIX         "ttk"
-#define LST_FILE_PREFIX         "lis"
-#define EXE_FILE_PREFIX         "exe"
-#define XML_FILE_PREFIX         "xml"
-
-//music ext
-#define AAC_FILE_PREFIX         "aac"
-#define WMA_FILE_PREFIX         "wma"
-#define MP3_FILE_PREFIX         "mp3"
-#define OGG_FILE_PREFIX         "ogg"
-#define APE_FILE_PREFIX         "ape"
-#define FLC_FILE_PREFIX         "flac"
 
 
 #define MAKE_TRANSFORM_PREFIX   "avconv.dll"
@@ -81,28 +118,6 @@
 #define MAKE_PLAYER_PREFIX      "avplayer.dll"
 #define MAKE_GAIN_PREFIX        "avgain.dll"
 #define MAKE_SOUNDTOUCH_PREFIX  "avm2v.dll"
-
-
-#define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
-#define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
-#define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
-#define BMP_FILE                STRCAT(DOT, BMP_FILE_PREFIX)
-#define PNG_FILE                STRCAT(DOT, PNG_FILE_PREFIX)
-#define LRC_FILE                STRCAT(DOT, LRC_FILE_PREFIX)
-#define KRC_FILE                STRCAT(DOT, KRC_FILE_PREFIX)
-#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
-#define LST_FILE                STRCAT(DOT, LST_FILE_PREFIX)
-#define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
-#define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
-
-//music ext
-#define AAC_FILE                STRCAT(DOT, AAC_FILE_PREFIX)
-#define WMA_FILE                STRCAT(DOT, WMA_FILE_PREFIX)
-#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define OGG_FILE                STRCAT(DOT, OGG_FILE_PREFIX)
-#define APE_FILE                STRCAT(DOT, APE_FILE_PREFIX)
-#define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
 
 
 #define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")
@@ -116,8 +131,9 @@
 #endif
 
 
+#define TEMPPATH                "musictemp"
 #define COFIGPATH               "musicconfig.xml"
-#define MUSICPATH               "music.lis"
+#define MUSICPATH               "music.tkpl"
 #define NORMALDOWNPATH          "musicdown.ttk"
 #define CLOUDDOWNPATH           "musiccloud.ttk"
 #define CLOUDUPPATH             "musiccloudp.ttk"
@@ -127,7 +143,7 @@
 #define BARRAGEPATH             "musicbarrage.ttk"
 
 
-///////////////////////////////////////
+//
 #if defined (Q_OS_ANDROID)
 #  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
 #  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + DOWNLOADS_DIR
@@ -141,7 +157,6 @@
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOADS_DIR_FULL + MUSIC_DIR
 #define MOVIE_DIR_FULL          DOWNLOADS_DIR_FULL + MOVIE_DIR
-#define TEMPORARY_DIR_FULL      DOWNLOADS_DIR_FULL + TEMPORARY_DIR
 #define CACHE_DIR_FULL          DOWNLOADS_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
@@ -161,6 +176,7 @@
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 
+#define TEMPPATH_FULL           MusicObject::getAppDir() + TEMPPATH
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
@@ -177,10 +193,13 @@
 #endif
 
 
-///////////////////////////////////////
+//
 #define WINDOW_WIDTH_MIN        1000
 #define WINDOW_HEIGHT_MIN       690
-///////////////////////////////////////
+#define CONCISE_WIDTH_MIN       322
+//
+#define COVER_URL_NULL          "null"
+//
 
 
 /*! @brief The namespace of the application object.
@@ -218,7 +237,6 @@ namespace MusicObject
     }MusicSongAttribute;
     TTK_DECLARE_LISTS(MusicSongAttribute)
 
-    ///////////////////////////////////////
 
     /*! @brief The class of the music song information.
      * @author Greedysky <greedysky@163.com>
@@ -240,7 +258,7 @@ namespace MusicObject
         QString m_trackNumber;
     }MusicSongInformation;
     TTK_DECLARE_LISTS(MusicSongInformation)
-    ///////////////////////////////////////
+
 
     enum PlayState
     {
@@ -251,9 +269,9 @@ namespace MusicObject
 
     enum PlayMode
     {
-        PM_PlayOrder = 1,              /*!< play order*/
+        PM_PlayOrder,                  /*!< play order*/
         PM_PlayRandom,                 /*!< play random*/
-        PM_PlayListLoop,               /*!< play list loop*/
+        PM_PlaylistLoop,               /*!< play list loop*/
         PM_PlayOneLoop,                /*!< play single loop*/
         PM_PlayOnce                    /*!< play just once*/
     };

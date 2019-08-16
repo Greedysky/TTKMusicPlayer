@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef STATEHANDLER_H
 #define STATEHANDLER_H
 
@@ -31,7 +32,7 @@
 /*! @brief The StateHandler class allows one to track information about playback progress.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class StateHandler : public QObject
+class QMMP_EXPORT StateHandler : public QObject
 {
     Q_OBJECT
 public:
@@ -39,7 +40,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    StateHandler(QObject *parent = 0);
+    StateHandler(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
@@ -57,13 +58,14 @@ public:
     void dispatch(const AudioParameters &p);
     /*!
      * Sends information about song length
-     * @param length song length in milliseconds
+     * @param duration track length in milliseconds
      */
-    void dispatch(qint64 length);
+    void dispatch(qint64 duration);
     /*!
-     * Sends metadata \b metaData
+     * Sends track information.
+     * @param info track information.
      */
-    void dispatch(const QMap<Qmmp::MetaData, QString> &metaData);
+    bool dispatch(const TrackInfo &info);
     /*!
      * Sends stream information \b info
      */
@@ -82,9 +84,9 @@ public:
      */
     qint64 elapsed() const;
     /*!
-     * Returns length in milliseconds
+     * Returns duration in milliseconds
      */
-    qint64 totalTime() const;
+    qint64 duration() const;
     /*!
      * Returns current bitrate (in kbps)
      */
@@ -132,14 +134,14 @@ signals:
      */
     void bufferingProgress(int progress);
 
-
 private:
     qint64 m_elapsed;
-    qint64 m_length;
+    qint64 m_duration;
     bool m_sendAboutToFinish;
     int m_bitrate;
     static StateHandler* m_instance;
     QMap <Qmmp::MetaData, QString> m_metaData;
+    TrackInfo m_info;
     QHash <QString, QString> m_streamInfo;
     Qmmp::State m_state;
     AudioParameters m_audioParameters;

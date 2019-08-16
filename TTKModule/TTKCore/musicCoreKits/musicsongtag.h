@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,6 @@ public:
      * Read music file path.
      */
     QString getFilePath() const;
-    /////////////////////////////////////////////
     /*!
      * Get artist name.
      */
@@ -106,7 +105,6 @@ public:
      * Get song file path.
      */
     QString getURL() const;
-    /////////////////////////////////////////////
     /*!
      * Set artist name.
      */
@@ -135,24 +133,22 @@ public:
      * Set song genre.
      */
     void setGenre(const QString &genre);
-    /////////////////////////////////////////////
     /*!
-     * Set song image cover art.
+     * Set song image cover artist.
      */
     void setCover(const QPixmap &pix);
     /*!
-     * Set song image cover art.
+     * Set song image cover artist.
      */
     void setCover(const QByteArray &data);
     /*!
-     * Get song image cover art.
+     * Get song image cover artist.
      */
     QPixmap getCover() const;
-    /////////////////////////////////////////////
     /*!
      * Get song sample rate.
      */
-    QString getSamplingRate() const;
+    QString getSampleRate() const;
     /*!
      * Get song format.
      */
@@ -169,7 +165,6 @@ public:
      * Get song time length.
      */
     QString getLengthString() const;
-    /////////////////////////////////////////////
 
 protected:
     /*!

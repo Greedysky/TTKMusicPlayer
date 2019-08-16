@@ -1,56 +1,106 @@
 #include "qaeswrap.h"
+#include "base64.h"
 extern "C" {
 #include "aes.h"
 }
-#include "base64.h"
 
-#define CACHE_SIZE      1024
+#define DATA_CACHE_SIZE      1024
 
-QByteArray QAesWrap::encrypt(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+QAesWrap::QAesWrap()
+{
+
+}
+
+QByteArray QAesWrap::encryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
-    char encrypt_string[CACHE_SIZE] = {0};
-    int nLen = in.length();
-    int nBei = nLen / AES_BLOCK_SIZE + 1;
-    int nTotal = nBei * AES_BLOCK_SIZE;
-    char *enc_s = new char[nTotal + 1]();
+    char encrypt_string[DATA_CACHE_SIZE] = {0};
+    const int nLen = in.length();
+    const int nBei = nLen / AES_BLOCK_SIZE + 1;
+    const int nTotal = nBei * AES_BLOCK_SIZE;
+    char *enc_str = new char[nTotal + 1]();
 
-    int nNumber = (nLen % 16 > 0) ? nTotal - nLen :16;
+    const int nNumber = (nLen % AES_BLOCK_SIZE > 0) ? nTotal - nLen : AES_BLOCK_SIZE;
 
-    memset(enc_s, nNumber, nTotal);
-    memcpy(enc_s, in.data(), nLen);
+    memset(enc_str, nNumber, nTotal);
+    memcpy(enc_str, in.data(), nLen);
+
     if(AES_set_encrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
     {
         return QByteArray();
     }
 
-    AES_cbc_encrypt((unsigned char *)enc_s, (unsigned char *)encrypt_string, nTotal,
-                    &aes,
-                    (unsigned char *)iv.data(), AES_ENCRYPT);
-    delete[] enc_s;
+    AES_ecb_encrypt((unsigned char *)enc_str, (unsigned char *)encrypt_string, &aes, AES_ENCRYPT);
+    delete[] enc_str;
 
-    enc_s = Base64Encode((const unsigned char *)encrypt_string, nTotal);
-    QByteArray data(enc_s);
-    free(enc_s);
+    enc_str = Base64Encode((const unsigned char *)encrypt_string, nTotal);
+    QByteArray data(enc_str);
+
+    free(enc_str);
 
     return data;
 }
 
-QByteArray QAesWrap::decrypt(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+QByteArray QAesWrap::decryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
-    char encrypt_string[CACHE_SIZE] = {0};
+    char decrypt_string[DATA_CACHE_SIZE] = {0};
     char *decode = Base64Decode((const unsigned char *)in.data(), in.length());
 
     if(AES_set_decrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
     {
         return QByteArray();
     }
-    AES_cbc_encrypt((unsigned char *)decode, (unsigned char *)encrypt_string, strlen(decode),
-                    &aes,
-                    (unsigned char *)iv.data(), AES_DECRYPT);
+    AES_ecb_encrypt((unsigned char *)decode, (unsigned char *)decrypt_string, &aes, AES_DECRYPT);
 
     free(decode);
 
-    return QByteArray(QString(encrypt_string).remove("\x0F").toUtf8());
+    return QByteArray(QString(decrypt_string).remove("\x0F").toUtf8());
+}
+
+QByteArray QAesWrap::encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+{
+    AES_KEY aes;
+    char encrypt_string[DATA_CACHE_SIZE] = {0};
+    const int nLen = in.length();
+    const int nBei = nLen / AES_BLOCK_SIZE + 1;
+    const int nTotal = nBei * AES_BLOCK_SIZE;
+    char *enc_str = new char[nTotal + 1]();
+
+    const int nNumber = (nLen % AES_BLOCK_SIZE > 0) ? nTotal - nLen : AES_BLOCK_SIZE;
+
+    memset(enc_str, nNumber, nTotal);
+    memcpy(enc_str, in.data(), nLen);
+
+    if(AES_set_encrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
+    {
+        return QByteArray();
+    }
+
+    AES_cbc_encrypt((unsigned char *)enc_str, (unsigned char *)encrypt_string, nTotal, &aes, (unsigned char *)iv.data(), AES_ENCRYPT);
+    delete[] enc_str;
+
+    enc_str = Base64Encode((const unsigned char *)encrypt_string, nTotal);
+    QByteArray data(enc_str);
+
+    free(enc_str);
+
+    return data;
+}
+
+QByteArray QAesWrap::decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+{
+    AES_KEY aes;
+    char decrypt_string[DATA_CACHE_SIZE] = {0};
+    char *decode = Base64Decode((const unsigned char *)in.data(), in.length());
+
+    if(AES_set_decrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
+    {
+        return QByteArray();
+    }
+    AES_cbc_encrypt((unsigned char *)decode, (unsigned char *)decrypt_string, strlen(decode), &aes, (unsigned char *)iv.data(), AES_DECRYPT);
+
+    free(decode);
+
+    return QByteArray(QString(decrypt_string).remove("\x0F").toUtf8());
 }

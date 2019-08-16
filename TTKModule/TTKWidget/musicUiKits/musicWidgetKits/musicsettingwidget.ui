@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>618</width>
-    <height>458</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>610</width>
-     <height>450</height>
+     <height>462</height>
     </rect>
    </property>
    <property name="text">
@@ -59,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>144</x>
-     <y>29</y>
+     <y>39</y>
      <width>461</width>
      <height>370</height>
     </rect>
@@ -74,7 +74,7 @@
     <widget class="QLabel" name="baseSetShowInfoWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -92,7 +92,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="autoPlayCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>45</y>
        <width>100</width>
        <height>20</height>
@@ -105,7 +105,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="backPlayCheckBox">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>185</x>
        <y>45</y>
        <width>191</width>
        <height>20</height>
@@ -118,7 +118,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="minimumRadioBox">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>185</x>
        <y>105</y>
        <width>201</width>
        <height>20</height>
@@ -131,7 +131,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="quitRadioBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>105</y>
        <width>131</width>
        <height>20</height>
@@ -144,7 +144,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="multiLanguageChoiceWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>255</y>
        <width>100</width>
        <height>20</height>
@@ -162,7 +162,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="languageComboBox">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>88</x>
        <y>280</y>
        <width>251</width>
        <height>22</height>
@@ -172,7 +172,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="currentLanguageLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>280</y>
        <width>61</width>
        <height>21</height>
@@ -188,7 +188,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="currentLanguageWarningLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>310</y>
        <width>241</width>
        <height>24</height>
@@ -204,7 +204,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="closeNetWorkCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>195</y>
        <width>321</width>
        <height>20</height>
@@ -217,7 +217,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="setDefaultPlayerCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>225</y>
        <width>301</width>
        <height>20</height>
@@ -230,7 +230,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="otherShowInfoWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>165</y>
        <width>60</width>
        <height>20</height>
@@ -248,7 +248,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="closeSetShowInfoWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>80</y>
        <width>101</width>
        <height>20</height>
@@ -266,7 +266,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="quitOpacityRadioBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>135</y>
        <width>131</width>
        <height>20</height>
@@ -279,7 +279,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="quitWindowRadioBox">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>185</x>
        <y>135</y>
        <width>201</width>
        <height>20</height>
@@ -294,7 +294,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="baseSetShotKeyWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -312,7 +312,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S1">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>50</y>
        <width>61</width>
        <height>20</height>
@@ -331,7 +331,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S2">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>50</y>
        <width>180</width>
        <height>20</height>
@@ -350,7 +350,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S3">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>80</y>
        <width>61</width>
        <height>20</height>
@@ -369,7 +369,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S4">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>80</y>
        <width>180</width>
        <height>20</height>
@@ -388,7 +388,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S5">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>110</y>
        <width>61</width>
        <height>20</height>
@@ -407,7 +407,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S7">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>140</y>
        <width>61</width>
        <height>20</height>
@@ -426,7 +426,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S9">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>170</y>
        <width>61</width>
        <height>20</height>
@@ -445,7 +445,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S11">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>230</y>
        <width>61</width>
        <height>20</height>
@@ -464,7 +464,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S6">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>110</y>
        <width>180</width>
        <height>20</height>
@@ -483,7 +483,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S8">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>140</y>
        <width>180</width>
        <height>20</height>
@@ -502,7 +502,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S10">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>170</y>
        <width>180</width>
        <height>20</height>
@@ -521,7 +521,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S12">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>230</y>
        <width>180</width>
        <height>20</height>
@@ -540,7 +540,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S14">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>260</y>
        <width>180</width>
        <height>20</height>
@@ -559,7 +559,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S13">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>260</y>
        <width>61</width>
        <height>20</height>
@@ -578,7 +578,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="globalHotkeyBox">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>25</x>
        <y>295</y>
        <width>250</width>
        <height>20</height>
@@ -591,7 +591,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="item_S15">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>200</y>
        <width>61</width>
        <height>20</height>
@@ -610,7 +610,7 @@ font-weight:bold;</string>
     <widget class="MusicGlobalHotKeyEdit" name="item_S16">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>200</y>
        <width>180</width>
        <height>20</height>
@@ -631,7 +631,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="baseSetDownloadWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -649,9 +649,9 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadDirLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>50</y>
-       <width>51</width>
+       <width>55</width>
        <height>16</height>
       </rect>
      </property>
@@ -662,7 +662,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="downloadDirEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>85</x>
        <y>48</y>
        <width>270</width>
        <height>20</height>
@@ -675,7 +675,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="downloadDirButton">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>365</x>
        <y>47</y>
        <width>60</width>
        <height>21</height>
@@ -688,9 +688,9 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadLrcDirLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>80</y>
-       <width>51</width>
+       <width>55</width>
        <height>16</height>
       </rect>
      </property>
@@ -701,7 +701,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="downloadLrcDirButton">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>365</x>
        <y>77</y>
        <width>60</width>
        <height>21</height>
@@ -714,7 +714,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="downloadLrcDirEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>85</x>
        <y>78</y>
        <width>270</width>
        <height>20</height>
@@ -727,7 +727,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadCacheLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>147</y>
        <width>81</width>
        <height>16</height>
@@ -740,7 +740,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="downloadCacheAutoRadioBox">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>115</x>
        <y>115</y>
        <width>111</width>
        <height>16</height>
@@ -753,7 +753,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="downloadCacheManRadioBox">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>235</x>
        <y>115</y>
        <width>121</width>
        <height>16</height>
@@ -766,7 +766,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadOtherWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>190</y>
        <width>60</width>
        <height>20</height>
@@ -784,7 +784,7 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="downloadFullRadioBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>290</y>
        <width>110</width>
        <height>16</height>
@@ -810,7 +810,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="downloadSpinBox">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>115</x>
        <y>145</y>
        <width>101</width>
        <height>22</height>
@@ -820,7 +820,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="downloadLimitSpeedComboBox">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>322</y>
        <width>110</width>
        <height>22</height>
@@ -830,7 +830,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="uploadLimitSpeedComboBox">
      <property name="geometry">
       <rect>
-       <x>275</x>
+       <x>260</x>
        <y>322</y>
        <width>110</width>
        <height>22</height>
@@ -840,7 +840,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadCacheSizeLabel">
      <property name="geometry">
       <rect>
-       <x>235</x>
+       <x>220</x>
        <y>148</y>
        <width>21</width>
        <height>16</height>
@@ -853,7 +853,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadLimitSpeedLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>325</y>
        <width>31</width>
        <height>16</height>
@@ -866,7 +866,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="uploadLimitSpeedLabel">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>225</x>
        <y>325</y>
        <width>31</width>
        <height>16</height>
@@ -879,7 +879,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadSpeedLabel">
      <property name="geometry">
       <rect>
-       <x>195</x>
+       <x>180</x>
        <y>325</y>
        <width>31</width>
        <height>16</height>
@@ -892,7 +892,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="uploadSpeedLabel">
      <property name="geometry">
       <rect>
-       <x>395</x>
+       <x>380</x>
        <y>325</y>
        <width>31</width>
        <height>16</height>
@@ -905,7 +905,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadCacheModelLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>115</y>
        <width>81</width>
        <height>16</height>
@@ -918,9 +918,9 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadServerLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>220</y>
-       <width>101</width>
+       <width>110</width>
        <height>16</height>
       </rect>
      </property>
@@ -931,7 +931,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="downloadServerComboBox">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>138</x>
        <y>217</y>
        <width>150</width>
        <height>22</height>
@@ -941,7 +941,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadSpeedWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>260</y>
        <width>60</width>
        <height>20</height>
@@ -961,7 +961,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="baseSetOtherWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -976,11 +976,11 @@ font-weight:bold;</string>
       <string>基本设置</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="otherNorImgRadioBox">
+    <widget class="QRadioButton" name="otherNormalImageRadioBox">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>50</y>
+       <x>135</x>
+       <y>48</y>
        <width>80</width>
        <height>16</height>
       </rect>
@@ -989,11 +989,11 @@ font-weight:bold;</string>
       <string>普清</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="otherHerImgRadioBox">
+    <widget class="QRadioButton" name="otherHeighImageRadioBox">
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>50</y>
+       <y>48</y>
        <width>80</width>
        <height>16</height>
       </rect>
@@ -1005,8 +1005,8 @@ font-weight:bold;</string>
     <widget class="QLabel" name="otherImageLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>50</y>
+       <x>25</x>
+       <y>48</y>
        <width>101</width>
        <height>16</height>
       </rect>
@@ -1015,12 +1015,12 @@ font-weight:bold;</string>
       <string>写真图片质量</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherUpdateCheckBox">
+    <widget class="QCheckBox" name="otherCheckUpdateBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>175</y>
-       <width>271</width>
+       <x>25</x>
+       <y>160</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1031,9 +1031,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherSideByCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>200</y>
-       <width>271</width>
+       <x>25</x>
+       <y>188</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1041,11 +1041,11 @@ font-weight:bold;</string>
       <string>开启左右靠边停靠模式</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherAlbumCoverCheckBox">
+    <widget class="QCheckBox" name="otherUseAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>80</y>
+       <x>25</x>
+       <y>76</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1054,11 +1054,11 @@ font-weight:bold;</string>
       <string>从文件中读取专辑封面</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherInfoCheckBox">
+    <widget class="QCheckBox" name="otherUseInfoCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>110</y>
+       <x>25</x>
+       <y>104</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1070,8 +1070,8 @@ font-weight:bold;</string>
     <widget class="QLabel" name="otherShowInfoOtherWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>145</y>
+       <x>25</x>
+       <y>132</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1088,9 +1088,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherSearchCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>230</y>
-       <width>271</width>
+       <x>215</x>
+       <y>160</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1101,9 +1101,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherLrcKTVCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>260</y>
-       <width>271</width>
+       <x>215</x>
+       <y>188</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1111,11 +1111,11 @@ font-weight:bold;</string>
       <string>开启歌词KTV模式</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherAlbumCoverWCheckBox">
+    <widget class="QCheckBox" name="otherWriteAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>80</y>
+       <x>215</x>
+       <y>76</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1124,11 +1124,11 @@ font-weight:bold;</string>
       <string>下载文件写入专辑封面</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherInfoWCheckBox">
+    <widget class="QCheckBox" name="otherWriteInfoCheckBox">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>110</y>
+       <x>215</x>
+       <y>104</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1140,8 +1140,8 @@ font-weight:bold;</string>
     <widget class="QLabel" name="otherVersionWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>290</y>
+       <x>25</x>
+       <y>312</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1158,8 +1158,8 @@ font-weight:bold;</string>
     <widget class="QLabel" name="otherVersionValue">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>320</y>
+       <x>25</x>
+       <y>337</y>
        <width>70</width>
        <height>21</height>
       </rect>
@@ -1174,8 +1174,8 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="otherVersionUpdateButton">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>320</y>
+       <x>105</x>
+       <y>337</y>
        <width>71</width>
        <height>25</height>
       </rect>
@@ -1184,12 +1184,111 @@ font-weight:bold;</string>
       <string>更新</string>
      </property>
     </widget>
+    <widget class="QLabel" name="setRipplesSpectrumWidget">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>220</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>特效设置</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="ripplesSpectrumEnableBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>250</y>
+       <width>230</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启音频波纹特效</string>
+     </property>
+    </widget>
+    <widget class="MusicClickedSlider" name="ripplesSpectrumOpacitySlider">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>282</y>
+       <width>180</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ripplesSpectrumOpacityValueLabel">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>282</y>
+       <width>35</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100%</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ripplesSpectrumOpacityLabel">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>282</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>透明度</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ripplesSpectrumColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>282</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>颜色</string>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="ripplesSpectrumColorButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>277</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="five">
     <widget class="QLabel" name="DbaseSetSongWordWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -1207,7 +1306,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DSetColorSongWordWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>200</y>
        <width>41</width>
        <height>20</height>
@@ -1225,7 +1324,7 @@ font-weight:bold;</string>
     <widget class="MusicPreviewLabel" name="DshowLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>225</y>
        <width>400</width>
        <height>90</height>
@@ -1242,7 +1341,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="DfontComboBox">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>45</y>
        <width>160</width>
        <height>22</height>
@@ -1252,7 +1351,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>50</y>
        <width>31</width>
        <height>16</height>
@@ -1265,7 +1364,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontSizeLabel">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>235</x>
        <y>50</y>
        <width>31</width>
        <height>16</height>
@@ -1278,7 +1377,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="DfontSizeComboBox">
      <property name="geometry">
       <rect>
-       <x>285</x>
+       <x>270</x>
        <y>45</y>
        <width>150</width>
        <height>22</height>
@@ -1288,7 +1387,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontTypeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>85</y>
        <width>31</width>
        <height>16</height>
@@ -1301,7 +1400,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="DfontTypeComboBox">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>81</y>
        <width>110</width>
        <height>22</height>
@@ -1311,7 +1410,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontColorLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>125</y>
        <width>31</width>
        <height>16</height>
@@ -1324,7 +1423,7 @@ font-weight:bold;</string>
     <widget class="MusicColorPreviewLabel" name="DnoPlayedPushButton">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>185</x>
        <y>120</y>
        <width>80</width>
        <height>25</height>
@@ -1337,7 +1436,7 @@ font-weight:bold;</string>
     <widget class="MusicColorPreviewLabel" name="DplayedPushButton">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>120</y>
        <width>80</width>
        <height>25</height>
@@ -1350,7 +1449,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontDefaultColorLabel">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>235</x>
        <y>85</y>
        <width>31</width>
        <height>16</height>
@@ -1363,7 +1462,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="DfontDefaultColorComboBox">
      <property name="geometry">
       <rect>
-       <x>285</x>
+       <x>270</x>
        <y>81</y>
        <width>150</width>
        <height>22</height>
@@ -1373,7 +1472,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="DresetPushButton">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>345</x>
        <y>325</y>
        <width>81</width>
        <height>25</height>
@@ -1386,7 +1485,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontTransLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>160</y>
        <width>41</width>
        <height>16</height>
@@ -1399,7 +1498,7 @@ font-weight:bold;</string>
     <widget class="MusicClickedSlider" name="DtransparentSlider">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>75</x>
        <y>158</y>
        <width>300</width>
        <height>20</height>
@@ -1415,7 +1514,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="showDesktopCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>325</y>
        <width>100</width>
        <height>20</height>
@@ -1428,7 +1527,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="DfontTransValueLabel">
      <property name="geometry">
       <rect>
-       <x>400</x>
+       <x>385</x>
        <y>158</y>
        <width>35</width>
        <height>16</height>
@@ -1441,7 +1540,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="DSingleLineCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>350</y>
        <width>100</width>
        <height>20</height>
@@ -1456,7 +1555,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="baseSetSongWordWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -1474,7 +1573,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="setColorSongWordWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>200</y>
        <width>41</width>
        <height>20</height>
@@ -1492,7 +1591,7 @@ font-weight:bold;</string>
     <widget class="MusicPreviewLabel" name="showLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>225</y>
        <width>400</width>
        <height>90</height>
@@ -1509,7 +1608,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="fontComboBox">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>45</y>
        <width>160</width>
        <height>22</height>
@@ -1519,7 +1618,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>50</y>
        <width>31</width>
        <height>16</height>
@@ -1532,7 +1631,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontSizeLabel">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>235</x>
        <y>50</y>
        <width>31</width>
        <height>16</height>
@@ -1545,7 +1644,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="fontSizeComboBox">
      <property name="geometry">
       <rect>
-       <x>285</x>
+       <x>270</x>
        <y>45</y>
        <width>150</width>
        <height>22</height>
@@ -1555,7 +1654,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontTypeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>85</y>
        <width>31</width>
        <height>16</height>
@@ -1568,7 +1667,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="fontTypeComboBox">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>81</y>
        <width>110</width>
        <height>22</height>
@@ -1578,7 +1677,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontColorLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>125</y>
        <width>31</width>
        <height>16</height>
@@ -1591,7 +1690,7 @@ font-weight:bold;</string>
     <widget class="MusicColorPreviewLabel" name="noPlayedPushButton">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>185</x>
        <y>120</y>
        <width>80</width>
        <height>25</height>
@@ -1604,7 +1703,7 @@ font-weight:bold;</string>
     <widget class="MusicColorPreviewLabel" name="playedPushButton">
      <property name="geometry">
       <rect>
-       <x>75</x>
+       <x>60</x>
        <y>120</y>
        <width>80</width>
        <height>25</height>
@@ -1617,7 +1716,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontDefaultColorLabel">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>235</x>
        <y>85</y>
        <width>31</width>
        <height>16</height>
@@ -1630,7 +1729,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="fontDefaultColorComboBox">
      <property name="geometry">
       <rect>
-       <x>285</x>
+       <x>270</x>
        <y>81</y>
        <width>150</width>
        <height>22</height>
@@ -1640,7 +1739,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="resetPushButton">
      <property name="geometry">
       <rect>
-       <x>360</x>
+       <x>345</x>
        <y>325</y>
        <width>81</width>
        <height>25</height>
@@ -1653,7 +1752,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontTransLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>160</y>
        <width>41</width>
        <height>16</height>
@@ -1666,7 +1765,7 @@ font-weight:bold;</string>
     <widget class="MusicClickedSlider" name="transparentSlider">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>75</x>
        <y>158</y>
        <width>300</width>
        <height>20</height>
@@ -1682,7 +1781,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="showInlineCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>325</y>
        <width>100</width>
        <height>20</height>
@@ -1695,7 +1794,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fontTransValueLabel">
      <property name="geometry">
       <rect>
-       <x>400</x>
+       <x>385</x>
        <y>158</y>
        <width>35</width>
        <height>16</height>
@@ -1710,7 +1809,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="setSoundOutWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -1728,7 +1827,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="outputTypeComboBox">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>88</x>
        <y>50</y>
        <width>321</width>
        <height>22</height>
@@ -1738,7 +1837,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="outputTypeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>50</y>
        <width>61</width>
        <height>21</height>
@@ -1754,7 +1853,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="outputTypeTipLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>80</y>
        <width>381</width>
        <height>51</height>
@@ -1773,7 +1872,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="setEffectWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>145</y>
        <width>60</width>
        <height>20</height>
@@ -1791,7 +1890,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="equalizerButton">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>240</y>
        <width>80</width>
        <height>25</height>
@@ -1817,7 +1916,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="fadeInAndOutCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>170</y>
        <width>230</width>
        <height>20</height>
@@ -1830,7 +1929,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="sizeTipLabel">
      <property name="geometry">
       <rect>
-       <x>177</x>
+       <x>167</x>
        <y>200</y>
        <width>40</width>
        <height>20</height>
@@ -1843,7 +1942,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="fadeInSpinBox">
      <property name="geometry">
       <rect>
-       <x>72</x>
+       <x>65</x>
        <y>198</y>
        <width>101</width>
        <height>22</height>
@@ -1853,7 +1952,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fadeInLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>200</y>
        <width>40</width>
        <height>20</height>
@@ -1866,7 +1965,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="fadeOutSpinBox">
      <property name="geometry">
       <rect>
-       <x>257</x>
+       <x>245</x>
        <y>198</y>
        <width>101</width>
        <height>22</height>
@@ -1876,7 +1975,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fadeOutLabel">
      <property name="geometry">
       <rect>
-       <x>215</x>
+       <x>203</x>
        <y>200</y>
        <width>40</width>
        <height>20</height>
@@ -1889,7 +1988,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="sizeTipLabel2">
      <property name="geometry">
       <rect>
-       <x>362</x>
+       <x>347</x>
        <y>200</y>
        <width>40</width>
        <height>20</height>
@@ -1904,7 +2003,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="setAudioGainWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>120</width>
        <height>20</height>
@@ -1922,7 +2021,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="setAudioWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>170</y>
        <width>60</width>
        <height>20</height>
@@ -1940,7 +2039,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="defaultGainLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>105</y>
        <width>102</width>
        <height>20</height>
@@ -1959,7 +2058,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="replayGainModeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>45</y>
        <width>102</width>
        <height>20</height>
@@ -1972,7 +2071,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="defaultGainSpinBox">
      <property name="geometry">
       <rect>
-       <x>184</x>
+       <x>170</x>
        <y>105</y>
        <width>120</width>
        <height>22</height>
@@ -1997,7 +2096,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="replayGainModeComboBox">
      <property name="geometry">
       <rect>
-       <x>184</x>
+       <x>170</x>
        <y>45</y>
        <width>120</width>
        <height>22</height>
@@ -2013,7 +2112,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="preampSpinBox">
      <property name="geometry">
       <rect>
-       <x>184</x>
+       <x>170</x>
        <y>75</y>
        <width>120</width>
        <height>22</height>
@@ -2038,7 +2137,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="gainValueLabel2">
      <property name="geometry">
       <rect>
-       <x>312</x>
+       <x>295</x>
        <y>105</y>
        <width>111</width>
        <height>20</height>
@@ -2057,7 +2156,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="gainValueLabel">
      <property name="geometry">
       <rect>
-       <x>312</x>
+       <x>295</x>
        <y>75</y>
        <width>111</width>
        <height>20</height>
@@ -2076,7 +2175,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="preampLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>75</y>
        <width>102</width>
        <height>20</height>
@@ -2089,7 +2188,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="clippingCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>135</y>
        <width>383</width>
        <height>16</height>
@@ -2102,7 +2201,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="bufferSizeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>225</y>
        <width>138</width>
        <height>20</height>
@@ -2115,7 +2214,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="softVolumeCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>285</y>
        <width>383</width>
        <height>16</height>
@@ -2128,7 +2227,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="volumeStepLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>195</y>
        <width>138</width>
        <height>20</height>
@@ -2141,7 +2240,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="bufferSizeSpinBox">
      <property name="geometry">
       <rect>
-       <x>184</x>
+       <x>170</x>
        <y>225</y>
        <width>120</width>
        <height>22</height>
@@ -2175,7 +2274,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="volumeStepSpinBox">
      <property name="geometry">
       <rect>
-       <x>184</x>
+       <x>170</x>
        <y>195</y>
        <width>120</width>
        <height>22</height>
@@ -2194,7 +2293,7 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="ditheringCheckBox">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>310</y>
        <width>383</width>
        <height>16</height>
@@ -2207,7 +2306,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="bitDepthLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>255</y>
        <width>138</width>
        <height>20</height>
@@ -2220,7 +2319,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="bitDepthComboBox">
      <property name="geometry">
       <rect>
-       <x>184</x>
+       <x>170</x>
        <y>255</y>
        <width>120</width>
        <height>22</height>
@@ -2232,7 +2331,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="setProxyWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>20</y>
        <width>60</width>
        <height>20</height>
@@ -2250,7 +2349,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="proxyTypeComboBox">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>88</x>
        <y>50</y>
        <width>121</width>
        <height>22</height>
@@ -2260,7 +2359,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="proxyTypeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>50</y>
        <width>61</width>
        <height>21</height>
@@ -2276,7 +2375,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="proxyTypeTestButton">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>225</x>
        <y>47</y>
        <width>71</width>
        <height>25</height>
@@ -2289,7 +2388,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="proxyIpLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>90</y>
        <width>61</width>
        <height>21</height>
@@ -2305,7 +2404,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyIpEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>88</x>
        <y>90</y>
        <width>121</width>
        <height>22</height>
@@ -2315,7 +2414,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="proxyPortLabel">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>225</x>
        <y>90</y>
        <width>61</width>
        <height>21</height>
@@ -2331,7 +2430,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyPortEdit">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>285</x>
        <y>90</y>
        <width>121</width>
        <height>22</height>
@@ -2341,7 +2440,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="proxyUsernameLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>120</y>
        <width>61</width>
        <height>21</height>
@@ -2357,7 +2456,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyUsernameEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>88</x>
        <y>120</y>
        <width>121</width>
        <height>22</height>
@@ -2367,7 +2466,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="proxyPwdLabel">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>225</x>
        <y>120</y>
        <width>61</width>
        <height>21</height>
@@ -2383,7 +2482,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyPwdEdit">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>285</x>
        <y>120</y>
        <width>121</width>
        <height>22</height>
@@ -2393,7 +2492,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="netConnectionWidget">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>195</y>
        <width>60</width>
        <height>20</height>
@@ -2411,7 +2510,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="netConnectionTypeLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>220</y>
        <width>131</width>
        <height>21</height>
@@ -2427,7 +2526,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="netConnectionWayLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>255</y>
        <width>141</width>
        <height>21</height>
@@ -2443,7 +2542,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="netConnectionWayValue">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>175</x>
        <y>255</y>
        <width>70</width>
        <height>21</height>
@@ -2459,7 +2558,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="netConnectionTypeValue">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>175</x>
        <y>220</y>
        <width>70</width>
        <height>21</height>
@@ -2475,7 +2574,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="netConnectionTypeButton">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>255</x>
        <y>220</y>
        <width>71</width>
        <height>25</height>
@@ -2488,7 +2587,7 @@ font-weight:bold;</string>
     <widget class="QPushButton" name="netCheckTypeButton">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>255</x>
        <y>255</y>
        <width>71</width>
        <height>25</height>
@@ -2501,7 +2600,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="proxyAreaLabel">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>25</x>
        <y>150</y>
        <width>61</width>
        <height>21</height>
@@ -2517,7 +2616,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyAreaEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>88</x>
        <y>150</y>
        <width>121</width>
        <height>22</height>
@@ -2532,7 +2631,7 @@ font-weight:bold;</string>
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>425</height>
+     <height>437</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -2629,8 +2728,8 @@ font-weight:bold;;</string>
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>410</y>
+     <x>385</x>
+     <y>420</y>
      <width>80</width>
      <height>25</height>
     </rect>
@@ -2642,8 +2741,8 @@ font-weight:bold;;</string>
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>505</x>
-     <y>410</y>
+     <x>490</x>
+     <y>420</y>
      <width>80</width>
      <height>25</height>
     </rect>
@@ -2658,13 +2757,40 @@ font-weight:bold;;</string>
      <x>128</x>
      <y>29</y>
      <width>486</width>
-     <height>425</height>
+     <height>437</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
   </widget>
+  <widget class="MusicSmoothMovingScrollArea" name="scrollAreaWidget">
+   <property name="geometry">
+    <rect>
+     <x>144</x>
+     <y>39</y>
+     <width>461</width>
+     <height>370</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#444444;background:white;</string>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetArea">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>459</width>
+      <height>368</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <zorder>scrollAreaWidget</zorder>
   <zorder>background</zorder>
   <zorder>functionAreaDisplay</zorder>
   <zorder>topTitleName</zorder>
@@ -2701,6 +2827,12 @@ font-weight:bold;;</string>
    <class>MusicColorPreviewLabel</class>
    <extends>QLabel</extends>
    <header>musicpreviewlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicSmoothMovingScrollArea</class>
+   <extends>QScrollArea</extends>
+   <header>musicsmoothmovingwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

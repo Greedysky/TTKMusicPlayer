@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
+    explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudDownloadTableWidget();
 
@@ -57,7 +57,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
+    explicit MusicCloudUploadTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudUploadTableWidget();
 

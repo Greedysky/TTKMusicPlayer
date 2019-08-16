@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ namespace Ui {
 class MusicConnectTransferWidget;
 }
 class QButtonGroup;
-class MusicFileSenderServer;
+class MusicDeviceInfoItem;
 
 /*! @brief The class of the transfer file to mobile widget.
  * @author Greedysky <greedysky@163.com>
@@ -40,18 +40,14 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConnectTransferWidget(QWidget *parent = 0);
+    explicit MusicConnectTransferWidget(QWidget *parent = nullptr);
 
     virtual ~MusicConnectTransferWidget();
 
     /*!
-     * Open transfer files by mode.
+     * Set current device info item.
      */
-    void openTransferFiles(int mode);
-    /*!
-     * Redirect to current song.
-     */
-    void redirectToCurrentSong(int toolIndex, int songIndex);
+    void setDeviceInfoItem(MusicDeviceInfoItem *item);
 
 Q_SIGNALS:
     /*!
@@ -61,9 +57,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
+     * Button state changed.
+     */
+    void itemSelectedChanged();
+    /*!
      * Current playList selected.
      */
-    void currentPlayListSelected(int index);
+    void currentPlaylistSelected(int index);
     /*!
      * Select all items.
      */
@@ -72,18 +72,6 @@ public Q_SLOTS:
      * Start to transfer usb files.
      */
     void startToTransferUSBFiles();
-    /*!
-     * Start to transfer wifi files.
-     */
-    void startToTransferWIFIFiles();
-    /*!
-     * Reflash removable dir.
-     */
-    void reflashRemovableDir();
-    /*!
-     * Switch to different device.
-     */
-    void switchDiffDevice();
     /*!
      * Search file from list.
      */
@@ -106,17 +94,15 @@ protected:
      * Get selected files.
      */
     QStringList getSelectedFiles();
-    /*!
-     * Get removable drive name.
-     */
-    QString getRemovableDrive();
+
 
     Ui::MusicConnectTransferWidget *m_ui;
     int m_currentIndex;
     MusicSongs m_currentSongs;
     QButtonGroup *m_buttonGroup;
-    MIntsListMap m_searchfileListCache;
-    MusicFileSenderServer *m_sendServer;
+    MIntListMap m_searchfileListCache;
+    MusicDeviceInfoItem *m_currentDeviceItem;
+    QString m_songCountLabel, m_selectCountLabel;
 
 };
 

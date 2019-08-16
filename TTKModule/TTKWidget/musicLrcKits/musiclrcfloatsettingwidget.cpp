@@ -14,20 +14,20 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 
     QLabel *colorLabel = new QLabel(tr("Color"), this);
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
-    QLabel *bgLabel = new QLabel(tr("Background"), this);
+    QLabel *backLabel = new QLabel(tr("Background"), this);
 
-    const QString labelStyle = MusicUIObject::MColorStyle01 + MusicUIObject::MCustomStyle02 + "\
-                               image:url(:/lrc/lb_shadow);";
+    const QString &labelStyle = MusicUIObject::MColorStyle01 + MusicUIObject::MCustomStyle02 + "image:url(:/lrc/lb_shadow);";
+
     colorLabel->setStyleSheet(labelStyle);
     sizeLabel->setStyleSheet(labelStyle);
-    bgLabel->setStyleSheet(labelStyle);
+    backLabel->setStyleSheet(labelStyle);
     colorLabel->setAlignment(Qt::AlignCenter);
     sizeLabel->setAlignment(Qt::AlignCenter);
-    bgLabel->setAlignment(Qt::AlignCenter);
+    backLabel->setAlignment(Qt::AlignCenter);
 
     colorLabel->setGeometry(10, 23, 70, 20);
     sizeLabel->setGeometry(10, 70, 70, 20);
-    bgLabel->setGeometry(10, 115, 70, 20);
+    backLabel->setGeometry(10, 115, 70, 20);
 
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(createPushButton(0), 0);
@@ -47,16 +47,16 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     connect(sizeBigerButton, SIGNAL(clicked()), SLOT(lrcSizeUpChanged()));
     connect(sizeSmallerButton, SIGNAL(clicked()), SLOT(lrcSizeLowChanged()));
 
-    QPushButton *musicBgButton = new QPushButton(tr("MusicBg"), this);
-    musicBgButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(musicBgButton,SIGNAL(clicked()), SLOT(lrcMusicBackgroundChanged()));
-    QPushButton *artBgButton = new QPushButton(tr("ArtBg"), this);
-    artBgButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(artBgButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
-    musicBgButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + MusicUIObject::MPushButtonStyle08);
-    artBgButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + MusicUIObject::MPushButtonStyle08);
-    musicBgButton->setGeometry(15, 150, 60, 22);
-    artBgButton->setGeometry(90, 150, 60, 22);
+    QPushButton *musicBackButton = new QPushButton(tr("MusicBg"), this);
+    musicBackButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(musicBackButton,SIGNAL(clicked()), SLOT(lrcMusicBackgroundChanged()));
+    QPushButton *artBackButton = new QPushButton(tr("ArtBg"), this);
+    artBackButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(artBackButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
+    musicBackButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + MusicUIObject::MPushButtonStyle08);
+    artBackButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + MusicUIObject::MPushButtonStyle08);
+    musicBackButton->setGeometry(15, 150, 60, 22);
+    artBackButton->setGeometry(90, 150, 60, 22);
 
     QPushButton *settingButton = new QPushButton(tr("More"),this);
     settingButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -67,8 +67,8 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 #ifdef Q_OS_UNIX
     sizeBigerButton->setFocusPolicy(Qt::NoFocus);
     sizeSmallerButton->setFocusPolicy(Qt::NoFocus);
-    musicBgButton->setFocusPolicy(Qt::NoFocus);
-    artBgButton->setFocusPolicy(Qt::NoFocus);
+    musicBackButton->setFocusPolicy(Qt::NoFocus);
+    artBackButton->setFocusPolicy(Qt::NoFocus);
     settingButton->setFocusPolicy(Qt::NoFocus);
 #endif
 }
@@ -102,36 +102,36 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    MusicLrcDefines lrc;
+    const MusicLrcDefines lrc;
     int v = lrc.findInlineLrcIndex(line->getLrcSize());
-    v = lrc.findInlineNextSize(v);
+        v = lrc.findInlineNextSize(v);
     line->setLrcSize(v);
 }
 
 void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    MusicLrcDefines lrc;
+    const MusicLrcDefines lrc;
     int v = lrc.findInlineLrcIndex(line->getLrcSize());
-    v = lrc.findInlinePreSize(v);
+        v = lrc.findInlinePreSize(v);
     line->setLrcSize(v);
 }
 
 void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    if(line->artBackgroundIsShow())
+    if(line->artistBackgroundIsShow())
     {
-        line->artBackgroundChanged();
+        line->artistBackgroundChanged();
     }
 }
 
 void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    if(!line->artBackgroundIsShow())
+    if(!line->artistBackgroundIsShow())
     {
-        line->artBackgroundChanged();
+        line->artistBackgroundChanged();
     }
 }
 

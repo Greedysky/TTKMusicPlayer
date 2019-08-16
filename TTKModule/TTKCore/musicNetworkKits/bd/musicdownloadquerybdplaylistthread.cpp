@@ -9,7 +9,7 @@ MusicDownLoadQueryBDPlaylistThread::MusicDownLoadQueryBDPlaylistThread(QObject *
     : MusicDownLoadQueryPlaylistThread(parent)
 {
     m_pageSize = 20;
-    m_queryServer = "Baidu";
+    m_queryServer = QUERY_BD_INTERFACE;
 }
 
 void MusicDownLoadQueryBDPlaylistThread::startToSearch(QueryType type, const QString &playlist)
@@ -34,16 +34,15 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_URL, false).arg(m_searchText).arg(offset).arg(m_pageSize);
     m_pageTotal = 0;
     m_interrupt = true;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_URL, false)
-                    .arg(m_searchText).arg(offset).arg(m_pageSize);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -58,14 +57,14 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
@@ -80,13 +79,12 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
     }
 
     M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(item.m_id);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(item.m_id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
@@ -101,10 +99,10 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         if(value["error_code"].toInt() == 22000)
         {
             item.m_coverUrl = value["pic_300"].toString();
@@ -133,18 +131,18 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["error_code"].toInt() == 22000)
             {
                 m_pageTotal = value["total"].toLongLong();
-                QVariantList datas = value["content"].toList();
+                const QVariantList &datas = value["content"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -187,17 +185,17 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();
+        const QByteArray &bytes = reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["error_code"].toInt() == 22000 && value.contains("content"))
             {
-                QVariantList datas = value["content"].toList();
+                const QVariantList &datas = value["content"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

@@ -19,7 +19,7 @@ void MusicInitObject::init()
     checkTheFileNeededExist();
 
     copyFileOverwrite(":/data/musicconfig.xml", S_COFIGPATH_FULL);
-    copyFileOverwrite(":/data/music.lis", S_MUSICPATH_FULL);
+    copyFileOverwrite(":/data/music.tkpl", S_MUSICPATH_FULL);
     copyFileOverwrite(":/data/musicdown.ttk", S_NORMALDOWNPATH_FULL);
     copyFileOverwrite(":/data/musiccloud.ttk", S_CLOUDDOWNPATH_FULL);
     copyFileOverwrite(":/data/musiccloudp.ttk", S_CLOUDUPPATH_FULL);
@@ -62,7 +62,7 @@ void MusicInitObject::checkTheDirectoryExist()
 void MusicInitObject::checkTheFileNeededExist()
 {
     copyFile(":/data/musicconfig.xml", S_COFIGPATH_FULL);
-    copyFile(":/data/music.lis", S_MUSICPATH_FULL);
+    copyFile(":/data/music.tkpl", S_MUSICPATH_FULL);
     copyFile(":/data/musicdown.ttk", S_NORMALDOWNPATH_FULL);
     copyFile(":/data/musiccloud.ttk", S_CLOUDDOWNPATH_FULL);
     copyFile(":/data/musiccloudp.ttk", S_CLOUDUPPATH_FULL);
@@ -72,20 +72,13 @@ void MusicInitObject::checkTheFileNeededExist()
     copyFile(":/data/musicbarrage.ttk", S_BARRAGEPATH_FULL);
 
 #ifdef Q_OS_UNIX
-    if(!QFile::exists(S_TTKDD_FULL))
-    {
-        QFile::copy(":/data/TTKLDD.sh", S_TTKDD_FULL);
-        QFile::setPermissions(S_TTKDD_FULL, QFile::ReadOwner | QFile::WriteOwner);
-        QProcess::execute("chmod", QStringList() << "+x" << S_TTKDD_FULL);
-    }
-    if(!QFile::exists(S_TTKSERVICE_FULL))
-    {
-        QFile::copy(":/data/TTKService.sh", S_TTKSERVICE_FULL);
-        QFile::setPermissions(S_TTKSERVICE_FULL, QFile::ReadOwner | QFile::WriteOwner);
-        QProcess::execute("chmod", QStringList() << "+x" << S_TTKSERVICE_FULL);
-    }
+    copyLinuxShellFile(":/data/TTKInit.sh", S_TTKINIT_FULL);
+    copyLinuxShellFile(":/data/TTKMusicPlayer.sh", S_TTKMUSICPLAYER_FULL);
+    copyLinuxShellFile(":/data/TTKConsole.sh", S_TTKCONSOLE_FULL);
+    copyLinuxShellFile(":/data/TTKService.sh", S_TTKSERVICE_FULL);
+    copyLinuxShellFile(":/data/TTKRoutine.sh", S_TTKROUTINE_FULL);
+    copyLinuxShellFile(":/data/TTKRoutineCopy.sh", S_TTKROUTINECOPY_FULL);
 #endif
-
 }
 
 void MusicInitObject::copyFileOverwrite(const QString &origin, const QString &des)
@@ -105,4 +98,10 @@ void MusicInitObject::copyFile(const QString &origin, const QString &des)
         QFile::copy(origin, des);
         QFile::setPermissions(des, QFile::ReadOwner | QFile::WriteOwner);
     }
+}
+
+void MusicInitObject::copyLinuxShellFile(const QString &name, const QString &path)
+{
+    copyFileOverwrite(name, path);
+    QProcess::execute("chmod", QStringList() << "+x" << path);
 }

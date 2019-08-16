@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,13 +28,27 @@ class MUSIC_EXTRAS_EXPORT QAesWrap
 {
 public:
     /*!
-     * Encrypt aes by input.
+     * Object contsructor.
      */
-    static QByteArray encrypt(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
+    QAesWrap();
+
     /*!
-     * Decrypt aes by input.
+     * Encrypt des ECB by input.
      */
-    static QByteArray decrypt(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
+    QByteArray encryptECB(const QByteArray &in, const QByteArray &key);
+    /*!
+     * Decrypt des ECB by input.
+     */
+    QByteArray decryptECB(const QByteArray &in, const QByteArray &key);
+
+    /*!
+     * Encrypt aes CBC by input.
+     */
+    QByteArray encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
+    /*!
+     * Decrypt aes CBC by input.
+     */
+    QByteArray decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
 
 };
 

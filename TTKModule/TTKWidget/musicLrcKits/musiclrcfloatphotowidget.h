@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = 0);
+    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = nullptr);
 
     virtual ~MusicLrcFloatPhotoItem();
 
@@ -106,7 +106,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
+    explicit MusicLrcFloatPhotoWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcFloatPhotoWidget();
 
@@ -147,7 +147,7 @@ public Q_SLOTS:
     /*!
      * User selected the plane pic.
      */
-    void sendUserSelectArtBg(int index);
+    void sendUserSelectArtBackground(int index);
     /*!
      * User select check box checked by index.
      */
@@ -172,7 +172,7 @@ protected:
     int m_currentIndex;
     MIntSet m_selectNum;
     QStringList m_artPath;
-    QWidget *m_filmBGWidget;
+    QWidget *m_filmBackgroundWidget;
     QCheckBox *m_checkBox;
     QPushButton *m_previous, *m_next, *m_confirmButton;
     QList<MusicLrcFloatPhotoItem*> m_planes;

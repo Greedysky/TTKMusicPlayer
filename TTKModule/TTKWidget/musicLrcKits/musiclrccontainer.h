@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,11 @@
 class MusicLrcAnalysis;
 class MusicLrcSearchWidget;
 
+#define LRC_WALLPAPER_TPYE     "WALLPAPER"
+#define LRC_INLINE_TPYE        "INLINE"
+#define LRC_DESKTOP_TPYE       "DESKTOP"
+#define LRC_DESKTOP_PREFIX     "D"
+
 /*! @brief The class of the lrc container base.
  * @author Greedysky <greedysky@163.com>
  */
@@ -38,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainer(QWidget *parent = 0);
+    explicit MusicLrcContainer(QWidget *parent = nullptr);
 
     virtual ~MusicLrcContainer();
 

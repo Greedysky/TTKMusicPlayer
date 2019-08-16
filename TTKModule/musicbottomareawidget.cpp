@@ -6,6 +6,8 @@
 #include "musicwindowextras.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
+#include "musicrightareawidget.h"
+#include "musicripplespecturmobject.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
@@ -14,10 +16,12 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_systemCloseConfig = false;
+    m_lrcWidgetShowFullScreen = true;
 
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
+    m_musicRipplesObject = new MusicRippleSpecturmObject(this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -25,6 +29,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_musicWindowExtras;
+    delete m_musicRipplesObject;
 }
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
@@ -35,6 +40,9 @@ MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+
+    m_musicRipplesObject->init(ui->backgroundLayout, ui->bottomWidget);
+
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->showCurrentSong->setEffectOnResize(true);
     connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
@@ -64,15 +72,14 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 void MusicBottomAreaWidget::createSystemTrayIcon()
 {
     m_systemTray = new QSystemTrayIcon(MusicApplication::instance());
-    m_systemTray->setIcon(QIcon(":/image/lb_player_logo"));
+    m_systemTray->setIcon(QIcon(":/image/lb_app_logo"));
     m_systemTray->setToolTip(tr("TTKMusicPlayer"));
 
     m_systemTrayMenu = new MusicSystemTrayMenu(MusicApplication::instance());
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
     m_systemTray->show();
-    connect(m_systemTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                          SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+    connect(m_systemTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 }
 
 void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
@@ -83,7 +90,7 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
 void MusicBottomAreaWidget::showPlayStatus(bool status) const
 {
     m_systemTrayMenu->showPlayStatus(status);
-#if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined Q_OS_WIN && defined TTK_WINEXTRAS
     m_musicWindowExtras->showPlayStatus(status);
 #endif
 }
@@ -104,7 +111,7 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
     m_systemTray->showMessage(title, text);
 }
 
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
 void MusicBottomAreaWidget::setValue(int value) const
 {
     m_musicWindowExtras->setValue(value);
@@ -118,14 +125,14 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 
 void MusicBottomAreaWidget::setWindowConcise()
 {
-    bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
+    const bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
     M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, con);
 
     m_ui->topRightWidget->setVisible(!con);
     m_ui->centerRightWidget->setVisible(!con);
     m_ui->bottomCenterWidget->setVisible(!con);
     m_ui->bottomRightWidget->setVisible(!con);
-    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? 322 : 220);
+    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? CONCISE_WIDTH_MIN : 220);
 
     m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
     m_ui->musicWindowConcise->setStyleSheet(con ? MusicUIObject::MKGBtnConciseOut : MusicUIObject::MKGBtnConciseIn);
@@ -143,8 +150,8 @@ void MusicBottomAreaWidget::setWindowConcise()
     if(con)
     {
         MusicApplication *app = MusicApplication::instance();
-        app->setMinimumSize(322, WINDOW_HEIGHT_MIN);
-        app->setMaximumSize(322, WINDOW_HEIGHT_MIN);
+        app->setMinimumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+        app->setMaximumSize(CONCISE_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 
         m_ui->musicWindowConcise->move(245, 20);
         m_ui->musicWindowConcise->show();
@@ -170,7 +177,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     }
     else
     {
-        QSize size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+        const QSize &size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
         MusicApplication *app = MusicApplication::instance();
         app->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         app->setMaximumSize(size.width(), size.height());
@@ -201,8 +208,51 @@ void MusicBottomAreaWidget::setWindowConcise()
 void MusicBottomAreaWidget::resizeWindow()
 {
     int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - 155;
-    h = h - m_ui->lrcDisplayAllButton->height() - 40;
+        h = h - m_ui->lrcDisplayAllButton->height() - 40;
     m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h/2);
+}
+
+void MusicBottomAreaWidget::getParameterSetting()
+{
+    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
+    setSystemCloseConfig(config);
+         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+    setDestopLrcVisible(config);
+         config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toBool();
+
+    m_musicRipplesObject->update(config);
+}
+
+bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
+{
+    return !m_lrcWidgetShowFullScreen;
+}
+
+void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
+{
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
+    {
+        return;
+    }
+
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    {
+        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
+    }
+
+    m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
+    m_musicRipplesObject->setVisible(m_lrcWidgetShowFullScreen);
+
+    m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->centerLeftWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->songsContainer->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->stackedFunctionWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->lrcDisplayAllButton->setVisible(m_lrcWidgetShowFullScreen);
+
+    m_ui->musiclrccontainerforinline->createFloatPlayWidget();
+    m_lrcWidgetShowFullScreen ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
+    m_ui->musiclrccontainerforinline->lrcWidgetShowFullScreen();
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

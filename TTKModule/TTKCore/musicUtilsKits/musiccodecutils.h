@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils codec.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

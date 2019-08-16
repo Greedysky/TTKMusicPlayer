@@ -15,7 +15,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkTestThread(QObject *parent = 0);
+    explicit MusicNetworkTestThread(QObject *parent = nullptr);
 
     ~MusicNetworkTestThread();
 

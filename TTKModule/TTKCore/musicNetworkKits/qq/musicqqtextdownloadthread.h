@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,8 +32,7 @@ public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
-    MusicQQTextDownLoadThread(const QString &url, const QString &save,
-                              MusicObject::DownloadType  type, QObject *parent = 0);
+    MusicQQTextDownLoadThread(const QString &url, const QString &save, MusicObject::DownloadType  type, QObject *parent = nullptr);
 
     /*!
      * Start to download data.

@@ -7,7 +7,7 @@
 #include <QTranslator>
 #include <QApplication>
 
-#define MUSIC_DEBUG
+#define TTK_DEBUG_CASE
 
 void loadDXcbPlugin(int argc, char *argv[])
 {
@@ -20,7 +20,7 @@ void loadDXcbPlugin(int argc, char *argv[])
       QApplication a(argc, argv);
       qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
       QScreen *screen = QApplication::primaryScreen();
-      qreal dpi = screen->logicalDotsPerInch()/96;
+      const qreal dpi = screen->logicalDotsPerInch() / 96;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi));
       Q_UNUSED(a);
     #endif
@@ -34,16 +34,16 @@ int main(int argc, char *argv[])
 {
     loadDXcbPlugin(argc, argv);
     QApplication a(argc, argv);
-#if !defined MUSIC_DEBUG && !defined Q_OS_UNIX
-    if(argc <= 1 || QString(argv[1]) != APPNAME)
+#if !defined TTK_DEBUG_CASE && !defined Q_OS_UNIX
+    if(argc <= 1 || QString(argv[1]) != APP_NAME)
     {
         return -1;
     }
 #endif
-    ///////////////////////////////////////////////////////
-    QCoreApplication::setOrganizationName(APPNAME);
-    QCoreApplication::setOrganizationDomain(APPCOME);
-    QCoreApplication::setApplicationName(APPNAME);
+    //
+    QCoreApplication::setOrganizationName(APP_NAME);
+    QCoreApplication::setOrganizationDomain(APP_COME_NAME);
+    QCoreApplication::setApplicationName(APP_NAME);
 
     TTKDumper dumper;
     dumper.run();
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     MusicApplication w;
     w.show();
-    ///////////////////////////////////////////////////////
+    //
 
     if(argc == 4)
     {

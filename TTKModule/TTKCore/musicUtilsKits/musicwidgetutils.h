@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ class QComboBox;
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils widget.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
@@ -43,8 +43,7 @@ namespace MusicUtils
         /*!
          * Set text elided text by font.
          */
-        MUSIC_UTILS_EXPORT QString elidedText(const QFont &font, const QString &text,
-                                             Qt::TextElideMode mode, int width);
+        MUSIC_UTILS_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
         /*!
          * Set widget transparent.
          */
@@ -60,7 +59,7 @@ namespace MusicUtils
         /*!
          * Set fusion two image.
          */
-        MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt);
+        MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
         /*!
          * Set pixmap to round by ratio.
          */
@@ -85,7 +84,7 @@ namespace MusicUtils
         /*!
          * Rerender the custum value.
          */
-        template<class T>
+        template <typename T>
         MUSIC_UTILS_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
             if(alpha < 0) return 0;
@@ -106,45 +105,6 @@ namespace MusicUtils
          * Image color burn transform.
          */
         MUSIC_UTILS_EXPORT int colorBurnTransform(int c, int delta);
-
-        /*!
-         * Get open file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get open file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get open file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj);
-
-        /*!
-         * Get open files dialog.
-         */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get open files dialog.
-         */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get open files dialog.
-         */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj);
-
-        /*!
-         * Get save file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get save file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get save file dialog.
-         */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj);
 
     }
 }

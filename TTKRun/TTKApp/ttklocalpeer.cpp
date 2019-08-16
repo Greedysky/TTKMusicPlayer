@@ -53,10 +53,7 @@ TTKLocalPeerPrivate::~TTKLocalPeerPrivate()
     delete m_server;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
-///
+
 
 TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)
@@ -76,10 +73,9 @@ TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
     prefix.remove(QRegExp("[^a-zA-Z]"));
     prefix.truncate(6);
 
-    QByteArray idc = d->m_id.toUtf8();
-    quint16 idNum = qChecksum(idc.constData(), idc.size());
-    d->m_socketName = QLatin1String("qtsingleapp-") + prefix +
-                      QLatin1Char('-') + QString::number(idNum, 16);
+    const QByteArray &idc = d->m_id.toUtf8();
+    const quint16 idNum = qChecksum(idc.constData(), idc.size());
+    d->m_socketName = QLatin1String("qtsingleapp-") + prefix + QLatin1Char('-') + QString::number(idNum, 16);
 
 #if defined(Q_OS_WIN)
     if(!pProcessIdToSessionId)
@@ -98,9 +94,7 @@ TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
 #endif
 
     d->m_server = new QLocalServer(this);
-    QString lockName = QDir(QDir::tempPath()).absolutePath()
-                       + QLatin1Char('/') + d->m_socketName
-                       + QLatin1String("-lockfile");
+    const QString &lockName = QDir(QDir::tempPath()).absolutePath() + QLatin1Char('/') + d->m_socketName + QLatin1String("-lockfile");
     d->m_lockFile.setFileName(lockName);
     d->m_lockFile.open(QIODevice::ReadWrite);
 }
@@ -155,7 +149,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout)
         {
             break;
         }
-        int ms = 250;
+        const int ms = 250;
 #if defined(Q_OS_WIN)
         Sleep(DWORD(ms));
 #else
@@ -168,7 +162,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout)
         return false;
     }
 
-    QByteArray uMsg(message.toUtf8());
+    const QByteArray uMsg(message.toUtf8());
     QDataStream ds(&socket);
     ds.writeBytes(uMsg.constData(), uMsg.size());
 
@@ -229,6 +223,7 @@ void TTKLocalPeer::receiveConnection()
         remaining -= got;
         uMsgBuf += got;
     }while(remaining && got >= 0 && socket->waitForReadyRead(2000));
+
     if(got < 0)
     {
         qWarning("TTKLocalPeer: Message reception failed %s", socket->errorString().toLatin1().constData());
@@ -236,7 +231,7 @@ void TTKLocalPeer::receiveConnection()
         return;
     }
 
-    QString message(QString::fromUtf8(uMsg));
+    const QString message(QString::fromUtf8(uMsg));
     socket->write(d->m_ack, qstrlen(d->m_ack));
     socket->waitForBytesWritten(1000);
     socket->waitForDisconnected(1000); // make sure client reads ack

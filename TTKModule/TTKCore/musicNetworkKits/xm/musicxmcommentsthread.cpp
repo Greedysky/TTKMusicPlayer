@@ -39,17 +39,17 @@ void MusicXMSongCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SG_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt())
-                      .arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_SG_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_COMMIT_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -69,11 +69,11 @@ void MusicXMSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -82,10 +82,10 @@ void MusicXMSongCommentsThread::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
 
-                QVariantMap paging = value["pagingVO"].toMap();
+                const QVariantMap &paging = value["pagingVO"].toMap();
                 m_pageTotal = paging["count"].toLongLong();
 
-                QVariantList comments = value["commentVOList"].toList();
+                const QVariantList &comments = value["commentVOList"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -145,17 +145,17 @@ void MusicXMPlaylistCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_PL_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt())
-                      .arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_PL_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_COMMIT_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -175,11 +175,11 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -188,10 +188,10 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
 
-                QVariantMap paging = value["pagingVO"].toMap();
+                const QVariantMap &paging = value["pagingVO"].toMap();
                 m_pageTotal = paging["count"].toLongLong();
 
-                QVariantList comments = value["commentVOList"].toList();
+                const QVariantList &comments = value["commentVOList"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())

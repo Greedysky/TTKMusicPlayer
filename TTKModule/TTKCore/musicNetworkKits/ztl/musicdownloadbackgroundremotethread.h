@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,12 +73,12 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinThunderConfigManager(QObject *parent = 0);
+    explicit MusicSkinThunderConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas into xml file.
+     * Read datas from config file.
      */
-    void readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items);
+    void readSkinRemoteData(MusicSkinRemoteGroups &items);
 
 };
 
@@ -94,7 +94,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundRemoteThread(QObject *parent = 0);
+    explicit MusicDownloadBackgroundRemoteThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
@@ -127,7 +127,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundThunderThread(QObject *parent = 0);
+    explicit MusicDownloadBackgroundThunderThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
@@ -154,7 +154,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundBingThread(QObject *parent = 0);
+    explicit MusicDownloadBackgroundBingThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.

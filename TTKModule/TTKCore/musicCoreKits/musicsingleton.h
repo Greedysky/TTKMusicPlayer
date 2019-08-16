@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,10 +57,10 @@ private:
     ///                                                           //
     ////////////////////////////////////////////////////////////////
 
-template<typename T> QMutex MusicSingleton<T>::m_mutex;
-template<typename T> QScopedPointer<T> MusicSingleton<T>::m_instance;
+template <typename T> QMutex MusicSingleton<T>::m_mutex;
+template <typename T> QScopedPointer<T> MusicSingleton<T>::m_instance;
 
-template<typename T>
+template <typename T>
 T* MusicSingleton<T>::createInstance()
 {
     if(m_instance.isNull())

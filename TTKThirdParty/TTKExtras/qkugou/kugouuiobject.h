@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,6 @@
 namespace MusicUIObject
 {
 ///PushButton
-//////////////////////////////////////////////////////
     const QString MPushButtonStyle01 = " \
                     QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px;} \
                     QPushButton:hover{ color:rgb(104, 169, 236);} \
@@ -37,7 +36,6 @@ namespace MusicUIObject
                     QPushButton{ color:rgb(104, 169, 236);}";
 
 ///Widget
-//////////////////////////////////////////////////////
     const QString MWidgetStyle01 = " \
                     QWidget{ background:white;}";
 

@@ -11,7 +11,7 @@ class ToolsSkin : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ToolsSkin(QWidget *parent = 0);
+    explicit ToolsSkin(QWidget *parent = nullptr);
     ~ToolsSkin();
 
 private Q_SLOTS:

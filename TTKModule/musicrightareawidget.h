@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
 public:
     enum MusicFunction
     {
-        KugGouSongWidget = 0,   /*!< insert kugou song widget*/
+        KugGouSongWidget,       /*!< insert kugou song widget*/
         KugGouRadioWidget,      /*!< insert kugou radio widget*/
         kugouListWidget,        /*!< insert kugou list widget*/
         VideoWidget,            /*!< insert video widget*/
@@ -68,7 +68,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRightAreaWidget(QWidget *parent = 0);
+    explicit MusicRightAreaWidget(QWidget *parent = nullptr);
 
     ~MusicRightAreaWidget();
 
@@ -162,7 +162,7 @@ Q_SIGNALS:
     /*!
      * Current background skin download.
      */
-    void updateBgThemeDownload();
+    void updateBackgroundThemeDownload();
     /*!
      * Current background transparent changed.
      */

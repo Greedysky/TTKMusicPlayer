@@ -103,39 +103,39 @@ QString MusicAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName)
     return readXmlAttributeByTagName(tagName, "value");
 }
 
-QString MusicAbstractXml::readXmlAttributeByTagName(const QString &tagName,
-                                                    const QString &attrName) const
+QString MusicAbstractXml::readXmlAttributeByTagName(const QString &tagName, const QString &attrName) const
 {
-    QDomNodeList nodelist = m_document->elementsByTagName(tagName);
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    if(nodeList.isEmpty())
     {
         return QString();
     }
-    return nodelist.at(0).toElement().attribute(attrName);
+    return nodeList.at(0).toElement().attribute(attrName);
 }
 
 QString MusicAbstractXml::readXmlTextByTagName(const QString &tagName) const
 {
-    QDomNodeList nodelist = m_document->elementsByTagName(tagName);
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    if(nodeList.isEmpty())
     {
         return QString();
     }
-    return nodelist.at(0).toElement().text();
+    return nodeList.at(0).toElement().text();
 }
 
-MStriantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
+MVariantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
 {
-    QDomNodeList nodelist = m_document->elementsByTagName(tagName);
-    if(nodelist.isEmpty())
+    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    if(nodeList.isEmpty())
     {
-        return MStriantMap();
+        return MVariantMap();
     }
-    QDomNamedNodeMap nodes = nodelist.at(0).toElement().attributes();
-    MStriantMap maps;
+
+    const QDomNamedNodeMap &nodes = nodeList.at(0).toElement().attributes();
+    MVariantMap maps;
     for(int i=0; i<nodes.count(); ++i)
     {
-        QDomAttr attr = nodes.item(i).toAttr();
+        const QDomAttr &attr = nodes.item(i).toAttr();
         maps[attr.name()] = attr.value();
     }
     return maps;
@@ -143,13 +143,13 @@ MStriantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName)
 
 void MusicAbstractXml::createProcessingInstruction()
 {
-    QDomNode node = m_document->createProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
+    const QDomNode &node = m_document->createProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
     m_document->appendChild( node );
 }
 
 QDomElement MusicAbstractXml::createRoot(const QString &node)
 {
-    QDomElement domElement = m_document->createElement( node );
+    const QDomElement &domElement = m_document->createElement( node );
     m_document->appendChild( domElement );
     return domElement;
 }
@@ -173,23 +173,21 @@ QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttr
     return domElement;
 }
 
-QDomElement MusicAbstractXml::writeDom(QDomElement &element, const QString &node)
+QDomElement MusicAbstractXml::writeDomNode(QDomElement &element, const QString &node)
 {
-    QDomElement domElement = m_document->createElement( node );
+    const QDomElement &domElement = m_document->createElement( node );
     element.appendChild( domElement );
     return domElement;
 }
 
-QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QString &node,
-                                              const MusicXmlAttribute &attr)
+QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QString &node, const MusicXmlAttribute &attr)
 {
-    QDomElement domElement = writeDom(element, node);
+    QDomElement domElement = writeDomNode(element, node);
     writeAttribute(domElement, attr);
     return domElement;
 }
 
-QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const QString &node,
-                                                   const MusicXmlAttributes &attrs)
+QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const QString &node, const MusicXmlAttributes &attrs)
 {
     if(attrs.isEmpty())
     {
@@ -224,17 +222,15 @@ void MusicAbstractXml::writeAttribute(QDomElement &element, const MusicXmlAttrib
     }
 }
 
-QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QString &node,
-                                                  const MusicXmlAttribute &attr, const QString &text)
+QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QString &node, const MusicXmlAttribute &attr, const QString &text)
 {
     QDomElement domElement = writeDomElement(element, node, attr);
-    QDomText domText = m_document->createTextNode( text );
+    const QDomText &domText = m_document->createTextNode( text );
     domElement.appendChild( domText );
     return domElement;
 }
 
-QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, const QString &node,
-                                                       const MusicXmlAttributes &attrs, const QString &text)
+QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, const QString &node, const MusicXmlAttributes &attrs, const QString &text)
 {
     if(attrs.isEmpty())
     {
@@ -242,16 +238,15 @@ QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, con
     }
 
     QDomElement domElement = writeDomElementMutil(element, node, attrs);
-    QDomText domText = m_document->createTextNode( text );
+    const QDomText &domText = m_document->createTextNode( text );
     domElement.appendChild( domText );
     return domElement;
 }
 
-QDomElement MusicAbstractXml::writeDomText(QDomElement &element, const QString &node,
-                                           const QString &text)
+QDomElement MusicAbstractXml::writeDomText(QDomElement &element, const QString &node, const QString &text)
 {
-    QDomElement domElement = writeDom(element, node);
-    QDomText domText = m_document->createTextNode( text );
+    QDomElement domElement = writeDomNode(element, node);
+    const QDomText &domText = m_document->createTextNode( text );
     domElement.appendChild( domText );
     return domElement;
 }

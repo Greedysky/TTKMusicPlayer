@@ -1,8 +1,9 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
 #include "musicmessagebox.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 #include "musiccoreutils.h"
+#include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
 
 #include <QSound>
@@ -77,12 +78,11 @@ MusicTransformWidget::~MusicTransformWidget()
 
 void MusicTransformWidget::initControlParameter() const
 {
-    m_ui->formatCombo->addItems(QStringList() << "MP3" << "WAV" << "WMA"
-                                   << "OGG" << "FLAC" << "AC3" << "AAC");
+    m_ui->formatCombo->addItems(QStringList() << "MP3" << "WAV" << "WMA" << "OGG" << "FLAC" << "AC3" << "AAC");
     m_ui->kbpsCombo->addItems(QStringList() << "32" << "48" << "56" << "64" << "80"
-                     << "96" << "112" << "128" << "192" << "224" << "256" << "320");
+                                   << "96" << "112" << "128" << "192" << "224" << "256" << "320");
     m_ui->hzCombo->addItems(QStringList() << "8000" << "12050" << "16000" << "22050"
-                            << "24000" << "32000" << "44100" << "48000");
+                                   << "24000" << "32000" << "44100" << "48000");
     m_ui->msCombo->addItems(QStringList() << "Mono" << "Stereo");
 
     m_ui->kbpsCombo->setCurrentIndex(7);
@@ -93,8 +93,7 @@ void MusicTransformWidget::initInputPath()
 {
     QString path;
     QStringList supportedFormat;
-    (m_currentType == Music) ? supportedFormat << "mp3" <<"wav" <<"wma" << "ogg" << "flac" << "ac3" << "aac"
-                             : supportedFormat << "krc";
+    (m_currentType == Music) ? supportedFormat << "mp3" <<"wav" <<"wma" << "ogg" << "flac" << "ac3" << "aac" : supportedFormat << "krc";
     if(!m_ui->folderBox->isChecked())
     {
         QString filter = "Files (";
@@ -104,7 +103,7 @@ void MusicTransformWidget::initInputPath()
         }
         filter = filter.trimmed() + ")";
 
-        path = MusicUtils::Widget::getOpenFileDialog(this, filter);
+        path = MusicUtils::File::getOpenFileDialog(this, filter);
         if(path.isEmpty() || m_path.contains(path))
         {
             return;
@@ -122,7 +121,7 @@ void MusicTransformWidget::initInputPath()
         if(dialog.exec())
         {
             path = dialog.directory().absolutePath();
-            foreach(const QFileInfo &var, MusicUtils::Core::getFileListByDir(path, true))
+            foreach(const QFileInfo &var, MusicUtils::File::getFileListByDir(path, true))
             {
                 if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
                 {
@@ -142,7 +141,7 @@ void MusicTransformWidget::initInputPath()
 
 void MusicTransformWidget::initOutputPath()
 {
-    QString path = QFileDialog::getExistingDirectory(this, QString(), "./");
+    const QString &path = QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
         m_ui->outputLineEdit->setText(path);
@@ -200,8 +199,8 @@ bool MusicTransformWidget::processTransform(const QString &para) const
         return false;
     }
 
-    QString in = m_path[0].trimmed();
-    QString out = m_ui->outputLineEdit->text().trimmed();
+    const QString &in = m_path[0].trimmed();
+    const QString &out = m_ui->outputLineEdit->text().trimmed();
 
     if(in.isEmpty() || out.isEmpty() )
     {
@@ -218,23 +217,19 @@ bool MusicTransformWidget::processTransform(const QString &para) const
             m_ui->msCombo->setCurrentIndex(1);
         }
 
-        M_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText())
-                                         .arg(m_ui->kbpsCombo->currentText())
-                                         .arg(m_ui->hzCombo->currentText())
-                                         .arg(m_ui->msCombo->currentIndex() + 1));
+        M_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText()).arg(m_ui->kbpsCombo->currentText())
+                                         .arg(m_ui->hzCombo->currentText()).arg(m_ui->msCombo->currentIndex() + 1));
 
         m_process->start(para, QStringList() << "-i" << in << "-y"
                          << "-ab" << m_ui->kbpsCombo->currentText() + "k"
                          << "-ar" << m_ui->hzCombo->currentText()
                          << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
-                         << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName())
-                            .arg(m_ui->formatCombo->currentText().toLower()) );
+                         << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName()).arg(m_ui->formatCombo->currentText().toLower()));
     }
     else
     {
         M_LOGGER_INFO(QString("%1%2%3").arg(para).arg(in).arg(out));
-        m_process->start(para, QStringList() << in <<
-                         QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE));
+        m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE));
     }
 
     return true;
@@ -242,12 +237,12 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 
 void MusicTransformWidget::startTransform()
 {
-    QString func = (m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL;
+    const QString &func = (m_currentType == Music) ? MAKE_TRANSFORM_FULL : MAKE_KRC2LRC_FULL;
     if(!QFile(func).exists() || !processTransform(func))
     {
         return;
     }
-    ///////////////////////////////////////////////////////////
+    //
     m_ui->loadingLabel->show();
     m_ui->loadingLabel->start();
     setCheckedControl(false);

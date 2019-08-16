@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,13 +22,51 @@
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils string.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
 {
     namespace String
     {
+        /*!
+         * Get lrc dir prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString lrcPrefix();
+        /*!
+         * Get music dir prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString musicPrefix();
+
+        /*!
+         * Get string prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringPrefix(const QString &name);
+        /*!
+         * Get string prefix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringPrefix(const QString &name, const QString &prefix);
+        /*!
+         * Get string suffix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSuffix(const QString &name);
+        /*!
+         * Get string suffix path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSuffix(const QString &name, const QString &suffix);
+        /*!
+         * Get string splite path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSplite(const QString &name);
+        /*!
+         * Get string splite path.
+         */
+        MUSIC_UTILS_EXPORT QString StringSplite(const QString &name, const QString &prefix, const QString &suffix);
+
+        /*!
+         * Get new line split string key.
+         */
+        MUSIC_UTILS_EXPORT QString splitLineKey();
         /*!
          * Remove given key in string, default is space.
          */
@@ -37,6 +75,11 @@ namespace MusicUtils
          * Get split string value.
          */
         MUSIC_UTILS_EXPORT QStringList splitString(const QString &value, const QString &key = "-");
+
+        /*!
+         * Check the given char is or not chinese character.
+         */
+        MUSIC_UTILS_EXPORT bool isChinese(const QChar &c);
 
         /*!
          * Get song artist name.

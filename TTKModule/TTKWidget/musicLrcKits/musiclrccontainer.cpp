@@ -23,7 +23,7 @@ MusicLrcContainer::~MusicLrcContainer()
 
 void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType)
 {
-    MusicLrcColor cl = MusicLrcColor::mapIndexToColor(lrcColorType);
+    const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(lrcColorType);
     setLinearGradientColor(cl);
 }
 
@@ -34,14 +34,13 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
         manager->setLinearGradientColor(color);
     }
 
-    M_SETTING_PTR->setValue( (m_containerType == "DESKTOP") ? MusicSettingManager::DLrcColorChoiced :
-                                                              MusicSettingManager::LrcColorChoiced, color.m_index);
+    M_SETTING_PTR->setValue( (m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColorChoiced : MusicSettingManager::LrcColorChoiced, color.m_index);
     emit linearGradientColorChanged();
 }
 
 void MusicLrcContainer::setSettingParameter()
 {
-    setSettingParameter(m_containerType == "DESKTOP" ? "D" : QString());
+    setSettingParameter(m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
 }
 
 void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total)
@@ -137,13 +136,13 @@ void MusicLrcContainer::setSettingParameter(const QString &t)
     }
     if(M_SETTING_PTR->value(t + "LrcColorChoiced").toInt() != -1)
     {
-        MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value(t + "LrcColorChoiced").toInt());
+        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value(t + "LrcColorChoiced").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()),
-                         MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcBgColorChoiced").toString()));
+        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFrontgroundColorChoiced").toString()),
+                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcBackgroundColorChoiced").toString()));
         setLinearGradientColor(cl);
     }
 }

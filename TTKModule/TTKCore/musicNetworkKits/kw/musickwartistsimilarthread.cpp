@@ -18,15 +18,15 @@ void MusicKWArtistSimilarThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_AR_SIM_URL, false).arg(getArtistNameById(text));
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_AR_SIM_URL, false).arg(getArtistNameById(text));
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -46,9 +46,10 @@ void MusicKWArtistSimilarThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QString html(m_reply->readAll());
+        const QString html(m_reply->readAll());
         QRegExp regx("<li><a href=.*data-src=\"([^\"]+).*<span>(.*)</span></a></li>");
         regx.setMinimal(true);
+
         int pos = html.indexOf(regx);
         while(pos != -1)
         {
@@ -79,13 +80,12 @@ QString MusicKWArtistSimilarThread::getArtistNameById(const QString &id)
         return name;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(id);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
@@ -101,10 +101,10 @@ QString MusicKWArtistSimilarThread::getArtistNameById(const QString &id)
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = parser.parse(reply->readAll().replace("'", "\""), &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         name = value["name"].toString();
     }
 
@@ -113,19 +113,17 @@ QString MusicKWArtistSimilarThread::getArtistNameById(const QString &id)
 
 QString MusicKWArtistSimilarThread::getArtistIdName(const QString &name)
 {
-    QString id;
     if(name.isEmpty() || !m_manager)
     {
-        return id;
+        return QString();
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_NINFO_URL, false).arg(name);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_NINFO_URL, false).arg(name);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
@@ -136,15 +134,17 @@ QString MusicKWArtistSimilarThread::getArtistIdName(const QString &name)
 
     if(!reply || reply->error() != QNetworkReply::NoError)
     {
-        return id;
+        return QString();
     }
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+
+    QString id;
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         id = value["id"].toString();
     }
 

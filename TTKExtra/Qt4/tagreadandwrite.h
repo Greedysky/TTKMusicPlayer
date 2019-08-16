@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,12 @@
 
 #include <QMap>
 #include <QString>
+#include "qmmp_export.h"
 
 /*! @brief The class of the file tag read and write.
  * @author Greedysky <greedysky@163.com>
  */
-class TagReadAndWrite
+class QMMP_EXPORT TagReadAndWrite
 {
 public:
     enum MusicTag
@@ -59,7 +60,7 @@ public:
     bool readFile(const QString &path);
 
     bool writeMusicTag(MusicTag tag, const QString &value, int id3v2Version);
-    QMap<MusicTag, QString> getMusicTags() const { return m_parameters; }
+    inline QMap<MusicTag, QString> getMusicTags() const { return m_parameters; }
 
 protected:
     QString m_path;

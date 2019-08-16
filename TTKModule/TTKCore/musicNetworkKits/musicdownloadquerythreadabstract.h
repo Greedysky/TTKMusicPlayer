@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,6 +78,14 @@ typedef struct MUSIC_NETWORK_EXPORT MusicResultsItem
 }MusicResultsItem;
 TTK_DECLARE_LISTS(MusicResultsItem)
 
+#define QUERY_WY_INTERFACE      "WangYi"
+#define QUERY_QQ_INTERFACE      "QQ"
+#define QUERY_XM_INTERFACE      "XiaMi"
+#define QUERY_BD_INTERFACE      "BaiDu"
+#define QUERY_KW_INTERFACE      "KuWo"
+#define QUERY_KG_INTERFACE      "KuGou"
+#define QUERY_YYT_INTERFACE     "YinYueTai"
+
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -88,16 +96,16 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public MusicDownLo
 public:
     enum QueryType
     {
-        MusicQuery, /*!< query music*/
-        MovieQuery, /*!< query movie*/
-        LrcQuery,   /*!< query lrc*/
-        OtherQuery, /*!< query external*/
+        MusicQuery,     /*!< query music*/
+        MovieQuery,     /*!< query movie*/
+        LrcQuery,       /*!< query lrc*/
+        OtherQuery,     /*!< query external*/
     };
 
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);
+    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = nullptr);
 
     virtual ~MusicDownLoadQueryThreadAbstract();
 
@@ -115,47 +123,47 @@ public:
     /*!
      * Set search data quality.
      */
-    inline void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
+    inline void setSearchQuality(const QString &qual) { m_searchQuality = qual; }
     /*!
      * Get search data quality.
      */
-    inline QString getSearchQuality() const { return m_searchQuality;}
+    inline QString getSearchQuality() const { return m_searchQuality; }
     /*!
      * Set wheather query all quality of records.
      */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state; }
     /*!
      * Get query all records flag.
      */
-    inline bool getQueryAllRecords() const { return m_queryAllRecords;}
+    inline bool getQueryAllRecords() const { return m_queryAllRecords; }
     /*!
      * Set query simplify mode.
      */
-    inline void setQuerySimplify(bool state) { m_querySimplify = state;}
+    inline void setQuerySimplify(bool state) { m_querySimplify = state; }
     /*!
      * Get query simplify flag.
      */
-    inline bool getQuerySimplify() const { return m_querySimplify;}
+    inline bool getQuerySimplify() const { return m_querySimplify; }
     /*!
      * Set query extra movie flag.
      */
-    inline void setQueryExtraMovie(bool state) { m_queryExtraMovie = state;}
+    inline void setQueryExtraMovie(bool state) { m_queryExtraMovie = state; }
     /*!
      * Return the current song query type.
      */
-    inline void setQueryType(QueryType type) { m_currentType = type;}
+    inline void setQueryType(QueryType type) { m_currentType = type; }
     /*!
      * Return the current song query type.
      */
-    inline QueryType getQueryType() const { return m_currentType;}
+    inline QueryType getQueryType() const { return m_currentType; }
     /*!
      * Return the current song query server.
      */
-    inline QString getQueryServer() const { return m_queryServer;}
+    inline QString getQueryServer() const { return m_queryServer; }
     /*!
      * Return the current song name.
      */
-    inline QString getSearchedText() const { return m_searchText;}
+    inline QString getSearchedText() const { return m_searchText; }
     /*!
      * Set the current song container.
      */

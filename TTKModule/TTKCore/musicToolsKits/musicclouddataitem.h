@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
 {
     enum State
     {
-        Waited = 0,     /*!< 0 waited*/
+        Waited,         /*!< 0 waited*/
         Uploaded,       /*!< 1 Uploaded*/
         Successed,      /*!< 2 successed*/
         Errored         /*!< 3 error*/

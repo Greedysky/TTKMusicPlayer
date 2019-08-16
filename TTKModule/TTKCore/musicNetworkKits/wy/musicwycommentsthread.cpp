@@ -39,16 +39,17 @@ void MusicWYSongCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_SG_COMMIT_N_URL, false).arg(m_rawData["songID"].toInt()),
-               MusicUtils::Algorithm::mdII(WY_COMMIT_NDT_URL, false).arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset));
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(WY_SG_COMMIT_N_URL, false).arg(m_rawData["songID"].toInt()),
+                      MusicUtils::Algorithm::mdII(WY_COMMIT_NDT_URL, false).arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -68,17 +69,17 @@ void MusicWYSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toLongLong() == 200)
             {
                 m_pageTotal = value["total"].toLongLong();
-                QVariantList comments = value["comments"].toList();
+                const QVariantList &comments = value["comments"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -90,7 +91,7 @@ void MusicWYSongCommentsThread::downLoadFinished()
 
                     MusicResultsItem comment;
                     value = comm.toMap();
-                    QVariantMap user = value["user"].toMap();
+                    const QVariantMap &user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["avatarUrl"].toString();
 
@@ -134,16 +135,17 @@ void MusicWYPlaylistCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_PL_COMMIT_N_URL, false).arg(m_rawData["songID"].toInt()),
-               MusicUtils::Algorithm::mdII(WY_COMMIT_NDT_URL, false).arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset));
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(WY_PL_COMMIT_N_URL, false).arg(m_rawData["songID"].toLongLong()),
+                      MusicUtils::Algorithm::mdII(WY_COMMIT_NDT_URL, false).arg(m_rawData["songID"].toLongLong()).arg(m_pageSize).arg(m_pageSize*offset));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -163,17 +165,17 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toLongLong() == 200)
             {
                 m_pageTotal = value["total"].toLongLong();
-                QVariantList comments = value["comments"].toList();
+                const QVariantList &comments = value["comments"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -185,7 +187,7 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
 
                     MusicResultsItem comment;
                     value = comm.toMap();
-                    QVariantMap user = value["user"].toMap();
+                    const QVariantMap &user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["avatarUrl"].toString();
 

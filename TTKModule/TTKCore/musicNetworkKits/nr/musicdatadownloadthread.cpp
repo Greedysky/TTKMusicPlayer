@@ -3,8 +3,7 @@
 #include "musicnumberutils.h"
 #include "musictime.h"
 
-MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save,
-                                                 MusicObject::DownloadType type, QObject *parent)
+MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
     m_createItemTime = -1;
@@ -48,9 +47,10 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     }
 
     m_timer.start(MT_S2MS);
+
     QNetworkRequest request;
     request.setUrl(url);
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
@@ -78,7 +78,8 @@ void MusicDataDownloadThread::downLoadFinished()
     m_timer.stop();
     m_file->flush();
     m_file->close();
-    QVariant redirectionTarget = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+
+    const QVariant &redirectionTarget = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(m_reply->error() != QNetworkReply::NoError)
     {
         m_file->remove();
@@ -117,16 +118,17 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
     /// only download music data or oather type can that show progress
     if(m_downloadType == MusicObject::DownloadMusic || m_downloadType == MusicObject::DownloadOther)
     {
-        QString total = MusicUtils::Number::size2Label(bytesTotal);
+        const QString &total = MusicUtils::Number::size2Label(bytesTotal);
         emit downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);
     }
 }
 
 void MusicDataDownloadThread::updateDownloadSpeed()
 {
-    qint64 speed = m_currentReceived - m_hasReceived;
-    QString label = MusicUtils::Number::speed2Label(speed);
-    qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived)/speed : 0;
+    const qint64 speed = m_currentReceived - m_hasReceived;
+    const QString &label = MusicUtils::Number::speed2Label(speed);
+    const qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived)/speed : 0;
+
     emit downloadSpeedLabelChanged(label, time);
     MusicDownLoadThreadAbstract::updateDownloadSpeed();
 }

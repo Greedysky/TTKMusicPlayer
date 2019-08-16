@@ -6,7 +6,7 @@
 MusicDownLoadQueryBDAlbumThread::MusicDownLoadQueryBDAlbumThread(QObject *parent)
     : MusicDownLoadQueryAlbumThread(parent)
 {
-    m_queryServer = "Baidu";
+    m_queryServer = QUERY_BD_INTERFACE;
 }
 
 void MusicDownLoadQueryBDAlbumThread::startToSearch(const QString &album)
@@ -17,15 +17,15 @@ void MusicDownLoadQueryBDAlbumThread::startToSearch(const QString &album)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_ALBUM_URL, false).arg(album);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_ALBUM_URL, false).arg(album);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -40,15 +40,15 @@ void MusicDownLoadQueryBDAlbumThread::startToSingleSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_AR_ALBUM_URL, false).arg(artist);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_AR_ALBUM_URL, false).arg(artist);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
@@ -70,26 +70,26 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("albumInfo") && value.contains("songlist"))
             {
                 bool albumFlag = false;
-                QVariantMap albumInfo = value["albumInfo"].toMap();
+                const QVariantMap &albumInfo = value["albumInfo"].toMap();
                 MusicResultsItem info;
                 info.m_coverUrl = albumInfo["pic_small"].toString().replace("_90", "_500");
                 info.m_description = albumInfo["title"].toString() + TTK_STR_SPLITER +
                                      albumInfo["language"].toString() + TTK_STR_SPLITER +
                                      albumInfo["publishcompany"].toString() + TTK_STR_SPLITER +
                                      albumInfo["publishtime"].toString();
-                ////////////////////////////////////////////////////////////
-                QVariantList datas = value["songlist"].toList();
+                //
+                const QVariantList &datas = value["songlist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -122,7 +122,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!albumFlag)
                     {
                         albumFlag = true;
@@ -130,7 +130,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                         info.m_name = musicInfo.m_singerName;
                         emit createAlbumInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
@@ -158,17 +158,17 @@ void MusicDownLoadQueryBDAlbumThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("albumlist"))
             {
-                QVariantList datas = value["albumlist"].toList();
+                const QVariantList &datas = value["albumlist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

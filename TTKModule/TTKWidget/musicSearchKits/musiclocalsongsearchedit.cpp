@@ -24,7 +24,7 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
     QAction *selectM = rightClickMenu.addAction(tr("SelectAll"), this, SLOT(selectAll()));
 
-    bool state = hasSelectedText();
+    const bool state = hasSelectedText();
     shearM->setEnabled(state);
     copyM->setEnabled(state);
     deleteM->setEnabled(state);

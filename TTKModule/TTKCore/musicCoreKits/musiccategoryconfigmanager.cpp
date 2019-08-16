@@ -6,7 +6,7 @@ MusicCategoryConfigManager::MusicCategoryConfigManager(QObject *parent)
 
 }
 
-bool MusicCategoryConfigManager::readCategoryConfig(Type type)
+bool MusicCategoryConfigManager::readConfig(Type type)
 {
     QString v;
     switch(type)
@@ -18,26 +18,26 @@ bool MusicCategoryConfigManager::readCategoryConfig(Type type)
         default: break;
     }
 
-    return readConfig(v);
+    return MusicAbstractXml::readConfig(v);
 }
 
-void MusicCategoryConfigManager::readCategoryConfig(MusicResultsCategorys &records, const QString &key)
+void MusicCategoryConfigManager::readCategoryData(MusicResultsCategorys &records, const QString &key)
 {
-    QDomNodeList nodes = m_document->elementsByTagName(key);
+    const QDomNodeList &nodes = m_document->elementsByTagName(key);
     for(int i=0; i<nodes.count(); ++i)
     {
-        QDomNode node = nodes.at(i);
-        QDomNodeList tagNodes = node.childNodes();
+        const QDomNode &node = nodes.at(i);
+        const QDomNodeList &tagNodes = node.childNodes();
         for(int j=0; j<tagNodes.count(); ++j)
         {
             MusicResultsCategory category;
-            QDomNode tagNode = tagNodes.at(j);
+            const QDomNode &tagNode = tagNodes.at(j);
             category.m_category = tagNode.toElement().attribute("value");
-            QDomNodeList typeNodes = tagNode.childNodes();
+            const QDomNodeList &typeNodes = tagNode.childNodes();
             for(int k=0; k<typeNodes.count(); ++k)
             {
                 MusicResultsCategoryItem item;
-                QDomNode typeNode = typeNodes.at(k);
+                const QDomNode &typeNode = typeNodes.at(k);
                 item.m_name = typeNode.toElement().attribute("value");
                 item.m_id = typeNode.toElement().attribute("key");
                 category.m_items.append(item);

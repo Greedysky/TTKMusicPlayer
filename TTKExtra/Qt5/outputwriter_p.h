@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2012-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,6 +23,7 @@
 
 #include <QThread>
 #include <QMutex>
+#include <atomic>
 #include "recycler_p.h"
 #include "audioparameters.h"
 #include "channelmap.h"
@@ -39,11 +40,11 @@ class ChannelConverter;
     @brief Output thread.
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class OutputWriter : public QThread
+class QMMP_EXPORT OutputWriter : public QThread
 {
     Q_OBJECT
 public:
-    explicit OutputWriter(QObject *parent = 0);
+    explicit OutputWriter(QObject *parent = nullptr);
 
     virtual ~OutputWriter();
     /*!
@@ -81,26 +82,9 @@ public:
      */
     Recycler *recycler();
     /*!
-     * Returns mutex pointer.
-     */
-    QMutex *mutex();
-    /*!
      * Returns selected audio parameters.
      */
     AudioParameters audioParameters() const;
-    /*!
-     * Returns samplerate.
-     */
-    quint32 sampleRate();
-    /*!
-     * Returns channels number.
-     */
-    int channels();
-    /*!
-     * Returns input audio format.
-     */
-    Qmmp::AudioFormat format() const;
-    const ChannelMap channelMap() const;
     /*!
      * Returns sample size in bytes.
      */
@@ -108,7 +92,7 @@ public:
     void updateEqSettings();
 
 private:
-    void run(); //thread run function
+    virtual void run() override; //thread run function
     void status();
     void dispatch(qint64 elapsed, int bitrate);
     void dispatch(const Qmmp::State &state);
@@ -127,14 +111,14 @@ private:
     ChannelMap m_chan_map;
     Qmmp::AudioFormat m_format;
     qint64 m_bytesPerMillisecond;
-    bool m_user_stop, m_pause;
+    std::atomic_bool m_user_stop, m_pause;
     bool m_prev_pause;
-    bool m_finish;
+    std::atomic_bool m_finish;
     bool m_useEq;
     qint64 m_totalWritten, m_currentMilliseconds;
     QmmpSettings *m_settings;
     Output *m_output;
-    bool m_muted;
+    std::atomic_bool m_muted;
     AudioParameters m_in_params;
     AudioConverter *m_format_converter;
     ChannelConverter *m_channel_converter;

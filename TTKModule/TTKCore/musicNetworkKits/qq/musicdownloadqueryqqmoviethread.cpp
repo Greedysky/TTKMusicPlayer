@@ -9,7 +9,7 @@
 MusicDownLoadQueryQQMovieThread::MusicDownLoadQueryQQMovieThread(QObject *parent)
     : MusicDownLoadQueryMovieThread(parent)
 {
-    m_queryServer = "QQ";
+    m_queryServer = QUERY_QQ_INTERFACE;
     m_pageSize = 30;
 }
 
@@ -21,17 +21,17 @@ void MusicDownLoadQueryQQMovieThread::startToSearch(QueryType type, const QStrin
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -46,17 +46,17 @@ void MusicDownLoadQueryQQMovieThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_AR_MV_URL, false).arg(m_searchText).arg(offset*m_pageSize).arg(m_pageSize);
     m_pageTotal = 0;
     m_pageSize = 20;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_AR_MV_URL, false).arg(m_searchText).arg(offset*m_pageSize).arg(m_pageSize);
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
@@ -71,8 +71,8 @@ void MusicDownLoadQueryQQMovieThread::startToSingleSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
+
     m_searchText = text.trimmed();
-    deleteAll();
     m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
@@ -93,11 +93,11 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -105,7 +105,7 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["song"].toMap();
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -121,7 +121,7 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
                         {
                             continue;
                         }
-                        QVariantMap name = var.toMap();
+                        const QVariantMap &name = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
                     }
@@ -180,11 +180,11 @@ void MusicDownLoadQueryQQMovieThread::pageDownLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -192,7 +192,7 @@ void MusicDownLoadQueryQQMovieThread::pageDownLoadFinished()
             {
                 value = value["data"].toMap();
                 m_pageTotal = value["total"].toInt();
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -257,13 +257,12 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_MV_INFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_MV_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
@@ -282,7 +281,7 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -309,7 +308,7 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             }
 
             QVariantMap flValue = value["fl"].toMap();
-            QVariantList mvLists = flValue["fi"].toList();
+            const QVariantList &mvLists = flValue["fi"].toList();
             foreach(const QVariant &var, mvLists)
             {
                 if(var.isNull())
@@ -334,11 +333,11 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
 
                 bitRate = flValue["id"].toULongLong();
                 if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
-                QString key = getMovieKey(bitRate, info->m_songId);
+                const QString &key = getMovieKey(bitRate, info->m_songId);
                 if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                 if(!key.isEmpty())
                 {
-                    QString fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitRate - 10000);
+                    const QString &fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitRate - 10000);
                     attr.m_url = QString("%1%2?vkey=%3").arg(urlPrefix).arg(fn).arg(key);
                     info->m_songAttrs.append(attr);
                 }
@@ -354,14 +353,13 @@ QString MusicDownLoadQueryQQMovieThread::getMovieKey(int id, const QString &vide
         return QString();
     }
 
-    QString fn = QString("%1.p%2.1.mp4").arg(videoId).arg(id - 10000);
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_MV_KEY_URL, false).arg(id).arg(videoId).arg(fn);
+    const QString &fn = QString("%1.p%2.1.mp4").arg(videoId).arg(id - 10000);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_MV_KEY_URL, false).arg(id).arg(videoId).arg(fn);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
@@ -380,10 +378,10 @@ QString MusicDownLoadQueryQQMovieThread::getMovieKey(int id, const QString &vide
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(bytes, &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         if(value.contains("key"))
         {
             return value["key"].toString();

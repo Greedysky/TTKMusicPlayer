@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2018 Greedysky Studio
+# * Copyright (C) 2015 - 2019 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ include(TTKVersion.pri)
 win32:{
     SSL_DEPANDS = $$OUT_PWD/../bin/$$TTKMusicPlayer/ssleay32.dll
     SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
-    exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
+#    exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
 }
 unix:!mac{
     SSL_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libssleay32.so
@@ -107,7 +107,8 @@ unix:!mac{
     LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 }
 
-DEFINES += MUSIC_LIBRARY
+DEFINES += TTK_LIBRARY
+DEFINES += QMMP_LIBRARY
 
 #########################################
 HEADERS += $$PWD/musicglobal.h

@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2018 Greedysky Studio
+# * Copyright (C) 2015 - 2019 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -25,4 +25,4 @@ include($$PWD/musicToolsSetsKits/MusicToolsSetsKits.pri)
 include($$PWD/musicUserKits/MusicUserKits.pri)
 include($$PWD/musicVideoKits/MusicVideoKits.pri)
 include($$PWD/musicWidgetKits/MusicWidgetKits.pri)
-include($$PWD/musicWidgetCoreKits/MusicWidgetCoreKits.pri)
+include($$PWD/musicCoreKits/MusicCoreKits.pri)

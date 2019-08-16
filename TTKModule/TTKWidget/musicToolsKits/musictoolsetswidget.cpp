@@ -6,15 +6,12 @@
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
 #include "musicnetworkconnectiontestwidget.h"
-#include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
 #include "musicsoundtouchwidget.h"
 #include "musicsongringtonemakerwidget.h"
-#include "musicgrabwidget.h"
 #include "musicmessagebox.h"
 #include "musicapplication.h"
 #include "musicrightareawidget.h"
-#include "musicsoundkmicrowidget.h"
 #include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
 #include "musicwebradioobject.h"
@@ -36,7 +33,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
-    setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     m_ui->listItemWidget->setIconSize(QSize(60, 60));
     m_ui->listItemWidget->setViewMode(QListView::IconMode);
@@ -79,14 +76,11 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_transform", tr("transform"))
           << ItemPair(":/tools/lb_spectrum", tr("spectrum"))
           << ItemPair(":/tools/lb_wallpaper", tr("wallpaper"))
-          << ItemPair(":/tools/lb_phone", tr("phone"))
           << ItemPair(":/tools/lb_connections" ,tr("connections"))
           << ItemPair(":/tools/lb_gain", tr("gain"))
           << ItemPair(":/tools/lb_detect", tr("detect"))
           << ItemPair(":/tools/lb_soundtouch", tr("soundtouch"))
-          << ItemPair(":/tools/lb_grabwindow", tr("grabwindow"))
-          << ItemPair(":/tools/lb_radio", tr("radio"))
-          << ItemPair(":/tools/lb_ktv", tr("kmicro"));
+          << ItemPair(":/tools/lb_radio", tr("radio"));
 
     foreach(const ItemPair &pair, pairs)
     {
@@ -120,7 +114,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             {
                 MusicTimerWidget timer(this);
                 QStringList songlist;
-                MusicApplication::instance()->getCurrentPlayList(songlist);
+                MusicApplication::instance()->getCurrentPlaylist(songlist);
                 timer.setSongStringList(songlist);
                 timer.exec();
                 break;
@@ -148,35 +142,25 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 7:
             {
-                MusicConnectTransferWidget(this).exec();
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
                 break;
             }
         case 8:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicVolumeGainWidget);
                 break;
             }
         case 9:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicVolumeGainWidget);
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
                 break;
             }
         case 10:
             {
-                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
-                break;
-            }
-        case 11:
-            {
                 M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundTouchWidget);
                 break;
             }
-        case 12:
-            {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicGrabWidget);
-                break;
-            }
-        case 13:
+        case 11:
             {
 #ifdef Q_OS_WIN
                 M_SINGLE_MANAGER_CORE_CLASS(MusicWebRadioObject);
@@ -185,11 +169,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 message.setText(tr("Not Supported On Current Plantform!"));
                 message.exec();
 #endif
-                break;
-            }
-        case 14:
-            {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundKMicroWidget);
                 break;
             }
         default:

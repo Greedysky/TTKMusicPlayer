@@ -1,5 +1,5 @@
 #include "musicplayer.h"
-#include "musicplayedlist.h"
+#include "musicplaylist.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
@@ -42,20 +42,20 @@ MusicObject::PlayState MusicPlayer::state() const
     return m_state;
 }
 
-void MusicPlayer::setPlaylist(MusicPlayedlist *playlist)
+void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
 {
     delete m_playlist;
     m_playlist = playlist;
 }
 
-MusicPlayedlist *MusicPlayer::playlist() const
+MusicPlaylist *MusicPlayer::playlist() const
 {
     return m_playlist;
 }
 
 qint64 MusicPlayer::duration() const
 {
-    return m_music->totalTime();
+    return m_music->duration();
 }
 
 qint64 MusicPlayer::position() const
@@ -133,7 +133,8 @@ void MusicPlayer::play()
     }
 
     m_state = MusicObject::PS_PlayingState;
-    Qmmp::State state = m_music->state(); ///Get the current state of play
+    const Qmmp::State state = m_music->state(); ///Get the current state of play
+
     if(m_currentMedia == m_playlist->currentMediaString() && state == Qmmp::Paused)
     {
         m_music->pause(); ///When the pause time for recovery
@@ -155,15 +156,13 @@ void MusicPlayer::play()
     emit positionChanged(0);
     getCurrentDuration();
 
-    ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
-    int volume = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
+    const int volume = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
     if(volume != -1)
     {
         setVolume(volume);
     }
     setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
-    ////////////////////////////////////////////////
 }
 
 void MusicPlayer::pause()
@@ -211,7 +210,7 @@ void MusicPlayer::setEqInformation()
     if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
     {
         setEnaleEffect(true);
-        QStringList eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+        const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
         if(eqValue.count() == 11)
         {
             MIntList hz;
@@ -252,7 +251,7 @@ void MusicPlayer::update()
         m_music->setVolume(fabs(100 * cosf(m_posOnCircle)), fabs(100 * sinf(m_posOnCircle * 0.5f)));
     }
 
-    Qmmp::State state = m_music->state();
+    const Qmmp::State state = m_music->state();
     if(state != Qmmp::Playing && state != Qmmp::Paused)
     {
         m_timer.stop();
@@ -278,7 +277,7 @@ void MusicPlayer::update()
 
 void MusicPlayer::getCurrentDuration()
 {
-    qint64 dur = duration();
+    const qint64 dur = duration();
     if((dur == 0 || m_duration == dur) && m_tryTimes++ < 10)
     {
         QTimer::singleShot(50*MT_MS, this, SLOT(getCurrentDuration()));

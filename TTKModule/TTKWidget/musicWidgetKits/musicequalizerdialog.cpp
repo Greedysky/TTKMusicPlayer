@@ -33,10 +33,10 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     m_ui->eqChoice->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->eqChoice->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_ui->eqChoice->addItems(QStringList() << tr("Custom") << tr("Default") << tr("Classical")
-                  << tr("Club") << tr("Dance") << tr("Bass") << tr("Soprano") << tr("BassSoprano")
-                  << tr("Headset") << tr("Hall") << tr("Scene") << tr("Pop") << tr("Repaglinide")
-                  << tr("Party") << tr("Rock") << tr("Oscar") << tr("Mild") << tr("SoftRock")
-                  << tr("Electronics"));
+                                           << tr("Club") << tr("Dance") << tr("Bass") << tr("Soprano") << tr("BassSoprano")
+                                           << tr("Headset") << tr("Hall") << tr("Scene") << tr("Pop") << tr("Repaglinide")
+                                           << tr("Party") << tr("Rock") << tr("Oscar") << tr("Mild") << tr("SoftRock")
+                                           << tr("Electronics"));
     connect(m_ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(eqChoiceIndexChanged(int)));
 
     m_ui->showEqButton->setStyleSheet(MusicUIObject::MKGEqualizerOff);
@@ -112,7 +112,8 @@ void MusicEqualizerDialog::readEqInformation()
     {
         m_ui->showEqButton->click();
     }
-    QStringList eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+
+    const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
     if(eqValue.count() == 11)
     {
         if(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt() == 0)
@@ -166,11 +167,11 @@ void MusicEqualizerDialog::verticalSliderChanged(int)
 void MusicEqualizerDialog::emitParameter()
 {
     emit setEqEffect(MIntList() << m_ui->bwVerticalSlider->value() << m_ui->verticalSlider1->value()
-                     << m_ui->verticalSlider2->value() << m_ui->verticalSlider3->value()
-                     << m_ui->verticalSlider4->value() << m_ui->verticalSlider5->value()
-                     << m_ui->verticalSlider6->value() << m_ui->verticalSlider7->value()
-                     << m_ui->verticalSlider8->value() << m_ui->verticalSlider9->value()
-                     << m_ui->verticalSlider10->value());
+                                << m_ui->verticalSlider2->value() << m_ui->verticalSlider3->value()
+                                << m_ui->verticalSlider4->value() << m_ui->verticalSlider5->value()
+                                << m_ui->verticalSlider6->value() << m_ui->verticalSlider7->value()
+                                << m_ui->verticalSlider8->value() << m_ui->verticalSlider9->value()
+                                << m_ui->verticalSlider10->value());
 }
 
 void MusicEqualizerDialog::setEqEnable()

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkAbstract(QObject *parent = 0);
+    explicit MusicNetworkAbstract(QObject *parent = nullptr);
 
     virtual ~MusicNetworkAbstract();
 
@@ -60,7 +60,7 @@ public:
     /*!
      * Get the current raw data.
      */
-    inline const QVariantMap& getRawData() const { return m_rawData; }
+    inline const QVariantMap &getRawData() const { return m_rawData; }
 
 Q_SIGNALS:
     /*!
@@ -94,11 +94,6 @@ public Q_SLOTS:
 #endif
 
 protected:
-    /*!
-     * Set request ssl configuration.
-     */
-    void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m = QSslSocket::VerifyNone);
-
     QVariantMap m_rawData;
     MusicObject::NetworkCode m_stateCode;
     volatile bool m_interrupt;
@@ -106,5 +101,13 @@ protected:
     QNetworkAccessManager *m_manager;
 
 };
+
+namespace MusicObject {
+    /*!
+     * Set request ssl configuration.
+     */
+    MUSIC_NETWORK_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
+
+}
 
 #endif // MUSICNETWORKABSTRACT_H

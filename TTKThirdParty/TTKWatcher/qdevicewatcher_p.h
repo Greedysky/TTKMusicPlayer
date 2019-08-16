@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ class MUSIC_EXTRAS_EXPORT QDeviceWatcherPrivate
 {
 	Q_OBJECT
 public:
-	QDeviceWatcherPrivate(QObject *parent = 0) :
+	QDeviceWatcherPrivate(QObject *parent = nullptr) :
 #if CONFIG_THREAD
 	QThread(parent)
 #else
@@ -100,7 +100,7 @@ private:
 #endif //CONFIG_THREAD
 #if defined(Q_OS_LINUX)
 	QBuffer buffer;
-	void parseLine(const QByteArray& line);
+	void parseLine(const QByteArray &line);
 # if CONFIG_TCPSOCKET
 	class QTcpSocket *tcp_socket;
 # elif CONFIG_SOCKETNOTIFIER

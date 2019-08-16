@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundItemWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundItemWidget(QWidget *parent = nullptr);
 
     virtual ~MusicPlaylistFoundItemWidget();
 
@@ -83,7 +83,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicPlaylistFoundWidget();
 
@@ -109,11 +109,11 @@ public Q_SLOTS:
     /*!
      * Current play list clicked.
      */
-    void currentPlayListClicked(const MusicResultsItem &item);
+    void currentPlaylistClicked(const MusicResultsItem &item);
     /*!
      * Set current index to playlist menu page.
      */
-    void backToPlayListMenu();
+    void backToPlaylistMenu();
     /*!
      * Current category changed.
      */

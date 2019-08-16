@@ -69,10 +69,9 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], m_queryMovieMode ?
-                          MusicDownLoadQueryThreadAbstract::MovieQuery : MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(musicSongInfos[row], m_queryMovieMode ? MusicDownLoadQueryThreadAbstract::MovieQuery : MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
 }
 
@@ -89,7 +88,7 @@ void MusicSoundKMicroSearchTableWidget::clearAllItems()
 
 void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
-    int count = rowCount();
+    const int count = rowCount();
     setRowCount(count + 1);
 
     QHeaderView *headerview = horizontalHeader();
@@ -162,7 +161,7 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
     {
         emit mediaUrlChanged(m_queryMovieMode, attr.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);
@@ -243,6 +242,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
 
     connect(searchButton, SIGNAL(clicked()), SLOT(startToSearch()));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(startToSearch()));
+    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
 }
 
 MusicSoundKMicroSearchWidget::~MusicSoundKMicroSearchWidget()
@@ -270,4 +270,12 @@ void MusicSoundKMicroSearchWidget::startToSearch()
 void MusicSoundKMicroSearchWidget::setQueryMovieFlag(int flag)
 {
     m_queryMovieMode = (flag == 0);
+}
+
+void MusicSoundKMicroSearchWidget::setCurrentSongName(const QString &name)
+{
+    Q_UNUSED(name);
+    MusicMessageBox message;
+    message.setText(tr("Search Not Supported!"));
+    message.exec();
 }

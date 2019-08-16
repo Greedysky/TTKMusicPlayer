@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 
 #include <QObject>
 
-////////////////////////////////////////////////////
+//
 #define MT_MS           1
 
 #define MT_S            1
@@ -43,7 +43,7 @@
 #define MT_D2M          (MT_D2H*MT_H2M)
 #define MT_D2S          qint64(MT_D2M*MT_M2S)
 #define MT_D2MS         qint64(MT_D2S*MT_S2MS)
-////////////////////////////////////////////////////
+//
 
 #define MH_BS           1
 
@@ -71,7 +71,7 @@
 #define MH_TB2KB        qint64(MH_TB2MB*MH_MB2KB)
 #define MH_TB2B         qint64(MH_TB2KB*MH_KB2B)
 #define MH_TB2BS        qint64(MH_TB2B*MH_B2BS)
-////////////////////////////////////////////////////
+//
 
 #define MA_0            0
 #define MA_30           30
@@ -82,7 +82,7 @@
 #define MA_180          180
 #define MA_270          270
 #define MA_360          360
-////////////////////////////////////////////////////
+//
 
 #define MB_0            0
 #define MB_32           32
@@ -96,7 +96,7 @@
 #define MB_750          750
 #define MB_999          999
 #define MB_1000         1000
-////////////////////////////////////////////////////
+//
 
 
 #endif // MUSICNUMBERDEFINE_H

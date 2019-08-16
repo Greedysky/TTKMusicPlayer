@@ -3,10 +3,10 @@
     <musicSetting>
         <playMode value="2"/>
         <playVolume value="100"/>
-        <lastPlayIndex value="1">0,-1</lastPlayIndex>
+        <lastPlayIndex value="1">-1,-1</lastPlayIndex>
     </musicSetting>
     <plusSetting>
-        <geometry value="183,24,1033,660"/>
+        <geometry value="242,84,1033,690"/>
         <language value="0"/>
         <autoPlay value="0"/>
         <closeEvent value="1"/>
@@ -17,22 +17,25 @@
         <windowQuitMode value="0"/>
     </plusSetting>
     <otherSetting>
-        <otherBgLossless value="0"/>
-        <otherUpdate value="0"/>
+        <otherBackgroundLossless value="0"/>
+        <otherCheckUpdate value="0"/>
         <otherSearch value="0"/>
-        <otherAlbumCover value="0"/>
-        <otherInfo value="0"/>
-        <otherAlbumCoverW value="0"/>
-        <otherInfoW value="0"/>
+        <otherUseAlbumCover value="1"/>
+        <otherUseInfo value="1"/>
+        <otherWriteAlbumCover value="1"/>
+        <otherWriteInfo value="1"/>
         <otherSideBy value="0"/>
         <otherSongFormat value="0"/>
-        <otherLrcKTV value="0"/>
+        <otherLrcKTV value="1"/>
+        <otherRippleSpectrumEnable value="1"/>
+        <otherRippleSpectrumColor value="250,218,131"/>
+        <otherRippleSpectrumOpacity value="100"/>
     </otherSetting>
     <backgroundSetting>
-        <bgTheme value="theme-15"/>
-        <bgTransparent value="100"/>
-        <bgTransparentEnable value="1"/>
-        <bgListTransparent value="33"/>
+        <backgroundTheme value="theme-7"/>
+        <backgroundTransparent value="100"/>
+        <backgroundListTransparent value="33"/>
+        <backgroundTransparentEnable value="1"/>
     </backgroundSetting>
     <hotkeySetting>
         <hotkeyEnable value="0"/>
@@ -45,8 +48,8 @@
         <lrcFamily value="0"/>
         <lrcType value="1"/>
         <lrcTransparent value="99"/>
-        <lrcFgColor value="255,24,39"/>
-        <lrcBgColor value="204,255,34"/>
+        <lrcFrontgroundColor value="250,218,131;250,218,131;250,218,131;"/>
+        <lrcBackgroundColor value="255,255,255;255,255,255;255,255,255;"/>
     </inlineLrcSetting>
     <desktopLrcSetting>
         <showDesktopLrc value="0"/>
@@ -55,8 +58,8 @@
         <lrcDFamily value="0"/>
         <lrcDType value="1"/>
         <lrcDTransparent value="99"/>
-        <lrcDFgColor value="255,79,147"/>
-        <lrcDBgColor value="14,179,255"/>
+        <lrcDFrontgroundColor value="130,247,253;255,255,255;3,233,252;"/>
+        <lrcDBackgroundColor value="0,52,138;0,128,192;3,202,252;"/>
         <lrcDWindowType value="1"/>
         <lrcDSingleLineType value="0"/>
         <lrcDLocked value="0"/>
@@ -67,7 +70,7 @@
         <equalizerEnable value="0"/>
         <equalizerIndex value="5"/>
         <equalizerValue value="0,-6,6,6,3,2,-2,-5,-6,-8,-8"/>
-        <enhancedBalance value="-3"/>
+        <enhancedBalance value="0"/>
         <enhancedFadeEnable value="0"/>
         <enhancedFadeInValue value="1000"/>
         <enhancedFadeOutValue value="1000"/>
@@ -105,4 +108,9 @@
         <downloadDLoadLimit value="100"/>
         <downloadULoadLimit value="100"/>
     </downloadSetting>
+    <qiniuSetting>
+        <qiniuMusicConfig value=""/>
+        <qiniuDataConfig value=""/>
+        <qiniuTimeConfig value=""/>
+    </qiniuSetting>
 </TTKMusicPlayer>

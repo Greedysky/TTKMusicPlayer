@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 
 #include <QtCore/qglobal.h>
 
-//////////////////////////////////////
-#ifdef MUSIC_LIBRARY
+///
+#ifdef TTK_LIBRARY
 #  define MUSIC_NETWORK
 #  define MUSIC_CORE
 #  define MUSIC_WIDGET
@@ -37,10 +37,7 @@
 #  define MUSIC_GUI
 #endif
 
-//////////////////////////////////////
 ///exoprt
-///
-///
 #define MUSIC_EXPORT
 
 
@@ -140,9 +137,9 @@
 #  endif
 #endif
 
-//////////////////////////////////////
+///
 #include "musiclogger.h"
 #include "musicglobal.h"
-//////////////////////////////////////
+///
 
 #endif // MUSICGLOBALDEFINE_H

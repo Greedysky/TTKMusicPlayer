@@ -69,8 +69,8 @@ void MusicWebMVRadioFoundCategoryPopWidget::setCategory(const QString &server, Q
 {
     MusicResultsCategorys categorys;
     MusicCategoryConfigManager manager;
-    manager.readCategoryConfig(MusicCategoryConfigManager::MovieList);
-    manager.readCategoryConfig(categorys, server);
+    manager.readConfig(MusicCategoryConfigManager::MovieList);
+    manager.readCategoryData(categorys, server);
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
@@ -112,7 +112,7 @@ void MusicWebMVRadioFoundCategoryPopWidget::initWidget()
     setTranslucentBackground();
     setText(tr("All"));
 
-    QString style = MusicUIObject::MBorderStyle04 + MusicUIObject::MBackgroundStyle17;
+    const QString &style = MusicUIObject::MBorderStyle04 + MusicUIObject::MBackgroundStyle17;
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 

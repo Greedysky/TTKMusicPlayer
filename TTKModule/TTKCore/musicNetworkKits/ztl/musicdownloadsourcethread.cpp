@@ -20,7 +20,7 @@ void MusicDownloadSourceThread::startToDownload(const QString &url)
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 #endif
 
     m_reply = m_manager->get( request );
@@ -33,7 +33,7 @@ void MusicDownloadSourceThread::downLoadFinished()
     {
         if(m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).isValid())
         {
-            QString newUrl = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+            const QString &newUrl = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
             deleteAll();
             startToDownload(newUrl); ///redirection target url
         }

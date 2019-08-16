@@ -1,6 +1,6 @@
 # TTKMusicPlayer
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
-![Version](https://img.shields.io/badge/Version-2.7.0.0-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/Version-2.9.0.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
@@ -17,17 +17,17 @@ Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Gre
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt develop version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt4.8.7 for linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
- * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt5.x for linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-msvc
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
-| Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/teamcity/codebetter/bt428.svg)                            |
-| Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/teamcity/codebetter/bt428.svg) |
-| Windows  | 5.x MSVC       | ![Windows](https://img.shields.io/teamcity/codebetter/bt428.svg) |
-| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
+| Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)                            |
+| Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
+| Windows  | 5.x MSVC       | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
+| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)                           |
  
 # For Developers
 
@@ -84,7 +84,7 @@ TTKMusicPlayer can meet your most demands
  * ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm 
                 *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r
                 *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
- * Playlist formats(ttklis, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl)
+ * Playlist formats(ttklist, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl)
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
 Screenshots.
  * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
@@ -145,7 +145,7 @@ Screenshots
 Copyright
 -------
  * This file is part of the TTK Music Player project.
- * Copyright (c) 2015 - 2018 Greedysky Studio.
+ * Copyright (c) 2015 - 2019 Greedysky Studio.
  * Mail: greedysky@163.com.
  
 How To Contribute

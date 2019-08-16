@@ -2,6 +2,7 @@
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
+#include "musicnetworkabstract.h"
 #include "musictime.h"
 
 #///QJson import
@@ -13,8 +14,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                                        const QString &format, int bitrate)
+void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if(info->m_songId.isEmpty())
     {
@@ -22,20 +22,16 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     }
 
     QDesWrap dess;
-    QByteArray parameter = dess.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_ATTR_LL_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
-                                        MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
+    const QByteArray &parameter = dess.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_ATTR_LL_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
+                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
 
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -50,8 +46,9 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     QByteArray data = reply->readAll();
     if(!data.isEmpty() && !data.contains("res not found"))
     {
-        QString text(data);
+        const QString text(data);
         QRegExp regx(".*url=(.*)\r\nsig=");
+
         if(text.indexOf(regx) != -1)
         {
             MusicObject::MusicSongAttribute attr;
@@ -69,8 +66,7 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                                          const QString &format, int bitrate)
+void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if(format.contains("MP3128") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -109,8 +105,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                                              const QString &format, int bitrate)
+void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if(format.contains("128kmp3") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -149,8 +144,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QString &format, const QString &quality, bool all)
+void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all)
 {
     if(all)
     {
@@ -182,12 +176,11 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariantList &format, const QString &quality, bool all)
+void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all)
 {
     foreach(const QVariant &var, format)
     {
-        const QString fs = var.toString();
+        const QString &fs = var.toString();
         if(all)
         {
             readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_128);
@@ -226,17 +219,13 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -251,7 +240,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll().replace("lrclist", "'lrclist'").replace("'", "\""), &ok);
+    const QVariant &data = parser.parse(reply->readAll().replace("lrclist", "'lrclist'").replace("'", "\""), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -259,7 +248,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
         {
             value = value["songinfo"].toMap();
             info->m_smallPicUrl = value["artpic"].toString();
-            if(!info->m_smallPicUrl.contains("http://") && !info->m_smallPicUrl.contains("null"))
+            if(!info->m_smallPicUrl.contains("http://") && !info->m_smallPicUrl.contains(COVER_URL_NULL))
             {
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
             }

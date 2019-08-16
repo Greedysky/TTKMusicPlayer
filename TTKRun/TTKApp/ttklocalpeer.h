@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
     */
-    explicit TTKLocalPeer(QObject *parent = 0, const QString &appId = QString());
+    explicit TTKLocalPeer(QObject *parent = nullptr, const QString &appId = QString());
 
     /*!
      * Current client is running or not.

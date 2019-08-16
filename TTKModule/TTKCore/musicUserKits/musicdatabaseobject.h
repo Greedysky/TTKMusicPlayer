@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #define DB_MYSQL_DATABASE       "QMYSQL"
 #define DB_OCI_DATABASE         "QOCI"
 
-///////////////////////////////////////
+//
 #define DB_USERID               20
 #define DB_PASSWD               100
 #define DB_EMAIL                20
@@ -34,7 +34,7 @@
 #define DB_LOGINTIME            20
 #define DB_SEX                  2
 #define DB_SERVER               2
-///////////////////////////////////////
+//
 
 
 /*! @brief The class of the user uid item.

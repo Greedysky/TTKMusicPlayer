@@ -1,8 +1,22 @@
-// Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>
-//
-// Use, modification and distribution is allowed without limitation,
-// warranty, or liability of any kind.
-//
+/***************************************************************************
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
+ ***************************************************************************/
 
 #ifndef DECODER_H
 #define DECODER_H
@@ -11,19 +25,18 @@
 #include <QList>
 #include <QMap>
 #include <QIODevice>
-#include "fileinfo.h"
 #include "qmmp.h"
 #include "audioparameters.h"
 #include "channelmap.h"
-#include "decoderfactory.h"
 
 class QmmpPluginCache;
+class DecoderFactory;
 
 /*! @brief The Decoder class provides the base interface class of audio decoders.
  * @author Brad Hughes <bhughes@trolltech.com>
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Decoder
+class QMMP_EXPORT Decoder
 {
 public:
     /*!
@@ -103,9 +116,24 @@ public:
     bool hasMetaData() const;
     /*!
      * Takes metadata out of decoder and returns it.
-     * Attention: hasMetaData() should return \b true before use of this fuction.
+     * Attention: hasMetaData() should return \b true before using of this fuction.
      */
     QMap<Qmmp::MetaData, QString> takeMetaData();
+    /*!
+     * Sets extra track property.
+     * \param key Property key.
+     * \param value Property value.
+     */
+    void setProperty(Qmmp::TrackProperty key, const QVariant &value);
+    /*!
+     * Updates all extra track properties.
+     * \param properties New track properties.
+     */
+    void setProperties(const QMap<Qmmp::TrackProperty, QString> &properties);
+    /*!
+     * Returns track properties
+     */
+    const QMap<Qmmp::TrackProperty, QString> &properties() const;
     /*!
      * Returns DecoderFactory pointer which supports file \b path or 0 if file \b path is unsupported
      * @param path Full local file path.
@@ -186,6 +214,7 @@ private:
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_disabledNames;
     AudioParameters m_parameters;
+    QMap<Qmmp::TrackProperty, QString> m_properties;
     QIODevice *m_input;
     bool m_hasMetaData;
     QMap<Qmmp::MetaData, QString> m_metaData;

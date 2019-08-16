@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2018 Greedysky Studio
+# * Copyright (C) 2015 - 2019 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
@@ -29,7 +29,6 @@ HEADERS  += \
     $$PWD/musictime.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
-    $$PWD/musicplayedlist.h \
     $$PWD/musicabstractxml.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
@@ -40,7 +39,6 @@ HEADERS  += \
     $$PWD/musicsongtag.h \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
-    $$PWD/musicsystemenvironment.h \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h \
     $$PWD/musiclicensecore.h \
@@ -51,18 +49,16 @@ HEADERS  += \
     $$PWD/musicextractwrap.h \
     $$PWD/musicbackgroundconfigmanager.h \
     $$PWD/musicsysconfigmanager.h \
-    $$PWD/musiclistconfigmanager.h \
     $$PWD/musicsinglemanager.h
 
 }
 
-contains(CONFIG, MUSIC_BUILD_LIB){
+contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicformats.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
-    $$PWD/musicplayedlist.cpp \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \
@@ -71,7 +67,6 @@ SOURCES += \
     $$PWD/musicsongtag.cpp \
     $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
-    $$PWD/musicsystemenvironment.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
     $$PWD/musiclicensecore.cpp \
@@ -82,7 +77,6 @@ SOURCES += \
     $$PWD/musicextractwrap.cpp \
     $$PWD/musicbackgroundconfigmanager.cpp \
     $$PWD/musicsysconfigmanager.cpp \
-    $$PWD/musiclistconfigmanager.cpp \
     $$PWD/musicsinglemanager.cpp
 
 }

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryBDMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryBDMovieThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.
@@ -75,18 +75,15 @@ protected:
     /*!
      * Read mv infos from yyt query results.
      */
-    void readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QString &var,
-                                     bool more);
+    void readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QString &var, bool more);
     /*!
      * Read mv infos from iqy query results.
      */
-    void readFromMusicMVAttributeIQY(MusicObject::MusicSongInformation *info, const QString &var,
-                                     bool more);
+    void readFromMusicMVAttributeIQY(MusicObject::MusicSongInformation *info, const QString &var, bool more);
     /*!
      * Read mv info attribute from yyt query results.
      */
-    void readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QVariantMap &key,
-                                     int bitrate, const QString &duration);
+    void readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate, const QString &duration);
     /*!
      * Read mv info attribute from iqy query results.
      */

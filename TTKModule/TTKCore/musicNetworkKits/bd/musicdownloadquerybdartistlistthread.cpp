@@ -6,7 +6,7 @@ MusicDownLoadQueryBDArtistListThread::MusicDownLoadQueryBDArtistListThread(QObje
     : MusicDownLoadQueryArtistListThread(parent)
 {
     m_pageSize = 100;
-    m_queryServer = "Baidu";
+    m_queryServer = QUERY_BD_INTERFACE;
 }
 
 void MusicDownLoadQueryBDArtistListThread::startToPage(int offset)
@@ -17,8 +17,10 @@ void MusicDownLoadQueryBDArtistListThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
     QString catId = "area=1&sex=1", initial = "%E7%83%AD%E9%97%A8";
-    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
+    const QStringList &dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -37,17 +39,14 @@ void MusicDownLoadQueryBDArtistListThread::startToPage(int offset)
             initial = "%E5%85%B6%E4%BB%96";
         }
     }
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_AR_LIST_URL, false).arg(catId).arg(m_pageSize)
-                                                                      .arg(offset*m_pageSize).arg(initial);
-    deleteAll();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_AR_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset*m_pageSize).arg(initial);
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -76,18 +75,18 @@ void MusicDownLoadQueryBDArtistListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("artist"))
             {
                 m_pageTotal = value["nums"].toLongLong();
-                QVariantList datas = value["artist"].toList();
+                const QVariantList &datas = value["artist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;

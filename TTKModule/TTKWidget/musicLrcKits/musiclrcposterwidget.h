@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterItemWidget(QWidget *parent = nullptr);
 
     /*!
      * Check widget has scroll or not.
@@ -177,7 +177,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterTableWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all items.
@@ -210,7 +210,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterThemeListWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterThemeListWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     /*!
@@ -232,7 +232,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcPosterWidget();
 

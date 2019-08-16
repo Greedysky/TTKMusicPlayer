@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,6 @@
 #include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
-
-#define ROW_HEIGHT  25
 
 namespace Ui {
 class MusicDownloadWidget;
@@ -76,7 +74,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadTableItem(QWidget *parent = 0);
+    explicit MusicDownloadTableItem(QWidget *parent = nullptr);
 
     ~MusicDownloadTableItem();
 
@@ -110,7 +108,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadTableWidget(QWidget *parent = 0);
+    explicit MusicDownloadTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadTableWidget();
 
@@ -149,7 +147,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadWidget(QWidget *parent = 0);
+    explicit MusicDownloadWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadWidget();
 

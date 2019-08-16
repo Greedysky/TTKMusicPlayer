@@ -629,8 +629,8 @@ static const u32 rcon[] = {
  * Expand the cipher key into the encryption key schedule.
  */
 int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
-                        AES_KEY *key) {
-
+                        AES_KEY *key) 
+{
     u32 *rk;
     int i = 0;
     u32 temp;
@@ -730,8 +730,8 @@ int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
  * Expand the cipher key into the decryption key schedule.
  */
 int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
-                        AES_KEY *key) {
-
+                        AES_KEY *key) 
+{
     u32 *rk;
     int i, j, status;
     u32 temp;
@@ -790,8 +790,8 @@ int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
  * in and out can overlap
  */
 void AES_encrypt(const unsigned char *in, unsigned char *out,
-                 const AES_KEY *key) {
-
+                 const AES_KEY *key) 
+{
     const u32 *rk;
     u32 s0, s1, s2, s3, t0, t1, t2, t3;
 #ifndef FULL_UNROLL
@@ -981,8 +981,8 @@ void AES_encrypt(const unsigned char *in, unsigned char *out,
  * in and out can overlap
  */
 void AES_decrypt(const unsigned char *in, unsigned char *out,
-                 const AES_KEY *key) {
-
+                 const AES_KEY *key) 
+{
     const u32 *rk;
     u32 s0, s1, s2, s3, t0, t1, t2, t3;
 #ifndef FULL_UNROLL
@@ -1316,7 +1316,6 @@ int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
 int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
                         AES_KEY *key)
 {
-
     u32 *rk;
     int i, j, status;
     u32 temp;

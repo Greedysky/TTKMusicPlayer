@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;
+class MusicRippleSpecturmObject;
 
 namespace Ui {
     class MusicApplication;
@@ -41,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBottomAreaWidget(QWidget *parent = 0);
+    explicit MusicBottomAreaWidget(QWidget *parent = nullptr);
 
     ~MusicBottomAreaWidget();
 
@@ -87,7 +88,7 @@ public:
      */
     void showMessage(const QString &title, const QString &text);
 
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_GREATER_NEW
+#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
     /*!
      * Set current value.
      */
@@ -105,8 +106,20 @@ public:
      * Resize window bound by widgte resize called.
      */
     void resizeWindow();
+    /*!
+     * Get setting parameter.
+     */
+    void getParameterSetting();
+    /*!
+     * Current is show full container.
+     */
+    bool isLrcWidgetShowFullScreen() const;
 
 public Q_SLOTS:
+    /*!
+     * Show full container or not.
+     */
+    void lrcWidgetShowFullScreen();
     /*!
      * Lock or not current desktop lrc.
      */
@@ -128,9 +141,11 @@ protected:
 
     Ui::MusicApplication *m_ui;
     bool m_systemCloseConfig;
+    bool m_lrcWidgetShowFullScreen;
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
+    MusicRippleSpecturmObject *m_musicRipplesObject;
 
     static MusicBottomAreaWidget *m_instance;
 };

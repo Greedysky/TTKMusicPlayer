@@ -6,18 +6,18 @@
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
 
-MusicRadioPlayListThread::MusicRadioPlayListThread(QObject *parent, QNetworkCookieJar *cookie)
+MusicRadioPlaylistThread::MusicRadioPlaylistThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
 {
 
 }
 
-MusicRadioPlayListThread::~MusicRadioPlayListThread()
+MusicRadioPlaylistThread::~MusicRadioPlaylistThread()
 {
     deleteAll();
 }
 
-void MusicRadioPlayListThread::startToDownload(const QString &id)
+void MusicRadioPlaylistThread::startToDownload(const QString &id)
 {
     m_manager = new QNetworkAccessManager(this);
 
@@ -26,7 +26,7 @@ void MusicRadioPlayListThread::startToDownload(const QString &id)
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 #endif
     if(m_cookJar)
     {
@@ -39,7 +39,7 @@ void MusicRadioPlayListThread::startToDownload(const QString &id)
 
 }
 
-void MusicRadioPlayListThread::downLoadFinished()
+void MusicRadioPlaylistThread::downLoadFinished()
 {
     if(!m_reply)
     {
@@ -49,20 +49,20 @@ void MusicRadioPlayListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
-        m_playList.clear();
+        const QByteArray &bytes = m_reply->readAll();
+        m_playlist.clear();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
-            QVariantList channels = value["list"].toList();
+            const QVariantList &channels = value["list"].toList();
             foreach(const QVariant &channel, channels)
             {
                 value = channel.toMap();
-                m_playList << QString::number(value["id"].toInt());
+                m_playlist << QString::number(value["id"].toInt());
             }
         }
     }

@@ -24,10 +24,7 @@ TTKRunApplicationPrivate::~TTKRunApplicationPrivate()
     delete m_peer;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
-///
+
 
 TTKRunApplication::TTKRunApplication(int &argc, char **argv, bool GUIenabled)
     : QApplication(argc, argv, GUIenabled)

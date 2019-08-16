@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,12 +31,12 @@ class MUSIC_CORE_EXPORT MusicSong
 public:
     enum Sort
     {
-        SortByFileName = 0,      /*!< Sort by file name*/
-        SortBySinger,            /*!< Sort by singer name*/
-        SortByFileSize,          /*!< Sort by file size*/
-        SortByAddTime,           /*!< Sort by add time*/
-        SortByPlayTime,          /*!< Sort by play time*/
-        SortByPlayCount          /*!< Sort by play count*/
+        SortByFileName,      /*!< Sort by file name*/
+        SortBySinger,        /*!< Sort by singer name*/
+        SortByFileSize,      /*!< Sort by file size*/
+        SortByAddTime,       /*!< Sort by add time*/
+        SortByPlayTime,      /*!< Sort by play time*/
+        SortByPlayCount      /*!< Sort by play count*/
     };
 
     /*!
@@ -47,29 +47,23 @@ public:
     /*!
      * Object contsructor by music path and name.
      */
-    explicit MusicSong(const QString &musicPath,
-                       const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout.
      */
-    MusicSong(const QString &musicPath, int playCount,
-              const QString &musicName = QString());
+    MusicSong(const QString &musicPath, int playCount, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and format.
      */
-    MusicSong(const QString &musicPath, const QString &type,
-              int playCount, const QString &musicName = QString());
+    MusicSong(const QString &musicPath, const QString &type, int playCount, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and format and time.
      */
-    MusicSong(const QString &musicPath, const QString &type,
-              const QString &playTime, int playCount,
-              const QString &musicName = QString());
+    MusicSong(const QString &musicPath, const QString &type, const QString &playTime, int playCount, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and time.
      */
-    MusicSong(const QString &musicPath, int playCount, const QString &playTime,
-              const QString &musicName);
+    MusicSong(const QString &musicPath, int playCount, const QString &playTime, const QString &musicName);
 
     /*!
      * Get music artist name.
@@ -83,84 +77,84 @@ public:
     /*!
      * Set music add time string.
      */
-    inline void setMusicAddTimeStr(const QString &t) { m_musicAddTimeStr = t;}
+    inline void setMusicAddTimeStr(const QString &t) { m_musicAddTimeStr = t; }
     /*!
      * Get music add time string.
      */
-    inline QString getMusicAddTimeStr() const { return m_musicAddTimeStr;}
+    inline QString getMusicAddTimeStr() const { return m_musicAddTimeStr; }
     /*!
      * Set music size string.
      */
-    inline void setMusicSizeStr(const QString s) { m_musicSizeStr = s;}
+    inline void setMusicSizeStr(const QString &s) { m_musicSizeStr = s; }
     /*!
      * Get music size string.
      */
-    inline QString getMusicSizeStr() const { return m_musicSizeStr;}
+    inline QString getMusicSizeStr() const { return m_musicSizeStr; }
 
     /*!
      * Set music name.
      */
-    inline void setMusicName(const QString &n) { m_musicName = n;}
+    inline void setMusicName(const QString &n) { m_musicName = n; }
     /*!
      * Get music name.
      */
-    inline QString getMusicName() const { return m_musicName;}
+    inline QString getMusicName() const { return m_musicName; }
     /*!
      * Set music path.
      */
-    inline void setMusicPath(const QString &p) { m_musicPath = p;}
+    inline void setMusicPath(const QString &p) { m_musicPath = p; }
     /*!
      * Get music path.
      */
-    inline QString getMusicPath() const { return m_musicPath;}
+    inline QString getMusicPath() const { return m_musicPath; }
     /*!
      * Set music format.
      */
-    inline void setMusicType(const QString &t) { m_musicType = t;}
+    inline void setMusicType(const QString &t) { m_musicType = t; }
     /*!
      * Get music format.
      */
-    inline QString getMusicType() const { return m_musicType;}
+    inline QString getMusicType() const { return m_musicType; }
     /*!
      * Set music time.
      */
-    inline void setMusicPlayTime(const QString &t) { m_musicPlayTime = t;}
+    inline void setMusicPlayTime(const QString &t) { m_musicPlayTime = t; }
     /*!
      * Get music time.
      */
-    inline QString getMusicPlayTime() const { return m_musicPlayTime;}
+    inline QString getMusicPlayTime() const { return m_musicPlayTime; }
     /*!
      * Set music add time.
      */
-    inline void setMusicAddTime(const qint64 &t) { m_musicAddTime = t;}
+    inline void setMusicAddTime(const qint64 t) { m_musicAddTime = t; }
     /*!
      * Get music add time.
      */
-    inline qint64 getMusicAddTime() const { return m_musicAddTime;}
+    inline qint64 getMusicAddTime() const { return m_musicAddTime; }
     /*!
      * Set music size.
      */
-    inline void setMusicSize(const qint64 s) { m_musicSize = s;}
+    inline void setMusicSize(const qint64 s) { m_musicSize = s; }
     /*!
      * Get music size.
      */
-    inline qint64 getMusicSize() const { return m_musicSize;}
+    inline qint64 getMusicSize() const { return m_musicSize; }
     /*!
      * Set music play count.
      */
-    inline void setMusicPlayCount(const int c) { m_musicPlayCount = c;}
+    inline void setMusicPlayCount(const int c) { m_musicPlayCount = c; }
     /*!
      * Get music play count.
      */
-    inline int getMusicPlayCount() const { return m_musicPlayCount;}
+    inline int getMusicPlayCount() const { return m_musicPlayCount; }
     /*!
      * Set music sort type.
      */
-    inline void setMusicSort(const Sort s) { m_sortType = s;}
+    inline void setMusicSort(const Sort s) { m_sortType = s; }
     /*!
      * Get music sort type.
      */
-    inline Sort getMusicSort() const { return m_sortType;}
+    inline Sort getMusicSort() const { return m_sortType; }
     /*!
      * Operator == function.
      */
@@ -180,7 +174,7 @@ protected:
 };
 TTK_DECLARE_LISTS(MusicSong)
 
-////////////////////////////////////////////////////////
+//
 class MusicSongsListAbstractTableWidget;
 
 /*! @brief The class of the music song sort tag.
@@ -207,7 +201,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
     QString m_itemName;
     MusicSort m_sort;
     MusicSongs m_songs;
-    MusicSongsListAbstractTableWidget* m_itemObject;
+    MusicSongsListAbstractTableWidget *m_itemObject;
 
     MusicSongItem()
     {

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistAlbumsItemWidget(QWidget *parent = 0);
+    explicit MusicArtistAlbumsItemWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistAlbumsItemWidget();
 
@@ -77,7 +77,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistMvsFoundWidget(QWidget *parent = 0);
+    explicit MusicArtistMvsFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistMvsFoundWidget();
 
@@ -128,7 +128,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistSimilarFoundWidget(QWidget *parent = 0);
+    explicit MusicArtistSimilarFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistSimilarFoundWidget();
 
@@ -173,7 +173,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistAlbumsFoundWidget(QWidget *parent = 0);
+    explicit MusicArtistAlbumsFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistAlbumsFoundWidget();
 
@@ -217,7 +217,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistFoundTableWidget(QWidget *parent = 0);
+    explicit MusicArtistFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistFoundTableWidget();
 
@@ -240,7 +240,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistFoundWidget(QWidget *parent = 0);
+    explicit MusicArtistFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistFoundWidget();
 

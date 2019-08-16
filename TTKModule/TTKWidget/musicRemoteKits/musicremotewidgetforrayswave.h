@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForRaysWave(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForRaysWave(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForRaysWave();
 
@@ -44,11 +44,6 @@ public:
     virtual void setLabelText(const QString &value) override;
 
 protected:
-    /*!
-     * Enable rayswave control.
-     */
-    void enablePlugin(bool enable);
-
     MusicMarqueeWidget *m_songNameLabel;
 
 };

@@ -8,8 +8,7 @@
 
 const QString BIG_ART_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0=";
 
-MusicQQBackgroundThread::MusicQQBackgroundThread(const QString &name, const QString &save,
-                                                 QObject *parent)
+MusicQQBackgroundThread::MusicQQBackgroundThread(const QString &name, const QString &save, QObject *parent)
     : MusicDownloadBackgroundThread(name, save, parent)
 {
     m_manager = new QNetworkAccessManager(this);
@@ -31,14 +30,14 @@ void MusicQQBackgroundThread::deleteAll()
 void MusicQQBackgroundThread::startToDownload()
 {
     M_LOGGER_INFO(QString("%1 startToDownload").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadDataFinished()));
@@ -57,12 +56,12 @@ void MusicQQBackgroundThread::downLoadDataFinished()
     QString songId;
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
 
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -70,7 +69,7 @@ void MusicQQBackgroundThread::downLoadDataFinished()
             {
                 value = value["data"].toMap();
                 value = value["song"].toMap();
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -102,8 +101,9 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QStringList datas;
-        QString text(m_reply->readAll());
+        const QString text(m_reply->readAll());
         QRegExp regx(QString("<url>([^<]+)</url>"));
+
         int pos = text.indexOf(regx);
         while(pos != -1)
         {
@@ -118,7 +118,7 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
             {
                 M_LOGGER_ERROR(url);
                 MusicDataDownloadThread *download = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
-                                                        .arg(m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBG, this);
+                                                        .arg(m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                 download->startToDownload();
             }
@@ -130,14 +130,14 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
 void MusicQQBackgroundThread::downLoadUrl(const QString &id)
 {
     M_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(getClassName()).arg(id));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));

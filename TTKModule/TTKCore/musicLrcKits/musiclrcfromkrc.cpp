@@ -30,12 +30,11 @@ MusicLrcFromKrc::~MusicLrcFromKrc()
 
 bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
 {
-    FILE *fp;
+    FILE *fp = nullptr;
     struct stat st;
     size_t dstsize;
 
-    fp = fopen(MusicUtils::Codec::toLocal8Bit(input), "rb");
-    if(!fp)
+    if((fp = fopen(MusicUtils::Codec::toLocal8Bit(input), "rb")) == nullptr)
     {
         M_LOGGER_ERROR("open file error !");
         return false;
@@ -77,7 +76,6 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     delete[] src;
     fclose(fp);
 
-    ///write data to file
     if(!output.isEmpty())
     {
         QFile file(output);
@@ -99,11 +97,11 @@ QByteArray MusicLrcFromKrc::getDecodeString() const
 
 int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
 {
-    unsigned int c1, c2;
+    uint c1, c2;
     while(n)
     {
-        c1 = (unsigned int) *s1++;
-        c2 = (unsigned int) *s2++;
+        c1 = (uint) *s1++;
+        c2 = (uint) *s2++;
 
         c1 = (c1 >= 'A' && c1 <= 'Z') ? (c1 | 0x20) : c1;
         c2 = (c2 >= 'A' && c2 <= 'Z') ? (c2 | 0x20) : c2;
@@ -122,7 +120,7 @@ int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
     return 0;
 }
 
-int MusicLrcFromKrc::decompression(unsigned char *src, size_t srcsize, size_t *dstsize)
+int MusicLrcFromKrc::decompression(uchar *src, size_t srcsize, size_t *dstsize)
 {
     *dstsize = MH_MB2B*MH_B2BS;
     if(Z_OK != uncompress(m_resultBytes, (uLongf*)dstsize, src, srcsize))
@@ -134,38 +132,38 @@ int MusicLrcFromKrc::decompression(unsigned char *src, size_t srcsize, size_t *d
 
 int MusicLrcFromKrc::isfilter(char *tok)
 {
-    if(!sncasecmp(tok, const_cast<char*>(std::string("[id").c_str()), 3))
+    if(!sncasecmp(tok, const_cast<char*>(MString("[id").c_str()), 3))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, const_cast<char*>(std::string("[by").c_str()), 3))
+    else if(!sncasecmp(tok, const_cast<char*>(MString("[by").c_str()), 3))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, const_cast<char*>(std::string("[hash").c_str()), 5))
+    else if(!sncasecmp(tok, const_cast<char*>(MString("[hash").c_str()), 5))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, const_cast<char*>(std::string("[al").c_str()), 3))
+    else if(!sncasecmp(tok, const_cast<char*>(MString("[al").c_str()), 3))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, const_cast<char*>(std::string("[sign").c_str()), 5))
+    else if(!sncasecmp(tok, const_cast<char*>(MString("[sign").c_str()), 5))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, const_cast<char*>(std::string("[total").c_str()), 6))
+    else if(!sncasecmp(tok, const_cast<char*>(MString("[total").c_str()), 6))
     {
         return 1;
     }
-    else if(!sncasecmp(tok, const_cast<char*>(std::string("[offset").c_str()), 7))
+    else if(!sncasecmp(tok, const_cast<char*>(MString("[offset").c_str()), 7))
     {
         return 1;
     }
     return 0;
 }
 
-void MusicLrcFromKrc::createLrc(unsigned char *lrc, int lrclen)
+void MusicLrcFromKrc::createLrc(uchar *lrc, int lrclen)
 {
     m_data.clear();
     int top = 0;

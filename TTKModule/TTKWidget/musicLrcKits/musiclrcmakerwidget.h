@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcMakerWidgetItem(QWidget *ui = 0, QObject *parent = 0);
+    explicit MusicLrcMakerWidgetItem(QWidget *ui = nullptr, QObject *parent = nullptr);
 
     /*!
      * Check the last index.
@@ -101,7 +101,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcMakerWidget(QWidget *parent = 0);
+    explicit MusicLrcMakerWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcMakerWidget();
 

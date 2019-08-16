@@ -1,17 +1,17 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicinlinefloatuiobject.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 
 #include <qmath.h>
 #include <QTimer>
 #include <QPainter>
 
-#define PHOTO_WIDTH     110
-#define PHOTO_HEIGHT    65
-#define PHOTO_PERLINE   3
-#define PHOTO_BG_WIDTH  44
+#define PHOTO_WIDTH              110
+#define PHOTO_HEIGHT             65
+#define PHOTO_PERLINE            3
+#define PHOTO_BACKGROUNDG_WIDTH  44
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
     : MusicClickedLabel(parent)
@@ -82,7 +82,7 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
 
 void MusicLrcFloatPhotoItem::exportArtPixmap()
 {
-    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &filename = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         QPixmap pix(m_pixPath);
@@ -123,17 +123,17 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MBackgroundStyle08));
 
-    m_filmBGWidget = new QWidget(this);
-    m_filmBGWidget->setGeometry(0, 0, 680, 125);
+    m_filmBackgroundWidget = new QWidget(this);
+    m_filmBackgroundWidget->setGeometry(0, 0, 680, 125);
 
     MusicLrcFloatPhotoItem *item;
-    item = new MusicLrcFloatPhotoItem(0, m_filmBGWidget);
+    item = new MusicLrcFloatPhotoItem(0, m_filmBackgroundWidget);
     item->move(109, 30);
     m_planes << item;
-    item = new MusicLrcFloatPhotoItem(1, m_filmBGWidget);
+    item = new MusicLrcFloatPhotoItem(1, m_filmBackgroundWidget);
     item->move(289, 30);
     m_planes << item;
-    item = new MusicLrcFloatPhotoItem(2, m_filmBGWidget);
+    item = new MusicLrcFloatPhotoItem(2, m_filmBackgroundWidget);
     item->move(469, 30);
     m_planes << item;
 
@@ -147,9 +147,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_confirmButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_previous = new QPushButton("<", m_filmBGWidget);
+    m_previous = new QPushButton("<", m_filmBackgroundWidget);
     m_previous->setGeometry(29, 38, 15, 50);
-    m_next = new QPushButton(">", m_filmBGWidget);
+    m_next = new QPushButton(">", m_filmBackgroundWidget);
     m_next->setGeometry(634, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
@@ -171,7 +171,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
     foreach(MusicLrcFloatPhotoItem *item, m_planes)
     {
-        connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBg(int)));
+        connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     }
     connect(M_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
@@ -185,7 +185,7 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_next;
     delete m_confirmButton;
     delete m_checkBox;
-    delete m_filmBGWidget;
+    delete m_filmBackgroundWidget;
 }
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
@@ -193,7 +193,7 @@ void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
     m_rectIn = QRect(0, 555 + height, 133 + width, 105);
     m_rectOut = QRect(0, 355 + height, 680 + width, 180);
 
-    m_filmBGWidget->move(width/2, 0);
+    m_filmBackgroundWidget->move(width/2, 0);
     m_checkBox->move(width/2 + 20, 130);
     m_confirmButton->move(width/2 + 580, 130);
 
@@ -220,7 +220,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list << m_artPath[i];
     }
-    M_BACKGROUND_PTR->setArtPhotoPathList(list);
+    M_BACKGROUND_PTR->setArtistPhotoPathList(list);
     close();
 }
 
@@ -228,9 +228,14 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    m_next->setEnabled(m_currentIndex != (page = page < 0 ? 0 : page) );
+    if(page < 0)
+    {
+        page = 0;
+    }
 
-    int indexCheck = m_currentIndex * PHOTO_PERLINE;
+    m_next->setEnabled(m_currentIndex != page);
+
+    const int indexCheck = m_currentIndex * PHOTO_PERLINE;
     for(int i=0; i<m_planes.count(); ++i)
     {
         m_planes[i]->setPhoto( (indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString() );
@@ -258,7 +263,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     }
 
     m_selectNum.clear();
-    m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();
+    m_artPath = M_BACKGROUND_PTR->getArtistPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;
@@ -268,16 +273,21 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 void MusicLrcFloatPhotoWidget::photoNext()
 {
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    if(++m_currentIndex > (page = (page < 0) ? 0 : page))
+    if(page < 0)
+    {
+        page = 0;
+    }
+
+    if(++m_currentIndex > page)
     {
         m_currentIndex = page;
     }
     showPhoto();
 }
 
-void MusicLrcFloatPhotoWidget::sendUserSelectArtBg(int index)
+void MusicLrcFloatPhotoWidget::sendUserSelectArtBackground(int index)
 {
-    M_BACKGROUND_PTR->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + index);
+    M_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * PHOTO_PERLINE + index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
@@ -326,8 +336,8 @@ void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
     MusicFloatAbstractWidget::paintEvent(event);
 
     QPainter painter(this);
-    for(int i=0; i<=ceil(width()/PHOTO_BG_WIDTH); ++i)
+    for(int i=0; i<= ceil(width()/PHOTO_BACKGROUNDG_WIDTH); ++i)
     {
-        painter.drawPixmap(PHOTO_BG_WIDTH*i, 0, QPixmap(":/lrc/lb_film_bg"));
+        painter.drawPixmap(PHOTO_BACKGROUNDG_WIDTH*i, 0, QPixmap(":/lrc/lb_film_bg"));
     }
 }

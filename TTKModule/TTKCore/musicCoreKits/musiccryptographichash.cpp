@@ -3,7 +3,7 @@
 #define XXTEA_MX (z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (k[p & 3 ^ e] ^ z)
 #define XXTEA_DELTA 0x9E3779B9
 
-const std::string base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const MString base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 MusicCryptographicHash::MusicCryptographicHash()
 {
@@ -12,54 +12,57 @@ MusicCryptographicHash::MusicCryptographicHash()
 
 QString MusicCryptographicHash::encrypt(const QString &data, const QString &key)
 {
-    QString d = data;
-    d = xxteaEncrypt(d, key).toUtf8().toBase64();
-    return d;
+    return xxteaEncrypt(data, key).toUtf8().toBase64();
 }
 
 QString MusicCryptographicHash::decrypt(const QString &data, const QString &key)
 {
-    QString d = data;
-    d = xxteaDecrypt(QByteArray::fromBase64(d.toUtf8()), key);
-    return d;
+    return xxteaDecrypt(QByteArray::fromBase64(data.toUtf8()), key);
 }
 
-std::string MusicCryptographicHash::xxteaEncrypt(std::string data, std::string key)
+MString MusicCryptographicHash::xxteaEncrypt(const MString &data, const MString &key)
 {
-    data = QString(QString(data.c_str()).toUtf8()).toStdString();
-    unsigned char date_uchar[1024];
-    strcpy((char*)date_uchar,(const char *)data.c_str());
-    unsigned char key_uchar[1024];
-    strcpy((char*)key_uchar,(const char *)key.c_str());
+    const MString &raw = QString(QString(data.c_str()).toUtf8()).toStdString();
+
+    uchar date_uchar[1024];
+    strcpy((char*)date_uchar, (const char *)raw.c_str());
+    uchar key_uchar[1024];
+    strcpy((char*)key_uchar, (const char *)key.c_str());
+
     xxtea_uint s[1];
-    unsigned char * encrypt = xxteaEncrypt(date_uchar,strlen((const char *)date_uchar),key_uchar,strlen((const char *)key_uchar),s);
-    std::string encoded = base64Encode(encrypt,s[0]);
+    uchar *encrypt = xxteaEncrypt(date_uchar, strlen((const char *)date_uchar), key_uchar, strlen((const char *)key_uchar), s);
+    const MString &encode = base64Encode(encrypt, s[0]);
     free(encrypt);
-    return encoded;
+
+    return encode;
 }
 
-std::string MusicCryptographicHash::xxteaDecrypt(std::string data,  std::string key)
+MString MusicCryptographicHash::xxteaDecrypt(const MString &data, const MString &key)
 {
-    std::string decoded = base64Decode(data);
-    if(decoded.empty())
+    const MString &decode = base64Decode(data);
+    if(decode.empty())
     {
-        return std::string("");
+        return MString("");
     }
-    unsigned char date_uchar[1024];
-    memcpy(date_uchar, decoded.c_str(),decoded.length());
-    date_uchar[decoded.length()] = '\0';
-    unsigned char key_uchar[1024];
-    strcpy((char*)key_uchar,(const char *)key.c_str());
+
+    uchar date_uchar[1024];
+    memcpy(date_uchar, decode.c_str(), decode.length());
+    date_uchar[decode.length()] = '\0';
+    uchar key_uchar[1024];
+    strcpy((char*)key_uchar, (const char *)key.c_str());
+
     xxtea_uint s[1];
-    unsigned char * encrypt = xxteaDecrypt(date_uchar,decoded.length(),key_uchar,strlen((const char *)key_uchar),s);
+    uchar *encrypt = xxteaDecrypt(date_uchar, decode.length(), key_uchar, strlen((const char *)key_uchar), s);
     if(!encrypt)
     {
-        return std::string("false_false");
+        return MString("false_false");
     }
-    std::string result = (char *)encrypt;
-    result = QString::fromUtf8(result.c_str()).toStdString();
+
+    MString raw = (char*)encrypt;
+    raw = QString::fromUtf8(raw.c_str()).toStdString();
     free(encrypt);
-    return result;
+
+    return raw;
 }
 
 QString MusicCryptographicHash::xxteaEncrypt(const QString &data, const QString &key)
@@ -72,16 +75,16 @@ QString MusicCryptographicHash::xxteaDecrypt(const QString &data, const QString 
     return xxteaDecrypt(data.toStdString(), key.toStdString()).c_str();
 }
 
-bool MusicCryptographicHash::isBase64(unsigned char c)
+bool MusicCryptographicHash::isBase64(uchar c)
 {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
-std::string MusicCryptographicHash::base64Encode(unsigned char const* bytes_to_encode, unsigned int in_len)
+MString MusicCryptographicHash::base64Encode(uchar const* bytes_to_encode, uint in_len)
 {
-    std::string ret;
+    MString ret;
     int i = 0, j = 0;
-    unsigned char char_array_3[3], char_array_4[4];
+    uchar char_array_3[3], char_array_4[4];
 
     while (in_len--)
     {
@@ -127,12 +130,12 @@ std::string MusicCryptographicHash::base64Encode(unsigned char const* bytes_to_e
     return ret;
 }
 
-std::string MusicCryptographicHash::base64Decode(std::string const& encoded_string)
+MString MusicCryptographicHash::base64Decode(const MString &encoded_string)
 {
     int in_len = encoded_string.size();
     int i = 0, j = 0, in_ = 0;
-    unsigned char char_array_4[4], char_array_3[3];
-    std::string ret;
+    uchar char_array_4[4], char_array_3[3];
+    MString ret;
 
     while (in_len-- && ( encoded_string[in_] != '=') && isBase64(encoded_string[in_]))
     {
@@ -188,10 +191,12 @@ void MusicCryptographicHash::xxteaUintEncrypt(xxtea_uint *v, xxtea_uint len, xxt
     if(n < 1) {
         return;
     }
-    while (0 < q--) {
+    while (0 < q--)
+    {
         sum += XXTEA_DELTA;
         e = sum >> 2 & 3;
-        for (p = 0; p < n; p++) {
+        for (p = 0; p < n; p++)
+        {
             y = v[p + 1];
             z = v[p] += XXTEA_MX;
         }
@@ -207,9 +212,11 @@ void MusicCryptographicHash::xxteaUintDecrypt(xxtea_uint *v, xxtea_uint len, xxt
     if(n < 1) {
         return;
     }
-    while (sum != 0) {
+    while (sum != 0)
+    {
         e = sum >> 2 & 3;
-        for (p = n; p > 0; p--) {
+        for (p = n; p > 0; p--)
+        {
             z = v[p - 1];
             y = v[p] -= XXTEA_MX;
         }
@@ -219,50 +226,58 @@ void MusicCryptographicHash::xxteaUintDecrypt(xxtea_uint *v, xxtea_uint len, xxt
     }
 }
 
-unsigned char *MusicCryptographicHash::fixKeyLength(unsigned char *key, xxtea_uint key_len)
+uchar *MusicCryptographicHash::fixKeyLength(uchar *key, xxtea_uint key_len)
 {
-    unsigned char *tmp = (unsigned char *)malloc(16);
+    uchar *tmp = (uchar *)malloc(16);
     memcpy(tmp, key, key_len);
     memset(tmp + key_len, '\0', 16 - key_len);
     return tmp;
 }
 
-xxtea_uint *MusicCryptographicHash::xxteaToUintArray(unsigned char *data, xxtea_uint len, int include_length, xxtea_uint *ret_len)
+xxtea_uint *MusicCryptographicHash::xxteaToUintArray(uchar *data, xxtea_uint len, int include_length, xxtea_uint *ret_len)
 {
     xxtea_uint i, n, *result;
 
     n = len >> 2;
     n = (((len & 3) == 0) ? n : n + 1);
-    if(include_length) {
+    if(include_length)
+    {
         result = (xxtea_uint *)malloc((n + 1) << 2);
         result[n] = len;
         *ret_len = n + 1;
-    } else {
+    } else
+    {
         result = (xxtea_uint *)malloc(n << 2);
         *ret_len = n;
     }
     memset(result, 0, n << 2);
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < len; i++)
+    {
         result[i >> 2] |= (xxtea_uint)data[i] << ((i & 3) << 3);
     }
 
     return result;
 }
 
-unsigned char *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int include_length, xxtea_uint *ret_len)
+uchar *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int include_length, xxtea_uint *ret_len)
 {
     xxtea_uint i, n, m;
-    unsigned char *result;
+    uchar *result;
 
     n = len << 2;
-    if(include_length) {
+    if(include_length)
+    {
         m = data[len - 1];
-        if((m < n - 7) || (m > n - 4)) return nullptr;
+        if((m < n - 7) || (m > n - 4))
+        {
+            return nullptr;
+        }
         n = m;
     }
-    result = (unsigned char *)malloc(n + 1);
-    for (i = 0; i < n; i++) {
-        result[i] = (unsigned char)((data[i >> 2] >> ((i & 3) << 3)) & 0xFF);
+    result = (uchar *)malloc(n + 1);
+    for (i = 0; i < n; i++)
+    {
+        result[i] = (uchar)((data[i >> 2] >> ((i & 3) << 3)) & 0xFF);
     }
     result[n] = '\0';
     *ret_len = n;
@@ -270,9 +285,9 @@ unsigned char *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_
     return result;
 }
 
-unsigned char *MusicCryptographicHash::doXxteaEncrypt(unsigned char *data, xxtea_uint len, unsigned char *key, xxtea_uint *ret_len)
+uchar *MusicCryptographicHash::doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *ret_len)
 {
-    unsigned char *result;
+    uchar *result;
     xxtea_uint *v, *k, v_len, k_len;
 
     v = xxteaToUintArray(data, len, 1, &v_len);
@@ -285,9 +300,9 @@ unsigned char *MusicCryptographicHash::doXxteaEncrypt(unsigned char *data, xxtea
     return result;
 }
 
-unsigned char *MusicCryptographicHash::doXxteaDecrypt(unsigned char *data, xxtea_uint len, unsigned char *key, xxtea_uint *ret_len)
+uchar *MusicCryptographicHash::doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *ret_len)
 {
-    unsigned char *result;
+    uchar *result;
     xxtea_uint *v, *k, v_len, k_len;
 
     v = xxteaToUintArray(data, len, 0, &v_len);
@@ -300,14 +315,15 @@ unsigned char *MusicCryptographicHash::doXxteaDecrypt(unsigned char *data, xxtea
     return result;
 }
 
-unsigned char *MusicCryptographicHash::xxteaEncrypt(unsigned char *data, xxtea_uint data_len, unsigned char *key, xxtea_uint key_len, xxtea_uint *ret_length)
+uchar *MusicCryptographicHash::xxteaEncrypt(uchar *data, xxtea_uint data_len, uchar *key, xxtea_uint key_len, xxtea_uint *ret_length)
 {
-    unsigned char *result;
+    uchar *result;
 
     *ret_length = 0;
 
-    if(key_len < 16) {
-        unsigned char *key2 = fixKeyLength(key, key_len);
+    if(key_len < 16)
+    {
+        uchar *key2 = fixKeyLength(key, key_len);
         result = doXxteaEncrypt(data, data_len, key2, ret_length);
         free(key2);
     }
@@ -319,14 +335,15 @@ unsigned char *MusicCryptographicHash::xxteaEncrypt(unsigned char *data, xxtea_u
     return result;
 }
 
-unsigned char *MusicCryptographicHash::xxteaDecrypt(unsigned char *data, xxtea_uint data_len, unsigned char *key, xxtea_uint key_len, xxtea_uint *ret_length)
+uchar *MusicCryptographicHash::xxteaDecrypt(uchar *data, xxtea_uint data_len, uchar *key, xxtea_uint key_len, xxtea_uint *ret_length)
 {
-    unsigned char *result;
+    uchar *result;
 
     *ret_length = 0;
 
-    if(key_len < 16) {
-        unsigned char *key2 = fixKeyLength(key, key_len);
+    if(key_len < 16)
+    {
+        uchar *key2 = fixKeyLength(key, key_len);
         result = doXxteaDecrypt(data, data_len, key2, ret_length);
         free(key2);
     }

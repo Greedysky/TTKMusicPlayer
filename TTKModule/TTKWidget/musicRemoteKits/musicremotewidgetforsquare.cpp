@@ -18,6 +18,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
         grid->setColumnStretch(j, 1);
     }
     m_mainWidget->setFixedSize(70, 70);
+
     grid->addWidget(m_PlayButton, 0, 1, Qt::AlignCenter);
     grid->addWidget(m_PreSongButton, 1, 0, Qt::AlignCenter);
     grid->addWidget(m_NextSongButton, 1, 2, Qt::AlignCenter);

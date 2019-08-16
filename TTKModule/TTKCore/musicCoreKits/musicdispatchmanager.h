@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,10 +67,8 @@ public:
     void dispatch(int type);
     void dispatch(int type, const QVariant &arg1);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2);
-    void dispatch(int type, const QVariant &arg1, const QVariant &arg2,
-                  const QVariant &arg3);
-    void dispatch(int type, const QVariant &arg1, const QVariant &arg2,
-                  const QVariant &arg3, const QVariant &arg4);
+    void dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3);
+    void dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4);
     void dispatch(int type, const QList<QVariant> &args);
     void dispatch(int type, void *funcs);
 

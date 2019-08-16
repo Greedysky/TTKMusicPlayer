@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,56 +24,142 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include <QObject>
+#include <QCoreApplication>
 #include <QPixmap>
+#include <QVariant>
+#include <QFlags>
 #include "tagmodel.h"
+
+
+/*! @brief Container of extra file/track property.
+ * @author Ilya Kotov <forkotov02@ya.ru>
+ */
+class QMMP_EXPORT MetaDataItem
+{
+public:
+    /*!
+     * Constructor
+     * \param name Localized name of property.
+     * \param value Property value.
+     * \param suffix Localized suffix of property (i.e. kB, kB/s, etc).
+     */
+    MetaDataItem(const QString &name, const QVariant &value, const QString &suffix = QString());
+    /*!
+     * Returns localized name of property.
+     */
+    const QString &name() const;
+    /*!
+     * Changes localized name to \b name
+     */
+    void setName(const QString &name);
+    /*!
+     * Returns property value.
+     */
+    const QVariant &value() const;
+    /*!
+     * Returns value of property.
+     */
+    void setValue(const QString &value);
+    /*!
+     * Returns suffix of property.
+     */
+    const QString &suffix() const;
+    /*!
+     * Changes property suffix to \b suffixed
+     */
+    void setSuffix(const QString &suffix);
+
+private:
+    QString m_name, m_suffix;
+    QVariant m_value;
+};
 
 /*! @brief The MetaDataModel is the base interface class of metadata access.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class MetaDataModel : public QObject
+class QMMP_EXPORT MetaDataModel
 {
-Q_OBJECT
 public:
     /*!
-     * Constructor.
-     * @param parent Parent Object.
+     * Details dialog settings.
      */
-    MetaDataModel(QObject *parent = 0);
+    enum DialogHint
+    {
+        NO_HINTS = 0x0,               /*!< Default value. */
+        IS_COVER_EDITABLE = 0x1,      /*!< Enable cover editor. */
+        COMPLETE_PROPERTY_LIST = 0x2  /*!< Show properties from \b extraProperties() only (ignore other sources) */
+    };
+    Q_DECLARE_FLAGS(DialogHints, DialogHint)
+    /*!
+     * Constructor.
+     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
+     * @param hints Details dialog settings.
+     */
+    MetaDataModel(bool readOnly, DialogHints hints = NO_HINTS);
     /*!
      * Destructor.
      */
     virtual ~MetaDataModel();
     /*!
-     * Returns an associative array of the audio properties.
-     * Subclass should reimplement this function. Default implementation returns empty array.
+     * Returns extra properties of the media source (in addition to the \b Qmmp::TrackProperty values).
+     * Default implemetation returns empty array.
      */
-    virtual QHash<QString, QString> audioProperties();
+    virtual QList<MetaDataItem> extraProperties() const;
     /*!
-     * Returns an associative array of the long descriptions.
-     * Subclass should reimplement this function. Default implementation returns empty array.
+     * Returns a list of long descriptions.
+     * Default implemetation returns empty array.
      */
-    virtual QHash<QString, QString> descriptions();
+    virtual QList<MetaDataItem> descriptions() const;
     /*!
      * Returns a list of available tags.
      * Subclass should reimplement this function. Default implementation returns empty array.
      */
-    virtual QList<TagModel* > tags();
+    virtual QList<TagModel* > tags() const;
     /*!
      * Returns cover pixmap.
      * Subclass should reimplement this function. Default implementation returns empty pixmap.
      */
-    virtual QPixmap cover();
+    virtual QPixmap cover() const;
+    /*!
+     * Sets cover.
+     * @param pix Cover pixmap.
+     * Subclass should reimplement this function. Default implementation does nothing.
+     */
+    virtual void setCover(const QPixmap &pix);
+    /*!
+     * Removes cover.
+     * Subclass should reimplement this function. Default implementation does nothing.
+     */
+    virtual void removeCover();
     /*!
      * Returns path to cover pixmap.
      */
-    virtual QString coverPath();
+    virtual QString coverPath() const;
     /*!
-     * Set cover pixmap data.
-     * Subclass should reimplement this function. Default implementation returns empty pixmap.
+     * Returns \b true if file is opened in read only mode. Otherwise returns \b false.
      */
-    virtual bool setCover(const QByteArray &data);
+    bool isReadOnly() const;
+    /*!
+     * Returns details dialog hints.
+     */
+    const DialogHints &dialogHints() const;
 
+protected:
+    /*!
+     * Changes details dialog hints to \b hints
+     */
+    void setDialogHints(const DialogHints &hints);
+    /*!
+     * Enables/Disables read only mode (\b true - enabled, \b false - disable).
+     * @param readOnly read only mode (\b true - enabled, \b false - disable).
+     */
+    void setReadOnly(bool readOnly);
+
+private:
+    bool m_readOnly;
+    DialogHints m_dialogHints;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(MetaDataModel::DialogHints)
 
 #endif // METADATAMODEL_H

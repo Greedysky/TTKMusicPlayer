@@ -4,6 +4,7 @@
 #include "musictime.h"
 #include "musicalgorithmutils.h"
 #include "musicurlutils.h"
+#include "musicnetworkabstract.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -15,20 +16,14 @@
 
 void MusicDownLoadBDInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &id)
 {
-    QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(id)
-                  .arg(MusicTime::timeStamp());
-    QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
+    const QString &key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(id).arg(MusicTime::timeStamp());
+    QString eKey = QString(QAesWrap().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Url::urlEncode(eKey);
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
 
     request->setUrl(musicUrl);
-    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request->sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request->setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(request);
 }
 
 void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &bit)
@@ -50,14 +45,20 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
         if(value["error_code"].toInt() == 22000 && value.contains("songurl"))
         {
+            const QVariantMap &infoMap = value["songinfo"].toMap();
+            if(info->m_lrcUrl.isEmpty())
+            {
+                info->m_lrcUrl = infoMap["lrclink"].toString();
+            }
+
             value = value["songurl"].toMap();
-            QVariantList datas = value["url"].toList();
+            const QVariantList &datas = value["url"].toList();
             foreach(const QVariant &var, datas)
             {
                 if(var.isNull())
@@ -66,7 +67,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                 }
 
                 value = var.toMap();
-                int bitrate = value["file_bitrate"].toInt();
+                const int bitrate = value["file_bitrate"].toInt();
                 if(bit.toInt() == bitrate)
                 {
                     MusicObject::MusicSongAttribute attr;
@@ -94,11 +95,9 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QString &format, const QString &quality, bool all)
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all)
 {
-    QString formatString = format;
-    foreach(const QString &f, formatString.split(","))
+    foreach(const QString &f, format.split(","))
     {
         if(all)
         {
@@ -115,7 +114,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             if(f != FLC_FILE_PREFIX)
             {
-                int bit = MusicUtils::Number::transfromBitrateToNormal(f.toInt());
+                const int bit = MusicUtils::Number::transfromBitrateToNormal(f.toInt());
                 if(quality == QObject::tr("ST") && bit <= MB_64)
                 {
                     readFromMusicSongAttribute(info, f);
@@ -143,17 +142,13 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
 void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info)
 {
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -168,14 +163,14 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
         if(value["errorCode"].toInt() == 22000 && value.contains("data"))
         {
             value = value["data"].toMap();
-            QVariantList datas = value["songList"].toList();
+            const QVariantList &datas = value["songList"].toList();
             foreach(const QVariant &var, datas)
             {
                 if(var.isNull())
@@ -184,6 +179,11 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
                 }
 
                 value = var.toMap();
+                if(info->m_lrcUrl.isEmpty())
+                {
+                    info->m_lrcUrl = value["lrcLink"].toString();
+                }
+
                 value = value["linkinfo"].toMap();
                 if(!value.keys().isEmpty())
                 {
@@ -203,17 +203,13 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
 
 void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInformation *info)
 {
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -228,14 +224,14 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
         if(value["errorCode"].toInt() == 22000 && value.contains("data"))
         {
             value = value["data"].toMap();
-            QVariantList datas = value["songList"].toList();
+            const QVariantList &datas = value["songList"].toList();
             foreach(const QVariant &var, datas)
             {
                 if(var.isNull())
@@ -244,10 +240,14 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
                 }
 
                 value = var.toMap();
+                if(info->m_lrcUrl.isEmpty())
+                {
+                    info->m_lrcUrl = value["lrcLink"].toString();
+                }
+
                 MusicObject::MusicSongAttribute attr;
                 attr.m_url = value["songLink"].toString();
-                attr.m_url.replace(MusicUtils::Algorithm::mdII(BD_SONG_YYDOWN_URL, false),
-                                   MusicUtils::Algorithm::mdII(BD_SONG_SSDOWN_URL, false));
+                attr.m_url.replace(MusicUtils::Algorithm::mdII(BD_SONG_YYDOWN_URL, false), MusicUtils::Algorithm::mdII(BD_SONG_SSDOWN_URL, false));
                 attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                 attr.m_format = value["format"].toString();
                 attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["rate"].toInt());

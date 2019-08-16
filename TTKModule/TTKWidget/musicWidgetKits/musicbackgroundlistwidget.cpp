@@ -128,6 +128,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         {
             painter.drawText((width() - metric.width(m_name))/2, 32, m_name);
         }
+
         QString v = QString::number(m_imageInfo.m_useCount);
         painter.drawText((width() - metric.width(v))/2, 50, v);
                 v = m_imageInfo.m_name;
@@ -308,8 +309,8 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
     }
 
     m_layout->removeWidget(item);
-    int index = find(item);
-    int cIndex = find(m_currentItem);
+    const int index = find(item);
+    const int cIndex = find(m_currentItem);
     QFile::remove(item->getFilePath());
     m_items.takeAt(index)->deleteLater();
 

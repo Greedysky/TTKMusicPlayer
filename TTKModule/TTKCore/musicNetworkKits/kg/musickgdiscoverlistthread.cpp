@@ -17,16 +17,16 @@ void MusicKGDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    m_toplistInfo.clear();
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(6666);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(6666);
+    m_toplistInfo.clear();
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -46,18 +46,18 @@ void MusicKGDiscoverListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("songs"))
             {
                 value = value["songs"].toMap();
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 int where = datas.count();
                 where = (where > 0) ? qrand()%where : 0;
 
@@ -71,7 +71,7 @@ void MusicKGDiscoverListThread::downLoadFinished()
                         continue;
                     }
 
-                    QVariantMap value = var.toMap();
+                    const QVariantMap &value = var.toMap();
                     m_toplistInfo = value["filename"].toString();
                     break;
                 }

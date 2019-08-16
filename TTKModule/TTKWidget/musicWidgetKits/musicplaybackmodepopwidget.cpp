@@ -21,7 +21,7 @@ void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
                 setStyleSheet(MusicUIObject::MKGBtnRandom);
                 setToolTip(tr("RandomPlay"));
                 break;
-        case MusicObject::PM_PlayListLoop:
+        case MusicObject::PM_PlaylistLoop:
                 setStyleSheet(MusicUIObject::MKGBtnListLoop);
                 setToolTip(tr("ListCycle"));
                 break;
@@ -46,6 +46,6 @@ void MusicPlayBackModePopWidget::initWidget()
     m_menu->addAction(QIcon(":/functions/btn_once_hover"), tr("PlayOnce"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
     m_menu->addAction(QIcon(":/functions/btn_oneLoop_hover"), tr("SingleCycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
     m_menu->addAction(QIcon(":/functions/btn_order_hover"), tr("OrderPlay"), MusicApplication::instance(), SLOT(musicPlayOrder()));
-    m_menu->addAction(QIcon(":/functions/btn_listLoop_hover"), tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlayListLoop()));
+    m_menu->addAction(QIcon(":/functions/btn_listLoop_hover"), tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
     m_menu->addAction(QIcon(":/functions/btn_random_hover"), tr("RandomPlay"), MusicApplication::instance(), SLOT(musicPlayRandom()));
 }

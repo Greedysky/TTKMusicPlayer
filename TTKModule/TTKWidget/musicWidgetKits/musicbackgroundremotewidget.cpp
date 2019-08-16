@@ -20,7 +20,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     m_currentIndex = -1;
     m_queryThread = nullptr;
 
-    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBG, this);
+    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
 
 }
@@ -67,7 +67,7 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
     }
 
     QDir dir(".");
-    QString path = QString("%1%2").arg(CACHE_DIR_FULL).arg(m_groups[m_currentIndex].m_group);
+    const QString &path = QString("%1%2").arg(CACHE_DIR_FULL).arg(m_groups[m_currentIndex].m_group);
     dir.mkpath( path );
 
     m_listWidget->clearAllItems();
@@ -117,6 +117,7 @@ QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidge
         m_functionsWidget = new QWidget(object);
         m_functionsWidget->setGeometry(24, 70, 585, 20);
         m_functionsWidget->hide();
+
         QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
         hbox->setContentsMargins(9, 0, 0, 9);
         QButtonGroup *button = new QButtonGroup(m_functionsWidget);
@@ -182,7 +183,7 @@ void MusicBackgroundThunderWidget::outputRemoteSkin(MusicBackgroundImage &image,
         return;
     }
 
-    int index = QFileInfo(data).baseName().toInt();
+    const int index = QFileInfo(data).baseName().toInt();
     MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
     if(index >= 0 || index < items->count())
     {
@@ -249,8 +250,7 @@ void MusicBackgroundThunderWidget::buttonStyleChanged()
     {
         m_functionsItems[i]->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     }
-    m_functionsItems[m_currentIndex]->setStyleSheet(MusicUIObject::MPushButtonStyle02 +
-                                                    QString("QPushButton{%1}").arg(MusicUIObject::MColorStyle08));
+    m_functionsItems[m_currentIndex]->setStyleSheet(MusicUIObject::MPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MColorStyle08));
 }
 
 
@@ -283,7 +283,7 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
         return;
     }
 
-    int index = QFileInfo(data).baseName().toInt();
+    const int index = QFileInfo(data).baseName().toInt();
     MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
     if(index >= 0 || index < items->count())
     {

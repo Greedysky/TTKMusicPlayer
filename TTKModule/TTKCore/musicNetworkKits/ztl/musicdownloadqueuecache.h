@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,18 +42,18 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadQueueCache(MusicObject::DownloadType  type, QObject *parent = 0);
+    explicit MusicDownloadQueueCache(MusicObject::DownloadType  type, QObject *parent = nullptr);
 
     /*!
      * Object contsructor.
      */
     MusicDownloadQueueCache(const MusicDownloadQueueData &data,
-                            MusicObject::DownloadType  type, QObject *parent = 0);
+                            MusicObject::DownloadType  type, QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */
     MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas,
-                            MusicObject::DownloadType  type, QObject *parent = 0);
+                            MusicObject::DownloadType  type, QObject *parent = nullptr);
 
     ~MusicDownloadQueueCache();
 
@@ -69,6 +69,10 @@ public:
      * Abort current download thread.
      */
     void abort();
+    /*!
+     * Clear image download url queue.
+     */
+    void clear();
 
 public Q_SLOTS:
     /*!

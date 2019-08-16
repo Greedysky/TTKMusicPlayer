@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLeftAreaWidget(QWidget *parent = 0);
+    explicit MusicLeftAreaWidget(QWidget *parent = nullptr);
 
     ~MusicLeftAreaWidget();
 
@@ -66,10 +66,6 @@ public:
      * Create sound KMicro widget.
      */
     void createSoundKMicroWidget(const QString &name);
-    /*!
-     * Current is show full container.
-     */
-    bool isLrcWidgetShowFullScreen() const;
 
 Q_SIGNALS:
     /*!
@@ -94,10 +90,6 @@ public Q_SLOTS:
      * To download music data from net finished.
      */
     void musicDownloadSongFinished();
-    /*!
-     * Show full container or not.
-     */
-    void lrcWidgetShowFullScreen();
     /*!
      * Switch to selected item style.
      */
@@ -127,7 +119,6 @@ protected:
     Ui::MusicApplication *m_ui;
 
     int m_currentIndex;
-    bool m_lrcWidgetShowFullScreen;
     QWidget *m_stackedWidget;
     MusicSoundKMicroWidget *m_soundKMicroWidget;
     MusicQualityChoicePopWidget *m_qualityChoiceWidget;

@@ -6,7 +6,7 @@
 MusicDownLoadQueryQQThread::MusicDownLoadQueryQQThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-    m_queryServer = "QQ";
+    m_queryServer = QUERY_QQ_INTERFACE;
     m_pageSize = 30;
 }
 
@@ -37,17 +37,15 @@ void MusicDownLoadQueryQQThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false)
-                    .arg(m_searchText).arg(offset + 1).arg(m_pageSize);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize);
     m_interrupt = true;
     m_pageTotal = 0;
     m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -63,15 +61,13 @@ void MusicDownLoadQueryQQThread::startToSingleSearch(const QString &text)
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_MINFO_URL, false).arg(text);
-    deleteAll();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_MINFO_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
@@ -91,11 +87,11 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -104,7 +100,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["song"].toMap();
                 m_pageTotal = value["totalnum"].toInt();
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -120,7 +116,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                         {
                             continue;
                         }
-                        QVariantMap name = var.toMap();
+                        const QVariantMap &name = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
                     }
@@ -139,8 +135,8 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     {
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                         musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
-                                    .arg(musicInfo.m_albumId.right(2).left(1))
-                                    .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                                                  .arg(musicInfo.m_albumId.right(2).left(1))
+                                                  .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumname"].toString());
 
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
@@ -182,17 +178,17 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("data") && value["code"].toInt() == 0)
             {
-                QVariantList datas = value["data"].toList();
+                const QVariantList &datas = value["data"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -208,7 +204,7 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                         {
                             continue;
                         }
-                        QVariantMap name = var.toMap();
+                        const QVariantMap &name = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
                     }
@@ -218,14 +214,14 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                     m_rawData["songID"] = QString::number(value["id"].toLongLong());
                     musicInfo.m_songId = value["mid"].toString();
 
-                    QVariantMap albumMap = value["album"].toMap();
+                    const QVariantMap &albumMap = value["album"].toMap();
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumMap["name"].toString());
                     musicInfo.m_albumId = albumMap["mid"].toString();
 
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
-                                .arg(musicInfo.m_albumId.right(2).left(1))
-                                .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                                              .arg(musicInfo.m_albumId.right(2).left(1))
+                                              .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
 
                     musicInfo.m_year = value["time_public"].toString();
                     musicInfo.m_discNumber = value["cdIdx"].toString();

@@ -19,23 +19,49 @@ void MusicPlaylist::setPlaybackMode(MusicObject::PlayMode mode)
     m_playbackMode = mode;
 }
 
+int MusicPlaylist::mapItemIndex(const MusicPlayItem &item) const
+{
+    int playIndex = -1;
+    for(int i=0; i<m_mediaList.count(); ++i)
+    {
+        const MusicPlayItem &it = m_mediaList[i];
+        if(item == it)
+        {
+            playIndex = i;
+            break;
+        }
+    }
+
+    return playIndex;
+}
+
 int MusicPlaylist::currentIndex() const
 {
     return m_currentIndex;
 }
 
-QString MusicPlaylist::currentMediaString() const
+MusicPlayItem MusicPlaylist::currentItem() const
 {
     if(m_currentIndex == -1 || m_currentIndex >= m_mediaList.count())
     {
-        return QString();
+        return MusicPlayItem();
     }
-    return m_mediaList.isEmpty() ? QString() : m_mediaList[m_currentIndex];
+    return m_mediaList.isEmpty() ? MusicPlayItem() : m_mediaList[m_currentIndex];
 }
 
-QStringList MusicPlaylist::mediaList() const
+QString MusicPlaylist::currentMediaString() const
+{
+    return currentItem().m_path;
+}
+
+MusicPlayItems MusicPlaylist::mediaListConst() const
 {
     return m_mediaList;
+}
+
+MusicPlayItems *MusicPlaylist::mediaList()
+{
+    return &m_mediaList;
 }
 
 int MusicPlaylist::mediaCount() const
@@ -54,55 +80,83 @@ bool MusicPlaylist::clear()
     return isEmpty();
 }
 
-void MusicPlaylist::updateMediaLists(const QStringList &list, int index)
+int MusicPlaylist::find(int toolIndex, const QString &content, int from)
 {
-    addMedia(list);
-    setCurrentIndex(index);
+    return m_mediaList.indexOf(MusicPlayItem(toolIndex, content), from);
 }
 
-void MusicPlaylist::addMedia(const QString &content)
+void MusicPlaylist::addMedia(int toolIndex, const QString &content)
 {
-    m_mediaList = QStringList(content);
+    m_mediaList.clear();
+    m_laterMediaList.clear();
+    m_mediaList << MusicPlayItem(toolIndex, content);
 }
 
-void MusicPlaylist::addMedia(const QStringList &items)
+void MusicPlaylist::addMedia(int toolIndex, const QStringList &items)
 {
+    m_mediaList.clear();
+    m_laterMediaList.clear();
+    foreach(const QString &path, items)
+    {
+        m_mediaList << MusicPlayItem(toolIndex, path);
+    }
+}
+
+void MusicPlaylist::addMedia(const MusicPlayItem &item)
+{
+    m_mediaList.clear();
+    m_laterMediaList.clear();
+    m_mediaList << item;
+}
+
+void MusicPlaylist::addMedia(const MusicPlayItems &items)
+{
+    m_laterMediaList.clear();
     m_mediaList = items;
 }
 
-void MusicPlaylist::appendMedia(const QString &content)
+void MusicPlaylist::appendMedia(int toolIndex, const QString &content)
 {
-    m_mediaList.append(content);
+    m_mediaList << MusicPlayItem(toolIndex, content);
 }
 
-void MusicPlaylist::appendMedia(const QStringList &items)
+void MusicPlaylist::appendMedia(int toolIndex, const QStringList &items)
 {
-    m_mediaList.append(items);
+    foreach(const QString &path, items)
+    {
+        m_mediaList << MusicPlayItem(toolIndex, path);
+    }
 }
 
-bool MusicPlaylist::insertMedia(int index, const QString &content)
+void MusicPlaylist::appendMedia(const MusicPlayItem &item)
 {
-    if(index < 0 || index > m_mediaList.count())
-    {
-        return false;
-    }
-
-    m_mediaList.insert(index,content);
-    return true;
+    m_mediaList << item;
 }
 
-bool MusicPlaylist::insertMedia(int index, const QStringList &items)
+void MusicPlaylist::appendMedia(const MusicPlayItems &items)
 {
-    if(index < 0 || index > m_mediaList.count())
-    {
-        return false;
-    }
+    m_mediaList << items;
+}
 
-    for(int i = 0; i < items.count(); ++i)
+MusicPlayItems MusicPlaylist::laterListConst() const
+{
+    return m_laterMediaList;
+}
+
+void MusicPlaylist::insertLaterMedia(int toolIndex, const QString &content)
+{
+    if(m_currentIndex != -1)
     {
-        m_mediaList.insert(m_mediaList.count() + i, items[i]);
+        const int index = m_currentIndex + 1;
+        (index != m_mediaList.count()) ? m_mediaList.insert(index, MusicPlayItem(toolIndex, content))
+                                       : m_mediaList.append(MusicPlayItem(toolIndex, content));
+        m_laterMediaList << MusicPlayItem(index + m_laterMediaList.count(), content);
     }
-    return true;
+}
+
+void MusicPlaylist::laterListClear()
+{
+    m_laterMediaList.clear();
 }
 
 bool MusicPlaylist::removeMedia(int pos)
@@ -113,22 +167,20 @@ bool MusicPlaylist::removeMedia(int pos)
     }
 
     m_mediaList.removeAt(pos);
+    laterListClear();
     return true;
 }
 
-bool MusicPlaylist::removeMedia(int start, int end)
+int MusicPlaylist::removeMedia(int toolIndex, const QString &content)
 {
-    if(start > end || (start < 0 || end >= m_mediaList.count()))
+    const int index = find(toolIndex, content);
+    if(index != -1)
     {
-        return false;
+        m_mediaList.removeAt(index);
+        laterListClear();
     }
 
-    for(int i=0; i<end - start; ++i)
-    {
-        m_mediaList.removeAt(start);
-    }
-
-    return true;
+    return index;
 }
 
 void MusicPlaylist::setCurrentIndex(int index)
@@ -144,7 +196,7 @@ void MusicPlaylist::setCurrentIndex(int index)
                     m_currentIndex = -1;
                 }
                 break;
-            case MusicObject::PM_PlayListLoop:
+            case MusicObject::PM_PlaylistLoop:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = 0;
@@ -163,5 +215,21 @@ void MusicPlaylist::setCurrentIndex(int index)
         m_currentIndex = index;
     }
 
+    if(!m_laterMediaList.isEmpty())
+    {
+        const MusicPlayItem &item = m_laterMediaList.takeFirst();
+        m_currentIndex = item.m_toolIndex;
+        if(m_currentIndex < 0 || m_currentIndex >= m_mediaList.count())
+        {
+            m_currentIndex = -1;
+        }
+    }
+
     emit currentIndexChanged(m_currentIndex);
+}
+
+void MusicPlaylist::setCurrentIndex(int toolIndex, const QString &path)
+{
+    const int playIndex = mapItemIndex(MusicPlayItem(toolIndex, path));
+    setCurrentIndex(playIndex);
 }

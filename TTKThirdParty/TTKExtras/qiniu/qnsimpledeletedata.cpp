@@ -18,9 +18,8 @@ QNSimpleDeleteDataPrivate::QNSimpleDeleteDataPrivate()
 
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QNSimpleDeleteData::QNSimpleDeleteData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {
@@ -32,12 +31,11 @@ QNSimpleDeleteData::QNSimpleDeleteData(QNetworkAccessManager *networkManager, QO
 void QNSimpleDeleteData::deleteDataToServer(const QString &bucket, const QString &key)
 {
     TTK_D(QNSimpleDeleteData);
-    QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+    const QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     QNetworkRequest request = QNIOHelper::deleteRequest(bucket, key, &mac);
     QNetworkReply *reply = d->m_networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                   SLOT(handleError(QNetworkReply::NetworkError)));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 }
 
 void QNSimpleDeleteData::receiveDataFromServer()

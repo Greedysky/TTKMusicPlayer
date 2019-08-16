@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <functional>
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
 #  include <QtConcurrent/QtConcurrent>
 #else
 #  include <QtConcurrentRun>
@@ -36,7 +36,7 @@ void CodeLinesTest::codeLines()
 {
     int fileCount = 0, lineCount = 0;
 
-    QString currentPath = "../";
+    const QString currentPath = "../";
     if(currentPath.isEmpty())
     {
         return;

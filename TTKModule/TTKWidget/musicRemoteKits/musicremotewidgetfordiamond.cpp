@@ -26,6 +26,7 @@ MusicRemoteWidgetForDiamond::MusicRemoteWidgetForDiamond(QWidget *parent)
 void MusicRemoteWidgetForDiamond::paintEvent(QPaintEvent* event)
 {
     MusicRemoteWidget::paintEvent(event);
+
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     QPolygon pts;
@@ -33,5 +34,4 @@ void MusicRemoteWidgetForDiamond::paintEvent(QPaintEvent* event)
     QPainterPath path;
     path.addPolygon(pts);
     painter.fillPath(path, QBrush(QColor(0, 0, 0, 50)));
-    painter.end();
 }

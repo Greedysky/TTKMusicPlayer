@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBatchTableItem(QWidget *parent = 0);
+    explicit MusicDownloadBatchTableItem(QWidget *parent = nullptr);
 
     ~MusicDownloadBatchTableItem();
 
@@ -90,7 +90,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBatchTableWidget(QWidget *parent = 0);
+    explicit MusicDownloadBatchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadBatchTableWidget();
 
@@ -144,7 +144,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBatchWidget(QWidget *parent = 0);
+    explicit MusicDownloadBatchWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadBatchWidget();
 

@@ -16,7 +16,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsRenameCore(QObject *parent = 0);
+    explicit MusicSongCheckToolsRenameCore(QObject *parent = nullptr);
 
     ~MusicSongCheckToolsRenameCore();
 
@@ -76,7 +76,7 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateCore : public QThread
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateCore)
 public:
-    explicit MusicSongCheckToolsDuplicateCore(QObject *parent = 0);
+    explicit MusicSongCheckToolsDuplicateCore(QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */
@@ -138,7 +138,7 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityCore : public QThread
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsQualityCore)
 public:
-    explicit MusicSongCheckToolsQualityCore(QObject *parent = 0);
+    explicit MusicSongCheckToolsQualityCore(QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */

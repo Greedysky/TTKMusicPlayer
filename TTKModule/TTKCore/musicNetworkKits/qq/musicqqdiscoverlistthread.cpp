@@ -17,16 +17,16 @@ void MusicQQDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    m_toplistInfo.clear();
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_TOPLIST_C_URL, false).arg(4);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_TOPLIST_C_URL, false).arg(4);
+    m_toplistInfo.clear();
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -46,17 +46,17 @@ void MusicQQDiscoverListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 0 && value.contains("songlist"))
             {
-                QVariantList datas = value["songlist"].toList();
+                const QVariantList &datas = value["songlist"].toList();
                 int where = datas.count();
                 where = (where > 0) ? qrand()%where : 0;
 
@@ -73,14 +73,14 @@ void MusicQQDiscoverListThread::downLoadFinished()
                     value = var.toMap();
                     value = value["data"].toMap();
 
-                    QVariantList artistsArray = value["singer"].toList();
+                    const QVariantList &artistsArray = value["singer"].toList();
                     foreach(const QVariant &artistValue, artistsArray)
                     {
                         if(artistValue.isNull())
                         {
                             continue;
                         }
-                        QVariantMap artistMap = artistValue.toMap();
+                        const QVariantMap &artistMap = artistValue.toMap();
                         m_toplistInfo = artistMap["name"].toString();
                     }
 

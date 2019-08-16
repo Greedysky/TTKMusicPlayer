@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,7 @@
  */
 namespace MusicUIObject
 {
-///left item list style
-//////////////////////////////////////////////////////
+//left item list style
     const QString MKGItemMusic = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_music_normal);} \

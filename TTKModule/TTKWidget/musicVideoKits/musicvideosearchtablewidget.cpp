@@ -36,11 +36,11 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
@@ -54,11 +54,11 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
@@ -73,11 +73,11 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     m_singleRadioMode = true;
     d->setMusicSongInfos(MusicObject::MusicSongInformations() << data.value<MusicObject::MusicSongInformation>());
 }
@@ -118,11 +118,10 @@ void MusicVideoSearchTableWidget::resizeWindow(int delta)
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight,
-                                                   headerview->sectionSize(1) - 5));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
+
         it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight,
-                                                   headerview->sectionSize(2) - 5));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
     }
 }
 
@@ -169,7 +168,7 @@ void MusicVideoSearchTableWidget::clearAllItems()
 
 void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
-    int count = rowCount();
+    const int count = rowCount();
     setRowCount(count + 1);
 
     QHeaderView *headerview = horizontalHeader();
@@ -181,16 +180,14 @@ void MusicVideoSearchTableWidget::createSearchedItem(const MusicSearchedItem &so
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight,
-                                                 headerview->sectionSize(1) - 5));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 5));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight,
-                                                 headerview->sectionSize(2) - 5));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 2, item);
@@ -229,32 +226,31 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    MusicObject::MusicSongInformation musicSongInfo = m_downLoadManager->getMusicSongInfos()[row];
-    MusicObject::MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
+    const MusicObject::MusicSongInformation &musicSongInfo = m_downLoadManager->getMusicSongInfos()[row];
+    const MusicObject::MusicSongAttributes &attrs = musicSongInfo.m_songAttrs;
     if(!attrs.isEmpty())
     {
-        MusicObject::MusicSongAttribute attr = attrs.first();
-        QString url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
+        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const QString &url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         data.m_url = url;
         data.m_id = musicSongInfo.m_songId;
         data.m_server = m_downLoadManager->getQueryServer();
-        emit mvURLNameChanged(data);
+        emit mediaUrlNameChanged(data);
     }
 }
 
-void MusicVideoSearchTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &data)
+void MusicVideoSearchTableWidget::getMusicMediaInfo(MusicObject::MusicSongAttributes &data)
 {
     if(!m_downLoadManager)
     {
         return;
     }
 
-    int row = !m_singleRadioMode ? m_previousClickRow : 0;
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    data = (!musicSongInfos.isEmpty() && row != -1) ?
-            musicSongInfos[row].m_songAttrs : MusicObject::MusicSongAttributes();
+    const int row = !m_singleRadioMode ? m_previousClickRow : 0;
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    data = (!musicSongInfos.isEmpty() && row != -1) ? musicSongInfos[row].m_songAttrs : MusicObject::MusicSongAttributes();
 }
 
 void MusicVideoSearchTableWidget::downloadLocalFromControl()
@@ -283,7 +279,7 @@ void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

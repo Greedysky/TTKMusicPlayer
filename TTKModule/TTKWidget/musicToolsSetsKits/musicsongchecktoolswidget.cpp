@@ -6,7 +6,7 @@
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicsongchecktoolsitemselecteddialog.h"
+#include "musicsongitemselecteddialog.h"
 #include "musicotherdefine.h"
 
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
@@ -16,6 +16,7 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsRenames>("MusicSongCheckToolsRenames"));
     Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsDuplicates>("MusicSongCheckToolsDuplicates"));
     Q_UNUSED(qRegisterMetaType<MusicSongCheckToolsQualitys>("MusicSongCheckToolsQualitys"));
+
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -52,7 +53,7 @@ void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
     emit getMusicLists(songs);
 
     m_selectedItemIdFlag = true;
-    MusicSongCheckToolsItemSelectedDialog dialog;
+    MusicSongItemSelectedDialog dialog;
     connect(&dialog, SIGNAL(itemListsChanged(MIntList)), SLOT(itemListsChanged(MIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();
@@ -279,8 +280,7 @@ void MusicSongCheckToolsWidget::getSelectedSongItems()
         }
         else
         {
-            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST &&
-               item.m_itemIndex != MUSIC_RECENT_LIST)
+            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST && item.m_itemIndex != MUSIC_RECENT_LIST)
             {
                 m_localSongs << item.m_songs;
             }

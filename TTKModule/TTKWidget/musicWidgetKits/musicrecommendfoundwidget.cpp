@@ -93,7 +93,7 @@ void MusicRecommendFoundWidget::createLabels()
     QLabel *iconLabel = new QLabel(function);
     iconLabel->setPixmap(QPixmap(":/image/lb_recmd_daily"));
     grid->addWidget(iconLabel);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     grid->addWidget(m_container);
 
     m_mainWindow->layout()->addWidget(function);

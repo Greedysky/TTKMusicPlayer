@@ -24,9 +24,8 @@ void MusicTranslationThread::startToDownload(const QString &data)
 void MusicTranslationThread::startToDownload(TranslationType from, TranslationType to, const QString &data)
 {
     QNetworkRequest request;
-    request.setUrl( MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from))
-                                           .arg(data).arg(mapTypeFromEnumToString(to)) );
-    setSslConfiguration(&request);
+    request.setUrl(MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from)).arg(data).arg(mapTypeFromEnumToString(to)));
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -62,16 +61,16 @@ void MusicTranslationThread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             value = value["trans_result"].toMap();
-            QVariantList datas = value["data"].toList();
+            const QVariantList &datas = value["data"].toList();
             foreach(const QVariant &var, datas)
             {
                 value = var.toMap();

@@ -7,8 +7,7 @@
 
 const QString BIG_ART_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
 
-MusicKWBackgroundThread::MusicKWBackgroundThread(const QString &name, const QString &save,
-                                                 QObject *parent)
+MusicKWBackgroundThread::MusicKWBackgroundThread(const QString &name, const QString &save, QObject *parent)
     : MusicDownloadBackgroundThread(name, save, parent)
 {
 
@@ -29,20 +28,19 @@ void MusicKWBackgroundThread::downLoadDataFinished(const QByteArray &bytes)
 
     if(bytes != "NO_PIC")
     {
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap dataMap = data.toMap();
-            QVariantList datas = dataMap["array"].toList();
+            const QVariantList &datas = dataMap["array"].toList();
             foreach(const QVariant &value, datas)
             {
                 dataMap = value.toMap();
                 if(m_counter < 5 && !dataMap.isEmpty())
                 {
-                    QString url = dataMap.values().first().toString();
+                    const QString &url = dataMap.values().first().toString();
                     M_LOGGER_ERROR(url);
-                    MusicDataDownloadThread *download = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
-                                                            .arg(m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBG, this);
+                    MusicDataDownloadThread *download = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
                     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     download->startToDownload();
                 }

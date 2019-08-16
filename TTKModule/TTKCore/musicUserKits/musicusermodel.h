@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +35,12 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserModel(QObject *parent = 0,
-                            QSqlDatabase db = QSqlDatabase::database("user-data"));
+    explicit MusicUserModel(QObject *parent = nullptr, QSqlDatabase db = QSqlDatabase::database("user-data"));
 
     /*!
      * Insert user into databse by uid and pwd and mail.
      */
-    bool addUser(const MusicUserUIDItem &uid, const QString &pwd,
-                 const QString &mail, bool pwdMask = false);
+    bool addUser(const MusicUserUIDItem &uid, const QString &pwd, const QString &mail, bool pwdMask = false);
     /*!
      * Insert user into databse by user info record.
      */
@@ -50,17 +48,12 @@ public:
     /*!
      * Update user into databse by uid and pwd and mail and name and logintime.
      */
-    bool updateUser(const MusicUserUIDItem &uid, const QString &pwd,
-                    const QString &mail, const QString &name,
-                    const QString &time, bool pwdMask = false);
+    bool updateUser(const MusicUserUIDItem &uid, const QString &pwd, const QString &mail, const QString &name, const QString &time, bool pwdMask = false);
     /*!
      * Update user into databse by uid and name and sex and
      * birth and city and country nad sign.
      */
-    bool updateUser(const MusicUserUIDItem &uid, const QString &name,
-                    const QString &sex, const QString &birth,
-                    const QString &city, const QString &country,
-                    const QString &sign);
+    bool updateUser(const MusicUserUIDItem &uid, const QString &name, const QString &sex, const QString &birth, const QString &city, const QString &country, const QString &sign);
     /*!
      * Update user into databse by user info record.
      */
@@ -154,7 +147,7 @@ protected:
     /*!
      * Update record data by uid and field and data.
      */
-    bool updateRecordData(const MusicUserUIDItem &uid, const MStriantMap &data);
+    bool updateRecordData(const MusicUserUIDItem &uid, const MVariantMap &data);
     /*!
      * Set current database table by given uid.
      */

@@ -29,7 +29,8 @@ void MusicCloudFileInformationWidget::setFileInformation(QNDataItem *data)
     m_ui->fileFormatEdit->setText(data->m_mimeType);
     m_ui->fileSizeEdit->setText(MusicUtils::Number::size2Label(data->m_size));
     m_ui->fileKeyEdit->setText(data->m_hash);
-    QDateTime dt = QDateTime::fromMSecsSinceEpoch(data->m_putTime);
+
+    const QDateTime &dt = QDateTime::fromMSecsSinceEpoch(data->m_putTime);
     m_ui->fileUpdateTimeEdit->setText(dt.toString("yyyy-MM-dd hh:mm:ss"));
 }
 

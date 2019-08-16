@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,8 @@
  ================================================= */
 
 #include <QVariantMap>
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicglobaldefine.h"
-
-#define QN_BUKET_URL    "ZnVRQ1BoZW9TNXl4QXgvMzBmZU41MFA2YUJXWjdXdERDYjlLSkc0RFNkZFJTdUUwSUI3SVlBPT0="
 
 /*! @brief The class of source data query pdate thread.
  * @author Greedysky <greedysky@163.com>
@@ -36,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSourceUpdateThread(QObject *parent = 0);
+    explicit MusicSourceUpdateThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data.

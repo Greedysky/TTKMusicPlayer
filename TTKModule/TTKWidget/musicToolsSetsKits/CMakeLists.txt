@@ -16,8 +16,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolsitemselecteddialog.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicgrabwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.h
@@ -40,8 +38,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolsitemselecteddialog.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicgrabwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.cpp

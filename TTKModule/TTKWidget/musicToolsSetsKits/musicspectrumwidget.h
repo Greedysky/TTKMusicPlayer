@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "musicabstractmovewidget.h"
 
 class Spek;
-class QCheckBox;
+class QAbstractButton;
 
 namespace Ui {
 class MusicSpectrumWidget;
@@ -50,7 +50,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSpectrumWidget(QWidget *parent = 0);
+    explicit MusicSpectrumWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSpectrumWidget();
 
@@ -68,9 +68,9 @@ public Q_SLOTS:
      */
     void spectrumPlusTypeChanged(int index);
     /*!
-     * Spectrum Dazzle Type Changed.
+     * Spectrum Florid Type Changed.
      */
-    void spectrumDazzleTypeChanged(int index);
+    void spectrumFloridTypeChanged(int index);
     /*!
      * Override show function.
      */
@@ -86,21 +86,33 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * New spectrum widget.
+     * Spectrum types list.
      */
-    void newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    static QStringList spectrumTypeList();
     /*!
-     * New spek widget.
+     * Spectrum plus types list.
      */
-    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url = QString());
+    static QStringList spectrumPlusTypeList();
+    /*!
+     * Spectrum florid types list.
+     */
+    static QStringList spectrumFloridTypeList();
+    /*!
+     * Create spectrum widget.
+     */
+    void createSpectrumWidget(QAbstractButton *box, const QString &name, QLayout *layout);
+    /*!
+     * Create light widget.
+     */
+    void createLightWidget(QAbstractButton *box, const QString &name, QLayout *layout, const QString &url = QString());
+    /*!
+     * Create florid widget.
+     */
+    void createFloridWidget(QAbstractButton *box, const QString &name, QLayout *layout);
     /*!
      * Adjust widget layout.
      */
     void adjustWidgetLayout(int offset);
-    /*!
-     * Show spectrum by name and state.
-     */
-    void showSpectrum(const QString &name, bool state);
     /*!
      * Find spectrum widget index by name.
      */
@@ -108,7 +120,7 @@ protected:
     /*!
      * Show message box widget.
      */
-    void showMessageBoxWidget(QCheckBox *box);
+    void showMessageBoxWidget(QAbstractButton *box);
 
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;

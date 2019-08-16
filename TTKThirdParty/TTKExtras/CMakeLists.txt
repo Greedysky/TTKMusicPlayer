@@ -49,7 +49,7 @@ macro(_TO_FOUND_WEBENGINE module)
     set(USE_QT_WEBKIT_MODULE "2")
     message(STATUS "Message Found QT_WEBENGINE_MODULE component, build in KuGou by Qt webengine :" ${QT_WEBENGINE_MODULE})
   else()
-    message(STATUS "Message Not found QT_WEBENGINE_MODULE component, build in KuGou by no webkit")
+    message(STATUS "Message Not found QT_WEBENGINE_MODULE component, build in KuGou by no webengine")
   endif()
 endmacro(_TO_FOUND_WEBENGINE)
 
@@ -104,18 +104,26 @@ endif()
 set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
     qalg/aes.h
+    qalg/aes_locl.h
     qalg/base64.h
     qalg/cbc128.h
     qalg/qdeswrap.h
     qalg/qaeswrap.h
-    qhz2py/pinyinresource.h
-    qhz2py/chinesehelper.h
-    qhz2py/pinyinhelper.h
+    qdlna/dlnaclient.h
+    qdlna/dlnafinder.h
+    qdlna/dlnahelper.h
+    qdlna/dlnaservice.h
+    qdlna/dlnaxml.h
+    qhttpserver/http_parser.h
+    qhttpserver/qhttpconnection.h
+    qhttpserver/qhttprequest.h
+    qhttpserver/qhttpresponse.h
+    qhttpserver/qhttpserver.h
+    qhttpserver/qhttpserverfwd.h
     qimage/gaussianblur.h
     qimage/qimagewrap.h
-    qshortcut/qxtglobal.h
-    qshortcut/qxtglobalshortcut.h
-    qshortcut/qxtglobalshortcut_p.h
+    qshortcut/qglobalshortcut.h
+    qshortcut/qglobalshortcut_p.h
     qkugou/kugouurl.h
     qkugou/kugouwindow.h
     qkugou/kugouuiobject.h
@@ -153,14 +161,22 @@ set(MUSIC_HEADERS
 set(MUSIC_SOURCES
     qalg/aes_cbc.cpp
     qalg/aes_core.cpp
+    qalg/aes_ecb.cpp
     qalg/base64.cpp
     qalg/cbc128.cpp
     qalg/qdeswrap.cpp
     qalg/qaeswrap.cpp
-    qshortcut/qxtglobalshortcut.cpp
-    qhz2py/pinyinresource.cpp
-    qhz2py/chinesehelper.cpp
-    qhz2py/pinyinhelper.cpp
+    qdlna/dlnaclient.cpp
+    qdlna/dlnafinder.cpp
+    qdlna/dlnahelper.cpp
+    qdlna/dlnaservice.cpp
+    qdlna/dlnaxml.cpp
+    qhttpserver/http_parser.c
+    qhttpserver/qhttpconnection.cpp
+    qhttpserver/qhttprequest.cpp
+    qhttpserver/qhttpresponse.cpp
+    qhttpserver/qhttpserver.cpp
+    qshortcut/qglobalshortcut.cpp
     qimage/gaussianblur.cpp
     qimage/qimagewrap.cpp
     qkugou/kugouurl.cpp
@@ -196,9 +212,9 @@ set(MUSIC_SOURCES
   )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp ${TARGET_NAME}.rc)
+    list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_win.cpp ${TARGET_NAME}.rc)
 else(UNIX)
-    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_x11.cpp)
+    list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_x11.cpp)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

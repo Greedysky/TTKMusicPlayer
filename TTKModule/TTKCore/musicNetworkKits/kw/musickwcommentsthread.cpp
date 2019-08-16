@@ -39,16 +39,15 @@ void MusicKWSongCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SG_COMMIT_URL, false).arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
     m_pageTotal = 0;
     m_interrupt = true;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SG_COMMIT_URL, false)
-                    .arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -68,11 +67,11 @@ void MusicKWSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -80,7 +79,7 @@ void MusicKWSongCommentsThread::downLoadFinished()
             {
                 m_pageTotal = value["total"].toInt();
 
-                QVariantList comments = value["rows"].toList();
+                const QVariantList &comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -92,11 +91,10 @@ void MusicKWSongCommentsThread::downLoadFinished()
 
                     MusicResultsItem comment;
                     value = comm.toMap();
-                    comment.m_playCount = value["like_num"].toString();
-                    comment.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(),
-                                                     "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
-                    comment.m_description = value["msg"].toString();
 
+                    comment.m_playCount = value["like_num"].toString();
+                    comment.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(), "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
+                    comment.m_description = value["msg"].toString();
                     comment.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
@@ -136,16 +134,15 @@ void MusicKWPlaylistCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_PL_COMMIT_URL, false).arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
     m_pageTotal = 0;
     m_interrupt = true;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PL_COMMIT_URL, false)
-                    .arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -165,11 +162,11 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -177,7 +174,7 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
             {
                 m_pageTotal = value["total"].toInt();
 
-                QVariantList comments = value["rows"].toList();
+                const QVariantList &comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -189,13 +186,11 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
 
                     MusicResultsItem comment;
                     value = comm.toMap();
-                    comment.m_playCount = value["like_num"].toString();
-                    comment.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(),
-                                                     "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
-                    comment.m_description = value["msg"].toString();
 
-                    QUrl name;
-                    comment.m_nickName = name.fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
+                    comment.m_playCount = value["like_num"].toString();
+                    comment.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(), "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
+                    comment.m_description = value["msg"].toString();
+                    comment.m_nickName = QUrl().fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
                     emit createSearchedItem(comment);

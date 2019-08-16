@@ -25,11 +25,10 @@ void MusicBackgroundWidget::setTransparent(int alpha)
 
 void MusicBackgroundWidget::paintEvent(QPaintEvent *event)
 {
+    QWidget::paintEvent(event);
+
     QPainter painter(this);
     painter.fillRect(rect(), QColor(255, 255, 255, m_backgroundAlpha));
-    painter.end();
-
-    QWidget::paintEvent(event);
 }
 
 
@@ -112,7 +111,7 @@ void MusicBaseAnimationWidget::paintEvent(QPaintEvent *event)
         painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
 
         int offset =  m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
-        offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);
+            offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);
         if(m_showLine)
         {
             painter.drawLine(0, height(), offset, height());
@@ -153,13 +152,13 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
-    names << tr("musicPlaylist") << tr("musicCloud") << tr("musicRadio")
-          << tr("musicMobile") << tr("musicMydownl");
+    names << tr("musicPlaylist") << tr("musicCloud") << tr("musicRadio") << tr("musicMobile") << tr("musicMydownl");
     for(int i=0; i<names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);
         btn->setToolTip(names[i]);
         btn->setFixedSize(20, 20);
+        btn->setCursor(Qt::PointingHandCursor);
         ly->addWidget(btn);
         m_group->addButton(btn, i);
         m_container << btn;
@@ -210,6 +209,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
     {
         QToolButton *btn = new QToolButton(this);
         btn->setFixedSize(54, 23);
+        btn->setCursor(Qt::PointingHandCursor);
         ly->addWidget(btn);
         m_group->addButton(btn, i);
         m_container << btn;
@@ -269,6 +269,7 @@ MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
         QToolButton *btn = new QToolButton(this);
         btn->setText(names[i]);
         btn->setFixedSize(80, 30);
+        btn->setCursor(Qt::PointingHandCursor);
         ly->addWidget(btn);
         m_group->addButton(btn, i);
         m_container << btn;

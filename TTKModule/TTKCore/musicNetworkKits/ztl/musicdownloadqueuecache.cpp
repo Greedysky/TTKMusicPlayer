@@ -21,7 +21,7 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &d
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-    setSslConfiguration(m_request);
+    MusicObject::setSslConfiguration(m_request);
 #endif
 
 }
@@ -62,6 +62,11 @@ void MusicDownloadQueueCache::abort()
         m_reply = nullptr;
         m_isAbort = false;
     }
+}
+
+void MusicDownloadQueueCache::clear()
+{
+    m_imageQueue.clear();
 }
 
 void MusicDownloadQueueCache::addImageQueue(const MusicDownloadQueueDatas &datas)
@@ -146,7 +151,7 @@ void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
     {
         return;
     }
-#ifndef MUSIC_DEBUG
+#ifndef TTK_DEBUG
     Q_UNUSED(code);
 #endif
     M_LOGGER_ERROR(QString("QNetworkReply::NetworkError : %1 %2").arg(code).arg(m_reply->errorString()));

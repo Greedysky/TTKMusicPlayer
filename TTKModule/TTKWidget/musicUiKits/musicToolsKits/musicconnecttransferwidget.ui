@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>628</width>
-    <height>403</height>
+    <width>905</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>620</width>
-     <height>395</height>
+     <width>897</width>
+     <height>542</height>
     </rect>
    </property>
    <property name="text">
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>602</x>
+     <x>879</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -60,233 +60,19 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>620</width>
-     <height>370</height>
+     <width>897</width>
+     <height>517</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget{background:white;}
 QLabel{background:transparent;}</string>
    </property>
-   <widget class="QWidget" name="playListWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>114</x>
-      <y>0</y>
-      <width>361</width>
-      <height>370</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background:rgba(255,255,255,50)</string>
-    </property>
-    <widget class="QLineEdit" name="searchLineEdit">
-     <property name="geometry">
-      <rect>
-       <x>105</x>
-       <y>5</y>
-       <width>195</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="allSelectedcheckBox">
-     <property name="geometry">
-      <rect>
-       <x>7</x>
-       <y>10</y>
-       <width>95</width>
-       <height>16</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="searchLineLabel">
-     <property name="geometry">
-      <rect>
-       <x>305</x>
-       <y>10</y>
-       <width>16</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image: url(:/tiny/btn_search_main_hover);</string>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>25</width>
-       <height>25</height>
-      </size>
-     </property>
-    </widget>
-    <widget class="MusicConnectTransferTableWidget" name="playListTableWidget">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>40</y>
-       <width>361</width>
-       <height>330</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="functionBottomLabel">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>40</y>
-       <width>361</width>
-       <height>304</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background:rgb(255,255,255)</string>
-     </property>
-    </widget>
-    <zorder>searchLineEdit</zorder>
-    <zorder>allSelectedcheckBox</zorder>
-    <zorder>searchLineLabel</zorder>
-    <zorder>functionBottomLabel</zorder>
-    <zorder>playListTableWidget</zorder>
-   </widget>
-   <widget class="QStackedWidget" name="stackedWidget">
-    <property name="geometry">
-     <rect>
-      <x>475</x>
-      <y>40</y>
-      <width>145</width>
-      <height>330</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="mobileModeWidget">
-     <widget class="QLabel" name="iconUSBLabel">
-      <property name="geometry">
-       <rect>
-        <x>35</x>
-        <y>50</y>
-        <width>72</width>
-        <height>72</height>
-       </rect>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_usb</pixmap>
-      </property>
-     </widget>
-     <widget class="QLabel" name="textUSBLabel">
-      <property name="geometry">
-       <rect>
-        <x>25</x>
-        <y>120</y>
-        <width>95</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="transferUSBButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>210</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>transfer</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="reflashUSBButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>170</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>reflash</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="wifiModeWidget">
-     <widget class="QLabel" name="iconWIFILabel">
-      <property name="geometry">
-       <rect>
-        <x>35</x>
-        <y>50</y>
-        <width>72</width>
-        <height>72</height>
-       </rect>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_wifi</pixmap>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="transferWIFIButton">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>210</y>
-        <width>80</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>transfer</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="WIFILabel">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>140</y>
-        <width>120</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>对方IP地址</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineWIFIEdit">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>120</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="switchButton">
-    <property name="geometry">
-     <rect>
-      <x>495</x>
-      <y>10</y>
-      <width>100</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>wifi</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="playListLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
+      <x>30</x>
+      <y>150</y>
       <width>90</width>
       <height>300</height>
      </rect>
@@ -296,6 +82,273 @@ QLabel{background:transparent;}</string>
       <number>2</number>
      </property>
     </layout>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>85</y>
+      <width>897</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>1</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgba(200, 200, 200, 150)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::HLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>85</y>
+      <width>1</width>
+      <height>432</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgba(200, 200, 200, 150)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::VLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>0</y>
+      <width>1</width>
+      <height>517</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgba(200, 200, 200, 150)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::VLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="searchLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>95</y>
+      <width>141</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchLineLabel">
+    <property name="geometry">
+     <rect>
+      <x>155</x>
+      <y>100</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/tiny/btn_search_main_hover);</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="MusicConnectTransferTableWidget" name="playListTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>120</y>
+      <width>361</width>
+      <height>330</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="allSelectedcheckBox">
+    <property name="geometry">
+     <rect>
+      <x>197</x>
+      <y>95</y>
+      <width>95</width>
+      <height>16</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="transferUSBButton">
+    <property name="geometry">
+     <rect>
+      <x>465</x>
+      <y>467</y>
+      <width>80</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>transfer</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>5</y>
+      <width>85</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_computer</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>585</x>
+      <y>5</y>
+      <width>50</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_mobile_usb</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>10</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:fold;font-size:20px;color:rgb(100,100,100)</string>
+    </property>
+    <property name="text">
+     <string>我的电脑</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="deviceInfoLabel">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>10</y>
+      <width>200</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:fold;font-size:20px;color:rgb(100,100,100)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="songCountLabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>115</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c8c8c8;&quot;&gt;共 &lt;/span&gt;&lt;span style=&quot; color:#646464;&quot;&gt;%1 &lt;/span&gt;&lt;span style=&quot; color:#c8c8c8;&quot;&gt;首歌曲&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>455</y>
+      <width>712</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>1</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:rgba(200, 200, 200, 150)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::HLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selectCountLabel">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>470</y>
+      <width>260</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c8c8c8;&quot;&gt;已选 &lt;/span&gt;&lt;span style=&quot; color:#646464;&quot;&gt;%1 &lt;/span&gt;&lt;span style=&quot; color:#c8c8c8;&quot;&gt;首歌 | 共 &lt;/span&gt;&lt;span style=&quot; color:#646464;&quot;&gt;%2M&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <zorder>background</zorder>

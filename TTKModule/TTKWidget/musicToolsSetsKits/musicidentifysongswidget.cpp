@@ -178,12 +178,14 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
 
     if(m_analysis->isEmpty())
     {
-        QString lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
+        const QString &lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
         m_lrcLabel->setText(lrc);
         return;
     }
-    int index = m_analysis->getCurrentIndex();
-    qint64 time = m_analysis->findTime(index);
+
+    const int index = m_analysis->getCurrentIndex();
+    const qint64 time = m_analysis->findTime(index);
+
     if(time < position*MT_S2MS && time != -1)
     {
         QString lrc;
@@ -201,7 +203,7 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
             lrc += QString("</p>");
         }
         m_lrcLabel->setText(lrc);
-        m_analysis->setCurrentIndex(++index);
+        m_analysis->setCurrentIndex(index + 1);
     }
 }
 
@@ -234,7 +236,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     m_detectedLabel = new QLabel(widget);
     m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
 
-    QLabel *text = new QLabel(tr("ShotCut:") + " Shift+Ctrl+T", widget);
+    QLabel *text = new QLabel(tr("ShotCut:") + " Shift + Ctrl + T", widget);
     text->setStyleSheet(MusicUIObject::MFontStyle03);
 
     widgetLayout->addStretch(2);
@@ -244,7 +246,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     widgetLayout->addStretch(1);
     widgetLayout->addWidget(text, 0, Qt::AlignCenter);
     widget->setLayout(widgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
@@ -263,12 +265,12 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    MusicSongIdentify songIdentify(m_detectedThread->getIdentifySongs().first());
+    const MusicSongIdentify songIdentify(m_detectedThread->getIdentifySongs().first());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
-    /////////////////////////////////////////////////////////////////////
+    //
     QWidget *infoWidget = new QWidget(widget);
     QHBoxLayout *infoWidgetLayout = new QHBoxLayout(infoWidget);
     infoWidgetLayout->setContentsMargins(0, 0, 0, 0);
@@ -281,7 +283,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     QLabel *textLabel = new QLabel(widget);
     textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName).arg(songIdentify.m_songName));
     textLabel->setAlignment(Qt::AlignCenter);
-    /////////////////////////////////////////////////////////////////////
+    //
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
@@ -300,15 +302,15 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
             }
         }
     }
-    /////////////////////////////////////////////////////////////////////
+    //
     QLabel *iconLabel = new QLabel(widget);
     iconLabel->setMinimumSize(280, 280);
     if(!m_currentSong.m_singerName.isEmpty())
     {
-        QString name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
+        const QString &name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBG, this);
+            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             download->startToDownload();
             loop.exec();
@@ -358,13 +360,13 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     infoFuncWidgetLayout->addWidget(downButton, 2, 2, Qt::AlignCenter);
     infoFuncWidgetLayout->addWidget(shareButton, 2, 3, Qt::AlignCenter);
     infoFuncWidget->setLayout(infoFuncWidgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_lrcLabel = new QLabel(widget);
     m_lrcLabel->setMinimumWidth(280);
 
     if(!m_currentSong.m_singerName.isEmpty())
     {
-        QString name = MusicUtils::Core::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
+        const QString &name = MusicUtils::String::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
             MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(m_currentSong.m_lrcUrl, name, MusicObject::DownloadLrc, this);
@@ -383,7 +385,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     infoWidgetLayout->addWidget(infoFuncWidget);
     infoWidgetLayout->addWidget(m_lrcLabel);
     infoWidget->setLayout(infoWidgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
@@ -400,7 +402,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     widgetLayout->addWidget(text3Label, 0, Qt::AlignCenter);
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
@@ -421,7 +423,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     QLabel *text2Label = new QLabel(tr("Only The Music Being Played Can Be Recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
     text3Label->setStyleSheet(MusicUIObject::MFontStyle03);
-    /////////////////////////////////////////////////////////////////////
+    //
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
@@ -442,7 +444,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     widgetLayout->addWidget(text3Label, 0, Qt::AlignCenter);
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }

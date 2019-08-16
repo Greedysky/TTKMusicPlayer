@@ -8,7 +8,7 @@
 MusicDownLoadQueryKWArtistThread::MusicDownLoadQueryKWArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)
 {
-    m_queryServer = "Kuwo";
+    m_queryServer = QUERY_KW_INTERFACE;
 }
 
 void MusicDownLoadQueryKWArtistThread::startToSearch(const QString &artist)
@@ -19,16 +19,16 @@ void MusicDownLoadQueryKWArtistThread::startToSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     m_searchText = artist;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -54,15 +54,15 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("abslist"))
             {
                 bool artistFlag = false;
-                ////////////////////////////////////////////////////////////
-                QVariantList datas = value["abslist"].toList();
+                //
+                const QVariantList &datas = value["abslist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -97,9 +97,9 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!artistFlag)
                     {
                         artistFlag = true;
@@ -112,7 +112,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createArtistInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
@@ -139,12 +139,11 @@ void MusicDownLoadQueryKWArtistThread::getDownLoadIntro(MusicResultsItem *item)
     }
 
     QNetworkRequest request;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_searchText);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_searchText);
 
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
@@ -159,10 +158,10 @@ void MusicDownLoadQueryKWArtistThread::getDownLoadIntro(MusicResultsItem *item)
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = parser.parse(reply->readAll().replace("'", "\""), &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         item->m_tags = value["country"].toString();
         item->m_updateTime = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();

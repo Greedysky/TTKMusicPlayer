@@ -7,7 +7,7 @@ MusicDownLoadQueryWYArtistListThread::MusicDownLoadQueryWYArtistListThread(QObje
 {
     m_pageSize = DEFAULT_LEVEL_HIGHER;
     m_pageTotal = DEFAULT_LEVEL_HIGHER;
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
@@ -18,8 +18,10 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
     QString catId = "1001", initial = "-1";
-    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
+    const QStringList &dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -40,17 +42,15 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
 
         initial = QString::number(mIdx);
     }
-
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_AR_LIST_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(0).arg(100).arg(initial));
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(WY_AR_LIST_N_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(0).arg(100).arg(initial));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -78,17 +78,17 @@ void MusicDownLoadQueryWYArtistListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("artists"))
             {
-                QVariantList datas = value["artists"].toList();
+                const QVariantList &datas = value["artists"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

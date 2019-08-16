@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,17 +35,15 @@ public:
     /*!
      * Create put data multi part.
      */
-    static QHttpMultiPart* createPutDataMultiPart(const QString &uploadToken, const QByteArray &data,
-                                                  const QString &key = 0, const QString &fileName = 0,
-                                                  const QNPutExtra *putExtra = 0);
+    static QHttpMultiPart* createPutDataMultiPart(const QString &uploadToken, const QByteArray &data, const QString &key = QString(), const QString &fileName = QString(), const QNPutExtra *putExtra = nullptr);
     /*!
      * List request.
      */
-    static QNetworkRequest listRequest(const QString &bucket, const QNMac *mac = 0);
+    static QNetworkRequest listRequest(const QString &bucket, const QNMac *mac = nullptr);
     /*!
      * Delete requestt.
      */
-    static QNetworkRequest deleteRequest(const QString &bucket, const QString &key, const QNMac *mac = 0);
+    static QNetworkRequest deleteRequest(const QString &bucket, const QString &key, const QNMac *mac = nullptr);
 
 };
 

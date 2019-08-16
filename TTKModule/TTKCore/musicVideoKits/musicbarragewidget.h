@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,11 +36,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBarrageAnimation(QObject *parent = 0);
+    explicit MusicBarrageAnimation(QObject *parent = nullptr);
     /*!
      * Object contsructor by tagrget and propertyName.
      */
-    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = 0);
+    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = nullptr);
 
     /*!
      * Set animation region size.
@@ -74,7 +74,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBarrageWidget(QObject *parent = 0);
+    explicit MusicBarrageWidget(QObject *parent = nullptr);
 
     ~MusicBarrageWidget();
 

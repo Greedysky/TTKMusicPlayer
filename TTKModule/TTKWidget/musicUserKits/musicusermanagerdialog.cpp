@@ -36,8 +36,7 @@ MusicUserManagerDialog::~MusicUserManagerDialog()
     if(!m_userUID.m_uid.isEmpty())
     {
         m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
-                                QString::number(m_userModel->getUserLogTime(m_userUID)
-                                .toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
+                                QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed()/(MT_S2MS*30)));
     }
     delete m_ui;
 }
@@ -47,6 +46,7 @@ void MusicUserManagerDialog::setUserUID(const MusicUserUIDItem &uid)
     m_userUID = uid;
     m_ui->userName->setText(m_userModel->getUserName(uid));
     m_ui->userIcon->setPixmap(QPixmap(m_userModel->getUserIcon(uid)).scaled(m_ui->userIcon->size()));
+
     createUserTime();
     m_time.start();
 }
@@ -58,7 +58,7 @@ void MusicUserManagerDialog::setUserModel(MusicUserModel *model)
 
 void MusicUserManagerDialog::createUserTime() const
 {
-    qlonglong time = m_userModel->getUserLogTime(m_userUID).toLongLong();
+    const qint64 time = m_userModel->getUserLogTime(m_userUID).toLongLong();
     m_ui->totalTimeLabel->setText(QString::number(time));
 }
 
@@ -74,16 +74,15 @@ void MusicUserManagerDialog::createButtonPopMenu()
 void MusicUserManagerDialog::musicUserLogoff()
 {
     m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
-                            QString::number(m_userModel->getUserLogTime(m_userUID)
-                            .toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
+                            QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
 
     MusicUserConfigManager xml;
-    if(!xml.readUserXMLConfig())
+    if(!xml.readConfig())
     {
         return;
     }
     MusicUserRecords records;
-    xml.readUserConfig( records );
+    xml.readUserData( records );
 
     int index = -1;
     for(int i=0; i<records.count(); ++i)
@@ -97,7 +96,7 @@ void MusicUserManagerDialog::musicUserLogoff()
     {
         records[index].m_autoFlag = false;  //auto login flag
     }
-    xml.writeUserXMLConfig( records );
+    xml.writeUserData( records );
 
     m_userUID.m_uid.clear();
     emit userStateChanged(MusicUserUIDItem(), QString());
@@ -107,7 +106,7 @@ void MusicUserManagerDialog::musicUserLogoff()
 int MusicUserManagerDialog::exec()
 {
     QWidget *pa = MStatic_cast(QWidget*, parent());
-    QPoint point = pa->mapToGlobal(QPoint(0, 0));
+    const QPoint &point = pa->mapToGlobal(QPoint(0, 0));
     move(point.x(), point.y() + 27);
     return QDialog::exec();
 }
@@ -120,10 +119,10 @@ void MusicUserManagerDialog::leaveEvent(QEvent *event)
 
 void MusicUserManagerDialog::popupUserRecordWidget()
 {
-#ifndef MUSIC_GREATER_NEW
+#ifndef TTK_GREATER_NEW
     close();
 #endif
-    if(m_userUID.m_uid <= 0)
+    if(m_userUID.m_server <= 0)
     {
         MusicUserRecordWidget record;
         connect(&record, SIGNAL(resetUserName(QString)), SLOT(resetUserName(QString)));

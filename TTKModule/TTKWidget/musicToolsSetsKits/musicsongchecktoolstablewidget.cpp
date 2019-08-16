@@ -30,7 +30,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
     QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items.count(); ++i)
     {
-        const MusicSongCheckToolsRename song = items[i];
+        const MusicSongCheckToolsRename &song = items[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);
@@ -130,7 +130,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
     QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<songs.count(); ++i)
     {
-        const MusicSongCheckToolsDuplicate song = songs[i];
+        const MusicSongCheckToolsDuplicate &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);
@@ -203,10 +203,10 @@ void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
         return;
     }
 
-    QTableWidgetItem *it = item(currentRow(), 5);
+    const QTableWidgetItem *it = item(currentRow(), 5);
     if(it)
     {
-        QString path = it->data(MUSIC_DATAS_ROLE).toString();
+        const QString &path = it->data(MUSIC_DATAS_ROLE).toString();
         emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
     }
 }
@@ -262,7 +262,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
     QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<songs.count(); ++i)
     {
-        const MusicSongCheckToolsQuality song = songs[i];
+        const MusicSongCheckToolsQuality &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);
@@ -344,10 +344,10 @@ void MusicSongCheckToolsQualityTableWidget::musicPlay()
         return;
     }
 
-    QTableWidgetItem *it = item(currentRow(), 6);
+    const QTableWidgetItem *it = item(currentRow(), 6);
     if(it)
     {
-        QString path = it->data(MUSIC_DATAS_ROLE).toString();
+        const QString &path = it->data(MUSIC_DATAS_ROLE).toString();
         emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
     }
 }

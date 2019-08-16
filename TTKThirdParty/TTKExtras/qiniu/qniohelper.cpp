@@ -5,22 +5,19 @@
 
 #include <QtNetwork/QHttpPart>
 
-QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, const QByteArray &data,
-                   const QString &key, const QString &fileName, const QNPutExtra *putExtra)
+QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, const QByteArray &data, const QString &key, const QString &fileName, const QNPutExtra *putExtra)
 {
     QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
     //token
     QHttpPart tokenPart;
-    tokenPart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                        QVariant("form-data; name=\"token\""));
+    tokenPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"token\""));
     tokenPart.setBody(uploadToken.toUtf8());
     //key
-    QHttpPart *keyPart = 0;
+    QHttpPart *keyPart = nullptr;
     if(!key.isEmpty())
     {
         keyPart = new QHttpPart;
-        keyPart->setHeader(QNetworkRequest::ContentDispositionHeader,
-                           QVariant("form-data; name=\"key\""));
+        keyPart->setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"key\""));
         keyPart->setBody(key.toUtf8());
     }
     //file
@@ -43,17 +40,15 @@ QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, c
         newFileName = fileName;
     }
     filePartHeader.append("; filename=\"").append(newFileName).append("\"");
-    filePart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                       QVariant(filePartHeader));
+    filePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant(filePartHeader));
     filePart.setBody(data);
     //set mime type if specified
     if(putExtra != 0)
     {
-        QString mimeType = putExtra->getMimeType();
+        const QString &mimeType = putExtra->getMimeType();
         if(!mimeType.isEmpty())
         {
-            filePart.setHeader(QNetworkRequest::ContentTypeHeader,
-                               QVariant(mimeType));
+            filePart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(mimeType));
         }
     }
     //crc32
@@ -80,7 +75,7 @@ QNetworkRequest QNIOHelper::listRequest(const QString &bucket, const QNMac *mac)
     request.setUrl(reqUrl);
 
     //set authorization header
-    QString authHeader("Authorization");
+    const QString authHeader("Authorization");
     QString authHeaderBody("QBox ");
     QString accessToken;
     if(mac != 0)
@@ -89,7 +84,7 @@ QNetworkRequest QNIOHelper::listRequest(const QString &bucket, const QNMac *mac)
     }
     else
     {
-        QNMac macx(QNConf::ACCESS_KEY,QNConf::SECRET_KEY);
+        const QNMac macx(QNConf::ACCESS_KEY,QNConf::SECRET_KEY);
         accessToken = macx.signRequest(request);
     }
     authHeaderBody.append(accessToken);
@@ -109,12 +104,12 @@ QNetworkRequest QNIOHelper::deleteRequest(const QString &bucket, const QString &
     //append encoded entry
     QString entry;
     entry.append(bucket).append(":").append(key);
-    QString encodedEntry = QNUtils::urlSafeBase64Encode(entry.toUtf8());
+    const QString &encodedEntry = QNUtils::urlSafeBase64Encode(entry.toUtf8());
     reqUrl.append(encodedEntry);
     request.setUrl(reqUrl);
 
     //set authorization header
-    QString authHeader("Authorization");
+    const QString authHeader("Authorization");
     QString authHeaderBody("QBox ");
     QString accessToken;
     if(mac != 0)
@@ -123,7 +118,7 @@ QNetworkRequest QNIOHelper::deleteRequest(const QString &bucket, const QString &
     }
     else
     {
-        QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        const QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
         accessToken = macx.signRequest(request);
     }
     authHeaderBody.append(accessToken);

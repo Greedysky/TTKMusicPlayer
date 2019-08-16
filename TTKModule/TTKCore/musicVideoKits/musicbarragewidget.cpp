@@ -9,9 +9,7 @@ MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     init();
 }
 
-MusicBarrageAnimation::MusicBarrageAnimation(QObject *target,
-                                             const QByteArray &propertyName,
-                                             QObject *parent)
+MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent)
     : QPropertyAnimation(target, propertyName, parent)
 {
     init();
@@ -27,7 +25,7 @@ void MusicBarrageAnimation::animationFinished()
 void MusicBarrageAnimation::setSize(const QSize &size)
 {
     m_parentSize = size;
-    int randHeight = qrand()%size.height();
+    const int randHeight = qrand()%size.height();
     setStartValue(QPoint(0, randHeight));
     setEndValue(QPoint(size.width(), randHeight));
 }
@@ -179,19 +177,19 @@ void MusicBarrageWidget::createAnimation(QLabel *label)
 void MusicBarrageWidget::readBarrage()
 {
     MusicBarrageRecordConfigManager manager(this);
-    if(!manager.readBarrageXMLConfig())
+    if(!manager.readConfig())
     {
         return;
     }
-    manager.readBarrageConfig(m_barrageRecords);
+    manager.readBarrageData(m_barrageRecords);
 }
 
 void MusicBarrageWidget::writeBarrage()
 {
     MusicBarrageRecordConfigManager manager(this);
-    if(!manager.readBarrageXMLConfig())
+    if(!manager.readConfig())
     {
         return;
     }
-    manager.writeBarrageConfig(m_barrageRecords);
+    manager.readBarrageData(m_barrageRecords);
 }

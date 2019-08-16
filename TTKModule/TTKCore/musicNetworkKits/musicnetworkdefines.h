@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,20 +26,20 @@ namespace MusicObject
 {
     enum NetworkCode
     {
-        NetworkInit = 0xFFFFF00,   /*!< Network state init*/
-        NetworkSuccess = 0,        /*!< Network state success*/
-        NetworkError = -1,         /*!< Network state error*/
-        NetworkUnKnow = 2,         /*!< Network state unknow*/
+        NetworkInit = 0xFFFFF00,  /*!< Network state init*/
+        NetworkSuccess = 0,       /*!< Network state success*/
+        NetworkError = -1,        /*!< Network state error*/
+        NetworkUnKnow = 2,        /*!< Network state unknow*/
     };
 
     enum DownloadType
     {
-        DownloadMusic,      /*!< type of dwonlaod music*/
-        DownloadLrc,        /*!< type of dwonlaod lrc*/
-        DownloadSmallBG,    /*!< type of dwonlaod small background*/
-        DownloadBigBG,      /*!< type of dwonlaod big background*/
-        DownloadVideo,      /*!< type of dwonlaod video*/
-        DownloadOther       /*!< type of dwonlaod other user mod*/
+        DownloadMusic,            /*!< type of dwonlaod music*/
+        DownloadLrc,              /*!< type of dwonlaod lrc*/
+        DownloadSmallBackground,  /*!< type of dwonlaod small background*/
+        DownloadBigBackground,    /*!< type of dwonlaod big background*/
+        DownloadVideo,            /*!< type of dwonlaod video*/
+        DownloadOther             /*!< type of dwonlaod other user mod*/
     };
 
     enum RecordType

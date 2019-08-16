@@ -24,18 +24,20 @@ MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
     m_mFormatFile.setByteOrder(QAudioFormat::LittleEndian);
     m_mFormatFile.setCodec("audio/pcm");
 
-    QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
+    const QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
     if(!info.isFormatSupported(m_mFormatFile))
     {
         M_LOGGER_WARN("input default mFormatFile not supported try to use nearest");
         m_mFormatFile = info.nearestFormat(m_mFormatFile);
     }
-    QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
+
+    const QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
     if(!info1.isFormatSupported(m_mFormatFile))
     {
         M_LOGGER_WARN("output default mFormatFile not supported - trying to use nearest");
         M_LOGGER_WARN("output no support input mFormatFile.");
     }
+
     if(m_mFormatFile.sampleSize() != 16)
     {
         M_LOGGER_INFO(QString("audio device doesn't support 16 bit support %d bit samples, example cannot run %1")
@@ -87,52 +89,52 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     int nFileLen = 0;
     int nSize = sizeof(destionFileHeader);
 
-    FILE *fp_s = nullptr;
-    FILE *fp_d = nullptr;
-    fp_s = fopen(MusicUtils::Codec::toLocal8Bit(m_mpOutputFile->fileName()), "rb");
-    if(fp_s == nullptr)
+    FILE *fpInput = nullptr;
+    FILE *fpOutput = nullptr;
+    if((fpInput = fopen(MusicUtils::Codec::toLocal8Bit(m_mpOutputFile->fileName()), "rb")) == nullptr)
     {
         return OPEN_FILE_ERROR;
     }
-    fp_d = fopen(filename, "wb+");
 
-    if(fp_d == nullptr)
+    if((fpOutput = fopen(MusicUtils::Codec::toLocal8Bit(filename), "wb+")) == nullptr)
     {
         return SAVE_FILE_ERROR;
     }
-    int nWrite = fwrite(&destionFileHeader, 1, nSize, fp_d);
+
+    int nWrite = fwrite(&destionFileHeader, 1, nSize, fpOutput);
     if(nWrite != nSize)
     {
-        fclose(fp_s);
-        fclose(fp_d);
+        fclose(fpInput);
+        fclose(fpOutput);
         return WRITE_FILE_ERROR;
     }
 
-    while(!feof(fp_s))
+    while(!feof(fpInput))
     {
         char readBuf[4096];
-        int nRead = fread(readBuf, 1, 4096, fp_s);
+        const int nRead = fread(readBuf, 1, 4096, fpInput);
         if(nRead > 0)
         {
-            fwrite(readBuf, 1, nRead, fp_d);
+            fwrite(readBuf, 1, nRead, fpOutput);
         }
 
         nFileLen += nRead;
     }
 
-    fseek(fp_d, 0L, SEEK_SET);
+    fseek(fpOutput, 0L, SEEK_SET);
     destionFileHeader.nRIFFLength = nFileLen - 8 + nSize;
     destionFileHeader.nDataLength = nFileLen;
-    nWrite = fwrite(&destionFileHeader, 1, nSize, fp_d);
+
+    nWrite = fwrite(&destionFileHeader, 1, nSize, fpOutput);
     if(nWrite != nSize)
     {
-        fclose(fp_s);
-        fclose(fp_d);
+        fclose(fpInput);
+        fclose(fpOutput);
         return REWRITE_FILE_ERROR;
     }
 
-    fclose(fp_s);
-    fclose(fp_d);
+    fclose(fpInput);
+    fclose(fpOutput);
 
     return nFileLen;
 }
@@ -140,7 +142,7 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
 void MusicAudioRecorderCore::setVolume(int volume)
 {
     m_inputVolume = volume;
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     if(m_mpAudioInputFile)
     {
         m_mpAudioInputFile->setVolume(volume);
@@ -175,9 +177,12 @@ bool MusicAudioRecorderCore::error() const
 
 void MusicAudioRecorderCore::onRecordStart()
 {
-    m_mpOutputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
+    if(!m_mpOutputFile->isOpen())
+    {
+        m_mpOutputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
+        m_mpAudioInputFile = new QAudioInput(m_mFormatFile, this);
+    }
 
-    m_mpAudioInputFile = new QAudioInput(m_mFormatFile, this);
     if(m_mpAudioInputFile->error() != QAudio::NoError)
     {
         MusicMessageBox message;
@@ -185,7 +190,7 @@ void MusicAudioRecorderCore::onRecordStart()
         message.exec();
         return;
     }
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     m_mpAudioInputFile->setVolume(m_inputVolume);
 #endif
     m_mpAudioInputFile->start(m_mpOutputFile);

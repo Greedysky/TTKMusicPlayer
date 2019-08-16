@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,15 +22,15 @@
 #define INPUTSOURCEFACTORY_H
 
 #include <QObject>
+#include "qmmp_export.h"
 
-class QTranslator;
 class QStringList;
 class InputSource;
 
 /*! @brief Helper class to store transport plugin properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class InputSourceProperties
+class QMMP_EXPORT InputSourceProperties
 {
 public:
     /*!
@@ -39,13 +39,11 @@ public:
     InputSourceProperties()
     {
         hasSettings = false;
-        hasAbout = false;
     }
 
     QString name;          /*!< Transport plugin full name */
     QString shortName;     /*!< Transport plugin name for internal usage */
     QStringList protocols; /*!< A list of supported protocols. */
-    bool hasAbout;         /*!< Should be \b true if plugin has about dialog, otherwise \b false */
     bool hasSettings;      /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
 };
 
@@ -53,19 +51,19 @@ public:
 /*! @brief Transport plugin interface.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class InputSourceFactory
+class QMMP_EXPORT InputSourceFactory
 {
 public:
     /*!
      * Returns transport plugin properties.
      */
-    virtual const InputSourceProperties properties() const = 0;
+    virtual InputSourceProperties properties() const = 0;
     /*!
      * Creates transport provided by plugin.
      * @param url URL of the stream.
      * @param parent Parent object.
      */
-    virtual InputSource *create(const QString &url, QObject *parent = 0) = 0;
+    virtual InputSource *create(const QString &url, QObject *parent = nullptr) = 0;
 
 };
 

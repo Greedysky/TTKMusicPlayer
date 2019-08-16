@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,20 +43,21 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBarrageRecordConfigManager(QObject *parent = 0);
+    explicit MusicBarrageRecordConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read barrage datas from xml file by given name.
      */
-    inline bool readBarrageXMLConfig(){ return readConfig(BARRAGEPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(BARRAGEPATH_FULL); }
+
     /*!
-     * Write barrage datas into xml file.
+     * Read datas from config file.
      */
-    void writeBarrageConfig(const MusicBarrageRecords &records);
+    void readBarrageData(MusicBarrageRecords &records);
     /*!
-     * Read barrage datas into xml file.
+     * Write datas into config file.
      */
-    void readBarrageConfig(MusicBarrageRecords &records);
+    void writeBarrageData(const MusicBarrageRecords &records);
 
 };
 

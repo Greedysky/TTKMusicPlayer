@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundRemoteWidget(QWidget *parent = 0);
+    explicit MusicBackgroundRemoteWidget(QWidget *parent = nullptr);
 
     ~MusicBackgroundRemoteWidget();
 
@@ -88,7 +88,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundThunderWidget(QWidget *parent = 0);
+    explicit MusicBackgroundThunderWidget(QWidget *parent = nullptr);
 
     virtual ~MusicBackgroundThunderWidget();
 
@@ -100,7 +100,7 @@ public:
     /*!
      * Create functions widget.
      */
-    QWidget* createFunctionsWidget(bool revert, QWidget *object = 0);
+    QWidget* createFunctionsWidget(bool revert, QWidget *object = nullptr);
     /*!
      * Output remote skin.
      */
@@ -108,7 +108,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Remote bg type selected by index.
+     * Remote background type selected by index.
      */
     void buttonClicked(int index);
     /*!
@@ -144,7 +144,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundDailyWidget(QWidget *parent = 0);
+    explicit MusicBackgroundDailyWidget(QWidget *parent = nullptr);
 
     /*!
      * Init the current download object.

@@ -17,7 +17,7 @@
         <file alias="lb_noAlbum">../TTKResource/lb_no_album_found.png</file>
         <file alias="lb_noArtist">../TTKResource/lb_no_artist_found.png</file>
         <file alias="lb_noSimilar">../TTKResource/lb_no_similar_found.png</file>
-        <file alias="lb_player_logo">../TTKResource/lb_player_logo.ico</file>
+        <file alias="lb_app_logo">../TTKResource/lb_app_logo.ico</file>
         <file alias="lb_slider">../TTKResource/lb_slider.png</file>
         <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
         <file alias="lb_recmd_daily">../TTKResource/lb_recmd_daily.jpg</file>
@@ -364,7 +364,7 @@
         <file alias="btn_tool_off">../TTKResource/toolSets/btn_tool_off.png</file>
         <file alias="lb_mobile_devices">../TTKResource/toolSets/lb_mobile_devices.png</file>
         <file alias="lb_mobile_usb">../TTKResource/toolSets/lb_mobile_usb.png</file>
-        <file alias="lb_mobile_wifi">../TTKResource/toolSets/lb_mobile_wifi.png</file>
+        <file alias="lb_mobile_computer">../TTKResource/toolSets/lb_mobile_computer.png</file>
         <file alias="lb_rate">../TTKResource/toolSets/lb_rate.gif</file>
         <file alias="lb_upgrade">../TTKResource/toolSets/lb_upgrade.png</file>
         <file alias="lb_upgradeMain">../TTKResource/toolSets/lb_upgradeMain.png</file>
@@ -377,7 +377,14 @@
         <file alias="btn_arrow">../TTKResource/toolSets/btn_arrow.png</file>
         <file alias="lb_wired">../TTKResource/toolSets/lb_wired.png</file>
         <file alias="lb_wireless">../TTKResource/toolSets/lb_wireless.png</file>
-        <file alias="lb_wired_con">../TTKResource/toolSets/lb_wired_con.png</file>
+        <file alias="btn_change_dev_normal">../TTKResource/toolSets/btn_change_dev_normal.png</file>
+        <file alias="btn_change_dev_hover">../TTKResource/toolSets/btn_change_dev_hover.png</file>
+        <file alias="btn_import_ring_normal">../TTKResource/toolSets/btn_import_ring_normal.png</file>
+        <file alias="btn_import_ring_hover">../TTKResource/toolSets/btn_import_ring_hover.png</file>
+        <file alias="btn_import_song_hover">../TTKResource/toolSets/btn_import_song_hover.png</file>
+        <file alias="btn_import_song_normal">../TTKResource/toolSets/btn_import_song_normal.png</file>
+        <file alias="btn_refresh_dev_hover">../TTKResource/toolSets/btn_refresh_dev_hover.png</file>
+        <file alias="btn_refresh_dev_normal">../TTKResource/toolSets/btn_refresh_dev_normal.png</file>
         <file alias="btn_detect_hover">../TTKResource/toolSets/btn_detect_hover.png</file>
         <file alias="btn_detect_normal">../TTKResource/toolSets/btn_detect_normal.png</file>
         <file alias="btn_detect_stop_hover">../TTKResource/toolSets/btn_detect_stop_hover.png</file>

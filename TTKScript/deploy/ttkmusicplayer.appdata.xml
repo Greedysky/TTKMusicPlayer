@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2015 - 2018 Greedysky Studio -->
+<!-- Copyright (C) 2015 - 2019 Greedysky Studio -->
 <component type="desktop-application">
   <id>ttkmusicplayer.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -18,7 +18,7 @@
   <developer_name>Greedysky Studio</developer_name>
 
   <releases>
-    <release version="2.7.0.0" date="2018-07-01">
+    <release version="2.9.0.0" date="2019-06-29">
     </release>
   </releases>
 </component>

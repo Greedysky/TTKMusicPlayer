@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ class MusicSongsListWidget;
 class MusicSongCheckToolsWidget;
 class MusicSongsListFunctionWidget;
 class MusicLocalSongSearchDialog;
+class MusicLrcDownloadBatchWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -40,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsSummariziedWidget(QWidget *parent = 0);
+    explicit MusicSongsSummariziedWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongsSummariziedWidget();
 
@@ -113,7 +114,7 @@ public:
     /*!
      * Update item time label time.
      */
-    void setTimerLabel(const QString &time, const QString &total) const;
+    void updateTimeLabel(const QString &current, const QString &total) const;
 
 public Q_SLOTS:
     /*!
@@ -168,6 +169,10 @@ public Q_SLOTS:
      * Open music songs check test tools.
      */
     void musicSongsCheckTestTools();
+    /*!
+     * Open lrc batch download.
+     */
+    void musicLrcBatchDownload();
 
     /*!
      * Set current play index from config file.
@@ -184,12 +189,11 @@ public Q_SLOTS:
     /*!
      * Add current network music to download to local.
      */
-    void addNetMusicSongToList(const QString &name, const QString &time,
-                               const QString &format, bool play);
+    void addNetMusicSongToList(const QString &name, const QString &time, const QString &format, bool play);
     /*!
      * Add current selected song to play lists.
      */
-    void addSongToPlayList(const QStringList &items);
+    void addSongToPlaylist(const QStringList &items);
     /*!
      * Delete items from indexs and check remove file or not.
      */
@@ -287,12 +291,14 @@ protected:
     int m_currentPlayToolIndex, m_searchFileListIndex;
     int m_currentImportIndex, m_currentDeleteIndex;
     bool m_toolDeleteChanged;
+
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    MIntsListMap m_searchfileListCache;
+    MIntListMap m_searchfileListCache;
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_musicSongSearchWidget;
+    MusicLrcDownloadBatchWidget *m_lrcBatchDownloadWidget;
 
 };
 

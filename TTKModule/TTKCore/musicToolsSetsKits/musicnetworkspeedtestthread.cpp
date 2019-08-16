@@ -88,9 +88,9 @@ QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
     GetIfTable(pTable, &dwAdapters, TRUE);
     for(UINT i = 0; i < pTable->dwNumEntries; i++)
     {
-        MIB_IFROW Row = pTable->table[i];
-        std::string s(MReinterpret_cast(char const*, Row.bDescr));
-        QString qs = QString::fromStdString(s);
+        const MIB_IFROW Row = pTable->table[i];
+        MString s(MReinterpret_cast(char const*, Row.bDescr));
+        const QString &qs = QString::fromStdString(s);
         if((Row.dwType == 71 || Row.dwType == 6) && !names.contains(qs))
         {
             names << qs;
@@ -121,8 +121,8 @@ void MusicNetworkSpeedTestThread::outputRecieved()
 #ifdef Q_OS_UNIX
     while(m_process->canReadLine())
     {
-        QByteArray datas = m_process->readLine();
-        QStringList lists = QString(datas).split("|");
+        const QByteArray &datas = m_process->readLine();
+        const QStringList &lists = QString(datas).split("|");
         ulong upload = 0, download = 0;
 
         if(lists.count() == 3)
@@ -146,7 +146,7 @@ void MusicNetworkSpeedTestThread::run()
 #ifdef Q_OS_WIN
     PMIB_IFTABLE pTable = nullptr;
     DWORD dwAdapters = 0;
-    ULONG uRetCode = GetIfTable(pTable, &dwAdapters, TRUE);
+    const ULONG uRetCode = GetIfTable(pTable, &dwAdapters, TRUE);
 
     if(uRetCode == ERROR_NOT_SUPPORTED)
     {
@@ -168,8 +168,8 @@ void MusicNetworkSpeedTestThread::run()
 
         for(UINT i = 0; i < pTable->dwNumEntries; i++)
         {
-            MIB_IFROW Row = pTable->table[i];
-            std::string s(MReinterpret_cast(char const*, Row.bDescr));
+            const MIB_IFROW& Row = pTable->table[i];
+            const MString s(MReinterpret_cast(char const*, Row.bDescr));
             if((Row.dwType == 71 || Row.dwType == 6) &&
                m_names.contains(QString::fromStdString(s)))
             {

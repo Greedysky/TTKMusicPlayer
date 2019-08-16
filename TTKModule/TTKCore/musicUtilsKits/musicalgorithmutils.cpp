@@ -15,7 +15,7 @@ QByteArray MusicUtils::Algorithm::sha1(const QByteArray &data)
 
 QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteArray &key)
 {
-    int blockSize = 64;
+    const int blockSize = 64;
     QByteArray newSecretKey = key;
     if(newSecretKey.length() > blockSize)
     {
@@ -35,8 +35,7 @@ QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteAr
     QByteArray part = innerPadding;
     part.append(data);
     total.append(MusicUtils::Algorithm::sha1(part));
-    QByteArray hashed = MusicUtils::Algorithm::sha1(total);
-    return hashed;
+    return MusicUtils::Algorithm::sha1(total);
 }
 
 QString MusicUtils::Algorithm::mdII(const QString &data, bool encode)

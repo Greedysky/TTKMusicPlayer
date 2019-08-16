@@ -3,6 +3,7 @@
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
 #include "musicsourceupdatethread.h"
+#include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -37,7 +38,8 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QN_BUKET_URL, false) + QN_ACRUA_URL);
+    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_ACRUA_URL);
 
     loop.exec();
 
@@ -46,19 +48,19 @@ bool MusicIdentifySongsThread::getKey()
 
 void MusicIdentifySongsThread::startToDownload(const QString &path)
 {
-    QString boundary = "----";
-    QString startBoundary = "--" + boundary;
-    QString endBoundary = "\r\n--" + boundary + "--\r\n";
-    QString contentType = "multipart/form-data; boundary=" + boundary;
+    const QString &boundary = "----";
+    const QString &startBoundary = "--" + boundary;
+    const QString &endBoundary = "\r\n--" + boundary + "--\r\n";
+    const QString &contentType = "multipart/form-data; boundary=" + boundary;
 
-    QString httpMethod = "POST";
-    QString httpUri = "/v1/identify";
-    QString dataType = "audio";
-    QString signatureVersion = "1";
-    QString timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
+    const QString &httpMethod = "POST";
+    const QString &httpUri = "/v1/identify";
+    const QString &dataType = "audio";
+    const QString &signatureVersion = "1";
+    const QString &timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
 
-    httpMethod = httpMethod + "\n" + httpUri + "\n" + m_accessKey + "\n" + dataType + "\n" + signatureVersion + "\n" + timeStamp;
-    QByteArray content = MusicUtils::Algorithm::hmacSha1(httpMethod.toUtf8(), m_accessSecret.toUtf8()).toBase64();
+    const QString &postData = httpMethod + "\n" + httpUri + "\n" + m_accessKey + "\n" + dataType + "\n" + signatureVersion + "\n" + timeStamp;
+    QByteArray content = MusicUtils::Algorithm::hmacSha1(postData.toUtf8(), m_accessSecret.toUtf8()).toBase64();
 
     QString value;
     value += startBoundary + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + m_accessKey + "\r\n";
@@ -84,7 +86,7 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false)));
     request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, content);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -97,14 +99,14 @@ void MusicIdentifySongsThread::downLoadFinished()
     {
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("metadata"))
             {
                 value = value["metadata"].toMap();
-                QVariantList list = value["music"].toList();
+                const QVariantList &list = value["music"].toList();
                 foreach(const QVariant &var, list)
                 {
                     value = var.toMap();
@@ -132,10 +134,10 @@ void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
 {
     QJson::Parser parser;
     bool ok;
-    QVariant dt = parser.parse(data, &ok);
+    const QVariant &dt = parser.parse(data, &ok);
     if(ok)
     {
-        QVariantMap value = dt.toMap();
+        const QVariantMap &value = dt.toMap();
         if(QDateTime::fromString( value["time"].toString(), "yyyy-MM-dd HH:mm:ss") > QDateTime::currentDateTime())
         {
             m_accessKey = value["key"].toString();

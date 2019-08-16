@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,16 +74,16 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinConfigManager(QObject *parent = 0);
+    explicit MusicSkinConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Write datas into xml file.
+     * Read datas from config file.
      */
-    void writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path);
+    void readSkinData(MusicSkinConfigItem &item);
     /*!
-     * Read datas into xml file.
+     * Write datas into config file.
      */
-    void readSkinXMLConfig(MusicSkinConfigItem &item);
+    void writeSkinData(const MusicSkinConfigItem &item, const QString &path);
 
 };
 

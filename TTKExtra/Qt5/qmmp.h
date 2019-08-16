@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,14 +17,16 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef QMMP_H
 #define QMMP_H
 
 #include <QString>
+#include "qmmp_export.h"
 
 #define QMMP_VERSION_MAJOR 1
-#define QMMP_VERSION_MINOR 2
-#define QMMP_VERSION_PATCH 1
+#define QMMP_VERSION_MINOR 3
+#define QMMP_VERSION_PATCH 2
 #define QMMP_VERSION_STABLE 1
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
@@ -42,7 +44,7 @@
 /*! @brief The Qmmp class stores global settings and enums.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Qmmp
+class QMMP_EXPORT Qmmp
 {
 public:
     /*!
@@ -72,8 +74,21 @@ public:
         COMPOSER,  /*!< Composer */
         YEAR,      /*!< Year */
         TRACK,     /*!< Track number */
-        DISCNUMBER,/*!< Disc number */
-        URL        /*!< Stream url or local file path */
+        DISCNUMBER /*!< Disc number */
+    };
+    /*!
+     * Track properties
+     */
+    enum TrackProperty
+    {
+        UNKNOWN_PROPERTY = -1,
+        BITRATE = 0,
+        SAMPLERATE,
+        CHANNELS,
+        BITS_PER_SAMPLE,
+        FORMAT_NAME,
+        DECODER,
+        FILE_SIZE
     };
     /*!
      * Keys of ReplayGain information
@@ -128,11 +143,11 @@ public:
     /*!
      * Returns the configuration file name, including the path.
      */
-    static const QString configFile();
+    static QString configFile();
     /*!
      * Returns the configuration directory path.
      */
-    static const QString configDir();
+    static QString configDir();
     /*!
      * Overrides default configuration directory path.
      */
@@ -140,11 +155,16 @@ public:
     /*!
      * Returns %Qmmp library version.
      */
-    static const QString strVersion();
+    static QString strVersion();
     /*!
      * Returns the location of the installed Qmmp plugins.
      */
-    static const QString pluginsPath();
+    static QString pluginPath();
+    /*!
+     * Returns a list of found Qmmp plugins (full paths).
+     * @param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).
+     */
+    static QStringList findPlugins(const QString &prefix);
     /*!
      * Returns system language if uiLanguageID() is 'auto'. Otherwise returns uiLanguageID().
      */
@@ -158,6 +178,11 @@ public:
      * @param code Language code; code "auto" means autodetection.
      */
     static void setUiLanguageID(const QString &code);
+    /*!
+     * Returns a directory location where persistent application data can be stored.
+     */
+    static QString dataPath();
+
 #ifdef Q_OS_WIN
     /*!
      * Returns \b true if portable mode is enabled. Otherwise returns \b false.

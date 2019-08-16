@@ -17,15 +17,16 @@ void MusicWYArtistSimilarThread::startToSearch(const QString &text)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     deleteAll();
+
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_AR_SIM_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_AR_SIM_DATA_N_URL, false).arg(text));
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(WY_AR_SIM_N_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_AR_SIM_DATA_N_URL, false).arg(text));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -45,17 +46,17 @@ void MusicWYArtistSimilarThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("artists"))
             {
-                QVariantList datas = value["artists"].toList();
+                const QVariantList &datas = value["artists"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;

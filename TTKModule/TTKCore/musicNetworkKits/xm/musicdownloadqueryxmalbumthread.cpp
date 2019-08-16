@@ -6,7 +6,7 @@
 MusicDownLoadQueryXMAlbumThread::MusicDownLoadQueryXMAlbumThread(QObject *parent)
     : MusicDownLoadQueryAlbumThread(parent)
 {
-    m_queryServer = "XiaMi";
+    m_queryServer = QUERY_XM_INTERFACE;
 }
 
 void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
@@ -17,8 +17,9 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
-    m_searchText = album;
     deleteAll();
+
+    m_searchText = album;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -27,7 +28,7 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
                       MusicUtils::Algorithm::mdII(XM_ALBUM_DATA_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(XM_ALBUM_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -42,7 +43,7 @@ void MusicDownLoadQueryXMAlbumThread::startToSingleSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
-    deleteAll();
+
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -51,7 +52,7 @@ void MusicDownLoadQueryXMAlbumThread::startToSingleSearch(const QString &artist)
                       MusicUtils::Algorithm::mdII(XM_AR_ALBUM_DATA_URL, false).arg(artist),
                       MusicUtils::Algorithm::mdII(XM_AR_ALBUM_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
@@ -73,11 +74,11 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -93,8 +94,8 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                                      value["language"].toString() + TTK_STR_SPLITER +
                                      value["company"].toString() + TTK_STR_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString("yyyy-MM-dd");
-                ////////////////////////////////////////////////////////////
-                QVariantList datas = value["songs"].toList();
+                //
+                const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -126,7 +127,7 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!albumFlag)
                     {
                         albumFlag = true;
@@ -134,7 +135,7 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                         info.m_name = musicInfo.m_singerName;
                         emit createAlbumInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
@@ -162,11 +163,11 @@ void MusicDownLoadQueryXMAlbumThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -174,7 +175,7 @@ void MusicDownLoadQueryXMAlbumThread::singleDownLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
-                QVariantList datas = value["albums"].toList();
+                const QVariantList &datas = value["albums"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

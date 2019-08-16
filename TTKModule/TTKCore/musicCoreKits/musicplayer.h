@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 #endif
 
 class SoundCore;
-class MusicPlayedlist;
+class MusicPlaylist;
 
 /*! @brief The class of the music player.
  * @author Greedysky <greedysky@163.com>
@@ -50,7 +50,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlayer(QObject *parent = 0);
+    explicit MusicPlayer(QObject *parent = nullptr);
 
     ~MusicPlayer();
 
@@ -65,11 +65,11 @@ public:
     /*!
      * Set current play list.
      */
-    void setPlaylist(MusicPlayedlist *playlist);
+    void setPlaylist(MusicPlaylist *playlist);
     /*!
      * Get current play list.
      */
-    MusicPlayedlist *playlist() const;
+    MusicPlaylist *playlist() const;
 
     /*!
      * Get current player duration.
@@ -191,7 +191,7 @@ protected:
      */
     void setMusicEnhancedCase();
 
-    MusicPlayedlist *m_playlist;
+    MusicPlaylist *m_playlist;
     MusicObject::PlayState m_state;
     SoundCore *m_music;
     QTimer m_timer;

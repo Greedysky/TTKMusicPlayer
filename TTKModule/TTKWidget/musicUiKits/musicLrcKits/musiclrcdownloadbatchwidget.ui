@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicLrcDownloadBatchWidget</class>
+ <widget class="QWidget" name="MusicLrcDownloadBatchWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>610</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>歌词批量下载</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>602</width>
+     <height>512</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>170</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>歌词批量下载</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>585</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>602</width>
+     <height>487</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white;</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>405</x>
+      <y>43</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold; color:#464646</string>
+    </property>
+    <property name="text">
+     <string>扫描范围:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="itemLabel">
+    <property name="geometry">
+     <rect>
+      <x>465</x>
+      <y>43</y>
+      <width>75</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#9F9F9F</string>
+    </property>
+    <property name="text">
+     <string>全部列表</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="MusicClickedLabel" name="modifiedItemButton">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>43</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#2F93E1</string>
+    </property>
+    <property name="text">
+     <string>更改</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>90</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>添加</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="optionInfoWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>15</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+    </property>
+    <property name="text">
+     <string>选项</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="skipAlreadyLrcCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>45</y>
+      <width>220</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>跳过已经有歌词的歌曲</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="saveToLrcDirRadioBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>110</y>
+      <width>220</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存到歌词文件夹</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="saveToCurrentDirRadioBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>80</y>
+      <width>220</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>保存到歌曲所在目录</string>
+    </property>
+   </widget>
+   <widget class="MusicLrcDownloadBatchTableWidget" name="tableWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>172</y>
+      <width>560</width>
+      <height>300</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="downloadButton">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>90</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>开始下载</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_song">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>147</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;background:rgb(240,240,240)</string>
+    </property>
+    <property name="text">
+     <string>歌曲名</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_status">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>147</y>
+      <width>43</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;background:rgb(240,240,240)</string>
+    </property>
+    <property name="text">
+     <string>状态</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="functionBottomLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>560</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(240,240,240)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_art">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>147</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;background:rgb(240,240,240)</string>
+    </property>
+    <property name="text">
+     <string>艺术家</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_index">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>147</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;background:rgb(240,240,240)</string>
+    </property>
+    <property name="text">
+     <string>序号</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_path">
+    <property name="geometry">
+     <rect>
+      <x>385</x>
+      <y>147</y>
+      <width>55</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;background:rgb(240,240,240)</string>
+    </property>
+    <property name="text">
+     <string>文件名</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>itemLabel</zorder>
+   <zorder>modifiedItemButton</zorder>
+   <zorder>addButton</zorder>
+   <zorder>optionInfoWidget</zorder>
+   <zorder>skipAlreadyLrcCheckBox</zorder>
+   <zorder>saveToLrcDirRadioBox</zorder>
+   <zorder>saveToCurrentDirRadioBox</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>downloadButton</zorder>
+   <zorder>functionBottomLabel</zorder>
+   <zorder>label_art</zorder>
+   <zorder>label_song</zorder>
+   <zorder>label_status</zorder>
+   <zorder>label_index</zorder>
+   <zorder>label_path</zorder>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicLrcDownloadBatchTableWidget</class>
+   <extends>QWidget</extends>
+   <header>musiclrcdownloadbatchwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

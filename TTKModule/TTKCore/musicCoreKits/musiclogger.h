@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@
     M_LOGGER << str << LOG_END;     \
 }
 
-#ifdef MUSIC_DEBUG
+#ifdef TTK_DEBUG
     #define M_LOGGER_INFO(str)  M_MESSAGE(str, "[Info]")
     #define M_LOGGER_DEBUG(str) M_MESSAGE(str, "[Debug]")
     #define M_LOGGER_WARN(str)  M_MESSAGE(str, "[Warn]")
@@ -87,7 +87,7 @@ public:
      */
     inline MusicLogger &operator <<(bool t)
     {
-#ifdef MUSIC_DEBUG
+#ifdef TTK_DEBUG
         m_streamString.append( QString("%1 ").arg(t ? "true" : "false") );
 #else
         Q_UNUSED(t);
@@ -96,11 +96,11 @@ public:
     }
     inline MusicLogger &operator<<(char t) { return debugData<char>(t); }
     inline MusicLogger &operator<<(signed short t) { return debugData<short>(t);}
-    inline MusicLogger &operator<<(unsigned short t) { return debugData<ushort>(t); }
+    inline MusicLogger &operator<<(ushort t) { return debugData<ushort>(t); }
     inline MusicLogger &operator<<(signed int t) { return debugData<int>(t); }
-    inline MusicLogger &operator<<(unsigned int t) { return debugData<uint>(t); }
+    inline MusicLogger &operator<<(uint t) { return debugData<uint>(t); }
     inline MusicLogger &operator<<(signed long t) { return debugData<long>(t); }
-    inline MusicLogger &operator<<(unsigned long t) { return debugData<ulong>(t); }
+    inline MusicLogger &operator<<(ulong t) { return debugData<ulong>(t); }
     inline MusicLogger &operator<<(qint64 t) { return debugData<qint64>(t); }
     inline MusicLogger &operator<<(quint64 t) { return debugData<quint64>(t); }
     inline MusicLogger &operator<<(float t) { return debugData<float>(t); }
@@ -108,7 +108,7 @@ public:
     inline MusicLogger &operator<<(const char *t) { return debugData<const char*>(t); }
     inline MusicLogger &operator<<(const QString &t)
     {
-#ifdef MUSIC_DEBUG
+#ifdef TTK_DEBUG
         if(t == LOG_END)
         {
             m_stream << QString("[%1 %2]:  %3").arg(CURRENTDATE).arg(CURRENTTIME).arg(m_streamString) << endl;
@@ -133,7 +133,7 @@ private:
      */
     MusicLogger()
     {
-#ifdef MUSIC_DEBUG
+#ifdef TTK_DEBUG
         m_file.setFileName("logger.txt");
         m_file.open(QIODevice::WriteOnly | QIODevice::Append);
         m_stream.setDevice(&m_file);
@@ -144,7 +144,7 @@ private:
 
     ~MusicLogger()
     {
-#ifdef MUSIC_DEBUG
+#ifdef TTK_DEBUG
         m_file.close();
 #endif
     }
@@ -152,10 +152,10 @@ private:
     /*!
      * Output debug data into local file.
      */
-    template <class T>
+    template <typename T>
     MusicLogger &debugData(const T &data)
     {
-#ifdef MUSIC_DEBUG
+#ifdef TTK_DEBUG
         m_streamString.append( QString("%1 %2 ").arg(m_levelType).arg(data) );
 #else
         Q_UNUSED(data);

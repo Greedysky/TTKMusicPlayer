@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoSearchTableWidget(QWidget *parent = 0);
+    explicit MusicVideoSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicVideoSearchTableWidget();
 
@@ -76,7 +76,7 @@ Q_SIGNALS:
     /*!
      * Set current media name and url to play.
      */
-    void mvURLNameChanged(const MusicVideoItem &item);
+    void mediaUrlNameChanged(const MusicVideoItem &item);
 
 public Q_SLOTS:
     /*!
@@ -100,9 +100,9 @@ public Q_SLOTS:
      */
     virtual void itemDoubleClicked(int row, int column) override;
     /*!
-     * Get music mv information data.
+     * Get music media information data.
      */
-    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
+    void getMusicMediaInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Download current mv by controller.
      */

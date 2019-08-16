@@ -6,6 +6,7 @@
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideobarragestylepopwidget.h"
 #include "musiclocalsongsearchedit.h"
+#include "musicotherdefine.h"
 #include "musicuiobject.h"
 #include "musictime.h"
 
@@ -16,7 +17,7 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
 
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_playButton = new QPushButton(this);
-    m_timeLabel = new QLabel("00:00/00:00", this);
+    m_timeLabel = new QLabel(QString("%1/%1").arg(MUSIC_TIME_INIT), this);
     m_qualityButton = new MusicVideoQualityPopWidget(this);
     m_volumeButton = new MusicVolumePopWidget(this);
 #ifdef Q_OS_UNIX
@@ -89,13 +90,12 @@ void MusicVideoControlWidget::setValue(qint64 position) const
 void MusicVideoControlWidget::durationChanged(qint64 duration) const
 {
     m_timeSlider->setRange(0, duration*MT_S2MS);
-    m_timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
+    m_timeLabel->setText(QString("%1/%2").arg(MUSIC_TIME_INIT).arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 }
 
 void MusicVideoControlWidget::setButtonStyle(bool style) const
 {
-    m_playButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnPlay :
-                                        MusicUIObject::MKGVideoBtnPause);
+    m_playButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnPlay : MusicUIObject::MKGVideoBtnPause);
 }
 
 void MusicVideoControlWidget::mediaChanged(const QString &url)
@@ -116,8 +116,7 @@ void MusicVideoControlWidget::setQualityActionState()
 
 void MusicVideoControlWidget::pushBarrageClicked()
 {
-    m_pushBarrage->setStyleSheet(m_pushBarrageOn ? MusicUIObject::MKGVideoBtnBarrageOn :
-                                                   MusicUIObject::MKGVideoBtnBarrageOff);
+    m_pushBarrage->setStyleSheet(m_pushBarrageOn ? MusicUIObject::MKGVideoBtnBarrageOn : MusicUIObject::MKGVideoBtnBarrageOff);
     m_barrageSend->setEnabled(m_pushBarrageOn);
     m_menuBarrage->setEnabled(m_pushBarrageOn);
     m_lineEditBarrage->setEnabled(m_pushBarrageOn);

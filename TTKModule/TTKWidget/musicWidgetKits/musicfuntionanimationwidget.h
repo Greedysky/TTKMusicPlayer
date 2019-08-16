@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundWidget(QWidget *parent = 0);
+    explicit MusicBackgroundWidget(QWidget *parent = nullptr);
 
     /*!
      * Set background transparent.
@@ -65,7 +65,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLineBackgroundWidget(QWidget *parent = 0);
+    explicit MusicLineBackgroundWidget(QWidget *parent = nullptr);
 
     /*!
      * Set backgrgound transparent.
@@ -94,7 +94,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBaseAnimationWidget(QWidget *parent = 0);
+    explicit MusicBaseAnimationWidget(QWidget *parent = nullptr);
 
     ~MusicBaseAnimationWidget();
 
@@ -147,7 +147,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFuntionAnimationWidget(QWidget *parent = 0);
+    explicit MusicFuntionAnimationWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     /*!
@@ -175,7 +175,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicOptionAnimationWidget(QWidget *parent = 0);
+    explicit MusicOptionAnimationWidget(QWidget *parent = nullptr);
 
     /*!
      * Function button style clear.
@@ -212,7 +212,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinAnimationWidget(QWidget *parent = 0);
+    explicit MusicSkinAnimationWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     /*!

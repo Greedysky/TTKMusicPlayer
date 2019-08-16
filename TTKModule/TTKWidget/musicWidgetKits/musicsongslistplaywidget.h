@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,14 +38,14 @@ public:
     /*!
      * Object contsructor by index.
      */
-    explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
+    explicit MusicSongsListPlayWidget(int index, QWidget *parent = nullptr);
 
     ~MusicSongsListPlayWidget();
 
     /*!
      * Update item time label time.
      */
-    void insertTimerLabel(const QString &time, const QString &total);
+    void updateTimeLabel(const QString &current, const QString &total);
     /*!
      * Update current artist when it download finished.
      */
@@ -53,7 +53,7 @@ public:
     /*!
      * Update item artist label by name.
      */
-    void setParameter(const QString &name, const QString &path);
+    void setParameter(const QString &name, const QString &path, QString &time);
     /*!
      * Rename item artist label name.
      */
@@ -112,12 +112,12 @@ protected:
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */
-    bool showArtPicture(const QString &name) const;
+    bool showArtistPicture(const QString &name) const;
 
     bool m_noCover;
     int m_currentPlayIndex;
     QString m_totalTimeLabel;
-    QLabel *m_artPictureLabel, *m_timeLabel;
+    QLabel *m_artistPictureLabel, *m_timeLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;

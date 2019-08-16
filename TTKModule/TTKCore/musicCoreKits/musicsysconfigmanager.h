@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,16 +33,21 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSysConfigManager(QObject *parent = 0);
+    explicit MusicSysConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(COFIGPATH_FULL); }
+
     /*!
-     * Write datas into xml file.
+     * Read datas from config file.
      */
-    void writeXMLConfig();
+    void readSysConfigData() const;
+    /*!
+     * Write datas into config file.
+     */
+    void writeSysConfigData();
 
     /*!
      * Read System Last Play Index Config.
@@ -56,10 +61,6 @@ public:
      * Read Show Desktop Lrc Geometry Config.
      */
     QPoint readShowDLrcGeometry() const;
-    /*!
-     * Read Sys Load Config.
-     */
-    void readSysLoadConfig() const;
 
 };
 

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 
 #define M_HOTKEY_PTR (MusicSingleton<MusicHotKeyManager>::createInstance())
 
-class QxtGlobalShortcut;
+class QGlobalShortcut;
 
 /*! @brief The class of the global hotkey setting manager.
  * @author Greedysky <greedysky@163.com>
@@ -105,7 +105,7 @@ protected:
      */
     void setDefaultKey();
 
-    QList<QxtGlobalShortcut*> m_hotkeys;
+    QList<QGlobalShortcut*> m_hotkeys;
 
     DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 };

@@ -117,6 +117,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundremotethread.h
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musictranslationthreadabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicauthenticationthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadqnconfighread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
@@ -253,6 +254,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundremotethread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musictranslationthreadabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicauthenticationthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadqnconfighread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp

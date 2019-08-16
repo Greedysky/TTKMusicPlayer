@@ -23,6 +23,7 @@
 #include "musicdownloadabstracttablewidget.h"
 #include "musiccloudtablewidget.h"
 #include "musiccloudmanagerwidget.h"
+#include "musiclrcdownloadbatchwidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -32,8 +33,8 @@ MusicConnectionPool::MusicConnectionPool()
 
 void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 {
-    QObject *first = m_parameter.value(from);
-    QObject *second = m_parameter.value(to);
+    const QObject *first = m_parameter.value(from);
+    const QObject *second = m_parameter.value(to);
     if(first == nullptr || second == nullptr)
     {
         return;
@@ -54,7 +55,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
             (from == MusicSongCheckToolsQualityTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicDownloadAbstractTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
-        QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second, SLOT(addSongToPlayList(QStringList)));
+        QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second, SLOT(addSongToPlaylist(QStringList)));
     }
     else if(from == MusicEqualizerDialog::getClassName() && to == MusicPlayer::getClassName())
     {
@@ -77,7 +78,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     else if((from == MusicSongSearchTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicQueryFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
-        QObject::connect(first, SIGNAL(musicSongToPlayListChanged(QString,QString,QString,bool)), second, SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
+        QObject::connect(first, SIGNAL(musicSongToPlaylistChanged(QString,QString,QString,bool)), second, SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
     }
     else if(from == MusicLrcLocalLinkWidget::getClassName() && to == MusicDownloadStatusObject::getClassName())
     {
@@ -85,10 +86,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicVideoQualityPopWidget::getClassName() && to == MusicVideoSearchTableWidget::getClassName())
     {
-        QObject::connect(first, SIGNAL(getMusicMvInfo(MusicObject::MusicSongAttributes&)), second, SLOT(getMusicMvInfo(MusicObject::MusicSongAttributes&)));
+        QObject::connect(first, SIGNAL(getMusicMediaInfo(MusicObject::MusicSongAttributes&)), second, SLOT(getMusicMediaInfo(MusicObject::MusicSongAttributes&)));
     }
     else if((from == MusicConnectTransferWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
-            (from == MusicSongCheckToolsWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
+            (from == MusicSongCheckToolsWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
+            (from == MusicLrcDownloadBatchWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
         QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second, SLOT(getMusicLists(MusicSongItems&)));
     }

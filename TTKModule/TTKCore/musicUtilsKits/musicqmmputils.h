@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 
-/*! @brief The namespace of the utils algorithm.
+/*! @brief The namespace of the utils qmmp.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils
@@ -33,10 +33,17 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT QString pluginPath(const QString &module, const QString &format);
         /*!
-         * Mid config file transfer operator.
+         * Update mid config file transfer.
          */
-        MUSIC_UTILS_EXPORT void midTransferFile();
-
+        MUSIC_UTILS_EXPORT void updateMidConfigFile();
+        /*!
+         * Enable visual wave control.
+         */
+        MUSIC_UTILS_EXPORT void enableVisualPlugin(const QString &name, bool enable);
+        /*!
+         * Update ripple spectrum config file transfer.
+         */
+        MUSIC_UTILS_EXPORT void updateRippleSpectrumConfigFile();
     }
 }
 

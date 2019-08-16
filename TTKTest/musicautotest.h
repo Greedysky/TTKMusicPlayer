@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,13 +71,16 @@ namespace MusicAutoTest
     }
 }
 
-template <class T>
+template <typename T>
+/*! @brief The class of the app test object.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicTest
 {
 public:
     QSharedPointer<T> m_child;
 
-    MusicTest(const QString& name) : m_child(new T)
+    MusicTest(const QString &name) : m_child(new T)
     {
         m_child->setObjectName(name);
         MusicAutoTest::addTest(m_child.data());
@@ -94,9 +97,9 @@ public:
     int main(int argc, char *argv[]) \
     { \
         QApplication app(argc, argv); \
-        QCoreApplication::setOrganizationName(APPNAME); \
-        QCoreApplication::setOrganizationDomain(APPCOME); \
-        QCoreApplication::setApplicationName(APPNAME); \
+        QCoreApplication::setOrganizationName(APP_NAME); \
+        QCoreApplication::setOrganizationDomain(APP_COME_NAME); \
+        QCoreApplication::setApplicationName(APP_NAME); \
         return MusicAutoTest::run(argc, argv); \
     }
 

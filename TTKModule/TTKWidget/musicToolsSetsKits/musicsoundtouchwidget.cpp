@@ -3,6 +3,7 @@
 #include "musicaudiorecordercore.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
+#include "musicfileutils.h"
 #include "musicwidgetutils.h"
 #include "musicsinglemanager.h"
 
@@ -53,7 +54,6 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
 
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
-    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
     connect(m_process, SIGNAL(finished(int)), SLOT(finished(int)));
 
     m_ui->tempoSlider->setValue(2500);
@@ -94,14 +94,6 @@ void MusicSoundTouchWidget::show()
 
     setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveWidget::show();
-}
-
-void MusicSoundTouchWidget::analysisOutput()
-{
-//    while(m_process->canReadLine())
-//    {
-//        QByteArray data = m_process->readLine();
-//    }
 }
 
 void MusicSoundTouchWidget::onRecordStart()
@@ -147,7 +139,7 @@ void MusicSoundTouchWidget::rateSliderValueChanged(int value)
 
 void MusicSoundTouchWidget::openWavButtonClicked()
 {
-    QString filename = MusicUtils::Widget::getOpenFileDialog(this, "Wav(*.wav)");
+    const QString &filename = MusicUtils::File::getOpenFileDialog(this, "Wav(*.wav)");
     if(!filename.isEmpty())
     {
         m_ui->transformButton->setEnabled(true);
@@ -167,9 +159,9 @@ void MusicSoundTouchWidget::transformButtonClicked()
 
     QStringList key;
     key << input << (MusicObject::getAppDir() + MUSIC_RECORD_OUT_FILE)
-                          << QString("-tempo=%1").arg(m_ui->tempoSlider->value())
-                          << QString("-pitch=%1").arg(m_ui->pitchSlider->value())
-                          << QString("-rate=%1").arg(m_ui->rateSlider->value());
+        << QString("-tempo=%1").arg(m_ui->tempoSlider->value())
+        << QString("-pitch=%1").arg(m_ui->pitchSlider->value())
+        << QString("-rate=%1").arg(m_ui->rateSlider->value());
     m_process->start(MAKE_SOUNDTOUCH_FULL, key);
 }
 

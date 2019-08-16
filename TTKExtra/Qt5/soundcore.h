@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef SOUNDCORE_H
 #define SOUNDCORE_H
 
@@ -31,6 +32,7 @@
 #include "qmmpsettings.h"
 #include "audioparameters.h"
 #include "eqsettings.h"
+#include "trackinfo.h"
 
 class VolumeControl;
 class AbstractEngine;
@@ -40,7 +42,7 @@ class StateHandler;
 /*! \brief The SoundCore class provides a simple interface for audio playback.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class SoundCore : public QObject
+class QMMP_EXPORT SoundCore : public QObject
 {
     Q_OBJECT
 public:
@@ -48,7 +50,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    SoundCore(QObject *parent = 0);
+    SoundCore(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
@@ -56,7 +58,7 @@ public:
     /*!
      * Returns length in milliseconds
      */
-    qint64 totalTime() const;
+    qint64 duration() const;
     /*!
      * Returns equalizer settings
      */
@@ -104,7 +106,7 @@ public:
     /*!
      * Returns all meta data in map.
      */
-    QMap <Qmmp::MetaData, QString> metaData() const;
+    const QMap<Qmmp::MetaData, QString> &metaData() const;
     /*!
      * Returns the metdata string associated with the given \b key.
      */
@@ -113,6 +115,10 @@ public:
      * Returns a hash of stream information if available
      */
     QHash<QString, QString> streamInfo() const;
+    /*!
+     * Returns current track information.
+     */
+    const TrackInfo &trackInfo() const;
     /*!
      *  Indicates that the current active engine will be used for the next queued track.
      *  May be useful for some effect plugins.
@@ -178,7 +184,7 @@ public slots:
     /*!
      *  This function returns file path or stream url.
      */
-    const QString url() const;
+    const QString path() const;
 
 signals:
     /*!
@@ -202,13 +208,13 @@ signals:
      */
     void audioParametersChanged(const AudioParameters &p);
     /*!
-     * Emitted when new metadata is available.
-     */
-    void metaDataChanged ();
-    /*!
      * Emitted when new stream information is available.
      */
     void streamInfoChanged();
+    /*!
+     * Emitted when new track information is available.
+     */
+    void trackInfoChanged();
     /*!
      * This signal is emitted when the state of the SoundCore has changed.
      */
@@ -252,7 +258,8 @@ private slots:
     void startNextEngine();
 
 private:
-    bool event(QEvent *e);
+    virtual bool event(QEvent *e) override;
+
     enum NextEngineState
     {
         NO_ENGINE = 0,
@@ -260,9 +267,9 @@ private:
         ANOTHER_ENGINE,
         INVALID_SOURCE
     };
-    QMap <Qmmp::MetaData, QString> m_metaData;
     QHash <QString, QString> m_streamInfo;
-    QString m_url;
+    TrackInfo m_info;
+    QString m_path;
     static SoundCore* m_instance;
     StateHandler *m_handler;
     VolumeControl *m_volumeControl;

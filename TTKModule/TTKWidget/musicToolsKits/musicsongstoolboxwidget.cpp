@@ -112,7 +112,8 @@ void MusicSongsToolBoxTopWidget::showMenu()
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
 
     menu.addAction(tr("playLater"), this, SLOT(addToPlayLater()));
-    menu.addAction(tr("addToPlayList"), this, SLOT(addToPlayedList()));
+    menu.addAction(tr("addToPlaylist"), this, SLOT(addToPlayedList()));
+
     QMenu musicSortFiles(tr("sort"), &menu);
     musicSortFiles.addAction(tr("sortByFileName"))->setData(0);
     musicSortFiles.addAction(tr("sortBySinger"))->setData(1);
@@ -123,10 +124,10 @@ void MusicSongsToolBoxTopWidget::showMenu()
     connect(&musicSortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
     if(m_musicSort)
     {
-        QList<QAction*> actions(musicSortFiles.actions());
+        const QList<QAction*> actions(musicSortFiles.actions());
         if(-1 < m_musicSort->m_index && m_musicSort->m_index < actions.count())
         {
-            bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
+            const bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
             actions[m_musicSort->m_index]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
@@ -148,12 +149,12 @@ void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
 {
     if(m_musicSort)
     {
-        int bIndex = m_musicSort->m_index;
-        int newIndex = action->data().toInt();
+        const int bIndex = m_musicSort->m_index;
+        const int newIndex = action->data().toInt();
         m_musicSort->m_index = newIndex;
         if(bIndex == newIndex)
         {
-            bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
+            const bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
             m_musicSort->m_sortType = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
         }
         else
@@ -186,8 +187,7 @@ void MusicSongsToolBoxTopWidget::addToPlayedList()
 
 bool MusicSongsToolBoxTopWidget::isItemEnable() const
 {
-    return !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST ||
-             m_index == MUSIC_RECENT_LIST);
+    return !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST || m_index == MUSIC_RECENT_LIST);
 }
 
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -222,8 +222,8 @@ MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
 
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
-    int alpha = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt();
-    alpha = MusicUtils::Widget::reRenderValue<int>(0xFF, 0x1F, alpha);
+    int alpha = M_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparentChoiced).toInt();
+        alpha = MusicUtils::Widget::reRenderValue<int>(0xFF, 0x1F, alpha);
     QWidget::paintEvent(event);
     QPainter painter(this);
 

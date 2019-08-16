@@ -110,10 +110,9 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(topAnimation);
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
-    connect(m_searchButton,SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
-    connect(m_videoTable, SIGNAL(mvURLNameChanged(MusicVideoItem)), SLOT(mvURLNameChanged(MusicVideoItem)));
-    connect(m_videoTable, SIGNAL(restartSearchQuery(QString)),
-                          SLOT(videoResearchButtonSearched(QString)));
+    connect(m_searchButton, SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
+    connect(m_videoTable, SIGNAL(mediaUrlNameChanged(MusicVideoItem)), SLOT(mediaUrlNameChanged(MusicVideoItem)));
+    connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
@@ -140,15 +139,13 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
 
 void MusicVideoPlayWidget::popup(bool popup)
 {
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType,
-                                popup ? tr("InlineMode") : tr("PopupMode"));
+    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, popup ? tr("InlineMode") : tr("PopupMode"));
     blockMoveOption(!popup);
 
     if(popup)
     {
-        QSize size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-        setGeometry((size.width() - WINDOW_WIDTH)/2, (size.height() - WINDOW_HEIGHT)/2,
-                    WINDOW_WIDTH, WINDOW_HEIGHT);
+        const QSize &size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+        setGeometry((size.width() - WINDOW_WIDTH)/2, (size.height() - WINDOW_HEIGHT)/2, WINDOW_WIDTH, WINDOW_HEIGHT);
         resizeWindow(0, 0);
         setParent(nullptr);
         show();
@@ -166,8 +163,9 @@ bool MusicVideoPlayWidget::isPopup() const
 
 void MusicVideoPlayWidget::resizeWindow()
 {
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+
     if(!isFullScreen())
     {
         resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
@@ -258,18 +256,18 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
 {
     m_videoTable->startSearchSingleQuery(data);
-    MusicObject::MusicSongInformation info(data.value<MusicObject::MusicSongInformation>());
-    MusicObject::MusicSongAttributes attrs = info.m_songAttrs;
+    const MusicObject::MusicSongInformation info(data.value<MusicObject::MusicSongInformation>());
+    const MusicObject::MusicSongAttributes &attrs = info.m_songAttrs;
     if(!attrs.isEmpty())
     {
-        MusicObject::MusicSongAttribute attr = attrs.first();
-        QString url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
+        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const QString &url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         MusicVideoItem data;
         data.m_name = info.m_singerName + " - " + info.m_songName;
         data.m_url = url;
         data.m_id = info.m_songId;
         data.m_server = MUSIC_MOVIE_RADIO;
-        mvURLNameChanged(data);
+        mediaUrlNameChanged(data);
     }
 }
 
@@ -281,6 +279,11 @@ void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
 
 void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
 {
+    if(url.isEmpty())
+    {
+        return;
+    }
+
     MusicApplication *w = MusicApplication::instance();
     if(w->isPlaying())
     {
@@ -293,7 +296,7 @@ void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
     switchToPlayView();
 }
 
-void MusicVideoPlayWidget::mvURLNameChanged(const MusicVideoItem &item)
+void MusicVideoPlayWidget::mediaUrlNameChanged(const MusicVideoItem &item)
 {
     m_videoItem = item;
     setTitleText(item.m_name);
@@ -302,8 +305,8 @@ void MusicVideoPlayWidget::mvURLNameChanged(const MusicVideoItem &item)
 
 void MusicVideoPlayWidget::freshButtonClicked()
 {
-    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
-    emit freshButtonClicked( text == tr("PopupMode"));
+    const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
+    emit freshButtonClicked(text == tr("PopupMode"));
 }
 
 void MusicVideoPlayWidget::fullscreenButtonClicked()
@@ -313,10 +316,9 @@ void MusicVideoPlayWidget::fullscreenButtonClicked()
         return;
     }
 
-    QString text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) ==
-                                tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
+    const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) == tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
-    emit fullscreenButtonClicked( text == tr("NormalMode"));
+    emit fullscreenButtonClicked(text == tr("NormalMode"));
 }
 
 void MusicVideoPlayWidget::downloadButtonClicked()
@@ -326,8 +328,8 @@ void MusicVideoPlayWidget::downloadButtonClicked()
 
 void MusicVideoPlayWidget::shareButtonClicked()
 {
-    QString name = m_videoItem.m_name.trimmed();
-    QString id = m_videoItem.m_id.trimmed();
+    const QString &name = m_videoItem.m_name.trimmed();
+    const QString &id = m_videoItem.m_id.trimmed();
     if(name.isEmpty() || id.isEmpty())
     {
         return;
@@ -348,7 +350,7 @@ void MusicVideoPlayWidget::leaveTimeout()
     QWidget *w(m_videoView->controlBarWidget());
     if(w->y() != height())
     {
-        int topHeight = (m_stackedWidget->currentIndex() == 1) ? 0 : -m_topWidget->height();
+        const int topHeight = (m_stackedWidget->currentIndex() == 1) ? 0 : -m_topWidget->height();
         start(0, topHeight, height() - w->height() - m_topWidget->height(), height());
     }
 }
@@ -370,7 +372,7 @@ void MusicVideoPlayWidget::enterEvent(QEvent *event)
     QWidget *w(m_videoView->controlBarWidget());
     if(w->y() >= height())
     {
-        int topHeight = (m_stackedWidget->currentIndex() == 1) ? 0 : -m_topWidget->height();
+        const int topHeight = (m_stackedWidget->currentIndex() == 1) ? 0 : -m_topWidget->height();
         start(topHeight, 0, height(), height() - w->height() - m_topWidget->height());
     }
 }

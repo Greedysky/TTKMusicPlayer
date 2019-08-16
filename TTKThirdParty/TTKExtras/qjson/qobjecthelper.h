@@ -52,7 +52,7 @@ namespace QJson {
       Q_ENUMS(Gender)
 
      public:
-        Person(QObject* parent = 0);
+        Person(QObject* parent = nullptr);
         ~Person();
 
         QString name() const;
@@ -135,7 +135,7 @@ namespace QJson {
     * @param variant Attributes to assign to the object.
     * @param object The QObject instance to update.
     */
-    static void qvariant2qobject(const QVariantMap& variant, QObject* object);
+    static void qvariant2qobject(const QVariantMap &variant, QObject* object);
 
     private:
       class QObjectHelperPrivate;

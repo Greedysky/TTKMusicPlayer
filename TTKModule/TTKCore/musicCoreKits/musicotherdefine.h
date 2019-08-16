@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,10 +22,11 @@
 #include <QObject>
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"
-
 #define MUSIC_DAILY_DIR             "Bing"
-
 #define MUSIC_YYT_PREFIX            "TTK_YYT_"
+#define MUSIC_TIME_INIT             "00:00"
+#define MUSIC_NETWORK_TEST_FILE     "netwotk_test.tt"
+#define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
 
 #define MUSIC_COLOR_FILE            "color.jpg"
 #define MUSIC_IMAGE_FILE            "image_cache"
@@ -33,10 +34,6 @@
 #define MUSIC_RECORD_FILE           "record.raw"
 #define MUSIC_RECORD_IN_FILE        "record_input.wav"
 #define MUSIC_RECORD_OUT_FILE       "record_output.wav"
-
-#define MUSIC_NETWORK_TEST_FILE     "netwotk_test.tt"
-
-#define MUSIC_MOVIE_RADIO           "Kugou"
 
 #define MUSIC_OUTER_OPEN            "-Open"
 #define MUSIC_OUTER_LIST            "-List"

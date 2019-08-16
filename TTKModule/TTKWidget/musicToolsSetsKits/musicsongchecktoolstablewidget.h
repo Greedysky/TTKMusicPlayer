@@ -15,7 +15,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsRenameTableWidget(QWidget *parent = 0);
+    explicit MusicSongCheckToolsRenameTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all items.
@@ -53,7 +53,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = 0);
+    explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongCheckToolsDuplicateTableWidget();
 
@@ -103,7 +103,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = 0);
+    explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongCheckToolsQualityTableWidget();
 

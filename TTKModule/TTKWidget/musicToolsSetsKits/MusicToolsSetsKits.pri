@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2018 Greedysky Studio
+# * Copyright (C) 2015 - 2019 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musicaudiorecorderwidget.h \
@@ -35,8 +35,6 @@ HEADERS  += \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
     $$PWD/musicsongchecktoolstablewidget.h \
-    $$PWD/musicsongchecktoolsitemselecteddialog.h \
-    $$PWD/musicgrabwidget.h \
     $$PWD/musicsoundkmicrowidget.h \
     $$PWD/musicsoundkmicrosearchwidget.h \
     $$PWD/musicsoundkmicrosettingpopwidget.h \
@@ -44,7 +42,7 @@ HEADERS  += \
 
 }
 
-contains(CONFIG, MUSIC_BUILD_LIB){
+contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
     $$PWD/musicaudiorecorderwidget.cpp \
@@ -61,8 +59,6 @@ SOURCES += \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
     $$PWD/musicsongchecktoolstablewidget.cpp \
-    $$PWD/musicsongchecktoolsitemselecteddialog.cpp \
-    $$PWD/musicgrabwidget.cpp \
     $$PWD/musicsoundkmicrowidget.cpp \
     $$PWD/musicsoundkmicrosearchwidget.cpp \
     $$PWD/musicsoundkmicrosettingpopwidget.cpp \

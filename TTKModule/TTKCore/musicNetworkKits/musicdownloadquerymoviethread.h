@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,8 +32,13 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryMovieThread(QObject *parent = nullptr);
 
+    /*!
+     * Start to search data from name and type.
+     * Subclass should implement this function.
+     */
+    virtual void startToSearch(QueryType type, const QString &text) = 0;
     /*!
      * Start to Search data from name and type.
      */

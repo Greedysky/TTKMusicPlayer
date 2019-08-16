@@ -57,7 +57,7 @@ MusicRemoteWidgetForComplexStyle::~MusicRemoteWidgetForComplexStyle()
 
 void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 {
-    bool flag = (MusicUtils::String::splitString(value).count() == 1);
+    const bool flag = (MusicUtils::String::splitString(value).count() == 1);
 
     m_songName->setText(MusicUtils::String::songName(value));
     m_songArtist->setText(flag ? "--" : MusicUtils::String::artistName(value));
@@ -70,7 +70,7 @@ void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 
 bool MusicRemoteWidgetForComplexStyle::showArtPicture(const QString &name)
 {
-    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
+    const QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
     if(!originPath.isNull())
     {
         m_iconLabel->setPixmap(originPath.scaled(80, 80));

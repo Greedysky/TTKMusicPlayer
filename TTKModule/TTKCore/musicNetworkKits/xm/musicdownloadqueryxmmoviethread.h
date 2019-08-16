@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,12 +34,12 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicXMMVInfoConfigManager(QObject *parent = 0);
+    explicit MusicXMMVInfoConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read mv info datas into xml file.
+     * Read datas from config file.
      */
-    void readMVInfoConfig(MusicObject::MusicSongInformation *info);
+    void readMovieInfoData(MusicObject::MusicSongInformation *info);
 
 };
 
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryXMMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryXMMovieThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.
@@ -93,8 +93,7 @@ protected:
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                  const QString &vid, const QString &uid);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &vid, const QString &uid);
 
 };
 

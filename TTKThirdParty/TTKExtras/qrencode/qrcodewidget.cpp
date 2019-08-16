@@ -30,9 +30,8 @@ QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
     m_percent = 0.23f;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent)
     : QWidget(parent)
 {
@@ -168,15 +167,15 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent (event);
     QPainter painter(this);
 
-    QRcode *qrcode = QRcode_encodeString(d->m_text.constData(), 7,
-                                         d->m_level, d->m_mode, d->m_casesen);
+    QRcode *qrcode = QRcode_encodeString(d->m_text.constData(), 7, d->m_level, d->m_mode, d->m_casesen);
     if(qrcode)
     {
         unsigned char *point = qrcode->data;
         painter.setPen(Qt::NoPen);
         painter.setBrush(d->m_background);
         painter.drawRect(0, 0, width(), height());
-        double scale = (width () - 2.0 * d->m_margin) / qrcode->width;
+
+        const double scale = (width () - 2.0 * d->m_margin) / qrcode->width;
         painter.setBrush(d->m_foreground);
 
         for(int x=0; x<qrcode->width; ++x)
@@ -196,15 +195,15 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
 
         /// draw icon
         painter.setBrush(d->m_background);
-        double icon_width = (width () - 2.0 * d->m_margin) * d->m_percent;
-        double icon_height = icon_width;
-        double wrap_x = (width () - icon_width) / 2.0;
-        double wrap_y = (width () - icon_height) / 2.0;
-        QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
+        const double icon_width = (width () - 2.0 * d->m_margin) * d->m_percent;
+        const double icon_height = icon_width;
+        const double wrap_x = (width () - icon_width) / 2.0;
+        const double wrap_y = (width () - icon_height) / 2.0;
+        const QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
         painter.drawRoundRect(wrap, 50, 50);
         QPixmap image(d->m_iconPath);
-        QRectF target(wrap_x, wrap_y, icon_width, icon_height);
-        QRectF source(0, 0, image.width (), image.height ());
+        const QRectF target(wrap_x, wrap_y, icon_width, icon_height);
+        const QRectF source(0, 0, image.width (), image.height ());
         painter.drawPixmap(target, image, source);
     }
     qrcode = nullptr;

@@ -4,6 +4,7 @@
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #include "musicalgorithmutils.h"
+#include "musicnetworkabstract.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -14,8 +15,7 @@
 
 #define REFER_URL   "M25YVkpIeHVOaVFRY0k3dmFWOFJsOE1tU013ZWV0Sy8="
 
-void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariantMap &key, int bitrate)
+void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     MusicTime::timeSRand();
     QString mid = key["strMediaMid"].toString();
@@ -26,8 +26,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
     if(key["size128"].toULongLong() != 0 && bitrate == MB_128)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -42,8 +42,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(key["sizeogg"].toULongLong() != 0 && bitrate == MB_192)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -58,8 +58,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(key["size320"].toULongLong() != 0 && bitrate == MB_320)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -74,8 +74,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(key["sizeape"].toULongLong() != 0 && bitrate == MB_750)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -90,8 +90,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(key["sizeflac"].toULongLong() != 0 && bitrate == MB_1000)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -106,8 +106,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
-                                                          const QString &quality, bool all)
+void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     if(all)
     {
@@ -139,15 +138,14 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info,
-                                                              const QVariantMap &key, int bitrate)
+void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     MusicTime::timeSRand();
-    QString mid = key["media_mid"].toString();
+    const QString &mid = key["media_mid"].toString();
     if(key["size_128mp3"].toULongLong() != 0 && bitrate == MB_128)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -162,8 +160,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
     }
     else if(key["size_192ogg"].toULongLong() != 0 && bitrate == MB_192)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -178,8 +176,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
     }
     else if(key["size_320mp3"].toULongLong() != 0 && bitrate == MB_320)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -194,8 +192,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
     }
     else if(key["size_ape"].toULongLong() != 0 && bitrate == MB_750)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -210,8 +208,8 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
     }
     else if(key["size_flac"].toULongLong() != 0 && bitrate == MB_1000)
     {
-        QString randKey = QString::number(qrand());
-        QString vkey = getMusicKey(randKey);
+        const QString &randKey = QString::number(qrand());
+        const QString &vkey = getMusicKey(randKey);
         if(vkey.isEmpty())
         {
             return;
@@ -237,18 +235,14 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
 
 QString MusicDownLoadQQInterface::getMusicKey(const QString &time)
 {
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(time);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(time);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -261,14 +255,14 @@ QString MusicDownLoadQQInterface::getMusicKey(const QString &time)
         return QString();
     }
 
-    QByteArray bytes = reply->readAll();
+    const QByteArray &bytes = reply->readAll();
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(bytes, &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         if(value.contains("code") && value["code"].toInt() == 0 && value.contains("key"))
         {
             return value["key"].toString();

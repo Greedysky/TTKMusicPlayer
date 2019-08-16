@@ -6,7 +6,7 @@
 MusicDownLoadQueryBDToplistThread::MusicDownLoadQueryBDToplistThread(QObject *parent)
     : MusicDownLoadQueryToplistThread(parent)
 {
-    m_queryServer = "Baidu";
+    m_queryServer = QUERY_BD_INTERFACE;
     m_pageSize = 100;
 }
 
@@ -30,15 +30,15 @@ void MusicDownLoadQueryBDToplistThread::startToSearch(const QString &toplist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(toplist).arg(m_pageSize).arg(0);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(toplist).arg(m_pageSize).arg(0);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -60,17 +60,17 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["error_code"].toInt() == 22000 && value.contains("song_list"))
             {
-                QVariantMap topInfo = value["billboard"].toMap();
+                const QVariantMap &topInfo = value["billboard"].toMap();
                 MusicResultsItem info;
                 info.m_name = topInfo["name"].toString();
                 info.m_coverUrl = topInfo["pic_s192"].toString();
@@ -78,8 +78,8 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                 info.m_description = topInfo["comment"].toString();
                 info.m_updateTime = topInfo["update_date"].toString();
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
-                QVariantList datas = value["song_list"].toList();
+                //
+                const QVariantList &datas = value["song_list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

@@ -5,8 +5,7 @@
 
 #include <QImage>
 
-MusicDataTagDownloadThread::MusicDataTagDownloadThread(const QString &url, const QString &save,
-                                                       MusicObject::DownloadType type, QObject *parent)
+MusicDataTagDownloadThread::MusicDataTagDownloadThread(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDataDownloadThread(url, save, type, parent)
 {
     m_needUpdate = false;
@@ -70,7 +69,7 @@ void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
     MusicSongTag tag;
     if(tag.read(m_savePathName))
     {
-        if(M_SETTING_PTR->value(MusicSettingManager::OtherInfoWChoiced).toBool())
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfoChoiced).toBool())
         {
             tag.setTitle(m_musicTag.getTitle());
             tag.setArtist(m_musicTag.getArtist());
@@ -78,7 +77,7 @@ void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
             tag.setTrackNum(m_musicTag.getTrackNum());
             tag.setYear(m_musicTag.getYear());
         }
-        if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverWChoiced).toBool())
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCoverChoiced).toBool())
         {
             tag.setCover(data);
         }

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 #include "musicrunglobaldefine.h"
 
 class MusicPlayer;
-class MusicPlayedlist;
+class MusicPlaylist;
 
 /*! @brief The class of the music console object.
  * @author Greedysky <greedysky@163.com>
@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConsoleObject(QObject *parent = 0);
+    explicit MusicConsoleObject(QObject *parent = nullptr);
 
     ~MusicConsoleObject();
 
@@ -97,7 +97,7 @@ private Q_SLOTS:
     /*!
      * Set current play mdoe to list loop.
      */
-    void musicPlayListLoop();
+    void musicPlaylistLoop();
     /*!
      * Set current play mdoe to single loop.
      */
@@ -135,7 +135,7 @@ protected:
     void print(qint64 position, qint64 duration);
 
     MusicPlayer* m_musicPlayer;
-    MusicPlayedlist* m_musicPlayList;
+    MusicPlaylist* m_musicPlaylist;
     int m_volume;
     QString m_playbackMode, m_enhanced;
 

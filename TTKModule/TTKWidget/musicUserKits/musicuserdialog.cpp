@@ -126,7 +126,7 @@ void MusicUserDialog::checkRegisterUser()
             return;
         }
         if(!m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), m_ui->serverComboBox->currentIndex()),
-                                 m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
+                                                  m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
         {
             MusicMessageBox message;
             message.setText(tr("The username is existed"));
@@ -155,8 +155,8 @@ void MusicUserDialog::userForgotPasswd()
 
 void MusicUserDialog::checkUserForgotPasswd()
 {
-     MusicUserUIDItem user(m_ui->userLineEdit->text(), m_ui->serverComboBox->currentIndex());
-     QString mail = m_ui->mailLineEdit->text();
+     const MusicUserUIDItem user(m_ui->userLineEdit->text(), m_ui->serverComboBox->currentIndex());
+     const QString &mail = m_ui->mailLineEdit->text();
 
      if(user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty())
      {
@@ -225,7 +225,7 @@ void MusicUserDialog::userEditTextChanged(const QString &uid)
 
 void MusicUserDialog::userServerComboBoxChanged(int index)
 {
-    bool s = (index <= 0);
+    const bool s = (index <= 0);
     m_ui->forgotPwdButton->setEnabled(s);
     m_ui->registerButton->setEnabled(s);
     m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), index);
@@ -281,7 +281,7 @@ void MusicUserDialog::downLoadFinished(const QByteArray &data)
     QPixmap pix;
     pix.loadFromData(data);
 
-    QString path = MusicUserRecordWidget::avatarPixmapRender(m_userUID, pix);
+    const QString &path = MusicUserRecordWidget::avatarPixmapRender(m_userUID, pix);
     m_userModel->updateUserIcon(m_userUID, path);
     emit userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
 }
@@ -409,7 +409,7 @@ void MusicUserDialog::clearOriginData()
 
     m_ui->automaticLogin->setChecked(false);
     m_ui->rememberPwd->setChecked(false);
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     m_ui->userComboBox->setCurrentText(QString());
 #else
     m_ui->userComboBox->setCurrentIndex(-1);
@@ -419,8 +419,8 @@ void MusicUserDialog::clearOriginData()
 
 void MusicUserDialog::localLoginMode()
 {
-    MusicUserUIDItem uid(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
-    QString pwd = m_ui->passwLineEdit->text();
+    const MusicUserUIDItem uid(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
+    const QString &pwd = m_ui->passwLineEdit->text();
 
     if(!m_ui->rememberPwd->isChecked() || pwd != m_userModel->getUserPWDMD5(m_userUID))
     {
@@ -456,9 +456,9 @@ void MusicUserDialog::networkLoginMode()
         connect(m_loginThread, SIGNAL(downLoadDataChanged(QString)), SLOT(networkLoginChanged()));
     }
 
-    QString user = m_ui->userComboBox->currentText();
     QString pwd = m_ui->passwLineEdit->text();
-    QString ew = m_userModel->userPasswordEncryption(pwd);
+    const QString &user = m_ui->userComboBox->currentText();
+    const QString &ew = m_userModel->userPasswordEncryption(pwd);
 
     if(pwd.length() != ew.length())
     {
@@ -471,17 +471,16 @@ void MusicUserDialog::networkLoginMode()
 void MusicUserDialog::readFromUserConfig()
 {
     MusicUserConfigManager xml;
-    if(!xml.readUserXMLConfig())
+    if(!xml.readConfig())
     {
         return;
     }
-    xml.readUserConfig(m_records);
+    xml.readUserData(m_records);
     readFromUserSettings();
 }
 
 int MusicUserDialog::findUserNameIndex(const MusicUserUIDItem &uid)
 {
-    int index = -1;
     for(int i=0; i<m_records.count(); ++i)
     {
         if(m_records[i].m_uid == uid.m_uid)
@@ -489,12 +488,12 @@ int MusicUserDialog::findUserNameIndex(const MusicUserUIDItem &uid)
             return i;
         }
     }
-    return index;
+    return -1;
 }
 
 void MusicUserDialog::readFromUserSettings()
 {
-    int index = findUserNameIndex(m_userUID);
+    const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
         m_ui->automaticLogin->setChecked( m_records[index].m_autoFlag );
@@ -508,7 +507,7 @@ void MusicUserDialog::writeToUserConfig()
 {
     MusicUserConfigManager xml;
     writeToUserSettings();
-    xml.writeUserXMLConfig(m_records);
+    xml.writeUserData(m_records);
 }
 
 void MusicUserDialog::writeToUserSettings()
@@ -521,7 +520,7 @@ void MusicUserDialog::writeToUserSettings()
         }
     }
 
-    int index = findUserNameIndex(m_userUID);
+    const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
         m_records[index].m_autoFlag = m_ui->automaticLogin->isChecked();
@@ -545,6 +544,7 @@ void MusicUserDialog::windowRectChanged(int index, int height)
     clearOriginData();
     m_ui->stackedWidget->setCurrentIndex(index);
     m_ui->stackedWidget->setGeometry(QRect(4, 29, 381, height));
+
     QRect other = geometry();
     other.setHeight(height + 33);
     setGeometry(other);

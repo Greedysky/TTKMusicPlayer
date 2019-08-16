@@ -24,20 +24,20 @@ void MusicDownLoadQueryThreadAbstract::startToSingleSearch(const QString &text)
 
 QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
 {
-    QString v = tr("Current Used Server Is %1");
-    if(m_queryServer.contains("Baidu"))
+    const QString &v = tr("Current Used Server Is %1");
+    if(m_queryServer.contains(QUERY_BD_INTERFACE))
         return v.arg(tr("BD"));
-    else if(m_queryServer.contains("Kugou"))
+    else if(m_queryServer.contains(QUERY_KG_INTERFACE))
         return v.arg(tr("KG"));
-    else if(m_queryServer.contains("Kuwo"))
+    else if(m_queryServer.contains(QUERY_KW_INTERFACE))
         return v.arg(tr("KW"));
-    else if(m_queryServer.contains("QQ"))
+    else if(m_queryServer.contains(QUERY_QQ_INTERFACE))
         return v.arg(tr("QQ"));
-    else if(m_queryServer.contains("WangYi"))
+    else if(m_queryServer.contains(QUERY_WY_INTERFACE))
         return v.arg(tr("WY"));
-    else if(m_queryServer.contains("XiaMi"))
+    else if(m_queryServer.contains(QUERY_XM_INTERFACE))
         return v.arg(tr("XM"));
-    else if(m_queryServer.contains("YinYueTai"))
+    else if(m_queryServer.contains(QUERY_YYT_INTERFACE))
         return v.arg(tr("YYT"));
     else
         return QString();
@@ -72,7 +72,7 @@ bool MusicDownLoadQueryThreadAbstract::findUrlFileSize(MusicObject::MusicSongAtt
 {
     for(int i=0; i<attrs->count(); ++i)
     {
-        if(!findUrlFileSize( &(*attrs)[i] ))
+        if(!findUrlFileSize(&(*attrs)[i]))
         {
             return false;
         }
@@ -88,7 +88,7 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(url);
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.head(request);
@@ -102,7 +102,7 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     }
 
     size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
-    QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(!redirection.isNull())
     {
         size = getUrlFileSize(redirection.toString());

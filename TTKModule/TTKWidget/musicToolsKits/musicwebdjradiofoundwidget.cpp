@@ -53,15 +53,13 @@ void MusicWebDJRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem 
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
-                                                        Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
     m_creatorLabel->setToolTip("by " + item.m_nickName);
-    m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(),
-                                                           Qt::ElideRight, WIDTH_LABEL_SIZE));
+    m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != "null")
+    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
     {
         download->startToDownload(item.m_coverUrl);
     }
@@ -141,7 +139,7 @@ void MusicWebDJRadioFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/LINE_SPACING_SIZE;
+        const int lineNumber = width()/LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -196,14 +194,15 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
 
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+
+        const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));
         mainlayout->addStretch(1);
     }
 
     if(m_pagingWidgetObject)
     {
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+        const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         m_pagingWidgetObject->reset(total);
     }
 
@@ -246,7 +245,7 @@ void MusicWebDJRadioFoundWidget::buttonClicked(int index)
         delete w;
     }
 
-    int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+    const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
     m_pagingWidgetObject->paging(index, total);
     m_downloadThread->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsListTableWidget(int index, QWidget *parent = 0);
+    explicit MusicSongsListTableWidget(int index, QWidget *parent = nullptr);
 
     virtual ~MusicSongsListTableWidget();
 
@@ -71,7 +71,7 @@ public:
     /*!
      * Update item time label time.
      */
-    void setTimerLabel(const QString &time, const QString &total) const;
+    void updateTimeLabel(const QString &current, const QString &total) const;
     /*!
      * Update current artist when it download finished.
      */

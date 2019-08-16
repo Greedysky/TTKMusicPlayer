@@ -3,6 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicqmmputils.h"
+#include "musicfileutils.h"
 #include "musiccoreutils.h"
 #include "musiccodecutils.h"
 
@@ -13,28 +14,26 @@ void MusicRunTimeManager::run() const
 {
     M_LOGGER_INFO("MusicApplication Begin");
 
-#ifndef MUSIC_GREATER_NEW
+#ifndef TTK_GREATER_NEW
     MusicUtils::Codec::setLocalCodec();
 #endif
-    MusicUtils::QMMP::midTransferFile();
+    MusicUtils::QMMP::updateMidConfigFile();
 
-    ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX
     QFont font;
     font.setPixelSize(13);
     qApp->setFont(font);
 #endif
-    ///////////////////////////////////////////////////////
 
     //detect the current network state
     M_NETWORK_PTR->start();
 
     M_LOGGER_INFO("Load Translation");
     MusicSysConfigManager *xml = new MusicSysConfigManager;
-    xml->readXMLConfig();
-    xml->readSysLoadConfig();
+    xml->readConfig();
+    xml->readSysConfigData();
 
-    MusicUtils::Core::checkCacheSize(
+    MusicUtils::File::checkCacheSize(
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt(),
                 M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
@@ -47,6 +46,6 @@ void MusicRunTimeManager::run() const
 
 QString MusicRunTimeManager::translator() const
 {
-    int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
+    const int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
     return MusicUtils::Core::getLanguageName(index);
 }

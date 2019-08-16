@@ -13,8 +13,9 @@
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
 {
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::SingleSelection);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();
@@ -65,8 +66,9 @@ void MusicSongsListPlayedTableWidget::setPlayLaterState(int row)
 
 void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &songs)
 {
-    int count = rowCount();
+    const int count = rowCount();
     setRowCount(songs.count());
+
     QHeaderView *headerview = horizontalHeader();
     for(int i=count; i<songs.count(); i++)
     {
@@ -127,7 +129,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
         delete takeItem(index, i);
     }
 
-    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
+    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
 
     m_musicSongsPlayWidget = new MusicSongsListPlayedWidget(index, this);
     m_musicSongsPlayWidget->setParameter(name);
@@ -156,7 +158,7 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
         return;
     }
 
-    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
+    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
 
     removeCellWidget(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 0);
@@ -265,7 +267,7 @@ void MusicSongsListPlayedTableWidget::listCellClicked(int row, int column)
 
 void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 {
-    int index = currentRow();
+    const int index = currentRow();
     if(rowCount() == 0 || index < 0)
     {
         return;
@@ -298,7 +300,7 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     createMoreMenu(&rightClickMenu);
 
-    bool empty = true;
+    const bool empty = true;
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));

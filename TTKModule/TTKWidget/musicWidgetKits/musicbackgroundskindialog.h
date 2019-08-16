@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundSkinDialog(QWidget *parent = 0);
+    explicit MusicBackgroundSkinDialog(QWidget *parent = nullptr);
 
     virtual ~MusicBackgroundSkinDialog();
 
@@ -56,22 +56,22 @@ public:
     /*!
      * Copy art file to local themes dir path.
      */
-    static QString cpoyArtFileToLocal(const QString &path);
+    static QString cpoyArtistFileToLocal(const QString &path);
     /*!
-     * Update art file theme.
+     * Update artist file theme.
      */
-    void updateArtFileTheme(const QString &theme);
+    void updateArtistFileTheme(const QString &theme);
 
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
      */
-    void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
+    void setCurrentBackgroundTheme(const QString &theme, int alpha, int listAlpha);
     /*!
-     * Get list bg skin alpha.
+     * Get list background skin alpha.
      */
     int getBackgroundListAlpha() const;
     /*!
-     * Get bg window skin enable.
+     * Get background window skin enable.
      */
     bool getBackgroundTransparentEnable() const;
 
@@ -86,7 +86,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Update app bg when user change the current bg emit.
+     * Update app background when user change the current background emit.
      */
     void currentTextChanged(const QString &text);
 
@@ -124,7 +124,7 @@ public Q_SLOTS:
      */
     void remoteBackgroundListWidgetItemClicked(const QString &name);
     /*!
-     * Update app bg when user change the current bg emit.
+     * Update app background when user change the current background emit.
      */
     void currentColorChanged(const QString &path);
     /*!

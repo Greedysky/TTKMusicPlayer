@@ -2,11 +2,9 @@
 #include "musicnumberdefine.h"
 #include "musicobject.h"
 #include "musictime.h"
+#include "musiccoreutils.h"
 
 #include <QHostInfo>
-#if defined Q_OS_UNIX || defined Q_CC_MINGW
-# include <unistd.h>
-#endif
 
 MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
     : QThread(parent)
@@ -43,13 +41,11 @@ void MusicNetworkTestThread::start()
 
 void MusicNetworkTestThread::run()
 {
-    QHostInfo info = QHostInfo::fromName(m_currentUrl);
-    int rand = qrand()%8 + 1;
-#if defined Q_OS_WIN && defined MUSIC_GREATER_NEW
-    QThread::msleep(rand*MT_S2MS);
-#else
-    usleep(rand*MT_S2US);
-#endif
+    const QHostInfo &info = QHostInfo::fromName(m_currentUrl);
+    const int rand = qrand()%8 + 1;
+
+    MusicUtils::Core::sleep(rand * MT_S2MS);
+
     if(m_run)
     {
         emit networkConnectionTestChanged( !info.addresses().isEmpty() );

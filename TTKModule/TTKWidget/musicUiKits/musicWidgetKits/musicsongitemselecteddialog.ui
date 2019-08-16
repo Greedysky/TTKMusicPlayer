@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicSongItemSelectedDialog</class>
+ <widget class="QWidget" name="MusicSongItemSelectedDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>308</width>
+    <height>313</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>选择扫描范围</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>300</width>
+     <height>305</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>220</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>选择扫描范围</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>282</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>300</width>
+     <height>280</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white;</string>
+   </property>
+   <widget class="QPushButton" name="confirmButton">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>240</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>确定</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="selectAllCheckButton">
+    <property name="geometry">
+     <rect>
+      <x>27</x>
+      <y>245</y>
+      <width>80</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>全选</string>
+    </property>
+   </widget>
+   <widget class="MusicSongItemSelectedTableWidget" name="itemTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>260</width>
+      <height>210</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicSongItemSelectedTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicsongitemselecteddialog.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

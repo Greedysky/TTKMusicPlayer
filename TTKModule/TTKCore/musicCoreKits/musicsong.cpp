@@ -21,7 +21,9 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicPath = musicPath;
     m_musicName = musicName;
 
-    QFileInfo info(m_musicPath);
+    m_musicPath.replace("\\", "/");
+
+    const QFileInfo info(m_musicPath);
     if(m_musicName.isEmpty())
     {
         m_musicName = info.completeBaseName();
@@ -33,30 +35,25 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicSizeStr = MusicUtils::Number::size2Label(m_musicSize);
 }
 
-MusicSong::MusicSong(const QString &musicPath,
-                     int playCount, const QString &musicName)
+MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &musicName)
     : MusicSong(musicPath, musicName)
 {
     m_musicPlayCount = playCount;
 }
 
-MusicSong::MusicSong(const QString &musicPath, const QString &type,
-                     int playCount, const QString &musicName)
+MusicSong::MusicSong(const QString &musicPath, const QString &type, int playCount, const QString &musicName)
     : MusicSong(musicPath, playCount, musicName)
 {
     m_musicType = type;
 }
 
-MusicSong::MusicSong(const QString &musicPath, const QString &type,
-                     const QString &playTime, int playCount,
-                     const QString &musicName)
+MusicSong::MusicSong(const QString &musicPath, const QString &type, const QString &playTime, int playCount, const QString &musicName)
     : MusicSong(musicPath, type, playCount, musicName)
 {
     m_musicPlayTime = playTime;
 }
 
-MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &time,
-                     const QString &musicName)
+MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &time, const QString &musicName)
     : MusicSong(musicPath, playCount, musicName)
 {
     m_musicPlayTime = time;

@@ -45,7 +45,7 @@ QString MusicUtils::Number::size2Label(qint64 size)
         return "0.00B";
     }
 
-    QString label = size2Number(size);
+    const QString &label = size2Number(size);
     if(size < MH_KB2B)
     {
         return QString("%1B").arg(label);
@@ -164,7 +164,7 @@ int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
         return -1;
     }
 
-    QStringList data(bitrate.split(" "));
+    const QStringList &data(bitrate.split(" "));
     if(data.count() >= 2)
     {
         int bit = data.front().trimmed().toInt();

@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicmessagebox.h"
-#include "musicwidgetutils.h"
+#include "musicfileutils.h"
 
 MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -57,7 +57,7 @@ void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 {
-    QString picPath = MusicUtils::Widget::getOpenFileDialog(this);
+    const QString &picPath = MusicUtils::File::getOpenFileDialog(this);
     if(picPath.isEmpty())
     {
         return;
@@ -83,9 +83,9 @@ void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 
 void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 {
-    QDir bgDir(BACKGROUND_DIR_FULL);
+    const QDir dir(BACKGROUND_DIR_FULL);
     int count = 0;
-    QString name = m_ui->artSearchEdit->text().trimmed();
+    const QString &name = m_ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
     {
         MusicMessageBox message;
@@ -94,7 +94,7 @@ void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
         return;
     }
 
-    foreach(const QFileInfo &f, bgDir.entryInfoList())
+    foreach(const QFileInfo &f, dir.entryInfoList())
     {
         if(f.fileName().contains( name ))
         {
@@ -102,7 +102,7 @@ void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
         }
     }
 
-    QString fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL).arg(name).arg(count);
+    const QString &fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL).arg(name).arg(count);
     m_ui->imageLabel->saveImagePath(fileName + JPG_FILE);
     QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE );
     close();

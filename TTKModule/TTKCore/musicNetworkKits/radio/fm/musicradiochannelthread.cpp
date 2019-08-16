@@ -27,7 +27,7 @@ void MusicRadioChannelThread::startToDownload(const QString &id)
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 #endif
     if(m_cookJar)
     {
@@ -49,24 +49,21 @@ void MusicRadioChannelThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         m_channels.clear();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
-            QVariantList channels = value["channel_list"].toList();
+            const QVariantList &channels = value["channel_list"].toList();
 
             QFile arcFile(":/data/fmarclist");
             arcFile.open(QFile::ReadOnly);
-#ifdef Q_OS_WIN
-            QStringList arcs = QString(arcFile.readAll()).split("\r\n");
-#else
-            QStringList arcs = QString(arcFile.readAll()).split("\n");
-#endif
+
+            QStringList arcs = QString(arcFile.readAll()).remove("\r").split("\n");
             arcFile.close();
 
             while(channels.count() > arcs.count())

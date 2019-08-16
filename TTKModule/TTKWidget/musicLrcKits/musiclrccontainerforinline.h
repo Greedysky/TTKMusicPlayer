@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerForInline(QWidget *parent = 0);
+    explicit MusicLrcContainerForInline(QWidget *parent = nullptr);
 
     virtual ~MusicLrcContainerForInline();
 
@@ -88,7 +88,7 @@ public:
     /*!
      * Get state of background is artist shown.
      */
-    inline bool artBackgroundIsShow() const { return m_showArtBackground;}
+    inline bool artistBackgroundIsShow() const { return m_showArtistBackground;}
 
     /*!
      * Set current lrc size.
@@ -120,7 +120,7 @@ Q_SIGNALS:
     /*!
      * The art background state has changed emit.
      */
-    void artBgHasChanged();
+    void artistBackgroundHasChanged();
 
 public Q_SLOTS:
     /*!
@@ -140,13 +140,13 @@ public Q_SLOTS:
      */
     void saveLrcTimeChanged();
     /*!
-     * The art background state has changed.
+     * The artist background state has changed.
      */
-    void artBackgroundChanged();
+    void artistBackgroundChanged();
     /*!
-     * The art background has uploaded.
+     * The artist background has uploaded.
      */
-    void showArtBackgroundUploadedWidget();
+    void showArtistBackgroundUploadedWidget();
     /*!
      * Open current lrc file location.
      */
@@ -246,7 +246,7 @@ protected:
     bool m_mouseLeftPressed, m_lrcChangeState, m_mouseMoved;
     int m_lrcChangeOffset, m_lrcChangeDelta;
 
-    bool m_lrcDisplayAll, m_showArtBackground;
+    bool m_lrcDisplayAll, m_showArtistBackground;
     int m_animationFreshTime, m_lrcSizeProperty;
 
     qint64 m_changeSpeedValue;

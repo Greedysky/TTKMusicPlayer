@@ -2,6 +2,7 @@
 #include "musictinyuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
+#include "musicqmmputils.h"
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
@@ -18,13 +19,14 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
     hbox->addWidget(m_mainWidget);
     setLayout(hbox);
 
-    enablePlugin(true);
+    MusicUtils::QMMP::enableVisualPlugin("outerrayswave", true);
 
     QWidget *bottomWidget = new QWidget(m_mainWidget);
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(5, 0, 5, 0);
     mhbox->setSpacing(0);
-    QList<Visual *> *vs = Visual::visuals();
+
+    const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->last())
     {
         mhbox->addWidget(vs->last());
@@ -54,23 +56,11 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
 
 MusicRemoteWidgetForRaysWave::~MusicRemoteWidgetForRaysWave()
 {
-    enablePlugin(false);
+    MusicUtils::QMMP::enableVisualPlugin("outerrayswave", false);
     delete m_songNameLabel;
 }
 
 void MusicRemoteWidgetForRaysWave::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));
-}
-
-void MusicRemoteWidgetForRaysWave::enablePlugin(bool enable)
-{
-    foreach(VisualFactory *v, Visual::factories())
-    {
-        if(v->properties().shortName.contains("outerrayswave"))
-        {
-            Visual::setEnabled(v, enable);
-            break;
-        }
-    }
 }

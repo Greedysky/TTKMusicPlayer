@@ -1,6 +1,6 @@
 #include "musicmessageaboutdialog.h"
 #include "ui_musicmessageaboutdialog.h"
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicuiobject.h"
 #include "musicdownloadcounterpvthread.h"
 
@@ -24,11 +24,11 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
-    ///////////////////////////////////////////////////////
+    //
     m_counterPVThread = new MusicDownloadCounterPVThread(this);
     connect(m_counterPVThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
     m_counterPVThread->startToDownload();
-    ///////////////////////////////////////////////////////
+    //
 }
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()
@@ -45,8 +45,7 @@ void MusicMessageAboutDialog::musicGetCounterFinished(const QString &data)
 int MusicMessageAboutDialog::exec()
 {
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
-    m_ui->textLabel->setText(QString("TTKMusicplayer Version: %1\n").arg(TTKMUSIC_VERSION_STR) +
-                             m_ui->textLabel->text());
+    m_ui->textLabel->setText(QString("TTKMusicplayer Version: %1\n").arg(TTKMUSIC_VERSION_STR) + m_ui->textLabel->text());
     setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

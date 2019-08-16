@@ -19,18 +19,14 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         return;
     }
 
-    QByteArray encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloud").arg(hash).toUtf8()).toHex().toLower();
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_ATTR_URL, false).arg(QString(encodedData)).arg(hash);
+    const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloud").arg(hash).toUtf8()).toHex().toLower();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_ATTR_URL, false).arg(QString(encodedData)).arg(hash);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -45,13 +41,13 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         if(!value.isEmpty() && !value.contains("error"))
         {
-            int bitRate = value["bitRate"].toInt();
+            const int bitRate = value["bitRate"].toInt();
             if(bitRate == 0)
             {
                 return;
@@ -102,17 +98,13 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -127,7 +119,7 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -145,17 +137,13 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
 
 void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album)
 {
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -170,7 +158,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

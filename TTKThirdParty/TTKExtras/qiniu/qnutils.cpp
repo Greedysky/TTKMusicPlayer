@@ -12,8 +12,8 @@ const char QNUtils::KEY_ESCAPE_RESERVE_BYTES[] = {'?'};
 // Url safe base64 encode
 QString QNUtils::urlSafeBase64Encode(const QByteArray &data)
 {
-#if (defined MUSIC_GREATER_NEW && !defined MUSIC_NO_WINEXTRAS)
-    QByteArray encodedData = data.toBase64(QByteArray::Base64UrlEncoding);
+#if (defined TTK_GREATER_NEW && !defined TTK_NO_WINEXTRAS)
+    const QByteArray &encodedData = data.toBase64(QByteArray::Base64UrlEncoding);
 #else
     QByteArray encodedData = data.toBase64();
     encodedData.replace('+', '-');
@@ -42,7 +42,7 @@ QByteArray QNUtils::sha1(const QByteArray &data)
 // Hmac sha1 hash using secret key
 QByteArray QNUtils::hmacSha1(const QByteArray &data, const QByteArray &secretKey)
 {
-    int blockSize = 64;
+    const int blockSize = 64;
     QByteArray newSecretKey = secretKey;
     if(newSecretKey.length() > blockSize)
     {
@@ -62,8 +62,7 @@ QByteArray QNUtils::hmacSha1(const QByteArray &data, const QByteArray &secretKey
     QByteArray part = innerPadding;
     part.append(data);
     total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-    QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
-    return hashed;
+    return QCryptographicHash::hash(total, QCryptographicHash::Sha1);
 }
 
 // Url escaped key
@@ -71,14 +70,13 @@ QByteArray QNUtils::hmacSha1(const QByteArray &data, const QByteArray &secretKey
 // @see http://en.wikipedia.org/wiki/Percent-encoding
 QString QNUtils::escapeKey(const QString &key)
 {
-    return QUrl::toPercentEncoding(key, QNUtils::KEY_ESCAPE_UNRESERVE_BYTES,
-                                        QNUtils::KEY_ESCAPE_RESERVE_BYTES);
+    return QUrl::toPercentEncoding(key, QNUtils::KEY_ESCAPE_UNRESERVE_BYTES, QNUtils::KEY_ESCAPE_RESERVE_BYTES);
 }
 
 // Check QString not null and not empty
 bool QNUtils::isParamValid(const QString &param)
 {
-    return (!param.isEmpty());
+    return !param.isEmpty();
 }
 
 // A quick way to get a deadline timestamp
@@ -97,18 +95,18 @@ uint QNUtils::crc32(const QByteArray &data)
 {
     QByteArray temp;
 
-    unsigned short crc=0xffff;
+    unsigned short crc = 0xffff;
     unsigned short a,j,k;
 
     for(a=0; a<data.size(); a++)
     {
-        crc =crc ^ ( (int)data[a]>=0 ? data[a] : (data[a]+256) );
-        for(j=0;j<8;j++)
+        crc = crc ^ ( (int)data[a]>=0 ? data[a] : (data[a]+256) );
+        for(j=0; j<8; j++)
         {
-            k=crc & 01;
-            crc=crc >> 1;
-            if (k==0) continue;
-            crc =crc ^ 0xA001;
+            k = crc & 01;
+            crc = crc >> 1;
+            if (k == 0) continue;
+            crc = crc ^ 0xA001;
         }
     }
     temp[1] = crc/256;

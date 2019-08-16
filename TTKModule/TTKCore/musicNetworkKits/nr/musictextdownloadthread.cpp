@@ -2,8 +2,7 @@
 #///QJson import
 #include "qjson/parser.h"
 
-MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
-                                                 MusicObject::DownloadType type, QObject *parent)
+MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
@@ -23,7 +22,7 @@ void MusicTextDownLoadThread::startToDownload()
 #ifndef QT_NO_SSL
             connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
             M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-            setSslConfiguration(&request);
+            MusicObject::setSslConfiguration(&request);
 #endif
             m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -51,7 +50,7 @@ void MusicTextDownLoadThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
        
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         if(!bytes.isEmpty())
         {
             QTextStream outstream(m_file);

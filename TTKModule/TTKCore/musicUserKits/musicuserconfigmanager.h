@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,20 +52,21 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserConfigManager(QObject *parent = 0);
+    explicit MusicUserConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read user datas from xml file by given name.
      */
-    inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(USERPATH_FULL); }
+
     /*!
-     * Write user datas into xml file.
+     * Read datas from config file.
      */
-    void writeUserXMLConfig(const MusicUserRecords &records);
+    void readUserData(MusicUserRecords &records);
     /*!
-     * Read user datas into xml file.
+     * Write datas into config file.
      */
-    void readUserConfig(MusicUserRecords &records);
+    void writeUserData(const MusicUserRecords &records);
 
 };
 

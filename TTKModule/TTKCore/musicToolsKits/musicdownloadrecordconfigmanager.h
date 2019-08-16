@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordConfigManager(MusicObject::RecordType type, QObject *parent = 0);
+    explicit MusicDownloadRecordConfigManager(MusicObject::RecordType type, QObject *parent = nullptr);
 
     /*!
      * Set config type.
@@ -43,18 +43,20 @@ public:
      * Get config type.
      */
     inline MusicObject::RecordType getType() const { return m_type; }
+
     /*!
      * Read history download datas from xml file by given name.
      */
-    inline bool readDownloadXMLConfig() { return readConfig( mappingFilePathFromEnum() ); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig( mappingFilePathFromEnum() ); }
+
     /*!
-     * Write history download datas into xml file.
+     * Read datas from config file.
      */
-    void writeDownloadConfig(const MusicSongs &records);
+    void readDownloadData(MusicSongs &records);
     /*!
-     * Read history download datas into xml file.
+     * Write datas into config file.
      */
-    void readDownloadConfig(MusicSongs &records);
+    void writeDownloadData(const MusicSongs &records);
 
 protected:
     /*!

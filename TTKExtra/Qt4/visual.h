@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef VISUAL_H
 #define VISUAL_H
 
@@ -25,7 +26,9 @@
 #include <QWidget>
 #include <QHash>
 #include <stddef.h>
+#include "qmmp_export.h"
 
+#define QMMP_VISUAL_INTERVAL  40
 #define QMMP_VISUAL_NODE_SIZE 512 //samples
 
 class VisualFactory;
@@ -34,7 +37,7 @@ class VisualBuffer;
 /*! @brief The Visual class provides the base interface class of visualizations.
  *  @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Visual : public QWidget
+class QMMP_EXPORT Visual : public QWidget
 {
     Q_OBJECT
 public:
@@ -131,6 +134,10 @@ protected:
      * @param right Right channel buffer.
      */
     bool takeData(float *left, float *right = 0);
+    /*!
+     * Take visual maxed value range.
+     */
+    float takeMaxRange() const;
 
 private:
     static QList<VisualFactory*> *m_factories;

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,10 +34,10 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKWMusicInfoConfigManager(QObject *parent = 0);
+    explicit MusicKWMusicInfoConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read music info datas into xml file.
+     * Read datas from config file.
      */
     void readMusicInfoConfig(MusicObject::MusicSongInformation *info);
 
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKWThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryKWThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,7 +27,7 @@
 /*! @brief The AbstractEngine class provides the internal audio converter
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class AudioConverter
+class QMMP_EXPORT AudioConverter
 {
 public:
     /*!
@@ -54,7 +54,6 @@ public:
      * \param samples Number of samples.
      */
     void fromFloat(const float *in, const unsigned char *out, size_t samples);
-
 
 private:
     Qmmp::AudioFormat m_format;
