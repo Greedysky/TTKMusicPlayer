@@ -28,6 +28,7 @@ class MusicConnectTransferWidget;
 }
 class QButtonGroup;
 class MusicDeviceInfoItem;
+class MusicConnectTransferThread;
 
 /*! @brief The class of the transfer file to mobile widget.
  * @author Greedysky <greedysky@163.com>
@@ -69,9 +70,9 @@ public Q_SLOTS:
      */
     void selectedAllItems(bool check);
     /*!
-     * Start to transfer usb files.
+     * Start to transfer files.
      */
-    void startToTransferUSBFiles();
+    void startToTransferFiles();
     /*!
      * Search file from list.
      */
@@ -103,6 +104,7 @@ protected:
     MIntListMap m_searchfileListCache;
     MusicDeviceInfoItem *m_currentDeviceItem;
     QString m_songCountLabel, m_selectCountLabel;
+    MusicConnectTransferThread *m_transferThread;
 
 };
 

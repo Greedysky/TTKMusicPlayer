@@ -22,13 +22,15 @@ INCLUDEPATH += $$PWD
 HEADERS  += \
     $$PWD/musicdownloadrecordconfigmanager.h \
     $$PWD/musicclouddataitem.h \
-    $$PWD/musicdeviceinfocore.h
+    $$PWD/musicdeviceinfocore.h \
+    $$PWD/musicconnecttransferthread.h
 
 }
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicdownloadrecordconfigmanager.cpp \
-    $$PWD/musicdeviceinfocore.cpp
+    $$PWD/musicdeviceinfocore.cpp \
+    $$PWD/musicconnecttransferthread.cpp
 
 }

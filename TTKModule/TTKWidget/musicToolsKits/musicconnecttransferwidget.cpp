@@ -5,13 +5,12 @@
 #include "musicsettingmanager.h"
 #include "musicmessagebox.h"
 #include "musicdeviceinfocore.h"
-#include "musicprogresswidget.h"
 #include "musicsongssummariziedwidget.h"
+#include "musicconnecttransferthread.h"
 
 #include <QFile>
 #include <QTimer>
 #include <QButtonGroup>
-#include <QtDebug>
 
 MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -39,10 +38,12 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     m_ui->transferUSBButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->transferUSBButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferUSBFiles()));
+    connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
     m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
+
+    m_transferThread = new MusicConnectTransferThread(this);
 
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
@@ -61,6 +62,7 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
     M_CONNECTION_PTR->removeValue(getClassName());
     delete m_buttonGroup;
     delete m_ui;
+    delete m_transferThread;
 }
 
 void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
@@ -68,6 +70,7 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
     m_currentDeviceItem = item;
     m_ui->deviceInfoLabel->setText(item->m_name + "(" + item->m_path + ")");
     m_ui->songCountLabel->setText(m_songCountLabel.arg(0));
+    m_ui->selectCountLabel->setText(m_selectCountLabel.arg(0).arg(0));
 }
 
 void MusicConnectTransferWidget::initColumns()
@@ -90,6 +93,13 @@ void MusicConnectTransferWidget::initColumns()
         m_ui->playListLayout->addWidget(button);
         m_buttonGroup->addButton(button, i);
     }
+
+    int count = 0;
+    foreach(const MusicSongItem &item, songs)
+    {
+        count += item.m_songs.count();
+    }
+    m_ui->songCountLabel->setText(m_songCountLabel.arg(count));
 }
 
 void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
@@ -161,8 +171,6 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
     m_ui->searchLineEdit->clear();
     m_currentSongs = songs[m_currentIndex = index].m_songs;
     createAllItems(m_currentSongs);
-
-    m_ui->songCountLabel->setText(m_songCountLabel.arg(m_currentSongs.count()));
 }
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
@@ -172,35 +180,16 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
     itemSelectedChanged();
 }
 
-void MusicConnectTransferWidget::startToTransferUSBFiles()
+void MusicConnectTransferWidget::startToTransferFiles()
 {
-//    const QStringList &names = getSelectedFiles();
-//    if(names.isEmpty())
-//    {
-//        return;
-//    }
+    const QStringList &names = getSelectedFiles();
+    if(names.isEmpty())
+    {
+        return;
+    }
 
-//    QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
-//    if(path.isEmpty())
-//    {
-////        path = getRemovableDrive();
-//    }
-
-//    MusicProgressWidget progress;
-//    progress.show();
-//    progress.setTitle(tr("Copy File Mode"));
-//    progress.setRange(0, names.count());
-//    for(int i=0; i<names.count(); ++i)
-//    {
-//        QFile::copy(names[i], QString("%1/%2").arg(path).arg(names[i].split("/").last()));
-//        progress.setValue(i);
-//    }
-
-//    if(m_ui->allSelectedcheckBox->isChecked())
-//    {
-//        m_ui->allSelectedcheckBox->click();
-//    }
-//    m_ui->playListTableWidget->setSelectedAllItems(false);
+    m_transferThread->setCopyFilePath(m_currentDeviceItem->m_path, names);
+    m_transferThread->start();
 }
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
