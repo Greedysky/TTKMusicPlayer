@@ -1,5 +1,5 @@
-#ifndef MUSICDEVICEINFOCORE_H
-#define MUSICDEVICEINFOCORE_H
+#ifndef MUSICABSTRACTTHREAD_H
+#define MUSICABSTRACTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,55 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QProcess>
+#include <QThread>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the system device info item.
+/*! @brief The class of the abstract thread.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOL_EXPORT MusicDeviceInfoItem
-{
-    QString m_name;
-    QString m_path;
-    int m_availableBytes;
-    int m_totalBytes;
-}MusicDeviceInfoItem;
-TTK_DECLARE_LISTS(MusicDeviceInfoItem)
-
-
-/*! @brief The class of the system device info.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_TOOLSET_EXPORT MusicDeviceInfoCore : public QObject
+class MUSIC_CORE_EXPORT MusicAbstractThread : public QThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAbstractThread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDeviceInfoCore(QObject *parent = nullptr);
+    explicit MusicAbstractThread(QObject *parent = nullptr);
 
-    ~MusicDeviceInfoCore();
+    virtual ~MusicAbstractThread();
 
     /*!
-     * Get removable drive property.
+     * Stop and quit current thread.
      */
-    bool GetDisksProperty(const QString &drive) const;
+    void stopAndQuitThread();
+
+public Q_SLOTS:
     /*!
-     * Get removable drive name.
+     * Strat thread now.
      */
-    MusicDeviceInfoItems getRemovableDrive();
+    void start();
 
-#ifdef Q_OS_UNIX
-private Q_SLOTS:
-    void readData();
+protected:
+    /*!
+     * Thread run now.
+     */
+    virtual void run() override;
 
-private:
-    QProcess* m_dfProcess;
-#endif
-private:
-    MusicDeviceInfoItems m_items;
+protected:
+    bool m_run;
 
 };
 
-#endif // MUSICDEVICEINFOCORE_H
+#endif // MUSICABSTRACTTHREAD_H

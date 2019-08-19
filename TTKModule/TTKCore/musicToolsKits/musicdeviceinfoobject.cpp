@@ -1,4 +1,4 @@
-#include "musicdeviceinfocore.h"
+#include "musicdeviceinfoobject.h"
 #include "musicnumberdefine.h"
 #include "musicsemaphoreloop.h"
 
@@ -9,7 +9,7 @@
 #endif
 #define BUFFER_SIZE 255
 
-MusicDeviceInfoCore::MusicDeviceInfoCore(QObject *parent)
+MusicDeviceInfoObject::MusicDeviceInfoObject(QObject *parent)
     : QObject(parent)
 {
 #ifdef Q_OS_UNIX
@@ -18,14 +18,14 @@ MusicDeviceInfoCore::MusicDeviceInfoCore(QObject *parent)
 #endif
 }
 
-MusicDeviceInfoCore::~MusicDeviceInfoCore()
+MusicDeviceInfoObject::~MusicDeviceInfoObject()
 {
 #ifdef Q_OS_UNIX
     delete m_dfProcess;
 #endif
 }
 
-bool MusicDeviceInfoCore::GetDisksProperty(const QString &drive) const
+bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
 {
 #ifdef Q_OS_WIN
     STORAGE_PROPERTY_QUERY query;
@@ -103,7 +103,7 @@ bool MusicDeviceInfoCore::GetDisksProperty(const QString &drive) const
 #endif
 }
 
-MusicDeviceInfoItems MusicDeviceInfoCore::getRemovableDrive()
+MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
 {
     m_items.clear();
 #ifdef Q_OS_WIN
@@ -118,7 +118,7 @@ MusicDeviceInfoItems MusicDeviceInfoCore::getRemovableDrive()
         }
         else if(type == DRIVE_FIXED)
         {
-            if(!GetDisksProperty(path))
+            if(!getDisksProperty(path))
             {
                 continue;
             }
@@ -174,7 +174,7 @@ MusicDeviceInfoItems MusicDeviceInfoCore::getRemovableDrive()
 }
 
 #ifdef Q_OS_UNIX
-void MusicDeviceInfoCore::readData()
+void MusicDeviceInfoObject::readData()
 {
     while(!m_dfProcess->atEnd())
     {

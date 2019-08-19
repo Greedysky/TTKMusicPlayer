@@ -1,4 +1,4 @@
-#include "musicaudiorecordercore.h"
+#include "musicaudiorecorderobject.h"
 #include "musicmessagebox.h"
 #include "musiccodecutils.h"
 #include "musicobject.h"
@@ -8,7 +8,7 @@
 #define WRITE_FILE_ERROR    -3
 #define REWRITE_FILE_ERROR  -4
 
-MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
+MusicAudioRecorderObject::MusicAudioRecorderObject(QObject *parent)
     : QObject(parent)
 {
     m_inputVolume = 0;
@@ -45,7 +45,7 @@ MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
     }
 }
 
-MusicAudioRecorderCore::~MusicAudioRecorderCore()
+MusicAudioRecorderObject::~MusicAudioRecorderObject()
 {
     QFile::remove(MUSIC_RECORD_FILE);
     QFile::remove(MUSIC_RECORD_IN_FILE);
@@ -56,7 +56,7 @@ MusicAudioRecorderCore::~MusicAudioRecorderCore()
     delete m_mpAudioOutputFile;
 }
 
-int MusicAudioRecorderCore::addWavHeader(const char *filename)
+int MusicAudioRecorderObject::addWavHeader(const char *filename)
 {
     HEADER destionFileHeader;
     destionFileHeader.RIFFNAME[0] = 'R';
@@ -139,7 +139,7 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     return nFileLen;
 }
 
-void MusicAudioRecorderCore::setVolume(int volume)
+void MusicAudioRecorderObject::setVolume(int volume)
 {
     m_inputVolume = volume;
 #ifdef TTK_GREATER_NEW
@@ -150,22 +150,22 @@ void MusicAudioRecorderCore::setVolume(int volume)
 #endif
 }
 
-int MusicAudioRecorderCore::volume() const
+int MusicAudioRecorderObject::volume() const
 {
     return m_inputVolume;
 }
 
-void MusicAudioRecorderCore::setFileName(const QString &name)
+void MusicAudioRecorderObject::setFileName(const QString &name)
 {
     m_mpOutputFile->setFileName(name);
 }
 
-QString MusicAudioRecorderCore::getFileName() const
+QString MusicAudioRecorderObject::getFileName() const
 {
     return m_mpOutputFile->fileName();
 }
 
-bool MusicAudioRecorderCore::error() const
+bool MusicAudioRecorderObject::error() const
 {
     if(!m_mpAudioInputFile)
     {
@@ -175,7 +175,7 @@ bool MusicAudioRecorderCore::error() const
     return (m_mpAudioInputFile->error() != QAudio::NoError);
 }
 
-void MusicAudioRecorderCore::onRecordStart()
+void MusicAudioRecorderObject::onRecordStart()
 {
     if(!m_mpOutputFile->isOpen())
     {
@@ -196,7 +196,7 @@ void MusicAudioRecorderCore::onRecordStart()
     m_mpAudioInputFile->start(m_mpOutputFile);
 }
 
-void MusicAudioRecorderCore::onRecordPlay()
+void MusicAudioRecorderObject::onRecordPlay()
 {
     m_mpOutputFile->open(QIODevice::ReadOnly | QIODevice::Truncate);
 
@@ -213,7 +213,7 @@ void MusicAudioRecorderCore::onRecordPlay()
 
 }
 
-void MusicAudioRecorderCore::onRecordStop()
+void MusicAudioRecorderObject::onRecordStop()
 {
     if(m_mpAudioInputFile)
     {
@@ -232,7 +232,7 @@ void MusicAudioRecorderCore::onRecordStop()
     m_mpOutputFile->close();
 }
 
-void MusicAudioRecorderCore::onStateChange(QAudio::State state)
+void MusicAudioRecorderObject::onStateChange(QAudio::State state)
 {
     if(state == QAudio::IdleState)
     {

@@ -4,7 +4,7 @@
 #include "musiccodecutils.h"
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
-#include "musicaudiorecordercore.h"
+#include "musicaudiorecorderobject.h"
 #include "musicsinglemanager.h"
 
 #include <QMovie>
@@ -85,7 +85,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     m_mpInputDevSound = nullptr;
     m_mpOutputDevSound = nullptr;
 
-    m_recordCore = new MusicAudioRecorderCore(this);
+    m_recordCore = new MusicAudioRecorderObject(this);
 
     initMonitor();
 }

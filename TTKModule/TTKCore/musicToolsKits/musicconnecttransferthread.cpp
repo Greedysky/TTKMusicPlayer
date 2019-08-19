@@ -3,14 +3,9 @@
 #include <QFileInfo>
 
 MusicConnectTransferThread::MusicConnectTransferThread(QObject *parent)
-    : QThread(parent)
+    : MusicAbstractThread(parent)
 {
-    m_run = true;
-}
 
-MusicConnectTransferThread::~MusicConnectTransferThread()
-{
-    stopAndQuitThread();
 }
 
 void MusicConnectTransferThread::setCopyFilePath(const QString &target, const QStringList &path)
@@ -19,18 +14,11 @@ void MusicConnectTransferThread::setCopyFilePath(const QString &target, const QS
     m_path << path;
 }
 
-void MusicConnectTransferThread::stopAndQuitThread()
-{
-    if(isRunning())
-    {
-        m_run = false;
-        wait();
-    }
-    quit();
-}
 
 void MusicConnectTransferThread::run()
 {
+    MusicAbstractThread::run();
+
     foreach(const QString &path, m_path)
     {
         if(m_run && !m_target.isEmpty())
@@ -41,10 +29,4 @@ void MusicConnectTransferThread::run()
             emit transferFileFinished(targetPath);
         }
     }
-}
-
-void MusicConnectTransferThread::start()
-{
-    m_run = true;
-    QThread::start();
 }

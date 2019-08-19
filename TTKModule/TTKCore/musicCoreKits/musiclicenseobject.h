@@ -1,5 +1,5 @@
-#ifndef MUSICCONNECTTRANSFERTHREAD_H
-#define MUSICCONNECTTRANSFERTHREAD_H
+#ifndef MUSICLICENSEOBJECT_H
+#define MUSICLICENSEOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,42 +19,49 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractthread.h"
+#include <QObject>
+#include "musicglobaldefine.h"
 
-/*! @brief The class of the connect transfer thread.
+/*! @brief The class of the license core module.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicConnectTransferThread : public MusicAbstractThread
+class MUSIC_CORE_EXPORT MusicLicenseObject : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicConnectTransferThread)
+    TTK_DECLARE_MODULE(MusicLicenseObject)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConnectTransferThread(QObject *parent = nullptr);
+    explicit MusicLicenseObject(QObject *parent = nullptr);
 
     /*!
-     * Set copy file path lists.
+     * Check license string.
      */
-    void setCopyFilePath(const QString &target, const QStringList &path);
-
-Q_SIGNALS:
+    bool checkLicense(const QString &str);
     /*!
-     * Send the transfer file or path.
+     * Get characteristic string.
      */
-    void transferFileFinished(const QString &name);
-
-protected:
+    QString getCharacteristicString();
     /*!
-     * Thread run now.
+     * Get characteristic normal string.
      */
-    virtual void run() override;
+    QString getCharacteristicStringNormal();
+    /*!
+     * Get encode key.
+     */
+    QString getEncodeKey(const QString &key);
 
-protected:
-    QString m_target;
-    QStringList m_path;
+private:
+    /*!
+     * Get characteristic strings.
+     */
+    QStringList getCharacteristicStrings();
+    /*!
+     * Split hmac string.
+     */
+    QString splitString(const QByteArray &data, const QByteArray &key);
 
 };
 
-#endif // MUSICCONNECTTRANSFERTHREAD_H
+#endif // MUSICLICENSEOBJECT_H

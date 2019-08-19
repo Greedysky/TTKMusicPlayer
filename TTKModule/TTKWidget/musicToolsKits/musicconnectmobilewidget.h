@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
-#include "musicdeviceinfocore.h"
+#include "musicdeviceinfoobject.h"
 
 class MusicTextSliderWidget;
 class MusicAnimationStackedWidget;
@@ -89,7 +89,7 @@ protected:
     QLabel *m_deviceInfoLabel;
     MusicTextSliderWidget *m_deviceSizeLabel;
     MusicDeviceInfoItem m_currentDeviceItem;
-    MusicDeviceInfoCore *m_deviceInfo;
+    MusicDeviceInfoObject *m_deviceInfo;
     MusicAnimationStackedWidget *m_stackedWidget;
 
 };

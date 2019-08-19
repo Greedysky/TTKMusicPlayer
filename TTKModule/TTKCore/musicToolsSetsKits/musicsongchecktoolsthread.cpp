@@ -1,42 +1,22 @@
-#include "musicsongchecktoolscore.h"
+#include "musicsongchecktoolsthread.h"
 #include "musicsongtag.h"
 
-MusicSongCheckToolsRenameCore::MusicSongCheckToolsRenameCore(QObject *parent)
-    : QThread(parent)
+MusicSongCheckToolsRenameThread::MusicSongCheckToolsRenameThread(QObject *parent)
+    : MusicAbstractThread(parent)
 {
-    m_run = false;
     m_songItems = nullptr;
     m_operateMode = MusicObject::Check;
 }
 
-MusicSongCheckToolsRenameCore::~MusicSongCheckToolsRenameCore()
-{
-    stopAndQuitThread();
-}
-
-void MusicSongCheckToolsRenameCore::setRenameSongs(MusicSongs *songs)
+void MusicSongCheckToolsRenameThread::setRenameSongs(MusicSongs *songs)
 {
     m_songItems = songs;
 }
 
-void MusicSongCheckToolsRenameCore::stopAndQuitThread()
+void MusicSongCheckToolsRenameThread::run()
 {
-    if(isRunning())
-    {
-        m_run = false;
-        wait();
-    }
-    quit();
-}
+    MusicAbstractThread::run();
 
-void MusicSongCheckToolsRenameCore::start()
-{
-    m_run = true;
-    QThread::start();
-}
-
-void MusicSongCheckToolsRenameCore::run()
-{
     if(m_songItems && !m_songItems->isEmpty())
     {
         if(m_operateMode == MusicObject::Check)
@@ -85,41 +65,21 @@ void MusicSongCheckToolsRenameCore::run()
 
 
 
-MusicSongCheckToolsDuplicateCore::MusicSongCheckToolsDuplicateCore(QObject *parent)
-    : QThread(parent)
+MusicSongCheckToolsDuplicateThread::MusicSongCheckToolsDuplicateThread(QObject *parent)
+    : MusicAbstractThread(parent)
 {
-    m_run = false;
     m_songItems = nullptr;
 }
 
-MusicSongCheckToolsDuplicateCore::~MusicSongCheckToolsDuplicateCore()
-{
-    stopAndQuitThread();
-}
-
-void MusicSongCheckToolsDuplicateCore::setDuplicateSongs(MusicSongs *songs)
+void MusicSongCheckToolsDuplicateThread::setDuplicateSongs(MusicSongs *songs)
 {
     m_songItems = songs;
 }
 
-void MusicSongCheckToolsDuplicateCore::stopAndQuitThread()
+void MusicSongCheckToolsDuplicateThread::run()
 {
-    if(isRunning())
-    {
-        m_run = false;
-        wait();
-    }
-    quit();
-}
+    MusicAbstractThread::run();
 
-void MusicSongCheckToolsDuplicateCore::start()
-{
-    m_run = true;
-    QThread::start();
-}
-
-void MusicSongCheckToolsDuplicateCore::run()
-{
     if(m_songItems && !m_songItems->isEmpty())
     {
         if(m_operateMode == MusicObject::Check)
@@ -162,41 +122,21 @@ void MusicSongCheckToolsDuplicateCore::run()
 
 
 
-MusicSongCheckToolsQualityCore::MusicSongCheckToolsQualityCore(QObject *parent)
-    : QThread(parent)
+MusicSongCheckToolsQualityThread::MusicSongCheckToolsQualityThread(QObject *parent)
+    : MusicAbstractThread(parent)
 {
-    m_run = false;
     m_songItems = nullptr;
 }
 
-MusicSongCheckToolsQualityCore::~MusicSongCheckToolsQualityCore()
-{
-    stopAndQuitThread();
-}
-
-void MusicSongCheckToolsQualityCore::setQualitySongs(MusicSongs *songs)
+void MusicSongCheckToolsQualityThread::setQualitySongs(MusicSongs *songs)
 {
     m_songItems = songs;
 }
 
-void MusicSongCheckToolsQualityCore::stopAndQuitThread()
+void MusicSongCheckToolsQualityThread::run()
 {
-    if(isRunning())
-    {
-        m_run = false;
-        wait();
-    }
-    quit();
-}
+    MusicAbstractThread::run();
 
-void MusicSongCheckToolsQualityCore::start()
-{
-    m_run = true;
-    QThread::start();
-}
-
-void MusicSongCheckToolsQualityCore::run()
-{
     MusicSongCheckToolsQualitys items;
     if(m_songItems && !m_songItems->isEmpty())
     {

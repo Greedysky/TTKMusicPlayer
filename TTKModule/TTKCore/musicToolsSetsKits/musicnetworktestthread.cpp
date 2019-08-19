@@ -7,25 +7,9 @@
 #include <QHostInfo>
 
 MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
-    : QThread(parent)
+    : MusicAbstractThread(parent)
 {
     MusicTime::timeSRand();
-    m_run = false;
-}
-
-MusicNetworkTestThread::~MusicNetworkTestThread()
-{
-    stopAndQuitThread();
-}
-
-void MusicNetworkTestThread::stopAndQuitThread()
-{
-    if(isRunning())
-    {
-        m_run = false;
-        wait();
-    }
-    quit();
 }
 
 void MusicNetworkTestThread::setUrl(const QString &url)
@@ -33,14 +17,10 @@ void MusicNetworkTestThread::setUrl(const QString &url)
     m_currentUrl = url;
 }
 
-void MusicNetworkTestThread::start()
-{
-    m_run = true;
-    QThread::start();
-}
-
 void MusicNetworkTestThread::run()
 {
+    MusicAbstractThread::run();
+
     const QHostInfo &info = QHostInfo::fromName(m_currentUrl);
     const int rand = qrand()%8 + 1;
 

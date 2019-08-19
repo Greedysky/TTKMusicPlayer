@@ -13,7 +13,7 @@
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
-#include "musicaudiorecordercore.h"
+#include "musicaudiorecorderobject.h"
 #include "musiccodecutils.h"
 #include "musicotherdefine.h"
 #include "musicfileutils.h"
@@ -77,7 +77,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
         m_musicLrcContainer.append(w);
     }
 
-    m_recordCore = new MusicAudioRecorderCore(this);
+    m_recordCore = new MusicAudioRecorderObject(this);
     m_ui->transferButton->setAudioCore(m_recordCore);
 
 #ifdef Q_OS_UNIX
