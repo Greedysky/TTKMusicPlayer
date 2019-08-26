@@ -14,7 +14,6 @@ void MusicConnectTransferThread::setCopyFilePath(const QString &target, const QS
     m_path << path;
 }
 
-
 void MusicConnectTransferThread::run()
 {
     MusicAbstractThread::run();
@@ -23,7 +22,7 @@ void MusicConnectTransferThread::run()
     {
         if(m_run && !m_target.isEmpty())
         {
-            const QString &targetPath = QString("%1%2").arg(m_target).arg(QFileInfo(path).fileName());
+            const QString &targetPath = QString("%1/%2").arg(m_target).arg(QFileInfo(path).fileName());
             m_path.takeFirst();
             QFile::copy(path, targetPath);
             emit transferFileFinished(targetPath);

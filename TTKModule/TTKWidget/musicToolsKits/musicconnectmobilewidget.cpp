@@ -108,6 +108,7 @@ void MusicConnectMobileWidget::initSecondWidget()
     refreshButton->setStyleSheet(MusicUIObject::MKGTransferRefreshDev);
     refreshButton->setFixedSize(20, 20);
     refreshButton->setCursor(Qt::PointingHandCursor);
+    connect(refreshButton, SIGNAL(clicked()), SLOT(updateDeviceInfo()));
 
     topWidgetLayout->addWidget(backButton);
     topWidgetLayout->addStretch(1);
@@ -236,7 +237,8 @@ void MusicConnectMobileWidget::openTransferFiles2Mobile()
 void MusicConnectMobileWidget::deviceTypeChanged(QAction *action)
 {
     m_currentDeviceItem = action->data().value<MusicDeviceInfoItem>();
-    m_deviceInfoLabel->setText(action->text());
+    m_deviceInfoLabel->setToolTip(action->text());
+    m_deviceInfoLabel->setText(MusicUtils::Widget::elidedText(font(), action->text(), Qt::ElideRight, 250));
 
     m_deviceSizeLabel->setMaxValue(m_currentDeviceItem.m_totalBytes);
     m_deviceSizeLabel->setValue(m_currentDeviceItem.m_availableBytes);

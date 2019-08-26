@@ -44,6 +44,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
 
     m_transferThread = new MusicConnectTransferThread(this);
+    connect(m_transferThread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(createItem(QString)));
 
 #ifdef Q_OS_UNIX
     m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
@@ -68,7 +69,9 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
 void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 {
     m_currentDeviceItem = item;
-    m_ui->deviceInfoLabel->setText(item->m_name + "(" + item->m_path + ")");
+    m_ui->deviceInfoLabel->setToolTip(item->m_name + "(" + item->m_path + ")");
+    m_ui->deviceInfoLabel->setText(MusicUtils::Widget::elidedText(m_ui->deviceInfoLabel->font(), m_ui->deviceInfoLabel->toolTip(), Qt::ElideRight, 220));
+
     m_ui->songCountLabel->setText(m_songCountLabel.arg(0));
     m_ui->selectCountLabel->setText(m_selectCountLabel.arg(0).arg(0));
 }
@@ -104,19 +107,19 @@ void MusicConnectTransferWidget::initColumns()
 
 void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
 {
-    m_ui->playListTableWidget->clear();
+    m_ui->listTableWidget->clear();
     if(m_ui->allSelectedcheckBox->isChecked())
     {
         m_ui->allSelectedcheckBox->click();
     }
 
-    m_ui->playListTableWidget->createAllItems(songs);
+    m_ui->listTableWidget->createAllItems(songs);
 }
 
 QStringList MusicConnectTransferWidget::getSelectedFiles()
 {
     QStringList paths;
-    const MIntList list(m_ui->playListTableWidget->getSelectedItems());
+    const MIntList list(m_ui->listTableWidget->getSelectedItems());
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -145,7 +148,7 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
 
 void MusicConnectTransferWidget::itemSelectedChanged()
 {
-    const MIntList list(m_ui->playListTableWidget->getSelectedItems());
+    const MIntList list(m_ui->listTableWidget->getSelectedItems());
     qint64 size = 0;
 
     for(int i=0; i<list.count(); ++i)
@@ -176,7 +179,7 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 void MusicConnectTransferWidget::selectedAllItems(bool check)
 {
     m_ui->allSelectedcheckBox->setText(check ? tr("allcanceled") : tr("allselected"));
-    m_ui->playListTableWidget->selectedAllItems(check);
+    m_ui->listTableWidget->selectedAllItems(check);
     itemSelectedChanged();
 }
 

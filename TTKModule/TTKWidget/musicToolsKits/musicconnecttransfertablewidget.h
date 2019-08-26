@@ -46,4 +46,34 @@ public:
 
 };
 
+
+/*! @brief The class of the transfer file list complete table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicConnectTransferCompleteTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicConnectTransferCompleteTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicConnectTransferCompleteTableWidget(QWidget *parent = nullptr);
+
+public Q_SLOTS:
+    /*!
+     * Table widget list cell enter.
+     */
+    virtual void listCellEntered(int row, int column) override;
+    /*!
+     * Table widget list cell click.
+     */
+    virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Create all items.
+     */
+    void createItem(const QString &name);
+
+};
+
 #endif // MUSICCONNECTTRANSFERTABLEWIDGET_H
