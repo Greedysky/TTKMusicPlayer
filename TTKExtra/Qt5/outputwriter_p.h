@@ -112,7 +112,7 @@ private:
     Qmmp::AudioFormat m_format;
     qint64 m_bytesPerMillisecond;
     std::atomic_bool m_user_stop, m_pause;
-    bool m_prev_pause;
+    bool m_paused;
     std::atomic_bool m_finish;
     bool m_useEq;
     qint64 m_totalWritten, m_currentMilliseconds;
