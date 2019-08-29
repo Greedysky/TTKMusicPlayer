@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2017 by Ilya Kotov                                      *
+ *   Copyright (C) 2017-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,7 +22,7 @@
 #define VISUALBUFFER_P_H
 
 #include <QtGlobal>
-#include <QTime>
+#include <QElapsedTimer>
 #include <QMutex>
 #include "qmmp_export.h"
 
@@ -57,7 +57,7 @@ private:
     qint64 m_elapsed;
     int m_take_index;
     int m_add_index;
-    QTime m_time;
+    QElapsedTimer m_time;
     QMutex m_mutex;
 
 };

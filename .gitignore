@@ -2,6 +2,7 @@
 *.user.*
 *.aps
 build-*/
+extra/
 *.*-pre1
 *.autosave
 *.*~

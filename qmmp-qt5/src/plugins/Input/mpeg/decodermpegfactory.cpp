@@ -114,10 +114,12 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
     {
         struct mad_stream stream;
         struct mad_header header;
+        struct mad_frame frame;
         int dec_res;
 
         mad_stream_init (&stream);
         mad_header_init (&header);
+        mad_frame_init(&frame);
         mad_stream_buffer (&stream, (unsigned char *) buf, dataSize);
         stream.error = MAD_ERROR_NONE;
 
@@ -126,8 +128,10 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
             ;
 
         if(dec_res == 0)
-            dec_res = mad_header_decode(&header, &stream);
+            dec_res = mad_frame_decode(&frame, &stream);
 
+        mad_stream_finish(&stream);
+        mad_frame_finish(&frame);
         return dec_res == 0;
     }
 #endif

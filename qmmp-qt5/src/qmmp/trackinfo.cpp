@@ -145,9 +145,9 @@ void TrackInfo::setValue(Qmmp::TrackProperty key, const QVariant &value)
 void TrackInfo::setValue(Qmmp::ReplayGainKey key, double value)
 {
     if(qFuzzyIsNull(value))
-        m_replayGainInfo[key] = value;
-    else
         m_replayGainInfo.remove(key);
+    else
+        m_replayGainInfo[key] = value;
     m_replayGainInfo.isEmpty() ? (m_parts &= ~ReplayGainInfo) : (m_parts |= ReplayGainInfo);
 }
 

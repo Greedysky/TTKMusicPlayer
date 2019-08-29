@@ -279,6 +279,7 @@ void QmmpAudioEngine::stop()
     while(!m_effects.isEmpty()) //delete effects
         delete m_effects.takeFirst();
     m_replayGain = nullptr;
+    m_dithering = nullptr;
 }
 
 qint64 QmmpAudioEngine::produceSound(unsigned char *data, qint64 size, quint32 brate)
@@ -388,6 +389,7 @@ void QmmpAudioEngine::run()
             TrackInfo info(m_inputs[m_decoder]->path());
             info.setValues(m);
             info.setValues(m_decoder->properties());
+            info.setValues(m_decoder->replayGainInfo());
             info.setDuration(m_decoder->totalTime());
             if(StateHandler::instance()->dispatch(info))
                 m_trackInfo = QSharedPointer<TrackInfo>(new TrackInfo(info));

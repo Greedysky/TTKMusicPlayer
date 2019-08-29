@@ -47,7 +47,7 @@ OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
     m_kbps = 0;
     m_skip = false;
     m_pause = false;
-    m_prev_pause = false;
+    m_paused = false;
     m_useEq = false;
     m_muted = false;
     m_settings = QmmpSettings::instance();
@@ -263,19 +263,18 @@ void OutputWriter::run()
     while (!done)
     {
         m_mutex.lock ();
-        if(m_pause != m_prev_pause)
+        if(m_pause != m_paused)
         {
-            if(m_pause)
+            m_paused = m_pause;
+            if(m_paused)
             {
                 Visual::clearBuffer();
                 m_output->suspend();
                 m_mutex.unlock();
-                m_prev_pause = m_pause;
                 continue;
             }
             else
                 m_output->resume();
-            m_prev_pause = m_pause;
         }
         recycler()->mutex()->lock ();
         done = m_user_stop || (m_finish && recycler()->empty());
@@ -341,7 +340,7 @@ void OutputWriter::run()
             }
             output_at = b->samples * m_output->sampleSize();
 
-            while (l < output_at && !m_pause && !m_prev_pause)
+            while (l < output_at && !m_pause && !m_paused)
             {
                 m_mutex.lock();
                 if(m_skip)
@@ -409,13 +408,15 @@ void OutputWriter::updateEqSettings()
 
         init_iir(m_frequency, bands);
 
-        set_preamp(0, 1.0 + 0.0932471 *preamp + 0.00279033 * preamp * preamp);
-        set_preamp(1, 1.0 + 0.0932471 *preamp + 0.00279033 * preamp * preamp);
-        for(int i = 0; i < bands; ++i)
+        for(int ch = 0; ch < m_channels; ++ch)
         {
-            double value =  m_settings->eqSettings().gain(i);
-            set_gain(i,0, 0.03*value+0.000999999*value*value);
-            set_gain(i,1, 0.03*value+0.000999999*value*value);
+            set_preamp(ch, 1.0 + 0.0932471 *preamp + 0.00279033 * preamp * preamp);
+
+            for(int i = 0; i < bands; ++i)
+            {
+                double value =  m_settings->eqSettings().gain(i);
+                set_gain(i, ch, 0.03 * value + 0.000999999 * value * value);
+            }
         }
     }
     m_useEq = m_settings->eqSettings().isEnabled();
