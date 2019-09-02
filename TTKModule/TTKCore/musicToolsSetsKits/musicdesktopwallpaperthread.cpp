@@ -18,7 +18,7 @@ MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 
-    setInterval(20*MT_S2MS);
+    setInterval(20 * MT_S2MS);
 }
 
 MusicDesktopWallpaperThread::~MusicDesktopWallpaperThread()

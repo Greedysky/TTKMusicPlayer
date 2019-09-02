@@ -1,17 +1,17 @@
 #include "dlnaxml.h"
 #include <QDebug>
 
-DLNAXml::DLNAXml()
+DlnaXml::DlnaXml()
 {
     m_document = new QDomDocument;
 }
 
-DLNAXml::~DLNAXml()
+DlnaXml::~DlnaXml()
 {
     delete m_document;
 }
 
-bool DLNAXml::fromString(const QString &data)
+bool DlnaXml::fromString(const QString &data)
 {
     if(!m_document->setContent(data))
     {
@@ -20,7 +20,7 @@ bool DLNAXml::fromString(const QString &data)
     return true;
 }
 
-QString DLNAXml::toString() const
+QString DlnaXml::toString() const
 {
     if(!m_document)
     {
@@ -29,7 +29,7 @@ QString DLNAXml::toString() const
     return m_document->toString();
 }
 
-QString DLNAXml::tagNameToLower(const QString &data) const
+QString DlnaXml::tagNameToLower(const QString &data) const
 {
     QString body = data;
     int left = body.indexOf("<");
@@ -48,7 +48,7 @@ QString DLNAXml::tagNameToLower(const QString &data) const
     return body;
 }
 
-QString DLNAXml::readTagNameValue(const QString &tagName) const
+QString DlnaXml::readTagNameValue(const QString &tagName) const
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
     if(nodeList.isEmpty())
@@ -58,14 +58,15 @@ QString DLNAXml::readTagNameValue(const QString &tagName) const
     return nodeList.at(0).toElement().text();
 }
 
-DLNAService DLNAXml::readServiceTag(const QString &type, const QString &tagName) const
+DlnaService DlnaXml::readServiceTag(const QString &type, const QString &tagName) const
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
     if(nodeList.isEmpty())
     {
-        return DLNAService();
+        return DlnaService();
     }
 
+    DlnaService service;
     for(int i=0; i<nodeList.count(); ++i)
     {
         const QDomNode &node = nodeList.at(i);
@@ -78,5 +79,5 @@ DLNAService DLNAXml::readServiceTag(const QString &type, const QString &tagName)
             qDebug() << text << text.contains(type, Qt::CaseInsensitive);
         }
     }
-    return DLNAService();
+    return service;
 }

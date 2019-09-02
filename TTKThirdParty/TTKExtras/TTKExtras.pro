@@ -47,7 +47,7 @@ unix:!mac{
 include(../TTKExtrasDefine.pri)
 
 include(qalg/QAlg.pri)
-include(qdlna/QDLNA.pri)
+include(qdlna/QDlna.pri)
 include(qhttpserver/QHttpServer.pri)
 include(qimage/QImage.pri)
 include(qiniu/QiNiu.pri)

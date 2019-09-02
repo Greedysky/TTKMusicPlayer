@@ -1,16 +1,17 @@
 #include "dlnafinder.h"
 #include "dlnaclient.h"
 
-DLNAFinder::DLNAFinder(QObject *parent)
+DlnaFinder::DlnaFinder(QObject *parent)
     : QObject(parent)
 {
     m_udpSock = new QUdpSocket(this);
     m_udpSock->bind(QHostAddress(QHostAddress::Any), 6000);
 
-    connect(m_udpSock, SIGNAL(readyRead()), this, SLOT(readResponse()));
+    connect(m_udpSock, SIGNAL(readyRead()), SLOT(readResponse()));
+    connect(m_udpSock, SIGNAL(readChannelFinished()), SIGNAL(finished()));
 }
 
-DLNAFinder::~DLNAFinder()
+DlnaFinder::~DlnaFinder()
 {
     delete m_udpSock;
     while(!m_clients.isEmpty())
@@ -19,7 +20,7 @@ DLNAFinder::~DLNAFinder()
     }
 }
 
-void DLNAFinder::find()
+void DlnaFinder::find()
 {
     const QByteArray& data = "M-SEARCH * HTTP/1.1\r\n"
                              "HOST:239.255.255.250:1900\r\n"
@@ -29,7 +30,7 @@ void DLNAFinder::find()
     m_udpSock->writeDatagram(data, QHostAddress("239.255.255.250"), 1900);
 }
 
-DLNAClient* DLNAFinder::client(int index) const
+DlnaClient* DlnaFinder::client(int index) const
 {
     if(index < 0 || index >= m_clients.size())
     {
@@ -39,22 +40,22 @@ DLNAClient* DLNAFinder::client(int index) const
     return m_clients[index];
 }
 
-QList<DLNAClient*> DLNAFinder::clients() const
+QList<DlnaClient*> DlnaFinder::clients() const
 {
     return m_clients;
 }
 
-QStringList DLNAFinder::clientNames() const
+QStringList DlnaFinder::clientNames() const
 {
     QStringList names;
-    foreach(DLNAClient *client, m_clients)
+    foreach(DlnaClient *client, m_clients)
     {
         names.push_back(client->serverName());
     }
     return names;
 }
 
-void DLNAFinder::readResponse()
+void DlnaFinder::readResponse()
 {
     while(m_udpSock->hasPendingDatagrams())
     {
@@ -62,7 +63,7 @@ void DLNAFinder::readResponse()
         datagram.resize(m_udpSock->pendingDatagramSize());
         m_udpSock->readDatagram(datagram.data(), datagram.size());
 
-        DLNAClient *client = new DLNAClient(QString::fromUtf8(datagram.data()));
+        DlnaClient *client = new DlnaClient(QString::fromUtf8(datagram.data()));
         if(findClient(client->server()))
         {
             delete client;
@@ -80,9 +81,9 @@ void DLNAFinder::readResponse()
     }
 }
 
-bool DLNAFinder::findClient(const QString &server)
+bool DlnaFinder::findClient(const QString &server)
 {
-    foreach(DLNAClient *client, m_clients)
+    foreach(DlnaClient *client, m_clients)
     {
         if(client->server() == server)
         {

@@ -55,6 +55,23 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT void urlDecode(QByteArray &data);
 
+        /*!
+         * Pretty encode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlPrettyEncode(QString &data);
+        /*!
+         * Pretty decode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlPrettyDecode(QString &data);
+        /*!
+         * Pretty encode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlPrettyEncode(QByteArray &data);
+        /*!
+         * Pretty decode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlPrettyDecode(QByteArray &data);
+
     }
 }
 

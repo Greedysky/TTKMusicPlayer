@@ -1,5 +1,5 @@
-#ifndef DLNACLIENT_H
-#define DLNACLIENT_H
+#ifndef MUSICSONGDLNATRANSFERWIDGET_H
+#define MUSICSONGDLNATRANSFERWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,46 +19,50 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMap>
-#include "dlnaxml.h"
-#include "musicextrasglobaldefine.h"
+#include "musicabstractmovedialog.h"
 
-class DlnaXml;
+namespace Ui {
+class MusicSongDlnaTransferWidget;
+}
 
-/*! @brief The class of the dlna client.
+class DlnaFinder;
+
+/*! @brief The class of the song dlna transfer widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DlnaClient
+class MUSIC_TOOLSET_EXPORT MusicSongDlnaTransferWidget : public MusicAbstractMoveDialog
 {
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongDlnaTransferWidget)
 public:
-    explicit DlnaClient(const QString &data);
-    ~DlnaClient();
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicSongDlnaTransferWidget(QWidget *parent = nullptr);
 
-    QString server();
-    QString serverName();
+    virtual ~MusicSongDlnaTransferWidget();
 
-    bool connect();
-    bool isConnected() const;
+Q_SIGNALS:
 
-    QString tryToPlayFile(const QString &url);
-    QString uploadFileToPlay(const QString &url);
-
-    QString startPlay(int instance);
-    QString stopPlay(int instance);
-    QString pause(int instance);
-
-    QString getPosition();
-    int totalSeconds(const QString &value);
+public Q_SLOTS:
+    /*!
+     * Start to scan dlna devices.
+     */
+    void startToScan();
+    /*!
+     * Scan dlna devices finished.
+     */
+    void scanFinished();
+    /*!
+     * Override exec function.
+     */
+    virtual int exec();
 
 private:
-    bool m_isConnected;
+    Ui::MusicSongDlnaTransferWidget *m_ui;
 
-    DlnaXml *m_xml;
-    QString m_serverIP, m_serverPort;
-    QString m_smp, m_controlURL;
-    QString m_friendlyName;
-    QMap<QString, DlnaService> m_services;
+    DlnaFinder *m_dlnaFinder;
 
 };
 
-#endif // DLNACLIENT_H
+#endif // MUSICSONGDLNATRANSFERWIDGET_H

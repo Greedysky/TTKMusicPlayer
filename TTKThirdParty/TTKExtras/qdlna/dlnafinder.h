@@ -23,23 +23,26 @@
 #include <QStringList>
 #include "musicextrasglobaldefine.h"
 
-class DLNAClient;
+class DlnaClient;
 
 /*! @brief The class of the dlna finder.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DLNAFinder : public QObject
+class MUSIC_EXTRAS_EXPORT DlnaFinder : public QObject
 {
     Q_OBJECT
 public:
-    explicit DLNAFinder(QObject *parent = nullptr);
-    ~DLNAFinder();
+    explicit DlnaFinder(QObject *parent = nullptr);
+    ~DlnaFinder();
 
     void find();
 
-    DLNAClient* client(int index) const;
-    QList<DLNAClient*> clients() const;
+    DlnaClient* client(int index) const;
+    QList<DlnaClient*> clients() const;
     QStringList clientNames() const;
+
+Q_SIGNALS:
+    void finished();
 
 public Q_SLOTS:
     void readResponse();
@@ -49,7 +52,7 @@ private:
 
 private:
     QUdpSocket *m_udpSock;
-    QList<DLNAClient*> m_clients;
+    QList<DlnaClient*> m_clients;
 
 };
 

@@ -8,6 +8,16 @@
 #include <shellapi.h>
 #endif
 
+const std::string ASCII_MAP(R"("%<>[\]^_`{|})");
+const std::string HEX_NUM_MAP("0123456789ABCDEF");
+
+unsigned char Number2Char(const char h, const char l)
+{
+  unsigned char hh = std::find(std::begin(HEX_NUM_MAP), std::end(HEX_NUM_MAP), h) - std::begin(HEX_NUM_MAP);
+  unsigned char ll = std::find(std::begin(HEX_NUM_MAP), std::end(HEX_NUM_MAP), l) - std::begin(HEX_NUM_MAP);
+  return (hh << 4) + ll;
+}
+
 bool MusicUtils::Url::openUrl(const QString &exe, const QString &path)
 {
 #ifdef Q_OS_WIN
@@ -67,4 +77,102 @@ void MusicUtils::Url::urlDecode(QByteArray &data)
     data.replace("%2B", "+");
     data.replace("%2F", "/");
     data.replace("%3D", "=");
+}
+
+void MusicUtils::Url::urlPrettyEncode(QString &data)
+{
+    std::string url = data.toStdString();
+    data.clear();
+
+    for(auto it = url.begin(); it != url.end(); ++it)
+    {
+      if(((*it >> 7) & 1) || (std::count(std::begin(ASCII_MAP), std::end(ASCII_MAP), *it)))
+      {
+        data.push_back('%');
+        data.push_back(HEX_NUM_MAP[(*it >> 4) & 0x0F]);
+        data.push_back(HEX_NUM_MAP[*it & 0x0F]);
+      }
+      else
+      {
+        data.push_back(*it);
+      }
+    }
+}
+
+void MusicUtils::Url::urlPrettyDecode(QString &data)
+{
+    std::string url = data.toStdString();
+    data.clear();
+
+    for(auto it = url.begin(); it != url.end(); ++it)
+    {
+      if(*it == '%')
+      {
+        if(std::next(it++) == url.end())
+        {
+          M_LOGGER_ERROR("Url is invalid");
+          return;
+        }
+
+        data.push_back(Number2Char(*it, *std::next(it)));
+        if(std::next(it++) == url.end())
+        {
+          M_LOGGER_ERROR("Url is invalid");
+          return;
+        }
+      }
+      else
+      {
+        data.push_back(*it);
+      }
+    }
+}
+
+void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
+{
+    std::string url = data.toStdString();
+    data.clear();
+
+    for(auto it = url.begin(); it != url.end(); ++it)
+    {
+      if(((*it >> 7) & 1) || (std::count(std::begin(ASCII_MAP), std::end(ASCII_MAP), *it)))
+      {
+        data.push_back('%');
+        data.push_back(HEX_NUM_MAP[(*it >> 4) & 0x0F]);
+        data.push_back(HEX_NUM_MAP[*it & 0x0F]);
+      }
+      else
+      {
+        data.push_back(*it);
+      }
+    }
+}
+
+void MusicUtils::Url::urlPrettyDecode(QByteArray &data)
+{
+    std::string url = data.toStdString();
+    data.clear();
+
+    for(auto it = url.begin(); it != url.end(); ++it)
+    {
+      if(*it == '%')
+      {
+        if(std::next(it++) == url.end())
+        {
+          M_LOGGER_ERROR("Url is invalid");
+          return;
+        }
+
+        data.push_back(Number2Char(*it, *std::next(it)));
+        if(std::next(it++) == url.end())
+        {
+          M_LOGGER_ERROR("Url is invalid");
+          return;
+        }
+      }
+      else
+      {
+        data.push_back(*it);
+      }
+    }
 }

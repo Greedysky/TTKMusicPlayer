@@ -25,7 +25,7 @@
 /*! @brief The class of the dlna helper.
  * @author Greedysky <greedysky@163.com>
  */
-namespace HelperDLNA {
+namespace HelperDlna {
 MUSIC_EXTRAS_EXPORT QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
 MUSIC_EXTRAS_EXPORT QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);
 MUSIC_EXTRAS_EXPORT QString removeHttpHeader(const QString &data);

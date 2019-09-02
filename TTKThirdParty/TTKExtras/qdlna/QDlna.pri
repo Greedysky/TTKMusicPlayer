@@ -22,6 +22,7 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/dlnafinder.h \
+    $$PWD/dlnafileserver.h \
     $$PWD/dlnaclient.h \
     $$PWD/dlnahelper.h \
     $$PWD/dlnaservice.h \
@@ -29,6 +30,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/dlnahelper.cpp \
+    $$PWD/dlnafileserver.cpp \
     $$PWD/dlnafinder.cpp \
     $$PWD/dlnaclient.cpp \
     $$PWD/dlnaservice.cpp \

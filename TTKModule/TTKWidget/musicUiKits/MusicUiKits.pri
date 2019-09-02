@@ -61,6 +61,7 @@ FORMS    += \
     $$PWD/musicToolsetsKits/musicsongringtonemakerwidget.ui \
     $$PWD/musicToolsetsKits/musicsoundkmicrowidget.ui \
     $$PWD/musicToolsetsKits/musicspectrumwidget.ui \
+    $$PWD/musicToolsetsKits/musicsongdlnatransferwidget.ui \
     $$PWD/musicToolsKits/musicwebmusicradioplaywidget.ui \
     $$PWD/musicToolsKits/musicconnecttransferwidget.ui \
     $$PWD/musicToolsKits/musiccloudfilemanagerdialog.ui \

@@ -20,6 +20,7 @@
  ================================================= */
 
 #include <QThread>
+#include <QStringList>
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the abstract thread.
