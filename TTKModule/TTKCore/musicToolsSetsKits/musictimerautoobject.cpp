@@ -7,7 +7,9 @@
 #ifdef Q_OS_WIN
 #  include <qt_windows.h>
 #else
-#  include <QProcess>
+#  include <signal.h>
+#  include <unistd.h>
+#  include <sys/reboot.h>
 #endif
 
 MusicTimerAutoObject::MusicTimerAutoObject(QObject *parent)
@@ -122,7 +124,20 @@ void MusicTimerAutoObject::setShutdown()
         ExitWindowsEx(EWX_SHUTDOWN | EWX_POWEROFF, 0);
     }
 #elif defined Q_OS_UNIX
-    QProcess::execute("shutdown", QStringList() << "now");
+    /* first disable all our signals */
+    sigset_t set;
+    sigfillset(&set);
+    sigprocmask(SIG_BLOCK, &set, nullptr);
+    /* send signals to all processes  _except_ pid 1 */
+    kill(-1, SIGTERM);
+    sync();
+    sleep(3);
+
+    kill(-1, SIGKILL);
+    sync();
+    sleep(3);
+    /* shutdown */
+    reboot(RB_POWER_OFF);
 #endif
     M_LOGGER_INFO("shutdown now");
 }
