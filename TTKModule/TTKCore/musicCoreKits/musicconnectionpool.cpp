@@ -2,7 +2,6 @@
 #include "musicobject.h"
 #include "musicsong.h"
 #include "musicdownloadstatusobject.h"
-#include "musicnetworkthread.h"
 #ifndef MUSIC_MOBILE
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"

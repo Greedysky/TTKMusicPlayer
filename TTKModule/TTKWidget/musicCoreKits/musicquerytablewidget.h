@@ -21,7 +21,6 @@
 
 #include <QMenu>
 #include <QActionGroup>
-#include "musicnetworkthread.h"
 #include "musicfillitemtablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 

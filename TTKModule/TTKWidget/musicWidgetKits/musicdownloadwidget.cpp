@@ -2,7 +2,6 @@
 #include "ui_musicdownloadwidget.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
-#include "musicnetworkthread.h"
 #include "musicdownloadrecordconfigmanager.h"
 #include "musicdatatagdownloadthread.h"
 #include "musicmessagebox.h"

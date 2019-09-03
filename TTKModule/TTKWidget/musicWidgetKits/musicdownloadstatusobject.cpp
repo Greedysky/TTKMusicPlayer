@@ -4,10 +4,8 @@
 #include "musicbottomareawidget.h"
 #include "musicsongsearchonlinewidget.h"
 #endif
-#include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
-#include "musicnetworkthread.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadbackgroundthread.h"
 #include "musiccoreutils.h"

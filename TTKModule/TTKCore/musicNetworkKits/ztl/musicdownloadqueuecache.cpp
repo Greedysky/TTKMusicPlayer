@@ -1,5 +1,4 @@
 #include "musicdownloadqueuecache.h"
-#include "musicnetworkthread.h"
 
 #include <QStringList>
 
