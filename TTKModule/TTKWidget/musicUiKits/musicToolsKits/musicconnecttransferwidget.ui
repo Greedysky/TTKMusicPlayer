@@ -190,7 +190,7 @@ QLabel{background:transparent;}</string>
      </size>
     </property>
    </widget>
-   <widget class="MusicConnectTransferTableWidget" name="playListTableWidget">
+   <widget class="MusicConnectTransferTableWidget" name="listTableWidget">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -279,7 +279,7 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>650</x>
       <y>10</y>
-      <width>200</width>
+      <width>220</width>
       <height>30</height>
      </rect>
     </property>
@@ -350,6 +350,16 @@ QLabel{background:transparent;}</string>
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="MusicConnectTransferCompleteTableWidget" name="completeTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>120</y>
+      <width>333</width>
+      <height>330</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
@@ -359,6 +369,11 @@ QLabel{background:transparent;}</string>
  <customwidgets>
   <customwidget>
    <class>MusicConnectTransferTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicconnecttransfertablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicConnectTransferCompleteTableWidget</class>
    <extends>QTableWidget</extends>
    <header>musicconnecttransfertablewidget.h</header>
   </customwidget>

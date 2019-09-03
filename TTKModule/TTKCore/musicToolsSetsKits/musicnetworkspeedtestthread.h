@@ -19,16 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QThread>
-#include <QStringList>
-#include "musicglobaldefine.h"
+#include "musicabstractthread.h"
 
 class QProcess;
 
 /*! @brief The class of the network speed test thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedTestThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedTestThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkSpeedTestThread)
@@ -38,12 +36,8 @@ public:
      */
     explicit MusicNetworkSpeedTestThread(QObject *parent = nullptr);
 
-    ~MusicNetworkSpeedTestThread();
+    virtual ~MusicNetworkSpeedTestThread();
 
-    /*!
-     * Stop and quit current thread.
-     */
-    void stopAndQuitThread();
     /*!
      * Set available newtwork names.
      */
@@ -63,16 +57,6 @@ Q_SIGNALS:
      */
     void networkData(ulong upload, ulong download);
 
-public Q_SLOTS:
-    /*!
-     * Strat thread now.
-     */
-    void start();
-    /*!
-     * Thread run now.
-     */
-    virtual void run() override;
-
 private Q_SLOTS:
     /*!
      * Get output recieved data on linux network.
@@ -80,7 +64,12 @@ private Q_SLOTS:
     void outputRecieved();
 
 protected:
-    bool m_run;
+    /*!
+     * Thread run now.
+     */
+    virtual void run() override;
+
+protected:
     QStringList m_names;
     QProcess *m_process ;
 

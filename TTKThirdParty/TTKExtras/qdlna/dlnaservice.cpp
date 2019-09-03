@@ -1,25 +1,30 @@
 #include "dlnaservice.h"
 
-DLNAService::DLNAService()
+DlnaService::DlnaService()
 {
 
 }
 
-DLNAService::DLNAService(const QString &control, const QString &scpd, const QString &eventSub, const QString &type, const QString &id)
+DlnaService::DlnaService(const QString &control, const QString &scpd, const QString &eventSub, const QString &type, const QString &id)
 {
     m_controlURL = control;
-    m_scpdurl = scpd;
+    m_scpdURL = scpd;
     m_eventSubURL = eventSub;
     m_serviceType = type;
     m_serviceID = id;
 }
 
-QString DLNAService::getServiceID() const
+QString DlnaService::getServiceID() const
 {
     return m_serviceID;
 }
 
-QString DLNAService::getControlURL() const
+QString DlnaService::getControlURL() const
 {
     return m_controlURL;
+}
+
+bool DlnaService::isEmpty() const
+{
+    return m_controlURL.isEmpty() && m_scpdURL.isEmpty() && m_eventSubURL.isEmpty() && m_serviceType.isEmpty() && m_serviceID.isEmpty();
 }

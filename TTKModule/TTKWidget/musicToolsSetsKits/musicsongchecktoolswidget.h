@@ -26,9 +26,9 @@ namespace Ui {
 class MusicSongCheckToolsWidget;
 }
 
-class MusicSongCheckToolsRenameCore;
-class MusicSongCheckToolsDuplicateCore;
-class MusicSongCheckToolsQualityCore;
+class MusicSongCheckToolsRenameThread;
+class MusicSongCheckToolsDuplicateThread;
+class MusicSongCheckToolsQualityThread;
 
 /*! @brief The class of the song check tools widget.
  * @author Greedysky <greedysky@163.com>
@@ -140,9 +140,9 @@ protected:
     MusicSongs m_localSongs;
     bool m_selectedItemIdFlag;
     MIntList m_selectedItemIds;
-    MusicSongCheckToolsRenameCore *m_renameCore;
-    MusicSongCheckToolsDuplicateCore *m_duplicateCore;
-    MusicSongCheckToolsQualityCore *m_qualityCore;
+    MusicSongCheckToolsRenameThread *m_renameCore;
+    MusicSongCheckToolsDuplicateThread *m_duplicateCore;
+    MusicSongCheckToolsQualityThread *m_qualityCore;
 
 };
 

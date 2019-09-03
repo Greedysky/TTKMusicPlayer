@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSMANAGERTHREAD_H
-#define MUSICLOCALSONGSMANAGERTHREAD_H
+#ifndef MUSICLICENSEOBJECT_H
+#define MUSICLICENSEOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,46 +19,49 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QFileInfoList>
-#include "musicabstractthread.h"
+#include <QObject>
+#include "musicglobaldefine.h"
 
-/*! @brief The class of the local songs manager thread.
+/*! @brief The class of the license core module.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerThread : public MusicAbstractThread
+class MUSIC_CORE_EXPORT MusicLicenseObject : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongsManagerThread)
+    TTK_DECLARE_MODULE(MusicLicenseObject)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsManagerThread(QObject *parent = nullptr);
+    explicit MusicLicenseObject(QObject *parent = nullptr);
 
     /*!
-     * Set find file path by given path.
+     * Check license string.
      */
-    void setFindFilePath(const QString &path);
+    bool checkLicense(const QString &str);
     /*!
-     * Set find file path by given path lists.
+     * Get characteristic string.
      */
-    void setFindFilePath(const QStringList &path);
-
-Q_SIGNALS:
+    QString getCharacteristicString();
     /*!
-     * Send the searched file or path.
+     * Get characteristic normal string.
      */
-    void setSongNamePath(const QFileInfoList &name);
-
-protected:
+    QString getCharacteristicStringNormal();
     /*!
-     * Thread run now.
+     * Get encode key.
      */
-    virtual void run() override;
+    QString getEncodeKey(const QString &key);
 
-protected:
-    QStringList m_path;
+private:
+    /*!
+     * Get characteristic strings.
+     */
+    QStringList getCharacteristicStrings();
+    /*!
+     * Split hmac string.
+     */
+    QString splitString(const QByteArray &data, const QByteArray &key);
 
 };
 
-#endif // MUSICLOCALSONGSMANAGERTHREAD_H
+#endif // MUSICLICENSEOBJECT_H

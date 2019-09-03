@@ -26,7 +26,7 @@ namespace Ui {
 class MusicSoundTouchWidget;
 }
 class QProcess;
-class MusicAudioRecorderCore;
+class MusicAudioRecorderObject;
 
 /*! @brief The class of the sound touch widget.
  * @author Greedysky <greedysky@163.com>
@@ -96,7 +96,7 @@ protected:
 
     Ui::MusicSoundTouchWidget *m_ui;
     QProcess *m_process;
-    MusicAudioRecorderCore *m_recordCore;
+    MusicAudioRecorderObject *m_recordCore;
 
 };
 

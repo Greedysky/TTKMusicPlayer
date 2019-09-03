@@ -55,7 +55,6 @@ MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
-    connect(m_checkBox, SIGNAL(stateChanged(int)), SIGNAL(buttonChecked()));
 }
 
 MusicCheckBoxDelegate::~MusicCheckBoxDelegate()
@@ -82,7 +81,13 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     painter->save();
     const int minSize = qMin(option.rect.width(), option.rect.height());
     m_checkBox->resize(minSize, minSize);
+    const bool state = m_checkBox->isChecked();
     m_checkBox->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
+    if(state != m_checkBox->isChecked())
+    {
+        emit MConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
+    }
+
     painter->translate((option.rect.width() - 16)/2, 0); // top left
     m_checkBox->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();

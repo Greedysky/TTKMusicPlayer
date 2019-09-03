@@ -2,7 +2,7 @@
 #include "ui_musicsongchecktoolswidget.h"
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
-#include "musicsongchecktoolscore.h"
+#include "musicsongchecktoolsthread.h"
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicsongssummariziedwidget.h"
@@ -308,7 +308,7 @@ void MusicSongCheckToolsWidget::renameWidgetInit()
     m_ui->renameLoadingLabel->hide();
     m_ui->renameReCheckButton->hide();
 
-    m_renameCore = new MusicSongCheckToolsRenameCore(this);
+    m_renameCore = new MusicSongCheckToolsRenameThread(this);
     connect(m_renameCore, SIGNAL(finished(MusicSongCheckToolsRenames)), SLOT(renameCheckFinished(MusicSongCheckToolsRenames)));
 }
 
@@ -328,7 +328,7 @@ void MusicSongCheckToolsWidget::qualityWidgetInit()
     m_ui->qualityLoadingLabel->hide();
     m_ui->qualityReCheckButton->hide();
 
-    m_qualityCore = new MusicSongCheckToolsQualityCore(this);
+    m_qualityCore = new MusicSongCheckToolsQualityThread(this);
     connect(m_qualityCore, SIGNAL(finished(MusicSongCheckToolsQualitys)), SLOT(qualityCheckFinished(MusicSongCheckToolsQualitys)));
 }
 
@@ -352,7 +352,7 @@ void MusicSongCheckToolsWidget::duplicateWidgetInit()
     m_ui->duplicateLoadingLabel->hide();
     m_ui->duplicateReCheckButton->hide();
 
-    m_duplicateCore = new MusicSongCheckToolsDuplicateCore(this);
+    m_duplicateCore = new MusicSongCheckToolsDuplicateThread(this);
     connect(m_duplicateCore, SIGNAL(finished(MusicSongCheckToolsDuplicates)), SLOT(duplicateCheckFinished(MusicSongCheckToolsDuplicates)));
 }
 

@@ -71,7 +71,7 @@ void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mo
     request->setSslConfiguration(sslConfig);
 #else
     Q_UNUSED(request);
-    Q_UNUSED(m);
+    Q_UNUSED(mode);
 #endif
 }
 }

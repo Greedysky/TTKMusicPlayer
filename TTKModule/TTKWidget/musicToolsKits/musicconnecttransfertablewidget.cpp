@@ -59,3 +59,45 @@ void MusicConnectTransferTableWidget::selectedAllItems(bool check)
         selectAll();
     }
 }
+
+
+
+
+MusicConnectTransferCompleteTableWidget::MusicConnectTransferCompleteTableWidget(QWidget *parent)
+    : MusicAbstractTableWidget(parent)
+{
+    setAttribute(Qt::WA_TranslucentBackground, false);
+
+    setColumnCount(2);
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 20);
+    headerview->resizeSection(1, 305);
+}
+
+void MusicConnectTransferCompleteTableWidget::listCellEntered(int row, int column)
+{
+    MusicAbstractTableWidget::listCellEntered(row, column);
+}
+
+void MusicConnectTransferCompleteTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+}
+
+void MusicConnectTransferCompleteTableWidget::createItem(const QString &name)
+{
+    const int index = rowCount();
+    setRowCount(index + 1);
+
+    QHeaderView *headerview = horizontalHeader();
+    QTableWidgetItem *item = new QTableWidgetItem;
+    item->setIcon(QPixmap(":/tiny/lb_right"));
+    setItem(index, 0, item);
+
+    item = new QTableWidgetItem;
+    item->setToolTip(name);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(index, 1, item);
+}

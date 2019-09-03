@@ -1,5 +1,5 @@
-#ifndef MUSICAUDIORECORDERCORE_H
-#define MUSICAUDIORECORDERCORE_H
+#ifndef MUSICAUDIORECORDEROBJECT_H
+#define MUSICAUDIORECORDEROBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -29,10 +29,10 @@
 /*! @brief The class of the audio recorder core.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicAudioRecorderCore : public QObject
+class MUSIC_TOOLSET_EXPORT MusicAudioRecorderObject : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAudioRecorderCore)
+    TTK_DECLARE_MODULE(MusicAudioRecorderObject)
 public:
     /*! @brief The class of the audio file tag header.
      * @author Greedysky <greedysky@163.com>
@@ -57,9 +57,9 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAudioRecorderCore(QObject *parent = nullptr);
+    explicit MusicAudioRecorderObject(QObject *parent = nullptr);
 
-    ~MusicAudioRecorderCore();
+    ~MusicAudioRecorderObject();
 
     /*!
      * Add the header of wav.
@@ -115,4 +115,4 @@ protected:
 
 };
 
-#endif // MUSICAUDIORECORDERCORE_H
+#endif // MUSICAUDIORECORDEROBJECT_H

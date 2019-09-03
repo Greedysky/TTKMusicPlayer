@@ -27,7 +27,7 @@ class QMovie;
 class QStackedWidget;
 class MusicCoreMPlayer;
 class MusicLrcAnalysis;
-class MusicAudioRecorderCore;
+class MusicAudioRecorderObject;
 class MusicIdentifySongsThread;
 
 /*! @brief The class of the song identify widget.
@@ -105,7 +105,7 @@ protected:
     QPushButton *m_detectedButton;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicLrcAnalysis *m_analysis;
-    MusicAudioRecorderCore *m_recordCore;
+    MusicAudioRecorderObject *m_recordCore;
     MusicIdentifySongsThread *m_detectedThread;
     MusicObject::MusicSongInformation m_currentSong;
 

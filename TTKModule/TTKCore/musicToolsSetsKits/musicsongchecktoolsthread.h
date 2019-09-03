@@ -1,24 +1,22 @@
-#ifndef MUSICSONGCHECKTOOLSCORE_H
-#define MUSICSONGCHECKTOOLSCORE_H
+#ifndef MUSICSONGCHECKTOOLSTHREAD_H
+#define MUSICSONGCHECKTOOLSTHREAD_H
 
-#include <QThread>
 #include "musicsong.h"
+#include "musicabstractthread.h"
 #include "musicsongchecktoolsunit.h"
 
 /*! @brief The class of the song check tools rename thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameCore : public QThread
+class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameThread : public MusicAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsRenameCore)
+    TTK_DECLARE_MODULE(MusicSongCheckToolsRenameThread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsRenameCore(QObject *parent = nullptr);
-
-    ~MusicSongCheckToolsRenameCore();
+    explicit MusicSongCheckToolsRenameThread(QObject *parent = nullptr);
 
     /*!
      * Set music song check tool mode.
@@ -37,10 +35,6 @@ public:
      * Set find file path by given path.
      */
     void setRenameSongs(MusicSongs *songs);
-    /*!
-     * Stop and quit current thread.
-     */
-    void stopAndQuitThread();
 
 Q_SIGNALS:
     /*!
@@ -48,18 +42,13 @@ Q_SIGNALS:
      */
     void finished(const MusicSongCheckToolsRenames &items);
 
-public Q_SLOTS:
-    /*!
-     * Strat thread now.
-     */
-    void start();
+protected:
     /*!
      * Thread run now.
      */
     virtual void run() override;
 
 protected:
-    bool m_run;
     MusicSongs *m_songItems;
     MIntList m_itemIDs;
     MusicSongCheckToolsRenames m_datas;
@@ -71,50 +60,41 @@ protected:
 /*! @brief The class of the song check tools duplicate thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateCore : public QThread
+class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateThread : public MusicAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateCore)
+    TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateThread)
 public:
-    explicit MusicSongCheckToolsDuplicateCore(QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    ~MusicSongCheckToolsDuplicateCore();
+    explicit MusicSongCheckToolsDuplicateThread(QObject *parent = nullptr);
 
-    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
     /*!
      * Set music song check tool mode.
      */
-    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
+    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
     /*!
      * Get music song check tool mode.
      */
-    inline void setItemLists(const MIntList &items) { m_itemIDs = items; }
+    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
     /*!
      * Set item lists.
      */
+    inline void setItemLists(const MIntList &items) { m_itemIDs = items; }
 
-    void setDuplicateSongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
      */
-    void stopAndQuitThread();
-    /*!
-     * Stop and quit current thread.
-     */
+    void setDuplicateSongs(MusicSongs *songs);
 
 Q_SIGNALS:
-    void finished(const MusicSongCheckToolsDuplicates &items);
     /*!
      * Duplicate check finished.
      */
+    void finished(const MusicSongCheckToolsDuplicates &items);
 
-public Q_SLOTS:
-    void start();
-    /*!
-     * Strat thread now.
-     */
+protected:
     virtual void run() override;
     /*!
      * Thread run now.
@@ -133,46 +113,36 @@ protected:
 /*! @brief The class of the song check tools quality thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityCore : public QThread
+class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityThread : public MusicAbstractThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsQualityCore)
+    TTK_DECLARE_MODULE(MusicSongCheckToolsQualityThread)
 public:
-    explicit MusicSongCheckToolsQualityCore(QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    ~MusicSongCheckToolsQualityCore();
+    explicit MusicSongCheckToolsQualityThread(QObject *parent = nullptr);
 
-    void setQualitySongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
      */
-    void stopAndQuitThread();
-    /*!
-     * Stop and quit current thread.
-     */
+    void setQualitySongs(MusicSongs *songs);
 
 Q_SIGNALS:
-    void finished(const MusicSongCheckToolsQualitys &items);
     /*!
      * Quality check finished.
      */
+    void finished(const MusicSongCheckToolsQualitys &items);
 
-public Q_SLOTS:
-    void start();
-    /*!
-     * Strat thread now.
-     */
-    virtual void run() override;
+protected:
     /*!
      * Thread run now.
      */
+    virtual void run() override;
 
 protected:
-    bool m_run;
     MusicSongs *m_songItems;
 
 };
 
-#endif // MUSICSONGCHECKTOOLSCORE_H
+#endif // MUSICSONGCHECKTOOLSTHREAD_H

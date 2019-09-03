@@ -1,13 +1,12 @@
 #ifndef MUSICNETWORKTESTTHREAD_H
 #define MUSICNETWORKTESTTHREAD_H
 
-#include <QThread>
-#include "musicglobaldefine.h"
+#include "musicabstractthread.h"
 
 /*! @brief The class of thread to test input url network.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkTestThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicNetworkTestThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkTestThread)
@@ -17,12 +16,6 @@ public:
      */
     explicit MusicNetworkTestThread(QObject *parent = nullptr);
 
-    ~MusicNetworkTestThread();
-
-    /*!
-     * Stop and quit current thread.
-     */
-    void stopAndQuitThread();
     /*!
      * Set current test url.
      */
@@ -34,11 +27,7 @@ Q_SIGNALS:
      */
     void networkConnectionTestChanged(bool state);
 
-public Q_SLOTS:
-    /*!
-     * Strat thread now.
-     */
-    void start();
+protected:
     /*!
      * Thread run now.
      */
@@ -46,7 +35,6 @@ public Q_SLOTS:
 
 protected:
     QString m_currentUrl;
-    bool m_run;
 
 };
 

@@ -25,18 +25,20 @@
 /*! @brief The class of the dlna service.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DLNAService
+class MUSIC_EXTRAS_EXPORT DlnaService
 {
 public:
-    DLNAService();
-    DLNAService(const QString &control, const QString &scpd, const QString &eventSub, const QString &type, const QString &id);
+    DlnaService();
+    DlnaService(const QString &control, const QString &scpd, const QString &eventSub, const QString &type, const QString &id);
 
     QString getServiceID() const;
     QString getControlURL() const;
 
+    bool isEmpty() const;
+
 private:
     QString m_controlURL;
-    QString m_scpdurl;
+    QString m_scpdURL;
     QString m_eventSubURL;
     QString m_serviceType;
     QString m_serviceID;

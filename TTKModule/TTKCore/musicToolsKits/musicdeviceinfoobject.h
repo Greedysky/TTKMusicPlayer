@@ -1,5 +1,5 @@
-#ifndef MUSICLICENSECORE_H
-#define MUSICLICENSECORE_H
+#ifndef MUSICDEVICEINFOOBJECT_H
+#define MUSICDEVICEINFOOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,49 +19,59 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QObject>
+#include <QProcess>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the license core module.
+/*! @brief The class of the system device info item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicLicenseCore : public QObject
+typedef struct MUSIC_TOOL_EXPORT MusicDeviceInfoItem
+{
+    QString m_name;
+    QString m_path;
+    int m_availableBytes;
+    int m_totalBytes;
+}MusicDeviceInfoItem;
+TTK_DECLARE_LISTS(MusicDeviceInfoItem)
+
+
+/*! @brief The class of the system device info.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOLSET_EXPORT MusicDeviceInfoObject : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLicenseCore)
+    TTK_DECLARE_MODULE(MusicDeviceInfoObject)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLicenseCore(QObject *parent = nullptr);
+    explicit MusicDeviceInfoObject(QObject *parent = nullptr);
+
+    ~MusicDeviceInfoObject();
 
     /*!
-     * Check license string.
+     * Get removable drive property.
      */
-    bool checkLicense(const QString &str);
+    bool getDisksProperty(const QString &drive) const;
     /*!
-     * Get characteristic string.
+     * Get removable drive name.
      */
-    QString getCharacteristicString();
+    MusicDeviceInfoItems getRemovableDrive();
+
+#ifdef Q_OS_UNIX
+private Q_SLOTS:
     /*!
-     * Get characteristic normal string.
+     * Read data from device thread.
      */
-    QString getCharacteristicStringNormal();
-    /*!
-     * Get encode key.
-     */
-    QString getEncodeKey(const QString &key);
+    void readData();
 
 private:
-    /*!
-     * Get characteristic strings.
-     */
-    QStringList getCharacteristicStrings();
-    /*!
-     * Split hmac string.
-     */
-    QString splitString(const QByteArray &data, const QByteArray &key);
+    QProcess* m_dfProcess;
+#endif
+private:
+    MusicDeviceInfoItems m_items;
 
 };
 
-#endif // MUSICLICENSECORE_H
+#endif // MUSICDEVICEINFOOBJECT_H

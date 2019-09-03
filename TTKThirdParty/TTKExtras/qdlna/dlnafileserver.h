@@ -1,5 +1,5 @@
-#ifndef DLNACLIENT_H
-#define DLNACLIENT_H
+#ifndef DLNAFILESERVER_H
+#define DLNAFILESERVER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,46 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMap>
-#include "dlnaxml.h"
+#include "dlnahelper.h"
 #include "musicextrasglobaldefine.h"
 
-class DlnaXml;
+class QHttpServer;
+class QHttpRequest;
+class QHttpResponse;
 
-/*! @brief The class of the dlna client.
+/*! @brief The class of the dlna file server.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DlnaClient
+class MUSIC_EXTRAS_EXPORT DlnaFileServer : public QObject
 {
 public:
-    explicit DlnaClient(const QString &data);
-    ~DlnaClient();
+    DlnaFileServer(QObject *parent = nullptr);
+    ~DlnaFileServer();
 
-    QString server();
-    QString serverName();
+    void start();
+    void setPrefixPath(const QString &path);
 
-    bool connect();
-    bool isConnected() const;
-
-    QString tryToPlayFile(const QString &url);
-    QString uploadFileToPlay(const QString &url);
-
-    QString startPlay(int instance);
-    QString stopPlay(int instance);
-    QString pause(int instance);
-
-    QString getPosition();
-    int totalSeconds(const QString &value);
+private Q_SLOTS:
+    void handleRequest(QHttpRequest *request, QHttpResponse *response);
 
 private:
-    bool m_isConnected;
-
-    DlnaXml *m_xml;
-    QString m_serverIP, m_serverPort;
-    QString m_smp, m_controlURL;
-    QString m_friendlyName;
-    QMap<QString, DlnaService> m_services;
+    QString m_prefix;
+    QHttpServer *m_server;
 
 };
 
-#endif // DLNACLIENT_H
+#endif // DLNAFILESERVER_H

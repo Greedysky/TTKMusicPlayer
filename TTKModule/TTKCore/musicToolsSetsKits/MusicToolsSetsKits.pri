@@ -23,10 +23,10 @@ HEADERS  += \
     $$PWD/musicdesktopwallpaperthread.h \
     $$PWD/musictimerautoobject.h \
     $$PWD/musiclocalsongsmanagerthread.h \
-    $$PWD/musicaudiorecordercore.h \
+    $$PWD/musicaudiorecorderobject.h \
     $$PWD/musicnetworktestthread.h \
     $$PWD/musicnetworkspeedtestthread.h \
-    $$PWD/musicsongchecktoolscore.h \
+    $$PWD/musicsongchecktoolsthread.h \
     $$PWD/musicsongchecktoolsunit.h \
     $$PWD/musicwebradioobject.h
 
@@ -37,10 +37,10 @@ SOURCES += \
     $$PWD/musicdesktopwallpaperthread.cpp \
     $$PWD/musictimerautoobject.cpp \
     $$PWD/musiclocalsongsmanagerthread.cpp \
-    $$PWD/musicaudiorecordercore.cpp \
+    $$PWD/musicaudiorecorderobject.cpp \
     $$PWD/musicnetworktestthread.cpp \
     $$PWD/musicnetworkspeedtestthread.cpp \
-    $$PWD/musicsongchecktoolscore.cpp \
+    $$PWD/musicsongchecktoolsthread.cpp \
     $$PWD/musicwebradioobject.cpp
 
 }

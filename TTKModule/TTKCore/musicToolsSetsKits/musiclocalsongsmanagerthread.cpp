@@ -3,34 +3,9 @@
 #include "musicfileutils.h"
 
 MusicLocalSongsManagerThread::MusicLocalSongsManagerThread(QObject *parent)
-    : QThread(parent)
+    : MusicAbstractThread(parent)
 {
-    m_run = true;
-}
 
-MusicLocalSongsManagerThread::~MusicLocalSongsManagerThread()
-{
-    stopAndQuitThread();
-}
-
-void MusicLocalSongsManagerThread::run()
-{
-    QFileInfoList list;
-    foreach(const QString &path, m_path)
-    {
-        if(m_run)
-        {
-            list << MusicUtils::File::getFileListByDir(path, MusicFormats::supportFormatsFilterString(), true);
-        }
-    }
-    ///The name and path search ended when sending the corresponding
-    emit setSongNamePath( list );
-}
-
-void MusicLocalSongsManagerThread::start()
-{
-    m_run = true;
-    QThread::start();
 }
 
 void MusicLocalSongsManagerThread::setFindFilePath(const QString &path)
@@ -43,13 +18,18 @@ void MusicLocalSongsManagerThread::setFindFilePath(const QStringList &path)
     m_path = path;
 }
 
-
-void MusicLocalSongsManagerThread::stopAndQuitThread()
+void MusicLocalSongsManagerThread::run()
 {
-    if(isRunning())
+    MusicAbstractThread::run();
+
+    QFileInfoList list;
+    foreach(const QString &path, m_path)
     {
-        m_run = false;
-        wait();
+        if(m_run)
+        {
+            list << MusicUtils::File::getFileListByDir(path, MusicFormats::supportFormatsFilterString(), true);
+        }
     }
-    quit();
+    ///The name and path search ended when sending the corresponding
+    emit setSongNamePath( list );
 }

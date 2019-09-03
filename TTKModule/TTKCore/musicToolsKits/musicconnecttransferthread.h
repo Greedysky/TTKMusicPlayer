@@ -1,5 +1,5 @@
-#ifndef DLNACLIENT_H
-#define DLNACLIENT_H
+#ifndef MUSICCONNECTTRANSFERTHREAD_H
+#define MUSICCONNECTTRANSFERTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,46 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMap>
-#include "dlnaxml.h"
-#include "musicextrasglobaldefine.h"
+#include "musicabstractthread.h"
 
-class DlnaXml;
-
-/*! @brief The class of the dlna client.
+/*! @brief The class of the connect transfer thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DlnaClient
+class MUSIC_TOOL_EXPORT MusicConnectTransferThread : public MusicAbstractThread
 {
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicConnectTransferThread)
 public:
-    explicit DlnaClient(const QString &data);
-    ~DlnaClient();
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicConnectTransferThread(QObject *parent = nullptr);
 
-    QString server();
-    QString serverName();
+    /*!
+     * Set copy file path lists.
+     */
+    void setCopyFilePath(const QString &target, const QStringList &path);
 
-    bool connect();
-    bool isConnected() const;
+Q_SIGNALS:
+    /*!
+     * Send the transfer file or path.
+     */
+    void transferFileFinished(const QString &name);
 
-    QString tryToPlayFile(const QString &url);
-    QString uploadFileToPlay(const QString &url);
+protected:
+    /*!
+     * Thread run now.
+     */
+    virtual void run() override;
 
-    QString startPlay(int instance);
-    QString stopPlay(int instance);
-    QString pause(int instance);
-
-    QString getPosition();
-    int totalSeconds(const QString &value);
-
-private:
-    bool m_isConnected;
-
-    DlnaXml *m_xml;
-    QString m_serverIP, m_serverPort;
-    QString m_smp, m_controlURL;
-    QString m_friendlyName;
-    QMap<QString, DlnaService> m_services;
+protected:
+    QString m_target;
+    QStringList m_path;
 
 };
 
-#endif // DLNACLIENT_H
+#endif // MUSICCONNECTTRANSFERTHREAD_H

@@ -26,18 +26,18 @@
 /*! @brief The class of the dlna xml.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DLNAXml
+class MUSIC_EXTRAS_EXPORT DlnaXml
 {
 public:
-    DLNAXml();
-    ~DLNAXml();
+    DlnaXml();
+    ~DlnaXml();
 
     bool fromString(const QString &data);
     QString toString() const;
 
     QString tagNameToLower(const QString &data) const;
     QString readTagNameValue(const QString &tagName) const;
-    DLNAService readServiceTag(const QString &type, const QString &tagName) const;
+    DlnaService readServiceTag(const QString &type, const QString &tagName) const;
 
 private:
     QDomDocument *m_document;

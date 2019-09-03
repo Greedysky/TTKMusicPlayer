@@ -8,6 +8,7 @@
 #include "musicnetworkconnectiontestwidget.h"
 #include "musicvolumegainwidget.h"
 #include "musicsoundtouchwidget.h"
+#include "musicsongdlnatransferwidget.h"
 #include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
 #include "musicapplication.h"

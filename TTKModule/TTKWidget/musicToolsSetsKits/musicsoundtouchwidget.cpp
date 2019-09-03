@@ -1,6 +1,6 @@
 #include "musicsoundtouchwidget.h"
 #include "ui_musicsoundtouchwidget.h"
-#include "musicaudiorecordercore.h"
+#include "musicaudiorecorderobject.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicfileutils.h"
@@ -67,7 +67,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     m_ui->playWavButton->setEnabled(false);
     m_ui->transformButton->setEnabled(false);
 
-    m_recordCore = new MusicAudioRecorderCore(this);
+    m_recordCore = new MusicAudioRecorderObject(this);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(onRecordStart()));
     connect(m_ui->stopButton, SIGNAL(clicked()), SLOT(onRecordStop()));

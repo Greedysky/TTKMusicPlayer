@@ -15,9 +15,8 @@
 #endif
 
 MusicNetworkSpeedTestThread::MusicNetworkSpeedTestThread(QObject *parent)
-    : QThread(parent)
+    : MusicAbstractThread(parent)
 {
-    m_run = false;
     m_process = nullptr;
 #ifdef Q_OS_UNIX
     setAvailableNewtworkNames(QStringList("eth0"));
@@ -31,17 +30,6 @@ MusicNetworkSpeedTestThread::~MusicNetworkSpeedTestThread()
         m_process->kill();
     }
     delete m_process;
-    stopAndQuitThread();
-}
-
-void MusicNetworkSpeedTestThread::stopAndQuitThread()
-{
-    if(isRunning())
-    {
-        m_run = false;
-        wait();
-    }
-    quit();
 }
 
 void MusicNetworkSpeedTestThread::setAvailableNewtworkNames(const QStringList &names)
@@ -135,14 +123,9 @@ void MusicNetworkSpeedTestThread::outputRecieved()
 #endif
 }
 
-void MusicNetworkSpeedTestThread::start()
-{
-    m_run = true;
-    QThread::start();
-}
-
 void MusicNetworkSpeedTestThread::run()
 {
+    MusicAbstractThread::run();
 #ifdef Q_OS_WIN
     PMIB_IFTABLE pTable = nullptr;
     DWORD dwAdapters = 0;
