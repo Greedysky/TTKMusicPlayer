@@ -79,6 +79,7 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_wallpaper", tr("wallpaper"))
           << ItemPair(":/tools/lb_connections" ,tr("connections"))
           << ItemPair(":/tools/lb_gain", tr("gain"))
+          << ItemPair(":/tools/lb_dlna", tr("lb_dlna"))
           << ItemPair(":/tools/lb_detect", tr("detect"))
           << ItemPair(":/tools/lb_soundtouch", tr("soundtouch"))
           << ItemPair(":/tools/lb_radio", tr("radio"));
@@ -153,15 +154,20 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 9:
             {
-                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
+                MusicSongDlnaTransferWidget(this).exec();
                 break;
             }
         case 10:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundTouchWidget);
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
                 break;
             }
         case 11:
+            {
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundTouchWidget);
+                break;
+            }
+        case 12:
             {
 #ifdef Q_OS_WIN
                 M_SINGLE_MANAGER_CORE_CLASS(MusicWebRadioObject);
