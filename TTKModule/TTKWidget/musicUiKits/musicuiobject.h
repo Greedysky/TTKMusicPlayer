@@ -464,6 +464,13 @@ namespace MusicUIObject
             QSlider::handle:horizontal:hover{ border-image:url(:/control/lb_make_slider_handle_hover);} \
             QSlider::handle:horizontal:disabled{ border-image:url(:/control/lb_make_slider_disable);}";
 
+    const QString MSliderStyle10 = " \
+            QSlider::groove:horizontal{ \
+            background:transparent; height:3px; border-radius:1px;} \
+            QSlider::sub-page:horizontal{ background:rgba(255, 255, 255, 190);} \
+            QSlider::add-page:horizontal{ background:rgba(255, 255, 255, 50);} \
+            QSlider::handle:horizontal{ background:rgba(255, 255, 255, 255); \
+            width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px;}";
 
 ///ComboBox
     const QString MComboBoxStyle01 = " \

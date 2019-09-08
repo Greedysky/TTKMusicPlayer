@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>网络电台播放窗口</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">color:white</string>
+  </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
     <rect>

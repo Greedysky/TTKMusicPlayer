@@ -8,8 +8,8 @@
 #include <shellapi.h>
 #endif
 
-const std::string ASCII_MAP(R"("%<>[\]^_`{|})");
-const std::string HEX_NUM_MAP("0123456789ABCDEF");
+const MString ASCII_MAP(R"("%<>[\]^_`{|})");
+const MString HEX_NUM_MAP("0123456789ABCDEF");
 
 unsigned char Number2Char(const char h, const char l)
 {
@@ -81,7 +81,7 @@ void MusicUtils::Url::urlDecode(QByteArray &data)
 
 void MusicUtils::Url::urlPrettyEncode(QString &data)
 {
-    std::string url = data.toStdString();
+    const MString &url = data.toStdString();
     data.clear();
 
     for(auto it = url.begin(); it != url.end(); ++it)
@@ -101,7 +101,7 @@ void MusicUtils::Url::urlPrettyEncode(QString &data)
 
 void MusicUtils::Url::urlPrettyDecode(QString &data)
 {
-    std::string url = data.toStdString();
+    const MString &url = data.toStdString();
     data.clear();
 
     for(auto it = url.begin(); it != url.end(); ++it)
@@ -130,7 +130,7 @@ void MusicUtils::Url::urlPrettyDecode(QString &data)
 
 void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
 {
-    std::string url = data.toStdString();
+    const MString url(data.constData(), data.length());
     data.clear();
 
     for(auto it = url.begin(); it != url.end(); ++it)
@@ -150,7 +150,7 @@ void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
 
 void MusicUtils::Url::urlPrettyDecode(QByteArray &data)
 {
-    std::string url = data.toStdString();
+    const MString url(data.constData(), data.length());
     data.clear();
 
     for(auto it = url.begin(); it != url.end(); ++it)

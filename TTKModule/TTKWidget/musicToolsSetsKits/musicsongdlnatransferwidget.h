@@ -19,7 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "musicsong.h"
+#include "musicabstractmovewidget.h"
 
 namespace Ui {
 class MusicSongDlnaTransferWidget;
@@ -30,7 +31,7 @@ class DlnaFinder;
 /*! @brief The class of the song dlna transfer widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongDlnaTransferWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicSongDlnaTransferWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongDlnaTransferWidget)
@@ -43,6 +44,10 @@ public:
     virtual ~MusicSongDlnaTransferWidget();
 
 Q_SIGNALS:
+    /*!
+     * Get music datas from container.
+     */
+    void getMusicLists(MusicSongItems &songs);
 
 public Q_SLOTS:
     /*!
@@ -54,13 +59,34 @@ public Q_SLOTS:
      */
     void scanFinished();
     /*!
-     * Override exec function.
+     * Set current player position.
      */
-    virtual int exec();
+    void positionChanged(qint64 position);
+    /*!
+     * Set current player duration.
+     */
+    void durationChanged(qint64 duration);
+    /*!
+     * Set music to play.
+     */
+    void musicPlay();
+    /*!
+     * Set music to previous.
+     */
+    void musicPrevious();
+    /*!
+     * Set music to next.
+     */
+    void musicNext();
+    /*!
+     * Override show function.
+     */
+    void show();
 
 private:
     Ui::MusicSongDlnaTransferWidget *m_ui;
 
+    bool m_isPlaying;
     DlnaFinder *m_dlnaFinder;
 
 };

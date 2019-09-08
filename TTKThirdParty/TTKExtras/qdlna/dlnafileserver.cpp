@@ -5,6 +5,7 @@
 #include "qhttpserver/qhttpresponse.h"
 
 #include <QFile>
+#include <QRegExp>
 
 DlnaFileServer::DlnaFileServer(QObject *parent)
     : QObject(parent)

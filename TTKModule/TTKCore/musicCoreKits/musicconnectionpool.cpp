@@ -23,6 +23,7 @@
 #include "musiccloudtablewidget.h"
 #include "musiccloudmanagerwidget.h"
 #include "musiclrcdownloadbatchwidget.h"
+#include "musicsongdlnatransferwidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -89,7 +90,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if((from == MusicConnectTransferWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicSongCheckToolsWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
-            (from == MusicLrcDownloadBatchWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
+            (from == MusicLrcDownloadBatchWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
+            (from == MusicSongDlnaTransferWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
         QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second, SLOT(getMusicLists(MusicSongItems&)));
     }

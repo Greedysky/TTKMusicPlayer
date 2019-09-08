@@ -57,7 +57,7 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     m_ui->downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->shareButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle10);
     m_ui->volumeSlider->setRange(0, 100);
     m_ui->volumeSlider->setValue(100);
 

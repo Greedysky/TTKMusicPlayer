@@ -154,7 +154,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 9:
             {
-                MusicSongDlnaTransferWidget(this).exec();
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSongDlnaTransferWidget);
                 break;
             }
         case 10:
