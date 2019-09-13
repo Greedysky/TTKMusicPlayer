@@ -23,7 +23,7 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongs &songs)
 
     for(int i=0; i<songs.count(); ++i)
     {
-        const MusicSong song = songs[i];
+        const MusicSong &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);

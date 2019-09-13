@@ -1,5 +1,6 @@
 #include "dlnafinder.h"
 #include "dlnaclient.h"
+#include <QtDebug>
 
 DlnaFinder::DlnaFinder(QObject *parent)
     : QObject(parent)
@@ -8,7 +9,6 @@ DlnaFinder::DlnaFinder(QObject *parent)
     m_udpSock->bind(QHostAddress(QHostAddress::Any), 6000);
 
     connect(m_udpSock, SIGNAL(readyRead()), SLOT(readResponse()));
-    connect(m_udpSock, SIGNAL(readChannelFinished()), SIGNAL(finished()));
 }
 
 DlnaFinder::~DlnaFinder()
@@ -62,7 +62,7 @@ void DlnaFinder::readResponse()
         QByteArray datagram;
         datagram.resize(m_udpSock->pendingDatagramSize());
         m_udpSock->readDatagram(datagram.data(), datagram.size());
-
+        qDebug() << datagram;
         DlnaClient *client = new DlnaClient(QString::fromUtf8(datagram.data()));
         if(findClient(client->server()))
         {
@@ -70,6 +70,7 @@ void DlnaFinder::readResponse()
             continue;
         }
 
+        qDebug() << client->server();
         int tryTimes = 5;
         do
         {
@@ -78,6 +79,7 @@ void DlnaFinder::readResponse()
         }while(!client->isConnected() && tryTimes > 0);
 
         m_clients.push_back(client);
+        emit finished();
     }
 }
 

@@ -14,6 +14,31 @@ DlnaService::DlnaService(const QString &control, const QString &scpd, const QStr
     m_serviceID = id;
 }
 
+void DlnaService::setControlURL(const QString &control)
+{
+    m_controlURL = control;
+}
+
+void DlnaService::setScpdlURL(const QString &scpd)
+{
+    m_scpdURL = scpd;
+}
+
+void DlnaService::setEventSublURL(const QString &eventSub)
+{
+    m_eventSubURL = eventSub;
+}
+
+void DlnaService::setServiceType(const QString &type)
+{
+    m_serviceType = type;
+}
+
+void DlnaService::setServiceID(const QString &id)
+{
+    m_serviceID = id;
+}
+
 QString DlnaService::getServiceID() const
 {
     return m_serviceID;

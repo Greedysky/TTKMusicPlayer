@@ -76,7 +76,20 @@ DlnaService DlnaXml::readServiceTag(const QString &type, const QString &tagName)
         {
             const QDomNode &paramNode = paramNodes.at(j);
             const QString &text = paramNode.toElement().text();
-            qDebug() << text << text.contains(type, Qt::CaseInsensitive);
+            if(text.contains(type, Qt::CaseInsensitive))
+            {
+                const QString &nodeName = paramNode.nodeName();
+                if(nodeName.contains("servicetype", Qt::CaseInsensitive))
+                    service.setServiceType(text);
+                else if(nodeName.contains("serviceid", Qt::CaseInsensitive))
+                    service.setServiceID(text);
+                else if(nodeName.contains("scpdurl", Qt::CaseInsensitive))
+                    service.setScpdlURL(text);
+                else if(nodeName.contains("controlurl", Qt::CaseInsensitive))
+                    service.setControlURL(text);
+                else if(nodeName.contains("eventsuburl", Qt::CaseInsensitive))
+                    service.setEventSublURL(text);
+            }
         }
     }
     return service;

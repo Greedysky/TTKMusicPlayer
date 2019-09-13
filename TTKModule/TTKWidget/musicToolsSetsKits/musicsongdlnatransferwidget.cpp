@@ -5,6 +5,8 @@
 #include "musicsongssummariziedwidget.h"
 
 #include "qdlna/dlnafinder.h"
+#include "qdlna/dlnaclient.h"
+#include "qdlna/dlnafileserver.h"
 
 MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -13,6 +15,8 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_isPlaying = false;
+    m_currentPlayIndex = -1;
+    m_musicSongs = nullptr;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
@@ -51,6 +55,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->deviceComboBox->setEnabled(false);
 
     m_dlnaFinder = new DlnaFinder(this);
+    m_dlnaFileServer = new DlnaFileServer(this);
     startToScan();
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(musicPlay()));
@@ -72,11 +77,12 @@ MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 void MusicSongDlnaTransferWidget::startToScan()
 {
     m_dlnaFinder->find();
+    m_dlnaFileServer->start();
 }
 
 void MusicSongDlnaTransferWidget::scanFinished()
 {
-    m_ui->deviceComboBox->removeItem(0);
+    m_ui->deviceComboBox->clear();
     m_ui->deviceComboBox->setEnabled(true);
 
     foreach(const QString &name, m_dlnaFinder->clientNames())
@@ -100,9 +106,33 @@ void MusicSongDlnaTransferWidget::durationChanged(qint64 duration)
 
 void MusicSongDlnaTransferWidget::musicPlay()
 {
+    const int index = m_ui->deviceComboBox->currentIndex();
+    if(index < 0)
+    {
+        return;
+    }
+
     MusicSongItems songs;
     emit getMusicLists(songs);
 
+    if(songs.empty())
+    {
+        return;
+    }
+
+    m_musicSongs = &songs[0].m_songs;
+    ++m_currentPlayIndex;
+    if(m_currentPlayIndex < 0 || m_currentPlayIndex >= m_musicSongs->size())
+    {
+        m_currentPlayIndex = 0;
+    }
+
+    const MusicSong &song = (*m_musicSongs)[m_currentPlayIndex];
+    QFileInfo info(song.getMusicPath());
+
+    DlnaClient *client = m_dlnaFinder->client(index);
+    m_dlnaFileServer->setPrefixPath(info.path());
+    client->tryToPlayFile("http://127.0.0.1:11111/" + info.fileName());
 //    m_isPlaying = !m_isPlaying;
 //    m_ui->playButton->setIcon(QIcon(m_isPlaying ? ":/functions/btn_pause_hover" : ":/functions/btn_play_hover"));
 }

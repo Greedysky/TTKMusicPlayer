@@ -27,6 +27,7 @@ class MusicSongDlnaTransferWidget;
 }
 
 class DlnaFinder;
+class DlnaFileServer;
 
 /*! @brief The class of the song dlna transfer widget.
  * @author Greedysky <greedysky@163.com>
@@ -87,7 +88,10 @@ private:
     Ui::MusicSongDlnaTransferWidget *m_ui;
 
     bool m_isPlaying;
+    int m_currentPlayIndex;
+    MusicSongs *m_musicSongs;
     DlnaFinder *m_dlnaFinder;
+    DlnaFileServer *m_dlnaFileServer;
 
 };
 

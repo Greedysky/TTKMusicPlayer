@@ -31,6 +31,7 @@ class QHttpResponse;
  */
 class MUSIC_EXTRAS_EXPORT DlnaFileServer : public QObject
 {
+    Q_OBJECT
 public:
     DlnaFileServer(QObject *parent = nullptr);
     ~DlnaFileServer();

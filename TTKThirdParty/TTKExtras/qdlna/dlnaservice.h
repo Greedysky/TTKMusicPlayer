@@ -31,6 +31,12 @@ public:
     DlnaService();
     DlnaService(const QString &control, const QString &scpd, const QString &eventSub, const QString &type, const QString &id);
 
+    void setControlURL(const QString &control);
+    void setScpdlURL(const QString &scpd);
+    void setEventSublURL(const QString &eventSub);
+    void setServiceType(const QString &type);
+    void setServiceID(const QString &id);
+
     QString getServiceID() const;
     QString getControlURL() const;
 
