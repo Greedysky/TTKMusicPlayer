@@ -35,7 +35,7 @@ void DlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *respons
     QRegExp regx("^/music/(.*)$");
     if(regx.indexIn(request->path()) != -1)
     {
-        response->setHeader("Content-Type", "application/x-www-form-urlencoded");
+        response->setHeader("Content-Type", "application/octet-stream");
 
         const QString &name = regx.cap(1);
         QFile file(m_prefix + "/" + name);

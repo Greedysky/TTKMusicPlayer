@@ -1,6 +1,7 @@
 #include "dlnafinder.h"
 #include "dlnaclient.h"
-#include <QtDebug>
+
+#define DEFAULT_ROUTER_IP   "192.168.0.1"
 
 DlnaFinder::DlnaFinder(QObject *parent)
     : QObject(parent)
@@ -14,14 +15,12 @@ DlnaFinder::DlnaFinder(QObject *parent)
 DlnaFinder::~DlnaFinder()
 {
     delete m_udpSock;
-    while(!m_clients.isEmpty())
-    {
-        delete m_clients.takeLast();
-    }
+    removeClients();
 }
 
 void DlnaFinder::find()
 {
+    removeClients();
     const QByteArray& data = "M-SEARCH * HTTP/1.1\r\n"
                              "HOST:239.255.255.250:1900\r\n"
                              "MAN:\"ssdp:discover\"\r\n"
@@ -62,15 +61,14 @@ void DlnaFinder::readResponse()
         QByteArray datagram;
         datagram.resize(m_udpSock->pendingDatagramSize());
         m_udpSock->readDatagram(datagram.data(), datagram.size());
-        qDebug() << datagram;
+
         DlnaClient *client = new DlnaClient(QString::fromUtf8(datagram.data()));
-        if(findClient(client->server()))
+        if(client->server() == DEFAULT_ROUTER_IP || findClient(client->server()))
         {
             delete client;
             continue;
         }
 
-        qDebug() << client->server();
         int tryTimes = 5;
         do
         {
@@ -80,6 +78,14 @@ void DlnaFinder::readResponse()
 
         m_clients.push_back(client);
         emit finished();
+    }
+}
+
+void DlnaFinder::removeClients()
+{
+    while(!m_clients.isEmpty())
+    {
+        delete m_clients.takeLast();
     }
 }
 

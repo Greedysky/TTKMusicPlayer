@@ -1,5 +1,4 @@
 #include "dlnaxml.h"
-#include <QDebug>
 
 DlnaXml::DlnaXml()
 {
@@ -75,10 +74,14 @@ DlnaService DlnaXml::readServiceTag(const QString &type, const QString &tagName)
         for(int j=0; j<paramNodes.count(); ++j)
         {
             const QDomNode &paramNode = paramNodes.at(j);
-            const QString &text = paramNode.toElement().text();
+            QString text = paramNode.toElement().text();
             if(text.contains(type, Qt::CaseInsensitive))
             {
                 const QString &nodeName = paramNode.nodeName();
+                if(text.startsWith("/"))
+                {
+                    text.remove(0, 1);
+                }
                 if(nodeName.contains("servicetype", Qt::CaseInsensitive))
                     service.setServiceType(text);
                 else if(nodeName.contains("serviceid", Qt::CaseInsensitive))

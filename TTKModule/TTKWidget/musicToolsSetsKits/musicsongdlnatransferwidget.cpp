@@ -57,10 +57,12 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_dlnaFinder = new DlnaFinder(this);
     m_dlnaFileServer = new DlnaFileServer(this);
     startToScan();
+    m_dlnaFileServer->start();
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(musicPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(musicPrevious()));
     connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(musicNext()));
+    connect(m_ui->refreshButton, SIGNAL(clicked()), SLOT(startToScan()));
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
@@ -77,18 +79,21 @@ MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 void MusicSongDlnaTransferWidget::startToScan()
 {
     m_dlnaFinder->find();
-    m_dlnaFileServer->start();
 }
 
 void MusicSongDlnaTransferWidget::scanFinished()
 {
-    m_ui->deviceComboBox->clear();
-    m_ui->deviceComboBox->setEnabled(true);
-
+    bool init = false;
     foreach(const QString &name, m_dlnaFinder->clientNames())
     {
         if(!name.isEmpty())
         {
+            if(!init)
+            {
+                m_ui->deviceComboBox->clear();
+                m_ui->deviceComboBox->setEnabled(true);
+                init = true;
+            }
             m_ui->deviceComboBox->addItem(name);
         }
     }
@@ -130,21 +135,22 @@ void MusicSongDlnaTransferWidget::musicPlay()
     const MusicSong &song = (*m_musicSongs)[m_currentPlayIndex];
     QFileInfo info(song.getMusicPath());
 
+    qDebug()<< song.getMusicPath();
     DlnaClient *client = m_dlnaFinder->client(index);
     m_dlnaFileServer->setPrefixPath(info.path());
-    client->tryToPlayFile("http://127.0.0.1:11111/" + info.fileName());
+    client->tryToPlayFile("http://192.168.0.101:11111/" + info.fileName());
 //    m_isPlaying = !m_isPlaying;
 //    m_ui->playButton->setIcon(QIcon(m_isPlaying ? ":/functions/btn_pause_hover" : ":/functions/btn_play_hover"));
 }
 
 void MusicSongDlnaTransferWidget::musicPrevious()
 {
-
+    m_currentPlayIndex--;
 }
 
 void MusicSongDlnaTransferWidget::musicNext()
 {
-
+    m_currentPlayIndex++;
 }
 
 void MusicSongDlnaTransferWidget::show()

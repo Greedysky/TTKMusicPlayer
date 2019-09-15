@@ -48,6 +48,7 @@ public Q_SLOTS:
     void readResponse();
 
 private:
+    void removeClients();
     bool findClient(const QString &server);
 
 private:
