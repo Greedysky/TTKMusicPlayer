@@ -45,8 +45,10 @@ void MusicDownloadQNConfighread::downLoadFinished()
             if(QDateTime::fromString(value["time"].toString(), "yyyy-MM-dd HH:mm:ss").addDays(1) >=
                QDateTime::fromString(M_SETTING_PTR->value(MusicSettingManager::QiNiuTimeConfigChoiced).toString(), "yyyy-MM-dd HH:mm:ss").addMonths(1))
             {
-                M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicConfigChoiced, value["music_buket"]);
-                M_SETTING_PTR->setValue(MusicSettingManager::QiNiuDataConfigChoiced, value["data_buket"]);
+                M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicBucketChoiced, value["music_bucket"]);
+                M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicBucketChoiced, value["data_bucket"]);
+                M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicUrlChoiced, value["music_url"]);
+                M_SETTING_PTR->setValue(MusicSettingManager::QiNiuDataUrlChoiced, value["data_url"]);
                 M_SETTING_PTR->setValue(MusicSettingManager::QiNiuTimeConfigChoiced, value["time"]);
             }
         }

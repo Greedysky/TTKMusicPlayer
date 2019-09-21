@@ -26,9 +26,6 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#define QN_BUCKET       "music"
-#define QN_CLOUD        "cloud"
-
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
 MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
@@ -83,8 +80,9 @@ bool MusicCloudManagerTableWidget::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
-    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_CLOUD);
+    const QString &buketName = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataBucketChoiced).toString();
+    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataUrlChoiced).toString();
+    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + buketName);
 
     loop.exec();
     updateListToServer();
@@ -195,7 +193,8 @@ void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
 void MusicCloudManagerTableWidget::updateListToServer()
 {
     emit updateLabelMessage(tr("List Updating"));
-    m_qnListData->listDataToServer(QN_BUCKET);
+    const QString &buketName = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicBucketChoiced).toString();
+    m_qnListData->listDataToServer(buketName);
 }
 
 void MusicCloudManagerTableWidget::deleteFileToServer()
@@ -216,7 +215,8 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
 
     const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
     removeRow(currentRow());
-    m_qnDeleteData->deleteDataToServer(QN_BUCKET, data.m_dataItem.m_name);
+    const QString &buketName = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicBucketChoiced).toString();
+    m_qnDeleteData->deleteDataToServer(buketName, data.m_dataItem.m_name);
     m_totalFileSzie -= data.m_dataItem.m_size;
     emit updataSizeLabel(m_totalFileSzie);
 
@@ -244,7 +244,8 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
 
         const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
         removeRow(index); //Delete the current row
-        m_qnDeleteData->deleteDataToServer(QN_BUCKET, data.m_dataItem.m_name);
+        const QString &buketName = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicBucketChoiced).toString();
+        m_qnDeleteData->deleteDataToServer(buketName, data.m_dataItem.m_name);
 
         m_totalFileSzie -= data.m_dataItem.m_size;
         emit updataSizeLabel(m_totalFileSzie);
@@ -268,7 +269,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     }
 
     const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
-    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicConfigChoiced).toString();
+    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicUrlChoiced).toString();
     const QString &url = m_qnUploadData->getDownloadUrl(MusicUtils::Algorithm::mdII(buketUrl, false), data.m_dataItem.m_name);
 
     MusicDataDownloadThread *download = new MusicDataDownloadThread(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
@@ -454,7 +455,8 @@ void MusicCloudManagerTableWidget::startToUploadFile()
         startToUploadFile();
     }
 
-    m_qnUploadData->uploadDataToServer(m_currentDataItem.m_id, file.readAll(), QN_BUCKET,
+    const QString &buketName = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicBucketChoiced).toString();
+    m_qnUploadData->uploadDataToServer(m_currentDataItem.m_id, file.readAll(), buketName,
                                        m_currentDataItem.m_dataItem.m_name,
                                        m_currentDataItem.m_dataItem.m_name);
     file.close();

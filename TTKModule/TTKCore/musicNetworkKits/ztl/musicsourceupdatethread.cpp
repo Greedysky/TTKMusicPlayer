@@ -16,7 +16,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataUrlChoiced).toString();
     download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_VERSION);
 }
 

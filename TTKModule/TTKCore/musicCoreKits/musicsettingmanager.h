@@ -140,8 +140,10 @@ public:
         HotkeyEnableChoiced,                    /*!< Hotkey Enable Parameter*/
         HotkeyStringChoiced,                    /*!< Hotkey String Parameter*/
 
-        QiNiuMusicConfigChoiced,                /*!< QiNiu Music Config Parameter*/
-        QiNiuDataConfigChoiced,                 /*!< QiNiu Data Config Parameter*/
+        QiNiuMusicBucketChoiced,                /*!< QiNiu Music Bucket Parameter*/
+        QiNiuDataBucketChoiced,                 /*!< QiNiu Data Bucket Parameter*/
+        QiNiuMusicUrlChoiced,                   /*!< QiNiu Music Url Parameter*/
+        QiNiuDataUrlChoiced,                    /*!< QiNiu Data Url Parameter*/
         QiNiuTimeConfigChoiced,                 /*!< QiNiu Time Config Parameter*/
 
         NetworkCookieChoiced                    /*!< Network cookie Parameter*/

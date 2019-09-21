@@ -38,7 +38,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataUrlChoiced).toString();
     download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_ACRUA_URL);
 
     loop.exec();
