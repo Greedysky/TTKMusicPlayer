@@ -34,11 +34,11 @@ void MusicRunTimeManager::run() const
     xml->readSysConfigData();
 
     MusicUtils::File::checkCacheSize(
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt(),
-                M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
+                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt()*MH_MB2B,
+                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimit).toInt(),
+                M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
     M_NETWORK_PTR->setBlockNetWork(
-                M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
+                M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
     delete xml;
 
     M_LOGGER_INFO("End load translation");
@@ -46,6 +46,6 @@ void MusicRunTimeManager::run() const
 
 QString MusicRunTimeManager::translator() const
 {
-    const int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
+    const int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
     return MusicUtils::Core::getLanguageName(index);
 }

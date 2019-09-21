@@ -154,7 +154,7 @@ void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
         const bool state = tag.read(path);
         const QString &time = state ? tag.getLengthString() : "-";
         QString name;
-        if(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfoChoiced).toBool() && state && !tag.getTitle().isEmpty() && !tag.getArtist().isEmpty())
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && state && !tag.getTitle().isEmpty() && !tag.getArtist().isEmpty())
         {
             name = tag.getArtist() + " - "+ tag.getTitle();
         }
@@ -582,7 +582,7 @@ void MusicSongsSummariziedWidget::musicLrcBatchDownload()
 
 void MusicSongsSummariziedWidget::setCurrentIndex()
 {
-    const QStringList &keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    const QStringList &keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     if(keyList.count() != 3)
     {
         return;

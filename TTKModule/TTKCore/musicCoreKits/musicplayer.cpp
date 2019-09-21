@@ -157,12 +157,12 @@ void MusicPlayer::play()
     getCurrentDuration();
 
     ///Read the configuration settings for the sound
-    const int volume = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
+    const int volume = M_SETTING_PTR->value(MusicSettingManager::Volume).toInt();
     if(volume != -1)
     {
         setVolume(volume);
     }
-    setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
+    setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalance).toInt());
 }
 
 void MusicPlayer::pause()
@@ -207,10 +207,10 @@ void MusicPlayer::setEnaleEffect(bool enable)
 void MusicPlayer::setEqInformation()
 {
     ///Read the equalizer parameters from a configuration file
-    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         setEnaleEffect(true);
-        const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+        const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(',');
         if(eqValue.count() == 11)
         {
             MIntList hz;

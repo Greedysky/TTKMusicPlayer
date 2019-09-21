@@ -36,120 +36,120 @@ class MUSIC_CORE_EXPORT MusicSettingManager : public QObject
 public:
     enum ConfigType
     {
-        Null = -1,                              /*!< No Parameter*/
-        ScreenSize,                             /*!< Screen Size Parameter*/
-        WidgetPosition,                         /*!< Widget Position Parameter*/
-        WidgetSize,                             /*!< Widget Size Parameter*/
+        Null = -1,                       /*!< No Parameter*/
+        ScreenSize,                      /*!< Screen Size Parameter*/
+        WidgetPosition,                  /*!< Widget Position Parameter*/
+        WidgetSize,                      /*!< Widget Size Parameter*/
 
-        PlayModeChoiced,                        /*!< Play Mode Parameter*/
-        VolumeChoiced,                          /*!< Volume Parameter*/
+        PlayMode,                        /*!< Play Mode Parameter*/
+        Volume,                          /*!< Volume Parameter*/
 
-        AutoPlayChoiced,                        /*!< Auto Play Parameter*/
-        CurrentLanIndexChoiced,                 /*!< Current LanIndex Parameter*/
-        CloseEventChoiced,                      /*!< Close Event Parameter*/
-        LastPlayIndexChoiced,                   /*!< Last Play Index Parameter*/
-        CloseNetWorkChoiced,                    /*!< Close NetWork Parameter*/
-        FileAssociationChoiced,                 /*!< File Association Parameter*/
-        ExtraDevicePathChoiced,                 /*!< Set Extra Device Path Parameter*/
-        WindowConciseChoiced,                   /*!< Window Concise Parameter*/
-        RemoteWidgetModeChoiced,                /*!< Remote Widget Mode Parameter*/
-        WindowQuitModeChoiced,                  /*!< Window Quit Mode Parameter*/
+        AutoPlay,                        /*!< Auto Play Parameter*/
+        CurrentLanIndex,                 /*!< Current LanIndex Parameter*/
+        CloseEvent,                      /*!< Close Event Parameter*/
+        LastPlayIndex,                   /*!< Last Play Index Parameter*/
+        CloseNetWork,                    /*!< Close NetWork Parameter*/
+        FileAssociation,                 /*!< File Association Parameter*/
+        ExtraDevicePath,                 /*!< Set Extra Device Path Parameter*/
+        WindowConcise,                   /*!< Window Concise Parameter*/
+        RemoteWidgetMode,                /*!< Remote Widget Mode Parameter*/
+        WindowQuitMode,                  /*!< Window Quit Mode Parameter*/
 
-        BackgroundThemeChoiced,                 /*!< Background Theme Parameter*/
-        BackgroundTransparentChoiced,           /*!< Background Transparent Parameter*/
-        BackgroundListTransparentChoiced,       /*!< Background List Transparent Parameter*/
-        BackgroundTransparentEnableChoiced,     /*!< Background Transparent Enable Parameter*/
+        BackgroundTheme,                 /*!< Background Theme Parameter*/
+        BackgroundTransparent,           /*!< Background Transparent Parameter*/
+        BackgroundListTransparent,       /*!< Background List Transparent Parameter*/
+        BackgroundTransparentEnable,     /*!< Background Transparent Enable Parameter*/
 
-        OtherBackgroundLosslessChoiced,         /*!< Other Background Lossless Parameter*/
-        OtherCheckUpdateChoiced,                /*!< Other Check Update Parameter*/
-        OtherSearchChoiced,                     /*!< Other Search Optimzied Parameter*/
-        OtherUseAlbumCoverChoiced,              /*!< Other Use File Album Parameter*/
-        OtherUseInfoChoiced,                    /*!< Other Use File Info Parameter*/
-        OtherWriteAlbumCoverChoiced,            /*!< Other Write File Album Parameter*/
-        OtherWriteInfoChoiced,                  /*!< Other Write File Info Parameter*/
-        OtherSongFormat,                        /*!< Other Song Format Parameter*/
-        OtherSideByChoiced,                     /*!< Other App Side By Mode Parameter*/
-        OtherSideByInChoiced,                   /*!< Other App Side By In Mode Parameter*/
-        OtherLrcKTVModeChoiced,                 /*!< Other Lrc KTV Mode Mode Parameter*/
-        OtherRippleSpectrumEnableChoiced,       /*!< Other Ripple Spectrum Enable Parameter*/
-        OtherRippleSpectrumColorChoiced,        /*!< Other Ripple Spectrum Color Parameter*/
-        OtherRippleSpectrumOpacityChoiced,      /*!< Other Ripple Spectrum Opacity Parameter*/
+        OtherBackgroundLossless,         /*!< Other Background Lossless Parameter*/
+        OtherCheckUpdate,                /*!< Other Check Update Parameter*/
+        OtherSearch,                     /*!< Other Search Optimzied Parameter*/
+        OtherUseAlbumCover,              /*!< Other Use File Album Parameter*/
+        OtherUseInfo,                    /*!< Other Use File Info Parameter*/
+        OtherWriteAlbumCover,            /*!< Other Write File Album Parameter*/
+        OtherWriteInfo,                  /*!< Other Write File Info Parameter*/
+        OtherSongFormat,                 /*!< Other Song Format Parameter*/
+        OtherSideBy,                     /*!< Other App Side By Mode Parameter*/
+        OtherSideByIn,                   /*!< Other App Side By In Mode Parameter*/
+        OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Mode Parameter*/
+        OtherRippleSpectrumEnable,       /*!< Other Ripple Spectrum Enable Parameter*/
+        OtherRippleSpectrumColor,        /*!< Other Ripple Spectrum Color Parameter*/
+        OtherRippleSpectrumOpacity,      /*!< Other Ripple Spectrum Opacity Parameter*/
 
-        ShowInlineLrcChoiced,                   /*!< Show Inline Lrc Parameter*/
-        LrcColorChoiced,                        /*!< Lrc Color Parameter*/
-        LrcSizeChoiced,                         /*!< Lrc Size Parameter*/
-        LrcTypeChoiced,                         /*!< Lrc Type Parameter*/
-        LrcFamilyChoiced,                       /*!< Lrc Family Parameter*/
-        LrcFrontgroundColorChoiced,             /*!< Lrc Frontground Color Parameter*/
-        LrcBackgroundColorChoiced,              /*!< Lrc Background Color Parameter*/
-        LrcColorTransChoiced,                   /*!< Lrc Color Trans Parameter*/
+        ShowInlineLrc,                   /*!< Show Inline Lrc Parameter*/
+        LrcColor,                        /*!< Lrc Color Parameter*/
+        LrcSize,                         /*!< Lrc Size Parameter*/
+        LrcType,                         /*!< Lrc Type Parameter*/
+        LrcFamily,                       /*!< Lrc Family Parameter*/
+        LrcFrontgroundColor,             /*!< Lrc Frontground Color Parameter*/
+        LrcBackgroundColor,              /*!< Lrc Background Color Parameter*/
+        LrcColorTrans,                   /*!< Lrc Color Trans Parameter*/
 
-        ShowDesktopLrcChoiced,                  /*!< Show Desktop Lrc Parameter*/
-        DLrcColorChoiced,                       /*!< Desktop Lrc Color Parameter*/
-        DLrcSizeChoiced,                        /*!< Desktop Lrc Size Parameter*/
-        DLrcTypeChoiced,                        /*!< Desktop Lrc Type Parameter*/
-        DLrcFamilyChoiced,                      /*!< Desktop Lrc Family Parameter*/
-        DLrcFrontgroundColorChoiced,            /*!< Desktop Lrc Frontground Color Parameter*/
-        DLrcBackgroundColorChoiced,             /*!< Desktop Lrc Background Color Parameter*/
-        DLrcColorTransChoiced,                  /*!< Desktop Lrc Color Trans Parameter*/
-        DLrcWindowTypeChoiced,                  /*!< Desktop Lrc Window Type Parameter*/
-        DLrcSingleLineTypeChoiced,              /*!< Desktop Lrc Single Line Type Parameter*/
-        DLrcLockedChoiced,                      /*!< Desktop Lrc Locked Parameter*/
-        DLrcGeometryChoiced,                    /*!< Desktop Lrc Geometry Parameter*/
+        ShowDesktopLrc,                  /*!< Show Desktop Lrc Parameter*/
+        DLrcColor,                       /*!< Desktop Lrc Color Parameter*/
+        DLrcSize,                        /*!< Desktop Lrc Size Parameter*/
+        DLrcType,                        /*!< Desktop Lrc Type Parameter*/
+        DLrcFamily,                      /*!< Desktop Lrc Family Parameter*/
+        DLrcFrontgroundColor,            /*!< Desktop Lrc Frontground Color Parameter*/
+        DLrcBackgroundColor,             /*!< Desktop Lrc Background Color Parameter*/
+        DLrcColorTrans,                  /*!< Desktop Lrc Color Trans Parameter*/
+        DLrcWindowType,                  /*!< Desktop Lrc Window Type Parameter*/
+        DLrcSingleLineType,              /*!< Desktop Lrc Single Line Type Parameter*/
+        DLrcLocked,                      /*!< Desktop Lrc Locked Parameter*/
+        DLrcGeometry,                    /*!< Desktop Lrc Geometry Parameter*/
 
-        EqualizerEnableChoiced,                 /*!< Equalizer Enable Parameter*/
-        EqualizerValueChoiced,                  /*!< Equalizer Value Parameter*/
-        EqualizerIndexChoiced,                  /*!< Equalizer Index Parameter*/
-        EnhancedMusicChoiced,                   /*!< Enhanced Music Parameter*/
-        EnhancedBalanceChoiced,                 /*!< Enhanced Balance Parameter*/
-        EnhancedFadeEnableChoiced,              /*!< Enhanced Fade Enable Parameter*/
-        EnhancedFadeInValueChoiced,             /*!< Enhanced Fade In Value Parameter*/
-        EnhancedFadeOutValueChoiced,            /*!< Enhanced Fade Out Value Parameter*/
-        EnhancedBS2BChoiced,                    /*!< Enhanced BS2B Parameter*/
-        EnhancedCrossfadeChoiced,               /*!< Enhanced Crossfade Parameter*/
-        EnhancedStereoChoiced,                  /*!< Enhanced Stereo Parameter*/
-        EnhancedLADSPAChoiced,                  /*!< Enhanced LADSPA Parameter*/
-        EnhancedSOXChoiced,                     /*!< Enhanced SOX Parameter*/
-        EnhancedSRCChoiced,                     /*!< Enhanced SRC Parameter*/
+        EqualizerEnable,                 /*!< Equalizer Enable Parameter*/
+        EqualizerValue,                  /*!< Equalizer Value Parameter*/
+        EqualizerIndex,                  /*!< Equalizer Index Parameter*/
+        EnhancedMusic,                   /*!< Enhanced Music Parameter*/
+        EnhancedBalance,                 /*!< Enhanced Balance Parameter*/
+        EnhancedFadeEnable,              /*!< Enhanced Fade Enable Parameter*/
+        EnhancedFadeInValue,             /*!< Enhanced Fade In Value Parameter*/
+        EnhancedFadeOutValue,            /*!< Enhanced Fade Out Value Parameter*/
+        EnhancedBS2B,                    /*!< Enhanced BS2B Parameter*/
+        EnhancedCrossfade,               /*!< Enhanced Crossfade Parameter*/
+        EnhancedStereo,                  /*!< Enhanced Stereo Parameter*/
+        EnhancedLADSPA,                  /*!< Enhanced LADSPA Parameter*/
+        EnhancedSOX,                     /*!< Enhanced SOX Parameter*/
+        EnhancedSRC,                     /*!< Enhanced SRC Parameter*/
 
-        TimerAutoIndexChoiced,                  /*!< Timer Auto Index Parameter*/
-        TimerAutoPlayChoiced,                   /*!< Timer Auto Play Parameter*/
-        TimerAutoPlayHourChoiced,               /*!< Timer Auto Play Hour Parameter*/
-        TimerAutoPlaySecondChoiced,             /*!< Timer Auto Play Second Parameter*/
-        TimerAutoPlayRepeatChoiced,             /*!< Timer Auto Play Repeat Parameter*/
-        TimerAutoPlayItemIndexChoiced,          /*!< Timer Auto Play Item Index Parameter*/
-        TimerAutoPlaySongIndexChoiced,          /*!< Timer Auto Play Song Index Parameter*/
-        TimerAutoStopChoiced,                   /*!< Timer Auto Stop Parameter*/
-        TimerAutoStopHourChoiced,               /*!< Timer Auto Stop Hour Parameter*/
-        TimerAutoStopSecondChoiced,             /*!< Timer Auto Stop Second Parameter*/
-        TimerAutoStopRepeatChoiced,             /*!< Timer Auto Stop Repeat Parameter*/
-        TimerAutoShutdownChoiced,               /*!< Timer Auto Shutdown Parameter*/
-        TimerAutoShutdownHourChoiced,           /*!< Timer Auto Shutdown Hour Parameter*/
-        TimerAutoShutdownSecondChoiced,         /*!< Timer Auto Shutdown Second Parameter*/
-        TimerAutoShutdownRepeatChoiced,         /*!< Timer Auto Shutdown Repeat Parameter*/
+        TimerAutoIndex,                  /*!< Timer Auto Index Parameter*/
+        TimerAutoPlay,                   /*!< Timer Auto Play Parameter*/
+        TimerAutoPlayHour,               /*!< Timer Auto Play Hour Parameter*/
+        TimerAutoPlaySecond,             /*!< Timer Auto Play Second Parameter*/
+        TimerAutoPlayRepeat,             /*!< Timer Auto Play Repeat Parameter*/
+        TimerAutoPlayItemIndex,          /*!< Timer Auto Play Item Index Parameter*/
+        TimerAutoPlaySongIndex,          /*!< Timer Auto Play Song Index Parameter*/
+        TimerAutoStop,                   /*!< Timer Auto Stop Parameter*/
+        TimerAutoStopHour,               /*!< Timer Auto Stop Hour Parameter*/
+        TimerAutoStopSecond,             /*!< Timer Auto Stop Second Parameter*/
+        TimerAutoStopRepeat,             /*!< Timer Auto Stop Repeat Parameter*/
+        TimerAutoShutdown,               /*!< Timer Auto Shutdown Parameter*/
+        TimerAutoShutdownHour,           /*!< Timer Auto Shutdown Hour Parameter*/
+        TimerAutoShutdownSecond,         /*!< Timer Auto Shutdown Second Parameter*/
+        TimerAutoShutdownRepeat,         /*!< Timer Auto Shutdown Repeat Parameter*/
 
-        DownloadMusicPathDirChoiced,            /*!< Download Music Path Dir Parameter*/
-        DownloadLrcPathDirChoiced,              /*!< Download Lrc Path Dir Parameter*/
-        DownloadCacheLimitChoiced,              /*!< Download Cache Limit Parameter*/
-        DownloadCacheSizeChoiced,               /*!< Download Cache Size Parameter*/
-        DownloadLimitChoiced,                   /*!< Download Limit Parameter*/
-        DownloadServerChoiced,                  /*!< Download Server Parameter*/
-        DownloadDLoadLimitChoiced,              /*!< Download DLoad Limit Parameter*/
-        DownloadULoadLimitChoiced,              /*!< Download ULoad Limit Parameter*/
+        DownloadMusicPathDir,            /*!< Download Music Path Dir Parameter*/
+        DownloadLrcPathDir,              /*!< Download Lrc Path Dir Parameter*/
+        DownloadCacheLimit,              /*!< Download Cache Limit Parameter*/
+        DownloadCacheSize,               /*!< Download Cache Size Parameter*/
+        DownloadLimit,                   /*!< Download Limit Parameter*/
+        DownloadServer,                  /*!< Download Server Parameter*/
+        DownloadDLoadLimit,              /*!< Download DLoad Limit Parameter*/
+        DownloadULoadLimit,              /*!< Download ULoad Limit Parameter*/
 
-        HotkeyEnableChoiced,                    /*!< Hotkey Enable Parameter*/
-        HotkeyStringChoiced,                    /*!< Hotkey String Parameter*/
+        HotkeyEnable,                    /*!< Hotkey Enable Parameter*/
+        HotkeyString,                    /*!< Hotkey String Parameter*/
 
-        QiNiuMusicBucketChoiced,                /*!< QiNiu Music Bucket Parameter*/
-        QiNiuDataBucketChoiced,                 /*!< QiNiu Data Bucket Parameter*/
-        QiNiuMusicUrlChoiced,                   /*!< QiNiu Music Url Parameter*/
-        QiNiuDataUrlChoiced,                    /*!< QiNiu Data Url Parameter*/
-        QiNiuTimeConfigChoiced,                 /*!< QiNiu Time Config Parameter*/
+        QiNiuMusicBucket,                /*!< QiNiu Music Bucket Parameter*/
+        QiNiuDataBucket,                 /*!< QiNiu Data Bucket Parameter*/
+        QiNiuMusicUrl,                   /*!< QiNiu Music Url Parameter*/
+        QiNiuDataUrl,                    /*!< QiNiu Data Url Parameter*/
+        QiNiuTimeConfig,                 /*!< QiNiu Time Config Parameter*/
 
-        NetworkCookieChoiced                    /*!< Network cookie Parameter*/
+        NetworkCookie                    /*!< Network cookie Parameter*/
 
 #ifdef MUSIC_MOBILE
-        ,MobileWifiConnectChoiced               /*!< Mobile Wifi Connect Parameter*/
+        ,MobileWifiConnect               /*!< Mobile Wifi Connect Parameter*/
 #endif
 
     };

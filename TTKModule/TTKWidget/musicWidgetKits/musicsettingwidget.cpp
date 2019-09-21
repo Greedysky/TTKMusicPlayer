@@ -138,9 +138,9 @@ MusicSettingWidget::~MusicSettingWidget()
 void MusicSettingWidget::initControllerParameter()
 {
     //Set init parameter
-    m_ui->autoPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::AutoPlayChoiced).toBool());
-    m_ui->backPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList().first().toInt());
-    if(!M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool())
+    m_ui->autoPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::AutoPlay).toBool());
+    m_ui->backPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().first().toInt());
+    if(!M_SETTING_PTR->value(MusicSettingManager::CloseEvent).toBool())
     {
         m_ui->minimumRadioBox->setChecked(true);
     }
@@ -148,7 +148,7 @@ void MusicSettingWidget::initControllerParameter()
     {
         m_ui->quitRadioBox->setChecked(true);
     }
-    if(!M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
+    if(!M_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
         m_ui->quitOpacityRadioBox->setChecked(true);
     }
@@ -156,10 +156,10 @@ void MusicSettingWidget::initControllerParameter()
     {
         m_ui->quitWindowRadioBox->setChecked(true);
     }
-    m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
+    m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt());
 
     //
-    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(TTK_STR_SPLITER);
+    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyString).toString().split(TTK_STR_SPLITER);
     if(hotkeys.count() != M_HOTKEY_PTR->count())
     {
         hotkeys = M_HOTKEY_PTR->getDefaultKeys();
@@ -172,75 +172,75 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->item_S12->setText(hotkeys[5]);
     m_ui->item_S14->setText(hotkeys[6]);
     m_ui->item_S16->setText(hotkeys[7]);
-    m_ui->globalHotkeyBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool());
+    m_ui->globalHotkeyBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toBool());
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
 
     //
-    M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toBool() ? m_ui->otherHeighImageRadioBox->click() : m_ui->otherNormalImageRadioBox->click();
-    m_ui->otherCheckUpdateBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateChoiced).toBool());
-    m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toBool());
-    m_ui->otherUseAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCoverChoiced).toBool());
-    m_ui->otherUseInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfoChoiced).toBool());
-    m_ui->otherWriteAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCoverChoiced).toBool());
-    m_ui->otherWriteInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfoChoiced).toBool());
-    m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool());
-    m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool());
+    M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool() ? m_ui->otherHeighImageRadioBox->click() : m_ui->otherNormalImageRadioBox->click();
+    m_ui->otherCheckUpdateBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdate).toBool());
+    m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearch).toBool());
+    m_ui->otherUseAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool());
+    m_ui->otherUseInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool());
+    m_ui->otherWriteAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool());
+    m_ui->otherWriteInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool());
+    m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool());
+    m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
     m_ui->otherVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
 
-    m_ui->ripplesSpectrumOpacitySlider->setValue(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacityChoiced).toInt());
-    m_ui->ripplesSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toBool());
-    m_ui->ripplesSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColorChoiced).toString()));
+    m_ui->ripplesSpectrumOpacitySlider->setValue(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacity).toInt());
+    m_ui->ripplesSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool());
+    m_ui->ripplesSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString()));
     ripplesSpectrumOpacityEnableClicked(m_ui->ripplesSpectrumEnableBox->isChecked());
 
     //
-    m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
-    m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
-    m_ui->downloadSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
-    M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ? m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
+    m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
+    m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDir).toString());
+    m_ui->downloadSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt());
+    M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimit).toInt() == 1 ? m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
 
-    MusicUtils::Widget::setComboBoxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
-    MusicUtils::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
-    M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
+    MusicUtils::Widget::setComboBoxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimit).toString());
+    MusicUtils::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimit).toString());
+    M_SETTING_PTR->value(MusicSettingManager::DownloadLimit).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 
     //
     //Set init parameter
-    m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
+    m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrc).toBool());
     m_ui->showInlineCheckBox->setEnabled(false);
 
-    m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt());
-    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInlineLrcIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt()));
-    m_ui->fontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt());
+    m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamily).toInt());
+    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInlineLrcIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
+    m_ui->fontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcType).toInt());
     m_ui->fontDefaultColorComboBox->setCurrentIndex(-1);
-    if(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
+    if(M_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt() != -1)
     {
-        m_ui->fontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt());
+        m_ui->fontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcColor).toInt());
     }
     else
     {
-        m_ui->playedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColorChoiced).toString()));
-        m_ui->noPlayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColorChoiced).toString()));
+        m_ui->playedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColor).toString()));
+        m_ui->noPlayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColor).toString()));
         showInlineLrcDemo();
     }
-    m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
+    m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTrans).toInt());
 
     //
-    m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
-    m_ui->DSingleLineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toBool());
-    m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
-    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
-    m_ui->DfontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt());
+    m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
+    m_ui->DSingleLineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineType).toBool());
+    m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamily).toInt());
+    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt()));
+    m_ui->DfontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcType).toInt());
     m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
-    if(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
+    if(M_SETTING_PTR->value(MusicSettingManager::DLrcColor).toInt() != -1)
     {
-        m_ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() - LRC_COLOR_OFFSET);
+        m_ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcColor).toInt() - LRC_COLOR_OFFSET);
     }
     else
     {
-        m_ui->DplayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColorChoiced).toString()));
-        m_ui->DnoPlayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColorChoiced).toString()));
+        m_ui->DplayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColor).toString()));
+        m_ui->DnoPlayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColor).toString()));
         showDesktopLrcDemo();
     }
-    m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
+    m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTrans).toInt());
 
     //
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
@@ -257,17 +257,17 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->bufferSizeSpinBox->setValue(qmmpSettings->bufferSize());
 
     //
-    m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
-    m_ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt());
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnableChoiced).toInt())
+    m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValue).toInt());
+    m_ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValue).toInt());
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnable).toInt())
     {
         m_ui->fadeInAndOutCheckBox->click();
     }
 
     //
-    m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
-    m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
-    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt() && MusicRegeditManager().isFileAssociate())
+    m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt());
+    m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt() && MusicRegeditManager().isFileAssociate())
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
         if(m_ui->setDefaultPlayerCheckBox->isChecked())
@@ -279,7 +279,7 @@ void MusicSettingWidget::initControllerParameter()
     {
         m_ui->setDefaultPlayerCheckBox->setEnabled(true);
         m_ui->setDefaultPlayerCheckBox->setChecked(false);
-        M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, false);
+        M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, false);
     }
 }
 
@@ -505,15 +505,15 @@ void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
 
 void MusicSettingWidget::commitTheResults()
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, m_ui->languageComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlayChoiced, m_ui->autoPlayCheckBox->isChecked());
-    QStringList list = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, m_ui->languageComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlay, m_ui->autoPlayCheckBox->isChecked());
+    QStringList list = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     list[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
-    M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced, m_ui->quitRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, m_ui->quitWindowRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, list);
+    M_SETTING_PTR->setValue(MusicSettingManager::CloseEvent, m_ui->quitRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
     M_NETWORK_PTR->setBlockNetWork( m_ui->closeNetWorkCheckBox->isChecked() );
-    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, m_ui->setDefaultPlayerCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, m_ui->setDefaultPlayerCheckBox->isChecked());
 
     if(m_ui->setDefaultPlayerCheckBox->isChecked())
     {
@@ -530,57 +530,57 @@ void MusicSettingWidget::commitTheResults()
         M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
         M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
         M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
-        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced, M_HOTKEY_PTR->getKeys().join(TTK_STR_SPLITER));
+        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyString, M_HOTKEY_PTR->getKeys().join(TTK_STR_SPLITER));
     }
     M_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced, m_ui->globalHotkeyBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced, m_ui->otherHeighImageRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateChoiced, m_ui->otherCheckUpdateBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, m_ui->otherSearchCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced, m_ui->otherUseAlbumCoverCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfoChoiced, m_ui->otherUseInfoCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCoverChoiced, m_ui->otherWriteAlbumCoverCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfoChoiced, m_ui->otherWriteInfoCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, m_ui->otherSideByCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLossless, m_ui->otherHeighImageRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdate, m_ui->otherCheckUpdateBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearch, m_ui->otherSearchCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover, m_ui->otherUseAlbumCoverCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfo, m_ui->otherUseInfoCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCover, m_ui->otherWriteAlbumCoverCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfo, m_ui->otherWriteInfoCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideBy, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced, m_ui->otherLrcKTVCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacityChoiced, m_ui->ripplesSpectrumOpacitySlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnableChoiced, m_ui->ripplesSpectrumEnableBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColorChoiced, MusicUtils::String::writeColorConfig(m_ui->ripplesSpectrumColorButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacity, m_ui->ripplesSpectrumOpacitySlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnable, m_ui->ripplesSpectrumEnableBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->ripplesSpectrumColorButton->getColors()));
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, m_ui->fontDefaultColorComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced, m_ui->fontComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, m_ui->fontSizeComboBox->currentText());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, m_ui->fontTypeComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced, m_ui->transparentSlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->playedPushButton->getColors()));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->noPlayedPushButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrc, m_ui->showInlineCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, m_ui->fontComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSize, m_ui->fontSizeComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcType, m_ui->fontTypeComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTrans, m_ui->transparentSlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColor, MusicUtils::String::writeColorConfig(m_ui->playedPushButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, MusicUtils::String::writeColorConfig(m_ui->noPlayedPushButton->getColors()));
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced, m_ui->DSingleLineCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_ui->showDesktopCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineType, m_ui->DSingleLineCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColor, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
                                                                    m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, m_ui->DfontComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced, m_ui->DtransparentSlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->DplayedPushButton->getColors()));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->DnoPlayedPushButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamily, m_ui->DfontComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_ui->DfontSizeComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcType, m_ui->DfontTypeComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTrans, m_ui->DtransparentSlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColor, MusicUtils::String::writeColorConfig(m_ui->DplayedPushButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColor, MusicUtils::String::writeColorConfig(m_ui->DnoPlayedPushButton->getColors()));
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, m_ui->downloadDirEdit->text());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced, m_ui->downloadLrcDirEdit->text());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced, m_ui->downloadCacheAutoRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced, m_ui->downloadSpinBox->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, m_ui->downloadFullRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, m_ui->downloadServerComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, m_ui->downloadLimitSpeedComboBox->currentText());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, m_ui->uploadLimitSpeedComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDir, m_ui->downloadDirEdit->text());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDir, m_ui->downloadLrcDirEdit->text());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimit, m_ui->downloadCacheAutoRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSize, m_ui->downloadSpinBox->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, m_ui->downloadFullRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServer, m_ui->downloadServerComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimit, m_ui->downloadLimitSpeedComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimit, m_ui->uploadLimitSpeedComboBox->currentText());
 
 
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
@@ -597,9 +597,9 @@ void MusicSettingWidget::commitTheResults()
     qmmpSettings->setVolumeStep(m_ui->volumeStepSpinBox->value());
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, m_ui->fadeInSpinBox->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, m_ui->fadeOutSpinBox->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, m_ui->fadeInAndOutCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValue, m_ui->fadeInSpinBox->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValue, m_ui->fadeOutSpinBox->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnable, m_ui->fadeInAndOutCheckBox->isChecked());
 
     if(!applyNetworkProxy())
     {

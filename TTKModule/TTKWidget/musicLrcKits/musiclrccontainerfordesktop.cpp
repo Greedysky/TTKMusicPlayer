@@ -51,15 +51,15 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     MusicLrcContainer::setSettingParameter();
     foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
-        m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt();
+        m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
-    m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1;
+    m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt() == 1;
     //Revert in function setSingleLineTypeChanged
-    m_singleLineType = !(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toInt() == 1);
+    m_singleLineType = !(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineType).toInt() == 1);
     setSingleLineTypeChanged();
 
-    const QPoint &point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
+    const QPoint &point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
     if(!point.isNull())
     {
         move(point);
@@ -111,7 +111,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        m_toolBarWidget->hide();
        setStyleSheet(MusicUIObject::MBackgroundStyle01);
     }
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedChoiced,  m_windowLocked ? 1 : 0);
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcLocked,  m_windowLocked ? 1 : 0);
     MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
 }
 
@@ -144,7 +144,7 @@ void MusicLrcContainerForDesktop::toolStyleChanged()
 void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
 {
     m_singleLineType = !m_singleLineType;
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced, m_singleLineType);
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineType, m_singleLineType);
 
     if(m_singleLineType)
     {
@@ -176,7 +176,7 @@ void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
     menu.addSeparator();
     menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
 
-    const int index = M_SETTING_PTR->value("DLrcColorChoiced").toInt() - LRC_COLOR_OFFSET;
+    const int index = M_SETTING_PTR->value("DLrcColor").toInt() - LRC_COLOR_OFFSET;
     if(index > -1 && index < group->actions().count())
     {
         group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
@@ -343,7 +343,7 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     }
 
     resizeLrcSizeArea();
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::mousePressEvent(QMouseEvent *event)
@@ -362,7 +362,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
         setCursor(Qt::CrossCursor);
         move(event->globalPos() - m_offset);
-        M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, QWidget::pos());
+        M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QWidget::pos());
     }
 }
 

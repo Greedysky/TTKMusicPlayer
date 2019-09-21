@@ -126,7 +126,7 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 void MusicBottomAreaWidget::setWindowConcise()
 {
     const bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, con);
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, con);
 
     m_ui->topRightWidget->setVisible(!con);
     m_ui->centerRightWidget->setVisible(!con);
@@ -214,11 +214,11 @@ void MusicBottomAreaWidget::resizeWindow()
 
 void MusicBottomAreaWidget::getParameterSetting()
 {
-    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
+    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEvent).toBool();
     setSystemCloseConfig(config);
-         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     setDestopLrcVisible(config);
-         config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toBool();
+         config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool();
 
     m_musicRipplesObject->update(config);
 }
@@ -230,7 +230,7 @@ bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
 
 void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByIn).toBool())
     {
         return;
     }
@@ -264,5 +264,5 @@ void MusicBottomAreaWidget::desktopLrcClosed()
 {
     m_ui->musicDesktopLrc->setChecked(false);
     m_systemTrayMenu->showDesktopLrc(false);
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, false);
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, false);
 }

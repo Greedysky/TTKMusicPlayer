@@ -165,12 +165,12 @@ void MusicRemoteWidget::musicVolumeChanged(int value)
 void MusicRemoteWidget::show()
 {
     MusicAbstractMoveWidget::show();
-    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced, mapRemoteTypeIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, mapRemoteTypeIndex());
 }
 
 bool MusicRemoteWidget::close()
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced, Null);
+    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetMode, Null);
     return MusicAbstractMoveWidget::close();
 }
 

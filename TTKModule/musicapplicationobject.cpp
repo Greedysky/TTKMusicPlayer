@@ -93,7 +93,7 @@ void MusicApplicationObject::loadNetWorkSetting()
 void MusicApplicationObject::getParameterSetting()
 {
 #ifdef Q_OS_WIN
-    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt())
     {
         MusicRegeditManager regeditManager;
         regeditManager.setMusicRegeditAssociateFileIcon();
@@ -103,7 +103,7 @@ void MusicApplicationObject::getParameterSetting()
 
 void MusicApplicationObject::windowCloseAnimation()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
+    if(M_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
         MusicTopAreaWidget::instance()->setTimerStop();
         MusicApplication *w = MusicApplication::instance();
@@ -119,7 +119,7 @@ void MusicApplicationObject::windowCloseAnimation()
     }
     else
     {
-        float v = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentChoiced).toInt();
+        float v = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
               v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
@@ -140,7 +140,7 @@ void MusicApplicationObject::soureUpdateCheck()
 
 void MusicApplicationObject::sideAnimationByOn()
 {
-    if(!M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool())
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
     {
         return;
     }
@@ -159,7 +159,7 @@ void MusicApplicationObject::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(-w->width() + MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, true);
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
     }
 
     QWidget *widget = QApplication::desktop();
@@ -171,13 +171,13 @@ void MusicApplicationObject::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(widget->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, true);
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
     }
 }
 
 void MusicApplicationObject::sideAnimationByOff()
 {
-    if(!M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool())
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
     {
         return;
     }
@@ -190,7 +190,7 @@ void MusicApplicationObject::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, false);
     }
     else if(m_rightSideByOn)
     {
@@ -200,13 +200,13 @@ void MusicApplicationObject::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(widget->width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, false);
     }
 }
 
 void MusicApplicationObject::sideAnimationReset()
 {
-    if(!M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool())
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
     {
         return;
     }
@@ -321,7 +321,7 @@ void MusicApplicationObject::musicToolSetsParameter()
 
 void MusicApplicationObject::musicDeviceNameChanged(const QString &name)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, name);
+    M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePath, name);
 }
 
 void MusicApplicationObject::musicDeviceChanged(bool state)
@@ -336,7 +336,7 @@ void MusicApplicationObject::musicDeviceChanged(bool state)
     }
     else
     {
-        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, QString());
+        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePath, QString());
     }
 }
 
@@ -365,28 +365,28 @@ void MusicApplicationObject::musicSetSoundEffect()
 
 void MusicApplicationObject::musicEffectChanged()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2BChoiced).toInt() == 1)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt() == 1)
     {
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::BS2B, true);
     }
 
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfadeChoiced).toInt() == 1)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfade).toInt() == 1)
     {
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Crossfade, true);
     }
 
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt() == 1)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt() == 1)
     {
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Stereo, true);
     }
 
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOXChoiced).toInt() == 1)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt() == 1)
     {
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::SoX, true);
     }
 
 #ifdef Q_OS_UNIX
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt() == 1)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt() == 1)
     {
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::LADSPA, true);
     }
@@ -396,7 +396,7 @@ void MusicApplicationObject::musicEffectChanged()
 
 bool MusicApplicationObject::closeCurrentEqualizer()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt() != 0)
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt() != 0)
     {
         MusicMessageBox message;
         message.setText(tr("we are opening the magic sound, if you want to close?"));

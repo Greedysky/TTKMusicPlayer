@@ -239,7 +239,7 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 
 void MusicSoundEffectsWidget::setParentConnect(QObject *object)
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         m_ui->eqButton->setText(tr("Off"));
     }
@@ -248,7 +248,7 @@ void MusicSoundEffectsWidget::setParentConnect(QObject *object)
         m_ui->eqButton->setText(tr("On"));
     }
 
-    m_ui->volumeSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
+    m_ui->volumeSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalance).toInt());
 
     connect(m_ui->eqButton, SIGNAL(clicked()), SLOT(equalizerButtonChanged()));
     connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(musicSetEqualizer()));
@@ -261,10 +261,10 @@ void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)
 
 void MusicSoundEffectsWidget::equalizerButtonChanged()
 {
-    const int state = !M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+    const int state = !M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt();
     equalizerButtonChanged(state);
 
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, state);
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, state);
 
     emit setEqInformation();
 }
@@ -302,7 +302,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
 void MusicSoundEffectsWidget::volumeSliderChanged(int value)
 {
     m_ui->volumeSlider->setToolTip(QString::number(value));
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, value);
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalance, value);
     emit volumeChanged(value);
 }
 
@@ -314,24 +314,24 @@ int MusicSoundEffectsWidget::exec()
 
 void MusicSoundEffectsWidget::readSoundEffect()
 {
-    m_ui->BS2BWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2BChoiced).toInt());
-    m_ui->CrossfadeWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfadeChoiced).toInt());
-    m_ui->StereoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt());
-    m_ui->SOXWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOXChoiced).toInt());
-    m_ui->SRCWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSRCChoiced).toInt());
+    m_ui->BS2BWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt());
+    m_ui->CrossfadeWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfade).toInt());
+    m_ui->StereoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt());
+    m_ui->SOXWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
+    m_ui->SRCWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
 #ifdef Q_OS_UNIX
-    m_ui->LADSPAWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt());
+    m_ui->LADSPAWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
 #endif
 }
 
 void MusicSoundEffectsWidget::writeSoundEffect()
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced, m_ui->BS2BWidget->pluginEnable());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced, m_ui->CrossfadeWidget->pluginEnable());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced, m_ui->StereoWidget->pluginEnable());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced, m_ui->SOXWidget->pluginEnable());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced, m_ui->SRCWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2B, m_ui->BS2BWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfade, m_ui->CrossfadeWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereo, m_ui->StereoWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_ui->SOXWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_ui->SRCWidget->pluginEnable());
 #ifdef Q_OS_UNIX
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced, m_ui->LADSPAWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_ui->LADSPAWidget->pluginEnable());
 #endif
 }

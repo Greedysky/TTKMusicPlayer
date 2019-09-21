@@ -5,7 +5,7 @@
 
 QString MusicUtils::String::lrcPrefix()
 {
-    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDir).toString();
     if(path.isEmpty())
     {
         path = LRC_DIR_FULL;
@@ -22,7 +22,7 @@ QString MusicUtils::String::lrcPrefix()
 
 QString MusicUtils::String::musicPrefix()
 {
-    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString();
     if(path.isEmpty())
     {
         path = MUSIC_DIR_FULL;

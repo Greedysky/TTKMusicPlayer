@@ -131,12 +131,12 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     m_buttons[3]->setStyleSheet(prfix.arg(type == 4 ? "vocalOn" : "vocalOff"), type == 4);
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusic, type);
 
     //
     if(type != 0)
     {
-        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
+        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, 0);
     }
     foreach(EffectFactory *factory, Effect::factories())
     {
@@ -156,7 +156,7 @@ void MusicEnhancedPopWidget::caseButtonOnAndOff()
 
 void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)
 {
-    const int index = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
+    const int index = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt();
     if(index < 1 || index > m_buttons.count())
     {
         return;
@@ -236,6 +236,6 @@ void MusicEnhancedPopWidget::initWidget()
 
     m_buttons << button1 << button2 << button3 << button4;
 
-    m_lastSelectedIndex = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
+    m_lastSelectedIndex = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt();
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 }

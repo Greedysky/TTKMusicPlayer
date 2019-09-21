@@ -165,7 +165,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
 {
     const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    const QString &downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    const QString &downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
     //
     MusicSongs records;

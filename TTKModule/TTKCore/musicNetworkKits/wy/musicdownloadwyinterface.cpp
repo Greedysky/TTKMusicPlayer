@@ -20,7 +20,7 @@ void MusicDownLoadWYInterface::makeTokenQueryRequest(QNetworkRequest *request)
     request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 
-    QString cookie = M_SETTING_PTR->value(MusicSettingManager::NetworkCookieChoiced).toString();
+    QString cookie = M_SETTING_PTR->value(MusicSettingManager::NetworkCookie).toString();
     cookie = cookie.isEmpty() ? MusicUtils::Algorithm::mdII(WY_COOKIE_URL, ALG_UA_KEY, false) : cookie;
     request->setRawHeader("Cookie", QString("MUSIC_U=%1; appver=2.0.3.131777; __remember_me=true; _ntes_nuid=%2; _ntes_nnid=%3; JSESSIONID-WYYY=%4; _iuqxldmzr_=32").arg(cookie)
                                             .arg(MusicUtils::Algorithm::mdII(WY_NUID_URL, ALG_UA_KEY, false))

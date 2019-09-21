@@ -102,7 +102,7 @@ void MusicLrcContainerForInline::stopLrcMask()
 void MusicLrcContainerForInline::setSettingParameter()
 {
     MusicLrcContainer::setSettingParameter();
-    const int size = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+    const int size = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     if(m_lrcSizeProperty == -1)
     {
         m_lrcSizeProperty = size;
@@ -199,7 +199,7 @@ void MusicLrcContainerForInline::setLrcSize(int size)
         m_musicLrcContainer[i]->setY(35 + size);
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
     }
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, size);
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSize, size);
 
     resizeWindow();
     setItemStyleSheet();
@@ -208,7 +208,7 @@ void MusicLrcContainerForInline::setLrcSize(int size)
 
 int MusicLrcContainerForInline::getLrcSize() const
 {
-    return M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+    return M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
 }
 
 void MusicLrcContainerForInline::resizeWindow()
@@ -446,7 +446,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     group->addAction(changeLrcSize.addAction(tr("middle")))->setData(2);
     group->addAction(changeLrcSize.addAction(tr("big")))->setData(3);
     group->addAction(changeLrcSize.addAction(tr("bigger")))->setData(4);
-    int index = -1, size = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+    int index = -1, size = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     switch(size)
     {
         case 14: index = 0; break;
@@ -576,7 +576,7 @@ void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
                 index = m_lrcAnalysis->count() - m_lrcAnalysis->getMiddle() + 2;
             }
 
-            int value = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+            int value = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
             value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value))/2;
 
             m_lrcAnalysis->setCurrentIndex(index);
@@ -647,7 +647,7 @@ void MusicLrcContainerForInline::createColorMenu(QMenu &menu)
     menu.addSeparator();
     menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
 
-    const int index = M_SETTING_PTR->value("LrcColorChoiced").toInt();
+    const int index = M_SETTING_PTR->value("LrcColor").toInt();
     if(index > -1 && index < group->actions().count())
     {
         group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
@@ -828,21 +828,21 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     MusicLrcManagerForInline *w = MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[index]);
     w->setFontSize(size);
 
-    int value = M_SETTING_PTR->value("LrcColorTransChoiced").toInt() - transparent;
+    int value = M_SETTING_PTR->value("LrcColorTrans").toInt() - transparent;
     value = (value < 0) ? 0 : value;
     value = (value > 100) ? 100 : value;
     w->setFontTransparent(value);
     w->setTransparent(value);
 
-    if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
+    if(M_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
+        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFrontgroundColorChoiced").toString()),
-                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBackgroundColorChoiced").toString()));
+        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

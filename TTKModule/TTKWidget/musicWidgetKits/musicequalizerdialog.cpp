@@ -108,15 +108,15 @@ void MusicEqualizerDialog::initSlider(QSlider *slider, int index)
 
 void MusicEqualizerDialog::readEqInformation()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         m_ui->showEqButton->click();
     }
 
-    const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
+    const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(',');
     if(eqValue.count() == 11)
     {
-        if(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt() == 0)
+        if(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt() == 0)
         {
             m_ui->verticalSlider1->setValue(eqValue[1].toInt());
             m_ui->verticalSlider2->setValue(eqValue[2].toInt());
@@ -132,7 +132,7 @@ void MusicEqualizerDialog::readEqInformation()
         }
         else
         {
-           m_ui->eqChoice->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndexChoiced).toInt());
+           m_ui->eqChoice->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt());
         }
     }
     else
@@ -143,9 +143,9 @@ void MusicEqualizerDialog::readEqInformation()
 
 void MusicEqualizerDialog::writeEqInformation() const
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, m_eable ? 1 : 0);
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, m_ui->eqChoice->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced,
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, m_eable ? 1 : 0);
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndex, m_ui->eqChoice->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValue,
           QString("%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11").arg(
           m_ui->bwVerticalSlider->value()).arg(m_ui->verticalSlider1->value()).arg(
           m_ui->verticalSlider2->value()).arg(m_ui->verticalSlider3->value()).arg(

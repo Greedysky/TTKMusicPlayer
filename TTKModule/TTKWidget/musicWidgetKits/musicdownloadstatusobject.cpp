@@ -85,7 +85,7 @@ void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusObject::checkSettingParameterValue() const
 {
-    return M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+    return M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
 }
 
 void MusicDownloadStatusObject::musicCheckHasLrcAlready()

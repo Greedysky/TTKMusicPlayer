@@ -114,7 +114,7 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
 
 void MusicLeftAreaWidget::setTransparent(int index)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced, index);
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, index);
     m_ui->centerLeftWidget->setTransparent(index);
 }
 

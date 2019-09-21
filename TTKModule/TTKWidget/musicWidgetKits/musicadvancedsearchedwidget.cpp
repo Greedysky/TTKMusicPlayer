@@ -111,7 +111,7 @@ MusicAdvancedSearchedWidget::~MusicAdvancedSearchedWidget()
 
 void MusicAdvancedSearchedWidget::searchButtonClicked()
 {
-    const int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    const int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     if(server > 5 || server < 0)
     {
         MusicMessageBox message;
@@ -181,7 +181,7 @@ QWidget *MusicAdvancedSearchedWidget::createSearchPairWidget(MusicLocalSongSearc
 
 void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 {
-    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt())
+    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt())
     {
         case 0:
             {
@@ -244,7 +244,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString &url)
 {
     QString key;
-    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt())
+    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt())
     {
         case 0:
             {

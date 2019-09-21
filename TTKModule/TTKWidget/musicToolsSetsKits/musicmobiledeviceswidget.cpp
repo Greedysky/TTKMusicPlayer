@@ -43,7 +43,7 @@ void MusicMobileDevicesWidget::showMobileManager()
     hide();
     M_SINGLE_MANAGER_WIDGET_NEW(MusicLocalSongsManagerWidget);
 #ifdef Q_OS_WIN
-    w->findExtraDevicePath(M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString());
+    w->findExtraDevicePath(M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
 #endif
     w->show();
 }

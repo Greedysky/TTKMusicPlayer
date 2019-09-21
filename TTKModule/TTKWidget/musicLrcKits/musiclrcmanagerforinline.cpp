@@ -45,7 +45,7 @@ void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
                      m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
     int offsetValue = m_lrcMaskWidth;
-    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
     }
