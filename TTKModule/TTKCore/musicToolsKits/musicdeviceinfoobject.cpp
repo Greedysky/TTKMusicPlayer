@@ -138,6 +138,7 @@ MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
             item.m_path = path;
             item.m_availableBytes = freeAvailable.QuadPart / MH_GB2B; //GB
             item.m_totalBytes = totalNumberOfBytes.QuadPart / MH_GB2B; //GB
+            item.m_availableBytes = item.m_availableBytes >= item.m_totalBytes ? item.m_totalBytes : item.m_totalBytes - item.m_availableBytes;
 
             DWORD serialNumber = 0;
             DWORD maxLength = 0;
@@ -221,6 +222,8 @@ void MusicDeviceInfoObject::readData()
                 item.m_path = path;
                 item.m_availableBytes = use.toDouble();
                 item.m_totalBytes = all.toDouble();
+                item.m_availableBytes = item.m_availableBytes >= item.m_totalBytes ? item.m_totalBytes : item.m_totalBytes - item.m_availableBytes;
+
                 m_items << item;
             }
         }

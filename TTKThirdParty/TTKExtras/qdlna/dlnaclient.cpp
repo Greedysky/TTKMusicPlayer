@@ -60,6 +60,7 @@ bool DlnaClient::connect()
 {
     const QString &request = HelperDlna::MakeRequest("GET", m_smp, 0, QString(), m_serverIP, m_serverPort);
     const QString &response = HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
+    qDebug() << m_serverIP <<m_serverPort <<m_smp << response;
     const int code = HelperDlna::GetResponseCode(response);
     if(code != 200)
     {

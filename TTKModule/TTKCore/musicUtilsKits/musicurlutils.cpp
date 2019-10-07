@@ -11,7 +11,7 @@
 const MString ASCII_MAP(R"("%<>[\]^_`{|})");
 const MString HEX_NUM_MAP("0123456789ABCDEF");
 
-unsigned char Number2Char(const char h, const char l)
+unsigned char number2Char(const char h, const char l)
 {
   unsigned char hh = std::find(std::begin(HEX_NUM_MAP), std::end(HEX_NUM_MAP), h) - std::begin(HEX_NUM_MAP);
   unsigned char ll = std::find(std::begin(HEX_NUM_MAP), std::end(HEX_NUM_MAP), l) - std::begin(HEX_NUM_MAP);
@@ -114,7 +114,7 @@ void MusicUtils::Url::urlPrettyDecode(QString &data)
           return;
         }
 
-        data.push_back(Number2Char(*it, *std::next(it)));
+        data.push_back(number2Char(*it, *std::next(it)));
         if(std::next(it++) == url.end())
         {
           M_LOGGER_ERROR("Url is invalid");
@@ -163,7 +163,7 @@ void MusicUtils::Url::urlPrettyDecode(QByteArray &data)
           return;
         }
 
-        data.push_back(Number2Char(*it, *std::next(it)));
+        data.push_back(number2Char(*it, *std::next(it)));
         if(std::next(it++) == url.end())
         {
           M_LOGGER_ERROR("Url is invalid");

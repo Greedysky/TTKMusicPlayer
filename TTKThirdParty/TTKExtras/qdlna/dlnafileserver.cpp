@@ -6,6 +6,7 @@
 
 #include <QFile>
 #include <QRegExp>
+#include <QNetworkInterface>
 
 DlnaFileServer::DlnaFileServer(QObject *parent)
     : QObject(parent)
@@ -30,12 +31,24 @@ void DlnaFileServer::setPrefixPath(const QString &path)
     m_prefix = path;
 }
 
+QString DlnaFileServer::getLocalAddress() const
+{
+    foreach(const QHostAddress &address, QNetworkInterface::allAddresses())
+    {
+        if(address.protocol() == QAbstractSocket::IPv4Protocol)
+        {
+            return QString("http://%1:11111/").arg(address.toString());
+        }
+    }
+    return "http://0.0.0.0:11111/";
+}
+
 void DlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *response)
 {
     QRegExp regx("^/music/(.*)$");
     if(regx.indexIn(request->path()) != -1)
     {
-        response->setHeader("Content-Type", "application/octet-stream");
+        response->setHeader("Content-Type", "audio/mp3");
 
         const QString &name = regx.cap(1);
         QFile file(m_prefix + "/" + name);

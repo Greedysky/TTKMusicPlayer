@@ -9,7 +9,7 @@
 #include "musicotherdefine.h"
 
 #include "qrencode/qrcodewidget.h"
-#include <QDebug>
+
 Q_DECLARE_METATYPE(MusicDeviceInfoItem)
 
 MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)

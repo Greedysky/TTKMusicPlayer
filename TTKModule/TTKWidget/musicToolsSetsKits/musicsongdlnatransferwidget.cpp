@@ -28,24 +28,29 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
     m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
+    m_ui->refreshButton->setIcon(QIcon(":/functions/btn_fresh_fore_hover"));
 
     m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     m_ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     m_ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->refreshButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
     m_ui->previousButton->setFocusPolicy(Qt::NoFocus);
     m_ui->nextButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->refreshButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_ui->playButton->setIconSize(QSize(31, 31));
     m_ui->previousButton->setIconSize(QSize(31, 31));
     m_ui->nextButton->setIconSize(QSize(31, 31));
+    m_ui->refreshButton->setIconSize(QSize(20, 20));
 
     m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->refreshButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->deviceComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle02);
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle10);
@@ -111,6 +116,11 @@ void MusicSongDlnaTransferWidget::durationChanged(qint64 duration)
 
 void MusicSongDlnaTransferWidget::musicPlay()
 {
+    if(m_ui->deviceComboBox->currentText() == tr("No Connections"))
+    {
+        return;
+    }
+
     const int index = m_ui->deviceComboBox->currentIndex();
     if(index < 0)
     {
@@ -138,7 +148,8 @@ void MusicSongDlnaTransferWidget::musicPlay()
     qDebug()<< song.getMusicPath();
     DlnaClient *client = m_dlnaFinder->client(index);
     m_dlnaFileServer->setPrefixPath(info.path());
-    client->tryToPlayFile("http://192.168.0.101:11111/" + info.fileName());
+    client->tryToPlayFile(m_dlnaFileServer->getLocalAddress() + info.fileName());
+
 //    m_isPlaying = !m_isPlaying;
 //    m_ui->playButton->setIcon(QIcon(m_isPlaying ? ":/functions/btn_pause_hover" : ":/functions/btn_play_hover"));
 }

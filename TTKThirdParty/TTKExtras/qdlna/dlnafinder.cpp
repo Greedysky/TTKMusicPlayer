@@ -63,6 +63,7 @@ void DlnaFinder::readResponse()
         m_udpSock->readDatagram(datagram.data(), datagram.size());
 
         DlnaClient *client = new DlnaClient(QString::fromUtf8(datagram.data()));
+        qDebug() << client->server();
         if(client->server() == DEFAULT_ROUTER_IP || findClient(client->server()))
         {
             delete client;
