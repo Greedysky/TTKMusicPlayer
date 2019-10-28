@@ -155,10 +155,6 @@ public Q_SLOTS:
      */
     void ripplesSpectrumColorChanged();
     /*!
-     * Ripples spectrum opacity changed.
-     */
-    void ripplesSpectrumOpacityChanged(int value);
-    /*!
      * Ripples spectrum opacity enable changed.
      */
     void ripplesSpectrumOpacityEnableClicked(bool state);

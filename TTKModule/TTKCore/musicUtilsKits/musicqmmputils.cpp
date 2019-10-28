@@ -63,7 +63,7 @@ void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
 
     QString colors = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString();
     settings.setValue("colors", colors.remove(";"));
-    const double opacity = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacity).toInt()/100.0;
+    const double opacity = /*M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacity).toInt()/100.0*/1.0;
     settings.setValue("opacity", opacity);
 
     settings.endGroup();

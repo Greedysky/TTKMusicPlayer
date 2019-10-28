@@ -187,7 +187,6 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
     m_ui->otherVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
 
-    m_ui->ripplesSpectrumOpacitySlider->setValue(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacity).toInt());
     m_ui->ripplesSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool());
     m_ui->ripplesSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString()));
     ripplesSpectrumOpacityEnableClicked(m_ui->ripplesSpectrumEnableBox->isChecked());
@@ -343,15 +342,9 @@ void MusicSettingWidget::ripplesSpectrumColorChanged()
     }
 }
 
-void MusicSettingWidget::ripplesSpectrumOpacityChanged(int value)
-{
-    m_ui->ripplesSpectrumOpacityValueLabel->setText(QString::number(value) + "%");
-}
-
 void MusicSettingWidget::ripplesSpectrumOpacityEnableClicked(bool state)
 {
     m_ui->ripplesSpectrumColorButton->setEnabled(state);
-    m_ui->ripplesSpectrumOpacitySlider->setEnabled(state);
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()
@@ -546,7 +539,6 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideBy, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacity, m_ui->ripplesSpectrumOpacitySlider->value());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnable, m_ui->ripplesSpectrumEnableBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->ripplesSpectrumColorButton->getColors()));
 
@@ -758,9 +750,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->ripplesSpectrumEnableBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->ripplesSpectrumColorButton->setText(tr("Effect"));
-    m_ui->ripplesSpectrumOpacitySlider->setStyleSheet(MusicUIObject::MSliderStyle06);
     connect(m_ui->ripplesSpectrumColorButton, SIGNAL(clicked()), SLOT(ripplesSpectrumColorChanged()));
-    connect(m_ui->ripplesSpectrumOpacitySlider, SIGNAL(valueChanged(int)), SLOT(ripplesSpectrumOpacityChanged(int)));
     connect(m_ui->ripplesSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(ripplesSpectrumOpacityEnableClicked(bool)));
 
     m_ui->otherVersionUpdateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);

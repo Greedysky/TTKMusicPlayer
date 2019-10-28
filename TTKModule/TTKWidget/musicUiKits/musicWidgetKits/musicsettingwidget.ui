@@ -1215,48 +1215,6 @@ font-weight:bold;</string>
       <string>开启音频波纹特效</string>
      </property>
     </widget>
-    <widget class="MusicClickedSlider" name="ripplesSpectrumOpacitySlider">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>282</y>
-       <width>180</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>100</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="ripplesSpectrumOpacityValueLabel">
-     <property name="geometry">
-      <rect>
-       <x>390</x>
-       <y>282</y>
-       <width>35</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>100%</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="ripplesSpectrumOpacityLabel">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>282</y>
-       <width>41</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>透明度</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="ripplesSpectrumColorLabel">
      <property name="geometry">
       <rect>

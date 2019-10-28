@@ -60,8 +60,6 @@ void MusicSysConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("otherRippleSpectrumEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor,
                      readXmlAttributeByTagNameValue("otherRippleSpectrumColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacity,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumOpacity").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTheme,
@@ -248,7 +246,6 @@ void MusicSysConfigManager::writeSysConfigData()
     const int otherLrcKTVMode = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toInt();
     const int otherRippleSpectrumEnable = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toInt();
     const QString &otherRippleSpectrumColor = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString();
-    const int otherRippleSpectrumOpacity = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacity).toInt();
 
     //
     const QString &backgroundTheme = M_SETTING_PTR->value(MusicSettingManager::BackgroundTheme).toString();
@@ -384,7 +381,6 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVMode));
     writeDomElement(otherSettingDom, "otherRippleSpectrumEnable", MusicXmlAttribute("value", otherRippleSpectrumEnable));
     writeDomElement(otherSettingDom, "otherRippleSpectrumColor", MusicXmlAttribute("value", otherRippleSpectrumColor));
-    writeDomElement(otherSettingDom, "otherRippleSpectrumOpacity", MusicXmlAttribute("value", otherRippleSpectrumOpacity));
 
     //
     writeDomElement(backgroundSettingDom, "backgroundTheme", MusicXmlAttribute("value", backgroundTheme));
