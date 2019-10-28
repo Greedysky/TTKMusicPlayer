@@ -27,6 +27,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+class QGraphicsView;
+class QGraphicsPolygonItem;
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -54,6 +57,7 @@ private:
 
     void process();
     void draw(QPainter *p);
+    QPointF viewToItemPoint(const QPoint &pt);
 
     QColor m_color;
     qreal m_opacity;
@@ -66,6 +70,9 @@ private:
     bool m_running;
 
     QSize m_cell_size;
+    //
+    QGraphicsView *m_graphics_view;
+    QGraphicsPolygonItem *m_graphics_item;
 
 };
 

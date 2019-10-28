@@ -11,6 +11,11 @@
 #include "outerewave.h"
 #include "colorwidget.h"
 
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsBlurEffect>
+#include <QGraphicsPolygonItem>
+
 #define HEIGHT_OFFSET  2
 
 OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
@@ -37,6 +42,27 @@ OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
     m_cell_size = QSize(6, 2);
 
     clear();
+
+    m_graphics_view = new QGraphicsView(this);
+    m_graphics_view->setStyleSheet("background: transparent; border:0px");
+    m_graphics_view->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    m_graphics_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_graphics_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    QGraphicsScene *scene = new QGraphicsScene(m_graphics_view);
+    m_graphics_view->setScene(scene);
+
+    m_graphics_item = new QGraphicsPolygonItem;
+    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIsMovable, false);
+    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIsSelectable, false);
+    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIsFocusable, false);
+    m_graphics_item->setFlag(QGraphicsPolygonItem::ItemIgnoresTransformations, true);
+
+    scene->addItem(m_graphics_item);
+
+    QGraphicsBlurEffect *blur_effect = new QGraphicsBlurEffect(this);
+    blur_effect->setBlurRadius(20);
+    m_graphics_item->setGraphicsEffect(blur_effect);
 }
 
 OuterEWave::~OuterEWave()
@@ -207,22 +233,18 @@ void OuterEWave::process()
 
 void OuterEWave::draw(QPainter *p)
 {
+    Q_UNUSED(p);
     if(m_cols == 0)
     {
         return;
     }
 
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setBrush(m_color);
-    p->setPen(m_color);
-    p->setOpacity(m_opacity);
-
     int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = takeMaxRange();
 
-    QPolygon points;
-    points << QPoint(0, height() + HEIGHT_OFFSET);
+    QPolygonF points;
+    points << viewToItemPoint(QPoint(0, height() + HEIGHT_OFFSET));
     for(int j = 0; j < m_cols * 2; ++j)
     {
         x = j * m_cell_size.width() + 1;
@@ -241,8 +263,19 @@ void OuterEWave::draw(QPainter *p)
         {
             offset = height() + HEIGHT_OFFSET;
         }
-        points << QPoint(x, offset);
+        points << viewToItemPoint(QPoint(x, offset));
     }
-    points << QPoint(width(), height() + HEIGHT_OFFSET);
-    p->drawPolygon(points);
+    points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
+
+    m_graphics_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
+
+    m_graphics_item->setBrush(m_color);
+    m_graphics_item->setPen(m_color);
+    m_graphics_item->setOpacity(m_opacity);
+    m_graphics_item->setPolygon(points);
+}
+
+QPointF OuterEWave::viewToItemPoint(const QPoint &pt)
+{
+    return QPointF(m_graphics_item->mapFromScene(m_graphics_view->mapToScene(pt)));
 }

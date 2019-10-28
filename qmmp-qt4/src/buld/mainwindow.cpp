@@ -36,14 +36,14 @@ MainWindow::MainWindow(QWidget *parent) :
 #ifdef Q_OS_UNIX
     list->appendMedia("/home/greedysky/qmmp_all/1.mp3");
 #else
-    list->appendMedia("D:/Qt/Workspace/qmmp_all/flac.flac");
+    list->appendMedia("D:/Workspace/qmmp_all/1.flac");
 #endif
     m_sound->setPlaylist(list);
 
     Visual::initialize(this);
     foreach(VisualFactory *var, Visual::factories())
     {
-        if(var->properties().shortName == "floridelectric")
+        if(var->properties().shortName == "outerewave")
         {
             Visual::setEnabled(var, true);
         }
