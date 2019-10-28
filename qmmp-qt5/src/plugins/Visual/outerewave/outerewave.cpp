@@ -17,6 +17,7 @@
 #include <QGraphicsPolygonItem>
 
 #define HEIGHT_OFFSET  2
+#define HEIGHT_LIMIT   0.7
 
 OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
 {
@@ -258,7 +259,7 @@ void OuterEWave::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        int offset = height() - m_intern_vis_data[j] * maxed * m_cell_size.height();
+        int offset = height() - m_intern_vis_data[j] * maxed * m_cell_size.height() * HEIGHT_LIMIT;
         if(offset == height())
         {
             offset = height() + HEIGHT_OFFSET;
