@@ -27,7 +27,6 @@ class QPropertyAnimation;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class MusicDownloadCounterPVThread;
-class MusicDownloadQNConfighread;
 
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
@@ -165,7 +164,6 @@ protected:
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
     MusicDownloadCounterPVThread *m_counterPVThread;
-    MusicDownloadQNConfighread *m_qnConfigThread;
 
     static MusicApplicationObject *m_instance;
 };

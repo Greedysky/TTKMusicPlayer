@@ -1,5 +1,5 @@
-#ifndef QNSIMPLEDELETEDATA_H
-#define QNSIMPLEDELETEDATA_H
+#ifndef OSSDATAINTERFACE_H
+#define OSSDATAINTERFACE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,47 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "ossdataitem.h"
+#include "ossutils.h"
+#include "ossconf.h"
 #include <QtNetwork/QNetworkReply>
-#include "ttkprivate.h"
-#include "musicextrasglobaldefine.h"
 
-class QNSimpleDeleteDataPrivate;
-
-/*! @brief The namespace of the qiniu simple delete data.
- * @author Jemy Graw <jemygraw@gmail.com>
+/*! @brief The class of the alioss cloud data item.
+ * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QNSimpleDeleteData : public QObject
+class MUSIC_EXTRAS_EXPORT OSSDataInterface : public QObject
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QNSimpleDeleteData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
-    /*!
-     * Delete data to server.
-     */
-    void deleteDataToServer(const QString &bucket, const QString &key);
+    explicit OSSDataInterface(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
-Q_SIGNALS:
+protected Q_SLOTS:
     /*!
-     * Delete file finished.
+     * Receive data from server finshed.
+     * Subclass should implement this function.
      */
-    void deleteFileFinished(bool state);
-
-private Q_SLOTS:
-    /*!
-     * Receive data from server.
-     */
-    void receiveDataFromServer();
+    virtual void receiveDataFromServer() = 0;
     /*!
      * Get handle error.
      */
     void handleError(QNetworkReply::NetworkError error);
 
-private:
-    TTK_DECLARE_PRIVATE(QNSimpleDeleteData)
+protected:
+    /*!
+     * Insert authorization.
+     */
+    void insertAuthorization(const QString &method, MStringMap &headers, const QString &resource);
+
+    QNetworkAccessManager *m_networkManager;
 
 };
 
-#endif // QNSIMPLEDELETEDATA_H
+#endif // OSSDATAINTERFACE_H

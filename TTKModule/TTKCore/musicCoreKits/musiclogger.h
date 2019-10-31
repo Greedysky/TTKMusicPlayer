@@ -23,10 +23,11 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDateTime>
+#include "musicotherdefine.h"
 #include "musicglobaldefine.h"
 
-#define CURRENTTIME QTime::currentTime().toString("hh:mm:ss:zzz")
-#define CURRENTDATE QDate::currentDate().toString("yyyy-MM-dd")
+#define CURRENTTIME QTime::currentTime().toString(MUSIC_ZTIME_FORMAT)
+#define CURRENTDATE QDate::currentDate().toString(MUSIC_YEAR_FORMAT)
 #define LOG_END     QString("log::npos")
 
 #define M_LOGGER    (*MusicLogger::createInstance())

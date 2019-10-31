@@ -2,6 +2,10 @@
 #include "musiccodecutils.h"
 #include "musictime.h"
 
+#ifdef Q_CC_GNU
+#  pragma GCC diagnostic ignored "-Wunused-result"
+#endif
+
 MusicFPLConfigManager::MusicFPLConfigManager()
     : MusicPlaylistInterface()
 {

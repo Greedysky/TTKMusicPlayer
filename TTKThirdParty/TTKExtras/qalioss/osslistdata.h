@@ -1,5 +1,5 @@
-#ifndef QNPUTRET_H
-#define QNPUTRET_H
+#ifndef OSSLISTDATA_H
+#define OSSLISTDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,49 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QObject>
-#include "ttkprivate.h"
-#include "musicextrasglobaldefine.h"
+#include "ossdatainterface.h"
 
-class QNPutRetPrivate;
-
-/*! @brief The namespace of the qiniu put return.
- * @author Jemy Graw <jemygraw@gmail.com>
+/*! @brief The class of the alioss cloud data item.
+ * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QNPutRet
+class MUSIC_EXTRAS_EXPORT OSSListData : public OSSDataInterface
 {
+    Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    QNPutRet();
+    explicit OSSListData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    /*!
+     * List data to operator.
+     */
+    void listDataOperator(const QString &bucket);
 
+Q_SIGNALS:
     /*!
-     * Transfer data from json.
+     * Receive data finshed.
      */
-    static QNPutRet* fromJSON(const QByteArray &json);
+    void receiveFinshed(const OSSDataItems &items);
 
+protected Q_SLOTS:
     /*!
-     * Get hash.
+     * Receive data from server finshed.
      */
-    QString getHash() const;
-    /*!
-     * Set hash.
-     */
-    void setHash(const QString &value);
-
-    /*!
-     * Get key.
-     */
-    QString getKey() const;
-    /*!
-     * Set key.
-     */
-    void setKey(const QString &value);
-
-private:
-    TTK_DECLARE_PRIVATE(QNPutRet)
+    virtual void receiveDataFromServer() override;
 
 };
 
-#endif // QNPUTRET_H
+#endif // OSSLISTDATA_H

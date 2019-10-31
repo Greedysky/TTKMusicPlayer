@@ -76,20 +76,16 @@ win32{
         }
 
         gcc{
+            QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
             LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
-            QMAKE_CXXFLAGS += -std=c++11
-            QMAKE_CXXFLAGS += -Wunused-function
-            QMAKE_CXXFLAGS += -Wswitch
         }
     }
 
     equals(QT_MAJOR_VERSION, 4){
         QT  += multimedia
         gcc{
+            QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
             LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
-            QMAKE_CXXFLAGS += -std=c++11
-            QMAKE_CXXFLAGS += -Wunused-function
-            QMAKE_CXXFLAGS += -Wswitch
         }
     }
 }
@@ -101,14 +97,11 @@ unix:!mac{
         LIBS += -lQtMultimediaKit
     }
 
-    QMAKE_CXXFLAGS += -std=c++11
-    QMAKE_CXXFLAGS += -Wunused-function
-    QMAKE_CXXFLAGS += -Wswitch
+    QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
     LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 }
 
-DEFINES += TTK_LIBRARY
-DEFINES += QMMP_LIBRARY
+DEFINES += TTK_LIBRARY QMMP_LIBRARY
 
 #########################################
 HEADERS += $$PWD/musicglobal.h

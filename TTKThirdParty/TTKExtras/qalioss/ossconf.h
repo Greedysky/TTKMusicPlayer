@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQNCONFIGHREAD_H
-#define MUSICDOWNLOADQNCONFIGHREAD_H
+#ifndef OSSCONF_H
+#define OSSCONF_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,36 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicnetworkabstract.h"
+#include <QObject>
+#include "musicextrasglobaldefine.h"
 
-const QString CONFIG_QURTY_URL  = "MDN2ZTFCbndoYkFzK2pQN2wzNVVKYWpwVTd2bXdKWjk0MmhLSjRuUFpROHpzWUhLcENKK2doUmVoa2NqMWFSaGdiaUwyTG5mL2tmelJSakJnT2dmcWJQYjRPTVR0SWROMGZWMkRkaEJtbWhFQ1loRFFSd3VReXl6bXFZPQ==";
+#define DATA_BUCKET     "greedysky-data"
+#define MUSIC_BUCKET    "greedysky-music"
 
-/*! @brief The class of get qiniu config.
+/*! @brief The class of the alioss data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadQNConfighread : public MusicNetworkAbstract
+struct MUSIC_EXTRAS_EXPORT OSSConf
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadQNConfighread)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicDownloadQNConfighread(QObject *parent = nullptr);
+    static QString OSS_HOST;
 
-    virtual ~MusicDownloadQNConfighread();
+    static QString ACCESS_KEY;
+    static QByteArray SECRET_KEY;
+
+    static QString VERSION;
 
     /*!
-     * Start to download counter pv from net.
+     * Generate data bucket url.
      */
-    void startToDownload();
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished();
+    static QString generateDataBucketUrl();
 
 };
 
-#endif // MUSICDOWNLOADQNCONFIGHREAD_H
+#endif // OSSCONF_H

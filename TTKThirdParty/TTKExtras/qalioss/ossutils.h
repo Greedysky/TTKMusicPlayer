@@ -1,5 +1,5 @@
-#ifndef QNCONF_H
-#define QNCONF_H
+#ifndef OSSUTILS_H
+#define OSSUTILS_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,27 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QObject>
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The namespace of the qiniu config.
- * @author Jemy Graw <jemygraw@gmail.com>
+/*! @brief The class of the alioss cloud data item.
+ * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QNConf
+class MUSIC_EXTRAS_EXPORT OSSUtils
 {
 public:
-    static QString UPLOAD_HOST;
-    static QString RS_HOST;
-    static QString RSF_HOST;
-    static QString IOVIP_HOST;
-
-    static QString ACCESS_KEY;
-    static QByteArray SECRET_KEY;
-
-    static QString DEFAULT_STYLE_DELIMITER;
-
-    static QString VERSION;
+    /*!
+     * Get authorization code.
+     */
+    static QString getAuthorizationCode(const QString &key, const QString &method,
+                                        const MStringMap &headers, const QString &resource);
+    /*!
+     * Create sign for normal auth.
+     */
+    static QString createSignForNormalAuth(const QString &method, const QString &access, const QString &secret,
+                                           const MStringMap &headers, const QString &resource);
+    /*!
+     * Get GMT.
+     */
+    static QString getGMT();
 
 };
 
-#endif // QNCONF_H
+#endif // OSSUTILS_H

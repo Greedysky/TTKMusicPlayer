@@ -109,7 +109,7 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
             item.m_name = value["title"].toString();
             item.m_playCount = value["listenum"].toString();
             item.m_description = value["desc"].toString();
-            item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+            item.m_updateTime = QDateTime::currentDateTime().toString(MUSIC_YEAR_FORMAT);
             item.m_nickName = MUSIC_AUTHOR_NAME;
             item.m_tags = value["tag"].toString().replace(",", "|");
         }
@@ -159,7 +159,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     item.m_name = value["title"].toString();
                     item.m_playCount = value["listenum"].toString();
                     item.m_description = value["desc"].toString();
-                    item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+                    item.m_updateTime = QDateTime::currentDateTime().toString(MUSIC_YEAR_FORMAT);
                     item.m_nickName = MUSIC_AUTHOR_NAME;
                     item.m_tags = value["tag"].toString().replace(",", "|");
 

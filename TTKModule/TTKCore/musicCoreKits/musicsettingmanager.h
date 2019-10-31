@@ -140,12 +140,6 @@ public:
         HotkeyEnable,                    /*!< Hotkey Enable Parameter*/
         HotkeyString,                    /*!< Hotkey String Parameter*/
 
-        QiNiuMusicBucket,                /*!< QiNiu Music Bucket Parameter*/
-        QiNiuDataBucket,                 /*!< QiNiu Data Bucket Parameter*/
-        QiNiuMusicUrl,                   /*!< QiNiu Music Url Parameter*/
-        QiNiuDataUrl,                    /*!< QiNiu Data Url Parameter*/
-        QiNiuTimeConfig,                 /*!< QiNiu Time Config Parameter*/
-
         NetworkCookie                    /*!< Network cookie Parameter*/
 
 #ifdef MUSIC_MOBILE

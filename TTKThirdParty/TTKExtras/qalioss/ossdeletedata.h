@@ -1,5 +1,5 @@
-#ifndef QNSIMPLELISTDATA_H
-#define QNSIMPLELISTDATA_H
+#ifndef OSSDELETEDATA_H
+#define OSSDELETEDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,47 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "ttkprivate.h"
-#include "qndataitem.h"
-#include <QtNetwork/QNetworkReply>
+#include "ossdatainterface.h"
 
-class QNSimpleListDataPrivate;
-
-/*! @brief The namespace of the qiniu simple list data.
- * @author Jemy Graw <jemygraw@gmail.com>
+/*! @brief The class of the alioss cloud data item.
+ * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QNSimpleListData : public QObject
+class MUSIC_EXTRAS_EXPORT OSSDeleteData : public OSSDataInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    explicit OSSDeleteData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
     /*!
-     * List data to server.
+     * Delete data operater.
      */
-    void listDataToServer(const QString &bucket);
+    void deleteDataOperator(const QString &bucket, const QString &file);
 
 Q_SIGNALS:
     /*!
-     * Receive data finshed.
+     * Delete file finished.
      */
-    void receiveFinshed(const QNDataItems &items);
+    void deleteFileFinished(bool state);
 
-private Q_SLOTS:
+protected Q_SLOTS:
     /*!
-     * Receive data from server finshed.
+     * Receive data from server.
      */
-    void receiveDataFromServer();
-    /*!
-     * Get handle error.
-     */
-    void handleError(QNetworkReply::NetworkError error);
-
-private:
-    TTK_DECLARE_PRIVATE(QNSimpleListData)
+    virtual void receiveDataFromServer() override;
 
 };
 
-#endif // QNSIMPLELISTDATA_H
+#endif // OSSDELETEDATA_H

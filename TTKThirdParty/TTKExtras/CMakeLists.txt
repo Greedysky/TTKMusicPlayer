@@ -114,6 +114,7 @@ set(MUSIC_HEADERS
     qdlna/dlnahelper.h
     qdlna/dlnaservice.h
     qdlna/dlnaxml.h
+    qdlna/dlnafileserver.h
     qhttpserver/http_parser.h
     qhttpserver/qhttpconnection.h
     qhttpserver/qhttprequest.h
@@ -139,17 +140,14 @@ set(MUSIC_HEADERS
     qrencode/rscode.h
     qrencode/split.h
     qrencode/qrcodewidget.h
-    qiniu/qnconf.h
-    qiniu/qniohelper.h
-    qiniu/qndataitem.h
-    qiniu/qnmac.h
-    qiniu/qnputextra.h
-    qiniu/qnputpolicy.h
-    qiniu/qnputret.h
-    qiniu/qnutils.h
-    qiniu/qnsimplelistdata.h
-    qiniu/qnsimpleuploaddata.h
-    qiniu/qnsimpledeletedata.h
+    qalioss/ossconf.h
+    qalioss/ossdataitem.h
+    qalioss/ossutils.h
+    qalioss/ossdatainterface.h
+    qalioss/osslistdata.h
+    qalioss/ossdeletedata.h
+    qalioss/ossuploaddata.h
+    qalioss/ossdownloaddata.h
     qjson/parser.h
     qjson/parserrunnable.h
     qjson/qobjecthelper.h
@@ -171,6 +169,7 @@ set(MUSIC_SOURCES
     qdlna/dlnahelper.cpp
     qdlna/dlnaservice.cpp
     qdlna/dlnaxml.cpp
+    qdlna/dlnafileserver.cpp
     qhttpserver/http_parser.c
     qhttpserver/qhttpconnection.cpp
     qhttpserver/qhttprequest.cpp
@@ -191,16 +190,13 @@ set(MUSIC_SOURCES
     qrencode/rscode.c
     qrencode/split.c
     qrencode/qrcodewidget.cpp
-    qiniu/qnconf.cpp
-    qiniu/qniohelper.cpp
-    qiniu/qnmac.cpp
-    qiniu/qnputextra.cpp
-    qiniu/qnputpolicy.cpp
-    qiniu/qnputret.cpp
-    qiniu/qnutils.cpp
-    qiniu/qnsimplelistdata.cpp
-    qiniu/qnsimpleuploaddata.cpp
-    qiniu/qnsimpledeletedata.cpp
+    qalioss/ossconf.cpp
+    qalioss/ossutils.cpp
+    qalioss/ossdatainterface.cpp
+    qalioss/osslistdata.cpp
+    qalioss/ossdeletedata.cpp
+    qalioss/ossuploaddata.cpp
+    qalioss/ossdownloaddata.cpp
     qjson/parser.cpp
     qjson/qobjecthelper.cpp
     qjson/json_scanner.cpp

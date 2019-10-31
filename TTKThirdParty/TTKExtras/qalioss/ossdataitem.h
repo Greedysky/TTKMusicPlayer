@@ -1,5 +1,5 @@
-#ifndef QNDATAITEM_H
-#define QNDATAITEM_H
+#ifndef OSSDATAITEM_H
+#define OSSDATAITEM_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,21 +21,20 @@
 
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The class of the qiniu cloud data item.
+/*! @brief The class of the alioss data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
+typedef struct MUSIC_EXTRAS_EXPORT OSSDataItem
 {
     QString m_name;
     QString m_hash;
     QString m_mimeType;
+    QString m_putTime;
     int m_size;
-    qint64 m_putTime;
 
-    QNDataItem()
+    OSSDataItem()
     {
         m_size = 0;
-        m_putTime = 0;
     }
 
     inline void clear()
@@ -43,10 +42,10 @@ typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
         m_name.clear();
         m_hash.clear();
         m_mimeType.clear();
+        m_putTime.clear();
         m_size = 0;
-        m_putTime = 0;
     }
-}QNDataItem;
-TTK_DECLARE_LISTS(QNDataItem)
+}OSSDataItem;
+TTK_DECLARE_LISTS(OSSDataItem)
 
-#endif // QNDATAITEM_H
+#endif // OSSDATAITEM_H

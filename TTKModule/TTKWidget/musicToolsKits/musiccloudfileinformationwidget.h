@@ -21,7 +21,7 @@
 
 #include "musicabstractmovedialog.h"
 
-class QNDataItem;
+class OSSDataItem;
 
 namespace Ui {
 class MusicCloudFileInformationWidget;
@@ -45,7 +45,7 @@ public:
     /*!
      * Set music file song path name.
      */
-    void setFileInformation(QNDataItem *data);
+    void setFileInformation(OSSDataItem *data);
 
 public Q_SLOTS:
     /*!

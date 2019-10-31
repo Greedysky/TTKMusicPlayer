@@ -118,7 +118,7 @@ void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
             item.m_name = value["collectName"].toString();
             item.m_playCount = QString::number(value["playCount"].toULongLong());
             item.m_description = value["description"].toString();
-            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString("yyyy-MM-dd");
+            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
             item.m_nickName = value["userName"].toString();
 
             const QVariantList &tags = value["tags"].toList();
@@ -181,7 +181,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                     item.m_name = value["collectName"].toString();
                     item.m_playCount = QString::number(value["playCount"].toULongLong());
                     item.m_description = value["description"].toString();
-                    item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString("yyyy-MM-dd");
+                    item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                     item.m_nickName = value["userName"].toString();
 
                     const QVariantList &tags = value["tags"].toList();

@@ -108,7 +108,7 @@ void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
             item.m_name = value["title"].toString();
             item.m_playCount = QString::number(value["playnum"].toULongLong());
             item.m_description = value["info"].toString();
-            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString("yyyy-MM-dd");
+            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString(MUSIC_YEAR_FORMAT);
             item.m_nickName = value["uname"].toString();
         }
     }
@@ -261,7 +261,7 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
                 item.m_name = value["title"].toString();
                 item.m_playCount = QString::number(value["playnum"].toULongLong());
                 item.m_description = value["info"].toString();
-                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString("yyyy-MM-dd");
+                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString(MUSIC_YEAR_FORMAT);
                 item.m_nickName = value["uname"].toString();
                 emit createPlaylistItem(item);
             }

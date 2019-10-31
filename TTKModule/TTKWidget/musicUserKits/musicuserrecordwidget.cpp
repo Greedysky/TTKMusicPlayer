@@ -95,8 +95,8 @@ void MusicUserRecordWidget::initTabF()
     m_ui->femaleRadioButton_F->setChecked(string == "1");
 
     string = m_userModel->getUserBirthday(m_userUID);
-    m_ui->birthDateEdit_F->setDisplayFormat(QString("yyyy-MM-dd"));
-    m_ui->birthDateEdit_F->setDate(string.isEmpty() ? QDate::currentDate() : QDate::fromString(string, QString("yyyy-MM-dd")));
+    m_ui->birthDateEdit_F->setDisplayFormat(QString(MUSIC_YEAR_FORMAT));
+    m_ui->birthDateEdit_F->setDate(string.isEmpty() ? QDate::currentDate() : QDate::fromString(string, QString(MUSIC_YEAR_FORMAT)));
 
     string = m_userModel->getUserCity(m_userUID);
     if(!string.isEmpty())

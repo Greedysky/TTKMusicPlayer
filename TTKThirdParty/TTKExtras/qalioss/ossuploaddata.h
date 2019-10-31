@@ -1,5 +1,5 @@
-#ifndef QNSIMPLEUPLOADDATA_H
-#define QNSIMPLEUPLOADDATA_H
+#ifndef OSSUPLOADDATA_H
+#define OSSUPLOADDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,32 +19,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QtNetwork/QNetworkReply>
-#include "ttkprivate.h"
-#include "musicextrasglobaldefine.h"
+#include "ossdatainterface.h"
 
-class QNSimpleUploadDataPrivate;
-
-/*! @brief The namespace of the qiniu simple upload data.
- * @author Jemy Graw <jemygraw@gmail.com>
+/*! @brief The class of the alioss cloud data item.
+ * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QNSimpleUploadData : public QObject
+class MUSIC_EXTRAS_EXPORT OSSUploadData : public OSSDataInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QNSimpleUploadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    explicit OSSUploadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
     /*!
-     * Get uplaod data to server request.
+     * Get uplaod data operator.
      */
-    void uploadDataToServer(const QString &time, const QByteArray &data, const QString &bucket, const QString &key, const QString &name);
-    /*!
-     * Get download url request.
-     */
-    QString getDownloadUrl(const QString &domain, const QString &key);
+    void uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
 
 Q_SIGNALS:
     /*!
@@ -56,23 +48,19 @@ Q_SIGNALS:
      */
     void uploadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
 
-private Q_SLOTS:
+protected Q_SLOTS:
     /*!
      * Receive data from server finshed.
      */
-    void receiveDataFromServer();
-    /*!
-     * Get handle error.
-     */
-    void handleError(QNetworkReply::NetworkError error);
+    virtual void receiveDataFromServer() override;
     /*!
      * Show upload progress.
      */
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 private:
-    TTK_DECLARE_PRIVATE(QNSimpleUploadData)
+    QString m_uploadTime;
 
 };
 
-#endif // QNSIMPLEUPLOADDATA_H
+#endif // OSSUPLOADDATA_H

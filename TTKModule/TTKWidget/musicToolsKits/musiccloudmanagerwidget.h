@@ -23,9 +23,10 @@
 #include "musicclouddataitem.h"
 #include "musicabstracttablewidget.h"
 
-class QNSimpleListData;
-class QNSimpleDeleteData;
-class QNSimpleUploadData;
+class OSSListData;
+class OSSDeleteData;
+class OSSUploadData;
+class OSSDownloadData;
 class MusicOpenFileWidget;
 class MusicProgressBarDelegate;
 class QNetworkAccessManager;
@@ -82,15 +83,15 @@ public Q_SLOTS:
      */
     void keyDownLoadFinished(const QByteArray &data);
     /*!
-     * Receive data from qiniu finshed.
+     * Receive data from alioss finshed.
      */
-    void receiveDataFinshed(const QNDataItems &items);
+    void receiveDataFinshed(const OSSDataItems &items);
     /*!
-     * Upload data to qiniu finshed.
+     * Upload data to alioss finshed.
      */
     void uploadFileFinished(const QString &time);
     /*!
-     * Delete data to qiniu finshed.
+     * Delete data to alioss finshed.
      */
     void deleteFileFinished(bool state);
 
@@ -169,9 +170,10 @@ protected:
 
     bool m_uploading;
     qint64 m_totalFileSzie;
-    QNSimpleListData *m_qnListData;
-    QNSimpleDeleteData *m_qnDeleteData;
-    QNSimpleUploadData *m_qnUploadData;
+    OSSListData *m_ossListData;
+    OSSDeleteData *m_ossDeleteData;
+    OSSUploadData *m_ossUploadData;
+    OSSDownloadData *m_ossDownloadData;
     QNetworkAccessManager *m_networkManager;
     MusicOpenFileWidget *m_openFileWidget;
     MusicCloudDataItem m_currentDataItem;

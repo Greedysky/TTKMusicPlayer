@@ -39,6 +39,13 @@
 #define MUSIC_OUTER_LIST            "-List"
 #define MUSIC_OUTER_RADIO           "-Radio"
 
+#define MUSIC_TIME_FORMAT           "hh:mm"
+#define MUSIC_STIME_FORMAT          "hh:mm:ss"
+#define MUSIC_ZTIME_FORMAT          "hh:mm:ss:zzz"
+#define MUSIC_YEAR_FORMAT           "yyyy-MM-dd"
+#define MUSIC_YEAR_TIME_FORMAT      "yyyy-MM-dd hh:mm"
+#define MUSIC_YEAR_STIME_FORMAT     "yyyy-MM-dd hh:mm:ss"
+
 //MusicLrcMakerWidget
 #define LRC_MAKER_INDEX_0           0
 #define LRC_MAKER_INDEX_1           1

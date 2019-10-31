@@ -6,6 +6,8 @@
 #include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
+#///Oss import
+#include "qalioss/ossconf.h"
 
 #include <QFile>
 
@@ -38,8 +40,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataUrl).toString();
-    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_ACRUA_URL);
+    download->startToDownload(OSSConf::generateDataBucketUrl() + QN_ACRUA_URL);
 
     loop.exec();
 
@@ -138,7 +139,7 @@ void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
     if(ok)
     {
         const QVariantMap &value = dt.toMap();
-        if(QDateTime::fromString( value["time"].toString(), "yyyy-MM-dd HH:mm:ss") > QDateTime::currentDateTime())
+        if(QDateTime::fromString( value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
         {
             m_accessKey = value["key"].toString();
             m_accessSecret = value["secret"].toString();

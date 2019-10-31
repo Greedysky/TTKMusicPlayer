@@ -120,7 +120,7 @@ void MusicCommentsItem::createSearchedItem(const MusicResultsItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(QFontMetrics(m_userName->font()).width(m_userName->text()));
-    m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_updateTime.toULongLong()).toString("yyyy-MM-dd hh:mm:ss"));
+    m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_updateTime.toULongLong()).toString(MUSIC_YEAR_STIME_FORMAT));
     m_timerLabel->setFixedWidth(QFontMetrics(m_timerLabel->font()).width(m_timerLabel->text()));
     m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
     m_userCommit->setText(comments.m_description);

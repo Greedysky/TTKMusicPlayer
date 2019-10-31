@@ -21,26 +21,20 @@ QT       += network
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/qnconf.h \
-    $$PWD/qniohelper.h \
-    $$PWD/qndataitem.h \
-    $$PWD/qnmac.h \
-    $$PWD/qnputextra.h \
-    $$PWD/qnputpolicy.h \
-    $$PWD/qnputret.h \
-    $$PWD/qnutils.h \
-    $$PWD/qnsimplelistdata.h \
-    $$PWD/qnsimpleuploaddata.h \
-    $$PWD/qnsimpledeletedata.h
+    $$PWD/ossconf.h \
+    $$PWD/ossdataitem.h \
+    $$PWD/ossutils.h \
+    $$PWD/ossdatainterface.h \
+    $$PWD/osslistdata.h \
+    $$PWD/ossdeletedata.h \
+    $$PWD/ossuploaddata.h \
+    $$PWD/ossdownloaddata.h
 
 SOURCES += \
-    $$PWD/qnconf.cpp \
-    $$PWD/qniohelper.cpp \
-    $$PWD/qnmac.cpp \
-    $$PWD/qnputextra.cpp \
-    $$PWD/qnputpolicy.cpp \
-    $$PWD/qnputret.cpp \
-    $$PWD/qnutils.cpp \
-    $$PWD/qnsimplelistdata.cpp \
-    $$PWD/qnsimpleuploaddata.cpp \
-    $$PWD/qnsimpledeletedata.cpp
+    $$PWD/ossconf.cpp \
+    $$PWD/ossutils.cpp \
+    $$PWD/ossdatainterface.cpp \
+    $$PWD/osslistdata.cpp \
+    $$PWD/ossdeletedata.cpp \
+    $$PWD/ossuploaddata.cpp \
+    $$PWD/ossdownloaddata.cpp

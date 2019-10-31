@@ -3,6 +3,8 @@
 #include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
+#///Oss import
+#include "qalioss/ossconf.h"
 
 #define QN_VERSION       "version"
 
@@ -16,8 +18,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataUrl).toString();
-    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_VERSION);
+    download->startToDownload(OSSConf::generateDataBucketUrl() + QN_VERSION);
 }
 
 QString MusicSourceUpdateThread::getLastedVersion() const

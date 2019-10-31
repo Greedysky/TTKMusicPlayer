@@ -20,6 +20,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.h
+    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
@@ -42,5 +43,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspectrumwidget.cpp
+    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongdlnatransferwidget.cpp
   )
   
