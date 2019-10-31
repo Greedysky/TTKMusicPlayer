@@ -1,7 +1,11 @@
 #include "ossconf.h"
+#/// alg import
+#include "qalg/base64.h"
+
+#define OSS_HOST_URL    "b3NzLWNuLXNoYW5naGFpLmFsaXl1bmNzLmNvbQ=="
 
 // Resource Management Host
-QString OSSConf::OSS_HOST = QString("oss-cn-shanghai.aliyuncs.com");
+QString OSSConf::OSS_HOST = QString::fromStdString(Base64::base64Decode(OSS_HOST_URL));
 
 // Access Key & Secret Key
 QString OSSConf::ACCESS_KEY = QString("<Your Access Key>");
