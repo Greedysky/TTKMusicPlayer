@@ -1,8 +1,18 @@
-#ifndef AES_BASE64_H
-#define AES_BASE64_H
+#ifndef BASE64_H
+#define BASE64_H
 
-char *Base64Encode(const unsigned char *data, int data_len);
+#include <string>
 
-char *Base64Decode(const unsigned char *data, int data_len);
+namespace Base64
+{
+    /*!
+     * Base64 encode.
+     */
+    std::string base64Encode(const unsigned char *bytes, uint len);
+    /*!
+     * Base64 dncode.
+     */
+    std::string base64Decode(const std::string &bytes);
+}
 
-#endif //AES_BASE64_H
+#endif //BASE64_H

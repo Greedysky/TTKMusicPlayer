@@ -345,26 +345,23 @@ QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(QDesWrap);
     d->m_mode = ENCRYPT;
-    char *enc_data = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
-    char *enc_base = Base64Encode((unsigned char *)enc_data, (in.length() / 8 + 1) * 8);
+    char *encData = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
+    const MString &str = Base64::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
 
-    QByteArray dt(enc_base);
-    delete enc_data;
-    free(enc_base);
+    delete encData;
 
-    return dt;
+    return QByteArray::fromStdString(str);
 }
 
 QByteArray QDesWrap::decrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(QDesWrap);
     d->m_mode = DECRYPT;
-    char *enc_base = Base64Decode((unsigned char *)in.data(), in.length());
-    char *enc_data = d->encrypt(enc_base, strlen(enc_base), (char *)key.data());
+    const MString &str = Base64::base64Decode(in.toStdString());
+    char *encData = d->encrypt((char *)str.data(), str.length(), (char *)key.data());
 
-    QByteArray dt(enc_base);
-    delete enc_data;
-    free(enc_base);
+    QByteArray value(encData);
+    delete encData;
 
-    return dt;
+    return value;
 }

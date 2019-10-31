@@ -79,10 +79,6 @@ protected:
     QString xxteaDecrypt(const QString &data, const QString &key);
 
     /*!
-     * Check current char is base64.
-     */
-    bool isBase64(uchar c);
-    /*!
      * Do XXTEA encrypt.
      */
     uchar *doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *retLength);
@@ -110,15 +106,6 @@ protected:
      * XXTEA to byte array.
      */
     uchar *xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int includeLength, xxtea_uint *retLength);
-
-    /*!
-     * Base64 encode.
-     */
-    MString base64Encode(uchar const *bytes, uint len);
-    /*!
-     * Base64 dncode.
-     */
-    MString base64Decode(const MString &bytes);
 
     /*!
      * XXTEA encrypt by uchar * data.

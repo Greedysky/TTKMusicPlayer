@@ -1,5 +1,6 @@
 #include "osslistdata.h"
 
+#include <QDateTime>
 #include <QtXml/QDomDocument>
 
 OSSListData::OSSListData(QNetworkAccessManager *networkManager, QObject *parent)

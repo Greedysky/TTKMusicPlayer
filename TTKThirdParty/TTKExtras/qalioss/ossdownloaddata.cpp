@@ -1,6 +1,7 @@
 #include "ossdownloaddata.h"
 
 #include <QFile>
+#include <QDateTime>
 
 OSSDownloadData::OSSDownloadData(QNetworkAccessManager *networkManager, QObject *parent)
     : OSSDataInterface(networkManager, parent)

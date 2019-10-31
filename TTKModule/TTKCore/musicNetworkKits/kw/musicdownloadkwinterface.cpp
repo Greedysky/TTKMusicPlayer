@@ -21,15 +21,15 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
         return;
     }
 
-    QDesWrap dess;
-    const QByteArray &parameter = dess.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_ATTR_LL_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
-                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
+    QDesWrap des;
+    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_ATTR_LL_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
+                                              MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
 
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+//    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -47,7 +47,7 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     if(!data.isEmpty() && !data.contains("res not found"))
     {
         const QString text(data);
-        QRegExp regx(".*url=(.*)\r\nsig=");
+        QRegExp regx(".*url=(.*).*");
 
         if(text.indexOf(regx) != -1)
         {
