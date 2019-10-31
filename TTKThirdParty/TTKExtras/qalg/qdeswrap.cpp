@@ -350,14 +350,14 @@ QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
 
     delete encData;
 
-    return QByteArray::fromStdString(str);
+    return QByteArray(str.data(), str.length());
 }
 
 QByteArray QDesWrap::decrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(QDesWrap);
     d->m_mode = DECRYPT;
-    const MString &str = Base64::base64Decode(in.toStdString());
+    const MString &str = Base64::base64Decode(MString(in.data(), in.length()));
     char *encData = d->encrypt((char *)str.data(), str.length(), (char *)key.data());
 
     QByteArray value(encData);

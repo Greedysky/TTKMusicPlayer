@@ -57,7 +57,7 @@ QString OSSDownloadData::getDownloadUrl(const QString &bucket, const QString &fi
 #ifdef TTK_GREATER_NEW
     const QString encodeKey = QUrl(fileName).toString(QUrl::FullyEncoded);
 #else
-    const QString encodeKey = QUrl(key).toEncoded();
+    const QString encodeKey = QUrl(fileName).toEncoded();
 #endif
     const QString &method = "GET";
     const QString &resource = "/" + bucket + "/" + fileName;

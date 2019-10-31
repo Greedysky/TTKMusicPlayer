@@ -28,8 +28,11 @@
 #include <QDesktopWidget>
 #include <QPropertyAnimation>
 
+#include "qalioss/ossconf.h"
+
 #define MARGIN_SIDE     5
 #define MARGIN_SIDE_BY  1
+#define OSS_HOST_URL    "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
 
 MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
 
@@ -83,6 +86,8 @@ MusicApplicationObject *MusicApplicationObject::instance()
 
 void MusicApplicationObject::loadNetWorkSetting()
 {
+    //oss host init
+    OSSConf::OSS_HOST = MusicUtils::Algorithm::mdII(OSS_HOST_URL, false);
     m_counterPVThread->startToDownload();
 }
 
