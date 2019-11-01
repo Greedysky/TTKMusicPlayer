@@ -195,9 +195,9 @@ void MusicQueryFoundTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicQueryFoundTableWidget::listCellEntered(int row, int column)
+void MusicQueryFoundTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryTableWidget::listCellEntered(row, column);
+    MusicQueryTableWidget::itemCellEntered(row, column);
     if(column == 5 || column == 6 || column == 7)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
@@ -208,9 +208,9 @@ void MusicQueryFoundTableWidget::listCellEntered(int row, int column)
     }
 }
 
-void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
+void MusicQueryFoundTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryTableWidget::listCellClicked(row, column);
+    MusicQueryTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 5:

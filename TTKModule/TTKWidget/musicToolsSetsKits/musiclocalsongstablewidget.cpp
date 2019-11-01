@@ -68,7 +68,7 @@ void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
     }
 }
 
-void MusicLocalSongsTableWidget::listCellClicked(int row, int column)
+void MusicLocalSongsTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
@@ -111,7 +111,7 @@ MusicLocalSongsInfoTableWidget::MusicLocalSongsInfoTableWidget(QWidget *parent)
     headerview->resizeSection(1, 447);
     headerview->resizeSection(2, 120);
 
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
 }
 
 void MusicLocalSongsInfoTableWidget::clear()
@@ -157,13 +157,13 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
     }
 }
 
-void MusicLocalSongsInfoTableWidget::listCellClicked(int row, int column)
+void MusicLocalSongsInfoTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
 }
 
-void MusicLocalSongsInfoTableWidget::listCellDoubleClicked(int row, int column)
+void MusicLocalSongsInfoTableWidget::itemCellDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
     QTableWidgetItem *it = item(row, 2);

@@ -57,13 +57,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell enter.
+     * Table widget item cell enter.
      */
-    virtual void listCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override;
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Clear All Items.
      */

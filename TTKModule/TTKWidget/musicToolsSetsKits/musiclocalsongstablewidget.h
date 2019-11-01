@@ -55,9 +55,9 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Override the widget event.
      */
@@ -101,13 +101,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Table widget list double cell click.
      */
-    void listCellDoubleClicked(int row, int column);
+    void itemCellDoubleClicked(int row, int column);
 
 };
 

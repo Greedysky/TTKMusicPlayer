@@ -63,13 +63,13 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell enter.
+     * Table widget item cell enter.
      */
-    virtual void listCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override;
     /*!
      * Subclass should implement this function.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Clear All Items.
      */

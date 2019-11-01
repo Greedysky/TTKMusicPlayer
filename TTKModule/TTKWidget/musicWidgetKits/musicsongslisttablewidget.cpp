@@ -291,7 +291,7 @@ bool MusicSongsListTableWidget::createUploadFileWidget()
     return false;
 }
 
-void MusicSongsListTableWidget::listCellEntered(int row, int column)
+void MusicSongsListTableWidget::itemCellEntered(int row, int column)
 {
     ///clear previous table item state
     QTableWidgetItem *it = item(m_previousColorRow, 0);
@@ -358,7 +358,7 @@ void MusicSongsListTableWidget::listCellEntered(int row, int column)
         unsetCursor();
     }
 
-    MusicSongsListAbstractTableWidget::listCellEntered(row, column);
+    MusicSongsListAbstractTableWidget::itemCellEntered(row, column);
 
     //To show music Songs Item information
     if(m_musicSongsInfoWidget == nullptr)
@@ -372,7 +372,7 @@ void MusicSongsListTableWidget::listCellEntered(int row, int column)
     m_timerStay.start(3*MT_S2MS);
 }
 
-void MusicSongsListTableWidget::listCellClicked(int row, int column)
+void MusicSongsListTableWidget::itemCellClicked(int row, int column)
 {
     if(row == m_playRowIndex)
     {
@@ -443,16 +443,16 @@ void MusicSongsListTableWidget::setDeleteItemAt()
         return;
     }
 
-    MusicProgressWidget progress;
-    progress.show();
-    progress.setTitle(tr("Delete File Mode"));
-    progress.setRange(0, getMultiIndexSet().count()/3*2);
-
-    MIntList deleteList(getMultiIndexSet());
+    MIntList deleteList(getMultiSelectedIndexs());
     if(deleteList.isEmpty())
     {
         return;
     }
+
+    MusicProgressWidget progress;
+    progress.show();
+    progress.setTitle(tr("Delete File Mode"));
+    progress.setRange(0, deleteList.count()/3*2);
 
     for(int i=0; i<deleteList.count(); ++i)
     {
@@ -669,7 +669,7 @@ void MusicSongsListTableWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicSongsListTableWidget::leaveEvent(QEvent *event)
 {
     MusicSongsListAbstractTableWidget::leaveEvent(event);
-    listCellEntered(-1, -1);
+    itemCellEntered(-1, -1);
 
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = nullptr;

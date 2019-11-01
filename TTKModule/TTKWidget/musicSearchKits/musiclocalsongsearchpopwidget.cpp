@@ -43,7 +43,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
     setItem(index, 1, item);
 }
 
-void MusicLocalSongSearchPopTableWidget::listCellClicked(int row, int)
+void MusicLocalSongSearchPopTableWidget::itemCellClicked(int row, int)
 {
     emit setText( item(row, 0)->toolTip().trimmed() );
 

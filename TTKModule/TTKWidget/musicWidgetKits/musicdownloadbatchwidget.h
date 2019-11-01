@@ -57,7 +57,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
     void currentQualityChanged(int index);
 
@@ -113,15 +113,15 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Data download is finished.
      */
     void dataDownloadFinished();
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
     void currentQualityChanged(int index);
 

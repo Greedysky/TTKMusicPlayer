@@ -99,7 +99,7 @@ MusicDownloadTableItemRole MusicDownloadTableWidget::getCurrentItemRole() const
    return item(row, 0)->data(TABLE_ITEM_ROLE).value<MusicDownloadTableItemRole>();
 }
 
-void MusicDownloadTableWidget::listCellClicked(int row, int column)
+void MusicDownloadTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

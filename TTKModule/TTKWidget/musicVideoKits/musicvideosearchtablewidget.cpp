@@ -125,9 +125,9 @@ void MusicVideoSearchTableWidget::resizeWindow(int delta)
     }
 }
 
-void MusicVideoSearchTableWidget::listCellEntered(int row, int column)
+void MusicVideoSearchTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellEntered(row, column);
+    MusicQueryItemTableWidget::itemCellEntered(row, column);
     if(column == 6 || column == 7 || column == 8)
     {
        setCursor(QCursor(Qt::PointingHandCursor));
@@ -144,9 +144,9 @@ void MusicVideoSearchTableWidget::listCellEntered(int row, int column)
     }
 }
 
-void MusicVideoSearchTableWidget::listCellClicked(int row, int column)
+void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellClicked(row, column);
+    MusicQueryItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 6:

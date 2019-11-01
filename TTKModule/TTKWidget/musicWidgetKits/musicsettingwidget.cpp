@@ -63,7 +63,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
     }
 }
 
-void MusicFunctionTableWidget::listCellClicked(int row, int column)
+void MusicFunctionTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(column);
     emit currentIndexChanged(row + m_listIndex);
@@ -73,7 +73,7 @@ void MusicFunctionTableWidget::listCellClicked(int row, int column)
 void MusicFunctionTableWidget::leaveEvent(QEvent *event)
 {
     QTableWidget::leaveEvent(event);
-    listCellEntered(-1, -1);
+    itemCellEntered(-1, -1);
 }
 
 

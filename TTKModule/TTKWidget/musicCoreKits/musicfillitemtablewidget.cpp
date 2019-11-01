@@ -30,7 +30,7 @@ MIntList MusicFillItemTableWidget::getSelectedItems() const
     return list;
 }
 
-void MusicFillItemTableWidget::listCellClicked(int row, int column)
+void MusicFillItemTableWidget::itemCellClicked(int row, int column)
 {
     if(column == 0)
     {

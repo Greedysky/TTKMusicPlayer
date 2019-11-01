@@ -49,7 +49,7 @@ void MusicWebDJRadioProgramTableWidget::resizeWindow()
     }
 }
 
-void MusicWebDJRadioProgramTableWidget::listCellEntered(int row, int column)
+void MusicWebDJRadioProgramTableWidget::itemCellEntered(int row, int column)
 {
     if(column == 2 || column == 3)
     {
@@ -60,10 +60,10 @@ void MusicWebDJRadioProgramTableWidget::listCellEntered(int row, int column)
         unsetCursor();
     }
 
-    MusicAbstractTableWidget::listCellEntered(row, column);
+    MusicAbstractTableWidget::itemCellEntered(row, column);
 }
 
-void MusicWebDJRadioProgramTableWidget::listCellClicked(int row, int column)
+void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     MusicResultsItems items(m_programThread->getSearchedItems());

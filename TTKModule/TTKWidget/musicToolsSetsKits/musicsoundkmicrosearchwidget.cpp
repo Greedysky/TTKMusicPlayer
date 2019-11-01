@@ -128,9 +128,9 @@ void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
     dataDownloadPlay(row);
 }
 
-void MusicSoundKMicroSearchTableWidget::listCellEntered(int row, int column)
+void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellEntered(row, column);
+    MusicQueryItemTableWidget::itemCellEntered(row, column);
     QTableWidgetItem *it = item(row, 0);
     if(it)
     {
@@ -138,9 +138,9 @@ void MusicSoundKMicroSearchTableWidget::listCellEntered(int row, int column)
     }
 }
 
-void MusicSoundKMicroSearchTableWidget::listCellClicked(int row, int column)
+void MusicSoundKMicroSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellClicked(row, column);
+    MusicQueryItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 4:

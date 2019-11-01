@@ -111,7 +111,7 @@ void MusicCloudManagerTableWidget::resizeWindow()
     }
 }
 
-void MusicCloudManagerTableWidget::listCellClicked(int row, int column)
+void MusicCloudManagerTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
@@ -232,7 +232,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    const MIntList deleteList(getMultiIndexSet());
+    const MIntList deleteList(getMultiSelectedIndexs());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {

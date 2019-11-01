@@ -74,12 +74,12 @@ MusicConnectTransferCompleteTableWidget::MusicConnectTransferCompleteTableWidget
     headerview->resizeSection(1, 305);
 }
 
-void MusicConnectTransferCompleteTableWidget::listCellEntered(int row, int column)
+void MusicConnectTransferCompleteTableWidget::itemCellEntered(int row, int column)
 {
-    MusicAbstractTableWidget::listCellEntered(row, column);
+    MusicAbstractTableWidget::itemCellEntered(row, column);
 }
 
-void MusicConnectTransferCompleteTableWidget::listCellClicked(int row, int column)
+void MusicConnectTransferCompleteTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

@@ -57,7 +57,7 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
 
     connect(m_downloadButton, SIGNAL(clicked()), MusicLeftAreaWidget::instance(), SLOT(musicDownloadSongToLocal()));
     connect(m_deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAt()));
-    connect(this, SIGNAL(enterChanged(int,int)), m_parentClass, SLOT(listCellEntered(int,int)));
+    connect(this, SIGNAL(enterChanged(int,int)), m_parentClass, SLOT(itemCellEntered(int,int)));
 
 }
 

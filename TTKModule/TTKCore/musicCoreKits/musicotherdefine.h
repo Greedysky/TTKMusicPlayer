@@ -52,10 +52,6 @@
 #define LRC_MAKER_INDEX_2           2
 #define LRC_MAKER_INDEX_3           3
 
-//MusicCloudFileManagerDialog
-#define CLOUD_MANAGER_INDEX_0       0
-#define CLOUD_MANAGER_INDEX_1       1
-
 //MusicConnectMobileWidget
 #define CONNECT_MOBILE_INDEX_0      0
 

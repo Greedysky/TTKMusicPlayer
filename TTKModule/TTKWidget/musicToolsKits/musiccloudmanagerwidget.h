@@ -75,9 +75,9 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Download key data from net finished.
      */

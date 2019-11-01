@@ -35,7 +35,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
 
 }
 
@@ -58,7 +58,7 @@ void MusicWebMusicRadioWidget::initListItems(int index)
     }
 }
 
-void MusicWebMusicRadioWidget::listCellEntered(int row, int column)
+void MusicWebMusicRadioWidget::itemCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 3);
     if(it)
@@ -80,20 +80,20 @@ void MusicWebMusicRadioWidget::listCellEntered(int row, int column)
         unsetCursor();
     }
 
-    MusicAbstractTableWidget::listCellEntered(row, column);
+    MusicAbstractTableWidget::itemCellEntered(row, column);
 }
 
-void MusicWebMusicRadioWidget::listCellClicked(int row, int column)
+void MusicWebMusicRadioWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
 
     if(column == 3)
     {
-        listCellDoubleClicked(row, DEFAULT_LEVEL_LOWER);
+        itemCellDoubleClicked(row, DEFAULT_LEVEL_LOWER);
     }
 }
 
-void MusicWebMusicRadioWidget::listCellDoubleClicked(int row, int column)
+void MusicWebMusicRadioWidget::itemCellDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
 
@@ -159,7 +159,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
     if(m_outerIndex != -1)
     {
         selectRow(m_outerIndex);
-        listCellDoubleClicked(m_outerIndex, DEFAULT_LEVEL_LOWER);
+        itemCellDoubleClicked(m_outerIndex, DEFAULT_LEVEL_LOWER);
     }
 }
 
@@ -179,7 +179,7 @@ void MusicWebMusicRadioWidget::musicPlayClicked()
     const int row = currentRow();
     if(row >= 0)
     {
-        listCellDoubleClicked(row, DEFAULT_LEVEL_LOWER);
+        itemCellDoubleClicked(row, DEFAULT_LEVEL_LOWER);
     }
 }
 

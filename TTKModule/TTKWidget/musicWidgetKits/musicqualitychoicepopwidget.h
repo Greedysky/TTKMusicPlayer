@@ -39,13 +39,13 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell enter.
+     * Table widget item cell enter.
      */
-    virtual void listCellEntered(int row, int column);
+    virtual void itemCellEntered(int row, int column);
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
      * Create Table widget item.
      */
@@ -77,7 +77,7 @@ public Q_SLOTS:
     /*!
      * Current Table item clicked by index.
      */
-    void listCellClicked(int row);
+    void itemCellClicked(int row);
 
 protected:
     /*!

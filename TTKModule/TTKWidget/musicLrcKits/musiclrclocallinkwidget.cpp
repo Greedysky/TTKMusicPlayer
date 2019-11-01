@@ -51,7 +51,7 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItems &ite
     }
 }
 
-void MusicLrcLocalLinkTableWidget::listCellClicked(int row, int column)
+void MusicLrcLocalLinkTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

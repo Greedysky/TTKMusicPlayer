@@ -28,9 +28,9 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstr
     }
 }
 
-void MusicWebMVRadioInfoTableWidget::listCellClicked(int row, int column)
+void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryTableWidget::listCellClicked(row, column);
+    MusicQueryTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 5:

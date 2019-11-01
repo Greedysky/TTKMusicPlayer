@@ -875,9 +875,9 @@ void MusicLrcPosterTableWidget::createAllItems(const QStringList &lrcs)
     }
 }
 
-void MusicLrcPosterTableWidget::listCellClicked(int row, int column)
+void MusicLrcPosterTableWidget::itemCellClicked(int row, int column)
 {
-    MusicFillItemTableWidget::listCellClicked(row, column);
+    MusicFillItemTableWidget::itemCellClicked(row, column);
 
     QStringList data;
     for(int i=0; i<rowCount(); ++i)

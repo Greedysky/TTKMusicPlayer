@@ -67,7 +67,7 @@ void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongs &items)
     }
 }
 
-void MusicLrcDownloadBatchTableWidget::listCellClicked(int row, int column)
+void MusicLrcDownloadBatchTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

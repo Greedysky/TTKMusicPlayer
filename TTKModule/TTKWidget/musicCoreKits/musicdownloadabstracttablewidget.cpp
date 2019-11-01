@@ -14,7 +14,7 @@ MusicDownloadAbstractTableWidget::MusicDownloadAbstractTableWidget(QWidget *pare
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
 }
 
 MusicDownloadAbstractTableWidget::~MusicDownloadAbstractTableWidget()
@@ -67,7 +67,7 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
        return;
     }
 
-    const MIntList deleteList(getMultiIndexSet());
+    const MIntList deleteList(getMultiSelectedIndexs());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
@@ -80,13 +80,13 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
     emit updateItemTitle(m_parentToolIndex);
 }
 
-void MusicDownloadAbstractTableWidget::listCellClicked(int row, int column)
+void MusicDownloadAbstractTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
 }
 
-void MusicDownloadAbstractTableWidget::listCellDoubleClicked(int row, int column)
+void MusicDownloadAbstractTableWidget::itemCellDoubleClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

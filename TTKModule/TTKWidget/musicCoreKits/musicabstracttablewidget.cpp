@@ -38,8 +38,8 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     m_previousClickRow = -1;
     m_defaultBkColor = QColor(255, 255, 255, 0);
 
-    connect(this, SIGNAL(cellEntered(int,int)), SLOT(listCellEntered(int,int)));
-    connect(this, SIGNAL(cellClicked(int,int)), SLOT(listCellClicked(int,int)));
+    connect(this, SIGNAL(cellEntered(int,int)), SLOT(itemCellEntered(int,int)));
+    connect(this, SIGNAL(cellClicked(int,int)), SLOT(itemCellClicked(int,int)));
 }
 
 MusicAbstractTableWidget::~MusicAbstractTableWidget()
@@ -53,7 +53,21 @@ void MusicAbstractTableWidget::clear()
     setRowCount(0);
 }
 
-void MusicAbstractTableWidget::listCellEntered(int row, int column)
+MIntList MusicAbstractTableWidget::getMultiSelectedIndexs() const
+{
+    MIntSet rows;
+    foreach(const QModelIndex& index, selectedIndexes())
+    {
+        rows.insert(index.row());
+    }
+
+    MIntList rowsList = rows.toList();
+    qSort(rowsList);
+
+    return rowsList;
+}
+
+void MusicAbstractTableWidget::itemCellEntered(int row, int column)
 {
     if(item(m_previousColorRow, 0))
     {
@@ -78,18 +92,4 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
             it->setBackgroundColor(color);
         }
     }
-}
-
-MIntList MusicAbstractTableWidget::getMultiIndexSet()
-{
-    MIntSet rows;
-    foreach(const QModelIndex& index, selectedIndexes())
-    {
-        rows.insert(index.row());
-    }
-
-    MIntList rowsList = rows.toList();
-    qSort(rowsList);
-
-    return rowsList;
 }

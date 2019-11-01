@@ -53,9 +53,9 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
     }
 }
 
-void MusicSongCheckToolsRenameTableWidget::listCellClicked(int row, int column)
+void MusicSongCheckToolsRenameTableWidget::itemCellClicked(int row, int column)
 {
-    MusicFillItemTableWidget::listCellClicked(row, column);
+    MusicFillItemTableWidget::itemCellClicked(row, column);
     if(column == 3)
     {
         deleteCurrentRow();
@@ -167,9 +167,9 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
     }
 }
 
-void MusicSongCheckToolsDuplicateTableWidget::listCellClicked(int row, int column)
+void MusicSongCheckToolsDuplicateTableWidget::itemCellClicked(int row, int column)
 {
-    MusicFillItemTableWidget::listCellClicked(row, column);
+    MusicFillItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 5: musicPlay(); break;
@@ -308,9 +308,9 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
     }
 }
 
-void MusicSongCheckToolsQualityTableWidget::listCellClicked(int row, int column)
+void MusicSongCheckToolsQualityTableWidget::itemCellClicked(int row, int column)
 {
-    MusicFillItemTableWidget::listCellClicked(row, column);
+    MusicFillItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 6: musicPlay(); break;

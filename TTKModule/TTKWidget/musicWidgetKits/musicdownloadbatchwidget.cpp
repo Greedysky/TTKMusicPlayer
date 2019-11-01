@@ -310,7 +310,7 @@ void MusicDownloadBatchTableWidget::startToDownload(MusicDownLoadQueryThreadAbst
     }
 }
 
-void MusicDownloadBatchTableWidget::listCellClicked(int row, int column)
+void MusicDownloadBatchTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

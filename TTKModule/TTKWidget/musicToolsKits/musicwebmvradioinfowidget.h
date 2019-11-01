@@ -49,7 +49,7 @@ public Q_SLOTS:
     /*!
      * Subclass should implement this function.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
 
 protected:
     /*!

@@ -103,7 +103,7 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(4, 2, item);
 }
 
-void MusicQualityChoiceTableWidget::listCellEntered(int row, int column)
+void MusicQualityChoiceTableWidget::itemCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 0);
     if(it)
@@ -111,7 +111,7 @@ void MusicQualityChoiceTableWidget::listCellEntered(int row, int column)
        it->setTextColor(PREVIOUS_COLOR);
     }
 
-    MusicAbstractTableWidget::listCellEntered(row, column);
+    MusicAbstractTableWidget::itemCellEntered(row, column);
 
     it = item(row, 0);
     if(it)
@@ -121,7 +121,7 @@ void MusicQualityChoiceTableWidget::listCellEntered(int row, int column)
     }
 }
 
-void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
+void MusicQualityChoiceTableWidget::itemCellClicked(int row, int)
 {
     if(m_previousClickRow != -1)
     {
@@ -154,14 +154,14 @@ void MusicQualityChoicePopWidget::initWidget()
     layout->setSpacing(0);
 
     MusicQualityChoiceTableWidget *table = new MusicQualityChoiceTableWidget(m_containWidget);
-    connect(table, SIGNAL(cellClicked(int ,int)), SLOT(listCellClicked(int)));
+    connect(table, SIGNAL(cellClicked(int ,int)), SLOT(itemCellClicked(int)));
     layout->addWidget(table);
     m_containWidget->setFixedSize(110, 150);
 
     m_containWidget->setLayout(layout);
 }
 
-void MusicQualityChoicePopWidget::listCellClicked(int row)
+void MusicQualityChoicePopWidget::itemCellClicked(int row)
 {
     m_menu->close();
 

@@ -47,17 +47,17 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell enter.
+     * Table widget item cell enter.
      */
-    virtual void listCellEntered(int row, int column) override;
+    virtual void itemCellEntered(int row, int column) override;
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
-     * Table widget list cell double click.
+     * Table widget item cell double click.
      */
-    void listCellDoubleClicked(int row, int column);
+    void itemCellDoubleClicked(int row, int column);
     /*!
      * Add radio list into list widget.
      */

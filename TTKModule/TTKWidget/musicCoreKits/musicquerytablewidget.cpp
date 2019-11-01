@@ -63,9 +63,9 @@ void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
     setQueryInput( d );
 }
 
-void MusicQueryItemTableWidget::listCellClicked(int row, int column)
+void MusicQueryItemTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryTableWidget::listCellClicked(row, column);
+    MusicQueryTableWidget::itemCellClicked(row, column);
 
     if(rowCount() > 0 && row == rowCount() - 1)
     {

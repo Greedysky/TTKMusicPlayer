@@ -217,9 +217,9 @@ void MusicSongSearchTableWidget::resizeWindow()
     }
 }
 
-void MusicSongSearchTableWidget::listCellEntered(int row, int column)
+void MusicSongSearchTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellEntered(row, column);
+    MusicQueryItemTableWidget::itemCellEntered(row, column);
     if(column == 7 || column == 8)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
@@ -230,9 +230,9 @@ void MusicSongSearchTableWidget::listCellEntered(int row, int column)
     }
 }
 
-void MusicSongSearchTableWidget::listCellClicked(int row, int column)
+void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::listCellClicked(row, column);
+    MusicQueryItemTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 7:
@@ -547,10 +547,10 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
                 m_playButton->text() == tr("Play") ? m_searchTableWidget->auditionToMusic(row) : m_searchTableWidget->auditionToMusicStop(row);
                 break;
             case 1:
-                m_searchTableWidget->listCellClicked(row, 7);
+                m_searchTableWidget->itemCellClicked(row, 7);
                 break;
 //            case 2:
-//                m_searchTableWidget->listCellClicked(row, 8);
+//                m_searchTableWidget->itemCellClicked(row, 8);
 //                break;
             default:
                 break;

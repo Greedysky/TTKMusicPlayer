@@ -30,7 +30,7 @@ MusicVolumeGainTableWidget::~MusicVolumeGainTableWidget()
 
 }
 
-void MusicVolumeGainTableWidget::listCellClicked(int row, int column)
+void MusicVolumeGainTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);

@@ -61,13 +61,13 @@ public Q_SLOTS:
      */
     virtual void setDeleteItemAt() override;
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemCellClicked(int row, int column) override;
     /*!
-     * Table widget list cell double click.
+     * Table widget item cell double click.
      */
-    void listCellDoubleClicked(int row, int column);
+    void itemCellDoubleClicked(int row, int column);
     /*!
      * Update download percent\ total time and current time progress.
      */

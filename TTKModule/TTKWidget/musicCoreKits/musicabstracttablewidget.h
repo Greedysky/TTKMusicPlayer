@@ -51,27 +51,27 @@ public:
      * Clear current items.
      */
     void clear();
+    /*!
+     * Get multi selected index set.
+     */
+    MIntList getMultiSelectedIndexs() const;
 
 public Q_SLOTS:
     /*!
-     * Table widget list cell enter.
+     * Table widget item cell enter.
      */
-    virtual void listCellEntered(int row, int column);
+    virtual void itemCellEntered(int row, int column);
     /*!
-     * Table widget list cell click.
+     * Table widget item cell click.
      * Subclass should implement this function.
      */
-    virtual void listCellClicked(int row, int column) = 0;
+    virtual void itemCellClicked(int row, int column) = 0;
 
 protected:
     /*!
      * Set selected item row color.
      */
     void setRowColor(int row, const QColor &color) const;
-    /*!
-     * Get multi index set.
-     */
-    MIntList getMultiIndexSet();
 
     QColor m_defaultBkColor;
     int m_previousColorRow;
