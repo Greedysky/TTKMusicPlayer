@@ -9,8 +9,8 @@
 #    include <QtWebKitWidgets/QWebView>
 #    include <QtWebKitWidgets/QWebFrame>
 #   else
-#    include <QWebView>
-#    include <QWebFrame>
+#    include <QtWebKit/QWebView>
+#    include <QtWebKit/QWebFrame>
 #   endif
 # elif defined MUSIC_WEBENGINE
 #   include <QtWebEngineWidgets/QWebEngineView>
