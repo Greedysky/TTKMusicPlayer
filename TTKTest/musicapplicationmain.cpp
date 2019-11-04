@@ -10,11 +10,11 @@ int main(int argc, char *argv[])
     const int failures = AutoTest::run(argc, argv);
     if(failures == 0)
     {
-        qDebug() << "ALL TESTS PASSED";
+       M_LOGGER_INFO("ALL TESTS PASSED");
     }
     else
     {
-        qDebug() << failures << " TESTS FAILED!";
+        M_LOGGER_INFO(failures << " TESTS FAILED!");
     }
     return app.exec();
 }

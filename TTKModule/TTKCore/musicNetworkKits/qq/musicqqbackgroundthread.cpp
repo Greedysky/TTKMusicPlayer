@@ -14,7 +14,6 @@ MusicQQBackgroundThread::MusicQQBackgroundThread(const QString &name, const QStr
     m_manager = new QNetworkAccessManager(this);
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
 #endif
 }
 
@@ -85,7 +84,6 @@ void MusicQQBackgroundThread::downLoadDataFinished()
         }
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadDataFinished deleteAll").arg(getClassName()));
     downLoadUrl(songId);
 }
 
@@ -124,7 +122,6 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
             }
         }
     }
-    M_LOGGER_INFO(QString("%1 downLoadUrlFinished deleteAll").arg(getClassName()));
 }
 
 void MusicQQBackgroundThread::downLoadUrl(const QString &id)

@@ -1,6 +1,5 @@
 #include "ossdatainterface.h"
-
-#include <QDebug>
+#include "ttklogger.h"
 
 OSSDataInterface::OSSDataInterface(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
@@ -10,7 +9,7 @@ OSSDataInterface::OSSDataInterface(QNetworkAccessManager *networkManager, QObjec
 
 void OSSDataInterface::handleError(QNetworkReply::NetworkError error)
 {
-    qDebug() << "error" << error;
+    M_LOGGER_ERROR("error" << error);
 }
 
 void OSSDataInterface::insertAuthorization(const QString &method, MStringMap &headers, const QString &resource)

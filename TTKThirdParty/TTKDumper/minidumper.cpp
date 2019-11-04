@@ -194,7 +194,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 
 void errorHandler(int type)
 {
-    qDebug() << "Error Type " << type;
+    M_LOGGER_INFO("Error Type " << type);
     checkExtraProcessQuit();
     exit(0);
 }

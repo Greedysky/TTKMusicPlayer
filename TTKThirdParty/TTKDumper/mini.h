@@ -19,9 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "ttklogger.h"
 #include "musicobject.h"
 #include "musicextrasglobaldefine.h"
-#include <QDebug>
 
 #ifdef Q_OS_WIN
 #include "psapi.h"
@@ -113,7 +113,7 @@ static inline void checkExtraProcessQuit()
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
-            qDebug() << "Windows Kill Process " << process << " Successed!";
+            M_LOGGER_INFO("Windows Kill Process " << process << " Successed!");
         }
     }
 }
@@ -176,7 +176,7 @@ static inline void checkExtraProcessQuit()
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {
-                qDebug() << "Unix Kill Process " << process << " PID" << info.m_pid << " Successed!";
+                M_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed!");
             }
         }
     }

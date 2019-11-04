@@ -171,7 +171,6 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
 
 //    emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
@@ -246,5 +245,4 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
     }
 
     emit downLoadDataChanged(QString());
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

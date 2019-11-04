@@ -5,8 +5,6 @@
 #include "musiccolordialog.h"
 #include "musicbackgroundconfigmanager.h"
 
-#include <QDebug>
-
 ToolsSkin::ToolsSkin(QWidget *parent)
     : QWidget(parent),
       m_ui(new Ui::ToolsSkin)
@@ -84,5 +82,5 @@ void ToolsSkin::writeClicked()
     image.m_pix = m_pixmap;
     image.m_item.m_name = m_ui->nameLineEdit->text().trimmed();
     image.m_item.m_useCount = m_ui->countLineEdit->text().trimmed().toInt();
-    qDebug() << "Save state " << MusicExtractWrap::inputSkin(&image, path);
+    M_LOGGER_INFO("Save state " << MusicExtractWrap::inputSkin(&image, path));
 }

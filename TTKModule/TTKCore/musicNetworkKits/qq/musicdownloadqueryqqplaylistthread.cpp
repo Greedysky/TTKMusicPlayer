@@ -204,7 +204,6 @@ void MusicDownLoadQueryQQPlaylistThread::downLoadFinished()
 
 //    emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
@@ -298,7 +297,6 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
     }
 
     emit downLoadDataChanged(QString());
-    M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryQQPlaylistThread::getMoreDetails(MusicResultsItem *item)

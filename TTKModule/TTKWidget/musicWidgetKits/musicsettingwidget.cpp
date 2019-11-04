@@ -485,7 +485,6 @@ void MusicSettingWidget::checkNetworkConnection()
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
 {
-    M_LOGGER_INFO(name);
     m_ui->netConnectionTypeValue->setText(!name.isEmpty() ? name : tr("Unknown"));
     m_ui->netConnectionWayValue->setText(!name.isEmpty() ? "TCP" : tr("Unknown"));
 }

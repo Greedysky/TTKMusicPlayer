@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     MusicInitObject object;
     object.init();
-    qDebug() << "Parameter Init success!";
+    M_LOGGER_INFO("Parameter Init success!");
 
 //    return app.exec();
     return 0;

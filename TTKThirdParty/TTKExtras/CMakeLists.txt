@@ -140,14 +140,14 @@ set(MUSIC_HEADERS
     qrencode/rscode.h
     qrencode/split.h
     qrencode/qrcodewidget.h
-    qalioss/ossconf.h
-    qalioss/ossdataitem.h
-    qalioss/ossutils.h
-    qalioss/ossdatainterface.h
-    qalioss/osslistdata.h
-    qalioss/ossdeletedata.h
-    qalioss/ossuploaddata.h
-    qalioss/ossdownloaddata.h
+    qoss/ossconf.h
+    qoss/ossdataitem.h
+    qoss/ossutils.h
+    qoss/ossdatainterface.h
+    qoss/osslistdata.h
+    qoss/ossdeletedata.h
+    qoss/ossuploaddata.h
+    qoss/ossdownloaddata.h
     qjson/parser.h
     qjson/parserrunnable.h
     qjson/qobjecthelper.h
@@ -190,13 +190,13 @@ set(MUSIC_SOURCES
     qrencode/rscode.c
     qrencode/split.c
     qrencode/qrcodewidget.cpp
-    qalioss/ossconf.cpp
-    qalioss/ossutils.cpp
-    qalioss/ossdatainterface.cpp
-    qalioss/osslistdata.cpp
-    qalioss/ossdeletedata.cpp
-    qalioss/ossuploaddata.cpp
-    qalioss/ossdownloaddata.cpp
+    qoss/ossconf.cpp
+    qoss/ossutils.cpp
+    qoss/ossdatainterface.cpp
+    qoss/osslistdata.cpp
+    qoss/ossdeletedata.cpp
+    qoss/ossuploaddata.cpp
+    qoss/ossdownloaddata.cpp
     qjson/parser.cpp
     qjson/qobjecthelper.cpp
     qjson/json_scanner.cpp

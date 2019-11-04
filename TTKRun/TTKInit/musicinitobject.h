@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QDebug>
+#include "ttklogger.h"
 #include "musicobject.h"
 #include "ttkversion.h"
 #include "musicrunglobaldefine.h"

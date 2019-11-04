@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
 #///Oss import
-#include "qalioss/ossdataitem.h"
+#include "qoss/ossdataitem.h"
 
 MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

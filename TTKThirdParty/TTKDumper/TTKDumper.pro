@@ -47,7 +47,8 @@ SOURCES += \
 HEADERS += \
     $$PWD/mini.h \
     $$PWD/minidumper.h \
-    $$PWD/ttkdumper.h
+    $$PWD/ttkdumper.h \
+    $$PWD/ttklogger.h
 
 #load extra define
 include(../TTKExtrasDefine.pri)

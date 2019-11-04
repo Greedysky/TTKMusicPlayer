@@ -34,6 +34,8 @@ DEFINES += TTK_LIBRARY
 
 INCLUDEPATH += \
     $$PWD/../ \
+    $$PWD/../TTKThirdParty \
+    $$PWD/../TTKThirdParty/TTKDumper \
     $$PWD/../TTKModule/TTKCore/musicCoreKits
 
 HEADERS  += \

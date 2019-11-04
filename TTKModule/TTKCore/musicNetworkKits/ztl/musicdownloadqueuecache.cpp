@@ -19,7 +19,6 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &d
     m_request = new QNetworkRequest();
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
     MusicObject::setSslConfiguration(m_request);
 #endif
 

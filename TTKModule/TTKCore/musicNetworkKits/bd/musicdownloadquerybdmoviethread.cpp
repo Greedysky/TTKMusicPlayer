@@ -160,7 +160,6 @@ void MusicDownLoadQueryBDMovieThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
@@ -214,7 +213,6 @@ void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 pageDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
@@ -250,7 +248,6 @@ void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::MusicSongInformation *info)

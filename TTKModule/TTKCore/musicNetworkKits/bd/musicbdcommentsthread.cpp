@@ -118,7 +118,6 @@ void MusicBDSongCommentsThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 finished deleteAll").arg(getClassName()));
 }
 
 
@@ -224,5 +223,4 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 finished deleteAll").arg(getClassName()));
 }

@@ -7,7 +7,7 @@
 #///QJson import
 #include "qjson/parser.h"
 #///Oss import
-#include "qalioss/ossconf.h"
+#include "qoss/ossconf.h"
 
 #include <QFile>
 
@@ -20,7 +20,6 @@ MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
     m_manager = new QNetworkAccessManager(this);
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
 #endif
 }
 

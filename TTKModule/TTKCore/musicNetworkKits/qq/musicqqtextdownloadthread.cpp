@@ -27,7 +27,6 @@ void MusicQQTextDownLoadThread::startToDownload()
             request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
 #ifndef QT_NO_SSL
             connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-            M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
             MusicObject::setSslConfiguration(&request);
 #endif
             m_reply = m_manager->get(request);

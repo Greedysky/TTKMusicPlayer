@@ -21,7 +21,7 @@
 
 #include "musicglobaldefine.h"
 #///Oss import
-#include "qalioss/ossdataitem.h"
+#include "qoss/ossdataitem.h"
 
 /*! @brief The class of the cloud data item.
  * @author Greedysky <greedysky@163.com>

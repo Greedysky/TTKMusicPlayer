@@ -2,6 +2,7 @@
 #define AFX_MDUMP_H__FCECFEFE6E_FA36_4693_B07C_F8JHT75BB0101B__INCLUDED_
 
 #include "musicextrasglobaldefine.h"
+
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
 #include "dbghelp.h"

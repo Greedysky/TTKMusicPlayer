@@ -4,7 +4,7 @@
 #///QJson import
 #include "qjson/parser.h"
 #///Oss import
-#include "qalioss/ossconf.h"
+#include "qoss/ossconf.h"
 
 #define QN_VERSION       "version"
 

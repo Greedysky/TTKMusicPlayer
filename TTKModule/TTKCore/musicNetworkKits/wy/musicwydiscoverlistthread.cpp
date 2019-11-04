@@ -93,5 +93,4 @@ void MusicWYDiscoverListThread::downLoadFinished()
 
     emit downLoadDataChanged(m_toplistInfo);
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

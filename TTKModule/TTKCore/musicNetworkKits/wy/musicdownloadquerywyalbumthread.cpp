@@ -162,7 +162,6 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryWYAlbumThread::singleDownLoadFinished()
@@ -209,5 +208,4 @@ void MusicDownLoadQueryWYAlbumThread::singleDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }

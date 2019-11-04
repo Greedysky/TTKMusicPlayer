@@ -4,7 +4,7 @@
 #include <QStringList>
 
 #define AVTRANSPORT "avtransport"
-#include <QDebug>
+
 const QString XML_HEAD = "<?xml version=\"1.0\"?>\n<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n<SOAP-ENV:Body>\n";
 const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";
 const QStringList FRIENS_NAMES = QStringList() << "friendlyname" << "friendlyName" << "FriendlyName" << "FriendlyName";
@@ -26,6 +26,10 @@ DlnaClient::DlnaClient(const QString &data)
         else if(str.contains("Location:"))
         {
             data_list = str.remove("Location: http://").split(":");
+        }
+        else if(str.contains("location:"))
+        {
+            data_list = str.remove("location: http://").split(":");
         }
 
         if(data_list.size() >= 2)
@@ -60,7 +64,7 @@ bool DlnaClient::connect()
 {
     const QString &request = HelperDlna::MakeRequest("GET", m_smp, 0, QString(), m_serverIP, m_serverPort);
     const QString &response = HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
-    qDebug() << m_serverIP <<m_serverPort <<m_smp << response;
+    M_LOGGER_INFO(m_serverIP <<m_serverPort <<m_smp << response);
     const int code = HelperDlna::GetResponseCode(response);
     if(code != 200)
     {
@@ -125,10 +129,10 @@ bool DlnaClient::isConnected() const
 
 QString DlnaClient::tryToPlayFile(const QString &url)
 {
-    qDebug() << url << m_controlURL << m_isConnected;
+    M_LOGGER_INFO(url << m_controlURL << m_isConnected);
     const QString &uploadState = uploadFileToPlay(url);
     const QString &playState = startPlay(0);
-    qDebug() << uploadState << "playState " << playState;
+    M_LOGGER_INFO(uploadState << "playState " << playState);
     return playState;
 }
 
@@ -143,7 +147,7 @@ QString DlnaClient::uploadFileToPlay(const QString &url)
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
     const QString &request = HelperDlna::MakeRequest("POST", m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", m_serverIP, m_serverPort) + body;
-    qDebug() << request;
+    M_LOGGER_INFO(request);
     return HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
 }
 

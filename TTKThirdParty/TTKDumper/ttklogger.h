@@ -1,5 +1,5 @@
-#ifndef MUSICLOGGER_H
-#define MUSICLOGGER_H
+#ifndef TTKLOGGER_H
+#define TTKLOGGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,18 +19,17 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef MUSIC_MOBILE
 #include <QFile>
-#include <QTextStream>
+#include <QDebug>
 #include <QDateTime>
-#include "musicotherdefine.h"
-#include "musicglobaldefine.h"
+#include <QTextStream>
+#include "musicextrasglobaldefine.h"
 
 #define CURRENTTIME QTime::currentTime().toString(MUSIC_ZTIME_FORMAT)
 #define CURRENTDATE QDate::currentDate().toString(MUSIC_YEAR_FORMAT)
 #define LOG_END     QString("log::npos")
 
-#define M_LOGGER    (*MusicLogger::createInstance())
+#define M_LOGGER    (*TTKLogger::createInstance())
 #define M_MESSAGE(str, msg)         \
 {                                   \
     M_LOGGER.setLevel(msg);         \
@@ -45,26 +44,26 @@
     #define M_LOGGER_ERROR(str) M_MESSAGE(str, "[Error]")
     #define M_LOGGER_FATAL(str) M_MESSAGE(str, "[Fatal]")
 #else
-    #define M_LOGGER_INFO(str)  Q_UNUSED(str)
-    #define M_LOGGER_DEBUG(str) Q_UNUSED(str)
-    #define M_LOGGER_WARN(str)  Q_UNUSED(str)
-    #define M_LOGGER_TRACE(str) Q_UNUSED(str)
-    #define M_LOGGER_ERROR(str) Q_UNUSED(str)
-    #define M_LOGGER_FATAL(str) Q_UNUSED(str)
+    #define M_LOGGER_INFO(str)  qDebug() << str
+    #define M_LOGGER_DEBUG(str) qDebug() << str
+    #define M_LOGGER_WARN(str)  qDebug() << str
+    #define M_LOGGER_TRACE(str) qDebug() << str
+    #define M_LOGGER_ERROR(str) qDebug() << str
+    #define M_LOGGER_FATAL(str) qDebug() << str
 #endif
 
 /*! @brief The class of the application logger.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicLogger
+class MUSIC_EXTRAS_EXPORT TTKLogger
 {
 public:
     /*!
      * Get object instance ptr.
      */
-    inline static MusicLogger* createInstance()
+    inline static TTKLogger* createInstance()
     {
-        static MusicLogger obj;
+        static TTKLogger obj;
         return &obj;
     }
 
@@ -86,7 +85,7 @@ public:
     /*!
      * Operator << override.
      */
-    inline MusicLogger &operator <<(bool t)
+    inline TTKLogger &operator <<(bool t)
     {
 #ifdef TTK_DEBUG
         m_streamString.append( QString("%1 ").arg(t ? "true" : "false") );
@@ -95,19 +94,19 @@ public:
 #endif
         return *this;
     }
-    inline MusicLogger &operator<<(char t) { return debugData<char>(t); }
-    inline MusicLogger &operator<<(signed short t) { return debugData<short>(t);}
-    inline MusicLogger &operator<<(ushort t) { return debugData<ushort>(t); }
-    inline MusicLogger &operator<<(signed int t) { return debugData<int>(t); }
-    inline MusicLogger &operator<<(uint t) { return debugData<uint>(t); }
-    inline MusicLogger &operator<<(signed long t) { return debugData<long>(t); }
-    inline MusicLogger &operator<<(ulong t) { return debugData<ulong>(t); }
-    inline MusicLogger &operator<<(qint64 t) { return debugData<qint64>(t); }
-    inline MusicLogger &operator<<(quint64 t) { return debugData<quint64>(t); }
-    inline MusicLogger &operator<<(float t) { return debugData<float>(t); }
-    inline MusicLogger &operator<<(double t) { return debugData<double>(t); }
-    inline MusicLogger &operator<<(const char *t) { return debugData<const char*>(t); }
-    inline MusicLogger &operator<<(const QString &t)
+    inline TTKLogger &operator<<(char t) { return debugData<char>(t); }
+    inline TTKLogger &operator<<(signed short t) { return debugData<short>(t);}
+    inline TTKLogger &operator<<(ushort t) { return debugData<ushort>(t); }
+    inline TTKLogger &operator<<(signed int t) { return debugData<int>(t); }
+    inline TTKLogger &operator<<(uint t) { return debugData<uint>(t); }
+    inline TTKLogger &operator<<(signed long t) { return debugData<long>(t); }
+    inline TTKLogger &operator<<(ulong t) { return debugData<ulong>(t); }
+    inline TTKLogger &operator<<(qint64 t) { return debugData<qint64>(t); }
+    inline TTKLogger &operator<<(quint64 t) { return debugData<quint64>(t); }
+    inline TTKLogger &operator<<(float t) { return debugData<float>(t); }
+    inline TTKLogger &operator<<(double t) { return debugData<double>(t); }
+    inline TTKLogger &operator<<(const char *t) { return debugData<const char*>(t); }
+    inline TTKLogger &operator<<(const QString &t)
     {
 #ifdef TTK_DEBUG
         if(t == LOG_END)
@@ -124,15 +123,15 @@ public:
 #endif
         return *this;
     }
-    inline MusicLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
-    inline MusicLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
-    inline MusicLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
+    inline TTKLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
+    inline TTKLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
+    inline TTKLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
 
 private:
     /*!
      * Object contsructor.
      */
-    MusicLogger()
+    TTKLogger()
     {
 #ifdef TTK_DEBUG
         m_file.setFileName("logger.txt");
@@ -143,7 +142,7 @@ private:
 #endif
     }
 
-    ~MusicLogger()
+    ~TTKLogger()
     {
 #ifdef TTK_DEBUG
         m_file.close();
@@ -154,7 +153,7 @@ private:
      * Output debug data into local file.
      */
     template <typename T>
-    MusicLogger &debugData(const T &data)
+    TTKLogger &debugData(const T &data)
     {
 #ifdef TTK_DEBUG
         m_streamString.append( QString("%1 %2 ").arg(m_levelType).arg(data) );
@@ -170,13 +169,5 @@ private:
     QFile m_file;
 
 };
-#else
-    #define M_LOGGER_INFO(str)  Q_UNUSED(str)
-    #define M_LOGGER_DEBUG(str) Q_UNUSED(str)
-    #define M_LOGGER_WARN(str)  Q_UNUSED(str)
-    #define M_LOGGER_TRACE(str) Q_UNUSED(str)
-    #define M_LOGGER_ERROR(str) Q_UNUSED(str)
-    #define M_LOGGER_FATAL(str) Q_UNUSED(str)
-#endif
 
-#endif // MUSICLOGGER_H
+#endif // TTKLogger_H

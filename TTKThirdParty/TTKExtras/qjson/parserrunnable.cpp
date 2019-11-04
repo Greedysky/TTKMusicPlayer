@@ -19,8 +19,8 @@
   */
 
 #include "parserrunnable.h"
-
 #include "parser.h"
+#include "ttklogger.h"
 
 #include <QtCore/QDebug>
 #include <QtCore/QVariant>
@@ -49,18 +49,18 @@ void ParserRunnable::setData( const QByteArray &data )
 
 void ParserRunnable::run()
 {
-  qDebug() << Q_FUNC_INFO;
+  M_LOGGER_INFO(Q_FUNC_INFO);
   TTK_D(ParserRunnable);
 
   bool ok;
   Parser parser;
   QVariant result = parser.parse (d->m_data, &ok);
   if (ok) {
-    qDebug() << "successfully converted json item to QVariant object";
+    M_LOGGER_INFO("successfully converted json item to QVariant object");
     emit parsingFinished(result, true, QString());
   } else {
     const QString errorText = tr("An error occurred while parsing json: %1").arg(parser.errorString());
-    qCritical() << errorText;
+    M_LOGGER_ERROR(errorText);
     emit parsingFinished(QVariant(), false, errorText);
   }
 }

@@ -2,7 +2,6 @@
 
 #include <QDir>
 #include <QMap>
-#include <QDebug>
 #include <QFileInfo>
 #include <functional>
 #ifdef TTK_GREATER_NEW
@@ -85,11 +84,11 @@ void CodeLinesTest::codeLines()
     } );
     eventLoop.exec();
 
-    qDebug() << "All File Count " << fileCount;
-    qDebug() << "All Meet The Requirements Line Count " << lineCount;
+    M_LOGGER_INFO("All File Count " << fileCount);
+    M_LOGGER_INFO("All Meet The Requirements Line Count " << lineCount);
     foreach(const QString &key, categorys.keys())
     {
-        qDebug() << QString(".%1 Type  All count %2").arg(key).arg(categorys[key]);
+        M_LOGGER_INFO(QString(".%1 Type  All count %2").arg(key).arg(categorys[key]));
     }
 }
 

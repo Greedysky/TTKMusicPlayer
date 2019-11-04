@@ -18,11 +18,11 @@
 #include "musiccloudtablewidget.h"
 #include "musicsourceupdatethread.h"
 #///Oss import
-#include "qalioss/ossconf.h"
-#include "qalioss/osslistdata.h"
-#include "qalioss/ossuploaddata.h"
-#include "qalioss/ossdeletedata.h"
-#include "qalioss/ossdownloaddata.h"
+#include "qoss/ossconf.h"
+#include "qoss/osslistdata.h"
+#include "qoss/ossuploaddata.h"
+#include "qoss/ossdeletedata.h"
+#include "qoss/ossdownloaddata.h"
 #///QJson import
 #include "qjson/parser.h"
 

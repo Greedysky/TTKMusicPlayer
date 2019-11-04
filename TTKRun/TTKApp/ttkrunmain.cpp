@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
     if(app.isRunning())
     {
-        qDebug() << "One app has already run!";
+        M_LOGGER_INFO("One app has already run!");
         return -1;
     }
 

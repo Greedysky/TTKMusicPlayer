@@ -52,7 +52,6 @@ void MusicDownloadStatusObject::showDownLoadInfoFor(MusicObject::DownLoadMode ty
         default:
             break;
     }
-    M_LOGGER_INFO(stringType);
 }
 
 void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)

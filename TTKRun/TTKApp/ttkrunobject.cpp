@@ -1,6 +1,7 @@
 #include "ttkrunobject.h"
 #include "musicinitobject.h"
 
+
 #include <QProcess>
 #include <QApplication>
 
@@ -59,11 +60,11 @@ void TTKRunObject::finished(int code)
 {
      if(code == 0)
      {
-         qDebug() << "Application exit success!";
+         M_LOGGER_INFO("Application exit success!");
      }
      else
      {
-         qDebug() << "Application run error, please run TTKService instead!";
+         M_LOGGER_INFO("Application run error, please run TTKService instead!");
      }
 
      qApp->quit();

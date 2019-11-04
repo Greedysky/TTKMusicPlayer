@@ -33,6 +33,8 @@ win32:msvc{
 INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../ \
+    $$PWD/../../TTKThirdParty \
+    $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += \

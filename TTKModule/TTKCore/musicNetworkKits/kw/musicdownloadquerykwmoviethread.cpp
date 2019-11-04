@@ -156,7 +156,6 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
@@ -212,7 +211,6 @@ void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 pageDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()
@@ -244,7 +242,6 @@ void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format)

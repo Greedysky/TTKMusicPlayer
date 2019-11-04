@@ -143,7 +143,6 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryWYMovieThread::pageDownLoadFinished()
@@ -198,7 +197,6 @@ void MusicDownLoadQueryWYMovieThread::pageDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 pageDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryWYMovieThread::singleDownLoadFinished()
@@ -219,7 +217,6 @@ void MusicDownLoadQueryWYMovieThread::singleDownLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryWYMovieThread::startMVListQuery(qint64 id)

@@ -160,7 +160,6 @@ void MusicDownLoadQueryKWPlaylistThread::downLoadFinished()
 
 //    emit downLoadDataChanged(QString());
     deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
@@ -236,7 +235,6 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
     }
 
     emit downLoadDataChanged(QString());
-    M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
@@ -267,7 +265,6 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
             }
         }
     }
-    M_LOGGER_INFO(QString("%1 getMorePlaylistDetailsFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetails(const QString &pid)

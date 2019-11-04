@@ -20,7 +20,6 @@ INCLUDEPATH += $$PWD
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicformats.h \
     $$PWD/musicnumberdefine.h \
