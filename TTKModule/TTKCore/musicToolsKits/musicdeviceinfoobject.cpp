@@ -41,7 +41,7 @@ bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
         FILE_SHARE_READ | FILE_SHARE_WRITE,
         nullptr,
         OPEN_EXISTING,
-        NULL,
+        0,
         nullptr
     );
 

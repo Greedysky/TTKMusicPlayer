@@ -124,7 +124,7 @@ QUrl createUrl(const char *urlData, const http_parser_url &urlInfo)
     url.setScheme(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_SCHEMA));
     url.setHost(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_HOST));
     // Port is dealt with separately since it is available as an integer.
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#ifdef TTK_GREATER_NEW
     url.setPath(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_PATH), QUrl::TolerantMode);
     url.setQuery(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_QUERY));
 #else
