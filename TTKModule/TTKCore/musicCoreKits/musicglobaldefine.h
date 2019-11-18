@@ -138,7 +138,6 @@
 #endif
 
 ///
-#include "ttklogger.h"
 #include "musicglobal.h"
 #include "musicotherdefine.h"
 ///

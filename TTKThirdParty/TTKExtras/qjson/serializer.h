@@ -21,7 +21,6 @@
 #ifndef QJSON_SERIALIZER_H
 #define QJSON_SERIALIZER_H
 
-#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 QT_BEGIN_NAMESPACE

@@ -20,7 +20,6 @@
  ================================================= */
 
 #include <QApplication>
-#include "ttkprivate.h"
 #include "musicrunglobaldefine.h"
 
 class TTKRunApplicationPrivate;

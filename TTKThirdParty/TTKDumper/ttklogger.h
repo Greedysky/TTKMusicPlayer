@@ -23,7 +23,6 @@
 #include <QDebug>
 #include <QDateTime>
 #include <QTextStream>
-#include "musicextrasglobaldefine.h"
 
 #define CURRENTTIME QTime::currentTime().toString(MUSIC_ZTIME_FORMAT)
 #define CURRENTDATE QDate::currentDate().toString(MUSIC_YEAR_FORMAT)
@@ -55,7 +54,7 @@
 /*! @brief The class of the application logger.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT TTKLogger
+class Q_DECL_EXPORT TTKLogger
 {
 public:
     /*!

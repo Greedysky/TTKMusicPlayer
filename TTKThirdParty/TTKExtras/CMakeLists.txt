@@ -167,7 +167,6 @@ set(MUSIC_SOURCES
     qdlna/dlnaclient.cpp
     qdlna/dlnafinder.cpp
     qdlna/dlnahelper.cpp
-    qdlna/dlnaservice.cpp
     qdlna/dlnaxml.cpp
     qdlna/dlnafileserver.cpp
     qhttpserver/http_parser.c

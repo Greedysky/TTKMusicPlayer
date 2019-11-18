@@ -22,9 +22,9 @@
 #include "dlnahelper.h"
 #include "musicextrasglobaldefine.h"
 
-class QHttpServer;
 class QHttpRequest;
 class QHttpResponse;
+class DlnaFileServerPrivate;
 
 /*! @brief The class of the dlna file server.
  * @author Greedysky <greedysky@163.com>
@@ -34,7 +34,6 @@ class MUSIC_EXTRAS_EXPORT DlnaFileServer : public QObject
     Q_OBJECT
 public:
     DlnaFileServer(QObject *parent = nullptr);
-    ~DlnaFileServer();
 
     void start();
     void setPrefixPath(const QString &path);
@@ -44,8 +43,7 @@ private Q_SLOTS:
     void handleRequest(QHttpRequest *request, QHttpResponse *response);
 
 private:
-    QString m_prefix;
-    QHttpServer *m_server;
+    TTK_DECLARE_PRIVATE(DlnaFileServer)
 
 };
 

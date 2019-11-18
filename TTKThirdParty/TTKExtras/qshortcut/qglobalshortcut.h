@@ -21,7 +21,6 @@
 
 #include <QObject>
 #include <QKeySequence>
-#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QGlobalShortcutPrivate;

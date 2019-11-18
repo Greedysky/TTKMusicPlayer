@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "ttklogger.h"
 #include "musicextrasglobaldefine.h"
 
 /*! @brief The class of the dlna helper.

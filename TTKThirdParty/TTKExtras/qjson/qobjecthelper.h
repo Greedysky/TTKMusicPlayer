@@ -21,7 +21,6 @@
 #ifndef QOBJECTHELPER_H
 #define QOBJECTHELPER_H
 
-#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 #include <QtCore/QLatin1String>

@@ -20,8 +20,9 @@
  ================================================= */
 
 #include "dlnaservice.h"
-#include <QtXml/QDomDocument>
 #include "musicextrasglobaldefine.h"
+
+class DlnaXmlPrivate;
 
 /*! @brief The class of the dlna xml.
  * @author Greedysky <greedysky@163.com>
@@ -30,7 +31,6 @@ class MUSIC_EXTRAS_EXPORT DlnaXml
 {
 public:
     DlnaXml();
-    ~DlnaXml();
 
     bool fromString(const QString &data);
     QString toString() const;
@@ -40,7 +40,7 @@ public:
     DlnaService readServiceTag(const QString &type, const QString &tagName) const;
 
 private:
-    QDomDocument *m_document;
+    TTK_DECLARE_PRIVATE(DlnaXml)
 
 };
 

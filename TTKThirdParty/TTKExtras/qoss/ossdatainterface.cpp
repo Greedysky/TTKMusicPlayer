@@ -1,5 +1,4 @@
 #include "ossdatainterface.h"
-#include "ttklogger.h"
 
 OSSDataInterface::OSSDataInterface(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)

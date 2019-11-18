@@ -19,11 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMap>
-#include "dlnaxml.h"
 #include "musicextrasglobaldefine.h"
 
-class DlnaXml;
+class DlnaClientPrivate;
 
 /*! @brief The class of the dlna client.
  * @author Greedysky <greedysky@163.com>
@@ -32,7 +30,6 @@ class MUSIC_EXTRAS_EXPORT DlnaClient
 {
 public:
     explicit DlnaClient(const QString &data);
-    ~DlnaClient();
 
     QString server();
     QString serverName();
@@ -51,13 +48,7 @@ public:
     int totalSeconds(const QString &value);
 
 private:
-    bool m_isConnected;
-
-    DlnaXml *m_xml;
-    QString m_serverIP, m_serverPort;
-    QString m_smp, m_controlURL;
-    QString m_friendlyName;
-    QMap<QString, DlnaService> m_services;
+    TTK_DECLARE_PRIVATE(DlnaClient)
 
 };
 

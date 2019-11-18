@@ -33,6 +33,5 @@ SOURCES += \
     $$PWD/dlnafileserver.cpp \
     $$PWD/dlnafinder.cpp \
     $$PWD/dlnaclient.cpp \
-    $$PWD/dlnaservice.cpp \
     $$PWD/dlnaxml.cpp
 

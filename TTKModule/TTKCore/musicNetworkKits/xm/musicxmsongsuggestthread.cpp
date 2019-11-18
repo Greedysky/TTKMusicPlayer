@@ -73,4 +73,5 @@ void MusicXMSongSuggestThread::downLoadFinished()
     }
 
     emit downLoadDataChanged(QString());
-    deleteAll();}
+    deleteAll();
+}

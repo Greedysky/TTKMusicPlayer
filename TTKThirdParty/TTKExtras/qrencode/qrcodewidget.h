@@ -21,7 +21,6 @@
 
 #include <QWidget>
 #include "qrencode.h"
-#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QRCodeQWidgetPrivate;

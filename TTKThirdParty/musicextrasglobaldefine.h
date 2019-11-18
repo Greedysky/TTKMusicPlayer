@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "ttkprivate.h"
 #include "musicglobal.h"
 
 ///exoprt

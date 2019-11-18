@@ -20,7 +20,6 @@
 
 #include "parserrunnable.h"
 #include "parser.h"
-#include "ttklogger.h"
 
 #include <QtCore/QDebug>
 #include <QtCore/QVariant>

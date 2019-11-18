@@ -1,5 +1,7 @@
 #include "dlnaclient.h"
+#include "dlnaxml.h"
 
+#include <QMap>
 #include <unistd.h>
 #include <QStringList>
 
@@ -10,11 +12,38 @@ const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";
 const QStringList FRIENS_NAMES = QStringList() << "friendlyname" << "friendlyName" << "FriendlyName" << "FriendlyName";
 const QStringList AVT_NAMES = QStringList() << "avtransport" << "AVTransport";
 
-DlnaClient::DlnaClient(const QString &data)
+class DlnaClientPrivate : public TTKPrivate<DlnaClient>
+{
+public:
+    DlnaClientPrivate();
+    ~DlnaClientPrivate();
+
+    void initData(const QString &data);
+    bool connectServer();
+
+    bool m_isConnected;
+
+    DlnaXml *m_xml;
+    QString m_serverIP, m_serverPort;
+    QString m_smp, m_controlURL;
+    QString m_friendlyName;
+    QMap<QString, DlnaService> m_services;
+
+};
+
+DlnaClientPrivate::DlnaClientPrivate()
 {
     m_isConnected = false;
     m_xml = new DlnaXml;
+}
 
+DlnaClientPrivate::~DlnaClientPrivate()
+{
+    delete m_xml;
+}
+
+void DlnaClientPrivate::initData(const QString &data)
+{
     const QStringList& list = data.split("\r\n");
     foreach(QString str, list)
     {
@@ -45,26 +74,11 @@ DlnaClient::DlnaClient(const QString &data)
     }
 }
 
-DlnaClient::~DlnaClient()
-{
-    delete m_xml;
-}
-
-QString DlnaClient::server()
-{
-    return m_serverIP;
-}
-
-QString DlnaClient::serverName()
-{
-    return m_friendlyName;
-}
-
-bool DlnaClient::connect()
+bool DlnaClientPrivate::connectServer()
 {
     const QString &request = HelperDlna::MakeRequest("GET", m_smp, 0, QString(), m_serverIP, m_serverPort);
     const QString &response = HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
-    M_LOGGER_INFO(m_serverIP <<m_serverPort <<m_smp << response);
+    M_LOGGER_INFO(m_serverIP << m_serverPort << m_smp << response);
     const int code = HelperDlna::GetResponseCode(response);
     if(code != 200)
     {
@@ -114,7 +128,7 @@ bool DlnaClient::connect()
     {
         if(it.key().contains(AVTRANSPORT))
         {
-            m_controlURL = it.value().getControlURL();
+            m_controlURL = it.value().m_controlURL;
             m_isConnected = true;
             return true;
         }
@@ -122,14 +136,43 @@ bool DlnaClient::connect()
     return false;
 }
 
+
+
+DlnaClient::DlnaClient(const QString &data)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(DlnaClient);
+    d->initData(data);
+}
+
+QString DlnaClient::server()
+{
+    TTK_D(DlnaClient);
+    return d->m_serverIP;
+}
+
+QString DlnaClient::serverName()
+{
+    TTK_D(DlnaClient);
+    return d->m_friendlyName;
+}
+
+bool DlnaClient::connect()
+{
+    TTK_D(DlnaClient);
+    return d->connectServer();
+}
+
 bool DlnaClient::isConnected() const
 {
-    return m_isConnected;
+    TTK_D(DlnaClient);
+    return d->m_isConnected;
 }
 
 QString DlnaClient::tryToPlayFile(const QString &url)
 {
-    M_LOGGER_INFO(url << m_controlURL << m_isConnected);
+    TTK_D(DlnaClient);
+    M_LOGGER_INFO(url << d->m_controlURL << d->m_isConnected);
     const QString &uploadState = uploadFileToPlay(url);
     const QString &playState = startPlay(0);
     M_LOGGER_INFO(uploadState << "playState " << playState);
@@ -138,6 +181,7 @@ QString DlnaClient::tryToPlayFile(const QString &url)
 
 QString DlnaClient::uploadFileToPlay(const QString &url)
 {
+    TTK_D(DlnaClient);
     //Later we will send a message to the DLNA server to start the file playing
     QString play_url = url;
     QString body = XML_HEAD;
@@ -146,47 +190,51 @@ QString DlnaClient::uploadFileToPlay(const QString &url)
     body += "<CurrentURI>" + play_url.replace(" ", "%20") + "</CurrentURI>\n";
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
-    const QString &request = HelperDlna::MakeRequest("POST", m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", m_serverIP, m_serverPort) + body;
+    const QString &request = HelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
     M_LOGGER_INFO(request);
-    return HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
+    return HelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 
 QString DlnaClient::startPlay(int instance)
 {
+    TTK_D(DlnaClient);
     //Start playing the new upload film or music track
     QString body = XML_HEAD;
     body += "<u:Play xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>"+ QString::number(instance) + "</InstanceID><Speed>1</Speed></u:Play>\n";
     body += XML_FOOT + "\n";
-    const QString &request = HelperDlna::MakeRequest("POST", m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Play", m_serverIP, m_serverPort) + body;
-    return HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
+    const QString &request = HelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Play", d->m_serverIP, d->m_serverPort) + body;
+    return HelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 
 QString DlnaClient::stopPlay(int instance)
 {
+    TTK_D(DlnaClient);
     //Called to stop playing a movie or a music track
     QString body = XML_HEAD;
     body += "<u:Stop xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Stop>\n";
     body += XML_FOOT + "\n";
-    const QString &request = HelperDlna::MakeRequest("POST", m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Stop", m_serverIP, m_serverPort) + body;
-    return HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
+    const QString &request = HelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Stop", d->m_serverIP, d->m_serverPort) + body;
+    return HelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 
 QString DlnaClient::pause(int instance)
 {
+    TTK_D(DlnaClient);
     //Called to pause playing a movie or a music track
     QString body = XML_HEAD;
     body += "<u:Pause xmlns:u=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID>" + QString::number(instance) + "</InstanceID></u:Pause>\n";
     body += XML_FOOT + "\n";
-    const QString &request = HelperDlna::MakeRequest("POST", m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Pause", m_serverIP, m_serverPort) + body;
-    return HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
+    const QString &request = HelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#Pause", d->m_serverIP, d->m_serverPort) + body;
+    return HelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 
 QString DlnaClient::getPosition()
 {
+    TTK_D(DlnaClient);
     //Returns the current position for the track that is playing on the DLNA server
     const QString &body = XML_HEAD + "<m:GetPositionInfo xmlns:m=\"urn:schemas-upnp-org:service:AVTransport:1\"><InstanceID xmlns:dt=\"urn:schemas-microsoft-com:datatypes\" dt:dt=\"ui4\">0</InstanceID></m:GetPositionInfo>" + XML_FOOT + "\n";
-    const QString &request = HelperDlna::MakeRequest("POST", m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", m_serverIP, m_serverPort) + body;
-    return HelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
+    const QString &request = HelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#GetPositionInfo", d->m_serverIP, d->m_serverPort) + body;
+    return HelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 
 int DlnaClient::totalSeconds(const QString &value)

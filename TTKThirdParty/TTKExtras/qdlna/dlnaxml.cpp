@@ -1,18 +1,38 @@
 #include "dlnaxml.h"
 
-DlnaXml::DlnaXml()
+#include <QtXml/QDomDocument>
+
+class DlnaXmlPrivate : public TTKPrivate<DlnaXml>
+{
+public:
+    DlnaXmlPrivate();
+    ~DlnaXmlPrivate();
+
+    QDomDocument *m_document;
+
+};
+
+DlnaXmlPrivate::DlnaXmlPrivate()
 {
     m_document = new QDomDocument;
 }
 
-DlnaXml::~DlnaXml()
+DlnaXmlPrivate::~DlnaXmlPrivate()
 {
     delete m_document;
 }
 
+
+
+DlnaXml::DlnaXml()
+{
+    TTK_INIT_PRIVATE;
+}
+
 bool DlnaXml::fromString(const QString &data)
 {
-    if(!m_document->setContent(data))
+    TTK_D(DlnaXml);
+    if(!d->m_document->setContent(data))
     {
         return false;
     }
@@ -21,15 +41,17 @@ bool DlnaXml::fromString(const QString &data)
 
 QString DlnaXml::toString() const
 {
-    if(!m_document)
+    TTK_D(DlnaXml);
+    if(!d->m_document)
     {
         return QString();
     }
-    return m_document->toString();
+    return d->m_document->toString();
 }
 
 QString DlnaXml::tagNameToLower(const QString &data) const
 {
+    TTK_D(DlnaXml);
     QString body = data;
     int left = body.indexOf("<");
     while(left != -1)
@@ -49,7 +71,8 @@ QString DlnaXml::tagNameToLower(const QString &data) const
 
 QString DlnaXml::readTagNameValue(const QString &tagName) const
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    TTK_D(DlnaXml);
+    const QDomNodeList &nodeList = d->m_document->elementsByTagName(tagName);
     if(nodeList.isEmpty())
     {
         return QString();
@@ -59,7 +82,8 @@ QString DlnaXml::readTagNameValue(const QString &tagName) const
 
 DlnaService DlnaXml::readServiceTag(const QString &type, const QString &tagName) const
 {
-    const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
+    TTK_D(DlnaXml);
+    const QDomNodeList &nodeList = d->m_document->elementsByTagName(tagName);
     if(nodeList.isEmpty())
     {
         return DlnaService();
@@ -83,15 +107,15 @@ DlnaService DlnaXml::readServiceTag(const QString &type, const QString &tagName)
                     text.remove(0, 1);
                 }
                 if(nodeName.contains("servicetype", Qt::CaseInsensitive))
-                    service.setServiceType(text);
+                    service.m_serviceType = text;
                 else if(nodeName.contains("serviceid", Qt::CaseInsensitive))
-                    service.setServiceID(text);
+                    service.m_serviceID = text;
                 else if(nodeName.contains("scpdurl", Qt::CaseInsensitive))
-                    service.setScpdlURL(text);
+                    service.m_scpdURL = text;
                 else if(nodeName.contains("controlurl", Qt::CaseInsensitive))
-                    service.setControlURL(text);
+                    service.m_controlURL = text;
                 else if(nodeName.contains("eventsuburl", Qt::CaseInsensitive))
-                    service.setEventSublURL(text);
+                    service.m_eventSubURL = text;
             }
         }
     }

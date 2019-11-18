@@ -21,7 +21,6 @@
 #ifndef QJSON_PARSER_H
 #define QJSON_PARSER_H
 
-#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 QT_BEGIN_NAMESPACE

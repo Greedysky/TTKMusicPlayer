@@ -25,30 +25,18 @@
 /*! @brief The class of the dlna service.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT DlnaService
+struct MUSIC_EXTRAS_EXPORT DlnaService
 {
-public:
-    DlnaService();
-    DlnaService(const QString &control, const QString &scpd, const QString &eventSub, const QString &type, const QString &id);
-
-    void setControlURL(const QString &control);
-    void setScpdlURL(const QString &scpd);
-    void setEventSublURL(const QString &eventSub);
-    void setServiceType(const QString &type);
-    void setServiceID(const QString &id);
-
-    QString getServiceID() const;
-    QString getControlURL() const;
-
-    bool isEmpty() const;
-
-private:
     QString m_controlURL;
     QString m_scpdURL;
     QString m_eventSubURL;
     QString m_serviceType;
     QString m_serviceID;
 
+    inline bool isEmpty() const
+    {
+        return m_controlURL.isEmpty() && m_scpdURL.isEmpty() && m_eventSubURL.isEmpty() && m_serviceType.isEmpty() && m_serviceID.isEmpty();
+    }
 };
 
 #endif // DLNASERVICE_H

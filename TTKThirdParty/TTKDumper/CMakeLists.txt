@@ -16,6 +16,7 @@ set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
     minidumper.h
     ttkdumper.h
+    ttklogger.h
     mini.h
   )
 

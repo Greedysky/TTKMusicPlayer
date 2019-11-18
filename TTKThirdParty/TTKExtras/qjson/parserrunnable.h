@@ -21,7 +21,6 @@
 #ifndef PARSERRUNNABLE_H
 #define PARSERRUNNABLE_H
 
-#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 #include <QtCore/QObject>

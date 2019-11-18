@@ -1,24 +1,38 @@
 #include "dlnafinder.h"
 #include "dlnaclient.h"
 
+#include <QUdpSocket>
+
 #define DEFAULT_ROUTER_IP   "192.168.0.1"
 
-DlnaFinder::DlnaFinder(QObject *parent)
-    : QObject(parent)
+class DlnaFinderPrivate : public TTKPrivate<DlnaFinder>
 {
-    m_udpSock = new QUdpSocket(this);
-    m_udpSock->bind(QHostAddress(QHostAddress::Any), 6000);
+public:
+    DlnaFinderPrivate();
+    ~DlnaFinderPrivate();
 
-    connect(m_udpSock, SIGNAL(readyRead()), SLOT(readResponse()));
+    void find();
+    void removeClients();
+    bool findClient(const QString &server);
+
+    QUdpSocket *m_udpSock;
+    QList<DlnaClient*> m_clients;
+
+};
+
+DlnaFinderPrivate::DlnaFinderPrivate()
+{
+    m_udpSock = new QUdpSocket(ttk_q());
+    m_udpSock->bind(QHostAddress(QHostAddress::Any), 6000);
 }
 
-DlnaFinder::~DlnaFinder()
+DlnaFinderPrivate::~DlnaFinderPrivate()
 {
     delete m_udpSock;
     removeClients();
 }
 
-void DlnaFinder::find()
+void DlnaFinderPrivate::find()
 {
     removeClients();
     const QByteArray& data = "M-SEARCH * HTTP/1.1\r\n"
@@ -29,25 +43,64 @@ void DlnaFinder::find()
     m_udpSock->writeDatagram(data, QHostAddress("239.255.255.250"), 1900);
 }
 
+void DlnaFinderPrivate::removeClients()
+{
+    while(!m_clients.isEmpty())
+    {
+        delete m_clients.takeLast();
+    }
+}
+
+bool DlnaFinderPrivate::findClient(const QString &server)
+{
+    foreach(DlnaClient *client, m_clients)
+    {
+        if(client->server() == server)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+DlnaFinder::DlnaFinder(QObject *parent)
+    : QObject(parent)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(DlnaFinder);
+    connect(d->m_udpSock, SIGNAL(readyRead()), SLOT(readResponse()));
+}
+
+void DlnaFinder::find()
+{
+    TTK_D(DlnaFinder);
+    d->find();
+}
+
 DlnaClient* DlnaFinder::client(int index) const
 {
-    if(index < 0 || index >= m_clients.size())
+    TTK_D(DlnaFinder);
+    if(index < 0 || index >= d->m_clients.size())
     {
         return nullptr;
     }
 
-    return m_clients[index];
+    return d->m_clients[index];
 }
 
 QList<DlnaClient*> DlnaFinder::clients() const
 {
-    return m_clients;
+    TTK_D(DlnaFinder);
+    return d->m_clients;
 }
 
 QStringList DlnaFinder::clientNames() const
 {
+    TTK_D(DlnaFinder);
     QStringList names;
-    foreach(DlnaClient *client, m_clients)
+    foreach(DlnaClient *client, d->m_clients)
     {
         names.push_back(client->serverName());
     }
@@ -56,15 +109,16 @@ QStringList DlnaFinder::clientNames() const
 
 void DlnaFinder::readResponse()
 {
-    while(m_udpSock->hasPendingDatagrams())
+    TTK_D(DlnaFinder);
+    while(d->m_udpSock->hasPendingDatagrams())
     {
         QByteArray datagram;
-        datagram.resize(m_udpSock->pendingDatagramSize());
-        m_udpSock->readDatagram(datagram.data(), datagram.size());
+        datagram.resize(d->m_udpSock->pendingDatagramSize());
+        d->m_udpSock->readDatagram(datagram.data(), datagram.size());
 
         DlnaClient *client = new DlnaClient(QString::fromUtf8(datagram.data()));
         M_LOGGER_INFO(client->server());
-        if(client->server() == DEFAULT_ROUTER_IP || findClient(client->server()))
+        if(client->server() == DEFAULT_ROUTER_IP || d->findClient(client->server()))
         {
             delete client;
             continue;
@@ -77,27 +131,7 @@ void DlnaFinder::readResponse()
             client->connect();
         }while(!client->isConnected() && tryTimes > 0);
 
-        m_clients.push_back(client);
+        d->m_clients.push_back(client);
         emit finished();
     }
-}
-
-void DlnaFinder::removeClients()
-{
-    while(!m_clients.isEmpty())
-    {
-        delete m_clients.takeLast();
-    }
-}
-
-bool DlnaFinder::findClient(const QString &server)
-{
-    foreach(DlnaClient *client, m_clients)
-    {
-        if(client->server() == server)
-        {
-            return true;
-        }
-    }
-    return false;
 }

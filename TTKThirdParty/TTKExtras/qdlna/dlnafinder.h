@@ -19,11 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QUdpSocket>
 #include <QStringList>
 #include "musicextrasglobaldefine.h"
 
 class DlnaClient;
+class DlnaFinderPrivate;
 
 /*! @brief The class of the dlna finder.
  * @author Greedysky <greedysky@163.com>
@@ -33,7 +33,6 @@ class MUSIC_EXTRAS_EXPORT DlnaFinder : public QObject
     Q_OBJECT
 public:
     explicit DlnaFinder(QObject *parent = nullptr);
-    ~DlnaFinder();
 
     void find();
 
@@ -48,12 +47,7 @@ public Q_SLOTS:
     void readResponse();
 
 private:
-    void removeClients();
-    bool findClient(const QString &server);
-
-private:
-    QUdpSocket *m_udpSock;
-    QList<DlnaClient*> m_clients;
+    TTK_DECLARE_PRIVATE(DlnaFinder)
 
 };
 

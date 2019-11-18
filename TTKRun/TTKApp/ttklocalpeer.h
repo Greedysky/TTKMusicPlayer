@@ -20,7 +20,6 @@
  ================================================= */
 
 #include <QObject>
-#include "ttkprivate.h"
 #include "musicrunglobaldefine.h"
 
 class TTKLocalPeerPrivate;

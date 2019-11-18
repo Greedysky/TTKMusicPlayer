@@ -21,7 +21,6 @@
 
 #include <QWidget>
 #include "kugouurl.h"
-#include "ttkprivate.h"
 
 class KugouWindowPrivate;
 
