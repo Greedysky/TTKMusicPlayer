@@ -40,6 +40,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_instance = this;
     m_stackedFuncWidget = nullptr;
     m_stackedAutoWidget = nullptr;
+    m_musicLrcForInterior = nullptr;
     m_musicLrcForDesktop = nullptr;
     m_musicLrcForWallpaper = nullptr;
     m_videoPlayerWidget = nullptr;
@@ -66,8 +67,9 @@ MusicRightAreaWidget *MusicRightAreaWidget::instance()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-
-    ui->musiclrccontainerforinline->resize(ui->functionsContainer->size());
+    m_musicLrcForInterior = ui->musiclrccontainerforinterior;
+    //
+    m_musicLrcForInterior->resize(ui->functionsContainer->size());
 
     ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
     ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
@@ -76,18 +78,17 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
     //
-
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
     group->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     //
-    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInlineLrcWidget()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(artistBackgroundHasChanged()), SIGNAL(updateBackgroundThemeDownload()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
+    connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInlineLrcWidget()));
+    connect(m_musicLrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
+    connect(m_musicLrcForInterior, SIGNAL(artistBackgroundHasChanged()), SIGNAL(updateBackgroundThemeDownload()));
+    connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
+    connect(m_musicLrcForInterior, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)), SLOT(musicSongSearchedFound(QString)));
 }
 
@@ -95,7 +96,7 @@ void MusicRightAreaWidget::stopLrcMask() const
 {
     if(checkSettingParameterValue())
     {
-       m_ui->musiclrccontainerforinline->stopLrcMask();
+       m_musicLrcForInterior->stopLrcMask();
        m_musicLrcForDesktop->stopLrcMask();
        if(m_musicLrcForWallpaper)
        {
@@ -108,7 +109,7 @@ void MusicRightAreaWidget::startTimerClock() const
 {
     if(checkSettingParameterValue())
     {
-       m_ui->musiclrccontainerforinline->startTimerClock();
+       m_musicLrcForInterior->startTimerClock();
        m_musicLrcForDesktop->startTimerClock();
        if(m_musicLrcForWallpaper)
        {
@@ -129,18 +130,18 @@ bool MusicRightAreaWidget::getDestopLrcVisible() const
 
 void MusicRightAreaWidget::setInlineLrcVisible(bool status) const
 {
-    m_ui->musiclrccontainerforinline->setVisible(status);
+    m_musicLrcForInterior->setVisible(status);
 }
 
 bool MusicRightAreaWidget::getInlineLrcVisible() const
 {
-    return m_ui->musiclrccontainerforinline->isVisible();
+    return m_musicLrcForInterior->isVisible();
 }
 
 void MusicRightAreaWidget::setSettingParameter() const
 {
     m_musicLrcForDesktop->setSettingParameter();
-    m_ui->musiclrccontainerforinline->setSettingParameter();
+    m_musicLrcForInterior->setSettingParameter();
     if(m_musicLrcForWallpaper)
     {
         m_musicLrcForWallpaper->setSettingParameter();
@@ -154,17 +155,17 @@ bool MusicRightAreaWidget::checkSettingParameterValue() const
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
 {
-    m_ui->musiclrccontainerforinline->setCurrentTime(current, total);
+    m_musicLrcForInterior->setCurrentTime(current, total);
     //Direct access to the audio file is the total time, in milliseconds
     QString currentLrc, laterLrc;
     qint64 intervalTime;
-    if(m_ui->musiclrccontainerforinline->findText(total, currentLrc, laterLrc, intervalTime))
+    if(m_musicLrcForInterior->findText(total, currentLrc, laterLrc, intervalTime))
     {   //If this is a new line of the lyrics, then restart lyrics display mask
-        if(currentLrc != m_ui->musiclrccontainerforinline->text())
+        if(currentLrc != m_musicLrcForInterior->text())
         {
             if(!playStatus)
             {
-                m_ui->musiclrccontainerforinline->updateCurrentLrc(intervalTime);
+                m_musicLrcForInterior->updateCurrentLrc(intervalTime);
             }
 
             m_musicLrcForDesktop->setCurrentTime(intervalTime, total);
@@ -182,9 +183,9 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 {
     if(checkSettingParameterValue())
     {
-        m_ui->musiclrccontainerforinline->stopLrcMask();
-        m_ui->musiclrccontainerforinline->setCurrentSongName( name );
-        const bool state = m_ui->musiclrccontainerforinline->transLyricFileToTime(path);
+        m_musicLrcForInterior->stopLrcMask();
+        m_musicLrcForInterior->setCurrentSongName( name );
+        const bool state = m_musicLrcForInterior->transLyricFileToTime(path);
 
         m_musicLrcForDesktop->stopLrcMask();
         m_musicLrcForDesktop->setCurrentSongName( name );
@@ -205,13 +206,12 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
                 m_musicLrcForWallpaper->updateCurrentLrc(tr("unFoundLrc"));
             }
         }
-
     }
 }
 
 void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
 {
-    m_ui->musiclrccontainerforinline->setSongSpeedChanged(time);
+    m_musicLrcForInterior->setSongSpeedChanged(time);
 }
 
 void MusicRightAreaWidget::musicCheckHasLrcAlready() const
@@ -252,7 +252,7 @@ void MusicRightAreaWidget::musicMovieRadioSearch(const QVariant &data)
 void MusicRightAreaWidget::resizeWindow()
 {
     m_ui->songSearchWidget->resizeWindow();
-    m_ui->musiclrccontainerforinline->resizeWindow();
+    m_musicLrcForInterior->resizeWindow();
 
     if(MObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget))
     {
@@ -306,7 +306,7 @@ void MusicRightAreaWidget::getParameterSetting() const
 {
     setSettingParameter();
     bool config = M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrc).toBool();
-    m_ui->musiclrccontainerforinline->setVisible(config);
+    m_musicLrcForInterior->setVisible(config);
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_musicLrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
@@ -553,7 +553,7 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
         musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
     }
 
-    m_ui->musiclrccontainerforinline->showSongCommentsWidget();
+    m_musicLrcForInterior->showSongCommentsWidget();
 }
 
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
@@ -787,11 +787,11 @@ void MusicRightAreaWidget::musicVideoFullscreen(bool full)
 
 void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
 {
-    const bool lrcDisplayAll = !m_ui->musiclrccontainerforinline->lrcDisplayExpand();
-    m_ui->musiclrccontainerforinline->setLrcDisplayExpand(lrcDisplayAll);
+    const bool lrcDisplayAll = !m_musicLrcForInterior->lrcDisplayExpand();
+    m_musicLrcForInterior->setLrcDisplayExpand(lrcDisplayAll);
     m_ui->centerLeftWidget->setHidden(lrcDisplayAll);
 
-    const int height = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
+    const int height = m_musicLrcForInterior->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
     lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 300 : -320, height/2));
@@ -815,10 +815,10 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
         MusicRegeditManager().setLeftWinEnable();
 
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
-        m_musicLrcForWallpaper->setLrcAnalysisModel(m_ui->musiclrccontainerforinline->getLrcAnalysisModel());
+        m_musicLrcForWallpaper->setLrcAnalysisModel(m_musicLrcForInterior->getLrcAnalysisModel());
         m_musicLrcForWallpaper->setSettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
-        connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper, SLOT(changeCurrentLrcColor()));
+        connect(m_musicLrcForInterior, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper, SLOT(changeCurrentLrcColor()));
 
         MusicApplication::instance()->activateWindow();
         MusicApplication::instance()->showMinimized();
@@ -861,7 +861,7 @@ void MusicRightAreaWidget::musicFunctionParameterInit(MusicFunction func)
 
     m_ui->songSearchWidget->auditionStop();
     m_ui->lrcDisplayAllButton->setVisible(false);
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand() && func != LrcWidget)
+    if(m_musicLrcForInterior->lrcDisplayExpand() && func != LrcWidget)
     {
         musicLrcDisplayAllButtonClicked();
     }

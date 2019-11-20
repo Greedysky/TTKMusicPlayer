@@ -10,7 +10,7 @@
 #include "musiccoreutils.h"
 #include "musicapplication.h"
 #include "musiclrcanalysis.h"
-#include "musiclrcmanagerforinline.h"
+#include "musiclrcmanagerForInterior.h"
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
 #include "musicotherdefine.h"
@@ -416,13 +416,13 @@ void MusicLrcMakerWidget::updateAnimationLrc()
 void MusicLrcMakerWidget::lrcSpeedSlower()
 {
     m_analysis->revertLrcTime(MT_S2MS);
-    updateCurrentLrc( m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
+    updateCurrentLrc(m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
 }
 
 void MusicLrcMakerWidget::lrcSpeedFaster()
 {
     m_analysis->revertLrcTime(-MT_S2MS);
-    updateCurrentLrc( m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
+    updateCurrentLrc(m_analysis->setSongSpeedChanged(m_ui->timeSlider_T->value()));
 }
 
 void MusicLrcMakerWidget::keyPressEvent(QKeyEvent* event)
@@ -636,7 +636,7 @@ void MusicLrcMakerWidget::createThirdWidget()
     m_ui->lrcViewer->connectTo(this);
     for(int i=0; i<m_analysis->getLineMax(); ++i)
     {
-        MusicLrcManagerForInline *w = new MusicLrcManagerForInline(this);
+        MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-20);
         m_ui->lrcViewer->addWidget(w);
         m_musicLrcContainer.append(w);
@@ -751,7 +751,7 @@ void MusicLrcMakerWidget::updateCurrentLrc(qint64 time)
 
 void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInline *w = m_musicLrcContainer[index];
+    MusicLrcManagerForInterior *w = m_musicLrcContainer[index];
     w->setFontSize(size);
 
     const int value = qBound<int>(0, 100 - transparent, 100);

@@ -27,7 +27,7 @@ class MusicSoundKMicroWidget;
 }
 class MusicCoreMPlayer;
 class MusicLrcAnalysis;
-class MusicLrcManagerForInline;
+class MusicLrcManagerForInterior;
 class MusicSoundKMicroSearchWidget;
 class MusicAudioRecorderObject;
 
@@ -135,7 +135,7 @@ protected:
     MusicCoreMPlayer *m_mediaPlayer;
     MusicSoundKMicroSearchWidget *m_searchWidget;
     MusicLrcAnalysis *m_analysis;
-    QList<MusicLrcManagerForInline*> m_musicLrcContainer;
+    QList<MusicLrcManagerForInterior*> m_musicLrcContainer;
     MusicAudioRecorderObject *m_recordCore;
 
 };

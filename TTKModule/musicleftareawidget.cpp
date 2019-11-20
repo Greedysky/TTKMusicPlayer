@@ -228,7 +228,7 @@ void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
         default: break;
     }
 
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    if(m_ui->musiclrccontainerforinterior->lrcDisplayExpand())
     {
         MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
     }

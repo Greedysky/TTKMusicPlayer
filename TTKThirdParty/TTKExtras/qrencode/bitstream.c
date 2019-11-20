@@ -31,10 +31,11 @@ BitStream *BitStream_new(void)
 	BitStream *bstream;
 
 	bstream = (BitStream *)malloc(sizeof(BitStream));
-	if(bstream == NULL) return NULL;
+    if(bstream == NULL)
+        return NULL;
 
 	bstream->length = 0;
-	bstream->data = NULL;
+    bstream->data = NULL;
 
 	return bstream;
 }
@@ -43,7 +44,7 @@ static int BitStream_allocate(BitStream *bstream, int length)
 {
 	unsigned char *data;
 
-	if(bstream == NULL) {
+    if(bstream == NULL) {
 		return -1;
 	}
 

@@ -1,5 +1,5 @@
-#ifndef MUSICLRCMANAGERFORINLINE_H
-#define MUSICLRCMANAGERFORINLINE_H
+#ifndef MUSICLRCMANAGERFORINTERIOR_H
+#define MUSICLRCMANAGERFORINTERIOR_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -23,18 +23,18 @@
 
 #define LRC_PER_WIDTH 670
 
-/*! @brief The class of the inline lrc manager.
+/*! @brief The class of the interior lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcManagerForInline : public MusicLrcManager
+class MUSIC_LRC_EXPORT MusicLrcManagerForInterior : public MusicLrcManager
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcManagerForInline)
+    TTK_DECLARE_MODULE(MusicLrcManagerForInterior)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManagerForInline(QWidget *parent = nullptr);
+    explicit MusicLrcManagerForInterior(QWidget *parent = nullptr);
 
     /*!
      * Set lrc per width.
@@ -60,4 +60,4 @@ protected:
 
 };
 
-#endif // MUSICLRCMANAGERFORINLINE_H
+#endif // MUSICLRCMANAGERFORINTERIOR_H

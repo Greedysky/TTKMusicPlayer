@@ -22,10 +22,12 @@ INCLUDEPATH += $$PWD
 HEADERS  += \
     $$PWD/musiclrcmanager.h \
     $$PWD/musiclrcmanagerfordesktop.h \
-    $$PWD/musiclrcmanagerforinline.h \
+    $$PWD/musiclrcmanagerforinterior.h \
     $$PWD/musiclrccontainer.h \
     $$PWD/musiclrccontainerfordesktop.h \
-    $$PWD/musiclrccontainerforinline.h \
+    $$PWD/musiclrccontainerforinterior.h \
+    $$PWD/musiclrccontainerforwallpaper.h \
+    $$PWD/musiclrccontainerforcortana.h \
     $$PWD/musiclrcsearchwidget.h \
     $$PWD/musiclrcsearchtablewidget.h \
     $$PWD/musiclrcartphotouploadwidget.h \
@@ -39,7 +41,6 @@ HEADERS  += \
     $$PWD/musiclrccolorwidget.h \
     $$PWD/musiclrccommentswidget.h \
     $$PWD/musiclrctranslatedwidget.h \
-    $$PWD/musiclrccontainerforwallpaper.h \
     $$PWD/musiclrcposterwidget.h \
     $$PWD/musiclrcdownloadbatchwidget.h
 
@@ -49,10 +50,12 @@ contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musiclrcmanager.cpp \
     $$PWD/musiclrcmanagerfordesktop.cpp \
-    $$PWD/musiclrcmanagerforinline.cpp \
+    $$PWD/musiclrcmanagerforinterior.cpp \
     $$PWD/musiclrccontainer.cpp \
     $$PWD/musiclrccontainerfordesktop.cpp \
-    $$PWD/musiclrccontainerforinline.cpp \
+    $$PWD/musiclrccontainerforinterior.cpp \
+    $$PWD/musiclrccontainerforwallpaper.cpp \
+    $$PWD/musiclrccontainerforcortana.cpp \
     $$PWD/musiclrcsearchwidget.cpp \
     $$PWD/musiclrcsearchtablewidget.cpp \
     $$PWD/musiclrcartphotouploadwidget.cpp \
@@ -66,7 +69,6 @@ SOURCES += \
     $$PWD/musiclrccolorwidget.cpp \
     $$PWD/musiclrccommentswidget.cpp \
     $$PWD/musiclrctranslatedwidget.cpp \
-    $$PWD/musiclrccontainerforwallpaper.cpp \
     $$PWD/musiclrcposterwidget.cpp \
     $$PWD/musiclrcdownloadbatchwidget.cpp
 

@@ -35,7 +35,7 @@ bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
     QString name = drive;
     name = "\\\\.\\" + name.left(name.size() - 1);
 
-    HANDLE hDevice = CreateFile(
+    HANDLE hDevice = CreateFileW(
         name.toStdWString().c_str(),
         GENERIC_READ | GENERIC_WRITE,
         FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -111,7 +111,7 @@ MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
     foreach(const QFileInfo &drive, drives)
     {
         const QString &path = drive.absoluteDir().absolutePath();
-        const int type = GetDriveType(path.toStdWString().c_str());
+        const int type = GetDriveTypeW(path.toStdWString().c_str());
         if(type == DRIVE_REMOVABLE)
         {
 
@@ -132,7 +132,7 @@ MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
         ULARGE_INTEGER totalNumberOfBytes;
         ULARGE_INTEGER totalNumberOfFreeBytes;
 
-        if(GetDiskFreeSpaceEx(path.toStdWString().c_str(), &freeAvailable, &totalNumberOfBytes, &totalNumberOfFreeBytes))
+        if(GetDiskFreeSpaceExW(path.toStdWString().c_str(), &freeAvailable, &totalNumberOfBytes, &totalNumberOfFreeBytes))
         {
             MusicDeviceInfoItem item;
             item.m_path = path;
@@ -144,10 +144,10 @@ MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
             DWORD maxLength = 0;
             DWORD fileSysFlags = 0;
 
-            TCHAR dirveName[BUFFER_SIZE];
-            TCHAR fileSysTypeName[BUFFER_SIZE];
+            WCHAR dirveName[BUFFER_SIZE];
+            WCHAR fileSysTypeName[BUFFER_SIZE];
 
-            if(GetVolumeInformation(
+            if(GetVolumeInformationW(
                 item.m_path.toStdWString().c_str(),
                 dirveName,
                 BUFFER_SIZE,

@@ -1,7 +1,7 @@
-#include "musiclrcmanagerforinline.h"
+#include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
 
-MusicLrcManagerForInline::MusicLrcManagerForInline(QWidget *parent)
+MusicLrcManagerForInterior::MusicLrcManagerForInterior(QWidget *parent)
     : MusicLrcManager(parent)
 {
     setAlignment(Qt::AlignCenter);
@@ -13,7 +13,7 @@ MusicLrcManagerForInline::MusicLrcManagerForInline(QWidget *parent)
     m_gradientTransparent = 100;
 }
 
-void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
+void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);

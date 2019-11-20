@@ -5,7 +5,7 @@
 #include "musiccoremplayer.h"
 #include "musicsettingmanager.h"
 #include "musiclrcanalysis.h"
-#include "musiclrcmanagerforinline.h"
+#include "musiclrcmanagerForInterior.h"
 #include "musicstringutils.h"
 #include "musicdownloadsourcethread.h"
 #include "musicvideouiobject.h"
@@ -71,7 +71,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
     for(int i=0; i<m_analysis->getLineMax(); ++i)
     {
-        MusicLrcManagerForInline *w = new MusicLrcManagerForInline(this);
+        MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-10);
         m_ui->musicPage->addWidget(w);
         m_musicLrcContainer.append(w);
@@ -345,7 +345,7 @@ void MusicSoundKMicroWidget::multiMediaChanged()
 
 void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInline *w = m_musicLrcContainer[index];
+    MusicLrcManagerForInterior *w = m_musicLrcContainer[index];
     w->setFontSize(size);
 
     const int value = qBound<int>(0, 100 - transparent, 100);

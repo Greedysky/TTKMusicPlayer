@@ -1,4 +1,4 @@
-#include "musiclrccontainerforwallpaper.h"
+#include "musiclrccontainerforcortana.h"
 #include "musicdesktopwallpaperthread.h"
 #include "musiclrcmanagerforinterior.h"
 #include "musiclayoutanimationwidget.h"
@@ -7,7 +7,7 @@
 #include "musiclrcanalysis.h"
 #include "musicstringutils.h"
 
-MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
+MusicLrcContainerForCortana::MusicLrcContainerForCortana(QWidget *parent)
     : MusicLrcContainer(parent)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
@@ -29,33 +29,34 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     bBoxLayout->addWidget(m_layoutWidget);
 
     m_animationFreshTime = 0;
-    m_wallThread = new MusicDesktopWallpaperThread(this);
-    connect(m_wallThread, SIGNAL(updateBackground(QPixmap)), SLOT(updateBackground(QPixmap)));
 #ifdef Q_OS_WIN
-    m_wallThread->sendMessageToDesktop();
-    SetParent((HWND)winId(), m_wallThread->findDesktopIconWnd());
-#endif
+    PDWORD_PTR result = nullptr;
+    HWND hTaskBar = FindWindow(L"Shell_TrayWnd", nullptr);
+    HWND hCortanaBar = FindWindowEx(hTaskBar, nullptr, L"TrayDummySearchControl", nullptr);
 
+    SendMessageTimeoutW(hCortanaBar, 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
+    ShowWindow(hCortanaBar, 0);
+    SetParent((HWND)winId(), hCortanaBar);
+#endif
 }
 
-MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
+MusicLrcContainerForCortana::~MusicLrcContainerForCortana()
 {
     clearAllMusicLRCManager();
-    delete m_wallThread;
 }
 
-void MusicLrcContainerForWallpaper::startTimerClock()
+void MusicLrcContainerForCortana::startTimerClock()
 {
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->startTimerClock();
 }
 
-void MusicLrcContainerForWallpaper::stopLrcMask()
+void MusicLrcContainerForCortana::stopLrcMask()
 {
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->stopLrcMask();
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForWallpaper::setSettingParameter()
+void MusicLrcContainerForCortana::setSettingParameter()
 {
     const int width = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
@@ -78,7 +79,7 @@ void MusicLrcContainerForWallpaper::setSettingParameter()
     }
 }
 
-void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analysis)
+void MusicLrcContainerForCortana::setLrcAnalysisModel(MusicLrcAnalysis *analysis)
 {
     MusicLrcContainer::setLrcAnalysisModel(analysis);
     m_layoutWidget->addStretch(1);
@@ -91,22 +92,18 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     m_layoutWidget->addStretch(1);
 
     initCurrentLrc(tr("Init Wallpaper Module"));
-
-    start(false);
 }
 
-void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
+void MusicLrcContainerForCortana::updateCurrentLrc(qint64 time)
 {
     if(m_lrcAnalysis->isValid())
     {
         m_animationFreshTime = time;
         m_layoutWidget->start();
     }
-
-    start(false);
 }
 
-void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
+void MusicLrcContainerForCortana::updateCurrentLrc(const QString &text)
 {
     for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
     {
@@ -115,35 +112,12 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setText(text);
 }
 
-void MusicLrcContainerForWallpaper::start(bool immediate)
-{
-    if(m_wallThread)
-    {
-        m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtistPhotoPathList());
-
-        if(!m_wallThread->isRunning())
-        {
-            m_wallThread->start();
-        }
-
-        if(immediate)
-        {
-            m_wallThread->timeout();
-        }
-    }
-}
-
-void MusicLrcContainerForWallpaper::changeCurrentLrcColor()
+void MusicLrcContainerForCortana::changeCurrentLrcColor()
 {
     setSettingParameter();
 }
 
-void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)
-{
-    m_background->setPixmap(pix);
-}
-
-void MusicLrcContainerForWallpaper::updateAnimationLrc()
+void MusicLrcContainerForCortana::updateAnimationLrc()
 {
     const int length = (MUSIC_LRC_INLINE_MAX_LINE - m_lrcAnalysis->getLineMax())/2 + 1;
     for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
@@ -153,7 +127,7 @@ void MusicLrcContainerForWallpaper::updateAnimationLrc()
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->startLrcMask(m_animationFreshTime);
 }
 
-void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
+void MusicLrcContainerForCortana::initCurrentLrc(const QString &str)
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
@@ -162,7 +136,7 @@ void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setText(str);
 }
 
-void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int transparent)
+void MusicLrcContainerForCortana::setItemStyleSheet(int index, int size, int transparent)
 {
     MusicLrcManagerForInterior *w = MStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
     w->setFontSize(size);

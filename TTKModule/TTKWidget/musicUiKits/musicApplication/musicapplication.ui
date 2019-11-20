@@ -687,7 +687,7 @@
                <number>0</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
-              <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline">
+              <widget class="MusicLrcContainerForInterior" name="musiclrccontainerforinterior">
                <widget class="QPushButton" name="lrcDisplayAllButton">
                 <property name="enabled">
                  <bool>true</bool>
@@ -1336,9 +1336,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicLrcContainerForInline</class>
+   <class>MusicLrcContainerForInterior</class>
    <extends>QWidget</extends>
-   <header>musiclrccontainerforinline.h</header>
+   <header>musiclrccontainerforinterior.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

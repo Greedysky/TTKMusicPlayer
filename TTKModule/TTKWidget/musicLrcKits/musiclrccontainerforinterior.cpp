@@ -1,5 +1,5 @@
-#include "musiclrccontainerforinline.h"
-#include "musiclrcmanagerforinline.h"
+#include "musiclrccontainerforinterior.h"
+#include "musiclrcmanagerforinterior.h"
 #include "musiclrcartphotouploadwidget.h"
 #include "musiclrcfloatwidget.h"
 #include "musiclrcfloatplaywidget.h"
@@ -32,7 +32,7 @@
 #define LRC_CHANGED_OFFSET_LIMIT    20
 #define LRC_TIME_LABEL_POSITION     20
 
-MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
+MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     : MusicLrcContainer(parent)
 {
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
@@ -47,7 +47,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_layoutWidget->connectTo(this);
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-       MusicLrcManager *w = new MusicLrcManagerForInline(this);
+       MusicLrcManager *w = new MusicLrcManagerForInterior(this);
        m_layoutWidget->addWidget(w);
        m_musicLrcContainer.append(w);
     }
@@ -75,7 +75,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_translatedWidget = nullptr;
 }
 
-MusicLrcContainerForInline::~MusicLrcContainerForInline()
+MusicLrcContainerForInterior::~MusicLrcContainerForInterior()
 {
     clearAllMusicLRCManager();
     delete m_lrcAnalysis;
@@ -88,18 +88,18 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     delete m_layoutWidget;
 }
 
-void MusicLrcContainerForInline::startTimerClock()
+void MusicLrcContainerForInterior::startTimerClock()
 {
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startTimerClock();
 }
 
-void MusicLrcContainerForInline::stopLrcMask()
+void MusicLrcContainerForInterior::stopLrcMask()
 {
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->stopLrcMask();
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForInline::setSettingParameter()
+void MusicLrcContainerForInterior::setSettingParameter()
 {
     MusicLrcContainer::setSettingParameter();
     const int size = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
@@ -115,7 +115,7 @@ void MusicLrcContainerForInline::setSettingParameter()
     setLrcSize(size);
 }
 
-void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
+void MusicLrcContainerForInterior::updateCurrentLrc(qint64 time)
 {
     if(m_lrcAnalysis->isValid() && !m_mouseLeftPressed)
     {
@@ -124,7 +124,7 @@ void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
     }
 }
 
-bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName)
+bool MusicLrcContainerForInterior::transLyricFileToTime(const QString &lrcFileName)
 {
     m_layoutWidget->stop();
 
@@ -165,22 +165,22 @@ bool MusicLrcContainerForInline::transLyricFileToTime(const QString &lrcFileName
     return true;
 }
 
-QString MusicLrcContainerForInline::text() const
+QString MusicLrcContainerForInterior::text() const
 {
     return m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->text();
 }
 
-qint64 MusicLrcContainerForInline::setSongSpeedChanged(qint64 time)
+qint64 MusicLrcContainerForInterior::setSongSpeedChanged(qint64 time)
 {
     return m_lrcAnalysis->setSongSpeedChanged(time);
 }
 
-bool MusicLrcContainerForInline::findText(qint64 total, QString &pre, QString &last, qint64 &interval) const
+bool MusicLrcContainerForInterior::findText(qint64 total, QString &pre, QString &last, qint64 &interval) const
 {
     return m_lrcAnalysis->findText(m_currentTime, total, pre, last, interval);
 }
 
-void MusicLrcContainerForInline::setLrcSize(int size)
+void MusicLrcContainerForInterior::setLrcSize(int size)
 {
     int index = mapLrcSizeProperty(size);
     if(index == -1)
@@ -206,12 +206,12 @@ void MusicLrcContainerForInline::setLrcSize(int size)
     startTimerClock();
 }
 
-int MusicLrcContainerForInline::getLrcSize() const
+int MusicLrcContainerForInterior::getLrcSize() const
 {
     return M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
 }
 
-void MusicLrcContainerForInline::resizeWindow()
+void MusicLrcContainerForInterior::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
@@ -229,7 +229,7 @@ void MusicLrcContainerForInline::resizeWindow()
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 }
 
-void MusicLrcContainerForInline::createFloatPlayWidget()
+void MusicLrcContainerForInterior::createFloatPlayWidget()
 {
     delete m_floatPlayWidget;
     m_floatPlayWidget = nullptr;
@@ -240,7 +240,7 @@ void MusicLrcContainerForInline::createFloatPlayWidget()
     }
 }
 
-void MusicLrcContainerForInline::lrcWidgetShowFullScreen()
+void MusicLrcContainerForInterior::lrcWidgetShowFullScreen()
 {
     QHBoxLayout *l = MStatic_cast(QHBoxLayout*, m_functionLabel->layout());
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
@@ -253,7 +253,7 @@ void MusicLrcContainerForInline::lrcWidgetShowFullScreen()
     }
 }
 
-void MusicLrcContainerForInline::lrcSizeChanged(QAction *action)
+void MusicLrcContainerForInterior::lrcSizeChanged(QAction *action)
 {
     switch(action->data().toInt())
     {
@@ -266,7 +266,7 @@ void MusicLrcContainerForInline::lrcSizeChanged(QAction *action)
     }
 }
 
-void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
+void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
 {
     int timeValue = 0;
     switch(action->data().toInt())
@@ -286,7 +286,7 @@ void MusicLrcContainerForInline::lrcTimeSpeedChanged(QAction *action)
     revertLrcTimeSpeed( timeValue );
 }
 
-void MusicLrcContainerForInline::revertLrcTimeSpeed()
+void MusicLrcContainerForInterior::revertLrcTimeSpeed()
 {
     if(m_changeSpeedValue == 0)
     {
@@ -295,43 +295,43 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed()
     revertLrcTimeSpeed( -m_changeSpeedValue );
 }
 
-void MusicLrcContainerForInline::saveLrcTimeChanged()
+void MusicLrcContainerForInterior::saveLrcTimeChanged()
 {
     m_lrcAnalysis->saveLrcTimeChanged();
 }
 
-void MusicLrcContainerForInline::artistBackgroundChanged()
+void MusicLrcContainerForInterior::artistBackgroundChanged()
 {
     m_showArtistBackground = !m_showArtistBackground;
     emit artistBackgroundHasChanged();
 }
 
-void MusicLrcContainerForInline::showArtistBackgroundUploadedWidget()
+void MusicLrcContainerForInterior::showArtistBackgroundUploadedWidget()
 {
     MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtistBackground = true;
     emit artistBackgroundHasChanged();
 }
 
-void MusicLrcContainerForInline::lrcOpenFileDir() const
+void MusicLrcContainerForInterior::lrcOpenFileDir() const
 {
     MusicUtils::Url::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
 }
 
-void MusicLrcContainerForInline::lrcCopyClipboard() const
+void MusicLrcContainerForInterior::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
     clipBoard->setText(m_lrcAnalysis->getAllLrcString());
 }
 
-void MusicLrcContainerForInline::showLocalLinkWidget()
+void MusicLrcContainerForInterior::showLocalLinkWidget()
 {
     MusicLrcLocalLinkWidget w(this);
     w.setCurrentSongName(m_currentSongName);
     w.exec();
 }
 
-void MusicLrcContainerForInline::showSongCommentsWidget()
+void MusicLrcContainerForInterior::showSongCommentsWidget()
 {
     if(m_currentSongName.isEmpty())
     {
@@ -346,7 +346,7 @@ void MusicLrcContainerForInline::showSongCommentsWidget()
     m_commentsWidget->setCurrentSongName(m_currentSongName);
 }
 
-void MusicLrcContainerForInline::showSoundKMicroWidget()
+void MusicLrcContainerForInterior::showSoundKMicroWidget()
 {
     if(m_currentSongName.isEmpty())
     {
@@ -356,14 +356,14 @@ void MusicLrcContainerForInline::showSoundKMicroWidget()
     MusicLeftAreaWidget::instance()->createSoundKMicroWidget(m_currentSongName);
 }
 
-void MusicLrcContainerForInline::showLrcPosterWidget()
+void MusicLrcContainerForInterior::showLrcPosterWidget()
 {
     MusicLrcPosterWidget poster(this);
     poster.setCurrentLrcs(m_lrcAnalysis->getAllLrcList(), m_currentSongName);
     poster.exec();
 }
 
-void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
+void MusicLrcContainerForInterior::getTranslatedLrcFinished(const QString &data)
 {
     QString text;
     foreach(const QString &var, data.split("\r"))
@@ -378,7 +378,7 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
     m_translatedWidget->show();
 }
 
-void MusicLrcContainerForInline::musicSongMovieClicked()
+void MusicLrcContainerForInterior::musicSongMovieClicked()
 {
     if(m_currentSongName.isEmpty())
     {
@@ -392,7 +392,7 @@ void MusicLrcContainerForInline::musicSongMovieClicked()
     MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName, QString());
 }
 
-void MusicLrcContainerForInline::updateAnimationLrc()
+void MusicLrcContainerForInterior::updateAnimationLrc()
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
@@ -403,7 +403,7 @@ void MusicLrcContainerForInline::updateAnimationLrc()
     setItemStyleSheet();
 }
 
-void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
+void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
@@ -507,7 +507,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicLrcContainerForInline::paintEvent(QPaintEvent *event)
+void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
     if(m_mouseLeftPressed)
@@ -533,13 +533,13 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *event)
     }
 }
 
-void MusicLrcContainerForInline::resizeEvent(QResizeEvent *event)
+void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
 {
     MusicLrcContainer::resizeEvent(event);
     resizeWindow();
 }
 
-void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
+void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_mouseLeftPressed && m_lrcAnalysis->isValid())
     {
@@ -591,7 +591,7 @@ void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcContainerForInline::mousePressEvent(QMouseEvent *event)
+void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
@@ -605,7 +605,7 @@ void MusicLrcContainerForInline::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
+void MusicLrcContainerForInterior::mouseReleaseEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
@@ -625,13 +625,13 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcContainerForInline::mouseDoubleClickEvent(QMouseEvent *event)
+void MusicLrcContainerForInterior::mouseDoubleClickEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
     MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
 }
 
-void MusicLrcContainerForInline::createColorMenu(QMenu &menu)
+void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)
 {
     QActionGroup *group = new QActionGroup(this);
     group->addAction(menu.addAction(tr("IYellow")))->setData(0);
@@ -654,7 +654,7 @@ void MusicLrcContainerForInline::createColorMenu(QMenu &menu)
     }
 }
 
-void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
+void MusicLrcContainerForInterior::revertLrcTimeSpeed(qint64 pos)
 {
     m_lrcAnalysis->revertLrcTime(pos);
     const qint64 beforeTime = setSongSpeedChanged(m_currentTime);
@@ -681,7 +681,7 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
     toast->show();
 }
 
-void MusicLrcContainerForInline::createNoLrcCurrentInfo()
+void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new MusicClickedLabel(this);
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
@@ -693,7 +693,7 @@ void MusicLrcContainerForInline::createNoLrcCurrentInfo()
     m_noLrcCurrentInfo->hide();
 }
 
-void MusicLrcContainerForInline::showNoLrcCurrentInfo()
+void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
 {
     QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
     const int w = me.width(m_noLrcCurrentInfo->text());
@@ -704,7 +704,7 @@ void MusicLrcContainerForInline::showNoLrcCurrentInfo()
     m_noLrcCurrentInfo->show();
 }
 
-void MusicLrcContainerForInline::initCurrentLrc(const QString &str)
+void MusicLrcContainerForInterior::initCurrentLrc(const QString &str)
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
@@ -713,7 +713,7 @@ void MusicLrcContainerForInline::initCurrentLrc(const QString &str)
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(str);
 }
 
-void MusicLrcContainerForInline::initFunctionLabel()
+void MusicLrcContainerForInterior::initFunctionLabel()
 {
     m_functionLabel = new QWidget(this);
     m_functionLabel->setFixedHeight(40);
@@ -768,7 +768,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
     layout()->addWidget(m_functionLabel);
 }
 
-void MusicLrcContainerForInline::setItemStyleSheet()
+void MusicLrcContainerForInterior::setItemStyleSheet()
 {
     const int length = m_lrcAnalysis->getLineMax();
     if(length == 11)
@@ -823,9 +823,9 @@ void MusicLrcContainerForInline::setItemStyleSheet()
     }
 }
 
-void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int transparent)
+void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInline *w = MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[index]);
+    MusicLrcManagerForInterior *w = MStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
     w->setFontSize(size);
 
     int value = M_SETTING_PTR->value("LrcColorTrans").toInt() - transparent;
@@ -847,7 +847,7 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     }
 }
 
-int MusicLrcContainerForInline::mapLrcSizeProperty(int size)
+int MusicLrcContainerForInterior::mapLrcSizeProperty(int size)
 {
     if(size <= 14)
     {
@@ -875,7 +875,7 @@ int MusicLrcContainerForInline::mapLrcSizeProperty(int size)
     }
 }
 
-void MusicLrcContainerForInline::setLrcSizeProperty(int property)
+void MusicLrcContainerForInterior::setLrcSizeProperty(int property)
 {
     const int length = MUSIC_LRC_INLINE_MAX_LINE - property;
     m_lrcAnalysis->setLineMax(length);
@@ -895,11 +895,11 @@ void MusicLrcContainerForInline::setLrcSizeProperty(int property)
     }
 }
 
-void MusicLrcContainerForInline::resizeWidth(int w, int h)
+void MusicLrcContainerForInterior::resizeWidth(int w, int h)
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-        MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(w);
+        MStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i])->setLrcPerWidth(w);
     }
 
     m_lrcFloatWidget->resizeWindow(w, h);

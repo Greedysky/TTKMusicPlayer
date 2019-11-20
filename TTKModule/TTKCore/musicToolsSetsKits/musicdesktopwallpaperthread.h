@@ -28,6 +28,7 @@
 #      pragma comment(lib, "user32.lib")
 #   endif
 #endif
+
 class QTimer;
 
 /*! @brief The class of the desktop wallpaper thread.

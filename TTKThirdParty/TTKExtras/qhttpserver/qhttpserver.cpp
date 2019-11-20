@@ -93,7 +93,7 @@ bool QHttpServer::listen(const QHostAddress &address, quint16 port)
         connect(m_tcpServer, SIGNAL(newConnection()), this, SLOT(newConnection()));
     } else {
         delete m_tcpServer;
-        m_tcpServer = NULL;
+        m_tcpServer = nullptr;
     }
     return couldBindToPort;
 }

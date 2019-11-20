@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 2.8.11)
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_HEADERS
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.h
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
-    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinline.h
+    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.h
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainer.h
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerfordesktop.h
-    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinline.h
+    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.h
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.h
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.h
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
@@ -28,11 +28,11 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_HEADERS
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_LRC_KITS_SOURCES
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanager.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
-    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinline.cpp
+    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcmanagerforinterior.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainer.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerfordesktop.cpp
-    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinline.cpp
+    ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrccontainerforinterior.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchwidget.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcsearchtablewidget.cpp
     ${MUSIC_WIDGET_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.cpp

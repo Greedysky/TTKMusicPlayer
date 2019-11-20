@@ -1,5 +1,5 @@
-#ifndef MUSICLRCCCONTAINERFORINLINELR_H
-#define MUSICLRCCCONTAINERFORINLINELR_H
+#ifndef MUSICLRCCCONTAINERFORINTERIOR_H
+#define MUSICLRCCCONTAINERFORINTERIOR_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -28,20 +28,20 @@ class MusicLrcCommentsWidget;
 class MusicLrcTranslatedWidget;
 class MusicVLayoutAnimationWidget;
 
-/*! @brief The class of the inline lrc container.
+/*! @brief The class of the interior lrc container.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
+class MUSIC_LRC_EXPORT MusicLrcContainerForInterior : public MusicLrcContainer
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLrcContainerForInline)
+    TTK_DECLARE_MODULE(MusicLrcContainerForInterior)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerForInline(QWidget *parent = nullptr);
+    explicit MusicLrcContainerForInterior(QWidget *parent = nullptr);
 
-    virtual ~MusicLrcContainerForInline();
+    virtual ~MusicLrcContainerForInterior();
 
     /*!
      * Start timer clock to draw lrc.
@@ -260,4 +260,4 @@ protected:
 
 };
 
-#endif // MUSICLRCCCONTAINERFORINLINELR_H
+#endif // MUSICLRCCCONTAINERFORINTERIOR_H

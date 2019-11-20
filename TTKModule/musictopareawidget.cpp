@@ -276,7 +276,7 @@ void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
 
 void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
 {
-    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artistBackgroundIsShow())
+    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinterior->artistBackgroundIsShow())
     {
         musicBackgroundChanged();
         m_pictureCarouselTimer.start();

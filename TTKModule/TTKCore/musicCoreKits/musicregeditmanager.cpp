@@ -97,6 +97,92 @@ int MusicRegeditManager::getLocalIEVersion() const
     return -1;
 }
 
+QString MusicRegeditManager::getSystemName() const
+{
+#ifdef Q_OS_WIN
+    typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
+    HINSTANCE hinst = LoadLibraryW(L"ntdll.dll");
+    DWORD dwMajor, dwMinor, dwBuildNumber;
+    NTPROC proc = (NTPROC)GetProcAddress(hinst, "RtlGetNtVersionNumbers");
+    proc(&dwMajor, &dwMinor, &dwBuildNumber);
+
+    if(dwMajor == 6 && dwMinor == 3)	//win 8.1
+    {
+        return "Windows 8.1";
+    }
+    if(dwMajor == 10 && dwMinor == 0)	//win 10
+    {
+        return "Windows 10";
+    }
+
+    SYSTEM_INFO info;
+    GetSystemInfo(&info);
+
+    OSVERSIONINFOEX os;
+    os.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+    if(GetVersionEx((OSVERSIONINFO *)&os))
+    {
+        switch(os.dwMajorVersion)
+        {
+        case 4:
+            switch(os.dwMinorVersion)
+            {
+            case 0:
+                if(os.dwPlatformId == VER_PLATFORM_WIN32_NT)
+                {
+                    return "Microsoft Windows NT 4.0";
+                }
+                else if(os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+                {
+                    return "Microsoft Windows 95";
+                }
+                break;
+            case 10:
+                return "Microsoft Windows 98";
+            case 90:
+                return "Microsoft Windows Me";
+            }
+            break;
+        case 5:
+            switch(os.dwMinorVersion)
+            {
+            case 0:
+                return "Microsoft Windows 2000";
+            case 1:
+                return "Microsoft Windows XP";
+            case 2:
+                if(os.wProductType == VER_NT_WORKSTATION && info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
+                {
+                    return "Microsoft Windows XP Professional x64 Edition";
+                }
+                else if(GetSystemMetrics(SM_SERVERR2) == 0)
+                {
+                    return "Microsoft Windows Server 2003";
+                }
+                else if(GetSystemMetrics(SM_SERVERR2) != 0)
+                {
+                    return "Microsoft Windows Server 2003 R2";
+                }
+            }
+            break;
+        case 6:
+            switch(os.dwMinorVersion)
+            {
+            case 0:
+                return os.wProductType == VER_NT_WORKSTATION ? "Microsoft Windows Vista" : "Microsoft Windows Server 2008";
+            case 1:
+                return os.wProductType == VER_NT_WORKSTATION ? "Microsoft Windows 7" : "Microsoft Windows Server 2008 R2";
+            case 2:
+                return os.wProductType == VER_NT_WORKSTATION ? "Microsoft Windows 8" : "Microsoft Windows Server 2012";
+            }
+            break;
+        default: return "Unkown Windows";
+        }
+    }
+#endif
+    return "Unkown Windows";
+}
+
 void MusicRegeditManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)
 {
 #ifdef Q_OS_WIN

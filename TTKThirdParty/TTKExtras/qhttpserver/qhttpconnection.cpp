@@ -59,7 +59,7 @@ void QHttpConnection::invalidateRequest()
         Q_EMIT m_request->end();
     }
 
-    m_request = NULL;
+    m_request = nullptr;
 }
 
 void QHttpConnection::updateWriteCount(qint64 count)

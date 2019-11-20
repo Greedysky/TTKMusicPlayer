@@ -60,6 +60,10 @@ public:
      */
     int getLocalIEVersion() const;
     /*!
+     * Get local system name.
+     */
+    QString getSystemName() const;
+    /*!
      * Set file link.
      */
     void setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description);

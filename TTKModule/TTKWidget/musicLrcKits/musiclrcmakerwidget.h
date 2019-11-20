@@ -26,7 +26,7 @@ namespace Ui {
 class MusicLrcMakerWidget;
 }
 class MusicLrcAnalysis;
-class MusicLrcManagerForInline;
+class MusicLrcManagerForInterior;
 
 /*! @brief The class of the lrc maker widget item.
  * @author Greedysky <greedysky@163.com>
@@ -243,7 +243,7 @@ protected:
     qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
     MusicLrcAnalysis *m_analysis;
-    QList<MusicLrcManagerForInline*> m_musicLrcContainer;
+    QList<MusicLrcManagerForInterior*> m_musicLrcContainer;
 
 };
 

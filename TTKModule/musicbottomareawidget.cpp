@@ -235,7 +235,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
         return;
     }
 
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    if(m_ui->musiclrccontainerforinterior->lrcDisplayExpand())
     {
         MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
     }
@@ -250,9 +250,9 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
     m_ui->stackedFunctionWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->lrcDisplayAllButton->setVisible(m_lrcWidgetShowFullScreen);
 
-    m_ui->musiclrccontainerforinline->createFloatPlayWidget();
+    m_ui->musiclrccontainerforinterior->createFloatPlayWidget();
     m_lrcWidgetShowFullScreen ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
-    m_ui->musiclrccontainerforinline->lrcWidgetShowFullScreen();
+    m_ui->musiclrccontainerforinterior->lrcWidgetShowFullScreen();
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)
