@@ -51,7 +51,6 @@ QString DlnaXml::toString() const
 
 QString DlnaXml::tagNameToLower(const QString &data) const
 {
-    TTK_D(DlnaXml);
     QString body = data;
     int left = body.indexOf("<");
     while(left != -1)

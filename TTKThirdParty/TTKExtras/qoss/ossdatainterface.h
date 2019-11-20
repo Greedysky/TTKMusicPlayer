@@ -24,6 +24,8 @@
 #include "ossconf.h"
 #include <QtNetwork/QNetworkReply>
 
+class OSSDataInterfacePrivate;
+
 /*! @brief The class of the alioss cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -48,12 +50,7 @@ protected Q_SLOTS:
     void handleError(QNetworkReply::NetworkError error);
 
 protected:
-    /*!
-     * Insert authorization.
-     */
-    void insertAuthorization(const QString &method, MStringMap &headers, const QString &resource);
-
-    QNetworkAccessManager *m_networkManager;
+    TTK_DECLARE_PRIVATE(OSSDataInterface)
 
 };
 

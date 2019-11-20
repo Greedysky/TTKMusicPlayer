@@ -30,8 +30,8 @@
 #define TTK_INIT_PRIVATE \
     ttk_d.setPublic(this);
 
-#define TTK_D(Class) Class##Private *const d = ttk_d()
-#define TTK_Q(Class) Class *const q = ttk_q()
+#define TTK_D(Class) Class##Private *const d = static_cast<Class##Private *>(ttk_d())
+#define TTK_Q(Class) Class *const q = static_cast<Class *>(ttk_q())
 
 template <typename PUB>
 /*! @brief The class of the ttk private base.

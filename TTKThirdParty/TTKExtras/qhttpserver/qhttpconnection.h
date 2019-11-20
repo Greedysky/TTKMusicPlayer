@@ -21,6 +21,8 @@
 
 #include "qhttpserverfwd.h"
 
+class QHttpConnectionPrivate;
+
 /*! @brief The class of the http connection.
  * @author Greedysky <greedysky@163.com>
  */
@@ -47,31 +49,8 @@ private Q_SLOTS:
     void updateWriteCount(qint64);
 
 private:
-    static int MessageBegin(http_parser *parser);
-    static int Url(http_parser *parser, const char *at, size_t length);
-    static int HeaderField(http_parser *parser, const char *at, size_t length);
-    static int HeaderValue(http_parser *parser, const char *at, size_t length);
-    static int HeadersComplete(http_parser *parser);
-    static int Body(http_parser *parser, const char *at, size_t length);
-    static int MessageComplete(http_parser *parser);
+    TTK_DECLARE_PRIVATE(QHttpConnection)
 
-private:
-    QTcpSocket *m_socket;
-    http_parser *m_parser;
-    http_parser_settings *m_parserSettings;
-
-    // Since there can only be one request at any time even with pipelining.
-    QHttpRequest *m_request;
-
-    QByteArray m_currentUrl;
-    // The ones we are reading in from the parser
-    HeaderHash m_currentHeaders;
-    QString m_currentHeaderField;
-    QString m_currentHeaderValue;
-
-    // Keep track of transmit buffer status
-    qint64 m_transmitLen;
-    qint64 m_transmitPos;
 };
 
 #endif

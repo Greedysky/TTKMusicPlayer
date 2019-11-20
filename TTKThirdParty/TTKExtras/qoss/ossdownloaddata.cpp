@@ -1,18 +1,33 @@
 #include "ossdownloaddata.h"
+#include "ossdatainterface_p.h"
 
 #include <QFile>
 #include <QDateTime>
 
+class OSSDownloadDataPrivate : public OSSDataInterfacePrivate
+{
+public:
+    OSSDownloadDataPrivate() : OSSDataInterfacePrivate()
+    {
+    }
+
+    QString m_downloadTime;
+    QString m_downloadPath;
+};
+
+
+
 OSSDownloadData::OSSDownloadData(QNetworkAccessManager *networkManager, QObject *parent)
     : OSSDataInterface(networkManager, parent)
 {
-
+    TTK_INIT_PRIVATE;
 }
 
 void OSSDownloadData::downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
 {
-    m_downloadTime = time;
-    m_downloadPath = filePath;
+    TTK_D(OSSDownloadData);
+    d->m_downloadTime = time;
+    d->m_downloadPath = filePath;
 
     const QString &method = "GET";
     const QString &url = "/" + fileName;
@@ -23,7 +38,7 @@ void OSSDownloadData::downloadDataOperator(const QString &time, const QString &b
     headers.insert("Date", OSSUtils::getGMT());
     headers.insert("Host", host);
 
-    insertAuthorization(method, headers, resource);
+    d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
@@ -35,7 +50,7 @@ void OSSDownloadData::downloadDataOperator(const QString &time, const QString &b
         request.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
 
-    QNetworkReply *reply = m_networkManager->get(request);
+    QNetworkReply *reply = d->m_networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 
@@ -74,18 +89,19 @@ QString OSSDownloadData::getDownloadUrl(const QString &bucket, const QString &fi
 
 void OSSDownloadData::receiveDataFromServer()
 {
+    TTK_D(OSSDownloadData);
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)
         {
-            QFile file(m_downloadPath);
+            QFile file(d->m_downloadPath);
             if(file.open(QFile::WriteOnly))
             {
                 file.write(reply->readAll());
                 file.close();
             }
-            emit downloadFileFinished(m_downloadTime);
+            emit downloadFileFinished(d->m_downloadTime);
         }
         else
         {
@@ -101,5 +117,6 @@ void OSSDownloadData::receiveDataFromServer()
 
 void OSSDownloadData::downloadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
-    emit downloadProgressChanged(m_downloadTime, bytesSent, bytesTotal);
+    TTK_D(OSSDownloadData);
+    emit downloadProgressChanged(d->m_downloadTime, bytesSent, bytesTotal);
 }

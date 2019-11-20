@@ -6,9 +6,36 @@
 #include "qhttpserver.h"
 #include "qhttpconnection.h"
 
-QHttpResponse::QHttpResponse(QHttpConnection *connection)
-    : QObject(0),
-      m_connection(connection),
+class QHttpResponsePrivate : public TTKPrivate<QHttpResponse>
+{
+public:
+    QHttpResponsePrivate();
+
+    void writeHeaders();
+    void writeHead(int status);
+    void writeHeader(const char *field, const QString &value);
+    void write(const QByteArray &data);
+
+    void setHeader(const QString &field, const QString &value);
+
+    QHttpConnection *m_connection;
+
+    HeaderHash m_headers;
+
+    bool m_headerWritten;
+    bool m_sentConnectionHeader;
+    bool m_sentContentLengthHeader;
+    bool m_sentTransferEncodingHeader;
+    bool m_sentDate;
+    bool m_keepAlive;
+    bool m_last;
+    bool m_useChunkedEncoding;
+    bool m_finished;
+
+};
+
+QHttpResponsePrivate::QHttpResponsePrivate()
+    : m_connection(nullptr),
       m_headerWritten(false),
       m_sentConnectionHeader(false),
       m_sentContentLengthHeader(false),
@@ -19,34 +46,10 @@ QHttpResponse::QHttpResponse(QHttpConnection *connection)
       m_useChunkedEncoding(false),
       m_finished(false)
 {
-   connect(m_connection, SIGNAL(allBytesWritten()), this, SIGNAL(allBytesWritten()));
+
 }
 
-QHttpResponse::~QHttpResponse()
-{
-}
-
-void QHttpResponse::setHeader(const QString &field, const QString &value)
-{
-    if (!m_finished)
-        m_headers[field] = value;
-    else
-        qWarning() << "QHttpResponse::setHeader() Cannot set headers after response has finished.";
-}
-
-void QHttpResponse::writeHeader(const char *field, const QString &value)
-{
-    if (!m_finished) {
-        m_connection->write(field);
-        m_connection->write(": ");
-        m_connection->write(value.toUtf8());
-        m_connection->write("\r\n");
-    } else
-        qWarning()
-            << "QHttpResponse::writeHeader() Cannot write headers after response has finished.";
-}
-
-void QHttpResponse::writeHeaders()
+void QHttpResponsePrivate::writeHeaders()
 {
     if (m_finished)
         return;
@@ -67,8 +70,6 @@ void QHttpResponse::writeHeaders()
             m_sentContentLengthHeader = true;
         else if (name.compare("date", Qt::CaseInsensitive) == 0)
             m_sentDate = true;
-
-        /// @todo Expect case (??)
 
         writeHeader(name.toLatin1(), value.toLatin1());
     }
@@ -97,7 +98,7 @@ void QHttpResponse::writeHeaders()
                                           "ddd, dd MMM yyyy hh:mm:ss") + " GMT");
 }
 
-void QHttpResponse::writeHead(int status)
+void QHttpResponsePrivate::writeHead(int status)
 {
     if (m_finished) {
         qWarning()
@@ -118,12 +119,19 @@ void QHttpResponse::writeHead(int status)
     m_headerWritten = true;
 }
 
-void QHttpResponse::writeHead(StatusCode statusCode)
+void QHttpResponsePrivate::writeHeader(const char *field, const QString &value)
 {
-    writeHead(static_cast<int>(statusCode));
+    if (!m_finished) {
+        m_connection->write(field);
+        m_connection->write(": ");
+        m_connection->write(value.toUtf8());
+        m_connection->write("\r\n");
+    } else
+        qWarning()
+            << "QHttpResponse::writeHeader() Cannot write headers after response has finished.";
 }
 
-void QHttpResponse::write(const QByteArray &data)
+void QHttpResponsePrivate::write(const QByteArray &data)
 {
     if (m_finished) {
         qWarning() << "QHttpResponse::write() Cannot write body after response has finished.";
@@ -138,26 +146,76 @@ void QHttpResponse::write(const QByteArray &data)
     m_connection->write(data);
 }
 
+void QHttpResponsePrivate::setHeader(const QString &field, const QString &value)
+{
+    if (!m_finished)
+        m_headers[field] = value;
+    else
+        qWarning() << "QHttpResponse::setHeader() Cannot set headers after response has finished.";
+}
+
+
+
+QHttpResponse::QHttpResponse(QHttpConnection *connection)
+    : QObject(0)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(QHttpResponse);
+    d->m_connection = connection;
+    connect(connection, SIGNAL(allBytesWritten()), this, SIGNAL(allBytesWritten()));
+}
+
+QHttpResponse::~QHttpResponse()
+{
+}
+
+void QHttpResponse::setHeader(const QString &field, const QString &value)
+{
+    TTK_D(QHttpResponse);
+    d->setHeader(field, value);
+}
+
+void QHttpResponse::writeHead(int status)
+{
+    TTK_D(QHttpResponse);
+    d->writeHead(status);
+}
+
+void QHttpResponse::writeHead(StatusCode statusCode)
+{
+    TTK_D(QHttpResponse);
+    d->writeHead(static_cast<int>(statusCode));
+}
+
+void QHttpResponse::write(const QByteArray &data)
+{
+    TTK_D(QHttpResponse);
+    d->write(data);
+}
+
 void QHttpResponse::flush()
 {
-    m_connection->flush();
+    TTK_D(QHttpResponse);
+    d->m_connection->flush();
 }
 
 void QHttpResponse::waitForBytesWritten()
 {
-    m_connection->waitForBytesWritten();
+    TTK_D(QHttpResponse);
+    d->m_connection->waitForBytesWritten();
 }
 
 void QHttpResponse::end(const QByteArray &data)
 {
-    if (m_finished) {
+    TTK_D(QHttpResponse);
+    if (d->m_finished) {
         qWarning() << "QHttpResponse::end() Cannot write end after response has finished.";
         return;
     }
 
     if (data.size() > 0)
         write(data);
-    m_finished = true;
+    d->m_finished = true;
 
     Q_EMIT done();
 
@@ -167,7 +225,20 @@ void QHttpResponse::end(const QByteArray &data)
 
 void QHttpResponse::connectionClosed()
 {
-    m_finished = true;
+    TTK_D(QHttpResponse);
+    d->m_finished = true;
     Q_EMIT done();
     deleteLater();
+}
+
+void QHttpResponse::setKeepAlive(bool alive)
+{
+    TTK_D(QHttpResponse);
+    d->m_keepAlive = alive;
+}
+
+bool QHttpResponse::isLast() const
+{
+    TTK_D(QHttpResponse);
+    return d->m_last;
 }

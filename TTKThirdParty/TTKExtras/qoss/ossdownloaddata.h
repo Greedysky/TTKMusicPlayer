@@ -67,9 +67,6 @@ protected Q_SLOTS:
      */
     void downloadProgress(qint64 bytesSent, qint64 bytesTotal);
 
-private:
-    QString m_downloadTime, m_downloadPath;
-
 };
 
 #endif // OSSDOWNLOADDATA_H

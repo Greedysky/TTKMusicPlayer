@@ -1,12 +1,39 @@
 #include "qhttprequest.h"
 #include "qhttpconnection.h"
 
-QHttpRequest::QHttpRequest(QHttpConnection *connection, QObject *parent)
-    : QObject(parent),
-      m_connection(connection),
+class QHttpRequestPrivate : public TTKPrivate<QHttpRequest>
+{
+public:
+    QHttpRequestPrivate();
+
+    QHttpConnection *m_connection;
+    HeaderHash m_headers;
+    QHttpRequest::HttpMethod m_method;
+    QUrl m_url;
+    QString m_version;
+    QString m_remoteAddress;
+    quint16 m_remotePort;
+    QByteArray m_body;
+    bool m_success;
+
+};
+
+QHttpRequestPrivate::QHttpRequestPrivate()
+    : m_connection(nullptr),
       m_url("http://localhost/"),
       m_success(false)
 {
+
+}
+
+
+
+QHttpRequest::QHttpRequest(QHttpConnection *connection, QObject *parent)
+    : QObject(parent)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(QHttpRequest);
+    d->m_connection = connection;
 }
 
 QHttpRequest::~QHttpRequest()
@@ -15,27 +42,32 @@ QHttpRequest::~QHttpRequest()
 
 QString QHttpRequest::header(const QString &field)
 {
-    return m_headers.value(field.toLower(), "");
+    TTK_D(QHttpRequest);
+    return d->m_headers.value(field.toLower(), "");
 }
 
 const HeaderHash &QHttpRequest::headers() const
 {
-    return m_headers;
+    TTK_D(QHttpRequest);
+    return d->m_headers;
 }
 
 const QString &QHttpRequest::httpVersion() const
 {
-    return m_version;
+    TTK_D(QHttpRequest);
+    return d->m_version;
 }
 
 const QUrl &QHttpRequest::url() const
 {
-    return m_url;
+    TTK_D(QHttpRequest);
+    return d->m_url;
 }
 
 const QString QHttpRequest::path() const
 {
-    return m_url.path();
+    TTK_D(QHttpRequest);
+    return d->m_url.path();
 }
 
 const QString QHttpRequest::methodString() const
@@ -45,23 +77,37 @@ const QString QHttpRequest::methodString() const
 
 QHttpRequest::HttpMethod QHttpRequest::method() const
 {
-    return m_method;
+    TTK_D(QHttpRequest);
+    return d->m_method;
 }
 
 const QString &QHttpRequest::remoteAddress() const
 {
-    return m_remoteAddress;
+    TTK_D(QHttpRequest);
+    return d->m_remoteAddress;
 }
 
 quint16 QHttpRequest::remotePort() const
 {
-    return m_remotePort;
+    TTK_D(QHttpRequest);
+    return d->m_remotePort;
+}
+
+const QByteArray &QHttpRequest::body() const
+{
+    TTK_D(QHttpRequest);
+    return d->m_body;
+}
+
+bool QHttpRequest::successful() const
+{
+    TTK_D(QHttpRequest);
+    return d->m_success;
 }
 
 void QHttpRequest::storeBody()
 {
-    connect(this, SIGNAL(data(const QByteArray &)), this, SLOT(appendBody(const QByteArray &)),
-            Qt::UniqueConnection);
+    connect(this, SIGNAL(data(const QByteArray &)), this, SLOT(appendBody(const QByteArray &)), Qt::UniqueConnection);
 }
 
 QString QHttpRequest::MethodToString(HttpMethod method)
@@ -72,5 +118,48 @@ QString QHttpRequest::MethodToString(HttpMethod method)
 
 void QHttpRequest::appendBody(const QByteArray &body)
 {
-    m_body.append(body);
+    TTK_D(QHttpRequest);
+    d->m_body.append(body);
+}
+
+void QHttpRequest::setMethod(HttpMethod method)
+{
+    TTK_D(QHttpRequest);
+    d->m_method = method;
+}
+
+void QHttpRequest::setVersion(const QString &version)
+{
+    TTK_D(QHttpRequest);
+    d->m_version = version;
+}
+
+void QHttpRequest::setUrl(const QUrl &url)
+{
+    TTK_D(QHttpRequest);
+    d->m_url = url;
+}
+
+void QHttpRequest::setHeaders(const HeaderHash headers)
+{
+    TTK_D(QHttpRequest);
+    d->m_headers = headers;
+}
+
+void QHttpRequest::setSuccessful(bool success)
+{
+    TTK_D(QHttpRequest);
+    d->m_success = success;
+}
+
+void QHttpRequest::setRemoteAddress(const QString &address)
+{
+    TTK_D(QHttpRequest);
+    d->m_remoteAddress = address;
+}
+
+void QHttpRequest::setRemotePort(quint16 port)
+{
+    TTK_D(QHttpRequest);
+    d->m_remotePort = port;
 }

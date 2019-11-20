@@ -8,10 +8,65 @@
 
 QHash<int, QString> STATUS_CODES;
 
-QHttpServer::QHttpServer(QObject *parent)
-    : QObject(parent),
-      m_tcpServer(0)
+class QHttpServerPrivate : public TTKPrivate<QHttpServer>
 {
+public:
+    QHttpServerPrivate();
+
+    bool listen(const QHostAddress &address, quint16 port);
+    void create();
+    void close();
+    void free();
+
+    QTcpServer *m_tcpServer;
+
+};
+
+QHttpServerPrivate::QHttpServerPrivate()
+    : m_tcpServer(nullptr)
+{
+
+}
+
+bool QHttpServerPrivate::listen(const QHostAddress &address, quint16 port)
+{
+    m_tcpServer = new QTcpServer(ttk_q());
+    bool couldBindToPort = m_tcpServer->listen(address, port);
+    if (couldBindToPort) {
+        QObject::connect(m_tcpServer, SIGNAL(newConnection()), ttk_q(), SLOT(newConnection()));
+    } else {
+        free();
+    }
+    return couldBindToPort;
+}
+
+void QHttpServerPrivate::create()
+{
+    while (m_tcpServer->hasPendingConnections()) {
+        QHttpConnection *connection = new QHttpConnection(m_tcpServer->nextPendingConnection(), ttk_q());
+        QObject::connect(connection, SIGNAL(newRequest(QHttpRequest *, QHttpResponse *)), ttk_q(),
+                         SIGNAL(newRequest(QHttpRequest *, QHttpResponse *)));
+    }
+}
+
+void QHttpServerPrivate::close()
+{
+    if (m_tcpServer)
+        m_tcpServer->close();
+}
+
+void QHttpServerPrivate::free()
+{
+    delete m_tcpServer;
+    m_tcpServer = nullptr;
+}
+
+
+
+QHttpServer::QHttpServer(QObject *parent)
+    : QObject(parent)
+{
+    TTK_INIT_PRIVATE;
 #define STATUS_CODE(num, reason) STATUS_CODES.insert(num, reason);
     STATUS_CODE(100, "Continue")
     STATUS_CODE(101, "Switching Protocols")
@@ -73,29 +128,14 @@ QHttpServer::~QHttpServer()
 
 void QHttpServer::newConnection()
 {
-    Q_ASSERT(m_tcpServer);
-
-    while (m_tcpServer->hasPendingConnections()) {
-        QHttpConnection *connection =
-            new QHttpConnection(m_tcpServer->nextPendingConnection(), this);
-        connect(connection, SIGNAL(newRequest(QHttpRequest *, QHttpResponse *)), this,
-                SIGNAL(newRequest(QHttpRequest *, QHttpResponse *)));
-    }
+    TTK_D(QHttpServer);
+    d->create();
 }
 
 bool QHttpServer::listen(const QHostAddress &address, quint16 port)
 {
-    Q_ASSERT(!m_tcpServer);
-    m_tcpServer = new QTcpServer(this);
-
-    bool couldBindToPort = m_tcpServer->listen(address, port);
-    if (couldBindToPort) {
-        connect(m_tcpServer, SIGNAL(newConnection()), this, SLOT(newConnection()));
-    } else {
-        delete m_tcpServer;
-        m_tcpServer = nullptr;
-    }
-    return couldBindToPort;
+    TTK_D(QHttpServer);
+    return d->listen(address, port);
 }
 
 bool QHttpServer::listen(quint16 port)
@@ -105,6 +145,6 @@ bool QHttpServer::listen(quint16 port)
 
 void QHttpServer::close()
 {
-    if (m_tcpServer)
-        m_tcpServer->close();
+    TTK_D(QHttpServer);
+    d->close();
 }

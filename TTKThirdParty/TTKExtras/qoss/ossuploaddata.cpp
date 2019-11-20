@@ -1,16 +1,30 @@
 #include "ossuploaddata.h"
+#include "ossdatainterface_p.h"
 
 #include <QFile>
+
+class OSSUploadDataPrivate : public OSSDataInterfacePrivate
+{
+public:
+    OSSUploadDataPrivate() : OSSDataInterfacePrivate()
+    {
+    }
+
+    QString m_uploadTime;
+};
+
+
 
 OSSUploadData::OSSUploadData(QNetworkAccessManager *networkManager, QObject *parent)
     : OSSDataInterface(networkManager, parent)
 {
-
+    TTK_INIT_PRIVATE;
 }
 
 void OSSUploadData::uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
 {
-    m_uploadTime = time;
+    TTK_D(OSSUploadData);
+    d->m_uploadTime = time;
 
     const QString &method = "PUT";
     const QString &url = "/" + fileName;
@@ -21,7 +35,7 @@ void OSSUploadData::uploadDataOperator(const QString &time, const QString &bucke
     headers.insert("Date", OSSUtils::getGMT());
     headers.insert("Host", host);
 
-    insertAuthorization(method, headers, resource);
+    d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
@@ -38,7 +52,7 @@ void OSSUploadData::uploadDataOperator(const QString &time, const QString &bucke
     QByteArray fileData = file.readAll();
     file.close();
 
-    QNetworkReply *reply = m_networkManager->put(request, fileData);
+    QNetworkReply *reply = d->m_networkManager->put(request, fileData);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 
@@ -51,12 +65,13 @@ void OSSUploadData::uploadDataOperator(const QString &time, const QString &bucke
 
 void OSSUploadData::receiveDataFromServer()
 {
+    TTK_D(OSSUploadData);
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)
         {
-            emit uploadFileFinished(m_uploadTime);
+            emit uploadFileFinished(d->m_uploadTime);
         }
         else
         {
@@ -72,5 +87,6 @@ void OSSUploadData::receiveDataFromServer()
 
 void OSSUploadData::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
-    emit uploadProgressChanged(m_uploadTime, bytesSent, bytesTotal);
+    TTK_D(OSSUploadData);
+    emit uploadProgressChanged(d->m_uploadTime, bytesSent, bytesTotal);
 }

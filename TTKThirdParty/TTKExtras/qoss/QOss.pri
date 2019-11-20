@@ -25,6 +25,7 @@ HEADERS  += \
     $$PWD/ossdataitem.h \
     $$PWD/ossutils.h \
     $$PWD/ossdatainterface.h \
+    $$PWD/ossdatainterface_p.h \
     $$PWD/osslistdata.h \
     $$PWD/ossdeletedata.h \
     $$PWD/ossuploaddata.h \

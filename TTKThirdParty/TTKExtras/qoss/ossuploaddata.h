@@ -58,9 +58,6 @@ protected Q_SLOTS:
      */
     void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
-private:
-    QString m_uploadTime;
-
 };
 
 #endif // OSSUPLOADDATA_H

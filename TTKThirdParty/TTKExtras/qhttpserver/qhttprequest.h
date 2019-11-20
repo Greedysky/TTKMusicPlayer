@@ -24,6 +24,8 @@
 #include <QMetaType>
 #include "qhttpserverfwd.h"
 
+class QHttpRequestPrivate;
+
 /*! @brief The class of the http request.
  * @author Greedysky <greedysky@163.com>
  */
@@ -42,6 +44,7 @@ class MUSIC_EXTRAS_EXPORT QHttpRequest : public QObject
 
     /// @cond nodoc
     friend class QHttpConnection;
+    friend class QHttpConnectionPrivate;
     /// @endcond
 
 public:
@@ -125,19 +128,13 @@ public:
 
     /// Request body data, empty for non POST/PUT requests.
     /** @sa storeBody() */
-    const QByteArray &body() const
-    {
-        return m_body;
-    }
+    const QByteArray &body() const;
 
     /// If this request was successfully received.
     /** Set before end() has been emitted, stating whether
         the message was properly received. This is false
         until the receiving the full request has completed. */
-    bool successful() const
-    {
-        return m_success;
-    }
+    bool successful() const;
 
     /// Utility function to make this request store all body data internally.
     /** If you call this when the request is received via QHttpServer::newRequest()
@@ -168,22 +165,17 @@ private:
     explicit QHttpRequest(QHttpConnection *connection, QObject *parent = nullptr);
 
     static QString MethodToString(HttpMethod method);
+    void setMethod(HttpMethod method);
+    void setVersion(const QString &version);
+    void setUrl(const QUrl &url);
+    void setHeaders(const HeaderHash headers);
+    void setSuccessful(bool success);
+    void setRemoteAddress(const QString &address);
+    void setRemotePort(quint16 port);
 
-    void setMethod(HttpMethod method) { m_method = method; }
-    void setVersion(const QString &version) { m_version = version; }
-    void setUrl(const QUrl &url) { m_url = url; }
-    void setHeaders(const HeaderHash headers) { m_headers = headers; }
-    void setSuccessful(bool success) { m_success = success; }
+private:
+    TTK_DECLARE_PRIVATE(QHttpRequest)
 
-    QHttpConnection *m_connection;
-    HeaderHash m_headers;
-    HttpMethod m_method;
-    QUrl m_url;
-    QString m_version;
-    QString m_remoteAddress;
-    quint16 m_remotePort;
-    QByteArray m_body;
-    bool m_success;
 };
 
 #endif

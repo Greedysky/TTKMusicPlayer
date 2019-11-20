@@ -1,4 +1,5 @@
 #include "osslistdata.h"
+#include "ossdatainterface_p.h"
 
 #include <QDateTime>
 #include <QtXml/QDomDocument>
@@ -11,6 +12,7 @@ OSSListData::OSSListData(QNetworkAccessManager *networkManager, QObject *parent)
 
 void OSSListData::listDataOperator(const QString &bucket)
 {
+    TTK_D(OSSDataInterface);
     const QString &method = "GET";
     const QString &url = "/";
     const QString &resource = "/" + bucket + "/";
@@ -20,7 +22,7 @@ void OSSListData::listDataOperator(const QString &bucket)
     headers.insert("Date", OSSUtils::getGMT());
     headers.insert("Host", host);
 
-    insertAuthorization(method, headers, resource);
+    d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
@@ -32,7 +34,7 @@ void OSSListData::listDataOperator(const QString &bucket)
         request.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
 
-    QNetworkReply *reply = m_networkManager->get(request);
+    QNetworkReply *reply = d->m_networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 }
