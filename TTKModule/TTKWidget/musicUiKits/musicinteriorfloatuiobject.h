@@ -1,5 +1,5 @@
-#ifndef MUSICINLINEFLOATUIOBJECT_H
-#define MUSICINLINEFLOATUIOBJECT_H
+#ifndef MUSICINTERIORFLOATUIOBJECT_H
+#define MUSICINTERIORFLOATUIOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,56 +21,56 @@
 
 #include <QObject>
 
-/*! @brief The namespace of the inline float button style.
+/*! @brief The namespace of the Interior float button style.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUIObject
 {
-    const QString MKGInlineFloatMore = " \
+    const QString MKGInteriorFloatMore = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_more_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_more_hover);}";
 
-    const QString MKGInlineFloatUpdate = " \
+    const QString MKGInteriorFloatUpdate = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_update_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_update_hover);}";
 
-    const QString MKGInlineFloatWallpaper = " \
+    const QString MKGInteriorFloatWallpaper = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_wallpaper_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover);}";
 
-    const QString MKGInlineFloatWallpaperOn = " \
+    const QString MKGInteriorFloatWallpaperOn = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_wallpaper_on_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_on_hover);}";
 
-    const QString MKGInlineFloatSearch = " \
+    const QString MKGInteriorFloatSearch = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_search_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_search_hover);}";
 
-    const QString MKGInlineFloatPhoto = " \
+    const QString MKGInteriorFloatPhoto = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_photo_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover);}";
 
-    const QString MKGInlineFloatSetting = " \
+    const QString MKGInteriorFloatSetting = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_border_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_border_hover);}";
 
-    const QString MKGInlineLrcBigger = " \
+    const QString MKGInteriorLrcBigger = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_bigger_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_bigger_hover);}";
 
-    const QString MKGInlineLrcSmaller = " \
+    const QString MKGInteriorLrcSmaller = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/btn_smaller_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_smaller_hover);}";
 
 }
 
-#endif // MUSICINLINEFLOATUIOBJECT_H
+#endif // MUSICINTERIORFLOATUIOBJECT_H

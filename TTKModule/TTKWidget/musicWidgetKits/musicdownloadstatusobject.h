@@ -44,7 +44,7 @@ public:
      */
     void musicCheckHasLrcAlready();
     /*!
-     * Check the setting has open inline or desktop lrc on or not.
+     * Check the setting has open interior or desktop lrc on or not.
      */
     bool checkSettingParameterValue() const;
 

@@ -98,13 +98,13 @@ public:
      */
     bool getDestopLrcVisible() const;
     /*!
-     * Set inline lrc visible by string.
+     * Set interior lrc visible by string.
      */
-    void setInlineLrcVisible(bool status) const;
+    void setInteriorLrcVisible(bool status) const;
     /*!
-     * Get inline lrc visible state.
+     * Get interior lrc visible state.
      */
-    bool getInlineLrcVisible() const;
+    bool getInteriorLrcVisible() const;
     /*!
      * Set setting parameter.
      */
@@ -114,7 +114,7 @@ public:
      */
     void getParameterSetting() const;
     /*!
-     * Check the setting has open inline or desktop lrc on or not.
+     * Check the setting has open interior or desktop lrc on or not.
      */
     bool checkSettingParameterValue() const;
     /*!

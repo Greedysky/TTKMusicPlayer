@@ -75,7 +75,7 @@ public:
         OtherRippleSpectrumColor,        /*!< Other Ripple Spectrum Color Parameter*/
         OtherRippleSpectrumOpacity,      /*!< Other Ripple Spectrum Opacity Parameter*/
 
-        ShowInlineLrc,                   /*!< Show Inline Lrc Parameter*/
+        ShowInteriorLrc,                 /*!< Show Interior Lrc Parameter*/
         LrcColor,                        /*!< Lrc Color Parameter*/
         LrcSize,                         /*!< Lrc Size Parameter*/
         LrcType,                         /*!< Lrc Type Parameter*/

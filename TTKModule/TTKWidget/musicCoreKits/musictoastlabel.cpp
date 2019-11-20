@@ -8,7 +8,7 @@
 MusicToastLabel::MusicToastLabel(QWidget *parent)
     : QLabel(parent)
 {
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_QuitOnClose);
     setAttribute(Qt::WA_DeleteOnClose);

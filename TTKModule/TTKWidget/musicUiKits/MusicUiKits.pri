@@ -25,8 +25,8 @@ HEADERS  += \
     $$PWD/musicdesktoplrcuiobject.h \
     $$PWD/musicfunctionlistuiobject.h \
     $$PWD/musicfunctionuiobject.h \
-    $$PWD/musicinlinefloatuiobject.h \
-    $$PWD/musicinlinelrcuiobject.h \
+    $$PWD/musicinteriorfloatuiobject.h \
+    $$PWD/musicinteriorlrcuiobject.h \
     $$PWD/musicleftitemlistuiobject.h \
     $$PWD/musicmagicwidgetuiobject.h \
     $$PWD/musicqualitywidgetuiobject.h \

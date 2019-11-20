@@ -11,7 +11,7 @@
 #include "musicurlutils.h"
 #include "musicstringutils.h"
 #include "musicnumberdefine.h"
-#include "musicinlinelrcuiobject.h"
+#include "musicinteriorlrcuiobject.h"
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"
 #include "musiclrctranslatedwidget.h"
@@ -40,9 +40,9 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     setLayout(vBoxLayout);
 
     m_lrcAnalysis = new MusicLrcAnalysis(this);
-    m_lrcAnalysis->setLineMax(MUSIC_LRC_INLINE_MAX_LINE);
+    m_lrcAnalysis->setLineMax(MUSIC_LRC_INTERIOR_MAX_LINE);
 
-    m_containerType = LRC_INLINE_TPYE;
+    m_containerType = LRC_INTERIOR_TPYE;
     m_layoutWidget = new MusicVLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
@@ -737,10 +737,10 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     microphone->setFixedSize(30, 30);
     message->setFixedSize(30, 30);
 
-    translation->setStyleSheet(MusicUIObject::MKGInlineTranslation);
-    movie->setStyleSheet(MusicUIObject::MKGInlineMovie);
-    microphone->setStyleSheet(MusicUIObject::MKGInlineMicrophone);
-    message->setStyleSheet(MusicUIObject::MKGInlineMessage);
+    translation->setStyleSheet(MusicUIObject::MKGInteriorTranslation);
+    movie->setStyleSheet(MusicUIObject::MKGInteriorMovie);
+    microphone->setStyleSheet(MusicUIObject::MKGInteriorMicrophone);
+    message->setStyleSheet(MusicUIObject::MKGInteriorMessage);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);
@@ -877,9 +877,9 @@ int MusicLrcContainerForInterior::mapLrcSizeProperty(int size)
 
 void MusicLrcContainerForInterior::setLrcSizeProperty(int property)
 {
-    const int length = MUSIC_LRC_INLINE_MAX_LINE - property;
+    const int length = MUSIC_LRC_INTERIOR_MAX_LINE - property;
     m_lrcAnalysis->setLineMax(length);
-    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->show();
         m_musicLrcContainer[i]->reset();
@@ -889,7 +889,7 @@ void MusicLrcContainerForInterior::setLrcSizeProperty(int property)
     {
         m_layoutWidget->addWidget(m_musicLrcContainer[i]);
     }
-    for(int i=length; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    for(int i=length; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->hide();
     }

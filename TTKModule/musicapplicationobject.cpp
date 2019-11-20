@@ -236,7 +236,7 @@ void MusicApplicationObject::windowCloseAnimationFinished()
         w->hide();
 
         m_quitContainer = new QWidget;
-        m_quitContainer->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
+        m_quitContainer->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
         m_quitContainer->setAttribute(Qt::WA_TranslucentBackground);
 
         MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
@@ -288,7 +288,7 @@ void MusicApplicationObject::musicSetWindowToTop()
 {
     m_setWindowToTop = !m_setWindowToTop;
     Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
-    MusicApplication::instance()->setWindowFlags( m_setWindowToTop ? (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint) );
+    MusicApplication::instance()->setWindowFlags(m_setWindowToTop ? (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint));
     MusicApplication::instance()->show();
 }
 

@@ -1,7 +1,7 @@
 #include "musiclrcfloatwidget.h"
 #include "musiclrcfloatphotowidget.h"
 #include "musiclrcfloatsettingwidget.h"
-#include "musicinlinefloatuiobject.h"
+#include "musicinteriorfloatuiobject.h"
 #include "musicrightareawidget.h"
 #include "musicbottomareawidget.h"
 #include "musicwidgetheaders.h"
@@ -38,11 +38,11 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setGeometry(15, 130, 80, 20);
     m_photo->setGeometry(15, 170, 80, 20);
 
-    m_update->setStyleSheet(MusicUIObject::MKGInlineFloatUpdate + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
-    m_search->setStyleSheet(MusicUIObject::MKGInlineFloatSearch + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
-    m_more->setStyleSheet(MusicUIObject::MKGInlineFloatMore + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
-    m_wallp->setStyleSheet(MusicUIObject::MKGInlineFloatWallpaper + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
-    m_photo->setStyleSheet(MusicUIObject::MKGInlineFloatPhoto + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
+    m_update->setStyleSheet(MusicUIObject::MKGInteriorFloatUpdate + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
+    m_search->setStyleSheet(MusicUIObject::MKGInteriorFloatSearch + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
+    m_more->setStyleSheet(MusicUIObject::MKGInteriorFloatMore + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
+    m_wallp->setStyleSheet(MusicUIObject::MKGInteriorFloatWallpaper + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
+    m_photo->setStyleSheet(MusicUIObject::MKGInteriorFloatPhoto + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
 
     m_update->setCursor(QCursor(Qt::PointingHandCursor));
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
@@ -99,13 +99,13 @@ void MusicLrcFloatWidget::closeFloatSettingWidget()
 
 void MusicLrcFloatWidget::musicContainerForWallpaperClicked()
 {
-    if(m_wallp->styleSheet().contains(MusicUIObject::MKGInlineFloatWallpaper))
+    if(m_wallp->styleSheet().contains(MusicUIObject::MKGInteriorFloatWallpaper))
     {
-        m_wallp->setStyleSheet(MusicUIObject::MKGInlineFloatWallpaperOn + MusicUIObject::MPushButtonStyle14 + MusicUIObject::MPushButtonStyle01);
+        m_wallp->setStyleSheet(MusicUIObject::MKGInteriorFloatWallpaperOn + MusicUIObject::MPushButtonStyle14 + MusicUIObject::MPushButtonStyle01);
     }
     else
     {
-        m_wallp->setStyleSheet(MusicUIObject::MKGInlineFloatWallpaper + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
+        m_wallp->setStyleSheet(MusicUIObject::MKGInteriorFloatWallpaper + MusicUIObject::MPushButtonStyle09 + MusicUIObject::MPushButtonStyle01);
     }
 
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())

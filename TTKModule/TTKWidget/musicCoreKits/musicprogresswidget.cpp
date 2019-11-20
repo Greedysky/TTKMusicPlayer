@@ -14,7 +14,7 @@ MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     : QProgressDialog(parent)
 {
     setModal(true);
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setWindowModality(Qt::ApplicationModal);
     setAttribute(Qt::WA_TranslucentBackground);
 

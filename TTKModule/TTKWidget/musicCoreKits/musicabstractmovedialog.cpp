@@ -19,7 +19,7 @@ MusicAbstractMoveDialog::MusicAbstractMoveDialog(bool transparent, QWidget *pare
     : QDialog(parent)
 {
     ///Remove the title bar
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
 
     m_moveOption = false;

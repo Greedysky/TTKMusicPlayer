@@ -2,7 +2,7 @@
 #include "musicdownloadsourcethread.h"
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
-#include "musicinlinelrcuiobject.h"
+#include "musicinteriorlrcuiobject.h"
 #include "musicuiobject.h"
 #include "ttkglobal.h"
 #include "musicclickedlabel.h"
@@ -62,7 +62,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     QPushButton *starButton = new QPushButton(operWidget);
     starButton->setCursor(QCursor(Qt::PointingHandCursor));
     starButton->setFixedSize(12, 11);
-    starButton->setStyleSheet(MusicUIObject::MKGInlineStar);
+    starButton->setStyleSheet(MusicUIObject::MKGInteriorStar);
     m_starLabel = new QLabel(operWidget);
     m_starLabel->setText("(0)");
     m_starLabel->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);

@@ -2,7 +2,7 @@
 #include "ui_musiclrcmakerwidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicinlinelrcuiobject.h"
+#include "musicinteriorlrcuiobject.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicconnectionpool.h"
@@ -10,7 +10,7 @@
 #include "musiccoreutils.h"
 #include "musicapplication.h"
 #include "musiclrcanalysis.h"
-#include "musiclrcmanagerForInterior.h"
+#include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
 #include "musicotherdefine.h"
@@ -646,8 +646,8 @@ void MusicLrcMakerWidget::createThirdWidget()
     m_ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
     m_ui->lrc_make_up_T->setToolTip(tr("Before 1s"));
     m_ui->lrc_make_down_T->setToolTip(tr("After 1s"));
-    m_ui->lrc_make_up_T->setStyleSheet(MusicUIObject::MKGInlineMakeUp);
-    m_ui->lrc_make_down_T->setStyleSheet(MusicUIObject::MKGInlineMakeDown);
+    m_ui->lrc_make_up_T->setStyleSheet(MusicUIObject::MKGInteriorMakeUp);
+    m_ui->lrc_make_down_T->setStyleSheet(MusicUIObject::MKGInteriorMakeDown);
     connect(m_ui->lrc_make_up_T, SIGNAL(clicked()), SLOT(lrcSpeedSlower()));
     connect(m_ui->lrc_make_down_T, SIGNAL(clicked()), SLOT(lrcSpeedFaster()));
 

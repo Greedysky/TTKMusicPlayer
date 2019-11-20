@@ -2,16 +2,16 @@
 
 MusicLrcDefines::MusicLrcDefines()
 {
-   m_inlineLrcSize << "14" << "16" << "18" << "20" << "22" << "24"
+   m_interiorLrcSize << "14" << "16" << "18" << "20" << "22" << "24"
                    << "26" << "28" << "36" << "48" << "72";
 
    m_desktopLrcSize << "24" << "25" << "26" << "27" << "28" << "29" << "30"
                     << "31" << "32" << "33" << "34" << "35" << "36";
 }
 
-QStringList MusicLrcDefines::getInlineLrcSize() const
+QStringList MusicLrcDefines::getInteriorLrcSize() const
 {
-    return m_inlineLrcSize;
+    return m_interiorLrcSize;
 }
 
 QStringList MusicLrcDefines::getDesktopLrcSize() const
@@ -19,39 +19,39 @@ QStringList MusicLrcDefines::getDesktopLrcSize() const
     return m_desktopLrcSize;
 }
 
-int MusicLrcDefines::findInlineLrcIndex(int size) const
+int MusicLrcDefines::findInteriorLrcIndex(int size) const
 {
-    return m_inlineLrcSize.indexOf(QString::number(size));
+    return m_interiorLrcSize.indexOf(QString::number(size));
 }
 
-int MusicLrcDefines::findInlinePreSize(int index) const
+int MusicLrcDefines::findInteriorPreSize(int index) const
 {
     if(index == -1 || index == 0)
     {
-        return m_inlineLrcSize.first().toInt();
+        return m_interiorLrcSize.first().toInt();
     }
 
-    return m_inlineLrcSize[index - 1].toInt();
+    return m_interiorLrcSize[index - 1].toInt();
 }
 
-int MusicLrcDefines::findInlineNextSize(int index) const
+int MusicLrcDefines::findInteriorNextSize(int index) const
 {
-    if(index == -1 || index == m_inlineLrcSize.count() - 1)
+    if(index == -1 || index == m_interiorLrcSize.count() - 1)
     {
-        return m_inlineLrcSize.last().toInt();
+        return m_interiorLrcSize.last().toInt();
     }
 
-    return m_inlineLrcSize[index + 1].toInt();
+    return m_interiorLrcSize[index + 1].toInt();
 }
 
-int MusicLrcDefines::findInlineFirstSize() const
+int MusicLrcDefines::findInteriorFirstSize() const
 {
-    return m_inlineLrcSize.first().toInt();
+    return m_interiorLrcSize.first().toInt();
 }
 
-int MusicLrcDefines::findInlineLastSize() const
+int MusicLrcDefines::findInteriorLastSize() const
 {
-    return m_inlineLrcSize.last().toInt();
+    return m_interiorLrcSize.last().toInt();
 }
 
 int MusicLrcDefines::findDesktopLrcIndex(int size) const

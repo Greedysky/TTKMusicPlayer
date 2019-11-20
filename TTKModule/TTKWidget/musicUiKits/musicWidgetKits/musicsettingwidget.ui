@@ -1736,7 +1736,7 @@ font-weight:bold;</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QCheckBox" name="showInlineCheckBox">
+    <widget class="QCheckBox" name="showInteriorCheckBox">
      <property name="geometry">
       <rect>
        <x>25</x>

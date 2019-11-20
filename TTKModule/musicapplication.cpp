@@ -1194,9 +1194,9 @@ void MusicApplication::readXMLConfigFromText()
     //Disable  window quit mode on unix
     M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, false);
 #endif
-    //Set inline lrc mode always on
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrc, true);
-    m_rightAreaWidget->setInlineLrcVisible(true);
+    //Set interior lrc mode always on
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, true);
+    m_rightAreaWidget->setInteriorLrcVisible(true);
 
     //Set the desktop lrc should be shown
     m_rightAreaWidget->setWindowLrcTypeChanged();

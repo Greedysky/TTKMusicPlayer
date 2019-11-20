@@ -1,5 +1,5 @@
-#ifndef MUSICINLINELRCUIOBJECT_H
-#define MUSICINLINELRCUIOBJECT_H
+#ifndef MUSICINTERIORLRCUIOBJECT_H
+#define MUSICINTERIORLRCUIOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,47 +21,47 @@
 
 #include <QObject>
 
-/*! @brief The namespace of the inline lrc button style.
+/*! @brief The namespace of the interior lrc button style.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUIObject
 {
-    const QString MKGInlineTranslation = " \
+    const QString MKGInteriorTranslation = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_translation_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover);}";
 
-    const QString MKGInlineMicrophone = " \
+    const QString MKGInteriorMicrophone = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_microphone_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_microphone_hover);}";
 
-    const QString MKGInlineMessage = " \
+    const QString MKGInteriorMessage = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_message_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_message_hover);}";
 
-    const QString MKGInlineMovie = " \
+    const QString MKGInteriorMovie = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_mv_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover);}";
             
-    const QString MKGInlineStar = " \
+    const QString MKGInteriorStar = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_star_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/btn_star_hover);} \
             QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked);}";
             
-    const QString MKGInlineMakeUp = " \
+    const QString MKGInteriorMakeUp = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/lb_make_up_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover);}";
             
-    const QString MKGInlineMakeDown = " \
+    const QString MKGInteriorMakeDown = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/lb_make_down_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover);}";
 
 }
 
-#endif // MUSICINLINELRCUIOBJECT_H
+#endif // MUSICINTERIORLRCUIOBJECT_H

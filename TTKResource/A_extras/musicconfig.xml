@@ -41,8 +41,8 @@
         <hotkeyEnable value="0"/>
         <hotkeyString value=""/>
     </hotkeySetting>
-    <inlineLrcSetting>
-        <showInlineLrc value="1"/>
+    <interiorLrcSetting>
+        <showInteriorLrc value="1"/>
         <lrcColor value="0"/>
         <lrcSize value="18"/>
         <lrcFamily value="0"/>
@@ -50,7 +50,7 @@
         <lrcTransparent value="99"/>
         <lrcFrontgroundColor value="250,218,131;250,218,131;250,218,131;"/>
         <lrcBackgroundColor value="255,255,255;255,255,255;255,255,255;"/>
-    </inlineLrcSetting>
+    </interiorLrcSetting>
     <desktopLrcSetting>
         <showDesktopLrc value="0"/>
         <lrcDColor value="10"/>

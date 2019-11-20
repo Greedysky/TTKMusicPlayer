@@ -23,7 +23,7 @@
 #include "musicglobaldefine.h"
 
 #define MUSIC_TTKLRCF               "[TTKLRCF]"
-#define MUSIC_LRC_INLINE_MAX_LINE   11
+#define MUSIC_LRC_INTERIOR_MAX_LINE 11
 
 class MusicTranslationThreadAbstract;
 

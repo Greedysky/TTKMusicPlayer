@@ -101,8 +101,8 @@ class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 public:
     enum Type
     {
-        Inline, /*!< lrc inline type*/
-        Desktop /*!< lrc desktop type*/
+        Interior, /*!< lrc interior type*/
+        Desktop   /*!< lrc desktop type*/
     };
 
     /*!
@@ -164,38 +164,38 @@ public Q_SLOTS:
      */
     void changeDesktopLrcWidget();
     /*!
-     * Change to inline lrc widget.
+     * Change to interior lrc widget.
      */
-    void changeInlineLrcWidget();
+    void changeInteriorLrcWidget();
     /*!
      * Change to download widget.
      */
     void changeDownloadWidget();
 
     /*!
-     * Inline lrc foreground change.
+     * Interior lrc foreground change.
      */
-    void inlineLrcFrontgroundChanged();
+    void interiorLrcFrontgroundChanged();
     /*!
-     * Inline lrc background change.
+     * Interior lrc background change.
      */
-    void inlineLrcBackgroundChanged();
+    void interiorLrcBackgroundChanged();
     /*!
      * Default lrc color change by index.
      */
     void defaultLrcColorChanged(int value);
     /*!
-     * Inline lrc transparent changed by index.
+     * Interior lrc transparent changed by index.
      */
-    void inlineLrcTransChanged(int value);
+    void interiorLrcTransChanged(int value);
     /*!
-     * Show inline lrc preview.
+     * Show interior lrc preview.
      */
-    void showInlineLrcDemo();
+    void showInteriorLrcDemo();
     /*!
-     * Reset inline parameter.
+     * Reset interior parameter.
      */
-    void resetInlineParameter();
+    void resetInteriorParameter();
 
     /*!
      * Desktop lrc foreground change.
@@ -297,9 +297,9 @@ protected:
      */
     void initDesktopLrcWidget();
     /*!
-     * Init inline lrc stack widget.
+     * Init interior lrc stack widget.
      */
-    void initInlineLrcWidget();
+    void initInteriorLrcWidget();
     /*!
      * Init sound effect stack widget.
      */

@@ -31,12 +31,18 @@ MusicLrcContainerForCortana::MusicLrcContainerForCortana(QWidget *parent)
     m_animationFreshTime = 0;
 #ifdef Q_OS_WIN
     PDWORD_PTR result = nullptr;
-    HWND hTaskBar = FindWindow(L"Shell_TrayWnd", nullptr);
-    HWND hCortanaBar = FindWindowEx(hTaskBar, nullptr, L"TrayDummySearchControl", nullptr);
+    HWND hTaskBar = FindWindowW(L"Shell_TrayWnd", nullptr);
+    HWND hCortanaBar = FindWindowExW(hTaskBar, nullptr, L"TrayDummySearchControl", nullptr);
 
     SendMessageTimeoutW(hCortanaBar, 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
     ShowWindow(hCortanaBar, 0);
     SetParent((HWND)winId(), hCortanaBar);
+
+    RECT rect;
+    if(GetClientRect(hCortanaBar, &rect))
+    {
+        setFixedSize(rect.right, rect.bottom);
+    }
 #endif
 }
 
@@ -47,19 +53,19 @@ MusicLrcContainerForCortana::~MusicLrcContainerForCortana()
 
 void MusicLrcContainerForCortana::startTimerClock()
 {
-    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->startTimerClock();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->startTimerClock();
 }
 
 void MusicLrcContainerForCortana::stopLrcMask()
 {
-    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->stopLrcMask();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->stopLrcMask();
     m_layoutWidget->stop();
 }
 
 void MusicLrcContainerForCortana::setSettingParameter()
 {
     const int width = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
-    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         MusicLrcManagerForInterior *w = MStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i]);
         w->setLrcPerWidth(width);
@@ -68,7 +74,7 @@ void MusicLrcContainerForCortana::setSettingParameter()
         w->setFixedHeight(35 + 36);
     }
 
-    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         if(i == 0 || i == 10) setItemStyleSheet(i, 25, 90);
         else if(i == 1 || i == 9) setItemStyleSheet(i, 20, 80);
@@ -83,7 +89,7 @@ void MusicLrcContainerForCortana::setLrcAnalysisModel(MusicLrcAnalysis *analysis
 {
     MusicLrcContainer::setLrcAnalysisModel(analysis);
     m_layoutWidget->addStretch(1);
-    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
        MusicLrcManager *w = new MusicLrcManagerForInterior(this);
        m_layoutWidget->addWidget(w);
@@ -105,11 +111,11 @@ void MusicLrcContainerForCortana::updateCurrentLrc(qint64 time)
 
 void MusicLrcContainerForCortana::updateCurrentLrc(const QString &text)
 {
-    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
-    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setText(text);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->setText(text);
 }
 
 void MusicLrcContainerForCortana::changeCurrentLrcColor()
@@ -119,12 +125,12 @@ void MusicLrcContainerForCortana::changeCurrentLrcColor()
 
 void MusicLrcContainerForCortana::updateAnimationLrc()
 {
-    const int length = (MUSIC_LRC_INLINE_MAX_LINE - m_lrcAnalysis->getLineMax())/2 + 1;
-    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->getLineMax())/2 + 1;
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - length));
     }
-    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->startLrcMask(m_animationFreshTime);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->startLrcMask(m_animationFreshTime);
 }
 
 void MusicLrcContainerForCortana::initCurrentLrc(const QString &str)
@@ -133,7 +139,7 @@ void MusicLrcContainerForCortana::initCurrentLrc(const QString &str)
     {
         m_musicLrcContainer[i]->setText( QString() );
     }
-    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setText(str);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->setText(str);
 }
 
 void MusicLrcContainerForCortana::setItemStyleSheet(int index, int size, int transparent)

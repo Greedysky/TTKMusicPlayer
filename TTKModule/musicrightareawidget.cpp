@@ -84,7 +84,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     //
-    connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInlineLrcWidget()));
+    connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
     connect(m_musicLrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
     connect(m_musicLrcForInterior, SIGNAL(artistBackgroundHasChanged()), SIGNAL(updateBackgroundThemeDownload()));
     connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
@@ -128,12 +128,12 @@ bool MusicRightAreaWidget::getDestopLrcVisible() const
     return m_musicLrcForDesktop->isVisible();
 }
 
-void MusicRightAreaWidget::setInlineLrcVisible(bool status) const
+void MusicRightAreaWidget::setInteriorLrcVisible(bool status) const
 {
     m_musicLrcForInterior->setVisible(status);
 }
 
-bool MusicRightAreaWidget::getInlineLrcVisible() const
+bool MusicRightAreaWidget::getInteriorLrcVisible() const
 {
     return m_musicLrcForInterior->isVisible();
 }
@@ -150,7 +150,7 @@ void MusicRightAreaWidget::setSettingParameter() const
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
-    return ( M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool() );
+    return ( M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool() );
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
@@ -305,7 +305,7 @@ void MusicRightAreaWidget::resizeWindow()
 void MusicRightAreaWidget::getParameterSetting() const
 {
     setSettingParameter();
-    bool config = M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrc).toBool();
+    bool config = M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
     m_musicLrcForInterior->setVisible(config);
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_musicLrcForDesktop->setVisible(config);
