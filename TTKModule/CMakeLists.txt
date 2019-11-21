@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME TTKCore)
-project(${TARGET_NAME})
+project(TTKCore)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
@@ -116,7 +115,7 @@ set(MUSIC_SOURCES
 get_property(MUSIC_UIS GLOBAL PROPERTY "MUSIC_UIS")
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
+    list(APPEND MUSIC_SOURCES ${PROJECT_NAME}.rc)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
@@ -124,9 +123,9 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
 
   if(TTK_BUILD_SHARED)
-    add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+    add_library(${PROJECT_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   else()
-    add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+    add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
   list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets ${QMMP_LIBRARY} TTKUi TTKExtras TTKWatcher zlib TTKZip)
   if(WIN32)
@@ -141,15 +140,15 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
     endif()
   endif()
   
-  target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
+  target_link_libraries(${PROJECT_NAME} ${QT5_LIBS})
 else()
   QT4_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
 
   if(TTK_BUILD_SHARED)
-    add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+    add_library(${PROJECT_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   else()
-    add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+    add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
   list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} TTKUi TTKExtras TTKWatcher zlib TTKZip)
   if(UNIX)
@@ -166,5 +165,11 @@ else()
     endif()
   endif()
   
-  target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
+  target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
 endif()
+
+set_target_properties(
+${PROJECT_NAME}
+PROPERTIES
+VERSION ${TTK_MAJOR_VERSION})
+

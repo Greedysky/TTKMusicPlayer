@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME TTKUi)
-project(${TARGET_NAME})
+project(TTKUi)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
@@ -25,11 +24,11 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   endif()
   
   if(TTK_BUILD_SHARED)
-    add_library(${TARGET_NAME} SHARED ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} SHARED ${MUSIC_RCC_SRCS})
   else()
-    add_library(${TARGET_NAME} STATIC ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} STATIC ${MUSIC_RCC_SRCS})
   endif()
-  target_link_libraries(${TARGET_NAME} Qt5::Core)
+  target_link_libraries(${PROJECT_NAME} Qt5::Core)
 else()
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
@@ -38,9 +37,15 @@ else()
   endif()
   
   if(TTK_BUILD_SHARED)
-    add_library(${TARGET_NAME} SHARED ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} SHARED ${MUSIC_RCC_SRCS})
   else()
-    add_library(${TARGET_NAME} STATIC ${MUSIC_RCC_SRCS})
+    add_library(${PROJECT_NAME} STATIC ${MUSIC_RCC_SRCS})
   endif()
-  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY})
+  target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY})
 endif()
+
+set_target_properties(
+${PROJECT_NAME}
+PROPERTIES
+VERSION ${TTK_MAJOR_VERSION})
+

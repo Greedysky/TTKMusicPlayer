@@ -1,6 +1,6 @@
 #include "musiclrcfloatsettingwidget.h"
-#include "musiclrccontainerForInterior.h"
-#include "musicInteriorfloatuiobject.h"
+#include "musiclrccontainerforinterior.h"
+#include "musicinteriorfloatuiobject.h"
 #include "musiclrcdefines.h"
 
 #include <QTimer>

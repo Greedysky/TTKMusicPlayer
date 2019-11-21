@@ -214,7 +214,7 @@
                 <number>0</number>
                </property>
                <item>
-                <widget class="MusicLocalSongSearchInlineEdit" name="musicSongSearchLine" native="true">
+                <widget class="MusicLocalSongSearchInteriorEdit" name="musicSongSearchEdit" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>260</width>
@@ -1348,9 +1348,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicLocalSongSearchInlineEdit</class>
+   <class>MusicLocalSongSearchInteriorEdit</class>
    <extends>QWidget</extends>
-   <header>musiclocalsongsearchinlineedit.h</header>
+   <header>musiclocalsongsearchinterioredit.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

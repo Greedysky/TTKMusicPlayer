@@ -89,7 +89,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(m_musicLrcForInterior, SIGNAL(artistBackgroundHasChanged()), SIGNAL(updateBackgroundThemeDownload()));
     connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
     connect(m_musicLrcForInterior, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
-    connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)), SLOT(musicSongSearchedFound(QString)));
+    connect(ui->musicSongSearchEdit, SIGNAL(enterFinished(QString)), SLOT(musicSongSearchedFound(QString)));
 }
 
 void MusicRightAreaWidget::stopLrcMask() const
@@ -389,12 +389,12 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case SearchWidget: //insert search display widget
             {
-                QString searchedQString = m_ui->musicSongSearchLine->text().trimmed();
-                        searchedQString = searchedQString.isEmpty() ? m_ui->musicSongSearchLine->placeholderText() : searchedQString;
+                QString searchedQString = m_ui->musicSongSearchEdit->text().trimmed();
+                        searchedQString = searchedQString.isEmpty() ? m_ui->musicSongSearchEdit->placeholderText() : searchedQString;
                 //The string searched wouldn't allow to be none
                 if(!searchedQString.isEmpty() && searchedQString != tr("please input search text"))
                 {
-                    m_ui->musicSongSearchLine->setText(searchedQString);
+                    m_ui->musicSongSearchEdit->setText(searchedQString);
                     m_ui->songSearchWidget->startSearchQuery(searchedQString);
                 }
                 else
@@ -637,7 +637,7 @@ void MusicRightAreaWidget::musicAdvancedSearch()
 
 void MusicRightAreaWidget::musicSongSearchedFound(const QString &text)
 {
-    m_ui->musicSongSearchLine->setText(text.trimmed());
+    m_ui->musicSongSearchEdit->setText(text.trimmed());
     musicFunctionClicked(MusicRightAreaWidget::SearchWidget);
 }
 

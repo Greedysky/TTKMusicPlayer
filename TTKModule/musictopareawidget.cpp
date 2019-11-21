@@ -63,8 +63,8 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_musicUserWindow = new MusicUserWindow(this);
     ui->userWindow->addWidget(m_musicUserWindow);
 
-    ui->musicSongSearchLine->initWidget(MusicApplication::instance());
-    ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
+    ui->musicSongSearchEdit->initWidget(MusicApplication::instance());
+    ui->musicSongSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle03);
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchButton->setStyleSheet(MusicUIObject::MKGTinyBtnMainSearch);

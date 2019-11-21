@@ -6,8 +6,8 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_UI_KITS_HEADERS
     ${MUSIC_WIDGET_UI_DIR}/musicdesktoplrcuiobject.h
     ${MUSIC_WIDGET_UI_DIR}/musicfunctionlistuiobject.h
     ${MUSIC_WIDGET_UI_DIR}/musicfunctionuiobject.h
-    ${MUSIC_WIDGET_UI_DIR}/musicinlinefloatuiobject.h
-    ${MUSIC_WIDGET_UI_DIR}/musicinlinelrcuiobject.h
+    ${MUSIC_WIDGET_UI_DIR}/musicinteriorfloatuiobject.h
+    ${MUSIC_WIDGET_UI_DIR}/musicinteriorlrcuiobject.h
     ${MUSIC_WIDGET_UI_DIR}/musicleftitemlistuiobject.h
     ${MUSIC_WIDGET_UI_DIR}/musicmagicwidgetuiobject.h
     ${MUSIC_WIDGET_UI_DIR}/musicqualitywidgetuiobject.h

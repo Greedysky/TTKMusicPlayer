@@ -21,7 +21,7 @@ INCLUDEPATH += $$PWD
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musiclocalsongsearchedit.h \
-    $$PWD/musiclocalsongsearchinlineedit.h \
+    $$PWD/musiclocalsongsearchinterioredit.h \
     $$PWD/musiclocalsongsearchpopwidget.h \
     $$PWD/musiclocalsongsearchdialog.h
 
@@ -30,7 +30,7 @@ HEADERS  += \
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musiclocalsongsearchedit.cpp \
-    $$PWD/musiclocalsongsearchinlineedit.cpp \
+    $$PWD/musiclocalsongsearchinterioredit.cpp \
     $$PWD/musiclocalsongsearchpopwidget.cpp \
     $$PWD/musiclocalsongsearchdialog.cpp
 }

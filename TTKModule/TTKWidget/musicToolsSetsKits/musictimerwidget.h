@@ -55,7 +55,7 @@ public Q_SLOTS:
     /*!
      * Save the change results.
      */
-    void commitTheResults();
+    void saveResults();
     /*!
      * Widget interface control enable or not.
      */

@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME zlib)
-project(${TARGET_NAME})
+project(zlib)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
@@ -46,11 +45,17 @@ set(MUSIC_SOURCES
   )
   
 if(WIN32)
-    list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
+    list(APPEND MUSIC_SOURCES ${PROJECT_NAME}.rc)
 endif()
 
 if(TTK_BUILD_SHARED)
-  add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})
+  add_library(${PROJECT_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 else()
-  add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
+  add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 endif()
+
+set_target_properties(
+${PROJECT_NAME}
+PROPERTIES
+VERSION "1.2.11")
+

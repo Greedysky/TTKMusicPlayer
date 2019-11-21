@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DTTK_LIBRARY)
 
-set(TTK_VERSION "2.9.0.0")
+set(TTK_MAJOR_VERSION "2.9.0")
+set(TTK_VERSION ${TTK_MAJOR_VERSION}.0)
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -109,12 +110,8 @@ include_directories(
     ${MUSIC_THIRDPARTY_DIR}/TTKDumper
     ${MUSIC_THIRDPARTY_DIR}/TTKExtras
 )
-if(WIN32)
-  set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/bin")  
-else(UNIX)
-  set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/lib")
-endif()
 
+set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/bin")  
 set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
 set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION}) 
 
@@ -184,14 +181,18 @@ find_program(QT_LRELEASE_EXECUTABLE lrelease ${QT_INSTALL_BINS})
 if(QT_LRELEASE_EXECUTABLE)
   message(STATUS "Message Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
   if(WIN32)
-    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
+    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/ts_win.bat ${QT_LRELEASE_EXECUTABLE} ${EXECUTABLE_OUTPUT_PATH})
   else(UNIX)
-    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/linux.sh ${QT_LRELEASE_EXECUTABLE} ${MUSIC_DIR} ${EXECUTABLE_OUTPUT_PATH})
+    execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/ts_linux.sh ${QT_LRELEASE_EXECUTABLE} ${MUSIC_DIR} ${EXECUTABLE_OUTPUT_PATH})
   endif()
 else()
   message(FATAL_ERROR "Message Could NOT find lrelease executable")
 endif()
 
+# copy run resource
+if(UNIX)
+  execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/resource.sh ${MUSIC_RESOURCE_DIR} ${EXECUTABLE_OUTPUT_PATH})
+endif()
 
 find_library(QMMP_LIBRARY
   NAMES qmmp1

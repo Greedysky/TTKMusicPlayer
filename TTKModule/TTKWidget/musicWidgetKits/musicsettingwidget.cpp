@@ -124,7 +124,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     connect(m_ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
     connect(m_ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(setScrollWidgetPageIndex(int)));
     connect(m_ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
-    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(commitTheResults()));
+    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(saveResults()));
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 
     initScrollWidgetPage();
@@ -495,7 +495,7 @@ void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
     m_ui->fadeOutSpinBox->setEnabled(state);
 }
 
-void MusicSettingWidget::commitTheResults()
+void MusicSettingWidget::saveResults()
 {
     M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, m_ui->languageComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::AutoPlay, m_ui->autoPlayCheckBox->isChecked());

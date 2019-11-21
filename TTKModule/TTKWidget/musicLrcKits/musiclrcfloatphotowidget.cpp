@@ -1,6 +1,6 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
-#include "musicInteriorfloatuiobject.h"
+#include "musicinteriorfloatuiobject.h"
 #include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 

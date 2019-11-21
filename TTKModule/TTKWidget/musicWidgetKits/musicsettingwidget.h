@@ -255,7 +255,7 @@ public Q_SLOTS:
     /*!
      * Save the change results.
      */
-    void commitTheResults();
+    void saveResults();
     /*!
      * Override exec function.
      */

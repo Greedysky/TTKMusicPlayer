@@ -326,7 +326,7 @@ void MusicSysConfigManager::writeSysConfigData()
     QDomElement otherSettingDom = writeDomNode(musicPlayerDom, "otherSetting");
     QDomElement backgroundSettingDom = writeDomNode(musicPlayerDom, "backgroundSetting");
     QDomElement hotkeySettingDom = writeDomNode(musicPlayerDom, "hotkeySetting");
-    QDomElement InteriorLrcSettingDom = writeDomNode(musicPlayerDom, "InteriorLrcSetting");
+    QDomElement interiorLrcSettingDom = writeDomNode(musicPlayerDom, "interiorLrcSetting");
     QDomElement desktopLrcSettingDom = writeDomNode(musicPlayerDom, "desktopLrcSetting");
     QDomElement equalizerSettingDom = writeDomNode(musicPlayerDom, "equalizerSetting");
     QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
@@ -374,14 +374,14 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(hotkeySettingDom, "hotkeyString", MusicXmlAttribute("value", hotkeyString));
 
     //
-    writeDomElement(InteriorLrcSettingDom, "showInteriorLrc", MusicXmlAttribute("value", showInteriorLrc));
-    writeDomElement(InteriorLrcSettingDom, "lrcColor", MusicXmlAttribute("value", lrcColor));
-    writeDomElement(InteriorLrcSettingDom, "lrcSize", MusicXmlAttribute("value", lrcSize));
-    writeDomElement(InteriorLrcSettingDom, "lrcFamily", MusicXmlAttribute("value", lrcFamily));
-    writeDomElement(InteriorLrcSettingDom, "lrcType", MusicXmlAttribute("value", lrcType));
-    writeDomElement(InteriorLrcSettingDom, "lrcTransparent", MusicXmlAttribute("value", lrcTransparent));
-    writeDomElement(InteriorLrcSettingDom, "lrcFrontgroundColor", MusicXmlAttribute("value", lrcFrontgroundColor));
-    writeDomElement(InteriorLrcSettingDom, "lrcBackgroundColor", MusicXmlAttribute("value", lrcBackgroundColor));
+    writeDomElement(interiorLrcSettingDom, "showInteriorLrc", MusicXmlAttribute("value", showInteriorLrc));
+    writeDomElement(interiorLrcSettingDom, "lrcColor", MusicXmlAttribute("value", lrcColor));
+    writeDomElement(interiorLrcSettingDom, "lrcSize", MusicXmlAttribute("value", lrcSize));
+    writeDomElement(interiorLrcSettingDom, "lrcFamily", MusicXmlAttribute("value", lrcFamily));
+    writeDomElement(interiorLrcSettingDom, "lrcType", MusicXmlAttribute("value", lrcType));
+    writeDomElement(interiorLrcSettingDom, "lrcTransparent", MusicXmlAttribute("value", lrcTransparent));
+    writeDomElement(interiorLrcSettingDom, "lrcFrontgroundColor", MusicXmlAttribute("value", lrcFrontgroundColor));
+    writeDomElement(interiorLrcSettingDom, "lrcBackgroundColor", MusicXmlAttribute("value", lrcBackgroundColor));
 
     //
     writeDomElement(desktopLrcSettingDom, "showDesktopLrc", MusicXmlAttribute("value", showDesktopLrc));

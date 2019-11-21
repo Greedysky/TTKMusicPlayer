@@ -88,7 +88,7 @@ void MusicApplicationObject::loadNetWorkSetting()
 {
 #ifndef QT_NO_SSL
     // ssl support check
-    M_LOGGER_INFO(QString("App Support ssl: %1").arg(QSslSocket::supportsSsl()));
+    M_LOGGER_INFO(QString("App Support ssl: %1").arg(QSslSocket::supportsSsl() ? "true" : "false"));
 #endif
     //oss host init
     OSSConf::OSS_HOST = MusicUtils::Algorithm::mdII(OSS_HOST_URL, false);

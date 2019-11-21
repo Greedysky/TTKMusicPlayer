@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHINLINEEDIT_H
-#define MUSICLOCALSONGSEARCHINLINEEDIT_H
+#ifndef MUSICLOCALSONGSEARCHINTERIOREDIT_H
+#define MUSICLOCALSONGSEARCHINTERIOREDIT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -25,20 +25,20 @@ class MusicDownLoadDiscoverListThread;
 class MusicLocalSongSearchPopWidget;
 class MusicDownLoadSongSuggestThread;
 
-/*! @brief The class of the net search line edit widget.
+/*! @brief The class of the net search interior edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchInlineEdit : public MusicLocalSongSearchEdit
+class MUSIC_SEARCH_EXPORT MusicLocalSongSearchInteriorEdit : public MusicLocalSongSearchEdit
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchInlineEdit)
+    TTK_DECLARE_MODULE(MusicLocalSongSearchInteriorEdit)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchInlineEdit(QWidget *parent = nullptr);
+    explicit MusicLocalSongSearchInteriorEdit(QWidget *parent = nullptr);
 
-    virtual ~MusicLocalSongSearchInlineEdit();
+    virtual ~MusicLocalSongSearchInteriorEdit();
 
     /*!
      * Create all widget in layout.
@@ -76,4 +76,4 @@ protected:
 
 };
 
-#endif // MUSICLOCALSONGSEARCHINLINEEDIT_H
+#endif // MUSICLOCALSONGSEARCHINTERIOREDIT_H

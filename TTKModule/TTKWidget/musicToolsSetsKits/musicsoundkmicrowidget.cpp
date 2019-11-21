@@ -5,7 +5,7 @@
 #include "musiccoremplayer.h"
 #include "musicsettingmanager.h"
 #include "musiclrcanalysis.h"
-#include "musiclrcmanagerForInterior.h"
+#include "musiclrcmanagerforinterior.h"
 #include "musicstringutils.h"
 #include "musicdownloadsourcethread.h"
 #include "musicvideouiobject.h"

@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME TTKZip)
-project(${TARGET_NAME})
+project(TTKZip)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
@@ -31,12 +30,17 @@ set(MUSIC_SOURCES
 
 if(WIN32)
     list(APPEND MUSIC_HEADERS iowin32.h)
-    list(APPEND MUSIC_SOURCES iowin32.c ${TARGET_NAME}.rc)
+    list(APPEND MUSIC_SOURCES iowin32.c ${PROJECT_NAME}.rc)
 endif()
 
 if(TTK_BUILD_SHARED)
-  add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})
+  add_library(${PROJECT_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 else()
-  add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
+  add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 endif()
-target_link_libraries(${TARGET_NAME} zlib)
+target_link_libraries(${PROJECT_NAME} zlib)
+
+set_target_properties(
+${PROJECT_NAME}
+PROPERTIES
+VERSION "1.0.0")
