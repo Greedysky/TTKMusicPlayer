@@ -5,6 +5,7 @@
 
 FloridBass::FloridBass (QWidget *parent) : Florid (parent)
 {
+    m_gradientOn = true;
     m_intern_vis_data = nullptr;
     m_running = false;
     m_rows = 0;

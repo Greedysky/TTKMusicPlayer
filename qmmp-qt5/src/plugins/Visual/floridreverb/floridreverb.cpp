@@ -5,6 +5,7 @@
 
 FloridReverb::FloridReverb (QWidget *parent) : Florid (parent)
 {
+    m_gradientOn = true;
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
     m_running = false;

@@ -123,6 +123,7 @@ protected:
     QImage m_image;
     bool m_useImage, m_scale;
     QColor m_averageColor;
+    bool m_gradientOn;
     RoundAnimationLabel *m_roundLabel;
 
 };

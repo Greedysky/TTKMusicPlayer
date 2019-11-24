@@ -100,6 +100,7 @@ Florid::Florid(QWidget *parent) :
     m_useImage = true;
     m_scale = false;
     m_averageColor = QColor(255, 255, 255);
+    m_gradientOn = false;
     m_roundLabel = new RoundAnimationLabel(this);
 }
 
@@ -325,6 +326,18 @@ void Florid::paintEvent(QPaintEvent *e)
         painter.drawImage(0, 0, m_image.scaled(size()));
 
         const QPoint &pt = rect().center();
+        if(m_gradientOn)
+        {
+            const int length = DISTANCE + 20;
+            QRadialGradient gradient(pt.x(), pt.y(), length, pt.x(), pt.y());
+            painter.setPen(Qt::NoPen);
+            gradient.setColorAt(0.7, m_averageColor);
+            QColor color = m_averageColor;
+            color.setAlpha(0);
+            gradient.setColorAt(1.0, color);
+            painter.setBrush(gradient);
+            painter.drawEllipse(pt.x() - length, pt.y() - length, 2*length, 2*length);
+        }
         m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2*DISTANCE, 2*DISTANCE);
     }
     else
