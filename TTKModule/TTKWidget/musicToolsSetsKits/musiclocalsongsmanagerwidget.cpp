@@ -67,6 +67,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->showAlbumButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->showAlbumButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+    m_ui->toolWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->scanButton, 0);
     buttonGroup->addButton(m_ui->scanCustButton, 1);

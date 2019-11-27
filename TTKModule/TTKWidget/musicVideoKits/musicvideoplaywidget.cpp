@@ -22,7 +22,7 @@
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent)
 {
-    setWindowTitle("TTKMovie");
+    setWindowTitle(tr("TTKMovie"));
 
     m_leaverTimer = new QTimer(this);
     m_leaverTimer->setInterval(4*MT_S2MS);
@@ -132,7 +132,6 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_searchEdit;
     delete m_backButton;
     delete m_searchButton;
-    delete m_topWidget;
     delete m_videoView;
     delete m_stackedWidget;
 }

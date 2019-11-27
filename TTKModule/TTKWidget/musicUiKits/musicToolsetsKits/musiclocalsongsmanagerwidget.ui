@@ -151,8 +151,11 @@
      <height>540</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
    <property name="styleSheet">
-    <string notr="true">background:white;</string>
+    <string notr="true"/>
    </property>
    <widget class="QCheckBox" name="allSelectedcheckBox">
     <property name="geometry">
