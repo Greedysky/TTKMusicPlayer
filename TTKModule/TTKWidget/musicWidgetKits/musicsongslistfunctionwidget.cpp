@@ -17,7 +17,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     QHBoxLayout *layout = new QHBoxLayout(this);
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
-    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_normal);}");
+    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_normal); }");
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(m_mainWidget);
@@ -95,12 +95,12 @@ void MusicSongsListFunctionWidget::enterEvent(QEvent *event)
     {
         start(false, 1);
     }
-    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_hover);}");
+    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_hover); }");
 }
 
 void MusicSongsListFunctionWidget::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     start(true, 0);
-    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_normal);}");
+    m_mainWidget->setStyleSheet("#mainWidget{border-image: url(:/tiny/lb_function_normal); }");
 }

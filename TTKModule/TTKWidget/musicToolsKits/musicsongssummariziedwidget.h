@@ -98,7 +98,7 @@ public:
     /*!
      * Get current played tool index.
      */
-    inline int getCurrentPlayToolIndex() const { return m_currentPlayToolIndex;}
+    inline int getCurrentPlayToolIndex() const { return m_currentPlayToolIndex; }
     /*!
      * Set current music song tree index.
      */

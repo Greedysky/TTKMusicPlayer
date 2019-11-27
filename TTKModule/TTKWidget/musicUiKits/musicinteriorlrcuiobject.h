@@ -28,39 +28,39 @@ namespace MusicUIObject
 {
     const QString MKGInteriorTranslation = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_translation_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover);}";
+            background-image: url(:/lrc/btn_translation_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover); }";
 
     const QString MKGInteriorMicrophone = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_microphone_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_microphone_hover);}";
+            background-image: url(:/lrc/btn_microphone_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_microphone_hover); }";
 
     const QString MKGInteriorMessage = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_message_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_message_hover);}";
+            background-image: url(:/lrc/btn_message_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_message_hover); }";
 
     const QString MKGInteriorMovie = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_mv_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover);}";
+            background-image: url(:/lrc/btn_mv_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover); }";
             
     const QString MKGInteriorStar = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/btn_star_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_star_hover);} \
-            QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked);}";
+            background-image: url(:/lrc/btn_star_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_star_hover); } \
+            QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked); }";
             
     const QString MKGInteriorMakeUp = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/lb_make_up_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover);}";
+            background-image: url(:/lrc/lb_make_up_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover); }";
             
     const QString MKGInteriorMakeDown = " \
             QPushButton{ border:none; \
-            background-image: url(:/lrc/lb_make_down_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover);}";
+            background-image: url(:/lrc/lb_make_down_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover); }";
 
 }
 

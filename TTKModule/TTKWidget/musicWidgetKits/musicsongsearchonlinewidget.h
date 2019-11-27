@@ -71,7 +71,7 @@ public:
     /*!
      * Set wheather query all quality of records.
      */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state; }
     /*!
      * Start search query by text.
      */

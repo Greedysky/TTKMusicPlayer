@@ -104,8 +104,7 @@ static inline void checkExtraProcessQuit()
     origin << MAKE_TRANSFORM_PREFIX
            << MAKE_KRC2LRC_PREFIX
            << MAKE_PLAYER_PREFIX
-           << MAKE_GAIN_PREFIX
-           << MAKE_SOUNDTOUCH_PREFIX;
+           << MAKE_GAIN_PREFIX;
 
     QStringList list(getProcessLists());
     foreach(const QString &process, origin)
@@ -165,8 +164,7 @@ static inline void checkExtraProcessQuit()
     origin << MAKE_TRANSFORM_PREFIX
            << MAKE_KRC2LRC_PREFIX
            << MAKE_PLAYER_PREFIX
-           << MAKE_GAIN_PREFIX
-           << MAKE_SOUNDTOUCH_PREFIX;
+           << MAKE_GAIN_PREFIX;
 
     QList<PID_INFO>  list(getProcessLists());
     foreach(const PID_INFO &info, list)

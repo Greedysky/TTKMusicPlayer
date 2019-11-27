@@ -51,11 +51,11 @@ public:
     /*!
      * Check the mail type valid.
      */
-    inline bool getMailStatus() const { return m_mailContains;}
+    inline bool getMailStatus() const { return m_mailContains; }
     /*!
      * Check the string type valid.
      */
-    inline bool getStrStatus() const { return m_strContains;}
+    inline bool getStrStatus() const { return m_strContains; }
 
 Q_SIGNALS:
     /*!

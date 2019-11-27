@@ -4,7 +4,6 @@
 #include "musiclayoutanimationwidget.h"
 #include "musictransitionanimationlabel.h"
 #include "musicbackgroundmanager.h"
-#include "musiclrcanalysis.h"
 #include "musicstringutils.h"
 
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
@@ -32,11 +31,11 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     m_animationFreshTime = 0;
     m_wallThread = new MusicDesktopWallpaperThread(this);
     connect(m_wallThread, SIGNAL(updateBackground(QPixmap)), SLOT(updateBackground(QPixmap)));
+
 #ifdef Q_OS_WIN
     m_wallThread->sendMessageToDesktop();
     SetParent((HWND)winId(), m_wallThread->findDesktopIconWnd());
 #endif
-
 }
 
 MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
@@ -47,12 +46,12 @@ MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
 
 void MusicLrcContainerForWallpaper::startTimerClock()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->startTimerClock();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startTimerClock();
 }
 
 void MusicLrcContainerForWallpaper::stopLrcMask()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->stopLrcMask();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->stopLrcMask();
     m_layoutWidget->stop();
 }
 
@@ -113,7 +112,7 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->setText(text);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(text);
 }
 
 void MusicLrcContainerForWallpaper::start(bool immediate)
@@ -151,7 +150,7 @@ void MusicLrcContainerForWallpaper::updateAnimationLrc()
     {
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - length));
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->startLrcMask(m_animationFreshTime);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startLrcMask(m_animationFreshTime);
 }
 
 void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
@@ -160,7 +159,7 @@ void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
     {
         m_musicLrcContainer[i]->setText( QString() );
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->setText(str);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(str);
 }
 
 void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int transparent)

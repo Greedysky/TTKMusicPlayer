@@ -121,11 +121,11 @@ public:
     /*!
      * Set lrc font transparent by given value.
      */
-    inline void setFontTransparent(int t) { m_transparent = t;}
+    inline void setFontTransparent(int t) { m_transparent = t; }
     /*!
      * Set lrc font speed level by given value.
      */
-    inline void setSpeedLevel(int l) { m_speedLevel = l;}
+    inline void setSpeedLevel(int l) { m_speedLevel = l; }
 
     /*!
      * Set self geometry by point.

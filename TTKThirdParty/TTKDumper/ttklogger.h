@@ -94,7 +94,7 @@ public:
         return *this;
     }
     inline TTKLogger &operator<<(char t) { return debugData<char>(t); }
-    inline TTKLogger &operator<<(signed short t) { return debugData<short>(t);}
+    inline TTKLogger &operator<<(signed short t) { return debugData<short>(t); }
     inline TTKLogger &operator<<(ushort t) { return debugData<ushort>(t); }
     inline TTKLogger &operator<<(signed int t) { return debugData<int>(t); }
     inline TTKLogger &operator<<(uint t) { return debugData<uint>(t); }

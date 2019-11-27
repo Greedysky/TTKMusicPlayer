@@ -71,15 +71,15 @@ public:
     /*!
      * Set current line maximum value.
      */
-    inline void setLineMax(int max) { m_lineMax = max;}
+    inline void setLineMax(int max) { m_lineMax = max; }
     /*!
      * Get current line maximum value.
      */
-    inline int getLineMax() const { return m_lineMax;}
+    inline int getLineMax() const { return m_lineMax; }
     /*!
      * Get current line middle number.
      */
-    inline int getMiddle() const { return m_lineMax/2;}
+    inline int getMiddle() const { return m_lineMax/2; }
 
     /*!
      * Set lrc container data from other raw data.
@@ -114,19 +114,19 @@ public:
     /*!
      * Set current middle index.
      */
-    void setCurrentIndex(int index) { m_currentLrcIndex = index;}
+    void setCurrentIndex(int index) { m_currentLrcIndex = index; }
     /*!
      * Get current middle index.
      */
-    int getCurrentIndex() const { return m_currentLrcIndex;}
+    int getCurrentIndex() const { return m_currentLrcIndex; }
     /*!
      * Set current file name.
      */
-    inline void setCurrentFileName(const QString &name) { m_currentLrcFileName = name;}
+    inline void setCurrentFileName(const QString &name) { m_currentLrcFileName = name; }
     /*!
      * Get current file name.
      */
-    inline QString getCurrentFileName() const { return m_currentLrcFileName;}
+    inline QString getCurrentFileName() const { return m_currentLrcFileName; }
 
     /*!
      * Check current index is valid or not.

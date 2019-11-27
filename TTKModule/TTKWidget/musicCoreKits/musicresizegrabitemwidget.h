@@ -54,19 +54,19 @@ public:
     /*!
      * Set Geometric Stretch.
      */
-    inline void setGeometricStretch(bool g) { m_geometricStretch = g;}
+    inline void setGeometricStretch(bool g) { m_geometricStretch = g; }
     /*!
      * Get Geometric Stretch.
      */
-    inline bool getGeometricStretch() const { return m_geometricStretch;}
+    inline bool getGeometricStretch() const { return m_geometricStretch; }
     /*!
      * Set Cross Stretch.
      */
-    inline void setCrossStretch(bool c) { m_crossStretch = c;}
+    inline void setCrossStretch(bool c) { m_crossStretch = c; }
     /*!
      * Get Cross Stretch.
      */
-    inline bool gettCrossStretch() const { return m_crossStretch;}
+    inline bool gettCrossStretch() const { return m_crossStretch; }
 
 Q_SIGNALS:
     /*!

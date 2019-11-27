@@ -304,7 +304,7 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
 
     m_contentsWidget = new QWidget(this);
     m_contentsWidget->setObjectName("contentsWidget");
-    m_contentsWidget->setStyleSheet("#contentsWidget{background-color:transparent;}");
+    m_contentsWidget->setStyleSheet("#contentsWidget{background-color:transparent; }");
 
     m_layout = new QVBoxLayout(m_contentsWidget);
     m_layout->setContentsMargins(0, 0, 0 ,0);
@@ -472,12 +472,12 @@ void MusicFunctionToolBoxWidget::setTransparent(int alpha)
     view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
 
     m_scrollArea->verticalScrollBar()->setStyleSheet(" \
-            QScrollBar{ background:transparent; width:8px; padding-top:0px; padding-bottom:0px;} \
-            QScrollBar::handle:vertical{ border-radius:4px; background:#CFCFCF; min-height: 30px;} \
-            QScrollBar::handle:vertical::disabled{ background:#DBDBDB;} \
-            QScrollBar::handle:vertical:hover{ background:#BBBBBB;} \
-            QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none;} \
-            QScrollBar::add-page, QScrollBar::sub-page{ background:none;}");
+            QScrollBar{ background:transparent; width:8px; padding-top:0px; padding-bottom:0px; } \
+            QScrollBar::handle:vertical{ border-radius:4px; background:#CFCFCF; min-height: 30px; } \
+            QScrollBar::handle:vertical::disabled{ background:#DBDBDB; } \
+            QScrollBar::handle:vertical:hover{ background:#BBBBBB; } \
+            QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none; } \
+            QScrollBar::add-page, QScrollBar::sub-page{ background:none; }");
 }
 
 MusicFunctionToolBoxWidgetItem *MusicFunctionToolBoxWidget::createItem(QWidget *item, const QString &text)

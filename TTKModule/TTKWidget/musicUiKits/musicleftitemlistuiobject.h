@@ -29,48 +29,48 @@ namespace MusicUIObject
 //left item list style
     const QString MKGItemMusic = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_music_normal);} \
-            QToolButton:hover{ background-image: url(:/appTools/item_music_hover);}";
+            background-image: url(:/appTools/item_music_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_music_hover); }";
 
     const QString MKGItemMusicClicked = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_music_clicked);}";
+            background-image: url(:/appTools/item_music_clicked); }";
 
     const QString MKGItemFavourite = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_favorite_normal);} \
-            QToolButton:hover{ background-image: url(:/appTools/item_favorite_hover);}";
+            background-image: url(:/appTools/item_favorite_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_favorite_hover); }";
 
     const QString MKGItemFavouriteClicked = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_favorite_clicked);}";
+            background-image: url(:/appTools/item_favorite_clicked); }";
 
     const QString MKGItemRadio = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_radio_normal);} \
-            QToolButton:hover{ background-image: url(:/appTools/item_radio_hover);}";
+            background-image: url(:/appTools/item_radio_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_radio_hover); }";
 
     const QString MKGItemRadioClicked = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_radio_clicked);}";
+            background-image: url(:/appTools/item_radio_clicked); }";
 
     const QString MKGItemMobile = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_mobile_normal);} \
-            QToolButton:hover{ background-image: url(:/appTools/item_mobile_hover);}";
+            background-image: url(:/appTools/item_mobile_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_mobile_hover); }";
 
     const QString MKGItemMobileClicked = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_mobile_clicked);}";
+            background-image: url(:/appTools/item_mobile_clicked); }";
 
     const QString MKGItemDownload = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_download_normal);} \
-            QToolButton:hover{ background-image: url(:/appTools/item_download_hover);}";
+            background-image: url(:/appTools/item_download_normal); } \
+            QToolButton:hover{ background-image: url(:/appTools/item_download_hover); }";
 
     const QString MKGItemDownloadClicked = " \
             QToolButton{ border:none; \
-            background-image: url(:/appTools/item_download_clicked);}";
+            background-image: url(:/appTools/item_download_clicked); }";
 
 }
 

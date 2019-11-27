@@ -43,7 +43,7 @@ public:
     /*!
      * Set block animation state or not.
      */
-    inline void setBlockAnimation(bool b) { m_blockAnimation = b;}
+    inline void setBlockAnimation(bool b) { m_blockAnimation = b; }
     /*!
      * Resize window bound by given width and height.
      * Subclass should implement this function.

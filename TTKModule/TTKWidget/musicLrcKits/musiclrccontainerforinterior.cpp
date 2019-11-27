@@ -39,15 +39,13 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     vBoxLayout->setMargin(0);
     setLayout(vBoxLayout);
 
-    m_lrcAnalysis = new MusicLrcAnalysis(this);
-    m_lrcAnalysis->setLineMax(MUSIC_LRC_INTERIOR_MAX_LINE);
-
     m_containerType = LRC_INTERIOR_TPYE;
     m_layoutWidget = new MusicVLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
-    for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
+    for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
        MusicLrcManager *w = new MusicLrcManagerForInterior(this);
+       w->setText(QString());
        m_layoutWidget->addWidget(w);
        m_musicLrcContainer.append(w);
     }
@@ -64,11 +62,10 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     m_lrcChangeDelta = -1;
     m_lrcSizeProperty = -1;
 
-    initFunctionLabel();
-
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
     m_floatPlayWidget = nullptr;
-    initCurrentLrc(tr("noCurrentSongPlay"));
+
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("noCurrentSongPlay"));
     createNoLrcCurrentInfo();
 
     m_commentsWidget = nullptr;
@@ -78,7 +75,6 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
 MusicLrcContainerForInterior::~MusicLrcContainerForInterior()
 {
     clearAllMusicLRCManager();
-    delete m_lrcAnalysis;
     delete m_functionLabel;
     delete m_lrcFloatWidget;
     delete m_floatPlayWidget;
@@ -124,21 +120,9 @@ void MusicLrcContainerForInterior::updateCurrentLrc(qint64 time)
     }
 }
 
-bool MusicLrcContainerForInterior::transLyricFileToTime(const QString &lrcFileName)
+void MusicLrcContainerForInterior::updateCurrentLrc(int state)
 {
     m_layoutWidget->stop();
-
-    MusicLrcAnalysis::State state;
-    if(QFileInfo(lrcFileName).suffix().toLower() == "krc")
-    {
-        M_LOGGER_INFO("use krc parser!");
-        state = m_lrcAnalysis->transKrcFileToTime(lrcFileName);
-    }
-    else
-    {
-        M_LOGGER_INFO("use lrc parser!");
-        state = m_lrcAnalysis->transLrcFileToTime(lrcFileName);
-    }
 
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
@@ -148,13 +132,11 @@ bool MusicLrcContainerForInterior::transLyricFileToTime(const QString &lrcFileNa
     {
         m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("unFoundLrc"));
         showNoLrcCurrentInfo();
-        return false;
     }
     if(state == MusicLrcAnalysis::LrcEmpty)
     {
         m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("lrcFileError"));
         showNoLrcCurrentInfo();
-        return false;
     }
     else
     {
@@ -162,7 +144,6 @@ bool MusicLrcContainerForInterior::transLyricFileToTime(const QString &lrcFileNa
     }
 
     m_noLrcCurrentInfo->hide(); ///hide error make lrc widget
-    return true;
 }
 
 QString MusicLrcContainerForInterior::text() const
@@ -173,11 +154,6 @@ QString MusicLrcContainerForInterior::text() const
 qint64 MusicLrcContainerForInterior::setSongSpeedChanged(qint64 time)
 {
     return m_lrcAnalysis->setSongSpeedChanged(time);
-}
-
-bool MusicLrcContainerForInterior::findText(qint64 total, QString &pre, QString &last, qint64 &interval) const
-{
-    return m_lrcAnalysis->findText(m_currentTime, total, pre, last, interval);
 }
 
 void MusicLrcContainerForInterior::setLrcSize(int size)

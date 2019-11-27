@@ -7,7 +7,6 @@
 #include "musicdesktopwallpaperwidget.h"
 #include "musicnetworkconnectiontestwidget.h"
 #include "musicvolumegainwidget.h"
-#include "musicsoundtouchwidget.h"
 #include "musicsongdlnatransferwidget.h"
 #include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
@@ -15,7 +14,6 @@
 #include "musicrightareawidget.h"
 #include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
-#include "musicwebradioobject.h"
 #include "musicsinglemanager.h"
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
@@ -80,9 +78,7 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_connections" ,tr("connections"))
           << ItemPair(":/tools/lb_gain", tr("gain"))
           << ItemPair(":/tools/lb_dlna", tr("lb_dlna"))
-          << ItemPair(":/tools/lb_detect", tr("detect"))
-          << ItemPair(":/tools/lb_soundtouch", tr("soundtouch"))
-          << ItemPair(":/tools/lb_radio", tr("radio"));
+          << ItemPair(":/tools/lb_detect", tr("detect"));
 
     foreach(const ItemPair &pair, pairs)
     {
@@ -160,22 +156,6 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 10:
             {
                 MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
-                break;
-            }
-        case 11:
-            {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundTouchWidget);
-                break;
-            }
-        case 12:
-            {
-#ifdef Q_OS_WIN
-                M_SINGLE_MANAGER_CORE_CLASS(MusicWebRadioObject);
-#else
-                MusicMessageBox message;
-                message.setText(tr("Not Supported On Current Plantform!"));
-                message.exec();
-#endif
                 break;
             }
         default:

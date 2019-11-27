@@ -45,11 +45,11 @@ public:
     /*!
      * Set or not draw window bound shadow.
      */
-    inline void drawWindowShadow(bool show) { m_showShadow = show;}
+    inline void drawWindowShadow(bool show) { m_showShadow = show; }
     /*!
      * Set or not block widget moving.
      */
-    inline void blockMoveOption(bool block) { m_moveOption = block;}
+    inline void blockMoveOption(bool block) { m_moveOption = block; }
 
 public Q_SLOTS:
     /*!

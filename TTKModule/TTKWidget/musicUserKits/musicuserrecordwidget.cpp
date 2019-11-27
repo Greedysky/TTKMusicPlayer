@@ -128,7 +128,7 @@ void MusicUserRecordWidget::initTabS()
 
 void MusicUserRecordWidget::initTabT()
 {
-    m_ui->tab_3->setStyleSheet(MusicUIObject::MLineEditStyle01 + "QWidget{ color:#666666;}");
+    m_ui->tab_3->setStyleSheet(MusicUIObject::MLineEditStyle01 + "QWidget{ color:#666666; }");
     m_ui->labelRighT1->hide();
     m_ui->labelRighT2->hide();
     m_ui->labelRighT3->hide();

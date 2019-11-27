@@ -10,7 +10,7 @@ QStringList MusicFormats::supportFormatsString()
                         << "amf" << "ams" << "dbm" << "dmf" << "dsm" << "far" << "mdl" << "med" << "mtm"
                         << "okt" << "ptm" << "stm" << "ult" << "umx" << "mt2" << "psm" << "mdz" << "s3z"
                         << "xmz" << "itz" << "mdr" << "s3r" << "xmr" << "itr" << "dgz" << "s3gz" << "xmgz"
-                        << "itgz" << "opus" << "mid"
+                        << "itgz" << "opus" << "mid" << "*.ofr" << "*.ofs"
 #ifndef Q_OS_WIN
                         << "sid" << "mus" << "str" << "prg" << "P00"
 #endif
@@ -33,6 +33,7 @@ MStringListMap MusicFormats::supportFormatsStringMap()
     formats.insert("flac", QStringList() << "flac" << "oga");
     formats.insert("aac", QStringList() << "aac");
     formats.insert("wildmidi", QStringList() << "mid");
+    formats.insert("optimfrog", QStringList() << "*.ofr" << "*.ofs");
 #ifndef Q_OS_WIN
     formats.insert("sid", QStringList() << "sid" << "mus" << "str" << "prg" << "P00");
 #endif
@@ -63,15 +64,23 @@ QStringList MusicFormats::supportFormatsFilterString()
 
 QStringList MusicFormats::supportFormatsFilterDialogString()
 {
-    return QStringList()<< "All File(*.*)" << "MusePack File(*.mpc)" << "WavPack File(*.wv)" << "Ogg Vorbis File(*.ogg)"
+    return QStringList()<< "All File(*.*)"
+                        << "MusePack File(*.mpc)"
+                        << "WavPack File(*.wv)"
+                        << "Ogg Vorbis File(*.ogg)"
                         << "PCM File(*.wav *.au *.snd *.aif *.aiff *.8svx *.sph *.sf *.voc *.w64)"
-                        << "CUE File(*.cue)" << "MPEG File(*.mp1 *.mp2 *.mp3 *.wav)"
+                        << "CUE File(*.cue)"
+                        << "MPEG File(*.mp1 *.mp2 *.mp3 *.wav)"
                         << "Game File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)"
-                        << "FLAC File(*.flac *.oga)" << "Monkey's Audio File(*.ape)"
-                        << "Ogg Opus File(*.opus)" << "ADTS AAC File(*.aac)" << "MIDI File(*.mid)"
+                        << "FLAC File(*.flac *.oga)"
+                        << "Monkey's Audio File(*.ape)"
+                        << "Ogg Opus File(*.opus)"
+                        << "ADTS AAC File(*.aac)"
+                        << "MIDI File(*.mid)"
 #ifndef Q_OS_WIN
                         << "SID File(*.sid *.mus *.str *.prg *.P00)"
 #endif
+                        << "OptimFROG Files(*.ofr *.ofs)"
                         << "FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3 *.tak)"
                         << "ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far *.mdl *.med *.mtm "
                            "*.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr "

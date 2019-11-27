@@ -29,7 +29,6 @@ HEADERS  += \
     $$PWD/musicdesktopwallpaperwidget.h \
     $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicvolumegainwidget.h \
-    $$PWD/musicsoundtouchwidget.h \
     $$PWD/musicsongringtonemakerwidget.h \
     $$PWD/musicidentifysongswidget.h \
     $$PWD/musicnetworkconnectiontestwidget.h \
@@ -54,7 +53,6 @@ SOURCES += \
     $$PWD/musicdesktopwallpaperwidget.cpp \
     $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicvolumegainwidget.cpp \
-    $$PWD/musicsoundtouchwidget.cpp \
     $$PWD/musicsongringtonemakerwidget.cpp \
     $$PWD/musicidentifysongswidget.cpp \
     $$PWD/musicnetworkconnectiontestwidget.cpp \

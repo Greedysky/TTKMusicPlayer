@@ -25,6 +25,8 @@
 class MusicSettingWidget;
 class MusicVideoPlayWidget;
 class MusicDownloadStatusObject;
+
+class MusicLrcAnalysis;
 class MusicLrcContainerForInterior;
 class MusicLrcContainerForDesktop;
 class MusicLrcContainerForWallpaper;
@@ -310,6 +312,8 @@ protected:
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
+
+    MusicLrcAnalysis *m_lrcAnalysis;
     MusicLrcContainerForInterior *m_musicLrcForInterior;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;
     MusicLrcContainerForWallpaper *m_musicLrcForWallpaper;

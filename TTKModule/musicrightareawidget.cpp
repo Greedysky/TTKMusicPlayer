@@ -45,6 +45,9 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_musicLrcForWallpaper = nullptr;
     m_videoPlayerWidget = nullptr;
 
+    m_lrcAnalysis = new MusicLrcAnalysis(this);
+    m_lrcAnalysis->setLineMax(MUSIC_LRC_INTERIOR_MAX_LINE);
+
     m_downloadStatusObject = new MusicDownloadStatusObject(parent);
     m_settingWidget = new MusicSettingWidget(this);
     connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(getParameterSetting()));
@@ -53,6 +56,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
     delete m_settingWidget;
+    delete m_lrcAnalysis;
     delete m_downloadStatusObject;
     delete m_musicLrcForDesktop;
     delete m_musicLrcForWallpaper;
@@ -69,6 +73,8 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui = ui;
     m_musicLrcForInterior = ui->musiclrccontainerforinterior;
     //
+    m_musicLrcForInterior->setLrcAnalysisModel(m_lrcAnalysis);
+    m_musicLrcForInterior->initFunctionLabel();
     m_musicLrcForInterior->resize(ui->functionsContainer->size());
 
     ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
@@ -159,7 +165,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
     //Direct access to the audio file is the total time, in milliseconds
     QString currentLrc, laterLrc;
     qint64 intervalTime;
-    if(m_musicLrcForInterior->findText(total, currentLrc, laterLrc, intervalTime))
+    if(m_lrcAnalysis->findText(current, total, currentLrc, laterLrc, intervalTime))
     {   //If this is a new line of the lyrics, then restart lyrics display mask
         if(currentLrc != m_musicLrcForInterior->text())
         {
@@ -168,11 +174,14 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
                 m_musicLrcForInterior->updateCurrentLrc(intervalTime);
             }
 
-            m_musicLrcForDesktop->setCurrentTime(intervalTime, total);
-            m_musicLrcForDesktop->updateCurrentLrc(currentLrc, laterLrc, intervalTime);
+            {
+                m_musicLrcForDesktop->setCurrentTime(current, total);
+                m_musicLrcForDesktop->updateCurrentLrc(currentLrc, laterLrc, intervalTime);
+            }
 
             if(m_musicLrcForWallpaper)
             {
+                m_musicLrcForDesktop->setCurrentTime(current, total);
                 m_musicLrcForWallpaper->updateCurrentLrc(intervalTime);
             }
         }
@@ -185,10 +194,22 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     {
         m_musicLrcForInterior->stopLrcMask();
         m_musicLrcForInterior->setCurrentSongName( name );
-        const bool state = m_musicLrcForInterior->transLyricFileToTime(path);
 
+        MusicLrcAnalysis::State state;
+        if(QFileInfo(path).suffix().toLower() == "krc")
+        {
+            M_LOGGER_INFO("use krc parser!");
+            state = m_lrcAnalysis->transKrcFileToTime(path);
+        }
+        else
+        {
+            M_LOGGER_INFO("use lrc parser!");
+            state = m_lrcAnalysis->transLrcFileToTime(path);
+        }
+
+        m_musicLrcForInterior->updateCurrentLrc(state);
         m_musicLrcForDesktop->stopLrcMask();
-        m_musicLrcForDesktop->setCurrentSongName( name );
+        m_musicLrcForDesktop->setCurrentSongName(name);
 
         if(!state)
         {
@@ -198,7 +219,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         if(m_musicLrcForWallpaper)
         {
             m_musicLrcForWallpaper->stopLrcMask();
-            m_musicLrcForWallpaper->setCurrentSongName( name );
+            m_musicLrcForWallpaper->setCurrentSongName(name);
             m_musicLrcForWallpaper->start(true);
 
             if(!state)
@@ -689,6 +710,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     {
         m_musicLrcForDesktop = new MusicLrcContainerVerticalDesktop(this);
     }
+    m_musicLrcForDesktop->setLrcAnalysisModel(m_lrcAnalysis);
 
     if(deskLrc)
     {
@@ -815,7 +837,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
         MusicRegeditManager().setLeftWinEnable();
 
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
-        m_musicLrcForWallpaper->setLrcAnalysisModel(m_musicLrcForInterior->getLrcAnalysisModel());
+        m_musicLrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);
         m_musicLrcForWallpaper->setSettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
         connect(m_musicLrcForInterior, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper, SLOT(changeCurrentLrcColor()));

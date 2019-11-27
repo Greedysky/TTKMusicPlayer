@@ -28,48 +28,48 @@ namespace MusicUIObject
 {
     const QString MKGInteriorFloatMore = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_more_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_more_hover);}";
+            background-image: url(:/lrc/lb_more_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_more_hover); }";
 
     const QString MKGInteriorFloatUpdate = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_update_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_update_hover);}";
+            background-image: url(:/lrc/lb_update_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_update_hover); }";
 
     const QString MKGInteriorFloatWallpaper = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_wallpaper_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover);}";
+            background-image: url(:/lrc/lb_wallpaper_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover); }";
 
     const QString MKGInteriorFloatWallpaperOn = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_wallpaper_on_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_on_hover);}";
+            background-image: url(:/lrc/lb_wallpaper_on_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_on_hover); }";
 
     const QString MKGInteriorFloatSearch = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_search_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_search_hover);}";
+            background-image: url(:/lrc/lb_search_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_search_hover); }";
 
     const QString MKGInteriorFloatPhoto = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_photo_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover);}";
+            background-image: url(:/lrc/lb_photo_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_photo_hover); }";
 
     const QString MKGInteriorFloatSetting = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/lb_border_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/lb_border_hover);}";
+            background-image: url(:/lrc/lb_border_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/lb_border_hover); }";
 
     const QString MKGInteriorLrcBigger = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/btn_bigger_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_bigger_hover);}";
+            background-image: url(:/lrc/btn_bigger_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_bigger_hover); }";
 
     const QString MKGInteriorLrcSmaller = " \
             QPushButton{ border:none;\
-            background-image: url(:/lrc/btn_smaller_normal);} \
-            QPushButton:hover{ background-image: url(:/lrc/btn_smaller_hover);}";
+            background-image: url(:/lrc/btn_smaller_normal); } \
+            QPushButton:hover{ background-image: url(:/lrc/btn_smaller_hover); }";
 
 }
 

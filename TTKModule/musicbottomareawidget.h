@@ -74,15 +74,15 @@ public:
     /*!
      * Set system close config or not.
      */
-    void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
+    void setSystemCloseConfig(bool status) { m_systemCloseConfig = status; }
     /*!
      * Get system close config state.
      */
-    bool getSystemCloseConfig() { return m_systemCloseConfig;}
+    bool getSystemCloseConfig() { return m_systemCloseConfig; }
     /*!
      * Get system tray visible state.
      */
-    bool systemTrayIsVisible() { return m_systemTray->isVisible();}
+    bool systemTrayIsVisible() { return m_systemTray->isVisible(); }
     /*!
      * Set system tray message show title and context.
      */

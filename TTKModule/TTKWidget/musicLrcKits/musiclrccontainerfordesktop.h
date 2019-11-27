@@ -77,7 +77,7 @@ public:
     /*!
      * Get current desktop lrc window type.
      */
-    bool getWindowType() const { return m_verticalWindow;}
+    bool getWindowType() const { return m_verticalWindow; }
 
 Q_SIGNALS:
     /*!

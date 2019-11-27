@@ -56,7 +56,6 @@ FORMS    += \
     $$PWD/musicToolsetsKits/musictransformwidget.ui \
     $$PWD/musicToolsetsKits/musicnetworkconnectiontestwidget.ui \
     $$PWD/musicToolsetsKits/musicvolumegainwidget.ui \
-    $$PWD/musicToolsetsKits/musicsoundtouchwidget.ui \
     $$PWD/musicToolsetsKits/musicsongchecktoolswidget.ui \
     $$PWD/musicToolsetsKits/musicsongringtonemakerwidget.ui \
     $$PWD/musicToolsetsKits/musicsoundkmicrowidget.ui \

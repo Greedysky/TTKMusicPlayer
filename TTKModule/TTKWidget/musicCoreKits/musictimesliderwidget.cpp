@@ -84,7 +84,7 @@ void MusicTimeSliderWidget::setSliderStyleByType(int type)
         default: break;
     }
     const QString &prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
-                            "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";
+                            "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + "); }";
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle07 + prefix);
 }
 

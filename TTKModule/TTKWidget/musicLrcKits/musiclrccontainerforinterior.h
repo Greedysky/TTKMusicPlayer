@@ -61,9 +61,9 @@ public:
      */
     void updateCurrentLrc(qint64 time);
     /*!
-     * Analysis lyric file to map return the state.
+     * Update current lrc by given state.
      */
-    bool transLyricFileToTime(const QString &lrcFileName);
+    void updateCurrentLrc(int state);
     /*!
      * Get current lrc text in middle.
      */
@@ -73,22 +73,22 @@ public:
      */
     qint64 setSongSpeedChanged(qint64 time);
     /*!
-     * Get current lrc and next lrc in container by current time.
+     * Init function label widget.
      */
-    bool findText(qint64 total, QString &pre, QString &last, qint64 &interval) const;
+    void initFunctionLabel();
 
     /*!
      * Get state of background is artist shown.
      */
-    inline void setLrcDisplayExpand(bool expand) { m_lrcDisplayAll = expand;}
+    inline void setLrcDisplayExpand(bool expand) { m_lrcDisplayAll = expand; }
     /*!
      * Get state of background is artist shown.
      */
-    inline bool lrcDisplayExpand() const { return m_lrcDisplayAll;}
+    inline bool lrcDisplayExpand() const { return m_lrcDisplayAll; }
     /*!
      * Get state of background is artist shown.
      */
-    inline bool artistBackgroundIsShow() const { return m_showArtistBackground;}
+    inline bool artistBackgroundIsShow() const { return m_showArtistBackground; }
 
     /*!
      * Set current lrc size.
@@ -217,10 +217,6 @@ protected:
      * Init current lrc when the first show.
      */
     void initCurrentLrc(const QString &str);
-    /*!
-     * Init function label widget.
-     */
-    void initFunctionLabel();
     /*!
      * Set per lrc line style sheet.
      */

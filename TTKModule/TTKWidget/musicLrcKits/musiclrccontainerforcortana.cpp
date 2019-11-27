@@ -4,7 +4,6 @@
 #include "musiclayoutanimationwidget.h"
 #include "musictransitionanimationlabel.h"
 #include "musicbackgroundmanager.h"
-#include "musiclrcanalysis.h"
 #include "musicstringutils.h"
 
 MusicLrcContainerForCortana::MusicLrcContainerForCortana(QWidget *parent)
@@ -32,16 +31,21 @@ MusicLrcContainerForCortana::MusicLrcContainerForCortana(QWidget *parent)
 #ifdef Q_OS_WIN
     PDWORD_PTR result = nullptr;
     HWND hTaskBar = FindWindowW(L"Shell_TrayWnd", nullptr);
-    HWND hCortanaBar = FindWindowExW(hTaskBar, nullptr, L"TrayDummySearchControl", nullptr);
-
-    SendMessageTimeoutW(hCortanaBar, 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
-    ShowWindow(hCortanaBar, 0);
-    SetParent((HWND)winId(), hCortanaBar);
-
-    RECT rect;
-    if(GetClientRect(hCortanaBar, &rect))
+    if(hTaskBar)
     {
-        setFixedSize(rect.right, rect.bottom);
+        HWND hCortanaBar = FindWindowExW(hTaskBar, nullptr, L"TrayDummySearchControl", nullptr);
+        if(hCortanaBar)
+        {
+            SendMessageTimeoutW(hCortanaBar, 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
+            ShowWindow(hCortanaBar, 0);
+            SetParent((HWND)winId(), hCortanaBar);
+
+            RECT rect;
+            if(GetClientRect(hCortanaBar, &rect))
+            {
+                setFixedSize(rect.right, rect.bottom);
+            }
+        }
     }
 #endif
 }
@@ -53,12 +57,12 @@ MusicLrcContainerForCortana::~MusicLrcContainerForCortana()
 
 void MusicLrcContainerForCortana::startTimerClock()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->startTimerClock();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startTimerClock();
 }
 
 void MusicLrcContainerForCortana::stopLrcMask()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->stopLrcMask();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->stopLrcMask();
     m_layoutWidget->stop();
 }
 
@@ -115,7 +119,7 @@ void MusicLrcContainerForCortana::updateCurrentLrc(const QString &text)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->setText(text);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(text);
 }
 
 void MusicLrcContainerForCortana::changeCurrentLrcColor()
@@ -130,7 +134,7 @@ void MusicLrcContainerForCortana::updateAnimationLrc()
     {
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - length));
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->startLrcMask(m_animationFreshTime);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startLrcMask(m_animationFreshTime);
 }
 
 void MusicLrcContainerForCortana::initCurrentLrc(const QString &str)
@@ -139,7 +143,7 @@ void MusicLrcContainerForCortana::initCurrentLrc(const QString &str)
     {
         m_musicLrcContainer[i]->setText( QString() );
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE/2]->setText(str);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(str);
 }
 
 void MusicLrcContainerForCortana::setItemStyleSheet(int index, int size, int transparent)

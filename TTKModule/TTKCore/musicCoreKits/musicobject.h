@@ -31,13 +31,16 @@
 
 //
 #define TTS_FILE_PREFIX         "ttks"
+#define CFG_FILE_PREFIX         "ttk"
+#define TEX_FILE_PREFIX         "tex"
+
+//
 #define SKN_FILE_PREFIX         "skn"
 #define JPG_FILE_PREFIX         "jpg"
 #define BMP_FILE_PREFIX         "bmp"
 #define PNG_FILE_PREFIX         "png"
 #define LRC_FILE_PREFIX         "lrc"
 #define KRC_FILE_PREFIX         "krc"
-#define CFG_FILE_PREFIX         "ttk"
 #define EXE_FILE_PREFIX         "exe"
 #define XML_FILE_PREFIX         "xml"
 #define COM_FILE_PREFIX         "com"
@@ -64,6 +67,9 @@
 
 
 #define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
+#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
+#define TEX_FILE                STRCAT(DOT, TEX_FILE_PREFIX)
+//
 #define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
 #define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
 #define BMP_FILE                STRCAT(DOT, BMP_FILE_PREFIX)
@@ -71,7 +77,6 @@
 #define LRC_FILE                STRCAT(DOT, LRC_FILE_PREFIX)
 #define KRC_FILE                STRCAT(DOT, KRC_FILE_PREFIX)
 #define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
 #define LST_FILE                STRCAT(DOT, LST_FILE_PREFIX)
 #define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
 #define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
@@ -113,11 +118,10 @@
 #define LANGUAGE_DIR            "MLanguage/"
 
 
-#define MAKE_TRANSFORM_PREFIX   "avconv.dll"
-#define MAKE_KRC2LRC_PREFIX     "avk2l.dll"
-#define MAKE_PLAYER_PREFIX      "avplayer.dll"
-#define MAKE_GAIN_PREFIX        "avgain.dll"
-#define MAKE_SOUNDTOUCH_PREFIX  "avm2v.dll"
+#define MAKE_TRANSFORM_PREFIX   STRCAT("avconv", TEX_FILE)
+#define MAKE_KRC2LRC_PREFIX     STRCAT("avk2l", TEX_FILE)
+#define MAKE_PLAYER_PREFIX      STRCAT("avplayer", TEX_FILE)
+#define MAKE_GAIN_PREFIX        STRCAT("avgain", TEX_FILE)
 
 
 #define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")
@@ -125,10 +129,6 @@
 #define MAKE_KRC2LRC            STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
 #define MAKE_PLAYER             STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
 #define MAKE_GAIN               STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
-#define MAKE_SOUNDTOUCH         STRCAT(PLUGINS_DIR, MAKE_SOUNDTOUCH_PREFIX)
-#ifdef Q_OS_UNIX
-#define MAKE_NETS               STRCAT(PLUGINS_DIR, "avnets.dll")
-#endif
 
 
 #define TEMPPATH                "musictemp"
@@ -187,10 +187,6 @@
 #define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC
 #define MAKE_PLAYER_FULL        MusicObject::getAppDir() + MAKE_PLAYER
 #define MAKE_GAIN_FULL          MusicObject::getAppDir() + MAKE_GAIN
-#define MAKE_SOUNDTOUCH_FULL    MusicObject::getAppDir() + MAKE_SOUNDTOUCH
-#ifdef Q_OS_UNIX
-#define MAKE_NETS_FULL          MusicObject::getAppDir() + MAKE_NETS
-#endif
 
 
 //
