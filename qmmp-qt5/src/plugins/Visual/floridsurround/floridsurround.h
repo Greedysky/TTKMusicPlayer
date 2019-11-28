@@ -34,7 +34,7 @@ class FloridSurround : public Florid
 {
     Q_OBJECT
 public:
-    FloridSurround(QWidget *parent = nullptr);
+    explicit FloridSurround(QWidget *parent = nullptr);
     virtual ~FloridSurround();
 
 public slots:

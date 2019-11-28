@@ -34,7 +34,7 @@ class FloridBass : public Florid
 {
     Q_OBJECT
 public:
-    FloridBass(QWidget *parent = nullptr);
+    explicit FloridBass(QWidget *parent = nullptr);
     virtual ~FloridBass();
 
 public slots:

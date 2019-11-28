@@ -34,7 +34,7 @@ class OuterRaysWave : public Visual
 {
     Q_OBJECT
 public:
-    OuterRaysWave(QWidget *parent = nullptr);
+    explicit OuterRaysWave(QWidget *parent = nullptr);
     virtual ~OuterRaysWave();
 
 public slots:

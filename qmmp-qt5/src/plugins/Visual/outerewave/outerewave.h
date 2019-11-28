@@ -37,7 +37,7 @@ class OuterEWave : public Visual
 {
     Q_OBJECT
 public:
-    OuterEWave(QWidget *parent = nullptr);
+    explicit OuterEWave(QWidget *parent = nullptr);
     virtual ~OuterEWave();
 
 public slots:

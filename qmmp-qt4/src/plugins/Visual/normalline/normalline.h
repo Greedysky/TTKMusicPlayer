@@ -35,7 +35,7 @@ class NormalLine : public Visual
 {
     Q_OBJECT
 public:
-    NormalLine(QWidget *parent = nullptr);
+    explicit NormalLine(QWidget *parent = nullptr);
     virtual ~NormalLine();
 
 public slots:

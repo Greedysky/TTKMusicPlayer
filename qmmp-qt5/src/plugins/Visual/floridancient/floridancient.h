@@ -65,7 +65,7 @@ class FloridAncient : public Florid
 {
     Q_OBJECT
 public:
-    FloridAncient(QWidget *parent = nullptr);
+    explicit FloridAncient(QWidget *parent = nullptr);
     virtual ~FloridAncient();
 
 public slots:

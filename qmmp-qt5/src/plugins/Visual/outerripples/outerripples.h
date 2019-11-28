@@ -34,7 +34,7 @@ class OuterRipples : public Visual
 {
     Q_OBJECT
 public:
-    OuterRipples(QWidget *parent = nullptr);
+    explicit OuterRipples(QWidget *parent = nullptr);
     virtual ~OuterRipples();
 
 public slots:

@@ -35,7 +35,7 @@ class NormalHistogram : public Visual
 {
     Q_OBJECT
 public:
-    NormalHistogram(QWidget *parent = nullptr);
+    explicit NormalHistogram(QWidget *parent = nullptr);
     virtual ~NormalHistogram();
 
 public slots:

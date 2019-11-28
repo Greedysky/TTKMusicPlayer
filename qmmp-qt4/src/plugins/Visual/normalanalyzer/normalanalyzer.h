@@ -38,7 +38,7 @@ class NormalAnalyzer : public Visual
 {
     Q_OBJECT
 public:
-    NormalAnalyzer(QWidget *parent = nullptr);
+    explicit NormalAnalyzer(QWidget *parent = nullptr);
     virtual ~NormalAnalyzer();
 
 public slots:

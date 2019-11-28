@@ -114,7 +114,7 @@ class FloridElectric : public Florid
 {
     Q_OBJECT
 public:
-    FloridElectric(QWidget *parent = nullptr);
+    explicit FloridElectric(QWidget *parent = nullptr);
     virtual ~FloridElectric();
 
 public slots:

@@ -34,7 +34,7 @@ class PlusPointXRays : public Visual
 {
     Q_OBJECT
 public:
-    PlusPointXRays(QWidget *parent = nullptr);
+    explicit PlusPointXRays(QWidget *parent = nullptr);
     virtual ~PlusPointXRays();
 
 public slots:

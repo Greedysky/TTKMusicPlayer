@@ -35,7 +35,7 @@ class PlusFoldWave : public Visual
 {
     Q_OBJECT
 public:
-    PlusFoldWave(QWidget *parent = nullptr);
+    explicit PlusFoldWave(QWidget *parent = nullptr);
     virtual ~PlusFoldWave();
 
 public slots:

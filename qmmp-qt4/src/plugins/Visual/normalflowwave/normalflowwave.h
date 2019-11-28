@@ -35,7 +35,7 @@ class NormalFlowWave : public Visual
 {
     Q_OBJECT
 public:
-    NormalFlowWave(QWidget *parent = nullptr);
+    explicit NormalFlowWave(QWidget *parent = nullptr);
     virtual ~NormalFlowWave();
 
 public slots:

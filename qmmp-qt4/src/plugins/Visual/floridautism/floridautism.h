@@ -61,7 +61,7 @@ class FloridAutism : public Florid
 {
     Q_OBJECT
 public:
-    FloridAutism(QWidget *parent = nullptr);
+    explicit FloridAutism(QWidget *parent = nullptr);
     virtual ~FloridAutism();
 
 public slots:

@@ -35,7 +35,7 @@ class NormalEWave : public Visual
 {
     Q_OBJECT
 public:
-    NormalEWave(QWidget *parent = nullptr);
+    explicit NormalEWave(QWidget *parent = nullptr);
     virtual ~NormalEWave();
 
 public slots:

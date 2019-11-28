@@ -34,7 +34,7 @@ class PlusVolumeWave : public Visual
 {
     Q_OBJECT
 public:
-    PlusVolumeWave(QWidget *parent = nullptr);
+    explicit PlusVolumeWave(QWidget *parent = nullptr);
     virtual ~PlusVolumeWave();
 
 public slots:

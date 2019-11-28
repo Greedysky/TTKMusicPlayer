@@ -42,7 +42,7 @@ class GoomWidget : public Florid
 {
     Q_OBJECT
 public:
-    GoomWidget(QWidget *parent = nullptr);
+    explicit GoomWidget(QWidget *parent = nullptr);
     virtual ~GoomWidget();
 
 public slots:

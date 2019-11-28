@@ -35,7 +35,7 @@ class NormalSpaceWave : public Visual
 {
     Q_OBJECT
 public:
-    NormalSpaceWave(QWidget *parent = nullptr);
+    explicit NormalSpaceWave(QWidget *parent = nullptr);
     virtual ~NormalSpaceWave();
 
 public slots:

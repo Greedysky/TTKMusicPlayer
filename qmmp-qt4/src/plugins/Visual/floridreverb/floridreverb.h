@@ -34,7 +34,7 @@ class FloridReverb : public Florid
 {
     Q_OBJECT
 public:
-    FloridReverb(QWidget *parent = nullptr);
+    explicit FloridReverb(QWidget *parent = nullptr);
     virtual ~FloridReverb();
 
 public slots:
