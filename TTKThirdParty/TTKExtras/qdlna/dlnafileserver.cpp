@@ -21,7 +21,7 @@ public:
 
 DlnaFileServerPrivate::DlnaFileServerPrivate()
 {
-    m_server = new QHttpServer(ttk_q());
+    m_server = new QHttpServer;
 }
 
 DlnaFileServerPrivate::~DlnaFileServerPrivate()

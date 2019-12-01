@@ -22,7 +22,7 @@ public:
 
 DlnaFinderPrivate::DlnaFinderPrivate()
 {
-    m_udpSock = new QUdpSocket(ttk_q());
+    m_udpSock = new QUdpSocket;
     m_udpSock->bind(QHostAddress(QHostAddress::Any), 6000);
 }
 

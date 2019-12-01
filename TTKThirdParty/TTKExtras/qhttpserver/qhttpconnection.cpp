@@ -67,19 +67,18 @@ QHttpConnectionPrivate::QHttpConnectionPrivate()
     m_parserSettings->on_message_complete = MessageComplete;
 
     m_parser->data = this;
-    m_parent = ttk_q();
 }
 
 QHttpConnectionPrivate::~QHttpConnectionPrivate()
 {
     delete m_socket;
-    m_socket = 0;
+    m_socket = nullptr;
 
     free(m_parser);
-    m_parser = 0;
+    m_parser = nullptr;
 
     delete m_parserSettings;
-    m_parserSettings = 0;
+    m_parserSettings = nullptr;
 }
 
 void QHttpConnectionPrivate::invalidateRequest()
@@ -129,6 +128,7 @@ QHttpConnection::QHttpConnection(QTcpSocket *socket, QObject *parent)
     TTK_INIT_PRIVATE;
     TTK_D(QHttpConnection);
     d->m_socket = socket;
+    d->m_parent = this;
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(parseRequest()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
