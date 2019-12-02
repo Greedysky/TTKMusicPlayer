@@ -4,7 +4,7 @@
 
 #include <QStringList>
 
-#define IP_CHECK_URL    "QmZadEd0V0ovaUpsMlc4MG1uSWVUUUpnenhKRFdSSTJKV0hDdlRIcE1tND0="
+#define IP_CHECK_URL    "NDBiQkVybExJc0l5ZUZFVXc4TDMzVEhsYkJVWmg1cXlVQzdBZ2c9PQ=="
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
@@ -22,17 +22,18 @@ void MusicNetworkOperator::startToDownload()
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
     QTextStream in(MConst_cast(QByteArray*, &data));
-    in.setCodec("gb2312");
+    in.setCodec("utf-8");
 
     QString line, text(in.readAll());
-    QRegExp regx("<center>([^<]+)</center>");
+    QRegExp regx("<p align=\"center\">([^<]+)</p>");
     int pos = text.indexOf(regx);
     while(pos != -1)
     {
-        line = regx.cap(0).remove("<center>").remove("</center>").trimmed();
+        line = regx.cap(0).remove("<p align=\"center\">").remove("</p>").trimmed();
         line = line.right(2);
-        pos += regx.matchedLength();
-        pos = regx.indexIn(text, pos);
+//        pos += regx.matchedLength();
+//        pos = regx.indexIn(text, pos);
+        break;
     }
 
     emit getNetworkOperatorFinished(line);
