@@ -8,6 +8,7 @@
 #include "musicxspfconfigmanager.h"
 #include "musictkplconfigmanager.h"
 #include "musicfplconfigmanager.h"
+#include "musiccsvconfigmanager.h"
 #include "musicmessagebox.h"
 
 void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem& item)
@@ -17,7 +18,7 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
 
     if(suffix == LST_FILE_PREFIX)
     {
-        writeLisList(path, item);
+        writeTKPLList(path, item);
     }
     else if(suffix == M3U_FILE_PREFIX || suffix == M3U8_FILE_PREFIX)
     {
@@ -39,6 +40,10 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     {
         writeASXList(path, item);
     }
+    else if(suffix == CSV_FILE_PREFIX)
+    {
+        writeCSVList(path, item);
+    }
 }
 
 void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSongItems& items)
@@ -50,7 +55,7 @@ void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSong
 
         if(suffix == LST_FILE_PREFIX)
         {
-            readLisList(path, items);
+            readTKPLList(path, items);
         }
         else if(suffix == M3U_FILE_PREFIX || suffix == M3U8_FILE_PREFIX)
         {
@@ -84,10 +89,14 @@ void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSong
         {
             readFPLList(path, items);
         }
+        else if(suffix == CSV_FILE_PREFIX)
+        {
+            readCSVList(path, items);
+        }
     }
 }
 
-void MusicPlaylistManager::readLisList(const QString &path, MusicSongItems& items)
+void MusicPlaylistManager::readTKPLList(const QString &path, MusicSongItems& items)
 {
     MusicTKPLConfigManager manager;
     if(manager.readConfig(path))
@@ -96,7 +105,7 @@ void MusicPlaylistManager::readLisList(const QString &path, MusicSongItems& item
     }
 }
 
-void MusicPlaylistManager::writeLisList(const QString &path, const MusicSongItem& item)
+void MusicPlaylistManager::writeTKPLList(const QString &path, const MusicSongItem& item)
 {
     MusicTKPLConfigManager manager;
     manager.writePlaylistData(MusicSongItems() << item, path);
@@ -202,4 +211,19 @@ void MusicPlaylistManager::readFPLList(const QString &path, MusicSongItems& item
     {
         manager.readPlaylistData(items);
     }
+}
+
+void MusicPlaylistManager::readCSVList(const QString &path, MusicSongItems &items)
+{
+    MusicCSVConfigManager manager;
+    if(manager.readConfig(path))
+    {
+        manager.readPlaylistData(items);
+    }
+}
+
+void MusicPlaylistManager::writeCSVList(const QString &path, const MusicSongItem &item)
+{
+    MusicCSVConfigManager manager;
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }

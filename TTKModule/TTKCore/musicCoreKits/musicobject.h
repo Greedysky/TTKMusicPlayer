@@ -56,6 +56,7 @@
 #define FPL_FILE_PREFIX         "fpl"
 #define KWL_FILE_PREFIX         "kwl"
 #define KGL_FILE_PREFIX         "kgl"
+#define CSV_FILE_PREFIX         "csv"
 
 //music ext
 #define AAC_FILE_PREFIX         "aac"

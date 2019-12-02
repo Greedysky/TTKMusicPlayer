@@ -41,11 +41,11 @@ protected:
     /*!
      * Read ttk music playlist data from file.
      */
-    void readLisList(const QString &path, MusicSongItems &items);
+    void readTKPLList(const QString &path, MusicSongItems &items);
     /*!
      * Write ttk music playlist data to file.
      */
-    void writeLisList(const QString &path, const MusicSongItem &item);
+    void writeTKPLList(const QString &path, const MusicSongItem &item);
 
     /*!
      * Read m3u music playlist data from file.
@@ -106,6 +106,15 @@ protected:
      * Read foobar2k music playlist data from file.
      */
     void readFPLList(const QString &path, MusicSongItems &items);
+
+    /*!
+     * Read csv music playlist data from file.
+     */
+    void readCSVList(const QString &path, MusicSongItems &items);
+    /*!
+     * Write csv music playlist data to file.
+     */
+    void writeCSVList(const QString &path, const MusicSongItem &item);
 
 };
 

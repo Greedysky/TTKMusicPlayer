@@ -40,6 +40,7 @@ template <typename PUB>
 class TTKPrivate
 {
 public:
+    TTKPrivate() { ttk_q_ptr = nullptr; }
     virtual ~TTKPrivate() { }
     inline void setPublic(PUB* pub) { ttk_q_ptr = pub; }
 
