@@ -297,7 +297,7 @@ void MusicApplicationObject::musicResetWindow()
     m_leftSideByOn = false;
     m_rightSideByOn = false;
 
-    QWidget *widget = QApplication::desktop();
+    QDesktopWidget *widget = QApplication::desktop();
     M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, widget->size());
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 

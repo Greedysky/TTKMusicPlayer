@@ -41,7 +41,6 @@ public:
     enum RemoteType
     {
         Null = 0,       /*!< Romote Null type*/
-        Circle,         /*!< Romote Circle type*/
         Square,         /*!< Romote Square type*/
         Rectangle,      /*!< Romote Rectangle type*/
         SimpleStyle,    /*!< Romote SimpleStyle type*/

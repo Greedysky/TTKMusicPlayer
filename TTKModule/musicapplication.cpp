@@ -823,7 +823,6 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
     rightClickMenu.addMenu(&musicRemoteControl);
-    musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
     musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
     musicRemoteControl.addAction(tr("SimpleStyleRemote"), m_topAreaWidget, SLOT(musicSimpleStyleRemote()));

@@ -1,5 +1,4 @@
 #include "musicremotewidget.h"
-#include "musicremotewidgetforcircle.h"
 #include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforrectangle.h"
 #include "musicremotewidgetforsquare.h"
@@ -127,8 +126,7 @@ void MusicRemoteWidget::setLabelText(const QString &text)
 
 int MusicRemoteWidget::mapRemoteTypeIndex()
 {
-    if(MObject_cast(MusicRemoteWidgetForCircle*, this)) return Circle;
-    else if(MObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
+    if(MObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
     else if(MObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
     else if(MObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
     else if(MObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
@@ -185,10 +183,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
     menu.addSeparator();
 
-    QAction * action = menu.addAction(tr("CircleRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForCircle*, this));
-    action->setData(Circle);
-    action = menu.addAction(tr("SquareRemote"));
+    QAction * action = menu.addAction(tr("SquareRemote"));
     action->setEnabled(!MObject_cast(MusicRemoteWidgetForSquare*, this));
     action->setData(Square);
     action = menu.addAction(tr("RectangleRemote"));

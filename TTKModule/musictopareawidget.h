@@ -166,10 +166,6 @@ public Q_SLOTS:
      */
     void musicPlaylistTransparent(int index);
     /*!
-     * Changed current remote to circle mode.
-     */
-    void musicCircleRemote();
-    /*!
      * Changed current remote to diamond mode.
      */
     void musicDiamondRemote();
