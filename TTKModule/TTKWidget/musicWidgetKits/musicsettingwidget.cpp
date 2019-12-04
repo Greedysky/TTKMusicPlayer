@@ -11,7 +11,7 @@
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
-#include "musicregeditmanager.h"
+#include "musicwindowsmanager.h"
 #include "musicotherdefine.h"
 #include "ttkversion.h"
 #include "musicsourceupdatewidget.h"
@@ -205,6 +205,11 @@ void MusicSettingWidget::initControllerParameter()
     //Set init parameter
     m_ui->showInteriorCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool());
     m_ui->showInteriorCheckBox->setEnabled(false);
+    m_ui->showCortanaCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowCortanaLrc).toBool());
+    if(MusicWindowsManager::Windows_10 != MusicWindowsManager().getWindowSystemName())
+    {
+        m_ui->showCortanaCheckBox->hide();
+    }
 
     m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamily).toInt());
     m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInteriorLrcIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt()));
@@ -266,7 +271,7 @@ void MusicSettingWidget::initControllerParameter()
     //
     m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
-    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt() && MusicRegeditManager().isFileAssociate())
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt() && MusicWindowsManager().isFileAssociate())
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
         if(m_ui->setDefaultPlayerCheckBox->isChecked())
@@ -543,6 +548,7 @@ void MusicSettingWidget::saveResults()
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, m_ui->showInteriorCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowCortanaLrc, m_ui->showCortanaCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcColor, m_ui->fontDefaultColorComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcFamily, m_ui->fontComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcSize, m_ui->fontSizeComboBox->currentText());
@@ -890,6 +896,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
 void MusicSettingWidget::initInteriorLrcWidget()
 {
     m_ui->showInteriorCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->showCortanaCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->fontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontComboBox));
     m_ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -924,6 +931,7 @@ void MusicSettingWidget::initInteriorLrcWidget()
     connect(m_ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInteriorParameter()));
 #ifdef Q_OS_UNIX
     m_ui->showInteriorCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->showCortanaCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->resetPushButton->setFocusPolicy(Qt::NoFocus);
 #endif
 

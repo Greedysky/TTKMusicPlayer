@@ -18,7 +18,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionlistuiobject.h"
-#include "musicregeditmanager.h"
+#include "musicwindowsmanager.h"
 #include "musictopareawidget.h"
 #include "musicotherdefine.h"
 #include "musicadvancedsearchedwidget.h"
@@ -162,7 +162,6 @@ bool MusicRightAreaWidget::checkSettingParameterValue() const
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
 {
     m_musicLrcForInterior->setCurrentTime(current, total);
-    //Direct access to the audio file is the total time, in milliseconds
     QString currentLrc, laterLrc;
     qint64 intervalTime;
     if(m_lrcAnalysis->findText(current, total, currentLrc, laterLrc, intervalTime))
@@ -181,7 +180,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
 
             if(m_musicLrcForWallpaper)
             {
-                m_musicLrcForDesktop->setCurrentTime(current, total);
+                m_musicLrcForWallpaper->setCurrentTime(current, total);
                 m_musicLrcForWallpaper->updateCurrentLrc(intervalTime);
             }
         }
@@ -771,7 +770,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
         m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
 
-        MusicRegeditManager().setLeftWinEnable();
+        MusicWindowsManager().setLeftWinEnable();
         QTimer::singleShot(10*MT_MS, this, SLOT(musicVideoActiveWindow()));
     }
     else
@@ -834,7 +833,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
     }
     else
     {
-        MusicRegeditManager().setLeftWinEnable();
+        MusicWindowsManager().setLeftWinEnable();
 
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);

@@ -32,7 +32,7 @@ HEADERS  += \
     $$PWD/musicabstractthread.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
-    $$PWD/musicregeditmanager.h \
+    $$PWD/musicwindowsmanager.h \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
@@ -62,7 +62,7 @@ SOURCES += \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicabstractthread.cpp \
     $$PWD/musicconnectionpool.cpp \
-    $$PWD/musicregeditmanager.cpp \
+    $$PWD/musicwindowsmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsong.cpp \
     $$PWD/musicsongtag.cpp \

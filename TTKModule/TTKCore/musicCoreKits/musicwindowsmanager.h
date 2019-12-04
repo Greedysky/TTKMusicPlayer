@@ -1,5 +1,5 @@
-#ifndef MUSICREGEDITMANAGER_H
-#define MUSICREGEDITMANAGER_H
+#ifndef MUSICWINDOWSMANAGER_H
+#define MUSICWINDOWSMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -22,13 +22,34 @@
 #include <QObject>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the windows regedit manager.
+/*! @brief The class of the windows system manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicRegeditManager
+class MUSIC_CORE_EXPORT MusicWindowsManager
 {
-    TTK_DECLARE_MODULE(MusicRegeditManager)
+    TTK_DECLARE_MODULE(MusicWindowsManager)
 public:
+    enum SystemType
+    {
+        Windows_10,
+        Windows_8_1,
+        Windows_8,
+        Windows_7,
+        Windows_Vista,
+        Windows_XP,
+        Windows_XP_Professional_x64_Edition,
+        Windows_2000,
+        Windows_NT_4_0,
+        Windows_95,
+        Windows_98,
+        Windows_Me,
+        Windows_Server_2003,
+        Windows_Server_2003_R2,
+        Windows_Server_2008,
+        Windows_Server_2008_R2,
+        Windows_Server_2012,
+        Windows_Unkown
+    };
     /*!
      * Check current is file associate.
      */
@@ -37,19 +58,6 @@ public:
      * Set music regedit associate file icon.
      */
     void setMusicRegeditAssociateFileIcon();
-
-    /*!
-     * Set desktop wall auto start.
-     */
-    void setDesktopWallAutoStart(bool state);
-    /*!
-     * Get desktop wall control panel.
-     */
-    void getDesktopWallControlPanel(QString &originPath, int &originType);
-    /*!
-     * Set desktop wall control panel.
-     */
-    void setDesktopWallControlPanel(const QString &originPath, int originType);
 
     /*!
      * Set left win key enable.
@@ -62,7 +70,7 @@ public:
     /*!
      * Get local system name.
      */
-    QString getSystemName() const;
+    SystemType getWindowSystemName() const;
     /*!
      * Set file link.
      */
@@ -80,4 +88,4 @@ protected:
 
 };
 
-#endif // MUSICREGEDITMANAGER_H
+#endif // MUSICWINDOWSMANAGER_H

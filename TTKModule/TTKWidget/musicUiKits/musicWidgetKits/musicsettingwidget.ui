@@ -1762,6 +1762,19 @@ font-weight:bold;</string>
       <string>100%</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="showCortanaCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>350</y>
+       <width>150</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>显示Cortana歌词</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="seven">
     <widget class="QLabel" name="setSoundOutWidget">

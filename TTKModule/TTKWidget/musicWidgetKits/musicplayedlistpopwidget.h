@@ -139,7 +139,7 @@ public Q_SLOTS:
     /*!
      * To popup menu.
      */
-    void popupMenu();
+    virtual void popupMenu() override;
     /*!
      * Delete item from list at current row.
      */

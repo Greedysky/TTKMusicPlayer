@@ -6,7 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicequalizerdialog.h"
 #include "musicsettingmanager.h"
-#include "musicregeditmanager.h"
+#include "musicwindowsmanager.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicmessageaboutdialog.h"
@@ -100,8 +100,8 @@ void MusicApplicationObject::getParameterSetting()
 #ifdef Q_OS_WIN
     if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt())
     {
-        MusicRegeditManager regeditManager;
-        regeditManager.setMusicRegeditAssociateFileIcon();
+        MusicWindowsManager windows;
+        windows.setMusicRegeditAssociateFileIcon();
     }
 #endif
 }
@@ -313,8 +313,8 @@ void MusicApplicationObject::musicToolSetsParameter()
 {
     m_musicTimerAutoObj->runTimerAutoConfig();
 #ifdef Q_OS_WIN
-    MusicRegeditManager regeditManager;
-    const int version = regeditManager.getLocalIEVersion();
+    MusicWindowsManager windows;
+    const int version = windows.getLocalIEVersion();
     if(version == -1 || version < 8)
     {
         MusicMessageBox message;

@@ -1,4 +1,4 @@
-#include "musicregeditmanager.h"
+#include "musicwindowsmanager.h"
 #include "musicotherdefine.h"
 #include "musicformats.h"
 
@@ -13,12 +13,12 @@
 #include <QStringList>
 #include <QApplication>
 
-bool MusicRegeditManager::isFileAssociate()
+bool MusicWindowsManager::isFileAssociate()
 {
     return currentNodeHasExist(MP3_FILE_PREFIX);
 }
 
-void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
+void MusicWindowsManager::setMusicRegeditAssociateFileIcon()
 {
     const QStringList &types = MusicFormats::supportFormatsString();
     for(int i=0; i<types.count(); ++i)
@@ -31,30 +31,7 @@ void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
     }
 }
 
-void MusicRegeditManager::setDesktopWallAutoStart(bool state)
-{
-    const QString &regRun = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
-    const QString &applicationName = QApplication::applicationName();
-    QSettings settings(regRun, QSettings::NativeFormat);
-    state ? settings.setValue(applicationName, QApplication::applicationFilePath().replace("/", "\\")) : settings.remove(applicationName);
-}
-
-void MusicRegeditManager::getDesktopWallControlPanel(QString &originPath, int &originType)
-{
-    QSettings settings("HKEY_CURRENT_USER\\Control Panel\\Desktop", QSettings::NativeFormat);
-    originPath = settings.value("Wallpaper").toString();
-    originType = settings.value("WallpaperStyle").toInt();
-}
-
-void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, int originType)
-{
-    QSettings settings("HKEY_CURRENT_USER\\Control Panel\\Desktop", QSettings::NativeFormat);
-    settings.setValue ("Wallpaper", originPath);
-    const QString &wallpaperStyle = (originType == 0 || originType == 1) ? "00" : "10";
-    settings.setValue ("WallpaperStyle", wallpaperStyle);
-}
-
-void MusicRegeditManager::setLeftWinEnable()
+void MusicWindowsManager::setLeftWinEnable()
 {
 #ifdef Q_OS_WIN
     INPUT input[4];
@@ -67,7 +44,7 @@ void MusicRegeditManager::setLeftWinEnable()
 #endif
 }
 
-int MusicRegeditManager::getLocalIEVersion() const
+int MusicWindowsManager::getLocalIEVersion() const
 {
 #ifdef Q_OS_WIN
     const DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", nullptr);
@@ -97,7 +74,7 @@ int MusicRegeditManager::getLocalIEVersion() const
     return -1;
 }
 
-QString MusicRegeditManager::getSystemName() const
+MusicWindowsManager::SystemType MusicWindowsManager::getWindowSystemName() const
 {
 #ifdef Q_OS_WIN
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
@@ -108,11 +85,11 @@ QString MusicRegeditManager::getSystemName() const
 
     if(dwMajor == 6 && dwMinor == 3)	//win 8.1
     {
-        return "Windows 8.1";
+        return Windows_8_1;
     }
     if(dwMajor == 10 && dwMinor == 0)	//win 10
     {
-        return "Windows 10";
+        return Windows_10;
     }
 
     SYSTEM_INFO info;
@@ -130,38 +107,38 @@ QString MusicRegeditManager::getSystemName() const
             case 0:
                 if(os.dwPlatformId == VER_PLATFORM_WIN32_NT)
                 {
-                    return "Microsoft Windows NT 4.0";
+                    return Windows_NT_4_0;
                 }
                 else if(os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
                 {
-                    return "Microsoft Windows 95";
+                    return Windows_95;
                 }
                 break;
             case 10:
-                return "Microsoft Windows 98";
+                return Windows_98;
             case 90:
-                return "Microsoft Windows Me";
+                return Windows_Me;
             }
             break;
         case 5:
             switch(os.dwMinorVersion)
             {
             case 0:
-                return "Microsoft Windows 2000";
+                return Windows_2000;
             case 1:
-                return "Microsoft Windows XP";
+                return Windows_XP;
             case 2:
                 if(os.wProductType == VER_NT_WORKSTATION && info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
                 {
-                    return "Microsoft Windows XP Professional x64 Edition";
+                    return Windows_XP_Professional_x64_Edition;
                 }
                 else if(GetSystemMetrics(SM_SERVERR2) == 0)
                 {
-                    return "Microsoft Windows Server 2003";
+                    return Windows_Server_2003;
                 }
                 else if(GetSystemMetrics(SM_SERVERR2) != 0)
                 {
-                    return "Microsoft Windows Server 2003 R2";
+                    return Windows_Server_2003_R2;
                 }
             }
             break;
@@ -169,21 +146,21 @@ QString MusicRegeditManager::getSystemName() const
             switch(os.dwMinorVersion)
             {
             case 0:
-                return os.wProductType == VER_NT_WORKSTATION ? "Microsoft Windows Vista" : "Microsoft Windows Server 2008";
+                return os.wProductType == VER_NT_WORKSTATION ? Windows_Vista : Windows_Server_2008;
             case 1:
-                return os.wProductType == VER_NT_WORKSTATION ? "Microsoft Windows 7" : "Microsoft Windows Server 2008 R2";
+                return os.wProductType == VER_NT_WORKSTATION ? Windows_7 : Windows_Server_2008_R2;
             case 2:
-                return os.wProductType == VER_NT_WORKSTATION ? "Microsoft Windows 8" : "Microsoft Windows Server 2012";
+                return os.wProductType == VER_NT_WORKSTATION ? Windows_8 : Windows_Server_2012;
             }
             break;
-        default: return "Unkown Windows";
+        default: return Windows_Unkown;
         }
     }
 #endif
-    return "Unkown Windows";
+    return Windows_Unkown;
 }
 
-void MusicRegeditManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)
+void MusicWindowsManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)
 {
 #ifdef Q_OS_WIN
     HRESULT hres = CoInitialize(nullptr);
@@ -243,7 +220,7 @@ void MusicRegeditManager::setFileLink(const QString &src, const QString &des, co
 #endif
 }
 
-bool MusicRegeditManager::currentNodeHasExist(const QString &key)
+bool MusicWindowsManager::currentNodeHasExist(const QString &key)
 {
     bool state = false;
     const QString &keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;
@@ -261,7 +238,7 @@ bool MusicRegeditManager::currentNodeHasExist(const QString &key)
     return state;
 }
 
-void MusicRegeditManager::createMusicRegedit(const QString &key)
+void MusicWindowsManager::createMusicRegedit(const QString &key)
 {
     QString keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;
     QSettings keyXSetting(keyX, QSettings::NativeFormat);

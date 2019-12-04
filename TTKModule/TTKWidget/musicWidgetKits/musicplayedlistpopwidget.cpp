@@ -49,9 +49,6 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     setToolTip(tr("playedList"));
     setStyleSheet(MusicUIObject::MKGBtnPlayedList);
 
-    disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
-    connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
-
     initWidget();
 }
 

@@ -14,7 +14,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.h
     ${MUSIC_CORE_DIR}/musicsettingmanager.h
     ${MUSIC_CORE_DIR}/musicconnectionpool.h
-    ${MUSIC_CORE_DIR}/musicregeditmanager.h
+    ${MUSIC_CORE_DIR}/musicwindowsmanager.h
     ${MUSIC_CORE_DIR}/musicsingleton.h
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
@@ -42,7 +42,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicsysconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.cpp
     ${MUSIC_CORE_DIR}/musicconnectionpool.cpp
-    ${MUSIC_CORE_DIR}/musicregeditmanager.cpp
+    ${MUSIC_CORE_DIR}/musicwindowsmanager.cpp
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
     ${MUSIC_CORE_DIR}/musicsongtag.cpp

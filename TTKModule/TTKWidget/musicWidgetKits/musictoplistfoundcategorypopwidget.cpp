@@ -59,9 +59,6 @@ MusicToplistFoundCategoryPopWidget::MusicToplistFoundCategoryPopWidget(QWidget *
     : MusicToolMenuWidget(parent)
 {
     initWidget();
-
-    disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
-    connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
 }
 
 void MusicToplistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
