@@ -167,9 +167,9 @@ void MusicApplicationObject::sideAnimationByOn()
         M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
     }
 
-    QWidget *widget = QApplication::desktop();
+    QWidget* widget = QApplication::desktop()->screen(0);
     pt = w->mapToGlobal(w->rect().topRight());
-    if(-MARGIN_SIDE + widget->width() <= pt.x() && pt.x() <= MARGIN_SIDE + widget->width())
+    if(widget && -MARGIN_SIDE + widget->width() <= pt.x() && pt.x() <= MARGIN_SIDE + widget->width())
     {
         m_rightSideByOn = true;
         m_sideAnimation->stop();
@@ -199,13 +199,16 @@ void MusicApplicationObject::sideAnimationByOff()
     }
     else if(m_rightSideByOn)
     {
-        QWidget *widget = QApplication::desktop();
-        m_rightSideByOn = false;
-        m_sideAnimation->stop();
-        m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(widget->width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
-        m_sideAnimation->start();
-        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, false);
+        QWidget *widget = QApplication::desktop()->screen(0);
+        if(widget)
+        {
+            m_rightSideByOn = false;
+            m_sideAnimation->stop();
+            m_sideAnimation->setStartValue(w->geometry());
+            m_sideAnimation->setEndValue(QRect(widget->width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
+            m_sideAnimation->start();
+            M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, false);
+        }
     }
 }
 
@@ -224,7 +227,11 @@ void MusicApplicationObject::sideAnimationReset()
     else if(m_rightSideByOn)
     {
         MusicApplication *w = MusicApplication::instance();
-        w->move(QApplication::desktop()->width() - w->width() - MARGIN_SIDE_BY, w->y());
+        QWidget *widget = QApplication::desktop()->screen(0);
+        if(widget)
+        {
+            w->move(widget->width() - w->width() - MARGIN_SIDE_BY, w->y());
+        }
     }
 }
 
@@ -297,16 +304,19 @@ void MusicApplicationObject::musicResetWindow()
     m_leftSideByOn = false;
     m_rightSideByOn = false;
 
-    QDesktopWidget *widget = QApplication::desktop();
-    M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, widget->size());
-    M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
-
-    QWidget *w = MusicApplication::instance();
-    if(w->isMaximized() || w->isMinimized() || w->isFullScreen())
+    QWidget *widget = QApplication::desktop()->screen(0);
+    if(widget)
     {
-        w->showNormal();
+        M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, widget->size());
+        M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
+
+        QWidget *w = MusicApplication::instance();
+        if(w->isMaximized() || w->isMinimized() || w->isFullScreen())
+        {
+            w->showNormal();
+        }
+        w->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2, (widget->height() - WINDOW_HEIGHT_MIN)/2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
     }
-    w->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2, (widget->height() - WINDOW_HEIGHT_MIN)/2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
 void MusicApplicationObject::musicToolSetsParameter()

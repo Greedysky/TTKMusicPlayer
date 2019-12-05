@@ -184,10 +184,10 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     }
     QSize s = size();
 #ifdef Q_OS_UNIX
-    QDesktopWidget* desktopWidget = QApplication::desktop();
-    if(isFullScreen() && desktopWidget && desktopWidget->screen())
+    QWidget* widget = QApplication::desktop()->screen(0);
+    if(isFullScreen() && widget)
     {
-        s = desktopWidget->screen()->size();
+        s = widget->size();
     }
     else
     {
