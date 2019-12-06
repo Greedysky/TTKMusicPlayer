@@ -5,9 +5,7 @@
 #include "musicuiobject.h"
 #include "musicplayer.h"
 #include "musicwidgetheaders.h"
-///qmmp incldue
-#include "effect.h"
-#include "effectfactory.h"
+#include "musicqmmputils.h"
 ///
 #include <QStyledItemDelegate>
 
@@ -99,15 +97,8 @@ bool MusicSoundEffectsItemWidget::pluginEnable() const
 
 void MusicSoundEffectsItemWidget::soundEffectChanged(Type type, bool enable)
 {
-    const QString plugin( transformQStringFromEnum(type) );
-    foreach(EffectFactory *factory, Effect::factories())
-    {
-        if(factory->properties().name.contains(plugin))
-        {
-            Effect::setEnabled(factory, enable);
-            break;
-        }
-    }
+    const QString plugin(transformQStringFromEnum(type));
+    MusicUtils::QMMP::enableEffectPlugin(plugin, enable);
 }
 
 void MusicSoundEffectsItemWidget::setPluginEnable()
@@ -137,15 +128,8 @@ void MusicSoundEffectsItemWidget::soundEffectCheckBoxChanged(bool state)
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    const QString plugin( transformQStringFromEnum(m_type) );
-    foreach(EffectFactory *factory, Effect::factories())
-    {
-        if(factory->properties().name.contains(plugin))
-        {
-            factory->showSettings(this);
-            break;
-        }
-    }
+    const QString plugin(transformQStringFromEnum(m_type));
+    MusicUtils::QMMP::enableEffectSetting(plugin, this);
 }
 
 QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
@@ -153,13 +137,14 @@ QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
     QString plugin;
     switch(type)
     {
-        case BS2B:      plugin = "BS2B"; break;
-        case Crossfade: plugin = "Crossfade"; break;
-        case Stereo:    plugin = "Stereo"; break;
-        case LADSPA:    plugin = "LADSPA"; break;
-        case SoX:       plugin = "SoX"; break;
-        case SRC:       plugin = "SRC"; break;
-        default:        plugin = "Unknow"; break;
+        case BS2B:         plugin = "bs2b"; break;
+        case Crossfade:    plugin = "crossfade"; break;
+        case Stereo:       plugin = "stereo"; break;
+        case LADSPA:       plugin = "ladspa"; break;
+        case Soxr:         plugin = "soxr"; break;
+        case SrcConverter: plugin = "srconverter"; break;
+        case MonoStereo:   plugin = "monotostereo"; break;
+        default:           plugin = "unknow"; break;
     }
     return plugin;
 }
@@ -212,11 +197,14 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->StereoWidget->setText("Stereo");
     m_ui->StereoWidget->setType(MusicSoundEffectsItemWidget::Stereo);
 
-    m_ui->SOXWidget->setText("SoX");
-    m_ui->SOXWidget->setType(MusicSoundEffectsItemWidget::SoX);
+    m_ui->SOXWidget->setText("Soxr");
+    m_ui->SOXWidget->setType(MusicSoundEffectsItemWidget::Soxr);
 
-    m_ui->SRCWidget->setText("SRC");
-    m_ui->SRCWidget->setType(MusicSoundEffectsItemWidget::SRC);
+    m_ui->SRCWidget->setText("SrcConverter");
+    m_ui->SRCWidget->setType(MusicSoundEffectsItemWidget::SrcConverter);
+
+    m_ui->MonoStereoWidget->setText("MonoStereo");
+    m_ui->MonoStereoWidget->setType(MusicSoundEffectsItemWidget::MonoStereo);
 
 #ifdef Q_OS_UNIX
     m_ui->LADSPAWidget->setText("LADSPA");
@@ -282,6 +270,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->StereoWidget->setPluginEnable(true);
         m_ui->SOXWidget->setPluginEnable(true);
         m_ui->SRCWidget->setPluginEnable(true);
+        m_ui->MonoStereoWidget->setPluginEnable(true);
 #ifdef Q_OS_UNIX
         m_ui->LADSPAWidget->setPluginEnable(true);
 #endif
@@ -293,6 +282,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->StereoWidget->setPluginEnable(false);
         m_ui->SOXWidget->setPluginEnable(false);
         m_ui->SRCWidget->setPluginEnable(false);
+        m_ui->MonoStereoWidget->setPluginEnable(false);
 #ifdef Q_OS_UNIX
         m_ui->LADSPAWidget->setPluginEnable(false);
 #endif
@@ -319,6 +309,7 @@ void MusicSoundEffectsWidget::readSoundEffect()
     m_ui->StereoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt());
     m_ui->SOXWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
     m_ui->SRCWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
+    m_ui->MonoStereoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt());
 #ifdef Q_OS_UNIX
     m_ui->LADSPAWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
 #endif
@@ -331,6 +322,7 @@ void MusicSoundEffectsWidget::writeSoundEffect()
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereo, m_ui->StereoWidget->pluginEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_ui->SOXWidget->pluginEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_ui->SRCWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoStereo, m_ui->MonoStereoWidget->pluginEnable());
 #ifdef Q_OS_UNIX
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_ui->LADSPAWidget->pluginEnable());
 #endif

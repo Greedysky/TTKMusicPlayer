@@ -37,9 +37,17 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT void updateMidConfigFile();
         /*!
-         * Enable visual wave control.
+         * Enable visual module control.
          */
         MUSIC_UTILS_EXPORT void enableVisualPlugin(const QString &name, bool enable);
+        /*!
+         * Enable effect module control.
+         */
+        MUSIC_UTILS_EXPORT void enableEffectPlugin(const QString &name, bool enable);
+        /*!
+         * Enable effect setting control.
+         */
+        MUSIC_UTILS_EXPORT void enableEffectSetting(const QString &name, QWidget *parent);
         /*!
          * Update ripple spectrum config file transfer.
          */

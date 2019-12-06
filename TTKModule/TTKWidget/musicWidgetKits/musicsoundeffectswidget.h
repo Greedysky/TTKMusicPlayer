@@ -35,13 +35,14 @@ class MUSIC_WIDGET_EXPORT MusicSoundEffectsItemWidget : public QWidget
 public:
     enum Type
     {
-        Null,       /*!< sound null effect*/
-        BS2B,       /*!< sound BS2B effect*/
-        Crossfade,  /*!< sound Crossfade effect*/
-        Stereo,     /*!< sound Stereo effect*/
-        LADSPA,     /*!< sound LADSPA effect*/
-        SoX,        /*!< sound SoX Resampler effect*/
-        SRC         /*!< sound srconverter effect*/
+        Null,         /*!< sound null effect*/
+        BS2B,         /*!< sound BS2B effect*/
+        Crossfade,    /*!< sound Crossfade effect*/
+        Stereo,       /*!< sound Stereo effect*/
+        LADSPA,       /*!< sound LADSPA effect*/
+        Soxr,          /*!< sound SoX Resampler effect*/
+        SrcConverter, /*!< sound srconverter effect*/
+        MonoStereo    /*!< sound mono stereo effect*/
     };
     /*!
      * Object contsructor.

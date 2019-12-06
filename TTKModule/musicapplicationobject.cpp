@@ -397,7 +397,17 @@ void MusicApplicationObject::musicEffectChanged()
 
     if(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt() == 1)
     {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::SoX, true);
+        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Soxr, true);
+    }
+
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt() == 1)
+    {
+        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::SrcConverter, true);
+    }
+
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt() == 1)
+    {
+        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::MonoStereo, true);
     }
 
 #ifdef Q_OS_UNIX

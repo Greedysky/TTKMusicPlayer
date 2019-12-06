@@ -2,6 +2,408 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>ColorWidget</name>
+    <message>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation>修改</translation>
+    </message>
+    <message>
+        <source>Top</source>
+        <translation>向上</translation>
+    </message>
+    <message>
+        <source>Bottom</source>
+        <translation>向下</translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation>修改</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+</context>
+<context>
+    <name>LightSpectrum</name>
+    <message>
+        <source>Type</source>
+        <translation>类型</translation>
+    </message>
+    <message>
+        <source>Spectrum</source>
+        <translation>光谱</translation>
+    </message>
+    <message>
+        <source>Sox</source>
+        <translation>红谱</translation>
+    </message>
+    <message>
+        <source>Mono</source>
+        <translation>黑白谱</translation>
+    </message>
+</context>
+<context>
+    <name>GoomWidget</name>
+    <message>
+        <source>Refresh Rate</source>
+        <translation>刷新率</translation>
+    </message>
+    <message>
+        <source>60 fps</source>
+        <translation>60 帧每秒</translation>
+    </message>
+    <message>
+        <source>50 fps</source>
+        <translation>50 帧每秒</translation>
+    </message>
+    <message>
+        <source>25 fps</source>
+        <translation>25 帧每秒</translation>
+    </message>
+</context>
+<context>
+    <name>PlusXRays</name>
+    <message>
+        <source>Grid</source>
+        <translation>网格</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+</context>
+<context>
+    <name>PlusPointXRays</name>
+    <message>
+        <source>Grid</source>
+        <translation>网格</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+</context>
+<context>
+    <name>PlusFoldWave</name>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>NormalSpaceWave</name>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>NormalLine</name>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>NormalHistogram</name>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>NormalFlowWave</name>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>NormalEWave</name>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>NormalAnalyzer</name>
+    <message>
+        <source>Peaks</source>
+        <translation>峰</translation>
+    </message>
+    <message>
+        <source>Refresh Rate</source>
+        <translation>刷新率</translation>
+    </message>
+    <message>
+        <source>50 fps</source>
+        <translation>50 帧每秒</translation>
+    </message>
+    <message>
+        <source>25 fps</source>
+        <translation>25 帧每秒</translation>
+    </message>
+    <message>
+        <source>10 fps</source>
+        <translation>10 帧每秒</translation>
+    </message>
+    <message>
+        <source>5 fps</source>
+        <translation>5 帧每秒</translation>
+    </message>
+    <message>
+        <source>Analyzer Falloff</source>
+        <translation>分析器坠落</translation>
+    </message>
+    <message>
+        <source>Slowest</source>
+        <translation>最慢</translation>
+    </message>
+    <message>
+        <source>Slow</source>
+        <translation>慢</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>中等</translation>
+    </message>
+    <message>
+        <source>Fast</source>
+        <translation>快</translation>
+    </message>
+    <message>
+        <source>Fastest</source>
+        <translation>最快</translation>
+    </message>
+    <message>
+        <source>Peaks Falloff</source>
+        <translation>顶峰坠落</translation>
+    </message>
+    <message>
+        <source>Star</source>
+        <translation>星星</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>颜色</translation>
+    </message>
+    <message>
+        <source>StarColor</source>
+        <translation>星星颜色</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Sample Rate Converter Plugin Settings</source>
+        <translation>取样率转换插件设置</translation>
+    </message>
+    <message>
+        <source>Sample Rate (Hz):</source>
+        <translation>取样率 (Hz)：</translation>
+    </message>
+    <message>
+        <source>Interpolation Engine:</source>
+        <translation>内插引擎：</translation>
+    </message>
+    <message>
+        <source>Best Sinc Interpolation</source>
+        <translation>最好 SINC 插入 (高品质)</translation>
+    </message>
+    <message>
+        <source>Medium Sinc Interpolation</source>
+        <translation>一般 SINC 插入 (中品质)</translation>
+    </message>
+    <message>
+        <source>Fastest Sinc Interpolation</source>
+        <translation>最快 SINC 插入 (低品质)</translation>
+    </message>
+    <message>
+        <source>ZOH Interpolation</source>
+        <translation>零阶保持插入 (ZOH)</translation>
+    </message>
+    <message>
+        <source>Linear Interpolation</source>
+        <translation>线性插入</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Extra Stereo Plugin Settings</source>
+        <translation>立体声扩展插件设置</translation>
+    </message>
+    <message>
+        <source>Effect intensity:</source>
+        <translation>效果强度：</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>SoX Resampler Plugin Settings</source>
+        <translation>Soxr 插件設置</translation>
+    </message>
+    <message>
+        <source>Sample Rate (Hz):</source>
+        <translation>取样率 (Hz)：</translation>
+    </message>
+    <message>
+        <source>Quality:</source>
+        <translation>质量：</translation>
+    </message>
+    <message>
+        <source>Quick</source>
+        <translation>快速</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>低</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>中等</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>高</translation>
+    </message>
+    <message>
+        <source>Very High</source>
+        <translation>非常高</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>LADSPA Plugin Catalog</source>
+        <translation>LADSPA 插件设置</translation>
+    </message>
+    <message>
+        <source>Configure</source>
+        <translation>配置</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>用户ID</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>This LADSPA plugin has no user controls</source>
+        <translation>LADSPA 插件用户设置</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Crossfade Plugin Settings</source>
+        <translation>交叉衰落插件设置</translation>
+    </message>
+    <message>
+        <source>Overlap:</source>
+        <translation>重叠：</translation>
+    </message>
+    <message>
+        <source>ms</source>
+        <translation>毫秒</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>BS2B Plugin Settings</source>
+        <translation>BS2B 插件设置</translation>
+    </message>
+    <message>
+        <source>Crossfeed level</source>
+        <translation>串扰水平</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>默认</translation>
+    </message>
+    <message>
+        <source>%1 Hz, %2 us</source>
+        <translation>%1 赫兹，%2 微秒</translation>
+    </message>
+    <message>
+        <source>%1 dB</source>
+        <translation>%1分贝</translation>
+    </message>
+</context>
+<context>
     <name>KugouWindow</name>
     <message>
         <location filename="../TTKThirdParty/TTKExtras/qkugou/kugouwindow.cpp" line="307"/>

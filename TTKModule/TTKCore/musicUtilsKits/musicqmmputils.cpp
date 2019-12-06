@@ -8,6 +8,8 @@
 #include "qmmp.h"
 #include "visual.h"
 #include "visualfactory.h"
+#include "effect.h"
+#include "effectfactory.h"
 
 QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &format)
 {
@@ -51,6 +53,30 @@ void MusicUtils::QMMP::enableVisualPlugin(const QString &name, bool enable)
         if(v->properties().shortName == name)
         {
             Visual::setEnabled(v, enable);
+            break;
+        }
+    }
+}
+
+void MusicUtils::QMMP::enableEffectPlugin(const QString &name, bool enable)
+{
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        if(factory->properties().shortName == name)
+        {
+            Effect::setEnabled(factory, enable);
+            break;
+        }
+    }
+}
+
+void  MusicUtils::QMMP::enableEffectSetting(const QString &name, QWidget *parent)
+{
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        if(factory->properties().shortName == name)
+        {
+            factory->showSettings(parent);
             break;
         }
     }

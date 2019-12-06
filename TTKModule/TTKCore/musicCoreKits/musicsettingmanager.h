@@ -112,6 +112,7 @@ public:
         EnhancedLADSPA,                  /*!< Enhanced LADSPA Parameter*/
         EnhancedSOX,                     /*!< Enhanced SOX Parameter*/
         EnhancedSRC,                     /*!< Enhanced SRC Parameter*/
+        EnhancedMonoStereo,              /*!< Enhanced Mono Stereo Parameter*/
 
         TimerAutoIndex,                  /*!< Timer Auto Index Parameter*/
         TimerAutoPlay,                   /*!< Timer Auto Play Parameter*/
