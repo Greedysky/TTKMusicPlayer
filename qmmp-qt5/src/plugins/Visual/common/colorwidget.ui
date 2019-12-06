@@ -186,7 +186,7 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
-     <string>Cancle</string>
+     <string>Cancel</string>
     </property>
    </widget>
   </widget>

@@ -440,9 +440,9 @@ void NormalAnalyzer::createMenu()
         peaksFalloff->addAction(act);
     }
 
-    m_menu->addAction("Color", this, SLOT(changeColor()));
+    m_menu->addAction(tr("Color"), this, SLOT(changeColor()));
     m_menu->addAction(m_starAction);
-    m_menu->addAction("StarColor", this, SLOT(changeStarColor()));
+    m_menu->addAction(tr("StarColor"), this, SLOT(changeStarColor()));
 
     update();
 }

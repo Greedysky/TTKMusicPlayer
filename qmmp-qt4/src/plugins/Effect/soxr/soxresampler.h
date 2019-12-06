@@ -18,8 +18,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef SRCONVERTER_H
-#define SRCONVERTER_H
+#ifndef SOXRESAMPLERR_H
+#define SOXRESAMPLERR_H
 
 #include <soxr.h>
 #include <qmmp/effect.h>

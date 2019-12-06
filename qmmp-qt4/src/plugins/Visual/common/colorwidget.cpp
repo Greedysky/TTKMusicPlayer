@@ -28,7 +28,7 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setIcon(style()->standardPixmap(QStyle::SP_TitleBarCloseButton));
     m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle03);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->topTitleCloseButton->setToolTip("Close");
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_ui->listWidget->setFrameShape(QFrame::NoFrame);
     m_ui->listWidget->setSpacing(1);

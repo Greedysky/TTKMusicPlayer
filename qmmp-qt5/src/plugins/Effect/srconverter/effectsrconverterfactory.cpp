@@ -27,7 +27,7 @@ const EffectProperties EffectSRConverterFactory::properties() const
 {
     EffectProperties properties;
     properties.name = tr("SRC Plugin");
-    properties.shortName = "SRC";
+    properties.shortName = "srconverter";
     properties.hasSettings = true;
     properties.priority = EffectProperties::EFFECT_PRIORITY_HIGH;
     return properties;

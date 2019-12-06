@@ -85,10 +85,10 @@ void LightSpectrum::contextMenuEvent(QContextMenuEvent *event)
 {
     Light::contextMenuEvent(event);
     QMenu menu(this);
-    QMenu typeMenu("Type", &menu);
-    typeMenu.addAction("Spectrum")->setData(10);
-    typeMenu.addAction("Sox")->setData(20);
-    typeMenu.addAction("Mono")->setData(30);
+    QMenu typeMenu(tr("Type"), &menu);
+    typeMenu.addAction(tr("Spectrum"))->setData(10);
+    typeMenu.addAction(tr("Sox"))->setData(20);
+    typeMenu.addAction(tr("Mono"))->setData(30);
     connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
     menu.addMenu(&typeMenu);
     menu.exec(QCursor::pos());
