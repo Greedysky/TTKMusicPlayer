@@ -75,24 +75,23 @@ DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
 {
     m_bitrate = 0;
     m_totalTime = 0;
-    ic = 0;
+    ic = nullptr;
     m_path = path;
     m_temp_pkt.size = 0;
     m_pkt.size = 0;
-    m_pkt.data = 0;
+    m_pkt.data = nullptr;
     m_output_at = 0;
     m_skipBytes = 0;
-    m_stream = 0;
-    m_decoded_frame = 0;
+    m_stream = nullptr;
+    m_decoded_frame = nullptr;
     m_channels = 0;
-    c = 0;
+    c = nullptr;
     audioIndex = 0;
     m_seekTime = -1;
     av_init_packet(&m_pkt);
     av_init_packet(&m_temp_pkt);
-    m_input_buf = 0;
+    m_input_buf = nullptr;
 }
-
 
 DecoderFFmpeg::~DecoderFFmpeg()
 {
@@ -160,11 +159,11 @@ bool DecoderFFmpeg::initialize()
     m_input_buf = (uchar*)av_malloc(INPUT_BUFFER_SIZE + FF_INPUT_BUFFER_PADDING_SIZE);
 #endif
 
-    m_stream = avio_alloc_context(m_input_buf, INPUT_BUFFER_SIZE, 0, this, ffmpeg_read, 0, ffmpeg_seek);
+    m_stream = avio_alloc_context(m_input_buf, INPUT_BUFFER_SIZE, 0, this, ffmpeg_read, nullptr, ffmpeg_seek);
     if(!m_stream)
     {
         av_free(m_input_buf);
-        m_input_buf = 0;
+        m_input_buf = nullptr;
         qWarning("DecoderFFmpeg: unable to initialize I/O callbacks");
         return false;
     }
@@ -172,37 +171,37 @@ bool DecoderFFmpeg::initialize()
     m_stream->max_packet_size = INPUT_BUFFER_SIZE;
     ic->pb = m_stream;
 
-    if(avformat_open_input(&ic, 0, fmt, 0) != 0)
+    if(avformat_open_input(&ic, nullptr, fmt, nullptr) != 0)
     {
         qDebug("DecoderFFmpeg: avformat_open_input() failed");
         return false;
     }
-    avformat_find_stream_info(ic, 0);
+    avformat_find_stream_info(ic, nullptr);
     if(ic->pb)
         ic->pb->eof_reached = 0;
 
     if(input()->isSequential())
     {
         QMap<Qmmp::MetaData, QString> metaData;
-        AVDictionaryEntry *album = av_dict_get(ic->metadata,"album",0,0);
+        AVDictionaryEntry *album = av_dict_get(ic->metadata,"album", nullptr, 0);
         if(!album)
-            album = av_dict_get(ic->metadata,"WM/AlbumTitle",0,0);
-        AVDictionaryEntry *artist = av_dict_get(ic->metadata,"artist",0,0);
+            album = av_dict_get(ic->metadata,"WM/AlbumTitle", nullptr, 0);
+        AVDictionaryEntry *artist = av_dict_get(ic->metadata,"artist", nullptr, 0);
         if(!artist)
-            artist = av_dict_get(ic->metadata,"author",0,0);
-        AVDictionaryEntry *comment = av_dict_get(ic->metadata,"comment",0,0);
-        AVDictionaryEntry *genre = av_dict_get(ic->metadata,"genre",0,0);
-        AVDictionaryEntry *title = av_dict_get(ic->metadata,"title",0,0);
-        AVDictionaryEntry *year = av_dict_get(ic->metadata,"WM/Year",0,0);
+            artist = av_dict_get(ic->metadata,"author", nullptr, 0);
+        AVDictionaryEntry *comment = av_dict_get(ic->metadata,"comment", nullptr, 0);
+        AVDictionaryEntry *genre = av_dict_get(ic->metadata,"genre", nullptr, 0);
+        AVDictionaryEntry *title = av_dict_get(ic->metadata,"title", nullptr, 0);
+        AVDictionaryEntry *year = av_dict_get(ic->metadata,"WM/Year", nullptr, 0);
         if(!year)
-            year = av_dict_get(ic->metadata,"year",0,0);
+            year = av_dict_get(ic->metadata,"year", nullptr, 0);
         if(!year)
-            year = av_dict_get(ic->metadata,"date",0,0);
-        AVDictionaryEntry *track = av_dict_get(ic->metadata,"track",0,0);
+            year = av_dict_get(ic->metadata,"date", nullptr, 0);
+        AVDictionaryEntry *track = av_dict_get(ic->metadata,"track", nullptr, 0);
         if(!track)
-            track = av_dict_get(ic->metadata,"WM/Track",0,0);
+            track = av_dict_get(ic->metadata,"WM/Track", nullptr, 0);
         if(!track)
-            track = av_dict_get(ic->metadata,"WM/TrackNumber",0,0);
+            track = av_dict_get(ic->metadata,"WM/TrackNumber", nullptr, 0);
 
         if(album)
             metaData.insert(Qmmp::ALBUM, QString::fromUtf8(album->value).trimmed());
@@ -226,12 +225,12 @@ bool DecoderFFmpeg::initialize()
     setReplayGainInfo(rg.replayGainInfo());
 
 #if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,4,0)) //ffmpeg-3.1:  57.48.101
-    c = avcodec_alloc_context3(NULL);
+    c = avcodec_alloc_context3(nullptr);
 #endif
 
     ic->flags |= AVFMT_FLAG_GENPTS;
     av_read_play(ic);
-    audioIndex = av_find_best_stream(ic, AVMEDIA_TYPE_AUDIO, -1, -1, 0, 0);
+    audioIndex = av_find_best_stream(ic, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
     if(audioIndex < 0)
     {
         qWarning("DecoderFFmpeg: unable to find audio stream");
@@ -263,7 +262,7 @@ bool DecoderFFmpeg::initialize()
     m_channels = c->request_channels;
 #endif
 
-    av_dump_format(ic,0,0,0);
+    av_dump_format(ic, 0, nullptr, 0);
 
     AVCodec *codec = avcodec_find_decoder(c->codec_id);
 
@@ -273,7 +272,7 @@ bool DecoderFFmpeg::initialize()
         return false;
     }
 
-    if(avcodec_open2(c, codec, 0) < 0)
+    if(avcodec_open2(c, codec, nullptr) < 0)
     {
         qWarning("DecoderFFmpeg: error while opening codec for output stream");
         return false;
@@ -422,7 +421,7 @@ qint64 DecoderFFmpeg::ffmpeg_decode()
 #endif
 
         if(got_frame)
-            out_size = av_samples_get_buffer_size(0, c->channels, m_decoded_frame->nb_samples,
+            out_size = av_samples_get_buffer_size(nullptr, c->channels, m_decoded_frame->nb_samples,
                                                   c->sample_fmt, 1);
         else
             out_size = 0;
@@ -471,7 +470,7 @@ void DecoderFFmpeg::fillBuffer()
             if(av_read_frame(ic, &m_pkt) < 0)
             {
                 m_temp_pkt.size = 0;
-                m_temp_pkt.data = 0;
+                m_temp_pkt.data = nullptr;
             }
             m_temp_pkt.size = m_pkt.size;
             m_temp_pkt.data = m_pkt.data;
@@ -553,7 +552,7 @@ void DecoderFFmpeg::fillBuffer()
 #else
                 av_free_packet(&m_pkt);
 #endif
-            m_pkt.data = 0;
+            m_pkt.data = nullptr;
             m_temp_pkt.size = 0;
             break;
         }
