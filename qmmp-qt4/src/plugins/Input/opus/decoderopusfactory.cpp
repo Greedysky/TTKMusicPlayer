@@ -78,6 +78,13 @@ QList<TrackInfo *> DecoderOpusFactory::createPlayList(const QString &path, Track
         info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
         info->setValue(Qmmp::YEAR, tag->year());
         info->setValue(Qmmp::TRACK, tag->track());
+        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
+        if(!items["ALBUMARTIST"].isEmpty())
+            info->setValue(Qmmp::ALBUMARTIST, TStringToQString(items["ALBUMARTIST"].toString()));
+        if(!items["COMPOSER"].isEmpty())
+            info->setValue(Qmmp::COMPOSER, TStringToQString(items["COMPOSER"].toString()));
+        if(!items["DISCNUMBER"].isEmpty())
+            info->setValue(Qmmp::DISCNUMBER, TStringToQString(items["DISCNUMBER"].toString()));
     }
 
     TagLib::Ogg::Opus::Properties *ap = fileRef.audioProperties();

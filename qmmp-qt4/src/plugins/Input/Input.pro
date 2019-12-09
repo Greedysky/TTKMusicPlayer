@@ -35,6 +35,14 @@ contains(CONFIG, OPUS_PLUGIN){
     SUBDIRS += opus
 }
 
+contains(CONFIG, WILDMIDI_PLUGIN){
+    SUBDIRS += wildmidi
+}
+
+contains(CONFIG, AAC_PLUGIN){
+    SUBDIRS += aac
+}
+
 unix:{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio
@@ -47,12 +55,4 @@ unix:{
     contains(CONFIG, OPTIMFROG_PLUGIN){
         SUBDIRS += optimfrog
     }
-}
-
-contains(CONFIG, WILDMIDI_PLUGIN){
-    SUBDIRS += wildmidi
-}
-
-contains(CONFIG, AAC_PLUGIN){
-    SUBDIRS += aac
 }

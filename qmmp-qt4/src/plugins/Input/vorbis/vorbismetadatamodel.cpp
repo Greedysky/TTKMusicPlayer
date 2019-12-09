@@ -162,7 +162,7 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
         if(tag->fieldListMap()["ALBUMARTIST"].isEmpty())
             return QString();
         else
-            return TStringToQString(tag->fieldListMap()["ALBUMARTIST"].front());
+            return TStringToQString(tag->fieldListMap()["ALBUMARTIST"].toString());
     case Qmmp::ALBUM:
         return TStringToQString(tag->album());
     case Qmmp::COMMENT:
@@ -173,7 +173,7 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
         if(tag->fieldListMap()["COMPOSER"].isEmpty())
             return QString();
         else
-            return TStringToQString(tag->fieldListMap()["COMPOSER"].front());
+            return TStringToQString(tag->fieldListMap()["COMPOSER"].toString());
     case Qmmp::YEAR:
         return QString::number(tag->year());
     case Qmmp::TRACK:
@@ -182,7 +182,7 @@ QString VorbisCommentModel::value(Qmmp::MetaData key) const
         if(tag->fieldListMap()["DISCNUMBER"].isEmpty())
             return QString();
         else
-            return TStringToQString(tag->fieldListMap()["DISCNUMBER"].front());
+            return TStringToQString(tag->fieldListMap()["DISCNUMBER"].toString());
     }
     return QString();
 }

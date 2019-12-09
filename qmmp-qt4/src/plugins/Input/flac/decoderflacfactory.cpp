@@ -156,11 +156,11 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
         //additional metadata
         TagLib::StringList fld;
         if(!(fld = tag->fieldListMap()["ALBUMARTIST"]).isEmpty())
-            info->setValue(Qmmp::ALBUMARTIST, TStringToQString(fld.front()));
+            info->setValue(Qmmp::ALBUMARTIST, TStringToQString(fld.toString()));
         if(!(fld = tag->fieldListMap()["COMPOSER"]).isEmpty())
-            info->setValue(Qmmp::COMPOSER, TStringToQString(fld.front()));
+            info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
         if(!(fld = tag->fieldListMap()["DISCNUMBER"]).isEmpty())
-            info->setValue(Qmmp::DISCNUMBER, TStringToQString(fld.front()));
+            info->setValue(Qmmp::DISCNUMBER, TStringToQString(fld.toString()));
 
     }
 

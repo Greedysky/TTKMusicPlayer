@@ -396,6 +396,9 @@ void OutputWriter::status()
     if(ct < 0)
         ct = 0;
 
+    if(m_currentMilliseconds == -1) //refresh audio properties in the begin of track
+        dispatch(m_output->audioParameters());
+
     if(ct > m_currentMilliseconds)
     {
         m_currentMilliseconds = ct;

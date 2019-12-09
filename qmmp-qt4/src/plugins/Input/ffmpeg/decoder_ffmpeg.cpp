@@ -395,25 +395,28 @@ qint64 DecoderFFmpeg::ffmpeg_decode()
 #endif
 
 #if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
-        int err = 0;
-        if(m_temp_pkt.data)
-            err = avcodec_send_packet(c, &m_temp_pkt);
-        if(err != 0 && err != AVERROR(EAGAIN) && err != AVERROR(EINVAL))
+        int send_err = 0, receive_err = 0;
         {
-            qWarning("DecoderFFmpeg: avcodec_send_packet error: %d", err);
-            return -1;
+            if((send_err = avcodec_send_packet(c, &m_temp_pkt)) != 0)
+            {
+                qWarning("DecoderFFmpeg: avcodec_send_packet error: %d", send_err);
+            }
         }
 
-        int l = (err == AVERROR(EAGAIN)) ? 0 : m_temp_pkt.size;
-
-        if((err = avcodec_receive_frame(c, m_decoded_frame)) < 0)
+        int l = (send_err != 0) ? 0 : m_temp_pkt.size;
+        if((receive_err = avcodec_receive_frame(c, m_decoded_frame)) != 0)
         {
-            if(err == AVERROR(EAGAIN)) //try again
+            qWarning("DecoderFFmpeg: avcodec_receive_frame error: %d", receive_err);
+            if(send_err < 0 && receive_err < 0)
+                return -1;
+
+            if(receive_err == AVERROR(EAGAIN))
                 return 0;
-            qWarning("DecoderFFmpeg: avcodec_receive_frame error: %d", err);
-            return -1;
         }
-        got_frame = m_decoded_frame->pkt_size;
+        else
+        {
+            got_frame = m_decoded_frame->pkt_size;
+        }
 #else
         int l = avcodec_decode_audio4(c, m_decoded_frame, &got_frame, &m_temp_pkt);
 #endif
@@ -544,23 +547,15 @@ void DecoderFFmpeg::fillBuffer()
             m_output_at = 0;
             m_temp_pkt.size = 0;
 
-#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav 10
-            if(c->codec_id == AV_CODEC_ID_SHORTEN || c->codec_id == AV_CODEC_ID_TWINVQ)
-#else
-            if(c->codec_id == CODEC_ID_SHORTEN || c->codec_id == CODEC_ID_TWINVQ)
-#endif
-            {
-                if(m_pkt.data)
+            if(m_pkt.data)
 #if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
-                    av_packet_unref(&m_pkt);
+                av_packet_unref(&m_pkt);
 #else
-                    av_free_packet(&m_pkt);
+                av_free_packet(&m_pkt);
 #endif
-                m_pkt.data = 0;
-                m_temp_pkt.size = 0;
-                break;
-            }
-            continue;
+            m_pkt.data = 0;
+            m_temp_pkt.size = 0;
+            break;
         }
         else if(m_output_at == 0 && !m_pkt.data)
         {
@@ -569,12 +564,12 @@ void DecoderFFmpeg::fillBuffer()
         else if(m_output_at == 0)
         {
             if(m_pkt.data)
-#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
                 av_packet_unref(&m_pkt);
 #else
                 av_free_packet(&m_pkt);
 #endif
-            m_pkt.data = 0;
+            m_pkt.data = nullptr;
             m_temp_pkt.size = 0;
             continue;
         }

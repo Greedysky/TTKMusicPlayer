@@ -33,20 +33,6 @@ contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme
 }
 
-unix:!android{
-    contains(CONFIG, CDAUDIO_PLUGIN){
-        SUBDIRS += cdaudio
-    }
-
-    contains(CONFIG, SID_PLUGIN){
-        SUBDIRS += sid
-    }
-
-    contains(CONFIG, OPTIMFROG_PLUGIN){
-        SUBDIRS += optimfrog
-    }
-}
-
 !android{
     contains(CONFIG, WILDMIDI_PLUGIN){
         SUBDIRS += wildmidi
@@ -59,4 +45,18 @@ contains(CONFIG, OPUS_PLUGIN){
 
 contains(CONFIG, AAC_PLUGIN){
     SUBDIRS += aac
+}
+
+unix:!android{
+    contains(CONFIG, CDAUDIO_PLUGIN){
+        SUBDIRS += cdaudio
+    }
+
+    contains(CONFIG, SID_PLUGIN){
+        SUBDIRS += sid
+    }
+
+    contains(CONFIG, OPTIMFROG_PLUGIN){
+        SUBDIRS += optimfrog
+    }
 }
