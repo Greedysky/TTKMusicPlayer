@@ -38,6 +38,7 @@ HEADERS  += \
     $$PWD/musicsoundkmicrosearchwidget.h \
     $$PWD/musicsoundkmicrosettingpopwidget.h \
     $$PWD/musicspectrumwidget.h \
+    $$PWD/musicspectrumlayoutwidget.h \
     $$PWD/musicsongdlnatransferwidget.h
 
 }
@@ -62,6 +63,7 @@ SOURCES += \
     $$PWD/musicsoundkmicrosearchwidget.cpp \
     $$PWD/musicsoundkmicrosettingpopwidget.cpp \
     $$PWD/musicspectrumwidget.cpp \
+    $$PWD/musicspectrumlayoutwidget.cpp \
     $$PWD/musicsongdlnatransferwidget.cpp
 
 }

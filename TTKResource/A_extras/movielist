@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
-    <Kugou>
+    <KuGou>
         <tag value="类型">
             <value key="1" value="热门"/>
             <value key="5" value="儿童"/>
@@ -13,5 +13,5 @@
             <value key="2" value="歌手"/>
             <value key="3" value="语言"/>
         </tag>
-    </Kugou>
+    </KuGou>
 <TTKMusicPlayer>

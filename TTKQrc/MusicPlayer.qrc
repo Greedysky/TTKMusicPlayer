@@ -813,4 +813,26 @@
         <file alias="96">../TTKResource/emoji/96.png</file>
         <file alias="97">../TTKResource/emoji/97.png</file>
     </qresource>
+    <qresource prefix="/spectrum">
+        <file alias="normal_1">../TTKResource/spectrum/normal_1.png</file>
+        <file alias="normal_2">../TTKResource/spectrum/normal_2.png</file>
+        <file alias="normal_3">../TTKResource/spectrum/normal_3.png</file>
+        <file alias="normal_4">../TTKResource/spectrum/normal_4.png</file>
+        <file alias="normal_5">../TTKResource/spectrum/normal_5.png</file>
+        <file alias="normal_6">../TTKResource/spectrum/normal_6.png</file>
+        <file alias="plus_1">../TTKResource/spectrum/plus_1.png</file>
+        <file alias="plus_2">../TTKResource/spectrum/plus_2.png</file>
+        <file alias="plus_3">../TTKResource/spectrum/plus_3.png</file>
+        <file alias="plus_4">../TTKResource/spectrum/plus_4.png</file>
+        <file alias="plus_5">../TTKResource/spectrum/plus_5.png</file>
+        <file alias="plus_6">../TTKResource/spectrum/plus_6.png</file>
+        <file alias="plus_7">../TTKResource/spectrum/plus_7.png</file>
+        <file alias="florid_1">../TTKResource/spectrum/florid_1.png</file>
+        <file alias="florid_2">../TTKResource/spectrum/florid_2.png</file>
+        <file alias="florid_3">../TTKResource/spectrum/florid_3.png</file>
+        <file alias="florid_4">../TTKResource/spectrum/florid_4.png</file>
+        <file alias="florid_5">../TTKResource/spectrum/florid_5.png</file>
+        <file alias="florid_6">../TTKResource/spectrum/florid_6.png</file>
+        <file alias="florid_7">../TTKResource/spectrum/florid_7.png</file>
+    </qresource>
 </RCC>

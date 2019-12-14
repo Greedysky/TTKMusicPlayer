@@ -198,7 +198,7 @@ void MusicPlayer::setEqEffect(const MIntList &hz)
 
 void MusicPlayer::setEnaleEffect(bool enable)
 {
-    if(enable == false)
+    if(!enable)
     {
         setEqEffect(MIntList()<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0);
     }

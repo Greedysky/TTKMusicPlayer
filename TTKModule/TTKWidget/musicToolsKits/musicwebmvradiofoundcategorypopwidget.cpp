@@ -113,7 +113,7 @@ void MusicWebMVRadioFoundCategoryPopWidget::initWidget()
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
-    m_containWidget->setFixedSize(600, 370);
+    m_containWidget->setFixedSize(480, 200);
     m_containWidget->setObjectName("containWidget");
     m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
 

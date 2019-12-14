@@ -195,7 +195,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         m_musicLrcForInterior->setCurrentSongName( name );
 
         MusicLrcAnalysis::State state;
-        if(QFileInfo(path).suffix().toLower() == "krc")
+        if(QFileInfo(path).suffix().toLower() == KRC_FILE_PREFIX)
         {
             M_LOGGER_INFO("use krc parser!");
             state = m_lrcAnalysis->transKrcFileToTime(path);

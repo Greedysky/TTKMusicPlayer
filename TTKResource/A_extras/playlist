@@ -78,7 +78,7 @@
             <value value="校园" key="16"/>
         </tag>
     </QQ>
-    <Kugou>
+    <KuGou>
         <tag value="默认">
             <value value="全部" key=""/>
         </tag>
@@ -168,7 +168,7 @@
             <value key="846" value="编程"/>
             <value key="63" value="车载"/>
         </tag>
-    </Kugou>
+    </KuGou>
     <WangYi>
         <tag value="默认">
             <value key="全部" value="全部"/>
@@ -443,7 +443,7 @@
             <value key="失眠" value="失眠"/>
         </tag>
     </XiaMi>
-    <Kuwo>
+    <KuWo>
         <tag value="默认">
             <value key="167" value="全部"/>
         </tag>
@@ -534,8 +534,8 @@
             <value key="174" value="古典"/>
             <value key="175" value="世界"/>
         </tag>
-    </Kuwo>
-    <Baidu>
+    </KuWo>
+    <BaiDu>
         <tag value="默认">
             <value key="华语" value="全部"/>
         </tag>
@@ -623,5 +623,5 @@
             <value key="网络歌曲" value="网络歌曲"/>
             <value key="器乐" value="器乐"/>
         </tag>
-    </Baidu>
+    </BaiDu>
 <TTKMusicPlayer>

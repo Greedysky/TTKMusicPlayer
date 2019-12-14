@@ -127,44 +127,34 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="analyzerBox">
-           <property name="text">
-            <string>Analyzer</string>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-          </widget>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="ewaveBox">
-           <property name="text">
-            <string>EWave</string>
+          <widget class="MusicSpectrumNormalLayoutWidget" name="normalLayoutButton">
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="flowwaveBox">
-           <property name="text">
-            <string>FlowWave</string>
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="histogramBox">
            <property name="text">
-            <string>Histogram</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="lineBox">
-           <property name="text">
-            <string>Line</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="spacewaveBox">
-           <property name="text">
-            <string>SpaceWave</string>
+            <string>类型</string>
            </property>
           </widget>
          </item>
@@ -239,51 +229,34 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="foldwaveBox">
-           <property name="text">
-            <string>FoldWave</string>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-          </widget>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="monowaveBox">
-           <property name="text">
-            <string>Monowave</string>
+          <widget class="MusicSpectrumPlusLayoutWidget" name="plusLayoutButton">
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="multiwaveBox">
-           <property name="text">
-            <string>Multiwave</string>
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="xraysBox">
            <property name="text">
-            <string>XRays</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="pointxraysBox">
-           <property name="text">
-            <string>PointXRays</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="volumeWaveBox">
-           <property name="text">
-            <string>VolumeWave</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="lightenvelopeBox">
-           <property name="text">
-            <string>LightEnvelope</string>
+            <string>类型</string>
            </property>
           </widget>
          </item>
@@ -358,63 +331,34 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QRadioButton" name="floridgoomBox">
-           <property name="text">
-            <string>Goom</string>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="checked">
-            <bool>false</bool>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
            </property>
-           <property name="autoExclusive">
-            <bool>true</bool>
-           </property>
-          </widget>
+          </spacer>
          </item>
          <item>
-          <widget class="QRadioButton" name="floridreverbBox">
+          <widget class="MusicSpectrumFloridLayoutWidget" name="floridLayoutButton">
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
+           </property>
            <property name="text">
-            <string>Reverb</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <property name="autoExclusive">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="floridautismBox">
-           <property name="text">
-            <string>Autism</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="floridbassBox">
-           <property name="text">
-            <string>Bass</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="floridsurroundBox">
-           <property name="text">
-            <string>Surround</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="floridancientBox">
-           <property name="text">
-            <string>Ancient</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="floridelectricBox">
-           <property name="text">
-            <string>Electric</string>
+            <string>类型</string>
            </property>
           </widget>
          </item>
@@ -488,16 +432,6 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item>
-          <widget class="QCheckBox" name="lightspectrumBox">
-           <property name="text">
-            <string>LightSpectrum</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
@@ -579,6 +513,23 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicSpectrumNormalLayoutWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicspectrumlayoutwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSpectrumPlusLayoutWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicspectrumlayoutwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSpectrumFloridLayoutWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicspectrumlayoutwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

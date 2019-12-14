@@ -62,15 +62,15 @@ public Q_SLOTS:
     /*!
      * Spectrum Type Changed.
      */
-    void spectrumTypeChanged(int index);
+    void spectrumTypeChanged(bool &state, const QString &name);
     /*!
      * Spectrum Plus Type Changed.
      */
-    void spectrumPlusTypeChanged(int index);
+    void spectrumPlusTypeChanged(bool &state, const QString &name);
     /*!
      * Spectrum Florid Type Changed.
      */
-    void spectrumFloridTypeChanged(int index);
+    void spectrumFloridTypeChanged(bool &state, const QString &name);
     /*!
      * Override show function.
      */
@@ -86,29 +86,17 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Spectrum types list.
-     */
-    static QStringList spectrumTypeList();
-    /*!
-     * Spectrum plus types list.
-     */
-    static QStringList spectrumPlusTypeList();
-    /*!
-     * Spectrum florid types list.
-     */
-    static QStringList spectrumFloridTypeList();
-    /*!
      * Create spectrum widget.
      */
-    void createSpectrumWidget(QAbstractButton *box, const QString &name, QLayout *layout);
+    void createSpectrumWidget(bool &state, const QString &name, QLayout *layout);
     /*!
      * Create light widget.
      */
-    void createLightWidget(QAbstractButton *box, const QString &name, QLayout *layout, const QString &url = QString());
+    void createLightWidget(bool &state, const QString &name, QLayout *layout, const QString &url = QString());
     /*!
      * Create florid widget.
      */
-    void createFloridWidget(QAbstractButton *box, const QString &name, QLayout *layout);
+    void createFloridWidget(bool &state, const QString &name, QLayout *layout);
     /*!
      * Adjust widget layout.
      */
@@ -120,8 +108,9 @@ protected:
     /*!
      * Show message box widget.
      */
-    void showMessageBoxWidget(QAbstractButton *box);
+    void showMessageBoxWidget();
 
+    QString m_lastFloridName;
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;
 

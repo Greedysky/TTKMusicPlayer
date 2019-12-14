@@ -56,7 +56,7 @@
             <value key="other_other_" value="其他"/>
         </tag>
     </QQ>
-    <Kugou>
+    <KuGou>
         <tag value="华语">
             <value key="type=1nsextype=1" value="华语男歌手"/>
             <value key="type=1nsextype=2" value="华语女歌手"/>
@@ -75,8 +75,8 @@
         <tag value="其他">
             <value key="type=4nsextype=0" value="其他"/>
         </tag>
-    </Kugou>
-    <Baidu>
+    </KuGou>
+    <BaiDu>
         <tag value="华语">
             <value key="area=1nsex=1" value="华语男歌手"/>
             <value key="area=1nsex=2" value="华语女歌手"/>
@@ -92,8 +92,8 @@
             <value key="area=4nsex=2" value="日韩女歌手"/>
             <value key="area=4nsex=3" value="日韩组合"/>
         </tag>
-    </Baidu>
-    <Kuwo>
+    </BaiDu>
+    <KuWo>
         <tag value="华语">
             <value key="1" value="华语男歌手"/>
             <value key="2" value="华语女歌手"/>
@@ -112,7 +112,7 @@
         <tag value="其他">
             <value key="10" value="其他"/>
         </tag>
-    </Kuwo>
+    </KuWo>
     <XiaMi>
         <tag value="华语">
             <value key="class=1ntype=1" value="华语男歌手"/>

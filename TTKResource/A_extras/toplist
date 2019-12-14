@@ -56,7 +56,7 @@
             <value key="117" value="台湾幽浮榜"/>
         </tag>
     </QQ>
-    <Kugou>
+    <KuGou>
         <tag value="热门榜单">
             <value key="6666" value="酷狗飙升榜"/>
             <value key="8888" value="酷狗TOP500"/>
@@ -93,8 +93,8 @@
             <value key="4672" value="韩国M-net音乐榜"/>
             <value key="22163" value="中国TOP排行榜"/>
         </tag>
-    </Kugou>
-    <Baidu>
+    </KuGou>
+    <BaiDu>
         <tag value="主打榜单">
             <value key="1" value="新歌榜"/>
             <value key="2" value="热歌榜"/>
@@ -115,8 +115,8 @@
             <value key="7" value="叱咤歌曲榜"/>
             <value key="9" value="雪碧音碰音榜"/>
         </tag>
-    </Baidu>
-    <Kuwo>
+    </BaiDu>
+    <KuWo>
         <tag value="分类榜">
             <value key="16" value="酷我热歌榜"/>
             <value key="17" value="酷我新歌榜"/>
@@ -149,7 +149,7 @@
             <value key="15" value="日本公信榜"/>
             <value key="8" value="香港音乐榜"/>
         </tag>
-    </Kuwo>
+    </KuWo>
     <XiaMi>
         <tag value="全球媒体榜">
             <value key="102" value="新歌榜"/>
