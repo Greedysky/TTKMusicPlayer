@@ -305,7 +305,7 @@ void MusicVideoPlayWidget::mediaUrlNameChanged(const MusicVideoItem &item)
 void MusicVideoPlayWidget::freshButtonClicked()
 {
     const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
-    emit freshButtonClicked(text == tr("PopupMode"));
+    Q_EMIT freshButtonClicked(text == tr("PopupMode"));
 }
 
 void MusicVideoPlayWidget::fullscreenButtonClicked()
@@ -317,7 +317,7 @@ void MusicVideoPlayWidget::fullscreenButtonClicked()
 
     const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) == tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
-    emit fullscreenButtonClicked(text == tr("NormalMode"));
+    Q_EMIT fullscreenButtonClicked(text == tr("NormalMode"));
 }
 
 void MusicVideoPlayWidget::downloadButtonClicked()

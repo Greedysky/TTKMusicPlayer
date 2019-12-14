@@ -126,7 +126,7 @@ void MusicDJRadioProgramCategoryThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -162,13 +162,13 @@ void MusicDJRadioProgramCategoryThread::downLoadFinished()
                     info.m_nickName = value["nickname"].toString();
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
-                    emit createProgramItem(info);
+                    Q_EMIT createProgramItem(info);
                 }
             }
         }
     }
 
-//    emit downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -177,7 +177,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -229,7 +229,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         info.m_playCount = QString::number(radioObject["subCount"].toInt());
                         info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
-                        emit createCategoryInfoItem(info);
+                        Q_EMIT createCategoryInfoItem(info);
                     }
                     //
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -243,12 +243,12 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
                     item.m_albumName.clear();
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItem(item);
+                    Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
 }

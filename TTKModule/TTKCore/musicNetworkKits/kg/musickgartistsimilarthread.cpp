@@ -63,13 +63,13 @@ void MusicKGArtistSimilarThread::downLoadFinished()
             info.m_coverUrl = regx.cap(1);
             info.m_name = regx.cap(3);
             info.m_updateTime.clear();
-            emit createSimilarItem(info);
+            Q_EMIT createSimilarItem(info);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

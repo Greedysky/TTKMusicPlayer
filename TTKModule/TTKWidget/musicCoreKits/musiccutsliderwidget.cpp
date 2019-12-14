@@ -43,7 +43,7 @@ void MusicMoveButton::mouseMoveEvent(QMouseEvent *event)
     int xpos = event->globalX() - m_pressAt.x();
     m_pressAt = event->globalPos();
     move( x() + xpos, y());
-    emit moveChanged();
+    Q_EMIT moveChanged();
 }
 
 void MusicMoveButton::mouseReleaseEvent(QMouseEvent *event)
@@ -51,7 +51,7 @@ void MusicMoveButton::mouseReleaseEvent(QMouseEvent *event)
 //    QWidget::mouseReleaseEvent(event);
     m_pressAt = event->globalPos();
     m_leftButtonPress = false;
-    emit buttonRelease();
+    Q_EMIT buttonRelease();
 }
 
 
@@ -140,11 +140,11 @@ void MusicCutSliderWidget::buttonMoveUpdate()
 
     if(leftX < rightX)
     {
-        emit posChanged(leftX, rightX);
+        Q_EMIT posChanged(leftX, rightX);
     }
     else
     {
-        emit posChanged(rightX, leftX);
+        Q_EMIT posChanged(rightX, leftX);
     }
     update();
 }
@@ -153,14 +153,14 @@ void MusicCutSliderWidget::buttonReleaseLeft()
 {
     int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
         leftX = leftX*m_duration/m_width;
-    emit buttonReleaseChanged(leftX);
+    Q_EMIT buttonReleaseChanged(leftX);
 }
 
 void MusicCutSliderWidget::buttonReleaseRight()
 {
     int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
         rightX = rightX*m_duration/m_width;
-    emit buttonReleaseChanged(rightX);
+    Q_EMIT buttonReleaseChanged(rightX);
 }
 
 void MusicCutSliderWidget::paintEvent(QPaintEvent *event)

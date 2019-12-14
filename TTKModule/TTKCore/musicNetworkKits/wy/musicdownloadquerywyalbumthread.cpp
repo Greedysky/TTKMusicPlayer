@@ -69,7 +69,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -144,7 +144,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                         albumFlag = true;
                         info.m_id = musicInfo.m_albumId;
                         info.m_name = musicInfo.m_singerName;
-                        emit createAlbumInfoItem(info);
+                        Q_EMIT createAlbumInfoItem(info);
                     }
                     //
                     MusicSearchedItem item;
@@ -153,14 +153,14 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItem(item);
+                    Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -200,12 +200,12 @@ void MusicDownLoadQueryWYAlbumThread::singleDownLoadFinished()
                     info.m_coverUrl = value["picUrl"].toString();
                     info.m_name = value["name"].toString();
                     info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["publishTime"].toULongLong()).toString("yyyy.MM.dd");
-                    emit createAlbumInfoItem(info);
+                    Q_EMIT createAlbumInfoItem(info);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

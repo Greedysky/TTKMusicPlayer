@@ -7,7 +7,7 @@
 MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
     : MusicClickedLabel(parent)
 {
-    setFixedSize(260, 40);
+    setFixedSize(250, 40);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -63,7 +63,7 @@ MusicSpectrumLayoutWidget::~MusicSpectrumLayoutWidget()
 
 void MusicSpectrumLayoutWidget::popupMenu()
 {
-    m_menu->exec( mapToGlobal(QPoint(-m_containWidget->width() + width(), 0)) );
+    m_menu->exec( mapToGlobal(QPoint(-m_containWidget->width() + width(), 0)));
 }
 
 void MusicSpectrumLayoutWidget::labelClicked(int index)
@@ -82,7 +82,7 @@ void MusicSpectrumLayoutWidget::labelClicked(int index)
     state = !state;
     m_items[index]->setCheck(state);
 
-    emit stateChanged(state, types[index]);
+    Q_EMIT stateChanged(state, types[index]);
     if(!state)
     {
         m_items[index]->setCheck(false);
@@ -165,8 +165,8 @@ MusicSpectrumNormalLayoutWidget::~MusicSpectrumNormalLayoutWidget()
 
 QStringList MusicSpectrumNormalLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "normalanalyzer" << "normalewave" <<"normalflowwave"
-                         << "normalhistogram" << "normalline" <<"normalspacewave";
+    return QStringList() << "normalanalyzer" << "normalewave" << "normalflowwave"
+                         << "normalhistogram" << "normalline" << "normalspacewave";
 }
 
 
@@ -192,8 +192,8 @@ MusicSpectrumPlusLayoutWidget::~MusicSpectrumPlusLayoutWidget()
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "plusfoldwave" << "plusmonowave" << "plusmultiwave"
-                         << "plusxrays" << "pluspointxrays" << "plusvolumewave" << "lightenvelope";
+    return QStringList() << "plusfoldwave" << "plusmonowave" << "plusmultiwave" << "plusxrays"
+                         << "pluspointxrays" << "plusvolumewave" << "lightenvelope";
 }
 
 
@@ -221,6 +221,6 @@ MusicSpectrumFloridLayoutWidget::~MusicSpectrumFloridLayoutWidget()
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "floridgoom" << "floridreverb" << "floridautism"
-                         << "floridbass" << "floridsurround" << "floridancient" << "floridelectric";
+    return QStringList() << "floridgoom" << "floridreverb" << "floridautism" << "floridbass"
+                         << "floridsurround" << "floridancient" << "floridelectric";
 }

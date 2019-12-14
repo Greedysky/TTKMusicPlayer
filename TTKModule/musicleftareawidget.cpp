@@ -99,7 +99,7 @@ void MusicLeftAreaWidget::radioExecuteOuter(const QString &path)
 void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
     m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
-    emit currentLoveStateChanged();
+    Q_EMIT currentLoveStateChanged();
 }
 
 void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
@@ -129,7 +129,7 @@ void MusicLeftAreaWidget::musicDownloadSongFinished()
     bool state = false;
     MusicApplication::instance()->musicDownloadContains(state);
     m_ui->musicDownload->setStyleSheet(state ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
-    emit currentDownloadStateChanged();
+    Q_EMIT currentDownloadStateChanged();
 }
 
 void MusicLeftAreaWidget::musicStackedSongListWidgetChanged()

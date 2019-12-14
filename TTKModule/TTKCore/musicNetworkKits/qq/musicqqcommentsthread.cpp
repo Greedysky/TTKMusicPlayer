@@ -97,13 +97,13 @@ void MusicQQSongCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
 
-                    emit createSearchedItem(comment);
+                    Q_EMIT createSearchedItem(comment);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -190,12 +190,12 @@ void MusicQQPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
 
-                    emit createSearchedItem(comment);
+                    Q_EMIT createSearchedItem(comment);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

@@ -78,19 +78,19 @@ void MusicTranslationThread::downLoadFinished()
                 {
                     continue;
                 }
-                emit downLoadDataChanged(value["dst"].toString());
+                Q_EMIT downLoadDataChanged(value["dst"].toString());
                 break;
             }
         }
         else
         {
-            emit downLoadDataChanged(QString());
+            Q_EMIT downLoadDataChanged(QString());
         }
     }
     else
     {
         M_LOGGER_ERROR("Translation source data error");
-        emit downLoadDataChanged(QString());
+        Q_EMIT downLoadDataChanged(QString());
     }
     deleteAll();
 }

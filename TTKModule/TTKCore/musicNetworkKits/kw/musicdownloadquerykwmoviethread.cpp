@@ -89,7 +89,7 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -135,7 +135,7 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItem(item);
+                    Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }
@@ -154,7 +154,7 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
         m_musicSongInfos << d->getMusicSongInfos();
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -203,13 +203,13 @@ void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
                     }
                     info.m_name = value["name"].toString();
                     info.m_updateTime.clear();
-                    emit createMovieInfoItem(info);
+                    Q_EMIT createMovieInfoItem(info);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -217,7 +217,7 @@ void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()
 {
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -236,11 +236,11 @@ void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()
         item.m_singerName = musicInfo.m_singerName;
         item.m_time = musicInfo.m_timeLength;
         item.m_type = mapQueryServerString();
-        emit createSearchedItem(item);
+        Q_EMIT createSearchedItem(item);
         m_musicSongInfos << musicInfo;
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 

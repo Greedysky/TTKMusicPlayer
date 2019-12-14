@@ -65,7 +65,7 @@ void QGlobalShortcutPrivate::activateShortcut(quint32 nativeKey, quint32 nativeM
 {
     QGlobalShortcut* shortcut = shortcuts.value(qMakePair(nativeKey, nativeMods));
     if (shortcut && shortcut->isEnabled())
-        emit shortcut->activated();
+        Q_EMIT shortcut->activated();
 }
 
 QGlobalShortcut::QGlobalShortcut(QObject* parent)

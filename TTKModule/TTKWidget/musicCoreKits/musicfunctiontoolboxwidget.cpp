@@ -116,7 +116,7 @@ void MusicFunctionToolBoxTopWidget::dropEvent(QDropEvent *event)
 
     if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
     {
-        emit swapDragItemIndex(event->mimeData()->data(DRAG_FORMAT).toInt(), m_index);
+        Q_EMIT swapDragItemIndex(event->mimeData()->data(DRAG_FORMAT).toInt(), m_index);
     }
 }
 
@@ -125,7 +125,7 @@ void MusicFunctionToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
     QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        emit mousePressAt(m_index);
+        Q_EMIT mousePressAt(m_index);
         m_pressPosAt = event->pos();
     }
 }
@@ -139,7 +139,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
     {
         if(!m_isBlockMoveExpand && isItemExpand())
         {
-            emit mousePressAt(m_index);
+            Q_EMIT mousePressAt(m_index);
         }
 
         QMimeData *mimeData = new QMimeData;

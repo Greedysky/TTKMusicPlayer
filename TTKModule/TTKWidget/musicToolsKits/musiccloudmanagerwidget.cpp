@@ -128,7 +128,7 @@ void MusicCloudManagerTableWidget::keyDownLoadFinished(const QByteArray &data)
         OSSConf::ACCESS_KEY = value["key"].toString();
         OSSConf::SECRET_KEY = value["secret"].toByteArray();
     }
-    emit getKeyFinished();
+    Q_EMIT getKeyFinished();
 }
 
 void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
@@ -139,7 +139,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
     const int count = items.count();
     if(count == 0)
     {
-        emit updateLabelMessage(tr("List Is Empty!"));
+        Q_EMIT updateLabelMessage(tr("List Is Empty!"));
         createUploadFileWidget();
         return;
     }
@@ -156,15 +156,15 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
         createItem(data);
     }
 
-    emit updateLabelMessage(tr("List Update Finished!"));
-    emit updataSizeLabel(m_totalFileSzie);
+    Q_EMIT updateLabelMessage(tr("List Update Finished!"));
+    Q_EMIT updataSizeLabel(m_totalFileSzie);
 }
 
 void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 {
     if(time == TTK_ERROR_STR)
     {
-        emit uploadFileError(m_currentDataItem);
+        Q_EMIT uploadFileError(m_currentDataItem);
     }
 
     const int row = FindUploadItemRow(time);
@@ -178,11 +178,11 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
             it->setData(MUSIC_DATAS_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
             m_totalFileSzie += data.m_dataItem.m_size;
         }
-        emit updataSizeLabel(m_totalFileSzie);
+        Q_EMIT updataSizeLabel(m_totalFileSzie);
     }
     else
     {
-        emit uploadFileError(m_currentDataItem);
+        Q_EMIT uploadFileError(m_currentDataItem);
     }
 
     startToUploadFile();
@@ -190,12 +190,12 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 
 void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
 {
-    emit updateLabelMessage(state ? tr("Delete The Current File Success!") : tr("Delete The Current File Error!"));
+    Q_EMIT updateLabelMessage(state ? tr("Delete The Current File Success!") : tr("Delete The Current File Error!"));
 }
 
 void MusicCloudManagerTableWidget::updateListToServer()
 {
-    emit updateLabelMessage(tr("List Updating"));
+    Q_EMIT updateLabelMessage(tr("List Updating"));
     m_ossListData->listDataOperator(MUSIC_BUCKET);
 }
 
@@ -219,7 +219,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
     removeRow(currentRow());
     m_ossDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
     m_totalFileSzie -= data.m_dataItem.m_size;
-    emit updataSizeLabel(m_totalFileSzie);
+    Q_EMIT updataSizeLabel(m_totalFileSzie);
 
     createUploadFileWidget();
 }
@@ -248,7 +248,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
         m_ossDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
 
         m_totalFileSzie -= data.m_dataItem.m_size;
-        emit updataSizeLabel(m_totalFileSzie);
+        Q_EMIT updataSizeLabel(m_totalFileSzie);
     }
 }
 
@@ -438,7 +438,7 @@ void MusicCloudManagerTableWidget::createUploadFileWidget()
 void MusicCloudManagerTableWidget::startToUploadFile()
 {
     m_uploading = true;
-    emit updateLabelMessage(tr("Files Is Uploading!"));
+    Q_EMIT updateLabelMessage(tr("Files Is Uploading!"));
 
     m_currentDataItem = FindWaitedItemRow();
     if(!m_currentDataItem.isValid())

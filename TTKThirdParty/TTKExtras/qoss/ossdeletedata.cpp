@@ -41,11 +41,11 @@ void OSSDeleteData::receiveDataFromServer()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
-        emit deleteFileFinished(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204);
+        Q_EMIT deleteFileFinished(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204);
         reply->deleteLater();
     }
     else
     {
-        emit deleteFileFinished(false);
+        Q_EMIT deleteFileFinished(false);
     }
 }

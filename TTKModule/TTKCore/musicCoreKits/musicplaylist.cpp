@@ -225,7 +225,7 @@ void MusicPlaylist::setCurrentIndex(int index)
         }
     }
 
-    emit currentIndexChanged(m_currentIndex);
+    Q_EMIT currentIndexChanged(m_currentIndex);
 }
 
 void MusicPlaylist::setCurrentIndex(int toolIndex, const QString &path)

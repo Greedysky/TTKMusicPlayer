@@ -35,7 +35,7 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
     }
 
     M_SETTING_PTR->setValue( (m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, color.m_index);
-    emit linearGradientColorChanged();
+    Q_EMIT linearGradientColorChanged();
 }
 
 void MusicLrcContainer::setSettingParameter()
@@ -56,8 +56,8 @@ qint64 MusicLrcContainer::getTotalTime() const
 
 void MusicLrcContainer::currentLrcCustom()
 {
-    emit changeCurrentLrcColorCustom();
-    emit changeCurrentLrcColorSetting();
+    Q_EMIT changeCurrentLrcColorCustom();
+    Q_EMIT changeCurrentLrcColorSetting();
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(QAction *action)

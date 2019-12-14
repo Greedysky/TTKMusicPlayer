@@ -33,7 +33,7 @@ void MusicArtistListFoundItemWidget::setMusicResultsItem(const MusicResultsItem 
 
 void MusicArtistListFoundItemWidget::currentItemClicked()
 {
-    emit currentItemClicked(m_itemData);
+    Q_EMIT currentItemClicked(m_itemData);
 }
 
 

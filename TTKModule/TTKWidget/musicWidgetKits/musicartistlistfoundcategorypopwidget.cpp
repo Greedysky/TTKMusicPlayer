@@ -50,7 +50,7 @@ void MusicArtistListFoundCategoryItem::buttonClicked(int index)
 {
     if(0 <= index && index < m_category.m_items.count())
     {
-        emit categoryChanged(m_category.m_items[index]);
+        Q_EMIT categoryChanged(m_category.m_items[index]);
     }
 }
 

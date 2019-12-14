@@ -144,7 +144,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     }
     //
 
-    emit enhancedMusicChanged(type);
+    Q_EMIT enhancedMusicChanged(type);
 
     m_menu->close();
 }

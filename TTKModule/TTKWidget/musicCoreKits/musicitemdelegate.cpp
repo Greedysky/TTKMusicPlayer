@@ -85,7 +85,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     m_checkBox->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
     if(state != m_checkBox->isChecked())
     {
-        emit MConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
+        Q_EMIT MConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
     }
 
     painter->translate((option.rect.width() - 16)/2, 0); // top left

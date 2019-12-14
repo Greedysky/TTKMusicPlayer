@@ -100,13 +100,13 @@ void MusicDesktopWallpaperThread::timeout()
             m_currentImageIndex = 0;
         }
 
-        emit updateBackground(QPixmap(m_path[m_currentImageIndex]));
+        Q_EMIT updateBackground(QPixmap(m_path[m_currentImageIndex]));
     }
     else
     {
         MusicBackgroundImage image;
         MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl());
 
-        emit updateBackground(image.m_pix);
+        Q_EMIT updateBackground(image.m_pix);
     }
 }

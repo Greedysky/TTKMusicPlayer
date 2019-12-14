@@ -279,14 +279,14 @@ void MusicLrcContainerForInterior::saveLrcTimeChanged()
 void MusicLrcContainerForInterior::artistBackgroundChanged()
 {
     m_showArtistBackground = !m_showArtistBackground;
-    emit artistBackgroundHasChanged();
+    Q_EMIT artistBackgroundHasChanged();
 }
 
 void MusicLrcContainerForInterior::showArtistBackgroundUploadedWidget()
 {
     MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtistBackground = true;
-    emit artistBackgroundHasChanged();
+    Q_EMIT artistBackgroundHasChanged();
 }
 
 void MusicLrcContainerForInterior::lrcOpenFileDir() const
@@ -595,7 +595,7 @@ void MusicLrcContainerForInterior::mouseReleaseEvent(QMouseEvent *event)
             const qint64 time = m_lrcAnalysis->findTime(m_lrcAnalysis->getCurrentIndex());
             if(time != -1)
             {
-                emit updateCurrentTime(time);
+                Q_EMIT updateCurrentTime(time);
             }
         }
     }

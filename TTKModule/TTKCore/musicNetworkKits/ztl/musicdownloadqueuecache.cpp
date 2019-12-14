@@ -78,7 +78,7 @@ void MusicDownloadQueueCache::startOrderImageQueue()
     {
         if(QFile::exists(m_imageQueue.first().m_savePath))
         {
-            emit downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
+            Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
             startOrderImageQueue();
         }
         else
@@ -127,7 +127,7 @@ void MusicDownloadQueueCache::downLoadFinished()
     m_reply->deleteLater();
     m_reply = nullptr;
     m_isDownload = false;
-    emit downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
+    Q_EMIT downLoadDataChanged(m_imageQueue.takeFirst().m_savePath);
 
     startOrderImageQueue();
 }

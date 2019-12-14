@@ -116,7 +116,7 @@ void MusicEMOJILabelWidget::labelClicked(int index)
         return;
     }
 
-    emit dataChanged(m_datas[offset]);
+    Q_EMIT dataChanged(m_datas[offset]);
 }
 
 void MusicEMOJILabelWidget::leaveEvent(QEvent *event)

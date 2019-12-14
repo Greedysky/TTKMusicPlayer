@@ -98,13 +98,13 @@ void MusicKWSongCommentsThread::downLoadFinished()
                     comment.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
-                    emit createSearchedItem(comment);
+                    Q_EMIT createSearchedItem(comment);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -192,12 +192,12 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = QUrl().fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
-                    emit createSearchedItem(comment);
+                    Q_EMIT createSearchedItem(comment);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

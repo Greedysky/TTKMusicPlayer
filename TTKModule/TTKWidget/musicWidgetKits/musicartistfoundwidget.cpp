@@ -84,7 +84,7 @@ void MusicArtistAlbumsItemWidget::downLoadFinished(const QByteArray &data)
 
 void MusicArtistAlbumsItemWidget::currentItemClicked()
 {
-    emit currentItemClicked(m_itemData.m_id);
+    Q_EMIT currentItemClicked(m_itemData.m_id);
 }
 
 

@@ -122,7 +122,7 @@ MusicLrcDownloadBatchWidget::~MusicLrcDownloadBatchWidget()
 void MusicLrcDownloadBatchWidget::modifiedItemButtonClicked()
 {
     MusicSongItems songs;
-    emit getMusicLists(songs);
+    Q_EMIT getMusicLists(songs);
 
     m_selectedItemIdFlag = true;
     MusicSongItemSelectedDialog dialog;
@@ -217,7 +217,7 @@ void MusicLrcDownloadBatchWidget::getSelectedSongItems()
     m_localSongs.clear();
 
     MusicSongItems songs;
-    emit getMusicLists(songs);
+    Q_EMIT getMusicLists(songs);
 
     foreach(const MusicSongItem &item, songs)
     {

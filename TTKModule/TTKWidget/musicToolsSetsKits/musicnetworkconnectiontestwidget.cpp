@@ -92,7 +92,7 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
         m_stateText->setStyleSheet(MusicUIObject::MColorStyle05);
     }
 
-    emit networkConnectionTestChanged();
+    Q_EMIT networkConnectionTestChanged();
 }
 
 

@@ -85,7 +85,7 @@ void MusicSongsListPlayedWidget::setDeleteItemAt()
 void MusicSongsListPlayedWidget::enterEvent(QEvent *event)
 {
     QWidget::enterEvent(event);
-    emit enterChanged(m_currentPlayIndex, -1);
+    Q_EMIT enterChanged(m_currentPlayIndex, -1);
 }
 
 void MusicSongsListPlayedWidget::createMoreMenu(QMenu *menu)

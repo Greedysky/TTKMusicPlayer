@@ -54,7 +54,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -110,7 +110,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItem(item);
+                    Q_EMIT createSearchedItem(item);
 
                     musicInfo.m_songId = MUSIC_YYT_PREFIX + musicInfo.m_songId;
                     m_musicSongInfos << musicInfo;
@@ -119,7 +119,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 

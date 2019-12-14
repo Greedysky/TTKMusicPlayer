@@ -106,7 +106,7 @@ protected:
     /*!
      * Emit current equalizer parameters value.
      */
-    void emitParameter();
+    void parameterSubmit();
 
     Ui::MusicEqualizerDialog *m_ui;
     bool m_eable;

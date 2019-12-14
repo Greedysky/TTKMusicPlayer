@@ -430,7 +430,7 @@ bool MusicApplicationObject::closeCurrentEqualizer()
             return false;
         }
 
-        emit enhancedMusicChanged(0);
+        Q_EMIT enhancedMusicChanged(0);
     }
     return true;
 }

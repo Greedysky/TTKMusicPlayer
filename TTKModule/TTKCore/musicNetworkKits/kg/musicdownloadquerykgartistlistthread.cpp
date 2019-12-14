@@ -70,7 +70,7 @@ void MusicDownLoadQueryKGArtistListThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -115,7 +115,7 @@ void MusicDownLoadQueryKGArtistListThread::downLoadFinished()
                             MusicResultsItem info;
                             info.m_id = QString::number(value["singerid"].toLongLong());
                             info.m_name = value["singername"].toString();
-                            emit createArtistListItem(info);
+                            Q_EMIT createArtistListItem(info);
                         }
                         break;
                     }
@@ -124,6 +124,6 @@ void MusicDownLoadQueryKGArtistListThread::downLoadFinished()
         }
     }
 
-//    emit downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

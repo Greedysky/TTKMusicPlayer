@@ -54,7 +54,7 @@ void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
         {
             m_clickedTimer->stop();
         }
-        emit setFullScreen();
+        Q_EMIT setFullScreen();
     }
 }
 
@@ -66,7 +66,7 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
     bool playing;
-    emit mediaIsPlaying(playing);
+    Q_EMIT mediaIsPlaying(playing);
 
     menu.addAction(tr("videoPlay"), parent(), SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), parent(), SLOT(stop()));

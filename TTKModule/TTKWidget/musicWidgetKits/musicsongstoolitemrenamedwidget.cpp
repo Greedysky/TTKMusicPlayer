@@ -41,7 +41,7 @@ void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
 
 void MusicSongsToolItemRenamedWidget::renameFinished()
 {
-    emit renameFinished(text());
+    Q_EMIT renameFinished(text());
 }
 
 void MusicSongsToolItemRenamedWidget::animationCloseChanged()
@@ -55,7 +55,7 @@ void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *event)
     if(!m_focusBlock)
     {
         QLineEdit::focusOutEvent(event);
-        emit renameFinished(text());
+        Q_EMIT renameFinished(text());
         close();
     }
     else

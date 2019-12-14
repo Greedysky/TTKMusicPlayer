@@ -121,7 +121,7 @@ void MusicVideoControlWidget::pushBarrageClicked()
     m_menuBarrage->setEnabled(m_pushBarrageOn);
     m_lineEditBarrage->setEnabled(m_pushBarrageOn);
 
-    emit pushBarrageChanged(m_pushBarrageOn);
+    Q_EMIT pushBarrageChanged(m_pushBarrageOn);
     m_pushBarrageOn = !m_pushBarrageOn;
 }
 
@@ -136,7 +136,7 @@ void MusicVideoControlWidget::sendBarrageClicked()
     record.m_value = m_lineEditBarrage->text();
     record.m_size = m_menuBarrage->getBarrageSize();
     record.m_color = m_menuBarrage->getBarrageColor().name();
-    emit addBarrageChanged( record );
+    Q_EMIT addBarrageChanged( record );
 }
 
 QWidget *MusicVideoControlWidget::createVideoBarrageWidget()

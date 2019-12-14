@@ -55,7 +55,7 @@ void MusicDownLoadQueryWYToplistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -78,7 +78,7 @@ void MusicDownLoadQueryWYToplistThread::downLoadFinished()
                 info.m_playCount = QString::number(value["playCount"].toULongLong());
                 info.m_description = value["description"].toString();
                 info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
-                emit createToplistInfoItem(info);
+                Q_EMIT createToplistInfoItem(info);
                 //
                 const QVariantList &datas = value["tracks"].toList();
                 foreach(const QVariant &var, datas)
@@ -131,13 +131,13 @@ void MusicDownLoadQueryWYToplistThread::downLoadFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItem(item);
+                    Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

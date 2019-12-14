@@ -33,7 +33,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -51,7 +51,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -70,7 +70,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -237,7 +237,7 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         data.m_url = url;
         data.m_id = musicSongInfo.m_songId;
         data.m_server = m_downLoadManager->getQueryServer();
-        emit mediaUrlNameChanged(data);
+        Q_EMIT mediaUrlNameChanged(data);
     }
 }
 

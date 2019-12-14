@@ -27,7 +27,7 @@ void MusicDataDownloadThread::startToDownload()
         else
         {
             M_LOGGER_ERROR("The data file create failed");
-            emit downLoadDataChanged("The data file create failed");
+            Q_EMIT downLoadDataChanged("The data file create failed");
             deleteAll();
         }
     }
@@ -61,7 +61,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     {
         m_createItemTime = MusicTime::timeStamp();
         M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPair(m_createItemTime, this, m_recordType));
-        emit createDownloadItem(m_savePathName, m_createItemTime);
+        Q_EMIT createDownloadItem(m_savePathName, m_createItemTime);
     }
 }
 
@@ -96,7 +96,7 @@ void MusicDataDownloadThread::downLoadFinished()
     {
         if(m_needUpdate)
         {
-            emit downLoadDataChanged( transferData() );
+            Q_EMIT downLoadDataChanged( transferData() );
             M_LOGGER_INFO("data download has finished!");
         }
     }
@@ -118,7 +118,7 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
     if(m_downloadType == MusicObject::DownloadMusic || m_downloadType == MusicObject::DownloadOther)
     {
         const QString &total = MusicUtils::Number::size2Label(bytesTotal);
-        emit downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);
+        Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);
     }
 }
 
@@ -128,6 +128,6 @@ void MusicDataDownloadThread::updateDownloadSpeed()
     const QString &label = MusicUtils::Number::speed2Label(speed);
     const qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived)/speed : 0;
 
-    emit downloadSpeedLabelChanged(label, time);
+    Q_EMIT downloadSpeedLabelChanged(label, time);
     MusicDownLoadThreadAbstract::updateDownloadSpeed();
 }

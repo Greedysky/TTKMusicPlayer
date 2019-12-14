@@ -110,13 +110,13 @@ void MusicBDSongCommentsThread::downLoadFinished()
                     comment.m_nickName = user["username"].toString();
                     comment.m_coverUrl = user["userpic"].toString();
 
-                    emit createSearchedItem(comment);
+                    Q_EMIT createSearchedItem(comment);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -215,12 +215,12 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = user["username"].toString();
                     comment.m_coverUrl= user["userpic"].toString();
 
-                    emit createSearchedItem(comment);
+                    Q_EMIT createSearchedItem(comment);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

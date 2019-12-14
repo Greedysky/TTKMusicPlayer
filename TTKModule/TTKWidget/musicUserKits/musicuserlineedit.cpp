@@ -107,7 +107,7 @@ void MusicUserLineEdit::checkPwdStrength()
 {
     if(text().isEmpty())
     {
-        emit checkPwdStrength(-1);
+        Q_EMIT checkPwdStrength(-1);
         return;
     }
 
@@ -118,15 +118,15 @@ void MusicUserLineEdit::checkPwdStrength()
 
     if((onlyNum && !onlyChar && !onlySp) || (!onlyNum &&  onlyChar && !onlySp) || (!onlyNum && !onlyChar &&  onlySp) || (!onlyNum && !onlyChar && !onlySp))
     {
-        emit checkPwdStrength(0);
+        Q_EMIT checkPwdStrength(0);
     }
     else if((onlyNum &&  onlyChar && !onlySp) || (onlyNum && !onlyChar &&  onlySp) || (!onlyNum &&  onlyChar &&  onlySp))
     {
-        emit checkPwdStrength(1);
+        Q_EMIT checkPwdStrength(1);
     }
     else
     {
-        emit checkPwdStrength(2);
+        Q_EMIT checkPwdStrength(2);
     }
 
 }

@@ -152,8 +152,8 @@ void MusicPlayer::play()
 
     m_tryTimes = 0;
     m_timer.start(MT_S2MS);
-    ///Every second emits a signal change information
-    emit positionChanged(0);
+    ///Every second Q_EMITs a signal change information
+    Q_EMIT positionChanged(0);
     getCurrentDuration();
 
     ///Read the configuration settings for the sound
@@ -241,7 +241,7 @@ void MusicPlayer::removeCurrentMedia()
 
 void MusicPlayer::update()
 {
-    emit positionChanged( position() );
+    Q_EMIT positionChanged( position() );
 
     if(m_musicEnhanced == Enhanced3D && !m_music->isMuted())
     {
@@ -258,8 +258,8 @@ void MusicPlayer::update()
         if(m_playlist->playbackMode() == MusicObject::PM_PlayOnce)
         {
             m_music->stop();
-            emit positionChanged(0);
-            emit stateChanged(MusicObject::PS_StoppedState);
+            Q_EMIT positionChanged(0);
+            Q_EMIT stateChanged(MusicObject::PS_StoppedState);
             return;
         }
         m_playlist->setCurrentIndex();
@@ -267,8 +267,8 @@ void MusicPlayer::update()
            m_playlist->currentIndex() == -1)
         {
             m_music->stop();
-            emit positionChanged(0);
-            emit stateChanged(MusicObject::PS_StoppedState);
+            Q_EMIT positionChanged(0);
+            Q_EMIT stateChanged(MusicObject::PS_StoppedState);
             return;
         }
         play();
@@ -284,7 +284,7 @@ void MusicPlayer::getCurrentDuration()
     }
     else
     {
-        emit durationChanged( m_duration = dur );
+        Q_EMIT durationChanged( m_duration = dur );
     }
 }
 

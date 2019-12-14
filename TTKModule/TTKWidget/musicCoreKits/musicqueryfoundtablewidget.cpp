@@ -50,7 +50,7 @@ void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
     if(!M_NETWORK_PTR->isOnline())
     {
         clearAllItems();
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     m_downLoadManager->setQueryAllRecords(true);
@@ -348,7 +348,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
         download->startToDownload();
         loop.exec();
 
-        emit musicSongToPlaylistChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
+        Q_EMIT musicSongToPlaylistChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
     }
 
     return true;

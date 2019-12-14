@@ -71,22 +71,22 @@ void OSSUploadData::receiveDataFromServer()
     {
         if(reply->error() == QNetworkReply::NoError)
         {
-            emit uploadFileFinished(d->m_uploadTime);
+            Q_EMIT uploadFileFinished(d->m_uploadTime);
         }
         else
         {
-            emit uploadFileFinished(TTK_ERROR_STR);
+            Q_EMIT uploadFileFinished(TTK_ERROR_STR);
         }
         reply->deleteLater();
     }
     else
     {
-        emit uploadFileFinished(TTK_ERROR_STR);
+        Q_EMIT uploadFileFinished(TTK_ERROR_STR);
     }
 }
 
 void OSSUploadData::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
     TTK_D(OSSUploadData);
-    emit uploadProgressChanged(d->m_uploadTime, bytesSent, bytesTotal);
+    Q_EMIT uploadProgressChanged(d->m_uploadTime, bytesSent, bytesTotal);
 }

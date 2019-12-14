@@ -25,7 +25,7 @@ void MusicConnectTransferThread::run()
             const QString &targetPath = QString("%1/%2").arg(m_target).arg(QFileInfo(path).fileName());
             m_path.takeFirst();
             QFile::copy(path, targetPath);
-            emit transferFileFinished(targetPath);
+            Q_EMIT transferFileFinished(targetPath);
         }
     }
 }

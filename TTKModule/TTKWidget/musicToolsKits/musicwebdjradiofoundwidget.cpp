@@ -82,7 +82,7 @@ void MusicWebDJRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
 
 void MusicWebDJRadioFoundItemWidget::currentItemClicked()
 {
-    emit currentItemClicked(m_itemData);
+    Q_EMIT currentItemClicked(m_itemData);
 }
 
 
@@ -230,7 +230,7 @@ void MusicWebDJRadioFoundWidget::backToMainMenuClicked()
 {
     if(!m_firstInit)
     {
-        emit backToMainMenu();
+        Q_EMIT backToMainMenu();
         return;
     }
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);

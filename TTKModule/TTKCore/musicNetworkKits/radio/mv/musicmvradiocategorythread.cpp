@@ -58,13 +58,13 @@ void MusicMVRadioCategoryThread::downLoadFinished()
                         item.m_id = value["fmId"].toString();
                         item.m_coverUrl = value["imgUrlMv"].toString();
 
-                        emit createCategoryItem(item);
+                        Q_EMIT createCategoryItem(item);
                     }
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

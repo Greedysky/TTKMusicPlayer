@@ -264,7 +264,7 @@ void MusicUserDialog::networkLoginChanged()
         m_userUID = v.m_item;
 
         writeToUserConfig();
-        emit userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
+        Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
         close();
 
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
@@ -283,7 +283,7 @@ void MusicUserDialog::downLoadFinished(const QByteArray &data)
 
     const QString &path = MusicUserRecordWidget::avatarPixmapRender(m_userUID, pix);
     m_userModel->updateUserIcon(m_userUID, path);
-    emit userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
+    Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
 }
 
 int MusicUserDialog::exec()
@@ -444,7 +444,7 @@ void MusicUserDialog::localLoginMode()
     writeToUserConfig();
 
     m_userUID = uid;
-    emit userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
+    Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
     close();
 }
 

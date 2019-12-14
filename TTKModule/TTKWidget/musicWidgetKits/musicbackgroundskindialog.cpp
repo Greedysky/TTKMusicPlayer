@@ -278,7 +278,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
         MusicTopAreaWidget::instance()->musicBackgroundSkinCustumChanged(QFileInfo(path).baseName());
     }
     M_BACKGROUND_PTR->setBackgroundUrl(path);
-    emit M_BACKGROUND_PTR->backgroundHasChanged();
+    Q_EMIT M_BACKGROUND_PTR->backgroundHasChanged();
 }
 
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
@@ -309,7 +309,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     QString path = USER_THEME_DIR_FULL + s + TTS_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
     M_BACKGROUND_PTR->setBackgroundUrl(path);
-    emit M_BACKGROUND_PTR->backgroundHasChanged();
+    Q_EMIT M_BACKGROUND_PTR->backgroundHasChanged();
 }
 
 void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidget *item, const QString &name)

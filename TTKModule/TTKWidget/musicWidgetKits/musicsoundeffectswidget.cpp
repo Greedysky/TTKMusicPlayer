@@ -254,7 +254,7 @@ void MusicSoundEffectsWidget::equalizerButtonChanged()
 
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, state);
 
-    emit setEqInformation();
+    Q_EMIT setEqInformation();
 }
 
 void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
@@ -293,7 +293,7 @@ void MusicSoundEffectsWidget::volumeSliderChanged(int value)
 {
     m_ui->volumeSlider->setToolTip(QString::number(value));
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalance, value);
-    emit volumeChanged(value);
+    Q_EMIT volumeChanged(value);
 }
 
 int MusicSoundEffectsWidget::exec()

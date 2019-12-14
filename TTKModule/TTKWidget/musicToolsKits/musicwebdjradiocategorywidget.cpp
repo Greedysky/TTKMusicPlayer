@@ -55,7 +55,7 @@ void MusicWebDJRadioCategoryItemWidget::downLoadFinished(const QByteArray &data)
 
 void MusicWebDJRadioCategoryItemWidget::currentItemClicked()
 {
-    emit currentItemClicked(m_itemData);
+    Q_EMIT currentItemClicked(m_itemData);
 }
 
 
