@@ -430,7 +430,7 @@ void MusicDownloadWidget::dataDownloadFinished()
 {
     if(++m_downloadOffset >= m_downloadTotal)
     {
-        emit dataDownloadChanged();
+        Q_EMIT dataDownloadChanged();
         close();
     }
 }

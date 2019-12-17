@@ -99,7 +99,7 @@ void MusicUserManagerDialog::musicUserLogoff()
     xml.writeUserData( records );
 
     m_userUID.m_uid.clear();
-    emit userStateChanged(MusicUserUIDItem(), QString());
+    Q_EMIT userStateChanged(MusicUserUIDItem(), QString());
     close();
 }
 

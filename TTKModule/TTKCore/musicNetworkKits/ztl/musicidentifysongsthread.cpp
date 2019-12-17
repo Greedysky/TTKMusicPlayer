@@ -126,7 +126,7 @@ void MusicIdentifySongsThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged( QString() );
+    Q_EMIT downLoadDataChanged( QString() );
     deleteAll();
 }
 
@@ -144,5 +144,5 @@ void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
             m_accessSecret = value["secret"].toString();
         }
     }
-    emit getKeyFinished();
+    Q_EMIT getKeyFinished();
 }

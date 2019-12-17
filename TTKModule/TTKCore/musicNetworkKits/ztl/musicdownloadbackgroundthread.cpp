@@ -20,7 +20,7 @@ void MusicDownloadBackgroundThread::downLoadFinished()
 #else
         const QString &path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(0).arg(SKN_FILE);
         M_BACKGROUND_PTR->setMBackground(path);
-        emit M_BACKGROUND_PTR->setUserSelectArtistIndex(0);
+        Q_EMIT M_BACKGROUND_PTR->setUserSelectArtistIndex(0);
 #endif
         deleteLater();
     }

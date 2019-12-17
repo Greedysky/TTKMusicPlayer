@@ -155,7 +155,7 @@ void MusicUserRecordWidget::confirmButtonClickedF()
     const QString nickname(m_ui->nicknameEdit->text());
     if(nickname != m_userModel->getUserName(m_userUID))
     {
-        emit resetUserName(m_ui->nicknameEdit->text());
+        Q_EMIT resetUserName(m_ui->nicknameEdit->text());
     }
     m_userModel->updateUser(m_userUID, nickname, m_ui->maleRadioButton_F->isChecked() ? "0" : "1",
                             m_ui->birthDateEdit_F->text(), m_ui->cityComboBox_F->currentText(),
@@ -184,7 +184,7 @@ void MusicUserRecordWidget::saveFileButtonClickedS()
     const QString &path = avatarPixmapRender(m_userUID, m_ui->bigPixmapLabel_S->pixmap());
     m_userModel->updateUserIcon(m_userUID, path);
 
-    emit userIconChanged(m_userUID, path);
+    Q_EMIT userIconChanged(m_userUID, path);
 }
 
 void MusicUserRecordWidget::intersectedPixmap(const QPixmap &pix)
@@ -232,7 +232,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
             return;
         }
 
-        emit userIconChanged(MusicUserUIDItem(), QString());
+        Q_EMIT userIconChanged(MusicUserUIDItem(), QString());
         close();
 
         MusicMessageBox message;

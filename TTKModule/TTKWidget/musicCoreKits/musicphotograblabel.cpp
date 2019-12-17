@@ -69,7 +69,7 @@ QPixmap MusicPhotoGrabLabel::pixmap()
 
 void MusicPhotoGrabLabel::rectChanged()
 {
-    emit intersectedPixmap( pixmap() );
+    Q_EMIT intersectedPixmap( pixmap() );
 }
 
 void MusicPhotoGrabLabel::paintEvent(QPaintEvent *event)

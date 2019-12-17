@@ -28,6 +28,6 @@ void MusicNetworkTestThread::run()
 
     if(m_run)
     {
-        emit networkConnectionTestChanged( !info.addresses().isEmpty() );
+        Q_EMIT networkConnectionTestChanged( !info.addresses().isEmpty() );
     }
 }

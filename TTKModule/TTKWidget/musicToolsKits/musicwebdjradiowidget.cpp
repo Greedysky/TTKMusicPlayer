@@ -74,8 +74,8 @@ void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
 
     switch(column)
     {
-        case 2: emit programItemClicked(items[row].m_id, QString("-1")); break;
-        case 3: emit programItemClicked(QString("-1"), items[row].m_nickName); break;
+        case 2: Q_EMIT programItemClicked(items[row].m_id, QString("-1")); break;
+        case 3: Q_EMIT programItemClicked(QString("-1"), items[row].m_nickName); break;
         default:break;
     }
 }

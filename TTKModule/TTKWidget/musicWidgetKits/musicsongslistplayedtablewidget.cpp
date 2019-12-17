@@ -285,7 +285,7 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 
     setFixedHeight( qMax(365, allRowsHeight()) );
 
-    emit setDeleteItemAt(index);
+    Q_EMIT setDeleteItemAt(index);
 }
 
 void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -161,29 +161,29 @@ void MusicEqualizerDialog::verticalSliderChanged(int)
     {
         m_ui->eqChoice->setCurrentIndex(0);
     }
-    emitParameter();
+    parameterSubmit();
 }
 
-void MusicEqualizerDialog::emitParameter()
+void MusicEqualizerDialog::parameterSubmit()
 {
-    emit setEqEffect(MIntList() << m_ui->bwVerticalSlider->value() << m_ui->verticalSlider1->value()
-                                << m_ui->verticalSlider2->value() << m_ui->verticalSlider3->value()
-                                << m_ui->verticalSlider4->value() << m_ui->verticalSlider5->value()
-                                << m_ui->verticalSlider6->value() << m_ui->verticalSlider7->value()
-                                << m_ui->verticalSlider8->value() << m_ui->verticalSlider9->value()
-                                << m_ui->verticalSlider10->value());
+    Q_EMIT setEqEffect(MIntList() << m_ui->bwVerticalSlider->value() << m_ui->verticalSlider1->value()
+                                  << m_ui->verticalSlider2->value() << m_ui->verticalSlider3->value()
+                                  << m_ui->verticalSlider4->value() << m_ui->verticalSlider5->value()
+                                  << m_ui->verticalSlider6->value() << m_ui->verticalSlider7->value()
+                                  << m_ui->verticalSlider8->value() << m_ui->verticalSlider9->value()
+                                  << m_ui->verticalSlider10->value());
 }
 
 void MusicEqualizerDialog::setEqEnable()
 {
     m_eable = !m_eable;
-    emit setEnaleEffect(m_eable);
+    Q_EMIT setEnaleEffect(m_eable);
     m_ui->showEqButton->setStyleSheet(!m_eable ? MusicUIObject::MKGEqualizerOff : MusicUIObject::MKGEqualizerOn);
 
     setControlEnable(m_eable);
     if(m_eable)
     {
-        emitParameter();
+        parameterSubmit();
     }
 }
 

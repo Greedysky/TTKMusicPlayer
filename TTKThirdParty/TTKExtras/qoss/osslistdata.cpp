@@ -90,5 +90,5 @@ void OSSListData::receiveDataFromServer()
         }
         reply->deleteLater();
     }
-    emit receiveFinshed(items);
+    Q_EMIT receiveFinshed(items);
 }

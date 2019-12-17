@@ -138,7 +138,7 @@ int MusicRemoteWidget::mapRemoteTypeIndex()
 
 void MusicRemoteWidget::musicVolumeChanged(int value)
 {
-    emit musicVolumeSignal(value);
+    Q_EMIT musicVolumeSignal(value);
 
     QString style = MusicUIObject::MKGTinyBtnSoundWhite;
     if(66 < value && value <=100)

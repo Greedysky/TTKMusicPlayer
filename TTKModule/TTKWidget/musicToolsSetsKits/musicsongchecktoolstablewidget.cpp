@@ -207,7 +207,7 @@ void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
     if(it)
     {
         const QString &path = it->data(MUSIC_DATAS_ROLE).toString();
-        emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
+        Q_EMIT addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
     }
 }
 
@@ -348,7 +348,7 @@ void MusicSongCheckToolsQualityTableWidget::musicPlay()
     if(it)
     {
         const QString &path = it->data(MUSIC_DATAS_ROLE).toString();
-        emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
+        Q_EMIT addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
     }
 }
 

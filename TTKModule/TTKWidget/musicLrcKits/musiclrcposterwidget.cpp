@@ -888,7 +888,7 @@ void MusicLrcPosterTableWidget::itemCellClicked(int row, int column)
         }
     }
 
-    emit textChanged(data);
+    Q_EMIT textChanged(data);
 }
 
 

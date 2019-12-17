@@ -69,14 +69,14 @@ void MusicLrcFloatPhotoItem::setBoxVisible(bool v)
 
 void MusicLrcFloatPhotoItem::sendUserBoxClicked()
 {
-    emit boxClicked(m_index);
+    Q_EMIT boxClicked(m_index);
 }
 
 void MusicLrcFloatPhotoItem::sendUserSelectArt()
 {
     if(!pixmap()->isNull())
     {
-        emit itemClicked(m_index);
+        Q_EMIT itemClicked(m_index);
     }
 }
 

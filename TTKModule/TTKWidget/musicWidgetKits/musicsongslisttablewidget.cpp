@@ -394,7 +394,7 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
         case 3:
             {
                 bool empty;
-                emit isSearchFileListEmpty(empty);
+                Q_EMIT isSearchFileListEmpty(empty);
                 if(!empty)
                 {
                     return;
@@ -406,13 +406,13 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
                 {
                     it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
                 }
-                emit musicListSongToLovestListAt(contains, row);
+                Q_EMIT musicListSongToLovestListAt(contains, row);
                 break;
             }
         case 4:
             {
                 bool empty;
-                emit isSearchFileListEmpty(empty);
+                Q_EMIT isSearchFileListEmpty(empty);
                 if(!empty)
                 {
                     return;
@@ -477,7 +477,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     //just fix table widget size hint
     setFixedHeight( allRowsHeight() );
 
-    emit deleteItemAt(deleteList, m_deleteItemWithFile);
+    Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 
 void MusicSongsListTableWidget::setDeleteItemWithFile()
@@ -502,7 +502,7 @@ void MusicSongsListTableWidget::showTimeOut()
         m_musicSongsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
 
         bool state;
-        emit isCurrentIndex(state);
+        Q_EMIT isCurrentIndex(state);
         m_musicSongsInfoWidget->setVisible( state ? (m_musicSongsPlayWidget && !m_musicSongsPlayWidget->getItemRenameState()) : true);
     }
 }
@@ -627,7 +627,7 @@ void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
         {
             m_musicSort->m_sortType = Qt::AscendingOrder;
         }
-        emit musicListSongSortBy(m_parentToolIndex);
+        Q_EMIT musicListSongSortBy(m_parentToolIndex);
     }
 }
 
@@ -680,7 +680,7 @@ void MusicSongsListTableWidget::wheelEvent(QWheelEvent *event)
 {
     MusicSongsListAbstractTableWidget::wheelEvent(event);
     closeRenameItem();
-    emit showFloatWidget();
+    Q_EMIT showFloatWidget();
 }
 
 void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -761,7 +761,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
 
     bool empty;
-    emit isSearchFileListEmpty(empty);
+    Q_EMIT isSearchFileListEmpty(empty);
     rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
     rightClickMenu.addAction(tr("deleteWithFile"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);
@@ -805,7 +805,7 @@ void MusicSongsListTableWidget::closeRenameItem()
 void MusicSongsListTableWidget::startToDrag()
 {
     bool empty;
-    emit isSearchFileListEmpty(empty);
+    Q_EMIT isSearchFileListEmpty(empty);
     if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
         MusicSongs songs;
@@ -833,7 +833,7 @@ void MusicSongsListTableWidget::startToDrag()
             }
         }
 
-        emit getMusicIndexSwaped(start, end, index, songs);
+        Q_EMIT getMusicIndexSwaped(start, end, index, songs);
         for(int i=qMin(start, end); i<=qMax(start, end); ++i)
         {
             if(i == index)
@@ -847,7 +847,7 @@ void MusicSongsListTableWidget::startToDrag()
         }
 
         bool state;
-        emit isCurrentIndex(state);
+        Q_EMIT isCurrentIndex(state);
         if(state)
         {
             selectRow(index);

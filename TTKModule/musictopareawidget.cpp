@@ -299,7 +299,7 @@ void MusicTopAreaWidget::musicPlaylistTransparent(int index)
     {
         m_musicBackgroundWidget->setListTransToolText(index);
     }
-    emit setTransparent(m_backgroundAListlpha = index);
+    Q_EMIT setTransparent(m_backgroundAListlpha = index);
 }
 
 void MusicTopAreaWidget::musicDiamondRemote()
@@ -498,7 +498,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     paint.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
     paint.end();
 
-    emit setTransparent(m_backgroundAListlpha);
+    Q_EMIT setTransparent(m_backgroundAListlpha);
     m_ui->background->setPixmap(after);
 }
 

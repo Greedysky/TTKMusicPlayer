@@ -101,22 +101,22 @@ void OSSDownloadData::receiveDataFromServer()
                 file.write(reply->readAll());
                 file.close();
             }
-            emit downloadFileFinished(d->m_downloadTime);
+            Q_EMIT downloadFileFinished(d->m_downloadTime);
         }
         else
         {
-            emit downloadFileFinished(TTK_ERROR_STR);
+            Q_EMIT downloadFileFinished(TTK_ERROR_STR);
         }
         reply->deleteLater();
     }
     else
     {
-        emit downloadFileFinished(TTK_ERROR_STR);
+        Q_EMIT downloadFileFinished(TTK_ERROR_STR);
     }
 }
 
 void OSSDownloadData::downloadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
     TTK_D(OSSDownloadData);
-    emit downloadProgressChanged(d->m_downloadTime, bytesSent, bytesTotal);
+    Q_EMIT downloadProgressChanged(d->m_downloadTime, bytesSent, bytesTotal);
 }

@@ -24,7 +24,7 @@
 #include "musicclickedlabel.h"
 #include "musictoolmenuwidget.h"
 
-/*! @brief The class of the music spectrum normal layout widget.
+/*! @brief The class of the music spectrum layout item.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_TOOLSET_EXPORT MusicSpectrumLayoutItem : public MusicClickedLabel

@@ -208,7 +208,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     fileOut.flush();
     fileOut.close();
 
-    emit currentLrcChanged("DownloadLrc");
+    Q_EMIT currentLrcChanged("DownloadLrc");
     close();
 }
 

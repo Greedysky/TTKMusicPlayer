@@ -78,11 +78,11 @@ void MusicBackgroundListItem::mousePressEvent(QMouseEvent *event)
 
     if(m_closeSet && QRect(width() - 16 - 6, 6, 16, 16).contains(event->pos()))
     {
-        emit closeClicked(this);
+        Q_EMIT closeClicked(this);
     }
     else
     {
-        emit itemClicked(this);
+        Q_EMIT itemClicked(this);
     }
 }
 
@@ -338,5 +338,5 @@ void MusicBackgroundListWidget::itemHasClicked(MusicBackgroundListItem *item)
 
     m_currentItem = item;
     m_currentItem->setSelect(true);
-    emit itemClicked(item->getFileName());
+    Q_EMIT itemClicked(item->getFileName());
 }

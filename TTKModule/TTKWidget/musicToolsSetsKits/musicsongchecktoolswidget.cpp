@@ -50,7 +50,7 @@ MusicSongCheckToolsWidget::~MusicSongCheckToolsWidget()
 void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
 {
     MusicSongItems songs;
-    emit getMusicLists(songs);
+    Q_EMIT getMusicLists(songs);
 
     m_selectedItemIdFlag = true;
     MusicSongItemSelectedDialog dialog;
@@ -267,7 +267,7 @@ void MusicSongCheckToolsWidget::getSelectedSongItems()
     m_localSongs.clear();
 
     MusicSongItems songs;
-    emit getMusicLists(songs);
+    Q_EMIT getMusicLists(songs);
 
     foreach(const MusicSongItem &item, songs)
     {

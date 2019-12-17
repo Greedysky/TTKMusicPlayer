@@ -55,7 +55,7 @@ void MusicDownloadAbstractTableWidget::musicPlay()
     }
 
     const QString &path = (*m_musicSongs)[currentRow()].getMusicPath();
-    emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
+    Q_EMIT addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
 }
 
 void MusicDownloadAbstractTableWidget::setDeleteItemAt()
@@ -77,7 +77,7 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
     }
     //just fix table widget size hint
     setFixedHeight( allRowsHeight() );
-    emit updateItemTitle(m_parentToolIndex);
+    Q_EMIT updateItemTitle(m_parentToolIndex);
 }
 
 void MusicDownloadAbstractTableWidget::itemCellClicked(int row, int column)
@@ -124,7 +124,7 @@ void MusicDownloadAbstractTableWidget::createDownloadItem(const QString &name, q
     m_musicSongs->append(record);
 
     createItem(rowCount() - 1, record);
-    emit updateItemTitle(m_parentToolIndex);
+    Q_EMIT updateItemTitle(m_parentToolIndex);
 }
 
 void MusicDownloadAbstractTableWidget::contextMenuEvent(QContextMenuEvent *event)

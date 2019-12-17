@@ -60,7 +60,7 @@ void MusicSongsListAbstractTableWidget::musicPlayClicked()
         return;
     }
 
-    emit cellDoubleClicked(currentRow(), 0);
+    Q_EMIT cellDoubleClicked(currentRow(), 0);
 }
 
 void MusicSongsListAbstractTableWidget::setDeleteItemAt()
@@ -74,7 +74,7 @@ void MusicSongsListAbstractTableWidget::setDeleteItemAll()
     setDeleteItemAt();
 
     bool state = false;
-    emit isCurrentIndex(state);
+    Q_EMIT isCurrentIndex(state);
 
     if(rowCount() == 0 && state)
     {

@@ -37,7 +37,7 @@ void MusicBackgroundPalette::copyColorToMemory(const QColor &color)
     image.fill(color);
     if(image.save( MUSIC_COLOR_FILE ))
     {
-        emit currentColorToMemoryChanged( MUSIC_COLOR_FILE );
+        Q_EMIT currentColorToMemoryChanged( MUSIC_COLOR_FILE );
     }
 }
 
@@ -52,7 +52,7 @@ void MusicBackgroundPalette::mousePressEvent(QMouseEvent *event)
 //    QLabel::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        emit currentColorToFileChanged(m_color);
+        Q_EMIT currentColorToFileChanged(m_color);
     }
 }
 
@@ -172,7 +172,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
     QFile::remove(MUSIC_COLOR_FILE);
     if(!m_confirmButtonClicked)
     {
-        emit currentColorToMemoryChanged(m_previousBackground);
+        Q_EMIT currentColorToMemoryChanged(m_previousBackground);
     }
 
     qDeleteAll(m_widgets);
@@ -201,7 +201,7 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
         image.fill(m_currentColor);
         if(image.save( MUSIC_COLOR_FILE ))
         {
-            emit currentColorToFileChanged( MUSIC_COLOR_FILE );
+            Q_EMIT currentColorToFileChanged( MUSIC_COLOR_FILE );
         }
     }
     close();
@@ -234,7 +234,7 @@ void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
 void MusicBackgroundPaletteWidget::currentColorToMemory(const QString &path)
 {
     updateBackground(path);
-    emit currentColorToMemoryChanged( path );
+    Q_EMIT currentColorToMemoryChanged( path );
 }
 
 int MusicBackgroundPaletteWidget::exec()

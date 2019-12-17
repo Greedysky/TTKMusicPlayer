@@ -72,13 +72,13 @@ void MusicDJRadioProgramThread::downLoadFinished()
                     item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                     item.m_playCount = value["subCount"].toString();
 
-                    emit createProgramItem(item);
+                    Q_EMIT createProgramItem(item);
                     m_items << item;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

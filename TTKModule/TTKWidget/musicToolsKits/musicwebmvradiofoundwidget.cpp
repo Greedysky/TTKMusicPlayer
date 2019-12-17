@@ -76,7 +76,7 @@ void MusicWebMVRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
 
 void MusicWebMVRadioFoundItemWidget::currentItemClicked()
 {
-    emit currentItemClicked(m_itemData);
+    Q_EMIT currentItemClicked(m_itemData);
 }
 
 void MusicWebMVRadioFoundItemWidget::enterEvent(QEvent *event)

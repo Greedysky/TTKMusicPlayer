@@ -194,7 +194,7 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
-    emit renameFinished(name);
+    Q_EMIT renameFinished(name);
     QTimer::singleShot(MT_MS, this, SLOT(deleteRenameItem()));
 }
 
@@ -214,7 +214,7 @@ void MusicSongsListPlayWidget::currentDownloadStateClicked()
 void MusicSongsListPlayWidget::enterEvent(QEvent *event)
 {
     QWidget::enterEvent(event);
-    emit enterChanged(m_currentPlayIndex, -1);
+    Q_EMIT enterChanged(m_currentPlayIndex, -1);
 }
 
 void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)

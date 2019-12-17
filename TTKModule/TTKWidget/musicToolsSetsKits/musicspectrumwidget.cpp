@@ -55,6 +55,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
 #endif
+
     connect(m_ui->localFileButton, SIGNAL(clicked()), SLOT(localFileButtonClicked()));
     connect(m_ui->openFileButton, SIGNAL(clicked()), SLOT(openFileButtonClicked()));
     connect(m_ui->normalLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumTypeChanged(bool&,QString)));

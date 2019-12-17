@@ -55,12 +55,12 @@ MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
 
 void MusicSongsToolBoxTopWidget::deleteRowItem()
 {
-    emit deleteRowItem(m_index);
+    Q_EMIT deleteRowItem(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::deleteRowItemAll()
 {
-    emit deleteRowItemAll(m_index);
+    Q_EMIT deleteRowItemAll(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::changRowItemName()
@@ -77,7 +77,7 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
 void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
 {
     setTitle(name + m_suffixString);
-    emit changRowItemName(m_index, name);
+    Q_EMIT changRowItemName(m_index, name);
 
     m_renameLine->deleteLater();
     m_renameLine = nullptr;
@@ -85,12 +85,12 @@ void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
 
 void MusicSongsToolBoxTopWidget::addNewFiles()
 {
-    emit addNewFiles(m_index);
+    Q_EMIT addNewFiles(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::addNewDir()
 {
-    emit addNewDir(m_index);
+    Q_EMIT addNewDir(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::exportSongsItemList()
@@ -161,7 +161,7 @@ void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
         {
             m_musicSort->m_sortType = Qt::AscendingOrder;
         }
-        emit musicListSongSortBy(m_index);
+        Q_EMIT musicListSongSortBy(m_index);
     }
 }
 
@@ -177,12 +177,12 @@ void MusicSongsToolBoxTopWidget::showEnhanceLosslessDialog()
 
 void MusicSongsToolBoxTopWidget::addToPlayLater()
 {
-    emit addToPlayLater(m_index);
+    Q_EMIT addToPlayLater(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::addToPlayedList()
 {
-    emit addToPlayedList(m_index);
+    Q_EMIT addToPlayedList(m_index);
 }
 
 bool MusicSongsToolBoxTopWidget::isItemEnable() const

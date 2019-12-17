@@ -18,7 +18,7 @@
 bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
 {
     const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
-    if(nullptr == zFile)
+    if(!zFile)
     {
         return false;
     }
@@ -80,7 +80,7 @@ bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
 bool MusicExtractWrap::outputData(const QString &path)
 {
     const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
-    if(nullptr == zFile)
+    if(!zFile)
     {
         return false;
     }
@@ -150,7 +150,7 @@ bool MusicExtractWrap::outputData(const QString &path)
 bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &path)
 {
     const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
-    if(nullptr == zFile)
+    if(!zFile)
     {
         return false;
     }
@@ -235,7 +235,7 @@ bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &pa
 bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &path)
 {
     const zipFile &zFile = zipOpen64(path.toLocal8Bit().constData(), 0);
-    if(nullptr == zFile)
+    if(!zFile)
     {
         return false;
     }
@@ -268,7 +268,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &pat
 bool MusicExtractWrap::outputText(QByteArray &data, const QString &path)
 {
     const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
-    if(nullptr == zFile)
+    if(!zFile)
     {
         return false;
     }
@@ -325,7 +325,7 @@ bool MusicExtractWrap::outputText(QByteArray &data, const QString &path)
 bool MusicExtractWrap::inputText(const QByteArray &data, const QString &path)
 {
     const zipFile &zFile = zipOpen64(path.toLocal8Bit().constData(), 0);
-    if(nullptr == zFile)
+    if(!zFile)
     {
         return false;
     }

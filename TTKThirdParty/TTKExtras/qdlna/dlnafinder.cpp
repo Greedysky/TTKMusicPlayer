@@ -132,6 +132,6 @@ void DlnaFinder::readResponse()
         }while(!client->isConnected() && tryTimes > 0);
 
         d->m_clients.push_back(client);
-        emit finished();
+        Q_EMIT finished();
     }
 }

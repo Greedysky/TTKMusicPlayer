@@ -30,7 +30,7 @@ void MusicTextDownLoadThread::startToDownload()
         }
         else
         {
-            emit downLoadDataChanged("The text file create failed");
+            Q_EMIT downLoadDataChanged("The text file create failed");
             M_LOGGER_ERROR("The text file create failed!");
             deleteAll();
         }
@@ -66,6 +66,6 @@ void MusicTextDownLoadThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged( transferData() );
+    Q_EMIT downLoadDataChanged( transferData() );
     deleteAll();
 }

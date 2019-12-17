@@ -26,12 +26,12 @@ int MusicBackgroundPopWidget::value() const
 
 void MusicBackgroundPopWidget::sliderPressed()
 {
-    emit sliderStateChanged(true);
+    Q_EMIT sliderStateChanged(true);
 }
 
 void MusicBackgroundPopWidget::sliderReleased()
 {
-    emit sliderStateChanged(false);
+    Q_EMIT sliderStateChanged(false);
 }
 
 void MusicBackgroundPopWidget::initWidget()

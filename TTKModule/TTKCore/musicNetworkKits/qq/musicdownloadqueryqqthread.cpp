@@ -21,7 +21,7 @@ void MusicDownLoadQueryQQThread::startToSearch(QueryType type, const QString &te
     m_currentType = type;
     m_searchText = text.trimmed();
 
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
 
     startToPage(0);
@@ -154,7 +154,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                         item.m_albumName = musicInfo.m_albumName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
-                        emit createSearchedItem(item);
+                        Q_EMIT createSearchedItem(item);
                     }
                     m_musicSongInfos << musicInfo;
                 }
@@ -162,7 +162,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -171,7 +171,7 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -238,7 +238,7 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                         item.m_albumName = musicInfo.m_albumName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
-                        emit createSearchedItem(item);
+                        Q_EMIT createSearchedItem(item);
 
                         m_musicSongInfos << musicInfo;
                     }
@@ -247,6 +247,6 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

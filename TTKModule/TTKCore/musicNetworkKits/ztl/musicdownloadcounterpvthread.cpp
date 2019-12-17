@@ -46,17 +46,17 @@ void MusicDownloadCounterPVThread::downLoadFinished()
         if(ok)
         {
             const QVariantMap &value = data.toMap();
-            emit downLoadDataChanged(value["site_pv"].toString());
+            Q_EMIT downLoadDataChanged(value["site_pv"].toString());
         }
         else
         {
-            emit downLoadDataChanged(QString());
+            Q_EMIT downLoadDataChanged(QString());
         }
     }
     else
     {
         M_LOGGER_ERROR("Counter PV data error");
-        emit downLoadDataChanged(QString());
+        Q_EMIT downLoadDataChanged(QString());
     }
     deleteAll();
 }

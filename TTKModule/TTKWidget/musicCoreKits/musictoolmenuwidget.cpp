@@ -12,13 +12,13 @@ MusicToolMenu::MusicToolMenu(QWidget *parent)
 void MusicToolMenu::showEvent(QShowEvent *event)
 {
     QMenu::showEvent(event);
-    emit windowStateChanged(true);
+    Q_EMIT windowStateChanged(true);
 }
 
 void MusicToolMenu::hideEvent(QHideEvent *event)
 {
     QMenu::hideEvent(event);
-    emit windowStateChanged(false);
+    Q_EMIT windowStateChanged(false);
 }
 
 

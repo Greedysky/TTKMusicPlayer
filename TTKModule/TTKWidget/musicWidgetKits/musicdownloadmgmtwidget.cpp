@@ -66,7 +66,7 @@ void MusicDownloadResetWidget::restartToDownload()
 void MusicDownloadResetWidget::openDetailInfo()
 {
     close();
-    emit openStackedDownloadWidget();
+    Q_EMIT openStackedDownloadWidget();
 }
 
 void MusicDownloadResetWidget::openFileLocation()

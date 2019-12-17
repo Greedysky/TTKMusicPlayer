@@ -74,12 +74,12 @@ void MusicQQArtistSimilarThread::downLoadFinished()
                     info.m_coverUrl = value["pic"].toString();
                     info.m_name = value["name"].toString();
                     info.m_updateTime.clear();
-                    emit createSimilarItem(info);
+                    Q_EMIT createSimilarItem(info);
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

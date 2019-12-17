@@ -66,7 +66,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
 void MusicFunctionTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(column);
-    emit currentIndexChanged(row + m_listIndex);
+    Q_EMIT currentIndexChanged(row + m_listIndex);
     selectRow( currentRow() );
 }
 
@@ -603,7 +603,7 @@ void MusicSettingWidget::saveResults()
         return;
     }
 
-    emit parameterSettingChanged();
+    Q_EMIT parameterSettingChanged();
     close();
 }
 

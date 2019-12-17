@@ -51,7 +51,7 @@ bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
     }
 
     STORAGE_DESCRIPTOR_HEADER *pHeader = (STORAGE_DESCRIPTOR_HEADER *)malloc(sizeof(STORAGE_DESCRIPTOR_HEADER));
-    if(nullptr == pHeader)
+    if(!pHeader)
     {
         return false;
     }

@@ -27,7 +27,7 @@ void MusicSongCheckToolsRenameThread::run()
             {
                 if(!m_run)
                 {
-                    emit finished(MusicSongCheckToolsRenames());
+                    Q_EMIT finished(MusicSongCheckToolsRenames());
                     return;
                 }
 
@@ -50,7 +50,7 @@ void MusicSongCheckToolsRenameThread::run()
             {
                 if(!m_run)
                 {
-                    emit finished(MusicSongCheckToolsRenames());
+                    Q_EMIT finished(MusicSongCheckToolsRenames());
                     return;
                 }
 
@@ -60,7 +60,7 @@ void MusicSongCheckToolsRenameThread::run()
             }
         }
     }
-    emit finished(m_datas);
+    Q_EMIT finished(m_datas);
 }
 
 
@@ -90,7 +90,7 @@ void MusicSongCheckToolsDuplicateThread::run()
             {
                 if(!m_run)
                 {
-                    emit finished(MusicSongCheckToolsDuplicates());
+                    Q_EMIT finished(MusicSongCheckToolsDuplicates());
                     return;
                 }
 
@@ -108,7 +108,7 @@ void MusicSongCheckToolsDuplicateThread::run()
             {
                 if(!m_run)
                 {
-                    emit finished(MusicSongCheckToolsDuplicates());
+                    Q_EMIT finished(MusicSongCheckToolsDuplicates());
                     return;
                 }
 
@@ -117,7 +117,7 @@ void MusicSongCheckToolsDuplicateThread::run()
             }
         }
     }
-    emit finished(m_datas);
+    Q_EMIT finished(m_datas);
 }
 
 
@@ -145,7 +145,7 @@ void MusicSongCheckToolsQualityThread::run()
         {
             if(!m_run)
             {
-                emit finished(MusicSongCheckToolsQualitys());
+                Q_EMIT finished(MusicSongCheckToolsQualitys());
                 return;
             }
 
@@ -157,5 +157,5 @@ void MusicSongCheckToolsQualityThread::run()
             items << MusicSongCheckToolsQuality(song, tag.getBitrate());
         }
     }
-    emit finished(items);
+    Q_EMIT finished(items);
 }

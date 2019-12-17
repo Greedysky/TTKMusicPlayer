@@ -65,7 +65,7 @@ void MusicMVRadioProgramThread::downLoadFinished()
                         item.m_id = value["fmId"].toString();
                         item.m_coverUrl = value["imgUrlMv"].toString();
 
-                        emit createCategoryItem(item);
+                        Q_EMIT createCategoryItem(item);
 
                         foreach(const QVariant &var, value["mvs"].toList())
                         {
@@ -107,7 +107,7 @@ void MusicMVRadioProgramThread::downLoadFinished()
                             item.m_time = musicInfo.m_timeLength;
                             item.m_albumName.clear();
                             item.m_type.clear();
-                            emit createSearchedItem(item);
+                            Q_EMIT createSearchedItem(item);
                             m_musicSongInfos << musicInfo;
                         }
                     }
@@ -116,7 +116,7 @@ void MusicMVRadioProgramThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 

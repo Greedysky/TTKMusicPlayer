@@ -80,7 +80,7 @@ void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
     }
 
     dv = m_width*1.0/m_originWidth;
-    emit deltaValueChanged(dv);
+    Q_EMIT deltaValueChanged(dv);
 
     m_showPix.scaled(m_width, m_height, Qt::KeepAspectRatio);
     update();

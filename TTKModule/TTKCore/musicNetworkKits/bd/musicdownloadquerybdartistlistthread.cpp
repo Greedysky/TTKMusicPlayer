@@ -69,7 +69,7 @@ void MusicDownLoadQueryBDArtistListThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
+    Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
@@ -101,12 +101,12 @@ void MusicDownLoadQueryBDArtistListThread::downLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["ting_uid"].toString();
                     info.m_name = value["name"].toString();
-                    emit createArtistListItem(info);
+                    Q_EMIT createArtistListItem(info);
                 }
             }
         }
     }
 
-//    emit downLoadDataChanged(QString());
+//    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

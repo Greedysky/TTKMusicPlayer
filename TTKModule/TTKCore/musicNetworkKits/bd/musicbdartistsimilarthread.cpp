@@ -59,13 +59,13 @@ void MusicBDArtistSimilarThread::downLoadFinished()
             info.m_coverUrl = regx.cap(2).remove("\t").remove("\n").remove("@s_0,w_120");
             info.m_name = regx.cap(3);
             info.m_updateTime.clear();
-            emit createSimilarItem(info);
+            Q_EMIT createSimilarItem(info);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

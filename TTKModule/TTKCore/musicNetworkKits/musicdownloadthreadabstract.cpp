@@ -47,7 +47,7 @@ void MusicDownLoadThreadAbstract::deleteAll()
 void MusicDownLoadThreadAbstract::replyError(QNetworkReply::NetworkError)
 {
     M_LOGGER_ERROR("Abnormal network connection");
-    emit downLoadDataChanged("The file create failed");
+    Q_EMIT downLoadDataChanged("The file create failed");
     deleteAll();
 }
 
@@ -55,7 +55,7 @@ void MusicDownLoadThreadAbstract::replyError(QNetworkReply::NetworkError)
 void MusicDownLoadThreadAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    emit downLoadDataChanged("The file create failed");
+    Q_EMIT downLoadDataChanged("The file create failed");
     deleteAll();
 }
 #endif

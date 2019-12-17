@@ -72,11 +72,11 @@ void MusicXMArtistSimilarThread::downLoadFinished()
                 {
                   info.m_coverUrl = "http:" + info.m_coverUrl;
                 }
-                emit createSimilarItem(info);
+                Q_EMIT createSimilarItem(info);
             }
         }
     }
 
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

@@ -107,10 +107,10 @@ void MusicNetworkProxy::testProxyChanged(QAbstractSocket::SocketState state)
 {
     if(state == QAbstractSocket::UnconnectedState)
     {
-        emit testProxyStateChanged(false);
+        Q_EMIT testProxyStateChanged(false);
     }
     if(state == QAbstractSocket::ConnectedState)
     {
-        emit testProxyStateChanged(true);
+        Q_EMIT testProxyStateChanged(true);
     }
 }

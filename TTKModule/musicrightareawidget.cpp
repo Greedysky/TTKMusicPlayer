@@ -346,7 +346,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(0);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case KugGouRadioWidget: //insert kugou radio widget
@@ -356,7 +356,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(1);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case kugouListWidget: //insert kugou list widget
@@ -366,7 +366,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(2);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case VideoWidget: //insert video widget
@@ -385,7 +385,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(3);
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case kugouLiveWidget: //insert kugou live widget
@@ -395,7 +395,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(4);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case LrcWidget: //insert lrc display widget
@@ -404,7 +404,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentIndex(1);
                 m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcCollapse);
                 m_ui->lrcDisplayAllButton->setVisible(true);
-                emit updateBackgroundThemeDownload();
+                Q_EMIT updateBackgroundThemeDownload();
                 break;
             }
         case SearchWidget: //insert search display widget
@@ -428,13 +428,13 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 }
 
                 m_ui->functionsContainer->setCurrentIndex(0);
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case SearchSingleWidget: //insert search display widget
             {
                 m_ui->functionsContainer->setCurrentIndex(0);
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case SimilarWidget: //insert similar found widget
@@ -443,7 +443,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(similarFoundWidget);
                 m_ui->functionsContainer->setCurrentWidget(similarFoundWidget);
                 m_stackedFuncWidget = similarFoundWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case AlbumWidget: //insert album found widget
@@ -452,7 +452,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(albumFoundWidget);
                 m_ui->functionsContainer->setCurrentWidget(albumFoundWidget);
                 m_stackedFuncWidget = albumFoundWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case ArtistWidget: //insert artist found widget
@@ -461,7 +461,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(artistFoundWidget);
                 m_ui->functionsContainer->setCurrentWidget(artistFoundWidget);
                 m_stackedFuncWidget = artistFoundWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case ArtistCategoryWidget: //insert artist category found widget
@@ -470,7 +470,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(artistlistFoundWidget);
                 m_ui->functionsContainer->setCurrentWidget(artistlistFoundWidget);
                 m_stackedFuncWidget = artistlistFoundWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case ToplistWidget: //insert toplist found widget
@@ -479,7 +479,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(toplistFoundWidget);
                 m_ui->functionsContainer->setCurrentWidget(toplistFoundWidget);
                 m_stackedFuncWidget = toplistFoundWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case PlaylistWidget: //insert playlist found widget
@@ -488,7 +488,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(playlistFoundWidget);
                 m_ui->functionsContainer->setCurrentWidget(playlistFoundWidget);
                 m_stackedFuncWidget = playlistFoundWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case RecommendWidget: //insert recommend found widget
@@ -497,7 +497,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(recommendWidget);
                 m_ui->functionsContainer->setCurrentWidget(recommendWidget);
                 m_stackedFuncWidget = recommendWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case AdvancedSearchWidget: //insert advanced search widget
@@ -506,7 +506,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(advancedWidget);
                 m_ui->functionsContainer->setCurrentWidget(advancedWidget);
                 m_stackedFuncWidget = advancedWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case IndentifyWidget: //insert indentify songs widget
@@ -516,7 +516,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentWidget(songsIdentifyWidget);
                 songsIdentifyWidget->getKey();
                 m_stackedFuncWidget = songsIdentifyWidget;
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case KuiSheWidget: //insert kugou kuishe widget
@@ -526,7 +526,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = kugouWindow);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case WebDJRadioWidget: //insert web dj radio widget
@@ -535,7 +535,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 djRadio->init();
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = djRadio);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         case WebMVRadioWidget: //insert web mv radio widget
@@ -544,7 +544,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 mvRadio->setSongName(QString());
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = mvRadio);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
-                emit updateBackgroundTheme();
+                Q_EMIT updateBackgroundTheme();
                 break;
             }
         default: break;
@@ -559,7 +559,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
     m_stackedAutoWidget = widget;
     m_ui->functionsContainer->addWidget(m_stackedAutoWidget);
     m_ui->functionsContainer->setCurrentWidget(m_stackedAutoWidget);
-    emit updateBackgroundTheme();
+    Q_EMIT updateBackgroundTheme();
 }
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
@@ -740,7 +740,7 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
     musicFunctionParameterInit(MusicRightAreaWidget::SearchWidget);
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
     m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
-    emit updateBackgroundTheme();
+    Q_EMIT updateBackgroundTheme();
 }
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name, const QString &id)

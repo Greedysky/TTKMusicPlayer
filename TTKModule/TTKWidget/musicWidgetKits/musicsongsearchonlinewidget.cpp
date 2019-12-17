@@ -52,7 +52,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -90,7 +90,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -164,7 +164,7 @@ void MusicSongSearchTableWidget::auditionToMusic(int row)
     }
     item(m_previousAuditionRow = row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_PLAY);
 
-    emit auditionIsPlaying(false);
+    Q_EMIT auditionIsPlaying(false);
 }
 
 void MusicSongSearchTableWidget::auditionToMusicStop(int row)
@@ -187,7 +187,7 @@ void MusicSongSearchTableWidget::auditionToMusicStop(int row)
     {
         it->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
     }
-    emit auditionIsPlaying(true);
+    Q_EMIT auditionIsPlaying(true);
 }
 
 void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
@@ -248,7 +248,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     const QTableWidgetItem *it = item(row, 0);
     if(it)
     {
-        emit auditionIsPlaying(it->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP);
+        Q_EMIT auditionIsPlaying(it->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP);
     }
 }
 
@@ -337,9 +337,9 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
     switch( action->data().toInt() )
     {
         case 0: musicDownloadLocal(row); break;
-        case 1: emit restartSearchQuery(info.m_songName); break;
+        case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
         case 2: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
-        case 3: emit restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
+        case 3: Q_EMIT restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
         case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlaylist(row); break;
         case 6: musicSongDownload(row); break;
@@ -352,7 +352,7 @@ void MusicSongSearchTableWidget::searchDataDwonloadFinished()
 {
     if(m_downloadData.isValid())
     {
-        emit musicSongToPlaylistChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format, true);
+        Q_EMIT musicSongToPlaylistChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format, true);
     }
     m_downloadData.clear();
 }
@@ -413,7 +413,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
-        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
 
@@ -424,7 +424,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
         message.exec();
         return;
     }
-    emit showDownLoadInfoFor(MusicObject::DW_DownLoading);
+    Q_EMIT showDownLoadInfoFor(MusicObject::DW_DownLoading);
 
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];

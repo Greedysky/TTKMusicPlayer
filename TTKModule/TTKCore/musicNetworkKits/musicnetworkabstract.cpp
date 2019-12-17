@@ -32,7 +32,7 @@ void MusicNetworkAbstract::deleteAll()
 void MusicNetworkAbstract::replyError(QNetworkReply::NetworkError)
 {
     M_LOGGER_ERROR("Abnormal network connection");
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -40,7 +40,7 @@ void MusicNetworkAbstract::replyError(QNetworkReply::NetworkError)
 void MusicNetworkAbstract::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    emit downLoadDataChanged(QString());
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
