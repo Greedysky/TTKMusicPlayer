@@ -142,7 +142,7 @@ void Visual::setEnabled(VisualFactory* factory, bool enable)
             if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
                 visual->start();
             m_visuals.append(visual);
-            visual->show();
+//            visual->show();
         }
     }
     else
@@ -201,7 +201,7 @@ void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
             qDebug("Visual: added visualization: %s", qPrintable(factory->properties().name));
             m_vis_map.insert (factory, visual);
             m_visuals.append(visual);
-            visual->show();
+//            visual->show();
         }
     }
 }
