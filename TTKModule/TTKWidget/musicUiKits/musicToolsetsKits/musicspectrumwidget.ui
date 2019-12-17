@@ -113,12 +113,15 @@
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">#spectrumFuncionts{background-color:#dddddd;}</string>
+        </property>
         <layout class="QHBoxLayout" name="spectrumFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
          <property name="topMargin">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="rightMargin">
           <number>9</number>
@@ -163,6 +166,9 @@
       </item>
       <item>
        <widget class="QWidget" name="spectrumAreaWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#spectrumAreaWidget{background-color:#eeeeee;}</string>
+        </property>
         <layout class="QVBoxLayout" name="spectrumAreaLayout">
          <property name="spacing">
           <number>2</number>
@@ -215,12 +221,15 @@
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">#spectrumPlusFuncionts{background-color:#dddddd;}</string>
+        </property>
         <layout class="QHBoxLayout" name="spectrumPlusFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
          <property name="topMargin">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="rightMargin">
           <number>9</number>
@@ -265,6 +274,9 @@
       </item>
       <item>
        <widget class="QWidget" name="spectrumPlusAreaWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#spectrumPlusAreaWidget{background-color:#eeeeee;}</string>
+        </property>
         <layout class="QVBoxLayout" name="spectrumPlusAreaLayout">
          <property name="spacing">
           <number>2</number>
@@ -317,12 +329,15 @@
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">#floridFuncionts{background-color:#dddddd;}</string>
+        </property>
         <layout class="QHBoxLayout" name="floridFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
          <property name="topMargin">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="rightMargin">
           <number>9</number>
@@ -367,6 +382,9 @@
       </item>
       <item>
        <widget class="QWidget" name="floridAreaWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#floridAreaWidget{background-color:#eeeeee;}</string>
+        </property>
         <layout class="QVBoxLayout" name="floridAreaLayout">
          <property name="spacing">
           <number>2</number>
@@ -419,12 +437,15 @@
           <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">#lightFuncionts{background-color:#dddddd;}</string>
+        </property>
         <layout class="QHBoxLayout" name="lightFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
          <property name="topMargin">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="rightMargin">
           <number>9</number>
@@ -488,6 +509,9 @@
       </item>
       <item>
        <widget class="QWidget" name="lightAreaWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#lightAreaWidget{background-color:#eeeeee;}</string>
+        </property>
         <layout class="QVBoxLayout" name="lightAreaLayout">
          <property name="spacing">
           <number>2</number>
