@@ -187,7 +187,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     QWidget* widget = QApplication::desktop()->screen(0);
     if(isFullScreen() && widget)
     {
-        s = QApplication::desktop()->screenGeometry(0)->size();
+        s = QApplication::desktop()->screenGeometry(0).size();
     }
     else
     {
