@@ -80,13 +80,5 @@ void MainWindow::setTimeValue(qint64 value)
 
 void MainWindow::applySettings()
 {
-//    EqSettings settings(EqSettings::EQ_BANDS_10);
-//    settings.setPreamp(m_sliders[0]->value());
-//    settings.setEnabled(true);
 
-//    for(int i = 0; i < EqSettings::EQ_BANDS_10; ++i)
-//    {
-//        settings.setGain(i, m_sliders[i+1]->value());
-//    }
-//    m_sound->setEqSettings(settings);
 }

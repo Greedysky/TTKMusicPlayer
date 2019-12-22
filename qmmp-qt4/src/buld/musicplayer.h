@@ -91,13 +91,6 @@ public Q_SLOTS:
     void pause();
     void stop();
 
-//    void setEqEffect(const MIntList &hz);
-//    void setEnaleEffect(bool enable);
-//    void setEqInformation();
-#ifdef Q_OS_WIN
-    void setSpectrum(HWND,int w,int h,int x = 0,int y = 0);
-#endif
-
 private Q_SLOTS:
     void setTimeOut();
     void removeCurrentMedia();

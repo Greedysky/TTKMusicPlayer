@@ -3,7 +3,6 @@
 #include "../qmmp/soundcore.h"
 
 #include <qmath.h>
-#include <QDebug>
 
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
@@ -56,13 +55,6 @@ bool MusicPlayer::isMuted() const
 void MusicPlayer::setMusicEnhanced(Enhanced type)
 {
     m_musicEnhanced = type;
-//    m_music->EnableEcho(false);
-//    m_music->EnableEqualizer(false);
-//    if(m_musicEnhanced != Music3D && m_musicEnhanced != EnhancedOff)
-//    {
-//        m_music->EnableEqualizer(true);
-//        setMusicEnhancedCase();
-//    }
 }
 
 MusicPlayer::Enhanced MusicPlayer::getMusicEnhanced() const
@@ -90,21 +82,6 @@ QStringList MusicPlayer::supportFormatsFilterDialogString()
                         << "Ac3 File(*.ac3)" << "Aac File(*.aac)" << "Oga File(*.oga)"
                         << "Pcm File(*.pcm)";
 }
-
-#ifdef Q_OS_WIN
-void MusicPlayer::setSpectrum(HWND wnd, int w, int h, int x, int y)
-{
-//    if(!m_music)
-//    {
-//        return;
-//    }
-//    /// set graph type to AREA, left channel on top
-//    m_music->SetFFTGraphParam(gpGraphType, gtAreaLeftOnTop);
-//    /// set linear scale
-//    m_music->SetFFTGraphParam(gpHorizontalScale, gsLinear);
-//    m_music->DrawFFTGraphOnHWND(wnd, x, y, w, h);
-}
-#endif
 
 void MusicPlayer::play()
 {
@@ -204,20 +181,6 @@ void MusicPlayer::setTimeOut()
 {
     emit positionChanged( position() );
 
-    if(m_musicEnhanced == Music3D)
-    {   ///3D music settings
-//        m_music->EnableEcho(true);
-//        m_posOnCircle += 0.5f;
-//        TEchoEffect effect;
-//        effect.nLeftDelay = 450;
-//        effect.nLeftEchoVolume = 20;
-//        effect.nLeftSrcVolume = 100 * cosf(m_posOnCircle);
-//        effect.nRightDelay = 500;
-//        effect.nRightEchoVolume = 20;
-//        effect.nRightSrcVolume = 100 * sinf(m_posOnCircle * 0.5f);
-//        m_music->SetEchoParam(&effect, 1);
-    }
-
     Qmmp::State state = m_music->state();
     if(state != Qmmp::Playing && state != Qmmp::Paused)
     {
@@ -244,20 +207,7 @@ void MusicPlayer::setTimeOut()
 
 void MusicPlayer::setMusicEnhancedCase()
 {
-//    switch(m_musicEnhanced)
-//    {
-//        case MusicVocal:
-//            setEqEffect(MIntList()<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
-//            break;
-//        case MusicNICAM:
-//            setEqEffect(MIntList()<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
-//            break;
-//        case MusicSubwoofer:
-//            setEqEffect(MIntList()<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
-//            break;
-//        default:
-//            break;
-//    }
+
 }
 
 void MusicPlayer::removeCurrentMedia()
@@ -268,19 +218,3 @@ void MusicPlayer::removeCurrentMedia()
         m_music->stop();
     }
 }
-
-//void MusicPlayer::setEqEffect(const MIntList &hz)
-//{
-//    m_equalizer->setEqEffect(hz);
-//}
-
-//void MusicPlayer::setEnaleEffect(bool enable)
-//{
-//    m_equalizer->setEnaleEffect(enable);
-//}
-
-//void MusicPlayer::setEqInformation()
-//{
-//    m_equalizer->readEqInformation();
-//}
-
