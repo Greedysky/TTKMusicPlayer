@@ -1,6 +1,7 @@
 #include "musicbackgroundlistwidget.h"
 #include "musicextractwrap.h"
 #include "musicmessagebox.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 #include <QMouseEvent>
@@ -121,18 +122,17 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         QFont f = painter.font();
         f.setPixelSize(13);
         painter.setFont(f);
-        QFontMetrics metric(painter.font());
 
         painter.setPen(Qt::white);
         if(m_showNameMask)
         {
-            painter.drawText((width() - metric.width(m_name))/2, 32, m_name);
+            painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), m_name))/2, 32, m_name);
         }
 
         QString v = QString::number(m_imageInfo.m_useCount);
-        painter.drawText((width() - metric.width(v))/2, 50, v);
+        painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), v))/2, 50, v);
                 v = m_imageInfo.m_name;
-        painter.drawText((width() - metric.width(v))/2, 68, v);
+        painter.drawText((width() - MusicUtils::Widget::fontTextWidth(painter.font(), v))/2, 68, v);
     }
 
     if(m_closeSet && m_closeMask)

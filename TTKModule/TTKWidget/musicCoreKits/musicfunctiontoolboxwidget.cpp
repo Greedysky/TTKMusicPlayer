@@ -57,7 +57,7 @@ bool MusicFunctionToolBoxTopWidget::isItemExpand() const
 
 void MusicFunctionToolBoxTopWidget::setTitle(const QString &text)
 {
-    m_labelText->setText(QFontMetrics(m_labelText->font()).elidedText(text, Qt::ElideRight, RENAME_WIDTH - 10));
+    m_labelText->setText(MusicUtils::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
     m_labelText->setToolTip(text);
 }
 

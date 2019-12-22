@@ -4,7 +4,7 @@
 
 #include <QStringList>
 
-#define IP_CHECK_URL    "NDBiQkVybExJc0l5ZUZFVXc4TDMzVEhsYkJVWmg1cXlVQzdBZ2c9PQ=="
+#define IP_CHECK_URL    "emtRdWI5YVg3eHduQjNwYUZNV2JXVjhGVmI2VnJJbEc="
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
@@ -22,6 +22,30 @@ void MusicNetworkOperator::startToDownload()
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
     QTextStream in(MConst_cast(QByteArray*, &data));
+    in.setCodec("gb2312");
+
+    QString text(in.readAll());
+    QRegExp regx("<iframe src=\"([^<]+)\" ");
+    regx.setMinimal(true);
+    int pos = text.indexOf(regx);
+    while(pos != -1)
+    {
+        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+        connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadQueryFinished(QByteArray)));
+        download->startToDownload(regx.cap(1));
+        break;
+    }
+
+    if(pos == -1)
+    {
+        Q_EMIT getNetworkOperatorFinished(QString());
+        deleteLater();
+    }
+}
+
+void MusicNetworkOperator::downLoadQueryFinished(const QByteArray &data)
+{
+    QTextStream in(MConst_cast(QByteArray*, &data));
     in.setCodec("utf-8");
 
     QString line, text(in.readAll());
@@ -31,8 +55,6 @@ void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
     {
         line = regx.cap(0).remove("<p align=\"center\">").remove("</p>").trimmed();
         line = line.right(2);
-//        pos += regx.matchedLength();
-//        pos = regx.indexIn(text, pos);
         break;
     }
 

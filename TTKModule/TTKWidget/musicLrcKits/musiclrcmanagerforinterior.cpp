@@ -1,5 +1,6 @@
 #include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
+#include "musicwidgetutils.h"
 
 MusicLrcManagerForInterior::MusicLrcManagerForInterior(QWidget *parent)
     : MusicLrcManager(parent)
@@ -22,10 +23,11 @@ void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
     int ttplus = font.pointSize() - m_gradientFontSize;
     font.setPointSize( ttplus = (ttplus < 0) ? 0 : ttplus );
     painter.setFont(font);
-    m_geometry.setX(QFontMetrics(font).width( text() ));
+    m_geometry.setX(MusicUtils::Widget::fontTextWidth(font, text()));
 
-    m_linearGradient.setFinalStop(0, QFontMetrics(font).height());
-    m_maskLinearGradient.setFinalStop(0, QFontMetrics(font).height());
+    const int fontHeight = MusicUtils::Widget::fontTextHeight(font);
+    m_linearGradient.setFinalStop(0, fontHeight);
+    m_maskLinearGradient.setFinalStop(0, fontHeight);
 
     if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth && m_lrcMaskWidth >= m_lrcPerWidth / 2)
     {

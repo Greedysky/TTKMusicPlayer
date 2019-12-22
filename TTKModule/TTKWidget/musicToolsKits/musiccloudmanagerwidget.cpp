@@ -45,6 +45,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     headerview->resizeSection(4, 120);
 
     m_uploading = false;
+    m_cancel = false;
     m_openFileWidget = nullptr;
     m_totalFileSzie = 0;
 
@@ -97,7 +98,7 @@ void MusicCloudManagerTableWidget::resizeWindow()
 {
     const int w = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (w - WINDOW_WIDTH_MIN) + 370);
+    headerview->resizeSection(1, (w - WINDOW_WIDTH_MIN) + 360);
 
     for(int i=0; i<rowCount(); ++i)
     {
@@ -276,6 +277,11 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     download->startToDownload();
 }
 
+void MusicCloudManagerTableWidget::cancelUploadFilesToServer()
+{
+    m_cancel = true;
+}
+
 void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
     const QString filter(MusicFormats::supportFormatsFilterDialogString().join(";;"));
@@ -369,7 +375,11 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu uploadMenu(tr("upload"), &menu);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    uploadMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    if(m_currentDataItem.isValid() && m_currentDataItem.m_state == MusicCloudDataItem::Waited)
+    {
+        uploadMenu.addAction(tr("cancelUpload"), this, SLOT(cancelUploadFilesToServer()));
+    }
     uploadMenu.addAction(tr("uploadFile"), this, SLOT(uploadFilesToServer()));
     uploadMenu.addAction(tr("uploadFiles"), this, SLOT(uploadFileDirToServer()));
 
@@ -440,6 +450,13 @@ void MusicCloudManagerTableWidget::startToUploadFile()
     m_uploading = true;
     Q_EMIT updateLabelMessage(tr("Files Is Uploading!"));
 
+    if(m_cancel)
+    {
+        m_cancel = false;
+        uploadDone();
+        return;
+    }
+
     m_currentDataItem = FindWaitedItemRow();
     if(!m_currentDataItem.isValid())
     {
@@ -466,7 +483,11 @@ void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_name);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+#else
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+#endif
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(row, 1, item);
 
@@ -477,14 +498,22 @@ void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
                       item = new QTableWidgetItem;
     item->setToolTip(MusicUtils::Number::size2Label(data.m_dataItem.m_size));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 5));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+#else
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+#endif
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 3, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_dataItem.m_putTime);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(4) - 5));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+#else
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+#endif
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     setItem(row, 4, item);
 }
@@ -668,7 +697,7 @@ void MusicCloudManagerWidget::resizeWindow()
 void MusicCloudManagerWidget::updataSizeLabel(qint64 size)
 {
     m_sizeValueLabel->setText(QString("%1/40.0G").arg(MusicUtils::Number::size2Label(size)));
-    m_sizeValueBar->setValue(size*100/(10*MH_GB2B));
+    m_sizeValueBar->setValue(size * 100 / (10 * MH_GB2B));
 }
 
 void MusicCloudManagerWidget::downloadFileToServer()
@@ -684,4 +713,15 @@ void MusicCloudManagerWidget::deleteFileToServer()
 void MusicCloudManagerWidget::uploadFilesToServer()
 {
     m_managerTableWidget->uploadFilesToServer();
+}
+
+void MusicCloudManagerWidget::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    resizeWindow();
+}
+
+void MusicCloudManagerWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
 }

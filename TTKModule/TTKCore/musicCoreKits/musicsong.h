@@ -163,6 +163,10 @@ public:
      * Operator < function.
      */
     bool operator< (const MusicSong &other) const;
+    /*!
+     * Operator > function.
+     */
+    bool operator> (const MusicSong &other) const;
 
 protected:
     Sort m_sortType;

@@ -11,8 +11,8 @@
 
 void loadDXcbPlugin(int argc, char *argv[])
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-    #if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+#if TTK_QT_VERSION_CHECK(5,4,0)
+    #if TTK_QT_VERSION_CHECK(5,6,0)
       Q_UNUSED(argc);
       Q_UNUSED(argv);
       QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -20,7 +20,7 @@ void loadDXcbPlugin(int argc, char *argv[])
       QApplication a(argc, argv);
       qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
       QScreen *screen = QApplication::primaryScreen();
-      const qreal dpi = screen->logicalDotsPerInch() / 96;
+      const float dpi = screen->logicalDotsPerInch() / 96;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi));
       Q_UNUSED(a);
     #endif

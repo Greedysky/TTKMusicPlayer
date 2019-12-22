@@ -30,6 +30,9 @@
 #define TTK_INIT_PRIVATE \
     ttk_d.setPublic(this);
 
+#define TTK_INIT_PUBLIC(Class) \
+    ttk_d.setPrivate(new Class##Private);
+
 #define TTK_D(Class) Class##Private *const d = static_cast<Class##Private *>(ttk_d())
 #define TTK_Q(Class) Class *const q = static_cast<Class *>(ttk_q())
 
@@ -60,16 +63,17 @@ class TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
 public:
-    TTKPrivateInterface() { pvt = new PVT; }
-    ~TTKPrivateInterface() { delete pvt; }
+    TTKPrivateInterface() { pvt_ptr = new PVT; }
+    ~TTKPrivateInterface() { delete pvt_ptr; }
 
-    inline void setPublic(PUB* pub) { pvt->setPublic(pub); }
-    inline PVT *operator()() const { return static_cast<PVT*>(pvt); }
+    inline void setPrivate(PVT* pvt) { delete pvt_ptr; pvt_ptr = pvt; }
+    inline void setPublic(PUB* pub) { pvt_ptr->setPublic(pub); }
+    inline PVT *operator()() const { return static_cast<PVT*>(pvt_ptr); }
 
 private:
     TTKPrivateInterface(const TTKPrivateInterface&) { }
     TTKPrivateInterface& operator=(const TTKPrivateInterface&) { }
-    TTKPrivate<PUB>* pvt;
+    TTKPrivate<PUB>* pvt_ptr;
 
 };
 

@@ -113,6 +113,10 @@ public Q_SLOTS:
     void downloadFileToServer();
 
     /*!
+     * Cancel upload files to server.
+     */
+    void cancelUploadFilesToServer();
+    /*!
      * Upload files to server.
      */
     void uploadFilesToServer();
@@ -169,6 +173,7 @@ protected:
     MusicCloudDataItem FindWaitedItemRow() const;
 
     bool m_uploading;
+    bool m_cancel;
     qint64 m_totalFileSzie;
     OSSListData *m_ossListData;
     OSSDeleteData *m_ossDeleteData;
@@ -220,6 +225,13 @@ public Q_SLOTS:
      * Upload files to server.
      */
     void uploadFilesToServer();
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 protected:
     QLabel *m_sizeValueLabel;

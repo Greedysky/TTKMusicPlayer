@@ -1,6 +1,7 @@
 #include "musiclrcmanagerfordesktop.h"
 #include "musicsettingmanager.h"
 #include "musicnumberdefine.h"
+#include "musicwidgetutils.h"
 
 MusicLrcManagerForDesktop::MusicLrcManagerForDesktop(QWidget *parent)
     : MusicLrcManager(parent)
@@ -23,9 +24,10 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     painter.setFont(m_font);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    const int begin = (rect().height() - QFontMetrics(m_font).height())/2;
-    m_linearGradient.setFinalStop(0, QFontMetrics(m_font).height());
-    m_maskLinearGradient.setFinalStop(0, QFontMetrics(m_font).height());
+    const int fontHeight = MusicUtils::Widget::fontTextHeight(m_font);
+    const int begin = (rect().height() - fontHeight) / 2;
+    m_linearGradient.setFinalStop(0, fontHeight);
+    m_maskLinearGradient.setFinalStop(0, fontHeight);
 
     if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth && m_lrcMaskWidth >= m_lrcPerWidth / 2)
     {
@@ -64,8 +66,9 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setFont(m_font);
 
-    m_linearGradient.setFinalStop(0, QFontMetrics(m_font).height());
-    m_maskLinearGradient.setFinalStop(0, QFontMetrics(m_font).height());
+    const int fontHeight = MusicUtils::Widget::fontTextHeight(m_font);
+    m_linearGradient.setFinalStop(0, fontHeight);
+    m_maskLinearGradient.setFinalStop(0, fontHeight);
 
     if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth && m_lrcMaskWidth >= m_lrcPerWidth / 2)
     {

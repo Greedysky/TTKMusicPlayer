@@ -4,12 +4,12 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     : QTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground);
-    setFont(QFont("Helvetica"));
     setColumnCount(3);
     setRowCount(0);
     setShowGrid(false);//Does not display the grid
 
     QHeaderView *headerview = horizontalHeader();
+    headerview->setMinimumSectionSize(0);
     headerview->setVisible(false);
     headerview->resizeSection(0, 20);
     headerview->resizeSection(1, 247);
@@ -62,8 +62,7 @@ MIntList MusicAbstractTableWidget::getMultiSelectedIndexs() const
     }
 
     MIntList rowsList = rows.toList();
-    qSort(rowsList);
-
+    std::sort(rowsList.begin(), rowsList.end());
     return rowsList;
 }
 
@@ -89,7 +88,11 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
         QTableWidgetItem *it = item(row, col);
         if(it)
         {
+#if TTK_QT_VERSION_CHECK(5,13,0)
+            it->setBackground(color);
+#else
             it->setBackgroundColor(color);
+#endif
         }
     }
 }

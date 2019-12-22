@@ -20,7 +20,10 @@ public:
 OSSDownloadData::OSSDownloadData(QNetworkAccessManager *networkManager, QObject *parent)
     : OSSDataInterface(networkManager, parent)
 {
+    TTK_INIT_PUBLIC(OSSDownloadData);
     TTK_INIT_PRIVATE;
+    TTK_D(OSSDownloadData);
+    d->m_networkManager = networkManager;
 }
 
 void OSSDownloadData::downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)

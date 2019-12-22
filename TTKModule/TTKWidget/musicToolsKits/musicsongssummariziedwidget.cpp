@@ -100,7 +100,7 @@ bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
             }
             m_songItems << songItem;
         }
-        qSort(m_songItems);
+        std::sort(m_songItems.begin(), m_songItems.end());
     }
     else
     {
@@ -897,11 +897,11 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     }
     if(m_songItems[id].m_sort.m_sortType == Qt::DescendingOrder)
     {
-        qSort(*songs);
+        std::sort(songs->begin(), songs->end());
     }
     else
     {
-        qSort(songs->begin(), songs->end(), qGreater<MusicSong>());
+        std::sort(songs->begin(), songs->end(), std::greater<MusicSong>());
     }
 
     w->clearAllItems();

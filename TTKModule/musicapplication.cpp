@@ -911,7 +911,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
         {
             return;
         }
-        qSort(index);
+        std::sort(index.begin(), index.end());
 
         bool contains = false; ///the play one is delete list
         int oldIndex = m_musicPlaylist->currentIndex();

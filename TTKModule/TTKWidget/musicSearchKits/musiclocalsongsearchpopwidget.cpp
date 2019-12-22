@@ -33,12 +33,20 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), "  " + name, Qt::ElideRight, headerview->sectionSize(0) - 20));
     item->setToolTip(name);
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(100, 100, 100));
+#else
     item->setTextColor(QColor(100, 100, 100));
+#endif
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem(time);
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(100, 100, 100));
+#else
     item->setTextColor(QColor(100, 100, 100));
+#endif
     item->setTextAlignment(Qt::AlignCenter);
     setItem(index, 1, item);
 }

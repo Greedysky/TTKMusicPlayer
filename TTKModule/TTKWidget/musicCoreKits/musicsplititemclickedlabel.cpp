@@ -1,9 +1,9 @@
 #include "musicsplititemclickedlabel.h"
 #include "musicrightareawidget.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 #include <QMouseEvent>
-#include <QFontMetrics>
 
 MusicSplitItemClickedLabel::MusicSplitItemClickedLabel(QWidget *parent)
     : QLabel(parent)
@@ -45,13 +45,12 @@ void MusicSplitItemClickedLabel::mouseMoveEvent(QMouseEvent *event)
     m_lineGeometry = QRectF();
     m_currentString.clear();
 
-    const QFontMetrics &metrics = QFontMetrics(font());
     const QStringList data(text().split(" - "));
     int offset = 0;
 
     foreach(const QString &var, data)
     {
-        const int fs = metrics.width(var.trimmed());
+        const int fs = MusicUtils::Widget::fontTextWidth(font(), var.trimmed());
         if(offset <= event->pos().x() && event->pos().x() <= offset + fs)
         {
             setCursor(QCursor(Qt::PointingHandCursor));
@@ -59,7 +58,7 @@ void MusicSplitItemClickedLabel::mouseMoveEvent(QMouseEvent *event)
             m_currentString = var.trimmed();
             break;
         }
-        offset += (fs + metrics.width(" - "));
+        offset += (fs + MusicUtils::Widget::fontTextWidth(font(), (" - ")));
     }
     update();
 }

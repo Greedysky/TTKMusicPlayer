@@ -1,4 +1,5 @@
 #include "musicpreviewlabel.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 
@@ -95,7 +96,7 @@ void MusicPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    const int h = QFontMetrics(m_font).height();
+    const int h = MusicUtils::Widget::fontTextHeight(m_font);
     const int begin = (rect().height() - h)/2;
     m_linearGradient.setFinalStop(0, h + begin);
     m_maskLinearGradient.setFinalStop(0, h + begin);

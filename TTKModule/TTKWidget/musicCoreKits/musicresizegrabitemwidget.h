@@ -104,7 +104,7 @@ protected:
 };
 
 
-#if QT_VERSION < QT_VERSION_CHECK(5,3,0)
+#if !TTK_QT_VERSION_CHECK(5,3,0)
 inline QRect operator-(const QRect &rect, const QMargins &margins);
 #endif
 

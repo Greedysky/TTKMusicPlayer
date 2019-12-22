@@ -45,6 +45,15 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
         /*!
+         * Get text width by font.
+         */
+        MUSIC_UTILS_EXPORT int fontTextWidth(const QFont &font, const QString &text);
+        /*!
+         * Get font height by font.
+         */
+        MUSIC_UTILS_EXPORT int fontTextHeight(const QFont &font);
+
+        /*!
          * Set widget transparent.
          */
         MUSIC_UTILS_EXPORT void setTransparent(QWidget *widget, int alpha);

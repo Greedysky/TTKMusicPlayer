@@ -120,7 +120,7 @@ void MusicTimerAutoObject::setShutdown()
         LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
         tkp.PrivilegeCount = 1;
         tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-        AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, MStatic_cast(PTOKEN_PRIVILEGES, nullptr), 0);
+        AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, MStatic_cast(PTOKEN_PRIVILEGES, nullptr), nullptr);
         ExitWindowsEx(EWX_SHUTDOWN | EWX_POWEROFF, 0);
     }
 #elif defined Q_OS_UNIX
@@ -131,11 +131,11 @@ void MusicTimerAutoObject::setShutdown()
     /* send signals to all processes  _except_ pid 1 */
     kill(-1, SIGTERM);
     sync();
-    sleep(3);
+    MusicUtils::Core::sleep(3 * MT_S2MS);
 
     kill(-1, SIGKILL);
     sync();
-    sleep(3);
+    MusicUtils::Core::sleep(3 * MT_S2MS);
     /* shutdown */
     reboot(RB_POWER_OFF);
 #endif

@@ -29,9 +29,10 @@
 #  pragma GCC diagnostic ignored "-Wunused-function"
 #endif
 
-#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
+#define TTK_QT_VERSION_CHECK(major, minor, patch) (QT_VERSION >= QT_VERSION_CHECK(major, minor, patch))
+#if TTK_QT_VERSION_CHECK(5,0,0)
 #  define TTK_GREATER_NEW
-#  if QT_VERSION >= QT_VERSION_CHECK(5,2,0)
+#  if TTK_QT_VERSION_CHECK(5,2,0)
 #    define TTK_WINEXTRAS
 #  else
 #    define TTK_NO_WINEXTRAS

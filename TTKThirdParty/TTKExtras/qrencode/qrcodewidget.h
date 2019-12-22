@@ -49,7 +49,7 @@ public:
     /*!
      * Set qr icon.
      */
-    void setIcon(const QString &path, qreal percent);
+    void setIcon(const QString &path, float percent);
     /*!
      * Get qr icon.
      */
@@ -58,11 +58,11 @@ public:
     /*!
      * Set qr icon percent.
      */
-    void setIconPercent(qreal percent);
+    void setIconPercent(float percent);
     /*!
      * Get qr icon percent.
      */
-    qreal getIconPercent() const;
+    float getIconPercent() const;
 
     /*!
      * Set case sensitive.

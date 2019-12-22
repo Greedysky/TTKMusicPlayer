@@ -1,6 +1,7 @@
 #include "musictoastlabel.h"
 #include "musicnumberdefine.h"
 #include "musicuiobject.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 #include <QPropertyAnimation>
@@ -87,8 +88,8 @@ void MusicToastLabel::popup(QWidget *parent)
 
 void MusicToastLabel::setText(const QString &text)
 {
-    const QFontMetrics &metrics = QFontMetrics(m_font);
-    setFixedSize(metrics.width(text) + m_margin.x(), metrics.height() + m_margin.y());
+    setFixedSize(MusicUtils::Widget::fontTextWidth(m_font, text) + m_margin.x(),
+                 MusicUtils::Widget::fontTextHeight(m_font) + m_margin.y());
     QLabel::setText(text);
 }
 
@@ -114,7 +115,11 @@ void MusicToastLabel::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor(0, 0, 0, 175));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    painter.drawRoundedRect(rect(), 6, 6);
+#else
     painter.drawRoundRect(rect(), 6, 6);
+#endif
 
     painter.setPen(QColor(255, 255, 255));
     painter.drawText(rect(), Qt::AlignCenter, text());

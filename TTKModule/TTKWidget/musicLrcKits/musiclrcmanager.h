@@ -178,7 +178,7 @@ protected:
     QLinearGradient m_linearGradient, m_maskLinearGradient;
     QFont m_font;
     QTimer *m_timer;
-    qreal m_lrcMaskWidth, m_lrcMaskWidthInterval, m_intervalCount;
+    float m_lrcMaskWidth, m_lrcMaskWidthInterval, m_intervalCount;
 
     int m_lrcPerWidth, m_transparent, m_speedLevel;
     QPoint m_geometry;

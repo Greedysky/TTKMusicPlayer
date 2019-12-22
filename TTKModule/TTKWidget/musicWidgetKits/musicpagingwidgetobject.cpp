@@ -2,9 +2,9 @@
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
+#include "musicwidgetutils.h"
 
 #include <QSignalMapper>
-#include <QFontMetrics>
 
 #define PAGE_SIZE   10
 
@@ -49,7 +49,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
         font.setPixelSize(17);
         w->setFont(font);
         w->setStyleSheet(MusicUIObject::MColorStyle04);
-        w->setFixedWidth(QFontMetrics(font).width(w->text()));
+        w->setFixedWidth(MusicUtils::Widget::fontTextWidth(font, w->text()));
         connect(w, SIGNAL(clicked()), group, SLOT(map()));
         group->setMapping(w, i++);
     }
@@ -207,7 +207,7 @@ void MusicPagingWidgetObject::paging(int index, int total)
     for(int i=0; i<m_pagingItems.count() - 2; ++i)
     {
         MusicClickedLabel *w = m_pagingItems[i];
-        w->setFixedWidth(QFontMetrics(w->font()).width(w->text()));
+        w->setFixedWidth(MusicUtils::Widget::fontTextWidth(w->font(), w->text()));
     }
 
     MusicClickedLabel *w = m_pagingItems[m_currentPage];

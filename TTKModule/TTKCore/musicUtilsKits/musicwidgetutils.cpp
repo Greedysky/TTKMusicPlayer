@@ -35,6 +35,22 @@ QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text, Q
     return ft.elidedText(text, mode, width);
 }
 
+int MusicUtils::Widget::fontTextWidth(const QFont &font, const QString &text)
+{
+    QFontMetrics ft(font);
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    return ft.horizontalAdvance(text);
+#else
+    return ft.width(text);
+#endif
+}
+
+int MusicUtils::Widget::fontTextHeight(const QFont &font)
+{
+    QFontMetrics ft(font);
+    return ft.height();
+}
+
 void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)
 {
     QPalette pal = widget->palette();
@@ -162,7 +178,7 @@ int MusicUtils::Widget::colorBurnTransform(int c, int delta)
         return c;
     }
 
-    const int result = (c - (int)(c*delta)/(0xFF - delta));
+    const int result = (c - (c * delta)/(0xFF - delta));
     if(result > 0xFF)
     {
         return 0xFF;

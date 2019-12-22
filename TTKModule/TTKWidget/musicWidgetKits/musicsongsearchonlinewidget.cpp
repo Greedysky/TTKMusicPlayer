@@ -272,26 +272,42 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(100, 100, 100));
+#else
     item->setTextColor(QColor(100, 100, 100));
+#endif
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(100, 100, 100));
+#else
     item->setTextColor(QColor(100, 100, 100));
+#endif
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(100, 100, 100));
+#else
     item->setTextColor(QColor(100, 100, 100));
+#endif
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    item->setForeground(QColor(100, 100, 100));
+#else
     item->setTextColor(QColor(100, 100, 100));
+#endif
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 4, item);
 

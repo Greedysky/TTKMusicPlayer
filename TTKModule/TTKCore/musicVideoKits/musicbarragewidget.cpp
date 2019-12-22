@@ -150,9 +150,8 @@ QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
     label->setText(record.m_value);
 
     MusicUtils::Widget::setLabelFontSize(label, record.m_size);
-    QFontMetrics ftMcs(label->font());
-    label->resize(ftMcs.width(label->text()), ftMcs.height());
-
+    label->resize(MusicUtils::Widget::fontTextWidth(label->font(), label->text()),
+                  MusicUtils::Widget::fontTextHeight(label->font()));
     label->hide();
     m_labels << label;
 

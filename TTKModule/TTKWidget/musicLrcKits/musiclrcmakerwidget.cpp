@@ -14,6 +14,7 @@
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
 #include "musicotherdefine.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 #include <QTextBlock>
@@ -100,7 +101,7 @@ void MusicLrcMakerWidgetItem::moveLeft()
 void MusicLrcMakerWidgetItem::moveRight()
 {
     m_leftDirection = false;
-    const int w = QFontMetrics(font()).width(text());
+    const int w = MusicUtils::Widget::fontTextWidth(font(), text());
     m_paintIndex += m_itemDelta;
 
     if(m_paintIndex >= w)
@@ -116,14 +117,14 @@ void MusicLrcMakerWidgetItem::setText(const QString &string)
 {
     QLabel::setText(string);
     const int len = string.isEmpty() ? 1 : string.length();
-    m_itemDelta = QFontMetrics(font()).width(string)/len;
+    m_itemDelta = MusicUtils::Widget::fontTextWidth(font(), string) / len;
 }
 
 void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
-    const int w = QFontMetrics(font()).width(text());
+    const int w = MusicUtils::Widget::fontTextWidth(font(), text());
     if(!m_leftDirection && m_intervalCount + w >= width() && m_paintIndex >= width() / 2)
     {
         m_intervalCount -= m_itemDelta;

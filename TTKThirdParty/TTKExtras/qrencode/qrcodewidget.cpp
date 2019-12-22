@@ -11,7 +11,7 @@ public:
     bool m_casesen;
     int m_margin;
     QString m_iconPath;
-    qreal m_percent;
+    float m_percent;
     QByteArray m_text;
     QColor m_foreground, m_background;
     QRencodeMode m_mode;
@@ -62,7 +62,7 @@ int QRCodeQWidget::getMargin() const
     return d->m_margin;
 }
 
-void QRCodeQWidget::setIcon(const QString &path, qreal percent)
+void QRCodeQWidget::setIcon(const QString &path, float percent)
 {
     TTK_D(QRCodeQWidget);
     setIconPercent(percent);
@@ -76,13 +76,13 @@ QString QRCodeQWidget::getIcon() const
     return d->m_iconPath;
 }
 
-void QRCodeQWidget::setIconPercent(qreal percent)
+void QRCodeQWidget::setIconPercent(float percent)
 {
     TTK_D(QRCodeQWidget);
     d->m_percent = percent < 0.5 ? percent : 0.3;
 }
 
-qreal QRCodeQWidget::getIconPercent() const
+float QRCodeQWidget::getIconPercent() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_percent;
@@ -200,7 +200,11 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
         const double wrap_x = (width () - icon_width) / 2.0;
         const double wrap_y = (width () - icon_height) / 2.0;
         const QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
+#if TTK_QT_VERSION_CHECK(5,13,0)
+        painter.drawRoundedRect(wrap, 50, 50);
+#else
         painter.drawRoundRect(wrap, 50, 50);
+#endif
         QPixmap image(d->m_iconPath);
         const QRectF target(wrap_x, wrap_y, icon_width, icon_height);
         const QRectF source(0, 0, image.width (), image.height ());

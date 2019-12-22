@@ -433,7 +433,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     m_searchfileListCache.clear();
 
     MIntList auditionList = auditionRow.toList();
-    qSort(auditionList);
+    std::sort(auditionList.begin(), auditionList.end());
 
     QStringList names;
     foreach(const int index, auditionList)

@@ -78,17 +78,17 @@ QString MusicUtils::Number::speed2LabelInt(qint64 size)
     return speed2LabelFromLabel(size, size2NumberInt(size));
 }
 
-qreal MusicUtils::Number::sizeByte2KByte(qint64 size)
+float MusicUtils::Number::sizeByte2KByte(qint64 size)
 {
     return size*1.0 / MH_KB;
 }
 
-qreal MusicUtils::Number::sizeByte2MByte(qint64 size)
+float MusicUtils::Number::sizeByte2MByte(qint64 size)
 {
     return sizeByte2KByte(size) / MH_MB;
 }
 
-qreal MusicUtils::Number::sizeByte2TByte(qint64 size)
+float MusicUtils::Number::sizeByte2TByte(qint64 size)
 {
     return sizeByte2MByte(size) / MH_GB;
 }

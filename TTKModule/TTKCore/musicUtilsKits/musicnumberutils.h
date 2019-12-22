@@ -53,15 +53,15 @@ namespace MusicUtils
         /*!
          * Transform value to kb entity.
          */
-        MUSIC_UTILS_EXPORT qreal sizeByte2KByte(qint64 size);
+        MUSIC_UTILS_EXPORT float sizeByte2KByte(qint64 size);
         /*!
          * Transform value to mb entity.
          */
-        MUSIC_UTILS_EXPORT qreal sizeByte2MByte(qint64 size);
+        MUSIC_UTILS_EXPORT float sizeByte2MByte(qint64 size);
         /*!
          * Transform value to tb entity.
          */
-        MUSIC_UTILS_EXPORT qreal sizeByte2TByte(qint64 size);
+        MUSIC_UTILS_EXPORT float sizeByte2TByte(qint64 size);
 
         /*!
          * Transform value to speed value base.

@@ -16,7 +16,7 @@ QString MakeRequest(const QString &methord, const QString &url, int length, cons
     request += "Host: " + ip + ":" + port + "\n";
     request += "User-Agent: Microsoft-Windows/6.3 UPnP/1.0 Microsoft-DLNA DLNADOC/1.50\n";
     request += "FriendlyName.DLNA.ORG: ";
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+#if TTK_QT_VERSION_CHECK(5,6,0)
     request += QSysInfo::machineHostName();
 #else
     request += "Greedysky";

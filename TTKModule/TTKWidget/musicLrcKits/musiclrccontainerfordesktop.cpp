@@ -411,8 +411,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("hide"), this, SLOT(close()));
     menu.addAction(QIcon(":/contextMenu/btn_lock"), m_windowLocked ? tr("unlockLrc"): tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
 
-    QMenu changColorMenu(tr("changColorMenu"), this);
-    changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    QMenu changColorMenu(tr("changColorMenu"), &menu);
     createColorMenu(changColorMenu);
     menu.addMenu(&changColorMenu);
 

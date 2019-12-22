@@ -257,7 +257,7 @@ MusicResizeGrabItemWidget::Direction MusicResizeGrabItemWidget::getRegion(const 
     return ret_dir;
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(5,3,0)
+#if !TTK_QT_VERSION_CHECK(5,3,0)
 QRect operator-(const QRect &rect, const QMargins &margins)
 {
     return QRect(QPoint(rect.left() + margins.left(), rect.top() + margins.top()),

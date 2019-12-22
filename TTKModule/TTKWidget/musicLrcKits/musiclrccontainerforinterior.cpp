@@ -383,17 +383,12 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    QMenu changColorMenu(tr("changColorMenu"), this);
-    QMenu changeLrcSize(tr("changeLrcSize"), this);
-    QMenu changeLrcTimeFast(tr("changeLrcTimeFast"), this);
-    QMenu changeLrcTimeSlow(tr("changeLrcTimeSlow"), this);
-    QMenu changeLrcLinkMenu(tr("lrcLinkMenu"), this);
+    QMenu changColorMenu(tr("changColorMenu"), &menu);
+    QMenu changeLrcSize(tr("changeLrcSize"), &menu);
+    QMenu changeLrcTimeFast(tr("changeLrcTimeFast"), &menu);
+    QMenu changeLrcTimeSlow(tr("changeLrcTimeSlow"), &menu);
+    QMenu changeLrcLinkMenu(tr("lrcLinkMenu"), &menu);
 
-    changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    changeLrcSize.setStyleSheet(MusicUIObject::MMenuStyle02);
-    changeLrcTimeFast.setStyleSheet(MusicUIObject::MMenuStyle02);
-    changeLrcTimeSlow.setStyleSheet(MusicUIObject::MMenuStyle02);
-    changeLrcLinkMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
     const bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
@@ -671,9 +666,8 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 
 void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
 {
-    QFontMetrics me = m_noLrcCurrentInfo->fontMetrics();
-    const int w = me.width(m_noLrcCurrentInfo->text());
-    const int h = me.height();
+    const int w = MusicUtils::Widget::fontTextWidth(m_noLrcCurrentInfo->font(), m_noLrcCurrentInfo->text());
+    const int h = MusicUtils::Widget::fontTextHeight(m_noLrcCurrentInfo->font());
     const int offset = height()/m_lrcAnalysis->getLineMax()*(m_lrcAnalysis->getMiddle() + 1) - 40;
 
     m_noLrcCurrentInfo->setGeometry((width() - w)/2, offset, w, h);

@@ -152,10 +152,10 @@
     </rect>
    </property>
    <property name="autoFillBackground">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
    <widget class="QCheckBox" name="allSelectedcheckBox">
     <property name="geometry">
@@ -278,7 +278,7 @@ background:rgba(255,255,255,50)</string>
       <x>0</x>
       <y>40</y>
       <width>635</width>
-      <height>480</height>
+      <height>500</height>
      </rect>
     </property>
     <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>

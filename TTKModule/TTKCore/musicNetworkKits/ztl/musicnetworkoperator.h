@@ -46,11 +46,15 @@ Q_SIGNALS:
      */
     void getNetworkOperatorFinished(const QString &name);
 
-public Q_SLOTS:
+private Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Download data from ip net finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadQueryFinished(const QByteArray &data);
 
 };
 

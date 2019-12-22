@@ -1,4 +1,5 @@
 #include "musiclrcmanager.h"
+#include "musicwidgetutils.h"
 
 #include <QFile>
 #include <QFontDatabase>
@@ -230,9 +231,9 @@ void MusicLrcManager::setLrcFontSize(int size)
 void MusicLrcManager::startLrcMask(qint64 intervaltime)
 {
     m_intervalCount = 0.0f;
-    m_geometry.setX(QFontMetrics(m_font).width(text()));
+    m_geometry.setX(MusicUtils::Widget::fontTextWidth(m_font, text()));
 
-    const qreal count = intervaltime / m_speedLevel;
+    const float count = intervaltime / m_speedLevel;
     m_lrcMaskWidthInterval = (count != 0) ? m_geometry.x() / count : 0;
     m_lrcMaskWidth = 0;
     m_timer->start(LRC_PER_TIME);
@@ -278,6 +279,6 @@ void MusicLrcManager::setUpdateMask()
 
 void MusicLrcManager::setText(const QString &str)
 {
-    m_geometry.setX(QFontMetrics(m_font).width(str));
+    m_geometry.setX(MusicUtils::Widget::fontTextWidth(m_font, str));
     QLabel::setText(str);
 }

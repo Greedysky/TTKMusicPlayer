@@ -245,7 +245,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
                 break;
             }
         }
-        qSort(musicSongInfo.m_songAttrs);
+        std::sort(musicSongInfo.m_songAttrs.begin(), musicSongInfo.m_songAttrs.end());
         return musicSongInfo;
     }
     return MusicObject::MusicSongInformation();
@@ -269,7 +269,7 @@ void MusicDownloadWidget::queryAllFinishedMusic()
 void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttributes &attrs)
 {
     MusicObject::MusicSongAttributes attributes = attrs;
-    qSort(attributes);
+    std::sort(attributes.begin(), attributes.end());
     //to find out the min bitrate
 
     foreach(const MusicObject::MusicSongAttribute &attr, attributes)
@@ -321,7 +321,7 @@ void MusicDownloadWidget::queryAllFinishedMovie()
 void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttributes &attrs)
 {
     MusicObject::MusicSongAttributes attributes = attrs;
-    qSort(attributes);
+    std::sort(attributes.begin(), attributes.end());
     //to find out the min bitrate
 
     foreach(const MusicObject::MusicSongAttribute &attr, attributes)

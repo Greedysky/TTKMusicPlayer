@@ -357,7 +357,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
                 fileName = fileName.split("-").last();
         data << fileName.trimmed().toInt();
     }
-    qSort(data.begin(), data.end(), qLess<int>());
+    std::sort(data.begin(), data.end(), std::less<int>());
 
     foreach(const int index, data)
     {
@@ -387,7 +387,7 @@ int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
                 fileName = fileName.split("-").last();
         data << fileName.trimmed().toInt();
     }
-    qSort(data.begin(), data.end(), qGreater<int>());
+    std::sort(data.begin(), data.end(), std::greater<int>());
 
     int index = CURRENT_ITEMS_COUNT;
     if(!data.isEmpty())

@@ -83,7 +83,11 @@ void MusicToolSetsWidget::addListWidgetItem()
     foreach(const ItemPair &pair, pairs)
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
+#if TTK_QT_VERSION_CHECK(5,13,0)
+        item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+#else
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+#endif
         item->setSizeHint(QSize(80, 90));
         m_ui->listItemWidget->addItem(item);
     }

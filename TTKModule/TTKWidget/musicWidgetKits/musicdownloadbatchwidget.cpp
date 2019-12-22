@@ -51,7 +51,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     m_songInfo = info;
 
     MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
-    qSort(attrs);
+    std::sort(attrs.begin(), attrs.end());
 
     foreach(const MusicObject::MusicSongAttribute &attr, attrs)
     {
