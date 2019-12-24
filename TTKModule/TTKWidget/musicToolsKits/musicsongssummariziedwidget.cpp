@@ -747,14 +747,22 @@ void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int
     {
         for(int i=before; i>after; --i)
         {
+#if TTK_QT_VERSION_CHECK(5,13,0)
+            names->swapItemsAt(i, i - 1);
+#else
             names->swap(i, i - 1);
+#endif
         }
     }
     else
     {
         for(int i=before; i<after; ++i)
         {
+#if TTK_QT_VERSION_CHECK(5,13,0)
+            names->swapItemsAt(i, i + 1);
+#else
             names->swap(i, i + 1);
+#endif
         }
     }
     songs = *names;

@@ -2,6 +2,7 @@
 #include "musicsettingmanager.h"
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
+#include "musiccoreutils.h"
 
 #include <QTime>
 #ifdef Q_OS_WIN

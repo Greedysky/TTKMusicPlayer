@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QObject>
+#include "ttkglobal.h"
 
 /*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
@@ -70,9 +70,9 @@ namespace MusicUIObject
 
 ///Background
     const QString MBackgroundStyle01 = " \
-            background-color:transparent;"
+            background-color:transparent; "
 #ifdef Q_OS_UNIX
-            + QString(" border-style:falt;")
+            + QString("border-style:falt;")
 #endif
             ;
 
@@ -187,10 +187,10 @@ namespace MusicUIObject
 
 ///ToolButton
     const QString MToolButtonStyle01 = " \
-            QToolButton{  background-color:transparent;  " +
+            QToolButton{  background-color:transparent; " +
 #ifdef Q_OS_UNIX
             QString("border-style:falt;") +
- #endif
+#endif
             QString("}");
 
     const QString MToolButtonStyle02 = " \
@@ -213,10 +213,10 @@ namespace MusicUIObject
 
 ///PushButton
     const QString MPushButtonStyle01 = " \
-            QPushButton{ background-color:transparent;  " +
+            QPushButton{ background-color:transparent; " +
 #ifdef Q_OS_UNIX
             QString("border-style:falt;") +
- #endif
+#endif
             QString("}");
 
     const QString MPushButtonStyle02 = MPushButtonStyle01 + " \
@@ -377,7 +377,12 @@ namespace MusicUIObject
             QMenu::item{ color:#666666; padding:6px 30px 6px 30px; border:1px solid transparent; } \
             QMenu::item:disabled{ color:#AAAAAA; } \
             QMenu::item:selected{ color:white; background: rgb(22, 154, 243); } \
-            QMenu::separator{ height:1px; background:#DDDDDD; margin-top:5px; margin-bottom:5px; }";
+            QMenu::separator{ height:1px; background:#DDDDDD; margin-top:5px; margin-bottom:5px; }" +
+#if TTK_QT_VERSION_CHECK(5,12,0)
+            QString("QMenu::item{ padding:6px 30px 6px 10px; } "
+                    "QMenu::item::icon{ padding:6px 30px 6px 10px; }") +
+#endif
+            QString();
 
     const QString MMenuStyle02 = MMenuStyle01 + " \
             QMenu{ background:rgba(255, 255, 255, 235); }";
