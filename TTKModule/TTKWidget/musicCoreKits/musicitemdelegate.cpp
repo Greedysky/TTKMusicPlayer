@@ -116,7 +116,7 @@ void MusicQueryTableDelegate::paint(QPainter *painter, const QStyleOptionViewIte
 MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
-    m_progress  = new QProgressBar;
+    m_progress = new QProgressBar;
     m_progress->setStyleSheet(MusicUIObject::MProgressBar01);
 }
 

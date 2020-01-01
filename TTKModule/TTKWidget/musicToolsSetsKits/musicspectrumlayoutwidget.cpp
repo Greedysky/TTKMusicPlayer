@@ -205,12 +205,13 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
 
     ItemInfos items;
     items << ItemInfo(":/spectrum/florid_1", tr("Goom"));
-    items << ItemInfo(":/spectrum/florid_2", tr("Reverb"));
-    items << ItemInfo(":/spectrum/florid_3", tr("Autism"));
-    items << ItemInfo(":/spectrum/florid_4", tr("Bass"));
-    items << ItemInfo(":/spectrum/florid_5", tr("Surround"));
-    items << ItemInfo(":/spectrum/florid_6", tr("Ancient"));
-    items << ItemInfo(":/spectrum/florid_7", tr("Electric"));
+    items << ItemInfo(":/spectrum/florid_2", tr("Ethereality"));
+    items << ItemInfo(":/spectrum/florid_3", tr("Reverb"));
+    items << ItemInfo(":/spectrum/florid_4", tr("Autism"));
+    items << ItemInfo(":/spectrum/florid_5", tr("Bass"));
+    items << ItemInfo(":/spectrum/florid_6", tr("Surround"));
+    items << ItemInfo(":/spectrum/florid_7", tr("Ancient"));
+    items << ItemInfo(":/spectrum/florid_8", tr("Electric"));
     addItems(items);
 }
 
@@ -221,6 +222,6 @@ MusicSpectrumFloridLayoutWidget::~MusicSpectrumFloridLayoutWidget()
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "floridgoom" << "floridreverb" << "floridautism" << "floridbass"
-                         << "floridsurround" << "floridancient" << "floridelectric";
+    return QStringList() << "floridgoom" << "floridethereality" << "floridreverb" << "floridautism"
+                         << "floridbass" << "floridsurround" << "floridancient" << "floridelectric";
 }
