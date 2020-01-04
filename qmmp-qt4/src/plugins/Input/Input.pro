@@ -43,6 +43,10 @@ contains(CONFIG, AAC_PLUGIN){
     SUBDIRS += aac
 }
 
+contains(CONFIG, ADPLUG_PLUGIN){
+    SUBDIRS += adplug
+}
+
 unix:{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio
