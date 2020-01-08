@@ -24,8 +24,6 @@
 
 #include "qdevicewatcher.h"
 
-#include <QApplication>
-#include <QDesktopWidget>
 #include <QPropertyAnimation>
 
 #include "qoss/ossconf.h"
@@ -167,7 +165,7 @@ void MusicApplicationObject::sideAnimationByOn()
         M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
     }
 
-    const QRect &rect = QApplication::desktop()->screenGeometry(0);
+    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
     pt = w->mapToGlobal(rect.topRight());
     if(-MARGIN_SIDE + rect.width() <= pt.x() && pt.x() <= MARGIN_SIDE + rect.width())
     {
@@ -199,7 +197,7 @@ void MusicApplicationObject::sideAnimationByOff()
     }
     else if(m_rightSideByOn)
     {
-        const QRect &rect = QApplication::desktop()->screenGeometry(0);
+        const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
         m_rightSideByOn = false;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->geometry());
@@ -224,7 +222,7 @@ void MusicApplicationObject::sideAnimationReset()
     else if(m_rightSideByOn)
     {
         MusicApplication *w = MusicApplication::instance();
-        const QRect &rect = QApplication::desktop()->screenGeometry(0);
+        const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
         w->move(rect.width() - w->width() - MARGIN_SIDE_BY, w->y());
     }
 }
@@ -298,7 +296,7 @@ void MusicApplicationObject::musicResetWindow()
     m_leftSideByOn = false;
     m_rightSideByOn = false;
 
-    const QRect &rect = QApplication::desktop()->screenGeometry(0);
+    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
     M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, rect.size());
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 

@@ -11,10 +11,6 @@
 #include "musicotherdefine.h"
 
 #include <QParallelAnimationGroup>
-#ifdef Q_OS_UNIX
-#include <QApplication>
-#include <QDesktopWidget>
-#endif
 
 #define WINDOW_HEIGHT   533
 #define WINDOW_WIDTH    678
@@ -184,10 +180,10 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     }
     QSize s = size();
 #ifdef Q_OS_UNIX
-    QWidget* widget = QApplication::desktop()->screen(0);
-    if(isFullScreen() && widget)
+    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
+    if(isFullScreen() && !rect.isNull())
     {
-        s = QApplication::desktop()->screenGeometry(0).size();
+        s = rect.size();
     }
     else
     {

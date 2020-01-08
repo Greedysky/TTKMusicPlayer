@@ -1,5 +1,6 @@
 #include "musicmarqueewidget.h"
 #include "musicsettingmanager.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 
@@ -20,7 +21,7 @@ void MusicMarqueeWidget::setText(const QString &newText)
         w = (w - WINDOW_WIDTH_MIN)/10;
     }
 
-    int length = fontMetrics().width( newText );
+    int length = MusicUtils::Widget::fontTextWidth(font(), newText);
         length = (length >= width()) ? (45 + w) : (25 + w);
     m_myText = newText.leftJustified(length, ' ');
 
@@ -42,7 +43,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
     f.setBold(false);
     painter.setFont(f);
 
-    const int textWidth = fontMetrics().width(m_myText);
+    const int textWidth = MusicUtils::Widget::fontTextWidth(font(), m_myText);
     if(textWidth < 1)
     {
         return;
@@ -67,7 +68,7 @@ void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
     if(event->timerId() == m_myTimerId)
     {
         ++m_offset;
-        if(m_offset >= fontMetrics().width(m_myText))
+        if(m_offset >= MusicUtils::Widget::fontTextWidth(font(), m_myText))
         {
             m_offset = 0;
         }

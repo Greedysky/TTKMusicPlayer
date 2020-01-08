@@ -2,8 +2,11 @@
 #include "musicwidgetheaders.h"
 
 #include <QBitmap>
-#include <QPainter>
 #include <QBuffer>
+#include <QPainter>
+#include <QScreen>
+#include <QApplication>
+#include <QDesktopWidget>
 
 void MusicUtils::Widget::setLabelFontSize(QWidget *widget, int size)
 {
@@ -49,6 +52,16 @@ int MusicUtils::Widget::fontTextHeight(const QFont &font)
 {
     QFontMetrics ft(font);
     return ft.height();
+}
+
+QRect MusicUtils::Widget::windowScreenGeometry(int index)
+{
+#if TTK_QT_VERSION_CHECK(5,13,0)
+    const QList<QScreen *> &screens = QApplication::screens();
+    return (index < 0 || index >= screens.count()) ? QRect() : screens[index]->geometry();
+#else
+    return QApplication::desktop()->screenGeometry(index);
+#endif
 }
 
 void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)

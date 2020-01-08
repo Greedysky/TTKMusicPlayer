@@ -54,6 +54,11 @@ namespace MusicUtils
         MUSIC_UTILS_EXPORT int fontTextHeight(const QFont &font);
 
         /*!
+         * Get window screen geometry.
+         */
+        MUSIC_UTILS_EXPORT QRect windowScreenGeometry(int index = 0);
+
+        /*!
          * Set widget transparent.
          */
         MUSIC_UTILS_EXPORT void setTransparent(QWidget *widget, int alpha);
