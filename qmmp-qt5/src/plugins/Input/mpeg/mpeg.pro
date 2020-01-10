@@ -30,7 +30,7 @@ unix {
     INSTALLS += target
     contains(CONFIG, WITH_MAD):{
         LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
-                -L$$EXTRA_PREFIX/libmad/lib -lmad
+                -L$$EXTRA_PREFIX/libmad/lib -lmad_static
     }
     contains(CONFIG, WITH_MPG123):{
         LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
