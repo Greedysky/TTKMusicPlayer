@@ -266,15 +266,15 @@ void KugouWindow::createWebViewer()
         delete d->m_webView;
     }
 #ifdef Q_OS_WIN
-    //ie web view
     QAxWidget *view = new QAxWidget(this);
     view->setWindowFlags(Qt::FramelessWindowHint);
     view->setMouseTracking(false);
-    view->setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}");
+    view->setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}"); //ie web view
     view->setObjectName("WebWidget");
     view->setFocusPolicy(Qt::StrongFocus);
     view->setProperty("DisplayAlerts", false);
     view->setProperty("DisplayScrollBars", false);
+    view->setProperty("Silent", true);
     d->m_webView = view;
 #else
  #ifdef MUSIC_WEBKIT
