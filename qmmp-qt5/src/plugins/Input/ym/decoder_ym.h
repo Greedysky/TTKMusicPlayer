@@ -28,7 +28,7 @@
 #define DECODER_YM_H
 
 #include <qmmp/decoder.h>
-#include "YmMusic.h"
+#include "ym_music.h"
 
 class DecoderYm : public Decoder
 {

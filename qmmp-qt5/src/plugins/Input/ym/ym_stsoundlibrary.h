@@ -38,7 +38,7 @@
 #ifndef __STSOUNDLIBRARY__
 #define __STSOUNDLIBRARY__
 
-#include "YmTypes.h"
+#include "ym_types.h"
 
 typedef	void			YMMUSIC;
 

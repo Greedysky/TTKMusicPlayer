@@ -35,12 +35,12 @@
 *
 -----------------------------------------------------------------------------*/
 
-#include "YmTypes.h"
+#include "ym_types.h"
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include <stdio.h>
-#include "Ym2149Ex.h"
+#include "ym_2149ex.h"
 
 //-------------------------------------------------------------------
 // env shapes.

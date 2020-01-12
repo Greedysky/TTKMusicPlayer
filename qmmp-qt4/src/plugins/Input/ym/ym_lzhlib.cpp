@@ -38,15 +38,12 @@
 -----------------------------------------------------------------------------*/
 
 #include <memory.h>
-#include "YmTypes.h"
-#include "LZH.H"
+#include "ym_types.h"
+#include "ym_lzh.h"
 
 /*
  * Additions
  */
-
-
-
 int		CLzhDepacker::DataIn(void *pBuffer,int nBytes)
 {
     const int np = (nBytes <= m_srcSize) ? nBytes : m_srcSize;

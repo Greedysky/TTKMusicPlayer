@@ -38,11 +38,11 @@
 #ifndef __YMMUSIC__
 #define __YMMUSIC__
 
-#include "YmTypes.h"
-#include "StSoundLibrary.h"
-#include "Ym2149Ex.h"
-#include "YmLoad.h"
-#include "digidrum.h"
+#include "ym_types.h"
+#include "ym_stsoundlibrary.h"
+#include "ym_2149ex.h"
+#include "ym_load.h"
+#include "ym_digidrum.h"
 
 #define	MAX_DIGIDRUM	128
 

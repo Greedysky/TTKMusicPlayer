@@ -45,7 +45,7 @@ OutputALSA::OutputALSA() : m_inited(false)
     m_can_pause = false;
     m_chunk_size = 0;
 #if(SND_LIB_VERSION >= 0x01001B)
-    m_alsa_channels[SND_CHMAP_NA] =   Qmmp::CHAN_nullptr;
+    m_alsa_channels[SND_CHMAP_NA] =   Qmmp::CHAN_NULL;
     m_alsa_channels[SND_CHMAP_MONO] = Qmmp::CHAN_FRONT_CENTER;
     m_alsa_channels[SND_CHMAP_FL]   = Qmmp::CHAN_FRONT_LEFT;
     m_alsa_channels[SND_CHMAP_FR]   = Qmmp::CHAN_FRONT_RIGHT;
@@ -229,7 +229,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
             if(m_alsa_channels.keys().contains(chmap->pos[i]))
                 out_map.append(m_alsa_channels.value(chmap->pos[i]));
             else
-                out_map.append(Qmmp::CHAN_nullptr);
+                out_map.append(Qmmp::CHAN_NULL);
         }
         free(chmap);
     }

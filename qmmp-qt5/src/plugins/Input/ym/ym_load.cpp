@@ -37,8 +37,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "YmMusic.h"
-#include "LZH.H"
+#include "ym_music.h"
+#include "ym_lzh.h"
 
 static	ymu16 ymVolumeTable[16] =
 {	62,161,265,377,580,774,1155,1575,2260,3088,4570,6233,9330,13187,21220,32767};
