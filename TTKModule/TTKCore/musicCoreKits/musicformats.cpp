@@ -10,8 +10,10 @@ QStringList MusicFormats::supportFormatsString()
                         << "amf" << "ams" << "dbm" << "dmf" << "dsm" << "far" << "mdl" << "med" << "mtm"
                         << "okt" << "ptm" << "stm" << "ult" << "umx" << "mt2" << "psm" << "mdz" << "s3z"
                         << "xmz" << "itz" << "mdr" << "s3r" << "xmr" << "itr" << "dgz" << "s3gz" << "xmgz"
-                        << "itgz" << "opus" << "mid" << "*.ofr" << "*.ofs"
+                        << "itgz" << "opus" << "mid" << "*.adl" << "*.hsc" << "*.ksm"
+                        << "*.lds" << "*.ym"
 #ifndef Q_OS_WIN
+                        << "*.ofr" << "*.ofs"
                         << "sid" << "mus" << "str" << "prg" << "P00"
 #endif
                         << "aac";
@@ -33,8 +35,10 @@ MStringListMap MusicFormats::supportFormatsStringMap()
     formats.insert("flac", QStringList() << "flac" << "oga");
     formats.insert("aac", QStringList() << "aac");
     formats.insert("wildmidi", QStringList() << "mid");
-    formats.insert("optimfrog", QStringList() << "*.ofr" << "*.ofs");
+    formats.insert("adplug", QStringList() << "*.adl" << "*.hsc" << "*.ksm" << "*.lds");
+    formats.insert("ym", QStringList() << "*.ym");
 #ifndef Q_OS_WIN
+    formats.insert("optimfrog", QStringList() << "*.ofr" << "*.ofs");
     formats.insert("sid", QStringList() << "sid" << "mus" << "str" << "prg" << "P00");
 #endif
     formats.insert("ffmpeg", QStringList() << "wma" << "ape" << "tta" << "m4a" << "ra" << "shn" << "vqf" << "ac3" << "tak");
@@ -55,8 +59,9 @@ QStringList MusicFormats::supportFormatsFilterString()
                         << "*.amf" << "*.ams" << "*.dbm" << "*.dmf" << "*.dsm" << "*.far" << "*.mdl" << "*.med" << "*.mtm"
                         << "*.okt" << "*.ptm" << "*.stm" << "*.ult" << "*.umx" << "*.mt2" << "*.psm" << "*.mdz" << "*.s3z"
                         << "*.xmz" << "*.itz" << "*.mdr" << "*.s3r" << "*.xmr" << "*.itr" << "*.dgz" << "*.s3gz" << "*.xmgz"
-                        << "*.itgz"
+                        << "*.itgz" << "*.adl" << "*.hsc" << "*.ksm" << "*.lds" << "*.ym"
 #ifndef Q_OS_WIN
+                        << "*.ofr" << "*.ofs"
                         << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00"
 #endif
                         << "*.aac";
@@ -78,9 +83,11 @@ QStringList MusicFormats::supportFormatsFilterDialogString()
                         << "ADTS AAC File(*.aac)"
                         << "MIDI File(*.mid)"
 #ifndef Q_OS_WIN
+                        << "OptimFROG File(*.ofr *.ofs)"
                         << "SID File(*.sid *.mus *.str *.prg *.P00)"
 #endif
-                        << "OptimFROG Files(*.ofr *.ofs)"
+                        << "AdPlug File(*.adl *.hsc *.ksm *.lds)"
+                        << "YM File(*.ym)"
                         << "FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3 *.tak)"
                         << "ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far *.mdl *.med *.mtm "
                            "*.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr "
@@ -105,7 +112,7 @@ QStringList MusicFormats::supportFormatsPlaylistDialogString()
 
 QString MusicFormats::supportFormatsPlaylistString()
 {
-    return QString ("TTKlist File(*.tkpl);;M3U File(*.m3u);;M3U8 File(*.m3u8);;Playlist File(*.pls);;Foobar2k Playlist File(*.fpl);;"
-                    "Windows Playlist File(*.wpl);;XML Shareable Playlist File(*.xspf);;Windows Media Playlist File(*.asx);;"
-                    "CSV Playlist File(*.csv)");
+    return QString("TTKlist File(*.tkpl);;M3U File(*.m3u);;M3U8 File(*.m3u8);;Playlist File(*.pls);;Foobar2k Playlist File(*.fpl);;"
+                   "Windows Playlist File(*.wpl);;XML Shareable Playlist File(*.xspf);;Windows Media Playlist File(*.asx);;"
+                   "CSV Playlist File(*.csv)");
 }

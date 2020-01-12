@@ -81,6 +81,8 @@ TTKMusicPlayer can meet your most demands
  * FLAC File(*.flac *.oga)
  * Monkey's Audio File(*.ape)
  * OptimFrog File(*.ofr *.ofs)
+ * AdPlug Files(*.adl *.hsc *.ksm *.lds)
+ * YM Files(*.ym)
  * FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)
  * ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm 
                 *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r
