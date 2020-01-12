@@ -44,7 +44,7 @@ OutputALSA::OutputALSA() : m_inited(false)
     m_prebuf_fill = 0;
     m_can_pause = false;
     m_chunk_size = 0;
-    m_alsa_channels[SND_CHMAP_NA]   = Qmmp::CHAN_NULL;
+    m_alsa_channels[SND_CHMAP_NA]   = Qmmp::CHAN_nullptr;
     m_alsa_channels[SND_CHMAP_MONO] = Qmmp::CHAN_FRONT_CENTER;
     m_alsa_channels[SND_CHMAP_FL]   = Qmmp::CHAN_FRONT_LEFT;
     m_alsa_channels[SND_CHMAP_FR]   = Qmmp::CHAN_FRONT_RIGHT;
@@ -226,7 +226,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
             if(m_alsa_channels.keys().contains(chmap->pos[i]))
                 out_map.append(m_alsa_channels.value(chmap->pos[i]));
             else
-                out_map.append(Qmmp::CHAN_NULL);
+                out_map.append(Qmmp::CHAN_nullptr);
         }
         free(chmap);
     }
@@ -467,7 +467,7 @@ int VolumeALSA::setupMixer(QString card, QString device)
     if((err = snd_mixer_selem_set_playback_volume_range(pcm_element, 0, 100)) < 0)
     {
         qWarning("OutputALSA: Unable to set volume range: %s", snd_strerror(-err));
-        pcm_element = NULL;
+        pcm_element = nullptr;
         return -1;
     }
 
@@ -498,7 +498,7 @@ void VolumeALSA::parseMixerName(char *str, char **name, int *index)
     while (isspace(*str))
         str++;
 
-    if((end = strchr(str, ',')) != NULL)
+    if((end = strchr(str, ',')) != nullptr)
     {
         *name = strndup(str, end - str);
         end++;
@@ -519,7 +519,7 @@ snd_mixer_elem_t* VolumeALSA::getMixerElem(snd_mixer_t *mixer, char *name, int i
 
     if(index != -1)
         snd_mixer_selem_id_set_index(selem_id, index);
-    if(name != NULL)
+    if(name != nullptr)
         snd_mixer_selem_id_set_name(selem_id, name);
 
     elem = snd_mixer_find_selem(mixer, selem_id);
@@ -535,7 +535,7 @@ int VolumeALSA::getMixer(snd_mixer_t **mixer, QString card)
     {
         qWarning("OutputALSA: Failed to open empty mixer: %s",
                  snd_strerror(-err));
-        mixer = NULL;
+        mixer = nullptr;
         return -1;
     }
 
@@ -557,7 +557,7 @@ int VolumeALSA::getMixer(snd_mixer_t **mixer, QString card)
                  snd_strerror(-err));
         return -1;
     }
-    return (*mixer != NULL);
+    return (*mixer != nullptr);
 }
 
 bool VolumeALSA::hasNotifySignal() const

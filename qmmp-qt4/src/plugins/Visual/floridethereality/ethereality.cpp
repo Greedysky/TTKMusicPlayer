@@ -61,7 +61,7 @@ void Ethereality::initializeGL()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-    srand(time(NULL));
+    srand(time(nullptr));
     for(int i = 0; i < MAX_PARTICLES; i++)
     {
         m_particles[i].active = true;

@@ -77,9 +77,9 @@ struct spek_pipeline * spek_pipeline_open(
     p->cb = cb;
     p->cb_data = cb_data;
 
-    p->coss = NULL;
-    p->input = NULL;
-    p->output = NULL;
+    p->coss = nullptr;
+    p->input = nullptr;
+    p->output = nullptr;
     p->has_reader_thread = false;
     p->has_reader_mutex = false;
     p->has_reader_cond = false;
@@ -113,12 +113,12 @@ void spek_pipeline_start(struct spek_pipeline *p)
     p->worker_done = false;
     p->quit = false;
 
-    p->has_reader_mutex = !pthread_mutex_init(&p->reader_mutex, NULL);
-    p->has_reader_cond = !pthread_cond_init(&p->reader_cond, NULL);
-    p->has_worker_mutex = !pthread_mutex_init(&p->worker_mutex, NULL);
-    p->has_worker_cond = !pthread_cond_init(&p->worker_cond, NULL);
+    p->has_reader_mutex = !pthread_mutex_init(&p->reader_mutex, nullptr);
+    p->has_reader_cond = !pthread_cond_init(&p->reader_cond, nullptr);
+    p->has_worker_mutex = !pthread_mutex_init(&p->worker_mutex, nullptr);
+    p->has_worker_cond = !pthread_cond_init(&p->worker_cond, nullptr);
 
-    p->has_reader_thread = !pthread_create(&p->reader_thread, NULL, &reader_func, p);
+    p->has_reader_thread = !pthread_create(&p->reader_thread, nullptr, &reader_func, p);
     if(!p->has_reader_thread) {
         spek_pipeline_close(p);
     }
@@ -128,7 +128,7 @@ void spek_pipeline_close(struct spek_pipeline *p)
 {
     if(p->has_reader_thread) {
         p->quit = true;
-        pthread_join(p->reader_thread, NULL);
+        pthread_join(p->reader_thread, nullptr);
         p->has_reader_thread = false;
     }
     if(p->has_worker_cond) {
@@ -150,15 +150,15 @@ void spek_pipeline_close(struct spek_pipeline *p)
 
     if(p->output) {
         free(p->output);
-        p->output = NULL;
+        p->output = nullptr;
     }
     if(p->input) {
         free(p->input);
-        p->input = NULL;
+        p->input = nullptr;
     }
     if(p->coss) {
         free(p->coss);
-        p->coss = NULL;
+        p->coss = nullptr;
     }
 
     p->file.reset();
@@ -309,9 +309,9 @@ static void * reader_func(void *pp)
 {
     struct spek_pipeline *p = (spek_pipeline*)pp;
 
-    p->has_worker_thread = !pthread_create(&p->worker_thread, NULL, &worker_func, p);
+    p->has_worker_thread = !pthread_create(&p->worker_thread, nullptr, &worker_func, p);
     if(!p->has_worker_thread) {
-        return NULL;
+        return nullptr;
     }
 
     int pos = 0, prev_pos = 0;
@@ -339,11 +339,11 @@ static void * reader_func(void *pp)
 
     // Force the worker to quit.
     reader_sync(p, -1);
-    pthread_join(p->worker_thread, NULL);
+    pthread_join(p->worker_thread, nullptr);
 
     // Notify the client.
-    p->cb(p->fft->get_output_size(), -1, NULL, p->cb_data);
-    return NULL;
+    p->cb(p->fft->get_output_size(), -1, nullptr, p->cb_data);
+    return nullptr;
 }
 
 static void reader_sync(struct spek_pipeline *p, int pos)
@@ -402,7 +402,7 @@ static void * worker_func(void *pp)
         pthread_mutex_unlock(&p->worker_mutex);
 
         if(tail == -1) {
-            return NULL;
+            return nullptr;
         }
 
         while (true) {

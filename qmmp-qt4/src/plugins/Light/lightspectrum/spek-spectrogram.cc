@@ -36,7 +36,7 @@ LightSpectrum::LightSpectrum(QWidget *parent) :
     Light(parent),
     audio(new Audio()), // TODO: refactor
     fft(new FFT()),
-    pipeline(NULL),
+    pipeline(nullptr),
     streams(0),
     stream(0),
     channels(0),
@@ -255,7 +255,7 @@ void LightSpectrum::stop()
 {
     if(this->pipeline) {
         spek_pipeline_close(this->pipeline);
-        this->pipeline = NULL;
+        this->pipeline = nullptr;
     }
 }
 

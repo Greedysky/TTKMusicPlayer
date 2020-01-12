@@ -235,8 +235,8 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
         qDebug("DecoderCDAudio: reading CDDB...");
         cddb_log_set_handler(cddb_log_handler);
         cddb_conn_t *cddb_conn = cddb_new ();
-        cddb_disc_t *cddb_disc = NULL;
-        cddb_track_t *cddb_track = NULL;
+        cddb_disc_t *cddb_disc = nullptr;
+        cddb_track_t *cddb_track = nullptr;
         lba_t lba;
         if(!cddb_conn)
             qWarning ("DecoderCDAudio: unable to create cddb connection");

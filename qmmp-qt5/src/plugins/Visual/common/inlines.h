@@ -19,7 +19,7 @@
 // *fast* convenience functions
 static inline void calc_freq(short* dest, float *src)
 {
-    static fft_state *state = NULL;
+    static fft_state *state = nullptr;
     float tmp_out[257];
     int i;
 

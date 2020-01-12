@@ -31,7 +31,7 @@
 #define MAX_WAVEBLOCKS    256
 
 static CRITICAL_SECTION  cs;
-static HWAVEOUT          dev                    = NULL;
+static HWAVEOUT          dev                    = nullptr;
 static unsigned int      ScheduledBlocks        = 0;
 static int               PlayedWaveHeadersCount = 0;          // free index
 static WAVEHDR*          PlayedWaveHeaders [MAX_WAVEBLOCKS];
@@ -165,7 +165,7 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
         return 0;
     }
 
-    if((hg2 = GlobalAlloc (GMEM_MOVEABLE, len)) == NULL)   // allocate some memory for a copy of the buffer
+    if((hg2 = GlobalAlloc (GMEM_MOVEABLE, len)) == nullptr)   // allocate some memory for a copy of the buffer
     {
         qWarning("OutputWaveOut: GlobalAlloc failed");
         return 0;
@@ -174,7 +174,7 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
     allocptr = GlobalLock (hg2);
     CopyMemory (allocptr, data, len);                         // Here we can call any modification output functions we want....
 
-    if((hg = GlobalAlloc (GMEM_MOVEABLE | GMEM_ZEROINIT, sizeof (WAVEHDR))) == NULL) // now make a header and WRITE IT!
+    if((hg = GlobalAlloc (GMEM_MOVEABLE | GMEM_ZEROINIT, sizeof (WAVEHDR))) == nullptr) // now make a header and WRITE IT!
         return -1;
 
     wh                   = (wavehdr_tag*)GlobalLock (hg);

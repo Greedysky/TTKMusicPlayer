@@ -79,7 +79,7 @@ bool DecoderWavPack::initialize()
             qWarning("DecoderWavPack: error: %s", err);
             return false;
         }
-        int cue_len = WavpackGetTagItem (m_context, "cuesheet", NULL, 0);
+        int cue_len = WavpackGetTagItem (m_context, "cuesheet", nullptr, 0);
         char *value;
         if(cue_len)
         {

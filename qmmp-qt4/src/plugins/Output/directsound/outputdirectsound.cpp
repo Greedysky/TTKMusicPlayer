@@ -86,9 +86,9 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     bufferDesc.dwSize        = sizeof(DSBUFFERDESC);
     bufferDesc.dwFlags       = DSBCAPS_PRIMARYBUFFER | DSBCAPS_CTRLVOLUME | DSBCAPS_LOCHARDWARE;
     bufferDesc.dwBufferBytes = 0;
-    bufferDesc.lpwfxFormat   = NULL;
+    bufferDesc.lpwfxFormat   = nullptr;
 
-    if((result = m_ds->CreateSoundBuffer(&bufferDesc, &m_primaryBuffer, NULL)) != DS_OK)
+    if((result = m_ds->CreateSoundBuffer(&bufferDesc, &m_primaryBuffer, nullptr)) != DS_OK)
     {
         m_primaryBuffer = 0;
         qWarning("OutputDirectSound: CreateSoundBuffer failed, error code = 0x%lx", result);
@@ -163,7 +163,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     bufferDesc.dwBufferBytes = DS_BUFSIZE; // buffer size
 
     IDirectSoundBuffer *pDSB;
-    if((result = m_ds->CreateSoundBuffer(&bufferDesc, &pDSB, NULL)) != DS_OK)
+    if((result = m_ds->CreateSoundBuffer(&bufferDesc, &pDSB, nullptr)) != DS_OK)
     {
         qWarning("OutputDirectSound: CreateSoundBuffer failed, error code = 0x%lx", result);
         return false;

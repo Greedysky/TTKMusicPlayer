@@ -94,7 +94,7 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
 
     if(parts & TrackInfo::MetaData)
     {
-        int cue_len = WavpackGetTagItem (ctx, "cuesheet", NULL, 0);
+        int cue_len = WavpackGetTagItem (ctx, "cuesheet", nullptr, 0);
         if(cue_len > 0)
         {
             delete info;

@@ -102,7 +102,7 @@ bool DecoderVorbis::initialize()
         oggclose,
         oggtell
     };
-    if(ov_open_callbacks(this, &oggfile, NULL, 0, oggcb) < 0)
+    if(ov_open_callbacks(this, &oggfile, nullptr, 0, oggcb) < 0)
     {
         qWarning("DecoderVorbis: cannot open stream");
 

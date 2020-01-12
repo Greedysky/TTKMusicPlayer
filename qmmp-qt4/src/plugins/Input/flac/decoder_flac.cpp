@@ -266,7 +266,7 @@ DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
 {
     m_path = path;
     m_data = new flac_data;
-    m_data->decoder = NULL;
+    m_data->decoder = nullptr;
     m_data->input = i;
     m_parser = 0;
     length_in_bytes = 0;

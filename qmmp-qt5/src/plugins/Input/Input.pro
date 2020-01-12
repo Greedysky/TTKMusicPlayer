@@ -51,6 +51,10 @@ contains(CONFIG, ADPLUG_PLUGIN){
     SUBDIRS += adplug
 }
 
+contains(CONFIG, YM_PLUGIN){
+    SUBDIRS += ym
+}
+
 unix:!android{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio

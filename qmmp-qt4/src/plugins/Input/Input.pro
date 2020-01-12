@@ -15,8 +15,14 @@ contains(CONFIG, MUSEPACK_PLUGIN){
     SUBDIRS += mpc
 }
 
-contains(CONFIG, FFAP_PLUGIN){
-    SUBDIRS += ffap
+!android{
+    contains(CONFIG, FFAP_PLUGIN){
+        SUBDIRS += ffap
+    }
+
+    contains(CONFIG, XMP_PLUGIN){
+        SUBDIRS += xmp
+    }
 }
 
 contains(CONFIG, FFMPEG_PLUGIN){
@@ -27,16 +33,14 @@ contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme
 }
 
-contains(CONFIG, XMP_PLUGIN){
-    SUBDIRS += xmp
+!android{
+    contains(CONFIG, WILDMIDI_PLUGIN){
+        SUBDIRS += wildmidi
+    }
 }
 
 contains(CONFIG, OPUS_PLUGIN){
     SUBDIRS += opus
-}
-
-contains(CONFIG, WILDMIDI_PLUGIN){
-    SUBDIRS += wildmidi
 }
 
 contains(CONFIG, AAC_PLUGIN){
@@ -47,7 +51,11 @@ contains(CONFIG, ADPLUG_PLUGIN){
     SUBDIRS += adplug
 }
 
-unix:{
+contains(CONFIG, YM_PLUGIN){
+    SUBDIRS += ym
+}
+
+unix:!android{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio
     }
