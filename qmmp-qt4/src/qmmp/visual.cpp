@@ -191,20 +191,9 @@ void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
     m_receiver = receiver;
     m_member = member;
     m_parentWidget = parent;
-    foreach(VisualFactory* factory, factories())
-    {
-        if(isEnabled(factory))
-        {
-            Visual* visual = factory->create(parent);
-            if(m_receiver && m_member)
-                connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
-            visual->setWindowFlags(visual->windowFlags() | Qt::Window);
-            qDebug("Visual: added visualization: %s", qPrintable(factory->properties().name));
-            m_vis_map.insert (factory, visual);
-            m_visuals.append(visual);
-//            visual->show();
-        }
-    }
+
+    QSettings settings ( Qmmp::configFile(), QSettings::IniFormat );
+    settings.setValue("Visualization/enabled_plugins", QStringList());
 }
 
 QList<Visual*>* Visual::visuals()
