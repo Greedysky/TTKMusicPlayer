@@ -9,14 +9,14 @@ SOURCES += decoder_sid.cpp \
            sidhelper.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/sid
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libsid.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
 
 unix {
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libsid.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp
+    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {

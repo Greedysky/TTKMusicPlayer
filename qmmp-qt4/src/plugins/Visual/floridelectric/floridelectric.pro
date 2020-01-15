@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/floridelectric
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridelectric.so
+TARGET = $$PLUGINS_PREFIX/Visual/floridelectric
 
 include(../common/common.pri)
 
@@ -17,6 +16,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridelectric.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

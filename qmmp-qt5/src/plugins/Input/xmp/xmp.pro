@@ -9,14 +9,14 @@ SOURCES += decoder_xmp.cpp \
            xmpmetadatamodel.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/xmp
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libxmp.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
 
 unix:{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libxmp.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp
+    LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX
 }
 
 win32:{

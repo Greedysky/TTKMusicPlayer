@@ -8,8 +8,7 @@ SOURCES += outputwaveoutfactory.cpp \
 
 HEADERS += ../../../../src/qmmp/output.h
 
-TARGET=$$PLUGINS_PREFIX/Output/waveout
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Output/libwaveout.so
+TARGET = $$PLUGINS_PREFIX/Output/waveout
 
 LIBS += -lwinmm
 

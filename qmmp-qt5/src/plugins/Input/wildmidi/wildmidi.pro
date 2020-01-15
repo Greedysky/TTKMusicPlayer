@@ -9,14 +9,14 @@ SOURCES += decoder_wildmidi.cpp \
            wildmidihelper.cpp
     
 TARGET = $$PLUGINS_PREFIX/Input/wildmidi
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libwildmidi.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libwildmidi/include
 
 unix:{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libwildmidi.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib/x86_64-linux-gnu -lWildMidi
+    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib/x86_64-linux-gnu -lWildMidi$$STATIC_LIBRARY_SUFFIX
 }
 
 win32:{

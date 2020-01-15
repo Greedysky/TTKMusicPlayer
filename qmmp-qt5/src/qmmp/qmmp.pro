@@ -160,7 +160,7 @@ unix {
         INCLUDEPATH += ../../../extra/android/libtaglib/include
         LIBS += -L../../../extra/android/libtaglib/lib -ltag
     }else{
-        LIBS += -L../../../extra/gcc/libtaglib/lib -ltag
+        LIBS += -L../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
     }
     CONFIG += create_pc create_prl no_install_prl
     QMAKE_PKGCONFIG_NAME = qmmp

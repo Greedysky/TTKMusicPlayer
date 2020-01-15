@@ -6,8 +6,8 @@ HEADERS += outputalsa.h \
 SOURCES += outputalsa.cpp \
            outputalsafactory.cpp  \
 
-TARGET=$$PLUGINS_PREFIX/Output/alsa
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Output/libalsa.so
+TARGET = $$PLUGINS_PREFIX/Output/alsa
+QMAKE_CLEAN = $$PLUGINS_PREFIX/Output/libalsa.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libalsa/include
 

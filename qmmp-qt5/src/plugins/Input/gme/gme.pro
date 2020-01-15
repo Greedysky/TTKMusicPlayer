@@ -9,21 +9,20 @@ SOURCES += decoder_gme.cpp \
            gmehelper.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/gme
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libgme.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libgme/include
 
 unix{
     unix:android {
         TARGET = $$PLUGINS_PREFIX/../plugin_input_gme
-        QMAKE_CLEAN =$$PLUGINS_PREFIX/../libplugin_input_gme.so
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_gme.so
         target.path = $$LIB_DIR
     }else{
-
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libgme.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme
+    LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {

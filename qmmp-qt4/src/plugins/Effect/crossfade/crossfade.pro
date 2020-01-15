@@ -8,12 +8,12 @@ SOURCES += crossfadeplugin.cpp \
            effectcrossfadefactory.cpp \
            settingsdialog.cpp
 
-TARGET =$$PLUGINS_PREFIX/Effect/crossfade
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Effect/libcrossfade.so
+TARGET = $$PLUGINS_PREFIX/Effect/crossfade
 
 FORMS += settingsdialog.ui
 
 unix {
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libcrossfade.so
     target.path = $$LIB_DIR/qmmp/Effect
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

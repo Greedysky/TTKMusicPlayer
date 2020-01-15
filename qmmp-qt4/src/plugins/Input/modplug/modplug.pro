@@ -11,7 +11,6 @@ SOURCES += decoder_modplug.cpp \
            modplugmetadatamodel.cpp
     
 TARGET = $$PLUGINS_PREFIX/Input/modplug
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libmodplug.so
 
 DEFINES += HAVE_STDINT_H \
            HAVE_INTTYPES_H
@@ -21,13 +20,14 @@ INCLUDEPATH += $$EXTRA_PREFIX/libmodplug/include
 unix {
     unix:android {
         TARGET = $$PLUGINS_PREFIX/../plugin_input_modplug
-        QMAKE_CLEAN =$$PLUGINS_PREFIX/../libplugin_input_modplug.so
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_modplug.so
         target.path = $$LIB_DIR
     }else{
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libmodplug.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libmodplug/lib -lmodplug
+    LIBS += -L$$EXTRA_PREFIX/libmodplug/lib -lmodplug$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {

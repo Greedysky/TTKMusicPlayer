@@ -18,4 +18,9 @@ SOURCES += decoder_ym.cpp \
            ym_music.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/ym
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libym.so
+
+unix:{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libym.so
+    target.path = $$LIB_DIR/qmmp/Input
+    INSTALLS += target
+}

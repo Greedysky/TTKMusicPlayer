@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/normalline
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libnormalline.so
+TARGET = $$PLUGINS_PREFIX/Visual/normalline
 
 include(../common/common.pri)
 
@@ -17,6 +16,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libnormalline.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

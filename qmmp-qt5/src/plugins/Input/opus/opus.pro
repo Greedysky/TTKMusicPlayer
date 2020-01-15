@@ -9,7 +9,6 @@ SOURCES += decoder_opus.cpp \
            opusmetadatamodel.cpp
     
 TARGET = $$PLUGINS_PREFIX/Input/opus
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libopus.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
                $$EXTRA_PREFIX/libogg/include \
@@ -18,15 +17,16 @@ INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
 unix {
     unix:android {
         TARGET = $$PLUGINS_PREFIX/../plugin_input_opus
-        QMAKE_CLEAN =$$PLUGINS_PREFIX/../libplugin_input_opus.so
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_opus.so
         target.path = $$LIB_DIR
     }else{
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libopus.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile -lopus \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
-            -L$$EXTRA_PREFIX/libogg/lib -logg
+    LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile$$STATIC_LIBRARY_SUFFIX -lopus$$STATIC_LIBRARY_SUFFIX \
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
+            -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {

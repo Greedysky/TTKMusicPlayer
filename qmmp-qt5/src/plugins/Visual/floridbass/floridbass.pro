@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/floridbass
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridbass.so
+TARGET = $$PLUGINS_PREFIX/Visual/floridbass
 
 include(../common/common.pri)
 
@@ -17,6 +16,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridbass.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

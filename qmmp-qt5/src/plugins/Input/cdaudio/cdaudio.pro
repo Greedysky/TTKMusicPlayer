@@ -11,12 +11,12 @@ INCLUDEPATH += $$EXTRA_PREFIX/libcddb/include \
                $$EXTRA_PREFIX/libcdio_paranoia/include
 
 
-TARGET =$$PLUGINS_PREFIX/Input/cdaudio
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libcdaudio.so
+TARGET = $$PLUGINS_PREFIX/Input/cdaudio
 
 unix {
-    LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio \
-            -L$$EXTRA_PREFIX/libcdio_paranoia/lib -lcdio_paranoia -lcdio_cdda
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libcdaudio.so
+    LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio$$STATIC_LIBRARY_SUFFIX \
+            -L$$EXTRA_PREFIX/libcdio_paranoia/lib -lcdio_paranoia$$STATIC_LIBRARY_SUFFIX -lcdio_cdda$$STATIC_LIBRARY_SUFFIX
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
 }

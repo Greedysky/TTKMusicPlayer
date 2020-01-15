@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/plusvolumewave
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libplusvolumewave.so
+TARGET = $$PLUGINS_PREFIX/Visual/plusvolumewave
 
 include(../common/common.pri)
 
@@ -17,6 +16,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libplusvolumewave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

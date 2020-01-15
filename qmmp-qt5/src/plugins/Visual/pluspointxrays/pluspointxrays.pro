@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/pluspointxrays
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libpluspointxrays.so
+TARGET = $$PLUGINS_PREFIX/Visual/pluspointxrays
 
 include(../common/common.pri)
 
@@ -17,6 +16,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libpluspointxrays.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

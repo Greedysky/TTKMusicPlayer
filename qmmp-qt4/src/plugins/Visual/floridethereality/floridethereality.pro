@@ -1,8 +1,7 @@
 include(../../plugins.pri)
 
 QT += opengl
-TARGET=$$PLUGINS_PREFIX/Visual/floridethereality
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridethereality.so
+TARGET = $$PLUGINS_PREFIX/Visual/floridethereality
 
 include(../common/common.pri)
 
@@ -23,6 +22,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridethereality.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include -lGLU

@@ -11,7 +11,6 @@ SOURCES += decoder_flac.cpp \
            flacmetadatamodel.cpp
     
 TARGET = $$PLUGINS_PREFIX/Input/flac
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libflac.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libflac/include
@@ -19,15 +18,16 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
 unix {
     unix:android {
         TARGET = $$PLUGINS_PREFIX/../plugin_input_flac
-        QMAKE_CLEAN =$$PLUGINS_PREFIX/../libplugin_input_flac.so
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_flac.so
         target.path = $$LIB_DIR
     }else{
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libflac.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libflac/lib -lFLAC \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
-            -L$$EXTRA_PREFIX/libogg/lib -logg
+    LIBS += -L$$EXTRA_PREFIX/libflac/lib -lFLAC$$STATIC_LIBRARY_SUFFIX \
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
+            -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {

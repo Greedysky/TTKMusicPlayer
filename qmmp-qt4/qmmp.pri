@@ -15,6 +15,7 @@ RCC_DIR=./.build/rcc
 
 DEFINES += QT_NO_CAST_FROM_BYTEARRAY QT_STRICT_ITERATORS
 QMAKE_CXXFLAGS += -std=c++11
+CONFIG += c++11
 DEFINES += QMMP_LIBRARY
 #Configuration
 
@@ -23,7 +24,8 @@ CONFIG += hide_symbols
 #Version
 
 TTKMusicPlayer = 2.10.0.0
-QMMP_VERSION = 0.12.5
+QMMP_VERSION = 0.12.6
+CONFIG += USE_STATIC_LIBRARY
 
 #Comment/uncomment this if you want to change plugins list
 
@@ -55,3 +57,9 @@ CONFIG += WITH_MAD
 CONFIG += WITH_ENCA
 
 CONFIG -= $$DISABLED_PLUGINS
+
+contains(CONFIG, USE_STATIC_LIBRARY){
+    STATIC_LIBRARY_SUFFIX = _static
+}else{
+    STATIC_LIBRARY_SUFFIX =
+}

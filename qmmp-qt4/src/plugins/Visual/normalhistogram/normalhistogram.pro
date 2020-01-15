@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/normalhistogram
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libnormalhistogram.so
+TARGET = $$PLUGINS_PREFIX/Visual/normalhistogram
 
 include(../common/common.pri)
 
@@ -17,7 +16,7 @@ win32:{
 }
 
 unix{
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libnormalhistogram.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

@@ -11,16 +11,16 @@ SOURCES += decoder_ffmpeg.cpp \
            replaygainreader.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/ffmpeg
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libffmpeg.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 
 unix {
     unix:android {
         TARGET = $$PLUGINS_PREFIX/../plugin_input_ffmpeg
-        QMAKE_CLEAN =$$PLUGINS_PREFIX/../libplugin_input_ffmpeg.so
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_ffmpeg.so
         target.path = $$LIB_DIR
     }else{
+        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libffmpeg.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target

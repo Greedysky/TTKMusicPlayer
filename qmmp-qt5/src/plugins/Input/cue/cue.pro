@@ -11,20 +11,20 @@ SOURCES += decoder_cue.cpp \
            cuemetadatamodel.cpp
     
 TARGET = $$PLUGINS_PREFIX/Input/cue
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libcue.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libenca/include
 
 unix{
    unix:android {
        TARGET = $$PLUGINS_PREFIX/../plugin_input_cue
-       QMAKE_CLEAN =$$PLUGINS_PREFIX/../libplugin_input_cue.so
+       QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_cue.so
        target.path = $$LIB_DIR
    }else{
+       QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libcue.so
        target.path = $$LIB_DIR/qmmp/Input
    }
    INSTALLS += target
-   LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca
+   LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
 }
 
 win32{

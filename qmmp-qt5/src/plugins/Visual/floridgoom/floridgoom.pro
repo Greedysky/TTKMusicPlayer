@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/floridgoom
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfloridgoom.so
+TARGET = $$PLUGINS_PREFIX/Visual/floridgoom
 
 HEADERS += goomwidget.h \
            visualfloridgoomfactory.h \
@@ -87,6 +86,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridgoom.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

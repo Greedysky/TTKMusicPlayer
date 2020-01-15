@@ -155,7 +155,7 @@ win32:{
 }
 
 unix {
-    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag
+    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
     CONFIG += create_pc create_prl no_install_prl
     QMAKE_PKGCONFIG_NAME = qmmp
     QMAKE_PKGCONFIG_DESCRIPTION = qmmp core library

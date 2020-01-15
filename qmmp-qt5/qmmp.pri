@@ -23,13 +23,15 @@ CONFIG -= depend_includepath
 CONFIG += hide_symbols
 CONFIG += c++11
 QT += widgets
+QMAKE_CXXFLAGS += -std=c++11
 DEFINES += QMMP_LIBRARY
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050400
 
 #Version
 
 TTKMusicPlayer = 2.10.0.0
-QMMP_VERSION = 1.3.5
+QMMP_VERSION = 1.3.6
+CONFIG += USE_STATIC_LIBRARY
 
 #Comment/uncomment this if you want to change plugins list
 
@@ -61,3 +63,9 @@ CONFIG += WITH_MAD
 CONFIG += WITH_ENCA
 
 CONFIG -= $$DISABLED_PLUGINS
+
+contains(CONFIG, USE_STATIC_LIBRARY){
+    STATIC_LIBRARY_SUFFIX = _static
+}else{
+    STATIC_LIBRARY_SUFFIX =
+}

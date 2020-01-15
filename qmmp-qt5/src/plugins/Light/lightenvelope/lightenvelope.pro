@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Light/lightenvelope
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Light/liblightenvelopek.so
+TARGET = $$PLUGINS_PREFIX/Light/lightenvelope
 
 include(../../Visual/common/common.pri)
 
@@ -18,6 +17,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Light/liblightenvelope.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

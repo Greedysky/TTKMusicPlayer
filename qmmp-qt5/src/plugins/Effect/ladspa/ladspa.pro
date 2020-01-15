@@ -16,7 +16,7 @@ SOURCES += ladspahost.cpp \
            ladspabutton.cpp
     
 TARGET = $$PLUGINS_PREFIX/Effect/ladspa
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libladspa.so
+
 FORMS += settingsdialog.ui
 
 LIBS += -L/usr/lib \
@@ -26,4 +26,4 @@ linux-g++|linux-g++-32|linux-g++-64:LIBS += -ldl
 
 target.path = $$LIB_DIR/qmmp/Effect
 INSTALLS += target
-
+QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libladspa.so

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -350,6 +350,7 @@ void QmmpAudioEngine::run()
     m_trackInfo.clear();
     qint64 len = 0;
     int delay = 0;
+    QString nextURL;
     if(m_decoders.isEmpty())
     {
          mutex()->unlock ();
@@ -386,7 +387,8 @@ void QmmpAudioEngine::run()
         if(m_decoder->hasMetaData())
         {
             QMap<Qmmp::MetaData, QString> m = m_decoder->takeMetaData();
-            TrackInfo info(m_inputs[m_decoder]->path());
+            TrackInfo info(nextURL.isEmpty() ? m_inputs[m_decoder]->path() : nextURL);
+            nextURL.clear();
             info.setValues(m);
             info.setValues(m_decoder->properties());
             info.setValues(m_decoder->replayGainInfo());
@@ -433,6 +435,7 @@ void QmmpAudioEngine::run()
                 StateHandler::instance()->sendFinished();
                 StateHandler::instance()->dispatch(Qmmp::Stopped); //fake stop/start cycle
                 StateHandler::instance()->dispatch(Qmmp::Buffering);
+                nextURL = m_decoder->nextURL();
                 m_decoder->next();
                 StateHandler::instance()->dispatch(m_decoder->totalTime());
                 m_replayGain->setReplayGainInfo(m_decoder->replayGainInfo());

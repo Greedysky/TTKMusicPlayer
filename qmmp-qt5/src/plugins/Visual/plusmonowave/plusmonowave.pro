@@ -1,7 +1,6 @@
 include(../../plugins.pri)
 
-TARGET=$$PLUGINS_PREFIX/Visual/plusmonowave
-QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libplusmonowave.so
+TARGET = $$PLUGINS_PREFIX/Visual/plusmonowave
 
 include(../common/common.pri)
 
@@ -17,6 +16,7 @@ win32:{
 }
 
 unix{
+    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libplusmonowave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }
