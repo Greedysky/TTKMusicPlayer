@@ -105,7 +105,7 @@ QList<MetaDataItem> ModPlugMetaDataModel::descriptions() const
     char message[MAX_MESSAGE_LENGTH];
     int length = m_soundFile->GetSongComments(message, MAX_MESSAGE_LENGTH, 80);
     if(length != 0)
-        desc << MetaDataItem(tr("Comment"), QString::fromUtf8(message).trimmed ());
+        desc << MetaDataItem(tr("Comment"), QString::fromUtf8(message).trimmed());
     return desc;
 }
 

@@ -35,8 +35,8 @@
 -----------------------------------------------------------------------------*/
 
 
-#ifndef __YMMUSIC__
-#define __YMMUSIC__
+#ifndef YM_MUSIC_H
+#define YM_MUSIC_H
 
 #include "ym_types.h"
 #include "ym_stsoundlibrary.h"

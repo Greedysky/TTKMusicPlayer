@@ -36,8 +36,8 @@
 *
 -----------------------------------------------------------------------------*/
 
-#ifndef __YMTYPES__
-#define __YMTYPES__
+#ifndef YM_TYPES_H
+#define YM_TYPES_H
 
 #ifdef _MSC_VER
 

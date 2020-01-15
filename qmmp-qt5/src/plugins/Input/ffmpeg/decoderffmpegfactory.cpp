@@ -202,19 +202,19 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
             track = av_dict_get(in->metadata,"WM/TrackNumber", nullptr, 0);
 
         if(album)
-            info->setValue(Qmmp::ALBUM, QString::fromUtf8(album->value));
+            info->setValue(Qmmp::ALBUM, QString::fromUtf8(album->value).trimmed());
         if(album_artist)
             info->setValue(Qmmp::ALBUMARTIST, QString::fromUtf8(album_artist->value).trimmed());
         if(artist)
-            info->setValue(Qmmp::ARTIST, QString::fromUtf8(artist->value));
+            info->setValue(Qmmp::ARTIST, QString::fromUtf8(artist->value).trimmed());
         if(composer)
             info->setValue(Qmmp::COMPOSER, QString::fromUtf8(composer->value).trimmed());
         if(comment)
-            info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment->value));
+            info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment->value).trimmed());
         if(genre)
-            info->setValue(Qmmp::GENRE, QString::fromUtf8(genre->value));
+            info->setValue(Qmmp::GENRE, QString::fromUtf8(genre->value).trimmed());
         if(title)
-            info->setValue(Qmmp::TITLE, QString::fromUtf8(title->value));
+            info->setValue(Qmmp::TITLE, QString::fromUtf8(title->value).trimmed());
         if(year)
             info->setValue(Qmmp::YEAR, year->value);
         if(track)

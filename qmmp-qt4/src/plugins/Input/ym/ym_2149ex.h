@@ -36,8 +36,8 @@
 -----------------------------------------------------------------------------*/
 
 
-#ifndef __YM2149EX__
-#define __YM2149EX__
+#ifndef YM_2149EX_H
+#define YM_2149EX_H
 
 #define	AMSTRAD_CLOCK	1000000L
 #define	ATARI_CLOCK		2000000L

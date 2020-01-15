@@ -34,8 +34,8 @@
 *
 -----------------------------------------------------------------------------*/
 
-#ifndef __YMLOAD__
-#define	__YMLOAD__
+#ifndef YM_LOAD_H
+#define	YM_LOAD_H
 
 #ifdef __cplusplus
 extern "C" {

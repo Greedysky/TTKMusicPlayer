@@ -38,8 +38,8 @@
 -----------------------------------------------------------------------------*/
 
 
-#ifndef LZH_H
-#define LZH_H
+#ifndef YM_LZH_H
+#define YM_LZH_H
 
 
 #define BUFSIZE (1024 * 4)
@@ -141,4 +141,4 @@ private:
 };
 
 
-#endif /* ifndef LZH_H */
+#endif

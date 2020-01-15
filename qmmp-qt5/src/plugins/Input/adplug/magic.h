@@ -18,8 +18,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef QMMP_ADPLUG_MAGIC_H
-#define QMMP_ADPLUG_MAGIC_H
+#ifndef ADPLUG_MAGIC_H
+#define ADPLUG_MAGIC_H
 
 #include <cstddef>
 #include <exception>

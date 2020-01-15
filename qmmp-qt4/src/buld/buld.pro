@@ -16,7 +16,7 @@ win32:{
 unix:{
     TARGET = ../../lib/$$TTKMusicPlayer/app
     LIBS += -L../../lib/$$TTKMusicPlayer -lqmmp
-    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag
+    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 TEMPLATE = app
 

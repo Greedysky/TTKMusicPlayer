@@ -35,8 +35,8 @@
 *
 -----------------------------------------------------------------------------*/
 
-#ifndef __DIGIDRUM__
-#define __DIGIDRUM__
+#ifndef YM_DIGIDRUM_H
+#define YM_DIGIDRUM_H
 
 extern ymu8		*	sampleAdress[];
 extern ymu32		sampleLen[];
