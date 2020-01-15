@@ -53,43 +53,17 @@ public:
     virtual void setSettingParameter() override;
 
     /*!
-     * Set lrc analysis model.
-     */
-    void setLrcAnalysisModel(MusicLrcAnalysis *analysis);
-    /*!
-     * Update current lrc by given time.
-     */
-    void updateCurrentLrc(qint64 time);
-    /*!
-     * Update current lrc by given text.
-     */
-    void updateCurrentLrc(const QString &text);
-
-public Q_SLOTS:
-    /*!
-     * Change current lrc linear color.
-     */
-    void changeCurrentLrcColor();
-
-private Q_SLOTS:
-    /*!
-     * Animation finished.
-     */
-    void updateAnimationLrc();
-
-protected:
-    /*!
      * Init current lrc when the first show.
      */
-    void initCurrentLrc(const QString &str);
+    virtual void initCurrentLrc() const;
     /*!
-     * Set per lrc line style sheet by index and size and transparent.
+     * Update current lrc by first and second and time.
      */
-    void setItemStyleSheet(int index, int size, int transparent);
+    void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
 
-    int m_animationFreshTime;
-    MusicVLayoutAnimationWidget *m_layoutWidget;
-    MusicTransitionAnimationLabel *m_background;
+protected:
+    bool m_reverse;
+    QPoint m_offset, m_geometry;
 
 };
 
