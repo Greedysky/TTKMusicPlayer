@@ -63,6 +63,15 @@ public:
      */
     inline const QVariantMap &getRawData() const { return m_rawData; }
 
+    /*!
+     * Set the current raw data.
+     */
+    inline void setHeader(const QString &key, const QVariant &value) { m_headerData[key] = value; }
+    /*!
+     * Get the current raw data.
+     */
+    inline const QVariant getHeader(const QString &key) const { return m_headerData[key]; }
+
 Q_SIGNALS:
     /*!
      * Send raw data changed.
@@ -96,6 +105,7 @@ public Q_SLOTS:
 
 protected:
     QVariantMap m_rawData;
+    QVariantMap m_headerData;
     MusicObject::NetworkCode m_stateCode;
     volatile bool m_interrupt;
     QNetworkReply *m_reply;

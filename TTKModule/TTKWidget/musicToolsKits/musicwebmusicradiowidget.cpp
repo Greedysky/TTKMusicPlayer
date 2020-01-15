@@ -7,6 +7,8 @@
 #include "musicwindowsmanager.h"
 #include "musicotherdefine.h"
 #include "musicwidgetheaders.h"
+#include "musicitemdelegate.h"
+#include "musiccoreutils.h"
 
 #ifdef TTK_GREATER_NEW
 #include <QStandardPaths>
@@ -126,6 +128,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
         setRowHeight(index, ITEM_ROW_HEIGHT_XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
+        item->setData(MUSIC_DATAS_ROLE, channel.m_coverUrl);
         setItem(index, 0, item);
 
                           item = new QTableWidgetItem;
@@ -147,16 +150,6 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
 
                           item = new QTableWidgetItem;
         setItem(index, 3, item);
-
-        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-        connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
-        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != COVER_URL_NULL)
-        {
-            QVariantMap map;
-            map["id"] = index;
-            download->setRawData(map);
-            download->startToDownload(channel.m_coverUrl);
-        }
     }
 
     //radio outer flag
@@ -165,17 +158,47 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
         selectRow(m_outerIndex);
         itemCellDoubleClicked(m_outerIndex, DEFAULT_LEVEL_LOWER);
     }
+
+    QVariantMap map;
+    map["id"] = -1;
+    downLoadFinished(QByteArray(), map);
 }
 
 void MusicWebMusicRadioWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
 {
-    QTableWidgetItem *it = item(ext["id"].toInt(), 1);
-    if(it)
+    int index = ext["id"].toInt();
+    QString url;
+
+    QTableWidgetItem *icon = item(index, 1);
+    if(icon)
     {
         QPixmap pix;
         pix.loadFromData(data);
-        it->setIcon(MusicUtils::Widget::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+        icon->setIcon(MusicUtils::Widget::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
     }
+
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 0);
+        if(it && index + 1 == i)
+        {
+            index = i;
+            url = it->data(MUSIC_DATAS_ROLE).toString();
+            break;
+        }
+    }
+
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
+    if(!url.isEmpty() && url != COVER_URL_NULL)
+    {
+        QVariantMap map;
+        map["id"] = index;
+        download->setRawData(map);
+        download->startToDownload(url);
+    }
+
+    MusicUtils::Core::sleep(100);
 }
 
 void MusicWebMusicRadioWidget::musicPlayClicked()
