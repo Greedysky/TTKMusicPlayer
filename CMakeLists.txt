@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DTTK_LIBRARY)
 
-set(TTK_MAJOR_VERSION "2.10.0")
+set(TTK_MAJOR_VERSION "2.11.0")
 set(TTK_VERSION ${TTK_MAJOR_VERSION}.0)
 
 # Find includes in the build directories

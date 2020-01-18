@@ -50,6 +50,10 @@
  *
  *  OptimFrog File(*.ofr *.ofs)
  *
+ *  AdPlug Files(*.adl *.hsc *.ksm *.lds)
+ *
+ *  YM Files(*.ym)
+ *
  *  FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)
  *
  *  ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
@@ -108,17 +112,17 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-//update time 2019.11.30
-#define TTKMUSIC_VERSION_STR    "2.10.0.0"
-#define TTKMUSIC_VERSION_WSTR   L"2.10.0.0"
-#define TTKMUSIC_VER_TIME_STR   "(2019/11/30)"
+//update time 2020.01.18
+#define TTKMUSIC_VERSION_STR    "2.11.0.0"
+#define TTKMUSIC_VERSION_WSTR   L"2.11.0.0"
+#define TTKMUSIC_VER_TIME_STR   "(2020/01/18)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
-#define TTKMUSIC_MIDLE_VERSION 10
+#define TTKMUSIC_MIDLE_VERSION 1
 #define TTKMUSIC_MINOR_VERSION 0
 #define TTKMUSIC_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x02A00
+#define TTKMUSIC_VERSION 0x02B00
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
