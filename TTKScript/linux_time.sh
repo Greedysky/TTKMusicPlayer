@@ -1,2 +1,2 @@
 #!/bin/sh  
-find . -exec touch -c -m -t 202001188654 {} \;
+find . -exec touch -c -m -d "2020-01-18 14:56" {} \;

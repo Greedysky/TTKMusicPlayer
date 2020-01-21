@@ -21,12 +21,11 @@
 
 #include <QObject>
 
-/*! @brief The namespace of the left item list style
+/*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUIObject
 {
-//left item list style
     const QString MKGItemMusic = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_music_normal); } \
