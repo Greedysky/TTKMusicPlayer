@@ -41,7 +41,7 @@ Visual::Visual(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f)
 
 Visual::~Visual()
 {
-    qDebug("Visual::~Visual()");
+
 }
 
 void Visual::closeEvent (QCloseEvent *event)

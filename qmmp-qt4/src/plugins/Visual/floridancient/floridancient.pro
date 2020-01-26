@@ -11,7 +11,7 @@ SOURCES += floridancient.cpp \
            visualfloridancientfactory.cpp
 
 win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
+    HEADERS += ../../../../src/qmmp/florid.h
     INCLUDEPATH += ./
 }
 

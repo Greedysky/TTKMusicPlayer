@@ -66,14 +66,14 @@ DEFINES += YY_NO_INPUT
 
 contains(QT_ARCH, i386){
     DEFINES += CPU_X86 ARCH_X86_32
-    message(Architecture is x86)
+#    message(Architecture is x86)
     HEADERS += mmx.h
     SOURCES += mmx.c xmmx.c
 }
 contains(QT_ARCH, x86_64){
     #unsupported
     DEFINES += CPU_X86 ARCH_X86_64
-    message(Architecture is x86_64)
+#    message(Architecture is x86_64)
     HEADERS += mmx.h
     SOURCES += mmx.c xmmx.c
 }
@@ -81,7 +81,7 @@ contains(QT_ARCH, x86_64){
 QMAKE_CFLAGS += -Werror=implicit-function-declaration
 
 win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
+    HEADERS += ../../../../src/qmmp/florid.h
     INCLUDEPATH += ./
 }
 

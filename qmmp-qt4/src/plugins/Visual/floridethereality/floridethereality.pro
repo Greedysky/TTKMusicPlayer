@@ -16,7 +16,7 @@ SOURCES += ethereality.cpp \
 RESOURCES += floridethereality.qrc
 
 win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
+    HEADERS += ../../../../src/qmmp/florid.h
     INCLUDEPATH += ./
     LIBS += -lglu32 -lopengl32
 }
