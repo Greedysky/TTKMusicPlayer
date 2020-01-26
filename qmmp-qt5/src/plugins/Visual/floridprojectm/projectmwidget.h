@@ -20,13 +20,13 @@
 #define PROJECTMWIDGET_H
 
 #include <QMenu>
-#include <QOpenGLWidget>
+#include <QGLWidget>
 #include <libprojectM/projectM.hpp>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class ProjectMWidget : public QOpenGLWidget
+class ProjectMWidget : public QGLWidget
 {
     Q_OBJECT
 public:

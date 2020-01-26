@@ -4,7 +4,7 @@
 #include <qmmp/qmmp.h>
 
 ProjectMWidget::ProjectMWidget(QWidget *parent)
-        : QOpenGLWidget(parent)
+    : QGLWidget(parent)
 {
     setMouseTracking(true);
     m_projectM = nullptr;

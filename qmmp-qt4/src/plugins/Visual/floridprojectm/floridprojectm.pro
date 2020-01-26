@@ -16,7 +16,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
 win32:{
     HEADERS += ../../../../src/qmmp/florid.h
     INCLUDEPATH += ./
-    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM
+    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM.dll -lglu32 -lopengl32
 }
 
 unix{

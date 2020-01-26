@@ -1,5 +1,6 @@
 include(../../plugins.pri)
 
+QT += opengl
 TARGET = $$PLUGINS_PREFIX/Visual/floridprojectm
 
 HEADERS += projectmplugin.h \
@@ -15,7 +16,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
 win32:{
     HEADERS += ../../../../src/qmmp/florid.h
     INCLUDEPATH += ./
-    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM
+    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM.dll -lglu32 -lopengl32
 }
 
 unix{
