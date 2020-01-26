@@ -15,12 +15,12 @@ INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
 win32:{
     HEADERS += ../../../../src/qmmp/florid.h
     INCLUDEPATH += ./
-    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib  -lprojectM
+    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM
 }
 
 unix{
     QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/floridprojectm.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib  -lprojectM$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM$$STATIC_LIBRARY_SUFFIX
 }
