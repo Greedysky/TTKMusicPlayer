@@ -205,6 +205,7 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
 
     ItemInfos items;
     items << ItemInfo(":/spectrum/florid_1", tr("Goom"));
+    items << ItemInfo(":/spectrum/florid_1", tr("ProjectM"));
     items << ItemInfo(":/spectrum/florid_2", tr("Ethereality"));
     items << ItemInfo(":/spectrum/florid_3", tr("Reverb"));
     items << ItemInfo(":/spectrum/florid_4", tr("Autism"));
@@ -222,6 +223,6 @@ MusicSpectrumFloridLayoutWidget::~MusicSpectrumFloridLayoutWidget()
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "floridgoom" << "floridethereality" << "floridreverb" << "floridautism"
+    return QStringList() << "floridgoom" << "floridprojectm" << "floridethereality" << "floridreverb" << "floridautism"
                          << "floridbass" << "floridsurround" << "floridancient" << "floridelectric";
 }
