@@ -97,8 +97,8 @@ void NormalFlowWave::starTimeout()
 {
     foreach(StarPoint *point, m_starPoints)
     {
-        point->m_alpha = rand()%255;
-        point->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand() % 255;
+        point->m_pt = QPoint(rand() % width(), rand() % height());
     }
 }
 
@@ -267,24 +267,18 @@ void NormalFlowWave::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
-    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = takeMaxRange();
 
-    for(int j = 0; j < m_cols; ++j)
+    for(int i = 0; i < m_cols; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
+        x = i * m_cell_size.width() + 1;
+        for(int j = 0; j <= m_intern_vis_data[i]*maxed/2; ++j)
         {
-            x += rdx; //correct right part position
-        }
-
-        for(int i = 0; i <= m_intern_vis_data[j]*maxed/2; ++i)
-        {
-            p->fillRect (x, height()/2 - i * m_cell_size.height() + 1,
+            p->fillRect(x, height() / 2 - j * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, line);
-            p->fillRect (x, height()/2 + i * m_cell_size.height() + 1,
+            p->fillRect(x, height() / 2 + j * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, line);
         }
     }
-    p->fillRect (0, height()/2, width(), height()/2, QColor(0, 0, 0, 188));
+    p->fillRect(0, height() / 2, width(), height() / 2, QColor(0, 0, 0, 188));
 }

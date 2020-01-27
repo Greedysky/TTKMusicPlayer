@@ -158,14 +158,14 @@ void PlusXRays::process()
 
     m_intern_vis_data = new int[m_cols];
 
-    const int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
+    const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
     int pos = 0;
 
     for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
         m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
-        m_intern_vis_data[i] = qBound(-m_rows/2, m_intern_vis_data[i], m_rows/2);
+        m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
     }
 }
 
@@ -174,7 +174,7 @@ void PlusXRays::draw(QPainter *p)
     if(m_gridAction->isChecked())
     {
         p->setPen(QPen(QColor(255, 255, 255, 50), 1));
-        int per = width()/8;
+        int per = width() / 8;
         for(int w=0; w<width(); ++w)
         {
             p->drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
@@ -188,28 +188,28 @@ void PlusXRays::draw(QPainter *p)
     }
 
     QLinearGradient line(0, 0, 0, height());
-    for(int i=0; i<m_colors.count(); ++i)
+    for(int i = 0; i < m_colors.count(); ++i)
     {
-        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 1));
 
     const float maxed = takeMaxRange();
 
-    for(int i = 0; i<m_cols; ++i)
+    for(int i = 0; i < m_cols; ++i)
     {
-        if((i+1) >= m_cols)
+        if((i + 1) >= m_cols)
         {
             break;
         }
 
-        int h1 = m_rows/2 - m_intern_vis_data[i] * maxed;
-        int h2 = m_rows/2 - m_intern_vis_data[i + 1] * maxed;
-        if(h1 > h2)
+        int pFront = m_rows / 2 - m_intern_vis_data[i] * maxed;
+        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1] * maxed;
+        if(pFront > pEnd)
         {
-            qSwap(h1, h2);
+            qSwap(pFront, pEnd);
         }
-        p->drawLine(i, h1, (i+1), h2);
+        p->drawLine(i, pFront, i + 1, pEnd);
     }
 }

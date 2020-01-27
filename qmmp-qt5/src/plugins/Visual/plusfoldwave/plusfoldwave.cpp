@@ -97,8 +97,8 @@ void PlusFoldWave::starTimeout()
 {
     foreach(StarPoint *point, m_starPoints)
     {
-        point->m_alpha = rand()%255;
-        point->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand() % 255;
+        point->m_pt = QPoint(rand() % width(), rand() % height());
     }
 }
 
@@ -297,14 +297,14 @@ void PlusFoldWave::draw(QPainter *p)
     const float maxed = takeMaxRange();
 
     int x = 0, x1 = 0;
-    for(int j = 0; j < m_cols * 2; ++j)
+    for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
+        x = i * m_cell_size.width() + 1;
+        if(i >= m_cols)
         {
             x += rdx; //correct right part position
         }
-        int offset = m_intern_vis_data[j] * maxed * m_cell_size.height() / 2;
+        int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() / 2;
         if(abs(offset) > height() / 2)
         {
             offset = height() / 2;
@@ -312,18 +312,18 @@ void PlusFoldWave::draw(QPainter *p)
 
         p->drawLine(QPoint(x, height() / 2 - offset), QPoint(x, height() / 2 + offset));
 
-        if((j+1) >= m_cols * 2)
+        if((i + 1) >= m_cols * 2)
         {
             break;
         }
 
-        x1 = (j+1) * m_cell_size.width() + 1;
-        if((j+1) >= m_cols)
+        x1 = (i + 1) * m_cell_size.width() + 1;
+        if((i + 1) >= m_cols)
         {
             x1 += rdx; //correct right part position
         }
 
-        int offset1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height() / 2;
+        int offset1 = m_intern_vis_data[i + 1] * maxed * m_cell_size.height() / 2;
         if(abs(offset1) > height() / 2)
         {
             offset1 = height() / 2;

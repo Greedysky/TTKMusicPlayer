@@ -20,7 +20,6 @@
 #define NORMALSPACEWAVE_H
 
 #include <qmmp/visual.h>
-#include "colorwidget.h"
 
 class QTimer;
 class QPainter;
@@ -44,28 +43,19 @@ public slots:
 
 private slots:
     void timeout();
-    void starTimeout();
-    void readSettings();
-    void writeSettings();
-    void changeStarState(bool state);
-    void changeStarColor();
 
 private:
     void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     void process();
     void draw(QPainter *p);
 
-    QAction *m_starAction;
-    QColor m_starColor;
-    QList<StarPoint*> m_starPoints;
-    QTimer *m_timer, *m_starTimer;
+    QTimer *m_timer;
     double *m_intern_vis_data;
-    int *m_x_scale, m_cols, m_rows;
+    int *m_intern_ray_data, *m_x_scale, m_cols, m_rows;
     double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];

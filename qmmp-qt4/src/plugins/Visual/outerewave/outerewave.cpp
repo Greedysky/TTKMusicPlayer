@@ -246,20 +246,20 @@ void OuterEWave::draw(QPainter *p)
 
     QPolygonF points;
     points << viewToItemPoint(QPoint(0, height() + HEIGHT_OFFSET));
-    for(int j = 0; j < m_cols * 2; ++j)
+    for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j == m_cols)
+        x = i * m_cell_size.width() + 1;
+        if(i == m_cols)
         {
             continue;
         }
 
-        if(j > m_cols)
+        if(i > m_cols)
         {
             x += rdx; //correct right part position
         }
 
-        int offset = height() - m_intern_vis_data[j] * maxed * m_cell_size.height() * HEIGHT_LIMIT;
+        int offset = height() - m_intern_vis_data[i] * maxed * m_cell_size.height() * HEIGHT_LIMIT;
         if(offset == height())
         {
             offset = height() + HEIGHT_OFFSET;

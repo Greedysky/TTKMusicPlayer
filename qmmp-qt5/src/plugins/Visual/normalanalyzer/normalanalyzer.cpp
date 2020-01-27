@@ -368,23 +368,23 @@ void NormalAnalyzer::draw(QPainter *p)
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = takeMaxRange();
 
-    for(int j = 0; j < m_cols * 2; ++j)
+    for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
+        x = i * m_cell_size.width() + 1;
+        if(i >= m_cols)
         {
             x += rdx; //correct right part position
         }
 
-        for(int i = 0; i <= m_intern_vis_data[j] * maxed; ++i)
+        for(int j = 0; j <= m_intern_vis_data[i] * maxed; ++j)
         {
-            p->fillRect(x, height() - i * m_cell_size.height() + 1,
+            p->fillRect(x, height() - j * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, line);
         }
 
         if(m_show_peaks)
         {
-            p->fillRect(x, height() - int(m_peaks[j] * maxed) * m_cell_size.height() + 1,
+            p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
         }
     }

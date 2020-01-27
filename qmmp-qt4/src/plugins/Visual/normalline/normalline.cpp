@@ -105,8 +105,8 @@ void NormalLine::starTimeout()
 {
     foreach(StarPoint *point, m_starPoints)
     {
-        point->m_alpha = rand()%255;
-        point->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand() % 255;
+        point->m_pt = QPoint(rand() % width(), rand() % height());
     }
 }
 
@@ -306,9 +306,9 @@ void NormalLine::draw(QPainter *p)
     }
 
     QLinearGradient line(0, 0, 0, height());
-    for(int i=0; i<m_colors.count(); ++i)
+    for(int i = 0; i < m_colors.count(); ++i)
     {
-        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
@@ -316,18 +316,18 @@ void NormalLine::draw(QPainter *p)
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = takeMaxRange();
 
-    for(int j = 0; j < m_cols * 2; ++j)
+    for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
+        x = i * m_cell_size.width() + 1;
+        if(i >= m_cols)
         {
             x += rdx; //correct right part position
         }
 
-        const int offset = m_intern_vis_data[j] * maxed *m_cell_size.height();
-        p->fillRect (x, height() - offset, m_cell_size.width() - 1, offset, line);
+        const int offset = m_intern_vis_data[i] * maxed *m_cell_size.height();
+        p->fillRect(x, height() - offset, m_cell_size.width() - 1, offset, line);
 
-        p->fillRect (x, height() - int(m_peaks[j] * maxed) * m_cell_size.height(),
+        p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height(),
                      m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
 }

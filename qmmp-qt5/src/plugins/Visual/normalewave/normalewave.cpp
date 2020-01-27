@@ -97,8 +97,8 @@ void NormalEWave::starTimeout()
 {
     foreach(StarPoint *point, m_starPoints)
     {
-        point->m_alpha = rand()%255;
-        point->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand() % 255;
+        point->m_pt = QPoint(rand() % width(), rand() % height());
     }
 }
 
@@ -304,14 +304,14 @@ void NormalEWave::draw(QPainter *p)
 
     QPolygon points;
     points << QPoint(0, height());
-    for(int j = 0; j < m_cols * 2; ++j)
+    for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
+        x = i * m_cell_size.width() + 1;
+        if(i >= m_cols)
         {
             x += rdx; //correct right part position
         }
-        points << QPoint(x, height() - m_intern_vis_data[j] * maxed * m_cell_size.height());
+        points << QPoint(x, height() - m_intern_vis_data[i] * maxed * m_cell_size.height());
     }
     points << QPoint(width(), height());
     p->drawPolygon(points);
