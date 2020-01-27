@@ -38,7 +38,7 @@ RoundAnimationLabel::~RoundAnimationLabel()
 
 void RoundAnimationLabel::setPixmap(const QPixmap &pix)
 {
-    m_pixmap = pix.scaled(2*DISTANCE, 2*DISTANCE);
+    m_pixmap = pix.scaled(2 * DISTANCE, 2 * DISTANCE);
 
     QRect rect(QPoint(0, 0), m_pixmap.size());
     QBitmap mask(rect.size());
@@ -78,7 +78,7 @@ void RoundAnimationLabel::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     const QSize &self = size();
-    const QRect rotatedRect(-self.width()/2, -self.height()/2, self.width(), self.height());
+    const QRect rotatedRect(-self.width() / 2, -self.height() / 2, self.width(), self.height());
     const int cx = self.width() / 2;
     const int cy = self.height() / 2;
 
@@ -336,9 +336,9 @@ void Florid::paintEvent(QPaintEvent *e)
             color.setAlpha(0);
             gradient.setColorAt(1.0, color);
             painter.setBrush(gradient);
-            painter.drawEllipse(pt.x() - length, pt.y() - length, 2*length, 2*length);
+            painter.drawEllipse(pt.x() - length, pt.y() - length, 2 * length, 2 * length);
         }
-        m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2*DISTANCE, 2*DISTANCE);
+        m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2 * DISTANCE, 2 * DISTANCE);
     }
     else
     {

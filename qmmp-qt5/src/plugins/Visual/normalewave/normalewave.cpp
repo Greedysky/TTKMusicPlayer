@@ -291,9 +291,9 @@ void NormalEWave::draw(QPainter *p)
     }
 
     QLinearGradient line(0, 0, 0, height());
-    for(int i=0; i<m_colors.count(); ++i)
+    for(int i = 0; i < m_colors.count(); ++i)
     {
-        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setBrush(line);

@@ -87,12 +87,12 @@ bool Visual::takeData(float *left, float *right)
 
 float Visual::takeMaxRange() const
 {
-    float range = 1.0f;
-    if(SoundCore::instance())
+    if(!SoundCore::instance())
     {
-        range = SoundCore::instance()->volume() * 1.0 / 100;
+        return 1.0f;
     }
-    return range;
+
+    return SoundCore::instance()->volume() * 1.0 / 100;
 }
 
 //static members

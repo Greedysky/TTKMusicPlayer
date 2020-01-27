@@ -306,9 +306,9 @@ void NormalLine::draw(QPainter *p)
     }
 
     QLinearGradient line(0, 0, 0, height());
-    for(int i=0; i<m_colors.count(); ++i)
+    for(int i = 0; i < m_colors.count(); ++i)
     {
-        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
@@ -324,10 +324,10 @@ void NormalLine::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        const int offset = m_intern_vis_data[j] * maxed *m_cell_size.height();
-        p->fillRect (x, height() - offset, m_cell_size.width() - 1, offset, line);
+        const int offset = m_intern_vis_data[j] * maxed * m_cell_size.height();
+        p->fillRect(x, height() - offset, m_cell_size.width() - 1, offset, line);
 
-        p->fillRect (x, height() - int(m_peaks[j] * maxed) * m_cell_size.height(),
+        p->fillRect(x, height() - int(m_peaks[j] * maxed) * m_cell_size.height(),
                      m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
 }

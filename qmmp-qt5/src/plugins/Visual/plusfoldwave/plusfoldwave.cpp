@@ -286,9 +286,9 @@ void PlusFoldWave::draw(QPainter *p)
     }
 
     QLinearGradient line(0, 0, 0, height());
-    for(int i=0; i<m_colors.count(); ++i)
+    for(int i = 0; i < m_colors.count(); ++i)
     {
-        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 1));
@@ -304,13 +304,13 @@ void PlusFoldWave::draw(QPainter *p)
         {
             x += rdx; //correct right part position
         }
-        int offset = m_intern_vis_data[j] * maxed * m_cell_size.height()/2;
-        if(abs(offset) > height()/2)
+        int offset = m_intern_vis_data[j] * maxed * m_cell_size.height() / 2;
+        if(abs(offset) > height() / 2)
         {
-            offset = height()/2;
+            offset = height() / 2;
         }
 
-        p->drawLine(QPoint(x, height()/2 - offset), QPoint(x, height()/2 + offset));
+        p->drawLine(QPoint(x, height() / 2 - offset), QPoint(x, height() / 2 + offset));
 
         if((j+1) >= m_cols * 2)
         {
@@ -323,13 +323,13 @@ void PlusFoldWave::draw(QPainter *p)
             x1 += rdx; //correct right part position
         }
 
-        int offset1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height()/2;
-        if(abs(offset1) > height()/2)
+        int offset1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height() / 2;
+        if(abs(offset1) > height() / 2)
         {
-            offset1 = height()/2;
+            offset1 = height() / 2;
         }
 
-        p->drawLine(QPoint(x, height()/2 - offset), QPoint(x1, height()/2 - offset1));
-        p->drawLine(QPoint(x, height()/2 + offset), QPoint(x1, height()/2 + offset1));
+        p->drawLine(QPoint(x, height() / 2 - offset), QPoint(x1, height() / 2 - offset1));
+        p->drawLine(QPoint(x, height() / 2 + offset), QPoint(x1, height() / 2 + offset1));
     }
 }

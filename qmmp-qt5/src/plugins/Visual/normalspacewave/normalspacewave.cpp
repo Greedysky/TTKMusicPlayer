@@ -1,7 +1,5 @@
 #include <QTimer>
-#include <QSettings>
 #include <QPainter>
-#include <QMenu>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -18,13 +16,8 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent) : Visual (parent)
     m_running = false;
     m_rows = 0;
     m_cols = 0;
-    m_analyzer_falloff = 2.2;
-    m_cell_size = QSize(15, 6);
-
-    for(int i=0; i<50; ++i)
-    {
-        m_starPoints << new StarPoint();
-    }
+    m_analyzer_falloff = 1.2;
+    m_cell_size = QSize(3, 2);
 
     setWindowTitle(tr("Normal SpaceWave Widget"));
     setMinimumSize(2*300-30, 105);
@@ -33,25 +26,18 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent) : Visual (parent)
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_starTimer = new QTimer(this);
-    connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
-
-    m_starAction = new QAction(tr("Star"), this);
-    m_starAction->setCheckable(true);
-    connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
-
-    m_starTimer->setInterval(1000);
-
     clear();
-    readSettings();
 }
 
 NormalSpaceWave::~NormalSpaceWave()
 {
-    qDeleteAll(m_starPoints);
     if(m_intern_vis_data)
     {
         delete[] m_intern_vis_data;
+    }
+    if(m_intern_ray_data)
+    {
+        delete[] m_intern_ray_data;
     }
     if(m_x_scale)
     {
@@ -65,7 +51,6 @@ void NormalSpaceWave::start()
     if(isVisible())
     {
         m_timer->start();
-        m_starTimer->start();
     }
 }
 
@@ -73,7 +58,6 @@ void NormalSpaceWave::stop()
 {
     m_running = false;
     m_timer->stop();
-    m_starTimer->stop();
     clear();
 }
 
@@ -93,58 +77,9 @@ void NormalSpaceWave::timeout()
     }
 }
 
-void NormalSpaceWave::starTimeout()
-{
-    foreach(StarPoint *point, m_starPoints)
-    {
-        point->m_alpha = rand()%255;
-        point->m_pt = QPoint(rand()%width(), rand()%height());
-    }
-}
-
-void NormalSpaceWave::readSettings()
-{
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("NormalSpaceWave");
-    m_starAction->setChecked(settings.value("show_star", false).toBool());
-    m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
-    settings.endGroup();
-}
-
-void NormalSpaceWave::writeSettings()
-{
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("NormalSpaceWave");
-    settings.setValue("show_star", m_starAction->isChecked());
-    settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
-    settings.endGroup();
-}
-
-void NormalSpaceWave::changeStarState(bool state)
-{
-    m_starAction->setChecked(state);
-    update();
-}
-
-void NormalSpaceWave::changeStarColor()
-{
-    ColorWidget c;
-    c.setColors(QList<QColor>() << m_starColor);
-    if(c.exec())
-    {
-        QList<QColor> colors(c.getColors());
-        if(!colors.isEmpty())
-        {
-            m_starColor = colors.first();
-            update();
-        }
-    }
-}
-
 void NormalSpaceWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
-    m_starTimer->stop();
 }
 
 void NormalSpaceWave::showEvent(QShowEvent *)
@@ -152,7 +87,6 @@ void NormalSpaceWave::showEvent(QShowEvent *)
     if(m_running)
     {
         m_timer->start();
-        m_starTimer->start();
     }
 }
 
@@ -161,18 +95,6 @@ void NormalSpaceWave::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
-}
-
-void NormalSpaceWave::contextMenuEvent(QContextMenuEvent *)
-{
-    QMenu menu(this);
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
-
-    menu.addAction(m_starAction);
-    menu.addAction(tr("StarColor"), this, SLOT(changeStarColor()));
-
-    menu.exec(QCursor::pos());
 }
 
 void NormalSpaceWave::process()
@@ -194,11 +116,17 @@ void NormalSpaceWave::process()
         {
             delete[] m_intern_vis_data;
         }
+        if(m_intern_ray_data)
+        {
+            delete[] m_intern_ray_data;
+        }
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
+
         m_intern_vis_data = new double[m_cols];
+        m_intern_ray_data = new int[m_cols];
         m_x_scale = new int[m_cols + 1];
 
         for(int i = 0; i < m_cols; ++i)
@@ -244,48 +172,66 @@ void NormalSpaceWave::process()
         m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
+
+    const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
+    int pos = 0;
+
+    for(int i = 0; i < m_cols; ++i)
+    {
+        pos += step;
+        m_intern_ray_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
+        m_intern_ray_data[i] = qBound(-m_rows / 2, m_intern_ray_data[i], m_rows / 2);
+    }
 }
 
 void NormalSpaceWave::draw(QPainter *p)
 {
-    if(m_starAction->isChecked())
-    {
-        foreach(StarPoint *point, m_starPoints)
-        {
-            m_starColor.setAlpha(point->m_alpha);
-            p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(point->m_pt);
-        }
-    }
-
     QLinearGradient line(0, 0, width(), 0);
-    line.setColorAt(1.0*1/7, QColor(72, 176, 211));
-    line.setColorAt(1.0*2/7, QColor(57, 255, 57));
-    line.setColorAt(1.0*4/7, QColor(255, 247, 22));
-    line.setColorAt(1.0*5/7, QColor(255, 64, 59));
-    line.setColorAt(1.0*7/7, QColor(255, 64, 59));
-    p->setPen(QPen(line, 0.5));
+    line.setColorAt(1.0 * 1 / 7, QColor(242, 51, 255, 200));
+    line.setColorAt(1.0 * 4 / 7, QColor(0, 186, 255, 200));
+    line.setColorAt(1.0 * 6 / 7, QColor(242, 51, 255, 200));
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
-    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = takeMaxRange();
 
-    for(int j = 0; j < m_cols; ++j)
+    for(int i = 0; i < m_cols; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
+        x = i * m_cell_size.width() + 1;
+        const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() / 2;
+        p->fillRect(x, height() / 2 - offset, m_cell_size.width() - 1, offset, line);
+    }
+    //
+    p->setPen(QPen(QColor(0, 179, 255), 1));
+    for(int i = 0; i < m_cols; ++i)
+    {
+        x = i * m_cell_size.width() * 2 + 1;
+        const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() * 0.8;
+        p->drawPoint(x, height() / 2 - offset);
+        p->drawPoint(x, height() / 2 + offset);
+    }
+    //
+    QLinearGradient ray_line(0, 0, width(), 0);
+    ray_line.setColorAt(1.0 * 1 / 7, QColor(72, 176, 211));
+    ray_line.setColorAt(1.0 * 2 / 7, QColor(57, 255, 57));
+    ray_line.setColorAt(1.0 * 4 / 7, QColor(255, 247, 22));
+    ray_line.setColorAt(1.0 * 5 / 7, QColor(255, 64, 59));
+    ray_line.setColorAt(1.0 * 7 / 7, QColor(255, 64, 59));
+    p->setPen(QPen(ray_line, 2));
+    for(int i = 0; i < m_cols; ++i)
+    {
+        x = i * m_cell_size.width() + 1;
+        if((i + 1) >= m_cols)
         {
-            x += rdx; //correct right part position
+            break;
         }
 
-        for(int i = 0; i <= m_intern_vis_data[j]*maxed/2; ++i)
+        int pFront = m_rows - m_intern_ray_data[i] * maxed;
+        int pEnd = m_rows - m_intern_ray_data[i + 1] * maxed;
+        if(pFront > pEnd)
         {
-            p->drawRect (x, height()/2 - i * m_cell_size.height() + 1,
-                         m_cell_size.width() - 2, m_cell_size.height() - 2);
-            p->drawRect (x, height()/2 + i * m_cell_size.height() + 1,
-                         m_cell_size.width() - 2, m_cell_size.height() - 2);
+            qSwap(pFront, pEnd);
         }
+        p->drawLine(x, pFront, x + 1, pEnd);
     }
-    p->fillRect (0, height()/2, width(), height()/2, QColor(0, 0, 0, 188));
 }

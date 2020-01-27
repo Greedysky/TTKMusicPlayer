@@ -195,13 +195,13 @@ void PlusVolumeWave::draw(QPainter *p)
             left = SoundCore::instance()->leftVolume()*1.0/100;
             right = SoundCore::instance()->rightVolume()*1.0/100;
         }
-        const int wid = ceil(m_rows/2);
+        const int wid = ceil(m_rows / 2);
         p->fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
         p->fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);
     }
 
     p->setPen(Qt::white);
-    p->drawText(10, height()/4, "L");
+    p->drawText(10, height() / 4, "L");
     p->drawText(10, height()*3/4, "R");
 
 }

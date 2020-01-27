@@ -103,8 +103,8 @@ void NormalAnalyzer::starTimeout()
 {
     foreach(StarPoint *point, m_starPoints)
     {
-        point->m_alpha = rand()%255;
-        point->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand() % 255;
+        point->m_pt = QPoint(rand() % width(), rand() % height());
     }
 }
 
@@ -358,9 +358,9 @@ void NormalAnalyzer::draw(QPainter *p)
     }
 
     QLinearGradient line(0, 0, 0, height());
-    for(int i=0; i<m_colors.count(); ++i)
+    for(int i = 0; i < m_colors.count(); ++i)
     {
-        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
@@ -378,13 +378,13 @@ void NormalAnalyzer::draw(QPainter *p)
 
         for(int i = 0; i <= m_intern_vis_data[j] * maxed; ++i)
         {
-            p->fillRect (x, height() - i * m_cell_size.height() + 1,
+            p->fillRect(x, height() - i * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, line);
         }
 
         if(m_show_peaks)
         {
-            p->fillRect (x, height() - int(m_peaks[j] * maxed) * m_cell_size.height() + 1,
+            p->fillRect(x, height() - int(m_peaks[j] * maxed) * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
         }
     }
