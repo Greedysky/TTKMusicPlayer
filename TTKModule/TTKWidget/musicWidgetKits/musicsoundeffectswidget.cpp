@@ -6,7 +6,7 @@
 #include "musicplayer.h"
 #include "musicwidgetheaders.h"
 #include "musicqmmputils.h"
-///
+
 #include <QStyledItemDelegate>
 
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
@@ -107,29 +107,26 @@ void MusicSoundEffectsItemWidget::setPluginEnable()
     {
         m_enable = true;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_off"));
-        soundEffectCheckBoxChanged(true);
-        m_settingButton->setEnabled(true);
+        soundEffectChanged(m_type, true);
+
+        const QString plugin(transformQStringFromEnum(m_type));
+        m_settingButton->setEnabled(MusicUtils::QMMP::effectHasSetting(plugin));
         m_openButton->setToolTip(tr("Off"));
     }
     else
     {
         m_enable = false;
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
-        soundEffectCheckBoxChanged(false);
+        soundEffectChanged(m_type, false);
         m_settingButton->setEnabled(false);
         m_openButton->setToolTip(tr("On"));
     }
 }
 
-void MusicSoundEffectsItemWidget::soundEffectCheckBoxChanged(bool state)
-{
-    soundEffectChanged(m_type, state);
-}
-
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
     const QString plugin(transformQStringFromEnum(m_type));
-    MusicUtils::QMMP::enableEffectSetting(plugin, this);
+    MusicUtils::QMMP::showEffectSetting(plugin, this);
 }
 
 QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
@@ -144,6 +141,7 @@ QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
         case Soxr:         plugin = "soxr"; break;
         case SrcConverter: plugin = "srconverter"; break;
         case MonoStereo:   plugin = "monotostereo"; break;
+        case Mono:         plugin = "mono"; break;
         default:           plugin = "unknow"; break;
     }
     return plugin;
@@ -205,6 +203,9 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
 
     m_ui->MonoStereoWidget->setText("MonoStereo");
     m_ui->MonoStereoWidget->setType(MusicSoundEffectsItemWidget::MonoStereo);
+
+    m_ui->MonoWidget->setText("Mono");
+    m_ui->MonoWidget->setType(MusicSoundEffectsItemWidget::Mono);
 
 #ifdef Q_OS_UNIX
     m_ui->LADSPAWidget->setText("LADSPA");
@@ -271,6 +272,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->SOXWidget->setPluginEnable(true);
         m_ui->SRCWidget->setPluginEnable(true);
         m_ui->MonoStereoWidget->setPluginEnable(true);
+        m_ui->MonoWidget->setPluginEnable(true);
 #ifdef Q_OS_UNIX
         m_ui->LADSPAWidget->setPluginEnable(true);
 #endif
@@ -283,6 +285,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->SOXWidget->setPluginEnable(false);
         m_ui->SRCWidget->setPluginEnable(false);
         m_ui->MonoStereoWidget->setPluginEnable(false);
+        m_ui->MonoWidget->setPluginEnable(false);
 #ifdef Q_OS_UNIX
         m_ui->LADSPAWidget->setPluginEnable(false);
 #endif
@@ -310,6 +313,7 @@ void MusicSoundEffectsWidget::readSoundEffect()
     m_ui->SOXWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
     m_ui->SRCWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
     m_ui->MonoStereoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt());
+    m_ui->MonoWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt());
 #ifdef Q_OS_UNIX
     m_ui->LADSPAWidget->setPluginEnable(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
 #endif
@@ -323,6 +327,7 @@ void MusicSoundEffectsWidget::writeSoundEffect()
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_ui->SOXWidget->pluginEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_ui->SRCWidget->pluginEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoStereo, m_ui->MonoStereoWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono, m_ui->MonoWidget->pluginEnable());
 #ifdef Q_OS_UNIX
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_ui->LADSPAWidget->pluginEnable());
 #endif

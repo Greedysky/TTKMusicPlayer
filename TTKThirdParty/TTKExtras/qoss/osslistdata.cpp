@@ -21,6 +21,7 @@ void OSSListData::listDataOperator(const QString &bucket)
     MStringMap headers;
     headers.insert("Date", OSSUtils::getGMT());
     headers.insert("Host", host);
+    headers.insert("Content-Type", "charset=utf-8");
 
     d->insertAuthorization(method, headers, resource);
 

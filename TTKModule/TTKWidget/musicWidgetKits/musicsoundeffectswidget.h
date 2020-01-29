@@ -40,10 +40,12 @@ public:
         Crossfade,    /*!< sound Crossfade effect*/
         Stereo,       /*!< sound Stereo effect*/
         LADSPA,       /*!< sound LADSPA effect*/
-        Soxr,          /*!< sound SoX Resampler effect*/
+        Soxr,         /*!< sound SoX Resampler effect*/
         SrcConverter, /*!< sound srconverter effect*/
-        MonoStereo    /*!< sound mono stereo effect*/
+        MonoStereo,   /*!< sound mono stereo effect*/
+        Mono          /*!< sound mono effect*/
     };
+
     /*!
      * Object contsructor.
      */
@@ -79,10 +81,6 @@ public Q_SLOTS:
      * Set plugin enable or not.
      */
     void setPluginEnable();
-    /*!
-     * Sound effect checkBox changed.
-     */
-    void soundEffectCheckBoxChanged(bool state);
     /*!
      * Sound effect button value changed.
      */

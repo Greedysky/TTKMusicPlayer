@@ -399,6 +399,11 @@ void MusicApplicationObject::musicEffectChanged()
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::MonoStereo, true);
     }
 
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt() == 1)
+    {
+        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Mono, true);
+    }
+
 #ifdef Q_OS_UNIX
     if(M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt() == 1)
     {

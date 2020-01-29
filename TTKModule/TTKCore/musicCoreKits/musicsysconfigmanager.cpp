@@ -151,6 +151,8 @@ void MusicSysConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("enhancedSRC").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoStereo,
                      readXmlAttributeByTagNameValue("enhancedMonoStereo").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono,
+                     readXmlAttributeByTagNameValue("enhancedMono").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoIndex,
@@ -287,6 +289,7 @@ void MusicSysConfigManager::writeSysConfigData()
     const int enhancedSOX = M_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt();
     const int enhancedSRC = M_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt();
     const int enhancedMonoStereo = M_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt();
+    const int enhancedMono = M_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt();
 
     //
     const int timeAutoIndex = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndex).toInt();
@@ -416,6 +419,7 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(equalizerSettingDom, "enhancedSOX", MusicXmlAttribute("value", enhancedSOX));
     writeDomElement(equalizerSettingDom, "enhancedSRC", MusicXmlAttribute("value", enhancedSRC));
     writeDomElement(equalizerSettingDom, "enhancedMonoStereo", MusicXmlAttribute("value", enhancedMonoStereo));
+    writeDomElement(equalizerSettingDom, "enhancedMono", MusicXmlAttribute("value", enhancedMono));
 
     //
     writeDomElement(timeSettingDom, "timeAutoIndex", MusicXmlAttribute("value", timeAutoIndex));

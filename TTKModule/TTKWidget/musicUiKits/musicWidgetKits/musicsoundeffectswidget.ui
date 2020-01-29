@@ -204,7 +204,7 @@
    <widget class="MusicSoundEffectsItemWidget" name="LADSPAWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>190</x>
       <y>270</y>
       <width>160</width>
       <height>50</height>
@@ -241,10 +241,10 @@
      </rect>
     </property>
    </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="NullWidget" native="true">
+   <widget class="MusicSoundEffectsItemWidget" name="MonoWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>10</x>
       <y>270</y>
       <width>160</width>
       <height>50</height>

@@ -47,7 +47,11 @@ namespace MusicUtils
         /*!
          * Enable effect setting control.
          */
-        MUSIC_UTILS_EXPORT void enableEffectSetting(const QString &name, QWidget *parent);
+        MUSIC_UTILS_EXPORT bool effectHasSetting(const QString &name);
+        /*!
+         * Show effect setting control.
+         */
+        MUSIC_UTILS_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
         /*!
          * Update ripple spectrum config file transfer.
          */

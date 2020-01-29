@@ -81,7 +81,7 @@ void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
     }
 }
 
-void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
+void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 {
     const QDir dir(BACKGROUND_DIR_FULL);
     int count = 0;

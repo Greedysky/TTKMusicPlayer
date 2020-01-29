@@ -73,7 +73,6 @@ public:
         OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Mode Parameter*/
         OtherRippleSpectrumEnable,       /*!< Other Ripple Spectrum Enable Parameter*/
         OtherRippleSpectrumColor,        /*!< Other Ripple Spectrum Color Parameter*/
-        OtherRippleSpectrumOpacity,      /*!< Other Ripple Spectrum Opacity Parameter*/
 
         ShowInteriorLrc,                 /*!< Show Interior Lrc Parameter*/
         ShowCortanaLrc,                  /*!< Show Cortana Lrc Parameter*/
@@ -113,6 +112,7 @@ public:
         EnhancedSOX,                     /*!< Enhanced SOX Parameter*/
         EnhancedSRC,                     /*!< Enhanced SRC Parameter*/
         EnhancedMonoStereo,              /*!< Enhanced Mono Stereo Parameter*/
+        EnhancedMono,                    /*!< Enhanced Mono Parameter*/
 
         TimerAutoIndex,                  /*!< Timer Auto Index Parameter*/
         TimerAutoPlay,                   /*!< Timer Auto Play Parameter*/

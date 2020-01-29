@@ -70,7 +70,20 @@ void MusicUtils::QMMP::enableEffectPlugin(const QString &name, bool enable)
     }
 }
 
-void  MusicUtils::QMMP::enableEffectSetting(const QString &name, QWidget *parent)
+bool MusicUtils::QMMP::effectHasSetting(const QString &name)
+{
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        if(factory->properties().shortName == name)
+        {
+            return factory->properties().hasSettings;
+        }
+    }
+
+    return false;
+}
+
+void MusicUtils::QMMP::showEffectSetting(const QString &name, QWidget *parent)
 {
     foreach(EffectFactory *factory, Effect::factories())
     {
