@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>Particle.bmp</file>
+    <qresource prefix="/data">
+        <file>text</file>
     </qresource>
 </RCC>

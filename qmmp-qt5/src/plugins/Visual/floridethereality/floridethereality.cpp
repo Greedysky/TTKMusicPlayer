@@ -6,25 +6,28 @@
 
 FloridEthereality::FloridEthereality (QWidget *parent) : Florid (parent)
 {
-    m_gradientOn = true;
+    m_useImage = false;
     m_intern_vis_data = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
+    m_pos_x = 0;
+    m_pos_y = 0;
 
+    qsrand(QDateTime::currentMSecsSinceEpoch());
     setWindowTitle(tr("Florid Ethereality Widget"));
+
+    for(int i = 0; i < 50; i++)
+    {
+        Ethereality *ethereality = new Ethereality(this);
+        ethereality->resize(20, 200);
+        ethereality->move(i * 20, 0);
+        m_etherealitys << ethereality;
+    }
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
-
-    clear();
-
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
-    m_etheral = new Ethereality(this);
-    layout->addWidget(m_etheral);
-    setLayout(layout);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 }
 
 FloridEthereality::~FloridEthereality()
@@ -33,7 +36,7 @@ FloridEthereality::~FloridEthereality()
     {
         delete[] m_intern_vis_data;
     }
-    delete m_etheral;
+    qDeleteAll(m_etherealitys);
 }
 
 void FloridEthereality::start()
@@ -43,7 +46,10 @@ void FloridEthereality::start()
     if(isVisible())
     {
         m_timer->start();
-        m_etheral->start();
+        foreach(Ethereality *ethereality, m_etherealitys)
+        {
+            ethereality->start();
+        }
     }
 }
 
@@ -52,7 +58,10 @@ void FloridEthereality::stop()
     Florid::stop();
     m_running = false;
     m_timer->stop();
-    m_etheral->stop();
+    foreach(Ethereality *ethereality, m_etherealitys)
+    {
+        ethereality->stop();
+    }
     clear();
 }
 
@@ -84,19 +93,43 @@ void FloridEthereality::timeout()
                 max = value;
             }
         }
-        m_etheral->process(max * 3 + 200);
+        max = (max <= 3) ? 10 : max / 3;
+        foreach(Ethereality *ethereality, m_etherealitys)
+        {
+            if(ethereality->isRunning())
+            {
+                m_pos_x = ethereality->pos().x();
+                m_pos_y = ethereality->pos().y();
+                m_pos_y += 1;
+                if(m_pos_y > height())
+                {
+                    m_pos_y = 0;
+                }
+                ethereality->move(m_pos_x, m_pos_y + qrand() % max);
+            }
+            else
+            {
+                ethereality->start();
+            }
+        }
     }
     else
     {
         Florid::stop();
-        m_etheral->stop();
+        foreach(Ethereality *ethereality, m_etherealitys)
+        {
+            ethereality->stop();
+        }
     }
 }
 
 void FloridEthereality::hideEvent(QHideEvent *)
 {
     m_timer->stop();
-    m_etheral->stop();
+    foreach(Ethereality *ethereality, m_etherealitys)
+    {
+        ethereality->stop();
+    }
 }
 
 void FloridEthereality::showEvent(QShowEvent *)
@@ -104,7 +137,10 @@ void FloridEthereality::showEvent(QShowEvent *)
     if(m_running)
     {
         m_timer->start();
-        m_etheral->start();
+        foreach(Ethereality *ethereality, m_etherealitys)
+        {
+            ethereality->start();
+        }
     }
 }
 

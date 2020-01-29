@@ -19,48 +19,35 @@
 #ifndef ETHEREALITY_H
 #define ETHEREALITY_H
 
-#include <QtOpenGL>
+#include <QTimer>
+#include <QWidget>
+#include <QDateTime>
 
-#define MAX_PARTICLES 1000
-
-struct Particle
-{
-    bool active;
-    float life;
-    float fade;
-    float r, g, b;
-    float x, y, z;
-    float xi, yi, zi;
-    float xg, yg, zg;
-};
-
-class Ethereality : public QGLWidget
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class Ethereality : public QWidget
 {
     Q_OBJECT
 public:
     explicit Ethereality(QWidget *parent = nullptr);
 
-    void process(GLint input);
     void start();
     void stop();
 
-protected:
-    void loadGLTextures();
-    virtual void initializeGL() override;
-    virtual void paintGL() override;
-    virtual void resizeGL(int width, int height) override;
+    bool isRunning() const;
 
-protected slots:
-    void timeOut();
+private Q_SLOTS:
+    void timeout();
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    void loadFile();
 
 private:
     QTimer *m_timer;
-    GLint m_border;
-    GLuint m_col;
-    Particle m_particles[MAX_PARTICLES];
-    GLuint m_texture[1];
+    QStringList m_word_list;
+    QStringList m_word;
 };
 
 #endif
-
-

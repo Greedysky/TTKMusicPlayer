@@ -22,8 +22,6 @@
 #include <qmmp/florid.h>
 
 class QTimer;
-class QPainter;
-class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 class Ethereality;
@@ -38,11 +36,11 @@ public:
     explicit FloridEthereality(QWidget *parent = nullptr);
     virtual ~FloridEthereality();
 
-public slots:
+public Q_SLOTS:
     virtual void start() override;
     virtual void stop() override;
 
-private slots:
+private Q_SLOTS:
     void timeout();
 
 private:
@@ -52,13 +50,15 @@ private:
 
     void process();
 
-    Ethereality *m_etheral;
+    int m_pos_x;
+    int m_pos_y;
     QTimer *m_timer;
     int *m_intern_vis_data;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
     int m_cols, m_rows;
     bool m_running;
+    QList<Ethereality*> m_etherealitys;
 
 };
 

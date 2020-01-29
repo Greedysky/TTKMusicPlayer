@@ -5,6 +5,7 @@
 ProjectMPlugin::ProjectMPlugin (QWidget *parent)
     : Florid (parent)
 {
+    m_useImage = false;
     m_running = false;
 
     setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
