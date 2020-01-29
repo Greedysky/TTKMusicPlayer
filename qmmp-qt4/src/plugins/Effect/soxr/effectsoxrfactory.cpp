@@ -42,7 +42,7 @@ Effect *EffectSoXRFactory::create()
 void EffectSoXRFactory::showSettings(QWidget *parent)
 {
     SettingsDialog *s = new SettingsDialog(parent);
-    s ->show();
+    s->show();
 }
 
 Q_EXPORT_PLUGIN2(soxr, EffectSoXRFactory)

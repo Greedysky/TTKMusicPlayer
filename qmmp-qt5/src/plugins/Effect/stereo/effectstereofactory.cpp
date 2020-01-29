@@ -40,5 +40,5 @@ Effect *EffectStereoFactory::create()
 void EffectStereoFactory::showSettings(QWidget *parent)
 {
     SettingsDialog *s = new SettingsDialog(parent);
-    s ->show();
+    s->show();
 }

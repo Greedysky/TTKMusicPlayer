@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2018-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,31 +18,30 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <QtPlugin>
-#include <bs2b/bs2bversion.h>
-#include <qmmp/qmmp.h>
-#include "effectbs2bfactory.h"
-#include "settingsdialog.h"
-#include "bs2bplugin.h"
+#ifndef MONOPLUGIN_H
+#define MONOPLUGIN_H
 
-const EffectProperties EffectBs2bFactory::properties() const
+#include <QMutex>
+#include <qmmp/effect.h>
+
+/**
+    @author Ilya Kotov <forkotov02@hotmail.ru>
+*/
+class MonoPlugin : public Effect
 {
-    EffectProperties properties;
-    properties.name = tr("BS2B Plugin");
-    properties.shortName = "bs2b";
-    properties.hasSettings = true;
-    return properties;
-}
+public:
+    MonoPlugin();
 
-Effect *EffectBs2bFactory::create()
-{
-    return new Bs2bPlugin();
-}
+    virtual ~MonoPlugin();
 
-void EffectBs2bFactory::showSettings(QWidget *parent)
-{
-    SettingsDialog *s = new SettingsDialog(parent);
-    s->show();
-}
+    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 freq, ChannelMap map) override;
 
-Q_EXPORT_PLUGIN2(bs2b,EffectBs2bFactory)
+private:
+    int m_chan;
+    QMutex m_mutex;
+    double m_avg;
+
+};
+
+#endif

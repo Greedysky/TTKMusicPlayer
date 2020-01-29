@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2018-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,31 +18,25 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <QtPlugin>
-#include <bs2b/bs2bversion.h>
-#include <qmmp/qmmp.h>
-#include "effectbs2bfactory.h"
-#include "settingsdialog.h"
-#include "bs2bplugin.h"
+#ifndef EFFECTMONOFACTORY_H
+#define EFFECTMONOFACTORY_H
 
-const EffectProperties EffectBs2bFactory::properties() const
+#include <QObject>
+#include <qmmp/effectfactory.h>
+#include <qmmp/effect.h>
+
+/**
+    @author Ilya Kotov <forkotov02@hotmail.ru>
+*/
+class EffectMonoFactory : public QObject, public EffectFactory
 {
-    EffectProperties properties;
-    properties.name = tr("BS2B Plugin");
-    properties.shortName = "bs2b";
-    properties.hasSettings = true;
-    return properties;
-}
+    Q_OBJECT
+    Q_INTERFACES(EffectFactory)
+public:
+    virtual const EffectProperties properties() const override;
+    virtual Effect *create() override;
+    virtual void showSettings(QWidget *parent) override;
 
-Effect *EffectBs2bFactory::create()
-{
-    return new Bs2bPlugin();
-}
+};
 
-void EffectBs2bFactory::showSettings(QWidget *parent)
-{
-    SettingsDialog *s = new SettingsDialog(parent);
-    s->show();
-}
-
-Q_EXPORT_PLUGIN2(bs2b,EffectBs2bFactory)
+#endif

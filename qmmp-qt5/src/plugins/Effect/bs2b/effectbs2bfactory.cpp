@@ -41,5 +41,5 @@ Effect *EffectBs2bFactory::create()
 void EffectBs2bFactory::showSettings(QWidget *parent)
 {
     SettingsDialog *s = new SettingsDialog(parent);
-    s ->show();
+    s->show();
 }

@@ -40,5 +40,3 @@ void EffectMonoToStereoFactory::showSettings(QWidget *parent)
 {
    Q_UNUSED(parent);
 }
-
-

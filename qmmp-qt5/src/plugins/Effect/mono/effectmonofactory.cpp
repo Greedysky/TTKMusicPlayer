@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2018-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,31 +18,25 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <QtPlugin>
-#include <bs2b/bs2bversion.h>
 #include <qmmp/qmmp.h>
-#include "effectbs2bfactory.h"
-#include "settingsdialog.h"
-#include "bs2bplugin.h"
+#include "effectmonofactory.h"
+#include "monoplugin.h"
 
-const EffectProperties EffectBs2bFactory::properties() const
+const EffectProperties EffectMonoFactory::properties() const
 {
     EffectProperties properties;
-    properties.name = tr("BS2B Plugin");
-    properties.shortName = "bs2b";
-    properties.hasSettings = true;
+    properties.name = tr("Extra Mono Plugin");
+    properties.shortName = "mono";
+    properties.hasSettings = false;
     return properties;
 }
 
-Effect *EffectBs2bFactory::create()
+Effect *EffectMonoFactory::create()
 {
-    return new Bs2bPlugin();
+    return new MonoPlugin();
 }
 
-void EffectBs2bFactory::showSettings(QWidget *parent)
+void EffectMonoFactory::showSettings(QWidget *parent)
 {
-    SettingsDialog *s = new SettingsDialog(parent);
-    s->show();
+   Q_UNUSED(parent);
 }
-
-Q_EXPORT_PLUGIN2(bs2b,EffectBs2bFactory)

@@ -42,7 +42,7 @@ Effect *EffectSRConverterFactory::create()
 void EffectSRConverterFactory::showSettings(QWidget *parent)
 {
     SettingsDialog *s = new SettingsDialog(parent);
-    s ->show();
+    s->show();
 }
 
 Q_EXPORT_PLUGIN2(srconverter, EffectSRConverterFactory)
