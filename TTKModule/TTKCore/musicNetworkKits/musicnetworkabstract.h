@@ -113,7 +113,8 @@ protected:
 
 };
 
-namespace MusicObject {
+namespace MusicObject
+{
     /*!
      * Set request ssl configuration.
      */

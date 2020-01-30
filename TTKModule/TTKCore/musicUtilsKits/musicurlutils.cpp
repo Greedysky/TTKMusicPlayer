@@ -8,16 +8,6 @@
 #include <shellapi.h>
 #endif
 
-const MString ASCII_MAP(R"("%<>[\]^_`{|})");
-const MString HEX_NUM_MAP("0123456789ABCDEF");
-
-unsigned char number2Char(const char h, const char l)
-{
-  unsigned char hh = std::find(std::begin(HEX_NUM_MAP), std::end(HEX_NUM_MAP), h) - std::begin(HEX_NUM_MAP);
-  unsigned char ll = std::find(std::begin(HEX_NUM_MAP), std::end(HEX_NUM_MAP), l) - std::begin(HEX_NUM_MAP);
-  return (hh << 4) + ll;
-}
-
 bool MusicUtils::Url::openUrl(const QString &exe, const QString &path)
 {
 #ifdef Q_OS_WIN
@@ -81,98 +71,36 @@ void MusicUtils::Url::urlDecode(QByteArray &data)
 
 void MusicUtils::Url::urlPrettyEncode(QString &data)
 {
-    const MString &url = data.toStdString();
-    data.clear();
-
-    for(auto it = url.begin(); it != url.end(); ++it)
-    {
-      if(((*it >> 7) & 1) || (std::count(std::begin(ASCII_MAP), std::end(ASCII_MAP), *it)))
-      {
-        data.push_back('%');
-        data.push_back(HEX_NUM_MAP[(*it >> 4) & 0x0F]);
-        data.push_back(HEX_NUM_MAP[*it & 0x0F]);
-      }
-      else
-      {
-        data.push_back(*it);
-      }
-    }
+#ifdef TTK_GREATER_NEW
+    data = QUrl(data).toString(QUrl::FullyEncoded);
+#else
+    data = QUrl(data).toEncoded();
+#endif
 }
 
 void MusicUtils::Url::urlPrettyDecode(QString &data)
 {
-    const MString &url = data.toStdString();
-    data.clear();
-
-    for(auto it = url.begin(); it != url.end(); ++it)
-    {
-      if(*it == '%')
-      {
-        if(std::next(it++) == url.end())
-        {
-          M_LOGGER_ERROR("Url is invalid");
-          return;
-        }
-
-        data.push_back(number2Char(*it, *std::next(it)));
-        if(std::next(it++) == url.end())
-        {
-          M_LOGGER_ERROR("Url is invalid");
-          return;
-        }
-      }
-      else
-      {
-        data.push_back(*it);
-      }
-    }
+#ifdef TTK_GREATER_NEW
+    data = QUrl(data).toString();
+#else
+    data = QByteArray::fromPercentEncoding(data.toUtf8());
+#endif
 }
 
 void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
 {
-    const MString url(data.constData(), data.length());
-    data.clear();
-
-    for(auto it = url.begin(); it != url.end(); ++it)
-    {
-      if(((*it >> 7) & 1) || (std::count(std::begin(ASCII_MAP), std::end(ASCII_MAP), *it)))
-      {
-        data.push_back('%');
-        data.push_back(HEX_NUM_MAP[(*it >> 4) & 0x0F]);
-        data.push_back(HEX_NUM_MAP[*it & 0x0F]);
-      }
-      else
-      {
-        data.push_back(*it);
-      }
-    }
+#ifdef TTK_GREATER_NEW
+    data = QUrl(data).toString(QUrl::FullyEncoded).toUtf8();
+#else
+    data = QUrl(data).toEncoded();
+#endif
 }
 
 void MusicUtils::Url::urlPrettyDecode(QByteArray &data)
 {
-    const MString url(data.constData(), data.length());
-    data.clear();
-
-    for(auto it = url.begin(); it != url.end(); ++it)
-    {
-      if(*it == '%')
-      {
-        if(std::next(it++) == url.end())
-        {
-          M_LOGGER_ERROR("Url is invalid");
-          return;
-        }
-
-        data.push_back(number2Char(*it, *std::next(it)));
-        if(std::next(it++) == url.end())
-        {
-          M_LOGGER_ERROR("Url is invalid");
-          return;
-        }
-      }
-      else
-      {
-        data.push_back(*it);
-      }
-    }
+#ifdef TTK_GREATER_NEW
+    data = QUrl::fromEncoded(data).toString(QUrl::FullyDecoded).toUtf8();
+#else
+    data = QByteArray::fromPercentEncoding(data);
+#endif
 }

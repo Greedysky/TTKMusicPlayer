@@ -61,7 +61,8 @@ void MusicNetworkAbstract::sslErrorsString(QNetworkReply *reply, const QList<QSs
 }
 #endif
 
-namespace MusicObject {
+namespace MusicObject
+{
 void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
 {
     request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");

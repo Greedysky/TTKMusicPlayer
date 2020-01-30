@@ -35,7 +35,7 @@ public:
     /*!
      * Delete data operater.
      */
-    void deleteDataOperator(const QString &bucket, const QString &file);
+    void deleteDataOperator(const QString &bucket, const QString &fileName);
 
 Q_SIGNALS:
     /*!

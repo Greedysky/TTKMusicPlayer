@@ -72,12 +72,9 @@ QString OSSDownloadData::getDownloadUrl(const QString &bucket, const QString &fi
 
 QString OSSDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType)
 {
-    const qint64 deadline = QDateTime::currentDateTime().toUTC().addSecs(60*30).toMSecsSinceEpoch() / 1000;
-#ifdef TTK_GREATER_NEW
-    const QString encodeKey = QUrl(fileName).toString(QUrl::FullyEncoded);
-#else
-    const QString encodeKey = QUrl(fileName).toEncoded();
-#endif
+    const qint64 deadline = QDateTime::currentDateTime().toUTC().addSecs(60 * 30).toMSecsSinceEpoch() / 1000;
+
+    const QString &encodeKey = pathEncode(fileName);
     const QString &method = "GET";
     const QString &resource = "/" + bucket + "/" + fileName;
     const QString &host = bucket + "." + OSSConf::OSS_HOST;

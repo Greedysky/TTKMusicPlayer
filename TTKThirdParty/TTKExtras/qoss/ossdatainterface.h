@@ -50,6 +50,16 @@ protected Q_SLOTS:
     void handleError(QNetworkReply::NetworkError error);
 
 protected:
+    /*!
+     * Pretty encode the data into url.
+     */
+    QString pathEncode(const QString &data) const;
+    /*!
+     * Pretty decode the data into url.
+     */
+    QString pathDecode(const QString &data) const;
+
+protected:
     TTK_DECLARE_PRIVATE(OSSDataInterface)
 
 };

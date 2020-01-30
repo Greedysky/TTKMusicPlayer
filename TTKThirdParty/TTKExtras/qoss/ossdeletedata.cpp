@@ -7,12 +7,12 @@ OSSDeleteData::OSSDeleteData(QNetworkAccessManager *networkManager, QObject *par
 
 }
 
-void OSSDeleteData::deleteDataOperator(const QString &bucket, const QString &file)
+void OSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fileName)
 {
     TTK_D(OSSDataInterface);
     const QString &method = "DELETE";
-    const QString &url = "/" + file;
-    const QString &resource = "/" + bucket + "/" + file;
+    const QString &url = "/" + fileName;
+    const QString &resource = "/" + bucket + "/" + fileName;
     const QString &host = bucket + "." + OSSConf::OSS_HOST;
 
     MStringMap headers;

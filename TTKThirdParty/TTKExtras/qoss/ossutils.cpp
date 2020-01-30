@@ -78,7 +78,7 @@ QString OSSUtils::getAuthorizationCode(const QString &key, const QString &method
     }
 
     const QString &sign = method + "\n" + content_md5 + "\n" + content_type + "\n" + date + "\n" + canonicalized_oss_headers + canonicalized_resource;
-    return hmacSha1(key.toLocal8Bit(), sign.toLocal8Bit());
+    return hmacSha1(key.toUtf8(), sign.toUtf8());
 }
 
 QString OSSUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,

@@ -45,7 +45,7 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT void enableEffectPlugin(const QString &name, bool enable);
         /*!
-         * Enable effect setting control.
+         * Check effect has setting.
          */
         MUSIC_UTILS_EXPORT bool effectHasSetting(const QString &name);
         /*!
