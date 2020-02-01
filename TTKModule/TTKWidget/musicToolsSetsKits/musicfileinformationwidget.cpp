@@ -208,7 +208,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->SamplingRateEdit->setText( state ? ((check = tag.getSampleRate()).isEmpty() ? "-" : check) : "-" );
     m_ui->TrackNumEdit->setText( state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-" );
     m_ui->decoderLabel->setText( state ? ((check = tag.getDecoder()).isEmpty() ? "-" : check.toUpper()) : "-" );
-    m_ui->qualityEdit->setText( MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())) );
+    m_ui->qualityEdit->setText( MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())));
 }
 
 void MusicFileInformationWidget::setEditLineEnable(bool enable)

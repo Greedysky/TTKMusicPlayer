@@ -41,7 +41,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.h
-    ${MUSIC_WIDGET_DIR}/musicpagingwidgetobject.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
@@ -95,7 +94,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.cpp
-    ${MUSIC_WIDGET_DIR}/musicpagingwidgetobject.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp

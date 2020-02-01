@@ -16,7 +16,6 @@
 #include "ttkversion.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"
-#include "musicapplication.h"
 #include "musiccolordialog.h"
 //qmmp
 #include "qmmpsettings.h"
@@ -72,8 +71,8 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
 void MusicFunctionTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(column);
+    selectRow(row);
     Q_EMIT currentIndexChanged(row + m_listIndex);
-    selectRow( currentRow() );
 }
 
 void MusicFunctionTableWidget::leaveEvent(QEvent *event)
@@ -142,7 +141,7 @@ MusicSettingWidget::~MusicSettingWidget()
 
 void MusicSettingWidget::initControllerParameter()
 {
-    //Set init parameter
+    //
     m_ui->autoPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::AutoPlay).toBool());
     m_ui->backPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList().first().toInt());
     if(!M_SETTING_PTR->value(MusicSettingManager::CloseEvent).toBool())
@@ -636,11 +635,11 @@ void MusicSettingWidget::scrollWidgetValueChanged(int value)
     }
     else if(index < 7)
     {
-        selectFunctionTableIndex(1, index - 4);
+        selectFunctionTableIndex(1, index - 5);
     }
     else if(index < 10)
     {
-        selectFunctionTableIndex(2, index - 6);
+        selectFunctionTableIndex(2, index - 7);
     }
 }
 

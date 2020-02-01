@@ -83,8 +83,8 @@ void MusicTimerAutoObject::timeout()
                             M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlay, 1);
                         }
                         MusicApplication::instance()->setPlaySongChanged(M_SETTING_PTR->value(MusicSettingManager::TimerAutoPlaySongIndex).toInt());
+                        break;
                     }
-                    break;
                 case 1:
                     {
                         if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoStopRepeat).toInt() == 0)
@@ -93,8 +93,8 @@ void MusicTimerAutoObject::timeout()
                             M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStop, 1);
                         }
                         MusicApplication::instance()->setStopSongChanged();
+                        break;
                     }
-                    break;
                 case 2:
                     {
                         if(M_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownRepeat).toInt() == 0)
@@ -103,8 +103,8 @@ void MusicTimerAutoObject::timeout()
                             M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdown, 1);
                         }
                         setShutdown();
+                        break;
                     }
-                    break;
                 default: break;
             }
         }

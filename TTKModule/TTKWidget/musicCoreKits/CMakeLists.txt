@@ -43,6 +43,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicdownloadabstracttablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselecteddialog.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicpagingwidgetobject.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
@@ -88,5 +89,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicdownloadabstracttablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselecteddialog.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicpagingwidgetobject.cpp
   )
   

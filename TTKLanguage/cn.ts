@@ -2,6 +2,21 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>ProjectMWidget</name>
+    <message>
+        <source>&amp;Next Preset</source>
+        <translation>下一个边框模式(N)</translation>
+    </message>
+    <message>
+        <source>&amp;Previous Preset</source>
+        <translation>上一个边框模式(P)</translation>
+    </message>
+    <message>
+        <source>&amp;Random Preset</source>
+        <translation>随机边框模式(R)</translation>
+    </message>
+</context>
+<context>
     <name>ColorWidget</name>
     <message>
         <source>Close</source>

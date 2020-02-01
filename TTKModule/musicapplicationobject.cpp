@@ -47,7 +47,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250*MT_MS);
 
-    m_musicTimerAutoObj = new MusicTimerAutoObject(this);
+    m_musicTimerAutoObject = new MusicTimerAutoObject(this);
     m_setWindowToTop = false;
     m_mobileDeviceWidget = nullptr;
     m_quitContainer = nullptr;
@@ -68,7 +68,7 @@ MusicApplicationObject::~MusicApplicationObject()
     cleanUp();
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
-    delete m_musicTimerAutoObj;
+    delete m_musicTimerAutoObject;
     delete m_quitAnimation;
     delete m_sideAnimation;
     delete m_deviceWatcher;
@@ -310,7 +310,7 @@ void MusicApplicationObject::musicResetWindow()
 
 void MusicApplicationObject::musicToolSetsParameter()
 {
-    m_musicTimerAutoObj->runTimerAutoConfig();
+    m_musicTimerAutoObject->runTimerAutoConfig();
 #ifdef Q_OS_WIN
     MusicWindowsManager windows;
     const int version = windows.getLocalIEVersion();

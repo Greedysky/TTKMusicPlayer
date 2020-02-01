@@ -477,21 +477,18 @@ namespace MusicUIObject
             QSlider::handle:horizontal{ background:rgba(255, 255, 255, 255); \
             width:9px; margin-top:-3px; margin-bottom:-3px; border-radius:4px; }";
 
+
 ///ComboBox
     const QString MComboBoxStyle01 = " \
             QComboBox{ border: 1px solid gray; } \
             QComboBox::hover{ border: 1px solid rgb(22, 154, 243); } \
             QComboBox::drop-down{ subcontrol-origin:padding; \
-            subcontrol-position:top right; width:20px; border-left-width:1px; \
-            border-left-color:darkgray; border-left-style:solid; } \
-            QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow); }";
-
-    const QString MComboBoxStyle02 = " \
-            QComboBox{ border:none; } \
-            QComboBox::hover{ border:none; } \
-            QComboBox::drop-down{ subcontrol-origin:padding; \
             subcontrol-position:top right; width:20px; border-left:none; } \
             QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow); }";
+
+    const QString MComboBoxStyle02 = MComboBoxStyle01 + " \
+            QComboBox{ border:none; } \
+            QComboBox::hover{ border:none; }";
 
 
 ///TableWidget

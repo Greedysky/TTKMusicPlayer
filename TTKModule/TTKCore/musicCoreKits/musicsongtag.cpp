@@ -211,7 +211,7 @@ QString MusicSongTag::getMode() const
 
 QString MusicSongTag::getBitrate() const
 {
-    return m_parameters[TagReadAndWrite::TAG_BITRATE].toString();
+    return m_parameters[TagReadAndWrite::TAG_BITRATE].toString() + " kbps";
 }
 
 QString MusicSongTag::getLengthString() const

@@ -61,7 +61,8 @@ HEADERS  += \
     $$PWD/musicdownloadabstracttablewidget.h \
     $$PWD/musicfunctiontoolboxwidget.h \
     $$PWD/musicsongitemselecteddialog.h \
-    $$PWD/musictimesliderwidget.h
+    $$PWD/musictimesliderwidget.h \
+    $$PWD/musicpagingwidgetobject.h
 
 }
 
@@ -108,6 +109,7 @@ SOURCES += \
     $$PWD/musicdownloadabstracttablewidget.cpp \
     $$PWD/musicfunctiontoolboxwidget.cpp \
     $$PWD/musicsongitemselecteddialog.cpp \
-    $$PWD/musictimesliderwidget.cpp
+    $$PWD/musictimesliderwidget.cpp \
+    $$PWD/musicpagingwidgetobject.cpp
 
 }

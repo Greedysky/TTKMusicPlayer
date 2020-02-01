@@ -71,11 +71,11 @@ namespace MusicUtils
         /*!
          * Transfrom bitrate to quality.
          */
-        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitString, QColor &color);
+        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitrate, QColor &color);
         /*!
          * Transfrom bitrate to quality.
          */
-        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitString);
+        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitrate);
         /*!
          * Transfrom bitrate to quality.
          */

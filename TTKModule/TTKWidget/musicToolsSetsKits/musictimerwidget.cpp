@@ -152,11 +152,11 @@ void MusicTimerWidget::initComboParameter()
 {
     for(int i=0; i<MT_D; ++i)
     {
-        m_hour << tr("%1H").arg(i);
+        m_hour << tr("%1H").arg(i).rightJustified(3, '0');
     }
     for(int i=0; i<MT_H; ++i)
     {
-        m_second << tr("%1S").arg(i);
+        m_second << tr("%1S").arg(i).rightJustified(3, '0');
     }
     m_repeat << tr("once") << tr("evMonth") << tr("evWeek") << tr("evDay");
 }

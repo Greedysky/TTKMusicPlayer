@@ -109,4 +109,26 @@ protected:
 
 };
 
+
+/*! @brief The class of the theme line label.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicThemeLineLabel : public QLabel
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicThemeLineLabel)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicThemeLineLabel(QWidget *parent = nullptr);
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+
+};
+
 #endif // MUSICPREVIEWLABEL_H
