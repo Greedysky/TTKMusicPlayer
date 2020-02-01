@@ -1,5 +1,5 @@
-#ifndef MUSICREMOTEWIDGETFORRIPPLES_H
-#define MUSICREMOTEWIDGETFORRIPPLES_H
+#ifndef MUSICREMOTEWIDGETFORRIPPLE_H
+#define MUSICREMOTEWIDGETFORRIPPLE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -23,20 +23,20 @@
 
 class MusicMarqueeWidget;
 
-/*! @brief The class of the desktop ripples remote widget.
+/*! @brief The class of the desktop ripple remote widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRipples : public MusicRemoteWidget
+class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRipple : public MusicRemoteWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRemoteWidgetForRipples)
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForRipple)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForRipples(QWidget *parent = nullptr);
+    explicit MusicRemoteWidgetForRipple(QWidget *parent = nullptr);
 
-    virtual ~MusicRemoteWidgetForRipples();
+    virtual ~MusicRemoteWidgetForRipple();
 
     /*!
      * Set current song text.
@@ -48,4 +48,4 @@ protected:
 
 };
 
-#endif // MUSICREMOTEWIDGETFORRIPPLES_H
+#endif // MUSICREMOTEWIDGETFORRIPPLE_H

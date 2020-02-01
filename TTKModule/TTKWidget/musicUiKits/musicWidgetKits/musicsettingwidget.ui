@@ -250,7 +250,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>80</y>
-       <width>101</width>
+       <width>100</width>
        <height>20</height>
       </rect>
      </property>
@@ -287,6 +287,82 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>窗口方式退出模式</string>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>20</y>
+       <width>355</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_2">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>165</y>
+       <width>335</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>255</y>
+       <width>315</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_4">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>80</y>
+       <width>315</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
      </property>
     </widget>
    </widget>
@@ -626,6 +702,25 @@ font-weight:bold;</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_5">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="third">
     <widget class="QLabel" name="baseSetDownloadWidget">
@@ -956,8 +1051,280 @@ font-weight:bold;</string>
       <string>速度控制</string>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_6">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_7">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>190</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_8">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>260</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="four">
+    <widget class="QLabel" name="rippleVersionWidget">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>135</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>版本设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleVersionValue">
+     <property name="geometry">
+      <rect>
+       <x>83</x>
+       <y>160</y>
+       <width>150</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>未知</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="rippleVersionUpdateButton">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>255</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更新</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="setRippleSpectrumWidget">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>特效设置</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="rippleSpectrumEnableBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>53</y>
+       <width>230</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启音频波纹特效</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleSpectrumColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>88</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>颜色</string>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="rippleSpectrumColorButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>83</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleVersionLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>163</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>当前版本:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleVersionUpdateLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>193</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更新时间:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleVersionUpdateValue">
+     <property name="geometry">
+      <rect>
+       <x>83</x>
+       <y>190</y>
+       <width>150</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>未知</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleVersionFileLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>223</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>文件校验:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rippleVersionFileValue">
+     <property name="geometry">
+      <rect>
+       <x>83</x>
+       <y>220</y>
+       <width>250</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>未知</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_9">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_10">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>135</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="five">
     <widget class="QLabel" name="baseSetOtherWidget">
      <property name="geometry">
       <rect>
@@ -980,7 +1347,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>135</x>
-       <y>48</y>
+       <y>50</y>
        <width>80</width>
        <height>16</height>
       </rect>
@@ -993,7 +1360,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>48</y>
+       <y>50</y>
        <width>80</width>
        <height>16</height>
       </rect>
@@ -1006,7 +1373,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>48</y>
+       <y>50</y>
        <width>101</width>
        <height>16</height>
       </rect>
@@ -1019,7 +1386,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>160</y>
+       <y>250</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1032,7 +1399,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>188</y>
+       <y>278</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1045,7 +1412,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>76</y>
+       <y>85</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1058,7 +1425,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>104</y>
+       <y>115</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1071,7 +1438,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>132</y>
+       <y>215</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1088,8 +1455,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherSearchCheckBox">
      <property name="geometry">
       <rect>
-       <x>215</x>
-       <y>160</y>
+       <x>240</x>
+       <y>250</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1101,8 +1468,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherLrcKTVCheckBox">
      <property name="geometry">
       <rect>
-       <x>215</x>
-       <y>188</y>
+       <x>240</x>
+       <y>278</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1114,8 +1481,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherWriteAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
-       <x>215</x>
-       <y>76</y>
+       <x>25</x>
+       <y>145</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1127,8 +1494,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherWriteInfoCheckBox">
      <property name="geometry">
       <rect>
-       <x>215</x>
-       <y>104</y>
+       <x>25</x>
+       <y>175</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1137,112 +1504,46 @@ font-weight:bold;</string>
       <string>下载文件写入歌曲信息</string>
      </property>
     </widget>
-    <widget class="QLabel" name="otherVersionWidget">
+    <widget class="QFrame" name="frame_11">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>312</y>
-       <width>60</width>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;
-font-size:13px;
-font-weight:bold;</string>
+      <string notr="true">color:rgba(0,0,0,25)</string>
      </property>
-     <property name="text">
-      <string>版本设置</string>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
      </property>
-    </widget>
-    <widget class="QLabel" name="otherVersionValue">
-     <property name="geometry">
-      <rect>
-       <x>25</x>
-       <y>337</y>
-       <width>70</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>未知</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
      </property>
     </widget>
-    <widget class="QPushButton" name="otherVersionUpdateButton">
+    <widget class="QFrame" name="frame_12">
      <property name="geometry">
       <rect>
-       <x>105</x>
-       <y>337</y>
-       <width>71</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>更新</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="setRipplesSpectrumWidget">
-     <property name="geometry">
-      <rect>
-       <x>25</x>
-       <y>220</y>
-       <width>60</width>
+       <x>95</x>
+       <y>215</y>
+       <width>345</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:transparent;
-font-size:13px;
-font-weight:bold;</string>
+      <string notr="true">color:rgba(0,0,0,25)</string>
      </property>
-     <property name="text">
-      <string>特效设置</string>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
      </property>
-    </widget>
-    <widget class="QCheckBox" name="ripplesSpectrumEnableBox">
-     <property name="geometry">
-      <rect>
-       <x>25</x>
-       <y>250</y>
-       <width>230</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>开启音频波纹特效</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="ripplesSpectrumColorLabel">
-     <property name="geometry">
-      <rect>
-       <x>25</x>
-       <y>282</y>
-       <width>31</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>颜色</string>
-     </property>
-    </widget>
-    <widget class="MusicColorPreviewLabel" name="ripplesSpectrumColorButton">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>277</y>
-       <width>80</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="five">
+   <widget class="QWidget" name="six">
     <widget class="QLabel" name="DbaseSetSongWordWidget">
      <property name="geometry">
       <rect>
@@ -1266,7 +1567,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>200</y>
-       <width>100</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -1508,8 +1809,46 @@ font-weight:bold;</string>
       <string>单行显示歌词</string>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_13">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_14">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>200</y>
+       <width>335</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="six">
+   <widget class="QWidget" name="seven">
     <widget class="QLabel" name="baseSetSongWordWidget">
      <property name="geometry">
       <rect>
@@ -1533,7 +1872,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>200</y>
-       <width>100</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -1775,8 +2114,46 @@ font-weight:bold;</string>
       <string>显示Cortana歌词</string>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_15">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_16">
+     <property name="geometry">
+      <rect>
+       <x>105</x>
+       <y>200</y>
+       <width>335</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="seven">
+   <widget class="QWidget" name="eight">
     <widget class="QLabel" name="setSoundOutWidget">
      <property name="geometry">
       <rect>
@@ -1969,8 +2346,46 @@ font-weight:bold;</string>
       <string>毫秒</string>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_17">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_18">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>145</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="eight">
+   <widget class="QWidget" name="nine">
     <widget class="QLabel" name="setAudioGainWidget">
      <property name="geometry">
       <rect>
@@ -2297,8 +2712,46 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_19">
+     <property name="geometry">
+      <rect>
+       <x>144</x>
+       <y>20</y>
+       <width>295</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_20">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>170</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="nine">
+   <widget class="QWidget" name="ten">
     <widget class="QLabel" name="setProxyWidget">
      <property name="geometry">
       <rect>
@@ -2594,6 +3047,44 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
+    <widget class="QFrame" name="frame_21">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>20</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="frame_22">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>195</y>
+       <width>345</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgba(0,0,0,25)</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QWidget" name="functionArea" native="true">
@@ -2611,7 +3102,7 @@ font-weight:bold;</string>
    <widget class="QLabel" name="baseSetWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>20</y>
       <width>60</width>
       <height>20</height>
@@ -2619,7 +3110,7 @@ font-weight:bold;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:transparent;
-font-size:14px;
+font-size:12px;
 color:rgb(80,80,80);
 font-weight:bold;;</string>
     </property>
@@ -2630,15 +3121,15 @@ font-weight:bold;;</string>
    <widget class="QLabel" name="wordSetWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>180</y>
+      <x>20</x>
+      <y>195</y>
       <width>60</width>
       <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:transparent;
-font-size:14px;
+font-size:12px;
 color:rgb(80,80,80);
 font-weight:bold;;</string>
     </property>
@@ -2650,9 +3141,9 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>45</y>
+      <y>40</y>
       <width>125</width>
-      <height>125</height>
+      <height>140</height>
      </rect>
     </property>
    </widget>
@@ -2660,7 +3151,7 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>210</y>
+      <y>220</y>
       <width>125</width>
       <height>60</height>
      </rect>
@@ -2669,15 +3160,15 @@ font-weight:bold;;</string>
    <widget class="QLabel" name="supperSetWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>280</y>
+      <x>20</x>
+      <y>295</y>
       <width>60</width>
       <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color:transparent;
-font-size:14px;
+font-size:12px;
 color:rgb(80,80,80);
 font-weight:bold;;</string>
     </property>
@@ -2689,7 +3180,7 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>310</y>
+      <y>320</y>
       <width>125</width>
       <height>90</height>
      </rect>

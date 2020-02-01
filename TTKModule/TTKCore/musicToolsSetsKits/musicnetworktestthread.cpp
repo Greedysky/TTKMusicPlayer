@@ -9,7 +9,7 @@
 MusicNetworkTestThread::MusicNetworkTestThread(QObject *parent)
     : MusicAbstractThread(parent)
 {
-    MusicTime::timeSRand();
+    MusicTime::InitSRand();
 }
 
 void MusicNetworkTestThread::setUrl(const QString &url)

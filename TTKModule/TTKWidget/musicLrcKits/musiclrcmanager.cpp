@@ -252,8 +252,8 @@ void MusicLrcManager::setLinearGradientColor(const MusicLrcColor &color)
     for(int i=0; i<cl.count(); ++i)
     {
         QColor rgb = cl[i];
-        rgb.setAlpha(m_transparent*2.55);
-        linearGradient.setColorAt((i+1)*1.0/cl.count(), rgb);
+        rgb.setAlpha(m_transparent * 2.55);
+        linearGradient.setColorAt((i + 1) * 1.0 / cl.count(), rgb);
     }
     m_linearGradient = linearGradient;
 
@@ -262,8 +262,8 @@ void MusicLrcManager::setLinearGradientColor(const MusicLrcColor &color)
     for(int i=0; i<cl.count(); ++i)
     {
         QColor rgb = cl[i];
-        rgb.setAlpha(m_transparent*2.55);
-        maskLinearGradient.setColorAt((i+1)*1.0/cl.count(), rgb);
+        rgb.setAlpha(m_transparent * 2.55);
+        maskLinearGradient.setColorAt((i + 1) * 1.0 / cl.count(), rgb);
     }
     m_maskLinearGradient = maskLinearGradient;
 

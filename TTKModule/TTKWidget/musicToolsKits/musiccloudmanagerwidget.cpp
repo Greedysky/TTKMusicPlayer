@@ -148,7 +148,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
     foreach(const OSSDataItem &item, items)
     {
         MusicCloudDataItem data;
-        data.m_id = QString::number(MusicTime::timeStamp());
+        data.m_id = QString::number(MusicTime::timestamp());
         data.m_path = item.m_name.trimmed();
         data.m_state = MusicCloudDataItem::Successed;
         data.m_dataItem = item;
@@ -300,7 +300,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
         foreach(const QFileInfo &info, MusicUtils::File::getFileListByDir(path, MusicFormats::supportFormatsFilterString(), true))
         {
             MusicCloudDataItem item;
-            item.m_id = QString::number(MusicTime::timeStamp());
+            item.m_id = QString::number(MusicTime::timestamp());
             item.m_path = path;
             item.m_state = MusicCloudDataItem::Waited;
             item.m_dataItem.m_name = info.fileName().trimmed();
@@ -409,7 +409,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
     {
         MusicCloudDataItem item;
         const QFileInfo info(path);
-        item.m_id = QString::number(MusicTime::timeStamp());
+        item.m_id = QString::number(MusicTime::timestamp());
         item.m_path = path;
         item.m_state = MusicCloudDataItem::Waited;
         item.m_dataItem.m_name = info.fileName().trimmed();

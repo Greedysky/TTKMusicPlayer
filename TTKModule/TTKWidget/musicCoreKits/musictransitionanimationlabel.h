@@ -32,6 +32,15 @@ class MUSIC_WIDGET_EXPORT MusicTransitionAnimationLabel : public QLabel
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTransitionAnimationLabel)
 public:
+    enum AnimationType
+    {
+        FadeEffect,
+        BlindsEffect,
+        CubeEffect,
+        LeftToRightEffect,
+        TopToBottomEffect
+    };
+
     /*!
      * Object contsructor.
      */
@@ -80,6 +89,7 @@ protected:
      */
     virtual void paintEvent(QPaintEvent *event) override;
 
+    AnimationType m_type;
     bool m_isAnimating;
     int m_currentValue;
     bool m_noAnimationSet;

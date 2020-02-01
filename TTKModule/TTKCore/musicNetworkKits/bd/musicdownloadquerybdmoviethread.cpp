@@ -471,7 +471,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeIQY(MusicObject::M
         }
     }
 
-    const QString &time = QString::number(MusicTime::timeStamp());
+    const QString &time = QString::number(MusicTime::timestamp());
     const QString &host = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_I_URL, false);
     const QString &src = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_ID_URL, false).arg(tvid).arg(vid).arg(tvid).arg(time);
 

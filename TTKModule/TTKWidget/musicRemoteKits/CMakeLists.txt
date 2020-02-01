@@ -8,7 +8,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_REMOTE_KITS_HEADERS
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.h
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.h
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.h
-    ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripples.h
+    ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.h
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrayswave.h
   )
 
@@ -20,7 +20,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_REMOTE_KITS_SOURCES
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.cpp
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.cpp
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.cpp
-    ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripples.cpp
+    ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforripple.cpp
     ${MUSIC_WIDGET_REMOTEWIDGET_DIR}/musicremotewidgetforrayswave.cpp
   )
   

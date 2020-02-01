@@ -4,5 +4,5 @@
 MusicDownLoadDiscoverListThread::MusicDownLoadDiscoverListThread(QObject *parent)
     : MusicDownLoadPagingThread(parent)
 {
-    MusicTime::timeSRand();
+    MusicTime::InitSRand();
 }

@@ -4409,12 +4409,12 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsettingwidget.cpp" line="106"/>
         <source>Desktop</source>
-        <translation>窗口歌词</translation>
+        <translation>桌面歌词</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsettingwidget.cpp" line="107"/>
         <source>Interior</source>
-        <translation>桌面歌词</translation>
+        <translation>窗口歌词</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsettingwidget.cpp" line="111"/>

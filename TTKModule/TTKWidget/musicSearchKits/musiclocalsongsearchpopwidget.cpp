@@ -141,7 +141,7 @@ void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
 
 QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 {
-    const qint64 t = (MusicTime::timeStamp() - time.toLongLong()) / MT_S2MS;
+    const qint64 t = (MusicTime::timestamp() - time.toLongLong()) / MT_S2MS;
     return MusicTime::normalTime2Label(t);
 }
 

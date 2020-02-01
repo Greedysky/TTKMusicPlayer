@@ -59,7 +59,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     /// only download music data can that show progress
     if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)
     {
-        m_createItemTime = MusicTime::timeStamp();
+        m_createItemTime = MusicTime::timestamp();
         M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPair(m_createItemTime, this, m_recordType));
         Q_EMIT createDownloadItem(m_savePathName, m_createItemTime);
     }

@@ -64,6 +64,8 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
 #endif
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
+
+        setRowHeight(i, 28);
     }
 }
 
@@ -87,18 +89,17 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    //
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    //
     MusicFunctionItems items;
     items << MusicFunctionItem(":/contextMenu/btn_setting", tr("Normal"))
           << MusicFunctionItem(":/contextMenu/btn_keyboard", tr("Hotkey"))
           << MusicFunctionItem(":/contextMenu/btn_download", tr("Dwonload"))
+          << MusicFunctionItem(":/contextMenu/btn_spectrum", tr("Ripple"))
           << MusicFunctionItem(":/tiny/btn_more_normal", tr("Other"));
     m_ui->normalFunTableWidget->setRowCount(items.count());
     m_ui->normalFunTableWidget->addFunctionItems(0, items);
@@ -111,7 +112,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     items << MusicFunctionItem(":/contextMenu/btn_equalizer", tr("Equalizer"))
           << MusicFunctionItem(":/contextMenu/btn_kmicro", tr("Audio"))
           << MusicFunctionItem(":/contextMenu/btn_network", tr("NetWork"));
-    m_ui->supperFunTableWidget->setRowCount(3);
+    m_ui->supperFunTableWidget->setRowCount(items.count());
     m_ui->supperFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(), items);
 
     m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -180,6 +181,14 @@ void MusicSettingWidget::initControllerParameter()
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
 
     //
+    m_ui->rippleVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
+    m_ui->rippleVersionUpdateValue->setText(TTKMUSIC_VER_TIME_STR);
+    m_ui->rippleVersionFileValue->setText(TTKMUSIC_VER_FILE_STR);
+    m_ui->rippleSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool());
+    m_ui->rippleSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString()));
+    rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
+
+    //
     M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool() ? m_ui->otherHeighImageRadioBox->click() : m_ui->otherNormalImageRadioBox->click();
     m_ui->otherCheckUpdateBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdate).toBool());
     m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearch).toBool());
@@ -189,11 +198,6 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherWriteInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
-    m_ui->otherVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
-
-    m_ui->ripplesSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool());
-    m_ui->ripplesSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString()));
-    ripplesSpectrumOpacityEnableClicked(m_ui->ripplesSpectrumEnableBox->isChecked());
 
     //
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
@@ -206,7 +210,6 @@ void MusicSettingWidget::initControllerParameter()
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimit).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 
     //
-    //Set init parameter
     m_ui->showInteriorCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool());
     m_ui->showInteriorCheckBox->setEnabled(false);
     m_ui->showCortanaCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowCortanaLrc).toBool());
@@ -336,24 +339,24 @@ void MusicSettingWidget::downloadDirSelected(int index)
     }
 }
 
-void MusicSettingWidget::otherVersionUpdateChanged()
+void MusicSettingWidget::rippleVersionUpdateChanged()
 {
     MusicSourceUpdateWidget(this).exec();
 }
 
-void MusicSettingWidget::ripplesSpectrumColorChanged()
+void MusicSettingWidget::rippleSpectrumColorChanged()
 {
     MusicColorDialog getColor(this);
     if(getColor.exec())
     {
         const QColor &color = getColor.color();
-        m_ui->ripplesSpectrumColorButton->setColors(QList<QColor>() << color);
+        m_ui->rippleSpectrumColorButton->setColors(QList<QColor>() << color);
     }
 }
 
-void MusicSettingWidget::ripplesSpectrumOpacityEnableClicked(bool state)
+void MusicSettingWidget::rippleSpectrumOpacityEnableClicked(bool state)
 {
-    m_ui->ripplesSpectrumColorButton->setEnabled(state);
+    m_ui->rippleSpectrumColorButton->setEnabled(state);
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()
@@ -537,6 +540,10 @@ void MusicSettingWidget::saveResults()
     M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());
 
 
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->rippleSpectrumColorButton->getColors()));
+
+
     M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLossless, m_ui->otherHeighImageRadioBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdate, m_ui->otherCheckUpdateBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearch, m_ui->otherSearchCheckBox->isChecked());
@@ -547,8 +554,6 @@ void MusicSettingWidget::saveResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideBy, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnable, m_ui->ripplesSpectrumEnableBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->ripplesSpectrumColorButton->getColors()));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, m_ui->showInteriorCheckBox->isChecked());
@@ -585,14 +590,14 @@ void MusicSettingWidget::saveResults()
 
 
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
-    int i = m_ui->replayGainModeComboBox->currentIndex();
-    qmmpSettings->setReplayGainSettings(MStatic_cast(QmmpSettings::ReplayGainMode, m_ui->replayGainModeComboBox->itemData(i).toInt()),
+    int index = m_ui->replayGainModeComboBox->currentIndex();
+    qmmpSettings->setReplayGainSettings(MStatic_cast(QmmpSettings::ReplayGainMode, m_ui->replayGainModeComboBox->itemData(index).toInt()),
                                         m_ui->preampSpinBox->value(),
                                         m_ui->defaultGainSpinBox->value(),
                                         m_ui->clippingCheckBox->isChecked());
-    i = m_ui->bitDepthComboBox->currentIndex();
+    index = m_ui->bitDepthComboBox->currentIndex();
     qmmpSettings->setAudioSettings(m_ui->softVolumeCheckBox->isChecked(),
-                                   MStatic_cast(Qmmp::AudioFormat, m_ui->bitDepthComboBox->itemData(i).toInt()),
+                                   MStatic_cast(Qmmp::AudioFormat, m_ui->bitDepthComboBox->itemData(index).toInt()),
                                    m_ui->ditheringCheckBox->isChecked());
     qmmpSettings->setBufferSize(m_ui->bufferSizeSpinBox->value());
     qmmpSettings->setVolumeStep(m_ui->volumeStepSpinBox->value());
@@ -625,15 +630,15 @@ void MusicSettingWidget::setScrollWidgetPageIndex(int index)
 void MusicSettingWidget::scrollWidgetValueChanged(int value)
 {
     int index = value / SCROLL_ITEM_HEIGHT;
-    if(index < 4)
+    if(index < 5)
     {
         selectFunctionTableIndex(0, index);
     }
-    else if(index < 6)
+    else if(index < 7)
     {
         selectFunctionTableIndex(1, index - 4);
     }
-    else if(index < 9)
+    else if(index < 10)
     {
         selectFunctionTableIndex(2, index - 6);
     }
@@ -659,6 +664,7 @@ void MusicSettingWidget::initScrollWidgetPage()
     //
     initNormalSettingWidget();
     initDownloadWidget();
+    initSpectrumSettingWidget();
     initOtherSettingWidget();
     initDesktopLrcWidget();
     initInteriorLrcWidget();
@@ -682,6 +688,7 @@ void MusicSettingWidget::initScrollWidgetPage()
     scrollAreaWidgetAreaLayout->addWidget(m_ui->seven);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->eight);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->nine);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->ten);
     //
     m_ui->stackedWidget->hide();
     m_ui->first->show();
@@ -693,8 +700,9 @@ void MusicSettingWidget::initScrollWidgetPage()
     m_ui->seven->show();
     m_ui->eight->show();
     m_ui->nine->show();
+    m_ui->ten->show();
     //
-    m_ui->scrollAreaWidgetArea->setFixedHeight(9 * SCROLL_ITEM_HEIGHT);
+    m_ui->scrollAreaWidgetArea->setFixedHeight(scrollAreaWidgetAreaLayout->count() * SCROLL_ITEM_HEIGHT);
     m_ui->scrollAreaWidget->raise();
     selectFunctionTableIndex(0, 0);
     //
@@ -744,6 +752,23 @@ void MusicSettingWidget::initNormalSettingWidget()
     connect(m_ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
 }
 
+void MusicSettingWidget::initSpectrumSettingWidget()
+{
+    m_ui->rippleSpectrumEnableBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
+    connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
+    connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
+
+    m_ui->rippleVersionUpdateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->rippleVersionUpdateButton, SIGNAL(clicked()), SLOT(rippleVersionUpdateChanged()));
+#ifdef Q_OS_UNIX
+    m_ui->rippleSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->rippleVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
+#endif
+}
+
 void MusicSettingWidget::initOtherSettingWidget()
 {
     m_ui->otherNormalImageRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
@@ -756,15 +781,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->ripplesSpectrumEnableBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_ui->ripplesSpectrumColorButton->setText(tr("Effect"));
-    connect(m_ui->ripplesSpectrumColorButton, SIGNAL(clicked()), SLOT(ripplesSpectrumColorChanged()));
-    connect(m_ui->ripplesSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(ripplesSpectrumOpacityEnableClicked(bool)));
-
-    m_ui->otherVersionUpdateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->otherVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->otherVersionUpdateButton, SIGNAL(clicked()), SLOT(otherVersionUpdateChanged()));
 #ifdef Q_OS_UNIX
     m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -776,8 +793,6 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->ripplesSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_ui->otherNormalImageRadioBox->click();
@@ -1006,13 +1021,12 @@ void MusicSettingWidget::initAudioSettingWidget()
     m_ui->ditheringCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->replayGainModeComboBox->addItem (tr("Track"), QmmpSettings::REPLAYGAIN_TRACK);
-    m_ui->replayGainModeComboBox->addItem (tr("Album"), QmmpSettings::REPLAYGAIN_ALBUM);
-    m_ui->replayGainModeComboBox->addItem (tr("Disabled"), QmmpSettings::REPLAYGAIN_DISABLED);
+    m_ui->replayGainModeComboBox->addItem(tr("Track"), QmmpSettings::REPLAYGAIN_TRACK);
+    m_ui->replayGainModeComboBox->addItem(tr("Album"), QmmpSettings::REPLAYGAIN_ALBUM);
+    m_ui->replayGainModeComboBox->addItem(tr("Disabled"), QmmpSettings::REPLAYGAIN_DISABLED);
     m_ui->bitDepthComboBox->addItem("16", Qmmp::PCM_S16LE);
     m_ui->bitDepthComboBox->addItem("24", Qmmp::PCM_S24LE);
     m_ui->bitDepthComboBox->addItem("32", Qmmp::PCM_S32LE);
-
 }
 
 void MusicSettingWidget::initNetworkWidget()

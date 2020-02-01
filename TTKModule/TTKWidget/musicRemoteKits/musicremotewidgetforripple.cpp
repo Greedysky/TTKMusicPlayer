@@ -1,4 +1,4 @@
-#include "musicremotewidgetforripples.h"
+#include "musicremotewidgetforripple.h"
 #include "musictinyuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
@@ -7,7 +7,7 @@
 #include "visual.h"
 #include "visualfactory.h"
 
-MusicRemoteWidgetForRipples::MusicRemoteWidgetForRipples(QWidget *parent)
+MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 320, 100);
@@ -54,13 +54,13 @@ MusicRemoteWidgetForRipples::MusicRemoteWidgetForRipples(QWidget *parent)
     bottomWidget->setLayout(bottomWidgetBox);
 }
 
-MusicRemoteWidgetForRipples::~MusicRemoteWidgetForRipples()
+MusicRemoteWidgetForRipple::~MusicRemoteWidgetForRipple()
 {
     MusicUtils::QMMP::enableVisualPlugin("outerripples", false);
     delete m_songNameLabel;
 }
 
-void MusicRemoteWidgetForRipples::setLabelText(const QString &value)
+void MusicRemoteWidgetForRipple::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));
 }

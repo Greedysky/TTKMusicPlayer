@@ -10,7 +10,7 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
-#include "musicremotewidgetforripples.h"
+#include "musicremotewidgetforripple.h"
 #include "musicremotewidgetforrayswave.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
@@ -377,13 +377,13 @@ void MusicTopAreaWidget::musicWallpaperRemote(bool create)
     }
 }
 
-void MusicTopAreaWidget::musicRipplesRemote()
+void MusicTopAreaWidget::musicRippleRemote()
 {
     if(m_musicRemoteWidget)
     {
         delete m_musicRemoteWidget;
     }
-    m_musicRemoteWidget = new MusicRemoteWidgetForRipples;
+    m_musicRemoteWidget = new MusicRemoteWidgetForRipple;
     m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
     createRemoteWidget();
 }
@@ -432,7 +432,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
         case MusicRemoteWidget::SimpleStyle: musicSimpleStyleRemote(); break;
         case MusicRemoteWidget::ComplexStyle: musicComplexStyleRemote(); break;
         case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
-        case MusicRemoteWidget::Ripples: musicRipplesRemote(); break;
+        case MusicRemoteWidget::Ripple: musicRippleRemote(); break;
         case MusicRemoteWidget::RaysWave: musicRaysWaveRemote(); break;
         default: break;
     }

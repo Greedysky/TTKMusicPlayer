@@ -5,7 +5,7 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
-#include "musicremotewidgetforripples.h"
+#include "musicremotewidgetforripple.h"
 #include "musicremotewidgetforrayswave.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
@@ -131,7 +131,7 @@ int MusicRemoteWidget::mapRemoteTypeIndex()
     else if(MObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
     else if(MObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
     else if(MObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
-    else if(MObject_cast(MusicRemoteWidgetForRipples*, this)) return Ripples;
+    else if(MObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
     else if(MObject_cast(MusicRemoteWidgetForRaysWave*, this)) return RaysWave;
     else return Null;
 }
@@ -198,9 +198,9 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     action = menu.addAction(tr("DiamondRemote"));
     action->setEnabled(!MObject_cast(MusicRemoteWidgetForDiamond*, this));
     action->setData(Diamond);
-    action = menu.addAction(tr("RipplesRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRipples*, this));
-    action->setData(Ripples);
+    action = menu.addAction(tr("RippleRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRipple*, this));
+    action->setData(Ripple);
     action = menu.addAction(tr("RaysWaveRemote"));
     action->setEnabled(!MObject_cast(MusicRemoteWidgetForRaysWave*, this));
     action->setData(RaysWave);

@@ -483,12 +483,15 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
     if(m_mouseLeftPressed)
     {
+        QLinearGradient linearGradient(0, 0, width(), 0);
+        linearGradient.setColorAt(0.0, QColor(255, 254, 161));
+        linearGradient.setColorAt(0.5, Qt::transparent);
+        linearGradient.setColorAt(1.0, QColor(255, 254, 161));
+
         const int line = (height() - m_functionLabel->height())/2;
         QPainter painter(this);
-        QFont font;
-        painter.setFont(font);
-        painter.setPen(QColor(Qt::white));
-        painter.drawLine(0, line, width(), line);
+        painter.setPen(QPen(linearGradient, 1));
+        painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
 
         qint64 v = m_lrcAnalysis->getCurrentIndex() - 1;
         if(v < 0)
@@ -500,7 +503,7 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
             v = m_lrcAnalysis->count() - m_lrcAnalysis->getMiddle() + 2;
         }
         v = m_lrcAnalysis->findTime(v);
-        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION/2, MusicTime::msecTime2LabelJustified(v));
+        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION / 2, MusicTime::msecTime2LabelJustified(v));
     }
 }
 

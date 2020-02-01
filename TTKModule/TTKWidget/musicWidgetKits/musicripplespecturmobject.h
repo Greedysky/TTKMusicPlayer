@@ -39,29 +39,29 @@ public:
     ~MusicRippleSpecturmObject();
 
     /*!
-     * Set ripples spectrum show or not.
+     * Set ripple spectrum show or not.
      */
     void setVisible(bool v);
     /*!
-     * Set ripples spectrum show.
+     * Set ripple spectrum show.
      */
     void show();
     /*!
-     * Set ripples spectrum hide.
+     * Set ripple spectrum hide.
      */
     void close();
     /*!
-     * Update ripples spectrum paramters.
+     * Update ripple spectrum paramters.
      */
     void update(bool up);
     /*!
-     * Init ripples spectrum paramters.
+     * Init ripple spectrum paramters.
      */
     void init(QVBoxLayout *layout, QWidget *widget);
 
 private:
     /*!
-     * Remove ripples spectrum object.
+     * Remove ripple spectrum object.
      */
     void removeSpectrum();
 

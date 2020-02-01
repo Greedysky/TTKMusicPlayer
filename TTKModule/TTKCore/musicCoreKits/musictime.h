@@ -155,16 +155,16 @@ public:
     /*!
      * Get all time value by type.
      */
-    qint64 getTimeStamp(Type type) const;
+    qint64 getTimestamp(Type type) const;
     //
     /*!
      * Transform ms time from utc since epoch.
      */
-    static qint64 timeStamp(bool ms = true);
+    static qint64 timestamp(bool ms = true);
     /*!
      * Init random time seed.
      */
-    static void timeSRand();
+    static void InitSRand();
     //
     /*!
      * Transform string format(mm:ss) to msec time.

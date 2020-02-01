@@ -46,7 +46,7 @@ public:
         SimpleStyle,    /*!< Romote SimpleStyle type*/
         ComplexStyle,   /*!< Romote ComplexStyle type*/
         Diamond,        /*!< Romote Diamond type*/
-        Ripples,        /*!< Romote Ripples type*/
+        Ripple,         /*!< Romote Ripple type*/
         RaysWave        /*!< Romote RaysWave type*/
     };
 

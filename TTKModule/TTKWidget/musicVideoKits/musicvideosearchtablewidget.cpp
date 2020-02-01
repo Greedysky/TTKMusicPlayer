@@ -18,7 +18,7 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     m_defaultBkColor = Qt::black;
     m_singleRadioMode = false;
 
-    MusicTime::timeSRand();
+    MusicTime::InitSRand();
     M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 

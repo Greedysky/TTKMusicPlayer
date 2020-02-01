@@ -145,7 +145,7 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
-    MusicRippleSpecturmObject *m_musicRipplesObject;
+    MusicRippleSpecturmObject *m_musicRippleObject;
 
     static MusicBottomAreaWidget *m_instance;
 };

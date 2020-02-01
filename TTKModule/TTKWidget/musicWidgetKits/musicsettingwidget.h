@@ -149,15 +149,15 @@ public Q_SLOTS:
     /*!
      * Version update check changed.
      */
-    void otherVersionUpdateChanged();
+    void rippleVersionUpdateChanged();
     /*!
-     * Ripples spectrum color changed.
+     * Ripple spectrum color changed.
      */
-    void ripplesSpectrumColorChanged();
+    void rippleSpectrumColorChanged();
     /*!
-     * Ripples spectrum opacity enable changed.
+     * Ripple spectrum opacity enable changed.
      */
-    void ripplesSpectrumOpacityEnableClicked(bool state);
+    void rippleSpectrumOpacityEnableClicked(bool state);
 
     /*!
      * Change to desktop lrc widget.
@@ -284,6 +284,10 @@ protected:
      * Init normal setting stack widget.
      */
     void initNormalSettingWidget();
+    /*!
+     * Init spectrum setting stack widget.
+     */
+    void initSpectrumSettingWidget();
     /*!
      * Init other setting stack widget.
      */

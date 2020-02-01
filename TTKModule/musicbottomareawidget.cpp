@@ -21,7 +21,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
-    m_musicRipplesObject = new MusicRippleSpecturmObject(this);
+    m_musicRippleObject = new MusicRippleSpecturmObject(this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -29,7 +29,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_musicWindowExtras;
-    delete m_musicRipplesObject;
+    delete m_musicRippleObject;
 }
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
@@ -41,7 +41,7 @@ void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
 
-    m_musicRipplesObject->init(ui->backgroundLayout, ui->bottomWidget);
+    m_musicRippleObject->init(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->showCurrentSong->setEffectOnResize(true);
@@ -220,7 +220,7 @@ void MusicBottomAreaWidget::getParameterSetting()
     setDestopLrcVisible(config);
          config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool();
 
-    m_musicRipplesObject->update(config);
+    m_musicRippleObject->update(config);
 }
 
 bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
@@ -241,7 +241,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
     }
 
     m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
-    m_musicRipplesObject->setVisible(m_lrcWidgetShowFullScreen);
+    m_musicRippleObject->setVisible(m_lrcWidgetShowFullScreen);
 
     m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);

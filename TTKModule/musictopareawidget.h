@@ -190,9 +190,9 @@ public Q_SLOTS:
      */
     void musicWallpaperRemote(bool create);
     /*!
-     * Changed current remote to ripples mode.
+     * Changed current remote to ripple mode.
      */
-    void musicRipplesRemote();
+    void musicRippleRemote();
     /*!
      * Changed current remote to rayswave mode.
      */
