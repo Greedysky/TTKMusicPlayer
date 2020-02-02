@@ -183,8 +183,8 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->rippleVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
     m_ui->rippleVersionUpdateValue->setText(TTKMUSIC_VER_TIME_STR);
     m_ui->rippleVersionFileValue->setText(TTKMUSIC_VER_FILE_STR);
-    m_ui->rippleSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool());
-    m_ui->rippleSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString()));
+    m_ui->rippleSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
+    m_ui->rippleSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
     rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
 
     //
@@ -197,6 +197,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherWriteInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
+    m_ui->otherDesktopSaverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool());
 
     //
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
@@ -539,8 +540,8 @@ void MusicSettingWidget::saveResults()
     M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->rippleSpectrumColorButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->rippleSpectrumColorButton->getColors()));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLossless, m_ui->otherHeighImageRadioBox->isChecked());
@@ -553,6 +554,7 @@ void MusicSettingWidget::saveResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideBy, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverEnable, m_ui->otherDesktopSaverCheckBox->isChecked());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, m_ui->showInteriorCheckBox->isChecked());
@@ -780,7 +782,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-
+    m_ui->otherDesktopSaverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -792,8 +794,8 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherDesktopSaverCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
-
     m_ui->otherNormalImageRadioBox->click();
 }
 

@@ -108,13 +108,9 @@ public:
      */
     bool getInteriorLrcVisible() const;
     /*!
-     * Set setting parameter.
+     * Apply settings parameters.
      */
-    void setSettingParameter() const;
-    /*!
-     * Get setting parameter.
-     */
-    void getParameterSetting() const;
+    void applySettingParameter() const;
     /*!
      * Check the setting has open interior or desktop lrc on or not.
      */

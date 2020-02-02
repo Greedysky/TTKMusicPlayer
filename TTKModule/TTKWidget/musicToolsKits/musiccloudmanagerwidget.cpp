@@ -163,7 +163,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
 
 void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 {
-    if(time == TTK_ERROR_STR)
+    if(time == TTK_NAN_STR)
     {
         Q_EMIT uploadFileError(m_currentDataItem);
     }

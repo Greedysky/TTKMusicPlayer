@@ -125,7 +125,7 @@
 #endif
 
 ///
-#define TTK_ERROR_STR               "NaN"
+#define TTK_NAN_STR                 "NaN"
 #define TTK_STR_SPLITER             "*|||*"
 
 ///

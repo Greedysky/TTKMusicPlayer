@@ -212,13 +212,13 @@ void MusicBottomAreaWidget::resizeWindow()
     m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h/2);
 }
 
-void MusicBottomAreaWidget::getParameterSetting()
+void MusicBottomAreaWidget::applySettingParameter()
 {
     bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEvent).toBool();
     setSystemCloseConfig(config);
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     setDestopLrcVisible(config);
-         config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toBool();
+         config = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool();
 
     m_musicRippleObject->update(config);
 }

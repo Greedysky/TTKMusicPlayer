@@ -263,9 +263,9 @@ public Q_SLOTS:
      */
     void musicSearchIndexChanged(int row, int col);
     /*!
-     * Get settings parameters.
+     * Apply settings parameters.
      */
-    void getParameterSetting();
+    void applySettingParameter();
     /*!
      * Delete love item from indexs.
      */

@@ -55,11 +55,17 @@ void MusicSysConfigManager::readSysConfigData() const
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,
                      readXmlAttributeByTagNameValue("otherSongFormat").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode,
-                     readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnable,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColor,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumColor"));
+                     readXmlAttributeByTagNameValue("otherLrcKTVMode").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverEnable,
+                     readXmlAttributeByTagNameValue("otherDesktopSaverEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverTime,
+                     readXmlAttributeByTagNameValue("otherDesktopSaverTime"));
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable,
+                     readXmlAttributeByTagNameValue("rippleSpectrumEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor,
+                     readXmlAttributeByTagNameValue("rippleSpectrumColor"));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTheme,
@@ -236,8 +242,12 @@ void MusicSysConfigManager::writeSysConfigData()
     const int otherSideBy = M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toInt();
     const int otherSongFormat = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
     const int otherLrcKTVMode = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toInt();
-    const int otherRippleSpectrumEnable = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnable).toInt();
-    const QString &otherRippleSpectrumColor = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString();
+    const int otherDesktopSaverEnable = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toInt();
+    const QString &otherDesktopSaverTime = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toString();
+
+    //
+    const int rippleSpectrumEnable = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
+    const QString &rippleSpectrumColor = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
 
     //
     const QString &backgroundTheme = M_SETTING_PTR->value(MusicSettingManager::BackgroundTheme).toString();
@@ -330,6 +340,7 @@ void MusicSysConfigManager::writeSysConfigData()
     QDomElement musicSettingDom = writeDomNode(musicPlayerDom, "musicSetting");
     QDomElement plusSettingDom = writeDomNode(musicPlayerDom, "plusSetting");
     QDomElement otherSettingDom = writeDomNode(musicPlayerDom, "otherSetting");
+    QDomElement rippleSettingDom = writeDomNode(musicPlayerDom, "rippleSetting");
     QDomElement backgroundSettingDom = writeDomNode(musicPlayerDom, "backgroundSetting");
     QDomElement hotkeySettingDom = writeDomNode(musicPlayerDom, "hotkeySetting");
     QDomElement interiorLrcSettingDom = writeDomNode(musicPlayerDom, "interiorLrcSetting");
@@ -341,7 +352,7 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
     writeDomElementText(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndex[0]),
-                        QString("%1,%2").arg(lastPlayIndex[1]).arg(lastPlayIndex[2]));
+                                                          QString("%1,%2").arg(lastPlayIndex[1]).arg(lastPlayIndex[2]));
 
     //
     writeDomElement(plusSettingDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPosition.x())
@@ -365,9 +376,13 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(otherSettingDom, "otherWriteInfo", MusicXmlAttribute("value", otherWriteInfo));
     writeDomElement(otherSettingDom, "otherSideBy", MusicXmlAttribute("value", otherSideBy));
     writeDomElement(otherSettingDom, "otherSongFormat", MusicXmlAttribute("value", otherSongFormat));
-    writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVMode));
-    writeDomElement(otherSettingDom, "otherRippleSpectrumEnable", MusicXmlAttribute("value", otherRippleSpectrumEnable));
-    writeDomElement(otherSettingDom, "otherRippleSpectrumColor", MusicXmlAttribute("value", otherRippleSpectrumColor));
+    writeDomElement(otherSettingDom, "otherLrcKTVMode", MusicXmlAttribute("value", otherLrcKTVMode));
+    writeDomElement(otherSettingDom, "otherDesktopSaverEnable", MusicXmlAttribute("value", otherDesktopSaverEnable));
+    writeDomElement(otherSettingDom, "otherDesktopSaverTime", MusicXmlAttribute("value", otherDesktopSaverTime));
+
+    //
+    writeDomElement(rippleSettingDom, "rippleSpectrumEnable", MusicXmlAttribute("value", rippleSpectrumEnable));
+    writeDomElement(rippleSettingDom, "rippleSpectrumColor", MusicXmlAttribute("value", rippleSpectrumColor));
 
     //
     writeDomElement(backgroundSettingDom, "backgroundTheme", MusicXmlAttribute("value", backgroundTheme));

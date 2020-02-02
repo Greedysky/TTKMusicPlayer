@@ -100,9 +100,9 @@ void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterEWave");
 
-    QString colors = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColor).toString();
+    QString colors = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
     settings.setValue("colors", colors.remove(";"));
-    const double opacity = /*M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacity).toInt()/100.0*/1.0;
+    const double opacity = /*M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumOpacity).toInt()/100.0*/1.0;
     settings.setValue("opacity", opacity);
 
     settings.endGroup();

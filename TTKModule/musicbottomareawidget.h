@@ -107,9 +107,9 @@ public:
      */
     void resizeWindow();
     /*!
-     * Get setting parameter.
+     * Apply settings parameters.
      */
-    void getParameterSetting();
+    void applySettingParameter();
     /*!
      * Current is show full container.
      */

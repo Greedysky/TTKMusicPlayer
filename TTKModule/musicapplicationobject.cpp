@@ -21,6 +21,7 @@
 #include "musicalgorithmutils.h"
 #include "musicdownloadcounterpvthread.h"
 #include "musicsinglemanager.h"
+#include "musicdesktopsaverwidget.h"
 
 #include "qdevicewatcher.h"
 
@@ -48,6 +49,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_sideAnimation->setDuration(250*MT_MS);
 
     m_musicTimerAutoObject = new MusicTimerAutoObject(this);
+    m_desktopSaverWidget = nullptr;
     m_setWindowToTop = false;
     m_mobileDeviceWidget = nullptr;
     m_quitContainer = nullptr;
@@ -69,6 +71,7 @@ MusicApplicationObject::~MusicApplicationObject()
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
     delete m_musicTimerAutoObject;
+    delete m_desktopSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
     delete m_deviceWatcher;
@@ -93,7 +96,7 @@ void MusicApplicationObject::loadNetWorkSetting()
     m_counterPVThread->startToDownload();
 }
 
-void MusicApplicationObject::getParameterSetting()
+void MusicApplicationObject::applySettingParameter()
 {
 #ifdef Q_OS_WIN
     if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt())
@@ -102,6 +105,14 @@ void MusicApplicationObject::getParameterSetting()
         windows.setMusicRegeditAssociateFileIcon();
     }
 #endif
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toInt())
+    {
+        if(!m_desktopSaverWidget)
+        {
+            m_desktopSaverWidget = new MusicDesktopSaverWidget;
+        }
+        m_desktopSaverWidget->applySettingParameter();
+    }
 }
 
 void MusicApplicationObject::windowCloseAnimation()

@@ -26,10 +26,14 @@
         <otherWriteInfo value="1"/>
         <otherSideBy value="0"/>
         <otherSongFormat value="0"/>
-        <otherLrcKTV value="1"/>
-        <otherRippleSpectrumEnable value="1"/>
-        <otherRippleSpectrumColor value="250,218,131"/>
+        <otherLrcKTVMode value="1"/>
+        <otherDesktopSaverEnable value="0"/>
+        <otherDesktopSaverTime value="10"/>
     </otherSetting>
+    <rippleSetting>
+        <rippleSpectrumEnable value="1"/>
+        <rippleSpectrumColor value="250,218,131"/>
+    </rippleSetting>
     <backgroundSetting>
         <backgroundTheme value="theme-7"/>
         <backgroundTransparent value="100"/>

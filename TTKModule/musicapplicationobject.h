@@ -25,6 +25,7 @@
 class QDeviceWatcher;
 class QPropertyAnimation;
 class MusicTimerAutoObject;
+class MusicDesktopSaverWidget;
 class MusicMobileDevicesWidget;
 class MusicDownloadCounterPVThread;
 
@@ -57,9 +58,9 @@ public:
      */
     void loadNetWorkSetting();
     /*!
-     * Get settings parameters.
+     * Apply settings parameters.
      */
-    void getParameterSetting();
+    void applySettingParameter();
     /*!
      * Window close animation.
      */
@@ -160,6 +161,7 @@ protected:
     bool m_leftSideByOn, m_rightSideByOn;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
     MusicTimerAutoObject *m_musicTimerAutoObject;
+    MusicDesktopSaverWidget * m_desktopSaverWidget;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;

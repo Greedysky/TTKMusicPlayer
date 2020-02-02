@@ -78,13 +78,13 @@ void OSSUploadData::receiveDataFromServer()
         }
         else
         {
-            Q_EMIT uploadFileFinished(TTK_ERROR_STR);
+            Q_EMIT uploadFileFinished(TTK_NAN_STR);
         }
         reply->deleteLater();
     }
     else
     {
-        Q_EMIT uploadFileFinished(TTK_ERROR_STR);
+        Q_EMIT uploadFileFinished(TTK_NAN_STR);
     }
 }
 

@@ -70,9 +70,12 @@ public:
         OtherSongFormat,                 /*!< Other Song Format Parameter*/
         OtherSideBy,                     /*!< Other App Side By Mode Parameter*/
         OtherSideByIn,                   /*!< Other App Side By In Mode Parameter*/
-        OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Mode Parameter*/
-        OtherRippleSpectrumEnable,       /*!< Other Ripple Spectrum Enable Parameter*/
-        OtherRippleSpectrumColor,        /*!< Other Ripple Spectrum Color Parameter*/
+        OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Parameter*/
+        OtherDesktopSaverEnable,         /*!< Other Desktop Saver Enable Parameter*/
+        OtherDesktopSaverTime,           /*!< Other Desktop Saver Time Parameter*/
+
+        RippleSpectrumEnable,            /*!< Ripple Spectrum Enable Parameter*/
+        RippleSpectrumColor,             /*!< Ripple Spectrum Color Parameter*/
 
         ShowInteriorLrc,                 /*!< Show Interior Lrc Parameter*/
         ShowCortanaLrc,                  /*!< Show Cortana Lrc Parameter*/

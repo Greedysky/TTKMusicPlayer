@@ -68,7 +68,7 @@
     <string notr="true">color:#444444;</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="MusicThemeLineLabel" name="baseSetShowInfoWidget">
@@ -1312,6 +1312,19 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>下载文件写入歌曲信息</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherDesktopSaverCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>306</y>
+       <width>190</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启精彩写真屏保</string>
      </property>
     </widget>
    </widget>

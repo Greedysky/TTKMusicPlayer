@@ -871,12 +871,12 @@ void MusicApplication::musicSearchIndexChanged(int, int index)
     m_musicSongTreeWidget->searchFileListCache(index);
 }
 
-void MusicApplication::getParameterSetting()
+void MusicApplication::applySettingParameter()
 {
     //This attribute is effective immediately.
-    m_applicationObject->getParameterSetting();
-    m_rightAreaWidget->getParameterSetting();
-    m_bottomAreaWidget->getParameterSetting();
+    m_applicationObject->applySettingParameter();
+    m_rightAreaWidget->applySettingParameter();
+    m_bottomAreaWidget->applySettingParameter();
 }
 
 void MusicApplication::setLoveDeleteItemAt(const QString &path, bool current)
@@ -1242,7 +1242,6 @@ void MusicApplication::readXMLConfigFromText()
 
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(M_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt());
-    m_rightAreaWidget->setSettingParameter();
 
     //init or reset the window
     value = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toInt();
@@ -1264,8 +1263,9 @@ void MusicApplication::readXMLConfigFromText()
         m_applicationObject->soureUpdateCheck();
     }
 
-    m_bottomAreaWidget->getParameterSetting();
-
+    m_rightAreaWidget->applySettingParameter();
+    m_bottomAreaWidget->applySettingParameter();
+    m_applicationObject->applySettingParameter();
 }
 
 void MusicApplication::writeXMLConfigToText()

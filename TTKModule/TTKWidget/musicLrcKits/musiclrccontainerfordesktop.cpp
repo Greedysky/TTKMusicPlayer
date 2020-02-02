@@ -55,7 +55,6 @@ void MusicLrcContainerForDesktop::setSettingParameter()
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
     m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt() == 1;
-    //Revert in function setSingleLineTypeChanged
     m_singleLineType = !(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineType).toInt() == 1);
     setSingleLineTypeChanged();
 

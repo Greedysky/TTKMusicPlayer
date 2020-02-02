@@ -50,7 +50,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 
     m_downloadStatusObject = new MusicDownloadStatusObject(parent);
     m_settingWidget = new MusicSettingWidget(this);
-    connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(getParameterSetting()));
+    connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(applySettingParameter()));
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
@@ -142,16 +142,6 @@ void MusicRightAreaWidget::setInteriorLrcVisible(bool status) const
 bool MusicRightAreaWidget::getInteriorLrcVisible() const
 {
     return m_musicLrcForInterior->isVisible();
-}
-
-void MusicRightAreaWidget::setSettingParameter() const
-{
-    m_musicLrcForDesktop->setSettingParameter();
-    m_musicLrcForInterior->setSettingParameter();
-    if(m_musicLrcForWallpaper)
-    {
-        m_musicLrcForWallpaper->setSettingParameter();
-    }
 }
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
@@ -322,9 +312,16 @@ void MusicRightAreaWidget::resizeWindow()
     }
 }
 
-void MusicRightAreaWidget::getParameterSetting() const
+void MusicRightAreaWidget::applySettingParameter() const
 {
-    setSettingParameter();
+    m_musicLrcForDesktop->setSettingParameter();
+    m_musicLrcForInterior->setSettingParameter();
+    if(m_musicLrcForWallpaper)
+    {
+        m_musicLrcForWallpaper->setSettingParameter();
+    }
+
+    //
     bool config = M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
     m_musicLrcForInterior->setVisible(config);
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
