@@ -208,7 +208,7 @@ namespace MusicUIObject
     const QString MToolButtonStyle06 = " \
             QToolButton{ border:1px solid #777777; background:#FFFFFF; color:#555555; } \
             QToolButton::hover{ border:1px solid #444444; color:#222222; } \
-            QToolButton::disabled{ color:#999999; }";
+            QToolButton::disabled{ color:#999999; border:1px solid #BBBBBB; }";
 
 
 ///PushButton
@@ -228,7 +228,7 @@ namespace MusicUIObject
     const QString MPushButtonStyle04 = " \
             QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777; } \
             QPushButton::hover{ border:1px solid #555555; color:#444444; } \
-            QPushButton::disabled{ color:#999999; }";
+            QPushButton::disabled{ color:#BBBBBB; border:1px solid #DDDDDD; }";
 
     const QString MPushButtonStyle05 = " \
             QPushButton{ border:none; color:#3333FF; } \
@@ -272,13 +272,15 @@ namespace MusicUIObject
             QRadioButton{ background-color:transparent; } \
             QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton_unchecked); } \
             QRadioButton::checked { color:rgb(230, 115, 0); } \
-            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked); }";
+            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked); } \
+            QRadioButton::disabled{ color:#BBBBBB; }";
 
     const QString MRadioButtonStyle02 = " \
             QRadioButton{ background-color:transparent; } \
             QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked); } \
             QRadioButton::checked { color:rgb(230, 115, 0); } \
-            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton2_checked); }";
+            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton2_checked); } \
+            QRadioButton::disabled{ color:#BBBBBB; }";
 
 
 ///CheckBox
@@ -286,13 +288,15 @@ namespace MusicUIObject
             QCheckBox{ background-color:transparent; } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked); } \
             QCheckBox::checked{ color:rgb(230, 115, 0); } \
-            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox_checked); }";
+            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox_checked); } \
+            QCheckBox::disabled{ color:#BBBBBB; }";
 
     const QString MCheckBoxStyle02 = " \
             QCheckBox{ background-color:transparent; } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked); } \
             QCheckBox::checked { color:rgb(230, 115, 0); } \
-            QCheckBox::indicator:checked { image:url(:/control/btn_radiobutton2_checked); }";
+            QCheckBox::indicator:checked { image:url(:/control/btn_radiobutton2_checked); } \
+            QCheckBox::disabled{ color:#BBBBBB; }";
 
     const QString MCheckBoxStyle03 = MCheckBoxStyle01 + " \
             QCheckBox::checked{ color:rgb(0, 169, 236); }";
@@ -304,7 +308,8 @@ namespace MusicUIObject
             QCheckBox{ background-color:transparent; color:rgb(222, 222, 222); } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox2_unchecked); } \
             QCheckBox::checked { color:rgb(255, 255, 255); } \
-            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox2_checked); }";
+            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox2_checked); } \
+            QCheckBox::disabled{ color:#BBBBBB; }";
 
 
 ///ScrollBar
@@ -350,7 +355,7 @@ namespace MusicUIObject
     const QString MLineEditStyle01 = " \
             QLineEdit{ font-size:12px; color:#666666; font-weight:normal; border:1px solid gray; } \
             QLineEdit::hover{ border:1px solid rgb(22, 154, 243); } \
-            QLineEdit::disabled{ color:#BBBBBB; }";
+            QLineEdit::disabled{ color:#BBBBBB; border:1px solid #BBBBBB; }";
 
     const QString MLineEditStyle02 = " \
             QLineEdit{ border-image:url(:/tiny/lb_transparent); }";
@@ -484,7 +489,8 @@ namespace MusicUIObject
             QComboBox::hover{ border: 1px solid rgb(22, 154, 243); } \
             QComboBox::drop-down{ subcontrol-origin:padding; \
             subcontrol-position:top right; width:20px; border-left:none; } \
-            QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow); }";
+            QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow); } \
+            QComboBox::disabled{ border: 1px solid #BBBBBB; }";
 
     const QString MComboBoxStyle02 = MComboBoxStyle01 + " \
             QComboBox{ border:none; } \
@@ -516,7 +522,7 @@ namespace MusicUIObject
     const QString MTextEditStyle01 = " \
             QTextEdit{ border:1px solid gray; color:#666666; } \
             QTextEdit::hover{ border:1px solid rgb(22, 154, 243); } \
-            QTextEdit::disabled{ color:#BBBBBB; }";
+            QTextEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
 
 ///Widget
@@ -530,7 +536,7 @@ namespace MusicUIObject
             QDateEdit::hover{ border:1px solid rgb(22, 154, 243); } \
             QDateEdit::up-button{ image:url(:/usermanager/btn_up_arrow); } \
             QDateEdit::down-button{ image:url(:/usermanager/btn_down_arrow); } \
-            QDateEdit::disabled{ color:#BBBBBB; }";
+            QDateEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
 
 ///SpinBox
@@ -539,7 +545,7 @@ namespace MusicUIObject
             QSpinBoxt::hover{ border:1px solid rgb(22, 154, 243); } \
             QSpinBox::up-button{ image:url(:/usermanager/btn_up_arrow); } \
             QSpinBox::down-button{ image:url(:/usermanager/btn_down_arrow); } \
-            QSpinBox::disabled{ color:#BBBBBB; }";
+            QSpinBox::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
 
 ///ProgressBar

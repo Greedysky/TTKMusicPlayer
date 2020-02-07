@@ -17,6 +17,7 @@
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"
 #include "musiccolordialog.h"
+#include "musicalgorithmutils.h"
 //qmmp
 #include "qmmpsettings.h"
 
@@ -182,7 +183,7 @@ void MusicSettingWidget::initControllerParameter()
     //
     m_ui->rippleVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
     m_ui->rippleVersionUpdateValue->setText(TTKMUSIC_VER_TIME_STR);
-    m_ui->rippleVersionFileValue->setText(TTKMUSIC_VER_FILE_STR);
+    m_ui->rippleVersionFileValue->setText(MusicUtils::Algorithm::sha1(TTKMUSIC_VER_TIME_STR).toHex().toUpper());
     m_ui->rippleSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
     m_ui->rippleSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
     rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
@@ -797,6 +798,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherDesktopSaverCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->otherNormalImageRadioBox->click();
+    m_ui->otherDesktopSaverCheckBox->setEnabled(false);
 }
 
 void MusicSettingWidget::initDownloadWidget()

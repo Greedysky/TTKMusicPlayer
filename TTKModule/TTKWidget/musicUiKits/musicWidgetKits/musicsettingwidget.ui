@@ -1114,7 +1114,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="text">
-      <string>文件校验:</string>
+      <string>版本校验:</string>
      </property>
     </widget>
     <widget class="QLabel" name="rippleVersionFileValue">

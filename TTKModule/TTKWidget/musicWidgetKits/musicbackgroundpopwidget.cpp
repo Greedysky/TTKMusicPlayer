@@ -62,5 +62,4 @@ void MusicBackgroundPopWidget::initWidget()
     hbox->addWidget(m_slider);
 
     m_containWidget->setLayout(hbox);
-
 }

@@ -153,7 +153,7 @@ bool MusicUserModel::mailCheck(const MusicUserUIDItem &uid, const QString &mail)
 
 QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
 {
-    return MusicUtils::Algorithm::md5( pwd.toUtf8() ).toHex();
+    return MusicUtils::Algorithm::md5(pwd.toUtf8()).toHex();
 }
 
 QStringList MusicUserModel::getAllUsers()
