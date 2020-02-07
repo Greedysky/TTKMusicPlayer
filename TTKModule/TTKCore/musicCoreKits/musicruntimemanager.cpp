@@ -12,8 +12,7 @@
 
 void MusicRunTimeManager::run() const
 {
-    M_LOGGER_INFO("MusicApplication Begin");
-
+    M_LOGGER_INFO("MusicApplication Run");
 #ifndef TTK_GREATER_NEW
     MusicUtils::Codec::setLocalCodec();
 #endif
@@ -28,20 +27,17 @@ void MusicRunTimeManager::run() const
     //detect the current network state
     M_NETWORK_PTR->start();
 
-    M_LOGGER_INFO("Load Translation");
     MusicSysConfigManager *xml = new MusicSysConfigManager;
     xml->readConfig();
     xml->readSysConfigData();
 
     MusicUtils::File::checkCacheSize(
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt()*MH_MB2B,
+                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimit).toInt(),
                 M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
     M_NETWORK_PTR->setBlockNetWork(
                 M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
     delete xml;
-
-    M_LOGGER_INFO("End load translation");
 }
 
 QString MusicRunTimeManager::translator() const

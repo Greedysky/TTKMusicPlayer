@@ -24,9 +24,9 @@
 #include <QDateTime>
 #include <QTextStream>
 
-#define CURRENTTIME QTime::currentTime().toString(MUSIC_ZTIME_FORMAT)
-#define CURRENTDATE QDate::currentDate().toString(MUSIC_YEAR_FORMAT)
-#define LOG_END     QString("log::npos")
+#define CURRENT_TIME QTime::currentTime().toString(MUSIC_ZTIME_FORMAT)
+#define CURRENT_DATE QDate::currentDate().toString(MUSIC_YEAR_FORMAT)
+#define LOG_END      QString("log::npos")
 
 #define M_LOGGER    (*TTKLogger::createInstance())
 #define M_MESSAGE(str, msg)         \
@@ -105,12 +105,15 @@ public:
     inline TTKLogger &operator<<(float t) { return debugData<float>(t); }
     inline TTKLogger &operator<<(double t) { return debugData<double>(t); }
     inline TTKLogger &operator<<(const char *t) { return debugData<const char*>(t); }
+    inline TTKLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
+    inline TTKLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
+    inline TTKLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
     inline TTKLogger &operator<<(const QString &t)
     {
 #ifdef TTK_DEBUG
         if(t == LOG_END)
         {
-            m_stream << QString("[%1 %2]:  %3").arg(CURRENTDATE).arg(CURRENTTIME).arg(m_streamString) << endl;
+            m_stream << QString("[%1 %2]:  %3").arg(CURRENT_DATE).arg(CURRENT_TIME).arg(m_streamString) << endl;
             m_streamString.clear();
         }
         else
@@ -122,9 +125,6 @@ public:
 #endif
         return *this;
     }
-    inline TTKLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
-    inline TTKLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
-    inline TTKLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
 
 private:
     /*!
@@ -162,11 +162,11 @@ private:
         return *this;
     }
 
+    QFile m_file;
     QTextStream m_stream;
     QString m_streamString;
     QString m_levelType;
-    QFile m_file;
 
 };
 
-#endif // TTKLogger_H
+#endif // TTKLOGGER_H
