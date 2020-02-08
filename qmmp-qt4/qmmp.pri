@@ -23,7 +23,7 @@ CONFIG += hide_symbols
 
 #Version
 
-TTKMusicPlayer = 2.11.0.0
+TTKMusicPlayer = 2.11.1.0
 QMMP_VERSION = 0.12.6
 CONFIG += USE_STATIC_LIBRARY
 
