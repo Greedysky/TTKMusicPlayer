@@ -31,7 +31,7 @@ void MusicWindowsManager::setMusicRegeditAssociateFileIcon()
     }
 }
 
-void MusicWindowsManager::setLeftWinEnable()
+void MusicWindowsManager::setLeftWinEnabled()
 {
 #ifdef Q_OS_WIN
     INPUT input[4];

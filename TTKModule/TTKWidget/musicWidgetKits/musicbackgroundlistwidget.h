@@ -81,29 +81,29 @@ public:
     /*!
      * Select the current item enable or not.
      */
-    void setSelectEnable(bool s);
+    void setSelectEnabled(bool s);
     /*!
      * Get current selected item state.
      */
-    inline bool isSelectEnable() const { return m_selectedMask; }
+    inline bool isSelectEnabled() const { return m_selectedMask; }
 
     /*!
      * Close option set the current item.
      */
-    void setCloseEnable(bool s);
+    void setCloseEnabled(bool s);
     /*!
      * Get close option set the current item.
      */
-    inline bool isCloseEnable() const { return m_closeSet; }
+    inline bool isCloseEnabled() const { return m_closeSet; }
 
     /*!
      * Show title name set the current item.
      */
-    void setShowNameEnable(bool s);
+    void setShowNameEnabled(bool s);
     /*!
      * Get show title name set the current item.
      */
-    inline bool isShowNameEnable() const { return m_showNameMask; }
+    inline bool isShowNameEnabled() const { return m_showNameMask; }
 
 Q_SIGNALS:
     /*!

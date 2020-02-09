@@ -19,7 +19,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     hbox->addWidget(m_mainWidget);
     setLayout(hbox);
 
-    MusicUtils::QMMP::enableVisualPlugin("outerripples", true);
+    MusicUtils::QMMP::enabledVisualPlugin("outerripples", true);
 
     QWidget *bottomWidget = new QWidget(m_mainWidget);
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
@@ -56,7 +56,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
 
 MusicRemoteWidgetForRipple::~MusicRemoteWidgetForRipple()
 {
-    MusicUtils::QMMP::enableVisualPlugin("outerripples", false);
+    MusicUtils::QMMP::enabledVisualPlugin("outerripples", false);
     delete m_songNameLabel;
 }
 

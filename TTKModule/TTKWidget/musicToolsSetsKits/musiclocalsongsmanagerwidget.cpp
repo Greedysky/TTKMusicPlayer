@@ -268,7 +268,7 @@ void MusicLocalSongsManagerWidget::updateFileLists(const QFileInfoList &list)
 {
     m_fileNames = list;
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
-    controlEnable(true);
+    controlEnabled(true);
     addAllItems(m_fileNames);
 }
 
@@ -277,7 +277,7 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
     m_runTypeChanged = false;
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
-    controlEnable(true);
+    controlEnabled(true);
     addAllItems( m_fileNames = m_ui->songlistsTable->getFiles() );
     loadingLabelState(false);
 }
@@ -287,7 +287,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
     m_runTypeChanged = false;
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_1);
-    controlEnable(false);
+    controlEnabled(false);
     m_runTypeChanged = true;
 
     QtConcurrent::run([&]
@@ -332,7 +332,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     m_runTypeChanged = false;
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_1);
-    controlEnable(false);
+    controlEnabled(false);
     m_runTypeChanged = true;
 
     QtConcurrent::run([&]
@@ -489,7 +489,7 @@ bool MusicLocalSongsManagerWidget::filterIndexCustChanged()
     return true;
 }
 
-void MusicLocalSongsManagerWidget::controlEnable(bool state)
+void MusicLocalSongsManagerWidget::controlEnabled(bool state)
 {
     clearAllItems();
     m_ui->searchLineEdit->clear();

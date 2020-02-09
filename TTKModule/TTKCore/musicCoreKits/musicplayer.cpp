@@ -21,7 +21,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_duration = 0;
     m_tryTimes = 0;
 
-    setEnaleEffect(false);
+    setEnabledEffect(false);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
     M_CONNECTION_PTR->setValue(getClassName(), this);
@@ -196,7 +196,7 @@ void MusicPlayer::setEqEffect(const MIntList &hz)
     m_music->setEqSettings(eq);
 }
 
-void MusicPlayer::setEnaleEffect(bool enable)
+void MusicPlayer::setEnabledEffect(bool enable)
 {
     if(!enable)
     {
@@ -209,7 +209,7 @@ void MusicPlayer::setEqInformation()
     ///Read the equalizer parameters from a configuration file
     if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
-        setEnaleEffect(true);
+        setEnabledEffect(true);
         const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(',');
         if(eqValue.count() == 11)
         {
@@ -223,7 +223,7 @@ void MusicPlayer::setEqInformation()
     }
     else
     {
-        setEnaleEffect(false);
+        setEnabledEffect(false);
     }
 }
 
@@ -246,7 +246,7 @@ void MusicPlayer::update()
     if(m_musicEnhanced == Enhanced3D && !m_music->isMuted())
     {
         ///3D music settings
-        setEnaleEffect(false);
+        setEnabledEffect(false);
         m_posOnCircle += 0.5f;
         m_music->setVolume(fabs(100 * cosf(m_posOnCircle)), fabs(100 * sinf(m_posOnCircle * 0.5f)));
     }

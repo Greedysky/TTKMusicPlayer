@@ -154,7 +154,7 @@ void MusicDownloadWidget::initWidget()
 {
     m_ui->loadingLabel->run(true);
 
-    controlEnable(true);
+    controlEnabled(true);
 
     if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
     {
@@ -166,7 +166,7 @@ void MusicDownloadWidget::initWidget()
     }
 }
 
-void MusicDownloadWidget::controlEnable(bool enable)
+void MusicDownloadWidget::controlEnabled(bool enable)
 {
     m_ui->topTitleCloseButton->setEnabled(enable);
     m_ui->downloadButton->setEnabled(enable);
@@ -423,7 +423,7 @@ void MusicDownloadWidget::startToDownload()
     {
         m_querySingleInfo ? startToDownloadMovie(m_singleSongInfo) : startToDownloadMovie();
     }
-    controlEnable(false);
+    controlEnabled(false);
 }
 
 void MusicDownloadWidget::dataDownloadFinished()

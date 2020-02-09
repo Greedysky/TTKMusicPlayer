@@ -46,7 +46,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     m_ui->resetButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    setControlEnable(false);
+    setControlEnabled(false);
     initEqualizeValue();
     readEqInformation();
 
@@ -177,17 +177,17 @@ void MusicEqualizerDialog::parameterSubmit()
 void MusicEqualizerDialog::setEqEnable()
 {
     m_eable = !m_eable;
-    Q_EMIT setEnaleEffect(m_eable);
+    Q_EMIT setEnabledEffect(m_eable);
     m_ui->showEqButton->setStyleSheet(!m_eable ? MusicUIObject::MKGEqualizerOff : MusicUIObject::MKGEqualizerOn);
 
-    setControlEnable(m_eable);
+    setControlEnabled(m_eable);
     if(m_eable)
     {
         parameterSubmit();
     }
 }
 
-void MusicEqualizerDialog::setControlEnable(bool enable) const
+void MusicEqualizerDialog::setControlEnabled(bool enable) const
 {
     m_ui->bwVerticalSlider->setEnabled(enable);
     m_ui->verticalSlider1->setEnabled(enable);

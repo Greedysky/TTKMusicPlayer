@@ -707,7 +707,7 @@ bool MusicLrcMakerWidget::checkInputValid()
     return true;
 }
 
-void MusicLrcMakerWidget::setControlEnable(bool enable) const
+void MusicLrcMakerWidget::setControlEnabled(bool enable) const
 {
     m_ui->artNameEdit->setEnabled(enable);
     m_ui->songNameEdit->setEnabled(enable);

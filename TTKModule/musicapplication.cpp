@@ -95,7 +95,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
 
     m_ui->musicTimeWidget->setObject(this);
-    M_HOTKEY_PTR->connectParentObject(this);
+    M_HOTKEY_PTR->setObject(this);
 
     /////////// Mouse tracking
     m_ui->background->installEventFilter(this);

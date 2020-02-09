@@ -22,7 +22,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     setStyleSheet(MusicUIObject::MLineEditStyle01);
-    setEditLineEnable(false);
+    setEditLineEnabled(false);
     m_advanceOn = false;
     musicAdvanceClicked();
 
@@ -127,7 +127,7 @@ void MusicFileInformationWidget::musicAdvanceClicked()
 
 void MusicFileInformationWidget::musicEditTag()
 {
-    setEditLineEnable(!m_ui->fileAlbumEdit->isEnabled());
+    setEditLineEnabled(!m_ui->fileAlbumEdit->isEnabled());
 }
 
 void MusicFileInformationWidget::musicSaveTag()
@@ -211,7 +211,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->qualityEdit->setText( MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())));
 }
 
-void MusicFileInformationWidget::setEditLineEnable(bool enable)
+void MusicFileInformationWidget::setEditLineEnabled(bool enable)
 {
     m_ui->fileAlbumEdit->setEnabled(enable);
     m_ui->fileArtistEdit->setEnabled(enable);

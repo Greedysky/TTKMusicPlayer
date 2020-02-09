@@ -60,11 +60,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     else if(from == MusicEqualizerDialog::getClassName() && to == MusicPlayer::getClassName())
     {
         QObject::connect(first, SIGNAL(setEqEffect(MIntList)), second, SLOT(setEqEffect(MIntList)));
-        QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second, SLOT(setEnaleEffect(bool)));
+        QObject::connect(first, SIGNAL(setEnabledEffect(bool)), second, SLOT(setEnabledEffect(bool)));
     }
     else if(from == MusicEqualizerDialog::getClassName() && to == MusicSoundEffectsWidget::getClassName())
     {
-        QObject::connect(first, SIGNAL(setEnaleEffect(bool)), second, SLOT(equalizerButtonChanged(bool)));
+        QObject::connect(first, SIGNAL(setEnabledEffect(bool)), second, SLOT(equalizerButtonChanged(bool)));
     }
     else if(from == MusicSoundEffectsWidget::getClassName() && to == MusicPlayer::getClassName())
     {

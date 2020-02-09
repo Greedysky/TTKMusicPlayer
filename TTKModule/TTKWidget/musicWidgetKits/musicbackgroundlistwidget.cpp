@@ -55,19 +55,19 @@ void MusicBackgroundListItem::setSelect(bool s)
     update();
 }
 
-void MusicBackgroundListItem::setSelectEnable(bool s)
+void MusicBackgroundListItem::setSelectEnabled(bool s)
 {
     m_selectedMask = s;
     update();
 }
 
-void MusicBackgroundListItem::setCloseEnable(bool s)
+void MusicBackgroundListItem::setCloseEnabled(bool s)
 {
     m_closeSet = s;
     update();
 }
 
-void MusicBackgroundListItem::setShowNameEnable(bool s)
+void MusicBackgroundListItem::setShowNameEnabled(bool s)
 {
     m_showNameMask = s;
     update();
@@ -189,7 +189,7 @@ void MusicBackgroundListWidget::clearAllItems()
 void MusicBackgroundListWidget::createItem(const QString &name, const QString &path, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
-    item->setCloseEnable(state);
+    item->setCloseEnabled(state);
     item->setFileName(name);
     item->setFilePath(path);
     item->updatePixImage();
@@ -202,7 +202,7 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
 void MusicBackgroundListWidget::createItem(const QString &icon, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
-    item->setCloseEnable(state);
+    item->setCloseEnabled(state);
     item->setPixmap(QPixmap(icon).scaled(item->size()));
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
@@ -216,8 +216,8 @@ void MusicBackgroundListWidget::updateItem(const MusicBackgroundImage &image, co
     {
         if(item->getFileName().isEmpty())
         {
-            item->setShowNameEnable(false);
-            item->setSelectEnable(false);
+            item->setShowNameEnabled(false);
+            item->setSelectEnabled(false);
             item->setFileName(path);
             item->updatePixImage(image);
             break;

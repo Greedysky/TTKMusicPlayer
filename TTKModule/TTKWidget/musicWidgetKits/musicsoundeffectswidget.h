@@ -65,11 +65,11 @@ public:
     /*!
      * Set plugin enable or not.
      */
-    void setPluginEnable(bool enable);
+    void setPluginEnabled(bool enable);
     /*!
      * Get plugin enable or not.
      */
-    bool pluginEnable() const;
+    bool pluginEnabled() const;
 
     /*!
      * Sound effect changed.
@@ -80,7 +80,7 @@ public Q_SLOTS:
     /*!
      * Set plugin enable or not.
      */
-    void setPluginEnable();
+    void setPluginEnabled();
     /*!
      * Sound effect button value changed.
      */

@@ -216,7 +216,7 @@ protected:
     /*!
      * Set controller enable or disable.
      */
-    void setControlEnable(bool enable) const;
+    void setControlEnabled(bool enable) const;
     /*!
      * Translate current long time to string.
      */

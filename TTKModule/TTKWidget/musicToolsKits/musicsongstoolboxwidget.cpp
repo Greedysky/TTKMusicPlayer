@@ -137,7 +137,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("exportList"), this, SLOT(exportSongsItemList()));
     menu.addSeparator();
 
-    disable = isItemEnable();
+    disable = isItemEnabled();
     menu.addAction(tr("deleteAll"), this, SLOT(deleteRowItemAll()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
@@ -185,7 +185,7 @@ void MusicSongsToolBoxTopWidget::addToPlayedList()
     Q_EMIT addToPlayedList(m_index);
 }
 
-bool MusicSongsToolBoxTopWidget::isItemEnable() const
+bool MusicSongsToolBoxTopWidget::isItemEnabled() const
 {
     return !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST || m_index == MUSIC_RECENT_LIST);
 }

@@ -34,7 +34,7 @@ void MusicRippleSpecturmObject::show()
         return;
     }
 
-    MusicUtils::QMMP::enableVisualPlugin("outerewave", true);
+    MusicUtils::QMMP::enabledVisualPlugin("outerewave", true);
 
     const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->last())
@@ -95,6 +95,6 @@ void MusicRippleSpecturmObject::removeSpectrum()
     if(m_visualWidget)
     {
         m_visualWidget = nullptr;
-        MusicUtils::QMMP::enableVisualPlugin("outerewave", false);
+        MusicUtils::QMMP::enabledVisualPlugin("outerewave", false);
     }
 }

@@ -3,7 +3,7 @@
 
 #include <QStringList>
 
-void MusicHotKeyManager::connectParentObject(QObject *object)
+void MusicHotKeyManager::setObject(QObject *object)
 {
     for(int i=0; i<8; ++i)
     {
@@ -87,13 +87,13 @@ void MusicHotKeyManager::addHotKey(int key)
     m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
-void MusicHotKeyManager::setEnabled(int index, bool enabled)
+void MusicHotKeyManager::setEnabled(int index, bool enable)
 {
     if(index >= m_hotkeys.count())
     {
         return;
     }
-    m_hotkeys[index]->setEnabled(enabled);
+    m_hotkeys[index]->setEnabled(enable);
 }
 
 bool MusicHotKeyManager::enabled(int index)
@@ -105,11 +105,11 @@ bool MusicHotKeyManager::enabled(int index)
     return m_hotkeys[index]->isEnabled();
 }
 
-void MusicHotKeyManager::enabledAll(bool enabled)
+void MusicHotKeyManager::enabledAll(bool enable)
 {
     foreach(QGlobalShortcut *key, m_hotkeys)
     {
-        key->setEnabled(enabled);
+        key->setEnabled(enable);
     }
 }
 

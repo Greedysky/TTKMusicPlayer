@@ -19,7 +19,7 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
     hbox->addWidget(m_mainWidget);
     setLayout(hbox);
 
-    MusicUtils::QMMP::enableVisualPlugin("outerrayswave", true);
+    MusicUtils::QMMP::enabledVisualPlugin("outerrayswave", true);
 
     QWidget *bottomWidget = new QWidget(m_mainWidget);
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
@@ -56,7 +56,7 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
 
 MusicRemoteWidgetForRaysWave::~MusicRemoteWidgetForRaysWave()
 {
-    MusicUtils::QMMP::enableVisualPlugin("outerrayswave", false);
+    MusicUtils::QMMP::enabledVisualPlugin("outerrayswave", false);
     delete m_songNameLabel;
 }
 

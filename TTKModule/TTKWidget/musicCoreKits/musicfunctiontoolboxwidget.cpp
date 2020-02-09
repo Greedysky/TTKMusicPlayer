@@ -73,7 +73,7 @@ QString MusicFunctionToolBoxTopWidget::getTitle(bool suffix)
     return text;
 }
 
-bool MusicFunctionToolBoxTopWidget::isItemEnable() const
+bool MusicFunctionToolBoxTopWidget::isItemEnabled() const
 {
     return false;
 }
@@ -88,7 +88,7 @@ void MusicFunctionToolBoxTopWidget::dragLeaveEvent(QDragLeaveEvent *event)
 
 void MusicFunctionToolBoxTopWidget::dragMoveEvent(QDragMoveEvent *event)
 {
-    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
+    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnabled())
     {
         m_isDrawMoveState = true;
         m_isDrawTopState = event->pos().y() < height()/2;
@@ -114,7 +114,7 @@ void MusicFunctionToolBoxTopWidget::dropEvent(QDropEvent *event)
     m_isDrawMoveState = false;
     update();
 
-    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
+    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnabled())
     {
         Q_EMIT swapDragItemIndex(event->mimeData()->data(DRAG_FORMAT).toInt(), m_index);
     }
@@ -135,7 +135,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
     QWidget::mouseMoveEvent(event);
 
     QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
-    if(!itemRect.contains(event->pos()) && isItemEnable())
+    if(!itemRect.contains(event->pos()) && isItemEnabled())
     {
         if(!m_isBlockMoveExpand && isItemExpand())
         {

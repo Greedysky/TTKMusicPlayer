@@ -117,7 +117,7 @@ protected:
     /*!
      * Enable or disable control state.
      */
-    void setControlEnable(bool enable);
+    void setControlEnabled(bool enable);
 
     Ui::MusicVolumeGainWidget *m_ui;
     QProcess *m_process;

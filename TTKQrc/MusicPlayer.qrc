@@ -836,5 +836,6 @@
         <file alias="florid_6">../TTKResource/spectrum/florid_6.png</file>
         <file alias="florid_7">../TTKResource/spectrum/florid_7.png</file>
         <file alias="florid_8">../TTKResource/spectrum/florid_8.png</file>
+        <file alias="florid_9">../TTKResource/spectrum/florid_9.png</file>
     </qresource>
 </RCC>

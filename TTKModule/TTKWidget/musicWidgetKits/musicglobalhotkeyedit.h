@@ -37,6 +37,11 @@ public:
 
     ~MusicGlobalHotKeyEdit();
 
+    /*!
+     * Set hotKey enable state.
+     */
+    void setHotKeyEnabled(bool state);
+
 protected:
     /*!
      * Override the widget event.

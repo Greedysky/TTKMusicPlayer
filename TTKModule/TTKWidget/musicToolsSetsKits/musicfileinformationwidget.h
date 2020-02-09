@@ -76,7 +76,7 @@ protected:
     /*!
      * Eet editLine enable.
      */
-    void setEditLineEnable(bool enable);
+    void setEditLineEnabled(bool enable);
 
     Ui::MusicFileInformationWidget *m_ui;
     QString m_path, m_imagePath;

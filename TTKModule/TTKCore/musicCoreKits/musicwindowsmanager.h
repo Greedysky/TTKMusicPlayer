@@ -62,7 +62,7 @@ public:
     /*!
      * Set left win key enable.
      */
-    void setLeftWinEnable();
+    void setLeftWinEnabled();
     /*!
      * Get local IE version.
      */

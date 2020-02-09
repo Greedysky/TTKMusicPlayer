@@ -161,7 +161,7 @@ public Q_SLOTS:
     /*!
      * Set enable to set current equalizer effect.
      */
-    void setEnaleEffect(bool enable);
+    void setEnabledEffect(bool enable);
     /*!
      * Read equalizer effect from config file.
      */

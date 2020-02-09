@@ -69,7 +69,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     foreach(const MusicSpectrum &type, m_types)
     {
-        MusicUtils::QMMP::enableVisualPlugin(type.m_name, false);
+        MusicUtils::QMMP::enabledVisualPlugin(type.m_name, false);
     }
     delete m_ui;
 }
@@ -150,7 +150,7 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
     if(state)
     {
         const int before = Visual::visuals()->count();
-        MusicUtils::QMMP::enableVisualPlugin(name, true);
+        MusicUtils::QMMP::enabledVisualPlugin(name, true);
         const QList<Visual*> *vs = Visual::visuals();
         if(before == vs->count())
         {
@@ -180,7 +180,7 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
         {
             MusicSpectrum t = m_types.takeAt(index);
             layout->removeWidget(t.m_obj);
-            MusicUtils::QMMP::enableVisualPlugin(name, false);
+            MusicUtils::QMMP::enabledVisualPlugin(name, false);
         }
     }
 }
@@ -229,7 +229,7 @@ void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, Q
     {
         MusicSpectrum t = m_types.takeAt(index);
         layout->removeWidget(t.m_obj);
-        MusicUtils::QMMP::enableVisualPlugin(m_lastFloridName, false);
+        MusicUtils::QMMP::enabledVisualPlugin(m_lastFloridName, false);
     }
 
     if(!state)
@@ -239,7 +239,7 @@ void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, Q
     }
 
     const int before = Visual::visuals()->count();
-    MusicUtils::QMMP::enableVisualPlugin(name, true);
+    MusicUtils::QMMP::enabledVisualPlugin(name, true);
     const QList<Visual*> *vs = Visual::visuals();
     if(before == vs->count())
     {

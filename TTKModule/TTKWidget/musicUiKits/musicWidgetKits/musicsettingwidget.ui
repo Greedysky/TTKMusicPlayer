@@ -314,7 +314,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>50</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -352,7 +352,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>80</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -390,7 +390,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>110</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -409,7 +409,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>140</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -417,7 +417,7 @@ font-weight:bold;</string>
       <string notr="true">background:#3BA1E6;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>音量+</string>
+      <string>增加音量</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -428,7 +428,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>170</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -436,7 +436,7 @@ font-weight:bold;</string>
       <string notr="true">background:#3BA1E6;border-radius:2px</string>
      </property>
      <property name="text">
-      <string>音量-</string>
+      <string>减少音量</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -447,7 +447,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>230</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -561,7 +561,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>260</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -593,7 +593,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>200</y>
-       <width>61</width>
+       <width>70</width>
        <height>20</height>
       </rect>
      </property>
@@ -981,7 +981,7 @@ font-weight:bold;</string>
       <rect>
        <x>83</x>
        <y>160</y>
-       <width>150</width>
+       <width>180</width>
        <height>21</height>
       </rect>
      </property>
@@ -997,12 +997,12 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>255</y>
-       <width>71</width>
+       <width>100</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>更新</string>
+      <string>手动检查更新</string>
      </property>
     </widget>
     <widget class="MusicThemeLineLabel" name="setRippleSpectrumWidget">
@@ -1093,7 +1093,7 @@ font-weight:bold;</string>
       <rect>
        <x>83</x>
        <y>190</y>
-       <width>150</width>
+       <width>180</width>
        <height>21</height>
       </rect>
      </property>
@@ -1122,7 +1122,7 @@ font-weight:bold;</string>
       <rect>
        <x>83</x>
        <y>220</y>
-       <width>250</width>
+       <width>310</width>
        <height>21</height>
       </rect>
      </property>

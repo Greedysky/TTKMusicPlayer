@@ -140,7 +140,7 @@ protected:
     /*!
      * Check the item is enable or not.
      */
-    virtual bool isItemEnable() const override;
+    virtual bool isItemEnabled() const override;
     /*!
      * Override the widget event.
      */

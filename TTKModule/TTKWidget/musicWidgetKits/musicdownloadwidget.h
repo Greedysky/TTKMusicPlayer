@@ -196,7 +196,7 @@ protected:
     /*!
      * Enable or disable control state.
      */
-    void controlEnable(bool enable);
+    void controlEnabled(bool enable);
     /*!
      * Automatically adjust the height according to searched items.
      */

@@ -150,7 +150,7 @@ void MusicVolumeGainWidget::createItemFinished(const QString &track, const QStri
     m_ui->tableWidget->setItem(row, 4, item);
 }
 
-void MusicVolumeGainWidget::setControlEnable(bool enable)
+void MusicVolumeGainWidget::setControlEnabled(bool enable)
 {
     m_ui->addFileButton->setEnabled(enable);
     m_ui->addFilesButton->setEnabled(enable);
@@ -168,7 +168,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
     dialog.setNameFilters( QStringList() << "All File(*.*)" << "MP3 File(*.mp3)" );
     if(dialog.exec())
     {
-        setControlEnable(false);
+        setControlEnabled(false);
         const int orcount = m_paths.count();
         foreach(const QString &path, dialog.selectedFiles())
         {
@@ -185,7 +185,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
             m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths[i]);
             loop.exec();
         }
-        setControlEnable(true);
+        setControlEnabled(true);
     }
 }
 
@@ -196,7 +196,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
-        setControlEnable(false);
+        setControlEnabled(false);
         foreach(const QFileInfo &info, MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if(QString(MP3_FILE_PREFIX).contains(info.suffix().toLower()) && !m_paths.contains(info.absoluteFilePath()))
@@ -210,7 +210,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
                 loop.exec();
             }
         }
-        setControlEnable(true);
+        setControlEnabled(true);
     }
 }
 
@@ -252,7 +252,7 @@ void MusicVolumeGainWidget::applyButtonClicked()
     disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(analysisOutput()));
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(applyOutput()));
 
-    setControlEnable(false);
+    setControlEnabled(false);
     m_ui->progressBarAll->setRange(0, m_ui->tableWidget->rowCount());
     for(int i=0; i<m_ui->tableWidget->rowCount(); ++i)
     {
@@ -262,7 +262,7 @@ void MusicVolumeGainWidget::applyButtonClicked()
         m_ui->progressBarAll->setValue(i + 1);
         loop.exec();
     }
-    setControlEnable(true);
+    setControlEnabled(true);
     rmFilesButtonClicked();
 
     disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(applyOutput()));

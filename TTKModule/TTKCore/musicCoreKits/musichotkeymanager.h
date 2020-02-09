@@ -36,7 +36,7 @@ public:
     /*!
      * To connect parent slot object.
      */
-    void connectParentObject(QObject *object);
+    void setObject(QObject *object);
 
     /*!
      * Set hotKey by given string list keys.
@@ -71,7 +71,7 @@ public:
     /*!
      * Enable or disable the hotkey by index.
      */
-    void setEnabled(int index, bool enabled);
+    void setEnabled(int index, bool enable);
     /*!
      * check the given hotkey is enabled or not.
      */
@@ -79,7 +79,7 @@ public:
     /*!
      * Enable or disable all hotkeys.
      */
-    void enabledAll(bool enabled);
+    void enabledAll(bool enable);
 
     /*!
      * Mapping the virtual key to string key.

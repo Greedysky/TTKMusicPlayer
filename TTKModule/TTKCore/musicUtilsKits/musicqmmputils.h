@@ -39,11 +39,11 @@ namespace MusicUtils
         /*!
          * Enable visual module control.
          */
-        MUSIC_UTILS_EXPORT void enableVisualPlugin(const QString &name, bool enable);
+        MUSIC_UTILS_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
         /*!
          * Enable effect module control.
          */
-        MUSIC_UTILS_EXPORT void enableEffectPlugin(const QString &name, bool enable);
+        MUSIC_UTILS_EXPORT void enabledEffectPlugin(const QString &name, bool enable);
         /*!
          * Check effect has setting.
          */

@@ -141,7 +141,7 @@ protected:
     /*!
      * Control enable or disable.
      */
-    void controlEnable(bool state);
+    void controlEnabled(bool state);
     /*!
      * Loading label disable.
      */

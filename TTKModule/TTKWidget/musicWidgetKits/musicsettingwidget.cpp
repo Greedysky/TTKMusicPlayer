@@ -18,7 +18,7 @@
 #include "musicsinglemanager.h"
 #include "musiccolordialog.h"
 #include "musicalgorithmutils.h"
-//qmmp
+///qmmp incldue
 #include "qmmpsettings.h"
 
 #include <QFileDialog>
@@ -72,8 +72,8 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
 void MusicFunctionTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(column);
-    selectRow(row);
     Q_EMIT currentIndexChanged(row + m_listIndex);
+    selectRow(row);
 }
 
 void MusicFunctionTableWidget::leaveEvent(QEvent *event)
@@ -304,14 +304,14 @@ void MusicSettingWidget::clearFunctionTableSelection()
 
 void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
 {
-    m_ui->item_S2->setEnabled(state);
-    m_ui->item_S4->setEnabled(state);
-    m_ui->item_S6->setEnabled(state);
-    m_ui->item_S8->setEnabled(state);
-    m_ui->item_S10->setEnabled(state);
-    m_ui->item_S12->setEnabled(state);
-    m_ui->item_S14->setEnabled(state);
-    m_ui->item_S16->setEnabled(state);
+    m_ui->item_S2->setHotKeyEnabled(state);
+    m_ui->item_S4->setHotKeyEnabled(state);
+    m_ui->item_S6->setHotKeyEnabled(state);
+    m_ui->item_S8->setHotKeyEnabled(state);
+    m_ui->item_S10->setHotKeyEnabled(state);
+    m_ui->item_S12->setHotKeyEnabled(state);
+    m_ui->item_S14->setHotKeyEnabled(state);
+    m_ui->item_S16->setHotKeyEnabled(state);
 }
 
 void MusicSettingWidget::downloadGroupCached(int index)

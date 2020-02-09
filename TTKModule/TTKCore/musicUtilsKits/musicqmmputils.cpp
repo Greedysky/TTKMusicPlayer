@@ -46,7 +46,7 @@ void MusicUtils::QMMP::updateMidConfigFile()
     file.close();
 }
 
-void MusicUtils::QMMP::enableVisualPlugin(const QString &name, bool enable)
+void MusicUtils::QMMP::enabledVisualPlugin(const QString &name, bool enable)
 {
     foreach(VisualFactory *v, Visual::factories())
     {
@@ -58,7 +58,7 @@ void MusicUtils::QMMP::enableVisualPlugin(const QString &name, bool enable)
     }
 }
 
-void MusicUtils::QMMP::enableEffectPlugin(const QString &name, bool enable)
+void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
 {
     foreach(EffectFactory *factory, Effect::factories())
     {
