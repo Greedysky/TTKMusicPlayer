@@ -184,7 +184,7 @@ void QHttpResponse::writeHead(int status)
 void QHttpResponse::writeHead(StatusCode statusCode)
 {
     TTK_D(QHttpResponse);
-    d->writeHead(static_cast<int>(statusCode));
+    d->writeHead(MStatic_cast(int, statusCode));
 }
 
 void QHttpResponse::write(const QByteArray &data)

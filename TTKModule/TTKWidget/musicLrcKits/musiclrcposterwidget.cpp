@@ -512,12 +512,12 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_spring");
-    int h = static_cast<int>(pix.height()*width()*1.0f/pix.width());
+    int h = MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  static_cast<int>(width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -562,12 +562,12 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_summer");
-    int h =  static_cast<int>(pix.height()*width()*1.0f/pix.width());
+    int h =  MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  static_cast<int>(width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -612,12 +612,12 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_autumn");
-    int h =  static_cast<int>(pix.height()*width()*1.0f/pix.width());
+    int h =  MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  static_cast<int>(width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -662,12 +662,12 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_winter");
-    int h =  static_cast<int>(pix.height()*width()*1.0f/pix.width());
+    int h =  MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  static_cast<int>(width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 

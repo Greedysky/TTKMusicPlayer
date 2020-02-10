@@ -30,7 +30,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     m_toolDeleteChanged = false;
 
     m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
-    connectMusicToolBoxWidgetItem(m_listMaskWidget);
+    setInputObject(m_listMaskWidget);
     connect(m_listMaskWidget, SIGNAL(mousePressAt(int)), SLOT(mousePressAt(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
@@ -1010,7 +1010,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
 
     ///connect to items
-    connectMusicToolBoxWidgetItem(m_itemList.last().m_widgetItem);
+    setInputObject(m_itemList.last().m_widgetItem);
 
     w->setSongsFileName(&item->m_songs);
     setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
@@ -1035,7 +1035,7 @@ void MusicSongsSummariziedWidget::setItemTitle(MusicSongItem *item)
     }
 }
 
-void MusicSongsSummariziedWidget::connectMusicToolBoxWidgetItem(QObject *object)
+void MusicSongsSummariziedWidget::setInputObject(QObject *object) const
 {
     connect(object, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
     connect(object, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));

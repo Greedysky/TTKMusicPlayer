@@ -374,7 +374,7 @@ void MusicApplicationObject::musicSetSoundEffect()
     }
 
     MusicSoundEffectsWidget sound;
-    sound.setParentConnect(this);
+    sound.setInputObject(this);
     sound.exec();
 }
 

@@ -58,7 +58,7 @@ Name: "{group}\п╤ть{#MyAppNameZh}"; Filename: "{uninstallexe}"
 ; Name: "chinese"; MessagesFile: "_resourcesPath_\ChineseSimp.isl"
 
 [PostCompile]
-Name: "makeCert.bat";Parameters:"D:\Qt\v2.10.0.0.exe" ;Flags: cmdprompt redirectoutput
+Name: "make_cert.bat";Parameters:"D:\Qt\v2.11.1.0.exe" ;Flags: cmdprompt redirectoutput
 
 [Code]
 // for dll

@@ -34,10 +34,9 @@ class MUSIC_CORE_EXPORT MusicHotKeyManager : public QObject
     TTK_DECLARE_MODULE(MusicHotKeyManager)
 public:
     /*!
-     * To connect parent slot object.
+     * Set input connection.
      */
-    void setObject(QObject *object);
-
+    void setInputObject(QObject *object);
     /*!
      * Set hotKey by given string list keys.
      */

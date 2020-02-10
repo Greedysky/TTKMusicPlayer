@@ -55,9 +55,9 @@ public:
      */
     void setRange(int min, int max);
     /*!
-     * Set connect current object.
+     * Set input connection.
      */
-    void setObject(QObject *object) const;
+    void setInputObject(QObject *object) const;
 
 public Q_SLOTS:
     /*!

@@ -116,9 +116,9 @@ public:
     virtual ~MusicSoundEffectsWidget();
 
     /*!
-     * Set parent connection.
+     * Set input connection.
      */
-    void setParentConnect(QObject *object);
+    void setInputObject(QObject *object);
 
 Q_SIGNALS:
     /*!

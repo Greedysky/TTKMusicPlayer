@@ -226,7 +226,7 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
     delete m_ui;
 }
 
-void MusicSoundEffectsWidget::setParentConnect(QObject *object)
+void MusicSoundEffectsWidget::setInputObject(QObject *object)
 {
     if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {

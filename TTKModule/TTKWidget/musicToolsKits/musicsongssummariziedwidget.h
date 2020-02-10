@@ -271,9 +271,9 @@ protected:
      */
     void setItemTitle(MusicSongItem *item);
     /*!
-     * Connect music toolBox widget item.
+     * Set input connection.
      */
-    void connectMusicToolBoxWidgetItem(QObject *object);
+    void setInputObject(QObject *object) const;
     /*!
      * Resize window bound by widgte resize called.
      */
