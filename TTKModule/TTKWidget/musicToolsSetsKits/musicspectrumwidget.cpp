@@ -29,24 +29,24 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
 
-    setStyleSheet(MusicUIObject::MMenuStyle02);
+    setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MTabWidgetStyle01);
+    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
 
-    m_ui->localFileButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->localFileButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->openFileButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->openFileButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->openFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->normalLayoutButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
-    m_ui->plusLayoutButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
-    m_ui->floridLayoutButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
+    m_ui->normalLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
+    m_ui->plusLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
+    m_ui->floridLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
 
 #ifdef Q_OS_UNIX
     m_ui->normalLayoutButton->setFocusPolicy(Qt::NoFocus);

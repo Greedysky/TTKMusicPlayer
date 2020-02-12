@@ -17,7 +17,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -82,7 +82,7 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -90,9 +90,9 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
 
     m_selectedItemIdFlag = false;
 
-    m_ui->skipAlreadyLrcCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->saveToLrcDirRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->saveToCurrentDirRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->skipAlreadyLrcCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->saveToLrcDirRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->saveToCurrentDirRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
 #ifdef Q_OS_UNIX
     m_ui->skipAlreadyLrcCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->saveToLrcDirRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -100,8 +100,8 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    m_ui->addButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->addButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));

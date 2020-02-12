@@ -14,7 +14,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
     setLayout(vbox);
 
     m_songNameLabel = new MusicMarqueeWidget(this);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
     m_PreSongButton->hide();
     m_NextSongButton->hide();
 

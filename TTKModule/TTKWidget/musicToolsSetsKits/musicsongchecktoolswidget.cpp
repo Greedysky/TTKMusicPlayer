@@ -20,7 +20,7 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -290,8 +290,8 @@ void MusicSongCheckToolsWidget::getSelectedSongItems()
 
 void MusicSongCheckToolsWidget::renameWidgetInit()
 {
-    m_ui->renameSelectAllButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->renameCheckButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->renameSelectAllButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->renameCheckButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
     connect(m_ui->renameButton, SIGNAL(clicked()), SLOT(renameButtonClicked()));
     connect(m_ui->renameCheckButton, SIGNAL(clicked()), SLOT(renameButtonCheckClicked()));
@@ -314,7 +314,7 @@ void MusicSongCheckToolsWidget::renameWidgetInit()
 
 void MusicSongCheckToolsWidget::qualityWidgetInit()
 {
-    m_ui->qualityCheckButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->qualityCheckButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
     connect(m_ui->qualityButton, SIGNAL(clicked()), SLOT(qualityButtonClicked()));
     connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityButtonCheckClicked()));
@@ -334,8 +334,8 @@ void MusicSongCheckToolsWidget::qualityWidgetInit()
 
 void MusicSongCheckToolsWidget::duplicateWidgetInit()
 {
-    m_ui->duplicateSelectAllButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->duplicateCheckButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->duplicateSelectAllButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->duplicateCheckButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
     connect(m_ui->duplicateButton, SIGNAL(clicked()), SLOT(duplicateButtonClicked()));
     connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateButtonCheckClicked()));
@@ -358,16 +358,16 @@ void MusicSongCheckToolsWidget::duplicateWidgetInit()
 
 void MusicSongCheckToolsWidget::switchToSelectedItemStyle(int index)
 {
-    m_ui->renameButton->setStyleSheet(MusicUIObject::MKGCheckTestRename);
-    m_ui->qualityButton->setStyleSheet(MusicUIObject::MKGCheckTestQuality);
-    m_ui->duplicateButton->setStyleSheet(MusicUIObject::MKGCheckTestDuplicate);
+    m_ui->renameButton->setStyleSheet(MusicUIObject::MQSSCheckTestRename);
+    m_ui->qualityButton->setStyleSheet(MusicUIObject::MQSSCheckTestQuality);
+    m_ui->duplicateButton->setStyleSheet(MusicUIObject::MQSSCheckTestDuplicate);
 
     m_ui->stackedWidget->setCurrentIndex(index);
     switch(index)
     {
-        case 0: m_ui->renameButton->setStyleSheet(MusicUIObject::MKGCheckTestRenameClicked); break;
-        case 1: m_ui->duplicateButton->setStyleSheet(MusicUIObject::MKGCheckTestDuplicateClicked); break;
-        case 2: m_ui->qualityButton->setStyleSheet(MusicUIObject::MKGCheckTestQualityClicked); break;
+        case 0: m_ui->renameButton->setStyleSheet(MusicUIObject::MQSSCheckTestRenameClicked); break;
+        case 1: m_ui->duplicateButton->setStyleSheet(MusicUIObject::MQSSCheckTestDuplicateClicked); break;
+        case 2: m_ui->qualityButton->setStyleSheet(MusicUIObject::MQSSCheckTestQualityClicked); break;
         default: break;
     }
 }

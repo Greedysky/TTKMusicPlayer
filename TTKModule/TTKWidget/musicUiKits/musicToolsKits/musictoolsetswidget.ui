@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>528</width>
-    <height>377</height>
+    <height>397</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>520</width>
-     <height>369</height>
+     <height>389</height>
     </rect>
    </property>
    <property name="text">
@@ -61,7 +61,7 @@
      <x>4</x>
      <y>29</y>
      <width>520</width>
-     <height>344</height>
+     <height>364</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -74,7 +74,7 @@ QLabel{background:transparent;}</string>
       <x>20</x>
       <y>25</y>
       <width>480</width>
-      <height>300</height>
+      <height>320</height>
      </rect>
     </property>
    </widget>

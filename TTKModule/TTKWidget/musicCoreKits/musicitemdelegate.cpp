@@ -10,7 +10,7 @@ MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
     m_radioButton  = new QRadioButton;
-    m_radioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_radioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
 #ifdef Q_OS_UNIX
     m_radioButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -51,7 +51,7 @@ MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
     m_checkBox  = new QCheckBox;
-    m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_checkBox->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -117,7 +117,7 @@ MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
     m_progress = new QProgressBar;
-    m_progress->setStyleSheet(MusicUIObject::MProgressBar01);
+    m_progress->setStyleSheet(MusicUIObject::MQSSProgressBar01);
 }
 
 MusicProgressBarDelegate::~MusicProgressBarDelegate()
@@ -155,7 +155,7 @@ MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
 {
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
-    m_label->setStyleSheet(MusicUIObject::MBackgroundStyle18);
+    m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle18);
 }
 
 MusicLabelDelegate::~MusicLabelDelegate()
@@ -194,7 +194,7 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
 {
     m_pushButton  = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_pushButton->setStyleSheet(MusicUIObject::MBorderStyle04 + MusicUIObject::MBorderStyle07 + MusicUIObject::MBackgroundStyle17);
+    m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBorderStyle07 + MusicUIObject::MQSSBackgroundStyle17);
 #ifdef Q_OS_UNIX
     m_pushButton->setFocusPolicy(Qt::NoFocus);
 #endif

@@ -6,7 +6,7 @@
 MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
-    setStyleSheet(MusicUIObject::MLineEditStyle03);
+    setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
     setPlaceholderText(tr("please input search text"));
 }
 
@@ -15,7 +15,7 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
 
     QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     QAction *shearM = rightClickMenu.addAction(tr("Shear"), this, SLOT(cut()));
     QAction *copyM = rightClickMenu.addAction(tr("Copy"), this, SLOT(copy()));

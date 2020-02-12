@@ -20,27 +20,27 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->addSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->playSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->playRingButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->saveSongButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->addSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->playSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->playRingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->saveSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->formatCombo->setItemDelegate(new QStyledItemDelegate(m_ui->formatCombo));
-    m_ui->formatCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->formatCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->formatCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->formatCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->kbpsCombo->setItemDelegate(new QStyledItemDelegate(m_ui->kbpsCombo));
-    m_ui->kbpsCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->kbpsCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->hzCombo->setItemDelegate(new QStyledItemDelegate(m_ui->hzCombo));
-    m_ui->hzCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->hzCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->hzCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->hzCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->msCombo->setItemDelegate(new QStyledItemDelegate(m_ui->msCombo));
-    m_ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->msCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->msCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->addSongButton->setFocusPolicy(Qt::NoFocus);

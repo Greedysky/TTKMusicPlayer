@@ -12,14 +12,14 @@ MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     m_ui->setupUi(this);
     
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    m_ui->artSearchEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->uploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->selectButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->artSearchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->uploadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->closeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->selectButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->uploadButton->setFocusPolicy(Qt::NoFocus);
@@ -31,8 +31,8 @@ MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     m_ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->selectButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->stateLabel->setStyleSheet(MusicUIObject::MBackgroundStyle05 +
-                                  MusicUIObject::MColorStyle07);
+    m_ui->stateLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle05 +
+                                  MusicUIObject::MQSSColorStyle07);
 
     m_ui->uploadButton->hide();
     m_ui->closeButton->hide();

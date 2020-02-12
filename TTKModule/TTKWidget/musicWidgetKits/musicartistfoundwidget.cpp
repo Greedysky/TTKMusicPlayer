@@ -25,7 +25,7 @@ MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist + MusicUIObject::MPushButtonStyle01);
+    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist + MusicUIObject::MQSSPushButtonStyle01);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -519,7 +519,7 @@ void MusicArtistFoundWidget::createLabels()
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     scrollArea->setWidgetResizable(true);
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);
@@ -527,7 +527,7 @@ void MusicArtistFoundWidget::createLabels()
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle03);
+    function->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSPushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
@@ -548,16 +548,16 @@ void MusicArtistFoundWidget::createLabels()
     QFont artistFont = artistLabel->font();
     artistFont.setPixelSize(20);
     artistLabel->setFont(artistFont);
-    artistLabel->setStyleSheet(MusicUIObject::MFontStyle01);
+    artistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
     artistLabel->setText("-");
     QLabel *nickNameLabel = new QLabel(topLineWidget);
-    nickNameLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    nickNameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     nickNameLabel->setText("-");
     QLabel *countryLabel = new QLabel(topLineWidget);
-    countryLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    countryLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     countryLabel->setText("-");
     QLabel *birthLabel = new QLabel(topLineWidget);
-    birthLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    birthLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     birthLabel->setText("-");
 
     topLineLayout->addWidget(artistLabel);
@@ -567,7 +567,7 @@ void MusicArtistFoundWidget::createLabels()
     topLineWidget->setLayout(topLineLayout);
 
     QWidget *topButtonWidget = new QWidget(topFuncWidget);
-    topButtonWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    topButtonWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *playAllButton = new QPushButton(tr("playAll"), topButtonWidget);
@@ -594,7 +594,7 @@ void MusicArtistFoundWidget::createLabels()
 
     QLabel *numberLabel = new QLabel(topRightWidget);
     numberLabel->setAlignment(Qt::AlignCenter);
-    numberLabel->setStyleSheet(MusicUIObject::MFontStyle06 + MusicUIObject::MColorStyle05);
+    numberLabel->setStyleSheet(MusicUIObject::MQSSFontStyle06 + MusicUIObject::MQSSColorStyle05);
     int number = 9;
     numberLabel->setText(QString("%1.%2").arg(number).arg(1));
     topRightLayout->addWidget(numberLabel, 0, 0);
@@ -634,7 +634,7 @@ void MusicArtistFoundWidget::createLabels()
     //
 
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("songItems"));

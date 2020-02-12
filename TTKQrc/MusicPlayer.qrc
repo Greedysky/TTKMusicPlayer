@@ -124,6 +124,7 @@
         <file alias="lb_connections">../TTKResource/tools/lb_connections.png</file>
         <file alias="lb_radio">../TTKResource/tools/lb_radio.png</file>
         <file alias="lb_dlna">../TTKResource/tools/lb_dlna.png</file>
+        <file alias="lb_desktop_saver">../TTKResource/tools/lb_desktopsaver.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
@@ -433,6 +434,8 @@
         <file alias="lb_record_off">../TTKResource/toolSets/lb_record_off.png</file>
         <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
         <file alias="btn_arrow_normal">../TTKResource/toolSets/btn_arrow_normal.png</file>
+        <file alias="btn_saver_off">../TTKResource/toolSets/btn_saver_off.png</file>
+        <file alias="btn_saver_on">../TTKResource/toolSets/btn_saver_on.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_resize_normal">../TTKResource/tiny/lb_resize_normal.png</file>

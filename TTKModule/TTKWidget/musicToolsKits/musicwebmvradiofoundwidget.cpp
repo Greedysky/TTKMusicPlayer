@@ -18,7 +18,7 @@ MusicWebMVRadioFoundItemWidget::MusicWebMVRadioFoundItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30)/2, (HEIGHT_LABEL_SIZE - 30)/2, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
+    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -31,7 +31,7 @@ MusicWebMVRadioFoundItemWidget::MusicWebMVRadioFoundItemWidget(QWidget *parent)
     m_nameLabel = new QLabel(this);
     m_nameLabel->setAlignment(Qt::AlignCenter);
     m_nameLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
-    m_nameLabel->setStyleSheet(MusicUIObject::MColorStyle01 + MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
+    m_nameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01 + MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSFontStyle01);
     m_nameLabel->setText(" - ");
 }
 
@@ -164,7 +164,7 @@ void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+        scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
         scrollArea->setWidgetResizable(true);
         scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setAlignment(Qt::AlignLeft);
@@ -184,7 +184,7 @@ void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MColorStyle06);
+        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

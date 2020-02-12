@@ -100,9 +100,9 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
                           item = new QTableWidgetItem;
         item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, headerview->sectionSize(1) - 10));
 #if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+        item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+        item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -118,9 +118,9 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
 
                           item = new QTableWidgetItem(songs[i].getMusicPlayTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+        item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+        item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
@@ -256,9 +256,9 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
 
     item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
 #if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+    item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+    item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
@@ -269,9 +269,9 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
 
     item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicPlayTime() );
 #if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+    item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+    item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
@@ -705,7 +705,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
 
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addAction(tr("playLater"), this, SLOT(musicAddToPlayLater()));
     rightClickMenu.addAction(tr("addToPlaylist"), this, SLOT(musicAddToPlayedList()));

@@ -27,10 +27,10 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
 
     QToolButton *locationButton = new QToolButton(m_mainWidget);
     QToolButton *searchButton = new QToolButton(m_mainWidget);
-    locationButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocation);
+    locationButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLocation);
     locationButton->setCursor(QCursor(Qt::PointingHandCursor));
     locationButton->setGeometry(1, 1, 24, 24);
-    searchButton->setStyleSheet(MusicUIObject::MKGTinyBtnLocalSearch);
+    searchButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(29, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));

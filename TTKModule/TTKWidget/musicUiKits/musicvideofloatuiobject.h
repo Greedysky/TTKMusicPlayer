@@ -26,27 +26,27 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGVideoFloatDownload = " \
+    const QString MQSSVideoFloatDownload = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_download_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_download_hover); }";
 
-    const QString MKGVideoFloatFresh = " \
+    const QString MQSSVideoFloatFresh = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_fresh_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_fresh_hover); }";
 
-    const QString MKGVideoFloatFullscreen = " \
+    const QString MQSSVideoFloatFullscreen = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_fullscreen_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_fullscreen_hover); }";
 
-    const QString MKGVideoFloatSearch = " \
+    const QString MQSSVideoFloatSearch = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_search_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_search_hover); }";
 
-    const QString MKGVideoFloatShare = " \
+    const QString MQSSVideoFloatShare = " \
             QPushButton{ border:none;\
             background-image: url(:/video/btn_share_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_share_hover); }";

@@ -38,22 +38,22 @@ void MusicProgressWidget::initWidget()
     m_background->setGeometry(4, 4, 360, 115);
     QWidget *backgroundMask = new QWidget(this);
     backgroundMask->setGeometry(4, 29, 360, 90);
-    backgroundMask->setStyleSheet(MusicUIObject::MBackgroundStyle13);
+    backgroundMask->setStyleSheet(MusicUIObject::MQSSBackgroundStyle13);
 
     QLabel *topTitleName = new QLabel(this);
     topTitleName->setText(tr("Progress Bar"));
     topTitleName->setGeometry(14, 4, 221, 25);
-    topTitleName->setStyleSheet(MusicUIObject::MColorStyle01 + MusicUIObject::MFontStyle01);
+    topTitleName->setStyleSheet(MusicUIObject::MQSSColorStyle01 + MusicUIObject::MQSSFontStyle01);
 
     QToolButton *topTitleCloseButton = new QToolButton(this);
     topTitleCloseButton->setGeometry(344, 6, 20, 20);
     topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     topTitleCloseButton->setEnabled(false);
 
     m_progressBar = new QProgressBar(this);
     setBar(m_progressBar);
-    m_progressBar->setStyleSheet(MusicUIObject::MProgressBar01);
+    m_progressBar->setStyleSheet(MusicUIObject::MQSSProgressBar01);
 
     m_textLabel = new QLabel(this);
     m_textLabel->setAlignment(Qt::AlignCenter);

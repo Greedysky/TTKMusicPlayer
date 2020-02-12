@@ -17,8 +17,8 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    m_ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle07);
-    m_ui->userNameU->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->userNameL->setStyleSheet(MusicUIObject::MQSSPushButtonStyle07);
+    m_ui->userNameU->setStyleSheet(MusicUIObject::MQSSPushButtonStyle07);
     m_ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX

@@ -135,7 +135,7 @@ QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidge
 
         hbox->addStretch(1);
         QPushButton *p = createButton(tr("ALL"));
-        p->setStyleSheet(p->styleSheet() + QString("QPushButton{%1}").arg(MusicUIObject::MColorStyle08));
+        p->setStyleSheet(p->styleSheet() + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
 
         m_functionsWidget->setLayout(hbox);
     }
@@ -232,7 +232,7 @@ void MusicBackgroundThunderWidget::downLoadDataChanged(const MusicSkinRemoteGrou
 QPushButton* MusicBackgroundThunderWidget::createButton(const QString &name)
 {
     QPushButton *btn = new QPushButton(name, m_functionsWidget);
-    btn->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+    btn->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
     btn->setCursor(QCursor(Qt::PointingHandCursor));
     btn->setFixedSize(35, 20);
     btn->hide();
@@ -248,9 +248,9 @@ void MusicBackgroundThunderWidget::buttonStyleChanged()
 {
     for(int i=0; i<m_functionsItems.count() - 1; ++i)
     {
-        m_functionsItems[i]->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+        m_functionsItems[i]->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
     }
-    m_functionsItems[m_currentIndex]->setStyleSheet(MusicUIObject::MPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MColorStyle08));
+    m_functionsItems[m_currentIndex]->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
 }
 
 

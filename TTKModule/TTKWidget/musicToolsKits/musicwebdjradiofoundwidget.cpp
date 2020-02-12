@@ -22,7 +22,7 @@ MusicWebDJRadioFoundItemWidget::MusicWebDJRadioFoundItemWidget(QWidget *parent)
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
-    m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
+    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
@@ -156,7 +156,7 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+        scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
         scrollArea->setWidgetResizable(true);
         scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setAlignment(Qt::AlignLeft);
@@ -172,7 +172,7 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
 
         QPushButton *backButton = new QPushButton(tr("Back"), containTopWidget);
         backButton->setFixedSize(90, 30);
-        backButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+        backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
         backButton->setCursor(QCursor(Qt::PointingHandCursor));
         connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
         containTopLayout->addWidget(backButton);
@@ -181,7 +181,7 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MColorStyle06);
+        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

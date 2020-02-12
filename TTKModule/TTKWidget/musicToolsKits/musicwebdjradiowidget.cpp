@@ -20,7 +20,7 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
     headerview->resizeSection(4, 105);
     headerview->resizeSection(5, 110);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     m_programThread = new MusicDJRadioProgramThread(this);
     connect(m_programThread, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));
@@ -178,7 +178,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
 
     QPushButton *backButton = new QPushButton(tr("Back"), this);
     backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), parent, SLOT(backToMainMenu()));
     topLayout->addWidget(backButton);
@@ -215,7 +215,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
     : QStackedWidget(parent)
 {
     setObjectName("MainWindow");
-    setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MBackgroundStyle17));
+    setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
 
     m_recommendWidget = nullptr;
     m_programWidget = nullptr;
@@ -336,7 +336,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     connect(recommendLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
 
     MusicClickedLabel *recommendMoreLabel = new MusicClickedLabel(tr("More >"), leftTop);
-    recommendMoreLabel->setStyleSheet(MusicUIObject::MColorStyle04);
+    recommendMoreLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     connect(recommendMoreLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
     leftTopLayout->addWidget(recommendMoreLabel);
     topLayout->addWidget(leftTop);
@@ -355,7 +355,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     connect(programLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
 
     MusicClickedLabel *programMoreLabel = new MusicClickedLabel(tr("More >"), rightTop);
-    programMoreLabel->setStyleSheet(MusicUIObject::MColorStyle04);
+    programMoreLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     connect(programMoreLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
     rightTopLayout->addWidget(programMoreLabel);
     topLayout->addWidget(rightTop);

@@ -11,7 +11,7 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(QWidget *parent
 
     m_focusBlock = false;
 
-    setStyleSheet(MusicUIObject::MLineEditStyle01);
+    setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);
 

@@ -31,17 +31,17 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->stackedWidget->setStyleSheet(MusicUIObject::MBackgroundStyle02);
-    m_ui->topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06);
-    m_ui->controlWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06);
-    m_ui->timeLabel->setStyleSheet(MusicUIObject::MColorStyle03);
-    m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    m_ui->transferButton->setStyleSheet(MusicUIObject::MKGRecordTransfer);
+    m_ui->stackedWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
+    m_ui->topWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle06);
+    m_ui->controlWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle06);
+    m_ui->timeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+    m_ui->timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
+    m_ui->transferButton->setStyleSheet(MusicUIObject::MQSSRecordTransfer);
 
     m_queryMovieMode = true;
     m_stateButtonOn = true;
@@ -63,7 +63,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_searchWidget->connectTo(this);
     m_searchWidget->show();
 
-    m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+    m_ui->winTipsButton->setStyleSheet(MusicUIObject::MQSSTinyBtnWintopOff);
 
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(5);
@@ -104,12 +104,12 @@ MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
 
 void MusicSoundKMicroWidget::setButtonStyle(bool style) const
 {
-    m_ui->playButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnPlay : MusicUIObject::MKGVideoBtnPause);
+    m_ui->playButton->setStyleSheet(style ? MusicUIObject::MQSSVideoBtnPlay : MusicUIObject::MQSSVideoBtnPause);
 }
 
 void MusicSoundKMicroWidget::setStateButtonStyle(bool style)  const
 {
-    m_ui->stateButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnOrigin : MusicUIObject::MKGVideoBtnOriginOff);
+    m_ui->stateButton->setStyleSheet(style ? MusicUIObject::MQSSVideoBtnOrigin : MusicUIObject::MQSSVideoBtnOriginOff);
 }
 
 void MusicSoundKMicroWidget::startSeachKMicro(const QString &name)
@@ -215,14 +215,14 @@ void MusicSoundKMicroWidget::stateButtonChanged()
 
 void MusicSoundKMicroWidget::tipsButtonChanged()
 {
-    if(m_ui->winTipsButton->styleSheet().contains(MusicUIObject::MKGTinyBtnWintopOff))
+    if(m_ui->winTipsButton->styleSheet().contains(MusicUIObject::MQSSTinyBtnWintopOff))
     {
-        m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOn);
+        m_ui->winTipsButton->setStyleSheet(MusicUIObject::MQSSTinyBtnWintopOn);
         m_searchWidget->hide();
     }
     else
     {
-        m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+        m_ui->winTipsButton->setStyleSheet(MusicUIObject::MQSSTinyBtnWintopOff);
         m_searchWidget->show();
     }
 }
@@ -371,7 +371,7 @@ void MusicSoundKMicroWidget::recordStateChanged(bool state)
     if(state && m_mediaPlayer->state() != MusicObject::PS_StoppedState)
     {
         m_ui->gifLabel->start();
-        m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRerecord);
+        m_ui->recordButton->setStyleSheet(MusicUIObject::MQSSRerecord);
         if(m_recordCore)
         {
             m_recordCore->onRecordStart();
@@ -384,7 +384,7 @@ void MusicSoundKMicroWidget::recordStateChanged(bool state)
     else
     {
         m_ui->gifLabel->stop();
-        m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRecord);
+        m_ui->recordButton->setStyleSheet(MusicUIObject::MQSSRecord);
         if(m_recordCore)
         {
             m_recordCore->onRecordStop();

@@ -13,7 +13,7 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     setColumnCount(9);
     resizeWindow(0);
 
-    viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle02);
+    viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
 
     m_defaultBkColor = Qt::black;
     m_singleRadioMode = false;

@@ -19,7 +19,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_musicSongs = nullptr;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -30,10 +30,10 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
     m_ui->refreshButton->setIcon(QIcon(":/functions/btn_fresh_fore_hover"));
 
-    m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    m_ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    m_ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    m_ui->refreshButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_ui->playButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->previousButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->nextButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->refreshButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->playButton->setFocusPolicy(Qt::NoFocus);
@@ -52,8 +52,8 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->refreshButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_ui->deviceComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle02);
-    m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle10);
+    m_ui->deviceComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02);
+    m_ui->timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle10);
     m_ui->timeSlider->setValue(0);
 
     m_ui->deviceComboBox->addItem(tr("No Connections"));

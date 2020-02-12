@@ -19,10 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the desktop wallpaper item.
+/*! @brief The class of the desktop saver widget.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_TOOLSET_EXPORT MusicDesktopSaverWidget : public QWidget
@@ -36,6 +38,34 @@ public:
     explicit MusicDesktopSaverWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDesktopSaverWidget();
+
+private Q_SLOTS:
+    /*!
+     * Case button on and off.
+     */
+    void caseButtonOnAndOff();
+
+private:
+    QLineEdit *m_inputEdit;
+    QPushButton *m_caseButton;
+};
+
+
+
+/*! @brief The class of the desktop saver background widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOLSET_EXPORT MusicDesktopSaverBackgroundWidget : public QWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDesktopSaverBackgroundWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicDesktopSaverBackgroundWidget(QWidget *parent = nullptr);
+
+    virtual ~MusicDesktopSaverBackgroundWidget();
 
     /*!
      * Apply settings parameters.

@@ -13,7 +13,7 @@
 MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setStyleSheet(MusicUIObject::MBackgroundStyle06);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle06);
 
     m_timeSlider = new MusicMovingLabelSlider(Qt::Horizontal, this);
     m_playButton = new QPushButton(this);
@@ -28,9 +28,9 @@ MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     m_volumeButton->setFixedSize(20, 20);
     m_playButton->setFixedSize(34, 34);
 
-    m_timeLabel->setStyleSheet(MusicUIObject::MColorStyle03);
-    m_playButton->setStyleSheet(MusicUIObject::MKGVideoBtnPlay);
-    m_timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_timeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
+    m_playButton->setStyleSheet(MusicUIObject::MQSSVideoBtnPlay);
+    m_timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
 
     m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -95,7 +95,7 @@ void MusicVideoControlWidget::durationChanged(qint64 duration) const
 
 void MusicVideoControlWidget::setButtonStyle(bool style) const
 {
-    m_playButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnPlay : MusicUIObject::MKGVideoBtnPause);
+    m_playButton->setStyleSheet(style ? MusicUIObject::MQSSVideoBtnPlay : MusicUIObject::MQSSVideoBtnPause);
 }
 
 void MusicVideoControlWidget::mediaChanged(const QString &url)
@@ -116,7 +116,7 @@ void MusicVideoControlWidget::setQualityActionState()
 
 void MusicVideoControlWidget::pushBarrageClicked()
 {
-    m_pushBarrage->setStyleSheet(m_pushBarrageOn ? MusicUIObject::MKGVideoBtnBarrageOn : MusicUIObject::MKGVideoBtnBarrageOff);
+    m_pushBarrage->setStyleSheet(m_pushBarrageOn ? MusicUIObject::MQSSVideoBtnBarrageOn : MusicUIObject::MQSSVideoBtnBarrageOff);
     m_barrageSend->setEnabled(m_pushBarrageOn);
     m_menuBarrage->setEnabled(m_pushBarrageOn);
     m_lineEditBarrage->setEnabled(m_pushBarrageOn);
@@ -148,7 +148,7 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
     barrageLayout->setContentsMargins(0, 0, 0, 0);
 
     m_menuBarrage = new MusicVideoBarrageStylePopWidget(barrageWidget);
-    m_menuBarrage->setStyleSheet(MusicUIObject::MKGVideoBtnBarrageStyle);
+    m_menuBarrage->setStyleSheet(MusicUIObject::MQSSVideoBtnBarrageStyle);
 
     QWidget *pairWidget = new QWidget(barrageWidget);
     QHBoxLayout *pairWidgetLayout = new QHBoxLayout(pairWidget);
@@ -159,11 +159,11 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
     m_lineEditBarrage->setFixedHeight(24);
     m_lineEditBarrage->setPlaceholderText(tr("just one barrage!"));
 
-    m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle06);
+    m_lineEditBarrage->setStyleSheet(MusicUIObject::MQSSLineEditStyle06);
     connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));
 
     m_barrageSend = new QPushButton(pairWidget);
-    m_barrageSend->setStyleSheet(MusicUIObject::MKGVideoBtnBarrageSend);
+    m_barrageSend->setStyleSheet(MusicUIObject::MQSSVideoBtnBarrageSend);
     m_barrageSend->setCursor(QCursor(Qt::PointingHandCursor));
     m_barrageSend->setFixedSize(50, 24);
     connect(m_barrageSend, SIGNAL(clicked()), SLOT(sendBarrageClicked()));

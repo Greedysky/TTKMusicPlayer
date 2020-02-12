@@ -151,12 +151,12 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     m_ui->mutliWidget->setLayout(layout);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    m_ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->paletteButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->paletteButton->setFocusPolicy(Qt::NoFocus);
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);

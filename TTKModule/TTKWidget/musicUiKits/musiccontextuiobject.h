@@ -26,22 +26,22 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGContextPlay = " \
+    const QString MQSSContextPlay = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_play_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_play_normal); }";
 
-    const QString MKGContextPause = " \
+    const QString MQSSContextPause = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_pause_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_pause_normal); }";
 
-    const QString MKGContextNext = " \
+    const QString MQSSContextNext = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_next_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_next_normal); }";
 
-    const QString MKGContextPrevious = " \
+    const QString MQSSContextPrevious = " \
             QToolButton{ border:none; \
             background-image: url(:/contextMenu/btn_previous_hover); } \
             QToolButton:hover{ background-image: url(:/contextMenu/btn_previous_normal); }";

@@ -19,10 +19,10 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     MusicUtils::Widget::setLabelFontSize(m_ui->label_5T, 9);
     MusicUtils::Widget::setLabelFontSize(m_ui->label_6T, 9);
 #endif
-    m_ui->tabWidget->setStyleSheet(MusicUIObject::MTabWidgetStyle01);
+    m_ui->tabWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -71,12 +71,12 @@ void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const MusicUserU
 void MusicUserRecordWidget::initTabF()
 {
     m_ui->cityComboBox_F->setItemDelegate(new QStyledItemDelegate(m_ui->cityComboBox_F));
-    m_ui->cityComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->cityComboBox_F->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
     m_ui->countryComboBox_F->setItemDelegate(new QStyledItemDelegate(m_ui->countryComboBox_F));
-    m_ui->countryComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->cityComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->countryComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->signatureEdit_F->setStyleSheet(MusicUIObject::MTextEditStyle01);
+    m_ui->countryComboBox_F->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->cityComboBox_F->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    m_ui->countryComboBox_F->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    m_ui->signatureEdit_F->setStyleSheet(MusicUIObject::MQSSTextEditStyle01);
     connect(m_ui->cityComboBox_F, SIGNAL(currentIndexChanged(QString)), SLOT(cityComboBoxIndexChanged(QString)));
 
     m_ui->cityComboBox_F->addItems(m_userModel->getAllCities());
@@ -85,12 +85,12 @@ void MusicUserRecordWidget::initTabF()
     m_ui->nicknameEdit->setText(m_userModel->getUserName(m_userUID));
     m_ui->userIDLabel_F->setText(m_userUID.m_uid);
 
-    m_ui->nicknameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->birthDateEdit_F->setStyleSheet(MusicUIObject::MDateEditStyle01);
+    m_ui->nicknameEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->birthDateEdit_F->setStyleSheet(MusicUIObject::MQSSDateEditStyle01);
 
     QString string(m_userModel->getUserSex(m_userUID));
-    m_ui->maleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->femaleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->maleRadioButton_F->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->femaleRadioButton_F->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     m_ui->maleRadioButton_F->setChecked(string.isEmpty() || string == "0");
     m_ui->femaleRadioButton_F->setChecked(string == "1");
 
@@ -110,7 +110,7 @@ void MusicUserRecordWidget::initTabF()
         MusicUtils::Widget::setComboBoxText(m_ui->countryComboBox_F, string);
     }
     m_ui->signatureEdit_F->setText(m_userModel->getUserSignature(m_userUID));
-    m_ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    m_ui->confirmButton_F->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
 
     connect(m_ui->confirmButton_F, SIGNAL(clicked()), SLOT(confirmButtonClickedF()));
 }
@@ -119,8 +119,8 @@ void MusicUserRecordWidget::initTabS()
 {
     const QString &path = m_userModel->getUserIcon(m_userUID);
     m_ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(m_ui->smlPixmapLabel_S->size()));
-    m_ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
-    m_ui->saveFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    m_ui->openFileButton_S->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
+    m_ui->saveFileButton_S->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
     connect(m_ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
     connect(m_ui->saveFileButton_S, SIGNAL(clicked()), SLOT(saveFileButtonClickedS()));
     connect(m_ui->bigPixmapLabel_S, SIGNAL(intersectedPixmap(QPixmap)), SLOT(intersectedPixmap(QPixmap)));
@@ -128,7 +128,7 @@ void MusicUserRecordWidget::initTabS()
 
 void MusicUserRecordWidget::initTabT()
 {
-    m_ui->tab_3->setStyleSheet(MusicUIObject::MLineEditStyle01 + "QWidget{ color:#666666; }");
+    m_ui->tab_3->setStyleSheet(MusicUIObject::MQSSLineEditStyle01 + "QWidget{ color:#666666; }");
     m_ui->labelRighT1->hide();
     m_ui->labelRighT2->hide();
     m_ui->labelRighT3->hide();
@@ -138,7 +138,7 @@ void MusicUserRecordWidget::initTabT()
     connect(m_ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
     changeVerificationCodeT();
-    m_ui->confirmButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    m_ui->confirmButton_T->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
     connect(m_ui->verificationCode, SIGNAL(clicked()), SLOT(changeVerificationCodeT()));
     connect(m_ui->confirmButton_T, SIGNAL(clicked()), SLOT(confirmButtonClickedT()));
 }
@@ -249,18 +249,18 @@ void MusicUserRecordWidget::confirmButtonClickedT()
 
 void MusicUserRecordWidget::checkPwdStrength(int code)
 {
-    m_ui->pwdStrengthT1->setStyleSheet(code != -1 ? MusicUIObject::MBackgroundStyle14 : MusicUIObject::MBackgroundStyle15);
-    m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle15);
-    m_ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MBackgroundStyle15);
+    m_ui->pwdStrengthT1->setStyleSheet(code != -1 ? MusicUIObject::MQSSBackgroundStyle14 : MusicUIObject::MQSSBackgroundStyle15);
+    m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle15);
+    m_ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MQSSBackgroundStyle15);
 
     switch(code)
     {
         case  1:
-            m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle14);
+            m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle14);
             break;
         case  2:
-            m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle14);
-            m_ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MBackgroundStyle14);
+            m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle14);
+            m_ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MQSSBackgroundStyle14);
             break;
         default: break;
     }

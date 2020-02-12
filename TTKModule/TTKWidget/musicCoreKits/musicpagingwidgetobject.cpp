@@ -48,7 +48,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
         QFont font(w->font());
         font.setPixelSize(17);
         w->setFont(font);
-        w->setStyleSheet(MusicUIObject::MColorStyle04);
+        w->setStyleSheet(MusicUIObject::MQSSColorStyle04);
         w->setFixedWidth(MusicUtils::Widget::fontTextWidth(font, w->text()));
         connect(w, SIGNAL(clicked()), group, SLOT(map()));
         group->setMapping(w, i++);
@@ -63,7 +63,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
             m_pagingItems[i]->hide();
         }
     }
-    m_pagingItems[0]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
+    m_pagingItems[0]->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle01);
 
     layout->addStretch(1);
     if(total != 0)
@@ -82,7 +82,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
         QLabel *icon = new QLabel(func);
         icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
         QLabel *text = new QLabel(tr("There Is Empty!"), func);
-        text->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle05);
+        text->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle05);
         text->setAlignment(Qt::AlignCenter);
         funcLayout->addWidget(icon, 0, Qt::AlignCenter);
         funcLayout->addWidget(text, 0, Qt::AlignCenter);
@@ -131,7 +131,7 @@ void MusicPagingWidgetObject::paging(int index, int total)
     int page = m_pagingItems[0]->text().toInt();
     for(int i=0; i<m_pagingItems.count() - 2; ++i)
     {
-        m_pagingItems[i]->setStyleSheet(MusicUIObject::MColorStyle04);
+        m_pagingItems[i]->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     }
 
     switch(index)
@@ -211,7 +211,7 @@ void MusicPagingWidgetObject::paging(int index, int total)
     }
 
     MusicClickedLabel *w = m_pagingItems[m_currentPage];
-    w->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
+    w->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle01);
     w->setFixedWidth(w->width() + 5);
 }
 

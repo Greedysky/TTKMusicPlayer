@@ -63,7 +63,7 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     bool playing;
     Q_EMIT mediaIsPlaying(playing);
@@ -79,7 +79,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     : QAbstractScrollArea(parent)
 {
     setObjectName("MusicVideoView");
-    setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MBackgroundStyle02));
+    setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MQSSBackgroundStyle02));
 
     m_mediaPlayer = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
@@ -115,7 +115,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     bool playing;
     mediaIsPlaying(playing);

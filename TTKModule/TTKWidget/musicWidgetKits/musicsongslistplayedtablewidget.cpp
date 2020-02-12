@@ -79,9 +79,9 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
         item->setToolTip(songs[i].getMusicName());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
 #if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+        item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+        item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
@@ -93,9 +93,9 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
 
                           item = new QTableWidgetItem(songs[i].getMusicPlayTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+        item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+        item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
@@ -180,9 +180,9 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
     item->setToolTip(name);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
 #if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+    item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+    item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
@@ -192,9 +192,9 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
 
     item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicPlayTime() );
 #if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+    item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+    item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 4, item);
@@ -309,7 +309,7 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QMenu rightClickMenu(this);
 
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();

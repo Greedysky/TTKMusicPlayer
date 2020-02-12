@@ -170,7 +170,7 @@ void MusicQueryFoundTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicQueryTableWidget::contextMenuEvent(event);
 
     QMenu menu;
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const int row = currentRow();
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());

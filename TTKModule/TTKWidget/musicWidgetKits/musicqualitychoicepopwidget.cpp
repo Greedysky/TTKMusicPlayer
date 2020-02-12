@@ -18,10 +18,10 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     headerview->resizeSection(2, 25);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    setStyleSheet(MusicUIObject::MTableWidgetStyle03 + MusicUIObject::MLineEditStyle01 + MusicUIObject::MTableWidgetStyle04);
+    setStyleSheet(MusicUIObject::MQSSTableWidgetStyle03 + MusicUIObject::MQSSLineEditStyle01 + MusicUIObject::MQSSTableWidgetStyle04);
 
     MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
-    delegate->setStyleSheet(MusicUIObject::MCheckBoxStyle02);
+    delegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle02);
     setItemDelegateForColumn(2, delegate);
     m_previousClickRow = 1;
 
@@ -169,13 +169,13 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
 
     initWidget();
 
-    setStyleSheet(MusicUIObject::MToolButtonStyle05 + MusicUIObject::MKGBtnQuality + "QToolButton{ margin-left:-48px; }");
+    setStyleSheet(MusicUIObject::MQSSToolButtonStyle05 + MusicUIObject::MQSSBtnQuality + "QToolButton{ margin-left:-48px; }");
 }
 
 void MusicQualityChoicePopWidget::initWidget()
 {
     setTranslucentBackground();
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle04);
+    m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle04);
 
     QHBoxLayout *layout = new QHBoxLayout(m_containWidget);
     layout->setContentsMargins(0, 0, 0, 0);

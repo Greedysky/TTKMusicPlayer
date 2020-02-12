@@ -37,12 +37,12 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
 #endif
 
     m_closeButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
-    m_closeButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
-    m_lrcButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcOff);
-    m_wallPaperButton->setStyleSheet(MusicUIObject::MKGTinyBtnWallpaperOff);
-    m_listButton->setStyleSheet(MusicUIObject::MKGTinyBtnList);
-    m_windowStateButton->setStyleSheet(MusicUIObject::MKGTinyBtnCollapse);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
+    m_closeButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
+    m_lrcButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLrcOff);
+    m_wallPaperButton->setStyleSheet(MusicUIObject::MQSSTinyBtnWallpaperOff);
+    m_listButton->setStyleSheet(MusicUIObject::MQSSTinyBtnList);
+    m_windowStateButton->setStyleSheet(MusicUIObject::MQSSTinyBtnCollapse);
 
     m_lrcButton->setToolTip(tr("Lrc"));
     m_wallPaperButton->setToolTip(tr("WallPaper"));
@@ -110,7 +110,7 @@ void MusicRemoteWidgetForStrip::windowStateChanged()
     bool f = m_windowStateButton->styleSheet().contains("collapse");
     setFixedHeight(f ? 50 : 80);
     m_bottomWidget->setVisible(!f);
-    m_windowStateButton->setStyleSheet(f ? MusicUIObject::MKGTinyBtnExpand : MusicUIObject::MKGTinyBtnCollapse);
+    m_windowStateButton->setStyleSheet(f ? MusicUIObject::MQSSTinyBtnExpand : MusicUIObject::MQSSTinyBtnCollapse);
     m_windowStateButton->setToolTip(f ? tr("Expand") : tr("Collapse"));
 }
 
@@ -130,7 +130,7 @@ void MusicRemoteWidgetForStrip::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle03);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
     menu.addAction(tr("quit"), this, SLOT(close()));

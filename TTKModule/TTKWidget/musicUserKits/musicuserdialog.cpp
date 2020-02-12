@@ -24,7 +24,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     changeVerificationCode();
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -34,8 +34,8 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     thirdStatckWidget();
 
     m_ui->serverComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->serverComboBox));
-    m_ui->serverComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->serverComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->serverComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->serverComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->serverComboBox->addItem(QIcon(":/image/lb_defaultArt"), tr("localDB"));
     m_ui->serverComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("wangyiDB"));
 
@@ -295,14 +295,14 @@ int MusicUserDialog::exec()
 void MusicUserDialog::firstStatckWidget()
 {
     m_ui->userComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->userComboBox));
-    m_ui->userComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->userComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->passwLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    m_ui->registerButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    m_ui->rememberPwd->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->automaticLogin->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->userComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->userComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    m_ui->passwLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->loginButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->forgotPwdButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
+    m_ui->registerButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
+    m_ui->rememberPwd->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->automaticLogin->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
     m_ui->registerButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->forgotPwdButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -321,14 +321,14 @@ void MusicUserDialog::firstStatckWidget()
 
 void MusicUserDialog::secondStatckWidget()
 {
-    m_ui->registerUserLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->registerMailLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->registerPwdLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->registerPwdCLine->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->agreementButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
-    m_ui->agreementCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->registerUserLine->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->registerMailLine->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->registerPwdLine->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->registerPwdCLine->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->agreementButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle05);
+    m_ui->agreementCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
 #ifdef Q_OS_UNIX
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
@@ -357,12 +357,12 @@ void MusicUserDialog::secondStatckWidget()
 
 void MusicUserDialog::thirdStatckWidget()
 {
-    m_ui->userLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->pwdLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->mailLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->confirmButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->cancelButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->userLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->pwdLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->mailLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->confirmButton_2->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->cancelButton_2->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->confirmButton_2->setFocusPolicy(Qt::NoFocus);

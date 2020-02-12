@@ -389,7 +389,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     QMenu changeLrcTimeSlow(tr("changeLrcTimeSlow"), &menu);
     QMenu changeLrcLinkMenu(tr("lrcLinkMenu"), &menu);
 
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
@@ -660,7 +660,7 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
     m_noLrcCurrentInfo = new MusicClickedLabel(this);
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
     MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FT_Underline);
-    m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MColorStyle06);
+    m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MQSSColorStyle06);
     m_noLrcCurrentInfo->setText(tr("makeLrc"));
 
     connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));
@@ -710,10 +710,10 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     microphone->setFixedSize(30, 30);
     message->setFixedSize(30, 30);
 
-    translation->setStyleSheet(MusicUIObject::MKGInteriorTranslation);
-    movie->setStyleSheet(MusicUIObject::MKGInteriorMovie);
-    microphone->setStyleSheet(MusicUIObject::MKGInteriorMicrophone);
-    message->setStyleSheet(MusicUIObject::MKGInteriorMessage);
+    translation->setStyleSheet(MusicUIObject::MQSSInteriorTranslation);
+    movie->setStyleSheet(MusicUIObject::MQSSInteriorMovie);
+    microphone->setStyleSheet(MusicUIObject::MQSSInteriorMicrophone);
+    message->setStyleSheet(MusicUIObject::MQSSInteriorMessage);
 
     translation->setCursor(Qt::PointingHandCursor);
     movie->setCursor(Qt::PointingHandCursor);

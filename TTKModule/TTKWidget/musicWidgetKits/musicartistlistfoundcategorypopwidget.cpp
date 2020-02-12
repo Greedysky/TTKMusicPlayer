@@ -20,7 +20,7 @@ void MusicArtistListFoundCategoryItem::setCategory(const MusicResultsCategory &c
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
-    label->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle03);
+    label->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle03);
     label->setFixedSize(100, ITEM_LABEL_WIDTH);
     layout->addWidget(label, 0, Qt::AlignTop);
 
@@ -34,7 +34,7 @@ void MusicArtistListFoundCategoryItem::setCategory(const MusicResultsCategory &c
     for(int i=0; i<m_category.m_items.count(); ++i)
     {
         MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_name, item);
-        l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
+        l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
         connect(l, SIGNAL(clicked()), group, SLOT(map()));
         group->setMapping(l, i);
@@ -70,12 +70,12 @@ void MusicArtistListFoundCategoryPopWidget::setCategory(const QString &server, Q
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
-    containWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
     QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
     containWidget->setLayout(containLayout);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     scrollArea->setWidgetResizable(true);
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);
@@ -108,7 +108,7 @@ void MusicArtistListFoundCategoryPopWidget::initWidget()
     setTranslucentBackground();
     setText(tr("All"));
 
-    QString style = MusicUIObject::MBorderStyle04 + MusicUIObject::MBackgroundStyle17;
+    QString style = MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBackgroundStyle17;
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
@@ -116,6 +116,6 @@ void MusicArtistListFoundCategoryPopWidget::initWidget()
     m_containWidget->setObjectName("containWidget");
     m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
 
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle05);
+    m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);
 
 }

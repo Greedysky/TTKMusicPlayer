@@ -20,7 +20,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     layout->setSpacing(0);
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
-    closeButton->setStyleSheet(MusicUIObject::MKGTinyBtnClose);
+    closeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnClose);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
 
@@ -40,7 +40,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         {
             MusicClickedLabel *l = new MusicClickedLabel(labelWidget);
             l->setAlignment(Qt::AlignCenter);
-            l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MBorderStyle04).arg(MusicUIObject::MBorderStyle05));
+            l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MQSSBorderStyle04).arg(MusicUIObject::MQSSBorderStyle05));
             l->setFixedSize(32, 32);
             connect(l, SIGNAL(clicked()), mapper, SLOT(map()));
             mapper->setMapping(l, i*7 + j);
@@ -94,9 +94,9 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
     m_currentPage = index;
     foreach(QToolButton *button, m_buttonItems)
     {
-        button->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MBorderStyle01);
+        button->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSBorderStyle01);
     }
-    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + MusicUIObject::MBorderStyle04);
+    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + MusicUIObject::MQSSBorderStyle04);
 
     for(int i=0; i<3; ++i)
     {

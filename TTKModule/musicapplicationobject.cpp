@@ -109,7 +109,7 @@ void MusicApplicationObject::applySettingParameter()
     {
         if(!m_desktopSaverWidget)
         {
-            m_desktopSaverWidget = new MusicDesktopSaverWidget;
+            m_desktopSaverWidget = new MusicDesktopSaverBackgroundWidget;
         }
         m_desktopSaverWidget->applySettingParameter();
     }

@@ -37,7 +37,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
 
-    m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle02);
+    m_showMainWindow->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
     m_showMainWindow->setIcon(QIcon(":/image/lb_app_logo"));
     m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_hover"));
 
@@ -53,11 +53,11 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_SettingButton->setFixedSize(20, 20);
     m_showMainWindow->setFixedSize(30, 30);
 
-    m_PreSongButton->setStyleSheet(MusicUIObject::MKGTinyBtnPrevious);
-    m_NextSongButton->setStyleSheet(MusicUIObject::MKGTinyBtnNext);
-    m_PlayButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlay);
-    m_SettingButton->setStyleSheet(MusicUIObject::MKGTinyBtnSetting);
-    m_mainWidget->setStyleSheet(QString("#mainWidget{%1}").arg(MusicUIObject::MBackgroundStyle04));
+    m_PreSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPrevious);
+    m_NextSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnNext);
+    m_PlayButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlay);
+    m_SettingButton->setStyleSheet(MusicUIObject::MQSSTinyBtnSetting);
+    m_mainWidget->setStyleSheet(QString("#mainWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle04));
 
     m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
     m_PreSongButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -81,7 +81,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 
     m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, m_volumeWidget);
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
     m_volumeSlider->setFixedWidth(45);
 
     volumeLayout->addWidget(m_volumeButton);
@@ -108,7 +108,7 @@ MusicRemoteWidget::~MusicRemoteWidget()
 
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
-    m_PlayButton->setStyleSheet(status ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGTinyBtnPause);
+    m_PlayButton->setStyleSheet(status ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSTinyBtnPause);
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)
@@ -140,7 +140,7 @@ void MusicRemoteWidget::musicVolumeChanged(int value)
 {
     Q_EMIT musicVolumeSignal(value);
 
-    QString style = MusicUIObject::MKGTinyBtnSoundWhite;
+    QString style = MusicUIObject::MQSSTinyBtnSoundWhite;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-48px; }";
@@ -178,7 +178,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     menu.setWindowFlags(menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
-    menu.setStyleSheet(MusicUIObject::MMenuStyle03);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
     menu.addSeparator();

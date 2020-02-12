@@ -26,7 +26,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     setMouseTracking(true);
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
-    setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
     blockMoveOption(true);
 
     const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
@@ -35,7 +35,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     QVBoxLayout *vlayout = new QVBoxLayout(m_container);
     vlayout->setContentsMargins(5, 5, 5, 5);
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
     m_textLabel->setAlignment(Qt::AlignCenter);
 
     QWidget *contain = new QWidget(this);
@@ -43,8 +43,8 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     hlayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *updateButton = new QPushButton(tr("Update"), contain);
     QPushButton *nextTimeButton = new QPushButton(tr("Close"), contain);
-    updateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    nextTimeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    updateButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    nextTimeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     updateButton->setFixedSize(85, 27);
     nextTimeButton->setFixedSize(85, 27);
     hlayout->addWidget(updateButton);
@@ -106,7 +106,7 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     m_ui->upgradeButton->setEnabled(false);

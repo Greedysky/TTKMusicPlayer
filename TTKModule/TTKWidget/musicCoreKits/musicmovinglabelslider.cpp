@@ -16,7 +16,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWid
     m_textLabel->setGeometry(0, 0, 40, 20);
     m_textLabel->setAlignment(Qt::AlignCenter);
     m_textLabel->setFocusPolicy(Qt::NoFocus);
-    m_textLabel->setStyleSheet(MusicUIObject::MLabelStyle01);
+    m_textLabel->setStyleSheet(MusicUIObject::MQSSLabelStyle01);
 }
 
 MusicMovingLabelSlider::~MusicMovingLabelSlider()

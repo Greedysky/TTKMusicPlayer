@@ -220,7 +220,7 @@ void MusicSongsListAbstractTableWidget::musicSongPlayedKMicroWidget()
 
 void MusicSongsListAbstractTableWidget::createMoreMenu(QMenu *menu)
 {
-    menu->setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
     addMenu->addAction(tr("musicCloud"));

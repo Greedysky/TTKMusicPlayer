@@ -29,24 +29,24 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     m_topWidget = new QWidget(this);
-    m_topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06 + MusicUIObject::MBorderStyle01);
+    m_topWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle06 + MusicUIObject::MQSSBorderStyle01);
 
     QHBoxLayout *topLayout = new QHBoxLayout(m_topWidget);
     topLayout->setContentsMargins(9, 4, 9, 4);
 
     m_textLabel = new QLabel(m_topWidget);
     m_textLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    m_textLabel->setStyleSheet(MusicUIObject::MColorStyle01);
+    m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01);
 
     QWidget *searchWidget = new QWidget(m_topWidget);
     searchWidget->setFixedHeight(25);
-    searchWidget->setStyleSheet(MusicUIObject::MBackgroundStyle11);
+    searchWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle11);
     QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
     searchLayout->setContentsMargins(0, 0, 0, 0);
     searchLayout->setSpacing(0);
 
     m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
-    m_searchEdit->setStyleSheet(MusicUIObject::MColorStyle09);
+    m_searchEdit->setStyleSheet(MusicUIObject::MQSSColorStyle09);
     m_searchEdit->setFixedHeight(25);
     m_searchButton = new QPushButton(searchWidget);
     m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
@@ -63,7 +63,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_closeButton = new QPushButton(this);
     m_closeButton->setToolTip(tr("Close"));
     m_closeButton->setFixedSize(14, 14);
-    m_closeButton->setStyleSheet(MusicUIObject::MKGBtnPClose);
+    m_closeButton->setStyleSheet(MusicUIObject::MQSSBtnPClose);
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(musicVideoClosed()));
     topLayout->addWidget(m_closeButton);
@@ -75,11 +75,11 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 #endif
 
     m_stackedWidget = new QStackedWidget(this);
-    m_stackedWidget->setStyleSheet(MusicUIObject::MBorderStyle01);
+    m_stackedWidget->setStyleSheet(MusicUIObject::MQSSBorderStyle01);
 
     QWidget *topMaskWidget = new QWidget(this);
     topMaskWidget->setFixedHeight(35);
-    topMaskWidget->setStyleSheet(MusicUIObject::MBackgroundStyle02);
+    topMaskWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
 
     layout->addWidget(topMaskWidget);
     layout->addWidget(m_stackedWidget);
@@ -215,7 +215,7 @@ void MusicVideoPlayWidget::switchToSearchTable()
     m_backButton->setFixedSize(20, 20);
     m_backButton->setToolTip(tr("Back"));
     m_backButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_backButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
+    m_backButton->setStyleSheet(MusicUIObject::MQSSBtnBackBack);
     connect(m_backButton, SIGNAL(clicked()), SLOT(switchToPlayView()));
     topLayout->insertWidget(0, m_backButton);
 

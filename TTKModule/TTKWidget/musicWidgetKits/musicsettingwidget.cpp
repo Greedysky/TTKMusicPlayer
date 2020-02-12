@@ -90,7 +90,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -115,8 +115,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->supperFunTableWidget->setRowCount(items.count());
     m_ui->supperFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(), items);
 
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX
@@ -712,14 +712,14 @@ void MusicSettingWidget::initScrollWidgetPage()
 
 void MusicSettingWidget::initNormalSettingWidget()
 {
-    m_ui->autoPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->backPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->minimumRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->quitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->quitOpacityRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->quitWindowRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->autoPlayCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->backPlayCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->minimumRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->quitRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->quitOpacityRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->quitWindowRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
     QButtonGroup *b1 = new QButtonGroup(this);
     b1->addButton(m_ui->minimumRadioBox, 0);
@@ -743,11 +743,11 @@ void MusicSettingWidget::initNormalSettingWidget()
 #endif
 
     m_ui->languageComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->languageComboBox));
-    m_ui->languageComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->languageComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->languageComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->languageComboBox->addItems(QStringList() << tr("0") << tr("1") << tr("2"));
 
-    m_ui->globalHotkeyBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->globalHotkeyBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->globalHotkeyBox->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -756,13 +756,13 @@ void MusicSettingWidget::initNormalSettingWidget()
 
 void MusicSettingWidget::initSpectrumSettingWidget()
 {
-    m_ui->rippleSpectrumEnableBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->rippleSpectrumEnableBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
     m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
     connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
     connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
 
-    m_ui->rippleVersionUpdateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->rippleVersionUpdateButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->rippleVersionUpdateButton, SIGNAL(clicked()), SLOT(rippleVersionUpdateChanged()));
 #ifdef Q_OS_UNIX
@@ -773,17 +773,17 @@ void MusicSettingWidget::initSpectrumSettingWidget()
 
 void MusicSettingWidget::initOtherSettingWidget()
 {
-    m_ui->otherNormalImageRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->otherHeighImageRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherSearchCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherUseAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherUseInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherDesktopSaverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherNormalImageRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->otherHeighImageRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherSearchCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherUseAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherUseInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherDesktopSaverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -798,22 +798,21 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherDesktopSaverCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->otherNormalImageRadioBox->click();
-    m_ui->otherDesktopSaverCheckBox->setEnabled(false);
 }
 
 void MusicSettingWidget::initDownloadWidget()
 {
-    m_ui->downloadDirEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->downloadLrcDirEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->downloadDirEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->downloadLrcDirEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
 
-    m_ui->downloadDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->downloadDirButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->downloadCacheAutoRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->downloadCacheAutoRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
 #ifdef Q_OS_UNIX
     m_ui->downloadDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadLrcDirButton->setFocusPolicy(Qt::NoFocus);
@@ -824,16 +823,16 @@ void MusicSettingWidget::initDownloadWidget()
 #endif
 
     m_ui->downloadServerComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->downloadServerComboBox));
-    m_ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->downloadServerComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->downloadServerComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->downloadLimitSpeedComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->downloadLimitSpeedComboBox));
-    m_ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->downloadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->downloadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->downloadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->uploadLimitSpeedComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->uploadLimitSpeedComboBox));
-    m_ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->uploadLimitSpeedComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->uploadLimitSpeedComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
-    m_ui->downloadSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->downloadSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
     m_ui->downloadSpinBox->setRange(1024, 5*1024);
     m_ui->downloadDirEdit->setText(MUSIC_DIR_FULL);
     m_ui->downloadLrcDirEdit->setText(LRC_DIR_FULL);
@@ -872,20 +871,20 @@ void MusicSettingWidget::initDownloadWidget()
 
 void MusicSettingWidget::initDesktopLrcWidget()
 {
-    m_ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->DSingleLineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->DSingleLineCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->DfontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontComboBox));
-    m_ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->DfontSizeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontSizeComboBox));
-    m_ui->DfontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontSizeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->DfontSizeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->DfontTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontTypeComboBox));
-    m_ui->DfontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontTypeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->DfontTypeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->DfontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontDefaultColorComboBox));
-    m_ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->DfontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
     m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
@@ -896,14 +895,14 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultDesktopLrcColorChanged(int)));
 
-    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
+    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle06);
     m_ui->DnoPlayedPushButton->setText(tr("No"));
     m_ui->DplayedPushButton->setText(tr("Yes"));
     connect(m_ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBackgroundChanged()));
     connect(m_ui->DplayedPushButton, SIGNAL(clicked()), SLOT(desktopFrontgroundChanged()));
     connect(m_ui->DtransparentSlider, SIGNAL(valueChanged(int)), SLOT(desktopLrcTransChanged(int)));
 
-    m_ui->DresetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->DresetPushButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->DresetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
 #ifdef Q_OS_UNIX
@@ -917,20 +916,20 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
 void MusicSettingWidget::initInteriorLrcWidget()
 {
-    m_ui->showInteriorCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->showCortanaCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->showInteriorCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->showCortanaCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->fontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontComboBox));
-    m_ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->fontSizeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontSizeComboBox));
-    m_ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->fontSizeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->fontTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontTypeComboBox));
-    m_ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->fontTypeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->fontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontDefaultColorComboBox));
-    m_ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->fontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInteriorLrcSize());
     m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
@@ -941,14 +940,14 @@ void MusicSettingWidget::initInteriorLrcWidget()
     connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInteriorLrcDemo()));
     connect(m_ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
 
-    m_ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
+    m_ui->transparentSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle06);
     m_ui->noPlayedPushButton->setText(tr("No"));
     m_ui->playedPushButton->setText(tr("Yes"));
     connect(m_ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(interiorLrcBackgroundChanged()));
     connect(m_ui->playedPushButton, SIGNAL(clicked()), SLOT(interiorLrcFrontgroundChanged()));
     connect(m_ui->transparentSlider, SIGNAL(valueChanged(int)), SLOT(interiorLrcTransChanged(int)));
 
-    m_ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->resetPushButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInteriorParameter()));
 #ifdef Q_OS_UNIX
@@ -963,29 +962,29 @@ void MusicSettingWidget::initInteriorLrcWidget()
 void MusicSettingWidget::initSoundEffectWidget()
 {
     m_ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->outputTypeComboBox));
-    m_ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_ui->outputTypeComboBox->addItem(info.deviceName());
     }
 
-    m_ui->fadeInAndOutCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->fadeInAndOutCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->fadeInAndOutCheckBox->setEnabled(false);
 
-    m_ui->fadeInSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->fadeInSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
     m_ui->fadeInSpinBox->setRange(1, 10*1000);
     m_ui->fadeInSpinBox->setValue(600);
     m_ui->fadeInSpinBox->setEnabled(false);
 
-    m_ui->fadeOutSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->fadeOutSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
     m_ui->fadeOutSpinBox->setRange(1, 10*1000);
     m_ui->fadeOutSpinBox->setValue(600);
     m_ui->fadeOutSpinBox->setEnabled(false);
 
-    m_ui->equalizerButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->equalizerButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->equalizerPluginsButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->equalizerButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->equalizerPluginsButton->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -1003,21 +1002,21 @@ void MusicSettingWidget::initSoundEffectWidget()
 void MusicSettingWidget::initAudioSettingWidget()
 {
     m_ui->replayGainModeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->replayGainModeComboBox));
-    m_ui->replayGainModeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->replayGainModeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->replayGainModeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->replayGainModeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
-    m_ui->preampSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
-    m_ui->defaultGainSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
-    m_ui->volumeStepSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
-    m_ui->bufferSizeSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->preampSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
+    m_ui->defaultGainSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
+    m_ui->volumeStepSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
+    m_ui->bufferSizeSpinBox->setStyleSheet(MusicUIObject::MQSSSpinBoxStyle01);
 
     m_ui->bitDepthComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->bitDepthComboBox));
-    m_ui->bitDepthComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->bitDepthComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->bitDepthComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->bitDepthComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
-    m_ui->clippingCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->softVolumeCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->ditheringCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->clippingCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->softVolumeCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->ditheringCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->clippingCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->softVolumeCheckBox->setFocusPolicy(Qt::NoFocus);
@@ -1034,21 +1033,21 @@ void MusicSettingWidget::initAudioSettingWidget()
 
 void MusicSettingWidget::initNetworkWidget()
 {
-    m_ui->proxyIpEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->proxyPortEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->proxyPwdEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->proxyUsernameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->proxyAreaEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->proxyIpEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->proxyPortEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->proxyPwdEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->proxyUsernameEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->proxyAreaEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
 
     m_ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->proxyTypeComboBox));
-    m_ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
-    m_ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->proxyTypeTestButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->proxyTypeTestButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->netConnectionTypeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->netConnectionTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->netCheckTypeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->netCheckTypeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->netCheckTypeButton->setCursor(QCursor(Qt::PointingHandCursor));
 #ifdef Q_OS_UNIX
     m_ui->proxyTypeTestButton->setFocusPolicy(Qt::NoFocus);

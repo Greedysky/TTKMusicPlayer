@@ -27,16 +27,16 @@
 namespace MusicUIObject
 {
 ///PushButton
-    const QString MPushButtonStyle01 = " \
+    const QString MQSSPushButtonStyle01 = " \
                     QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
                     QPushButton:hover{ color:rgb(104, 169, 236); } \
                     QPushButton:checked{ color:rgb(40, 143, 231); }";
 
-    const QString MPushButtonStyle02 = " \
+    const QString MQSSPushButtonStyle02 = " \
                     QPushButton{ color:rgb(104, 169, 236); }";
 
 ///Widget
-    const QString MWidgetStyle01 = " \
+    const QString MQSSWidgetStyle01 = " \
                     QWidget{ background:white; }";
 
 }

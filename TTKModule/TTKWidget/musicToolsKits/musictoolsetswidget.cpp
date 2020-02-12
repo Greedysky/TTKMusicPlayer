@@ -26,13 +26,13 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
-    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->listItemWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_ui->listItemWidget->setIconSize(QSize(60, 60));
     m_ui->listItemWidget->setViewMode(QListView::IconMode);
@@ -77,16 +77,17 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_wallpaper", tr("wallpaper"))
           << ItemPair(":/tools/lb_connections" ,tr("connections"))
           << ItemPair(":/tools/lb_gain", tr("gain"))
-          << ItemPair(":/tools/lb_dlna", tr("lb_dlna"))
-          << ItemPair(":/tools/lb_detect", tr("detect"));
+          << ItemPair(":/tools/lb_dlna", tr("dlna"))
+          << ItemPair(":/tools/lb_detect", tr("detect"))
+          << ItemPair(":/tools/lb_desktop_saver", tr("saver"));
 
     foreach(const ItemPair &pair, pairs)
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
 #if TTK_QT_VERSION_CHECK(5,13,0)
-        item->setForeground(QColor(MusicUIObject::MColorStyle12_S));
+        item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
-        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+        item->setTextColor(QColor(MusicUIObject::MQSSColorStyle12_S));
 #endif
         item->setSizeHint(QSize(80, 90));
         m_ui->listItemWidget->addItem(item);
@@ -160,6 +161,11 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 10:
             {
                 MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
+                break;
+            }
+        case 11:
+            {
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::DesktopSaverWidget);
                 break;
             }
         default:

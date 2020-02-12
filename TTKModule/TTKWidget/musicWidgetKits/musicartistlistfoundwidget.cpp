@@ -18,7 +18,7 @@ MusicArtistListFoundItemWidget::MusicArtistListFoundItemWidget(QWidget *parent)
     : MusicClickedLabel(parent)
 {
     setAlignment(Qt::AlignCenter);
-    setStyleSheet(MusicUIObject::MColorStyle09);
+    setStyleSheet(MusicUIObject::MQSSColorStyle09);
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
@@ -100,7 +100,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+        scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
         scrollArea->setWidgetResizable(true);
         scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setAlignment(Qt::AlignLeft);
@@ -126,7 +126,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
         for(int i=-1; i<27; ++i)
         {
             MusicClickedLabel *l = new MusicClickedLabel(QString(MStatic_cast(char, i + 65)), containNumberWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MColorStyle08).arg(MusicUIObject::MColorStyle11));
+            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08).arg(MusicUIObject::MQSSColorStyle11));
             connect(l, SIGNAL(clicked()), group, SLOT(map()));
             if(i == -1)
             {
@@ -146,7 +146,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
-        line->setStyleSheet(MusicUIObject::MColorStyle06);
+        line->setStyleSheet(MusicUIObject::MQSSColorStyle06);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);

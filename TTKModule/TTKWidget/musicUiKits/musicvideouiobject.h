@@ -26,164 +26,164 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGVideoBtnPlay = " \
+    const QString MQSSVideoBtnPlay = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_play_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_play_hover); }";
 
-    const QString MKGVideoBtnPause = " \
+    const QString MQSSVideoBtnPause = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_pause_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_pause_hover); }";
 
-    const QString MKGVideoBtnBarrageOff = " \
+    const QString MQSSVideoBtnBarrageOff = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_off_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_barrage_off_hover); }";
 
-    const QString MKGVideoBtnBarrageOn = " \
+    const QString MQSSVideoBtnBarrageOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_barrage_on_hover); }";
 
-    const QString MKGVideoBtnBarrageSend = " \
+    const QString MQSSVideoBtnBarrageSend = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_barrage_send_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_barrage_send_hover); } \
             QPushButton:disabled{ background-image: url(:/video/btn_barrage_send_disable); }";
 
-    const QString MKGVideoBtnBarrageStyle = " \
+    const QString MQSSVideoBtnBarrageStyle = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_barrage_style_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover); } \
             QToolButton:disabled{ background-image: url(:/video/btn_barrage_style_disable); }";
 
-    const QString MKGVideoBtnSTMode  = " \
+    const QString MQSSVideoBtnSTMode  = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_st_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_st_hover); }";
 
-    const QString MKGVideoBtnSDMode  = " \
+    const QString MQSSVideoBtnSDMode  = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_sd_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_sd_hover); }";
 
-    const QString MKGVideoBtnHDMode  = " \
+    const QString MQSSVideoBtnHDMode  = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_hd_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_hd_hover); }";
 
-    const QString MKGVideoBtnSQMode = " \
+    const QString MQSSVideoBtnSQMode = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_sq_normal); } \
             QToolButton:hover{ background-image: url(:/video/btn_sq_hover); }";
 
-    const QString MKGVideoBtnBlue  = " \
+    const QString MQSSVideoBtnBlue  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_blue_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_blue_hover); }";
 
-    const QString MKGVideoBtnBlueOn  = " \
+    const QString MQSSVideoBtnBlueOn  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_blue_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_blue_on_hover); }";
 
-    const QString MKGVideoBtnGreen = " \
+    const QString MQSSVideoBtnGreen = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_green_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_green_hover); }";
 
-    const QString MKGVideoBtnGreenOn  = " \
+    const QString MQSSVideoBtnGreenOn  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_green_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_green_on_hover); }";
 
-    const QString MKGVideoBtnOrange  = " \
+    const QString MQSSVideoBtnOrange  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_orange_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_orange_hover); }";
 
-    const QString MKGVideoBtnOrangeOn = " \
+    const QString MQSSVideoBtnOrangeOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_orange_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_orange_on_hover); }";
 
-    const QString MKGVideoBtnPurple  = " \
+    const QString MQSSVideoBtnPurple  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_purple_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_purple_hover); }";
 
-    const QString MKGVideoBtnPurpleOn  = " \
+    const QString MQSSVideoBtnPurpleOn  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_purple_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_purple_on_hover); }";
 
-    const QString MKGVideoBtnRed = " \
+    const QString MQSSVideoBtnRed = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_red_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_red_hover); }";
 
-    const QString MKGVideoBtnRedOn = " \
+    const QString MQSSVideoBtnRedOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_red_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_red_on_hover); }";
 
-    const QString MKGVideoBtnWhite  = " \
+    const QString MQSSVideoBtnWhite  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_white_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_white_hover); }";
 
-    const QString MKGVideoBtnWhiteOn  = " \
+    const QString MQSSVideoBtnWhiteOn  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_white_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_white_on_hover); }";
 
-    const QString MKGVideoBtnYellow = " \
+    const QString MQSSVideoBtnYellow = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_yellow_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_yellow_hover); }";
 
-    const QString MKGVideoBtnYellowOn = " \
+    const QString MQSSVideoBtnYellowOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_yellow_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_yellow_on_hover); }";
 
-    const QString MKGVideoBtnSmall = " \
+    const QString MQSSVideoBtnSmall = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_small_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_small_hover); }";
 
-    const QString MKGVideoBtnSmallOn = " \
+    const QString MQSSVideoBtnSmallOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_small_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_small_on_hover); }";
 
-    const QString MKGVideoBtnMiddle  = " \
+    const QString MQSSVideoBtnMiddle  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_middle_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_middle_hover); }";
 
-    const QString MKGVideoBtnMiddleOn  = " \
+    const QString MQSSVideoBtnMiddleOn  = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_middle_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_middle_on_hover); }";
 
-    const QString MKGVideoBtnBig = " \
+    const QString MQSSVideoBtnBig = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_big_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_big_hover); }";
 
-    const QString MKGVideoBtnBigOn = " \
+    const QString MQSSVideoBtnBigOn = " \
             QPushButton{ border:none; \
             background-image: url(:/video/lb_big_on_normal); } \
             QPushButton:hover{ background-image: url(:/video/lb_big_on_hover); }";
 
-    const QString MKGVideoBtnOrigin = " \
+    const QString MQSSVideoBtnOrigin = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_origin_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_origin_hover); }";
 
-    const QString MKGVideoBtnOriginOff = " \
+    const QString MQSSVideoBtnOriginOff = " \
             QPushButton{ border:none; \
             background-image: url(:/video/btn_accompaniment_normal); } \
             QPushButton:hover{ background-image: url(:/video/btn_accompaniment_hover); }";

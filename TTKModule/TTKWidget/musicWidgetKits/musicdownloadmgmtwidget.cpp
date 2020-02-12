@@ -15,16 +15,16 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     m_parentClass = parent;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     setAttribute(Qt::WA_DeleteOnClose);
 
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    m_ui->openDetailButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    m_ui->openDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    m_ui->openDetailButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    m_ui->openDirButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
 
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);

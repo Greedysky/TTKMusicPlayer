@@ -12,7 +12,7 @@
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     : QMenu(parent)
 {
-    setStyleSheet(MusicUIObject::MMenuStyle02);
+    setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc_label"),tr("showDeskLrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
@@ -81,7 +81,7 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
 #ifndef Q_OS_UNIX
-    m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MKGContextPlay : MusicUIObject::MKGContextPause);
+    m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MQSSContextPlay : MusicUIObject::MQSSContextPause);
 #else
     Q_UNUSED(status);
 #endif
@@ -94,7 +94,7 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
 
-    QString style = MusicUIObject::MKGTinyBtnSound;
+    QString style = MusicUIObject::MQSSTinyBtnSound;
     if(66 < value && value <=100)
     {
         style += "QToolButton{ margin-left:-48px; }";
@@ -153,9 +153,9 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
     nextPlay->setFixedSize(32, 32);
     m_PlayOrStop->setFixedSize(32, 32);
 
-    previousPlay->setStyleSheet(MusicUIObject::MKGContextPrevious);
-    nextPlay->setStyleSheet(MusicUIObject::MKGContextNext);
-    m_PlayOrStop->setStyleSheet(MusicUIObject::MKGContextPlay);
+    previousPlay->setStyleSheet(MusicUIObject::MQSSContextPrevious);
+    nextPlay->setStyleSheet(MusicUIObject::MQSSContextNext);
+    m_PlayOrStop->setStyleSheet(MusicUIObject::MQSSContextPlay);
 
     previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
@@ -171,7 +171,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     m_showText = new QLabel(widgetActionContainer);
     m_showText->setAlignment(Qt::AlignCenter);
-    m_showText->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_showText->setStyleSheet(MusicUIObject::MQSSColorStyle03);
     vbox->addWidget(widgetContainer);
     vbox->addWidget(m_showText);
     widgetActionContainer->setLayout(vbox);
@@ -196,7 +196,7 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
 
     m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, widgetActionContainer);
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle08);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle08);
 
     vbox->addWidget(m_volumeButton);
     vbox->addWidget(m_volumeSlider);

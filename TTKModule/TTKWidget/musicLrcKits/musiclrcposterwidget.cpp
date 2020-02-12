@@ -833,7 +833,7 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
@@ -974,7 +974,7 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -986,7 +986,7 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     m_ui->viewArea->setFrameShadow(QFrame::Plain);
     m_ui->viewArea->setAlignment(Qt::AlignVCenter);
     m_ui->viewArea->setWidget(m_itemWidget);
-    m_ui->viewArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    m_ui->viewArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
     connect(m_ui->lrcArea, SIGNAL(textChanged(QStringList)), m_itemWidget, SLOT(textChanged(QStringList)));
 
     m_themeWidget = new MusicLrcPosterThemeListWidget(this);
@@ -996,10 +996,10 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     m_ui->listArea->setFrameShadow(QFrame::Plain);
     m_ui->listArea->setAlignment(Qt::AlignVCenter);
     m_ui->listArea->setWidget(m_themeWidget);
-    m_ui->listArea->horizontalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle04);
+    m_ui->listArea->horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
 
-    m_ui->openButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->openButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->saveButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 #ifdef Q_OS_UNIX
     m_ui->openButton->setFocusPolicy(Qt::NoFocus);
     m_ui->saveButton->setFocusPolicy(Qt::NoFocus);

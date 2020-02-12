@@ -22,7 +22,7 @@ MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *pa
     headerview->resizeSection(4, 24);
 
     m_queryMovieMode = true;
-    viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle02);
+    viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
     m_defaultBkColor = Qt::black;
 }
 
@@ -206,11 +206,11 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     layout->setSpacing(0);
 
     QLabel *topWidget = new QLabel(tr(" Search"), this);
-    topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06 + MusicUIObject::MColorStyle01);
+    topWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle06 + MusicUIObject::MQSSColorStyle01);
     topWidget->setFixedHeight(35);
 
     QWidget *searchWidget = new QWidget(this);
-    searchWidget->setStyleSheet(MusicUIObject::MBackgroundStyle15);
+    searchWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle15);
     searchWidget->setFixedHeight(35);
     QHBoxLayout *searchLayout = new QHBoxLayout(searchWidget);
     searchLayout->setContentsMargins(5, 0, 0, 0);
@@ -218,16 +218,16 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
 
     m_searchEdit = new MusicLocalSongSearchEdit(this);
     m_searchEdit->setFixedHeight(25);
-    m_searchEdit->setStyleSheet(MusicUIObject::MBorderStyle04);
+    m_searchEdit->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
     QPushButton *searchButton = new QPushButton(searchWidget);
-    searchButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    searchButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setIconSize(QSize(25, 25));
     QRadioButton *mvButton = new QRadioButton(tr("MV"), searchWidget);
-    mvButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    mvButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     QRadioButton *songButton = new QRadioButton(tr("Song"), searchWidget);
-    songButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    songButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(mvButton, 0);
     group->addButton(songButton, 1);

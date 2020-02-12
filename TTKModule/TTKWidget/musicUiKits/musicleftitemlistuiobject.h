@@ -26,48 +26,48 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGItemMusic = " \
+    const QString MQSSItemMusic = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_music_normal); } \
             QToolButton:hover{ background-image: url(:/appTools/item_music_hover); }";
 
-    const QString MKGItemMusicClicked = " \
+    const QString MQSSItemMusicClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_music_clicked); }";
 
-    const QString MKGItemFavourite = " \
+    const QString MQSSItemFavourite = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_favorite_normal); } \
             QToolButton:hover{ background-image: url(:/appTools/item_favorite_hover); }";
 
-    const QString MKGItemFavouriteClicked = " \
+    const QString MQSSItemFavouriteClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_favorite_clicked); }";
 
-    const QString MKGItemRadio = " \
+    const QString MQSSItemRadio = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_radio_normal); } \
             QToolButton:hover{ background-image: url(:/appTools/item_radio_hover); }";
 
-    const QString MKGItemRadioClicked = " \
+    const QString MQSSItemRadioClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_radio_clicked); }";
 
-    const QString MKGItemMobile = " \
+    const QString MQSSItemMobile = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_mobile_normal); } \
             QToolButton:hover{ background-image: url(:/appTools/item_mobile_hover); }";
 
-    const QString MKGItemMobileClicked = " \
+    const QString MQSSItemMobileClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_mobile_clicked); }";
 
-    const QString MKGItemDownload = " \
+    const QString MQSSItemDownload = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_download_normal); } \
             QToolButton:hover{ background-image: url(:/appTools/item_download_hover); }";
 
-    const QString MKGItemDownloadClicked = " \
+    const QString MQSSItemDownloadClicked = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_download_clicked); }";
 

@@ -35,7 +35,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     m_mainWidget->setLayout(mhbox);
 
     m_songNameLabel = new MusicMarqueeWidget(this);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
     m_songNameLabel->setFixedWidth(160);
 
     m_PreSongButton->hide();

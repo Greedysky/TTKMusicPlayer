@@ -19,12 +19,12 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     layout->setContentsMargins(10, 4, 10, 4);
 
     QWidget *searchPair = new QWidget(this);
-    searchPair->setStyleSheet(MusicUIObject::MBorderStyle02);
+    searchPair->setStyleSheet(MusicUIObject::MQSSBorderStyle02);
     QHBoxLayout *searchPairLayout = new QHBoxLayout(searchPair);
     searchPairLayout->setContentsMargins(5, 2, 5, 0);
     QLabel *showIcon = new QLabel(searchPair);
     showIcon->setFixedSize(16, 16);
-    showIcon->setStyleSheet(MusicUIObject::MBackgroundStyle01 +
+    showIcon->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 +
                             "border-image: url(:/tiny/btn_search_main_hover);");
     m_searchLine = new MusicLocalSongSearchEdit(searchPair);
     searchPairLayout->addWidget(showIcon);
@@ -34,7 +34,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-    closeButton->setStyleSheet(MusicUIObject::MKGTinyBtnClose);
+    closeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnClose);
 
     layout->addWidget(searchPair);
     layout->addWidget(closeButton);

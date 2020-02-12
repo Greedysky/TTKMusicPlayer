@@ -67,7 +67,7 @@ void MusicUserManagerDialog::createButtonPopMenu()
     m_popMenu.addAction(tr("Modifies"), this, SLOT(popupUserRecordWidget()));
     m_popMenu.addAction(tr("Switches"), this, SLOT(musicUserLogoff()));
     m_popMenu.addAction(tr("Spacing"));
-    m_popMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    m_popMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     m_ui->musicSettingButton->setMenu(&m_popMenu);
 }
 

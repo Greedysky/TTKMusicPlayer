@@ -43,8 +43,8 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     mvWidget->setLayout(mvbox);
 
     m_iconLabel->setFixedSize(80, 80);
-    m_songName->setStyleSheet(MusicUIObject::MWidgetStyle01);
-    m_songArtist->setStyleSheet(MusicUIObject::MWidgetStyle01);
+    m_songName->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
+    m_songArtist->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
 
 }
 

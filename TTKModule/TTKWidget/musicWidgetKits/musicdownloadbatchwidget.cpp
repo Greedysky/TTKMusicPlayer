@@ -21,8 +21,8 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_information->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     m_qulity = new QComboBox(this);
     m_qulity->setItemDelegate(new QStyledItemDelegate(m_qulity));
-    m_qulity->setStyleSheet(MusicUIObject::MComboBoxStyle02 + MusicUIObject::MItemView01);
-    m_qulity->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_qulity->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
+    m_qulity->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_songName->setGeometry(0, 0, 190, ITEM_ROW_HEIGHT_S);
     m_singer->setGeometry(180, 0, 120, ITEM_ROW_HEIGHT_S);
@@ -263,8 +263,8 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
     headerview->resizeSection(0, 530);
 
     MusicUtils::Widget::setTransparent(this, 255);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    setStyleSheet(styleSheet() + MusicUIObject::MTableWidgetStyle02);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    setStyleSheet(styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
 
 }
 
@@ -355,13 +355,13 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_ui->qualityBox->setItemDelegate(new QStyledItemDelegate(m_ui->qualityBox));
-    m_ui->qualityBox->setStyleSheet(MusicUIObject::MComboBoxStyle02 + MusicUIObject::MItemView01);
-    m_ui->qualityBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->qualityBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
+    m_ui->qualityBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->qualityBox->addItems(QStringList() << tr("Null") << tr("ST") << tr("SD") << tr("HQ") << tr("SQ") << tr("CD"));
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 
@@ -370,7 +370,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
 
     m_ui->tableWidget->setParentObject(this);
-    m_ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif

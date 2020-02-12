@@ -26,38 +26,38 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGInteriorTranslation = " \
+    const QString MQSSInteriorTranslation = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_translation_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_translation_hover); }";
 
-    const QString MKGInteriorMicrophone = " \
+    const QString MQSSInteriorMicrophone = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_microphone_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_microphone_hover); }";
 
-    const QString MKGInteriorMessage = " \
+    const QString MQSSInteriorMessage = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_message_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_message_hover); }";
 
-    const QString MKGInteriorMovie = " \
+    const QString MQSSInteriorMovie = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_mv_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_mv_hover); }";
             
-    const QString MKGInteriorStar = " \
+    const QString MQSSInteriorStar = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/btn_star_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/btn_star_hover); } \
             QPushButton:pressed{ background-image: url(:/lrc/btn_star_clicked); }";
             
-    const QString MKGInteriorMakeUp = " \
+    const QString MQSSInteriorMakeUp = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/lb_make_up_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_make_up_hover); }";
             
-    const QString MKGInteriorMakeDown = " \
+    const QString MQSSInteriorMakeDown = " \
             QPushButton{ border:none; \
             background-image: url(:/lrc/lb_make_down_normal); } \
             QPushButton:hover{ background-image: url(:/lrc/lb_make_down_hover); }";

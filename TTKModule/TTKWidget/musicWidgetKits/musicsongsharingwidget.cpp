@@ -20,14 +20,14 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_type = Null;
 
     m_ui->qqButton->setChecked(true);
-    m_ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01);
+    m_ui->textEdit->setStyleSheet(MusicUIObject::MQSSTextEditStyle01);
 
     m_qrCodeWidget = new QRCodeQWidget(QByteArray(), QSize(90, 90), this);
     m_qrCodeWidget->setMargin(2);

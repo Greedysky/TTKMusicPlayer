@@ -141,7 +141,7 @@ void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
         return;
     }
 
-    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("musicDownload")))->setData(0);
 
     menu.addSeparator();

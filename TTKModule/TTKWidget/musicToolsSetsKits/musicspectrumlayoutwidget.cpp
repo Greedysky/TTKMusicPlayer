@@ -13,7 +13,7 @@ MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
 
     m_box = new QCheckBox(this);
-    m_box->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_box->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_box->setAttribute(Qt::WA_TransparentForMouseEvents);
 #ifdef Q_OS_UNIX
     m_box->setFocusPolicy(Qt::NoFocus);
@@ -94,7 +94,7 @@ void MusicSpectrumLayoutWidget::initWidget()
 {
     m_exclusive = false;
 
-    const QString &style = MusicUIObject::MBorderStyle04 + MusicUIObject::MBackgroundStyle17;
+    const QString &style = MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBackgroundStyle17;
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
@@ -108,19 +108,19 @@ void MusicSpectrumLayoutWidget::initWidget()
 
     QScrollArea *scrollArea = new QScrollArea(m_containWidget);
     QWidget *containWidget = new QWidget(scrollArea);
-    containWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
     m_containLayout = new QVBoxLayout(containWidget);
 
     m_containLayout->setContentsMargins(5, 0, 0, 0);
     m_containLayout->setSpacing(20);
     containWidget->setLayout(m_containLayout);
 
-    scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     scrollArea->setWidgetResizable(true);
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);
     scrollArea->setWidget(containWidget);
-    scrollArea->viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    scrollArea->viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
     layout->addWidget(scrollArea);
 
     m_containWidget->setLayout(layout);

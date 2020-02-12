@@ -155,7 +155,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     scrollArea->setWidgetResizable(true);
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);
@@ -163,7 +163,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
     layout()->addWidget(scrollArea);
 
     QWidget *function = new QWidget(m_mainWindow);
-    function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle03);
+    function->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSPushButtonStyle03);
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QWidget *firstTopFuncWidget = new QWidget(function);
@@ -172,7 +172,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
     firstLabel->setText(tr("<font color=#158FE1> MVRadio > %1 </font>").arg(m_currentPlaylistItem.m_name));
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
-    backButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    backButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
     firstTopFuncLayout->addWidget(firstLabel);
@@ -194,10 +194,10 @@ void MusicWebMVRadioInfoWidget::createLabels()
     QFont nameFont = nameLabel->font();
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
-    nameLabel->setStyleSheet(MusicUIObject::MFontStyle01);
+    nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
     nameLabel->setText("-");
     QLabel *typeLabel = new QLabel(topLineWidget);
-    typeLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    typeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     typeLabel->setText("-");
 
     topLineLayout->addWidget(nameLabel);
@@ -213,7 +213,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
     //
 
     QWidget *functionWidget = new QWidget(this);
-    functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
     m_songButton->setText(tr("songItems"));
@@ -248,7 +248,7 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     vlayout->setContentsMargins(0, 0, 0, 0);
 
     QWidget *middleFuncWidget = new QWidget(songWidget);
-    middleFuncWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    middleFuncWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);

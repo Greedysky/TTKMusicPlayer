@@ -36,7 +36,7 @@ void MusicBackgroundPopWidget::sliderReleased()
 
 void MusicBackgroundPopWidget::initWidget()
 {
-    m_menu->setStyleSheet(MusicUIObject::MMenuStyle02);
+    m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     m_containWidget->setFixedSize(60, 160);
 
@@ -45,11 +45,11 @@ void MusicBackgroundPopWidget::initWidget()
     hbox->setSpacing(0);
 
     QLabel *textLabel = new QLabel(m_containWidget);
-    textLabel->setStyleSheet(MusicUIObject::MColorStyle02);
+    textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle02);
     textLabel->setText("100%\n\n\n\n\n50%\n\n\n\n\n0%");
 
     m_slider = new MusicClickedSlider(Qt::Vertical, m_containWidget);
-    m_slider->setStyleSheet(MusicUIObject::MSliderStyle03);
+    m_slider->setStyleSheet(MusicUIObject::MQSSSliderStyle03);
     connect(m_slider, SIGNAL(valueChanged(int)), SIGNAL(valueChanged(int)));
     connect(m_slider, SIGNAL(sliderPressed()), SLOT(sliderPressed()));
     connect(m_slider, SIGNAL(sliderReleased()), SLOT(sliderReleased()));

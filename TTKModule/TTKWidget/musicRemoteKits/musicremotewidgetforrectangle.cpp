@@ -18,11 +18,11 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     mhbox->setSpacing(0);
     m_songNameLabel = new MusicMarqueeWidget(this);
     mhbox->addWidget(m_songNameLabel);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
 
     m_toolWidget = new QWidget(this);
     m_toolWidget->setObjectName("toolWidget");
-    m_toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MBackgroundStyle04));
+    m_toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle04));
     vbox->addWidget(m_toolWidget);
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
     hbox->setContentsMargins(0, 0, 0, 0);

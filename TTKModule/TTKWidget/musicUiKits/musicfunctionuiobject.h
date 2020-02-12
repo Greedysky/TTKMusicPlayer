@@ -26,161 +26,161 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGBtnUnDownload = " \
+    const QString MQSSBtnUnDownload = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_download_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_download_hover); }";
 
-    const QString MKGBtnDownload = MKGBtnUnDownload + " \
+    const QString MQSSBtnDownload = MQSSBtnUnDownload + " \
             QToolButton{ margin-left:-20px; }";
 
-    const QString MKGBtnSimilar = " \
+    const QString MQSSBtnSimilar = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_similar_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_similar_hover); }";
 
-    const QString MKGBtnSound = " \
+    const QString MQSSBtnSound = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_sound_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_sound_hover); }";
 
-    const QString MKGBtnMore = " \
+    const QString MQSSBtnMore = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_more_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_more_hover); }";
 
-    const QString MKGBtnUnLove = " \
+    const QString MQSSBtnUnLove = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_unloved_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_unloved_hover); }";
 
-    const QString MKGBtnLove = " \
+    const QString MQSSBtnLove = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_loved_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_loved_hover); }";
 
-    const QString MKGBtnDKLrc = " \
+    const QString MQSSBtnDKLrc = " \
             QCheckBox{ background-color:transparent; } \
             QCheckBox:hover{ image: url(:/functions/btn_lrc_hover); } \
             QCheckBox::indicator::unchecked{ image: url(:/functions/btn_lrc_normal); } \
             QCheckBox::indicator:checked { image: url(:/functions/btn_lrc_hover); }";
 
-    const QString MKGBtnMinimum = " \
+    const QString MQSSBtnMinimum = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_min_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_min_hover); }";
 
-    const QString MKGBtnTClose = " \
+    const QString MQSSBtnTClose = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_close_hover); } \
             QToolButton:hover{ background-image: url(:/functions/btn_close_hover); }";
 
-    const QString MKGBtnPClose = " \
+    const QString MQSSBtnPClose = " \
             QPushButton{ border:none; \
             background-image: url(:/functions/btn_close_hover); } \
             QPushButton:hover{ background-image: url(:/functions/btn_close_hover); }";
 
-    const QString MKGBtnSkin = " \
+    const QString MQSSBtnSkin = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_skin_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_skin_hover); }";
 
-    const QString MKGBtnIdentify = " \
+    const QString MQSSBtnIdentify = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_identify_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_identify_hover); }";
 
-    const QString MKGBtnTools = " \
+    const QString MQSSBtnTools = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_tools_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_tools_hover); }";
 
-    const QString MKGBtnSetting = " \
+    const QString MQSSBtnSetting = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_setting_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_setting_hover); }";
 
-    const QString MKGBtnRemote = " \
+    const QString MQSSBtnRemote = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_remote_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_remote_hover); }";
 
-    const QString MKGBtnConciseOut = " \
+    const QString MQSSBtnConciseOut = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_show_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_show_hover); }";
 
-    const QString MKGBtnConciseIn = " \
+    const QString MQSSBtnConciseIn = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_unshow_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_unshow_hover); }";
 
-    const QString MKGBtnListLoop = " \
+    const QString MQSSBtnListLoop = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_listLoop_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_listLoop_hover); }";
 
-    const QString MKGBtnOnce = " \
+    const QString MQSSBtnOnce = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_once_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_once_hover); }";
 
-    const QString MKGBtnOneLoop = " \
+    const QString MQSSBtnOneLoop = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_oneLoop_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_oneLoop_hover); }";
 
-    const QString MKGBtnOrder = " \
+    const QString MQSSBtnOrder = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_order_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_order_hover); }";
 
-    const QString MKGBtnRandom = " \
+    const QString MQSSBtnRandom = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_random_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_random_hover); }";
 
-    const QString MKGBtnPlay = " \
+    const QString MQSSBtnPlay = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_play_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_play_hover); }";
 
-    const QString MKGBtnPause = " \
+    const QString MQSSBtnPause = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_pause_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_pause_hover); }";
 
-    const QString MKGBtnNext = " \
+    const QString MQSSBtnNext = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_next_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_next_hover); }";
 
-    const QString MKGBtnPrevious = " \
+    const QString MQSSBtnPrevious = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_previous_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_previous_hover); }";
 
-    const QString MKGBtnMagic = " \
+    const QString MQSSBtnMagic = " \
             QToolButton{ border:none; \
             background-image: url(:/enhance/btn_magic_normal); } \
             QToolButton:hover{ background-image: url(:/enhance/btn_magic_hover); }";
 
-    const QString MKGBtnBackBack = " \
+    const QString MQSSBtnBackBack = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_back_back_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_back_back_hover); }";
 
-    const QString MKGBtnBackFresh = " \
+    const QString MQSSBtnBackFresh = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_fresh_back_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_fresh_back_hover); }";
 
-    const QString MKGBtnPlayedList = " \
+    const QString MQSSBtnPlayedList = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_queue_normal); } \
             QToolButton:hover{ background-image: url(:/functions/btn_queue_hover); }";
 
-    const QString MKGBtnResetWindow = " \
+    const QString MQSSBtnResetWindow = " \
             QPushButton{ border:none; \
             background-image: url(:/functions/btn_reset_window_normal); } \
             QPushButton:hover{ background-image: url(:/functions/btn_reset_window_hover); }";

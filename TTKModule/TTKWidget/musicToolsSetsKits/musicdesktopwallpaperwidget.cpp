@@ -48,7 +48,7 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -94,29 +94,29 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
 
 void MusicDesktopWallpaperWidget::initWidgetStyle() const
 {
-    m_ui->urlLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
-    m_ui->netRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->localRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->playRadioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->stopButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->urlLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
+    m_ui->netRadioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->localRadioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->playRadioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
+    m_ui->viewButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->cancelButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->stopButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->pictureEffect->setItemDelegate(new QStyledItemDelegate(m_ui->pictureEffect));
-    m_ui->pictureEffect->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->pictureEffect->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->pictureEffect->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->pictureFunc->setItemDelegate(new QStyledItemDelegate(m_ui->pictureFunc));
-    m_ui->pictureFunc->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->pictureFunc->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->pictureFunc->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->pictureFunc->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->timeH->setItemDelegate(new QStyledItemDelegate(m_ui->timeH));
-    m_ui->timeH->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->timeH->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->timeH->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->timeH->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->timeM->setItemDelegate(new QStyledItemDelegate(m_ui->timeM));
-    m_ui->timeM->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->timeM->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->timeM->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->timeM->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->timeS->setItemDelegate(new QStyledItemDelegate(m_ui->timeS));
-    m_ui->timeS->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->timeS->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->timeS->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+    m_ui->timeS->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_ui->stopButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));

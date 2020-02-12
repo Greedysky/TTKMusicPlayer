@@ -26,7 +26,7 @@
  */
 namespace MusicUIObject
 {
-    const QString MKGBtnQuality = " \
+    const QString MQSSBtnQuality = " \
             QToolButton{ border:none; \
             background-image: url(:/quality/btn_quality_normal); } \
             QToolButton:hover{ background-image: url(:/quality/btn_quality_hover); }";

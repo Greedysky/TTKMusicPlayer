@@ -10,7 +10,7 @@ MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *pare
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
@@ -90,13 +90,13 @@ MusicSongItemSelectedDialog::MusicSongItemSelectedDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->selectAllCheckButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->confirmButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->selectAllCheckButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->selectAllCheckButton->setFocusPolicy(Qt::NoFocus);

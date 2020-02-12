@@ -25,9 +25,9 @@
 class QDeviceWatcher;
 class QPropertyAnimation;
 class MusicTimerAutoObject;
-class MusicDesktopSaverWidget;
 class MusicMobileDevicesWidget;
 class MusicDownloadCounterPVThread;
+class MusicDesktopSaverBackgroundWidget;
 
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
@@ -161,11 +161,11 @@ protected:
     bool m_leftSideByOn, m_rightSideByOn;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
     MusicTimerAutoObject *m_musicTimerAutoObject;
-    MusicDesktopSaverWidget * m_desktopSaverWidget;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
     MusicDownloadCounterPVThread *m_counterPVThread;
+    MusicDesktopSaverBackgroundWidget *m_desktopSaverWidget;
 
     static MusicApplicationObject *m_instance;
 };
