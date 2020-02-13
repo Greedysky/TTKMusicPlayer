@@ -6,13 +6,13 @@
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     : QPropertyAnimation(parent)
 {
-    init();
+    initialize();
 }
 
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent)
     : QPropertyAnimation(target, propertyName, parent)
 {
-    init();
+    initialize();
 }
 
 void MusicBarrageAnimation::animationFinished()
@@ -30,7 +30,7 @@ void MusicBarrageAnimation::setSize(const QSize &size)
     setEndValue(QPoint(size.width(), randHeight));
 }
 
-void MusicBarrageAnimation::init()
+void MusicBarrageAnimation::initialize()
 {
     setDuration(qrand()%10000 + MT_S2MS);
     setEasingCurve(QEasingCurve::Linear);

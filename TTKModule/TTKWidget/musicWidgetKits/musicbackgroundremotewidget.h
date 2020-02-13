@@ -95,7 +95,7 @@ public:
     /*!
      * Init the current download object.
      */
-    void init();
+    void initialize();
 
     /*!
      * Create functions widget.
@@ -149,7 +149,7 @@ public:
     /*!
      * Init the current download object.
      */
-    void init();
+    void initialize();
 
     /*!
      * Output remote skin.

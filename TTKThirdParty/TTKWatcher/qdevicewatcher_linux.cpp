@@ -47,7 +47,7 @@ QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 
 bool QDeviceWatcherPrivate::start()
 {
-	if (!init())
+    if (!initialize())
 		return false;
 #if CONFIG_SOCKETNOTIFIER
 	socket_notifier->setEnabled(true);
@@ -149,7 +149,7 @@ void QDeviceWatcherPrivate::run()
  * device nodes are created.
  **/
 
-bool QDeviceWatcherPrivate::init()
+bool QDeviceWatcherPrivate::initialize()
 {
 	struct sockaddr_nl snl;
 	const int buffersize = 16 * 1024 * 1024;

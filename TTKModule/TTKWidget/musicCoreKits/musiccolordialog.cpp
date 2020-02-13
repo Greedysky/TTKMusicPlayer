@@ -21,7 +21,7 @@ QColor MusicHlPalette::color() const
     return m_color;
 }
 
-void MusicHlPalette::init()
+void MusicHlPalette::initialize()
 {
     m_ptVernierPos = rect().center();
     calculateColor();
@@ -256,7 +256,7 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     connect(m_ui->wgtSaturationIndicator, SIGNAL(saturationChanged(double)), m_ui->wgtPalette, SLOT(setSaturation(double)));
 
     m_status = 0;
-    m_ui->wgtPalette->init();
+    m_ui->wgtPalette->initialize();
 
     QButtonGroup *groupButton = new QButtonGroup(this);
     groupButton->addButton(m_ui->topTitleCloseButton, 0);

@@ -230,11 +230,11 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     m_thunderBackgroundList->abort();
     if(index == 2)
     {
-        m_dailyBackgroundList->init();
+        m_dailyBackgroundList->initialize();
     }
     else if(index == 3)
     {
-        m_thunderBackgroundList->init();
+        m_thunderBackgroundList->initialize();
     }
     //
     m_ui->stackedWidget->setIndex(0, 0);

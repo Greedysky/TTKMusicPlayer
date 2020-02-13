@@ -256,7 +256,7 @@ int MusicFunctionToolBoxWidgetItem::count() const
     return m_itemList.count();
 }
 
-void MusicFunctionToolBoxWidgetItem::init()
+void MusicFunctionToolBoxWidgetItem::initialize()
 {
     connect(m_topWidget, SIGNAL(mousePressAt(int)), parent(), SLOT(mousePressAt(int)));
     connect(m_topWidget, SIGNAL(swapDragItemIndex(int,int)), SIGNAL(swapDragItemIndex(int,int)));
@@ -284,8 +284,7 @@ MusicNormalToolBoxWidgetItem::MusicNormalToolBoxWidgetItem(int index, const QStr
     : MusicFunctionToolBoxWidgetItem(parent)
 {
     m_topWidget = new MusicFunctionToolBoxTopWidget(index, text, this);
-
-    init();
+    initialize();
 }
 
 

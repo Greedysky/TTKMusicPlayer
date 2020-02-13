@@ -56,7 +56,7 @@ public:
     /*!
      * Set setting parameter.
      */
-    virtual void setSettingParameter() override;
+    virtual void applySettingParameter() override;
 
     /*!
      * Init current lrc when the first show.

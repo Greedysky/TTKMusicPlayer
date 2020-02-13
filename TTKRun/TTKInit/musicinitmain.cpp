@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(APP_NAME);
 
     MusicInitObject object;
-    object.init();
+    object.initialize();
     M_LOGGER_INFO("Parameter Init success!");
 
 //    return app.exec();

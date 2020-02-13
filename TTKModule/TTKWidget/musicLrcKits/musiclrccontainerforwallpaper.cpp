@@ -55,7 +55,7 @@ void MusicLrcContainerForWallpaper::stopLrcMask()
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForWallpaper::setSettingParameter()
+void MusicLrcContainerForWallpaper::applySettingParameter()
 {
     const int width = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
@@ -135,7 +135,7 @@ void MusicLrcContainerForWallpaper::start(bool immediate)
 
 void MusicLrcContainerForWallpaper::changeCurrentLrcColor()
 {
-    setSettingParameter();
+    applySettingParameter();
 }
 
 void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)

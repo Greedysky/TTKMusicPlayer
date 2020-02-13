@@ -72,7 +72,7 @@ public:
 	QObject(parent)
 #endif //CONFIG_THREAD
 	{
-		//init();
+        //initialize();
 	}
 	~QDeviceWatcherPrivate();
 
@@ -94,7 +94,7 @@ private Q_SLOTS:
 private:
 	QDeviceWatcher *watcher;
 
-	bool init();
+    bool initialize();
 #if CONFIG_THREAD
 	virtual void run();
 #endif //CONFIG_THREAD

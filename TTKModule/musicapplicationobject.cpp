@@ -105,12 +105,15 @@ void MusicApplicationObject::applySettingParameter()
         windows.setMusicRegeditAssociateFileIcon();
     }
 #endif
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toInt())
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool())
     {
         if(!m_desktopSaverWidget)
         {
             m_desktopSaverWidget = new MusicDesktopSaverBackgroundWidget;
         }
+    }
+    if(m_desktopSaverWidget)
+    {
         m_desktopSaverWidget->applySettingParameter();
     }
 }

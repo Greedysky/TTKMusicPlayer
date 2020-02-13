@@ -234,7 +234,7 @@ QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 
 bool QDeviceWatcherPrivate::start()
 {
-	init();
+    initialize();
 	hwnd = dw_create_internal_window(this);
 
 	if (!hwnd) {
@@ -249,7 +249,7 @@ bool QDeviceWatcherPrivate::stop()
 	return true;
 }
 
-bool QDeviceWatcherPrivate::init()
+bool QDeviceWatcherPrivate::initialize()
 {
 	return true;
 }

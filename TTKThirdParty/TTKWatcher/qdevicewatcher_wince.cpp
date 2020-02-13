@@ -29,7 +29,7 @@ QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 
 bool QDeviceWatcherPrivate::start()
 {
-	if (!init())
+    if (!initialize())
 		return false;
 	this->QThread::start();
 	return true;
@@ -52,7 +52,7 @@ bool QDeviceWatcherPrivate::stop()
 }
 
 
-bool QDeviceWatcherPrivate::init()
+bool QDeviceWatcherPrivate::initialize()
 {
 	MSGQUEUEOPTIONS msgopts;
 

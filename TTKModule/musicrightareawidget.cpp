@@ -315,11 +315,11 @@ void MusicRightAreaWidget::resizeWindow()
 
 void MusicRightAreaWidget::applySettingParameter() const
 {
-    m_musicLrcForDesktop->setSettingParameter();
-    m_musicLrcForInterior->setSettingParameter();
+    m_musicLrcForDesktop->applySettingParameter();
+    m_musicLrcForInterior->applySettingParameter();
     if(m_musicLrcForWallpaper)
     {
-        m_musicLrcForWallpaper->setSettingParameter();
+        m_musicLrcForWallpaper->applySettingParameter();
     }
 
     //
@@ -328,6 +328,11 @@ void MusicRightAreaWidget::applySettingParameter() const
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_musicLrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
+    //
+    if(MObject_cast(MusicDesktopSaverWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicDesktopSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
+    }
 }
 
 void MusicRightAreaWidget::musicFunctionClicked(int index)
@@ -523,7 +528,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 MusicWebDJRadioWidget *widget = new MusicWebDJRadioWidget(this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
                 m_ui->functionsContainer->setCurrentWidget(widget);
-                widget->init();
+                widget->initialize();
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
@@ -713,7 +718,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
         m_musicLrcForDesktop->setCurrentSongName( deskLrc->getCurrentSongName() );
         m_musicLrcForDesktop->showPlayStatus( deskLrc->getPlayStatus() );
     }
-    m_musicLrcForDesktop->setSettingParameter();
+    m_musicLrcForDesktop->applySettingParameter();
     m_musicLrcForDesktop->initCurrentLrc();
     m_musicLrcForDesktop->setVisible(true);
 
@@ -834,7 +839,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
 
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);
-        m_musicLrcForWallpaper->setSettingParameter();
+        m_musicLrcForWallpaper->applySettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
         connect(m_musicLrcForInterior, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper, SLOT(changeCurrentLrcColor()));
 

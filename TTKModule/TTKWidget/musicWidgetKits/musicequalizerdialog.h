@@ -82,7 +82,7 @@ protected:
     /*!
      * Init widget and parameters.
      */
-    void init();
+    void initialize();
     /*!
      * Init and create slider.
      */

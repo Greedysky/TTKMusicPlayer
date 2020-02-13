@@ -28,9 +28,9 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
 
     m_selectedItemIdFlag = false;
 
-    renameWidgetInit();
-    qualityWidgetInit();
-    duplicateWidgetInit();
+    initRenameWidget();
+    initQualityWidget();
+    initDuplicateWidget();
 
     switchToSelectedItemStyle(0);
 
@@ -288,7 +288,7 @@ void MusicSongCheckToolsWidget::getSelectedSongItems()
     }
 }
 
-void MusicSongCheckToolsWidget::renameWidgetInit()
+void MusicSongCheckToolsWidget::initRenameWidget()
 {
     m_ui->renameSelectAllButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->renameCheckButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -312,7 +312,7 @@ void MusicSongCheckToolsWidget::renameWidgetInit()
     connect(m_renameCore, SIGNAL(finished(MusicSongCheckToolsRenames)), SLOT(renameCheckFinished(MusicSongCheckToolsRenames)));
 }
 
-void MusicSongCheckToolsWidget::qualityWidgetInit()
+void MusicSongCheckToolsWidget::initQualityWidget()
 {
     m_ui->qualityCheckButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
@@ -332,7 +332,7 @@ void MusicSongCheckToolsWidget::qualityWidgetInit()
     connect(m_qualityCore, SIGNAL(finished(MusicSongCheckToolsQualitys)), SLOT(qualityCheckFinished(MusicSongCheckToolsQualitys)));
 }
 
-void MusicSongCheckToolsWidget::duplicateWidgetInit()
+void MusicSongCheckToolsWidget::initDuplicateWidget()
 {
     m_ui->duplicateSelectAllButton->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->duplicateCheckButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);

@@ -65,9 +65,9 @@ void MusicLrcContainerForCortana::stopLrcMask()
     }
 }
 
-void MusicLrcContainerForCortana::setSettingParameter()
+void MusicLrcContainerForCortana::applySettingParameter()
 {
-    MusicLrcContainer::setSettingParameter();
+    MusicLrcContainer::applySettingParameter();
     foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         manager->setLrcFontSize(10);

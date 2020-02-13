@@ -199,7 +199,7 @@ MusicWebDJRadioProgramWidget::~MusicWebDJRadioProgramWidget()
     delete m_tableWidget;
 }
 
-void MusicWebDJRadioProgramWidget::init()
+void MusicWebDJRadioProgramWidget::initialize()
 {
     m_tableWidget->init(m_type);
 }
@@ -232,9 +232,9 @@ MusicWebDJRadioWidget::~MusicWebDJRadioWidget()
     delete m_foundWidget;
 }
 
-void MusicWebDJRadioWidget::init()
+void MusicWebDJRadioWidget::initialize()
 {
-    m_categoryWidget->init();
+    m_categoryWidget->initialize();
 }
 
 void MusicWebDJRadioWidget::resizeWindow()
@@ -269,7 +269,7 @@ void MusicWebDJRadioWidget::createRecommendWidget()
 {
     delete m_recommendWidget;
     m_recommendWidget = new MusicWebDJRadioProgramWidget(MusicObject::Recommed, this);
-    m_recommendWidget->init();
+    m_recommendWidget->initialize();
     addWidget(m_recommendWidget);
     setCurrentWidget(m_recommendWidget);
 }
@@ -278,7 +278,7 @@ void MusicWebDJRadioWidget::createProgramWidget()
 {
     delete m_programWidget;
     m_programWidget = new MusicWebDJRadioProgramWidget(MusicObject::Rank, this);
-    m_programWidget->init();
+    m_programWidget->initialize();
     addWidget(m_programWidget);
     setCurrentWidget(m_programWidget);
 }

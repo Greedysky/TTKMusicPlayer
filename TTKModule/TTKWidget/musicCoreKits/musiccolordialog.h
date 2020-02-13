@@ -41,7 +41,7 @@ public:
     /*!
      * Init parameter.
      */
-    void init();
+    void initialize();
 
 Q_SIGNALS:
     /*!

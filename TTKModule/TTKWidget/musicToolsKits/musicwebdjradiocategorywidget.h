@@ -86,7 +86,7 @@ public:
     /*!
      * Init widget.
      */
-    void init();
+    void initialize();
     /*!
      * Resize window bound by widgte resize called.
      */

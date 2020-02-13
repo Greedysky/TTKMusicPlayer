@@ -166,7 +166,7 @@ protected:
     /*!
      * Init parameter.
      */
-    void init();
+    void initialize();
     /*!
      * Override the widget event.
      */

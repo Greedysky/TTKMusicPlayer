@@ -54,7 +54,7 @@ public:
     /*!
      * Set setting parameter.
      */
-    virtual void setSettingParameter() override;
+    virtual void applySettingParameter() override;
 
     /*!
      * Update current lrc by given time.

@@ -121,15 +121,15 @@ protected:
     /*!
      * Rename widget init.
      */
-    void renameWidgetInit();
+    void initRenameWidget();
     /*!
      * Quality widget init.
      */
-    void qualityWidgetInit();
+    void initQualityWidget();
     /*!
      * Duplicate widget init.
      */
-    void duplicateWidgetInit();
+    void initDuplicateWidget();
     /*!
      * Switch to selected item style.
      */

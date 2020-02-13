@@ -56,7 +56,7 @@ protected:
     /*!
      * Init parameters.
      */
-    void init();
+    void initialize();
 
     QSize m_parentSize;
 

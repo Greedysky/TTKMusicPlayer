@@ -92,7 +92,7 @@ MusicWebDJRadioCategoryWidget::~MusicWebDJRadioCategoryWidget()
     delete m_categoryThread;
 }
 
-void MusicWebDJRadioCategoryWidget::init()
+void MusicWebDJRadioCategoryWidget::initialize()
 {
     m_categoryThread->startToDownload();
 }

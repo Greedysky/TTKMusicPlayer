@@ -100,7 +100,7 @@ MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
     delete m_functionsWidget;
 }
 
-void MusicBackgroundThunderWidget::init()
+void MusicBackgroundThunderWidget::initialize()
 {
     if(!m_queryThread)
     {
@@ -262,7 +262,7 @@ MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
     connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(dailyBackgroundListWidgetItemClicked(QString)));
 }
 
-void MusicBackgroundDailyWidget::init()
+void MusicBackgroundDailyWidget::initialize()
 {
     if(!m_queryThread)
     {

@@ -39,6 +39,11 @@ public:
 
     virtual ~MusicDesktopSaverWidget();
 
+    /*!
+     * Apply settings parameters.
+     */
+    void applySettingParameter();
+
 private Q_SLOTS:
     /*!
      * Case button on and off.

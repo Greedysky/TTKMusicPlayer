@@ -32,7 +32,7 @@ QDeviceWatcherPrivate::~QDeviceWatcherPrivate()
 
 bool QDeviceWatcherPrivate::start()
 {
-    init();
+    initialize();
     QThread::start();
 }
 
@@ -51,7 +51,7 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
 }
 
 
-bool QDeviceWatcherPrivate::init()
+bool QDeviceWatcherPrivate::initialize()
 {
     //get sDevices
     //FSGetVolumeInfo()

@@ -98,7 +98,7 @@ public:
     /*!
      * Init widget.
      */
-    void init();
+    void initialize();
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -129,11 +129,11 @@ public:
     /*!
      * Init widget.
      */
-    void init();
+    void initialize();
     /*!
      * Resize window bound by widgte resize called.
      */
-    void resizeWindow();
+    virtual void resizeWindow();
 
 public Q_SLOTS:
     /*!

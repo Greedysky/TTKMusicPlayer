@@ -206,7 +206,7 @@ public:
     /*!
      * Resize window bound by widgte resize called.
      */
-    void resizeWindow();
+    virtual void resizeWindow();
 
 public Q_SLOTS:
     /*!

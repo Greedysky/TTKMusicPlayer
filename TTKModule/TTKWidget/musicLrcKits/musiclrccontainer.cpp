@@ -38,9 +38,9 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
     Q_EMIT linearGradientColorChanged();
 }
 
-void MusicLrcContainer::setSettingParameter()
+void MusicLrcContainer::applySettingParameter()
 {
-    setSettingParameter(m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
+    applySettingParameter(m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
 }
 
 void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total)
@@ -125,7 +125,7 @@ void MusicLrcContainer::clearAllMusicLRCManager()
     m_musicLrcContainer.clear();
 }
 
-void MusicLrcContainer::setSettingParameter(const QString &t)
+void MusicLrcContainer::applySettingParameter(const QString &t)
 {
     foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {

@@ -1,4 +1,5 @@
 #include "musicdesktopsaverwidget.h"
+#include "musicapplicationobject.h"
 #include "musicsettingmanager.h"
 #include "musicnumberdefine.h"
 #include "musicuiobject.h"
@@ -80,6 +81,8 @@ MusicDesktopSaverWidget::MusicDesktopSaverWidget(QWidget *parent)
     mainLayout->addWidget(functionWidget);
 
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
+
+    applySettingParameter();
 }
 
 MusicDesktopSaverWidget::~MusicDesktopSaverWidget()
@@ -87,19 +90,34 @@ MusicDesktopSaverWidget::~MusicDesktopSaverWidget()
 
 }
 
+void MusicDesktopSaverWidget::applySettingParameter()
+{
+    const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool();
+    const int mins = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toInt();
+
+    m_inputEdit->setText(QString::number(mins));
+    if(state)
+    {
+        caseButtonOnAndOff();
+    }
+}
+
 void MusicDesktopSaverWidget::caseButtonOnAndOff()
 {
     const bool state = m_caseButton->styleSheet().contains(":/toolSets/btn_saver_off");
     if(state)
     {
-        m_inputEdit->setEnabled(true);
         m_caseButton->setStyleSheet(MusicUIObject::MQSSDesktopSaverOn);
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverTime, m_inputEdit->text().toInt());
     }
     else
     {
-        m_inputEdit->setEnabled(false);
         m_caseButton->setStyleSheet(MusicUIObject::MQSSDesktopSaverOff);
     }
+
+    m_inputEdit->setEnabled(state);
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverEnable, state);
+    MusicApplicationObject::instance()->applySettingParameter();
 }
 
 
@@ -131,12 +149,14 @@ MusicDesktopSaverBackgroundWidget::~MusicDesktopSaverBackgroundWidget()
 
 void MusicDesktopSaverBackgroundWidget::applySettingParameter()
 {
-    const QString &time = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toString();
-    const int value = time.toInt();
-    if(value != 0)
-    {
-        m_timer->setInterval(value * MT_M2MS);
-    }
+    const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool();
+    M_LOGGER_INFO(state);
+    //    const QString &time = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toString();
+//    const int value = time.toInt();
+//    if(value != 0)
+//    {
+//        m_timer->setInterval(value * MT_M2MS);
+//    }
 }
 
 void MusicDesktopSaverBackgroundWidget::timeout()
@@ -148,17 +168,17 @@ void MusicDesktopSaverBackgroundWidget::timeout()
 
 bool MusicDesktopSaverBackgroundWidget::eventFilter(QObject *watched, QEvent *event)
 {
-    if(event->type()== QEvent::MouseButtonPress || event->type()== QEvent::MouseButtonRelease ||
-       event->type()== QEvent::MouseButtonDblClick || event->type()== QEvent::MouseMove ||
-       event->type()== QEvent::KeyPress || event->type()== QEvent::KeyRelease)
-    {
-        if(m_isRunning)
-        {
-            m_isRunning = false;
-            hide();
-        }
-        m_timer->stop();
-        m_timer->start();
-    }
+//    if(event->type()== QEvent::MouseButtonPress || event->type()== QEvent::MouseButtonRelease ||
+//       event->type()== QEvent::MouseButtonDblClick || event->type()== QEvent::MouseMove ||
+//       event->type()== QEvent::KeyPress || event->type()== QEvent::KeyRelease)
+//    {
+//        if(m_isRunning)
+//        {
+//            m_isRunning = false;
+//            hide();
+//        }
+//        m_timer->stop();
+//        m_timer->start();
+//    }
     return QObject::eventFilter(watched, event);
 }

@@ -62,10 +62,6 @@ public:
 #endif
 
     /*!
-     * Initialize the current server.
-    */
-    void initialize(bool dummy = true);
-    /*!
      * Check the current server is running or not.
     */
     bool isRunning() const;
@@ -103,7 +99,7 @@ private:
     /*!
      * Init the system parameter.
     */
-    void sysInit(const QString &appId = QString());
+    void initialize(const QString &appId = QString());
 
     TTK_DECLARE_PRIVATE(TTKRunApplication)
 

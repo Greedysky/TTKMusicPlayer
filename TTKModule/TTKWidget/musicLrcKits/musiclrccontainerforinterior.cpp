@@ -95,9 +95,9 @@ void MusicLrcContainerForInterior::stopLrcMask()
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForInterior::setSettingParameter()
+void MusicLrcContainerForInterior::applySettingParameter()
 {
-    MusicLrcContainer::setSettingParameter();
+    MusicLrcContainer::applySettingParameter();
     const int size = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     if(m_lrcSizeProperty == -1)
     {

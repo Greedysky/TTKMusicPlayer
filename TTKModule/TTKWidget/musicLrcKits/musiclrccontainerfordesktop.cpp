@@ -46,9 +46,9 @@ void MusicLrcContainerForDesktop::stopLrcMask()
     }
 }
 
-void MusicLrcContainerForDesktop::setSettingParameter()
+void MusicLrcContainerForDesktop::applySettingParameter()
 {
-    MusicLrcContainer::setSettingParameter();
+    MusicLrcContainer::applySettingParameter();
     foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();

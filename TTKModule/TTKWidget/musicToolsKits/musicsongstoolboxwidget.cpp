@@ -258,7 +258,7 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(addToPlayLater(int)), SIGNAL(addToPlayLater(int)));
     connect(m_topWidget, SIGNAL(addToPlayedList(int)), SIGNAL(addToPlayedList(int)));
 
-    init();
+    initialize();
 }
 
 void MusicSongsToolBoxWidgetItem::setMusicSort(MusicSort *sort)

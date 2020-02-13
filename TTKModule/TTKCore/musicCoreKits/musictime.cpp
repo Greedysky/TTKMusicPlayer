@@ -6,7 +6,7 @@ MusicTime::MusicTime()
 {
     m_defaultType = All_Msec;
     m_greedyMode = false;
-    init();
+    initialize();
 }
 
 MusicTime::MusicTime(const MusicTime &other)
@@ -30,7 +30,7 @@ MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
 
 void MusicTime::setHMSM(int day, int hour, int min, int sec, int msec)
 {
-    init();
+    initialize();
 
     int delta = 0;
     delta = msec >= MT_S2MS ? msec / MT_S2MS : 0;
@@ -270,7 +270,7 @@ bool MusicTime::operator!= (const MusicTime &other) const
     return getTimestamp(All_Msec) != other.getTimestamp(All_Msec);
 }
 
-void MusicTime::init()
+void MusicTime::initialize()
 {
     m_day = 0;
     m_hour = 0;
@@ -294,7 +294,7 @@ void MusicTime::fromTimeStamp(qint64 value, int delta)
 {
     if(value < 0)
     {
-        init();
+        initialize();
         return;
     }
 

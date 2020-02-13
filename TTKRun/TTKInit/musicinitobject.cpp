@@ -14,7 +14,7 @@ void MusicInitObject::checkValid()
     checkTheFileNeededExist();
 }
 
-void MusicInitObject::init()
+void MusicInitObject::initialize()
 {
     checkTheFileNeededExist();
 

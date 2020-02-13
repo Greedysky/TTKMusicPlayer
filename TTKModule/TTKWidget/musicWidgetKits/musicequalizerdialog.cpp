@@ -27,7 +27,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     m_eable = false;
     m_eqChoiceSelected = false;
 
-    init();
+    initialize();
 
     m_ui->eqChoice->setItemDelegate(new QStyledItemDelegate(m_ui->eqChoice));
     m_ui->eqChoice->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
@@ -63,7 +63,7 @@ MusicEqualizerDialog::~MusicEqualizerDialog()
     delete m_ui;
 }
 
-void MusicEqualizerDialog::init()
+void MusicEqualizerDialog::initialize()
 {
     m_signalMapper = new QSignalMapper(this);
     initSlider(m_ui->verticalSlider1, 0);
