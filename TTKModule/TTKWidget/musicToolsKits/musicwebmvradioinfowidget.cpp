@@ -65,11 +65,6 @@ void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
-void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 
 
 MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)

@@ -720,8 +720,3 @@ void MusicCloudManagerWidget::resizeEvent(QResizeEvent *event)
     QWidget::resizeEvent(event);
     resizeWindow();
 }
-
-void MusicCloudManagerWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}

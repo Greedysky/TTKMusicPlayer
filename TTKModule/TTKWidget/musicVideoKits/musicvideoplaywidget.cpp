@@ -378,11 +378,6 @@ void MusicVideoPlayWidget::leaveEvent(QEvent *event)
     m_leaverTimer->start();
 }
 
-void MusicVideoPlayWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 void MusicVideoPlayWidget::setTitleText(const QString &text)
 {
     m_textLabel->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 275));

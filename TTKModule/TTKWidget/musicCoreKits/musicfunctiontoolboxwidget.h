@@ -171,7 +171,6 @@ protected:
      * Override the widget event.
      */
     virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     QVBoxLayout *m_layout;
     QList<QWidget*> m_itemList;
@@ -287,7 +286,6 @@ protected:
      * Override the widget event.
      */
     virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Found mapped index in container.
      */

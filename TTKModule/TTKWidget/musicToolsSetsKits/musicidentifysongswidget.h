@@ -82,10 +82,6 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    /*!
      * Create the detected widget.
      */
     void createDetectedWidget();

@@ -47,11 +47,6 @@ public:
     void showMainWindow();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
     MusicCloudToolBoxWidget *m_toolBoxWidget;
     MusicCloudManagerWidget *m_managerWidget;
 

@@ -87,11 +87,6 @@ public Q_SLOTS:
     virtual void createSearchedItem(const MusicSearchedItem &songItem) = 0;
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
     MusicDownLoadQueryThreadAbstract *m_downLoadManager;
 
 };

@@ -300,8 +300,3 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
 
     return key;
 }
-
-void MusicAdvancedSearchedWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}

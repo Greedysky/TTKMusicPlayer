@@ -231,7 +231,6 @@ protected:
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 protected:
     QLabel *m_sizeValueLabel;

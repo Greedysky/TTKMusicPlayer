@@ -27,8 +27,3 @@ void MusicCloudSharedSongWidget::showMainWindow()
 {
     MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::CloudManagerWidget, m_managerWidget);
 }
-
-void MusicCloudSharedSongWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}

@@ -341,11 +341,6 @@ void MusicCommentsWidget::currentEMOJIchanged(const QString &data)
     m_messageEdit->insertPlainText(data);
 }
 
-void MusicCommentsWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 void MusicCommentsWidget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);

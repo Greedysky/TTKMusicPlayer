@@ -145,7 +145,6 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Set current title text(song name).
      */

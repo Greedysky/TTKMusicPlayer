@@ -25,11 +25,6 @@ void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstr
     }
 }
 
-void MusicWebDJRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 
 
 MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)

@@ -69,8 +69,3 @@ void MusicWebRadioView::openMVRadioWindow()
 {
     MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::WebMVRadioWidget);
 }
-
-void MusicWebRadioView::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}

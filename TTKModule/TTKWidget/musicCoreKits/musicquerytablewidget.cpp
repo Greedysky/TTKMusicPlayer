@@ -30,11 +30,6 @@ MusicDownLoadQueryThreadAbstract *MusicQueryTableWidget::getQueryInput()
     return m_downLoadManager;
 }
 
-void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 
 
 MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)

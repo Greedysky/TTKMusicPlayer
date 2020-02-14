@@ -55,11 +55,6 @@ public Q_SLOTS:
     void openMVRadioWindow();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
     MusicWebMusicRadioWidget *m_musicRadio;
 
 };

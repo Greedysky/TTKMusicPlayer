@@ -207,11 +207,6 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
     }
 }
 
-void MusicIdentifySongsWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 void MusicIdentifySongsWidget::createDetectedWidget()
 {
     QWidget *widget = new QWidget(m_mainWindow);

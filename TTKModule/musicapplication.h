@@ -310,6 +310,7 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    virtual bool eventFilter(QObject *object, QEvent *event) override;
 
     /*!
      * Set music current play index.

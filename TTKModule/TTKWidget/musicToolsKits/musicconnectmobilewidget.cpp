@@ -38,11 +38,6 @@ MusicConnectMobileWidget::~MusicConnectMobileWidget()
     delete m_stackedWidget;
 }
 
-void MusicConnectMobileWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 void MusicConnectMobileWidget::initFirstWidget()
 {
     QWidget *firstWidget = new QWidget(this);

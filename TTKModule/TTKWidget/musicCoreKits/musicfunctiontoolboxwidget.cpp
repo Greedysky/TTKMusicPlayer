@@ -273,11 +273,6 @@ void MusicFunctionToolBoxWidgetItem::mousePressEvent(QMouseEvent *event)
     Q_UNUSED(event);
 }
 
-void MusicFunctionToolBoxWidgetItem::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 
 
 MusicNormalToolBoxWidgetItem::MusicNormalToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
@@ -488,11 +483,6 @@ MusicFunctionToolBoxWidgetItem *MusicFunctionToolBoxWidget::createItem(QWidget *
 }
 
 void MusicFunctionToolBoxWidget::mousePressEvent(QMouseEvent *event)
-{
-    Q_UNUSED(event);
-}
-
-void MusicFunctionToolBoxWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
 }

@@ -63,7 +63,6 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-
     QPushButton *m_lrcButton, *m_wallPaperButton, *m_listButton;
     QPushButton *m_windowStateButton;
     QToolButton *m_closeButton;

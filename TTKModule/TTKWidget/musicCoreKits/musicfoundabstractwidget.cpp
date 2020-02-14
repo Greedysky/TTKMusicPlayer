@@ -109,11 +109,6 @@ void MusicFoundAbstractWidget::addButtonClicked()
     m_foundTableWidget->downloadDataFrom(false);
 }
 
-void MusicFoundAbstractWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
 void MusicFoundAbstractWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);

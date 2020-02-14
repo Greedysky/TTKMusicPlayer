@@ -100,6 +100,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     /////////// Mouse tracking
     m_ui->background->installEventFilter(this);
     m_ui->background->setMouseTracking(true);
+    m_ui->centerWidget->installEventFilter(this);
 
     readXMLConfigFromText();
 
@@ -1109,6 +1110,15 @@ void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
     {
         event->ignore();
     }
+}
+
+bool MusicApplication::eventFilter(QObject *object, QEvent *event)
+{
+    if(object == m_ui->centerWidget && QEvent::ContextMenu == event->type())
+    {
+        return true;
+    }
+    return MusicAbstractMoveResizeWidget::eventFilter(object, event);
 }
 
 void MusicApplication::setMusicPlayIndex()

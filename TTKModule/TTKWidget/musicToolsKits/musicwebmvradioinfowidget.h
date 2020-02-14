@@ -51,12 +51,6 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override;
 
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
 };
 
 

@@ -63,9 +63,3 @@ void MusicSongsToolItemRenamedWidget::focusOutEvent(QFocusEvent *event)
         Q_UNUSED(event);
     }
 }
-
-void MusicSongsToolItemRenamedWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-    //do nothing just cover the origin
-}

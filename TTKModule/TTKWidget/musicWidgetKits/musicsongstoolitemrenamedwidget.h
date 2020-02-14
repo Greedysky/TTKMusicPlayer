@@ -61,7 +61,6 @@ protected:
      * Override the widget event.
      */
     virtual void focusOutEvent(QFocusEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     bool m_focusBlock;
 
