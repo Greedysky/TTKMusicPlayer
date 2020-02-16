@@ -21,17 +21,17 @@ QT       += network xml
 INCLUDEPATH += $$PWD
 
 HEADERS += \
-    $$PWD/dlnafinder.h \
-    $$PWD/dlnafileserver.h \
-    $$PWD/dlnaclient.h \
-    $$PWD/dlnahelper.h \
-    $$PWD/dlnaservice.h \
-    $$PWD/dlnaxml.h
+    $$PWD/qdlnafinder.h \
+    $$PWD/qdlnafileserver.h \
+    $$PWD/qdlnaclient.h \
+    $$PWD/qdlnahelper.h \
+    $$PWD/qdlnaservice.h \
+    $$PWD/qdlnaxml.h
 
 SOURCES += \
-    $$PWD/dlnahelper.cpp \
-    $$PWD/dlnafileserver.cpp \
-    $$PWD/dlnafinder.cpp \
-    $$PWD/dlnaclient.cpp \
-    $$PWD/dlnaxml.cpp
+    $$PWD/qdlnahelper.cpp \
+    $$PWD/qdlnafileserver.cpp \
+    $$PWD/qdlnafinder.cpp \
+    $$PWD/qdlnaclient.cpp \
+    $$PWD/qdlnaxml.cpp
 

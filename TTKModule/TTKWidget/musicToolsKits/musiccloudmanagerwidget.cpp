@@ -17,11 +17,11 @@
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
 #///Oss import
-#include "qoss/ossconf.h"
-#include "qoss/osslistdata.h"
-#include "qoss/ossuploaddata.h"
-#include "qoss/ossdeletedata.h"
-#include "qoss/ossdownloaddata.h"
+#include "qoss/qossconf.h"
+#include "qoss/qosslistdata.h"
+#include "qoss/qossuploaddata.h"
+#include "qoss/qossdeletedata.h"
+#include "qoss/qossdownloaddata.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -56,12 +56,12 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     setItemDelegateForColumn(2, m_progressBarDelegate);
 
     m_manager = new QNetworkAccessManager(this);
-    m_ossListData = new OSSListData(m_manager, this);
-    m_ossDeleteData = new OSSDeleteData(m_manager, this);
-    m_ossUploadData = new OSSUploadData(m_manager, this);
-    m_ossDownloadData = new OSSDownloadData(m_manager, this);
+    m_ossListData = new QOSSListData(m_manager, this);
+    m_ossDeleteData = new QOSSDeleteData(m_manager, this);
+    m_ossUploadData = new QOSSUploadData(m_manager, this);
+    m_ossDownloadData = new QOSSDownloadData(m_manager, this);
 
-    connect(m_ossListData, SIGNAL(receiveFinshed(OSSDataItems)), SLOT(receiveDataFinshed(OSSDataItems)));
+    connect(m_ossListData, SIGNAL(receiveFinshed(QOSSDataItems)), SLOT(receiveDataFinshed(QOSSDataItems)));
     connect(m_ossDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
     connect(m_ossUploadData, SIGNAL(uploadFileFinished(QString)), SLOT(uploadFileFinished(QString)));
 }
@@ -85,12 +85,12 @@ bool MusicCloudManagerTableWidget::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(OSSConf::generateDataBucketUrl() + QN_CLOUD);
+    download->startToDownload(QOSSConf::generateDataBucketUrl() + QN_CLOUD);
 
     loop.exec();
     updateListToServer();
 
-    return !OSSConf::ACCESS_KEY.isEmpty() && !OSSConf::SECRET_KEY.isEmpty();
+    return !QOSSConf::ACCESS_KEY.isEmpty() && !QOSSConf::SECRET_KEY.isEmpty();
 }
 
 void MusicCloudManagerTableWidget::resizeWindow()
@@ -125,13 +125,13 @@ void MusicCloudManagerTableWidget::keyDownLoadFinished(const QByteArray &data)
     if(ok)
     {
         QVariantMap value = dt.toMap();
-        OSSConf::ACCESS_KEY = value["key"].toString();
-        OSSConf::SECRET_KEY = value["secret"].toByteArray();
+        QOSSConf::ACCESS_KEY = value["key"].toString();
+        QOSSConf::SECRET_KEY = value["secret"].toByteArray();
     }
     Q_EMIT getKeyFinished();
 }
 
-void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
+void MusicCloudManagerTableWidget::receiveDataFinshed(const QOSSDataItems &items)
 {
     clear();
     m_totalFileSzie = 0;
@@ -144,7 +144,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const OSSDataItems &items)
         return;
     }
 
-    foreach(const OSSDataItem &item, items)
+    foreach(const QOSSDataItem &item, items)
     {
         MusicCloudDataItem data;
         data.m_id = QString::number(MusicTime::timestamp());

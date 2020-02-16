@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QKUGOUOBJECT_H
+#define QKUGOUOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include <QObject>
 
-class QOSSDataItem;
-
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The namespace of the application ui object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+namespace MusicUIObject
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+///PushButton
+    const QString MQSSPushButtonStyle01 = " \
+                    QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px; } \
+                    QPushButton:hover{ color:rgb(104, 169, 236); } \
+                    QPushButton:checked{ color:rgb(40, 143, 231); }";
 
-    virtual ~MusicCloudFileInformationWidget();
+    const QString MQSSPushButtonStyle02 = " \
+                    QPushButton{ color:rgb(104, 169, 236); }";
 
-    /*!
-     * Set music file song path name.
-     */
-    void setFileInformation(QOSSDataItem *data);
+///Widget
+    const QString MQSSWidgetStyle01 = " \
+                    QWidget{ background:white; }";
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
+}
 
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
-
-};
-
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif //QKUGOUOBJECT_H

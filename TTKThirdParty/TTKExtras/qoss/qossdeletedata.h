@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QOSSDELETEDATA_H
+#define QOSSDELETEDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "qossdatainterface.h"
 
-class QOSSDataItem;
-
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the alioss cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QOSSDeleteData : public QOSSDataInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudFileInformationWidget();
-
+    explicit QOSSDeleteData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
     /*!
-     * Set music file song path name.
+     * Delete data operater.
      */
-    void setFileInformation(QOSSDataItem *data);
+    void deleteDataOperator(const QString &bucket, const QString &fileName);
 
-public Q_SLOTS:
+Q_SIGNALS:
     /*!
-     * Override exec function.
+     * Delete file finished.
      */
-    virtual int exec();
+    void deleteFileFinished(bool state);
 
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+protected Q_SLOTS:
+    /*!
+     * Receive data from server.
+     */
+    virtual void receiveDataFromServer() override;
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QOSSDELETEDATA_H

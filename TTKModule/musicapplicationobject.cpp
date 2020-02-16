@@ -25,7 +25,7 @@
 #include "musicscreensaverwidget.h"
 
 #include "qdevicewatcher.h"
-#include "qoss/ossconf.h"
+#include "qoss/qossconf.h"
 
 #define MARGIN_SIDE     5
 #define MARGIN_SIDE_BY  1
@@ -96,8 +96,8 @@ void MusicApplicationObject::loadNetWorkSetting()
     // ssl support check
     M_LOGGER_INFO(QString("App Support ssl: %1").arg(QSslSocket::supportsSsl() ? "true" : "false"));
 #endif
-    //oss host init
-    OSSConf::OSS_HOST = MusicUtils::Algorithm::mdII(OSS_HOST_URL, false);
+    // oss host init
+    QOSSConf::OSS_HOST = MusicUtils::Algorithm::mdII(OSS_HOST_URL, false);
     //
     m_sourceUpdatehread->startToDownload();
     m_counterPVThread->startToDownload();

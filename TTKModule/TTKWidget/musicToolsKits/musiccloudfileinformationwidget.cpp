@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
 #///Oss import
-#include "qoss/ossdataitem.h"
+#include "qoss/qossdataitem.h"
 
 MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -23,7 +23,7 @@ MusicCloudFileInformationWidget::~MusicCloudFileInformationWidget()
     delete m_ui;
 }
 
-void MusicCloudFileInformationWidget::setFileInformation(OSSDataItem *data)
+void MusicCloudFileInformationWidget::setFileInformation(QOSSDataItem *data)
 {
     m_ui->filePathEdit->setText(data->m_name);
     m_ui->fileFormatEdit->setText(data->m_mimeType);

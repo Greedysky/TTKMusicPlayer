@@ -23,10 +23,10 @@
 #include "musicclouddataitem.h"
 #include "musicabstracttablewidget.h"
 
-class OSSListData;
-class OSSDeleteData;
-class OSSUploadData;
-class OSSDownloadData;
+class QOSSListData;
+class QOSSDeleteData;
+class QOSSUploadData;
+class QOSSDownloadData;
 class MusicOpenFileWidget;
 class MusicProgressBarDelegate;
 class QNetworkAccessManager;
@@ -85,7 +85,7 @@ public Q_SLOTS:
     /*!
      * Receive data from alioss finshed.
      */
-    void receiveDataFinshed(const OSSDataItems &items);
+    void receiveDataFinshed(const QOSSDataItems &items);
     /*!
      * Upload data to alioss finshed.
      */
@@ -175,10 +175,10 @@ protected:
     bool m_uploading;
     bool m_cancel;
     qint64 m_totalFileSzie;
-    OSSListData *m_ossListData;
-    OSSDeleteData *m_ossDeleteData;
-    OSSUploadData *m_ossUploadData;
-    OSSDownloadData *m_ossDownloadData;
+    QOSSListData *m_ossListData;
+    QOSSDeleteData *m_ossDeleteData;
+    QOSSUploadData *m_ossUploadData;
+    QOSSDownloadData *m_ossDownloadData;
     QNetworkAccessManager *m_manager;
     MusicOpenFileWidget *m_openFileWidget;
     MusicCloudDataItem m_currentDataItem;

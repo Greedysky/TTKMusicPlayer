@@ -4,9 +4,9 @@
 #include "musicuiobject.h"
 #include "musicsongssummariziedwidget.h"
 
-#include "qdlna/dlnafinder.h"
-#include "qdlna/dlnaclient.h"
-#include "qdlna/dlnafileserver.h"
+#include "qdlna/qdlnafinder.h"
+#include "qdlna/qdlnaclient.h"
+#include "qdlna/qdlnafileserver.h"
 
 MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -59,8 +59,8 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->deviceComboBox->addItem(tr("No Connections"));
     m_ui->deviceComboBox->setEnabled(false);
 
-    m_dlnaFinder = new DlnaFinder(this);
-    m_dlnaFileServer = new DlnaFileServer(this);
+    m_dlnaFinder = new QDlnaFinder(this);
+    m_dlnaFileServer = new QDlnaFileServer(this);
     startToScan();
     m_dlnaFileServer->start();
 
@@ -146,7 +146,7 @@ void MusicSongDlnaTransferWidget::musicPlay()
     QFileInfo info(song.getMusicPath());
 
     M_LOGGER_INFO(song.getMusicPath());
-    DlnaClient *client = m_dlnaFinder->client(index);
+    QDlnaClient *client = m_dlnaFinder->client(index);
     m_dlnaFileServer->setPrefixPath(info.path());
     client->tryToPlayFile(m_dlnaFileServer->getLocalAddress() + info.fileName());
 

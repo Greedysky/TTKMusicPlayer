@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QOSSUTILS_H
+#define QOSSUTILS_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "musicextrasglobaldefine.h"
 
-class QOSSDataItem;
-
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the alioss cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QOSSUtils
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
-     * Object contsructor.
+     * Get authorization code.
      */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudFileInformationWidget();
-
+    static QString getAuthorizationCode(const QString &key, const QString &method,
+                                        const MStringMap &headers, const QString &resource);
     /*!
-     * Set music file song path name.
+     * Create sign for normal auth.
      */
-    void setFileInformation(QOSSDataItem *data);
-
-public Q_SLOTS:
+    static QString createSignForNormalAuth(const QString &method, const QString &access, const QString &secret,
+                                           const MStringMap &headers, const QString &resource);
     /*!
-     * Override exec function.
+     * Get GMT.
      */
-    virtual int exec();
-
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+    static QString getGMT();
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QOSSUTILS_H

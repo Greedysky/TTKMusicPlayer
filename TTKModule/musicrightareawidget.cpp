@@ -29,7 +29,7 @@
 #include "musiccloudmanagerwidget.h"
 #include "musicscreensaverwidget.h"
 
-#include "qkugou/kugouwindow.h"
+#include "qkugou/qkugouwindow.h"
 
 #include <QPropertyAnimation>
 
@@ -344,7 +344,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     {
         case KugGouSongWidget: //insert kugou song widget
             {
-                m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouSong, this);
+                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KuGouSong, this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(0);
@@ -354,7 +354,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case KugGouRadioWidget: //insert kugou radio widget
             {
-                m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouRadio, this);
+                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KuGouRadio, this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(1);
@@ -364,7 +364,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case kugouListWidget: //insert kugou list widget
             {
-                m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouList, this);
+                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KuGouList, this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(2);
@@ -393,7 +393,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case kugouLiveWidget: //insert kugou live widget
             {
-                m_stackedFuncWidget = new KugouWindow(KugouWindow::KugouMv, this);
+                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KugouMv, this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(4);
@@ -515,10 +515,10 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case KuiSheWidget: //insert kugou kuishe widget
             {
-                KugouWindow *widget = new KugouWindow(KugouWindow::KuGouSingle, this);
+                QKugouWindow *widget = new QKugouWindow(QKugouWindow::KuGouSingle, this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
                 m_ui->functionsContainer->setCurrentWidget(widget);
-                widget->setUrl(KugouUrl::getKuiSheUrl());
+                widget->setUrl(QKugouUrl::getKuiSheUrl());
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), widget, SLOT(goBack()));
                 Q_EMIT updateBackgroundTheme();
                 break;

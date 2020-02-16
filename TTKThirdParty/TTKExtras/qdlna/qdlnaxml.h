@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QDLNAXML_H
+#define QDLNAXML_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "qdlnaservice.h"
+#include "musicextrasglobaldefine.h"
 
-class QOSSDataItem;
+class QDlnaXmlPrivate;
 
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the dlna xml.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QDlnaXml
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    QDlnaXml();
 
-    virtual ~MusicCloudFileInformationWidget();
+    bool fromString(const QString &data);
+    QString toString() const;
 
-    /*!
-     * Set music file song path name.
-     */
-    void setFileInformation(QOSSDataItem *data);
+    QString tagNameToLower(const QString &data) const;
+    QString readTagNameValue(const QString &tagName) const;
+    QDlnaService readServiceTag(const QString &type, const QString &tagName) const;
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+private:
+    TTK_DECLARE_PRIVATE(QDlnaXml)
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QDLNAXML_H

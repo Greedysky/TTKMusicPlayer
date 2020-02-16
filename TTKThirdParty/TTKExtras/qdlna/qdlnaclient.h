@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QDLNACLIENT_H
+#define QDLNACLIENT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,37 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "musicextrasglobaldefine.h"
 
-class QOSSDataItem;
+class QDlnaClientPrivate;
 
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the dlna client.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QDlnaClient
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    explicit QDlnaClient(const QString &data);
 
-    virtual ~MusicCloudFileInformationWidget();
+    QString server();
+    QString serverName();
 
-    /*!
-     * Set music file song path name.
-     */
-    void setFileInformation(QOSSDataItem *data);
+    bool connect();
+    bool isConnected() const;
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
+    QString tryToPlayFile(const QString &url);
+    QString uploadFileToPlay(const QString &url);
 
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+    QString startPlay(int instance);
+    QString stopPlay(int instance);
+    QString pause(int instance);
+
+    QString getPosition();
+    int totalSeconds(const QString &value);
+
+private:
+    TTK_DECLARE_PRIVATE(QDlnaClient)
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QDLNACLIENT_H

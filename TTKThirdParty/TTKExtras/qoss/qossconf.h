@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QOSSCONF_H
+#define QOSSCONF_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include <QObject>
+#include "musicextrasglobaldefine.h"
 
-class QOSSDataItem;
+#define DATA_BUCKET     "greedysky-data"
+#define MUSIC_BUCKET    "greedysky-music"
 
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the alioss data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+struct MUSIC_EXTRAS_EXPORT QOSSConf
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    static QString OSS_HOST;
 
-    virtual ~MusicCloudFileInformationWidget();
+    static QString ACCESS_KEY;
+    static QByteArray SECRET_KEY;
+
+    static QString VERSION;
 
     /*!
-     * Set music file song path name.
+     * Generate data bucket url.
      */
-    void setFileInformation(QOSSDataItem *data);
-
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+    static QString generateDataBucketUrl();
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QOSSCONF_H

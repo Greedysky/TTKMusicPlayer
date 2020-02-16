@@ -64,10 +64,10 @@ equals(Browser, 3): message("Found Qt web component, build in KuGou by Qt webeng
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/kugouurl.h \
-    $$PWD/kugouwindow.h \
-    $$PWD/kugouuiobject.h
+    $$PWD/qkugouurl.h \
+    $$PWD/qkugouwindow.h \
+    $$PWD/qkugouuiobject.h
 
 SOURCES += \
-    $$PWD/kugouurl.cpp \
-    $$PWD/kugouwindow.cpp
+    $$PWD/qkugouurl.cpp \
+    $$PWD/qkugouwindow.cpp

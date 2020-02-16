@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QDLNAFILESERVER_H
+#define QDLNAFILESERVER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "qdlnahelper.h"
+#include "musicextrasglobaldefine.h"
 
-class QOSSDataItem;
+class QHttpRequest;
+class QHttpResponse;
+class QDlnaFileServerPrivate;
 
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the dlna file server.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QDlnaFileServer : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    QDlnaFileServer(QObject *parent = nullptr);
 
-    virtual ~MusicCloudFileInformationWidget();
+    void start();
+    void setPrefixPath(const QString &path);
+    QString getLocalAddress() const;
 
-    /*!
-     * Set music file song path name.
-     */
-    void setFileInformation(QOSSDataItem *data);
+private Q_SLOTS:
+    void handleRequest(QHttpRequest *request, QHttpResponse *response);
 
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+private:
+    TTK_DECLARE_PRIVATE(QDlnaFileServer)
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QDLNAFILESERVER_H

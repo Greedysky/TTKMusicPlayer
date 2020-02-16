@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QDLNASERVICE_H
+#define QDLNASERVICE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "qdlnahelper.h"
+#include "musicextrasglobaldefine.h"
 
-class QOSSDataItem;
-
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the dlna service.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+struct MUSIC_EXTRAS_EXPORT QDlnaService
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    QString m_controlURL;
+    QString m_scpdURL;
+    QString m_eventSubURL;
+    QString m_serviceType;
+    QString m_serviceID;
 
-    virtual ~MusicCloudFileInformationWidget();
-
-    /*!
-     * Set music file song path name.
-     */
-    void setFileInformation(QOSSDataItem *data);
-
-public Q_SLOTS:
-    /*!
-     * Override exec function.
-     */
-    virtual int exec();
-
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
-
+    inline bool isEmpty() const
+    {
+        return m_controlURL.isEmpty() && m_scpdURL.isEmpty() && m_eventSubURL.isEmpty() && m_serviceType.isEmpty() && m_serviceID.isEmpty();
+    }
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QDLNASERVICE_H

@@ -6,7 +6,7 @@
 #///QJson import
 #include "qjson/parser.h"
 #///Oss import
-#include "qoss/ossconf.h"
+#include "qoss/qossconf.h"
 
 #include <QFile>
 
@@ -38,7 +38,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(OSSConf::generateDataBucketUrl() + QN_ACRUA_URL);
+    download->startToDownload(QOSSConf::generateDataBucketUrl() + QN_ACRUA_URL);
 
     loop.exec();
 

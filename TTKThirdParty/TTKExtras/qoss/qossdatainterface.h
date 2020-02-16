@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QOSSDATAINTERFACE_H
+#define QOSSDATAINTERFACE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,49 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "qossdataitem.h"
+#include "qossutils.h"
+#include "qossconf.h"
+#include <QtNetwork/QNetworkReply>
 
-class QOSSDataItem;
+class QOSSDataInterfacePrivate;
 
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the alioss cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QOSSDataInterface : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
+    explicit QOSSDataInterface(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
-    virtual ~MusicCloudFileInformationWidget();
-
+protected Q_SLOTS:
     /*!
-     * Set music file song path name.
+     * Receive data from server finshed.
+     * Subclass should implement this function.
      */
-    void setFileInformation(QOSSDataItem *data);
-
-public Q_SLOTS:
+    virtual void receiveDataFromServer() = 0;
     /*!
-     * Override exec function.
+     * Get handle error.
      */
-    virtual int exec();
+    void handleError(QNetworkReply::NetworkError error);
 
 protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+    /*!
+     * Pretty encode the data into url.
+     */
+    QString pathEncode(const QString &data) const;
+    /*!
+     * Pretty decode the data into url.
+     */
+    QString pathDecode(const QString &data) const;
+
+protected:
+    TTK_DECLARE_PRIVATE(QOSSDataInterface)
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QOSSDATAINTERFACE_H

@@ -4,7 +4,7 @@
 #///QJson import
 #include "qjson/parser.h"
 #///Oss import
-#include "qoss/ossconf.h"
+#include "qoss/qossconf.h"
 
 #define QN_VERSION       "version"
 
@@ -18,7 +18,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(OSSConf::generateDataBucketUrl() + QN_VERSION);
+    download->startToDownload(QOSSConf::generateDataBucketUrl() + QN_VERSION);
 }
 
 QString MusicSourceUpdateThread::getVersion() const

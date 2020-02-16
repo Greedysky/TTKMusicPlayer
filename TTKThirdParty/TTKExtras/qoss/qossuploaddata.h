@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEINFORMATIONWIDGET_H
-#define MUSICCLOUDFILEINFORMATIONWIDGET_H
+#ifndef QOSSUPLOADDATA_H
+#define QOSSUPLOADDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,45 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
+#include "qossdatainterface.h"
 
-class QOSSDataItem;
-
-namespace Ui {
-class MusicCloudFileInformationWidget;
-}
-
-/*! @brief The class of the cloud file information widget.
+/*! @brief The class of the alioss cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class MUSIC_EXTRAS_EXPORT QOSSUploadData : public QOSSDataInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudFileInformationWidget();
+    explicit QOSSUploadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
     /*!
-     * Set music file song path name.
+     * Get uplaod data operator.
      */
-    void setFileInformation(QOSSDataItem *data);
+    void uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
 
-public Q_SLOTS:
+Q_SIGNALS:
     /*!
-     * Override exec function.
+     * Uplaod file finshed.
      */
-    virtual int exec();
+    void uploadFileFinished(const QString &time);
+    /*!
+     * Show upload progress.
+     */
+    void uploadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
 
-protected:
-    Ui::MusicCloudFileInformationWidget *m_ui;
+protected Q_SLOTS:
+    /*!
+     * Receive data from server finshed.
+     */
+    virtual void receiveDataFromServer() override;
+    /*!
+     * Show upload progress.
+     */
+    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 };
 
-#endif // MUSICCLOUDFILEINFORMATIONWIDGET_H
+#endif // QOSSUPLOADDATA_H

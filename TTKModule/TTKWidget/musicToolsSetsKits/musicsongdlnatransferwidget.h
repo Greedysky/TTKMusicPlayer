@@ -26,8 +26,8 @@ namespace Ui {
 class MusicSongDlnaTransferWidget;
 }
 
-class DlnaFinder;
-class DlnaFileServer;
+class QDlnaFinder;
+class QDlnaFileServer;
 
 /*! @brief The class of the song dlna transfer widget.
  * @author Greedysky <greedysky@163.com>
@@ -90,8 +90,8 @@ private:
     bool m_isPlaying;
     int m_currentPlayIndex;
     MusicSongs *m_musicSongs;
-    DlnaFinder *m_dlnaFinder;
-    DlnaFileServer *m_dlnaFileServer;
+    QDlnaFinder *m_dlnaFinder;
+    QDlnaFileServer *m_dlnaFileServer;
 
 };
 
