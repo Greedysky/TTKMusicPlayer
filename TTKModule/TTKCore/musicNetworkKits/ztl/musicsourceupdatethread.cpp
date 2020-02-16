@@ -6,7 +6,7 @@
 #///Oss import
 #include "qoss/qossconf.h"
 
-#define QN_VERSION       "version"
+#define OS_VERSION_URL       "version"
 
 MusicSourceUpdateThread::MusicSourceUpdateThread(QObject *parent)
     : QObject(parent)
@@ -18,7 +18,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QOSSConf::generateDataBucketUrl() + QN_VERSION);
+    download->startToDownload(QOSSConf::generateDataBucketUrl() + OS_VERSION_URL);
 }
 
 QString MusicSourceUpdateThread::getVersion() const

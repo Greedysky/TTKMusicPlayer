@@ -25,7 +25,7 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#define QN_CLOUD        "cloud"
+#define OS_CLOUD_URL        "cloud"
 
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
@@ -85,7 +85,7 @@ bool MusicCloudManagerTableWidget::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(QOSSConf::generateDataBucketUrl() + QN_CLOUD);
+    download->startToDownload(QOSSConf::generateDataBucketUrl() + OS_CLOUD_URL);
 
     loop.exec();
     updateListToServer();
