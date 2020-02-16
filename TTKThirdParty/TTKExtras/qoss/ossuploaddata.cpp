@@ -21,7 +21,7 @@ OSSUploadData::OSSUploadData(QNetworkAccessManager *networkManager, QObject *par
     TTK_INIT_PUBLIC(OSSUploadData);
     TTK_INIT_PRIVATE;
     TTK_D(OSSUploadData);
-    d->m_networkManager = networkManager;
+    d->m_manager = networkManager;
 }
 
 void OSSUploadData::uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
@@ -56,7 +56,7 @@ void OSSUploadData::uploadDataOperator(const QString &time, const QString &bucke
     QByteArray fileData = file.readAll();
     file.close();
 
-    QNetworkReply *reply = d->m_networkManager->put(request, fileData);
+    QNetworkReply *reply = d->m_manager->put(request, fileData);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
     if(parent()->metaObject()->indexOfSlot("uploadProgress(QString,qint64,qint64)") != -1)

@@ -55,11 +55,11 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     m_progressBarDelegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_progressBarDelegate);
 
-    m_networkManager = new QNetworkAccessManager(this);
-    m_ossListData = new OSSListData(m_networkManager, this);
-    m_ossDeleteData = new OSSDeleteData(m_networkManager, this);
-    m_ossUploadData = new OSSUploadData(m_networkManager, this);
-    m_ossDownloadData = new OSSDownloadData(m_networkManager, this);
+    m_manager = new QNetworkAccessManager(this);
+    m_ossListData = new OSSListData(m_manager, this);
+    m_ossDeleteData = new OSSDeleteData(m_manager, this);
+    m_ossUploadData = new OSSUploadData(m_manager, this);
+    m_ossDownloadData = new OSSDownloadData(m_manager, this);
 
     connect(m_ossListData, SIGNAL(receiveFinshed(OSSDataItems)), SLOT(receiveDataFinshed(OSSDataItems)));
     connect(m_ossDeleteData, SIGNAL(deleteFileFinished(bool)), SLOT(deleteFileFinished(bool)));
@@ -73,7 +73,7 @@ MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
     delete m_ossDeleteData;
     delete m_ossUploadData;
     delete m_ossDownloadData;
-    delete m_networkManager;
+    delete m_manager;
     delete m_openFileWidget;
     delete m_progressBarDelegate;
 }

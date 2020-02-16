@@ -35,7 +35,7 @@ void OSSListData::listDataOperator(const QString &bucket)
         request.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
 
-    QNetworkReply *reply = d->m_networkManager->get(request);
+    QNetworkReply *reply = d->m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 }

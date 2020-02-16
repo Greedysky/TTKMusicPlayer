@@ -32,7 +32,7 @@ void OSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fil
         request.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
 
-    QNetworkReply *reply = d->m_networkManager->deleteResource(request);
+    QNetworkReply *reply = d->m_manager->deleteResource(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 }

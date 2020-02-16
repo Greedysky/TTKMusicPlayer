@@ -7,7 +7,6 @@
         <file alias="toplist">../TTKResource/A_extras/toplist</file>
         <file alias="artistlist">../TTKResource/A_extras/artistlist</file>
         <file alias="movielist">../TTKResource/A_extras/movielist</file>
-        <file alias="fmarclist">../TTKResource/A_extras/fmarclist</file>
         <file alias="sound">../TTKResource/A_extras/sound.wav</file>
     </qresource>
     <qresource prefix="/image">

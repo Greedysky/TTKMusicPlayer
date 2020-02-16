@@ -23,7 +23,7 @@ OSSDownloadData::OSSDownloadData(QNetworkAccessManager *networkManager, QObject 
     TTK_INIT_PUBLIC(OSSDownloadData);
     TTK_INIT_PRIVATE;
     TTK_D(OSSDownloadData);
-    d->m_networkManager = networkManager;
+    d->m_manager = networkManager;
 }
 
 void OSSDownloadData::downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
@@ -54,7 +54,7 @@ void OSSDownloadData::downloadDataOperator(const QString &time, const QString &b
         request.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
 
-    QNetworkReply *reply = d->m_networkManager->get(request);
+    QNetworkReply *reply = d->m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 

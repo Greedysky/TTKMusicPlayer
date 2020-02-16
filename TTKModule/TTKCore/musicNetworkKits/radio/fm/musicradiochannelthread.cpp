@@ -1,6 +1,7 @@
 #include "musicradiochannelthread.h"
 #///QJson import
 #include "qjson/parser.h"
+#include "qoss/ossconf.h"
 
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
@@ -59,24 +60,13 @@ void MusicRadioChannelThread::downLoadFinished()
             QVariantMap value = data.toMap();
             const QVariantList &channels = value["channel_list"].toList();
 
-            QFile arcFile(":/data/fmarclist");
-            arcFile.open(QFile::ReadOnly);
-
-            QStringList arcs = QString(arcFile.readAll()).remove("\r").split("\n");
-            arcFile.close();
-
-            while(channels.count() > arcs.count())
-            {
-                arcs.append(QString());
-            }
-
             for(int i=0; i<channels.count(); ++i)
             {
                 value = channels[i].toMap();
                 MusicRadioChannelInfo channel;
                 channel.m_id = value["channel_id"].toString();
                 channel.m_name = value["channel_name"].toString();
-                channel.m_coverUrl = arcs[i];
+                channel.m_coverUrl = OSSConf::generateDataBucketUrl() + QString("BaiduRadio/%1.jpg").arg(i + 1);
                 m_channels << channel;
             }
         }

@@ -26,7 +26,7 @@ class OSSDataInterfacePrivate : public TTKPrivate<OSSDataInterface>
 public:
     OSSDataInterfacePrivate()
     {
-        m_networkManager = nullptr;
+        m_manager = nullptr;
     }
 
     void insertAuthorization(const QString &method, MStringMap &headers, const QString &resource) const
@@ -41,7 +41,7 @@ public:
         }
     }
 
-    QNetworkAccessManager *m_networkManager;
+    QNetworkAccessManager *m_manager;
 };
 
 #endif // OSSDATAINTERFACE_P_H

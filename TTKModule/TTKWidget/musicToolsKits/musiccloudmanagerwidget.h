@@ -179,7 +179,7 @@ protected:
     OSSDeleteData *m_ossDeleteData;
     OSSUploadData *m_ossUploadData;
     OSSDownloadData *m_ossDownloadData;
-    QNetworkAccessManager *m_networkManager;
+    QNetworkAccessManager *m_manager;
     MusicOpenFileWidget *m_openFileWidget;
     MusicCloudDataItem m_currentDataItem;
     MusicProgressBarDelegate *m_progressBarDelegate;

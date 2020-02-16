@@ -6,7 +6,7 @@ OSSDataInterface::OSSDataInterface(QNetworkAccessManager *networkManager, QObjec
 {
     TTK_INIT_PRIVATE;
     TTK_D(OSSDataInterface);
-    d->m_networkManager = networkManager;
+    d->m_manager = networkManager;
 }
 
 void OSSDataInterface::handleError(QNetworkReply::NetworkError error)
