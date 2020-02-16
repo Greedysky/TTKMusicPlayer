@@ -42,7 +42,7 @@ public:
      * Check the current song already has lrc or not,
      * if not just download it.
      */
-    void musicCheckHasLrcAlready();
+    void musicCheckLrcValid();
     /*!
      * Check the setting has open interior or desktop lrc on or not.
      */

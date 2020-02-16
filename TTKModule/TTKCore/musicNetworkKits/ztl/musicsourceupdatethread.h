@@ -44,7 +44,7 @@ public:
     /*!
      * Get lasted version.
      */
-    QString getLastedVersion() const;
+    QString getVersion() const;
     /*!
      * Is lasted version.
      */
@@ -52,7 +52,7 @@ public:
     /*!
      * Get lasted version description.
      */
-    QString getLastedVersionDes() const;
+    QString getVersionDescription() const;
 
 Q_SIGNALS:
     /*!

@@ -16,7 +16,6 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
-#include "musicsourceupdatethread.h"
 #///Oss import
 #include "qoss/ossconf.h"
 #include "qoss/osslistdata.h"

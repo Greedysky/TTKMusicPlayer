@@ -27,8 +27,8 @@
         <otherSideBy value="0"/>
         <otherSongFormat value="0"/>
         <otherLrcKTVMode value="1"/>
-        <otherDesktopSaverEnable value="0"/>
-        <otherDesktopSaverTime value="10"/>
+        <otherScreenSaverEnable value="0"/>
+        <otherScreenSaverTime value="10"/>
     </otherSetting>
     <rippleSetting>
         <rippleSpectrumEnable value="1"/>

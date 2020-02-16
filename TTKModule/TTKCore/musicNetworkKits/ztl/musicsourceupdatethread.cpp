@@ -21,14 +21,14 @@ void MusicSourceUpdateThread::startToDownload()
     download->startToDownload(OSSConf::generateDataBucketUrl() + QN_VERSION);
 }
 
-QString MusicSourceUpdateThread::getLastedVersion() const
+QString MusicSourceUpdateThread::getVersion() const
 {
     return m_rawData["version"].toString();
 }
 
 bool MusicSourceUpdateThread::isLastedVersion() const
 {
-    const QString &v = getLastedVersion();
+    const QString &v = getVersion();
     if(v.isEmpty())
     {
         return true;
@@ -39,7 +39,7 @@ bool MusicSourceUpdateThread::isLastedVersion() const
     }
 }
 
-QString MusicSourceUpdateThread::getLastedVersionDes() const
+QString MusicSourceUpdateThread::getVersionDescription() const
 {
     return m_rawData["data"].toString();
 }

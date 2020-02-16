@@ -35,10 +35,10 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
         const HINSTANCE value = ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return (int)value >= 32;
     }
+    return true;
 #else
-    Q_UNUSED(local);
+    return QDesktopServices::openUrl(local ? QUrl::fromLocalFile(path) : QUrl(path, QUrl::TolerantMode));
 #endif
-    return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
 }
 
 void MusicUtils::Url::urlEncode(QString &data)

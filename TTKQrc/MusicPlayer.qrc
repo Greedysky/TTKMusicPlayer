@@ -124,7 +124,7 @@
         <file alias="lb_connections">../TTKResource/tools/lb_connections.png</file>
         <file alias="lb_radio">../TTKResource/tools/lb_radio.png</file>
         <file alias="lb_dlna">../TTKResource/tools/lb_dlna.png</file>
-        <file alias="lb_desktop_saver">../TTKResource/tools/lb_desktopsaver.png</file>
+        <file alias="lb_screen_saver">../TTKResource/tools/lb_screensaver.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>
@@ -165,6 +165,7 @@
         <file alias="btn_lrc_label">../TTKResource/contextMenu/btn_lrc_label.png</file>
         <file alias="btn_bug_reoprt">../TTKResource/contextMenu/btn_bug_reoprt.png</file>
         <file alias="btn_spectrum">../TTKResource/contextMenu/btn_spectrum.png</file>
+        <file alias="btn_feedback">../TTKResource/contextMenu/btn_feedback.png</file>
     </qresource>
     <qresource prefix="/gif">
         <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>

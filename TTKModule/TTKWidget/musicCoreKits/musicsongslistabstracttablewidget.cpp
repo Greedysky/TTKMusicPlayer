@@ -96,7 +96,7 @@ void MusicSongsListAbstractTableWidget::musicOpenFileDir()
         return;
     }
 
-    if(!MusicUtils::Url::openUrl(QFileInfo(path).absoluteFilePath(), true))
+    if(!MusicUtils::Url::openUrl(QFileInfo(path).absoluteFilePath()))
     {
         MusicMessageBox message;
         message.setText(tr("The origin one does not exist!"));

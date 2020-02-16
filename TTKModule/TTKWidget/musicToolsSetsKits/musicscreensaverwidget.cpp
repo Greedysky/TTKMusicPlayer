@@ -1,4 +1,4 @@
-#include "musicdesktopsaverwidget.h"
+#include "musicscreensaverwidget.h"
 #include "musicapplicationobject.h"
 #include "musicsettingmanager.h"
 #include "musicnumberdefine.h"
@@ -10,7 +10,7 @@
 #include <QBoxLayout>
 #include <QApplication>
 
-MusicDesktopSaverWidget::MusicDesktopSaverWidget(QWidget *parent)
+MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent)
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle17 + MusicUIObject::MQSSColorStyle09);
@@ -32,7 +32,7 @@ MusicDesktopSaverWidget::MusicDesktopSaverWidget(QWidget *parent)
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setContentsMargins(10, 10, 10, 10);
 
-    QLabel *pLabel = new QLabel(tr("Desktop Saver "), topWidget);
+    QLabel *pLabel = new QLabel(tr("Screen Saver "), topWidget);
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
@@ -55,7 +55,7 @@ MusicDesktopSaverWidget::MusicDesktopSaverWidget(QWidget *parent)
     m_caseButton = new QPushButton(topWidget);
     m_caseButton->setFixedSize(44, 20);
     m_caseButton->setCursor(Qt::PointingHandCursor);
-    m_caseButton->setStyleSheet(MusicUIObject::MQSSDesktopSaverOff);
+    m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOff);
 
     topWidgetLayout->addWidget(pLabel);
     topWidgetLayout->addWidget(iLabel);
@@ -80,20 +80,22 @@ MusicDesktopSaverWidget::MusicDesktopSaverWidget(QWidget *parent)
     functionWidget->setLayout(functionWidgetLayout);
     mainLayout->addWidget(functionWidget);
 
+    connect(m_inputEdit, SIGNAL(textChanged(QString)), SLOT(inputDataChanged()));
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 
     applySettingParameter();
 }
 
-MusicDesktopSaverWidget::~MusicDesktopSaverWidget()
+MusicScreenSaverWidget::~MusicScreenSaverWidget()
 {
-
+    delete m_inputEdit;
+    delete m_caseButton;
 }
 
-void MusicDesktopSaverWidget::applySettingParameter()
+void MusicScreenSaverWidget::applySettingParameter()
 {
-    const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool();
-    const int mins = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toInt();
+    const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
+    const int mins = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
 
     m_inputEdit->setText(QString::number(mins));
     if(state)
@@ -102,31 +104,42 @@ void MusicDesktopSaverWidget::applySettingParameter()
     }
 }
 
-void MusicDesktopSaverWidget::caseButtonOnAndOff()
+void MusicScreenSaverWidget::inputDataChanged()
+{
+    const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
+    if(state)
+    {
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, m_inputEdit->text().toInt());
+        MusicApplicationObject::instance()->applySettingParameter();
+    }
+}
+
+void MusicScreenSaverWidget::caseButtonOnAndOff()
 {
     const bool state = m_caseButton->styleSheet().contains(":/toolSets/btn_saver_off");
     if(state)
     {
-        m_caseButton->setStyleSheet(MusicUIObject::MQSSDesktopSaverOn);
-        M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverTime, m_inputEdit->text().toInt());
+        m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOn);
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, m_inputEdit->text().toInt());
     }
     else
     {
-        m_caseButton->setStyleSheet(MusicUIObject::MQSSDesktopSaverOff);
+        m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOff);
     }
 
     m_inputEdit->setEnabled(state);
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverEnable, state);
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, state);
     MusicApplicationObject::instance()->applySettingParameter();
 }
 
 
 
-MusicDesktopSaverBackgroundWidget::MusicDesktopSaverBackgroundWidget(QWidget *parent)
+MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 
+    m_state = false;
     m_isRunning = false;
 
     m_timer = new QTimer(this);
@@ -138,7 +151,7 @@ MusicDesktopSaverBackgroundWidget::MusicDesktopSaverBackgroundWidget(QWidget *pa
     qApp->installEventFilter(this);
 }
 
-MusicDesktopSaverBackgroundWidget::~MusicDesktopSaverBackgroundWidget()
+MusicScreenSaverBackgroundWidget::~MusicScreenSaverBackgroundWidget()
 {
     if(m_timer->isActive())
     {
@@ -147,38 +160,44 @@ MusicDesktopSaverBackgroundWidget::~MusicDesktopSaverBackgroundWidget()
     delete m_timer;
 }
 
-void MusicDesktopSaverBackgroundWidget::applySettingParameter()
+void MusicScreenSaverBackgroundWidget::applySettingParameter()
 {
-    const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool();
-    M_LOGGER_INFO(state);
-    //    const QString &time = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toString();
-//    const int value = time.toInt();
-//    if(value != 0)
-//    {
-//        m_timer->setInterval(value * MT_M2MS);
-//    }
+    m_state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
+    const QString &time = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toString();
+    const int value = time.toInt();
+    if(value != 0)
+    {
+        m_timer->setInterval(value * MT_M2MS);
+    }
 }
 
-void MusicDesktopSaverBackgroundWidget::timeout()
+void MusicScreenSaverBackgroundWidget::timeout()
 {
     m_isRunning = true;
     setParent(nullptr);
     showFullScreen();
 }
 
-bool MusicDesktopSaverBackgroundWidget::eventFilter(QObject *watched, QEvent *event)
+bool MusicScreenSaverBackgroundWidget::eventFilter(QObject *watched, QEvent *event)
 {
-//    if(event->type()== QEvent::MouseButtonPress || event->type()== QEvent::MouseButtonRelease ||
-//       event->type()== QEvent::MouseButtonDblClick || event->type()== QEvent::MouseMove ||
-//       event->type()== QEvent::KeyPress || event->type()== QEvent::KeyRelease)
-//    {
-//        if(m_isRunning)
-//        {
-//            m_isRunning = false;
-//            hide();
-//        }
-//        m_timer->stop();
-//        m_timer->start();
-//    }
-    return QObject::eventFilter(watched, event);
+    if(event->type()== QEvent::MouseButtonPress || event->type()== QEvent::MouseButtonRelease ||
+       event->type()== QEvent::MouseButtonDblClick || event->type()== QEvent::MouseMove ||
+       event->type()== QEvent::KeyPress || event->type()== QEvent::KeyRelease)
+    {
+        if(m_state)
+        {
+            if(m_isRunning)
+            {
+                m_isRunning = false;
+                hide();
+            }
+            m_timer->stop();
+            m_timer->start();
+        }
+        else
+        {
+            m_timer->stop();
+        }
+    }
+    return QWidget::eventFilter(watched, event);
 }

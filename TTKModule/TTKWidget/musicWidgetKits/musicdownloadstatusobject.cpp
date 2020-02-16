@@ -87,7 +87,7 @@ bool MusicDownloadStatusObject::checkSettingParameterValue() const
     return M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
 }
 
-void MusicDownloadStatusObject::musicCheckHasLrcAlready()
+void MusicDownloadStatusObject::musicCheckLrcValid()
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {

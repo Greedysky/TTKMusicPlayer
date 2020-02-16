@@ -75,7 +75,7 @@ void MusicDownloadResetWidget::openFileLocation()
     const QString &path = MusicApplication::instance()->musicDownloadContains(exist);
     if(exist)
     {
-        MusicUtils::Url::openUrl( path, true );
+        MusicUtils::Url::openUrl(path);
     }
     close();
 }

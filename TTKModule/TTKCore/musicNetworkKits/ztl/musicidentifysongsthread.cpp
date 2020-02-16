@@ -2,7 +2,6 @@
 #include "musicdownloadsourcethread.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
-#include "musicsourceupdatethread.h"
 #include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"

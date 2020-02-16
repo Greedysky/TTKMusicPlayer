@@ -21,13 +21,14 @@
 
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include <QPropertyAnimation>
 
 class QDeviceWatcher;
-class QPropertyAnimation;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
+class MusicSourceUpdateThread;
 class MusicDownloadCounterPVThread;
-class MusicDesktopSaverBackgroundWidget;
+class MusicScreenSaverBackgroundWidget;
 
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
@@ -53,6 +54,10 @@ public:
      */
     inline bool getWindowToTop() const { return m_setWindowToTop; }
 
+    /*!
+     * Is lasted version.
+     */
+    bool isLastedVersion() const;
     /*!
      * load network settings parameters.
      */
@@ -164,8 +169,10 @@ protected:
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
+
+    MusicSourceUpdateThread *m_sourceUpdatehread;
     MusicDownloadCounterPVThread *m_counterPVThread;
-    MusicDesktopSaverBackgroundWidget *m_desktopSaverWidget;
+    MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 
     static MusicApplicationObject *m_instance;
 };

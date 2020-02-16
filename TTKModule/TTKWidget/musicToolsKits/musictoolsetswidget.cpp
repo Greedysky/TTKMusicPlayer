@@ -165,7 +165,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 11:
             {
-                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::DesktopSaverWidget);
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::ScreenSaverWidget);
                 break;
             }
         default:

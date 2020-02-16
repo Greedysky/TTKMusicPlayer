@@ -8,8 +8,8 @@
 #include "musicurlutils.h"
 #include "musictime.h"
 #include "musicsettingmanager.h"
-#include "musicapplicationobject.h"
 #include "musicotherdefine.h"
+#include "musicsourceupdatewidget.h"
 #///QJson import
 #include "qjson/parser.h"
 #///Oss import
@@ -79,7 +79,7 @@ void MusicSourceUpdateNotifyWidget::start()
 void MusicSourceUpdateNotifyWidget::updateSourceClicked()
 {
     close();
-    MusicApplicationObject::instance()->musicVersionUpdate();
+    MusicSourceUpdateWidget().exec();
 }
 
 void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &data)

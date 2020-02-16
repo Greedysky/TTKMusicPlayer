@@ -27,7 +27,7 @@
 #include "musicwebdjradiowidget.h"
 #include "musicwebmvradiofoundwidget.h"
 #include "musiccloudmanagerwidget.h"
-#include "musicdesktopsaverwidget.h"
+#include "musicscreensaverwidget.h"
 
 #include "qkugou/kugouwindow.h"
 
@@ -225,9 +225,9 @@ void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
     m_musicLrcForInterior->setSongSpeedChanged(time);
 }
 
-void MusicRightAreaWidget::musicCheckHasLrcAlready() const
+void MusicRightAreaWidget::musicCheckLrcValid() const
 {
-    m_downloadStatusObject->musicCheckHasLrcAlready();
+    m_downloadStatusObject->musicCheckLrcValid();
 }
 
 void MusicRightAreaWidget::showSettingWidget() const
@@ -329,9 +329,9 @@ void MusicRightAreaWidget::applySettingParameter() const
     m_musicLrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
     //
-    if(MObject_cast(MusicDesktopSaverWidget*, m_stackedFuncWidget))
+    if(MObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicDesktopSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
+        MObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
     }
 }
 
@@ -541,9 +541,9 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
-        case DesktopSaverWidget: //insert desktop saver widget
+        case ScreenSaverWidget: //insert screen saver widget
             {
-                MusicDesktopSaverWidget *widget = new MusicDesktopSaverWidget(this);
+                MusicScreenSaverWidget *widget = new MusicScreenSaverWidget(this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
                 m_ui->functionsContainer->setCurrentWidget(widget);
                 Q_EMIT updateBackgroundTheme();

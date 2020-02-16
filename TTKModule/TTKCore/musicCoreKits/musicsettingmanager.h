@@ -71,8 +71,8 @@ public:
         OtherSideBy,                     /*!< Other App Side By Mode Parameter*/
         OtherSideByIn,                   /*!< Other App Side By In Mode Parameter*/
         OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Parameter*/
-        OtherDesktopSaverEnable,         /*!< Other Desktop Saver Enable Parameter*/
-        OtherDesktopSaverTime,           /*!< Other Desktop Saver Time Parameter*/
+        OtherScreenSaverEnable,          /*!< Other Screen Saver Enable Parameter*/
+        OtherScreenSaverTime,            /*!< Other Screen Saver Time Parameter*/
 
         RippleSpectrumEnable,            /*!< Ripple Spectrum Enable Parameter*/
         RippleSpectrumColor,             /*!< Ripple Spectrum Color Parameter*/

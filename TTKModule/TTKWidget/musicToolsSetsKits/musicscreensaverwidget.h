@@ -1,5 +1,5 @@
-#ifndef MUSICDESKTOPSAVERWIDGET_H
-#define MUSICDESKTOPSAVERWIDGET_H
+#ifndef MUSICSCREENSAVERWIDGET_H
+#define MUSICSCREENSAVERWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -24,20 +24,20 @@
 #include <QPushButton>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the desktop saver widget.
+/*! @brief The class of the screen saver widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicDesktopSaverWidget : public QWidget
+class MUSIC_TOOLSET_EXPORT MusicScreenSaverWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDesktopSaverWidget)
+    TTK_DECLARE_MODULE(MusicScreenSaverWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDesktopSaverWidget(QWidget *parent = nullptr);
+    explicit MusicScreenSaverWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicDesktopSaverWidget();
+    virtual ~MusicScreenSaverWidget();
 
     /*!
      * Apply settings parameters.
@@ -45,6 +45,10 @@ public:
     void applySettingParameter();
 
 private Q_SLOTS:
+    /*!
+     * Input data changed
+     */
+    void inputDataChanged();
     /*!
      * Case button on and off.
      */
@@ -57,20 +61,20 @@ private:
 
 
 
-/*! @brief The class of the desktop saver background widget.
+/*! @brief The class of the screen saver background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicDesktopSaverBackgroundWidget : public QWidget
+class MUSIC_TOOLSET_EXPORT MusicScreenSaverBackgroundWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDesktopSaverBackgroundWidget)
+    TTK_DECLARE_MODULE(MusicScreenSaverBackgroundWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDesktopSaverBackgroundWidget(QWidget *parent = nullptr);
+    explicit MusicScreenSaverBackgroundWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicDesktopSaverBackgroundWidget();
+    virtual ~MusicScreenSaverBackgroundWidget();
 
     /*!
      * Apply settings parameters.
@@ -79,7 +83,7 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Desktop saver time out.
+     * Screen saver time out.
      */
     void timeout();
 
@@ -87,9 +91,10 @@ private:
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
+    bool m_state;
     bool m_isRunning;
     QTimer *m_timer;
 
 };
 
-#endif // MUSICDESKTOPSAVERWIDGET_H
+#endif // MUSICSCREENSAVERWIDGET_H

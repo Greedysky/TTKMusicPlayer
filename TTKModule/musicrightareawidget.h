@@ -66,7 +66,7 @@ public:
         WebDJRadioWidget,       /*!< insert web dj radio widget*/
         WebMVRadioWidget,       /*!< insert web mv radio widget*/
         CloudManagerWidget,     /*!< insert cloud manager widget*/
-        DesktopSaverWidget      /*!< insert desktop saver widget*/
+        ScreenSaverWidget       /*!< insert screen saver widget*/
     };
 
     /*!
@@ -132,7 +132,7 @@ public:
      * Check the current song already has lrc or not,
      * if not just download it.
      */
-    void musicCheckHasLrcAlready() const;
+    void musicCheckLrcValid() const;
     /*!
      * Show setting widget.
      */

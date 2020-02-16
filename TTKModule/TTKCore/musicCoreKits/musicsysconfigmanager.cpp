@@ -56,10 +56,10 @@ void MusicSysConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("otherSongFormat").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode,
                      readXmlAttributeByTagNameValue("otherLrcKTVMode").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverEnable,
-                     readXmlAttributeByTagNameValue("otherDesktopSaverEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverTime,
-                     readXmlAttributeByTagNameValue("otherDesktopSaverTime"));
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable,
+                     readXmlAttributeByTagNameValue("otherScreenSaverEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime,
+                     readXmlAttributeByTagNameValue("otherScreenSaverTime"));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable,
@@ -242,8 +242,8 @@ void MusicSysConfigManager::writeSysConfigData()
     const int otherSideBy = M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toInt();
     const int otherSongFormat = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
     const int otherLrcKTVMode = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toInt();
-    const int otherDesktopSaverEnable = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toInt();
-    const QString &otherDesktopSaverTime = M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverTime).toString();
+    const int otherScreenSaverEnable = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toInt();
+    const QString &otherScreenSaverTime = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toString();
 
     //
     const int rippleSpectrumEnable = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
@@ -377,8 +377,8 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(otherSettingDom, "otherSideBy", MusicXmlAttribute("value", otherSideBy));
     writeDomElement(otherSettingDom, "otherSongFormat", MusicXmlAttribute("value", otherSongFormat));
     writeDomElement(otherSettingDom, "otherLrcKTVMode", MusicXmlAttribute("value", otherLrcKTVMode));
-    writeDomElement(otherSettingDom, "otherDesktopSaverEnable", MusicXmlAttribute("value", otherDesktopSaverEnable));
-    writeDomElement(otherSettingDom, "otherDesktopSaverTime", MusicXmlAttribute("value", otherDesktopSaverTime));
+    writeDomElement(otherSettingDom, "otherScreenSaverEnable", MusicXmlAttribute("value", otherScreenSaverEnable));
+    writeDomElement(otherSettingDom, "otherScreenSaverTime", MusicXmlAttribute("value", otherScreenSaverTime));
 
     //
     writeDomElement(rippleSettingDom, "rippleSpectrumEnable", MusicXmlAttribute("value", rippleSpectrumEnable));

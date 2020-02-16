@@ -169,10 +169,10 @@ void MusicSettingWidget::initControllerParameter()
     {
         hotkeys = M_HOTKEY_PTR->getDefaultKeys();
     }
-    m_ui->item_S2->setText(hotkeys[0]);
-    m_ui->item_S4->setText(hotkeys[1]);
-    m_ui->item_S6->setText(hotkeys[2]);
-    m_ui->item_S8->setText(hotkeys[3]);
+    m_ui->item_S02->setText(hotkeys[0]);
+    m_ui->item_S04->setText(hotkeys[1]);
+    m_ui->item_S06->setText(hotkeys[2]);
+    m_ui->item_S08->setText(hotkeys[3]);
     m_ui->item_S10->setText(hotkeys[4]);
     m_ui->item_S12->setText(hotkeys[5]);
     m_ui->item_S14->setText(hotkeys[6]);
@@ -198,7 +198,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherWriteInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool());
-    m_ui->otherDesktopSaverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool());
+    m_ui->otherScreenSaverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool());
 
     //
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
@@ -304,10 +304,10 @@ void MusicSettingWidget::clearFunctionTableSelection()
 
 void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
 {
-    m_ui->item_S2->setHotKeyEnabled(state);
-    m_ui->item_S4->setHotKeyEnabled(state);
-    m_ui->item_S6->setHotKeyEnabled(state);
-    m_ui->item_S8->setHotKeyEnabled(state);
+    m_ui->item_S02->setHotKeyEnabled(state);
+    m_ui->item_S04->setHotKeyEnabled(state);
+    m_ui->item_S06->setHotKeyEnabled(state);
+    m_ui->item_S08->setHotKeyEnabled(state);
     m_ui->item_S10->setHotKeyEnabled(state);
     m_ui->item_S12->setHotKeyEnabled(state);
     m_ui->item_S14->setHotKeyEnabled(state);
@@ -527,10 +527,10 @@ void MusicSettingWidget::saveResults()
 
     if(m_ui->globalHotkeyBox->isChecked())
     {
-        M_HOTKEY_PTR->setHotKey(0, m_ui->item_S2->text());
-        M_HOTKEY_PTR->setHotKey(1, m_ui->item_S4->text());
-        M_HOTKEY_PTR->setHotKey(2, m_ui->item_S6->text());
-        M_HOTKEY_PTR->setHotKey(3, m_ui->item_S8->text());
+        M_HOTKEY_PTR->setHotKey(0, m_ui->item_S02->text());
+        M_HOTKEY_PTR->setHotKey(1, m_ui->item_S04->text());
+        M_HOTKEY_PTR->setHotKey(2, m_ui->item_S06->text());
+        M_HOTKEY_PTR->setHotKey(3, m_ui->item_S08->text());
         M_HOTKEY_PTR->setHotKey(4, m_ui->item_S10->text());
         M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
         M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
@@ -555,7 +555,7 @@ void MusicSettingWidget::saveResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideBy, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVMode, m_ui->otherLrcKTVCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherDesktopSaverEnable, m_ui->otherDesktopSaverCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_ui->otherScreenSaverCheckBox->isChecked());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInteriorLrc, m_ui->showInteriorCheckBox->isChecked());
@@ -571,8 +571,7 @@ void MusicSettingWidget::saveResults()
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_ui->showDesktopCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineType, m_ui->DSingleLineCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColor, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
-                                                                   m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColor, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ? m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamily, m_ui->DfontComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_ui->DfontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcType, m_ui->DfontTypeComboBox->currentIndex());
@@ -631,7 +630,7 @@ void MusicSettingWidget::setScrollWidgetPageIndex(int index)
 
 void MusicSettingWidget::scrollWidgetValueChanged(int value)
 {
-    int index = value / SCROLL_ITEM_HEIGHT;
+    const int index = value / SCROLL_ITEM_HEIGHT;
     if(index < 5)
     {
         selectFunctionTableIndex(0, index);
@@ -663,7 +662,6 @@ void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
 
 void MusicSettingWidget::initScrollWidgetPage()
 {
-    //
     initNormalSettingWidget();
     initDownloadWidget();
     initSpectrumSettingWidget();
@@ -707,7 +705,6 @@ void MusicSettingWidget::initScrollWidgetPage()
     m_ui->scrollAreaWidgetArea->setFixedHeight(scrollAreaWidgetAreaLayout->count() * SCROLL_ITEM_HEIGHT);
     m_ui->scrollAreaWidget->raise();
     selectFunctionTableIndex(0, 0);
-    //
 }
 
 void MusicSettingWidget::initNormalSettingWidget()
@@ -783,7 +780,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->otherDesktopSaverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->otherScreenSaverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -795,7 +792,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherDesktopSaverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->otherNormalImageRadioBox->click();
 }

@@ -19,14 +19,12 @@
 #include "musicurlutils.h"
 #include "musicfileutils.h"
 #include "musicalgorithmutils.h"
+#include "musicsourceupdatethread.h"
 #include "musicdownloadcounterpvthread.h"
 #include "musicsinglemanager.h"
-#include "musicdesktopsaverwidget.h"
+#include "musicscreensaverwidget.h"
 
 #include "qdevicewatcher.h"
-
-#include <QPropertyAnimation>
-
 #include "qoss/ossconf.h"
 
 #define MARGIN_SIDE     5
@@ -49,7 +47,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_sideAnimation->setDuration(250*MT_MS);
 
     m_musicTimerAutoObject = new MusicTimerAutoObject(this);
-    m_desktopSaverWidget = nullptr;
+    m_screenSaverWidget = nullptr;
     m_setWindowToTop = false;
     m_mobileDeviceWidget = nullptr;
     m_quitContainer = nullptr;
@@ -60,6 +58,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
+    m_sourceUpdatehread = new MusicSourceUpdateThread(this);
     m_counterPVThread = new MusicDownloadCounterPVThread(this);
 
     musicToolSetsParameter();
@@ -71,18 +70,24 @@ MusicApplicationObject::~MusicApplicationObject()
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
     delete m_musicTimerAutoObject;
-    delete m_desktopSaverWidget;
+    delete m_screenSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
     delete m_deviceWatcher;
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
+    delete m_sourceUpdatehread;
     delete m_counterPVThread;
 }
 
 MusicApplicationObject *MusicApplicationObject::instance()
 {
     return m_instance;
+}
+
+bool MusicApplicationObject::isLastedVersion() const
+{
+    return m_sourceUpdatehread->isLastedVersion();
 }
 
 void MusicApplicationObject::loadNetWorkSetting()
@@ -93,6 +98,8 @@ void MusicApplicationObject::loadNetWorkSetting()
 #endif
     //oss host init
     OSSConf::OSS_HOST = MusicUtils::Algorithm::mdII(OSS_HOST_URL, false);
+    //
+    m_sourceUpdatehread->startToDownload();
     m_counterPVThread->startToDownload();
 }
 
@@ -105,16 +112,16 @@ void MusicApplicationObject::applySettingParameter()
         windows.setMusicRegeditAssociateFileIcon();
     }
 #endif
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherDesktopSaverEnable).toBool())
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool())
     {
-        if(!m_desktopSaverWidget)
+        if(!m_screenSaverWidget)
         {
-            m_desktopSaverWidget = new MusicDesktopSaverBackgroundWidget;
+            m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
         }
     }
-    if(m_desktopSaverWidget)
+    if(m_screenSaverWidget)
     {
-        m_desktopSaverWidget->applySettingParameter();
+        m_screenSaverWidget->applySettingParameter();
     }
 }
 
@@ -151,8 +158,8 @@ void MusicApplicationObject::windowCloseAnimation()
 void MusicApplicationObject::soureUpdateCheck()
 {
     MusicSourceUpdateNotifyWidget *w = new MusicSourceUpdateNotifyWidget;
-    w->show();
     w->start();
+    w->show();
 }
 
 void MusicApplicationObject::sideAnimationByOn()
@@ -286,6 +293,7 @@ void MusicApplicationObject::musicVersionUpdate()
 void MusicApplicationObject::musicTimerWidget()
 {
     MusicTimerWidget timer;
+
     QStringList list;
     MusicApplication::instance()->getCurrentPlaylist(list);
     timer.setSongStringList(list);

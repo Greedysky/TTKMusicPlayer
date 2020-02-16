@@ -167,11 +167,11 @@ namespace MusicUIObject
             background-image: url(:/toolSets/btn_refresh_dev_normal); } \
             QPushButton:hover{ background-image: url(:/toolSets/btn_refresh_dev_hover); }";
 
-    const QString MQSSDesktopSaverOn = " \
+    const QString MQSSScreenSaverOn = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_on); }";
 
-    const QString MQSSDesktopSaverOff = " \
+    const QString MQSSScreenSaverOff = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_off); }";
 }
