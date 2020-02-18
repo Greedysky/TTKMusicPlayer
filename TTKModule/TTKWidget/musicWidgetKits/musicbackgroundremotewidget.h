@@ -70,7 +70,7 @@ protected:
 
     int m_currentIndex;
     MusicSkinRemoteGroups m_groups;
-    MusicBackgroundListWidget *m_listWidget;
+    MusicBackgroundListWidget *m_backgroundList;
     MusicDownloadQueueCache *m_downloadQueue;
     MusicDownloadBackgroundRemoteThread *m_queryThread;
 

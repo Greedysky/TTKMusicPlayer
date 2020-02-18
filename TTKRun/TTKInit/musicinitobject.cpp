@@ -50,6 +50,7 @@ void MusicInitObject::checkTheDirectoryExist()
     dirIsExist(S_ART_DIR_FULL);
     dirIsExist(S_BACKGROUND_DIR_FULL);
     dirIsExist(S_UPDATE_DIR_FULL);
+    dirIsExist(S_SCREEN_DIR_FULL);
 
     dirIsExist(S_AVATAR_DIR_FULL);
     dirIsExist(S_USER_THEME_DIR_FULL);

@@ -59,7 +59,7 @@ void MusicSysConfigManager::readSysConfigData() const
     M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable,
                      readXmlAttributeByTagNameValue("otherScreenSaverEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime,
-                     readXmlAttributeByTagNameValue("otherScreenSaverTime"));
+                     readXmlAttributeByTagNameValue("otherScreenSaverTime").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable,
@@ -243,7 +243,7 @@ void MusicSysConfigManager::writeSysConfigData()
     const int otherSongFormat = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
     const int otherLrcKTVMode = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toInt();
     const int otherScreenSaverEnable = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toInt();
-    const QString &otherScreenSaverTime = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toString();
+    const int otherScreenSaverTime = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
 
     //
     const int rippleSpectrumEnable = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();

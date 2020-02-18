@@ -14,6 +14,8 @@
 
 #include <QScrollBar>
 
+#define CURRENT_ITEMS_COUNT     47
+
 #define NEW_OPERATOR(ui, list)                                                  \
     ui->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);                   \
     ui->setWidgetResizable(true);                                               \

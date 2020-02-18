@@ -168,7 +168,8 @@ protected:
 
     int m_myThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;
-    MusicBackgroundListWidget *m_backgroundList, *m_myBackgroundList;
+    MusicBackgroundListWidget *m_backgroundList;
+    MusicBackgroundListWidget *m_myBackgroundList;
     MusicBackgroundThunderWidget *m_thunderBackgroundList;
     MusicBackgroundDailyWidget *m_dailyBackgroundList;
 

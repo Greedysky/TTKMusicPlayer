@@ -13,8 +13,8 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(0);
 
-    m_listWidget = new MusicBackgroundListWidget(this);
-    hbox->addWidget(m_listWidget);
+    m_backgroundList = new MusicBackgroundListWidget(this);
+    hbox->addWidget(m_backgroundList);
     setLayout(hbox);
 
     m_currentIndex = -1;
@@ -22,13 +22,12 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
 
     m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
-
 }
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
 {
     abort();
-    delete m_listWidget;
+    delete m_backgroundList;
     delete m_downloadQueue;
     delete m_queryThread;
 }
@@ -51,7 +50,7 @@ void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
     {
         image.m_pix = QPixmap(":/image/lb_noneImage");
     }
-    m_listWidget->updateItem(image, data);
+    m_backgroundList->updateItem(image, data);
 }
 
 void MusicBackgroundRemoteWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
@@ -66,16 +65,15 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
         return;
     }
 
-    QDir dir(".");
     const QString &path = QString("%1%2").arg(CACHE_DIR_FULL).arg(m_groups[m_currentIndex].m_group);
-    dir.mkpath( path );
+    QDir().mkpath(path);
 
-    m_listWidget->clearAllItems();
+    m_backgroundList->clearAllItems();
     MusicDownloadQueueDatas datas;
     MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
     for(int i=0; i<items->count(); i++)
     {
-        m_listWidget->createItem(":/image/lb_noneImage", false);
+        m_backgroundList->createItem(":/image/lb_noneImage", false);
         MusicDownloadQueueData data;
         data.m_url = (*items)[i].m_url;
         data.m_savePath = QString("%1/%2%3").arg(path).arg(i).arg(prefix);
@@ -92,7 +90,7 @@ MusicBackgroundThunderWidget::MusicBackgroundThunderWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent)
 {
     m_functionsWidget = nullptr;
-    connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(remoteBackgroundListWidgetItemClicked(QString)));
+    connect(m_backgroundList, SIGNAL(itemClicked(QString)), parent, SLOT(remoteBackgroundListWidgetItemClicked(QString)));
 }
 
 MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
@@ -259,7 +257,7 @@ MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent)
 {
     m_currentIndex = 0;
-    connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(dailyBackgroundListWidgetItemClicked(QString)));
+    connect(m_backgroundList, SIGNAL(itemClicked(QString)), parent, SLOT(dailyBackgroundListWidgetItemClicked(QString)));
 }
 
 void MusicBackgroundDailyWidget::initialize()
@@ -272,7 +270,7 @@ void MusicBackgroundDailyWidget::initialize()
     }
     else
     {
-        startToDownload(JPG_FILE);
+        startToDownload(TTS_FILE);
     }
 }
 
@@ -297,6 +295,5 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
 void MusicBackgroundDailyWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
 {
     MusicBackgroundRemoteWidget::downLoadDataChanged(data);
-
-    startToDownload(JPG_FILE);
+    startToDownload(TTS_FILE);
 }

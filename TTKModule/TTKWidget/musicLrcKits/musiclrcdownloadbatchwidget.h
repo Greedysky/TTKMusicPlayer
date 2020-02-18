@@ -26,7 +26,6 @@
 namespace Ui {
 class MusicLrcDownloadBatchWidget;
 }
-class MusicDownloadQueueCache;
 
 /*! @brief The class of the the lrc batch download table widget.
  * @author Greedysky <greedysky@163.com>

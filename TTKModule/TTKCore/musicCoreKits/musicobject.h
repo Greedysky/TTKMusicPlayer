@@ -111,7 +111,7 @@
 #define CACHE_DIR               "MCached/"
 #define ART_DIR                 "MArt/"
 #define UPDATE_DIR              "MUpdate/"
-#define RES_DIR                 "MRes/"
+#define SCREEN_DIR              "MScreen/"
 #define AVATAR_DIR              "avatar/"
 #define USER_THEME_DIR          "theme/"
 #define PLUGINS_DIR             "MPlugins/"
@@ -162,6 +162,7 @@
 #define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 #define UPDATE_DIR_FULL         DOWNLOADS_DIR_FULL + UPDATE_DIR
+#define SCREEN_DIR_FULL         DOWNLOADS_DIR_FULL + SCREEN_DIR
 
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH

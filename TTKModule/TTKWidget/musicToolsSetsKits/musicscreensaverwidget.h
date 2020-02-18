@@ -24,6 +24,9 @@
 #include <QPushButton>
 #include "musicglobaldefine.h"
 
+class MusicDownloadQueueCache;
+class MusicBackgroundListWidget;
+
 /*! @brief The class of the screen saver widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -53,10 +56,21 @@ private Q_SLOTS:
      * Case button on and off.
      */
     void caseButtonOnAndOff();
+    /*!
+     * Send download data from net.
+     */
+    void downLoadDataChanged(const QString &data);
 
 private:
+    /*!
+     * Init widget and parameters.
+     */
+    void initialize();
+
     QLineEdit *m_inputEdit;
     QPushButton *m_caseButton;
+    MusicDownloadQueueCache *m_downloadQueue;
+    MusicBackgroundListWidget *m_backgroundList;
 };
 
 

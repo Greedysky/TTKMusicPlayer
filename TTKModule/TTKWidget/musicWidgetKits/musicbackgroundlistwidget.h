@@ -24,8 +24,6 @@
 #include "musicuiobject.h"
 #include "musicbackgroundconfigmanager.h"
 
-#define CURRENT_ITEMS_COUNT         47
-
 /*! @brief The class of the background list item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -170,6 +168,11 @@ public:
      */
     void createItem(const QString &icon, bool state);
     /*!
+     * Create item by icon and size.
+     */
+    void createItem(const QString &icon, const QSize &size, bool state);
+
+    /*!
      * Update item by backgroud image.
      */
     void updateItem(const MusicBackgroundImage &image, const QString &path);
@@ -223,7 +226,7 @@ private Q_SLOTS:
     void itemHasClicked(MusicBackgroundListItem *item);
 
 protected:
-    QGridLayout *m_layout;
+    QGridLayout *m_gridLayout;
     MusicBackgroundListItem *m_currentItem;
     QList<MusicBackgroundListItem*> m_items;
 

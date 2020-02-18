@@ -79,7 +79,7 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_gain", tr("gain"))
           << ItemPair(":/tools/lb_dlna", tr("dlna"))
           << ItemPair(":/tools/lb_detect", tr("detect"))
-          << ItemPair(":/tools/lb_desktop_saver", tr("saver"));
+          << ItemPair(":/tools/lb_screen_saver", tr("saver"));
 
     foreach(const ItemPair &pair, pairs)
     {

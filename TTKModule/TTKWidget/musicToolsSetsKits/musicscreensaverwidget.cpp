@@ -4,11 +4,21 @@
 #include "musicnumberdefine.h"
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
+#include "musicdownloadqueuecache.h"
+#include "musicbackgroundlistwidget.h"
+#///Oss import
+#include "qoss/qossconf.h"
 
 #include <QEvent>
 #include <QTimer>
 #include <QBoxLayout>
 #include <QApplication>
+
+#define OS_COUNT            10
+#define OS_SCREENSAVER_URL  "ScreenSaver"
+#define OS_WALLPAPER_NAME   "wallpaper.png"
+#define OS_WALLBAR_NAME     "wallbar.png"
+#define OS_WALLNAIL_NAME    "thumbnail.png"
 
 MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent)
@@ -76,28 +86,31 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     //
     QWidget *functionWidget = new QWidget(this);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
-    functionWidgetLayout->setContentsMargins(40, 10, 40, 10);
+    functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
     functionWidget->setLayout(functionWidgetLayout);
     mainLayout->addWidget(functionWidget);
+
+    m_backgroundList = new MusicBackgroundListWidget(this);
+    functionWidgetLayout->addWidget(m_backgroundList);
 
     connect(m_inputEdit, SIGNAL(textChanged(QString)), SLOT(inputDataChanged()));
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 
+    initialize();
     applySettingParameter();
 }
 
 MusicScreenSaverWidget::~MusicScreenSaverWidget()
 {
-    delete m_inputEdit;
-    delete m_caseButton;
+
 }
 
 void MusicScreenSaverWidget::applySettingParameter()
 {
     const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
-    const int mins = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
+    const int value = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
 
-    m_inputEdit->setText(QString::number(mins));
+    m_inputEdit->setText(QString::number(value));
     if(state)
     {
         caseButtonOnAndOff();
@@ -132,6 +145,49 @@ void MusicScreenSaverWidget::caseButtonOnAndOff()
     MusicApplicationObject::instance()->applySettingParameter();
 }
 
+void MusicScreenSaverWidget::downLoadDataChanged(const QString &data)
+{
+    if(data.contains(OS_WALLNAIL_NAME))
+    {
+        MusicBackgroundImage image;
+        image.m_pix = QPixmap(data);
+        m_backgroundList->updateItem(image, data);
+    }
+}
+
+void MusicScreenSaverWidget::initialize()
+{
+    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
+    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
+
+    m_backgroundList->clearAllItems();
+    MusicDownloadQueueDatas datas;
+    for(int i=1; i<=OS_COUNT; i++)
+    {
+        m_backgroundList->createItem(":/color/lb_white", QSize(155, 100), false);
+        const QString &url = QOSSConf::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
+        const QString &path = QString("%1%2/").arg(SCREEN_DIR_FULL).arg(i);
+        QDir().mkpath(path);
+
+        MusicDownloadQueueData wallData;
+        wallData.m_url = url + OS_WALLPAPER_NAME;
+        wallData.m_savePath = path + OS_WALLPAPER_NAME;
+        datas << wallData;
+
+        MusicDownloadQueueData barData;
+        barData.m_url = url + OS_WALLBAR_NAME;
+        barData.m_savePath = path + OS_WALLBAR_NAME;
+        datas << barData;
+
+        MusicDownloadQueueData nailData;
+        nailData.m_url = url + OS_WALLNAIL_NAME;
+        nailData.m_savePath = path + OS_WALLNAIL_NAME;
+        datas << nailData;
+    }
+
+    m_downloadQueue->addImageQueue(datas);
+    m_downloadQueue->startToDownload();
+}
 
 
 MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *parent)
@@ -163,9 +219,9 @@ MusicScreenSaverBackgroundWidget::~MusicScreenSaverBackgroundWidget()
 void MusicScreenSaverBackgroundWidget::applySettingParameter()
 {
     m_state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
-    const QString &time = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toString();
-    const int value = time.toInt();
-    if(value != 0)
+    const int value = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
+    m_state = (m_state && (value > 0));
+    if(value > 0)
     {
         m_timer->setInterval(value * MT_M2MS);
     }
