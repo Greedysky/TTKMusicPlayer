@@ -67,7 +67,7 @@ TTKRunApplication::TTKRunApplication(Display* dpy, const QString &appId, int arg
     : QApplication(dpy, argc, argv, visual, cmap)
 {
     TTK_INIT_PRIVATE;
-    sysInit(appId);
+    initialize(appId);
 }
 #  endif
 #endif
