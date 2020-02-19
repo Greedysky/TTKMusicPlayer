@@ -1,7 +1,6 @@
 #include "musicvolumepopwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicuiobject.h"
-#include "musicnumberdefine.h"
 #include "musicclickedslider.h"
 #include "musicwidgetheaders.h"
 

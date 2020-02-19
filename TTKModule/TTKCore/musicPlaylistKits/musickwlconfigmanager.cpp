@@ -1,5 +1,4 @@
 #include "musickwlconfigmanager.h"
-#include "musicotherdefine.h"
 
 MusicKWLConfigManager::MusicKWLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)

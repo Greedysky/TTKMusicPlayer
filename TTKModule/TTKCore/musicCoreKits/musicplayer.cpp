@@ -2,7 +2,6 @@
 #include "musicplaylist.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
-#include "musicnumberdefine.h"
 ///qmmp incldue
 #include "soundcore.h"
 ///

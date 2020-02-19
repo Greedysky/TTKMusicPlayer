@@ -10,7 +10,6 @@
 #include "musiclrcanalysis.h"
 #include "musicurlutils.h"
 #include "musicstringutils.h"
-#include "musicnumberdefine.h"
 #include "musicinteriorlrcuiobject.h"
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"

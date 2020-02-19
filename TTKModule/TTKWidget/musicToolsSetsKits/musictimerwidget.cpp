@@ -2,9 +2,7 @@
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicnumberdefine.h"
 #include "musicapplicationobject.h"
-#include "musicotherdefine.h"
 #include "musictoolsetsuiobject.h"
 
 #include <QButtonGroup>

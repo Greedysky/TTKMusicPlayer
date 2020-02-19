@@ -4,7 +4,6 @@
 #include "musictinyuiobject.h"
 #include "musicartistlistfoundcategorypopwidget.h"
 #include "musicpagingwidgetobject.h"
-#include "musicotherdefine.h"
 #include "musicrightareawidget.h"
 
 #include <qmath.h>

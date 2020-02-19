@@ -6,7 +6,6 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
-#include "musicotherdefine.h"
 #include "musicsinglemanager.h"
 
 #ifdef TTK_GREATER_NEW

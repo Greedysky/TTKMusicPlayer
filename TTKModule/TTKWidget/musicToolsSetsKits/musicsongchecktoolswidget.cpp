@@ -7,7 +7,6 @@
 #include "musicmessagebox.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicsongitemselecteddialog.h"
-#include "musicotherdefine.h"
 
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),

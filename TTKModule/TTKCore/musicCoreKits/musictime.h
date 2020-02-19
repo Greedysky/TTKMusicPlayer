@@ -21,7 +21,6 @@
 
 #include <QDataStream>
 #include "musicglobaldefine.h"
-#include "musicnumberdefine.h"
 
 /*! @brief The class of the music time object.
  * @author Greedysky <greedysky@163.com>

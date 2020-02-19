@@ -174,6 +174,16 @@ namespace MusicUIObject
     const QString MQSSScreenSaverOff = " \
             QPushButton{ border:none; \
             background-image: url(:/toolSets/btn_saver_off); }";
+
+    const QString MQSSScreenItemEnable = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_saver_enable); } \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_saver_enable_hover); }";
+
+    const QString MQSSScreenItemDisable = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_saver_disable); } \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_saver_disable_hover); }";
 }
 
 #endif // MUSICTOOLSETSUIOBJECT_H

@@ -6,7 +6,7 @@
 #include "musictinyuiobject.h"
 #include "musicplaylistfoundcategorypopwidget.h"
 #include "musicpagingwidgetobject.h"
-#include "musicotherdefine.h"
+#include "musicimageutils.h"
 
 #include <qmath.h>
 #include <QGridLayout>
@@ -101,7 +101,7 @@ void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)
         QPixmap cv(":/image/lb_album_cover");
         cv = cv.scaled(m_iconLabel->size());
         pix = pix.scaled(m_iconLabel->size());
-        MusicUtils::Widget::fusionPixmap(pix, cv, QPoint(0, 0));
+        MusicUtils::Image::fusionPixmap(pix, cv, QPoint(0, 0));
         m_iconLabel->setPixmap(pix);
     }
     m_topListenButton->raise();

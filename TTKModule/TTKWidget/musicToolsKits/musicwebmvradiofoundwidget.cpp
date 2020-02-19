@@ -4,7 +4,7 @@
 #include "musicmvradiocategorythread.h"
 #include "musicdownloadsourcethread.h"
 #include "musictinyuiobject.h"
-#include "musicotherdefine.h"
+#include "musicimageutils.h"
 
 #define WIDTH_LABEL_SIZE   150
 #define HEIGHT_LABEL_SIZE  100
@@ -67,7 +67,7 @@ void MusicWebMVRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
         QPixmap cv(":/image/lb_album_cover");
         cv = cv.scaled(m_iconLabel->size());
         pix = pix.scaled(m_iconLabel->size());
-        MusicUtils::Widget::fusionPixmap(pix, cv, QPoint(0, 0));
+        MusicUtils::Image::fusionPixmap(pix, cv, QPoint(0, 0));
         m_iconLabel->setPixmap(pix);
     }
 

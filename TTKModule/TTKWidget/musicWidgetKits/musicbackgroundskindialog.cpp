@@ -7,7 +7,6 @@
 #include "musicobject.h"
 #include "musictopareawidget.h"
 #include "musicapplicationobject.h"
-#include "musicotherdefine.h"
 #include "musicfileutils.h"
 #include "musicsettingmanager.h"
 #include "musicextractwrap.h"

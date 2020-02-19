@@ -3,7 +3,6 @@
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 #include "musictime.h"
-#include "musicotherdefine.h"
 #///QJson import
 #include "qjson/parser.h"
 

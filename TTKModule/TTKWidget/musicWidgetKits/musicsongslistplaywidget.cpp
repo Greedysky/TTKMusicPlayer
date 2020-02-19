@@ -5,14 +5,12 @@
 #include "musicuiobject.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
-#include "musicnumberdefine.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
 #include "musictinyuiobject.h"
 #include "musicsplititemclickedlabel.h"
 #include "musicwidgetheaders.h"
-#include "musicotherdefine.h"
 
 #include <QTimer>
 

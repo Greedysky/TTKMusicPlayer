@@ -1,8 +1,6 @@
 #include "musicextractwrap.h"
 #include "musicbackgroundconfigmanager.h"
-#include "musicnumberdefine.h"
-#include "musicotherdefine.h"
-#include "musicwidgetutils.h"
+#include "musicimageutils.h"
 #include "musiccoreutils.h"
 
 #include "ttkzip/zip.h"
@@ -247,7 +245,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &pat
     memset(&fileInfo, 0, sizeof(fileInfo));
 
     zipOpenNewFileInZip(zFile, (nPrefix + SKN_FILE).toLocal8Bit().constData(), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
-    QByteArray data = MusicUtils::Widget::getPixmapData(image->m_pix);
+    QByteArray data = MusicUtils::Image::getPixmapData(image->m_pix);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
 

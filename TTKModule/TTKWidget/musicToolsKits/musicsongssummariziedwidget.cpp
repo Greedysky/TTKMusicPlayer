@@ -14,7 +14,6 @@
 #include "musiclrcdownloadbatchwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
-#include "musicotherdefine.h"
 
 #define  ITEM_MIN_COUNT             4
 #define  ITEM_MAX_COUNT             10

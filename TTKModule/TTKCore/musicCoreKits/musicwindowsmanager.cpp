@@ -1,5 +1,4 @@
 #include "musicwindowsmanager.h"
-#include "musicotherdefine.h"
 #include "musicformats.h"
 
 #ifdef Q_OS_WIN

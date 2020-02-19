@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "musicabstractxml.h"
-#include "musicotherdefine.h"
 
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>

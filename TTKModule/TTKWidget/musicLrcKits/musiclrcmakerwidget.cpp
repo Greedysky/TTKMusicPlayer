@@ -13,7 +13,6 @@
 #include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
-#include "musicotherdefine.h"
 #include "musicwidgetutils.h"
 
 #include <QPainter>

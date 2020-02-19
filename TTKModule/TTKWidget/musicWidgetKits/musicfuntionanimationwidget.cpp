@@ -1,7 +1,7 @@
 #include "musicfuntionanimationwidget.h"
 #include "musicleftitemlistuiobject.h"
 #include "musicfunctionlistuiobject.h"
-#include "musicwidgetutils.h"
+#include "musicimageutils.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
@@ -19,7 +19,7 @@ MusicBackgroundWidget::MusicBackgroundWidget(QWidget *parent)
 
 void MusicBackgroundWidget::setTransparent(int alpha)
 {
-    m_backgroundAlpha = MusicUtils::Widget::reRenderValue<int>(0xFF, 0x1F, alpha);
+    m_backgroundAlpha = MusicUtils::Image::reRenderValue<int>(0xFF, 0x1F, alpha);
     update();
 }
 

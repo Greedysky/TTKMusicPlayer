@@ -6,14 +6,12 @@
 #include "musicaudiorecorderobject.h"
 #include "musicsongsharingwidget.h"
 #include "musicdownloadwidget.h"
-#include "musicnumberdefine.h"
 #include "musiccoremplayer.h"
 #include "musiclrcanalysis.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
 #include "musicsemaphoreloop.h"
-#include "musicotherdefine.h"
 
 #include <QMovie>
 #include <QShortcut>

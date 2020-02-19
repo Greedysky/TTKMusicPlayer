@@ -8,14 +8,12 @@
 #include "musicprogresswidget.h"
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
-#include "musicnumberdefine.h"
 #include "musicsongsharingwidget.h"
 #include "musicrightareawidget.h"
 #include "musicopenfilewidget.h"
 #include "musicplayedlistpopwidget.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
-#include "musicotherdefine.h"
 
 #include <qmath.h>
 #include <QAction>

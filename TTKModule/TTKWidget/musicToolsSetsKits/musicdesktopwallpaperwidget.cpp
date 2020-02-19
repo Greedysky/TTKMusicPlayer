@@ -6,7 +6,6 @@
 #include "musictransitionanimationlabel.h"
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
-#include "musicnumberdefine.h"
 #include "musicwidgetheaders.h"
 #include "musicfileutils.h"
 #include "musicsinglemanager.h"

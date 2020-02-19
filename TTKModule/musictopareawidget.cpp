@@ -15,9 +15,9 @@
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
-#include "musicotherdefine.h"
 #include "musictoolsetswidget.h"
 #include "musicsinglemanager.h"
+#include "musicimageutils.h"
 
 ///qmmp incldue
 #include "visual.h"
@@ -480,7 +480,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
     {
         origin = origin.convertToFormat(QImage::Format_ARGB32);
     }
-    MusicUtils::Widget::reRenderImage(35, &origin, &origin);
+    MusicUtils::Image::reRenderImage(35, &origin, &origin);
 
     m_backgroundImage = origin;
     drawWindowBackgroundRectString();
@@ -488,7 +488,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString()
 {
-    const float v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, m_backgroundAlpha);
+    const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());

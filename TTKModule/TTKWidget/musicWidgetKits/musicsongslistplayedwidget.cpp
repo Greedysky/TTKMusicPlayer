@@ -4,7 +4,6 @@
 #include "musicwidgetutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicleftareawidget.h"
-#include "musicnumberdefine.h"
 #include "musicwidgetheaders.h"
 
 #include <QTimer>

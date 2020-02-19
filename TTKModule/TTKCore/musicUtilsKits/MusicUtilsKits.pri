@@ -28,7 +28,8 @@ HEADERS  += \
     $$PWD/musicurlutils.h \
     $$PWD/musicqmmputils.h \
     $$PWD/musiccodecutils.h \
-    $$PWD/musicfileutils.h
+    $$PWD/musicfileutils.h \
+    $$PWD/musicimageutils.h
 
 }
 
@@ -42,6 +43,7 @@ SOURCES += \
     $$PWD/musicurlutils.cpp \
     $$PWD/musicqmmputils.cpp \
     $$PWD/musiccodecutils.cpp \
-    $$PWD/musicfileutils.cpp
+    $$PWD/musicfileutils.cpp \
+    $$PWD/musicimageutils.cpp
 
 }

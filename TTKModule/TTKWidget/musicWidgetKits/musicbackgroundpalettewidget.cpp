@@ -3,7 +3,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrap.h"
-#include "musicotherdefine.h"
 #include "musiccolordialog.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"

@@ -23,7 +23,6 @@
 #include <QTimer>
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
-#include "musicnumberdefine.h"
 
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>

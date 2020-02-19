@@ -1,5 +1,6 @@
 #include "musicfoundabstractwidget.h"
 #include "musicuiobject.h"
+#include "musicimageutils.h"
 
 MusicFoundAbstractWidget::MusicFoundAbstractWidget(QWidget *parent)
     : QWidget(parent)
@@ -65,7 +66,7 @@ void MusicFoundAbstractWidget::downLoadFinished(const QByteArray &data)
         pix.loadFromData(data);
         QPixmap cv(":/image/lb_playlist_cover");
         pix = pix.scaled(QSize(180, 180));
-        MusicUtils::Widget::fusionPixmap(cv, pix, QPoint(0, 0));
+        MusicUtils::Image::fusionPixmap(cv, pix, QPoint(0, 0));
         m_iconLabel->setPixmap(cv);
     }
 }

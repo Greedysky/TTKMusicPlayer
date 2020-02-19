@@ -436,6 +436,10 @@
         <file alias="btn_arrow_normal">../TTKResource/toolSets/btn_arrow_normal.png</file>
         <file alias="btn_saver_off">../TTKResource/toolSets/btn_saver_off.png</file>
         <file alias="btn_saver_on">../TTKResource/toolSets/btn_saver_on.png</file>
+        <file alias="btn_saver_enable">../TTKResource/toolSets/btn_saver_enable.png</file>
+        <file alias="btn_saver_enable_hover">../TTKResource/toolSets/btn_saver_enable_hover.png</file>
+        <file alias="btn_saver_disable">../TTKResource/toolSets/btn_saver_disable.png</file>
+        <file alias="btn_saver_disable_hover">../TTKResource/toolSets/btn_saver_disable_hover.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_resize_normal">../TTKResource/tiny/lb_resize_normal.png</file>

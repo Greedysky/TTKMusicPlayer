@@ -1,7 +1,6 @@
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideouiobject.h"
 #include "musicuiobject.h"
-#include "musicnumberdefine.h"
 #include "musicconnectionpool.h"
 #include "musicvideosearchtablewidget.h"
 

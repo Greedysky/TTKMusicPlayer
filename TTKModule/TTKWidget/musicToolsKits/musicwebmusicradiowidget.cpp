@@ -5,10 +5,10 @@
 #include "musicuiobject.h"
 #include "musicdownloadsourcethread.h"
 #include "musicwindowsmanager.h"
-#include "musicotherdefine.h"
 #include "musicwidgetheaders.h"
 #include "musicitemdelegate.h"
 #include "musiccoreutils.h"
+#include "musicimageutils.h"
 
 #ifdef TTK_GREATER_NEW
 #include <QStandardPaths>
@@ -132,7 +132,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
         setItem(index, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setIcon(MusicUtils::Widget::pixmapToRound(QPixmap(":/image/lb_defaultArt"), QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+        item->setIcon(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_defaultArt"), QPixmap(":/usermanager/lb_mask_50"), iconSize()));
         setItem(index, 1, item);
 
                           item = new QTableWidgetItem;
@@ -177,7 +177,7 @@ void MusicWebMusicRadioWidget::downLoadFinished(const QByteArray &data, const QV
     {
         QPixmap pix;
         pix.loadFromData(data);
-        it->setIcon(MusicUtils::Widget::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+        it->setIcon(MusicUtils::Image::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
     }
 }
 

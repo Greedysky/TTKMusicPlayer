@@ -1,5 +1,4 @@
 #include "musicdownloadqqinterface.h"
-#include "musicnumberdefine.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"

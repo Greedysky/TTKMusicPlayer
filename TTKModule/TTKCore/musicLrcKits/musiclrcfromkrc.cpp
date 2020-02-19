@@ -1,5 +1,4 @@
 #include "musiclrcfromkrc.h"
-#include "musicnumberdefine.h"
 #include "musicobject.h"
 #include "musiccodecutils.h"
 

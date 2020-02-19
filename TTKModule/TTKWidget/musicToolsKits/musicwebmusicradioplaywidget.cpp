@@ -9,7 +9,7 @@
 #include "musiclrcanalysis.h"
 #include "musictime.h"
 #include "musiccoreutils.h"
-#include "musicwidgetutils.h"
+#include "musicimageutils.h"
 #include "musicfunctionuiobject.h"
 #include "musicdownloadwidget.h"
 
@@ -312,7 +312,7 @@ void MusicWebMusicRadioPlayWidget::picDownloadStateChanged()
     {
         pix.load(":/image/lb_defaultArt");
     }
-    pix = MusicUtils::Widget::pixmapToRound(pix, QSize(150, 150), 100, 100);
+    pix = MusicUtils::Image::pixmapToRound(pix, QSize(150, 150), 100, 100);
     m_ui->artistLabel->setPixmap(pix);
     m_ui->artistLabel->start();
 }

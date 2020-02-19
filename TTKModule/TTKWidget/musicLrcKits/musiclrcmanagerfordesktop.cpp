@@ -1,6 +1,5 @@
 #include "musiclrcmanagerfordesktop.h"
 #include "musicsettingmanager.h"
-#include "musicnumberdefine.h"
 #include "musicwidgetutils.h"
 
 MusicLrcManagerForDesktop::MusicLrcManagerForDesktop(QWidget *parent)

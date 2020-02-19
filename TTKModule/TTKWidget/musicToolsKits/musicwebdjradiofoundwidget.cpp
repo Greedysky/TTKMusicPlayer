@@ -6,7 +6,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadsourcethread.h"
 #include "musicwebdjradioinfowidget.h"
-#include "musicotherdefine.h"
+#include "musicimageutils.h"
 
 #include <qmath.h>
 
@@ -74,7 +74,7 @@ void MusicWebDJRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
         QPixmap cv(":/image/lb_album_cover");
         cv = cv.scaled(m_iconLabel->size());
         pix = pix.scaled(m_iconLabel->size());
-        MusicUtils::Widget::fusionPixmap(pix, cv, QPoint(0, 0));
+        MusicUtils::Image::fusionPixmap(pix, cv, QPoint(0, 0));
         m_iconLabel->setPixmap(pix);
     }
     m_playButton->raise();

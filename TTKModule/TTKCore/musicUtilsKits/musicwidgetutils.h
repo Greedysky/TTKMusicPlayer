@@ -22,7 +22,6 @@
 class QComboBox;
 
 #include "musicobject.h"
-#include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The namespace of the utils widget.
@@ -70,55 +69,6 @@ namespace MusicUtils
          * Set widget to round by ratioX and ratioY.
          */
         MUSIC_UTILS_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
-        /*!
-         * Set fusion two image.
-         */
-        MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
-        /*!
-         * Set pixmap to round by ratio.
-         */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY);
-        /*!
-         * Set pixmap to round by ratio.
-         */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY);
-        /*!
-         * Set pixmap to round by ratio.
-         */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size);
-        /*!
-         * Get bitmap mask from rect.
-         */
-        MUSIC_UTILS_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
-        /*!
-         * Get pximap data.
-         */
-        MUSIC_UTILS_EXPORT QByteArray getPixmapData(const QPixmap &pix);
-
-        /*!
-         * Rerender the custum value.
-         */
-        template <typename T>
-        MUSIC_UTILS_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
-        {
-            if(alpha < 0) return 0;
-            else if(alpha > key) return key;
-
-            return (key - alpha)*1.0/100*value + alpha;
-        }
-
-        /*!
-         * Rerender the image alpha.
-         */
-        MUSIC_UTILS_EXPORT int reRenderAlpha(int alpha, int value);
-        /*!
-         * Rerender the image by color burn transform.
-         */
-        MUSIC_UTILS_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
-        /*!
-         * Image color burn transform.
-         */
-        MUSIC_UTILS_EXPORT int colorBurnTransform(int c, int delta);
 
     }
 }

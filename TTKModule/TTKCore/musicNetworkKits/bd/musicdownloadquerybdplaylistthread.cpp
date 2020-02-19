@@ -1,6 +1,5 @@
 #include "musicdownloadquerybdplaylistthread.h"
 #include "musicsemaphoreloop.h"
-#include "musicotherdefine.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"

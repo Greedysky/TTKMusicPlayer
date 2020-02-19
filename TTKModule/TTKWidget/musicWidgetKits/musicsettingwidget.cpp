@@ -12,7 +12,6 @@
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
 #include "musicwindowsmanager.h"
-#include "musicotherdefine.h"
 #include "ttkversion.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"

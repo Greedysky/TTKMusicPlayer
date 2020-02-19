@@ -167,10 +167,6 @@ public:
      * Create item by icon.
      */
     void createItem(const QString &icon, bool state);
-    /*!
-     * Create item by icon and size.
-     */
-    void createItem(const QString &icon, const QSize &size, bool state);
 
     /*!
      * Update item by backgroud image.

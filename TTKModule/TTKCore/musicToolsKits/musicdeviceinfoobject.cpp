@@ -1,5 +1,4 @@
 #include "musicdeviceinfoobject.h"
-#include "musicnumberdefine.h"
 #include "musicsemaphoreloop.h"
 
 #ifdef Q_OS_WIN

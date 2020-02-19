@@ -1,6 +1,5 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
-#include "musicotherdefine.h"
 #include "ttkdumper.h"
 
 #include <QScreen>

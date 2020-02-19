@@ -10,12 +10,11 @@
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicmessageaboutdialog.h"
-#include "musicnumberdefine.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
 #include "musicwidgetutils.h"
+#include "musicimageutils.h"
 #include "musicgiflabelwidget.h"
-#include "musicotherdefine.h"
 #include "musicurlutils.h"
 #include "musicfileutils.h"
 #include "musicalgorithmutils.h"
@@ -144,7 +143,7 @@ void MusicApplicationObject::windowCloseAnimation()
     else
     {
         float v = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
-              v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
+              v = MusicUtils::Image::reRenderValue<float>(1, 0.35, v);
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
         m_quitAnimation->setDuration(MT_S2MS);

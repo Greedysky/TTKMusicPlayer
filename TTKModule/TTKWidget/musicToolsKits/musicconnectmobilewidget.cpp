@@ -6,7 +6,6 @@
 #include "musicwidgetutils.h"
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
-#include "musicotherdefine.h"
 
 #include "qrencode/qrcodewidget.h"
 

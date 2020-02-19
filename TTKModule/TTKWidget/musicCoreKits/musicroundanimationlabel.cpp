@@ -1,5 +1,4 @@
 #include "musicroundanimationlabel.h"
-#include "musicnumberdefine.h"
 
 #include <QPainter>
 

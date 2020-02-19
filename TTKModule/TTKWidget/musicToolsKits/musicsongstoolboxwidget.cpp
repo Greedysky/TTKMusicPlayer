@@ -6,9 +6,8 @@
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicsong.h"
-#include "musicwidgetutils.h"
+#include "musicimageutils.h"
 #include "musicapplication.h"
-#include "musicotherdefine.h"
 #include "musictopareawidget.h"
 
 #include <QPainter>
@@ -223,7 +222,7 @@ MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = M_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
-        alpha = MusicUtils::Widget::reRenderValue<int>(0xFF, 0x1F, alpha);
+        alpha = MusicUtils::Image::reRenderValue<int>(0xFF, 0x1F, alpha);
     QWidget::paintEvent(event);
     QPainter painter(this);
 

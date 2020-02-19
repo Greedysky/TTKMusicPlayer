@@ -314,7 +314,6 @@ namespace MusicObject
         return QCoreApplication::applicationDirPath() + "/";
 #endif
     }
-
 }
 
 #endif // MUSICOBJECT_H

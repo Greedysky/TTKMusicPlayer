@@ -10,7 +10,6 @@
 #include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicdownloadsourcethread.h"
-#include "musicotherdefine.h"
 
 #include "qrencode/qrcodewidget.h"
 

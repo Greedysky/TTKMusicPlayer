@@ -2,7 +2,6 @@
 #include "musictoastlabel.h"
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
-#include "musicnumberdefine.h"
 #include "musicuiobject.h"
 
 #include <QMouseEvent>

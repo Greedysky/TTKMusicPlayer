@@ -20,7 +20,6 @@
 #include "musicfunctionlistuiobject.h"
 #include "musicwindowsmanager.h"
 #include "musictopareawidget.h"
-#include "musicotherdefine.h"
 #include "musicadvancedsearchedwidget.h"
 #include "musicrecommendfoundwidget.h"
 #include "musicartistlistfoundwidget.h"

@@ -1,5 +1,4 @@
 #include "musicsemaphoreloop.h"
-#include "musicnumberdefine.h"
 
 MusicSemaphoreLoop::MusicSemaphoreLoop(QObject *parent)
     : QEventLoop(parent)

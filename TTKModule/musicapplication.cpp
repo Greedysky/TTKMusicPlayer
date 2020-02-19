@@ -22,7 +22,6 @@
 #include "musiccoreutils.h"
 #include "musicfileutils.h"
 #include "musicplaylistmanager.h"
-#include "musicotherdefine.h"
 #include "musictinyuiobject.h"
 #include "musicdispatchmanager.h"
 #include "musictkplconfigmanager.h"

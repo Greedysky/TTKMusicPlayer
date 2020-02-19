@@ -8,7 +8,6 @@
 #include "musictinyuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
-#include "musicotherdefine.h"
 
 #include <QParallelAnimationGroup>
 

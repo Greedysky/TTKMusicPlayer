@@ -5,10 +5,10 @@
 #include "musicstringutils.h"
 #include "musicuiobject.h"
 #include "musicfileutils.h"
+#include "musicimageutils.h"
 #include "musicextractwrap.h"
 #include "musicbackgroundconfigmanager.h"
-
-#include "qimage/qimagewrap.h"
+#include "musicimageutils.h"
 
 #include <qmath.h>
 #include <QPainter>
@@ -94,19 +94,19 @@ void MusicLrcPosterItemWidget::paintEvent(QPaintEvent *event)
 void MusicLrcPosterItemWidget::drawTheme1(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
 
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = pix.height() + 5*ITEM_BORDER;
+    int offset = pix.height() + 5 * ITEM_BORDER;
     int v = 1;
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
     for(int i=0; i<m_data.count(); ++i)
     {
         v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(2 * ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
     //
@@ -114,52 +114,52 @@ void MusicLrcPosterItemWidget::drawTheme1(QPainter *painter)
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
     v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + v*lineHeight;
-    painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    v = 3 * ITEM_BORDER + v*lineHeight;
+    painter->drawText(2 * ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     offset += v;
     //
-    offset += 3*ITEM_BORDER;
-    painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, lineHeight, Qt::AlignCenter, tr("TTKMusicPlayer"));
-    offset += 3*ITEM_BORDER;
+    offset += 3 * ITEM_BORDER;
+    painter->drawText(2 * ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, lineHeight, Qt::AlignCenter, tr("TTKMusicPlayer"));
+    offset += 3 * ITEM_BORDER;
     //
-    setFixedHeight(offset >= ITEM_HEIGHT ? offset + 2*lineHeight : ITEM_HEIGHT);
+    setFixedHeight(offset >= ITEM_HEIGHT ? offset + 2 * lineHeight : ITEM_HEIGHT);
 }
 
 void MusicLrcPosterItemWidget::drawTheme2(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 5*ITEM_BORDER + lineHeight;
+    int offset = 5 * ITEM_BORDER + lineHeight;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     //
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + v*lineHeight;
-    offset += v + 10*ITEM_BORDER;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + v*lineHeight;
+    offset += v + 10 * ITEM_BORDER;
     if(offset < ITEM_HEIGHT)
     {
         offset = ITEM_HEIGHT;
     }
-    painter->drawText(8*ITEM_BORDER, offset - v - 10*ITEM_BORDER, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(8 * ITEM_BORDER, offset - v - 10 * ITEM_BORDER, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->setPen(QPen(QColor(0xBB, 0xBB, 0xBB), ITEM_BORDER));
-    painter->drawRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, offset - 10*ITEM_BORDER);
+    painter->drawRect(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, offset - 10 * ITEM_BORDER);
     setFixedHeight(offset);
     painter->setPen(QColor(0x66, 0x66, 0x66));
     //
-    offset = 8*ITEM_BORDER;
+    offset = 8 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -167,21 +167,21 @@ void MusicLrcPosterItemWidget::drawTheme2(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
 
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    const int delta = 5*ITEM_BORDER + lineHeight;
+    const int delta = 5 * ITEM_BORDER + lineHeight;
     int offset = 0;
     MIntList list;
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    painter->translate(2*ITEM_BORDER, pix.height());
+    painter->translate(2 * ITEM_BORDER, pix.height());
     painter->rotate(MA_90);
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
     list << MusicUtils::Widget::fontTextWidth(font(), title);
-    painter->drawText(8*ITEM_BORDER, 0, title);
+    painter->drawText(8 * ITEM_BORDER, 0, title);
     painter->setPen(QColor(0x66, 0x66, 0x66));
     //
     for(int i=0; i<m_data.count(); ++i)
@@ -192,34 +192,34 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
             break;
         }
         list << MusicUtils::Widget::fontTextWidth(font(), m_data[i]);
-        painter->drawText(8*ITEM_BORDER, -offset, m_data[i]);
+        painter->drawText(8 * ITEM_BORDER, -offset, m_data[i]);
     }
     std::sort(list.begin(), list.end());
     //
-    offset = pix.height() + list.last() + 10*ITEM_BORDER;
+    offset = pix.height() + list.last() + 10 * ITEM_BORDER;
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
 }
 
 void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    const int delta = 5*ITEM_BORDER + lineHeight;
+    const int delta = 5 * ITEM_BORDER + lineHeight;
     int offset = ITEM_WIDTH - delta;
     MIntList list;
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
-    painter->translate(2*ITEM_BORDER, 0);
+    painter->translate(2 * ITEM_BORDER, 0);
     painter->rotate(MA_90);
     //
     for(int i=0; i<m_data.count(); ++i)
     {
         offset = ITEM_WIDTH - delta*(i+1);
-        if(offset <= delta || offset <=  2*delta)
+        if(offset <= delta || offset <=  2 * delta)
         {
             break;
         }
         list << MusicUtils::Widget::fontTextWidth(font(), m_data[i]);
-        painter->drawText(3*ITEM_BORDER, -offset, m_data[i]);
+        painter->drawText(3 * ITEM_BORDER, -offset, m_data[i]);
     }
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
@@ -230,15 +230,15 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     {
         offset -= delta;
     }
-    painter->drawText(3*ITEM_BORDER, -offset, title);
+    painter->drawText(3 * ITEM_BORDER, -offset, title);
     //
     std::sort(list.begin(), list.end());
     painter->rotate(-MA_90);
-    painter->translate(-2*ITEM_BORDER, 0);
+    painter->translate(-2 * ITEM_BORDER, 0);
 
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
-    offset = list.last() + delta - 2*ITEM_BORDER;
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
+    offset = list.last() + delta - 2 * ITEM_BORDER;
     painter->drawPixmap(ITEM_BORDER, offset, pix);
     offset += ITEM_BORDER + pix.height();
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
@@ -247,15 +247,15 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme5(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 5*ITEM_BORDER;
+    int offset = 5 * ITEM_BORDER;
     int v = 1;
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
     for(int i=0; i<m_data.count(); ++i)
     {
         v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, m_data[i]);
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(2 * ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
     //
@@ -263,11 +263,11 @@ void MusicLrcPosterItemWidget::drawTheme5(QPainter *painter)
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
     v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
-    painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v*lineHeight, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(2 * ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, v*lineHeight, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
-    offset += 3*ITEM_BORDER + lineHeight;
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
+    offset += 3 * ITEM_BORDER + lineHeight;
     painter->drawPixmap(ITEM_BORDER, offset, pix);
     offset += ITEM_BORDER + pix.height();
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
@@ -276,24 +276,24 @@ void MusicLrcPosterItemWidget::drawTheme5(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
-    const int fixedOffset = (pix.width() - offset)/2;
-    pix = MusicUtils::Widget::pixmapToRound(pix, QRect(0, 0, offset, offset), offset, offset);
+    const int fixedOffset = (pix.width() - offset) / 2;
+    pix = MusicUtils::Image::pixmapToRound(pix, QRect(0, 0, offset, offset), offset, offset);
     painter->drawPixmap(ITEM_BORDER + fixedOffset, ITEM_BORDER, pix);
 
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    const int delta = 5*ITEM_BORDER + lineHeight;
+    const int delta = 5 * ITEM_BORDER + lineHeight;
     offset = ITEM_WIDTH - delta;
     MIntList list;
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    painter->translate(2*ITEM_BORDER, pix.height());
+    painter->translate(2 * ITEM_BORDER, pix.height());
     painter->rotate(MA_90);
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
     list << MusicUtils::Widget::fontTextWidth(font(), title);
-    painter->drawText(8*ITEM_BORDER, -offset, title);
+    painter->drawText(8 * ITEM_BORDER, -offset, title);
     painter->setPen(QColor(0x66, 0x66, 0x66));
     //
     for(int i=0; i<m_data.count(); ++i)
@@ -304,41 +304,41 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
             break;
         }
         list << MusicUtils::Widget::fontTextWidth(font(), m_data[i]);
-        painter->drawText(8*ITEM_BORDER, -offset, m_data[i]);
+        painter->drawText(8 * ITEM_BORDER, -offset, m_data[i]);
     }
     std::sort(list.begin(), list.end());
     //
-    offset = pix.height() + list.last() + 10*ITEM_BORDER;
+    offset = pix.height() + list.last() + 10 * ITEM_BORDER;
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
 }
 
 void MusicLrcPosterItemWidget::drawTheme7(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    const int delta = 5*ITEM_BORDER + lineHeight;
-    int offset = 8*ITEM_BORDER;
+    const int delta = 5 * ITEM_BORDER + lineHeight;
+    int offset = 8 * ITEM_BORDER;
     int v = 1;
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-    painter->drawLine(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 5*ITEM_BORDER, 5*ITEM_BORDER);
+    painter->drawLine(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 5 * ITEM_BORDER, 5 * ITEM_BORDER);
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        v = 5*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        v = 5 * ITEM_BORDER + v*lineHeight;
         painter->setPen(QColor(0x66, 0x66, 0x66));
-        painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
 
         painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-        painter->drawLine(5*ITEM_BORDER, offset - 3*ITEM_BORDER, ITEM_WIDTH - 5*ITEM_BORDER, offset - 3*ITEM_BORDER);
+        painter->drawLine(5 * ITEM_BORDER, offset - 3 * ITEM_BORDER, ITEM_WIDTH - 5 * ITEM_BORDER, offset - 3 * ITEM_BORDER);
     }
     //
     offset += delta;
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + v*lineHeight;
-    painter->drawText(5*ITEM_BORDER, offset - v, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + v*lineHeight;
+    painter->drawText(5 * ITEM_BORDER, offset - v, ITEM_WIDTH - 10 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     offset += v;
 
     setFixedHeight(offset >= ITEM_HEIGHT ? offset : ITEM_HEIGHT);
@@ -347,26 +347,26 @@ void MusicLrcPosterItemWidget::drawTheme7(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme8(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 5*ITEM_BORDER;
+    int offset = 5 * ITEM_BORDER;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     //
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + v*lineHeight;
-    offset += v + 10*ITEM_BORDER;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + v*lineHeight;
+    offset += v + 10 * ITEM_BORDER;
     if(offset < ITEM_HEIGHT)
     {
         offset = ITEM_HEIGHT;
     }
-    painter->drawText(5*ITEM_BORDER, offset - v - 10*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(5 * ITEM_BORDER, offset - v - 10 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->translate(0, 0);
     QPixmap borer(":/lrc/lb_poster_letter_line");
@@ -387,43 +387,43 @@ void MusicLrcPosterItemWidget::drawTheme8(QPainter *painter)
     //
     setFixedHeight(offset);
     //
-    offset = 5*ITEM_BORDER;
+    offset = 5 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
         painter->setPen(QColor(0x66, 0x66, 0x66));
-        painter->drawText(5*ITEM_BORDER, offset, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        painter->drawText(5 * ITEM_BORDER, offset, ITEM_WIDTH - 10 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
 
         painter->setPen(QColor(0xBB, 0xBB, 0xBB));
-        painter->drawLine(5*ITEM_BORDER, offset - ITEM_BORDER, ITEM_WIDTH - 5*ITEM_BORDER, offset - ITEM_BORDER);
+        painter->drawLine(5 * ITEM_BORDER, offset - ITEM_BORDER, ITEM_WIDTH - 5 * ITEM_BORDER, offset - ITEM_BORDER);
     }
 }
 
 void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 5*ITEM_BORDER;
+    int offset = 5 * ITEM_BORDER;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     //
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + v*lineHeight;
-    offset += v + 10*ITEM_BORDER;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + v*lineHeight;
+    offset += v + 10 * ITEM_BORDER;
     if(offset < ITEM_HEIGHT)
     {
         offset = ITEM_HEIGHT;
     }
-    painter->drawText(5*ITEM_BORDER, offset - v - 10*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(5 * ITEM_BORDER, offset - v - 10 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->translate(0, 0);
     QPixmap borer(":/lrc/lb_poster_letter_line");
@@ -443,17 +443,17 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
     painter->translate(0, 0);
     //
     QPixmap background(":/lrc/lb_poster_letter_background");
-    painter->drawPixmap(ITEM_WIDTH - background.width() - 2*ITEM_BORDER, background.height(), background.width(), background.height(), background);
+    painter->drawPixmap(ITEM_WIDTH - background.width() - 2 * ITEM_BORDER, background.height(), background.width(), background.height(), background);
     //
     setFixedHeight(offset);
     painter->setPen(QColor(0x66, 0x66, 0x66));
     //
-    offset = 5*ITEM_BORDER;
+    offset = 5 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(5*ITEM_BORDER, offset, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 10 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(5 * ITEM_BORDER, offset, ITEM_WIDTH - 10 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -461,34 +461,33 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
-    const int fixedOffset = (ITEM_HEIGHT - offset)/2;
+    const int fixedOffset = (ITEM_HEIGHT - offset) / 2;
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER + fixedOffset, pix);
 
     const int gWidth = pix.width()*3/4;
     const int gHeight = pix.height()*3/4;
-    QRect gaussRect = QRect((pix.width() - gWidth)/2, (pix.height() - gHeight)/2, gWidth, gHeight);
+    QRect gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2, gWidth, gHeight);
     const QImage& gauss = pix.copy(gaussRect).toImage();
-    QImageWrap().GaussFilter(gauss);
 
-    gaussRect = QRect((pix.width() - gWidth)/2, (pix.height() - gHeight)/2 + fixedOffset, gWidth, gHeight);
-    painter->drawPixmap(gaussRect, QPixmap::fromImage(gauss));
+    gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2 + fixedOffset, gWidth, gHeight);
+    painter->drawImage(gaussRect, MusicUtils::Image::GaussPixmap(gauss, 10));
     //
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     int v = 1;
-    offset = 3*ITEM_BORDER;
+    offset = 3 * ITEM_BORDER;
 
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(gaussRect.width() - 6*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(gaussRect.width() - 6 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
         if(offset + v >= gauss.height())
         {
             break;
         }
         painter->setPen(QColor(0x66, 0x66, 0x66));
-        painter->drawText(3*ITEM_BORDER + gaussRect.x(), offset + gaussRect.y(), gaussRect.width() - 6*ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
+        painter->drawText(3 * ITEM_BORDER + gaussRect.x(), offset + gaussRect.y(), gaussRect.width() - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -496,19 +495,19 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 8*ITEM_BORDER;
+    int offset = 8 * ITEM_BORDER;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + (v + 1)*lineHeight;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + (v + 1)*lineHeight;
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_spring");
@@ -526,19 +525,19 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
         w += ITEM_SCROLL_WIDTH;
     }
 
-    pix = pix.scaled(w - 2*ITEM_BORDER, h - 2*ITEM_BORDER);
+    pix = pix.scaled(w - 2 * ITEM_BORDER, h - 2 * ITEM_BORDER);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
-    painter->fillRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, height() - 10*ITEM_BORDER, QColor(255, 255, 255, 200));
+    painter->fillRect(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, height() - 10 * ITEM_BORDER, QColor(255, 255, 255, 200));
     //
-    painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
-    offset = 8*ITEM_BORDER;
+    offset = 8 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -546,19 +545,19 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 8*ITEM_BORDER;
+    int offset = 8 * ITEM_BORDER;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + (v + 1)*lineHeight;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + (v + 1)*lineHeight;
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_summer");
@@ -576,19 +575,19 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
         w += ITEM_SCROLL_WIDTH;
     }
 
-    pix = pix.scaled(w - 2*ITEM_BORDER, h - 2*ITEM_BORDER);
+    pix = pix.scaled(w - 2 * ITEM_BORDER, h - 2 * ITEM_BORDER);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
-    painter->fillRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, height() - 10*ITEM_BORDER, QColor(255, 255, 255, 200));
+    painter->fillRect(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, height() - 10 * ITEM_BORDER, QColor(255, 255, 255, 200));
     //
-    painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
-    offset = 8*ITEM_BORDER;
+    offset = 8 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -596,19 +595,19 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 8*ITEM_BORDER;
+    int offset = 8 * ITEM_BORDER;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + (v + 1)*lineHeight;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + (v + 1)*lineHeight;
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_autumn");
@@ -626,19 +625,19 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
         w += ITEM_SCROLL_WIDTH;
     }
 
-    pix = pix.scaled(w - 2*ITEM_BORDER, h - 2*ITEM_BORDER);
+    pix = pix.scaled(w - 2 * ITEM_BORDER, h - 2 * ITEM_BORDER);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
-    painter->fillRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, height() - 10*ITEM_BORDER, QColor(255, 255, 255, 200));
+    painter->fillRect(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, height() - 10 * ITEM_BORDER, QColor(255, 255, 255, 200));
     //
-    painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
-    offset = 8*ITEM_BORDER;
+    offset = 8 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -646,19 +645,19 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    int offset = 8*ITEM_BORDER;
+    int offset = 8 * ITEM_BORDER;
     int v = 1;
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        offset += v + 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        offset += v + 3 * ITEM_BORDER + v*lineHeight;
     }
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     const QString &title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + (v + 1)*lineHeight;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + (v + 1)*lineHeight;
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_winter");
@@ -676,19 +675,19 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
         w += ITEM_SCROLL_WIDTH;
     }
 
-    pix = pix.scaled(w - 2*ITEM_BORDER, h - 2*ITEM_BORDER);
+    pix = pix.scaled(w - 2 * ITEM_BORDER, h - 2 * ITEM_BORDER);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
-    painter->fillRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, height() - 10*ITEM_BORDER, QColor(255, 255, 255, 200));
+    painter->fillRect(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, height() - 10 * ITEM_BORDER, QColor(255, 255, 255, 200));
     //
-    painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
+    painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
-    offset = 8*ITEM_BORDER;
+    offset = 8 * ITEM_BORDER;
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
-        painter->drawText(8*ITEM_BORDER, offset, ITEM_WIDTH - 16*ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 16 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
+        painter->drawText(8 * ITEM_BORDER, offset, ITEM_WIDTH - 16 * ITEM_BORDER, v, Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -696,33 +695,33 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme15(QPainter *painter)
 {
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
-    const int fixedOffset = (ITEM_HEIGHT - offset)/2;
+    const int fixedOffset = (ITEM_HEIGHT - offset) / 2;
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER + fixedOffset, pix);
 
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     int v = 1;
-    offset = 3*ITEM_BORDER;
+    offset = 3 * ITEM_BORDER;
     //
     const QString &title = QString("%1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 6*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + (v + 1)*lineHeight;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 6 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + (v + 1)*lineHeight;
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     offset += v;
-    painter->drawText(3*ITEM_BORDER, offset, ITEM_WIDTH - 6*ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, title);
+    painter->drawText(3 * ITEM_BORDER, offset, ITEM_WIDTH - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, title);
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 6*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(ITEM_WIDTH - 6 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
         if(offset + v >= pix.height())
         {
             break;
         }
         painter->setPen(QColor(0x66, 0x66, 0x66));
-        painter->drawText(3*ITEM_BORDER, offset + fixedOffset, ITEM_WIDTH - 6*ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
+        painter->drawText(3 * ITEM_BORDER, offset + fixedOffset, ITEM_WIDTH - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
@@ -747,33 +746,33 @@ void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
     }
     //
     QPixmap pix(m_pixmap);
-    pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
+    pix = pix.scaled(ITEM_WIDTH - 2 * ITEM_BORDER, ITEM_WIDTH - 2 * ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
-    const int fixedOffset = (ITEM_HEIGHT - offset)/2;
+    const int fixedOffset = (ITEM_HEIGHT - offset) / 2;
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER + fixedOffset, pix);
 
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     int v = 1;
-    offset = 3*ITEM_BORDER;
+    offset = 3 * ITEM_BORDER;
     //
     const QString &title = QString("%1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
-    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 6*ITEM_BORDER) + 1;
-    v = 3*ITEM_BORDER + (v + 1)*lineHeight;
+    v = MusicUtils::Widget::fontTextWidth(font(), title)/(ITEM_WIDTH - 6 * ITEM_BORDER) + 1;
+    v = 3 * ITEM_BORDER + (v + 1)*lineHeight;
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     offset += v;
-    painter->drawText(3*ITEM_BORDER, offset, ITEM_WIDTH - 6*ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, title);
+    painter->drawText(3 * ITEM_BORDER, offset, ITEM_WIDTH - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, title);
     //
     for(int i=0; i<splData.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), splData[i])/(ITEM_WIDTH - 6*ITEM_BORDER) + 1;
-        v = 3*ITEM_BORDER + v*lineHeight;
+        v = MusicUtils::Widget::fontTextWidth(font(), splData[i])/(ITEM_WIDTH - 6 * ITEM_BORDER) + 1;
+        v = 3 * ITEM_BORDER + v*lineHeight;
         if(offset + v >= pix.height())
         {
             break;
         }
         painter->setPen(QColor(0x66, 0x66, 0x66));
-        painter->drawText(3*ITEM_BORDER, offset + fixedOffset, ITEM_WIDTH - 6*ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, splData[i]);
+        painter->drawText(3 * ITEM_BORDER, offset + fixedOffset, ITEM_WIDTH - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, splData[i]);
         offset += v;
     }
 }
@@ -781,18 +780,18 @@ void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
 {
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
-    const int delta = 5*ITEM_BORDER + lineHeight;
+    const int delta = 5 * ITEM_BORDER + lineHeight;
     int offset = delta;
     MIntList list;
     //
-    painter->translate(2*ITEM_BORDER, 0);
+    painter->translate(2 * ITEM_BORDER, 0);
     painter->rotate(MA_90);
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     const QString &title = QString("%1 ● %2").arg(MusicUtils::String::artistName(m_title)).arg(MusicUtils::String::songName(m_title));
 
     list << MusicUtils::Widget::fontTextWidth(font(), title);
     offset = ITEM_WIDTH - delta;
-    painter->drawText(12*ITEM_BORDER, lineHeight - offset, title);
+    painter->drawText(12 * ITEM_BORDER, lineHeight - offset, title);
     painter->setPen(QColor(0x66, 0x66, 0x66));
     for(int i=0; i<m_data.count(); ++i)
     {
@@ -802,26 +801,26 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
             break;
         }
         list << MusicUtils::Widget::fontTextWidth(font(), m_data[i]);
-        painter->drawText(12*ITEM_BORDER, lineHeight - offset, m_data[i]);
+        painter->drawText(12 * ITEM_BORDER, lineHeight - offset, m_data[i]);
     }
     std::sort(list.begin(), list.end());
     painter->rotate(-MA_90);
-    painter->translate(-2*ITEM_BORDER, 0);
+    painter->translate(-2 * ITEM_BORDER, 0);
     //
-    offset = list.last() + 2*(5+7)*ITEM_BORDER;
+    offset = list.last() + 2 * (5+7)*ITEM_BORDER;
     offset = qMax(offset, ITEM_HEIGHT);
     setFixedHeight(offset);
     //
     painter->setPen(QPen(QColor(0xFF, 0, 0), ITEM_BORDER));
-    painter->drawRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, offset - 10*ITEM_BORDER);
+    painter->drawRect(5 * ITEM_BORDER, 5 * ITEM_BORDER, ITEM_WIDTH - 10 * ITEM_BORDER, offset - 10 * ITEM_BORDER);
     painter->setPen(QColor(0xFF, 0, 0));
     painter->drawRect(7*ITEM_BORDER, 7*ITEM_BORDER, ITEM_WIDTH - 14*ITEM_BORDER, offset - 14*ITEM_BORDER);
 
     int ofs = ITEM_WIDTH, i = 0;
-    while(ofs > 2*delta)
+    while(ofs > 2 * delta)
     {
         ++i;
-        ofs = ITEM_WIDTH - 5*ITEM_BORDER - i*delta;
+        ofs = ITEM_WIDTH - 5 * ITEM_BORDER - i*delta;
         painter->drawLine(ofs, 7*ITEM_BORDER, ofs, offset - 7*ITEM_BORDER);
     }
 }

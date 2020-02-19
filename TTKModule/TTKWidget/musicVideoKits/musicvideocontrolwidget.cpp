@@ -6,7 +6,6 @@
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideobarragestylepopwidget.h"
 #include "musiclocalsongsearchedit.h"
-#include "musicotherdefine.h"
 #include "musicuiobject.h"
 #include "musictime.h"
 

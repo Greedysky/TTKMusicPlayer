@@ -22,10 +22,80 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QGridLayout>
 #include "musicglobaldefine.h"
 
 class MusicDownloadQueueCache;
-class MusicBackgroundListWidget;
+
+
+/*! @brief The class of the screen saver list item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicScreenSaverListItem : public QLabel
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicScreenSaverListItem)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicScreenSaverListItem(QWidget *parent = nullptr);
+
+    /*!
+     * Set item file name.
+     */
+    void setFilePath(const QString &path);
+    /*!
+     * Get item file name.
+     */
+    QString getFilePath() const { return m_path; }
+
+private Q_SLOTS:
+    /*!
+     * Case button on and off.
+     */
+    void caseButtonOnAndOff();
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
+
+    QString m_path;
+    QPushButton *m_enableButton;
+};
+
+
+
+/*! @brief The class of the screen saver list widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicScreenSaverListWidget : public QWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicScreenSaverListWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicScreenSaverListWidget(QWidget *parent = nullptr);
+
+    ~MusicScreenSaverListWidget();
+
+    /*!
+     * Create item by name and path.
+     */
+    void createItem(const QString &path);
+
+protected:
+    QGridLayout *m_gridLayout;
+    QList<MusicScreenSaverListItem*> m_items;
+
+};
+
+
 
 /*! @brief The class of the screen saver widget.
  * @author Greedysky <greedysky@163.com>
@@ -70,7 +140,7 @@ private:
     QLineEdit *m_inputEdit;
     QPushButton *m_caseButton;
     MusicDownloadQueueCache *m_downloadQueue;
-    MusicBackgroundListWidget *m_backgroundList;
+    MusicScreenSaverListWidget *m_backgroundList;
 };
 
 

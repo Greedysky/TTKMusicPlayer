@@ -120,8 +120,6 @@ set(MUSIC_HEADERS
     qhttpserver/qhttpresponse.h
     qhttpserver/qhttpserver.h
     qhttpserver/qhttpserverfwd.h
-    qimage/gaussianblur.h
-    qimage/qimagewrap.h
     qshortcut/qglobalshortcut.h
     qshortcut/qglobalshortcut_p.h
     qkugou/qkugouurl.h
@@ -174,8 +172,6 @@ set(MUSIC_SOURCES
     qhttpserver/qhttpresponse.cpp
     qhttpserver/qhttpserver.cpp
     qshortcut/qglobalshortcut.cpp
-    qimage/gaussianblur.cpp
-    qimage/qimagewrap.cpp
     qkugou/qkugouurl.cpp
     qkugou/qkugouwindow.cpp
     qrencode/bitstream.c

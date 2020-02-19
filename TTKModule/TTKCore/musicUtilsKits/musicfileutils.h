@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "musicobject.h"
-#include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The namespace of the utils file.

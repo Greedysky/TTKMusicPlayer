@@ -7,7 +7,6 @@
 #include "musicdatadownloadthread.h"
 #include "musicconnectionpool.h"
 #include "musicsemaphoreloop.h"
-#include "musicotherdefine.h"
 #include "musiccoreutils.h"
 #include "musicuiobject.h"
 

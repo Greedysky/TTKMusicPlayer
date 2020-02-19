@@ -1,6 +1,5 @@
 #include "musicdownloadbackgroundremotethread.h"
 #include "musicdownloadsourcethread.h"
-#include "musicotherdefine.h"
 #///QJson import
 #include "qjson/parser.h"
 

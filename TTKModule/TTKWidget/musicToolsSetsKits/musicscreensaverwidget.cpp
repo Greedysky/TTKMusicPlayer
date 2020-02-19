@@ -1,11 +1,10 @@
 #include "musicscreensaverwidget.h"
 #include "musicapplicationobject.h"
 #include "musicsettingmanager.h"
-#include "musicnumberdefine.h"
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
 #include "musicdownloadqueuecache.h"
-#include "musicbackgroundlistwidget.h"
+#include "musicimageutils.h"
 #///Oss import
 #include "qoss/qossconf.h"
 
@@ -14,11 +13,86 @@
 #include <QBoxLayout>
 #include <QApplication>
 
+#define ITEM_COUNT          4
 #define OS_COUNT            10
 #define OS_SCREENSAVER_URL  "ScreenSaver"
 #define OS_WALLPAPER_NAME   "wallpaper.png"
 #define OS_WALLBAR_NAME     "wallbar.png"
 #define OS_WALLNAIL_NAME    "thumbnail.png"
+
+MusicScreenSaverListItem::MusicScreenSaverListItem(QWidget *parent)
+    : QLabel(parent)
+{
+    setFixedSize(155, 100);
+    setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+
+    m_enableButton = new QPushButton(this);
+    m_enableButton->setCursor(Qt::PointingHandCursor);
+    m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
+    m_enableButton->setGeometry((155 - 38) / 2, (100 - 38) / 2, 38, 38);
+    m_enableButton->hide();
+
+    connect(m_enableButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
+}
+
+void MusicScreenSaverListItem::setFilePath(const QString &path)
+{
+    m_path = path;
+    setPixmap(QPixmap(m_path));
+}
+
+void MusicScreenSaverListItem::caseButtonOnAndOff()
+{
+    if(m_enableButton->styleSheet().contains(MusicUIObject::MQSSScreenItemDisable))
+    {
+        setPixmap(MusicUtils::Image::grayScalePixmap(QPixmap(m_path)));
+        m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemEnable);
+    }
+    else
+    {
+        setPixmap(QPixmap(m_path));
+        m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
+    }
+}
+
+void MusicScreenSaverListItem::leaveEvent(QEvent *event)
+{
+    QLabel::leaveEvent(event);
+    m_enableButton->hide();
+}
+
+void MusicScreenSaverListItem::enterEvent(QEvent *event)
+{
+    QLabel::enterEvent(event);
+    m_enableButton->show();
+}
+
+
+
+MusicScreenSaverListWidget::MusicScreenSaverListWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    m_gridLayout = new QGridLayout(this);
+    m_gridLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->setContentsMargins(7, 7, 7, 7);
+    setLayout(m_gridLayout);
+}
+
+MusicScreenSaverListWidget::~MusicScreenSaverListWidget()
+{
+    qDeleteAll(m_items);
+}
+
+void MusicScreenSaverListWidget::createItem(const QString &path)
+{
+    MusicScreenSaverListItem *item = new MusicScreenSaverListItem(this);
+    item->setFilePath(path);
+
+    m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    m_items << item;
+}
+
+
 
 MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     : QWidget(parent)
@@ -90,7 +164,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     functionWidget->setLayout(functionWidgetLayout);
     mainLayout->addWidget(functionWidget);
 
-    m_backgroundList = new MusicBackgroundListWidget(this);
+    m_backgroundList = new MusicScreenSaverListWidget(this);
     functionWidgetLayout->addWidget(m_backgroundList);
 
     connect(m_inputEdit, SIGNAL(textChanged(QString)), SLOT(inputDataChanged()));
@@ -149,9 +223,7 @@ void MusicScreenSaverWidget::downLoadDataChanged(const QString &data)
 {
     if(data.contains(OS_WALLNAIL_NAME))
     {
-        MusicBackgroundImage image;
-        image.m_pix = QPixmap(data);
-        m_backgroundList->updateItem(image, data);
+        m_backgroundList->createItem(data);
     }
 }
 
@@ -160,11 +232,9 @@ void MusicScreenSaverWidget::initialize()
     m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
 
-    m_backgroundList->clearAllItems();
     MusicDownloadQueueDatas datas;
     for(int i=1; i<=OS_COUNT; i++)
     {
-        m_backgroundList->createItem(":/color/lb_white", QSize(155, 100), false);
         const QString &url = QOSSConf::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
         const QString &path = QString("%1%2/").arg(SCREEN_DIR_FULL).arg(i);
         QDir().mkpath(path);

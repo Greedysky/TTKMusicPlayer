@@ -1,5 +1,4 @@
 #include "musicanimationstackedwidget.h"
-#include "musicnumberdefine.h"
 
 #include <QPixmap>
 

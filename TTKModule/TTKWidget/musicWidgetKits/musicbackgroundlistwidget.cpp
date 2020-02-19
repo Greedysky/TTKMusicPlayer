@@ -195,25 +195,19 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
 
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
-    m_gridLayout->addWidget(item, m_items.count()/ITEM_COUNT, m_items.count()%ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
 }
 
 void MusicBackgroundListWidget::createItem(const QString &icon, bool state)
 {
-    createItem(icon, QSize(137, 100), state);
-}
-
-void MusicBackgroundListWidget::createItem(const QString &icon, const QSize &size, bool state)
-{
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
-    item->setFixedSize(size);
     item->setCloseEnabled(state);
     item->setPixmap(QPixmap(icon).scaled(item->size()));
 
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
-    m_gridLayout->addWidget(item, m_items.count()/ITEM_COUNT, m_items.count()%ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+    m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
 }
 
@@ -332,7 +326,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
 
     for(int i=index; i<m_items.count(); ++i)
     {
-        m_gridLayout->addWidget(m_items[i], i/ITEM_COUNT, i%ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
+        m_gridLayout->addWidget(m_items[i], i / ITEM_COUNT, i % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     }
 }
 

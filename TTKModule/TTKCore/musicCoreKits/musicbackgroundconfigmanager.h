@@ -21,7 +21,6 @@
 
 #include <QPixmap>
 #include "musicabstractxml.h"
-#include "musicotherdefine.h"
 
 /*! @brief The class of the skin config item.
  * @author Greedysky <greedysky@163.com>

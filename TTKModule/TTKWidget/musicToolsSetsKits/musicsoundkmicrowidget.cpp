@@ -15,7 +15,6 @@
 #include "musicmessagebox.h"
 #include "musicaudiorecorderobject.h"
 #include "musiccodecutils.h"
-#include "musicotherdefine.h"
 #include "musicfileutils.h"
 #include "musictime.h"
 #include "musicsinglemanager.h"

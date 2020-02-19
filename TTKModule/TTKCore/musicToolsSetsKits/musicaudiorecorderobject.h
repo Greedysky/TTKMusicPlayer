@@ -24,7 +24,6 @@
 #include <QAudioOutput>
 #include <QAudioDeviceInfo>
 #include "musicglobaldefine.h"
-#include "musicotherdefine.h"
 
 /*! @brief The class of the audio recorder core.
  * @author Greedysky <greedysky@163.com>

@@ -8,7 +8,6 @@
 #include "musicurlutils.h"
 #include "musictime.h"
 #include "musicsettingmanager.h"
-#include "musicotherdefine.h"
 #include "musicsourceupdatewidget.h"
 #///QJson import
 #include "qjson/parser.h"

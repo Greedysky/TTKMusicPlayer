@@ -140,6 +140,7 @@
 ///
 #include "musicglobal.h"
 #include "musicotherdefine.h"
+#include "musicnumberdefine.h"
 ///
 
 #endif // MUSICGLOBALDEFINE_H
