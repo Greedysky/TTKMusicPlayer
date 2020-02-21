@@ -151,9 +151,9 @@ void MusicBDPlaylistCommentsThread::startToPage(int offset)
     const QString &data = MusicUtils::Algorithm::mdII(BD_PL_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
     QString eKey = QAesWrap().encryptCBC(data.toUtf8(), key.toUtf8(), key.toUtf8());
     const QString &sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
-    eKey.replace('+', "%2B");
-    eKey.replace('/', "%2F");
-    eKey.replace('=', "%3D");
+    eKey.replace("+", "%2B");
+    eKey.replace("/", "%2F");
+    eKey.replace("=", "%3D");
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
 
     m_pageTotal = 0;

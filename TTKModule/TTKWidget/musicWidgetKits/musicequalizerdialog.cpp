@@ -113,7 +113,7 @@ void MusicEqualizerDialog::readEqInformation()
         m_ui->showEqButton->click();
     }
 
-    const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(',');
+    const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
     if(eqValue.count() == 11)
     {
         if(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt() == 0)

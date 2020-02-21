@@ -52,7 +52,7 @@ void MusicKGLConfigManager::readPlaylistData(MusicSongItems &items)
                 }
                 else
                 {
-                    song.setMusicPath(path + song.getMusicName() + '.' + song.getMusicType());
+                    song.setMusicPath(path + song.getMusicName() + "." + song.getMusicType());
                 }
             }
             else if(cNode.nodeName() == "FileSize")

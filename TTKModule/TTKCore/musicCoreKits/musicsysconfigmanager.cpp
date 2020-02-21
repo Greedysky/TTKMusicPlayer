@@ -60,6 +60,8 @@ void MusicSysConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("otherScreenSaverEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime,
                      readXmlAttributeByTagNameValue("otherScreenSaverTime").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverIndex,
+                     readXmlAttributeByTagNameValue("otherScreenSaverIndex"));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable,
@@ -244,6 +246,7 @@ void MusicSysConfigManager::writeSysConfigData()
     const int otherLrcKTVMode = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toInt();
     const int otherScreenSaverEnable = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toInt();
     const int otherScreenSaverTime = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
+    const QString &otherScreenSaverIndex = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
 
     //
     const int rippleSpectrumEnable = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
@@ -379,6 +382,7 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(otherSettingDom, "otherLrcKTVMode", MusicXmlAttribute("value", otherLrcKTVMode));
     writeDomElement(otherSettingDom, "otherScreenSaverEnable", MusicXmlAttribute("value", otherScreenSaverEnable));
     writeDomElement(otherSettingDom, "otherScreenSaverTime", MusicXmlAttribute("value", otherScreenSaverTime));
+    writeDomElement(otherSettingDom, "otherScreenSaverIndex", MusicXmlAttribute("value", otherScreenSaverIndex));
 
     //
     writeDomElement(rippleSettingDom, "rippleSpectrumEnable", MusicXmlAttribute("value", rippleSpectrumEnable));
@@ -477,7 +481,7 @@ void MusicSysConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
     }
 
     const QDomElement &element = nodeList.at(0).toElement();
-    key << element.attribute("value") << element.text().split(',');
+    key << element.attribute("value") << element.text().split(",");
     if(key.count() != 3)
     {
         key.clear();
@@ -509,7 +513,7 @@ QRect MusicSysConfigManager::readWindowGeometry() const
 
 QPoint MusicSysConfigManager::readShowDLrcGeometry() const
 {
-    const QStringList &point = readXmlAttributeByTagNameValue("lrcDGeometry").split(',');
+    const QStringList &point = readXmlAttributeByTagNameValue("lrcDGeometry").split(",");
     if(point.count() != 2)
     {
         return QPoint();

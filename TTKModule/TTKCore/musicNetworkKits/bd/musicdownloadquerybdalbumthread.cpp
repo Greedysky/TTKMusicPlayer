@@ -183,7 +183,7 @@ void MusicDownLoadQueryBDAlbumThread::singleDownLoadFinished()
                     info.m_id = value["album_id"].toString();
                     info.m_coverUrl = value["pic_small"].toString().replace("_90", "_500");
                     info.m_name = value["title"].toString();
-                    info.m_updateTime = value["publishtime"].toString().replace('-', '.');
+                    info.m_updateTime = value["publishtime"].toString().replace("-", ".");
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

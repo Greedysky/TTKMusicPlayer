@@ -187,14 +187,15 @@ void MusicUtils::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const 
     painter.drawPixmap(pt.x(), pt.y(), front);
 }
 
-QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &src)
+QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &src, int radius)
 {
     QImage pix = src.toImage();
     for(int w=0; w<pix.width(); w++)
     {
         for(int h=0; h<pix.height(); h++)
         {
-            const int gray = qGray(pix.pixel(w, h));
+            int gray = qGray(pix.pixel(w, h)) + radius;
+                gray = qBound(0, gray, 255);
             const QRgb rgb = qRgb(gray, gray, gray);
             pix.setPixel(w, h, rgb);
         }
@@ -202,14 +203,14 @@ QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &src)
     return QPixmap::fromImage(pix);
 }
 
-QImage MusicUtils::Image::GaussPixmap(const QImage &image, int radius)
+QImage MusicUtils::Image::gaussPixmap(const QImage &image, int radius)
 {
     QImage img = image.copy();
-    MusicUtils::Image::GaussPixmap(img, radius);
+    MusicUtils::Image::gaussPixmap(img, radius);
     return img;
 }
 
-void MusicUtils::Image::GaussPixmap(QImage &image, int radius)
+void MusicUtils::Image::gaussPixmap(QImage &image, int radius)
 {
     GaussianBlur::gaussBlur((int*)image.bits(), image.width(), image.height(), radius);
 }

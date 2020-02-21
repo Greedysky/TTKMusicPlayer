@@ -186,10 +186,10 @@ QString MusicUtils::String::illegalCharactersReplaced(const QString &value)
 QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
 {
     QList<QColor> colors;
-    const QStringList &rgbs = value.split(';', QString::SkipEmptyParts);
+    const QStringList &rgbs = value.split(";", QString::SkipEmptyParts);
     foreach(const QString &rgb, rgbs)
     {
-        const QStringList &var = rgb.split(',');
+        const QStringList &var = rgb.split(",");
         if(var.count() != 3)
         {
             continue;

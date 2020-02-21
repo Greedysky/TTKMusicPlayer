@@ -251,7 +251,7 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         return;
     }
 
-    foreach(const QString &v, format.split('|'))
+    foreach(const QString &v, format.split("|"))
     {
         if(v.contains("MP4L"))
         {

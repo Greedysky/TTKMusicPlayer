@@ -345,8 +345,8 @@ QString MusicDownLoadWYInterface::encryptedId(const QString &string)
     encodedData = encodedData.toBase64(QByteArray::Base64UrlEncoding);
 #else
     encodedData = encodedData.toBase64();
-    encodedData.replace('+', '-');
-    encodedData.replace('/', '_');
+    encodedData.replace("+", "-");
+    encodedData.replace("/", "_");
 #endif
     return encodedData;
 }

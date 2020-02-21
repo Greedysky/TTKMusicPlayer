@@ -197,7 +197,7 @@ void MusicDownLoadQueryQQAlbumThread::singleDownLoadFinished()
                                       .arg(info.m_id.right(2).left(1))
                                       .arg(info.m_id.right(1)).arg(info.m_id);
                     info.m_name = value["albumName"].toString();
-                    info.m_updateTime = value["pubTime"].toString().replace('-', '.');
+                    info.m_updateTime = value["pubTime"].toString().replace("-", ".");
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

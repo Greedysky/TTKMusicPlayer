@@ -75,7 +75,7 @@ void CodeLinesTest::codeLines()
 
             if(availableSuffixs.contains(suffix))
             {
-                lineCount += fileAllData.count('\n') + 1;
+                lineCount += fileAllData.count("\n") + 1;
             }
             file.close();
         }, true);

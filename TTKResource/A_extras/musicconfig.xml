@@ -29,6 +29,7 @@
         <otherLrcKTVMode value="1"/>
         <otherScreenSaverEnable value="0"/>
         <otherScreenSaverTime value="10"/>
+        <otherScreenSaverIndex value=""/>
     </otherSetting>
     <rippleSetting>
         <rippleSpectrumEnable value="1"/>

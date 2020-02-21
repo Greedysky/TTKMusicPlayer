@@ -191,7 +191,7 @@ void MusicDownLoadQueryKGAlbumThread::singleDownLoadFinished()
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     info.m_name = value["albumname"].toString();
-                    info.m_updateTime = MusicUtils::String::splitString(value["publishtime"].toString().replace('-', '.'), " ").first();
+                    info.m_updateTime = MusicUtils::String::splitString(value["publishtime"].toString().replace("-", "."), " ").first();
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

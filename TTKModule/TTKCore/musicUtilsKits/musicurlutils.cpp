@@ -30,7 +30,7 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
     if(local)
     {
         QString p = path;
-        p.replace('/', "\\");
+        p.replace("/", "\\");
         p = "/select," + p;
         const HINSTANCE value = ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return (int)value >= 32;
@@ -43,9 +43,9 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
 
 void MusicUtils::Url::urlEncode(QString &data)
 {
-    data.replace('+', "%2B");
-    data.replace('/', "%2F");
-    data.replace('=', "%3D");
+    data.replace("+", "%2B");
+    data.replace("/", "%2F");
+    data.replace("=", "%3D");
 }
 
 void MusicUtils::Url::urlDecode(QString &data)
@@ -57,9 +57,9 @@ void MusicUtils::Url::urlDecode(QString &data)
 
 void MusicUtils::Url::urlEncode(QByteArray &data)
 {
-    data.replace('+', "%2B");
-    data.replace('/', "%2F");
-    data.replace('=', "%3D");
+    data.replace("+", "%2B");
+    data.replace("/", "%2F");
+    data.replace("=", "%3D");
 }
 
 void MusicUtils::Url::urlDecode(QByteArray &data)

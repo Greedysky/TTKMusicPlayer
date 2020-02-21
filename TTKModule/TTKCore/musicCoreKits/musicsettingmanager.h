@@ -73,6 +73,7 @@ public:
         OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Parameter*/
         OtherScreenSaverEnable,          /*!< Other Screen Saver Enable Parameter*/
         OtherScreenSaverTime,            /*!< Other Screen Saver Time Parameter*/
+        OtherScreenSaverIndex,           /*!< Other Screen Saver Index Parameter*/
 
         RippleSpectrumEnable,            /*!< Ripple Spectrum Enable Parameter*/
         RippleSpectrumColor,             /*!< Ripple Spectrum Color Parameter*/

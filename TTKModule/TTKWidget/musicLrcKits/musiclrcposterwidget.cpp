@@ -472,7 +472,7 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
     const QImage& gauss = pix.copy(gaussRect).toImage();
 
     gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2 + fixedOffset, gWidth, gHeight);
-    painter->drawImage(gaussRect, MusicUtils::Image::GaussPixmap(gauss, 10));
+    painter->drawImage(gaussRect, MusicUtils::Image::gaussPixmap(gauss, 10));
     //
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     int v = 1;

@@ -196,7 +196,7 @@ void MusicDownLoadQueryKWAlbumThread::singleDownLoadFinished()
                         info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                     }
                     info.m_name = value["name"].toString();
-                    info.m_updateTime = value["pub"].toString().replace('-', '.');
+                    info.m_updateTime = value["pub"].toString().replace("-", ".");
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

@@ -209,7 +209,7 @@ void MusicPlayer::setEqInformation()
     if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         setEnabledEffect(true);
-        const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(',');
+        const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
         if(eqValue.count() == 11)
         {
             MIntList hz;

@@ -45,7 +45,7 @@ void MusicScreenSaverListItem::caseButtonOnAndOff()
 {
     if(m_enableButton->styleSheet().contains(MusicUIObject::MQSSScreenItemDisable))
     {
-        setPixmap(MusicUtils::Image::grayScalePixmap(QPixmap(m_path)));
+        setPixmap(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemEnable);
     }
     else

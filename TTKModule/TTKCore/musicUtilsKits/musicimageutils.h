@@ -56,16 +56,16 @@ namespace MusicUtils
         /*!
          * Set fusion two image.
          */
-        MUSIC_UTILS_EXPORT QPixmap grayScalePixmap(const QPixmap &src);
+        MUSIC_UTILS_EXPORT QPixmap grayScalePixmap(const QPixmap &src, int radius = 0);
 
         /*!
          * Image gauss filter.
          */
-        MUSIC_UTILS_EXPORT QImage GaussPixmap(const QImage &image, int radius);
+        MUSIC_UTILS_EXPORT QImage gaussPixmap(const QImage &image, int radius);
         /*!
          * Image gauss filter.
          */
-        MUSIC_UTILS_EXPORT void GaussPixmap(QImage &image, int radius);
+        MUSIC_UTILS_EXPORT void gaussPixmap(QImage &image, int radius);
 
         /*!
          * Rerender the custum value.
