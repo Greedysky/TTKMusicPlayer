@@ -34,7 +34,9 @@ MusicScreenSaverListItem::MusicScreenSaverListItem(QWidget *parent)
     m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
     m_enableButton->setGeometry((155 - 38) / 2, (100 - 38) / 2, 38, 38);
     m_enableButton->hide();
-
+#ifdef Q_OS_UNIX
+    m_ui->m_enableButton->setFocusPolicy(Qt::NoFocus);
+#endif
     connect(m_enableButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 }
 
@@ -161,6 +163,9 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     m_caseButton->setFixedSize(44, 20);
     m_caseButton->setCursor(Qt::PointingHandCursor);
     m_caseButton->setStyleSheet(MusicUIObject::MQSSScreenSaverOff);
+#ifdef Q_OS_UNIX
+    m_ui->m_caseButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     topWidgetLayout->addWidget(pLabel);
     topWidgetLayout->addWidget(iLabel);

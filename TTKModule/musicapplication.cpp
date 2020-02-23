@@ -855,7 +855,7 @@ void MusicApplication::musicCreateRightMenu()
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
 
-    if(m_applicationObject->isLastedVersion())
+    if(!m_applicationObject->isLastedVersion())
     {
         rightClickMenu.addAction(QIcon(":/contextMenu/btn_update"), tr("New Version"), m_applicationObject, SLOT(musicVersionUpdate()));
     }
@@ -864,7 +864,7 @@ void MusicApplication::musicCreateRightMenu()
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
     musicInfo.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationObject, SLOT(musicBugReportView()));
-    musicInfo.addAction(QIcon(":/contextMenu/btn_feedback"), tr("Feedback"));
+    musicInfo.addAction(QIcon(":/contextMenu/btn_feedback"), tr("Feedback"), m_applicationObject, SLOT(musicMessageFeedback()));
     musicInfo.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR), m_applicationObject, SLOT(musicAboutUs()));
 
     rightClickMenu.addSeparator();

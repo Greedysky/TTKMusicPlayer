@@ -10,6 +10,7 @@
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicmessageaboutdialog.h"
+#include "musicmessagefeedbackdialog.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
 #include "musicwidgetutils.h"
@@ -282,6 +283,11 @@ void MusicApplicationObject::musicAboutUs()
 void MusicApplicationObject::musicBugReportView()
 {
     MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
+}
+
+void MusicApplicationObject::musicMessageFeedback()
+{
+    MusicMessageFeedbackDialog().exec();
 }
 
 void MusicApplicationObject::musicVersionUpdate()

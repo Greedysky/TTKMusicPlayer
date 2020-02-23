@@ -108,6 +108,10 @@ public Q_SLOTS:
      */
     void musicBugReportView();
     /*!
+     * Show message feedback.
+     */
+    void musicMessageFeedback();
+    /*!
      * Show version update widget.
      */
     void musicVersionUpdate();
