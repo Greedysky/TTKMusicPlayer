@@ -185,9 +185,6 @@ QLabel{background:transparent;}</string>
       <height>90</height>
      </rect>
     </property>
-    <property name="placeholderText">
-     <string>请详细描述您的问题</string>
-    </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
