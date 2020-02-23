@@ -15,7 +15,7 @@ MusicLicenseObject::MusicLicenseObject(QObject *parent)
 
 QString MusicLicenseObject::getEncodeKey(const QString &key)
 {
-    return splitString(key.toUtf8(), VALUE1);
+    return stringSplit(key.toUtf8(), VALUE1);
 }
 
 bool MusicLicenseObject::checkLicense(const QString &str)
@@ -36,7 +36,7 @@ QString MusicLicenseObject::getCharacteristicString()
     if(!nets.isEmpty())
     {
         const QString &adds = nets.first().hardwareAddress();
-        return splitString(adds.toUtf8(), VALUE0);
+        return stringSplit(adds.toUtf8(), VALUE0);
     }
     return QString();
 }
@@ -57,12 +57,12 @@ QStringList MusicLicenseObject::getCharacteristicStrings()
     QStringList data;
     foreach(const QNetworkInterface &nets, QNetworkInterface::allInterfaces())
     {
-        data << splitString(nets.hardwareAddress().toUtf8(), VALUE0);
+        data << stringSplit(nets.hardwareAddress().toUtf8(), VALUE0);
     }
     return data;
 }
 
-QString MusicLicenseObject::splitString(const QByteArray &data, const QByteArray &key)
+QString MusicLicenseObject::stringSplit(const QByteArray &data, const QByteArray &key)
 {
     QString value = MusicUtils::Algorithm::hmacSha1(data, key).toHex().mid(10, 20);
     const int count = value.count();

@@ -338,7 +338,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+B</string>
@@ -376,7 +376,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+Left</string>
@@ -471,7 +471,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+Right</string>
@@ -490,7 +490,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+Up</string>
@@ -509,7 +509,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+Down</string>
@@ -528,7 +528,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+S</string>
@@ -547,7 +547,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+I</string>
@@ -617,7 +617,7 @@ font-weight:bold;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px</string>
+      <string notr="true">background:rgba(0, 0, 0, 100);border-radius:2px; </string>
      </property>
      <property name="text">
       <string>Ctrl+M</string>

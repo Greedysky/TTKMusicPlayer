@@ -19,7 +19,8 @@ void MusicGlobalHotKeyEdit::setHotKeyEnabled(bool state)
 {
     setEnabled(state);
     setReadOnly(!state);
-    setStyleSheet(state ? MusicUIObject::MQSSBackgroundStyle05 : MusicUIObject::MQSSBackgroundStyle08);
+    setStyleSheet(state ? MusicUIObject::MQSSColorStyle10 + MusicUIObject::MQSSBackgroundStyle05
+                        : MusicUIObject::MQSSColorStyle01 + MusicUIObject::MQSSBackgroundStyle08);
 }
 
 void MusicGlobalHotKeyEdit::keyPressEvent(QKeyEvent *event)

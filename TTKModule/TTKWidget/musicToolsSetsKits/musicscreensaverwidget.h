@@ -19,11 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
 #include <QGridLayout>
-#include "musicglobaldefine.h"
+#include "musictransitionanimationlabel.h"
 
 class MusicDownloadQueueCache;
 
@@ -48,7 +47,18 @@ public:
     /*!
      * Get item file name.
      */
-    QString getFilePath() const { return m_path; }
+    QString getFilePath() const;
+
+    /*!
+     * Set item status.
+     */
+    void setStatus(int index, bool status);
+
+Q_SIGNALS:
+    /*!
+     * Current item clicked.
+     */
+    void itemClicked(int index, bool status);
 
 private Q_SLOTS:
     /*!
@@ -63,6 +73,7 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
     virtual void enterEvent(QEvent *event) override;
 
+    int m_index;
     QString m_path;
     QPushButton *m_enableButton;
 };
@@ -87,7 +98,7 @@ public:
     /*!
      * Create item by name and path.
      */
-    void createItem(const QString &path);
+    void createItem(QObject *object, const QString &path, int index, bool status);
 
 protected:
     QGridLayout *m_gridLayout;
@@ -116,6 +127,10 @@ public:
      * Apply settings parameters.
      */
     void applySettingParameter();
+    /*!
+     * Parse settings parameters.
+     */
+    static QVector<bool> parseSettingParameter();
 
 private Q_SLOTS:
     /*!
@@ -130,6 +145,10 @@ private Q_SLOTS:
      * Send download data from net.
      */
     void downLoadDataChanged(const QString &data);
+    /*!
+     * Current item has clicked.
+     */
+    void itemHasClicked(int index, bool status);
 
 private:
     /*!
@@ -148,7 +167,7 @@ private:
 /*! @brief The class of the screen saver background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicScreenSaverBackgroundWidget : public QWidget
+class MUSIC_TOOLSET_EXPORT MusicScreenSaverBackgroundWidget : public MusicTransitionAnimationLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverBackgroundWidget)
@@ -169,15 +188,23 @@ private Q_SLOTS:
     /*!
      * Screen saver time out.
      */
-    void timeout();
+    void runningTimeout();
+    /*!
+     * Screen saver time out.
+     */
+    void backgroundTimeout();
 
 private:
+    /*!
+     * Override the widget event.
+     */
     virtual bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
     bool m_state;
     bool m_isRunning;
-    QTimer *m_timer;
+    QTimer *m_runningTimer;
+    QTimer *m_backgroundTimer;
 
 };
 

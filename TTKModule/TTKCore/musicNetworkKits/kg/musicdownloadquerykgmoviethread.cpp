@@ -344,7 +344,7 @@ void MusicDownLoadQueryKGMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     MusicObject::MusicSongAttribute attr;
     attr.m_url = key["downurl"].toString();
     attr.m_size = MusicUtils::Number::size2Label(key["filesize"].toInt());
-    attr.m_format = MusicUtils::String::StringSplite(attr.m_url);
+    attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
 
     int bitRate = key["bitrate"].toInt()/1000;
     if(bitRate <= 375)

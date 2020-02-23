@@ -18,7 +18,7 @@ void MusicXMTextDownLoadThread::startToDownload()
             m_timer.start(MT_S2MS);
             m_manager = new QNetworkAccessManager(this);
 
-            m_lrcType = MusicUtils::String::StringSplite(m_url);
+            m_lrcType = MusicUtils::String::stringSplitToken(m_url);
 
             QNetworkRequest request;
             request.setUrl(m_url);

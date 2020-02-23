@@ -270,7 +270,7 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(qint64 id)
                     attr.m_bitrate = MB_1000;
 
                 attr.m_url = value[key].toString();
-                attr.m_format = MusicUtils::String::StringSplite(attr.m_url);
+                attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
                 if(!findUrlFileSize(&attr)) return;
                 musicInfo.m_songAttrs.append(attr);
             }

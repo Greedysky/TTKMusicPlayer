@@ -37,58 +37,46 @@ QString MusicUtils::String::musicPrefix()
     return path;
 }
 
-QString MusicUtils::String::StringPrefix(const QString &name)
+QString MusicUtils::String::stringPrefix(const QString &name)
 {
-    return StringPrefix(name, ".");
+    return stringPrefix(name, ".");
 }
 
-QString MusicUtils::String::StringPrefix(const QString &name, const QString &prefix)
+QString MusicUtils::String::stringPrefix(const QString &name, const QString &prefix)
 {
     return name.left(name.indexOf(prefix));
 }
 
-QString MusicUtils::String::StringSuffix(const QString &name)
+QString MusicUtils::String::stringSuffix(const QString &name)
 {
-    return StringSuffix(name, ".");
+    return stringSuffix(name, ".");
 }
 
-QString MusicUtils::String::StringSuffix(const QString &name, const QString &suffix)
+QString MusicUtils::String::stringSuffix(const QString &name, const QString &suffix)
 {
-    return name.right(name.length() - name.lastIndexOf(suffix) - 1);
+    return name.right(name.length() - name.lastIndexOf(suffix) - suffix.length());
 }
 
-QString MusicUtils::String::StringSplite(const QString &name)
+QString MusicUtils::String::stringSplitToken(const QString &name)
 {
-    return StringSplite(name, ".", "?");
+    return stringSplitToken(name, ".", "?");
 }
 
-QString MusicUtils::String::StringSplite(const QString &name, const QString &prefix, const QString &suffix)
+QString MusicUtils::String::stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)
 {
-    const QString &data = StringSuffix(name, prefix);
-    return StringPrefix(data, suffix);
-}
-
-QString MusicUtils::String::splitLineKey()
-{
-#ifdef Q_OS_WIN
-    return "\r\n";
-#else
-    return "\n";
-#endif
-}
-
-QString MusicUtils::String::removeStringBy(const QString &value, const QString &key)
-{
-    QString s = value;
-    s.remove(key);
-    if(s.contains(key))
+    if(revert)
     {
-        s = removeStringBy(key);
+        const QString &data = stringSuffix(name, prefix);
+        return stringPrefix(data, suffix);
     }
-    return s;
+    else
+    {
+        const QString &data = stringPrefix(name, prefix);
+        return stringSuffix(data, suffix);
+    }
 }
 
-QStringList MusicUtils::String::splitString(const QString &value, const QString &key)
+QStringList MusicUtils::String::stringSplit(const QString &value, const QString &key)
 {
     QStringList strings = value.split(QString(" %1 ").arg(key));
     if(strings.isEmpty() || strings.count() == 1)
@@ -96,6 +84,26 @@ QStringList MusicUtils::String::splitString(const QString &value, const QString 
         strings = value.split(key);
     }
     return strings;
+}
+
+QString MusicUtils::String::removeStringToken(const QString &value, const QString &key)
+{
+    QString s = value;
+    s.remove(key);
+    if(s.contains(key))
+    {
+        s = removeStringToken(key);
+    }
+    return s;
+}
+
+QString MusicUtils::String::newlines()
+{
+#ifdef Q_OS_WIN
+    return "\r\n";
+#else
+    return "\n";
+#endif
 }
 
 bool MusicUtils::String::isChinese(const QChar &c)
@@ -109,7 +117,7 @@ bool MusicUtils::String::isChinese(const QChar &c)
 
 QString MusicUtils::String::artistName(const QString &value, const QString &key)
 {
-    const QStringList &s = splitString(value);
+    const QStringList &s = stringSplit(value);
     if(s.count() >= 2)
     {
         if(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt() == 0)
@@ -128,7 +136,7 @@ QString MusicUtils::String::artistName(const QString &value, const QString &key)
 
 QString MusicUtils::String::songName(const QString &value, const QString &key)
 {
-    const QStringList &s = splitString(value);
+    const QStringList &s = stringSplit(value);
     if(s.count() >= 2)
     {
         if(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt() == 0)

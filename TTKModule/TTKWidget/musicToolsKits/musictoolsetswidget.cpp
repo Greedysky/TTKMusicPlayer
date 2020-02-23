@@ -53,35 +53,35 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 
 void MusicToolSetsWidget::addListWidgetItem()
 {
-    typedef struct ItemPair
+    typedef struct ToolItem
     {
         QString m_icon;
         QString m_name;
 
-        ItemPair() { }
-        ItemPair(const QString &icon, const QString &name)
+        ToolItem() { }
+        ToolItem(const QString &icon, const QString &name)
         {
             m_icon = icon;
             m_name = name;
         }
-    }ItemPair;
-    TTK_DECLARE_LISTS(ItemPair);
+    }ToolItem;
+    TTK_DECLARE_LISTS(ToolItem);
 
-    ItemPairs pairs;
-    pairs << ItemPair(":/tools/lb_localmanager", tr("localmanager"))
-          << ItemPair(":/tools/lb_recorder", tr("recorder"))
-          << ItemPair(":/tools/lb_bell", tr("bell"))
-          << ItemPair(":/tools/lb_timer", tr("timer"))
-          << ItemPair(":/tools/lb_transform", tr("transform"))
-          << ItemPair(":/tools/lb_spectrum", tr("spectrum"))
-          << ItemPair(":/tools/lb_wallpaper", tr("wallpaper"))
-          << ItemPair(":/tools/lb_connections" ,tr("connections"))
-          << ItemPair(":/tools/lb_gain", tr("gain"))
-          << ItemPair(":/tools/lb_dlna", tr("dlna"))
-          << ItemPair(":/tools/lb_detect", tr("detect"))
-          << ItemPair(":/tools/lb_screen_saver", tr("saver"));
+    ToolItems pairs;
+    pairs << ToolItem(":/tools/lb_localmanager", tr("localmanager"))
+          << ToolItem(":/tools/lb_recorder", tr("recorder"))
+          << ToolItem(":/tools/lb_bell", tr("bell"))
+          << ToolItem(":/tools/lb_timer", tr("timer"))
+          << ToolItem(":/tools/lb_transform", tr("transform"))
+          << ToolItem(":/tools/lb_spectrum", tr("spectrum"))
+          << ToolItem(":/tools/lb_wallpaper", tr("wallpaper"))
+          << ToolItem(":/tools/lb_connections" ,tr("connections"))
+          << ToolItem(":/tools/lb_gain", tr("gain"))
+          << ToolItem(":/tools/lb_dlna", tr("dlna"))
+          << ToolItem(":/tools/lb_detect", tr("detect"))
+          << ToolItem(":/tools/lb_screen_saver", tr("saver"));
 
-    foreach(const ItemPair &pair, pairs)
+    foreach(const ToolItem &pair, pairs)
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
 #if TTK_QT_VERSION_CHECK(5,13,0)

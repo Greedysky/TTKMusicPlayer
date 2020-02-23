@@ -57,7 +57,7 @@ MusicRemoteWidgetForComplexStyle::~MusicRemoteWidgetForComplexStyle()
 
 void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 {
-    const bool flag = (MusicUtils::String::splitString(value).count() == 1);
+    const bool flag = (MusicUtils::String::stringSplit(value).count() == 1);
 
     m_songName->setText(MusicUtils::String::songName(value));
     m_songArtist->setText(flag ? "--" : MusicUtils::String::artistName(value));

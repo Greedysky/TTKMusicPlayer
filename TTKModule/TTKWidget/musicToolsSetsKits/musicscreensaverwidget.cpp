@@ -5,11 +5,13 @@
 #include "musictoolsetsuiobject.h"
 #include "musicdownloadqueuecache.h"
 #include "musicimageutils.h"
+#include "musicstringutils.h"
 #///Oss import
 #include "qoss/qossconf.h"
 
 #include <QEvent>
 #include <QTimer>
+#include <QPainter>
 #include <QBoxLayout>
 #include <QApplication>
 
@@ -26,6 +28,7 @@ MusicScreenSaverListItem::MusicScreenSaverListItem(QWidget *parent)
     setFixedSize(155, 100);
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
 
+    m_index = -1;
     m_enableButton = new QPushButton(this);
     m_enableButton->setCursor(Qt::PointingHandCursor);
     m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
@@ -41,17 +44,33 @@ void MusicScreenSaverListItem::setFilePath(const QString &path)
     setPixmap(QPixmap(m_path));
 }
 
+QString MusicScreenSaverListItem::getFilePath() const
+{
+    return m_path;
+}
+
+void MusicScreenSaverListItem::setStatus(int index, bool status)
+{
+    m_index = index;
+    if(!status)
+    {
+        caseButtonOnAndOff();
+    }
+}
+
 void MusicScreenSaverListItem::caseButtonOnAndOff()
 {
     if(m_enableButton->styleSheet().contains(MusicUIObject::MQSSScreenItemDisable))
     {
         setPixmap(MusicUtils::Image::grayScalePixmap(QPixmap(m_path), 70));
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemEnable);
+        Q_EMIT itemClicked(m_index, false);
     }
     else
     {
         setPixmap(QPixmap(m_path));
         m_enableButton->setStyleSheet(MusicUIObject::MQSSScreenItemDisable);
+        Q_EMIT itemClicked(m_index, true);
     }
 }
 
@@ -83,10 +102,12 @@ MusicScreenSaverListWidget::~MusicScreenSaverListWidget()
     qDeleteAll(m_items);
 }
 
-void MusicScreenSaverListWidget::createItem(const QString &path)
+void MusicScreenSaverListWidget::createItem(QObject *object, const QString &path, int index, bool status)
 {
     MusicScreenSaverListItem *item = new MusicScreenSaverListItem(this);
     item->setFilePath(path);
+    item->setStatus(index, status);
+    connect(item, SIGNAL(itemClicked(int,bool)), object, SLOT(itemHasClicked(int,bool)));
 
     m_gridLayout->addWidget(item, m_items.count() / ITEM_COUNT, m_items.count() % ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
@@ -191,6 +212,26 @@ void MusicScreenSaverWidget::applySettingParameter()
     }
 }
 
+QVector<bool> MusicScreenSaverWidget::parseSettingParameter()
+{
+    QVector<bool> statusVector;
+    statusVector.fill(true, OS_COUNT);
+
+    const QString &value = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
+    const QStringList items(value.split(";"));
+    foreach(const QString &item, items)
+    {
+        const QStringList itemStatus(item.split(","));
+        if(itemStatus.count() == 2)
+        {
+            const int index = itemStatus[0].toInt();
+            const bool status = itemStatus[1].toInt();
+            statusVector[index] = status;
+        }
+    }
+    return statusVector;
+}
+
 void MusicScreenSaverWidget::inputDataChanged()
 {
     const bool state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
@@ -221,10 +262,30 @@ void MusicScreenSaverWidget::caseButtonOnAndOff()
 
 void MusicScreenSaverWidget::downLoadDataChanged(const QString &data)
 {
+    QVector<bool> statusVector(parseSettingParameter());
     if(data.contains(OS_WALLNAIL_NAME))
     {
-        m_backgroundList->createItem(data);
+        const int index = MusicUtils::String::stringSplitToken(data, SCREEN_DIR, "/", true).toInt();
+        if(index < 0 || index >= statusVector.count())
+        {
+            return;
+        }
+        m_backgroundList->createItem(this, data, index, statusVector[index]);
     }
+}
+
+void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
+{
+    QVector<bool> statusVector(parseSettingParameter());
+    statusVector[index] = status;
+
+    QStringList items;
+    for(int i=0; i<statusVector.count(); ++i)
+    {
+        items << QString("%1,%2").arg(i).arg(statusVector[i]);
+    }
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverIndex, items.join(";"));
+    MusicApplicationObject::instance()->applySettingParameter();
 }
 
 void MusicScreenSaverWidget::initialize()
@@ -233,7 +294,7 @@ void MusicScreenSaverWidget::initialize()
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
 
     MusicDownloadQueueDatas datas;
-    for(int i=1; i<=OS_COUNT; i++)
+    for(int i=0; i<OS_COUNT; i++)
     {
         const QString &url = QOSSConf::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
         const QString &path = QString("%1%2/").arg(SCREEN_DIR_FULL).arg(i);
@@ -261,47 +322,90 @@ void MusicScreenSaverWidget::initialize()
 
 
 MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *parent)
-    : QWidget(parent)
+    : MusicTransitionAnimationLabel(parent)
 {
     setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 
     m_state = false;
     m_isRunning = false;
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
+    m_runningTimer = new QTimer(this);
+    connect(m_runningTimer, SIGNAL(timeout()), SLOT(runningTimeout()));
 
-    setStyleSheet("background:blue");
+    m_backgroundTimer = new QTimer(this);
+    m_backgroundTimer->setInterval(15 * MT_S2MS);
+    connect(m_backgroundTimer, SIGNAL(timeout()), SLOT(backgroundTimeout()));
+
     hide();
-
     qApp->installEventFilter(this);
 }
 
 MusicScreenSaverBackgroundWidget::~MusicScreenSaverBackgroundWidget()
 {
-    if(m_timer->isActive())
+    if(m_runningTimer->isActive())
     {
-        m_timer->stop();
+        m_runningTimer->stop();
     }
-    delete m_timer;
+    delete m_runningTimer;
+
+    if(m_backgroundTimer->isActive())
+    {
+        m_backgroundTimer->stop();
+    }
+    delete m_backgroundTimer;
 }
 
 void MusicScreenSaverBackgroundWidget::applySettingParameter()
 {
+    if(m_runningTimer->isActive())
+    {
+        m_runningTimer->stop();
+        m_backgroundTimer->stop();
+    }
+
     m_state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
     const int value = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
     m_state = (m_state && (value > 0));
     if(value > 0)
     {
-        m_timer->setInterval(value * MT_M2MS);
+        m_runningTimer->setInterval(value * MT_M2MS);
+        m_runningTimer->start();
     }
 }
 
-void MusicScreenSaverBackgroundWidget::timeout()
+void MusicScreenSaverBackgroundWidget::runningTimeout()
 {
-    m_isRunning = true;
-    setParent(nullptr);
-    showFullScreen();
+    if(!m_isRunning)
+    {
+        m_isRunning = true;
+        setParent(nullptr);
+        showFullScreen();
+
+        backgroundTimeout();
+        m_backgroundTimer->start();
+    }
+}
+
+void MusicScreenSaverBackgroundWidget::backgroundTimeout()
+{
+    QVector<bool> statusVector(MusicScreenSaverWidget::parseSettingParameter());
+    QVector<int> intVector;
+    for(int i=0; i<OS_COUNT; i++)
+    {
+        if(statusVector[i])
+        {
+            intVector << i;
+        }
+    }
+
+    if(!intVector.isEmpty())
+    {
+        const int index = intVector[qrand() % intVector.count()];
+        QPixmap background(QString("%1%2/").arg(SCREEN_DIR_FULL).arg(index) + OS_WALLPAPER_NAME);
+        QPixmap bar(QString("%1%2/").arg(SCREEN_DIR_FULL).arg(index) + OS_WALLBAR_NAME);
+        MusicUtils::Image::fusionPixmap(background, bar, QPoint(100, 900));
+        setPixmap(QPixmap(background.scaled(size())));
+    }
 }
 
 bool MusicScreenSaverBackgroundWidget::eventFilter(QObject *watched, QEvent *event)
@@ -317,13 +421,13 @@ bool MusicScreenSaverBackgroundWidget::eventFilter(QObject *watched, QEvent *eve
                 m_isRunning = false;
                 hide();
             }
-            m_timer->stop();
-            m_timer->start();
+            m_runningTimer->start();
         }
         else
         {
-            m_timer->stop();
+            m_runningTimer->stop();
+            m_backgroundTimer->stop();
         }
     }
-    return QWidget::eventFilter(watched, event);
+    return MusicTransitionAnimationLabel::eventFilter(watched, event);
 }

@@ -60,7 +60,7 @@ private:
     /*!
      * Split hmac string.
      */
-    QString splitString(const QByteArray &data, const QByteArray &key);
+    QString stringSplit(const QByteArray &data, const QByteArray &key);
 
 };
 

@@ -310,7 +310,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::M
                 attr.m_url = value["file_link"].toString();
                 attr.m_duration = info->m_timeLength;
                 attr.m_bitrate = MB_500;
-                attr.m_format = MusicUtils::String::StringSplite(attr.m_url);
+                attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
                 if(!findUrlFileSize(&attr)) return;
                 info->m_songAttrs.append(attr);
             }
@@ -597,7 +597,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeYYT(MusicObject::M
     if(datas.count() == 2)
     {
         const QString &v = datas.front();
-        attr.m_format = MusicUtils::String::StringSplite(v);
+        attr.m_format = MusicUtils::String::stringSplitToken(v);
         attr.m_size = MusicUtils::Number::size2Label(key["fileSize"].toLongLong());
         info->m_songAttrs.append(attr);
     }

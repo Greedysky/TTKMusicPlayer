@@ -134,7 +134,7 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
     if(!musicSongInfos.isEmpty())
     {
         const QString &filename = m_parentWidget->getCurrentFileName();
-        const int count = MusicUtils::String::splitString(filename).count();
+        const int count = MusicUtils::String::stringSplit(filename).count();
         const QString &artistName = MusicUtils::String::artistName(filename);
         const QString &songName = MusicUtils::String::songName(filename);
 

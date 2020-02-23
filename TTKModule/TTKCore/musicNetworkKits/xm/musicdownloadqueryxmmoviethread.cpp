@@ -419,6 +419,6 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         }
         attr->m_size = MusicUtils::Number::size2Label(attr->m_size.toLongLong());
         attr->m_url = urls.join(TTK_STR_SPLITER);
-        attr->m_format = MusicUtils::String::StringSplite(attr->m_url);
+        attr->m_format = MusicUtils::String::stringSplitToken(attr->m_url);
     }
 }
