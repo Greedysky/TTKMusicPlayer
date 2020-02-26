@@ -73,7 +73,7 @@ void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
 void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 {
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    const MIntList &list = getSelectedItems();
+    const TTKIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -94,7 +94,7 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 void MusicQueryFoundTableWidget::downloadBatchData(bool music)
 {
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    const MIntList &list = getSelectedItems();
+    const TTKIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;

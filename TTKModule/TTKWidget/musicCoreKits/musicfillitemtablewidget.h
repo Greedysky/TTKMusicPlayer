@@ -41,7 +41,7 @@ public:
     /*!
      * Get selected items.
      */
-    MIntList getSelectedItems() const;
+    TTKIntList getSelectedItems() const;
 
 public Q_SLOTS:
     /*!

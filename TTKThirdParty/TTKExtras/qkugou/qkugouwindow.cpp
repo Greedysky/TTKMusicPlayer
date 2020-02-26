@@ -95,20 +95,20 @@ void QKugouWindow::setUrl(const QString &url)
 {
     TTK_D(QKugouWindow);
 #ifdef Q_OS_WIN
-    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
     if(w)
     {
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
  #ifdef MUSIC_WEBKIT
-    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
  #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -125,13 +125,13 @@ void QKugouWindow::goBack()
 #ifdef Q_OS_UNIX
     TTK_D(QKugouWindow);
  #ifdef MUSIC_WEBKIT
-    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->back();
     }
  #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->back();
@@ -156,20 +156,20 @@ void QKugouWindow::kugouSongIndexChanged(int index)
     }
 
 #ifdef Q_OS_WIN
-    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
     if(w)
     {
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
  #ifdef MUSIC_WEBKIT
-    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
  #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -195,20 +195,20 @@ void QKugouWindow::kugouRadioIndexChanged(int index)
     }
 
 #ifdef Q_OS_WIN
-    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
     if(w)
     {
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
  #ifdef MUSIC_WEBKIT
-    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
  #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -233,20 +233,20 @@ void QKugouWindow::kugouMVIndexChanged(int index)
     }
 
 #ifdef Q_OS_WIN
-    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
     if(w)
     {
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
  #ifdef MUSIC_WEBKIT
-    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
  #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -414,12 +414,12 @@ void QKugouWindow::createKugouListWidget()
     createWebViewer();
     layout->addWidget(d->m_webView);
  #ifdef Q_OS_WIN
-    MObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::getListUrl());
+    TTKObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::getListUrl());
  #else
   #ifdef MUSIC_WEBENGINE
-    MObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
+    TTKObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
   #else
-    MObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
+    TTKObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
   #endif
  #endif
 #else

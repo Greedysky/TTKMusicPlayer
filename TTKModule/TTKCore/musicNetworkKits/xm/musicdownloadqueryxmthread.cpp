@@ -165,7 +165,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
 
 void MusicDownLoadQueryXMThread::singleDownLoadFinished()
 {
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();

@@ -467,5 +467,5 @@ void MusicApplicationObject::cleanUp()
     QFile::remove(MUSIC_NETWORK_TEST_FILE);
 
     ///remove daily pic theme
-    MusicUtils::File::removeRecursively(STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
+    MusicUtils::File::removeRecursively(TTK_STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
 }

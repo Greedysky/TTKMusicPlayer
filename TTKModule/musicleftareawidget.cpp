@@ -92,7 +92,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 void MusicLeftAreaWidget::radioExecuteOuter(const QString &path)
 {
     musicStackedRadioWidgetChanged();
-    MusicWebRadioView *w = MStatic_cast(MusicWebRadioView*, m_stackedWidget);
+    MusicWebRadioView *w = TTKStatic_cast(MusicWebRadioView*, m_stackedWidget);
     w->init(path.toInt());
 }
 

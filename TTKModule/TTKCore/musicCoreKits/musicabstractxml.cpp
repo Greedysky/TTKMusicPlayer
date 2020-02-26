@@ -123,16 +123,16 @@ QString MusicAbstractXml::readXmlTextByTagName(const QString &tagName) const
     return nodeList.at(0).toElement().text();
 }
 
-MVariantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
+TTKVariantMap MusicAbstractXml::readXmlAttributesByTagName(const QString &tagName) const
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName(tagName);
     if(nodeList.isEmpty())
     {
-        return MVariantMap();
+        return TTKVariantMap();
     }
 
     const QDomNamedNodeMap &nodes = nodeList.at(0).toElement().attributes();
-    MVariantMap maps;
+    TTKVariantMap maps;
     for(int i=0; i<nodes.count(); ++i)
     {
         const QDomAttr &attr = nodes.item(i).toAttr();

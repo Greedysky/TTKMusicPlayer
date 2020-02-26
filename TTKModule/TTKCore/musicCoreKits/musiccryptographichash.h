@@ -61,18 +61,18 @@ public:
 
 protected:
     /*!
-     * XXTEA encrypt by MString data.
+     * XXTEA encrypt by TTKString data.
      */
-    MString xxteaEncrypt(const MString &data, const MString &key);
+    TTKString xxteaEncrypt(const TTKString &data, const TTKString &key);
     /*!
      * XXTEA encrypt by QString data.
      */
     QString xxteaEncrypt(const QString &data, const QString &key);
 
     /*!
-     * XXTEA decrypt by MString data.
+     * XXTEA decrypt by TTKString data.
      */
-    MString xxteaDecrypt(const MString &data, const MString &key);
+    TTKString xxteaDecrypt(const TTKString &data, const TTKString &key);
     /*!
      * XXTEA decrypt by QString data.
      */

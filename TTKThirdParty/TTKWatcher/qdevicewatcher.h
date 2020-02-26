@@ -68,7 +68,7 @@ public:
     QString device() const {return m_device;}
     static Type registeredType()
     {
-        static Type EventType = MStatic_cast(Type, registerEventType());
+        static Type EventType = TTKStatic_cast(Type, registerEventType());
         return EventType;
     }
 

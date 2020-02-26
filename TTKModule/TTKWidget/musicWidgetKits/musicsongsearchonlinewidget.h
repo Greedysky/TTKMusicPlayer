@@ -22,8 +22,8 @@
 #include "musicquerytablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
-#define AUDITION_PLAY MStatic_cast(int, Qt::yellow)
-#define AUDITION_STOP MStatic_cast(int, Qt::transparent)
+#define AUDITION_PLAY TTKStatic_cast(int, Qt::yellow)
+#define AUDITION_STOP TTKStatic_cast(int, Qt::transparent)
 
 /*! @brief The class of the data download item.
  * @author Greedysky <greedysky@163.com>

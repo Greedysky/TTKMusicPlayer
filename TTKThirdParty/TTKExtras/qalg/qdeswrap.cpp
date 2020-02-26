@@ -346,7 +346,7 @@ QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
     TTK_D(QDesWrap);
     d->m_mode = ENCRYPT;
     char *encData = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
-    const MString &str = Base64::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
+    const TTKString &str = Base64::base64Encode((unsigned char *)encData, (in.length() / 8 + 1) * 8);
 
     delete encData;
 
@@ -357,7 +357,7 @@ QByteArray QDesWrap::decrypt(const QByteArray &in, const QByteArray &key)
 {
     TTK_D(QDesWrap);
     d->m_mode = DECRYPT;
-    const MString &str = Base64::base64Decode(MString(in.data(), in.length()));
+    const TTKString &str = Base64::base64Decode(TTKString(in.data(), in.length()));
     char *encData = d->encrypt((char *)str.data(), str.length(), (char *)key.data());
 
     QByteArray value(encData);

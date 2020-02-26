@@ -33,10 +33,10 @@ static QString hmacSha1(QByteArray key, const QByteArray &baseString)
 
 static const QString self_define_header_prefix = "x-oss-";
 
-static inline MStringMap formatHeader(const MStringMap &headers)
+static inline TTKStringMap formatHeader(const TTKStringMap &headers)
 {
-    MStringMap value;
-    MStringMapterator it(headers);
+    TTKStringMap value;
+    TTKStringMapterator it(headers);
     it.toFront();
 
     while(it.hasNext())
@@ -54,7 +54,7 @@ static inline MStringMap formatHeader(const MStringMap &headers)
     return value;
 }
 
-QString QOSSUtils::getAuthorizationCode(const QString &key, const QString &method, const MStringMap &headers, const QString &resource)
+QString QOSSUtils::getAuthorizationCode(const QString &key, const QString &method, const TTKStringMap &headers, const QString &resource)
 {
     const QString &content_md5 = headers.value("Content-Md5", "");
     const QString &content_type = headers.value("Content-Type", "");
@@ -62,11 +62,11 @@ QString QOSSUtils::getAuthorizationCode(const QString &key, const QString &metho
     const QString &canonicalized_resource = resource;
 
     QString canonicalized_oss_headers = "";
-    MStringMap origin_headers = formatHeader(headers);
+    TTKStringMap origin_headers = formatHeader(headers);
 
     if(origin_headers.size() > 0)
     {
-        MStringMapterator it(origin_headers);
+        TTKStringMapterator it(origin_headers);
         while(it.hasNext())
         {
             it.next();
@@ -82,7 +82,7 @@ QString QOSSUtils::getAuthorizationCode(const QString &key, const QString &metho
 }
 
 QString QOSSUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,
-                                          const MStringMap &headers, const QString &resource)
+                                          const TTKStringMap &headers, const QString &resource)
 {
     return QString("OSS ") + access + ":" + getAuthorizationCode(secret,  method, headers, resource);
 }

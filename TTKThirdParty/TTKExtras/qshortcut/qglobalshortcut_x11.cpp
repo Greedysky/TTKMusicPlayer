@@ -28,7 +28,7 @@ static int q_x_errhandler(Display* display, XErrorEvent *event)
 #if(QT_VERSION<0x050000)
 bool QGlobalShortcutPrivate::eventFilter(void* message)
 {
-    XEvent* event = MStatic_cast(XEvent*, message);
+    XEvent* event = TTKStatic_cast(XEvent*, message);
     if (event->type == KeyPress)
     {
         XKeyEvent* key = (XKeyEvent*) event;
@@ -41,7 +41,7 @@ bool QGlobalShortcutPrivate::eventFilter(void* message)
 #else
 bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
 {
-    XEvent* event = MStatic_cast(XEvent*, message);
+    XEvent* event = TTKStatic_cast(XEvent*, message);
     if (event->type == KeyPress)
     {
         XKeyEvent* key = (XKeyEvent*) event;

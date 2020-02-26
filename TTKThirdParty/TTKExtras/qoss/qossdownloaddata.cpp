@@ -37,7 +37,7 @@ void QOSSDownloadData::downloadDataOperator(const QString &time, const QString &
     const QString &resource = "/" + bucket + "/" + fileName;
     const QString &host = bucket + "." + QOSSConf::OSS_HOST;
 
-    MStringMap headers;
+    TTKStringMap headers;
     headers.insert("Date", QOSSUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
@@ -47,7 +47,7 @@ void QOSSDownloadData::downloadDataOperator(const QString &time, const QString &
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
 
-    MStringMapterator it(headers);
+    TTKStringMapterator it(headers);
     while(it.hasNext())
     {
         it.next();
@@ -79,7 +79,7 @@ QString QOSSDownloadData::getDownloadUrl(const QString &bucket, const QString &f
     const QString &resource = "/" + bucket + "/" + fileName;
     const QString &host = bucket + "." + QOSSConf::OSS_HOST;
 
-    MStringMap headers;
+    TTKStringMap headers;
     headers.insert("Date", QString::number(deadline));
     headers.insert("Content-Type", contentType);
     headers.insert("Host", host);
@@ -91,7 +91,7 @@ QString QOSSDownloadData::getDownloadUrl(const QString &bucket, const QString &f
 void QOSSDownloadData::receiveDataFromServer()
 {
     TTK_D(QOSSDownloadData);
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)

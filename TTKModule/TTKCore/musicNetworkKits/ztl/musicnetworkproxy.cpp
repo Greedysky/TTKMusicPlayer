@@ -80,7 +80,7 @@ void MusicNetworkProxy::testProxy()
 void MusicNetworkProxy::applyProxy()
 {
     QNetworkProxy proxy;
-    proxy.setType(MStatic_cast(QNetworkProxy::ProxyType, m_type));
+    proxy.setType(TTKStatic_cast(QNetworkProxy::ProxyType, m_type));
     if(!m_hostName.isEmpty())
     {
         proxy.setHostName(m_hostName);

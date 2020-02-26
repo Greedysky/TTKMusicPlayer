@@ -36,7 +36,7 @@ public:
     /*!
      * Get player supported formats.
      */
-    static MStringListMap supportFormatsStringMap();
+    static TTKStringListMap supportFormatsStringMap();
     /*!
      * Get player supported formats filter.
      */

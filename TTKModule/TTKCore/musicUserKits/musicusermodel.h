@@ -147,7 +147,7 @@ protected:
     /*!
      * Update record data by uid and field and data.
      */
-    bool updateRecordData(const MusicUserUIDItem &uid, const MVariantMap &data);
+    bool updateRecordData(const MusicUserUIDItem &uid, const TTKVariantMap &data);
     /*!
      * Set current database table by given uid.
      */

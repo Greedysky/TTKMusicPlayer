@@ -142,7 +142,7 @@ void MusicSongsListTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const MIntList &fileIndexs)
+void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &fileIndexs)
 {
     if(songs->count() == fileIndexs.count())
     {
@@ -457,7 +457,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
         return;
     }
 
-    MIntList deleteList(getMultiSelectedIndexs());
+    TTKIntList deleteList(getMultiSelectedIndexs());
     if(deleteList.isEmpty())
     {
         return;

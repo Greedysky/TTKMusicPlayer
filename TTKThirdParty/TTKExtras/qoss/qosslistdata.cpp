@@ -18,7 +18,7 @@ void QOSSListData::listDataOperator(const QString &bucket)
     const QString &resource = "/" + bucket + "/";
     const QString &host = bucket + "." + QOSSConf::OSS_HOST;
 
-    MStringMap headers;
+    TTKStringMap headers;
     headers.insert("Date", QOSSUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
@@ -28,7 +28,7 @@ void QOSSListData::listDataOperator(const QString &bucket)
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
 
-    MStringMapterator it(headers);
+    TTKStringMapterator it(headers);
     while(it.hasNext())
     {
         it.next();
@@ -43,7 +43,7 @@ void QOSSListData::listDataOperator(const QString &bucket)
 void QOSSListData::receiveDataFromServer()
 {
     QOSSDataItems items;
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200)
     {
         QDomDocument docment;

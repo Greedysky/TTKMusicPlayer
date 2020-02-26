@@ -187,7 +187,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
 
 void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
 {
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     Q_EMIT clearAllItems();

@@ -217,7 +217,7 @@ void MusicLrcContainerForInterior::createFloatPlayWidget()
 
 void MusicLrcContainerForInterior::lrcWidgetShowFullScreen()
 {
-    QHBoxLayout *l = MStatic_cast(QHBoxLayout*, m_functionLabel->layout());
+    QHBoxLayout *l = TTKStatic_cast(QHBoxLayout*, m_functionLabel->layout());
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
         l->removeItem(l->itemAt(l->count() - 1));
@@ -797,7 +797,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet()
 
 void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLrcManagerForInterior *w = MStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
+    MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
     w->setFontSize(size);
 
     int value = M_SETTING_PTR->value("LrcColorTrans").toInt() - transparent;
@@ -808,7 +808,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
 
     if(M_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else
@@ -871,7 +871,7 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-        MStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i])->setLrcPerWidth(w);
+        TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i])->setLrcPerWidth(w);
     }
 
     m_lrcFloatWidget->resizeWindow(w, h);

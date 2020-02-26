@@ -264,46 +264,46 @@ void MusicRightAreaWidget::resizeWindow()
     m_ui->songSearchWidget->resizeWindow();
     m_musicLrcForInterior->resizeWindow();
 
-    if(MObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget))
+    if(TTKObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicToplistFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicToplistFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicToplistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicToplistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget))
+    else if(TTKObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+        TTKObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
 
-    if(MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
+    if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
     {
-        MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget)->resizeWindow();
+        TTKObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget)->resizeWindow();
     }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
@@ -328,15 +328,15 @@ void MusicRightAreaWidget::applySettingParameter() const
     m_musicLrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
     //
-    if(MObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
+    if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
     {
-        MObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
+        TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
     }
 }
 
 void MusicRightAreaWidget::musicFunctionClicked(int index)
 {
-    const MusicFunction key = MStatic_cast(MusicFunction, index);
+    const MusicFunction key = TTKStatic_cast(MusicFunction, index);
     musicFunctionParameterInit(key);
 
     switch(key)
@@ -554,7 +554,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
 
 void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
 {
-    const MusicFunction key = MStatic_cast(MusicFunction, index);
+    const MusicFunction key = TTKStatic_cast(MusicFunction, index);
     musicFunctionParameterInit(key);
 
     m_stackedAutoWidget = widget;
@@ -580,20 +580,20 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
     musicFunctionClicked(MusicRightAreaWidget::SimilarWidget);
-    MStatic_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->setSongName(text);
+    TTKStatic_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &id)
 {
     musicFunctionClicked(MusicRightAreaWidget::AlbumWidget);
-    MusicAlbumFoundWidget *w = MStatic_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget);
+    MusicAlbumFoundWidget *w = TTKStatic_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicArtistCategoryFound()
 {
     musicFunctionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
-    MStatic_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
+    TTKStatic_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicArtistSearchFound()
@@ -628,27 +628,27 @@ void MusicRightAreaWidget::musicMovieSearchRadioFound()
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)
 {
     musicFunctionClicked(MusicRightAreaWidget::ArtistWidget);
-    MusicArtistFoundWidget *w = MStatic_cast(MusicArtistFoundWidget*, m_stackedFuncWidget);
+    MusicArtistFoundWidget *w = TTKStatic_cast(MusicArtistFoundWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicToplistFound()
 {
     musicFunctionClicked(MusicRightAreaWidget::ToplistWidget);
-    MStatic_cast(MusicToplistFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
+    TTKStatic_cast(MusicToplistFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
 {
     musicFunctionClicked(MusicRightAreaWidget::PlaylistWidget);
-    MusicPlaylistFoundWidget *w = MStatic_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget);
+    MusicPlaylistFoundWidget *w = TTKStatic_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(QString()) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicRecommendFound()
 {
     musicFunctionClicked(MusicRightAreaWidget::RecommendWidget);
-    MStatic_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
+    TTKStatic_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicAdvancedSearch()
@@ -698,7 +698,7 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool type = m_musicLrcForDesktop ? m_musicLrcForDesktop->getWindowType() : MStatic_cast(bool, M_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
+    const bool type = m_musicLrcForDesktop ? m_musicLrcForDesktop->getWindowType() : TTKStatic_cast(bool, M_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
     MusicLrcContainerForDesktop *deskLrc = m_musicLrcForDesktop;

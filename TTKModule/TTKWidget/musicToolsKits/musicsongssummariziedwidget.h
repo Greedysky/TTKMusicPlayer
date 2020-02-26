@@ -197,7 +197,7 @@ public Q_SLOTS:
     /*!
      * Delete items from indexs and check remove file or not.
      */
-    void setDeleteItemAt(const MIntList &del, bool fileRemove);
+    void setDeleteItemAt(const TTKIntList &del, bool fileRemove);
     /*!
      * Swap the current play index when user drag and drop.
      */
@@ -294,7 +294,7 @@ protected:
 
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    MIntListMap m_searchfileListCache;
+    TTKIntListMap m_searchfileListCache;
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_musicSongSearchWidget;

@@ -107,7 +107,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
         m_container->addWidget(scrollArea);
 
         m_firstInit = true;
-        QHBoxLayout *mainlayout = MStatic_cast(QHBoxLayout*, m_mainWindow->layout());
+        QHBoxLayout *mainlayout = TTKStatic_cast(QHBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QVBoxLayout *containTopLayout  = new QVBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
@@ -124,7 +124,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
         connect(group, SIGNAL(mapped(int)), SLOT(numberButtonClicked(int)));
         for(int i=-1; i<27; ++i)
         {
-            MusicClickedLabel *l = new MusicClickedLabel(QString(MStatic_cast(char, i + 65)), containNumberWidget);
+            MusicClickedLabel *l = new MusicClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
             l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08).arg(MusicUIObject::MQSSColorStyle11));
             connect(l, SIGNAL(clicked()), group, SLOT(map()));
             if(i == -1)

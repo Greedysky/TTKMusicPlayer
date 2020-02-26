@@ -219,7 +219,7 @@ protected:
         int index = staticMetaObject.indexOfEnumerator("ConfigType");
         QMetaEnum metaEnum = staticMetaObject.enumerator(index);
         int key = metaEnum.keyToValue(stype.toStdString().c_str());
-        return MStatic_cast(ConfigType, key);
+        return TTKStatic_cast(ConfigType, key);
     }
 
     QVariant m_variant;

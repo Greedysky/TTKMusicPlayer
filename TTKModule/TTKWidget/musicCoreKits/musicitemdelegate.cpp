@@ -85,7 +85,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     m_checkBox->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
     if(state != m_checkBox->isChecked())
     {
-        Q_EMIT MConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
+        Q_EMIT TTKConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
     }
 
     painter->translate((option.rect.width() - 16)/2, 0); // top left
@@ -107,7 +107,7 @@ MusicQueryTableDelegate::~MusicQueryTableDelegate()
 
 void MusicQueryTableDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    painter->fillRect(option.rect, MStatic_cast(Qt::GlobalColor, index.data(MUSIC_AUDIT_ROLE).toInt()));
+    painter->fillRect(option.rect, TTKStatic_cast(Qt::GlobalColor, index.data(MUSIC_AUDIT_ROLE).toInt()));
     MusicCheckBoxDelegate::paint(painter, option, index);
 }
 

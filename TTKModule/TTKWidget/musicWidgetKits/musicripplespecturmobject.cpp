@@ -76,7 +76,7 @@ void MusicRippleSpecturmObject::update(bool up)
 
     if(m_visualWidget)
     {
-        Visual *widget = MStatic_cast(Visual*, m_visualWidget);
+        Visual *widget = TTKStatic_cast(Visual*, m_visualWidget);
         if(widget)
         {
             widget->start();

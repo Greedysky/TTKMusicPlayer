@@ -88,7 +88,7 @@ public:
     /*!
      * Set lrc container data from other raw data.
      */
-    State setLrcData(const MIntStringMap &data);
+    State setLrcData(const TTKIntStringMap &data);
     /*!
      * Analysis lrc file to map return the state.
      */
@@ -192,7 +192,7 @@ protected:
 
     int m_lineMax, m_currentLrcIndex;
     QString m_currentLrcFileName;
-    MIntStringMap m_lrcContainer;
+    TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
     MusicTranslationThreadAbstract *m_translationThread;
 

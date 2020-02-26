@@ -377,7 +377,7 @@ QByteArray Serializer::SerializerPrivate::escapeString( const QString& str )
         break;
       default:
         if ( unicode > 0x1F && unicode < 128 ) {
-          result.append(MStatic_cast(char, unicode));
+          result.append(TTKStatic_cast(char, unicode));
         } else {
           char escaped[7];
           qsnprintf(escaped, sizeof(escaped)/sizeof(char), "\\u%04x", unicode);

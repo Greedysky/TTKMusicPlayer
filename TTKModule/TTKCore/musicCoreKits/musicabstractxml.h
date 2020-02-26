@@ -97,7 +97,7 @@ public:
     /*!
      * Read xml attributes by tagName and default name "value".
      */
-    MVariantMap readXmlAttributesByTagName(const QString &tagName) const;
+    TTKVariantMap readXmlAttributesByTagName(const QString &tagName) const;
     /*!
      * Create processing instruction in header.
      */

@@ -101,7 +101,7 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
 
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
-    MusicLrcContainerForInterior* line = MStatic_cast(MusicLrcContainerForInterior*, parent());
+    MusicLrcContainerForInterior* line = TTKStatic_cast(MusicLrcContainerForInterior*, parent());
     const MusicLrcDefines lrc;
     int v = lrc.findInteriorLrcIndex(line->getLrcSize());
         v = lrc.findInteriorNextSize(v);
@@ -110,7 +110,7 @@ void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 
 void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
-    MusicLrcContainerForInterior* line = MStatic_cast(MusicLrcContainerForInterior*, parent());
+    MusicLrcContainerForInterior* line = TTKStatic_cast(MusicLrcContainerForInterior*, parent());
     const MusicLrcDefines lrc;
     int v = lrc.findInteriorLrcIndex(line->getLrcSize());
         v = lrc.findInteriorPreSize(v);
@@ -119,7 +119,7 @@ void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 
 void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
 {
-    MusicLrcContainerForInterior* line = MStatic_cast(MusicLrcContainerForInterior*, parent());
+    MusicLrcContainerForInterior* line = TTKStatic_cast(MusicLrcContainerForInterior*, parent());
     if(line->artistBackgroundIsShow())
     {
         line->artistBackgroundChanged();
@@ -128,7 +128,7 @@ void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
 
 void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
 {
-    MusicLrcContainerForInterior* line = MStatic_cast(MusicLrcContainerForInterior*, parent());
+    MusicLrcContainerForInterior* line = TTKStatic_cast(MusicLrcContainerForInterior*, parent());
     if(!line->artistBackgroundIsShow())
     {
         line->artistBackgroundChanged();

@@ -196,7 +196,7 @@ void MusicPlaylistFoundWidget::createPlaylistItem(const MusicResultsItem &item)
         m_container->addWidget(scrollArea);
 
         m_firstInit = true;
-        QHBoxLayout *mainlayout = MStatic_cast(QHBoxLayout*, m_mainWindow->layout());
+        QHBoxLayout *mainlayout = TTKStatic_cast(QHBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
@@ -257,7 +257,7 @@ void MusicPlaylistFoundWidget::currentPlaylistClicked(const MusicResultsItem &it
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
-    MusicDownLoadQueryPlaylistThread *d = MStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
+    MusicDownLoadQueryPlaylistThread *d = TTKStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
     MusicResultsItem it(item);
     if(it.isEmpty())
     {

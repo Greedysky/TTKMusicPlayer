@@ -101,7 +101,7 @@ protected:
     int m_currentIndex;
     MusicSongs m_currentSongs;
     QButtonGroup *m_buttonGroup;
-    MIntListMap m_searchfileListCache;
+    TTKIntListMap m_searchfileListCache;
     MusicDeviceInfoItem *m_currentDeviceItem;
     QString m_songCountLabel, m_selectCountLabel;
     MusicConnectTransferThread *m_transferThread;

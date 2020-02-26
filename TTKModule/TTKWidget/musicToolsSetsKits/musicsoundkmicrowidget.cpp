@@ -353,7 +353,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
     if(M_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(index);
         w->setLinearGradientColor(cl);
     }

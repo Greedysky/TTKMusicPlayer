@@ -84,7 +84,7 @@ void MusicDownloadResetWidget::openFileLocation()
 MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
     : QObject(parent)
 {
-    m_parentClass = MStatic_cast(QWidget*, parent);
+    m_parentClass = TTKStatic_cast(QWidget*, parent);
 }
 
 void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type)

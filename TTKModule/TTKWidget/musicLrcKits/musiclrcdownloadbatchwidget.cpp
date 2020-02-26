@@ -125,12 +125,12 @@ void MusicLrcDownloadBatchWidget::modifiedItemButtonClicked()
 
     m_selectedItemIdFlag = true;
     MusicSongItemSelectedDialog dialog;
-    connect(&dialog, SIGNAL(itemListsChanged(MIntList)), SLOT(itemListsChanged(MIntList)));
+    connect(&dialog, SIGNAL(itemListsChanged(TTKIntList)), SLOT(itemListsChanged(TTKIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();
 }
 
-void MusicLrcDownloadBatchWidget::itemListsChanged(const MIntList &items)
+void MusicLrcDownloadBatchWidget::itemListsChanged(const TTKIntList &items)
 {
     m_selectedItemIds = items;
     m_ui->itemLabel->setText(tr("Custom Lists"));

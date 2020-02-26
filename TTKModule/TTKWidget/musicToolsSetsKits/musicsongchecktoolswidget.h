@@ -59,7 +59,7 @@ public Q_SLOTS:
     /*!
      * Item lists changed.
      */
-    void itemListsChanged(const MIntList &items);
+    void itemListsChanged(const TTKIntList &items);
     /*!
      * Rename button clicked.
      */
@@ -139,7 +139,7 @@ protected:
 
     MusicSongs m_localSongs;
     bool m_selectedItemIdFlag;
-    MIntList m_selectedItemIds;
+    TTKIntList m_selectedItemIds;
     MusicSongCheckToolsRenameThread *m_renameCore;
     MusicSongCheckToolsDuplicateThread *m_duplicateCore;
     MusicSongCheckToolsQualityThread *m_qualityCore;

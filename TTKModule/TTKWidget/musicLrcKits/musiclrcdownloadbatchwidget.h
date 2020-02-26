@@ -83,7 +83,7 @@ public Q_SLOTS:
     /*!
      * Item lists changed.
      */
-    void itemListsChanged(const MIntList &items);
+    void itemListsChanged(const TTKIntList &items);
     /*!
      * Add button clicked.
      */
@@ -107,7 +107,7 @@ protected:
 
     MusicSongs m_localSongs;
     bool m_selectedItemIdFlag;
-    MIntList m_selectedItemIds;
+    TTKIntList m_selectedItemIds;
 
 };
 

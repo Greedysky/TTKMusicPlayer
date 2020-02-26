@@ -20,9 +20,9 @@ QString MusicCryptographicHash::decrypt(const QString &data, const QString &key)
     return xxteaDecrypt(QByteArray::fromBase64(data.toUtf8()), key);
 }
 
-MString MusicCryptographicHash::xxteaEncrypt(const MString &data, const MString &key)
+TTKString MusicCryptographicHash::xxteaEncrypt(const TTKString &data, const TTKString &key)
 {
-    const MString &raw = QString(QString(data.c_str()).toUtf8()).toStdString();
+    const TTKString &raw = QString(QString(data.c_str()).toUtf8()).toStdString();
 
     uchar dataCopy[1024];
     strcpy((char*)dataCopy, (const char *)raw.c_str());
@@ -32,18 +32,18 @@ MString MusicCryptographicHash::xxteaEncrypt(const MString &data, const MString 
 
     xxtea_uint s[1];
     uchar *encrypt = xxteaEncrypt(dataCopy, strlen((const char *)dataCopy), keyCopy, strlen((const char *)keyCopy), s);
-    const MString &encode = Base64::base64Encode(encrypt, s[0]);
+    const TTKString &encode = Base64::base64Encode(encrypt, s[0]);
     free(encrypt);
 
     return encode;
 }
 
-MString MusicCryptographicHash::xxteaDecrypt(const MString &data, const MString &key)
+TTKString MusicCryptographicHash::xxteaDecrypt(const TTKString &data, const TTKString &key)
 {
-    const MString &decode = Base64::base64Decode(data);
+    const TTKString &decode = Base64::base64Decode(data);
     if(decode.empty())
     {
-        return MString("");
+        return TTKString("");
     }
 
     uchar dataCopy[1024];
@@ -57,10 +57,10 @@ MString MusicCryptographicHash::xxteaDecrypt(const MString &data, const MString 
     uchar *encrypt = xxteaDecrypt(dataCopy, decode.length(), keyCopy, strlen((const char *)keyCopy), s);
     if(!encrypt)
     {
-        return MString("false_false");
+        return TTKString("false_false");
     }
 
-    MString raw = (char*)encrypt;
+    TTKString raw = (char*)encrypt;
     raw = QString::fromUtf8(raw.c_str()).toStdString();
     free(encrypt);
 

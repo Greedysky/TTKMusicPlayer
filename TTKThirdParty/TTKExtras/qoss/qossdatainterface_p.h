@@ -29,7 +29,7 @@ public:
         m_manager = nullptr;
     }
 
-    void insertAuthorization(const QString &method, MStringMap &headers, const QString &resource) const
+    void insertAuthorization(const QString &method, TTKStringMap &headers, const QString &resource) const
     {
         if(!QOSSConf::ACCESS_KEY.isEmpty() && !QOSSConf::SECRET_KEY.isEmpty())
         {

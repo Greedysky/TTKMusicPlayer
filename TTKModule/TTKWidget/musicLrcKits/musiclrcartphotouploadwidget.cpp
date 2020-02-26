@@ -52,7 +52,7 @@ MusicLrcArtPhotoUploadWidget::~MusicLrcArtPhotoUploadWidget()
 
 void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 {
-    m_ui->deltaValueLabel->setText(QString::number(MStatic_cast(int, v*100)) + "%");
+    m_ui->deltaValueLabel->setText(QString::number(TTKStatic_cast(int, v*100)) + "%");
 }
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()

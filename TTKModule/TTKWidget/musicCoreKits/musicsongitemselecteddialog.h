@@ -25,7 +25,7 @@ public:
     /*!
      * Get selected items.
      */
-    MIntList getSelectedItems() const;
+    TTKIntList getSelectedItems() const;
 
 public Q_SLOTS:
     /*!
@@ -64,7 +64,7 @@ Q_SIGNALS:
     /*!
      * Item lists changed.
      */
-    void itemListsChanged(const MIntList &items);
+    void itemListsChanged(const TTKIntList &items);
 
 public Q_SLOTS:
     /*!

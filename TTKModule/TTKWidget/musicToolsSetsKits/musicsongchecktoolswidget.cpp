@@ -53,12 +53,12 @@ void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
 
     m_selectedItemIdFlag = true;
     MusicSongItemSelectedDialog dialog;
-    connect(&dialog, SIGNAL(itemListsChanged(MIntList)), SLOT(itemListsChanged(MIntList)));
+    connect(&dialog, SIGNAL(itemListsChanged(TTKIntList)), SLOT(itemListsChanged(TTKIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();
 }
 
-void MusicSongCheckToolsWidget::itemListsChanged(const MIntList &items)
+void MusicSongCheckToolsWidget::itemListsChanged(const TTKIntList &items)
 {
     m_selectedItemIds = items;
     m_ui->itemLabel->setText(tr("Custom Lists"));

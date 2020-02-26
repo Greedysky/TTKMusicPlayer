@@ -509,7 +509,7 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all
     setResizeLabelText(name);
     if(m_resizeLabels.count() == 5)
     {
-        MStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
+        TTKStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
     }
     m_searchTableWidget->setQueryAllRecords(all);
     m_searchTableWidget->startSearchQuery(name);
@@ -520,7 +520,7 @@ void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
     setResizeLabelText(name);
     if(m_resizeLabels.count() == 5)
     {
-        MStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
+        TTKStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
     }
     m_searchTableWidget->setQueryAllRecords(true);
     m_searchTableWidget->startSearchSingleQuery(name);
@@ -545,7 +545,7 @@ void MusicSongSearchOnlineWidget::auditionStop()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    MIntList list = m_searchTableWidget->getSelectedItems();
+    TTKIntList list = m_searchTableWidget->getSelectedItems();
     list.removeOne(m_searchTableWidget->rowCount() - 1);
     if(list.isEmpty())
     {

@@ -780,7 +780,7 @@ void MusicApplication::musicWindowConciseChanged()
 
 void MusicApplication::musicEnhancedMusicChanged(int type)
 {
-    m_musicPlayer->setMusicEnhanced(MStatic_cast(MusicPlayer::Enhanced, type));
+    m_musicPlayer->setMusicEnhanced(TTKStatic_cast(MusicPlayer::Enhanced, type));
 }
 
 void MusicApplication::musicCreateRightMenu()
@@ -900,7 +900,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
     if(current)
     {
         const MusicPlayItem &item = m_musicPlaylist->currentItem();
-        MIntList index;
+        TTKIntList index;
         foreach(const QString &p, path)
         {
             int idx = -1;

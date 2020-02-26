@@ -208,7 +208,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
 void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
 {
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();

@@ -197,7 +197,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     if(message.exec())
     {
         MusicUtils::Url::openUrl("open", UPDATE_DIR_FULL+ localDwonload);
-        MStatic_cast(QWidget*, parent())->close();
+        TTKStatic_cast(QWidget*, parent())->close();
     }
 }
 

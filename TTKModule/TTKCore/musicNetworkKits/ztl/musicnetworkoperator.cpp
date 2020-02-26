@@ -21,7 +21,7 @@ void MusicNetworkOperator::startToDownload()
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
-    QTextStream in(MConst_cast(QByteArray*, &data));
+    QTextStream in(TTKConst_cast(QByteArray*, &data));
     in.setCodec("gb2312");
 
     QString text(in.readAll());
@@ -45,7 +45,7 @@ void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 
 void MusicNetworkOperator::downLoadQueryFinished(const QByteArray &data)
 {
-    QTextStream in(MConst_cast(QByteArray*, &data));
+    QTextStream in(TTKConst_cast(QByteArray*, &data));
     in.setCodec("utf-8");
 
     QString line, text(in.readAll());

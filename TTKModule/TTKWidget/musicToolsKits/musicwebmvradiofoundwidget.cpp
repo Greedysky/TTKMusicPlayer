@@ -172,7 +172,7 @@ void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item
         m_container->addWidget(scrollArea);
 
         m_firstInit = true;
-        QHBoxLayout *mainlayout = MStatic_cast(QHBoxLayout*, m_mainWindow->layout());
+        QHBoxLayout *mainlayout = TTKStatic_cast(QHBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);

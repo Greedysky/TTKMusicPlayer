@@ -298,7 +298,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     m_commentsThread->startToSearch(name);
     loop.exec();
 
-    MStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
+    TTKStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPagingWidget();
 
     initLabel(name, m_commentsThread->getPageTotal());
@@ -310,7 +310,7 @@ void MusicCommentsWidget::createSearchedItem(const MusicResultsItem &comments)
     item->createSearchedItem(comments);
     m_commentsItems << item;
 
-    QVBoxLayout *layout = MStatic_cast(QVBoxLayout*, m_messageComments->layout());
+    QVBoxLayout *layout = TTKStatic_cast(QVBoxLayout*, m_messageComments->layout());
     layout->insertWidget(layout->count() - 1, item);
 
     if(!m_isPain)

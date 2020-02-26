@@ -32,7 +32,7 @@
     {                                                                   \
         manager->createObject(#name, new name(parent));                 \
     }                                                                   \
-    name *w = MStatic_cast(name*, manager->object(#name));
+    name *w = TTKStatic_cast(name*, manager->object(#name));
 
 #define M_SINGLE_MANAGER_WIDGET_NEW(name)                               \
     M_SINGLE_MANAGER_WIDGET_NEW2(name, MusicApplication::instance())
@@ -55,7 +55,7 @@
     {                                                                   \
         manager->createObject(#name, new name(parent));                 \
     }                                                                   \
-    name *w = MStatic_cast(name*, manager->object(#name));
+    name *w = TTKStatic_cast(name*, manager->object(#name));
 
 #define M_SINGLE_MANAGER_DIALOG_NEW(name)                               \
     M_SINGLE_MANAGER_DIALOG_NEW2(name, MusicApplication::instance())
@@ -75,7 +75,7 @@
     {                                                                   \
         manager->createObject(#name, new name(parent));                 \
     }                                                                   \
-    name *w = MStatic_cast(name*, manager->object(#name));
+    name *w = TTKStatic_cast(name*, manager->object(#name));
 
 #define M_SINGLE_MANAGER_CORE_NEW(name)                                 \
     M_SINGLE_MANAGER_CORE_NEW2(name, nullptr)

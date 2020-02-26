@@ -42,7 +42,7 @@ void MusicBarrageAnimation::initialize()
 MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
     : QObject(parent)
 {
-    m_parentClass = MStatic_cast(QWidget*, parent);
+    m_parentClass = TTKStatic_cast(QWidget*, parent);
     m_barrageState = false;
 
     readBarrage();

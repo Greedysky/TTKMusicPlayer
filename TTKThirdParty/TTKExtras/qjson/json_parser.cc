@@ -121,8 +121,8 @@ do {					\
 
 # define YYCDEBUG if (false) std::cerr
 # define YY_SYMBOL_PRINT(Title, Type, Value, Location) YYUSE(Type)
-# define YY_REDUCE_PRINT(Rule)        MStatic_cast(void, 0)
-# define YY_STACK_PRINT()             MStatic_cast(void, 0)
+# define YY_REDUCE_PRINT(Rule)        TTKStatic_cast(void, 0)
+# define YY_STACK_PRINT()             TTKStatic_cast(void, 0)
 
 #endif /* !YYDEBUG */
 
@@ -144,12 +144,12 @@ namespace yy {
      that double-quoting is unnecessary unless the string contains an
      apostrophe, a comma, or backslash (other than backslash-backslash).
      YYSTR is taken from yytname.  */
-  MString
+  TTKString
   json_parser::yytnamerr_ (const char *yystr)
   {
     if (*yystr == '"')
       {
-        MString yyr;
+        TTKString yyr;
         char const *yyp = yystr;
 
         for (;;)
@@ -748,10 +748,10 @@ namespace yy {
   }
 
   // Generate an error message.
-  MString
+  TTKString
   json_parser::yysyntax_error_ (int yystate, int yytoken)
   {
-    MString yyres;
+    TTKString yyres;
     // Number of reported tokens (one for the "unexpected", one per
     // "expected").
     size_t yycount = 0;
@@ -1088,7 +1088,7 @@ int yy::yylex(YYSTYPE *yylval, yy::location *yylloc, QJson::ParserPrivate* drive
   return ret;
 }
 
-void yy::json_parser::error (const yy::location& yyloc, const MString& error)
+void yy::json_parser::error (const yy::location& yyloc, const TTKString& error)
 {
   /*qjsonDebug() << yyloc.begin.line;
   qjsonDebug() << yyloc.begin.column;

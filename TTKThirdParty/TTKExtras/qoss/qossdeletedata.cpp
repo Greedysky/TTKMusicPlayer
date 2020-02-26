@@ -15,7 +15,7 @@ void QOSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fi
     const QString &resource = "/" + bucket + "/" + fileName;
     const QString &host = bucket + "." + QOSSConf::OSS_HOST;
 
-    MStringMap headers;
+    TTKStringMap headers;
     headers.insert("Date", QOSSUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
@@ -25,7 +25,7 @@ void QOSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fi
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
 
-    MStringMapterator it(headers);
+    TTKStringMapterator it(headers);
     while(it.hasNext())
     {
         it.next();
@@ -39,7 +39,7 @@ void QOSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fi
 
 void QOSSDeleteData::receiveDataFromServer()
 {
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         Q_EMIT deleteFileFinished(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204);

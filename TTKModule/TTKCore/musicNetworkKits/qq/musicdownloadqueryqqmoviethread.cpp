@@ -295,7 +295,7 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
                 {
                     info->m_singerName = "Default";
                     info->m_songName = vlValue["ti"].toString();
-                    info->m_timeLength = MusicTime::msecTime2LabelJustified(MStatic_cast(int, vlValue["td"].toString().toFloat())*1000);
+                    info->m_timeLength = MusicTime::msecTime2LabelJustified(TTKStatic_cast(int, vlValue["td"].toString().toFloat())*1000);
                 }
 
                 vlValue = vlValue["ul"].toMap();

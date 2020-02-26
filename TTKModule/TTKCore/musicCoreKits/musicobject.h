@@ -67,36 +67,36 @@
 #define FLC_FILE_PREFIX         "flac"
 
 
-#define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
-#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
-#define TEX_FILE                STRCAT(DOT, TEX_FILE_PREFIX)
+#define TTS_FILE                TTK_STRCAT(DOT, TTS_FILE_PREFIX)
+#define CFG_FILE                TTK_STRCAT(DOT, CFG_FILE_PREFIX)
+#define TEX_FILE                TTK_STRCAT(DOT, TEX_FILE_PREFIX)
 //
-#define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
-#define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
-#define BMP_FILE                STRCAT(DOT, BMP_FILE_PREFIX)
-#define PNG_FILE                STRCAT(DOT, PNG_FILE_PREFIX)
-#define LRC_FILE                STRCAT(DOT, LRC_FILE_PREFIX)
-#define KRC_FILE                STRCAT(DOT, KRC_FILE_PREFIX)
-#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define LST_FILE                STRCAT(DOT, LST_FILE_PREFIX)
-#define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
-#define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
-#define COM_FILE                STRCAT(DOT, COM_FILE_PREFIX)
+#define SKN_FILE                TTK_STRCAT(DOT, SKN_FILE_PREFIX)
+#define JPG_FILE                TTK_STRCAT(DOT, JPG_FILE_PREFIX)
+#define BMP_FILE                TTK_STRCAT(DOT, BMP_FILE_PREFIX)
+#define PNG_FILE                TTK_STRCAT(DOT, PNG_FILE_PREFIX)
+#define LRC_FILE                TTK_STRCAT(DOT, LRC_FILE_PREFIX)
+#define KRC_FILE                TTK_STRCAT(DOT, KRC_FILE_PREFIX)
+#define MP3_FILE                TTK_STRCAT(DOT, MP3_FILE_PREFIX)
+#define LST_FILE                TTK_STRCAT(DOT, LST_FILE_PREFIX)
+#define EXE_FILE                TTK_STRCAT(DOT, EXE_FILE_PREFIX)
+#define XML_FILE                TTK_STRCAT(DOT, XML_FILE_PREFIX)
+#define COM_FILE                TTK_STRCAT(DOT, COM_FILE_PREFIX)
 
 //music ext
-#define AAC_FILE                STRCAT(DOT, AAC_FILE_PREFIX)
-#define WMA_FILE                STRCAT(DOT, WMA_FILE_PREFIX)
-#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define OGG_FILE                STRCAT(DOT, OGG_FILE_PREFIX)
-#define APE_FILE                STRCAT(DOT, APE_FILE_PREFIX)
-#define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
+#define AAC_FILE                TTK_STRCAT(DOT, AAC_FILE_PREFIX)
+#define WMA_FILE                TTK_STRCAT(DOT, WMA_FILE_PREFIX)
+#define MP3_FILE                TTK_STRCAT(DOT, MP3_FILE_PREFIX)
+#define OGG_FILE                TTK_STRCAT(DOT, OGG_FILE_PREFIX)
+#define APE_FILE                TTK_STRCAT(DOT, APE_FILE_PREFIX)
+#define FLC_FILE                TTK_STRCAT(DOT, FLC_FILE_PREFIX)
 
 
 //
 #define APP_NAME                "TTKMusicPlayer"
-#define APP_DOT_NAME            STRCAT(APP_NAME, DOT)
-#define APP_COME_NAME           STRCAT(APP_NAME, COM_FILE)
-#define APP_EXE_NAME            STRCAT(APP_NAME, EXE_FILE)
+#define APP_DOT_NAME            TTK_STRCAT(APP_NAME, DOT)
+#define APP_COME_NAME           TTK_STRCAT(APP_NAME, COM_FILE)
+#define APP_EXE_NAME            TTK_STRCAT(APP_NAME, EXE_FILE)
 
 
 //
@@ -119,17 +119,17 @@
 #define LANGUAGE_DIR            "MLanguage/"
 
 
-#define MAKE_TRANSFORM_PREFIX   STRCAT("avconv", TEX_FILE)
-#define MAKE_KRC2LRC_PREFIX     STRCAT("avk2l", TEX_FILE)
-#define MAKE_PLAYER_PREFIX      STRCAT("avplayer", TEX_FILE)
-#define MAKE_GAIN_PREFIX        STRCAT("avgain", TEX_FILE)
+#define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TEX_FILE)
+#define MAKE_KRC2LRC_PREFIX     TTK_STRCAT("avk2l", TEX_FILE)
+#define MAKE_PLAYER_PREFIX      TTK_STRCAT("avplayer", TEX_FILE)
+#define MAKE_GAIN_PREFIX        TTK_STRCAT("avgain", TEX_FILE)
 
 
-#define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")
-#define MAKE_TRANSFORM          STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
-#define MAKE_KRC2LRC            STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
-#define MAKE_PLAYER             STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
-#define MAKE_GAIN               STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
+#define MAKE_CONFIG_DIR         TTK_STRCAT(PLUGINS_DIR, "config/")
+#define MAKE_TRANSFORM          TTK_STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
+#define MAKE_KRC2LRC            TTK_STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
+#define MAKE_PLAYER             TTK_STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
+#define MAKE_GAIN               TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
 
 
 #define TEMPPATH                "musictemp"

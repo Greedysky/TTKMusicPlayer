@@ -33,7 +33,7 @@ QByteArray QAesWrap::encryptECB(const QByteArray &in, const QByteArray &key)
     AES_ecb_encrypt((const unsigned char *)encStr, (unsigned char *)encryptString, &aes, AES_ENCRYPT);
     delete[] encStr;
 
-    const MString &str = Base64::base64Encode((const unsigned char *)encryptString, total);
+    const TTKString &str = Base64::base64Encode((const unsigned char *)encryptString, total);
     return QByteArray(str.data(), str.length());
 }
 
@@ -41,7 +41,7 @@ QByteArray QAesWrap::decryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
     char decryptString[DATA_CACHE_SIZE] = {0};
-    const MString &str = Base64::base64Decode(MString(in.data(), in.length()));
+    const TTKString &str = Base64::base64Decode(TTKString(in.data(), in.length()));
 
     if(AES_set_decrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
@@ -74,7 +74,7 @@ QByteArray QAesWrap::encryptCBC(const QByteArray &in, const QByteArray &key, con
     AES_cbc_encrypt((const unsigned char *)encStr, (unsigned char *)encryptString, total, &aes, (unsigned char *)iv.data(), AES_ENCRYPT);
     delete[] encStr;
 
-    const MString &str = Base64::base64Encode((const unsigned char *)encryptString, total);
+    const TTKString &str = Base64::base64Encode((const unsigned char *)encryptString, total);
     return QByteArray(str.data(), str.length());
 }
 
@@ -82,7 +82,7 @@ QByteArray QAesWrap::decryptCBC(const QByteArray &in, const QByteArray &key, con
 {
     AES_KEY aes;
     char decryptString[DATA_CACHE_SIZE] = {0};
-    const MString &str = Base64::base64Decode(MString(in.data(), in.length()));
+    const TTKString &str = Base64::base64Decode(TTKString(in.data(), in.length()));
 
     if(AES_set_decrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {

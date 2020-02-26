@@ -34,7 +34,7 @@ void QOSSUploadData::uploadDataOperator(const QString &time, const QString &buck
     const QString &resource = "/" + bucket + "/" + fileName;
     const QString &host = bucket + "." + QOSSConf::OSS_HOST;
 
-    MStringMap headers;
+    TTKStringMap headers;
     headers.insert("Date", QOSSUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
@@ -44,7 +44,7 @@ void QOSSUploadData::uploadDataOperator(const QString &time, const QString &buck
     QNetworkRequest request;
     request.setUrl(QUrl("http://" + host + url));
 
-    MStringMapterator it(headers);
+    TTKStringMapterator it(headers);
     while(it.hasNext())
     {
         it.next();
@@ -69,7 +69,7 @@ void QOSSUploadData::uploadDataOperator(const QString &time, const QString &buck
 void QOSSUploadData::receiveDataFromServer()
 {
     TTK_D(QOSSUploadData);
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
         if(reply->error() == QNetworkReply::NoError)

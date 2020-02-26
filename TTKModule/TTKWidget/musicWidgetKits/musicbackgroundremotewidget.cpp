@@ -138,7 +138,7 @@ QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidge
         m_functionsWidget->setLayout(hbox);
     }
 
-    QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
+    QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
     int count = ly->count();
     if(revert)
     {

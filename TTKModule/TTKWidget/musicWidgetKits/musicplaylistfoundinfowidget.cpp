@@ -252,7 +252,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
 void MusicPlaylistFoundInfoWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     m_foundTableWidget->setQueryInput(query);
-    MStatic_cast(MusicPlaylistFoundTableWidget*, m_foundTableWidget)->setConnectObject(this);
+    TTKStatic_cast(MusicPlaylistFoundTableWidget*, m_foundTableWidget)->setConnectObject(this);
 }
 
 void MusicPlaylistFoundInfoWidget::setCurrentIndex(int index)

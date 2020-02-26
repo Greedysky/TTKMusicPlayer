@@ -195,7 +195,7 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
             loader.setFileName(MusicUtils::QMMP::pluginPath("Light", name));
             const QObject *obj = loader.instance();
             LightFactory *decoderfac = nullptr;
-            if(obj && (decoderfac = MObject_cast(LightFactory*, obj)))
+            if(obj && (decoderfac = TTKObject_cast(LightFactory*, obj)))
             {
                 Light *lightWidget = decoderfac->create(this);
                 MusicSpectrum sp;
@@ -207,7 +207,7 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
         }
 
         const int index = findSpectrumWidget(name);
-        Light *light = MStatic_cast(Light*, m_types[index].m_obj);
+        Light *light = TTKStatic_cast(Light*, m_types[index].m_obj);
         light->open(url.isEmpty() ? SoundCore::instance()->path() : url );
     }
     else
@@ -254,7 +254,7 @@ void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, Q
         MusicSpectrum t;
         t.m_name = name;
         t.m_obj = vs->last();
-        MStatic_cast(Florid*, t.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+        TTKStatic_cast(Florid*, t.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
         layout->addWidget(t.m_obj);
         m_types << t;
     }

@@ -119,7 +119,7 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
 QStringList MusicConnectTransferWidget::getSelectedFiles()
 {
     QStringList paths;
-    const MIntList list(m_ui->listTableWidget->getSelectedItems());
+    const TTKIntList list(m_ui->listTableWidget->getSelectedItems());
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -148,7 +148,7 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
 
 void MusicConnectTransferWidget::itemSelectedChanged()
 {
-    const MIntList list(m_ui->listTableWidget->getSelectedItems());
+    const TTKIntList list(m_ui->listTableWidget->getSelectedItems());
     qint64 size = 0;
 
     for(int i=0; i<list.count(); ++i)
@@ -197,7 +197,7 @@ void MusicConnectTransferWidget::startToTransferFiles()
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 {
-    MIntList searchResult;
+    TTKIntList searchResult;
     for(int j=0; j<m_currentSongs.count(); ++j)
     {
         if(m_currentSongs[j].getMusicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))

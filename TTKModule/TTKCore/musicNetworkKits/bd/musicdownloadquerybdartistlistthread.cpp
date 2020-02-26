@@ -32,7 +32,7 @@ void MusicDownLoadQueryBDArtistListThread::startToPage(int offset)
         int mIdx = dds[1].toInt();
         if(mIdx > -1 && mIdx < 26)
         {
-            initial = QString(MStatic_cast(char, mIdx + 65));
+            initial = QString(TTKStatic_cast(char, mIdx + 65));
         }
         else if(mIdx >= 26)
         {

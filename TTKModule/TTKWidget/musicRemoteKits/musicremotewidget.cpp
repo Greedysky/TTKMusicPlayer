@@ -126,13 +126,13 @@ void MusicRemoteWidget::setLabelText(const QString &text)
 
 int MusicRemoteWidget::mapRemoteTypeIndex()
 {
-    if(MObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
-    else if(MObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
-    else if(MObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
-    else if(MObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
-    else if(MObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
-    else if(MObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
-    else if(MObject_cast(MusicRemoteWidgetForRaysWave*, this)) return RaysWave;
+    if(TTKObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
+    else if(TTKObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
+    else if(TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
+    else if(TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
+    else if(TTKObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
+    else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
+    else if(TTKObject_cast(MusicRemoteWidgetForRaysWave*, this)) return RaysWave;
     else return Null;
 }
 
@@ -184,25 +184,25 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
 
     QAction * action = menu.addAction(tr("SquareRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForSquare*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForSquare*, this));
     action->setData(Square);
     action = menu.addAction(tr("RectangleRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRectangle*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRectangle*, this));
     action->setData(Rectangle);
     action = menu.addAction(tr("SimpleStyleRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
     action->setData(SimpleStyle);
     action = menu.addAction(tr("ComplexStyleRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this));
     action->setData(ComplexStyle);
     action = menu.addAction(tr("DiamondRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForDiamond*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForDiamond*, this));
     action->setData(Diamond);
     action = menu.addAction(tr("RippleRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRipple*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);
     action = menu.addAction(tr("RaysWaveRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRaysWave*, this));
+    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRaysWave*, this));
     action->setData(RaysWave);
     menu.addAction(tr("quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));

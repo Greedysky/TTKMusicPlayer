@@ -384,7 +384,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
     if(m_times.count() == m_plainText.count())
     {
-        MIntStringMap data;
+        TTKIntStringMap data;
         for(int i=0; i<m_times.count(); ++i)
         {
             data.insert(m_times.value(i), m_plainText[i]);
@@ -760,7 +760,7 @@ void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent
 
     if(M_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(index);
         w->setLinearGradientColor(cl);
     }

@@ -232,7 +232,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    const MIntList deleteList(getMultiSelectedIndexs());
+    const TTKIntList deleteList(getMultiSelectedIndexs());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
@@ -327,7 +327,7 @@ void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 by
 {
     if(bytesTotal != 0)
     {
-        const int value = MStatic_cast(int, (bytesSent*1.0/bytesTotal)*100);
+        const int value = TTKStatic_cast(int, (bytesSent*1.0/bytesTotal)*100);
         const int row = FindUploadItemRow(time);
         if(row != -1)
         {

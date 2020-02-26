@@ -56,7 +56,7 @@ void MusicLrcPosterItemWidget::textChanged(const QStringList &data)
 
 void MusicLrcPosterItemWidget::currentTypeChanged(int type)
 {
-    m_type = MStatic_cast(Type, type);
+    m_type = TTKStatic_cast(Type, type);
     setFixedHeight(ITEM_HEIGHT);
 
     update();
@@ -173,7 +173,7 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     const int delta = 5 * ITEM_BORDER + lineHeight;
     int offset = 0;
-    MIntList list;
+    TTKIntList list;
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2 * ITEM_BORDER, pix.height());
@@ -205,7 +205,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     const int delta = 5 * ITEM_BORDER + lineHeight;
     int offset = ITEM_WIDTH - delta;
-    MIntList list;
+    TTKIntList list;
     //
     painter->setPen(QColor(0x66, 0x66, 0x66));
     painter->translate(2 * ITEM_BORDER, 0);
@@ -285,7 +285,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     const int delta = 5 * ITEM_BORDER + lineHeight;
     offset = ITEM_WIDTH - delta;
-    MIntList list;
+    TTKIntList list;
     //
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2 * ITEM_BORDER, pix.height());
@@ -511,12 +511,12 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_spring");
-    int h = MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
+    int h = TTKStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  TTKStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -561,12 +561,12 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_summer");
-    int h =  MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
+    int h =  TTKStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  TTKStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -611,12 +611,12 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_autumn");
-    int h =  MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
+    int h =  TTKStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  TTKStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -661,12 +661,12 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_winter");
-    int h =  MStatic_cast(int, pix.height()*width()*1.0f/pix.width());
+    int h =  TTKStatic_cast(int, pix.height()*width()*1.0f/pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  MStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
+        w =  TTKStatic_cast(int, width()*qMax(1.0f, height()*1.0f/pix.height()));
         h = height();
     }
 
@@ -782,7 +782,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     const int delta = 5 * ITEM_BORDER + lineHeight;
     int offset = delta;
-    MIntList list;
+    TTKIntList list;
     //
     painter->translate(2 * ITEM_BORDER, 0);
     painter->rotate(MA_90);

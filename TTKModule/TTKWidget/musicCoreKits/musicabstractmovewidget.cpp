@@ -106,7 +106,7 @@ void MusicAbstractMoveWidget::setBackgroundPixmap(QLabel *label, const QSize &si
 
 void MusicAbstractMoveWidget::setBackgroundPixmap(const QSize &size)
 {
-    QLabel *label = MStatic_cast(QLabel*, m_background);
+    QLabel *label = TTKStatic_cast(QLabel*, m_background);
     MusicBackgroundImage image;
     if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl()))
     {

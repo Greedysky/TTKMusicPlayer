@@ -86,7 +86,7 @@ void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
 {
-    setLinearGradientColor(MStatic_cast(MusicLrcColor::LrcColorType, index));
+    setLinearGradientColor(TTKStatic_cast(MusicLrcColor::LrcColorType, index));
 }
 
 void MusicLrcContainer::searchMusicLrcs()
@@ -136,7 +136,7 @@ void MusicLrcContainer::applySettingParameter(const QString &t)
     }
     if(M_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value(t + "LrcColor").toInt());
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value(t + "LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else

@@ -55,7 +55,7 @@ void MusicLocalSongSearchPopTableWidget::itemCellClicked(int row, int)
 {
     Q_EMIT setText( item(row, 0)->toolTip().trimmed() );
 
-    QWidget *widget = MStatic_cast(QWidget*, parent());
+    QWidget *widget = TTKStatic_cast(QWidget*, parent());
     widget->lower();
     widget->hide();
 }

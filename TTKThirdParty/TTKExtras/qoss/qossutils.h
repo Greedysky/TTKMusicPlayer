@@ -31,12 +31,12 @@ public:
      * Get authorization code.
      */
     static QString getAuthorizationCode(const QString &key, const QString &method,
-                                        const MStringMap &headers, const QString &resource);
+                                        const TTKStringMap &headers, const QString &resource);
     /*!
      * Create sign for normal auth.
      */
     static QString createSignForNormalAuth(const QString &method, const QString &access, const QString &secret,
-                                           const MStringMap &headers, const QString &resource);
+                                           const TTKStringMap &headers, const QString &resource);
     /*!
      * Get GMT.
      */

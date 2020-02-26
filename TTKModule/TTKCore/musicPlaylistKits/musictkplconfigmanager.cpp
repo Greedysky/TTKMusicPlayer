@@ -22,7 +22,7 @@ void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
 
         const QString &string = element.attribute("sortIndex");
         item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
-        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
+        item.m_sort.m_sortType = TTKStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
         items << item;
     }
 }

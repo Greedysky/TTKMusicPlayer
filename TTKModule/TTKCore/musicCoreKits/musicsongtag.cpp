@@ -230,7 +230,7 @@ QString MusicSongTag::findPluginPath() const
 {
     const QString &suffix = QFileInfo(m_filePath).suffix().toLower();
 
-    const MStringListMap formats(MusicFormats::supportFormatsStringMap());
+    const TTKStringListMap formats(MusicFormats::supportFormatsStringMap());
     foreach(const QString &key, formats.keys())
     {
         if(formats.value(key).contains(suffix))
@@ -249,7 +249,7 @@ bool MusicSongTag::readOtherTaglib()
 
     const QObject *obj = loader.instance();
     DecoderFactory *decoderfac = nullptr;
-    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)))
+    if(obj && (decoderfac = TTKObject_cast(DecoderFactory*, obj)))
     {
         qint64 length = 0;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath, true);
@@ -307,7 +307,7 @@ bool MusicSongTag::saveOtherTaglib()
     bool status = false;
     const QObject *obj = loader.instance();
     DecoderFactory *decoderfac = nullptr;
-    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)))
+    if(obj && (decoderfac = TTKObject_cast(DecoderFactory*, obj)))
     {
         status = true;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath, false);

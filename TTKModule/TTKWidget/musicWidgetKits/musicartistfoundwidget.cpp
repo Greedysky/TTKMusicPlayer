@@ -117,7 +117,7 @@ MusicArtistMvsFoundWidget::~MusicArtistMvsFoundWidget()
 void MusicArtistMvsFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    MusicDownLoadQueryMovieThread *v = MStatic_cast(MusicDownLoadQueryMovieThread*, m_downloadThread);
+    MusicDownLoadQueryMovieThread *v = TTKStatic_cast(MusicDownLoadQueryMovieThread*, m_downloadThread);
     v->startToSearch(m_songNameFull);
 }
 

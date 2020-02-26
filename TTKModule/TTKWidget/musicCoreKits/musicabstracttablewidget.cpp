@@ -53,15 +53,15 @@ void MusicAbstractTableWidget::clear()
     setRowCount(0);
 }
 
-MIntList MusicAbstractTableWidget::getMultiSelectedIndexs() const
+TTKIntList MusicAbstractTableWidget::getMultiSelectedIndexs() const
 {
-    MIntSet rows;
+    TTKIntSet rows;
     foreach(const QModelIndex& index, selectedIndexes())
     {
         rows.insert(index.row());
     }
 
-    MIntList rowsList = rows.toList();
+    TTKIntList rowsList = rows.toList();
     std::sort(rowsList.begin(), rowsList.end());
     return rowsList;
 }

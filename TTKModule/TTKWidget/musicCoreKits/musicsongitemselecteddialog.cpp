@@ -49,9 +49,9 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItems *items)
     }
 }
 
-MIntList MusicSongItemSelectedTableWidget::getSelectedItems() const
+TTKIntList MusicSongItemSelectedTableWidget::getSelectedItems() const
 {
-    MIntList list;
+    TTKIntList list;
     for(int i=0; i<rowCount(); ++i)
     {
         const QTableWidgetItem *it = item(i, 0);

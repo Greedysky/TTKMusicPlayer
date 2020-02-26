@@ -32,7 +32,7 @@ void MusicDownLoadQueryKWArtistListThread::startToPage(int offset)
         int mIdx = dds[1].toInt();
         if(mIdx > -1 && mIdx < 26)
         {
-            initial = QString("&prefix=%1").arg(MStatic_cast(char, mIdx + 65));
+            initial = QString("&prefix=%1").arg(TTKStatic_cast(char, mIdx + 65));
         }
     }
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_AR_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize) + initial;

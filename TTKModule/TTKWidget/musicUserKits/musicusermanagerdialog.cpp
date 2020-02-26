@@ -104,7 +104,7 @@ void MusicUserManagerDialog::musicUserLogoff()
 
 int MusicUserManagerDialog::exec()
 {
-    QWidget *pa = MStatic_cast(QWidget*, parent());
+    QWidget *pa = TTKStatic_cast(QWidget*, parent());
     const QPoint &point = pa->mapToGlobal(QPoint(0, 0));
     move(point.x(), point.y() + 27);
     return QDialog::exec();

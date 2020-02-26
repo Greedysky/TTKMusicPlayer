@@ -157,7 +157,7 @@ public Q_SLOTS:
     /*!
      * Set current equalizer effect.
      */
-    void setEqEffect(const MIntList &hz);
+    void setEqEffect(const TTKIntList &hz);
     /*!
      * Set enable to set current equalizer effect.
      */

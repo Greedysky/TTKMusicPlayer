@@ -164,7 +164,7 @@ void MusicDownLoadQueryKWPlaylistThread::downLoadFinished()
 
 void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
 {
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
@@ -240,7 +240,7 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
 void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
 {
     M_LOGGER_INFO(QString("%1 getMorePlaylistDetailsFinished").arg(getClassName()));
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
     if(reply && reply->error() == QNetworkReply::NoError)
     {

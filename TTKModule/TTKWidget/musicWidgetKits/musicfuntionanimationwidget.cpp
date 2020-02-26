@@ -149,7 +149,7 @@ void MusicBaseAnimationWidget::finished()
 MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     : MusicBaseAnimationWidget(parent)
 {
-    QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
     names << tr("musicPlaylist") << tr("musicCloud") << tr("musicRadio") << tr("musicMobile") << tr("musicMydownl");
@@ -203,7 +203,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
     m_pix.fill(QColor(0x80, 0xB7, 0xF1));
     m_showLine = false;
 
-    QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
     for(int i=0; i<6; ++i)
     {
@@ -260,7 +260,7 @@ void MusicOptionAnimationWidget::switchToSelectedItemStyle(int index)
 MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
     : MusicBaseAnimationWidget(parent)
 {
-    QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
+    QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
     names << tr("Re") << tr("My") << tr("daily") << tr("Online");

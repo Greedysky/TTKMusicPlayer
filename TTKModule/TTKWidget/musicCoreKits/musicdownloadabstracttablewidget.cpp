@@ -67,7 +67,7 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
        return;
     }
 
-    const MIntList deleteList(getMultiSelectedIndexs());
+    const TTKIntList deleteList(getMultiSelectedIndexs());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
