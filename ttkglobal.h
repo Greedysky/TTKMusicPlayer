@@ -149,7 +149,7 @@ public:                                     \
 ///
 #ifndef _MSC_VER
   //gcc version less than 3.4.0
-  #if __GNUC__ <= 3 && __GNUC_TTKINOR__ <= 4
+  #if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
     #define TTK_STRCAT(a, b)    a##b
   #else
     #define TTK_STRCAT(a, b)    a b
