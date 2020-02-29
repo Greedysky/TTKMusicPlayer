@@ -22,8 +22,9 @@ TEMPLATE = lib
 
 include(../../TTKVersion.pri)
 
-win32:TARGET = ../../../bin/$$TTKMusicPlayer/TTKDumper
-unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKDumper
+win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+TARGET = TTKDumper
 
 CONFIG       += warn_off
 unix:VERSION += 1.0.0

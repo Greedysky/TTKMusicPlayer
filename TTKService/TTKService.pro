@@ -31,15 +31,9 @@ win32{
 include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32{
-    TARGET = ../../bin/$$TTKMusicPlayer/TTKService
-    LIBS += -L../bin/$$TTKMusicPlayer -lTTKCore -lTTKDumper
-}
-unix{
-    TARGET = ../lib/$$TTKMusicPlayer/TTKService
-    LIBS += -L./lib/$$TTKMusicPlayer -lTTKCore -lTTKDumper
-}
+TARGET = TTKService
 
+LIBS += -L$$DESTDIR -lTTKCore -lTTKDumper
 
 INCLUDEPATH += ../TTKModule
 

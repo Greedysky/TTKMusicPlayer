@@ -20,9 +20,8 @@
  ================================================= */
 
 #include <QMap>
-#include <QApplication>
-#include <QDesktopWidget>
 #include "musicsingleton.h"
+#include "musicwidgetutils.h"
 
 #define M_SINGLE_MANAGER_PTR (MusicSingleton<MusicSingleManager>::createInstance())
 /////////////////////////////////////////////////////////////////////////
@@ -40,9 +39,10 @@
 #define M_SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                    \
 {                                                                       \
     M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                          \
+    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();     \
+    w->move(rect.width() / 2 - w->width() / 2,                          \
+            rect.height() / 2 - w->height() / 2);                       \
     w->raise();                                                         \
-    w->move(QApplication::desktop()->width() / 2 - w->width() / 2,      \
-            QApplication::desktop()->height() / 2 - w->height() / 2);   \
     w->show();                                                          \
 }
 

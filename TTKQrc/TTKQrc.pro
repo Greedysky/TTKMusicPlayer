@@ -24,8 +24,9 @@ msvc{
 include(../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32:TARGET = ../../bin/$$TTKMusicPlayer/TTKUi
-unix:TARGET = ../lib/$$TTKMusicPlayer/TTKUi
+win32:DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../lib/$$TTKMusicPlayer
+TARGET = TTKUi
 
 RESOURCES += \
     MusicPlayer.qrc \

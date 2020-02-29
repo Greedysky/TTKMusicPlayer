@@ -431,7 +431,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     m_ui->searchLineEdit->clear();
     m_searchfileListCache.clear();
 
-    TTKIntList auditionList = auditionRow.toList();
+    TTKIntList auditionList = auditionRow.values();
     std::sort(auditionList.begin(), auditionList.end());
 
     QStringList names;

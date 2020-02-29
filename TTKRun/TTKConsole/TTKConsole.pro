@@ -17,8 +17,8 @@
 # =================================================
 
 QT       += core
-unix:VERSION += 1.0.0.0
 include(../../TTKVersion.pri)
+unix:VERSION += 1.0.0.0
 
 TEMPLATE = app
 CONFIG += console
@@ -30,14 +30,12 @@ RCC_DIR = ./.build/rcc
 
 DEFINES += TTK_LIBRARY
 
-win32{
-    TARGET = ../../../bin/$$TTKMusicPlayer/TTKConsole
-    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKCore
-}
-unix{
-    TARGET = ../../lib/$$TTKMusicPlayer/TTKConsole
-    LIBS += -L../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
-}
+win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+TARGET = TTKConsole
+
+win32:LIBS += -L$$DESTDIR -lTTKCore
+unix:LIBS += -L$$DESTDIR -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
 win32:msvc{
     CONFIG +=c++11

@@ -22,8 +22,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 include(../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32:TARGET = ../../../bin/TTKMusicPlayer
-unix:TARGET = ../../lib/TTKMusicPlayer
+win32:DESTDIR = $$OUT_PWD/../../bin
+unix:DESTDIR = $$OUT_PWD/../../lib
+TARGET = TTKMusicPlayer
 
 TEMPLATE = app
 

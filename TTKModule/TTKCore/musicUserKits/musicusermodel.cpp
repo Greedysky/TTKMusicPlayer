@@ -166,7 +166,8 @@ QStringList MusicUserModel::getAllUsers()
     {
         users.insert(record(i).value("USERID").toString());
     }
-    return users.toList();
+
+    return users.values();
 }
 
 QStringList MusicUserModel::getAllCities()
@@ -180,7 +181,7 @@ QStringList MusicUserModel::getAllCities()
         cities << record(i).value("CITYNAME").toString();
     }
 
-    return cities.toList();
+    return cities.values();
 }
 
 QStringList MusicUserModel::getAllCountries(const QString &city)

@@ -22,27 +22,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 include(../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32{
-    TARGET = ../../../bin/$$TTKMusicPlayer/TTKExtras
-    msvc{
-        LIBS += -luser32
-    }
-}
-unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKExtras
+win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+TARGET = TTKExtras
+
 TEMPLATE = lib
 
 win32:msvc{
+    LIBS += -luser32
     CONFIG +=c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-win32{
-    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKUi
-}
-unix:!mac{
-    LIBS += -L../../lib/$$TTKMusicPlayer -lTTKUi
-}
+LIBS += -L$$DESTDIR -lTTKUi
+INCLUDEPATH += $$PWD
 
 include(../TTKExtrasDefine.pri)
 

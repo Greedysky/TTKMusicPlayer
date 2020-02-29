@@ -16,5 +16,10 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
+UI_DIR = ./.build/ui
+MOC_DIR = ./.build/moc
+OBJECTS_DIR = ./.build/obj
+RCC_DIR = ./.build/rcc
+
 # update time 2020.02.08
 TTKMusicPlayer = 2.11.1.0

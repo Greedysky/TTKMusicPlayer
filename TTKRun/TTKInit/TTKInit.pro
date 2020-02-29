@@ -17,10 +17,13 @@
 # =================================================
 
 QT       += core
+
+include(../../TTKVersion.pri)
 unix:VERSION += 1.0.0.0
 
-win32:TARGET = ../../../bin/TTKInit
-unix:TARGET = ../../lib/TTKInit
+win32:DESTDIR = $$OUT_PWD/../../bin
+unix:DESTDIR = $$OUT_PWD/../../lib
+TARGET = TTKInit
 
 TEMPLATE = app
 

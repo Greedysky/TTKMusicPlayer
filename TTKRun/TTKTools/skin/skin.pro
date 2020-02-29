@@ -17,6 +17,7 @@
 # =================================================
 
 include(../../../TTKVersion.pri)
+unix:VERSION += 1.0.0.0
 
 QT       += core gui
 equals(QT_MAJOR_VERSION, 5){
@@ -41,8 +42,8 @@ INCLUDEPATH += \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits \
     $$PWD/../../../TTKModule/TTKWidget/musicCoreKits \
 
-win32:LIBS += -L../../../bin/$$TTKMusicPlayer -lTTKCore
-unix:LIBS += -L../../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+win32:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
+unix:LIBS += -L$$OUT_PWD/../../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
 SOURCES += \
     mainskin.cpp \
