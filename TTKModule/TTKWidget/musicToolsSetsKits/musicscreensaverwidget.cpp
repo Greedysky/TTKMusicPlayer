@@ -24,12 +24,12 @@
 #define OS_WALLNAIL_NAME    "thumbnail.png"
 
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
-    : QLabel(nullptr)
+    : QLabel(parent)
 {
     setFixedSize(ITEM_SIZE + QSize(8, 8));
     setAttribute(Qt::WA_TranslucentBackground);
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::Tool);
 
+    hide();
     m_index = -1;
     m_parent = parent;
     m_enableButton = new QPushButton(this);
@@ -111,9 +111,9 @@ MusicScreenSaverListItem::MusicScreenSaverListItem(QObject *object, QWidget *par
     : QLabel(parent)
 {
     setFixedSize(155, 100);
-    setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
 
     m_hoverItem = new MusicScreenSaverHoverItem(this);
+    m_hoverItem->setParent(parent);
     connect(m_hoverItem, SIGNAL(itemClicked(int,bool)), object, SLOT(itemHasClicked(int,bool)));
 }
 
@@ -135,7 +135,7 @@ void MusicScreenSaverListItem::setStatus(int index, bool status)
 void MusicScreenSaverListItem::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
-    m_hoverItem->showItem(mapToGlobal(rect().center()));
+    m_hoverItem->showItem(mapToParent(rect().center()));
 }
 
 
@@ -176,6 +176,12 @@ void MusicScreenSaverListWidget::resizeWindow()
     {
         m_gridLayout->addWidget(m_items[i],i / side, i % side, Qt::AlignLeft | Qt::AlignTop);
     }
+}
+
+void MusicScreenSaverListWidget::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    resizeWindow();
 }
 
 
@@ -249,6 +255,7 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     mainLayout->addWidget(frame);
     //
     QWidget *functionWidget = new QWidget(this);
+    functionWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
     functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
     functionWidget->setLayout(functionWidgetLayout);

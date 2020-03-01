@@ -132,7 +132,7 @@ public:
      */
     explicit MusicScreenSaverListWidget(QWidget *parent = nullptr);
 
-    ~MusicScreenSaverListWidget();
+    virtual ~MusicScreenSaverListWidget();
 
     /*!
      * Create item by name and path.
@@ -145,6 +145,11 @@ public:
     virtual void resizeWindow();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void resizeEvent(QResizeEvent *event) override;
+
     QGridLayout *m_gridLayout;
     QList<MusicScreenSaverListItem*> m_items;
 
