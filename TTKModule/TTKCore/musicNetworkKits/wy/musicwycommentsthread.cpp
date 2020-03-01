@@ -13,7 +13,7 @@ MusicWYSongCommentsThread::MusicWYSongCommentsThread(QObject *parent)
 
 void MusicWYSongCommentsThread::startToSearch(const QString &name)
 {
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryWYThread *d = new MusicDownLoadQueryWYThread(this);
     d->setQueryAllRecords(false);
@@ -37,7 +37,7 @@ void MusicWYSongCommentsThread::startToPage(int offset)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
     m_pageTotal = 0;
@@ -64,7 +64,7 @@ void MusicWYSongCommentsThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -119,7 +119,7 @@ MusicWYPlaylistCommentsThread::MusicWYPlaylistCommentsThread(QObject *parent)
 
 void MusicWYPlaylistCommentsThread::startToSearch(const QString &name)
 {
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
 
     m_rawData["songID"] = name;
     startToPage(0);
@@ -132,7 +132,7 @@ void MusicWYPlaylistCommentsThread::startToPage(int offset)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
     m_pageTotal = 0;
@@ -159,7 +159,7 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)

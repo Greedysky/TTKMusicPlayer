@@ -27,20 +27,20 @@ MusicAudioRecorderObject::MusicAudioRecorderObject(QObject *parent)
     const QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
     if(!info.isFormatSupported(m_mFormatFile))
     {
-        M_LOGGER_WARN("input default mFormatFile not supported try to use nearest");
+        TTK_LOGGER_WARN("input default mFormatFile not supported try to use nearest");
         m_mFormatFile = info.nearestFormat(m_mFormatFile);
     }
 
     const QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
     if(!info1.isFormatSupported(m_mFormatFile))
     {
-        M_LOGGER_WARN("output default mFormatFile not supported - trying to use nearest");
-        M_LOGGER_WARN("output no support input mFormatFile.");
+        TTK_LOGGER_WARN("output default mFormatFile not supported - trying to use nearest");
+        TTK_LOGGER_WARN("output no support input mFormatFile.");
     }
 
     if(m_mFormatFile.sampleSize() != 16)
     {
-        M_LOGGER_INFO(QString("audio device doesn't support 16 bit support %d bit samples, example cannot run %1")
+        TTK_LOGGER_INFO(QString("audio device doesn't support 16 bit support %d bit samples, example cannot run %1")
                       .arg(m_mFormatFile.sampleSize()));
     }
 }

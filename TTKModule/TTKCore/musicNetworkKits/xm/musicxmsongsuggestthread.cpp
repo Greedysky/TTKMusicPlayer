@@ -16,7 +16,7 @@ void MusicXMSongSuggestThread::startToSearch(const QString &text)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_SUGGEST_URL, false).arg(text);
@@ -40,7 +40,7 @@ void MusicXMSongSuggestThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_items.clear();
     m_interrupt = false;
 

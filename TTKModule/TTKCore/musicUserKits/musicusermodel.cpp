@@ -34,12 +34,12 @@ bool MusicUserModel::addUser(const MusicUserUIDItem &uid, const QString &pwd, co
     if(submitAll())
     {
         database().commit();
-        M_LOGGER_INFO("submit successfully");
+        TTK_LOGGER_INFO("submit successfully");
         return true;
     }
     else
     {
-        M_LOGGER_INFO("submit failed");
+        TTK_LOGGER_INFO("submit failed");
         database().rollback();
         return false;
     }
@@ -66,12 +66,12 @@ bool MusicUserModel::addUser(const MusicUserInfoRecord &info)
     if(submitAll())
     {
         database().commit();
-        M_LOGGER_INFO("submit successfully");
+        TTK_LOGGER_INFO("submit successfully");
         return true;
     }
     else
     {
-        M_LOGGER_INFO("submit failed");
+        TTK_LOGGER_INFO("submit failed");
         database().rollback();
         return false;
     }

@@ -32,7 +32,7 @@ void MusicDJRadioProgramCategoryThread::startToPage(int offset)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
     const QUrl &musicUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_searchText));
@@ -55,7 +55,7 @@ void MusicDJRadioProgramCategoryThread::startToSearch(const QString &category)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(category));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(category));
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -78,7 +78,7 @@ void MusicDJRadioProgramCategoryThread::getProgramInfo(MusicResultsItem &item)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 getProgramInfo %2").arg(getClassName()).arg(item.m_id));
+    TTK_LOGGER_INFO(QString("%1 getProgramInfo %2").arg(getClassName()).arg(item.m_id));
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
@@ -125,7 +125,7 @@ void MusicDJRadioProgramCategoryThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
@@ -176,7 +176,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
 {
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
-    M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;

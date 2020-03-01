@@ -12,7 +12,7 @@
 
 void MusicRunTimeManager::run() const
 {
-    M_LOGGER_INFO("MusicApplication Run");
+    TTK_LOGGER_INFO("MusicApplication Run");
 #ifndef TTK_GREATER_NEW
     MusicUtils::Codec::setLocalCodec();
 #endif

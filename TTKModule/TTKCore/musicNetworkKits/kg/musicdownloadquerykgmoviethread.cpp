@@ -21,7 +21,7 @@ void MusicDownLoadQueryKGMovieThread::startToSearch(QueryType type, const QStrin
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
@@ -46,7 +46,7 @@ void MusicDownLoadQueryKGMovieThread::startToPage(int offset)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_AR_MV_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize);
@@ -71,7 +71,7 @@ void MusicDownLoadQueryKGMovieThread::startToSingleSearch(const QString &text)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
     m_searchText = text.trimmed();
     m_interrupt = true;
@@ -87,7 +87,7 @@ void MusicDownLoadQueryKGMovieThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
@@ -165,7 +165,7 @@ void MusicDownLoadQueryKGMovieThread::pageDownLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -211,7 +211,7 @@ void MusicDownLoadQueryKGMovieThread::pageDownLoadFinished()
 
 void MusicDownLoadQueryKGMovieThread::singleDownLoadFinished()
 {
-    M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();

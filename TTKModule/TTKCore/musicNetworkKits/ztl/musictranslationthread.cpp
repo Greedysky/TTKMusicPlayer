@@ -89,7 +89,7 @@ void MusicTranslationThread::downLoadFinished()
     }
     else
     {
-        M_LOGGER_ERROR("Translation source data error");
+        TTK_LOGGER_ERROR("Translation source data error");
         Q_EMIT downLoadDataChanged(QString());
     }
     deleteAll();

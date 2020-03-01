@@ -11,7 +11,7 @@ QOSSDataInterface::QOSSDataInterface(QNetworkAccessManager *networkManager, QObj
 
 void QOSSDataInterface::handleError(QNetworkReply::NetworkError error)
 {
-    M_LOGGER_ERROR("error" << error);
+    TTK_LOGGER_ERROR("error" << error);
 }
 
 QString QOSSDataInterface::pathEncode(const QString &data) const

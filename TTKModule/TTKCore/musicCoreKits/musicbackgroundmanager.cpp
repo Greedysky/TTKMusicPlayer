@@ -73,7 +73,7 @@ QString MusicBackgroundManager::getArtistPhotoPathByIndex(int index) const
 {
     if((0 < index && index != -1) || index > m_photos.count() || m_photos.isEmpty())
     {
-        M_LOGGER_ERROR("index out of range");
+        TTK_LOGGER_ERROR("index out of range");
         return QString();
     }
     return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0] : m_photos[index];

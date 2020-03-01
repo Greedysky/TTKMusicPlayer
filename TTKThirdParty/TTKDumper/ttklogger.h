@@ -28,27 +28,27 @@
 #define CURRENT_DATE QDate::currentDate().toString(MUSIC_YEAR_FORMAT)
 #define LOG_END      QString("log::npos")
 
-#define M_LOGGER    (*TTKLogger::createInstance())
-#define M_MESSAGE(str, msg)         \
+#define TTK_LOGGER    (*TTKLogger::createInstance())
+#define TTK_MESSAGE(str, msg)       \
 {                                   \
-    M_LOGGER.setLevel(msg);         \
-    M_LOGGER << str << LOG_END;     \
+    TTK_LOGGER.setLevel(msg);       \
+    TTK_LOGGER << str << LOG_END;   \
 }
 
 #ifdef TTK_DEBUG
-    #define M_LOGGER_INFO(str)  M_MESSAGE(str, "[Info]")
-    #define M_LOGGER_DEBUG(str) M_MESSAGE(str, "[Debug]")
-    #define M_LOGGER_WARN(str)  M_MESSAGE(str, "[Warn]")
-    #define M_LOGGER_TRACE(str) M_MESSAGE(str, "[Trace]")
-    #define M_LOGGER_ERROR(str) M_MESSAGE(str, "[Error]")
-    #define M_LOGGER_FATAL(str) M_MESSAGE(str, "[Fatal]")
+    #define TTK_LOGGER_INFO(str)  TTK_MESSAGE(str, "[Info]")
+    #define TTK_LOGGER_DEBUG(str) TTK_MESSAGE(str, "[Debug]")
+    #define TTK_LOGGER_WARN(str)  TTK_MESSAGE(str, "[Warn]")
+    #define TTK_LOGGER_TRACE(str) TTK_MESSAGE(str, "[Trace]")
+    #define TTK_LOGGER_ERROR(str) TTK_MESSAGE(str, "[Error]")
+    #define TTK_LOGGER_FATAL(str) TTK_MESSAGE(str, "[Fatal]")
 #else
-    #define M_LOGGER_INFO(str)  qDebug() << str
-    #define M_LOGGER_DEBUG(str) qDebug() << str
-    #define M_LOGGER_WARN(str)  qDebug() << str
-    #define M_LOGGER_TRACE(str) qDebug() << str
-    #define M_LOGGER_ERROR(str) qDebug() << str
-    #define M_LOGGER_FATAL(str) qDebug() << str
+    #define TTK_LOGGER_INFO(str)  qDebug() << str
+    #define TTK_LOGGER_DEBUG(str) qDebug() << str
+    #define TTK_LOGGER_WARN(str)  qDebug() << str
+    #define TTK_LOGGER_TRACE(str) qDebug() << str
+    #define TTK_LOGGER_ERROR(str) qDebug() << str
+    #define TTK_LOGGER_FATAL(str) qDebug() << str
 #endif
 
 /*! @brief The class of the application logger.

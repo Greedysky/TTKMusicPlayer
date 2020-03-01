@@ -211,7 +211,7 @@ void MusicLocalSongsManagerWidget::itemDoubleClicked(int row, int)
 
 void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 {
-    M_LOGGER_INFO("stop fetch!");
+    TTK_LOGGER_INFO("stop fetch!");
     loadingLabelState(false);
 
     m_ui->songlistsTable->setFiles(name);
@@ -220,7 +220,7 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 
 void MusicLocalSongsManagerWidget::filterScanChanged(int index)
 {
-    M_LOGGER_INFO("start fetch!");
+    TTK_LOGGER_INFO("start fetch!");
     m_thread->stopAndQuitThread();
 
     if(index == 0)

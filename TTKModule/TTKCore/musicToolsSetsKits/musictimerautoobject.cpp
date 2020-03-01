@@ -139,5 +139,5 @@ void MusicTimerAutoObject::setShutdown()
     /* shutdown */
     reboot(RB_POWER_OFF);
 #endif
-    M_LOGGER_INFO("shutdown now");
+    TTK_LOGGER_INFO("shutdown now");
 }

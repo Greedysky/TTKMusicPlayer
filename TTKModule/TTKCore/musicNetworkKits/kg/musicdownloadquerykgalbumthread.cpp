@@ -19,7 +19,7 @@ void MusicDownLoadQueryKGAlbumThread::startToSearch(const QString &album)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(album);
@@ -43,7 +43,7 @@ void MusicDownLoadQueryKGAlbumThread::startToSingleSearch(const QString &artist)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_AR_ALBUM_URL, false).arg(artist);
     m_interrupt = true;
@@ -66,7 +66,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
@@ -159,7 +159,7 @@ void MusicDownLoadQueryKGAlbumThread::singleDownLoadFinished()
 {
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
 
-    M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)

@@ -46,7 +46,7 @@ void MusicDownLoadThreadAbstract::deleteAll()
 
 void MusicDownLoadThreadAbstract::replyError(QNetworkReply::NetworkError)
 {
-    M_LOGGER_ERROR("Abnormal network connection");
+    TTK_LOGGER_ERROR("Abnormal network connection");
     Q_EMIT downLoadDataChanged("The file create failed");
     deleteAll();
 }

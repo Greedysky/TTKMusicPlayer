@@ -51,7 +51,7 @@ void MusicDownloadSourceThread::downLoadFinished()
     }
     else
     {
-        M_LOGGER_ERROR("Download source data error");
+        TTK_LOGGER_ERROR("Download source data error");
         if(m_rawData.isEmpty())
         {
             Q_EMIT downLoadByteDataChanged(QByteArray());
@@ -66,7 +66,7 @@ void MusicDownloadSourceThread::downLoadFinished()
 
 void MusicDownloadSourceThread::replyError(QNetworkReply::NetworkError)
 {
-    M_LOGGER_ERROR("Abnormal network connection");
+    TTK_LOGGER_ERROR("Abnormal network connection");
     if(m_rawData.isEmpty())
     {
         Q_EMIT downLoadByteDataChanged(QByteArray());

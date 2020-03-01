@@ -111,7 +111,7 @@ static inline void checkExtraProcessQuit()
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
-            M_LOGGER_INFO("Windows Kill Process " << process << " Successed!");
+            TTK_LOGGER_INFO("Windows Kill Process " << process << " Successed!");
         }
     }
 }
@@ -173,7 +173,7 @@ static inline void checkExtraProcessQuit()
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {
-                M_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed!");
+                TTK_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed!");
             }
         }
     }

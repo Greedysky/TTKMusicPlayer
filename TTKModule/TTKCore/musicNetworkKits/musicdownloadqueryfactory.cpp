@@ -114,7 +114,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObj
         case 5:  thread = new MusicDownLoadQueryKGThread(parent); break;
         default: thread = new MusicDownLoadQueryWYThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -132,7 +132,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getMovieThread(QObj
         case 5:  thread = new MusicDownLoadQueryKGMovieThread(parent); break;
         default: thread = new MusicDownLoadQueryWYMovieThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryMovieThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryMovieThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -150,7 +150,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObj
         case 5:  thread = new MusicDownLoadQueryKGAlbumThread(parent); break;
         default: thread = new MusicDownLoadQueryWYAlbumThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryAlbumThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryAlbumThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -168,7 +168,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
         case 5:  thread = new MusicDownLoadQueryKGArtistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYArtistThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryArtistThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryArtistThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -186,7 +186,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistListThread
         case 5:  thread = new MusicDownLoadQueryKGArtistListThread(parent); break;
         default: thread = new MusicDownLoadQueryWYArtistListThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryArtistListThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryArtistListThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -204,7 +204,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getToplistThread(QO
         case 5:  thread = new MusicDownLoadQueryKGToplistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYToplistThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryToplistThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryToplistThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -222,7 +222,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(Q
         case 5:  thread = new MusicDownLoadQueryKGPlaylistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYPlaylistThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryPlaylistThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryPlaylistThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
@@ -240,7 +240,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(
         case 5:  thread = new MusicDownLoadQueryKGRecommendThread(parent); break;
         default: thread = new MusicDownLoadQueryWYRecommendThread(parent);
     }
-    M_LOGGER_INFO(QString("MusicDownLoadQueryRecommendThread server: %1").arg(thread->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicDownLoadQueryRecommendThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 

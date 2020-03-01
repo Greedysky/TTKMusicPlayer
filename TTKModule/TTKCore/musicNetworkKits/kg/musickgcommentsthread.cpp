@@ -13,7 +13,7 @@ MusicKGSongCommentsThread::MusicKGSongCommentsThread(QObject *parent)
 
 void MusicKGSongCommentsThread::startToSearch(const QString &name)
 {
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryKGThread *d = new MusicDownLoadQueryKGThread(this);
     d->setQueryAllRecords(false);
@@ -37,7 +37,7 @@ void MusicKGSongCommentsThread::startToPage(int offset)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SG_COMMIT_URL, false).arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
@@ -62,7 +62,7 @@ void MusicKGSongCommentsThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -118,7 +118,7 @@ MusicKGPlaylistCommentsThread::MusicKGPlaylistCommentsThread(QObject *parent)
 
 void MusicKGPlaylistCommentsThread::startToSearch(const QString &name)
 {
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
 
     m_rawData["songID"] = name;
     startToPage(0);
@@ -131,7 +131,7 @@ void MusicKGPlaylistCommentsThread::startToPage(int offset)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_PL_COMMIT_URL, false).arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
@@ -156,7 +156,7 @@ void MusicKGPlaylistCommentsThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)

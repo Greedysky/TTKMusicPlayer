@@ -31,7 +31,7 @@ void MusicTextDownLoadThread::startToDownload()
         else
         {
             Q_EMIT downLoadDataChanged("The text file create failed");
-            M_LOGGER_ERROR("The text file create failed!");
+            TTK_LOGGER_ERROR("The text file create failed!");
             deleteAll();
         }
     }
@@ -56,11 +56,11 @@ void MusicTextDownLoadThread::downLoadFinished()
             outstream.setCodec("utf-8");
             outstream << QString(bytes).remove("\r").toUtf8() << endl;
             m_file->close();
-            M_LOGGER_INFO("text download has finished!");
+            TTK_LOGGER_INFO("text download has finished!");
         }
         else
         {
-            M_LOGGER_ERROR("text download file error!");
+            TTK_LOGGER_ERROR("text download file error!");
             m_file->remove();
             m_file->close();
         }

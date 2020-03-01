@@ -32,7 +32,7 @@ void MusicKWTextDownLoadThread::startToDownload()
         else
         {
             Q_EMIT downLoadDataChanged("The kuwo text file create failed");
-            M_LOGGER_ERROR(QString("%1 file create failed!").arg(getClassName()));
+            TTK_LOGGER_ERROR(QString("%1 file create failed!").arg(getClassName()));
             deleteAll();
         }
     }
@@ -72,11 +72,11 @@ void MusicKWTextDownLoadThread::downLoadFinished()
             outstream.setCodec("utf-8");
             outstream << lrcData << endl;
             m_file->close();
-            M_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));
+            TTK_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));
         }
         else
         {
-            M_LOGGER_ERROR(QString("%1 download file error!").arg(getClassName()));
+            TTK_LOGGER_ERROR(QString("%1 download file error!").arg(getClassName()));
             m_file->remove();
             m_file->close();
         }

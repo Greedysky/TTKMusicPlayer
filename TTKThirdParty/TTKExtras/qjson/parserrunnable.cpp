@@ -48,18 +48,18 @@ void ParserRunnable::setData( const QByteArray &data )
 
 void ParserRunnable::run()
 {
-  M_LOGGER_INFO(Q_FUNC_INFO);
+  TTK_LOGGER_INFO(Q_FUNC_INFO);
   TTK_D(ParserRunnable);
 
   bool ok;
   Parser parser;
   QVariant result = parser.parse (d->m_data, &ok);
   if (ok) {
-    M_LOGGER_INFO("successfully converted json item to QVariant object");
+    TTK_LOGGER_INFO("successfully converted json item to QVariant object");
     Q_EMIT parsingFinished(result, true, QString());
   } else {
     const QString errorText = tr("An error occurred while parsing json: %1").arg(parser.errorString());
-    M_LOGGER_ERROR(errorText);
+    TTK_LOGGER_ERROR(errorText);
     Q_EMIT parsingFinished(QVariant(), false, errorText);
   }
 }

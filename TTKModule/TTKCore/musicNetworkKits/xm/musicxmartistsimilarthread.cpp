@@ -16,7 +16,7 @@ void MusicXMArtistSimilarThread::startToSearch(const QString &text)
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_SIM_URL, false).arg(text);
     deleteAll();
 
@@ -40,7 +40,7 @@ void MusicXMArtistSimilarThread::downLoadFinished()
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)

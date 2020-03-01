@@ -62,7 +62,7 @@ void MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
 
         if(error)
         {
-            M_LOGGER_ERROR("read pls format playlist error!");
+            TTK_LOGGER_ERROR("read pls format playlist error!");
             break;
         }
     }

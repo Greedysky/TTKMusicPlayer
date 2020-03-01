@@ -26,7 +26,7 @@ void MusicDataDownloadThread::startToDownload()
         }
         else
         {
-            M_LOGGER_ERROR("The data file create failed");
+            TTK_LOGGER_ERROR("The data file create failed");
             Q_EMIT downLoadDataChanged("The data file create failed");
             deleteAll();
         }
@@ -97,7 +97,7 @@ void MusicDataDownloadThread::downLoadFinished()
         if(m_needUpdate)
         {
             Q_EMIT downLoadDataChanged( transferData() );
-            M_LOGGER_INFO("data download has finished!");
+            TTK_LOGGER_INFO("data download has finished!");
         }
     }
     deleteAll();

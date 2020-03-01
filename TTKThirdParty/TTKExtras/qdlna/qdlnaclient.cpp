@@ -78,7 +78,7 @@ bool QDlnaClientPrivate::connectServer()
 {
     const QString &request = QHelperDlna::MakeRequest("GET", m_smp, 0, QString(), m_serverIP, m_serverPort);
     const QString &response = QHelperDlna::makeSocketGetReply(m_serverIP, m_serverPort, request);
-    M_LOGGER_INFO(m_serverIP << m_serverPort << m_smp << response);
+    TTK_LOGGER_INFO(m_serverIP << m_serverPort << m_smp << response);
     const int code = QHelperDlna::GetResponseCode(response);
     if(code != 200)
     {
@@ -172,10 +172,10 @@ bool QDlnaClient::isConnected() const
 QString QDlnaClient::tryToPlayFile(const QString &url)
 {
     TTK_D(QDlnaClient);
-    M_LOGGER_INFO(url << d->m_controlURL << d->m_isConnected);
+    TTK_LOGGER_INFO(url << d->m_controlURL << d->m_isConnected);
     const QString &uploadState = uploadFileToPlay(url);
     const QString &playState = startPlay(0);
-    M_LOGGER_INFO(uploadState << "playState " << playState);
+    TTK_LOGGER_INFO(uploadState << "playState " << playState);
     return playState;
 }
 
@@ -191,7 +191,7 @@ QString QDlnaClient::uploadFileToPlay(const QString &url)
     body += "</u:SetAVTransportURI>\n";
     body += XML_FOOT + "\n";
     const QString &request = QHelperDlna::MakeRequest("POST", d->m_controlURL, body.length(), "urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI", d->m_serverIP,d->m_serverPort) + body;
-    M_LOGGER_INFO(request);
+    TTK_LOGGER_INFO(request);
     return QHelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 

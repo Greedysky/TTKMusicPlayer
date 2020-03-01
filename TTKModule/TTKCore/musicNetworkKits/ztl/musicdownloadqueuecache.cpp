@@ -152,7 +152,7 @@ void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
 #ifndef TTK_DEBUG
     Q_UNUSED(code);
 #endif
-    M_LOGGER_ERROR(QString("QNetworkReply::NetworkError : %1 %2").arg(code).arg(m_reply->errorString()));
+    TTK_LOGGER_ERROR(QString("QNetworkReply::NetworkError : %1 %2").arg(code).arg(m_reply->errorString()));
     m_file->flush();
     if(!m_isAbort)
     {
