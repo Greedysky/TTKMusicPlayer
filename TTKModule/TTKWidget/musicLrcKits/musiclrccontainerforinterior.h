@@ -99,7 +99,7 @@ public:
      */
     int getLrcSize() const;
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     void resizeWindow();
 

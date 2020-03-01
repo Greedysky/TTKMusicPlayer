@@ -275,7 +275,7 @@ protected:
      */
     void setInputObject(QObject *object) const;
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     void resizeWindow();
     /*!

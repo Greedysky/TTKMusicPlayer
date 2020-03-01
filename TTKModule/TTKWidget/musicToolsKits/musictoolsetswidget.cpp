@@ -96,7 +96,9 @@ void MusicToolSetsWidget::addListWidgetItem()
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
 {
-    switch( m_ui->listItemWidget->row(item) )
+    hide();
+    //
+    switch(m_ui->listItemWidget->row(item))
     {
         case 0:
             {

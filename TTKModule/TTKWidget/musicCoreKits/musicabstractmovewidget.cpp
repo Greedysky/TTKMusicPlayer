@@ -3,11 +3,9 @@
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrap.h"
 #include "musicwidgetheaders.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
-
-#define WIDTH  4
-#define HEIGHT 4
 
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
     : MusicAbstractMoveWidget(true, parent)
@@ -18,7 +16,6 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(bool transparent, QWidget *parent)
     : QWidget(parent)
 {
-    ///Remove the title bar
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
 
@@ -50,16 +47,7 @@ void MusicAbstractMoveWidget::paintEvent(QPaintEvent *event)
     if(m_showShadow)
     {
         QPainter painter(this);
-
-        painter.drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_top"));
-        painter.drawPixmap(width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_top"));
-        painter.drawPixmap(0, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_bottom"));
-        painter.drawPixmap(width() - WIDTH, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_bottom"));
-
-        painter.drawPixmap(0, WIDTH, HEIGHT, height() - 2*WIDTH, QPixmap(":/shadow/lb_left").scaled(WIDTH, height() - 2*HEIGHT));
-        painter.drawPixmap(width() - WIDTH, WIDTH, HEIGHT, height() - 2*HEIGHT, QPixmap(":/shadow/lb_right").scaled(WIDTH, height() - 2*HEIGHT));
-        painter.drawPixmap(HEIGHT, 0, width() - 2*WIDTH, HEIGHT, QPixmap(":/shadow/lb_top").scaled(width() - 2*WIDTH, HEIGHT));
-        painter.drawPixmap(WIDTH, height() - HEIGHT, width() - 2*WIDTH, HEIGHT, QPixmap(":/shadow/lb_bottom").scaled(width() - 2*WIDTH, HEIGHT));
+        MusicUtils::Widget::setBorderShadow(this, &painter);
     }
 }
 
@@ -129,7 +117,7 @@ MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(bool transparent, Q
     : MusicAbstractMoveWidget(transparent, parent)
 {
     QVBoxLayout *l = new QVBoxLayout(this);
-    l->setContentsMargins(WIDTH, HEIGHT, WIDTH, HEIGHT);
+    l->setContentsMargins(4, 4, 4, 4);
     l->setSpacing(0);
 
     m_container = new QWidget(this);

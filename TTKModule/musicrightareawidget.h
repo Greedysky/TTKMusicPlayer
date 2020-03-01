@@ -154,7 +154,7 @@ public:
      */
     void musicMovieRadioSearch(const QVariant &data);
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     void resizeWindow();
 

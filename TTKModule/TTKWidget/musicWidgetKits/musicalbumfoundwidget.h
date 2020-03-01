@@ -67,7 +67,7 @@ public:
     virtual void setSongNameById(const QString &id) override;
 
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     virtual void resizeWindow() override;
 

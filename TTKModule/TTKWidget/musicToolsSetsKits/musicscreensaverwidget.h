@@ -27,32 +27,33 @@
 class MusicDownloadQueueCache;
 
 
-/*! @brief The class of the screen saver list item.
+/*! @brief The class of the screen saver hover item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicScreenSaverListItem : public QLabel
+class MUSIC_WIDGET_EXPORT MusicScreenSaverHoverItem : public QLabel
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicScreenSaverListItem)
+    TTK_DECLARE_MODULE(MusicScreenSaverHoverItem)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicScreenSaverListItem(QWidget *parent = nullptr);
+    explicit MusicScreenSaverHoverItem(QLabel *parent = nullptr);
 
     /*!
      * Set item file name.
      */
     void setFilePath(const QString &path);
-    /*!
-     * Get item file name.
-     */
-    QString getFilePath() const;
 
     /*!
      * Set item status.
      */
     void setStatus(int index, bool status);
+
+    /*!
+     * show item.
+     */
+    void showItem(const QPoint &point);
 
 Q_SIGNALS:
     /*!
@@ -71,11 +72,49 @@ protected:
      * Override the widget event.
      */
     virtual void leaveEvent(QEvent *event) override;
-    virtual void enterEvent(QEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
 
     int m_index;
     QString m_path;
+    QLabel *m_parent;
     QPushButton *m_enableButton;
+};
+
+
+
+/*! @brief The class of the screen saver list item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicScreenSaverListItem : public QLabel
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicScreenSaverListItem)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicScreenSaverListItem(QObject *object, QWidget *parent = nullptr);
+
+    virtual ~MusicScreenSaverListItem();
+
+    /*!
+     * Set item file name.
+     */
+    void setFilePath(const QString &path);
+
+    /*!
+     * Set item status.
+     */
+    void setStatus(int index, bool status);
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void enterEvent(QEvent *event) override;
+
+    MusicScreenSaverHoverItem *m_hoverItem;
 };
 
 
@@ -99,6 +138,11 @@ public:
      * Create item by name and path.
      */
     void createItem(QObject *object, const QString &path, int index, bool status);
+
+    /*!
+     * Resize window bound by widget resize called.
+     */
+    virtual void resizeWindow();
 
 protected:
     QGridLayout *m_gridLayout;
@@ -132,6 +176,11 @@ public:
      */
     static QVector<bool> parseSettingParameter();
 
+    /*!
+     * Resize window bound by widget resize called.
+     */
+    virtual void resizeWindow();
+
 private Q_SLOTS:
     /*!
      * Input data changed
@@ -156,6 +205,7 @@ private:
      */
     void initialize();
 
+    bool m_currentState;
     QLineEdit *m_inputEdit;
     QPushButton *m_caseButton;
     MusicDownloadQueueCache *m_downloadQueue;

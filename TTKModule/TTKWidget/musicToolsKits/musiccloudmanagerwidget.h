@@ -51,7 +51,7 @@ public:
      */
     bool getKey();
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     void resizeWindow();
 
@@ -204,7 +204,7 @@ public:
     ~MusicCloudManagerWidget();
 
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     virtual void resizeWindow();
 

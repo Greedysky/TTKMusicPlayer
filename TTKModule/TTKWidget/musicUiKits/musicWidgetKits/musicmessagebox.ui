@@ -105,7 +105,7 @@
     <rect>
      <x>49</x>
      <y>39</y>
-     <width>240</width>
+     <width>250</width>
      <height>95</height>
     </rect>
    </property>
@@ -122,7 +122,7 @@
   <widget class="QLabel" name="iconLabel">
    <property name="geometry">
     <rect>
-     <x>4</x>
+     <x>12</x>
      <y>39</y>
      <width>100</width>
      <height>100</height>

@@ -44,9 +44,19 @@ public Q_SLOTS:
      * Override exec function.
      */
     virtual int exec();
+    /*!
+     * Open file button clicked.
+     */
+    void openFileButtonClicked();
+    /*!
+     * Confirm button clicked.
+     */
+    void confirmButtonClicked();
 
 protected:
     Ui::MusicMessageFeedbackDialog *m_ui;
+
+    QStringList m_path;
 
 };
 

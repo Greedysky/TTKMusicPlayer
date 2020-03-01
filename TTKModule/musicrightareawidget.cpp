@@ -300,6 +300,10 @@ void MusicRightAreaWidget::resizeWindow()
     {
         TTKObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
+    else if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
+    {
+        TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
 
     if(TTKObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
     {

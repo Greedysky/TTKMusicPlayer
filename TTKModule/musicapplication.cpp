@@ -1119,7 +1119,7 @@ void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 
 bool MusicApplication::eventFilter(QObject *object, QEvent *event)
 {
-    if(object == m_ui->centerWidget && QEvent::ContextMenu == event->type())
+    if(object == m_ui->centerWidget && (QEvent::ContextMenu == event->type() || QEvent::MouseButtonPress == event->type()))
     {
         return true;
     }

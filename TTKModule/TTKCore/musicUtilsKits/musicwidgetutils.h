@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+class QPainter;
 class QComboBox;
 
 #include "musicobject.h"
@@ -31,6 +32,10 @@ namespace MusicUtils
 {
     namespace Widget
     {
+        /*!
+         * Set widget border shadow.
+         */
+        MUSIC_UTILS_EXPORT void setBorderShadow(QWidget *widget, QPainter *painter);
         /*!
          * Set widget label font.
          */

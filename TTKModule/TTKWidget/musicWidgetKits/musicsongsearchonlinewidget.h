@@ -103,7 +103,7 @@ public:
     void setSearchQuality(const QString &quality);
 
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     void resizeWindow();
 
@@ -203,7 +203,7 @@ public:
      */
     void researchQueryByQuality(const QString &name, const QString &quality);
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     void resizeWindow();
     /*!

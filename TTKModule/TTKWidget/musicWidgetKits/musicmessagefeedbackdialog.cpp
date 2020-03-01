@@ -1,6 +1,8 @@
 #include "musicmessagefeedbackdialog.h"
 #include "ui_musicmessagefeedbackdialog.h"
+#include "musicfileutils.h"
 #include "musicuiobject.h"
+#include "musicmessagebox.h"
 
 MusicMessageFeedbackDialog::MusicMessageFeedbackDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -40,7 +42,8 @@ MusicMessageFeedbackDialog::MusicMessageFeedbackDialog(QWidget *parent)
 #endif
 
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+    connect(m_ui->fileButton, SIGNAL(clicked()), SLOT(openFileButtonClicked()));
 }
 
 MusicMessageFeedbackDialog::~MusicMessageFeedbackDialog()
@@ -52,4 +55,26 @@ int MusicMessageFeedbackDialog::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicMessageFeedbackDialog::openFileButtonClicked()
+{
+    m_path = MusicUtils::File::getOpenFilesDialog(this);
+}
+
+void MusicMessageFeedbackDialog::confirmButtonClicked()
+{
+    MusicMessageBox message;
+    if((!m_ui->productRadioButton->isChecked() && !m_ui->programRadioButton->isChecked()) ||
+         m_ui->textEdit->toPlainText().isEmpty() || m_ui->lineEdit->text().isEmpty() || m_path.isEmpty())
+    {
+        message.setText(tr("You entered is incorrect"));
+        message.exec();
+        return;
+    }
+
+    message.setText(tr("Operate Successfully!"));
+    message.exec();
+
+    close();
 }

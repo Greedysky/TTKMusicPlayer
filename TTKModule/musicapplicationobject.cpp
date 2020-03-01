@@ -112,17 +112,11 @@ void MusicApplicationObject::applySettingParameter()
         windows.setMusicRegeditAssociateFileIcon();
     }
 #endif
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool())
+    if(!m_screenSaverWidget)
     {
-        if(!m_screenSaverWidget)
-        {
-            m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
-        }
+        m_screenSaverWidget = new MusicScreenSaverBackgroundWidget;
     }
-    if(m_screenSaverWidget)
-    {
-        m_screenSaverWidget->applySettingParameter();
-    }
+    m_screenSaverWidget->applySettingParameter();
 }
 
 void MusicApplicationObject::windowCloseAnimation()

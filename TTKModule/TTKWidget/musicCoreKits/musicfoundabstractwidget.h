@@ -49,7 +49,7 @@ public:
     virtual void setSongNameById(const QString &id) = 0;
 
     /*!
-     * Resize window bound by widgte resize called.
+     * Resize window bound by widget resize called.
      */
     virtual void resizeWindow() = 0;
 
