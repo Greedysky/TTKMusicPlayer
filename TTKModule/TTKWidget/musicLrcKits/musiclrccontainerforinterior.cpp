@@ -195,10 +195,11 @@ void MusicLrcContainerForInterior::resizeWindow()
     {
         width += 320;
     }
+
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
         width += (m_lrcDisplayAll ? 0 : 320);
-        height += 320/2;
+        height += 320 / 2;
     }
 
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
@@ -217,14 +218,14 @@ void MusicLrcContainerForInterior::createFloatPlayWidget()
 
 void MusicLrcContainerForInterior::lrcWidgetShowFullScreen()
 {
-    QHBoxLayout *l = TTKStatic_cast(QHBoxLayout*, m_functionLabel->layout());
+    QHBoxLayout *layout = TTKStatic_cast(QHBoxLayout*, m_functionLabel->layout());
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
-        l->removeItem(l->itemAt(l->count() - 1));
+        layout->removeItem(layout->itemAt(layout->count() - 1));
     }
     else
     {
-        l->addStretch(1);
+        layout->addStretch(1);
     }
 }
 

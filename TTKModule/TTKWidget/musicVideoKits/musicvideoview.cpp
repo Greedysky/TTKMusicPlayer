@@ -28,7 +28,7 @@ void MusicViewWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_leftPressed = true;
-        m_clickedTimer->start(300*MT_MS);
+        m_clickedTimer->start(300 * MT_MS);
     }
 }
 

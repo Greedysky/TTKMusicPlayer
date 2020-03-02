@@ -39,9 +39,8 @@
 #define M_SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                    \
 {                                                                       \
     M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                          \
-    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();     \
-    w->move(rect.width() / 2 - w->width() / 2,                          \
-            rect.height() / 2 - w->height() / 2);                       \
+    const QRect &r = MusicUtils::Widget::windowScreenGeometry();        \
+    w->move((r.width() - w->width())/2, (r.height() - w->height())/2);  \
     w->raise();                                                         \
     w->show();                                                          \
 }
@@ -63,6 +62,8 @@
 #define M_SINGLE_MANAGER_DIALOG_CLASS2(name, parent)                    \
 {                                                                       \
     M_SINGLE_MANAGER_DIALOG_NEW2(name, parent)                          \
+    const QRect &r = MusicUtils::Widget::windowScreenGeometry();        \
+    w->move((r.width() - w->width())/2, (r.height() - w->height())/2);  \
     w->exec();                                                          \
 }
 

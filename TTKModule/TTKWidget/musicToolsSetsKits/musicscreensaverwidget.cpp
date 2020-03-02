@@ -406,7 +406,7 @@ void MusicScreenSaverWidget::initialize()
 MusicScreenSaverBackgroundWidget::MusicScreenSaverBackgroundWidget(QWidget *parent)
     : MusicTransitionAnimationLabel(parent)
 {
-    setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 
     m_state = false;
     m_isRunning = false;
@@ -460,6 +460,7 @@ void MusicScreenSaverBackgroundWidget::runningTimeout()
     if(!m_isRunning)
     {
         m_isRunning = true;
+        setGeometry(MusicUtils::Widget::windowScreenGeometry());
         setParent(nullptr);
         showFullScreen();
 

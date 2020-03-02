@@ -44,7 +44,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_quitAnimation = new QPropertyAnimation(this);
     m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);
     m_quitAnimation->setTargetObject(parent);
-    m_sideAnimation->setDuration(250*MT_MS);
+    m_sideAnimation->setDuration(250 * MT_MS);
 
     m_musicTimerAutoObject = new MusicTimerAutoObject(this);
     m_screenSaverWidget = nullptr;
@@ -129,7 +129,7 @@ void MusicApplicationObject::windowCloseAnimation()
 
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("geometry");
-        m_quitAnimation->setDuration(250*MT_MS);
+        m_quitAnimation->setDuration(250 * MT_MS);
         m_quitAnimation->setStartValue(w->geometry());
         m_quitAnimation->setEndValue(QRect(w->x(), w->geometry().center().y(), w->width(), 0));
         m_quitAnimation->start();

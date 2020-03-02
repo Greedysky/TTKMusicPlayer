@@ -776,7 +776,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
 
         MusicWindowsManager().setLeftWinEnabled();
-        QTimer::singleShot(10*MT_MS, this, SLOT(musicVideoActiveWindow()));
+        QTimer::singleShot(10 * MT_MS, this, SLOT(musicVideoActiveWindow()));
     }
     else
     {

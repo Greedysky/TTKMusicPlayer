@@ -56,7 +56,7 @@ int MusicVolumePopWidget::value() const
 void MusicVolumePopWidget::leaveEvent(QEvent *event)
 {
     MusicToolMenuWidget::leaveEvent(event);
-    QTimer::singleShot(500*MT_MS, m_menu, SLOT(close()));
+    QTimer::singleShot(500 * MT_MS, m_menu, SLOT(close()));
 }
 
 void MusicVolumePopWidget::enterEvent(QEvent *event)
@@ -66,7 +66,7 @@ void MusicVolumePopWidget::enterEvent(QEvent *event)
     {
         m_menuShown = true;
         popupMenu();
-        QTimer::singleShot(500*MT_MS, this, SLOT(timeToResetFlag()));
+        QTimer::singleShot(500 * MT_MS, this, SLOT(timeToResetFlag()));
     }
 }
 
