@@ -448,7 +448,7 @@ void MusicScreenSaverBackgroundWidget::applySettingParameter()
     m_state = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();
     const int value = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
     m_state = (m_state && (value > 0));
-    if(value > 0)
+    if(m_state)
     {
         m_runningTimer->setInterval(value * MT_M2MS);
         m_runningTimer->start();

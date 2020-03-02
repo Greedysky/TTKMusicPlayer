@@ -114,6 +114,11 @@ void gaussBlur(int* pix, int w, int h, int radius)
 }
 
 
+QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, int ratioX, int ratioY)
+{
+    return pixmapToRound(src, QRect(QPoint(0, 0), src.size()), ratioX, ratioY);
+}
+
 QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
 {
     return pixmapToRound(src, QRect(QPoint(0, 0), size), ratioX, ratioY);
@@ -127,7 +132,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, const QRect &rect, 
     }
 
     QPixmap image = src.scaled(rect.size());
-    image.setMask( getBitmapMask(rect, ratioX, ratioY) );
+    image.setMask(getBitmapMask(rect, ratioX, ratioY));
     return image;
 }
 

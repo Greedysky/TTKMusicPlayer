@@ -1,51 +1,49 @@
 #include "musicspectrumlayoutwidget.h"
 #include "musicuiobject.h"
+#include "musicimageutils.h"
 
+#include <QPainter>
 #include <QScrollArea>
 #include <QSignalMapper>
 
 MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
     : MusicClickedLabel(parent)
 {
-    setFixedSize(250, 40);
-
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
-
-    m_box = new QCheckBox(this);
-    m_box->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_box->setAttribute(Qt::WA_TransparentForMouseEvents);
-#ifdef Q_OS_UNIX
-    m_box->setFocusPolicy(Qt::NoFocus);
-#endif
-    m_label = new QLabel(this);
-    m_label->setFixedSize(219, 40);
-    layout->addWidget(m_box);
-    layout->addWidget(m_label);
-    layout->addStretch(1);
-    setLayout(layout);
+    setFixedSize(219, 123);
+    m_isSelected = false;
 }
 
 MusicSpectrumLayoutItem::~MusicSpectrumLayoutItem()
 {
-    delete m_label;
-    delete m_box;
+
 }
 
 void MusicSpectrumLayoutItem::addItem(const QString &item, const QString &tip)
 {
-    m_label->setPixmap(item);
+    setPixmap(MusicUtils::Image::pixmapToRound(item, 10, 10));
     setToolTip(tip);
 }
 
 void MusicSpectrumLayoutItem::setCheck(bool check)
 {
-    m_box->setChecked(check);
+    m_isSelected = check;
+    update();
 }
 
 bool MusicSpectrumLayoutItem::isChecked() const
 {
-    return m_box->isChecked();
+    return m_isSelected;
+}
+
+void MusicSpectrumLayoutItem::paintEvent(QPaintEvent *event)
+{
+    MusicClickedLabel::paintEvent(event);
+
+    if(m_isSelected)
+    {
+        QPainter painter(this);
+        painter.drawPixmap(width() - 17, height() - 17, 17, 17, QPixmap(":/tiny/lb_selected"));
+    }
 }
 
 
@@ -98,7 +96,7 @@ void MusicSpectrumLayoutWidget::initWidget()
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
-    m_containWidget->setFixedSize(270, 220);
+    m_containWidget->setFixedSize(240, 340);
     m_containWidget->setObjectName("containWidget");
     m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
 

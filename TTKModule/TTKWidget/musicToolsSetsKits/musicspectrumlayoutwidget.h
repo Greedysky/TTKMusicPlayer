@@ -53,8 +53,12 @@ public:
     bool isChecked() const;
 
 private:
-    QLabel *m_label;
-    QCheckBox *m_box;
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+
+    bool m_isSelected;
 };
 
 
