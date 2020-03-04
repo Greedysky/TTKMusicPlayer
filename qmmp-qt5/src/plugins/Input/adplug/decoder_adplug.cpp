@@ -22,7 +22,7 @@
 
 DecoderAdplug::DecoderAdplug(const QString &path)
     : Decoder(),
-      path(path)
+      m_path(path)
 {
 
 }
@@ -31,29 +31,29 @@ bool DecoderAdplug::initialize()
 {
     try
     {
-        adplug = std::unique_ptr<AdplugWrap>(new AdplugWrap(path.toUtf8().constData()));
+        m_adplug = std::unique_ptr<AdplugWrap>(new AdplugWrap(m_path.toUtf8().constData()));
     }
     catch(const AdplugWrap::InvalidFile &)
     {
         return false;
     }
 
-    configure(adplug->rate(), adplug->channels(), Qmmp::PCM_S16LE);
+    configure(m_adplug->rate(), m_adplug->channels(), Qmmp::PCM_S16LE);
 
-    length = adplug->length();
-    divisor = (adplug->rate() * adplug->channels() * (adplug->depth() / 8)) / 1000.0;
+    m_length = m_adplug->length();
+    m_divisor = (m_adplug->rate() * m_adplug->channels() * (m_adplug->depth() / 8)) / 1000.0;
 
     return true;
 }
 
 qint64 DecoderAdplug::totalTime() const
 {
-    return adplug->length();
+    return m_adplug->length();
 }
 
 int DecoderAdplug::bitrate() const
 {
-    return adplug->depth();
+    return m_adplug->depth();
 }
 
 qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
@@ -67,41 +67,41 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
     /* Some songs loop endlessly.  If we pass the length threshold (Adplug
     * caps the reported length at 10 minutes), then report EOF.
     */
-    if(time > length)
+    if(m_time > m_length)
     {
         return 0;
     }
 
-    if(buf_filled == 0)
+    if(m_buf_filled == 0)
     {
-        AdplugWrap::Frame frame = adplug->read();
+        AdplugWrap::Frame frame = m_adplug->read();
         if(frame.n == 0)
         {
             return copied;
         }
 
-        bufptr = frame.buf;
-        buf_filled += frame.n;
+        m_bufptr = frame.buf;
+        m_buf_filled += frame.n;
     }
 
     copied += copy(audio, max_size);
-    time += copied / divisor;
+    m_time += copied / m_divisor;
     return copied;
 }
 
 qint64 DecoderAdplug::copy(unsigned char *audio, qint64 max_size)
 {
-    qint64 to_copy = qMin(buf_filled, max_size);
-    memcpy(audio, bufptr, to_copy);
+    qint64 to_copy = qMin(m_buf_filled, max_size);
+    memcpy(audio, m_bufptr, to_copy);
 
-    bufptr += to_copy;
-    buf_filled -= to_copy;
+    m_bufptr += to_copy;
+    m_buf_filled -= to_copy;
 
     return to_copy;
 }
 
 void DecoderAdplug::seek(qint64 pos)
 {
-    adplug->seek(pos);
-    time = pos;
+    m_adplug->seek(pos);
+    m_time = pos;
 }

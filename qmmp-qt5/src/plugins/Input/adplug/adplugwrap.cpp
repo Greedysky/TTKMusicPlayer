@@ -21,38 +21,39 @@
 #include "adplugwrap.h"
 
 AdplugWrap::AdplugWrap(const std::string &filename)
-    : opl(new CEmuopl(rate(), true, false)),
-      player(CAdPlug::factory(filename.c_str(), opl.get()))
+    : m_opl(new CEmuopl(rate(), true, false)),
+      m_player(CAdPlug::factory(filename.c_str(), m_opl.get()))
 {
-    if(!player) throw InvalidFile();
+    if(!m_player)
+        throw InvalidFile();
 }
 
 AdplugWrap::Frame AdplugWrap::read()
 {
     size_t to_write;
-    size_t bufsiz = sizeof(buf) / sizeof(*buf);
+    size_t bufsiz = sizeof(m_buf) / sizeof(*m_buf);
 
-    if(remaining == 0)
+    if(m_remaining == 0)
     {
-        if(!player->update())
+        if(!m_player->update())
         {
             return Frame(0, nullptr);
         }
-        remaining = rate() / player->getrefresh();
+        m_remaining = rate() / m_player->getrefresh();
     }
 
-    if(remaining > bufsiz)
+    if(m_remaining > bufsiz)
     {
         to_write = bufsiz;
     }
     else
     {
-        to_write = remaining;
+        to_write = m_remaining;
     }
 
-    opl->update(buf, to_write);
-    remaining -= to_write;
-    return Frame(to_write * 2, reinterpret_cast<unsigned char *>(buf));
+    m_opl->update(m_buf, to_write);
+    m_remaining -= to_write;
+    return Frame(to_write * 2, reinterpret_cast<unsigned char *>(m_buf));
 }
 
 std::vector<std::string> AdplugWrap::instruments()
@@ -60,7 +61,7 @@ std::vector<std::string> AdplugWrap::instruments()
     std::vector<std::string> insts;
     for(unsigned int i = 0; i < instrument_count(); i++)
     {
-        insts.push_back(player->getinstrument(i));
+        insts.push_back(m_player->getinstrument(i));
     }
     return insts;
 }

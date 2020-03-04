@@ -100,10 +100,6 @@ QList<TrackInfo *> DecoderModPlugFactory::createPlayList(const QString &path, Tr
 
         if(parts & TrackInfo::Properties)
         {
-            //info->setValue(Qmmp::BITRATE);
-            //info->setValue(Qmmp::SAMPLERATE);
-            //info->setValue(Qmmp::CHANNELS);
-            //info->setValue(Qmmp::BITS_PER_SAMPLE);
             info->setValue(Qmmp::FORMAT_NAME, ModPlugMetaDataModel::getTypeName(soundFile->GetType()));
         }
 

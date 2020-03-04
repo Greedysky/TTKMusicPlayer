@@ -38,20 +38,20 @@ class Matcher
 class Magic : public Matcher
 {
   public:
-    Magic(std::size_t offset, const char *magic) : offset(offset), magic(magic), len(strlen(magic)) { }
-    Magic(std::size_t offset, const char *magic, std::size_t len) : offset(offset), magic(magic), len(len) { }
+    Magic(std::size_t offset, const char *magic) : m_offset(offset), m_magic(magic), m_len(strlen(magic)) { }
+    Magic(std::size_t offset, const char *magic, std::size_t len) : m_offset(offset), m_magic(magic), m_len(len) { }
 
     bool matches(InputStream &stream) override
     {
-      std::vector<char> buf(len);
+      std::vector<char> buf(m_len);
 
-      return stream.read(offset, buf.data(), buf.size()) && std::memcmp(buf.data(), magic, buf.size()) == 0;
+      return stream.read(m_offset, buf.data(), buf.size()) && std::memcmp(buf.data(), m_magic, buf.size()) == 0;
     }
 
   private:
-    const std::size_t offset;
-    const char *magic;
-    const std::size_t len;
+    const std::size_t m_offset;
+    const char *m_magic;
+    const std::size_t m_len;
 };
 
 /* DMO decrypt code based on Adplug. */

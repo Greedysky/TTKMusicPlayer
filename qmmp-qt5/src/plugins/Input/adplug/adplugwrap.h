@@ -57,25 +57,25 @@ public:
     int depth() { return 16; }
     int channels() { return 1; }
 
-    unsigned long length() { return player->songlength(); }
-    void seek(unsigned long pos) { player->seek(pos); }
+    unsigned long length() { return m_player->songlength(); }
+    void seek(unsigned long pos) { m_player->seek(pos); }
 
     Frame read();
 
-    std::string title() { return player->gettitle(); }
-    std::string format() { return player->gettype(); }
-    std::string author() { return player->getauthor(); }
-    std::string description() { return player->getdesc(); }
-    unsigned int pattern_count() { return player->getpatterns(); }
-    unsigned int instrument_count() { return player->getinstruments(); }
+    std::string title() { return m_player->gettitle(); }
+    std::string format() { return m_player->gettype(); }
+    std::string author() { return m_player->getauthor(); }
+    std::string description() { return m_player->getdesc(); }
+    unsigned int pattern_count() { return m_player->getpatterns(); }
+    unsigned int instrument_count() { return m_player->getinstruments(); }
 
     std::vector<std::string> instruments();
 
 private:
-    std::unique_ptr<Copl> opl;
-    std::unique_ptr<CPlayer> player;
-    short buf[16384] = { 0 };
-    size_t remaining = 0;
+    std::unique_ptr<Copl> m_opl;
+    std::unique_ptr<CPlayer> m_player;
+    short m_buf[16384] = { 0 };
+    size_t m_remaining = 0;
 };
 
 #endif

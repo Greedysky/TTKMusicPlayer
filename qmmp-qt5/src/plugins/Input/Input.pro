@@ -55,6 +55,10 @@ contains(CONFIG, YM_PLUGIN){
     SUBDIRS += ym
 }
 
+contains(CONFIG, ALAC_PLUGIN){
+    SUBDIRS += alac
+}
+
 unix:!android{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio

@@ -9,8 +9,8 @@ HEADERS += decoderymfactory.h \
            ym_music.h \
            ym_types.h
 
-SOURCES += decoder_ym.cpp \
-           decoderymfactory.cpp \
+SOURCES += decoderymfactory.cpp \
+           decoder_ym.cpp \
            ym_digidrum.cpp \
            ym_lzhlib.cpp \
            ym_2149ex.cpp \

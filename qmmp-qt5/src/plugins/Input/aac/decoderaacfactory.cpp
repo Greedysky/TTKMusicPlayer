@@ -77,7 +77,6 @@ QList<TrackInfo *> DecoderAACFactory::createPlayList(const QString &path, TrackI
     {
         info->setValue(Qmmp::BITRATE, aac_file.bitrate());
         info->setValue(Qmmp::SAMPLERATE, aac_file.samplerate());
-        //info->setValue(Qmmp::CHANNELS, aac_file.
         info->setValue(Qmmp::FORMAT_NAME, "AAC");
         info->setDuration(aac_file.duration());
     }

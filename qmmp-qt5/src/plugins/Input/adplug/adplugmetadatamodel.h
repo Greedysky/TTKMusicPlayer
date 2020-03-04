@@ -38,8 +38,8 @@ private:
     void fill_in_extra_properties(AdplugWrap *wrap);
     void fill_in_descriptions(AdplugWrap *wrap);
 
-    QList<MetaDataItem> ap;
-    QList<MetaDataItem> desc;
+    QList<MetaDataItem> m_ap;
+    QList<MetaDataItem> m_desc;
 };
 
 #endif
