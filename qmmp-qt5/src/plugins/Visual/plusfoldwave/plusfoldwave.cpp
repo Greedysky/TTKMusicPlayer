@@ -11,7 +11,8 @@
 #include "inlines.h"
 #include "plusfoldwave.h"
 
-PlusFoldWave::PlusFoldWave (QWidget *parent) : Visual (parent)
+PlusFoldWave::PlusFoldWave (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;

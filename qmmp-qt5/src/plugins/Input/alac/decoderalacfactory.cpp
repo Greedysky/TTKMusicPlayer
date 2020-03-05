@@ -1,5 +1,6 @@
 #include "decoderalacfactory.h"
 #include "decoder_alac.h"
+#include "alacwrap.h"
 
 bool DecoderALACFactory::canDecode(QIODevice *) const
 {
@@ -27,29 +28,22 @@ Decoder *DecoderALACFactory::create(const QString &path, QIODevice *input)
 
 QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <TrackInfo *> list;
-//    CYmMusic *music = new CYmMusic;
-//    if(music->load(path.toLocal8Bit().constData()))
-//    {
-//        if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
-//        {
-//            TrackInfo *info = new TrackInfo(path);
-//            ymMusicInfo_t musicInfo;
-//            music->getMusicInfo(&musicInfo);
+    ALACWrap alac(path.toUtf8().constData());
+    if(!alac.initialize())
+    {
+        return QList <TrackInfo *>();
+    }
 
-//            char* title = strdup(musicInfo.pSongName);
-//            char* composer = strdup(musicInfo.pSongAuthor);
-//            char* comment = strdup(musicInfo.pSongComment);
+    TrackInfo *info = new TrackInfo(path);
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, alac.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, alac.samplerate());
+        info->setValue(Qmmp::CHANNELS, alac.channels());
+        info->setDuration(alac.totalTime());
+    }
 
-//            info->setValue(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
-//            info->setValue(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
-//            info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
-//            info->setDuration(musicInfo.musicTimeInSec);
-//        }
-//    }
-
-//    delete music;
-//    return list;
+    return QList <TrackInfo *>() << info;
 }
 
 MetaDataModel* DecoderALACFactory::createMetaDataModel(const QString &, bool)

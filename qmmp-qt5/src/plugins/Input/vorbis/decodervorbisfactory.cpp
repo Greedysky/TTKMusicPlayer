@@ -64,7 +64,7 @@ QList<TrackInfo *> DecoderVorbisFactory::createPlayList(const QString &path, Tra
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
-        return QList<TrackInfo*>() << info;
+        return QList<TrackInfo *>() << info;
 
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::Ogg::Vorbis::File fileRef(&stream);
@@ -113,5 +113,5 @@ QList<TrackInfo *> DecoderVorbisFactory::createPlayList(const QString &path, Tra
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
 
-    return QList<TrackInfo*>() << info;
+    return QList<TrackInfo *>() << info;
 }

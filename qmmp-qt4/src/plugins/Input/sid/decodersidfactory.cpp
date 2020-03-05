@@ -74,7 +74,7 @@ QList<TrackInfo *> DecoderSIDFactory::createPlayList(const QString &path, TrackI
 {
     SIDHelper helper(&m_db);
     helper.load(path);
-    QList<TrackInfo*> list = helper.createPlayList(parts);
+    QList<TrackInfo *> list = helper.createPlayList(parts);
     if(list.isEmpty())
         return list;
     if(path.contains("://")) //is it url?

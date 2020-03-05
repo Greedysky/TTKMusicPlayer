@@ -9,7 +9,8 @@
 #include "inlines.h"
 #include "normalspacewave.h"
 
-NormalSpaceWave::NormalSpaceWave (QWidget *parent) : Visual (parent)
+NormalSpaceWave::NormalSpaceWave (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;

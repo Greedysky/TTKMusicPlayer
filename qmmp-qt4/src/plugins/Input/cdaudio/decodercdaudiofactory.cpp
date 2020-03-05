@@ -50,7 +50,7 @@ Decoder *DecoderCDAudioFactory::create(const QString &url, QIODevice *input)
 
 QList<TrackInfo *> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo *> list;
 
     if(path.contains("#"))
         return list;

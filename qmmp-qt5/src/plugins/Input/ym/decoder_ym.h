@@ -46,7 +46,7 @@ public:
 private:
     void deinit();
 
-    CYmMusic *pMusic;
+    CYmMusic *m_music;
     int m_bitrate;
     quint32 m_freq;
     qint64 m_totalTime;

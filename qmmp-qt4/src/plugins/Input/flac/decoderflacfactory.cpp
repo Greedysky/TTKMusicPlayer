@@ -64,7 +64,7 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *i)
     return new DecoderFLAC(path, i);
 }
 
-QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
     //extract metadata of the one cue track
     if(path.contains("://"))

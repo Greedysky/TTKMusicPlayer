@@ -62,7 +62,7 @@ QList<TrackInfo *> DecoderMPCFactory::createPlayList(const QString &path, TrackI
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
-        return QList<TrackInfo*>() << info;
+        return QList<TrackInfo *>() << info;
 
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::MPC::File fileRef(&stream);
@@ -95,7 +95,7 @@ QList<TrackInfo *> DecoderMPCFactory::createPlayList(const QString &path, TrackI
         info->setDuration(ap->lengthInMilliseconds());
     }
 
-    return QList<TrackInfo*>() << info;
+    return QList<TrackInfo *>() << info;
 }
 
 MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, bool readOnly)

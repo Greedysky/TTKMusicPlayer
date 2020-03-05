@@ -11,7 +11,8 @@
 #include "inlines.h"
 #include "normalflowwave.h"
 
-NormalFlowWave::NormalFlowWave (QWidget *parent) : Visual (parent)
+NormalFlowWave::NormalFlowWave (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;

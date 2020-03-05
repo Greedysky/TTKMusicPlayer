@@ -64,7 +64,7 @@ QList<TrackInfo *> DecoderOpusFactory::createPlayList(const QString &path, Track
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
-        return QList<TrackInfo*>() << info;
+        return QList<TrackInfo *>() << info;
 
     TagLib::Ogg::Opus::File fileRef(QStringToFileName(path));
 
@@ -112,7 +112,7 @@ QList<TrackInfo *> DecoderOpusFactory::createPlayList(const QString &path, Track
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
 
-    return QList<TrackInfo*>() << info;
+    return QList<TrackInfo *>() << info;
 }
 
 Q_EXPORT_PLUGIN2(opus,DecoderOpusFactory)

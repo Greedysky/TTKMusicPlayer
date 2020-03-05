@@ -91,7 +91,7 @@ DecoderSndFile::~DecoderSndFile()
 bool DecoderSndFile::initialize()
 {
     m_bitrate = 0;
-    m_totalTime = 0.0;
+    m_totalTime = 0;
     SF_INFO snd_info;
 
     memset (&snd_info, 0, sizeof(snd_info));

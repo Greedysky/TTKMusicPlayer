@@ -82,7 +82,7 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
 
 QList<TrackInfo *> GmeHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo *> list;
     if(!m_emu)
         return list;
     int count = gme_track_count(m_emu);

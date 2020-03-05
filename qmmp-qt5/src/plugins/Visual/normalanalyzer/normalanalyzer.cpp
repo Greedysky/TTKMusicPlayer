@@ -12,7 +12,8 @@
 #include "inlines.h"
 #include "normalanalyzer.h"
 
-NormalAnalyzer::NormalAnalyzer (QWidget *parent) : Visual (parent)
+NormalAnalyzer::NormalAnalyzer (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_peaks = nullptr;

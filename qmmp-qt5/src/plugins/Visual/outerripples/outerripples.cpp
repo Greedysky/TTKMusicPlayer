@@ -9,7 +9,8 @@
 #include "inlines.h"
 #include "outerripples.h"
 
-OuterRipples::OuterRipples (QWidget *parent) : Visual (parent)
+OuterRipples::OuterRipples (QWidget *parent)
+    : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
     setAttribute(Qt::WA_QuitOnClose, false);

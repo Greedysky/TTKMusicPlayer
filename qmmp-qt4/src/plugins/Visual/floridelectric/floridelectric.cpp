@@ -215,7 +215,8 @@ void ElectricLabel::setColor(const QColor &color)
 
 
 
-FloridElectric::FloridElectric (QWidget *parent) : Florid (parent)
+FloridElectric::FloridElectric (QWidget *parent)
+    : Florid(parent)
 {
     m_running = false;
 

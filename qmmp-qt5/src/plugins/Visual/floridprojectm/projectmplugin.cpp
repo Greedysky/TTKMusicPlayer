@@ -3,7 +3,7 @@
 #include "projectmplugin.h"
 
 ProjectMPlugin::ProjectMPlugin (QWidget *parent)
-    : Florid (parent)
+    : Florid(parent)
 {
     m_useImage = false;
     m_running = false;

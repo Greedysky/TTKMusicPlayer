@@ -4,7 +4,8 @@
 #include "floridethereality.h"
 #include "ethereality.h"
 
-FloridEthereality::FloridEthereality (QWidget *parent) : Florid (parent)
+FloridEthereality::FloridEthereality (QWidget *parent)
+    : Florid(parent)
 {
     m_useImage = false;
     m_intern_vis_data = nullptr;

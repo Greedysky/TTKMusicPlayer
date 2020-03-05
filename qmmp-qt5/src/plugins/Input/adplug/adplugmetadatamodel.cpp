@@ -51,7 +51,6 @@ void AdplugMetaDataModel::fill_in_extra_properties(AdplugWrap *wrap)
 void AdplugMetaDataModel::fill_in_descriptions(AdplugWrap *wrap)
 {
     m_ap << MetaDataItem(tr("Title"), QString::fromStdString(wrap->title()));
-    m_ap << MetaDataItem(tr("Title"), QString::fromStdString(wrap->title()));
     m_ap << MetaDataItem(tr("Format"), QString::fromStdString(wrap->format()));
     m_ap << MetaDataItem(tr("Author"), QString::fromStdString(wrap->author()));
     m_ap << MetaDataItem(tr("Description"), QString::fromStdString(wrap->author()));

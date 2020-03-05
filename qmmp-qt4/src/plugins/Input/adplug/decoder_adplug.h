@@ -38,13 +38,13 @@ public:
 private:
     qint64 copy(unsigned char *, qint64);
 
-    QString path;
-    std::unique_ptr<AdplugWrap> adplug;
-    unsigned char *bufptr = nullptr;
-    qint64 buf_filled = 0;
-    unsigned long time = 0;
-    unsigned long length = 0;
-    double divisor = 0.0;
+    QString m_path;
+    std::unique_ptr<AdplugWrap> m_adplug;
+    unsigned char *m_bufptr = nullptr;
+    qint64 m_buf_filled = 0;
+    unsigned long m_time = 0;
+    unsigned long m_length = 0;
+    double m_divisor = 0.0;
 };
 
 #endif

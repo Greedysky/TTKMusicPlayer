@@ -9,7 +9,8 @@
 #include "inlines.h"
 #include "plusmultiwave.h"
 
-PlusMultiWave::PlusMultiWave (QWidget *parent) : Visual (parent)
+PlusMultiWave::PlusMultiWave (QWidget *parent)
+    : Visual(parent)
 {
     m_vis_data = 0;
     m_x_scale = nullptr;

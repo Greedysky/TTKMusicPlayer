@@ -9,7 +9,8 @@
 #include "inlines.h"
 #include "outerrayswave.h"
 
-OuterRaysWave::OuterRaysWave (QWidget *parent) : Visual (parent)
+OuterRaysWave::OuterRaysWave (QWidget *parent)
+    : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
     setAttribute(Qt::WA_QuitOnClose, false);

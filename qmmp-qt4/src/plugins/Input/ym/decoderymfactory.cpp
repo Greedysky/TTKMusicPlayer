@@ -25,8 +25,8 @@
  ******************************************************************************/
 
 #include <QtPlugin>
-#include "decoder_ym.h"
 #include "decoderymfactory.h"
+#include "decoder_ym.h"
 
 bool DecoderYmFactory::canDecode(QIODevice *) const
 {

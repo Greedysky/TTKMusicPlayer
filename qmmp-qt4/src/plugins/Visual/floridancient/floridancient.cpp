@@ -100,7 +100,8 @@ void AncientLabel::paintEvent(QPaintEvent *event)
 
 
 
-FloridAncient::FloridAncient (QWidget *parent) : Florid (parent)
+FloridAncient::FloridAncient (QWidget *parent)
+    : Florid(parent)
 {
     m_gradientOn = true;
     m_intern_vis_data = nullptr;

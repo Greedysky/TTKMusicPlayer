@@ -66,28 +66,34 @@ Decoder *DecoderXmpFactory::create(const QString &path, QIODevice *input)
 
 QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <TrackInfo*> list;
     TrackInfo *info = new TrackInfo(path);
-    if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
+
+    xmp_context ctx = xmp_create_context();
+    if(xmp_load_module(ctx, path.toLocal8Bit().data()) != 0)
     {
-        xmp_context ctx = xmp_create_context();
-        if(xmp_load_module(ctx, path.toLocal8Bit().data()) != 0)
-        {
-            qWarning("DecoderXmpFactory: unable to load module");
-            xmp_free_context(ctx);
-            delete info;
-            return list;
-        }
-        xmp_module_info mi;
-        xmp_get_module_info(ctx, &mi);
+        qWarning("DecoderXmpFactory: unable to load module");
+        xmp_free_context(ctx);
+        delete info;
+        return QList<TrackInfo *>();
+    }
+    xmp_module_info mi;
+    xmp_get_module_info(ctx, &mi);
+
+    if(parts & TrackInfo::MetaData)
+    {
         info->setValue(Qmmp::TITLE, mi.mod->name);
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
         info->setValue(Qmmp::FORMAT_NAME, mi.mod->type);
         info->setDuration(mi.seq_data[0].duration);
-        xmp_release_module(ctx);
-        xmp_free_context(ctx);
     }
-    list << info;
-    return list;
+
+    xmp_release_module(ctx);
+    xmp_free_context(ctx);
+
+    return QList<TrackInfo *>() << info;
 }
 
 MetaDataModel* DecoderXmpFactory::createMetaDataModel(const QString &path, bool readOnly)

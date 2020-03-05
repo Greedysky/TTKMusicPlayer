@@ -128,9 +128,9 @@ CUEParser::~CUEParser()
     m_tracks.clear();
 }
 
-QList<TrackInfo*> CUEParser::createPlayList()
+QList<TrackInfo *> CUEParser::createPlayList()
 {
-    QList<TrackInfo*> list;
+    QList<TrackInfo *> list;
     foreach(CUETrack *track, m_tracks)
     {
         list << new TrackInfo(track->info);

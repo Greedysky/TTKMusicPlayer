@@ -10,7 +10,8 @@
 #include <qmmp/qmmp.h>
 #include "goomwidget.h"
 
-GoomWidget::GoomWidget(QWidget *parent) : Florid (parent)
+GoomWidget::GoomWidget(QWidget *parent)
+    : Florid(parent)
 {
     m_useImage = false;
     m_update = false;

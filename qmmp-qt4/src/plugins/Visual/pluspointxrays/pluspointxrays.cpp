@@ -12,7 +12,8 @@
 #include "pluspointxrays.h"
 #include "colorwidget.h"
 
-PlusPointXRays::PlusPointXRays (QWidget *parent) : Visual (parent)
+PlusPointXRays::PlusPointXRays (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_running = false;

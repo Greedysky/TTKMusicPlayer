@@ -38,7 +38,7 @@ public:
 
     ~CUEParser();
 
-    QList<TrackInfo*> createPlayList();
+    QList<TrackInfo *> createPlayList();
     const QString filePath(int track) const;
     const QStringList dataFiles() const;
     qint64 offset(int track) const;

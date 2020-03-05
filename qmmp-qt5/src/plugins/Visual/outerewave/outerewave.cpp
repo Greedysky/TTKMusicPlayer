@@ -19,7 +19,8 @@
 #define HEIGHT_OFFSET  2
 #define HEIGHT_LIMIT   0.7
 
-OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
+OuterEWave::OuterEWave (QWidget *parent)
+    : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
     setAttribute(Qt::WA_QuitOnClose, false);

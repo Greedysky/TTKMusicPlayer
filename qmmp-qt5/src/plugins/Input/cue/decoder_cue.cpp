@@ -29,7 +29,7 @@
 #include "decoder_cue.h"
 
 DecoderCUE::DecoderCUE(const QString &url)
-        : Decoder()
+    : Decoder()
 {
     m_path = url;
     m_decoder = nullptr;

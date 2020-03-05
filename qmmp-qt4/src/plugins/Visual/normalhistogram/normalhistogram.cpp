@@ -11,7 +11,8 @@
 #include "inlines.h"
 #include "normalhistogram.h"
 
-NormalHistogram::NormalHistogram (QWidget *parent) : Visual (parent)
+NormalHistogram::NormalHistogram (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_x_scale = nullptr;

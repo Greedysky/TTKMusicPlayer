@@ -80,21 +80,31 @@ Decoder *DecoderAdplugFactory::create(const QString &path, QIODevice *)
     return new DecoderAdplug(path);
 }
 
-QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &filename, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     QList<TrackInfo *> list;
-    if(parts & TrackInfo::Properties)
+    try
     {
-        try
+        AdplugWrap adplug(path.toUtf8().constData());
+        TrackInfo *info = new TrackInfo(path);
+
+        if(parts & TrackInfo::MetaData)
         {
-            AdplugWrap adplug(filename.toUtf8().constData());
-            TrackInfo *file_info = new TrackInfo(filename);
-            file_info->setDuration(adplug.length() / 1000);
-            list << file_info;
+            info->setValue(Qmmp::TITLE, QString::fromStdString(adplug.title()));
+            info->setValue(Qmmp::ARTIST, QString::fromStdString(adplug.author()));
         }
-        catch(const AdplugWrap::InvalidFile &)
+
+        if(parts & TrackInfo::Properties)
         {
+            info->setValue(Qmmp::CHANNELS, adplug.channels());
+            info->setValue(Qmmp::FORMAT_NAME, QString::fromStdString(adplug.format()));
+            info->setDuration(adplug.length() / 1000);
         }
+
+        list << info;
+    }
+    catch(const AdplugWrap::InvalidFile &)
+    {
     }
     return list;
 }

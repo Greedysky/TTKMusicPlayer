@@ -44,33 +44,33 @@ void AdplugMetaDataModel::fill_in_extra_properties(AdplugWrap *wrap)
         {
             text += QString::fromStdString(s) + "\n";
         }
-        desc << MetaDataItem(tr("Instruments"), text);
+        m_desc << MetaDataItem(tr("Instruments"), text);
     }
 }
 
 void AdplugMetaDataModel::fill_in_descriptions(AdplugWrap *wrap)
 {
-    ap << MetaDataItem(tr("Title"), QString::fromStdString(wrap->title()));
-    ap << MetaDataItem(tr("Title"), QString::fromStdString(wrap->title()));
-    ap << MetaDataItem(tr("Format"), QString::fromStdString(wrap->format()));
-    ap << MetaDataItem(tr("Author"), QString::fromStdString(wrap->author()));
-    ap << MetaDataItem(tr("Description"), QString::fromStdString(wrap->author()));
+    m_ap << MetaDataItem(tr("Title"), QString::fromStdString(wrap->title()));
+    m_ap << MetaDataItem(tr("Format"), QString::fromStdString(wrap->format()));
+    m_ap << MetaDataItem(tr("Author"), QString::fromStdString(wrap->author()));
+    m_ap << MetaDataItem(tr("Description"), QString::fromStdString(wrap->author()));
+
     if(wrap->pattern_count() != 0)
     {
-        ap << MetaDataItem(tr("Patterns"), QString::number(wrap->pattern_count()));
+        m_ap << MetaDataItem(tr("Patterns"), QString::number(wrap->pattern_count()));
     }
     if(wrap->instrument_count() != 0)
     {
-        ap << MetaDataItem(tr("Instruments"), QString::number(wrap->instrument_count()));
+        m_ap << MetaDataItem(tr("Instruments"), QString::number(wrap->instrument_count()));
     }
 }
 
 QList<MetaDataItem> AdplugMetaDataModel::extraProperties() const
 {
-    return ap;
+    return m_ap;
 }
 
 QList<MetaDataItem> AdplugMetaDataModel::descriptions() const
 {
-    return desc;
+    return m_desc;
 }

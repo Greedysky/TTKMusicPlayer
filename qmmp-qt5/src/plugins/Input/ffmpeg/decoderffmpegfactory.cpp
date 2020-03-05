@@ -159,7 +159,7 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
-        return QList<TrackInfo*>() << info;
+        return QList<TrackInfo *>() << info;
 
     AVFormatContext *in = nullptr;
 
@@ -171,7 +171,7 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
     {
         qDebug("DecoderFFmpegFactory: unable to open file");
         delete info;
-        return  QList<TrackInfo*>();
+        return  QList<TrackInfo *>();
     }
 
     avformat_find_stream_info(in, nullptr);
@@ -242,7 +242,7 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
     }
 
     avformat_close_input(&in);
-    return QList<TrackInfo*>() << info;
+    return QList<TrackInfo *>() << info;
 }
 
 MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)

@@ -92,8 +92,8 @@ void RoundAnimationLabel::paintEvent(QPaintEvent *event)
 
 
 
-Florid::Florid(QWidget *parent) :
-    Visual(parent)
+Florid::Florid(QWidget *parent)
+    : Visual(parent)
 {
     setMinimumSize(580, 320);
 

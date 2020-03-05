@@ -49,7 +49,7 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
-        return QList<TrackInfo*>() << info;
+        return QList<TrackInfo *>() << info;
 
     if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
     {
@@ -95,7 +95,7 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
         }
     }
 
-    return QList<TrackInfo*>() << info;
+    return QList<TrackInfo *>() << info;
 }
 
 Q_EXPORT_PLUGIN2(optimfrog, DecoderOptimFROGFactory)

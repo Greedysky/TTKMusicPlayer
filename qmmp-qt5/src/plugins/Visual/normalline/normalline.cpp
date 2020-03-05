@@ -12,7 +12,8 @@
 #include "normalline.h"
 #include "colorwidget.h"
 
-NormalLine::NormalLine (QWidget *parent) : Visual (parent)
+NormalLine::NormalLine (QWidget *parent)
+    : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_peaks = nullptr;
