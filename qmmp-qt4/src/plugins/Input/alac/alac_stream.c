@@ -164,4 +164,3 @@ void stream_destroy(stream_t *stream)
 {
     free(stream);
 }
-

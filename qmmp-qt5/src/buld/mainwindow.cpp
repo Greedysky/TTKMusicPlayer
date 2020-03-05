@@ -40,19 +40,19 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
     m_sound->setPlaylist(list);
 
-    Visual::initialize(this);
-    foreach(VisualFactory *var, Visual::factories())
-    {
-        if(var->properties().shortName == "floridethereality")
-        {
-            Visual::setEnabled(var, true);
-        }
-    }
-    const QList<Visual*> *vs = Visual::visuals();
-    if(!vs->isEmpty() && vs->last())
-    {
-        vs->last()->show();
-    }
+//    Visual::initialize(this);
+//    foreach(VisualFactory *var, Visual::factories())
+//    {
+//        if(var->properties().shortName == "floridethereality")
+//        {
+//            Visual::setEnabled(var, true);
+//        }
+//    }
+//    const QList<Visual*> *vs = Visual::visuals();
+//    if(!vs->isEmpty() && vs->last())
+//    {
+//        vs->last()->show();
+//    }
 }
 
 MainWindow::~MainWindow()

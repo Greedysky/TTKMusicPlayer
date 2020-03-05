@@ -32,11 +32,10 @@
 #ifndef ALAC_STREAM_H
 #define ALAC_STREAM_H
 
+#include <stdio.h>
 #ifdef _WIN32
 #include "alac_stdint_win.h"
-#include <stdio.h>
 #else
-#include <stdio.h>
 #include <stdint.h>
 #endif
 
