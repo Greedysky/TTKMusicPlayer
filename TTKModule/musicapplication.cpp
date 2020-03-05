@@ -52,7 +52,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
     setMaximumSize(size.width(), size.height());
     //
-
     m_musicPlayer = new MusicPlayer(this);
     m_musicPlaylist = new MusicPlaylist(this);
     m_musicSongTreeWidget = new MusicSongsSummariziedWidget(this);
@@ -70,15 +69,12 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     setAcceptDrops(true);
 
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
-    //The default is the order of play
-
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder); //The default is the order of play
     m_ui->musicPlayedList->setPlaylist(m_musicPlaylist);
     m_musicPlayer->setPlaylist(m_musicPlaylist);
-    m_musicPlayer->setVolume(100);
-    //The default Volume is 100
+    m_musicPlayer->setVolume(100);  //The default Volume is 100
 
-    m_playControl = true;//The default in the suspended state
+    m_playControl = true;   //The default in the suspended state
     m_quitWindowClose = false;
     m_currentMusicSongTreeIndex = DEFAULT_LEVEL_LOWER;
 
