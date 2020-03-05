@@ -64,7 +64,7 @@ DecoderMPC::DecoderMPC(QIODevice *i)
 {
     m_len = 0;
     m_bitrate = 0;
-    m_totalTime = 0.0;
+    m_totalTime = 0;
     m_data = 0;
 }
 

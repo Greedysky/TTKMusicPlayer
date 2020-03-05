@@ -33,10 +33,10 @@
 // Decoder class
 
 DecoderWavPack::DecoderWavPack(const QString &path)
-        : Decoder()
+    : Decoder()
 {
     m_path = path;
-    m_totalTime = 0.0;
+    m_totalTime = 0;
     m_chan = 0;
     m_context = 0;
     m_parser = 0;

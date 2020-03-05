@@ -58,12 +58,12 @@ QList<TrackInfo *> DecoderYmFactory::createPlayList(const QString &path, TrackIn
     CYmMusic *music = new CYmMusic;
     if(music->load(path.toLocal8Bit().constData()))
     {
-        if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
-        {
-            TrackInfo *info = new TrackInfo(path);
-            ymMusicInfo_t musicInfo;
-            music->getMusicInfo(&musicInfo);
+        TrackInfo *info = new TrackInfo(path);
+        ymMusicInfo_t musicInfo;
+        music->getMusicInfo(&musicInfo);
 
+        if(parts & TrackInfo::MetaData)
+        {
             char* title = strdup(musicInfo.pSongName);
             char* composer = strdup(musicInfo.pSongAuthor);
             char* comment = strdup(musicInfo.pSongComment);
@@ -71,7 +71,11 @@ QList<TrackInfo *> DecoderYmFactory::createPlayList(const QString &path, TrackIn
             info->setValue(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
             info->setValue(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
             info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
-            info->setDuration(musicInfo.musicTimeInSec);
+        }
+
+        if(parts & TrackInfo::Properties)
+        {
+            info->setDuration(musicInfo.musicTimeInSec / 1000);
         }
     }
 

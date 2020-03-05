@@ -34,7 +34,7 @@ DecoderYm::DecoderYm(const QString &path)
     m_bitrate = 0;
     m_totalTime = 0;
     m_freq = 0;
-    pMusic = nullptr;
+    m_music = nullptr;
 }
 
 DecoderYm::~DecoderYm()
@@ -44,23 +44,22 @@ DecoderYm::~DecoderYm()
 
 bool DecoderYm::initialize()
 {
-    m_totalTime = 0.0;
+    m_totalTime = 0;
     m_freq = 0;
     m_bitrate = 0;
 
-    pMusic = new CYmMusic;
-    if(pMusic == nullptr)
+    m_music = new CYmMusic;
+    if(m_music == nullptr)
     {
         qWarning("DecoderYm: failed to create CYmMusic");
         return false;
     }
 
     ymMusicInfo_t info;
-    if(pMusic->load(m_path.toLocal8Bit().constData()))
+    if(m_music->load(m_path.toLocal8Bit().constData()))
     {
-        pMusic->getMusicInfo(&info);
-
-        pMusic->setLoopMode(YMFALSE);
+        m_music->getMusicInfo(&info);
+        m_music->setLoopMode(YMFALSE);
 
         m_totalTime = info.musicTimeInMs;
         m_freq = 44100;
@@ -68,9 +67,9 @@ bool DecoderYm::initialize()
     }
     else
     {
-        if(pMusic)
-            delete pMusic;
-        pMusic = nullptr;
+        if(m_music)
+            delete m_music;
+        m_music = nullptr;
         qWarning("DecoderYm: failed to open: %s", qPrintable(m_path));
         return false;
     }
@@ -87,9 +86,9 @@ void DecoderYm::deinit()
     m_totalTime = 0;
     m_bitrate = 0;
     m_freq = 0;
-    if(pMusic)
-        delete pMusic;
-    pMusic = nullptr;
+    if(m_music)
+        delete m_music;
+    m_music = nullptr;
 }
 
 qint64 DecoderYm::totalTime() const
@@ -109,7 +108,7 @@ qint64 DecoderYm::read(unsigned char *data, qint64 size)
 
     stereoSize = size / (2*sizeof(ymsample));
     
-    if(pMusic->update(psample, stereoSize ))
+    if(m_music->update(psample, stereoSize ))
     {
         // recopy mono YM sound to 2 channels
         for (i=stereoSize-1; i>=0; i--)
@@ -126,6 +125,6 @@ qint64 DecoderYm::read(unsigned char *data, qint64 size)
 
 void DecoderYm::seek(qint64 pos)
 {
-    pMusic->setMusicTime((ymu32)pos);
+    m_music->setMusicTime((ymu32)pos);
 }
 
