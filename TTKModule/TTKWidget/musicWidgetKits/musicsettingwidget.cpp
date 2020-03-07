@@ -17,6 +17,7 @@
 #include "musicsinglemanager.h"
 #include "musiccolordialog.h"
 #include "musicalgorithmutils.h"
+#include "musicpluginwidget.h"
 ///qmmp incldue
 #include "qmmpsettings.h"
 
@@ -357,6 +358,11 @@ void MusicSettingWidget::rippleSpectrumColorChanged()
 void MusicSettingWidget::rippleSpectrumOpacityEnableClicked(bool state)
 {
     m_ui->rippleSpectrumColorButton->setEnabled(state);
+}
+
+void MusicSettingWidget::otherPluginManagerChanged()
+{
+    MusicPluginWidget().exec();
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()
@@ -780,6 +786,10 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherScreenSaverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+
+    m_ui->otherPluginManagerButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
 #ifdef Q_OS_UNIX
     m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -792,6 +802,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
 #endif
     m_ui->otherNormalImageRadioBox->click();
 }

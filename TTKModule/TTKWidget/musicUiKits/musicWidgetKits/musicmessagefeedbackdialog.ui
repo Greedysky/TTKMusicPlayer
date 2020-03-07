@@ -85,7 +85,7 @@ QLabel{background:transparent;}</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">

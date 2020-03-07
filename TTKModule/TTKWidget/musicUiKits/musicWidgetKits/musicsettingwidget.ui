@@ -1196,7 +1196,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>250</y>
+       <y>185</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1209,7 +1209,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>278</y>
+       <y>213</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1248,7 +1248,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>215</y>
+       <y>150</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1266,7 +1266,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>250</y>
+       <y>185</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1279,7 +1279,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>278</y>
+       <y>213</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1291,8 +1291,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherWriteAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>145</y>
+       <x>230</x>
+       <y>85</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1304,8 +1304,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherWriteInfoCheckBox">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>175</y>
+       <x>230</x>
+       <y>115</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1318,13 +1318,44 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>306</y>
+       <y>241</y>
        <width>190</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
       <string>开启精彩写真屏保</string>
+     </property>
+    </widget>
+    <widget class="MusicThemeLineLabel" name="otherPluginWidget">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>275</y>
+       <width>415</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>插件设置</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="otherPluginManagerButton">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>305</y>
+       <width>100</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>插件管理</string>
      </property>
     </widget>
    </widget>

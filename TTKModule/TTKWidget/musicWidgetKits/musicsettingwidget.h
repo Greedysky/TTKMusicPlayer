@@ -160,6 +160,11 @@ public Q_SLOTS:
     void rippleSpectrumOpacityEnableClicked(bool state);
 
     /*!
+     * Plugin manager changed.
+     */
+    void otherPluginManagerChanged();
+
+    /*!
      * Change to desktop lrc widget.
      */
     void changeDesktopLrcWidget();

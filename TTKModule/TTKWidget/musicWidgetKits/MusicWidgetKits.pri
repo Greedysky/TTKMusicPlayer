@@ -70,7 +70,8 @@ HEADERS  += \
     $$PWD/musicartistlistfoundwidget.h \
     $$PWD/musicartistlistfoundcategorypopwidget.h \
     $$PWD/musicripplespecturmobject.h \
-    $$PWD/musicmessagefeedbackdialog.h
+    $$PWD/musicmessagefeedbackdialog.h \
+    $$PWD/musicpluginwidget.h
 
 }
 
@@ -126,6 +127,7 @@ SOURCES += \
     $$PWD/musicartistlistfoundwidget.cpp \
     $$PWD/musicartistlistfoundcategorypopwidget.cpp \
     $$PWD/musicripplespecturmobject.cpp \
-    $$PWD/musicmessagefeedbackdialog.cpp
+    $$PWD/musicmessagefeedbackdialog.cpp \
+    $$PWD/musicpluginwidget.cpp
 
 }

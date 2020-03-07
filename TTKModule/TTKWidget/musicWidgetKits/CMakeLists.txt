@@ -52,6 +52,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicartistlistfoundcategorypopwidget.h
     ${MUSIC_WIDGET_DIR}/musicripplespecturmobject.h
     ${MUSIC_WIDGET_DIR}/musicmessagefeedbackdialog.h
+    ${MUSIC_WIDGET_DIR}/musicpluginwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
@@ -106,5 +107,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicartistlistfoundcategorypopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicripplespecturmobject.cpp
     ${MUSIC_WIDGET_DIR}/musicmessagefeedbackdialog.cpp
+    ${MUSIC_WIDGET_DIR}/musicpluginwidget.cpp
   )
   

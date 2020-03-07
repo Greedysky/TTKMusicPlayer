@@ -86,5 +86,6 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui \
     $$PWD/musicWidgetKits/musicdownloadbatchwidget.ui \
     $$PWD/musicWidgetKits/musicsongitemselecteddialog.ui \
-    $$PWD/musicWidgetKits/musicmessagefeedbackdialog.ui
+    $$PWD/musicWidgetKits/musicmessagefeedbackdialog.ui \
+    $$PWD/musicWidgetKits/musicpluginwidget.ui
 }
