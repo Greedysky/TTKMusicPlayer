@@ -9,6 +9,7 @@
 MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
+    m_treeMode = false;
     m_radioButton  = new QRadioButton;
     m_radioButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
 #ifdef Q_OS_UNIX
@@ -26,6 +27,11 @@ void MusicRadioButtonDelegate::setStyleSheet(const QString &style)
     m_radioButton->setStyleSheet(style);
 }
 
+void MusicRadioButtonDelegate::setTreeModel(bool tree)
+{
+    m_treeMode = tree;
+}
+
 QSize MusicRadioButtonDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     QSize size = option.rect.size();
@@ -37,11 +43,16 @@ void MusicRadioButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 {
     QItemDelegate::paint(painter, option, index);
 
+    if(m_treeMode && !index.parent().isValid())
+    {
+        return;
+    }
+
     painter->save();
     const int minSize = qMin(option.rect.width(), option.rect.height());
     m_radioButton->resize(minSize, minSize);
-    m_radioButton->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
-    painter->translate((option.rect.width() - 16)/2, 0); // top left
+    m_radioButton->setChecked(index.data(MUSIC_CHECK_ROLE).value<Qt::CheckState>() == Qt::Checked);
+    painter->translate((option.rect.width() - 16) / 2, 0); // top left
     m_radioButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
@@ -50,6 +61,9 @@ void MusicRadioButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
+    m_background = false;
+    m_textMode = false;
+    m_treeMode = false;
     m_checkBox  = new QCheckBox;
     m_checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
@@ -67,6 +81,21 @@ void MusicCheckBoxDelegate::setStyleSheet(const QString &style)
     m_checkBox->setStyleSheet(style);
 }
 
+void MusicCheckBoxDelegate::setFillBackground(bool fill)
+{
+    m_background = fill;
+}
+
+void MusicCheckBoxDelegate::showTextMode(bool mode)
+{
+    m_textMode = mode;
+}
+
+void MusicCheckBoxDelegate::setTreeModel(bool tree)
+{
+    m_treeMode = tree;
+}
+
 QSize MusicCheckBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     QSize size = option.rect.size();
@@ -76,39 +105,40 @@ QSize MusicCheckBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const 
 
 void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    if(m_background)
+    {
+        painter->fillRect(option.rect, TTKStatic_cast(Qt::GlobalColor, index.data(MUSIC_AUDIT_ROLE).toInt()));
+    }
     QItemDelegate::paint(painter, option, index);
 
+    if(m_treeMode && !index.parent().isValid())
+    {
+        return;
+    }
+
     painter->save();
-    const int minSize = qMin(option.rect.width(), option.rect.height());
-    m_checkBox->resize(minSize, minSize);
+    if(m_textMode)
+    {
+        m_checkBox->resize(option.rect.size());
+        m_checkBox->setText(index.data(MUSIC_TEXTS_ROLE).toString());
+        m_checkBox->setEnabled(index.data(MUSIC_ENABL_ROLE).toBool());
+    }
+    else
+    {
+        const int minSize = qMin(option.rect.width(), option.rect.height());
+        m_checkBox->resize(minSize, minSize);
+    }
+
     const bool state = m_checkBox->isChecked();
-    m_checkBox->setChecked( index.data(MUSIC_CHECK_ROLE).toBool() );
-    if(state != m_checkBox->isChecked())
+    m_checkBox->setChecked(index.data(MUSIC_CHECK_ROLE).value<Qt::CheckState>() == Qt::Checked);
+    if(m_checkBox->isEnabled() && state != m_checkBox->isChecked())
     {
         Q_EMIT TTKConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();
     }
+    painter->translate(m_textMode ? 0 : (option.rect.width() - 16) / 2, 0);
 
-    painter->translate((option.rect.width() - 16)/2, 0); // top left
     m_checkBox->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
-}
-
-
-MusicQueryTableDelegate::MusicQueryTableDelegate(QObject *parent)
-    : MusicCheckBoxDelegate(parent)
-{
-
-}
-
-MusicQueryTableDelegate::~MusicQueryTableDelegate()
-{
-
-}
-
-void MusicQueryTableDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    painter->fillRect(option.rect, TTKStatic_cast(Qt::GlobalColor, index.data(MUSIC_AUDIT_ROLE).toInt()));
-    MusicCheckBoxDelegate::paint(painter, option, index);
 }
 
 
@@ -116,6 +146,7 @@ void MusicQueryTableDelegate::paint(QPainter *painter, const QStyleOptionViewIte
 MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
+    m_treeMode = false;
     m_progress = new QProgressBar;
     m_progress->setStyleSheet(MusicUIObject::MQSSProgressBar01);
 }
@@ -130,6 +161,11 @@ void MusicProgressBarDelegate::setStyleSheet(const QString &style)
     m_progress->setStyleSheet(style);
 }
 
+void MusicProgressBarDelegate::setTreeModel(bool tree)
+{
+    m_treeMode = tree;
+}
+
 QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     QSize size = option.rect.size();
@@ -140,6 +176,11 @@ QSize MusicProgressBarDelegate::sizeHint(const QStyleOptionViewItem &option, con
 void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QItemDelegate::paint(painter, option, index);
+
+    if(m_treeMode && !index.parent().isValid())
+    {
+        return;
+    }
 
     painter->save();
     m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
@@ -153,6 +194,7 @@ void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewIt
 MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
+    m_treeMode = false;
     m_label  = new QLabel;
     m_label->setAlignment(Qt::AlignCenter);
     m_label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle18);
@@ -168,6 +210,16 @@ void MusicLabelDelegate::setStyleSheet(const QString &style)
     m_label->setStyleSheet(style);
 }
 
+void MusicLabelDelegate::setAlignment(Qt::Alignment alignment)
+{
+    m_label->setAlignment(alignment);
+}
+
+void MusicLabelDelegate::setTreeModel(bool tree)
+{
+    m_treeMode = tree;
+}
+
 QSize MusicLabelDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     QSize size = option.rect.size();
@@ -178,6 +230,11 @@ QSize MusicLabelDelegate::sizeHint(const QStyleOptionViewItem &option, const QMo
 void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QItemDelegate::paint(painter, option, index);
+
+    if(m_treeMode && !index.parent().isValid())
+    {
+        return;
+    }
 
     painter->save();
     m_label->setText(index.data(MUSIC_TEXTS_ROLE).toString());
@@ -192,6 +249,7 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
+    m_treeMode = false;
     m_pushButton  = new QPushButton;
     m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_pushButton->setStyleSheet(MusicUIObject::MQSSBorderStyle04 + MusicUIObject::MQSSBorderStyle07 + MusicUIObject::MQSSBackgroundStyle17);
@@ -210,6 +268,11 @@ void MusicPushButtonDelegate::setStyleSheet(const QString &style)
     m_pushButton->setStyleSheet(style);
 }
 
+void MusicPushButtonDelegate::setTreeModel(bool tree)
+{
+    m_treeMode = tree;
+}
+
 QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     QSize size = option.rect.size();
@@ -220,6 +283,11 @@ QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option, cons
 void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QItemDelegate::paint(painter, option, index);
+
+    if(m_treeMode && !index.parent().isValid())
+    {
+        return;
+    }
 
     painter->save();
     m_pushButton->setText(index.data(MUSIC_TEXTS_ROLE).toString());

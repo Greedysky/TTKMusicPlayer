@@ -244,7 +244,7 @@ void MusicQueryFoundTableWidget::createSearchedItem(const MusicSearchedItem &son
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, false);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;

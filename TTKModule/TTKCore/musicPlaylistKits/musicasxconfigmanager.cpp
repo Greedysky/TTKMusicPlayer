@@ -53,7 +53,6 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
     }
     //
     QDomElement musicPlayerDom = createRoot("Asx", MusicXmlAttribute("version ", "3.0"));
-    //Class A
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
@@ -62,7 +61,6 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
 
         foreach(const MusicSong &song, items[i].m_songs)
         {
-            //Class B
             QDomElement trackDom = writeDomNode(musicPlayerDom, "Entry");
 
             writeDomText(trackDom, "Title", song.getMusicArtistBack());

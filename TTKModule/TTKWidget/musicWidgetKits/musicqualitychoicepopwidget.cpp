@@ -103,23 +103,23 @@ void MusicQualityChoiceTableWidget::createItems()
     setItem(4, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, false);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(0, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, true);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Checked);
     setItem(1, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, false);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(2, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, false);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(3, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, false);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(4, 2, item);
 }
 
@@ -153,10 +153,10 @@ void MusicQualityChoiceTableWidget::itemCellClicked(int row, int)
 {
     if(m_previousClickRow != -1)
     {
-        item(m_previousClickRow, 2)->setData(MUSIC_CHECK_ROLE, false);
+        item(m_previousClickRow, 2)->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     }
     m_previousClickRow = row;
-    item(row, 2)->setData(MUSIC_CHECK_ROLE, true);
+    item(row, 2)->setData(MUSIC_CHECK_ROLE, Qt::Checked);
 }
 
 

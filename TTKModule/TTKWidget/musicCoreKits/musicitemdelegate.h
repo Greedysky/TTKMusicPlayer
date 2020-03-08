@@ -28,6 +28,8 @@
 #define MUSIC_AUDIT_ROLE Qt::UserRole + 4
 #define MUSIC_TEXTS_ROLE Qt::UserRole + 5
 #define MUSIC_TIMES_ROLE Qt::UserRole + 6
+#define MUSIC_ENABL_ROLE Qt::UserRole + 7
+#define MUSIC_SHOWN_ROLE Qt::UserRole + 8
 #define MUSIC_DATAS_ROLE Qt::UserRole + 100
 
 class QLabel;
@@ -56,6 +58,11 @@ public:
      */
     void setStyleSheet(const QString &style);
     /*!
+     * Set tree model.
+     */
+    void setTreeModel(bool tree);
+
+    /*!
      * Override size hint.
      */
     virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
@@ -65,6 +72,7 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
+    bool m_treeMode;
     QRadioButton *m_radioButton;
 
 };
@@ -90,6 +98,19 @@ public:
      */
     void setStyleSheet(const QString &style);
     /*!
+     * Set fill background.
+     */
+    void setFillBackground(bool fill);
+    /*!
+     * Show text mode.
+     */
+    void showTextMode(bool mode);
+    /*!
+     * Set tree model.
+     */
+    void setTreeModel(bool tree);
+
+    /*!
      * Override size hint.
      */
     virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
@@ -105,30 +126,10 @@ Q_SIGNALS:
     void buttonChecked();
 
 protected:
+    bool m_textMode;
+    bool m_treeMode;
+    bool m_background;
     QCheckBox *m_checkBox;
-
-};
-
-
-/*! @brief The class of the color item delegate.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_WIDGET_EXPORT MusicQueryTableDelegate : public MusicCheckBoxDelegate
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQueryTableDelegate)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicQueryTableDelegate(QObject* parent = nullptr);
-
-    virtual ~MusicQueryTableDelegate();
-
-    /*!
-     * Override paint.
-     */
-    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 };
 
@@ -152,6 +153,10 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
+    /*!
+     * Set tree model.
+     */
+    void setTreeModel(bool tree);
 
     /*!
      * Override size hint.
@@ -163,6 +168,7 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 private:
+    bool m_treeMode;
     QProgressBar *m_progress;
 
 };
@@ -187,6 +193,14 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
+    /*!
+     * Set text alignment.
+     */
+    void setAlignment(Qt::Alignment alignment);
+    /*!
+     * Set tree model.
+     */
+    void setTreeModel(bool tree);
 
     /*!
      * Override size hint.
@@ -198,6 +212,7 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
+    bool m_treeMode;
     QLabel *m_label;
 
 };
@@ -222,6 +237,10 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
+    /*!
+     * Set tree model.
+     */
+    void setTreeModel(bool tree);
 
     /*!
      * Override size hint.
@@ -233,6 +252,7 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
+    bool m_treeMode;
     QPushButton *m_pushButton;
 
 };

@@ -1,6 +1,7 @@
 #include "musicpluginwidget.h"
 #include "ui_musicpluginwidget.h"
 #include "musicuiobject.h"
+#include "musicitemdelegate.h"
 ///qmmp incldue
 #include "decoderfactory.h"
 #include "outputfactory.h"
@@ -18,30 +19,31 @@ class MusicPluginItem : public QTreeWidgetItem
 {
 public:
     MusicPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, QStringList() << factory->properties().name << path.section('/', -1), DECODER)
+        : QTreeWidgetItem(parent, DECODER)
     {
-        setCheckState(0, Decoder::isEnabled(factory) ? Qt::Checked : Qt::Unchecked);
+        initialize(Decoder::isEnabled(factory), true, factory->properties().name, path);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, EffectFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, QStringList() << factory->properties().name << path.section('/', -1), EFFECT)
+        : QTreeWidgetItem(parent, EFFECT)
     {
-        setCheckState(0, Effect::isEnabled(factory) ? Qt::Checked : Qt::Unchecked);
+
+        initialize(Effect::isEnabled(factory), false, factory->properties().name, path);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, QStringList() << factory->properties().name << path.section('/', -1), VISUAL)
+        : QTreeWidgetItem(parent, VISUAL)
     {
-        setCheckState(0, Visual::isEnabled(factory) ? Qt::Checked : Qt::Unchecked);
+        initialize(Visual::isEnabled(factory), false, factory->properties().name, path);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
-        : QTreeWidgetItem(parent, QStringList() << factory->properties().name << path.section('/', -1), OUTPUT)
+        : QTreeWidgetItem(parent, OUTPUT)
     {
-        setCheckState(0, (Output::currentFactory() == factory) ? Qt::Checked : Qt::Unchecked);
+        initialize(Output::currentFactory() == factory, false, factory->properties().name, path);
         m_factory = factory;
     }
 
@@ -58,13 +60,21 @@ public:
         switch(type())
         {
             case MusicPluginItem::DECODER:
-                Decoder::setEnabled(static_cast<DecoderFactory *>(m_factory), enabled);
+                Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled);
                 break;
             case MusicPluginItem::EFFECT: break;
             case MusicPluginItem::VISUAL: break;
             case MusicPluginItem::OUTPUT: break;
             default: break;
         }
+    }
+
+    void initialize(bool state, bool enable, const QString &name, const QString &path)
+    {
+        setData(0, MUSIC_CHECK_ROLE, state ? Qt::Checked : Qt::Unchecked);
+        setData(0, MUSIC_ENABL_ROLE, enable);
+        setData(0, MUSIC_TEXTS_ROLE, name);
+        setData(1, MUSIC_TEXTS_ROLE, path.section('/', -1));
     }
 
 private:
@@ -85,7 +95,18 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_ui->treeWidget->header()->setSectionsMovable(false);
-    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
+    m_ui->treeWidget->header()->setMinimumSectionSize(250);
+
+    MusicCheckBoxDelegate *checkDelegate = new MusicCheckBoxDelegate(this);
+    checkDelegate->showTextMode(true);
+    checkDelegate->setTreeModel(true);
+    m_ui->treeWidget->setItemDelegateForColumn(0, checkDelegate);
+    MusicLabelDelegate *labelDelegate = new MusicLabelDelegate(this);
+    labelDelegate->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(1, labelDelegate);
+
+    m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     loadPluginsInfo();
@@ -101,9 +122,11 @@ MusicPluginWidget::~MusicPluginWidget()
 
 void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
-    if(column == 0 && item->type() >= MusicPluginItem::DECODER)
+    if(column == 0 && item->type() == MusicPluginItem::DECODER)
     {
-        dynamic_cast<MusicPluginItem *>(item)->setEnabled(item->checkState(0) == Qt::Checked);
+        const Qt::CheckState status = item->data(column, MUSIC_CHECK_ROLE).value<Qt::CheckState>();
+        item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
+        TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
     }
 }
 

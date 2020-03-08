@@ -32,7 +32,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
     {
         const MusicSongCheckToolsRename &song = items[i];
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, false);
+        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -66,7 +66,7 @@ void MusicSongCheckToolsRenameTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check);
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
 
     if(!check)
@@ -132,7 +132,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
     {
         const MusicSongCheckToolsDuplicate &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, false);
+        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -182,7 +182,7 @@ void MusicSongCheckToolsDuplicateTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check);
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
 
     if(!check)
@@ -264,7 +264,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
     {
         const MusicSongCheckToolsQuality &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, false);
+        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -327,7 +327,7 @@ void MusicSongCheckToolsQualityTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check);
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
 
     if(!check)

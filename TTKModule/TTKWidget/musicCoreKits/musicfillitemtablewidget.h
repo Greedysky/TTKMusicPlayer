@@ -21,7 +21,7 @@
 
 #include "musicabstracttablewidget.h"
 
-class MusicQueryTableDelegate;
+class MusicCheckBoxDelegate;
 
 /*! @brief The class of the fill item table widget.
  * @author Greedysky <greedysky@163.com>
@@ -51,10 +51,10 @@ public Q_SLOTS:
     /*!
      * Set select all items.
      */
-    void setSelectedAllItems(bool all);
+    void setSelectedAllItems(bool check);
 
 protected:
-    MusicQueryTableDelegate *m_checkBoxDelegate;
+    MusicCheckBoxDelegate *m_checkBoxDelegate;
 
 };
 

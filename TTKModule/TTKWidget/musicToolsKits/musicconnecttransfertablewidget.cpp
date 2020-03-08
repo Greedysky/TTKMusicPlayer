@@ -25,7 +25,7 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongs &songs)
     {
         const MusicSong &song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, false);
+        item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -46,7 +46,7 @@ void MusicConnectTransferTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, check);
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
 
     if(!check)

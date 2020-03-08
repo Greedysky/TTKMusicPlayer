@@ -37,12 +37,10 @@ void MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
     createProcessingInstruction();
     //
     QDomElement musicPlayerDom = createRoot("playlist");
-    //Class A
     writeDomText(musicPlayerDom, "creator", APP_NAME);
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        //Class A
         QDomElement trackListDom = writeDomElementMutil(musicPlayerDom, "trackList", MusicXmlAttributes()
                                                        << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
                                                        << MusicXmlAttribute("count", item.m_songs.count())
@@ -51,7 +49,6 @@ void MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
 
         foreach(const MusicSong &song, items[i].m_songs)
         {
-            //Class B
             QDomElement trackDom = writeDomElementMutil(trackListDom, "track", MusicXmlAttributes()
                                                         << MusicXmlAttribute("name", song.getMusicName())
                                                         << MusicXmlAttribute("playCount", song.getMusicPlayCount())

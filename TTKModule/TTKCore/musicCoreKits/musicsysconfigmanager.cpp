@@ -339,7 +339,7 @@ void MusicSysConfigManager::writeSysConfigData()
     //
     createProcessingInstruction();
     QDomElement musicPlayerDom = createRoot(APP_NAME);
-    //Class A
+
     QDomElement musicSettingDom = writeDomNode(musicPlayerDom, "musicSetting");
     QDomElement plusSettingDom = writeDomNode(musicPlayerDom, "plusSetting");
     QDomElement otherSettingDom = writeDomNode(musicPlayerDom, "otherSetting");
@@ -351,7 +351,7 @@ void MusicSysConfigManager::writeSysConfigData()
     QDomElement equalizerSettingDom = writeDomNode(musicPlayerDom, "equalizerSetting");
     QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
     QDomElement downloadSettingDom = writeDomNode(musicPlayerDom, "downloadSetting");
-    //Class B
+
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
     writeDomElementText(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndex[0]),

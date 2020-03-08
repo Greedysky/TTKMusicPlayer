@@ -32,16 +32,15 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
     m_document->appendChild( node );
     //
     QDomElement musicPlayerDom = createRoot("smil");
-    //Class A
+
     QDomElement headSettingDom = writeDomNode(musicPlayerDom, "head");
     QDomElement bodySettingDom = writeDomNode(musicPlayerDom, "body");
-    //Class B
+
     writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "Generator") <<
                          MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME).arg(TTKMUSIC_VERSION_STR)));
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
-        //Class C
         QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
         foreach(const MusicSong &song, item.m_songs)
         {

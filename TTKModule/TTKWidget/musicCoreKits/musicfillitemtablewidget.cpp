@@ -7,7 +7,8 @@ MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
     MusicUtils::Widget::setTransparent(this, 255);
     setStyleSheet( styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
 
-    m_checkBoxDelegate = new MusicQueryTableDelegate(this);
+    m_checkBoxDelegate = new MusicCheckBoxDelegate(this);
+    m_checkBoxDelegate->setFillBackground(true);
     setItemDelegateForColumn(0, m_checkBoxDelegate);
 }
 
@@ -22,7 +23,7 @@ TTKIntList MusicFillItemTableWidget::getSelectedItems() const
     TTKIntList list;
     for(int i=0; i<rowCount(); ++i)
     {
-        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == true)
+        if(item(i, 0)->data(MUSIC_CHECK_ROLE) == Qt::Checked)
         {
             list << i;
         }
@@ -35,25 +36,25 @@ void MusicFillItemTableWidget::itemCellClicked(int row, int column)
     if(column == 0)
     {
         QTableWidgetItem *it = item(row, 0);
-        const bool status = it->data(MUSIC_CHECK_ROLE).toBool();
-        it->setData(MUSIC_CHECK_ROLE, !status);
+        const Qt::CheckState status = it->data(MUSIC_CHECK_ROLE).value<Qt::CheckState>();
+        it->setData(MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     }
     else
     {
         if(m_previousClickRow != -1)
         {
-            item(m_previousClickRow, 0)->setData(MUSIC_CHECK_ROLE, false);
+            item(m_previousClickRow, 0)->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         }
         m_previousClickRow = row;
-        item(row, 0)->setData(MUSIC_CHECK_ROLE, true);
+        item(row, 0)->setData(MUSIC_CHECK_ROLE, Qt::Checked);
     }
 }
 
-void MusicFillItemTableWidget::setSelectedAllItems(bool all)
+void MusicFillItemTableWidget::setSelectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
     {
-        item(i, 0)->setData(MUSIC_CHECK_ROLE, all);
+        item(i, 0)->setData(MUSIC_CHECK_ROLE, check ? Qt::Checked : Qt::Unchecked);
     }
     clearSelection();
 }
