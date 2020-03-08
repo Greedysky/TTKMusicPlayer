@@ -37,11 +37,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual void readPlaylistData(MusicSongItems &items) = 0;
+    virtual bool readPlaylistData(MusicSongItems &items) = 0;
     /*!
      * Write datas into config file.
      */
-    virtual void writePlaylistData(const MusicSongItems &items, const QString &path) = 0;
+    virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) = 0;
 
 };
 

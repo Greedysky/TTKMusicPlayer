@@ -8,7 +8,7 @@ MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
 
 }
 
-void MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     const QDomNodeList &sepNodes = m_document->elementsByTagName("seq");
     for(int i=0; i<sepNodes.count(); ++i)
@@ -19,17 +19,18 @@ void MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
         item.m_songs = readMusicFilePath(node);
         items << item;
     }
+    return true;
 }
 
-void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {
-        return;
+        return false;
     }
     //
     const QDomNode &node = m_document->createProcessingInstruction(WPL_FILE_PREFIX, "version='1.0' encoding='UTF-8'");
-    m_document->appendChild( node );
+    m_document->appendChild(node);
     //
     QDomElement musicPlayerDom = createRoot("smil");
 
@@ -50,6 +51,7 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
 
     QTextStream out(m_file);
     m_document->save(out, 4);
+    return true;
 }
 
 MusicSongs MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) const

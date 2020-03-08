@@ -7,7 +7,7 @@ MusicTKPLConfigManager::MusicTKPLConfigManager(QObject *parent)
 
 }
 
-void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
@@ -25,18 +25,19 @@ void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
         item.m_sort.m_sortType = TTKStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
         items << item;
     }
+    return true;
 }
 
-void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items)
+bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items)
 {
-    writePlaylistData(items, MUSICPATH_FULL);
+    return writePlaylistData(items, MUSICPATH_FULL);
 }
 
-void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {
-        return;
+        return false;
     }
     //
     createProcessingInstruction();
@@ -59,6 +60,7 @@ void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
 
     QTextStream out(m_file);
     m_document->save(out, 4);
+    return true;
 }
 
 MusicSongs MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const

@@ -13,7 +13,7 @@ bool MusicM3UConfigManager::readConfig(const QString &name)
     return m_file.open(QFile::ReadOnly);
 }
 
-void MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
@@ -54,13 +54,14 @@ void MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
     {
         items << item;
     }
+    return true;
 }
 
-void MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty())
     {
-        return;
+        return false;
     }
 
     const MusicSongItem &item = items.first();
@@ -80,4 +81,5 @@ void MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const
         m_file.write(data.join("\n").toUtf8());
         m_file.close();
     }
+    return true;
 }

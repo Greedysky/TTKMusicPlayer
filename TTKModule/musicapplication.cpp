@@ -226,16 +226,6 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
         MusicMessageBox message;
         message.setText(tr("not supported count %1").arg(failedFiles.count()));
         message.exec();
-
-        QFile file("import_failed_file_log.txt");
-        if(file.open(QFile::WriteOnly))
-        {
-            foreach(const QString &name, failedFiles)
-            {
-                file.write(name.toUtf8() + "\r\n");
-            }
-        }
-        file.close();
     }
 }
 
@@ -549,7 +539,7 @@ void MusicApplication::musicImportSongsOnlyFile()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters( MusicFormats::supportFormatsFilterDialogString() );
+    dialog.setNameFilters(MusicFormats::supportFormatsFilterDialogString());
 
     if(dialog.exec())
     {

@@ -61,11 +61,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual void readPlaylistData(MusicSongItems &items) override;
+    virtual bool readPlaylistData(MusicSongItems &items) override;
     /*!
      * Write datas into config file.
      */
-    virtual void writePlaylistData(const MusicSongItems &items, const QString &path) override;
+    virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) override;
 
 private:
     QString m_fileName;

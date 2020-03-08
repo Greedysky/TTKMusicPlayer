@@ -7,7 +7,7 @@ MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
 
 }
 
-void MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
@@ -43,13 +43,14 @@ void MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
     {
         items << item;
     }
+    return true;
 }
 
-void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {
-        return;
+        return false;
     }
     //
     QDomElement musicPlayerDom = createRoot("Asx", MusicXmlAttribute("version ", "3.0"));
@@ -72,4 +73,5 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
 
     QTextStream out(m_file);
     m_document->save(out, 4);
+    return true;
 }

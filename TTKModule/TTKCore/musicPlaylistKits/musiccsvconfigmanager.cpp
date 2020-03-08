@@ -12,7 +12,7 @@ bool MusicCSVConfigManager::readConfig(const QString &name)
     return m_file.open(QFile::ReadOnly);
 }
 
-void MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
@@ -20,7 +20,7 @@ void MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
     QStringList data(QString(m_file.readAll()).split("\n"));
     if(data.isEmpty())
     {
-        return;
+        return false;
     }
 
     foreach(const QString &line, data)
@@ -41,13 +41,14 @@ void MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
     {
         items << item;
     }
+    return true;
 }
 
-void MusicCSVConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicCSVConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty())
     {
-        return;
+        return false;
     }
 
     const MusicSongItem &item = items.first();
@@ -63,4 +64,5 @@ void MusicCSVConfigManager::writePlaylistData(const MusicSongItems &items, const
         m_file.write(data.join("\n").toUtf8());
         m_file.close();
     }
+    return true;
 }

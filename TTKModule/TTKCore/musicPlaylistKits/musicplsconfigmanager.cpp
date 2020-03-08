@@ -13,7 +13,7 @@ bool MusicPLSConfigManager::readConfig(const QString &name)
     return m_file.open(QFile::ReadOnly);
 }
 
-void MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file.fileName()).baseName();
@@ -21,12 +21,12 @@ void MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
     QStringList data(QString(m_file.readAll()).split("\n"));
     if(data.isEmpty())
     {
-        return;
+        return false;
     }
 
     if(!data.takeFirst().toLower().contains("[playlist]"))
     {
-        return;
+        return false;
     }
 
     QRegExp fileRegExp("^File(\\d+)=(.+)");
@@ -72,13 +72,14 @@ void MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
     {
         items << item;
     }
+    return true;
 }
 
-void MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty())
     {
-        return;
+        return false;
     }
 
     const MusicSongItem &item = items.first();
@@ -102,4 +103,5 @@ void MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const
         m_file.write(data.join("\n").toUtf8());
         m_file.close();
     }
+    return true;
 }

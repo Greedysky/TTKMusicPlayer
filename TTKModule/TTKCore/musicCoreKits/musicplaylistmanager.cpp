@@ -96,134 +96,144 @@ void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSong
     }
 }
 
-void MusicPlaylistManager::readTKPLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readTKPLList(const QString &path, MusicSongItems& items)
 {
     MusicTKPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writeTKPLList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeTKPLList(const QString &path, const MusicSongItem& item)
 {
     MusicTKPLConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-void MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems& items)
 {
     MusicM3UConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writeM3UList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeM3UList(const QString &path, const MusicSongItem& item)
 {
     MusicM3UConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-void MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems& items)
 {
     MusicPLSConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writePLSList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writePLSList(const QString &path, const MusicSongItem& item)
 {
     MusicPLSConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-void MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems& items)
 {
     MusicWPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writeWPLList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeWPLList(const QString &path, const MusicSongItem& item)
 {
     MusicWPLConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-void MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems& items)
 {
     MusicXSPFConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writeXSPFList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeXSPFList(const QString &path, const MusicSongItem& item)
 {
     MusicXSPFConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-void MusicPlaylistManager::readASXList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readASXList(const QString &path, MusicSongItems& items)
 {
     MusicASXConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writeASXList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeASXList(const QString &path, const MusicSongItem& item)
 {
     MusicASXConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-void MusicPlaylistManager::readKWLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readKWLList(const QString &path, MusicSongItems& items)
 {
     MusicKWLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::readKGLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readKGLList(const QString &path, MusicSongItems& items)
 {
     MusicKGLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::readFPLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readFPLList(const QString &path, MusicSongItems& items)
 {
     MusicFPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::readCSVList(const QString &path, MusicSongItems &items)
+bool MusicPlaylistManager::readCSVList(const QString &path, MusicSongItems &items)
 {
     MusicCSVConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistData(items);
+        return manager.readPlaylistData(items);
     }
+    return false;
 }
 
-void MusicPlaylistManager::writeCSVList(const QString &path, const MusicSongItem &item)
+bool MusicPlaylistManager::writeCSVList(const QString &path, const MusicSongItem &item)
 {
     MusicCSVConfigManager manager;
-    manager.writePlaylistData(MusicSongItems() << item, path);
+    return manager.writePlaylistData(MusicSongItems() << item, path);
 }

@@ -90,12 +90,12 @@
     </property>
     <column>
      <property name="text">
-      <string notr="true">Description</string>
+      <string notr="true">1</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string notr="true">Name</string>
+      <string notr="true">2</string>
      </property>
     </column>
    </widget>

@@ -7,7 +7,7 @@ MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
 
 }
 
-void MusicXSPFConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicXSPFConfigManager::readPlaylistData(MusicSongItems &items)
 {
     const QDomNodeList &trackNodes = m_document->elementsByTagName("trackList");
     for(int i=0; i<trackNodes.count(); ++i)
@@ -25,13 +25,14 @@ void MusicXSPFConfigManager::readPlaylistData(MusicSongItems &items)
         item.m_sort.m_sortType = TTKStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
         items << item;
     }
+    return true;
 }
 
-void MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     if(items.isEmpty() || !writeConfig(path))
     {
-        return;
+        return false;
     }
     //
     createProcessingInstruction();
@@ -66,6 +67,7 @@ void MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
 
     QTextStream out(m_file);
     m_document->save(out, 4);
+    return true;
 }
 
 MusicSongs MusicXSPFConfigManager::readMusicFilePath(const QDomNode &node) const

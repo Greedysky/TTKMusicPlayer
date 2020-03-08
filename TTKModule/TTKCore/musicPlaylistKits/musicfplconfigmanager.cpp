@@ -18,7 +18,7 @@ bool MusicFPLConfigManager::readConfig(const QString &name)
     return true;
 }
 
-void MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
+bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_fileName).baseName();
@@ -26,7 +26,7 @@ void MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
     FILE *fp = nullptr;
     if((fp = fopen(MusicUtils::Codec::toLocal8Bit(m_fileName), "rb")) == nullptr)
     {
-        return;
+        return false;
     }
 
     // read 16-byte signature
@@ -54,7 +54,7 @@ void MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
         // keys_dex sanity check
         if(m_chunkrunner.keys_dex > 512)
         {
-            return;
+            return false;
         }
 
         fread((void*)&keyRunner, sizeof(uint), m_chunkrunner.keys_dex - 3, fp);
@@ -69,10 +69,12 @@ void MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
     {
         items << item;
     }
+    return true;
 }
 
-void MusicFPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
+bool MusicFPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
     Q_UNUSED(items);
     Q_UNUSED(path);
+    return false;
 }
