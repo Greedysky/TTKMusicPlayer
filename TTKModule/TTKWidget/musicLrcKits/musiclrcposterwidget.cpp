@@ -863,7 +863,7 @@ void MusicLrcPosterTableWidget::itemCellClicked(int row, int column)
     QStringList data;
     for(int i=0; i<rowCount(); ++i)
     {
-        if(item(i, 0)->data(MUSIC_CHECK_ROLE).value<Qt::CheckState>() == Qt::Checked)
+        if(TTKStatic_cast(Qt::CheckState, item(i, 0)->data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked)
         {
             data << item(i, 1)->text();
         }

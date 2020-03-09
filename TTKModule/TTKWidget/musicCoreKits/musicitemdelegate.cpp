@@ -51,7 +51,7 @@ void MusicRadioButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIt
     painter->save();
     const int minSize = qMin(option.rect.width(), option.rect.height());
     m_radioButton->resize(minSize, minSize);
-    m_radioButton->setChecked(index.data(MUSIC_CHECK_ROLE).value<Qt::CheckState>() == Qt::Checked);
+    m_radioButton->setChecked(TTKStatic_cast(Qt::CheckState, index.data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked);
     painter->translate((option.rect.width() - 16) / 2, 0); // top left
     m_radioButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
@@ -130,7 +130,7 @@ void MusicCheckBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     }
 
     const bool state = m_checkBox->isChecked();
-    m_checkBox->setChecked(index.data(MUSIC_CHECK_ROLE).value<Qt::CheckState>() == Qt::Checked);
+    m_checkBox->setChecked(TTKStatic_cast(Qt::CheckState, index.data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked);
     if(m_checkBox->isEnabled() && state != m_checkBox->isChecked())
     {
         Q_EMIT TTKConst_cast(MusicCheckBoxDelegate*, this)->buttonChecked();

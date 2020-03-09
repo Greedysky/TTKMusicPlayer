@@ -36,7 +36,7 @@ void MusicFillItemTableWidget::itemCellClicked(int row, int column)
     if(column == 0)
     {
         QTableWidgetItem *it = item(row, 0);
-        const Qt::CheckState status = it->data(MUSIC_CHECK_ROLE).value<Qt::CheckState>();
+        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, it->data(MUSIC_CHECK_ROLE).toInt());
         it->setData(MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
     }
     else

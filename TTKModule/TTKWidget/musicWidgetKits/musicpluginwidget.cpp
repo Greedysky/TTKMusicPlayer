@@ -94,7 +94,11 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
+#ifdef TTK_GREATER_NEW
     m_ui->treeWidget->header()->setSectionsMovable(false);
+#else
+    m_ui->treeWidget->header()->setMovable(false);
+#endif
     m_ui->treeWidget->header()->setMinimumSectionSize(250);
     m_ui->treeWidget->setHeaderLabels(QStringList() << tr("Description") << tr("Name"));
 
@@ -125,7 +129,7 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
     if(column == 0 && item->type() == MusicPluginItem::DECODER)
     {
-        const Qt::CheckState status = item->data(column, MUSIC_CHECK_ROLE).value<Qt::CheckState>();
+        const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECK_ROLE).toInt());
         item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
     }
