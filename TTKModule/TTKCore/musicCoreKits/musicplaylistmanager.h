@@ -116,6 +116,20 @@ protected:
      */
     bool writeCSVList(const QString &path, const MusicSongItem &item);
 
+    /*!
+     * Read txt music playlist data from file.
+     */
+    bool readTXTList(const QString &path, MusicSongItems &items);
+    /*!
+     * Write txt music playlist data to file.
+     */
+    bool writeTXTList(const QString &path, const MusicSongItem &item);
+
+    /*!
+     * Write nfn music playlist data to file.
+     */
+    bool writeNFNList(const QString &path, const MusicSongItem &item);
+
 };
 
 #endif // MUSICPLAYLISTMANAGER_H

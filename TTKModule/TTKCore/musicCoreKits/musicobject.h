@@ -57,6 +57,8 @@
 #define KWL_FILE_PREFIX         "kwl"
 #define KGL_FILE_PREFIX         "kgl"
 #define CSV_FILE_PREFIX         "csv"
+#define TXT_FILE_PREFIX         "txt"
+#define NFN_FILE_PREFIX         "nfn"
 
 //music ext
 #define AAC_FILE_PREFIX         "aac"

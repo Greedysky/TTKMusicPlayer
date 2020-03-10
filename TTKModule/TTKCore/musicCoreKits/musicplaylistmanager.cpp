@@ -9,6 +9,8 @@
 #include "musictkplconfigmanager.h"
 #include "musicfplconfigmanager.h"
 #include "musiccsvconfigmanager.h"
+#include "musictxtconfigmanager.h"
+#include "musicnfnconfigmanager.h"
 #include "musicmessagebox.h"
 
 void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem& item)
@@ -43,6 +45,14 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     else if(suffix == CSV_FILE_PREFIX)
     {
         writeCSVList(path, item);
+    }
+    else if(suffix == TXT_FILE_PREFIX)
+    {
+        writeTXTList(path, item);
+    }
+    else if(suffix == NFN_FILE_PREFIX)
+    {
+        writeNFNList(path, item);
     }
 }
 
@@ -92,6 +102,10 @@ void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSong
         else if(suffix == CSV_FILE_PREFIX)
         {
             readCSVList(path, items);
+        }
+        else if(suffix == TXT_FILE_PREFIX)
+        {
+            readTXTList(path, items);
         }
     }
 }
@@ -235,5 +249,27 @@ bool MusicPlaylistManager::readCSVList(const QString &path, MusicSongItems &item
 bool MusicPlaylistManager::writeCSVList(const QString &path, const MusicSongItem &item)
 {
     MusicCSVConfigManager manager;
+    return manager.writePlaylistData(MusicSongItems() << item, path);
+}
+
+bool MusicPlaylistManager::readTXTList(const QString &path, MusicSongItems &items)
+{
+    MusicTXTConfigManager manager;
+    if(manager.readConfig(path))
+    {
+        return manager.readPlaylistData(items);
+    }
+    return false;
+}
+
+bool MusicPlaylistManager::writeTXTList(const QString &path, const MusicSongItem &item)
+{
+    MusicTXTConfigManager manager;
+    return manager.writePlaylistData(MusicSongItems() << item, path);
+}
+
+bool MusicPlaylistManager::writeNFNList(const QString &path, const MusicSongItem &item)
+{
+    MusicNFNConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
