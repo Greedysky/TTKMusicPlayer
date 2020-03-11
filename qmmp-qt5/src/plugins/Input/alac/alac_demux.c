@@ -31,6 +31,8 @@
 
 #include "alac_stream.h"
 #include "alac_demux.h"
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct
 {
@@ -44,7 +46,6 @@ typedef struct
 static void read_chunk_ftyp(qtmovie_t *qtmovie, size_t chunk_len)
 {
     fourcc_t type;
-    uint32_t minor_ver;
     size_t size_remaining = chunk_len - 8; /* FIXME: can't hardcode 8, size may be 64bit */
 
     type = stream_read_uint32(qtmovie->stream);
@@ -54,7 +55,8 @@ static void read_chunk_ftyp(qtmovie_t *qtmovie, size_t chunk_len)
         fprintf(stderr, "not M4A file\n");
         return;
     }
-    minor_ver = stream_read_uint32(qtmovie->stream);
+
+    stream_read_uint32(qtmovie->stream);
     size_remaining-=4;
 
     /* compatible brands */
@@ -101,7 +103,6 @@ static void read_chunk_elst(qtmovie_t *qtmovie, size_t chunk_len)
 /* media handler inside mdia */
 static void read_chunk_hdlr(qtmovie_t *qtmovie, size_t chunk_len)
 {
-    fourcc_t comptype, compsubtype;
     size_t size_remaining = chunk_len - 8; /* FIXME WRONG */
 
     int strlen;
@@ -117,8 +118,8 @@ static void read_chunk_hdlr(qtmovie_t *qtmovie, size_t chunk_len)
     size_remaining -= 3;
 
     /* component type */
-    comptype = stream_read_uint32(qtmovie->stream);
-    compsubtype = stream_read_uint32(qtmovie->stream);
+    stream_read_uint32(qtmovie->stream);
+    stream_read_uint32(qtmovie->stream);
     size_remaining -= 8;
 
     /* component manufacturer */

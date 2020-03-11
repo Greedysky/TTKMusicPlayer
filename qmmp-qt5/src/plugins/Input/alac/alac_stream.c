@@ -30,6 +30,7 @@
  */
 
 #include "alac_stream.h"
+#include <stdlib.h>
 #include <errno.h>
 
 #define _Swap32(v) do { \
