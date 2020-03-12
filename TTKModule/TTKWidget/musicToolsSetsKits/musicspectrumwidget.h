@@ -83,6 +83,10 @@ public Q_SLOTS:
      * Open file button clicked.
      */
     void openFileButtonClicked();
+    /*!
+     * Emitted when visual widget is show fullscreen by user.
+     */
+    void fullscreenByUser(QWidget *widget, bool state);
 
 protected:
     /*!
@@ -90,13 +94,13 @@ protected:
      */
     void createSpectrumWidget(bool &state, const QString &name, QLayout *layout);
     /*!
-     * Create light widget.
-     */
-    void createLightWidget(bool &state, const QString &name, QLayout *layout, const QString &url = QString());
-    /*!
      * Create florid widget.
      */
     void createFloridWidget(bool &state, const QString &name, QLayout *layout);
+    /*!
+     * Create light widget.
+     */
+    void createLightWidget(bool &state, const QString &name, QLayout *layout, const QString &url = QString());
     /*!
      * Adjust widget layout.
      */
@@ -110,6 +114,7 @@ protected:
      */
     void showMessageBoxWidget();
 
+    QLayout *m_spectrumLayout;
     QString m_lastFloridName;
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;

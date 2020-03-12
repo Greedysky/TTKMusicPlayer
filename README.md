@@ -81,13 +81,14 @@ TTKMusicPlayer can meet your most demands
  * FLAC File(*.flac *.oga)
  * Monkey's Audio File(*.ape)
  * OptimFrog File(*.ofr *.ofs)
- * AdPlug Files(*.adl *.hsc *.ksm *.lds)
- * YM Files(*.ym)
+ * AdPlug File(*.adl *.hsc *.ksm *.lds)
+ * YM File(*.ym)
+ * ALAC File(*.alac)
  * FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)
  * ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm 
                 *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r
                 *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
- * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv)
+ * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
 Screenshots.
  * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.

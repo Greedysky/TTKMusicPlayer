@@ -37,6 +37,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    m_spectrumLayout = nullptr;
     m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
 
     m_ui->localFileButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -145,6 +146,29 @@ void MusicSpectrumWidget::openFileButtonClicked()
     }
 }
 
+void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
+{
+    if(state)
+    {
+        QWidget *parent = TTKStatic_cast(QWidget*, widget->parent());
+        if(parent)
+        {
+            m_spectrumLayout = parent->layout();
+            widget->setParent(nullptr);
+            widget->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+            widget->showFullScreen();
+        }
+    }
+    else
+    {
+        if(m_spectrumLayout)
+        {
+            widget->showNormal();
+            m_spectrumLayout->addWidget(widget);
+        }
+    }
+}
+
 void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name, QLayout *layout)
 {
     if(state)
@@ -161,11 +185,13 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
 
         if(!vs->isEmpty())
         {
-            MusicSpectrum t;
-            t.m_name = name;
-            t.m_obj = vs->last();
-            layout->addWidget(t.m_obj);
-            m_types << t;
+            MusicSpectrum sp;
+            sp.m_name = name;
+            sp.m_obj = vs->last();
+            layout->addWidget(sp.m_obj);
+            m_types << sp;
+            sp.m_obj->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+            connect(sp.m_obj, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
         }
         else
         {
@@ -182,6 +208,51 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
             layout->removeWidget(t.m_obj);
             MusicUtils::QMMP::enabledVisualPlugin(name, false);
         }
+    }
+}
+
+void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, QLayout *layout)
+{
+    const int index = findSpectrumWidget(m_lastFloridName);
+    if(index != -1)
+    {
+        MusicSpectrum t = m_types.takeAt(index);
+        layout->removeWidget(t.m_obj);
+        MusicUtils::QMMP::enabledVisualPlugin(m_lastFloridName, false);
+    }
+
+    if(!state)
+    {
+        m_lastFloridName.clear();
+        return;
+    }
+
+    const int before = Visual::visuals()->count();
+    MusicUtils::QMMP::enabledVisualPlugin(name, true);
+    const QList<Visual*> *vs = Visual::visuals();
+    if(before == vs->count())
+    {
+        showMessageBoxWidget();
+        state = false;
+        return;
+    }
+
+    if(!vs->isEmpty())
+    {
+        m_lastFloridName = name;
+        MusicSpectrum sp;
+        sp.m_name = name;
+        sp.m_obj = vs->last();
+        TTKStatic_cast(Florid*, sp.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+        layout->addWidget(sp.m_obj);
+        m_types << sp;
+        sp.m_obj->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+        connect(sp.m_obj, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
+    }
+    else
+    {
+        showMessageBoxWidget();
+        state = false;
     }
 }
 
@@ -219,49 +290,6 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
             layout->removeWidget(t.m_obj);
             delete t.m_obj;
         }
-    }
-}
-
-void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, QLayout *layout)
-{
-    const int index = findSpectrumWidget(m_lastFloridName);
-    if(index != -1)
-    {
-        MusicSpectrum t = m_types.takeAt(index);
-        layout->removeWidget(t.m_obj);
-        MusicUtils::QMMP::enabledVisualPlugin(m_lastFloridName, false);
-    }
-
-    if(!state)
-    {
-        m_lastFloridName.clear();
-        return;
-    }
-
-    const int before = Visual::visuals()->count();
-    MusicUtils::QMMP::enabledVisualPlugin(name, true);
-    const QList<Visual*> *vs = Visual::visuals();
-    if(before == vs->count())
-    {
-        showMessageBoxWidget();
-        state = false;
-        return;
-    }
-
-    if(!vs->isEmpty())
-    {
-        m_lastFloridName = name;
-        MusicSpectrum t;
-        t.m_name = name;
-        t.m_obj = vs->last();
-        TTKStatic_cast(Florid*, t.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
-        layout->addWidget(t.m_obj);
-        m_types << t;
-    }
-    else
-    {
-        showMessageBoxWidget();
-        state = false;
     }
 }
 
