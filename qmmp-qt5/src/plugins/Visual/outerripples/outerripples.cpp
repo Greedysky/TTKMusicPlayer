@@ -24,6 +24,7 @@ OuterRipples::OuterRipples (QWidget *parent)
     m_cell_size = QSize(15, 6);
 
     setWindowTitle(tr("Outer Ripples Widget"));
+
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));

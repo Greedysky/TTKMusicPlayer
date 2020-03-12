@@ -13,6 +13,7 @@ FloridSurround::FloridSurround (QWidget *parent)
     m_cols = 0;
 
     setWindowTitle(tr("Florid Surround Widget"));
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 

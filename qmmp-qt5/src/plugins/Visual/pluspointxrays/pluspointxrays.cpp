@@ -27,6 +27,10 @@ PlusPointXRays::PlusPointXRays (QWidget *parent)
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 
+    m_screenAction = new QAction(tr("Fullscreen"), this);
+    m_screenAction->setCheckable(true);
+    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
+
     m_gridAction = new QAction(tr("Grid"), this);
     m_gridAction->setCheckable(true);
     connect(m_gridAction, SIGNAL(triggered(bool)), this, SLOT(changeGridState(bool)));
@@ -135,9 +139,10 @@ void PlusPointXRays::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
+    menu.addAction(m_screenAction);
+    menu.addSeparator();
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.addAction(m_gridAction);
-
     menu.exec(QCursor::pos());
 }
 

@@ -1,5 +1,6 @@
 #include <QTimer>
 #include <QPainter>
+#include <QMenu>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -26,6 +27,10 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent)
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+
+    m_screenAction = new QAction(tr("Fullscreen"), this);
+    m_screenAction->setCheckable(true);
+    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 
     clear();
 }
@@ -96,6 +101,14 @@ void NormalSpaceWave::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
+}
+
+void NormalSpaceWave::contextMenuEvent(QContextMenuEvent *)
+{
+    QMenu menu(this);
+
+    menu.addAction(m_screenAction);
+    menu.exec(QCursor::pos());
 }
 
 void NormalSpaceWave::process()

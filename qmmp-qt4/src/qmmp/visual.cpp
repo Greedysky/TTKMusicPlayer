@@ -215,6 +215,11 @@ void Visual::clearBuffer()
     m_buffer.mutex()->unlock();
 }
 
+void Visual::changeFullScreen(bool state)
+{
+    emit fullscreenByUser(this, state);
+}
+
 void Visual::checkFactories()
 {
     if(!m_factories)

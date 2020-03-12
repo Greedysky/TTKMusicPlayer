@@ -37,6 +37,10 @@ NormalHistogram::NormalHistogram (QWidget *parent)
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
 
+    m_screenAction = new QAction(tr("Fullscreen"), this);
+    m_screenAction->setCheckable(true);
+    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
+
     m_starAction = new QAction(tr("Star"), this);
     m_starAction->setCheckable(true);
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
@@ -182,10 +186,11 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
+    menu.addAction(m_screenAction);
+    menu.addSeparator();
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.addAction(m_starAction);
     menu.addAction(tr("StarColor"), this, SLOT(changeStarColor()));
-
     menu.exec(QCursor::pos());
 }
 

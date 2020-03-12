@@ -49,10 +49,12 @@ private:
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     void process();
     void draw(QPainter *p);
 
+    QAction *m_screenAction;
     QTimer *m_timer;
     double *m_intern_vis_data;
     int *m_intern_ray_data, *m_x_scale, m_cols, m_rows;

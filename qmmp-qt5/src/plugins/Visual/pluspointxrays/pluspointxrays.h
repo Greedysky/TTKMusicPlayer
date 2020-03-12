@@ -64,6 +64,7 @@ private:
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
     bool m_running;
     int *m_intern_vis_data, m_cols, m_rows;
+    QAction *m_screenAction;
     QAction *m_gridAction;
 
 };

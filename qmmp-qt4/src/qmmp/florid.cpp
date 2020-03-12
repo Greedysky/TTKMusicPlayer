@@ -102,6 +102,10 @@ Florid::Florid(QWidget *parent)
     m_averageColor = QColor(255, 255, 255);
     m_gradientOn = false;
     m_roundLabel = new RoundAnimationLabel(this);
+
+    m_screenAction = new QAction(tr("Fullscreen"), this);
+    m_screenAction->setCheckable(true);
+    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 }
 
 Florid::~Florid()

@@ -64,7 +64,7 @@ private:
     void process();
     void draw(QPainter *p);
     void createMenu();
-    
+
     QAction *m_starAction;
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;

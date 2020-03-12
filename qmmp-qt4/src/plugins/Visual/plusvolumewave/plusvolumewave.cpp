@@ -1,5 +1,6 @@
 #include <QTimer>
 #include <QPainter>
+#include <QMenu>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -21,11 +22,15 @@ PlusVolumeWave::PlusVolumeWave (QWidget *parent)
     setWindowTitle(tr("Plus VolumeWave Widget"));
     setMinimumSize(2*300-30, 105);
 
+    m_analyzer_falloff = 1.2;
+
     m_timer = new QTimer(this);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
+    m_screenAction = new QAction(tr("Fullscreen"), this);
+    m_screenAction->setCheckable(true);
+    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 
     clear();
 }
@@ -92,6 +97,14 @@ void PlusVolumeWave::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
+}
+
+void PlusVolumeWave::contextMenuEvent(QContextMenuEvent *)
+{
+    QMenu menu(this);
+
+    menu.addAction(m_screenAction);
+    menu.exec(QCursor::pos());
 }
 
 void PlusVolumeWave::process()

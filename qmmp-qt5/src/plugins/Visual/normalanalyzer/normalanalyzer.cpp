@@ -11,7 +11,7 @@
 #include "fft.h"
 #include "inlines.h"
 #include "normalanalyzer.h"
-
+#include <QDebug>
 NormalAnalyzer::NormalAnalyzer (QWidget *parent)
     : Visual(parent)
 {
@@ -441,6 +441,9 @@ void NormalAnalyzer::createMenu()
         peaksFalloff->addAction(act);
     }
 
+    m_menu->addSeparator();
+    m_menu->addAction(tr("Fullscreen"), this, SLOT(changeFullScreen(bool)))->setCheckable(true);
+    m_menu->addSeparator();
     m_menu->addAction(tr("Color"), this, SLOT(changeColor()));
     m_menu->addAction(m_starAction);
     m_menu->addAction(tr("StarColor"), this, SLOT(changeStarColor()));

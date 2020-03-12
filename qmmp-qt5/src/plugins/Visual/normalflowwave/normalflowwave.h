@@ -60,6 +60,7 @@ private:
     void process();
     void draw(QPainter *p);
 
+    QAction *m_screenAction;
     QAction *m_starAction;
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;

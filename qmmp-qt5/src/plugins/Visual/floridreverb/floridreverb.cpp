@@ -14,6 +14,7 @@ FloridReverb::FloridReverb (QWidget *parent)
     m_cols = 0;
 
     setWindowTitle(tr("Florid Reverb Widget"));
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
