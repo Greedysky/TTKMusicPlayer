@@ -25,7 +25,7 @@ void MusicSongCheckToolsRenameThread::run()
             MusicSongTag tag;
             foreach(const MusicSong &song, *m_songItems)
             {
-                if(!m_run)
+                if(!m_running)
                 {
                     Q_EMIT finished(MusicSongCheckToolsRenames());
                     return;
@@ -48,7 +48,7 @@ void MusicSongCheckToolsRenameThread::run()
         {
             foreach(const int index, m_itemIDs)
             {
-                if(!m_run)
+                if(!m_running)
                 {
                     Q_EMIT finished(MusicSongCheckToolsRenames());
                     return;
@@ -143,7 +143,7 @@ void MusicSongCheckToolsQualityThread::run()
         MusicSongTag tag;
         foreach(const MusicSong &song, *m_songItems)
         {
-            if(!m_run)
+            if(!m_running)
             {
                 Q_EMIT finished(MusicSongCheckToolsQualitys());
                 return;

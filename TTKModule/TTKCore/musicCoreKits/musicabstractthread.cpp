@@ -3,7 +3,7 @@
 MusicAbstractThread::MusicAbstractThread(QObject *parent)
     : QThread(parent)
 {
-    m_run = true;
+    m_running = true;
 }
 
 MusicAbstractThread::~MusicAbstractThread()
@@ -15,15 +15,15 @@ void MusicAbstractThread::stopAndQuitThread()
 {
     if(isRunning())
     {
-        m_run = false;
+        quit();
         wait();
     }
-    quit();
+    m_running = false;
 }
 
 void MusicAbstractThread::start()
 {
-    m_run = true;
+    m_running = true;
     QThread::start();
 }
 

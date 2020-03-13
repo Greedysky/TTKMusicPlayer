@@ -20,7 +20,7 @@ void MusicConnectTransferThread::run()
 
     foreach(const QString &path, m_path)
     {
-        if(m_run && !m_target.isEmpty())
+        if(m_running && !m_target.isEmpty())
         {
             const QString &targetPath = QString("%1/%2").arg(m_target).arg(QFileInfo(path).fileName());
             m_path.takeFirst();

@@ -56,7 +56,7 @@ protected:
     virtual void run() override;
 
 protected:
-    bool m_run;
+    bool m_running;
 
 };
 

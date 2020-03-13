@@ -25,7 +25,7 @@ void MusicNetworkTestThread::run()
 
     MusicUtils::Core::sleep(rand * MT_S2MS);
 
-    if(m_run)
+    if(m_running)
     {
         Q_EMIT networkConnectionTestChanged( !info.addresses().isEmpty() );
     }

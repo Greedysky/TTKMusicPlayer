@@ -116,8 +116,10 @@ protected:
      * Image color burn transform.
      */
     int colorBurnTransform(int c, int delta);
+
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 protected:
     QImage m_image;
@@ -125,6 +127,7 @@ protected:
     QColor m_averageColor;
     bool m_gradientOn;
     RoundAnimationLabel *m_roundLabel;
+    QAction *m_screenAction;
 
 };
 
