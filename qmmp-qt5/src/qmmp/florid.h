@@ -119,7 +119,7 @@ protected:
 
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 protected:
     QImage m_image;

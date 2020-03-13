@@ -175,9 +175,9 @@ void NormalFlowWave::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction(m_screenAction);
+    menu.addSeparator();
     menu.addAction(m_starAction);
     menu.addAction(tr("StarColor"), this, SLOT(changeStarColor()));
-
     menu.exec(QCursor::pos());
 }
 

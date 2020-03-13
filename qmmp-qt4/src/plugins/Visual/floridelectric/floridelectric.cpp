@@ -221,6 +221,7 @@ FloridElectric::FloridElectric (QWidget *parent)
     m_running = false;
 
     setWindowTitle(tr("Florid Electric Widget"));
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 

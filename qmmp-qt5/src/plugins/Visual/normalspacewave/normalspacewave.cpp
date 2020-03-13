@@ -14,6 +14,7 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
+    m_intern_ray_data = nullptr;
     m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
@@ -146,6 +147,7 @@ void NormalSpaceWave::process()
         for(int i = 0; i < m_cols; ++i)
         {
             m_intern_vis_data[i] = 0;
+            m_intern_ray_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
         {
@@ -193,7 +195,7 @@ void NormalSpaceWave::process()
     for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
-        m_intern_ray_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
+        m_intern_ray_data[i] = int(m_left_buffer[pos >> 8] * m_rows * 1.0);
         m_intern_ray_data[i] = qBound(-m_rows / 2, m_intern_ray_data[i], m_rows / 2);
     }
 }
@@ -215,7 +217,7 @@ void NormalSpaceWave::draw(QPainter *p)
         const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() / 2;
         p->fillRect(x, height() / 2 - offset, m_cell_size.width() - 1, offset, line);
     }
-    //
+
     p->setPen(QPen(QColor(0, 179, 255), 1));
     for(int i = 0; i < m_cols; ++i)
     {

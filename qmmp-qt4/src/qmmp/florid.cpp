@@ -21,6 +21,7 @@
 #include <qmath.h>
 #include <QBitmap>
 #include <QPainter>
+#include <QMenu>
 
 RoundAnimationLabel::RoundAnimationLabel(QWidget *parent)
     : QWidget(parent)
@@ -321,7 +322,7 @@ void Florid::resizeEvent(QResizeEvent *event)
     }
 }
 
-void Florid::paintEvent(QPaintEvent *e)
+void Florid::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     if(!m_image.isNull())
@@ -348,4 +349,12 @@ void Florid::paintEvent(QPaintEvent *e)
     {
         painter.fillRect(rect(), Qt::black);
     }
+}
+
+void Florid::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu menu(this);
+
+    menu.addAction(m_screenAction);
+    menu.exec(QCursor::pos());
 }

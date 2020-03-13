@@ -21,6 +21,7 @@ OuterRaysWave::OuterRaysWave (QWidget *parent)
     m_rows = 0;
 
     setWindowTitle(tr("Outer RaysWave Widget"));
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);

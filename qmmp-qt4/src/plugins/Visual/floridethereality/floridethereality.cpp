@@ -145,6 +145,17 @@ void FloridEthereality::showEvent(QShowEvent *)
     }
 }
 
+void FloridEthereality::resizeEvent(QResizeEvent *e)
+{
+    const int perWidth = width() / 50;
+    for(int i = 0; i < m_etherealitys.size(); i++)
+    {
+        Ethereality *ethereality = m_etherealitys[i];
+        ethereality->resize(perWidth, height());
+        ethereality->move(i * perWidth, 0);
+    }
+}
+
 void FloridEthereality::process()
 {
     static fft_state *state = nullptr;

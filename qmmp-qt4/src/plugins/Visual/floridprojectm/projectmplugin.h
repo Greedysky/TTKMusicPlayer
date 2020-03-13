@@ -44,6 +44,7 @@ private slots:
 private:
     virtual void showEvent(QShowEvent *) override;
     virtual void hideEvent(QHideEvent *) override;
+    virtual void contextMenuEvent(QContextMenuEvent *) override;
 
     QTimer *m_timer;
     ProjectMWidget *m_projectMWidget;

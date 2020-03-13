@@ -21,6 +21,7 @@ GoomWidget::GoomWidget(QWidget *parent)
 
     setWindowTitle("Florid Goom Widget");
     setMinimumSize(150,150);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL (timeout()), SLOT(timeout()));
 
@@ -148,6 +149,9 @@ void GoomWidget::createMenu()
     m_menu = new QMenu (this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
+
+    m_menu->addAction(m_screenAction);
+    m_menu->addSeparator();
 
     QMenu *refreshRate = m_menu->addMenu(tr("Refresh Rate"));
     m_fpsGroup = new QActionGroup(this);

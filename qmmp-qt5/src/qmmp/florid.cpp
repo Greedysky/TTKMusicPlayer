@@ -322,7 +322,7 @@ void Florid::resizeEvent(QResizeEvent *event)
     }
 }
 
-void Florid::paintEvent(QPaintEvent *e)
+void Florid::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     if(!m_image.isNull())
@@ -351,7 +351,7 @@ void Florid::paintEvent(QPaintEvent *e)
     }
 }
 
-void Florid::contextMenuEvent(QContextMenuEvent *)
+void Florid::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu menu(this);
 

@@ -39,18 +39,14 @@ protected:
     virtual void initializeGL() override;
     virtual void resizeGL(int width, int height) override;
     virtual void paintGL() override;
-    virtual void mousePressEvent (QMouseEvent *event) override;
 
-private slots:
+public slots:
     void nextPreset();
     void previousPreset();
     void randomPreset();
 
 private:
-    void createActions();
-
     projectM *m_projectM;
-    QMenu *m_menu;
 
 };
 

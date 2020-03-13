@@ -74,3 +74,14 @@ void ProjectMPlugin::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
+
+void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
+{
+    QMenu menu(this);
+    menu.addAction(m_screenAction);
+    menu.addSeparator();
+    menu.addAction(tr("&Next Preset"), m_projectMWidget, SLOT(nextPreset()), tr("N"));
+    menu.addAction(tr("&Previous Preset"), m_projectMWidget, SLOT(previousPreset()), tr("P"));
+    menu.addAction(tr("&Random Preset"), m_projectMWidget, SLOT(randomPreset()), tr("R"));
+    menu.exec(QCursor::pos());
+}

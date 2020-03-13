@@ -1,15 +1,11 @@
 #include "projectmwidget.h"
 #include <QDir>
-#include <QMouseEvent>
 #include <qmmp/qmmp.h>
 
 ProjectMWidget::ProjectMWidget(QWidget *parent)
     : QGLWidget(parent)
 {
-    setMouseTracking(true);
     m_projectM = nullptr;
-    m_menu = new QMenu(this);
-    createActions();
 }
 
 ProjectMWidget::~ProjectMWidget()
@@ -96,21 +92,6 @@ void ProjectMWidget::paintGL()
 {
     if (m_projectM)
         m_projectM->renderFrame();
-}
-
-void ProjectMWidget::mousePressEvent (QMouseEvent *event)
-{
-    if (event->button () == Qt::RightButton)
-        m_menu->exec(event->globalPos());
-}
-
-void ProjectMWidget::createActions()
-{
-    m_menu->addAction(tr("&Next Preset"), this, SLOT(nextPreset()), tr("N"));
-    m_menu->addAction(tr("&Previous Preset"), this, SLOT(previousPreset()), tr("P"));
-    m_menu->addAction(tr("&Random Preset"), this, SLOT(randomPreset()), tr("R"));
-    m_menu->addSeparator();
-    addActions(m_menu->actions());
 }
 
 void ProjectMWidget::nextPreset()

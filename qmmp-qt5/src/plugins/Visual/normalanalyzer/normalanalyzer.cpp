@@ -11,7 +11,7 @@
 #include "fft.h"
 #include "inlines.h"
 #include "normalanalyzer.h"
-#include <QDebug>
+
 NormalAnalyzer::NormalAnalyzer (QWidget *parent)
     : Visual(parent)
 {

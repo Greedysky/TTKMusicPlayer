@@ -6,12 +6,14 @@
 Ethereality::Ethereality(QWidget *parent)
     : QWidget(parent)
 {
-    loadFile();
+    setAttribute(Qt::WA_TransparentForMouseEvents);
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+
+    loadFile();
 }
 
 void Ethereality::start()

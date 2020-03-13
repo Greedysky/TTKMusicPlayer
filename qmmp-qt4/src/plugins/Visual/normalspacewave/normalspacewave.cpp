@@ -14,6 +14,7 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
+    m_intern_ray_data = nullptr;
     m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
@@ -146,6 +147,7 @@ void NormalSpaceWave::process()
         for(int i = 0; i < m_cols; ++i)
         {
             m_intern_vis_data[i] = 0;
+            m_intern_ray_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
         {

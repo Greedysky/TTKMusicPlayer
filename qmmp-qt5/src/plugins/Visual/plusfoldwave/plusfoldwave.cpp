@@ -191,7 +191,6 @@ void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.addAction(m_starAction);
     menu.addAction(tr("StarColor"), this, SLOT(changeStarColor()));
-
     menu.exec(QCursor::pos());
 }
 
