@@ -75,6 +75,7 @@ private:
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
+    virtual void resizeEvent(QResizeEvent *e) override;
 
     int m_index;
     QTimer *m_timer;

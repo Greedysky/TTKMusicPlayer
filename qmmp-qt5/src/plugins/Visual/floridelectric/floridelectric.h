@@ -99,6 +99,7 @@ public:
 
     void start();
     void setColor(const QColor &color);
+    void resizeWindow(const QRect &rect);
 
 protected:
     QList<ElectricPointLabel*> m_pointLabels;
@@ -128,6 +129,7 @@ private:
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
+    virtual void resizeEvent(QResizeEvent *e) override;
 
     QTimer *m_timer;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];

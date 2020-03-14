@@ -124,10 +124,8 @@ FloridAncient::FloridAncient (QWidget *parent)
     for(int i=0; i<ANIMATION_SIZE; ++i)
     {
         AncientLabel *label = new AncientLabel(this);
-        label->setGeometry(0, 0, width(), height());
         m_labels << label;
     }
-    m_roundLabel->raise();
 }
 
 FloridAncient::~FloridAncient()
@@ -209,6 +207,16 @@ void FloridAncient::paintEvent(QPaintEvent *e)
     Florid::paintEvent(e);
     QPainter painter(this);
     draw(&painter);
+}
+
+void FloridAncient::resizeEvent(QResizeEvent *e)
+{
+    Florid::resizeEvent(e);
+    foreach(AncientLabel *label, m_labels)
+    {
+        label->setGeometry(0, 0, width(), height());
+    }
+    m_roundLabel->raise();
 }
 
 void FloridAncient::process()

@@ -213,6 +213,20 @@ void ElectricLabel::setColor(const QColor &color)
     }
 }
 
+void ElectricLabel::resizeWindow(const QRect &rect)
+{
+    foreach(ElectricPointLabel *label, m_pointLabels)
+    {
+        label->setGeometry(rect);
+    }
+
+    foreach(ElectricCircleLabel *label, m_circleLabels)
+    {
+        label->setGeometry(rect);
+    }
+}
+
+
 
 
 FloridElectric::FloridElectric (QWidget *parent)
@@ -228,7 +242,6 @@ FloridElectric::FloridElectric (QWidget *parent)
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 
     m_label = new ElectricLabel(this);
-    m_roundLabel->raise();
 }
 
 FloridElectric::~FloridElectric()
@@ -284,4 +297,11 @@ void FloridElectric::showEvent(QShowEvent *)
 void FloridElectric::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
+}
+
+void FloridElectric::resizeEvent(QResizeEvent *e)
+{
+    Florid::resizeEvent(e);
+    m_label->resizeWindow(QRect(0, 0, width(), height()));
+    m_roundLabel->raise();
 }

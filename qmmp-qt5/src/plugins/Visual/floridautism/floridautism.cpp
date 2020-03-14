@@ -73,7 +73,6 @@ FloridAutism::FloridAutism (QWidget *parent)
     for(int i=0; i<ANIMATION_SIZE; ++i)
     {
         AutismLabel *label = new AutismLabel(this);
-        label->setGeometry(0, 0, width(), height());
         m_labels << label;
     }
 
@@ -142,4 +141,14 @@ void FloridAutism::showEvent(QShowEvent *)
 void FloridAutism::paintEvent(QPaintEvent *e)
 {
     Florid::paintEvent(e);
+}
+
+void FloridAutism::resizeEvent(QResizeEvent *e)
+{
+    Florid::resizeEvent(e);
+    foreach(AutismLabel *label, m_labels)
+    {
+        label->setGeometry(0, 0, width(), height());
+    }
+    m_roundLabel->raise();
 }

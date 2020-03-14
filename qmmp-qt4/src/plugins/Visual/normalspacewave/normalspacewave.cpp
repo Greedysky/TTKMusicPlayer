@@ -213,9 +213,9 @@ void NormalSpaceWave::draw(QPainter *p)
 
     for(int i = 0; i < m_cols; ++i)
     {
-        x = i * m_cell_size.width() + 1;
+        x = i * (m_cell_size.width() + 7) + 1;
         const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() / 2;
-        p->fillRect(x, height() / 2 - offset, m_cell_size.width() - 1, offset, line);
+        p->fillRect(x, height() / 2 - offset, (m_cell_size.width() + 7) - 1, offset, line);
     }
     //
     p->setPen(QPen(QColor(0, 179, 255), 1));
