@@ -2,6 +2,20 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>PlusVolumeWave</name>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
+</context>
+<context>
+    <name>Florid</name>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
+</context>
+<context>
     <name>ColorWidget</name>
     <message>
         <source>Close</source>
@@ -192,32 +206,32 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="1045"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="1035"/>
         <source>Prompt</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="794"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="784"/>
         <source>playbackMode</source>
         <translation>播放模式</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="786"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="776"/>
         <source>logout</source>
         <translation>註銷</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="1045"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="1035"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation>天天酷音將在後臺運行</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="786"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="776"/>
         <source>login</source>
         <translation>登錄</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="597"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="587"/>
         <source>Save List File</source>
         <translation>保存列表文件</translation>
     </message>
@@ -227,184 +241,184 @@
         <translation>不支持的歌曲數目為%1</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="789"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="779"/>
         <source>addNewFiles</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="822"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="812"/>
         <source>RemoteControl</source>
         <translation>遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="828"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="818"/>
         <source>DiamondRemote</source>
         <translation>菱形遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="826"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="816"/>
         <source>SimpleStyleRemote</source>
         <translation>簡約遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="827"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="817"/>
         <source>ComplexStyleRemote</source>
         <translation>時尚遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="830"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="820"/>
         <source>RaysWaveRemote</source>
         <translation>波形遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="833"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="823"/>
         <source>Equalizer</source>
         <translation>均衡器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="834"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="824"/>
         <source>SoundEffect</source>
         <translation>音效插件</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="835"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="825"/>
         <source>TimingSettings</source>
         <translation>定時設置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="836"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="826"/>
         <source>MusicSpectrum</source>
         <translation>音樂頻譜</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="843"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="833"/>
         <source>Download</source>
         <translation>下載設置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="847"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="837"/>
         <source>Full Download</source>
         <translation>全速下載</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="848"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="838"/>
         <source>Custom</source>
         <translation>自定義</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="856"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="846"/>
         <source>New Version</source>
         <translation>軟件新版本</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="860"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="850"/>
         <source>musicAbout</source>
         <translation>關於</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="862"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="852"/>
         <source>Bug Report</source>
         <translation>BUG報告</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="863"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="853"/>
         <source>Feedback</source>
         <translation>使用反饋</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="864"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="854"/>
         <source>Version</source>
         <translation>版本</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="867"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="857"/>
         <source>quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="801"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="791"/>
         <source>ListCycle</source>
         <translation>列表循環</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="802"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="792"/>
         <source>SingleCycle</source>
         <translation>單曲循環</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="768"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="758"/>
         <source>add music to lovest list done!</source>
         <translation>添加到我的最愛完成！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="768"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="758"/>
         <source>remove music to lovest list done!</source>
         <translation>從我的最愛移除完成！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="799"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="789"/>
         <source>OrderPlay</source>
         <translation>順序播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="800"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="790"/>
         <source>RandomPlay</source>
         <translation>隨機播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="803"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="793"/>
         <source>PlayOnce</source>
         <translation>單曲播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="858"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="848"/>
         <source>Setting</source>
         <translation>設置</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="540"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="791"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="530"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="781"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="541"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="792"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="531"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="782"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夾</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="824"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="814"/>
         <source>SquareRemote</source>
         <translation>正方形遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="825"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="815"/>
         <source>RectangleRemote</source>
         <translation>長方形遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="829"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="819"/>
         <source>RippleRemote</source>
         <translation>個性遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="831"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="821"/>
         <source>DeleteRemote</source>
         <translation>關閉遙控器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="839"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="829"/>
         <source>windowTop</source>
         <translation>界面總在最前面</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="841"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="831"/>
         <source>resetWindow</source>
         <translation>恢復窗口默認狀態</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="543"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="533"/>
         <source>dragAnddrop</source>
         <translation>支持歌曲文件的拖拽</translation>
     </message>
@@ -4124,22 +4138,32 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="144"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="103"/>
+        <source>Description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="103"/>
+        <source>Name</source>
+        <translation>文件名</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="149"/>
         <source>Decoders</source>
         <translation>解碼器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="153"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="158"/>
         <source>Effects</source>
         <translation>音效</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="162"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="167"/>
         <source>Visualization</source>
         <translation>可視化</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="171"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="176"/>
         <source>Output</source>
         <translation>輸出</translation>
     </message>
@@ -7122,7 +7146,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="305"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="333"/>
         <source>Spectrum Init Error!</source>
         <translation>頻譜摸塊初始化措誤!</translation>
     </message>
@@ -8614,6 +8638,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
 </context>
 <context>
     <name>NormalEWave</name>
@@ -8644,6 +8672,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
 </context>
 <context>
     <name>NormalHistogram</name>
@@ -8658,6 +8690,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <source>StarColor</source>
         <translation>星星顏色</translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
     </message>
 </context>
 <context>
@@ -8674,6 +8710,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
 </context>
 <context>
     <name>NormalSpaceWave</name>
@@ -8688,6 +8728,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <source>StarColor</source>
         <translation>星星顏色</translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
     </message>
 </context>
 <context>
@@ -8704,6 +8748,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
 </context>
 <context>
     <name>PlusPointXRays</name>
@@ -8714,6 +8762,10 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <source>Color</source>
         <translation>顏色</translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
     </message>
 </context>
 <context>
@@ -8726,9 +8778,13 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>Color</source>
         <translation>顏色</translation>
     </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
 </context>
 <context>
-    <name>ProjectMWidget</name>
+    <name>ProjectMPlugin</name>
     <message>
         <source>&amp;Next Preset</source>
         <translation>下壹個邊框模式(N)</translation>
