@@ -7,15 +7,8 @@
 
 bool DecoderOptimFROGFactory::canDecode(QIODevice *device) const
 {
-    try
-    {
-        OptimFROGWrap wrap(device);
-        return true;
-    }
-    catch(const OptimFROGWrap::InvalidFile &)
-    {
-        return false;
-    }
+    OptimFROGWrap wrap(device);
+    return wrap.initialize();
 }
 
 DecoderProperties DecoderOptimFROGFactory::properties() const
@@ -54,41 +47,39 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
     QFile file(path);
     if(file.open(QIODevice::ReadOnly))
     {
-        try
+        OptimFROGWrap wrap(&file);
+        if(!wrap.initialize())
         {
-            OptimFROGWrap frog(&file);
-
-            if(parts & TrackInfo::Properties)
-            {
-                info->setValue(Qmmp::BITRATE, frog.bitrate());
-                info->setValue(Qmmp::SAMPLERATE, frog.rate());
-                info->setValue(Qmmp::CHANNELS, frog.channels());
-                info->setDuration(frog.length() / 1000);
-            }
-
-            if((parts & TrackInfo::MetaData) && frog.hasTags())
-            {
-                QString value;
-                value = QString::fromStdString(frog.getTag("title"));
-                info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("artist"));
-                info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("album"));
-                info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("comment"));
-                info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("genre"));
-                info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("composer"));
-                info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("year"));
-                info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
-                value = QString::fromStdString(frog.getTag("track"));
-                info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
-            }
+            return QList<TrackInfo *>();
         }
-        catch(const OptimFROGWrap::InvalidFile &)
+
+        if(parts & TrackInfo::Properties)
         {
+            info->setValue(Qmmp::BITRATE, wrap.bitrate());
+            info->setValue(Qmmp::SAMPLERATE, wrap.rate());
+            info->setValue(Qmmp::CHANNELS, wrap.channels());
+            info->setDuration(wrap.length() / 1000);
+        }
+
+        if((parts & TrackInfo::MetaData) && wrap.hasTags())
+        {
+            QString value;
+            value = QString::fromStdString(wrap.getTag("title"));
+            info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("artist"));
+            info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("album"));
+            info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("comment"));
+            info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("genre"));
+            info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("composer"));
+            info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("year"));
+            info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
+            value = QString::fromStdString(wrap.getTag("track"));
+            info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
         }
     }
 

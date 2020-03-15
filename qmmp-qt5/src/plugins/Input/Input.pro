@@ -59,6 +59,10 @@ contains(CONFIG, ALAC_PLUGIN){
     SUBDIRS += alac
 }
 
+contains(CONFIG, OPTIMFROG_PLUGIN){
+    SUBDIRS += optimfrog
+}
+
 unix:!android{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio
@@ -66,9 +70,5 @@ unix:!android{
 
     contains(CONFIG, SID_PLUGIN){
         SUBDIRS += sid
-    }
-
-    contains(CONFIG, OPTIMFROG_PLUGIN){
-        SUBDIRS += optimfrog
     }
 }

@@ -11,11 +11,8 @@ bool DecoderOptimFROG::initialize()
     if(!input()->isOpen() && !input()->open(QIODevice::ReadOnly))
         return false;
 
-    try
-    {
-        m_frog = std::unique_ptr<OptimFROGWrap>(new OptimFROGWrap(input()));
-    }
-    catch(const OptimFROGWrap::InvalidFile &)
+    m_frog = std::unique_ptr<OptimFROGWrap>(new OptimFROGWrap(input()));
+    if(!m_frog->initialize())
     {
         return false;
     }

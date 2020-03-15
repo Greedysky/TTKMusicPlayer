@@ -13,15 +13,14 @@ QList<MetaDataItem> OptimFROGMetaDataModel::extraProperties() const
     QFile file(m_path);
     if(file.open(QIODevice::ReadOnly))
     {
-        try
+        OptimFROGWrap wrap(&file);
+        if(!wrap.initialize())
         {
-            OptimFROGWrap frog(&file);
-            ep << MetaDataItem(tr("Version"), QString::number(frog.version()));
-            ep << MetaDataItem(tr("Compression ratio"), QString::number(frog.compression()));
+            return ep;
         }
-        catch(const OptimFROGWrap::InvalidFile &)
-        {
-        }
+
+        ep << MetaDataItem(tr("Version"), QString::number(wrap.version()));
+        ep << MetaDataItem(tr("Compression ratio"), QString::number(wrap.compression()));
     }
 
     return ep;

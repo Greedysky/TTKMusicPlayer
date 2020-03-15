@@ -18,11 +18,10 @@ unix {
     QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/liboptimfrog.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
+    LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG
 }
 
 win32 {
     HEADERS += ../../../../src/qmmp/metadatamodel.h \
                ../../../../src/qmmp/decoderfactory.h
 }
-
-LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG

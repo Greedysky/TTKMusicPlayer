@@ -25,22 +25,19 @@
 #include <exception>
 #include <QFile>
 #include <OptimFROG/OptimFROG.h>
+#if defined Q_OS_WIN && defined __GNUC__
+#include <qt_windows.h>
+#endif
 
 class OptimFROGWrap
 {
 public:
-    class InvalidFile : public std::exception
-    {
-      public:
-        InvalidFile() : std::exception() { }
-    };
-
     explicit OptimFROGWrap(QIODevice *device);
     OptimFROGWrap(const OptimFROGWrap &) = delete;
     OptimFROGWrap &operator=(const OptimFROGWrap &) = delete;
     ~OptimFROGWrap();
 
-    static bool canPlay(const std::string &name);
+    bool initialize();
 
     int read(void *buf, long size);
     void seek(int pos);
@@ -57,7 +54,11 @@ public:
     std::string getTag(const std::string& tag) const { return m_tags.at(tag); }
 
 private:
-    void *decoder;
+#if defined Q_OS_WIN && defined __GNUC__
+    HINSTANCE m_instance;
+#endif
+    void *m_decoder;
+    void *m_reader;
     OptimFROG_Info m_info;
     bool m_signed;
 
