@@ -9,7 +9,8 @@
 #define OutputPath "D:\Qt"
 #define SourceMain "D:\Qt\TTKMusicPlayer\TTKMusicPlayer.exe"
 #define SourceFolder "D:\Qt\TTKMusicPlayer\*"
-#define SetupIconFilePath "resource\lb_player_logo.ico"
+#define ResourcesIcon "qicon.dll"
+#define SetupIconFilePath "resource\" + ResourcesIcon
 #define ResourcesPath "resource\*"
 
 [setup]
@@ -30,8 +31,8 @@ SolidCompression=yes
 PrivilegesRequired=admin
 Uninstallable=yes
 UninstallDisplayName={#MyAppNameZh}
+UninstallDisplayIcon={app}\{#ResourcesIcon}
 DefaultGroupName={#MyAppNameZh}
-UninstallIconFile={#SetupIconFilePath}
 Versioninfodescription={#MyAppNameZh} 安装程序
 versioninfocopyright={#MyAppCopyright}
 VersionInfoProductName={#MyAppNameZh}
@@ -380,7 +381,7 @@ procedure InitializeWizard();
     ExtractTemporaryFile('btn_custom.png');
     ExtractTemporaryFile('label_shellLink.png');
     ExtractTemporaryFile('label_taskbarpin.png');
-    ExtractTemporaryFile('lb_player_logo.ico');
+    ExtractTemporaryFile('{#ResourcesIcon}');
 
     // 关闭按钮样式
     CancelBtn:=BtnCreate(WizardForm.Handle,627,8,12,12,ExpandConstant('{tmp}\btn_close.png'),1,False)
@@ -457,7 +458,19 @@ procedure DeinitializeSetup();
 
     gdipShutdown;
   end;
-
+  
+// 卸载程序。
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);        
+  begin
+    if CurUninstallStep = usDone then
+    begin
+      if(FileExists(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'))) then
+      begin
+        DeleteFile(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'));
+      end;
+    end;
+  end;
+  
 // 在新向导页 (由CurPageID 指定) 显示后调用。
 procedure CurPageChanged(CurPageID: Integer);
   var ResultCode: Integer;
@@ -520,12 +533,11 @@ procedure CurPageChanged(CurPageID: Integer);
         // 创建快捷方式
         if BtngetChecked(checkboxShellLink)=true then
         begin
-          if(FileExists('{commondesktop}\{#MyAppNameZh}.lnk')) then
+          if(FileExists(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'))) then
           begin
-            DeleteFile('{commondesktop}\{#MyAppNameZh}.lnk');
-          end
-          CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),
-            '快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{tmp}\lb_player_logo.ico'),0,SW_SHOWNORMAL);
+            DeleteFile(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'));
+          end;
+          CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),'快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{tmp}\{#ResourcesIcon}'),0,SW_SHOWNORMAL);
         end
 
         // 固定到任务栏
