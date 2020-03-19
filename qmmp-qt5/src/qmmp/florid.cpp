@@ -22,6 +22,7 @@
 #include <QBitmap>
 #include <QPainter>
 #include <QMenu>
+#include <QKeyEvent>
 
 RoundAnimationLabel::RoundAnimationLabel(QWidget *parent)
     : QWidget(parent)
@@ -357,4 +358,13 @@ void Florid::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addAction(m_screenAction);
     menu.exec(QCursor::pos());
+}
+
+void Florid::keyReleaseEvent(QKeyEvent *event)
+{
+    Visual::keyReleaseEvent(event);
+    if(event->key() == Qt::Key_Escape)
+    {
+        m_screenAction->setChecked(false);
+    }
 }

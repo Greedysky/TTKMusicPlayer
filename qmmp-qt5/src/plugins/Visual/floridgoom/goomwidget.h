@@ -60,6 +60,7 @@ private:
     virtual void showEvent(QShowEvent *) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void mousePressEvent(QMouseEvent *e) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
     void createMenu();
 
     QTimer *m_timer;

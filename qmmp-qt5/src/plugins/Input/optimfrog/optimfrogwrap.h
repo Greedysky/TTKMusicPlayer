@@ -22,7 +22,6 @@
 #define OPTIMFROGWRAP_H
 
 #include <map>
-#include <exception>
 #include <QFile>
 #include <OptimFROG/OptimFROG.h>
 #if defined Q_OS_WIN && defined __GNUC__
@@ -51,10 +50,11 @@ public:
     double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
 
     bool hasTags() const { return !m_tags.empty(); }
-    std::string getTag(const std::string& tag) const { return m_tags.at(tag); }
+    QString getTag(const char* tag) const { return QString::fromStdString(m_tags.at(tag)); }
 
 private:
 #if defined Q_OS_WIN && defined __GNUC__
+    FARPROC GetSymbolAddress(const char* name) const;
     HINSTANCE m_instance;
 #endif
     void *m_decoder;

@@ -1,16 +1,16 @@
 #include "optimfrogwrap.h"
 
 #if defined Q_OS_WIN && defined __GNUC__
-typedef void* (*OFR_createInstance)(void);
-typedef condition_t (*OFR_openExt)(void*, ReadInterface*, void*, condition_t);
-typedef void (*OFR_destroyInstance)(void*);
-typedef condition_t (*OFR_getInfo)(void*, OptimFROG_Info*);
-typedef condition_t (*OFR_getTags)(void*, OptimFROG_Tags*);
-typedef void (*OFR_freeTags)(OptimFROG_Tags*);
-typedef condition_t (*OFR_close)(void*);
-typedef sInt32_t (*OFR_read)(void*, void*, uInt32_t, condition_t);
-typedef condition_t (*OFR_seekable)(void*);
-typedef condition_t (*OFR_seekTime)(void*, sInt64_t);
+typedef void* (*OptimFROG_createInstance)(void);
+typedef condition_t (*OptimFROG_openExt)(void*, ReadInterface*, void*, condition_t);
+typedef void (*OptimFROG_destroyInstance)(void*);
+typedef condition_t (*OptimFROG_getInfo)(void*, OptimFROG_Info*);
+typedef condition_t (*OptimFROG_getTags)(void*, OptimFROG_Tags*);
+typedef void (*OptimFROG_freeTags)(OptimFROG_Tags*);
+typedef condition_t (*OptimFROG_close)(void*);
+typedef sInt32_t (*OptimFROG_read)(void*, void*, uInt32_t, condition_t);
+typedef condition_t (*OptimFROG_seekable)(void*);
+typedef condition_t (*OptimFROG_seekTime)(void*, sInt64_t);
 #endif
 
 OptimFROGWrap::OptimFROGWrap(QIODevice *device)
@@ -29,8 +29,8 @@ OptimFROGWrap::~OptimFROGWrap()
         return;
     }
 #if defined Q_OS_WIN && defined __GNUC__
-    ((OFR_close)GetProcAddress(m_instance, "OptimFROG_close"))(m_decoder);
-    ((OFR_destroyInstance)GetProcAddress(m_instance, "OptimFROG_destroyInstance"))(m_decoder);
+    ((OptimFROG_close)GetSymbolAddress("OptimFROG_close"))(m_decoder);
+    ((OptimFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
 #else
     OptimFROG_close(m_decoder);
     OptimFROG_destroyInstance(m_decoder);
@@ -45,7 +45,7 @@ bool OptimFROGWrap::initialize()
     {
         return false;
     }
-    m_decoder = ((OFR_createInstance)GetProcAddress(m_instance, "OptimFROG_createInstance"))();
+    m_decoder = ((OptimFROG_createInstance)GetSymbolAddress("OptimFROG_createInstance"))();
 #else
     m_decoder = OptimFROG_createInstance();
 #endif
@@ -67,12 +67,12 @@ bool OptimFROGWrap::initialize()
     }
 
 #if defined Q_OS_WIN && defined __GNUC__
-    if(!((OFR_openExt)GetProcAddress(m_instance, "OptimFROG_openExt"))(m_decoder, &rint, m_reader, C_TRUE))
+    if(!((OptimFROG_openExt)GetSymbolAddress("OptimFROG_openExt"))(m_decoder, &rint, m_reader, C_TRUE))
     {
-        ((OFR_destroyInstance)GetProcAddress(m_instance, "OptimFROG_destroyInstance"))(m_decoder);
+        ((OptimFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
         return false;
     }
-    ((OFR_getInfo)GetProcAddress(m_instance, "OptimFROG_getInfo"))(m_decoder, &m_info);
+    ((OptimFROG_getInfo)GetSymbolAddress("OptimFROG_getInfo"))(m_decoder, &m_info);
 #else
     if(!OptimFROG_openExt(m_decoder, &rint, m_reader, C_TRUE))
     {
@@ -90,7 +90,7 @@ bool OptimFROGWrap::initialize()
     if(strncmp(m_info.sampleType, "SINT", 4) != 0 && strncmp(m_info.sampleType, "UINT", 4) != 0)
     {
 #if defined Q_OS_WIN && defined __GNUC__
-        ((OFR_destroyInstance)GetProcAddress(m_instance, "OptimFROG_destroyInstance"))(m_decoder);
+        ((OptimFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
 #else
         OptimFROG_destroyInstance(m_decoder);
 #endif
@@ -99,7 +99,7 @@ bool OptimFROGWrap::initialize()
 
     m_signed = m_info.sampleType[0] == 'S';
 #if defined Q_OS_WIN && defined __GNUC__
-    ((OFR_getTags)GetProcAddress(m_instance, "OptimFROG_getTags"))(m_decoder, &ofr_tags);
+    ((OptimFROG_getTags)GetSymbolAddress("OptimFROG_getTags"))(m_decoder, &ofr_tags);
 #else
     OptimFROG_getTags(m_decoder, &ofr_tags);
 #endif
@@ -108,7 +108,7 @@ bool OptimFROGWrap::initialize()
         m_tags.insert(std::pair<std::string, std::string>(ofr_tags.keys[i], ofr_tags.values[i]));
     }
 #if defined Q_OS_WIN && defined __GNUC__
-    ((OFR_freeTags)GetProcAddress(m_instance, "OptimFROG_freeTags"))(&ofr_tags);
+    ((OptimFROG_freeTags)GetSymbolAddress("OptimFROG_freeTags"))(&ofr_tags);
 #else
     OptimFROG_freeTags(&ofr_tags);
 #endif
@@ -121,7 +121,7 @@ int OptimFROGWrap::read(void *buf, long size)
     int bytes = depth() / 8;
     sInt32_t point_conversion = bytes * m_info.channels;
 #if defined Q_OS_WIN && defined __GNUC__
-    n = ((OFR_read)GetProcAddress(m_instance, "OptimFROG_read"))(m_decoder, buf, size / point_conversion, C_TRUE);
+    n = ((OptimFROG_read)GetSymbolAddress("OptimFROG_read"))(m_decoder, buf, size / point_conversion, C_TRUE);
 #else
     n = OptimFROG_read(m_decoder, buf, size / point_conversion, C_TRUE);
 #endif
@@ -143,9 +143,9 @@ int OptimFROGWrap::read(void *buf, long size)
 void OptimFROGWrap::seek(int pos)
 {
 #if defined Q_OS_WIN && defined __GNUC__
-    if(((OFR_seekable)GetProcAddress(m_instance, "OptimFROG_seekable"))(m_decoder))
+    if(((OptimFROG_seekable)GetSymbolAddress("OptimFROG_seekable"))(m_decoder))
     {
-        ((OFR_seekTime)GetProcAddress(m_instance, "OptimFROG_seekTime"))(m_decoder, pos);
+        ((OptimFROG_seekTime)GetSymbolAddress("OptimFROG_seekTime"))(m_decoder, pos);
     }
 #else
     if(OptimFROG_seekable(m_decoder))
@@ -154,3 +154,15 @@ void OptimFROGWrap::seek(int pos)
     }
 #endif
 }
+
+#if defined Q_OS_WIN && defined __GNUC__
+FARPROC OptimFROGWrap::GetSymbolAddress(const char* name) const
+{
+    FARPROC func = nullptr;
+    if(m_instance)
+    {
+        func = GetProcAddress(m_instance, name);
+    }
+    return func;
+}
+#endif

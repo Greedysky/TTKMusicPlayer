@@ -64,21 +64,21 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
         if((parts & TrackInfo::MetaData) && wrap.hasTags())
         {
             QString value;
-            value = QString::fromStdString(wrap.getTag("title"));
+            value = wrap.getTag("title");
             info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("artist"));
+            value = wrap.getTag("artist");
             info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("album"));
+            value = wrap.getTag("album");
             info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("comment"));
+            value = wrap.getTag("comment");
             info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("genre"));
+            value = wrap.getTag("genre");
             info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("composer"));
+            value = wrap.getTag("composer");
             info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("year"));
+            value = wrap.getTag("year");
             info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
-            value = QString::fromStdString(wrap.getTag("track"));
+            value = wrap.getTag("track");
             info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
         }
     }

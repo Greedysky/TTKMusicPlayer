@@ -57,6 +57,7 @@ private:
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void keyReleaseEvent(QKeyEvent *e) override;
 
     void process();
     void draw(QPainter *p);

@@ -202,6 +202,15 @@ void NormalLine::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
+void NormalLine::keyReleaseEvent(QKeyEvent *e)
+{
+    Visual::keyReleaseEvent(e);
+    if(e->key() == Qt::Key_Escape)
+    {
+        m_screenAction->setChecked(false);
+    }
+}
+
 void NormalLine::process()
 {
     static fft_state *state = nullptr;
