@@ -381,7 +381,6 @@ procedure InitializeWizard();
     ExtractTemporaryFile('btn_custom.png');
     ExtractTemporaryFile('label_shellLink.png');
     ExtractTemporaryFile('label_taskbarpin.png');
-    ExtractTemporaryFile('{#ResourcesIcon}');
 
     // 关闭按钮样式
     CancelBtn:=BtnCreate(WizardForm.Handle,627,8,12,12,ExpandConstant('{tmp}\btn_close.png'),1,False)
@@ -537,7 +536,7 @@ procedure CurPageChanged(CurPageID: Integer);
           begin
             DeleteFile(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'));
           end;
-          CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),'快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{tmp}\{#ResourcesIcon}'),0,SW_SHOWNORMAL);
+          CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),'快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{app}\{#ResourcesIcon}'),0,SW_SHOWNORMAL);
         end
 
         // 固定到任务栏
