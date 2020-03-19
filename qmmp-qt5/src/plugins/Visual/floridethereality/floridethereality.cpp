@@ -145,7 +145,7 @@ void FloridEthereality::showEvent(QShowEvent *)
     }
 }
 
-void FloridEthereality::resizeEvent(QResizeEvent *e)
+void FloridEthereality::resizeEvent(QResizeEvent *)
 {
     const int perWidth = width() / 50;
     for(int i = 0; i < m_etherealitys.size(); i++)
