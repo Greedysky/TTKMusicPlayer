@@ -28,7 +28,6 @@
 #include "decoder_mpc.h"
 #include "decodermpcfactory.h"
 
-// DecoderMPCFactory
 bool DecoderMPCFactory::canDecode(QIODevice *input) const
 {
     char buf[36];
@@ -52,9 +51,9 @@ DecoderProperties DecoderMPCFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderMPCFactory::create(const QString &, QIODevice *i)
+Decoder *DecoderMPCFactory::create(const QString &, QIODevice *input)
 {
-    return new DecoderMPC(i);
+    return new DecoderMPC(input);
 }
 
 QList<TrackInfo *> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)

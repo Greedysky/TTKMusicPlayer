@@ -59,9 +59,8 @@ DecoderProperties DecoderXmpFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderXmpFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderXmpFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderXmp(path);
 }
 
@@ -97,9 +96,8 @@ QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackI
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderXmpFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderXmpFactory::createMetaDataModel(const QString &path, bool)
 {
-    Q_UNUSED(readOnly);
     return new XmpMetaDataModel(path);
 }
 

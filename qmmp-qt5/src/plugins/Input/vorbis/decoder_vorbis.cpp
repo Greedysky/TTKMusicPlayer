@@ -65,8 +65,6 @@ static long oggtell(void *src)
 }
 
 
-// Decoder class
-
 DecoderVorbis::DecoderVorbis(QIODevice *i)
         : Decoder(i)
 {

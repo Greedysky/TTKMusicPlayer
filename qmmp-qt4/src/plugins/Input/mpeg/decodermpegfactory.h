@@ -30,11 +30,11 @@ class DecoderMPEGFactory : public QObject, DecoderFactory
 public:
     DecoderMPEGFactory();
 
-    bool canDecode(QIODevice *input) const;
-    DecoderProperties properties() const;
-    Decoder *create(const QString &, QIODevice *input);
-    QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *);
-    MetaDataModel* createMetaDataModel(const QString &path, bool readOnly);
+    virtual bool canDecode(QIODevice *input) const override;
+    virtual DecoderProperties properties() const override;
+    virtual Decoder *create(const QString &path, QIODevice *input) override;
+    virtual QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *) override;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
 private:
     bool m_using_rusxmms;

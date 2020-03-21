@@ -72,7 +72,6 @@ sf_count_t sndfile_sf_vio_tell(void *data)
     return ((QIODevice*) data)->pos();
 }
 
-// Decoder class
 
 DecoderSndFile::DecoderSndFile(QIODevice *input) : Decoder(input)
 {

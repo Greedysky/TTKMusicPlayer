@@ -28,8 +28,6 @@
 
 #define AAC_BUFFER_SIZE 4096
 
-// Decoder class
-
 DecoderAAC::DecoderAAC(QIODevice *i)
         : Decoder(i)
 {

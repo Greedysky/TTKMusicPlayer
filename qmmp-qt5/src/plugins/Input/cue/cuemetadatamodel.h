@@ -29,7 +29,7 @@ class CUEMetaDataModel : public MetaDataModel
 {
 public:
     CUEMetaDataModel(const QString &url);
-    ~CUEMetaDataModel();
+    virtual ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QString coverPath() const override;

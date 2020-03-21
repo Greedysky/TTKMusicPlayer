@@ -31,7 +31,7 @@ class WavPackMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(WavPackMetaDataModel)
 public:
     WavPackMetaDataModel(const QString &path, bool readOnly);
-    ~WavPackMetaDataModel();
+    virtual ~WavPackMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QList<TagModel* > tags() const override;
@@ -47,7 +47,7 @@ class WavPackFileTagModel : public TagModel
 {
 public:
     WavPackFileTagModel(WavpackContext *ctx);
-    ~WavPackFileTagModel();
+    virtual ~WavPackFileTagModel();
 
     virtual QString name() const override;
     virtual QString value(Qmmp::MetaData key) const override;

@@ -29,7 +29,7 @@
 #define TICK_INTERVAL 250
 #define PREFINISH_TIME 7000
 
-StateHandler* StateHandler::m_instance = 0;
+StateHandler* StateHandler::m_instance = nullptr;
 
 StateHandler::StateHandler(QObject *parent)
         : QObject(parent), m_mutex(QMutex::Recursive)
@@ -47,7 +47,7 @@ StateHandler::StateHandler(QObject *parent)
 
 StateHandler::~StateHandler()
 {
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 void StateHandler::dispatch(qint64 elapsed, int bitrate)

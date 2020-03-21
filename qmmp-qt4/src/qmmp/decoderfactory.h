@@ -79,7 +79,7 @@ public:
      * @param path File path
      * @param input Input data (if required)
      */
-    virtual Decoder *create(const QString &path, QIODevice *input = 0) = 0;
+    virtual Decoder *create(const QString &path, QIODevice *input = nullptr) = 0;
     /*!
      * Extracts metadata and audio information from file \b path and returns a list of \b TrackInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue)

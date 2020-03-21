@@ -33,7 +33,7 @@
 QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 {
     m_error = false;
-    m_instance = 0;
+    m_instance = nullptr;
     m_decoderFactory = 0;
     m_outputFactory = 0;
     m_engineFactory = 0;

@@ -38,7 +38,7 @@ class LightSpectrum : public Light
     Q_OBJECT
 public:
     explicit LightSpectrum(QWidget *parent = nullptr);
-    ~LightSpectrum();
+    virtual ~LightSpectrum();
 
     virtual void open(const QString &path) override;
     virtual void start() override;

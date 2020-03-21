@@ -30,7 +30,7 @@ class XmpMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(XmpMetaDataModel)
 public:
     XmpMetaDataModel(const QString &path);
-    ~XmpMetaDataModel();
+    virtual ~XmpMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QList<MetaDataItem> descriptions() const override;

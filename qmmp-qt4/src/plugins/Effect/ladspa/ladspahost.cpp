@@ -35,7 +35,7 @@
 #define PATH_MAX 4096
 #endif
 
-LADSPAHost *LADSPAHost::m_instance = 0;
+LADSPAHost *LADSPAHost::m_instance = nullptr;
 
 /* Based on xmms_ladspa */
 
@@ -78,7 +78,7 @@ LADSPAHost::LADSPAHost(QObject *parent) : QObject(parent)
 
 LADSPAHost::~LADSPAHost()
 {
-    m_instance = 0;
+    m_instance = nullptr;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     for(int i = 0; i < settings.value("LADSPA/plugins_number", 0).toInt(); ++i)
     {

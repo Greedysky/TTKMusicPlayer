@@ -32,9 +32,9 @@ class MPCMetaDataModel : public MetaDataModel
 {
 public:
     MPCMetaDataModel(const QString &path, bool readOnly);
-    ~MPCMetaDataModel();
+    virtual ~MPCMetaDataModel();
 
-    QList<TagModel* > tags() const;
+    virtual QList<TagModel* > tags() const override;
 
 private:
     QList<TagModel* > m_tags;
@@ -46,16 +46,16 @@ class MPCFileTagModel : public TagModel
 {
 public:
     MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType);
-    ~MPCFileTagModel();
+    virtual ~MPCFileTagModel();
 
-    QString name() const;
-    QList<Qmmp::MetaData> keys() const;
-    QString value(Qmmp::MetaData key) const;
-    void setValue(Qmmp::MetaData key, const QString &value);
-    bool exists() const;
-    void create();
-    void remove();
-    void save();
+    virtual QString name() const override;
+    virtual QList<Qmmp::MetaData> keys() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual bool exists() const override;
+    virtual void create() override;
+    virtual void remove() override;
+    virtual void save() override;
 
 private:
     QTextCodec *m_codec;

@@ -36,7 +36,6 @@
 #define WAVE_FORMAT_ALAW 0x0006
 #define WAVE_FORMAT_MULAW 0x0007
 
-// DecoderSndFileFactory
 bool DecoderSndFileFactory::canDecode(QIODevice *input) const
 {
     char buf[36] = {0};
@@ -207,7 +206,7 @@ QList<TrackInfo *> DecoderSndFileFactory::createPlayList(const QString &path, Tr
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString&, bool)
+MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &, bool)
 {
     return nullptr;
 }

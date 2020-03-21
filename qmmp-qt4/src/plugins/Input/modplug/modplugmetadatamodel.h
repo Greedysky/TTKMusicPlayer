@@ -30,10 +30,10 @@ class ModPlugMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(ModPlugMetaDataModel)
 public:
     ModPlugMetaDataModel(const QString &path);
-    ~ModPlugMetaDataModel();
+    virtual ~ModPlugMetaDataModel();
 
-    QList<MetaDataItem> extraProperties() const;
-    QList<MetaDataItem> descriptions() const;
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<MetaDataItem> descriptions() const override;
     static QString getTypeName(quint32 type);
 
 private:

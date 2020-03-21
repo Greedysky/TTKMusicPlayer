@@ -51,9 +51,8 @@ DecoderProperties DecoderALACFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderALACFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderALACFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderALAC(path);
 }
 

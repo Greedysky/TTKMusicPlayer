@@ -50,7 +50,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    SoundCore(QObject *parent = 0);
+    SoundCore(QObject *parent = nullptr);
     /*!
      * Destructor.
      */

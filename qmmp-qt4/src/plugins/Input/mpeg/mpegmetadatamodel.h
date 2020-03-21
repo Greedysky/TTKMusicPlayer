@@ -32,13 +32,13 @@ class MPEGMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(MPEGMetaDataModel)
 public:
     MPEGMetaDataModel(bool using_rusxmms, const QString &path, bool readOnly);
-    ~MPEGMetaDataModel();
+    virtual ~MPEGMetaDataModel();
 
-    QList<MetaDataItem> extraProperties() const;
-    QList<TagModel* > tags() const;
-    QPixmap cover() const;
-    void setCover(const QPixmap &pix);
-    void removeCover();
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<TagModel* > tags() const override;
+    virtual QPixmap cover() const override;
+    virtual void setCover(const QPixmap &pix) override;
+    virtual void removeCover() override;
 
 private:
     QList<TagModel* > m_tags;
@@ -50,16 +50,16 @@ class MpegFileTagModel : public TagModel
 {
 public:
     MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes tagType);
-    ~MpegFileTagModel();
+    virtual ~MpegFileTagModel();
 
-    QString name() const;
-    QList<Qmmp::MetaData> keys() const;
-    QString value(Qmmp::MetaData key) const;
-    void setValue(Qmmp::MetaData key, const QString &value);
-    bool exists() const;
-    void create();
-    void remove();
-    void save();
+    virtual QString name() const override;
+    virtual QList<Qmmp::MetaData> keys() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual bool exists() const override;
+    virtual void create() override;
+    virtual void remove() override;
+    virtual void save() override;
 
 private:
     bool m_using_rusxmms;

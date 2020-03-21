@@ -28,11 +28,11 @@ class DecoderCUEFactory : public QObject, DecoderFactory
     Q_OBJECT
     Q_INTERFACES(DecoderFactory)
 public:
-    bool canDecode(QIODevice *input) const;
-    DecoderProperties properties() const;
-    Decoder *create(const QString &, QIODevice *);
-    QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths);
-    MetaDataModel* createMetaDataModel(const QString &path, bool readOnly);
+    virtual bool canDecode(QIODevice *input) const override;
+    virtual DecoderProperties properties() const override;
+    virtual Decoder *create(const QString &path, QIODevice *input) override;
+    virtual QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *) override;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
 };
 

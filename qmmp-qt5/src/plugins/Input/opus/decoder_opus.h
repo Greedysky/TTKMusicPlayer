@@ -37,11 +37,10 @@ public:
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;
     virtual int bitrate() const override;
-
-private:
     virtual qint64 read(unsigned char *data, qint64 maxSize) override;
     virtual void seek(qint64 time) override;
 
+private:
     // helper functions
     ChannelMap findChannelMap(int channels);
     OggOpusFile *m_opusfile;

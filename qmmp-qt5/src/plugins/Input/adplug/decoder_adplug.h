@@ -32,8 +32,8 @@ public:
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;
     virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *, qint64) override;
-    virtual void seek(qint64) override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
     qint64 copy(unsigned char *, qint64);

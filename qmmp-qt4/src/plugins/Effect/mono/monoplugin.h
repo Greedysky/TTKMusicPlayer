@@ -31,7 +31,6 @@ class MonoPlugin : public Effect
 {
 public:
     MonoPlugin();
-
     virtual ~MonoPlugin();
 
     virtual void applyEffect(Buffer *b) override;

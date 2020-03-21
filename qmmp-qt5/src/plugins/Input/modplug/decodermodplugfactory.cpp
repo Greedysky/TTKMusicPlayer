@@ -30,8 +30,6 @@
 #include "archivereader.h"
 #include "decodermodplugfactory.h"
 
-// DecoderModPlugFactory
-
 bool DecoderModPlugFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -54,9 +52,8 @@ DecoderProperties DecoderModPlugFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderModPlugFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderModPlugFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderModPlug(path);
 }
 
@@ -110,8 +107,7 @@ QList<TrackInfo *> DecoderModPlugFactory::createPlayList(const QString &path, Tr
     return list;
 }
 
-MetaDataModel* DecoderModPlugFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderModPlugFactory::createMetaDataModel(const QString &path, bool)
 {
-    Q_UNUSED(readOnly);
     return new ModPlugMetaDataModel(path);
 }

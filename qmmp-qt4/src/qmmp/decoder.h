@@ -43,7 +43,7 @@ public:
      * Object contsructor.
      * @param input QIODevice-based input source.
      */
-    Decoder(QIODevice *input = 0);
+    Decoder(QIODevice *input = nullptr);
     /*!
      * Destructor.
      */

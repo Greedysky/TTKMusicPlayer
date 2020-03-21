@@ -24,14 +24,13 @@ DecoderProperties DecoderOptimFROGFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderOptimFROGFactory::create(const QString &, QIODevice *device)
+Decoder *DecoderOptimFROGFactory::create(const QString &, QIODevice *input)
 {
-    return new DecoderOptimFROG(device);
+    return new DecoderOptimFROG(input);
 }
 
-MetaDataModel *DecoderOptimFROGFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel *DecoderOptimFROGFactory::createMetaDataModel(const QString &path, bool)
 {
-    Q_UNUSED(readOnly);
     return new OptimFROGMetaDataModel(path);
 }
 

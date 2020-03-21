@@ -23,8 +23,6 @@
 #include "decoder_cdaudio.h"
 #include "decodercdaudiofactory.h"
 
-// DecoderCDAudioFactory
-
 bool DecoderCDAudioFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -41,10 +39,9 @@ DecoderProperties DecoderCDAudioFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderCDAudioFactory::create(const QString &url, QIODevice *input)
+Decoder *DecoderCDAudioFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
-    return new DecoderCDAudio(url);
+    return new DecoderCDAudio(path);
 }
 
 QList<TrackInfo *> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
@@ -64,9 +61,7 @@ QList<TrackInfo *> DecoderCDAudioFactory::createPlayList(const QString &path, Tr
     return list;
 }
 
-MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &, bool)
 {
-    Q_UNUSED(readOnly);
-    Q_UNUSED(path);
     return nullptr;
 }

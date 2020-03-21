@@ -43,7 +43,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    AbstractEngine(QObject *parent = 0);
+    AbstractEngine(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
@@ -81,7 +81,7 @@ public:
      * @param parent Parent object.
      * Returns \b 0 if the given source is not supported.
      */
-    static AbstractEngine *create(InputSource *s, QObject *parent = 0);
+    static AbstractEngine *create(InputSource *s, QObject *parent = nullptr);
     /*!
      * Returns a list of engine factories.
      */

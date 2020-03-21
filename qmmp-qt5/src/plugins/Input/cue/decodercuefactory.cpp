@@ -23,8 +23,6 @@
 #include "cueparser.h"
 #include "decodercuefactory.h"
 
-// DecoderCUEFactory
-
 bool DecoderCUEFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -43,9 +41,8 @@ DecoderProperties DecoderCUEFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderCUEFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderCUEFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderCUE(path);
 }
 
@@ -71,8 +68,7 @@ QList<TrackInfo *> DecoderCUEFactory::createPlayList(const QString &path, TrackI
     }
 }
 
-MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool)
 {
-    Q_UNUSED(readOnly);
     return path.startsWith("cue://") ? new CUEMetaDataModel(path) : nullptr;
 }

@@ -33,9 +33,9 @@ class EffectSoXRFactory : public QObject, public EffectFactory
     Q_OBJECT
     Q_INTERFACES(EffectFactory)
 public:
-    const EffectProperties properties() const;
-    Effect *create();
-    void showSettings(QWidget *parent);
+    virtual const EffectProperties properties() const;
+    virtual Effect *create();
+    virtual void showSettings(QWidget *parent);
 
 };
 

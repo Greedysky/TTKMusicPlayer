@@ -26,7 +26,6 @@
 #include "opusmetadatamodel.h"
 #include "decoderopusfactory.h"
 
-// DecoderOpusFactory
 bool DecoderOpusFactory::canDecode(QIODevice *input) const
 {
     char buf[36];
@@ -49,9 +48,9 @@ DecoderProperties DecoderOpusFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderOpusFactory::create(const QString &url, QIODevice *input)
+Decoder *DecoderOpusFactory::create(const QString &path, QIODevice *input)
 {
-    return new DecoderOpus(url, input);
+    return new DecoderOpus(path, input);
 }
 
 MetaDataModel* DecoderOpusFactory::createMetaDataModel(const QString &path, bool readOnly)

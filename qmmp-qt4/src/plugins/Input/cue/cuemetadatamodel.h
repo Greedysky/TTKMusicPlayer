@@ -29,10 +29,10 @@ class CUEMetaDataModel : public MetaDataModel
 {
 public:
     CUEMetaDataModel(const QString &url);
-    ~CUEMetaDataModel();
+    virtual ~CUEMetaDataModel();
 
-    QList<MetaDataItem> extraProperties() const;
-    QString coverPath() const;
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QString coverPath() const override;
 
 private:
     CUEParser *m_parser;

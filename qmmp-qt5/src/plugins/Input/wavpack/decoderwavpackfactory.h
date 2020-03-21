@@ -31,7 +31,7 @@ class DecoderWavPackFactory : public QObject, DecoderFactory
 public:
     virtual bool canDecode(QIODevice *input) const override;
     virtual DecoderProperties properties() const override;
-    virtual Decoder *create(const QString &p, QIODevice *i) override;
+    virtual Decoder *create(const QString &path, QIODevice *input) override;
     virtual QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles) override;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 

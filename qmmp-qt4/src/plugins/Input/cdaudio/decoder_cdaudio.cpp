@@ -76,8 +76,6 @@ static void cddb_log_handler(cddb_log_level_t level, const char *message)
     }
 }
 
-// Decoder class
-
 DecoderCDAudio::DecoderCDAudio(const QString &url) : Decoder()
 {
     m_bitrate = 0;
@@ -511,8 +509,8 @@ qint64 DecoderCDAudio::read(unsigned char *audio, qint64 maxSize)
     return 0;
 }
 
-void DecoderCDAudio::seek(qint64 pos)
+void DecoderCDAudio::seek(qint64 time)
 {
-    m_current_sector = m_first_sector + pos * 75 / 1000;
+    m_current_sector = m_first_sector + time * 75 / 1000;
     m_buffer_at = 0;
 }

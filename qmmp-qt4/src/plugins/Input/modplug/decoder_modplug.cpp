@@ -37,11 +37,9 @@
 #include "archivereader.h"
 #include "decoder_modplug.h"
 
-// Decoder class
+DecoderModPlug* DecoderModPlug::m_instance = nullptr;
 
-DecoderModPlug* DecoderModPlug::m_instance = 0;
-
-DecoderModPlug::DecoderModPlug(const QString &path) : Decoder(0)
+DecoderModPlug::DecoderModPlug(const QString &path) : Decoder()
 {
     m_path = path;
     m_freq = 0;
@@ -60,7 +58,7 @@ DecoderModPlug::~DecoderModPlug()
 {
     deinit();
     if(m_instance == this)
-        m_instance = 0;
+        m_instance = nullptr;
 }
 
 bool DecoderModPlug::initialize()

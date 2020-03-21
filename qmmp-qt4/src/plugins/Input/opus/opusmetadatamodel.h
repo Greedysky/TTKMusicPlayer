@@ -35,11 +35,11 @@ class OpusMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(OpusMetaDataModel)
 public:
     OpusMetaDataModel(const QString &path, bool readOnly);
-    ~OpusMetaDataModel();
+    virtual ~OpusMetaDataModel();
 
-    QList<MetaDataItem> extraProperties() const;
-    QList<TagModel* > tags() const;
-    QPixmap cover() const;
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<TagModel* > tags() const override;
+    virtual QPixmap cover() const override;
 #ifdef HAS_PICTURE_LIST
     virtual void setCover(const QPixmap &pix) override;
     virtual void removeCover() override;
@@ -56,12 +56,12 @@ class VorbisCommentModel : public TagModel
 {
 public:
     VorbisCommentModel(TagLib::Ogg::Opus::File *file);
-    ~VorbisCommentModel();
+    virtual ~VorbisCommentModel();
 
-    QString name() const;
-    QString value(Qmmp::MetaData key) const;
-    void setValue(Qmmp::MetaData key, const QString &value);
-    void save();
+    virtual QString name() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual void save() override;
 
 private:
     TagLib::Ogg::Opus::File *m_file;

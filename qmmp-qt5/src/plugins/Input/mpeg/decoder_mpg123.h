@@ -35,10 +35,10 @@ public:
 
     // standard decoder API
     virtual bool initialize() override;
-    qint64 totalTime() const override;
+    virtual qint64 totalTime() const override;
     virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 size) override;
-    virtual void seek(qint64) override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
     void cleanup(mpg123_handle *handle);

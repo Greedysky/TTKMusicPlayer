@@ -31,7 +31,7 @@
 
 #define COVER_CACHE_SIZE 10
 
-MetaDataManager* MetaDataManager::m_instance = 0;
+MetaDataManager* MetaDataManager::m_instance = nullptr;
 
 MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
 {
@@ -44,7 +44,7 @@ MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
 MetaDataManager::~MetaDataManager()
 {
     clearCoverCache();
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 QList<TrackInfo *> MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const

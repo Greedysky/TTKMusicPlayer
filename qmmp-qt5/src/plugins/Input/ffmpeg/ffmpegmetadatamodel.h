@@ -27,7 +27,7 @@ class FFmpegMetaDataModel : public MetaDataModel
 {
 public:
     FFmpegMetaDataModel(const QString &path);
-    ~FFmpegMetaDataModel();
+    virtual ~FFmpegMetaDataModel();
 
     virtual QPixmap cover() const override;
 

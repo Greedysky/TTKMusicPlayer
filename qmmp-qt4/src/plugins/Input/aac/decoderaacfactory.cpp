@@ -24,8 +24,6 @@
 #include "decoder_aac.h"
 #include "decoderaacfactory.h"
 
-// DecoderAACFactory
-
 bool DecoderAACFactory::canDecode(QIODevice *input) const
 {
     AACFile aac_file(input, false, false);
@@ -85,11 +83,9 @@ QList<TrackInfo *> DecoderAACFactory::createPlayList(const QString &path, TrackI
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &, bool)
 {
-    Q_UNUSED(path);
-    Q_UNUSED(readOnly);
-    return 0;
+    return nullptr;
 }
 
 Q_EXPORT_PLUGIN2(aac,DecoderAACFactory)

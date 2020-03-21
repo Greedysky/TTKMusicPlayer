@@ -24,11 +24,9 @@
 #include <QSettings>
 #include "decoder_xmp.h"
 
-// Decoder class
+DecoderXmp *DecoderXmp::m_instance = nullptr;
 
-DecoderXmp *DecoderXmp::m_instance = 0;
-
-DecoderXmp::DecoderXmp(const QString &path) : Decoder(0)
+DecoderXmp::DecoderXmp(const QString &path) : Decoder()
 {
     m_instance = this;
     m_path = path;
@@ -40,7 +38,7 @@ DecoderXmp::DecoderXmp(const QString &path) : Decoder(0)
 DecoderXmp::~DecoderXmp()
 {
     if(m_instance == this)
-        m_instance = 0;
+        m_instance = nullptr;
     deinit();
 }
 

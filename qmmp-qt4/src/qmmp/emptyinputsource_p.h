@@ -30,7 +30,7 @@ class QMMP_EXPORT EmptyInputSource : public InputSource
 {
     Q_OBJECT
 public:
-    EmptyInputSource(const QString &path, QObject *parent = 0);
+    EmptyInputSource(const QString &path, QObject *parent = nullptr);
 
     QIODevice *ioDevice();
     bool initialize();

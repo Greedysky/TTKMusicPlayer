@@ -22,7 +22,6 @@
 #include "wildmidihelper.h"
 #include "decoder_wildmidi.h"
 
-// Decoder class
 DecoderWildMidi::DecoderWildMidi(const QString &path) : Decoder()
 {
     m_path = path;

@@ -28,8 +28,6 @@
 
 #define AAC_BUFFER_SIZE 4096
 
-// Decoder class
-
 DecoderAAC::DecoderAAC(QIODevice *i)
         : Decoder(i)
 {
@@ -197,9 +195,9 @@ int DecoderAAC::bitrate() const
     return m_bitrate;
 }
 
-void DecoderAAC::seek(qint64 pos)
+void DecoderAAC::seek(qint64 time)
 {
-    input()->seek(pos * input()->size() / m_totalTime);
+    input()->seek(time * input()->size() / m_totalTime);
     NeAACDecPostSeekReset (data()->handle, 0);
     m_input_at = 0;
 }

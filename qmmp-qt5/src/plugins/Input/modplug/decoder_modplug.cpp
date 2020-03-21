@@ -37,8 +37,6 @@
 #include "archivereader.h"
 #include "decoder_modplug.h"
 
-// Decoder class
-
 DecoderModPlug* DecoderModPlug::m_instance = nullptr;
 
 DecoderModPlug::DecoderModPlug(const QString &path) : Decoder(nullptr)

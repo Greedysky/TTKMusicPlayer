@@ -33,9 +33,9 @@ class OutputALSAFactory : public QObject, OutputFactory
     Q_OBJECT
     Q_INTERFACES(OutputFactory)
 public:
-    OutputProperties properties() const;
-    Output* create();
-    Volume *createVolume();
+    virtual OutputProperties properties() const override;
+    virtual Output* create() override;
+    virtual Volume *createVolume() override;
 
 };
 

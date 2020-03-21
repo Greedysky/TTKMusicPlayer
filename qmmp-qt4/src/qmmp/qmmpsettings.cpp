@@ -25,7 +25,7 @@
 #include "qmmp.h"
 #include "qmmpsettings.h"
 
-QmmpSettings *QmmpSettings::m_instance = 0;
+QmmpSettings *QmmpSettings::m_instance = nullptr;
 
 QmmpSettings::QmmpSettings(QObject *parent) : QObject(parent)
 {
@@ -70,7 +70,7 @@ QmmpSettings::QmmpSettings(QObject *parent) : QObject(parent)
 QmmpSettings::~QmmpSettings()
 {
     sync();
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 QmmpSettings::ReplayGainMode QmmpSettings::replayGainMode() const

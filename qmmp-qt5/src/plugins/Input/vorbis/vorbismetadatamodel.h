@@ -36,7 +36,7 @@ class VorbisMetaDataModel : public MetaDataModel
 {
 public:
     VorbisMetaDataModel(const QString &path, bool readOnly);
-    ~VorbisMetaDataModel();
+    virtual ~VorbisMetaDataModel();
 
     friend class VorbisCommentModel;
 
@@ -59,7 +59,7 @@ class VorbisCommentModel : public TagModel
 {
 public:
     VorbisCommentModel(VorbisMetaDataModel *model);
-    ~VorbisCommentModel();
+    virtual ~VorbisCommentModel();
 
     virtual QString name() const override;
     virtual QString value(Qmmp::MetaData key) const override;

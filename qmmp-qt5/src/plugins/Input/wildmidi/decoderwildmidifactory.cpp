@@ -22,8 +22,6 @@
 #include "decoder_wildmidi.h"
 #include "decoderwildmidifactory.h"
 
-// DecoderWildMidiFactory
-
 DecoderWildMidiFactory::DecoderWildMidiFactory()
 {
     new WildMidiHelper(qApp);
@@ -57,9 +55,8 @@ DecoderProperties DecoderWildMidiFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderWildMidiFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderWildMidiFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderWildMidi(path);
 }
 
@@ -84,9 +81,7 @@ QList<TrackInfo *> DecoderWildMidiFactory::createPlayList(const QString &path, T
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &, bool)
 {
-    Q_UNUSED(path);
-    Q_UNUSED(readOnly);
     return nullptr;
 }

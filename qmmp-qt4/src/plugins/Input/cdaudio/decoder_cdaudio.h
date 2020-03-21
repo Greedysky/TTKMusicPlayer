@@ -51,12 +51,12 @@ public:
     static qint64 calculateTrackLength(lsn_t startlsn, lsn_t endlsn);
     static void clearTrackCache();
 
-     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *audio, qint64 maxSize);
-    void seek(qint64 time);
+    // Standard Decoder API
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
     //helper functions

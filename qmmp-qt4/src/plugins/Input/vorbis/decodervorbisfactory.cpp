@@ -27,7 +27,6 @@
 #include "vorbismetadatamodel.h"
 #include "decodervorbisfactory.h"
 
-// DecoderOggFactory
 bool DecoderVorbisFactory::canDecode(QIODevice *input) const
 {
     char buf[36];

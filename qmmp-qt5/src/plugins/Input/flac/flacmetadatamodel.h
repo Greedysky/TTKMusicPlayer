@@ -35,7 +35,7 @@ class FLACMetaDataModel : public MetaDataModel
 {
 public:
     FLACMetaDataModel(const QString &path, bool readOnly);
-    ~FLACMetaDataModel();
+    virtual ~FLACMetaDataModel();
 
     virtual QList<TagModel* > tags() const override;
     virtual QPixmap cover() const override;
@@ -57,7 +57,7 @@ class VorbisCommentModel : public TagModel
 {
 public:
     VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file);
-    ~VorbisCommentModel();
+    virtual ~VorbisCommentModel();
 
     virtual QString name() const override;
     virtual QString value(Qmmp::MetaData key) const override;

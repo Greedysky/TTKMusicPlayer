@@ -32,8 +32,6 @@
 #include "flacmetadatamodel.h"
 #include "decoderflacfactory.h"
 
-// DecoderFLACFactory
-
 bool DecoderFLACFactory::canDecode(QIODevice *input) const
 {
     char buf[36];
@@ -59,9 +57,9 @@ DecoderProperties DecoderFLACFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *i)
+Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *input)
 {
-    return new DecoderFLAC(path, i);
+    return new DecoderFLAC(path, input);
 }
 
 QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
@@ -199,7 +197,7 @@ MetaDataModel* DecoderFLACFactory::createMetaDataModel(const QString &path, bool
     if(!path.contains("://") || path.startsWith("flac://"))
         return new FLACMetaDataModel(path, readOnly);
     else
-        return 0;
+        return nullptr;
 }
 
 Q_EXPORT_PLUGIN2(flac,DecoderFLACFactory)

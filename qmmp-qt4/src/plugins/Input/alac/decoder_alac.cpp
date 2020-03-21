@@ -67,12 +67,12 @@ int DecoderALAC::bitrate() const
     return m_alac->bitrate();
 }
 
-qint64 DecoderALAC::read(unsigned char *data, qint64 size)
+qint64 DecoderALAC::read(unsigned char *data, qint64 maxSize)
 {
-    return m_alac->read(data, size);
+    return m_alac->read(data, maxSize);
 }
 
-void DecoderALAC::seek(qint64 pos)
+void DecoderALAC::seek(qint64 time)
 {
-    m_alac->seek(pos);
+    m_alac->seek(time);
 }

@@ -34,14 +34,13 @@ public:
     virtual ~DecoderOpus();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
-    virtual qint64 read(unsigned char *data, qint64 maxSize);
-    virtual void seek(qint64 time);
-
     // helper functions
     ChannelMap findChannelMap(int channels);
     OggOpusFile *m_opusfile;

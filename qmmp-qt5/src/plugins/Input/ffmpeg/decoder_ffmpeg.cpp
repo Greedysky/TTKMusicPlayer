@@ -69,7 +69,7 @@ static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
     return d->input()->seek(absolute_pos);
 }
 
-// Decoder class
+
 DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
         : Decoder(i)
 {

@@ -44,8 +44,6 @@
 
 #define CSTR_TO_QSTR(str,utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
-// DecoderMPEGFactory
-
 DecoderMPEGFactory::DecoderMPEGFactory()
 {
     //detecting rusxmms patch

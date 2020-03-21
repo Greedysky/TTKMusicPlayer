@@ -51,7 +51,7 @@ public:
         MusicSubwoofer
     };
 
-    explicit MusicPlayer(QObject *parent = 0);
+    explicit MusicPlayer(QObject *parent = nullptr);
     ~MusicPlayer();
 
     State state() const;

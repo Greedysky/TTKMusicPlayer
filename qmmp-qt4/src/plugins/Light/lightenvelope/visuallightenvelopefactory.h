@@ -29,8 +29,8 @@ class VisualLightEnvelopeFactory : public QObject, public LightFactory
     Q_OBJECT
     Q_INTERFACES(LightFactory)
 public:
-    const LightProperties properties() const;
-    Light *create(QWidget *parent);
+    virtual const LightProperties properties() const override;
+    virtual Light *create(QWidget *parent) override;
 
 };
 

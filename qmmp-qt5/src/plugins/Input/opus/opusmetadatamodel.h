@@ -35,7 +35,7 @@ class OpusMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(OpusMetaDataModel)
 public:
     OpusMetaDataModel(const QString &path, bool readOnly);
-    ~OpusMetaDataModel();
+    virtual ~OpusMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QList<TagModel* > tags() const override;
@@ -56,7 +56,7 @@ class VorbisCommentModel : public TagModel
 {
 public:
     VorbisCommentModel(TagLib::Ogg::Opus::File *file);
-    ~VorbisCommentModel();
+    virtual ~VorbisCommentModel();
 
     virtual QString name() const override;
     virtual QString value(Qmmp::MetaData key) const override;

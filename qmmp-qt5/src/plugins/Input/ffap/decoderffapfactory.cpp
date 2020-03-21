@@ -28,8 +28,6 @@
 #include "decoder_ffapcue.h"
 #include "cueparser.h"
 
-// DecoderFFapFactory
-
 bool DecoderFFapFactory::canDecode(QIODevice *input) const
 {
     char buf[3];
@@ -50,12 +48,12 @@ DecoderProperties DecoderFFapFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderFFapFactory::create(const QString &url, QIODevice *i)
+Decoder *DecoderFFapFactory::create(const QString &path, QIODevice *input)
 {
-    if(url.contains("://"))
-        return new DecoderFFapCUE(url);
+    if(path.contains("://"))
+        return new DecoderFFapCUE(path);
     else
-        return new DecoderFFap(url, i);
+        return new DecoderFFap(path, input);
 }
 
 QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)

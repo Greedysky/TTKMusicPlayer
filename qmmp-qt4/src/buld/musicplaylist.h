@@ -35,7 +35,7 @@ class MusicPlaylist : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylist(QObject *parent = 0);
+    explicit MusicPlaylist(QObject *parent = nullptr);
 
     SongPlayType playbackMode() const;
     void setPlaybackMode(SongPlayType mode);

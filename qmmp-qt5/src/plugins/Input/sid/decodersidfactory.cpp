@@ -27,8 +27,6 @@
 #include "sidhelper.h"
 #include "decodersidfactory.h"
 
-// DecoderSIDFactory
-
 DecoderSIDFactory::DecoderSIDFactory()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -63,9 +61,8 @@ DecoderProperties DecoderSIDFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderSID(&m_db, path);
 }
 
@@ -92,9 +89,7 @@ QList<TrackInfo *> DecoderSIDFactory::createPlayList(const QString &path, TrackI
     return list;
 }
 
-MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &, bool)
 {
-    Q_UNUSED(path);
-    Q_UNUSED(readOnly);
     return nullptr;
 }

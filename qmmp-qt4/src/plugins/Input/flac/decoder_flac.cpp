@@ -259,7 +259,6 @@ static void flac_callback_error (const FLAC__StreamDecoder *,
     Q_UNUSED(status);
 }
 
-// Decoder class
 
 DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
         : Decoder(i)
@@ -548,7 +547,7 @@ void DecoderFLAC::deinit()
     {
         m_data->input->close();
         delete m_data->input;
-        m_data->input = 0;
+        m_data->input = nullptr;
     };
     if(m_parser)
         delete m_parser;

@@ -29,7 +29,7 @@ class WildMidiHelper : public QObject
 {
     Q_OBJECT
 public:
-    explicit WildMidiHelper(QObject *parent = 0);
+    explicit WildMidiHelper(QObject *parent = nullptr);
     ~WildMidiHelper();
 
     bool initialize();

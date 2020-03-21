@@ -35,13 +35,13 @@ public:
     virtual ~DecoderWavPack();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *data, qint64 maxSize);
-    void seek(qint64 time);
-    const QString nextURL() const;
-    void next();
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
+    virtual const QString nextURL() const override;
+    virtual void next() override;
 
 private:
     // helper functions

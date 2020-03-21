@@ -63,7 +63,7 @@ static opus_int64  opustell(void *src)
     return (long) dogg->input()->pos();
 }
 
-// Decoder class
+
 DecoderOpus::DecoderOpus(const QString &url, QIODevice *i) : Decoder(i)
 {
     m_totalTime = 0;

@@ -40,8 +40,8 @@ public:
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;
     virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 size) override;
-    virtual void seek(qint64) override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
     QString m_url;

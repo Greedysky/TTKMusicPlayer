@@ -46,9 +46,8 @@ DecoderProperties DecoderYmFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderYmFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderYmFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderYm(path);
 }
 

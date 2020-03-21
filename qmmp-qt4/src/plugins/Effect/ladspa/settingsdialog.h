@@ -36,11 +36,11 @@ class SettingsDialog : public QDialog
 {
     Q_OBJECT
 public:
-    SettingsDialog(QWidget *parent = 0);
-    ~SettingsDialog();
+    SettingsDialog(QWidget *parent = nullptr);
+    virtual ~SettingsDialog();
 
 public slots:
-    virtual void accept();
+    virtual void accept() override;
 
 private slots:
     void on_loadButton_clicked();

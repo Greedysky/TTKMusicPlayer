@@ -30,8 +30,6 @@ extern "C"{
 #include "decoder_ffmpeg.h"
 #include "decoderffmpegfactory.h"
 
-// DecoderFFmpegFactory
-
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {
 #if(LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
@@ -245,8 +243,7 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool)
 {
-    Q_UNUSED(readOnly);
     return new FFmpegMetaDataModel(path);
 }

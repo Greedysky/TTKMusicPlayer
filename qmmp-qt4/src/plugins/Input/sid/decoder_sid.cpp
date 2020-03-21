@@ -31,7 +31,6 @@
 #include <sidplayfp/SidDatabase.h>
 #include "decoder_sid.h"
 
-// Decoder class
 DecoderSID::DecoderSID(SidDatabase *db, const QString &url) : Decoder(), m_tune(0)
 {
     m_db = db;

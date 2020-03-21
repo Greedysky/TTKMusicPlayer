@@ -33,9 +33,9 @@ class EffectStereoFactory : public QObject, public EffectFactory
     Q_OBJECT
     Q_INTERFACES(EffectFactory)
 public:
-    const EffectProperties properties() const;
-    Effect *create();
-    void showSettings(QWidget *parent);
+    virtual const EffectProperties properties() const override;
+    virtual Effect *create() override;
+    virtual void showSettings(QWidget *parent) override;
 
 };
 

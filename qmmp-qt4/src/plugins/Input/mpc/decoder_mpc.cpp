@@ -57,7 +57,6 @@ static mpc_int32_t mpc_callback_get_size (mpc_reader *reader)
     return dmpc->input()->size();
 }
 
-// Decoder class
 
 DecoderMPC::DecoderMPC(QIODevice *i)
         : Decoder(i)

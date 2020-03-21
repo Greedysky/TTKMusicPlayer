@@ -33,16 +33,16 @@ class OutputWaveOut : public Output
 {
 public:
     OutputWaveOut();
-    ~OutputWaveOut();
+    virtual ~OutputWaveOut();
 
-    bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format);
+    virtual bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format) override;
 
-    qint64 latency();
-    qint64 writeAudio(unsigned char *data, qint64 size);
-    void drain();
-    void suspend();
-    void resume();
-    void reset();
+    virtual qint64 latency() override;
+    virtual qint64 writeAudio(unsigned char *data, qint64 size) override;
+    virtual void drain() override;
+    virtual void suspend() override;
+    virtual void resume() override;
+    virtual void reset() override;
 
 private:
     // helper functions
@@ -56,10 +56,10 @@ class VolumeWaveOut : public Volume
 {
 public:
     VolumeWaveOut();
-    ~VolumeWaveOut();
+    virtual ~VolumeWaveOut();
 
-    void setVolume(const VolumeSettings &vol);
-    VolumeSettings volume() const;
+    virtual void setVolume(const VolumeSettings &vol) override;
+    virtual VolumeSettings volume() const override;
 
     bool isSupported() const;
 };

@@ -68,7 +68,7 @@ QmmpAudioEngine::~QmmpAudioEngine()
         delete[] m_output_buf;
     m_output_buf = 0;
     qDeleteAll(m_effects);
-    m_instance = 0;
+    m_instance = nullptr;
     delete m_converter;
 }
 
@@ -743,7 +743,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
 }
 
 //static members
-QmmpAudioEngine *QmmpAudioEngine::m_instance = 0;
+QmmpAudioEngine *QmmpAudioEngine::m_instance = nullptr;
 
 QmmpAudioEngine *QmmpAudioEngine::instance()
 {

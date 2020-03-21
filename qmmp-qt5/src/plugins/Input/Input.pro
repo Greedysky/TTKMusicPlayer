@@ -63,6 +63,10 @@ contains(CONFIG, OPTIMFROG_PLUGIN){
     SUBDIRS += optimfrog
 }
 
+contains(CONFIG, SPEEX_PLUGIN){
+    SUBDIRS += speex
+}
+
 unix:!android{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio

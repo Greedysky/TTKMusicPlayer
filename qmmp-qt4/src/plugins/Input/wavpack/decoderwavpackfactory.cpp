@@ -24,7 +24,6 @@
 #include "decoderwavpackfactory.h"
 #include "cueparser.h"
 
-// DecoderWavPackFactory
 bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 {
     char buf[4];
@@ -45,9 +44,9 @@ DecoderProperties DecoderWavPackFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderWavPackFactory::create(const QString &p, QIODevice *)
+Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *)
 {
-    return new DecoderWavPack(p);
+    return new DecoderWavPack(path);
 }
 
 QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
@@ -163,7 +162,7 @@ MetaDataModel* DecoderWavPackFactory::createMetaDataModel(const QString &path, b
     if(!path.contains("://") || path.startsWith("wvpack://"))
         return new WavPackMetaDataModel(path, readOnly);
     else
-        return 0;
+        return nullptr;
 }
 
 Q_EXPORT_PLUGIN2(wavpack,DecoderWavPackFactory)

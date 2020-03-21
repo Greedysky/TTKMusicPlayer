@@ -36,16 +36,16 @@ class OutputALSA : public Output
 {
 public:
     OutputALSA();
-    ~OutputALSA();
+    virtual ~OutputALSA();
 
-    bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format);
+    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override;
 
-    qint64 latency();
-    qint64 writeAudio(unsigned char *data, qint64 maxSize);
-    void drain();
-    void reset();
-    void suspend();
-    void resume();
+    virtual qint64 latency() override;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override;
+    virtual void drain() override;
+    virtual void reset() override;
+    virtual void suspend() override;
+    virtual void resume() override;
 
 private:
     // helper functions
@@ -76,10 +76,10 @@ public:
     VolumeALSA();
     virtual ~VolumeALSA();
 
-    void setVolume(const VolumeSettings &vol);
-    VolumeSettings volume() const;
+    virtual void setVolume(const VolumeSettings &vol) override;
+    virtual VolumeSettings volume() const override;
 
-    bool hasNotifySignal() const;
+    virtual bool hasNotifySignal() const override;
 
 private:
     //alsa mixer

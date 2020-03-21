@@ -259,7 +259,6 @@ static void flac_callback_error (const FLAC__StreamDecoder *,
     Q_UNUSED(status);
 }
 
-// Decoder class
 
 DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
         : Decoder(i)

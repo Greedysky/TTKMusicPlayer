@@ -31,7 +31,7 @@ public:
     /*!
      * Constructor.
      */
-    explicit Light(QWidget *parent = 0) : QWidget(parent) {}
+    explicit Light(QWidget *parent = nullptr) : QWidget(parent) {}
     /*!
      * Destructor.
      */

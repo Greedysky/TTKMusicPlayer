@@ -31,8 +31,8 @@ class VisualNormalFlowWaveFactory : public QObject, public VisualFactory
     Q_OBJECT
     Q_INTERFACES(VisualFactory)
 public:
-    VisualProperties properties() const;
-    Visual *create(QWidget *parent);
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 

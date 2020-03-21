@@ -32,7 +32,7 @@ class MPEGMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(MPEGMetaDataModel)
 public:
     MPEGMetaDataModel(bool using_rusxmms, const QString &path, bool readOnly);
-    ~MPEGMetaDataModel();
+    virtual ~MPEGMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QList<TagModel* > tags() const override;
@@ -50,7 +50,7 @@ class MpegFileTagModel : public TagModel
 {
 public:
     MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes tagType);
-    ~MpegFileTagModel();
+    virtual ~MpegFileTagModel();
 
     virtual QString name() const override;
     virtual QList<Qmmp::MetaData> keys() const override;

@@ -38,7 +38,7 @@ public:
                  double max,
                  double step,
                  LADSPA_Data *value,
-                 QWidget *parent = 0);
+                 QWidget *parent = nullptr);
 
 private slots:
     void setValue(double);

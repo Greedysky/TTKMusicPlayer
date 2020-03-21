@@ -36,7 +36,7 @@ class FFapMetaDataModel : public MetaDataModel
     Q_DECLARE_TR_FUNCTIONS(FFapMetaDataModel)
 public:
     FFapMetaDataModel(const QString &path, bool readOnly);
-    ~FFapMetaDataModel();
+    virtual ~FFapMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QList<TagModel* > tags() const override;
@@ -53,7 +53,7 @@ class FFapFileTagModel : public TagModel
 {
 public:
     FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes tagType);
-    ~FFapFileTagModel();
+    virtual ~FFapFileTagModel();
 
     virtual QString name() const override;
     virtual QList<Qmmp::MetaData> keys() const override;

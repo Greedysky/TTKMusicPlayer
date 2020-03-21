@@ -23,8 +23,6 @@
 #include "decoder_gme.h"
 #include "decodergmefactory.h"
 
-// DecoderGmeFactory
-
 bool DecoderGmeFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -44,9 +42,8 @@ DecoderProperties DecoderGmeFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderGmeFactory::create(const QString &path, QIODevice *input)
+Decoder *DecoderGmeFactory::create(const QString &path, QIODevice *)
 {
-    Q_UNUSED(input);
     return new DecoderGme(path);
 }
 
@@ -81,9 +78,7 @@ QList<TrackInfo *> DecoderGmeFactory::createPlayList(const QString &path, TrackI
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderGmeFactory::createMetaDataModel(const QString &path, bool readOnly)
+MetaDataModel* DecoderGmeFactory::createMetaDataModel(const QString &, bool)
 {
-    Q_UNUSED(path);
-    Q_UNUSED(readOnly);
     return nullptr;
 }

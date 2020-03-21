@@ -61,7 +61,7 @@ int64_t ffap_getlength_cb(void *client_data)
     return dffap->input()->size();
 }
 
-// Decoder class
+
 DecoderFFap::DecoderFFap(const QString &path, QIODevice *i)
         : Decoder(i)
 {

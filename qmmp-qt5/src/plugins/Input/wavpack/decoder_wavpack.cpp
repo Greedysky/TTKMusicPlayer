@@ -30,8 +30,6 @@
 #include "decoder_wavpack.h"
 #include "cueparser.h"
 
-// Decoder class
-
 DecoderWavPack::DecoderWavPack(const QString &path)
     : Decoder()
 {

@@ -35,14 +35,11 @@ class DecoderSIDFactory : public QObject, DecoderFactory
 public:
     DecoderSIDFactory();
 
-    bool canDecode(QIODevice *input) const;
-    DecoderProperties properties() const;
-    Decoder *create(const QString &path, QIODevice *input);
-    QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *);
-    MetaDataModel* createMetaDataModel(const QString &path, bool readOnly);
-    void showSettings(QWidget *parent);
-    void showAbout(QWidget *parent);
-    QString translation() const;
+    virtual bool canDecode(QIODevice *input) const override;
+    virtual DecoderProperties properties() const override;
+    virtual Decoder *create(const QString &path, QIODevice *input) override;
+    virtual QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *) override;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
 private:
     SidDatabase m_db;

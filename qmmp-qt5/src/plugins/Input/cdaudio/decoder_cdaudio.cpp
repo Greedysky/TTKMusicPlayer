@@ -76,7 +76,6 @@ static void cddb_log_handler(cddb_log_level_t level, const char *message)
     }
 }
 
-// Decoder class
 
 DecoderCDAudio::DecoderCDAudio(const QString &url) : Decoder()
 {

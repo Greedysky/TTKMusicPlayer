@@ -37,7 +37,7 @@ class LightEnvelopeThead : public QThread
     Q_OBJECT
 public:
     explicit LightEnvelopeThead(QObject *parent = nullptr);
-    ~LightEnvelopeThead();
+    virtual ~LightEnvelopeThead();
 
     bool init(const QString &path);
     void stopAndQuitThread();
@@ -76,7 +76,7 @@ class LightEnvelope : public Light
     Q_OBJECT
 public:
     explicit LightEnvelope(QWidget *parent = nullptr);
-    ~LightEnvelope();
+    virtual ~LightEnvelope();
 
     virtual void open(const QString &path) override;
     virtual void start() override;

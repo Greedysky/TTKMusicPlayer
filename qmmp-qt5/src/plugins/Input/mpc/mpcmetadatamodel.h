@@ -32,7 +32,7 @@ class MPCMetaDataModel : public MetaDataModel
 {
 public:
     MPCMetaDataModel(const QString &path, bool readOnly);
-    ~MPCMetaDataModel();
+    virtual ~MPCMetaDataModel();
 
     virtual QList<TagModel* > tags() const override;
 
@@ -46,7 +46,7 @@ class MPCFileTagModel : public TagModel
 {
 public:
     MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType);
-    ~MPCFileTagModel();
+    virtual ~MPCFileTagModel();
 
     virtual QString name() const override;
     virtual QList<Qmmp::MetaData> keys() const override;
