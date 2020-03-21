@@ -5,9 +5,9 @@
 
 #include <QtPlugin>
 
-bool DecoderOptimFROGFactory::canDecode(QIODevice *device) const
+bool DecoderOptimFROGFactory::canDecode(QIODevice *input) const
 {
-    OptimFROGWrap wrap(device);
+    OptimFROGWrap wrap(input);
     return wrap.initialize();
 }
 

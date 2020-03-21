@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QSettings>
-#include <QRegExp>
 #include <QFile>
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/SidTuneInfo.h>

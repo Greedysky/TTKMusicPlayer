@@ -69,7 +69,7 @@ public:
     /*!
      * Returns \b true if plugin can decode data provided by \b d, otherwise returns \b false
      */
-    virtual bool canDecode(QIODevice *d) const = 0;
+    virtual bool canDecode(QIODevice *input) const = 0;
     /*!
      * Returns decoder plugin properties.
      */

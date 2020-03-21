@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QStringList>
-#include <QRegExp>
 #include <xmp.h>
 #include "decoder_xmp.h"
 #include "xmpmetadatamodel.h"

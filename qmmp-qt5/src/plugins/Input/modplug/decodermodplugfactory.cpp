@@ -21,7 +21,6 @@
 #include <QSettings>
 #include <QFile>
 #include <QStringList>
-#include <QRegExp>
 #include <libmodplug/stdafx.h>
 #include <libmodplug/it_defs.h>
 #include <libmodplug/sndfile.h>

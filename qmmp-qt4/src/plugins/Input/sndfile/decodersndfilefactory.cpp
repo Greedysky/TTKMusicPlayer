@@ -18,7 +18,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <QRegExp>
 #include <QtPlugin>
 #include <QFileInfo>
 #ifdef Q_OS_WIN

@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QStringList>
-#include <QRegExp>
 #include <QtPlugin>
 #include <QSettings>
 #include <QFile>

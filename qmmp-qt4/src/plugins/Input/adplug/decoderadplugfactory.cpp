@@ -28,8 +28,8 @@
 class InputStreamQIO : public InputStream
 {
 public:
-    explicit InputStreamQIO(QIODevice *device)
-        : device(device)
+    explicit InputStreamQIO(QIODevice *i)
+        : device(i)
     {
 
     }
@@ -60,9 +60,9 @@ private:
 
 };
 
-bool DecoderAdplugFactory::canDecode(QIODevice *device) const
+bool DecoderAdplugFactory::canDecode(QIODevice *input) const
 {
-    return adplug_supports(InputStreamQIO(device));
+    return adplug_supports(InputStreamQIO(input));
 }
 
 DecoderProperties DecoderAdplugFactory::properties() const

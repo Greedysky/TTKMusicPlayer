@@ -39,14 +39,14 @@ DecoderFFmpegFactory::DecoderFFmpegFactory()
 #endif
 }
 
-bool DecoderFFmpegFactory::canDecode(QIODevice *i) const
+bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 {
     QStringList filters = properties().filters;
 
     AVProbeData pd;
     memset(&pd, 0, sizeof(pd));
     uint8_t buf[PROBE_BUFFER_SIZE + AVPROBE_PADDING_SIZE];
-    pd.buf_size = i->peek((char*)buf, sizeof(buf) - AVPROBE_PADDING_SIZE);
+    pd.buf_size = input->peek((char*)buf, sizeof(buf) - AVPROBE_PADDING_SIZE);
     pd.buf = buf;
     if(pd.buf_size < PROBE_BUFFER_SIZE)
         return false;

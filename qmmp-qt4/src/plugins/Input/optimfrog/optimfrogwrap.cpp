@@ -13,9 +13,9 @@ typedef condition_t (*OFROG_seekable)(void*);
 typedef condition_t (*OFROG_seekTime)(void*, sInt64_t);
 #endif
 
-OptimFROGWrap::OptimFROGWrap(QIODevice *device)
+OptimFROGWrap::OptimFROGWrap(QIODevice *i)
    : m_decoder(nullptr),
-     m_reader(device)
+     m_reader(i)
 {
 #if defined Q_OS_WIN && defined __GNUC__
     m_instance = nullptr;

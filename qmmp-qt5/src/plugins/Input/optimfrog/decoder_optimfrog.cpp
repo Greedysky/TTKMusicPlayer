@@ -1,6 +1,6 @@
 #include "decoder_optimfrog.h"
 
-DecoderOptimFROG::DecoderOptimFROG(QIODevice *device) : Decoder(device)
+DecoderOptimFROG::DecoderOptimFROG(QIODevice *i) : Decoder(i)
 {
 }
 

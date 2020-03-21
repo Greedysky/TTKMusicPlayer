@@ -31,7 +31,7 @@
 class OptimFROGWrap
 {
 public:
-    explicit OptimFROGWrap(QIODevice *device);
+    explicit OptimFROGWrap(QIODevice *i);
     OptimFROGWrap(const OptimFROGWrap &) = delete;
     OptimFROGWrap &operator=(const OptimFROGWrap &) = delete;
     ~OptimFROGWrap();
