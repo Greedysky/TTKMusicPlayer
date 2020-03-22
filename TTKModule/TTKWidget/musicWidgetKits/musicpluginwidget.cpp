@@ -99,7 +99,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 #else
     m_ui->treeWidget->header()->setMovable(false);
 #endif
-    m_ui->treeWidget->header()->setMinimumSectionSize(250);
+    m_ui->treeWidget->header()->setMinimumSectionSize(210);
     m_ui->treeWidget->setHeaderLabels(QStringList() << tr("Description") << tr("Name"));
 
     MusicCheckBoxDelegate *checkDelegate = new MusicCheckBoxDelegate(this);
