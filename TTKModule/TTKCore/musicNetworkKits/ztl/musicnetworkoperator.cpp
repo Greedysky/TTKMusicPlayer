@@ -27,12 +27,17 @@ void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
     QString text(in.readAll());
     QRegExp regx("<iframe src=\"([^<]+)\" ");
     regx.setMinimal(true);
-    int pos = text.indexOf(regx);
+    const int pos = text.indexOf(regx);
     while(pos != -1)
     {
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadQueryFinished(QByteArray)));
-        download->startToDownload(regx.cap(1));
+        text = regx.cap(1);
+        if(!text.contains("http:"))
+        {
+          text = "http:" + text;
+        }
+        download->startToDownload(text);
         break;
     }
 
