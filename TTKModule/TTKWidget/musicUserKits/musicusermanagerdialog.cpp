@@ -10,6 +10,8 @@ MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
        m_ui(new Ui::MusicUserManagerDialog)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
+
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 

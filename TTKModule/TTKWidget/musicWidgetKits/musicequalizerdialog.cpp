@@ -17,6 +17,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
       m_ui(new Ui::MusicEqualizerDialog)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

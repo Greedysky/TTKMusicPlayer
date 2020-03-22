@@ -18,6 +18,8 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
       m_ui(new Ui::MusicSongSharingWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
+
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

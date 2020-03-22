@@ -148,6 +148,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
       m_ui(new Ui::MusicLrcMakerWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     setAttribute(Qt::WA_DeleteOnClose, true);
 

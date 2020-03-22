@@ -19,6 +19,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
       m_ui(new Ui::MusicUserDialog)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     MusicTime::InitSRand();
     changeVerificationCode();

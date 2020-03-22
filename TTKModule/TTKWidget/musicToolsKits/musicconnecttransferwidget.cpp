@@ -17,6 +17,8 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
       m_ui(new Ui::MusicConnectTransferWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
+
     setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_currentIndex = -1;

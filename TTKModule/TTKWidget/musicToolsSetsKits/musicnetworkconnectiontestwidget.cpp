@@ -101,6 +101,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
       m_ui(new Ui::MusicNetworkConnectionTestWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);

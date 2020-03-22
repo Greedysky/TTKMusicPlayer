@@ -10,6 +10,7 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
       m_ui(new Ui::MusicMessageBox)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_status = 0;
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));

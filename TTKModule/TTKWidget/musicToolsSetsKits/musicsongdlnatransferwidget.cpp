@@ -13,6 +13,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
       m_ui(new Ui::MusicSongDlnaTransferWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_isPlaying = false;
     m_currentPlayIndex = -1;

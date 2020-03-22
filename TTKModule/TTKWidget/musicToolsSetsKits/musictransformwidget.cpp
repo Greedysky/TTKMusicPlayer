@@ -15,6 +15,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
       m_ui(new Ui::MusicTransformWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
     
     m_process = new QProcess(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));

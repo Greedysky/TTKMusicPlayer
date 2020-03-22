@@ -61,6 +61,8 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
       m_ui(new Ui::MusicBackgroundPaletteWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
+
     m_confirmButtonClicked = false;
 
     QList<QColor> colors;

@@ -11,9 +11,11 @@
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicAudioRecorderWidget), m_mBuffer(BufferSize, 0)
+      m_ui(new Ui::MusicAudioRecorderWidget),
+      m_mBuffer(BufferSize, 0)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);

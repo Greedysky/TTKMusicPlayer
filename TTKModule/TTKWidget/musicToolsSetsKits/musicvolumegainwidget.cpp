@@ -42,6 +42,7 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
       m_ui(new Ui::MusicVolumeGainWidget), m_process(nullptr)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);

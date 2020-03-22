@@ -19,6 +19,7 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
       m_songsThread(nullptr)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_currentPlaylistIndex = 0;
     m_isPlaying = false;

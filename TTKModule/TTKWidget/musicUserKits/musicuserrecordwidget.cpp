@@ -14,6 +14,7 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
       m_ui(new Ui::MusicUserRecordWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
 #ifdef Q_OS_UNIX
     MusicUtils::Widget::setLabelFontSize(m_ui->label_5T, 9);

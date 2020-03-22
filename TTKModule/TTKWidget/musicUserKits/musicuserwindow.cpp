@@ -16,6 +16,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
      m_ui(new Ui::MusicUserWindow)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_ui->userNameL->setStyleSheet(MusicUIObject::MQSSPushButtonStyle07);
     m_ui->userNameU->setStyleSheet(MusicUIObject::MQSSPushButtonStyle07);

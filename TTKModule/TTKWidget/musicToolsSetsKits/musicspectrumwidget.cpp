@@ -25,6 +25,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
       m_ui(new Ui::MusicSpectrumWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
@@ -164,6 +165,7 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
         if(m_spectrumLayout)
         {
             widget->showNormal();
+            widget->setWindowFlags(Qt::Window);
             m_spectrumLayout->addWidget(widget);
         }
     }

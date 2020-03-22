@@ -11,6 +11,7 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
       m_ui(new Ui::MusicDownloadResetWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_parentClass = parent;
 

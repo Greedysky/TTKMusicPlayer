@@ -12,6 +12,7 @@ MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
       m_ui(new Ui::MusicSongsListItemInfoWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     setWindowFlags(windowFlags() | Qt::Tool);
 

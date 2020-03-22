@@ -8,6 +8,7 @@ MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
       m_ui(new Ui::MusicLrcColorWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

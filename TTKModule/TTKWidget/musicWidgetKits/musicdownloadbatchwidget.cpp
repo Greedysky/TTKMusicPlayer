@@ -352,6 +352,8 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
       m_ui(new Ui::MusicDownloadBatchWidget)
 {
     m_ui->setupUi(this);
+    setFixedSize(size());
+
     setAttribute(Qt::WA_DeleteOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
