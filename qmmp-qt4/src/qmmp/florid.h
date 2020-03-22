@@ -120,7 +120,6 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 protected:
     QImage m_image;

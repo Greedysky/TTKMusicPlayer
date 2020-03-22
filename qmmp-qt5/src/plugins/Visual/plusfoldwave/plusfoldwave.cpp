@@ -194,15 +194,6 @@ void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusFoldWave::keyReleaseEvent(QKeyEvent *e)
-{
-    Visual::keyReleaseEvent(e);
-    if(e->key() == Qt::Key_Escape)
-    {
-        m_screenAction->setChecked(false);
-    }
-}
-
 void PlusFoldWave::process()
 {
     static fft_state *state = nullptr;

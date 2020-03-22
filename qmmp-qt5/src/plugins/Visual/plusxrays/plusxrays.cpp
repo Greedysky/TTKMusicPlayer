@@ -146,15 +146,6 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusXRays::keyReleaseEvent(QKeyEvent *e)
-{
-    Visual::keyReleaseEvent(e);
-    if(e->key() == Qt::Key_Escape)
-    {
-        m_screenAction->setChecked(false);
-    }
-}
-
 void PlusXRays::process()
 {
     static fft_state *state = nullptr;

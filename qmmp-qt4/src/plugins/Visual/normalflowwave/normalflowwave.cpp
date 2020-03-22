@@ -181,15 +181,6 @@ void NormalFlowWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalFlowWave::keyReleaseEvent(QKeyEvent *e)
-{
-    Visual::keyReleaseEvent(e);
-    if(e->key() == Qt::Key_Escape)
-    {
-        m_screenAction->setChecked(false);
-    }
-}
-
 void NormalFlowWave::process()
 {
     static fft_state *state = nullptr;
