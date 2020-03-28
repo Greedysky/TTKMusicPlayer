@@ -18,10 +18,20 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
+#include <QSettings>
 #include <cdio/version.h>
 #include <cddb/version.h>
 #include "decoder_cdaudio.h"
 #include "decodercdaudiofactory.h"
+
+DecoderCDAudioFactory::DecoderCDAudioFactory()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    if(settings.value("cdaudio/cddb_server").toByteArray() == "freedb.org")
+    {
+        settings.setValue("cdaudio/cddb_server", "gnudb.org");
+    }
+}
 
 bool DecoderCDAudioFactory::canDecode(QIODevice *) const
 {
@@ -34,8 +44,6 @@ DecoderProperties DecoderCDAudioFactory::properties() const
     properties.name = tr("CD Audio Plugin");
     properties.shortName = "cdaudio";
     properties.protocols << "cdda";
-    properties.noInput = true;
-    properties.hasSettings = true;
     return properties;
 }
 

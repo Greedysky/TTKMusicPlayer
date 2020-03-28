@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/floridreverb
-
-include(../common/common.pri)
 
 HEADERS += floridreverb.h \
            visualfloridreverbfactory.h

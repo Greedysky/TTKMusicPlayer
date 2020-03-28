@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/plusvolumewave
-
-include(../common/common.pri)
 
 HEADERS += plusvolumewave.h \
            visualplusvolumewavefactory.h

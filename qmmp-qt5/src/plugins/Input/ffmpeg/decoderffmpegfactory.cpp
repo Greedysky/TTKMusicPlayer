@@ -142,7 +142,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/true-hd" << "audio/x-matroska";
     properties.shortName = "ffmpeg";
     properties.hasSettings = true;
-    properties.noInput = false;
     properties.priority = 10;
     return properties;
 }

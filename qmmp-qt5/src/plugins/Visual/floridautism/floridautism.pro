@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/floridautism
-
-include(../common/common.pri)
 
 HEADERS += floridautism.h \
            visualfloridautismfactory.h

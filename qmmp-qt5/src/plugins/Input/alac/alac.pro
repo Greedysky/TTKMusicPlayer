@@ -2,7 +2,7 @@ include(../../plugins.pri)
 
 HEADERS += decoderalacfactory.h \
            decoder_alac.h \
-           alacwrap.h \
+           alachelper.h \
            alac_decomp.h \
            alac_demux.h \
            alac_stdint_win.h \
@@ -10,7 +10,7 @@ HEADERS += decoderalacfactory.h \
 
 SOURCES += decoderalacfactory.cpp \
            decoder_alac.cpp \
-           alacwrap.cpp \
+           alachelper.cpp \
            alac.c \
            alac_demux.c \
            alac_stream.c

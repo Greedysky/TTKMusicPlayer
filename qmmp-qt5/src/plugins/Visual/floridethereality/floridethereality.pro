@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/floridethereality
-
-include(../common/common.pri)
 
 HEADERS += ethereality.h \
            floridethereality.h \

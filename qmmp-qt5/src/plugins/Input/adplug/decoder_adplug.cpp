@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,9 +31,9 @@ bool DecoderAdplug::initialize()
 {
     try
     {
-        m_adplug = std::unique_ptr<AdplugWrap>(new AdplugWrap(m_path.toUtf8().constData()));
+        m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(m_path.toUtf8().constData()));
     }
-    catch(const AdplugWrap::InvalidFile &)
+    catch(const AdplugHelper::InvalidFile &)
     {
         return false;
     }
@@ -74,7 +74,7 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
 
     if(m_buf_filled == 0)
     {
-        AdplugWrap::Frame frame = m_adplug->read();
+        AdplugHelper::Frame frame = m_adplug->read();
         if(frame.n == 0)
         {
             return copied;

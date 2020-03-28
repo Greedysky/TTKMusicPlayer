@@ -152,7 +152,7 @@ void MPEGMetaDataModel::removeCover()
 }
 
 MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes tagType)
-        : TagModel()
+    : TagModel()
 {
     m_tagType = tagType;
     m_file = file;

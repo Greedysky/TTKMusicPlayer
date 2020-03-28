@@ -1,4 +1,24 @@
-#include "optimfrogwrap.h"
+/***************************************************************************
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
+ ***************************************************************************/
+
+#include "optimfroghelper.h"
 
 #if defined Q_OS_WIN && defined __GNUC__
 typedef void* (*OFROG_createInstance)(void);
@@ -13,7 +33,7 @@ typedef condition_t (*OFROG_seekable)(void*);
 typedef condition_t (*OFROG_seekTime)(void*, sInt64_t);
 #endif
 
-OptimFROGWrap::OptimFROGWrap(QIODevice *i)
+OptimFROGHelper::OptimFROGHelper(QIODevice *i)
    : m_decoder(nullptr),
      m_reader(i)
 {
@@ -22,7 +42,7 @@ OptimFROGWrap::OptimFROGWrap(QIODevice *i)
 #endif
 }
 
-OptimFROGWrap::~OptimFROGWrap()
+OptimFROGHelper::~OptimFROGHelper()
 {
     if(!m_decoder)
     {
@@ -37,7 +57,7 @@ OptimFROGWrap::~OptimFROGWrap()
 #endif
 }
 
-bool OptimFROGWrap::initialize()
+bool OptimFROGHelper::initialize()
 {
 #if defined Q_OS_WIN && defined __GNUC__
     m_instance = LoadLibraryA("libOptimFROG.dll");
@@ -115,7 +135,7 @@ bool OptimFROGWrap::initialize()
     return true;
 }
 
-int OptimFROGWrap::read(void *buf, long size)
+int OptimFROGHelper::read(void *buf, long size)
 {
     sInt32_t n;
     int bytes = depth() / 8;
@@ -140,7 +160,7 @@ int OptimFROGWrap::read(void *buf, long size)
     return n;
 }
 
-void OptimFROGWrap::seek(int pos)
+void OptimFROGHelper::seek(int pos)
 {
 #if defined Q_OS_WIN && defined __GNUC__
     if(((OFROG_seekable)GetSymbolAddress("OptimFROG_seekable"))(m_decoder))
@@ -156,7 +176,7 @@ void OptimFROGWrap::seek(int pos)
 }
 
 #if defined Q_OS_WIN && defined __GNUC__
-FARPROC OptimFROGWrap::GetSymbolAddress(const char* name) const
+FARPROC OptimFROGHelper::GetSymbolAddress(const char* name) const
 {
     FARPROC func = nullptr;
     if(m_instance)

@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/floridsurround
-
-include(../common/common.pri)
 
 HEADERS += floridsurround.h \
            visualfloridsurroundfactory.h

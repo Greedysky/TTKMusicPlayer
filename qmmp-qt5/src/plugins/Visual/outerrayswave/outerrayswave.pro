@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/outerrayswave
-
-include(../common/common.pri)
 
 HEADERS += outerrayswave.h \
            visualouterrayswavefactory.h

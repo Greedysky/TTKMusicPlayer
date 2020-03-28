@@ -22,7 +22,6 @@
 #define DECODER_CUE_H
 
 #include <qmmp/decoder.h>
-#include <qmmp/statehandler.h>
 
 class Output;
 class QIDevice;

@@ -92,8 +92,8 @@ public:
 
     bool initialize();
 
-    int read(void *buf, int size);
-    int seek_sample(int64_t time);                     // seek to given sample position
+    int read(unsigned char *buf, int size);
+    void seek(int64_t time);
 
     int32_t get_stream();                                 // return current stream
     int32_t get_streams();                                 // return number of streams

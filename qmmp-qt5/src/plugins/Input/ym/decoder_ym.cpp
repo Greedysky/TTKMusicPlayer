@@ -68,7 +68,9 @@ bool DecoderYm::initialize()
     else
     {
         if(m_music)
+        {
             delete m_music;
+        }
         m_music = nullptr;
         qWarning("DecoderYm: failed to open: %s", qPrintable(m_path));
         return false;
@@ -87,7 +89,9 @@ void DecoderYm::deinit()
     m_bitrate = 0;
     m_freq = 0;
     if(m_music)
+    {
         delete m_music;
+    }
     m_music = nullptr;
 }
 
@@ -103,15 +107,15 @@ int DecoderYm::bitrate() const
 
 qint64 DecoderYm::read(unsigned char *data, qint64 size)
 {
-    qint64      stereoSize, i;
-    ymsample    *psample=(ymsample *)data;
+    qint64 stereoSize, i;
+    ymsample *psample=(ymsample *)data;
 
     stereoSize = size / (2*sizeof(ymsample));
     
-    if(m_music->update(psample, stereoSize ))
+    if(m_music->update(psample, stereoSize))
     {
         // recopy mono YM sound to 2 channels
-        for (i=stereoSize-1; i>=0; i--)
+        for(i=stereoSize-1; i>=0; i--)
         {
             psample[(i*2)    ] = psample[i];
             psample[(i*2) + 1] = psample[i];

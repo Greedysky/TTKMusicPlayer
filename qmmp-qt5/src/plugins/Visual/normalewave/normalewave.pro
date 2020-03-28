@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/normalewave
-
-include(../common/common.pri)
 
 HEADERS += normalewave.h \
            visualnormalewavefactory.h

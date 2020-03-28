@@ -37,7 +37,6 @@ DecoderProperties DecoderWavPackFactory::properties() const
     properties.description = tr("WavPack Files");
     properties.contentTypes << "audio/x-wavpack";
     properties.shortName = "wavpack";
-    properties.hasSettings = false;
     properties.noInput = true;
     properties.protocols << "file" << "wvpack";
     return properties;

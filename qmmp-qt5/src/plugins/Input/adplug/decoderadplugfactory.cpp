@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 #include "decoderadplugfactory.h"
-#include "adplugwrap.h"
+#include "adplughelper.h"
 #include "decoder_adplug.h"
 #include "magic.h"
 #include "adplugmetadatamodel.h"
@@ -71,7 +71,6 @@ DecoderProperties DecoderAdplugFactory::properties() const
     properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds";
     properties.description = tr("AdPlug Files");
     properties.shortName = "adplug";
-    properties.hasSettings = false;
     return properties;
 }
 
@@ -85,7 +84,7 @@ QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, Tra
     QList<TrackInfo *> list;
     try
     {
-        AdplugWrap adplug(path.toUtf8().constData());
+        AdplugHelper adplug(path.toUtf8().constData());
         TrackInfo *info = new TrackInfo(path);
 
         if(parts & TrackInfo::MetaData)
@@ -103,7 +102,7 @@ QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, Tra
 
         list << info;
     }
-    catch(const AdplugWrap::InvalidFile &)
+    catch(const AdplugHelper::InvalidFile &)
     {
     }
     return list;

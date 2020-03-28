@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/normalhistogram
-
-include(../common/common.pri)
 
 HEADERS += normalhistogram.h \
            visualnormalhistogramfactory.h

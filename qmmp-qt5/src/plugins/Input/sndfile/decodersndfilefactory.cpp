@@ -118,8 +118,6 @@ DecoderProperties DecoderSndFileFactory::properties() const
     properties.filters << "*.sph" << "*.sf" << "*.voc" << "*.w64";
     properties.description = tr("PCM Files");
     properties.shortName = "sndfile";
-    properties.hasSettings = false;
-    properties.noInput = false;
     return properties;
 }
 

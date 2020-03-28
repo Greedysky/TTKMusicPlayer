@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/plusmultiwave
-
-include(../common/common.pri)
 
 HEADERS += plusmultiwave.h \
            visualplusmultiwavefactory.h

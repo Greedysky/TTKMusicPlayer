@@ -52,7 +52,6 @@ DecoderProperties DecoderFLACFactory::properties() const
     properties.contentTypes << "audio/x-flac" << "audio/flac";
     properties.shortName = "flac";
     properties.protocols << "flac";
-    properties.hasSettings = false;
     return properties;
 }
 

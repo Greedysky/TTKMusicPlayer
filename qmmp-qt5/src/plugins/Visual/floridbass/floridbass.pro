@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/floridbass
-
-include(../common/common.pri)
 
 HEADERS += floridbass.h \
            visualfloridbassfactory.h

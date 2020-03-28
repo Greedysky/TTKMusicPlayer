@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/plusfoldwave
-
-include(../common/common.pri)
 
 HEADERS += plusfoldwave.h \
            visualplusfoldwavefactory.h

@@ -18,8 +18,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef ADPLUGWRAP_H
-#define ADPLUGWRAP_H
+#ifndef ADPLUGHELPER_H
+#define ADPLUGHELPER_H
 
 #include <memory>
 #include <vector>
@@ -30,7 +30,7 @@
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
 */
-class AdplugWrap
+class AdplugHelper
 {
 public:
     struct Frame
@@ -46,10 +46,10 @@ public:
         InvalidFile() : std::exception() { }
     };
 
-    explicit AdplugWrap(const std::string &);
-    AdplugWrap(const AdplugWrap &) = delete;
+    explicit AdplugHelper(const std::string &);
+    AdplugHelper(const AdplugHelper &) = delete;
 
-    AdplugWrap &operator=(const AdplugWrap &) = delete;
+    AdplugHelper &operator=(const AdplugHelper &) = delete;
 
     static std::string version() { return CAdPlug::get_version(); }
 

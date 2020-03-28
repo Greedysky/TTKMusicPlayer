@@ -1,8 +1,7 @@
 include(../../plugins.pri)
+include(../common/common.pri)
 
 TARGET = $$PLUGINS_PREFIX/Visual/plusxrays
-
-include(../common/common.pri)
 
 HEADERS += plusxrays.h \
            visualplusxraysfactory.h

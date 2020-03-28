@@ -21,7 +21,6 @@
 #include <QObject>
 #include <QRegExp>
 #include <QSettings>
-#include <QFileInfo>
 #include <QDir>
 #include <cdio/cdio.h>
 #if LIBCDIO_VERSION_NUM <= 83
@@ -243,7 +242,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
         {
             cddb_cache_disable (cddb_conn); //disable libcddb cache, use own cache implementation instead
             settings.beginGroup("cdaudio");
-            cddb_set_server_name (cddb_conn, settings.value("cddb_server", "freedb.org").toByteArray().constData());
+            cddb_set_server_name (cddb_conn, settings.value("cddb_server", "gnudb.org").toByteArray().constData());
             cddb_set_server_port (cddb_conn, settings.value("cddb_port", 8880).toInt());
 
             if(settings.value("cddb_http", false).toBool())
