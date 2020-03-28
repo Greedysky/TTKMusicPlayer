@@ -18,13 +18,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
 unix {
     unix:android {
         TARGET = plugin_input_opus
-        QMAKE_CLEAN = libplugin_input_opus.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_opus.so
     }else{
-        QMAKE_CLEAN = libopus.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libopus.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile$$STATIC_LIBRARY_SUFFIX -lopus$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX

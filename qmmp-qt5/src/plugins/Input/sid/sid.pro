@@ -14,9 +14,7 @@ TARGET = sid
 INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
 
 unix {
-    QMAKE_CLEAN = libsid.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsid.so
     LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp$$STATIC_LIBRARY_SUFFIX
 }
 

@@ -25,6 +25,7 @@
 #include <cdio/cdio.h>
 #include <QMultiHash>
 #include <qmmp/decoder.h>
+#include <qmmp/trackinfo.h>
 
 class CDATrack
 {

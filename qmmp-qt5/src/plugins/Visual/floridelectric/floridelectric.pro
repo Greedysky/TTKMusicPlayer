@@ -11,8 +11,6 @@ SOURCES += floridelectric.cpp \
            visualfloridelectricfactory.cpp
 
 unix{
-    QMAKE_CLEAN = libfloridelectric.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridelectric.so
     LIBS += -L/usr/lib -I/usr/include
 }

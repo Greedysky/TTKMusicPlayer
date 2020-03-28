@@ -20,8 +20,6 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = libbs2b.so
-    target.path = $$LIB_DIR/qmmp/Effect
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libbs2b.so
     LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b$$STATIC_LIBRARY_SUFFIX
 }

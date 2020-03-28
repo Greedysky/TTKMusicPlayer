@@ -19,7 +19,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = alac
 
 unix:{
-    QMAKE_CLEAN = libalac.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libalac.so
 }

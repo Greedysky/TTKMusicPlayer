@@ -14,8 +14,6 @@ TARGET = crossfade
 FORMS += settingsdialog.ui
 
 unix {
-    QMAKE_CLEAN = libcrossfade.so
-    target.path = $$LIB_DIR/qmmp/Effect
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libcrossfade.so
     LIBS += -L/usr/lib -I/usr/include
 }

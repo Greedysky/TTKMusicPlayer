@@ -82,8 +82,6 @@ contains(QT_ARCH, x86_64){
 QMAKE_CFLAGS += -Werror=implicit-function-declaration
 
 unix{
-    QMAKE_CLEAN = libfloridgoom.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridgoom.so
     LIBS += -L/usr/lib -I/usr/include
 }

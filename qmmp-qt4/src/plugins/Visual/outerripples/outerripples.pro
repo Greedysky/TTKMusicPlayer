@@ -11,7 +11,5 @@ SOURCES += outerripples.cpp \
            visualouterripplesfactory.cpp
 
 unix{
-    QMAKE_CLEAN = libouterripples.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libouterripples.so
 }

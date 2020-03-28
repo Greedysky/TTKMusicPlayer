@@ -16,8 +16,6 @@ TARGET = optimfrog
 INCLUDEPATH += $$EXTRA_PREFIX/liboptimfrog/include
 
 unix {
-    QMAKE_CLEAN = liboptimfrog.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/liboptimfrog.so
     LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG
 }

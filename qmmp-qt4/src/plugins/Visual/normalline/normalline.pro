@@ -11,7 +11,5 @@ SOURCES += normalline.cpp \
            visualnormallinefactory.cpp
 
 unix{
-    QMAKE_CLEAN = libnormalline.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libnormalline.so
 }

@@ -19,13 +19,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
 unix {
     unix:android {
         TARGET = plugin_input_flac
-        QMAKE_CLEAN = libplugin_input_flac.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_flac.so
     }else{
-        QMAKE_CLEAN = libflac.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libflac.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libflac/lib -lFLAC$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX

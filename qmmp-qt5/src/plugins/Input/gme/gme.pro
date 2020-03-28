@@ -16,13 +16,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libgme/include
 unix{
     unix:android {
         TARGET = plugin_input_gme
-        QMAKE_CLEAN = libplugin_input_gme.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_gme.so
     }else{
-        QMAKE_CLEAN = libgme.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libgme.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme$$STATIC_LIBRARY_SUFFIX
 }
 

@@ -11,7 +11,5 @@ SOURCES += normalanalyzer.cpp \
            visualnormalanalyzerfactory.cpp
 
 unix{
-    QMAKE_CLEAN = libnormalanalyzer.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libnormalanalyzer.so
 }

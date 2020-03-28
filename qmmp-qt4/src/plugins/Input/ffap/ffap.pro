@@ -51,9 +51,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 #}
 
 unix {
-    QMAKE_CLEAN = libffap.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libffap.so
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 

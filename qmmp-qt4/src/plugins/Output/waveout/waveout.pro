@@ -10,6 +10,3 @@ DESTDIR = $$PLUGINS_PREFIX/Output
 TARGET = waveout
 
 LIBS += -lwinmm
-
-target.path = $$LIB_DIR/qmmp/Output
-INSTALLS += target

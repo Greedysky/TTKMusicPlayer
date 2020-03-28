@@ -93,62 +93,6 @@ TEMPLATE = lib
 
 VERSION = $$QMMP_VERSION
 
-unix {
-  isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
-  DEFINES += LIB_DIR=\\\"$$LIB_DIR\\\"
-}
-
-unix {
-    target.path = $$LIB_DIR
-    devel.files += \
-      buffer.h \
-      decoder.h \
-      output.h \
-      outputfactory.h \
-      decoderfactory.h \
-      soundcore.h \
-      visual.h \
-      visualfactory.h \
-      effect.h \
-      effectfactory.h \
-      statehandler.h \
-      qmmp.h \
-      metadatamodel.h \
-      tagmodel.h \
-      abstractengine.h \
-      qmmpaudioengine_p.h \
-      audioparameters.h \
-      inputsource.h \
-      fileinputsource_p.h \
-      emptyinputsource_p.h \
-      inputsourcefactory.h \
-      enginefactory.h \
-      metadatamanager.h \
-      replaygain_p.h \
-      qmmpsettings.h \
-      eqsettings.h \
-      qmmpevents_p.h \
-      volume.h \
-      volumecontrol_p.h \
-      outputwriter_p.h \
-      recycler_p.h \
-      qmmpplugincache_p.h \
-      channelmap.h \
-      channelconverter_p.h \
-      audioconverter.h \
-      dithering_p.h \
-      visualbuffer_p.h \
-      lightfactory.h \
-      tagreadandwrite.h \
-      qmmp_export.h \
-      florid.h \
-      trackinfo.h
-
-    devel.path = /include/qmmp
-    INSTALLS += target devel
-    DESTDIR = .
-}
-
 INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include
 
 win32:{

@@ -11,7 +11,5 @@ SOURCES += plusmonowave.cpp \
            visualplusmonowavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = libplusmonowave.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libplusmonowave.so
 }

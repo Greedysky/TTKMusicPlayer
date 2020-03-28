@@ -7,7 +7,6 @@ unix:android {
 }
 
 unix {
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
     QMAKE_LIBDIR += $$OUT_PWD/../../../../lib/$$TTKMusicPlayer
     PLUGINS_PREFIX = $$OUT_PWD/../../../../lib/$$TTKMusicPlayer/qmmp
     LIBS += -lqmmp

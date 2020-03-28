@@ -14,9 +14,7 @@ TARGET = xmp
 INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
 
 unix:{
-    QMAKE_CLEAN = libxmp.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libxmp.so
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX
 }
 

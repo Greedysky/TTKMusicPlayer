@@ -20,9 +20,7 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = libsoxr.so
-    target.path = $$LIB_DIR/qmmp/Effect
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsoxr.so
     LIBS += -L/usr/lib -I/usr/include
     LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr$$STATIC_LIBRARY_SUFFIX
 }

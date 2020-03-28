@@ -21,13 +21,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libmodplug/include
 unix {
     unix:android {
         TARGET = plugin_input_modplug
-        QMAKE_CLEAN = libplugin_input_modplug.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_modplug.so
     }else{
-        QMAKE_CLEAN = libmodplug.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/libmodplug.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libmodplug/lib -lmodplug$$STATIC_LIBRARY_SUFFIX
 }
 

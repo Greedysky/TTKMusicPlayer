@@ -11,7 +11,5 @@ SOURCES += outerrayswave.cpp \
            visualouterrayswavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = libouterrayswave.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libouterrayswave.so
 }

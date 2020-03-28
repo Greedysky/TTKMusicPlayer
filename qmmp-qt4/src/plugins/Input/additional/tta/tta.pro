@@ -22,11 +22,8 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtta/include
 unix{
     unix:android {
         TARGET = plugin_input_tta
-        QMAKE_CLEAN = libplugin_input_tta.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_tta.so
     }else{
-        QMAKE_CLEAN = libtta.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/libtta.so
     }
-    INSTALLS += target
 }

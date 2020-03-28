@@ -11,7 +11,5 @@ SOURCES += plusvolumewave.cpp \
            visualplusvolumewavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = libplusvolumewave.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplusvolumewave.so
 }

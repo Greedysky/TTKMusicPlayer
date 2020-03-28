@@ -10,7 +10,5 @@ DESTDIR = $$PLUGINS_PREFIX/Output
 TARGET = null
 
 unix {
-    QMAKE_CLEAN = libnull.so
-    target.path = $$LIB_DIR/qmmp/Output
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libnull.so
 }

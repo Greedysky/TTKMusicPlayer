@@ -11,8 +11,6 @@ SOURCES += floridreverb.cpp \
            visualfloridreverbfactory.cpp
 
 unix{
-    QMAKE_CLEAN = libfloridreverb.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libfloridreverb.so
     LIBS += -L/usr/lib -I/usr/include
 }

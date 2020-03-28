@@ -14,8 +14,6 @@ TARGET = stereo
 FORMS += settingsdialog.ui
 
 unix {
-    QMAKE_CLEAN = libstereo.so
-    target.path = $$LIB_DIR/qmmp/Effect
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libstereo.so
     LIBS += -L/usr/lib -I/usr/include
 }

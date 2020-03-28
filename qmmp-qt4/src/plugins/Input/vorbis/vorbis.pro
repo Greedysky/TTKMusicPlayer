@@ -18,13 +18,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
 unix {
     unix:android {
         TARGET = plugin_input_vorbis
-        QMAKE_CLEAN = libplugin_input_vorbis.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_vorbis.so
     }else{
-        QMAKE_CLEAN = libvorbis.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/libvorbis.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisfile$$STATIC_LIBRARY_SUFFIX -lvorbis$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX

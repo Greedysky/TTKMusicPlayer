@@ -29,8 +29,6 @@ win32:{
 }
 
 unix{
-    QMAKE_CLEAN = liblightspectrum.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/liblightspectrum.so
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
 }

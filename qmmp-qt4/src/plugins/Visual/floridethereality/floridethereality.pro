@@ -19,8 +19,6 @@ win32:{
 }
 
 unix{
-    QMAKE_CLEAN = libfloridethereality.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libfloridethereality.so
     LIBS += -L/usr/lib -I/usr/include -lGLU
 }

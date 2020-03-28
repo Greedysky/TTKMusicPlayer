@@ -19,8 +19,6 @@ win32:{
 }
 
 unix{
-    QMAKE_CLEAN = libfloridprojectm.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libfloridprojectm.so
     LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM$$STATIC_LIBRARY_SUFFIX
 }

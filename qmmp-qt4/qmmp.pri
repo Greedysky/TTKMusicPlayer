@@ -24,7 +24,7 @@ CONFIG += hide_symbols
 #Version
 
 TTKMusicPlayer = 2.11.1.0
-QMMP_VERSION = 0.12.6
+QMMP_VERSION = 0.12.7
 CONFIG += USE_STATIC_LIBRARY
 
 #Comment/uncomment this if you want to change plugins list

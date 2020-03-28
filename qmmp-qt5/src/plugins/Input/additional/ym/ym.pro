@@ -21,7 +21,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = ym
 
 unix:{
-    QMAKE_CLEAN = libym.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libym.so
 }

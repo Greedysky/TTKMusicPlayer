@@ -14,9 +14,7 @@ TARGET = wildmidi
 INCLUDEPATH += $$EXTRA_PREFIX/libwildmidi/include
 
 unix:{
-    QMAKE_CLEAN = libwildmidi.so
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libwildmidi.so
     LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib/x86_64-linux-gnu -lWildMidi$$STATIC_LIBRARY_SUFFIX
 }
 

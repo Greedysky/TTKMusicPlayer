@@ -32,11 +32,8 @@ INCLUDEPATH += $$EXTRA_PREFIX/libshn/include
 unix{
     unix:android {
         TARGET = plugin_input_shn
-        QMAKE_CLEAN = libplugin_input_shn.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_shn.so
     }else{
-        QMAKE_CLEAN = libshn.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/libshn.so
     }
-    INSTALLS += target
 }

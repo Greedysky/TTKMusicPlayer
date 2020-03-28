@@ -21,8 +21,6 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = libsrconverter.so
-    target.path = $$LIB_DIR/qmmp/Effect
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsrconverter.so
     LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate$$STATIC_LIBRARY_SUFFIX
 }

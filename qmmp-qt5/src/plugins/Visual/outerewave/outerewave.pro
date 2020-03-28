@@ -11,7 +11,5 @@ SOURCES += outerewave.cpp \
            visualouterewavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = libouterewave.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libouterewave.so
 }

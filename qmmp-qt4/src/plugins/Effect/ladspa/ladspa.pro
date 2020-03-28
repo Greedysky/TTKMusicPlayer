@@ -25,6 +25,4 @@ LIBS += -L/usr/lib \
 
 linux-g++|linux-g++-32|linux-g++-64:LIBS += -ldl
 
-target.path = $$LIB_DIR/qmmp/Effect
-INSTALLS += target
-QMAKE_CLEAN = libladspa.so
+QMAKE_CLEAN = $$DESTDIR/libladspa.so

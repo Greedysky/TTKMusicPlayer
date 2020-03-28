@@ -14,11 +14,9 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = cdaudio
 
 unix {
-    QMAKE_CLEAN = libcdaudio.so
+    QMAKE_CLEAN = $$DESTDIR/libcdaudio.so
     LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libcdio_paranoia/lib -lcdio_paranoia$$STATIC_LIBRARY_SUFFIX -lcdio_cdda$$STATIC_LIBRARY_SUFFIX
-    target.path = $$LIB_DIR/qmmp/Input
-    INSTALLS += target
 }
 
 win32 {

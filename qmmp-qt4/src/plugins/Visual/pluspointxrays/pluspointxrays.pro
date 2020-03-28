@@ -11,7 +11,5 @@ SOURCES += pluspointxrays.cpp \
            visualpluspointxraysfactory.cpp
 
 unix{
-    QMAKE_CLEAN = libpluspointxrays.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/libpluspointxrays.so
 }

@@ -18,13 +18,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libwavpack/include
 unix {
     unix:android {
         TARGET = plugin_input_wavpack
-        QMAKE_CLEAN = libplugin_input_wavpack.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_wavpack.so
     }else{
-        QMAKE_CLEAN = libwavpack.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libwavpack.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack$$STATIC_LIBRARY_SUFFIX
 }
 

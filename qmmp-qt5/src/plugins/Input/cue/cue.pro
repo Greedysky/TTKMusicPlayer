@@ -18,13 +18,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libenca/include
 unix{
    unix:android {
        TARGET = plugin_input_cue
-       QMAKE_CLEAN = libplugin_input_cue.so
-       target.path = $$LIB_DIR
+       QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_cue.so
    }else{
-       QMAKE_CLEAN = libcue.so
-       target.path = $$LIB_DIR/qmmp/Input
+       QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libcue.so
    }
-   INSTALLS += target
    LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
 }
 

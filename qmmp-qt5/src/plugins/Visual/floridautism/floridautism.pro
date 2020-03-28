@@ -11,8 +11,6 @@ SOURCES += floridautism.cpp \
            visualfloridautismfactory.cpp
 
 unix{
-    QMAKE_CLEAN = libfloridautism.so
-    target.path = $$LIB_DIR/qmmp/Visual
-    INSTALLS += target
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridautism.so
     LIBS += -L/usr/lib -I/usr/include
 }

@@ -17,13 +17,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libfaad2/include \
 unix:{
     unix:android {
         TARGET = plugin_input_aac
-        QMAKE_CLEAN = libplugin_input_aac.so
-        target.path = $$LIB_DIR
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_aac.so
     }else{
-        QMAKE_CLEAN = libaac.so
-        target.path = $$LIB_DIR/qmmp/Input
+        QMAKE_CLEAN = $$DESTDIR/libaac.so
     }
-    INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libfaad2/lib -lfaad$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
