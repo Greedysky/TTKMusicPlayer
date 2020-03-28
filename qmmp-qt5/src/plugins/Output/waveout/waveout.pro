@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += outputwaveoutfactory.h \
            outputwaveout.h
@@ -6,9 +6,8 @@ HEADERS += outputwaveoutfactory.h \
 SOURCES += outputwaveoutfactory.cpp \
            outputwaveout.cpp
 
-HEADERS += ../../../../src/qmmp/output.h
-
-TARGET = $$PLUGINS_PREFIX/Output/waveout
+DESTDIR = $$PLUGINS_PREFIX/Output
+TARGET = waveout
 
 LIBS += -lwinmm
 

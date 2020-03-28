@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/floridelectric
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = floridelectric
 
 HEADERS += floridelectric.h \
            visualfloridelectricfactory.h
@@ -9,13 +10,8 @@ HEADERS += floridelectric.h \
 SOURCES += floridelectric.cpp \
            visualfloridelectricfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/florid.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridelectric.so
+    QMAKE_CLEAN = libfloridelectric.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += outputwasapifactory.h \
            outputwasapi.h
@@ -6,9 +6,8 @@ HEADERS += outputwasapifactory.h \
 SOURCES += outputwasapifactory.cpp \
            outputwasapi.cpp
 
-HEADERS += ../../../../src/qmmp/output.h
-
-TARGET = $$PLUGINS_PREFIX/Output/wasapi
+DESTDIR = $$PLUGINS_PREFIX/Output
+TARGET = wasapi
 
 LIBS += -lstrmiids -ldmoguids -lmsdmo -lole32 -loleaut32 -luuid -lgdi32 -lksuser
 

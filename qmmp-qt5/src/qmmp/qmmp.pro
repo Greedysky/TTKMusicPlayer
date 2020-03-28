@@ -1,4 +1,4 @@
-include(../../qmmp.pri)
+include($$PWD/../../qmmp.pri)
 
 HEADERS += \
     buffer.h \
@@ -84,10 +84,10 @@ SOURCES += recycler.cpp \
     florid.cpp \
     trackinfo.cpp
 
+win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
 
-unix:TARGET = ../../lib/$$TTKMusicPlayer/qmmp
-win32:TARGET = ../../../bin/$$TTKMusicPlayer/qmmp
-
+TARGET = qmmp
 CONFIG += shared warn_on qt thread
 TEMPLATE = lib
 
@@ -149,18 +149,18 @@ unix {
     DESTDIR = .
 }
 
-INCLUDEPATH += ./ ../../../extra/gcc/libtaglib/include
+INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include
 
 win32:{
-    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag.dll
+    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag.dll
 }
 
 unix {
     unix:android{
-        INCLUDEPATH += ../../../extra/android/libtaglib/include
-        LIBS += -L../../../extra/android/libtaglib/lib -ltag
+        INCLUDEPATH += $$PWD/../../../extra/android/libtaglib/include
+        LIBS += -L$$PWD/../../../extra/android/libtaglib/lib -ltag
     }else{
-        LIBS += -L../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
+        LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
     }
     CONFIG += create_pc create_prl no_install_prl
     QMAKE_PKGCONFIG_NAME = qmmp

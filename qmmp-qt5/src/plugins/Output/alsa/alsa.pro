@@ -1,13 +1,15 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri))
 
 HEADERS += outputalsa.h \
-           outputalsafactory.h  \
+           outputalsafactory.h
 
 SOURCES += outputalsa.cpp \
-           outputalsafactory.cpp  \
+           outputalsafactory.cpp
 
-TARGET = $$PLUGINS_PREFIX/Output/alsa
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Output/libalsa.so
+DESTDIR = $$PLUGINS_PREFIX/Output
+TARGET = alsa
+
+QMAKE_CLEAN = libalsa.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libalsa/include
 

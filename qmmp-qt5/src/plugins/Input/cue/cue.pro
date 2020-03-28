@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decodercuefactory.h \
            cueparser.h \
@@ -9,27 +9,23 @@ SOURCES += decoder_cue.cpp \
            decodercuefactory.cpp \
            cueparser.cpp \
            cuemetadatamodel.cpp
-    
-TARGET = $$PLUGINS_PREFIX/Input/cue
+
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = cue
 
 INCLUDEPATH += $$EXTRA_PREFIX/libenca/include
 
 unix{
    unix:android {
-       TARGET = $$PLUGINS_PREFIX/../plugin_input_cue
-       QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_cue.so
+       TARGET = plugin_input_cue
+       QMAKE_CLEAN = libplugin_input_cue.so
        target.path = $$LIB_DIR
    }else{
-       QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libcue.so
+       QMAKE_CLEAN = libcue.so
        target.path = $$LIB_DIR/qmmp/Input
    }
    INSTALLS += target
    LIBS += -L$$EXTRA_PREFIX/libenca/lib -lenca$$STATIC_LIBRARY_SUFFIX
-}
-
-win32{
-   HEADERS += ../../../../src/qmmp/decoder.h \
-              ../../../../src/qmmp/statehandler.h
 }
 
 contains(CONFIG, WITH_ENCA){

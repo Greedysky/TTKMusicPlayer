@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/outerripples
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = outerripples
 
 HEADERS += outerripples.h \
            visualouterripplesfactory.h
@@ -9,13 +10,8 @@ HEADERS += outerripples.h \
 SOURCES += outerripples.cpp \
            visualouterripplesfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libouterripples.so
+    QMAKE_CLEAN = libouterripples.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

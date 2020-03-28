@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += ladspahost.h \
            effectladspafactory.h \
@@ -14,8 +14,9 @@ SOURCES += ladspahost.cpp \
            ladspaslider.cpp \
            ladspahelper.cpp \
            ladspabutton.cpp
-    
-TARGET = $$PLUGINS_PREFIX/Effect/ladspa
+
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = ladspa
 
 FORMS += settingsdialog.ui
 
@@ -26,4 +27,4 @@ linux-g++|linux-g++-32|linux-g++-64:LIBS += -ldl
 
 target.path = $$LIB_DIR/qmmp/Effect
 INSTALLS += target
-QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libladspa.so
+QMAKE_CLEAN = libladspa.so

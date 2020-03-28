@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../additional.pri)
 
 HEADERS += decoderadplugfactory.h \
            magic.h \
@@ -12,7 +12,8 @@ SOURCES += decoderadplugfactory.cpp \
            adplughelper.cpp \
            adplugmetadatamodel.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/adplug
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = adplug
 
 INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
                $$EXTRA_PREFIX/libadplug/include/libbinio
@@ -20,11 +21,11 @@ INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
 
 unix:{
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_adplug
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_adplug.so
+        TARGET = plugin_input_adplug
+        QMAKE_CLEAN = libplugin_input_adplug.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libadplug.so
+        QMAKE_CLEAN = libadplug.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target

@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/floridethereality
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = floridethereality
 
 HEADERS += ethereality.h \
            floridethereality.h \
@@ -13,13 +14,8 @@ SOURCES += ethereality.cpp \
 
 RESOURCES += floridethereality.qrc
 
-win32:{
-    HEADERS += ../../../../src/qmmp/florid.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridethereality.so
+    QMAKE_CLEAN = libfloridethereality.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

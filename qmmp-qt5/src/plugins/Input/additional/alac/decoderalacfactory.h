@@ -37,6 +37,7 @@
 class DecoderALACFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
     Q_INTERFACES(DecoderFactory)
 public:
     virtual bool canDecode(QIODevice *input) const override;

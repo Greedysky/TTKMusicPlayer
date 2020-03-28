@@ -1,6 +1,6 @@
 #include "lightenvelope.h"
 #include "inlines.h"
-#include "soundcore.h"
+#include <qmmp/soundcore.h>
 
 #include <QDebug>
 #include <QPainter>

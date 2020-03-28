@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += crossfadeplugin.h \
            effectcrossfadefactory.h \
@@ -8,12 +8,13 @@ SOURCES += crossfadeplugin.cpp \
            effectcrossfadefactory.cpp \
            settingsdialog.cpp
 
-TARGET = $$PLUGINS_PREFIX/Effect/crossfade
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = crossfade
 
 FORMS += settingsdialog.ui
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libcrossfade.so
+    QMAKE_CLEAN = libcrossfade.so
     target.path = $$LIB_DIR/qmmp/Effect
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

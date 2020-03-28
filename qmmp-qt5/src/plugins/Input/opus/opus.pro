@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decoderopusfactory.h \
            decoder_opus.h \
@@ -7,8 +7,9 @@ HEADERS += decoderopusfactory.h \
 SOURCES += decoder_opus.cpp \
            decoderopusfactory.cpp \
            opusmetadatamodel.cpp
-    
-TARGET = $$PLUGINS_PREFIX/Input/opus
+
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = opus
 
 INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
                $$EXTRA_PREFIX/libogg/include \
@@ -16,11 +17,11 @@ INCLUDEPATH += $$EXTRA_PREFIX/libopusfile/include \
 
 unix {
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_opus
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_opus.so
+        TARGET = plugin_input_opus
+        QMAKE_CLEAN = libplugin_input_opus.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libopus.so
+        QMAKE_CLEAN = libopus.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
@@ -30,8 +31,6 @@ unix {
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile -lopus \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll -lm
 }

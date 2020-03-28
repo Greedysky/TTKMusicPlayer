@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/normalline
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = normalline
 
 HEADERS += normalline.h \
            visualnormallinefactory.h
@@ -9,13 +10,8 @@ HEADERS += normalline.h \
 SOURCES += normalline.cpp \
            visualnormallinefactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libnormalline.so
+    QMAKE_CLEAN = libnormalline.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

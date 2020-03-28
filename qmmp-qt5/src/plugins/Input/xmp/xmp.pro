@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decoderxmpfactory.h \
            decoder_xmp.h \
@@ -8,12 +8,13 @@ SOURCES += decoder_xmp.cpp \
            decoderxmpfactory.cpp \
            xmpmetadatamodel.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/xmp
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = xmp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
 
 unix:{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libxmp.so
+    QMAKE_CLEAN = libxmp.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX

@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/floridbass
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = floridbass
 
 HEADERS += floridbass.h \
            visualfloridbassfactory.h
@@ -9,13 +10,8 @@ HEADERS += floridbass.h \
 SOURCES += floridbass.cpp \
            visualfloridbassfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/florid.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridbass.so
+    QMAKE_CLEAN = libfloridbass.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

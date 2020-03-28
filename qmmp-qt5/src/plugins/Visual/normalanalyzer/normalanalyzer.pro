@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/normalanalyzer
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = normalanalyzer
 
 HEADERS += normalanalyzer.h \
            visualnormalanalyzerfactory.h
@@ -9,13 +10,8 @@ HEADERS += normalanalyzer.h \
 SOURCES += normalanalyzer.cpp \
            visualnormalanalyzerfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libnormalanalyzer.so
+    QMAKE_CLEAN = libnormalanalyzer.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

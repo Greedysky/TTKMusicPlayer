@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/plusxrays
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = plusxrays
 
 HEADERS += plusxrays.h \
            visualplusxraysfactory.h
@@ -9,13 +10,8 @@ HEADERS += plusxrays.h \
 SOURCES += plusxrays.cpp \
            visualplusxraysfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libplusxrays.so
+    QMAKE_CLEAN = libplusxrays.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

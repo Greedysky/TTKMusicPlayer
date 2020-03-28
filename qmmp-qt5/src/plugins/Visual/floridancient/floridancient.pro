@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/floridancient
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = floridancient
 
 HEADERS += floridancient.h \
            visualfloridancientfactory.h
@@ -9,13 +10,8 @@ HEADERS += floridancient.h \
 SOURCES += floridancient.cpp \
            visualfloridancientfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/florid.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridancient.so
+    QMAKE_CLEAN = libfloridancient.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

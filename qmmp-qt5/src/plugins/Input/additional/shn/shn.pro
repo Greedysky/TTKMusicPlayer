@@ -1,5 +1,5 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../additional.pri)
+include($$PWD/../common/common.pri)
 
 HEADERS += decodershnfactory.h \
            decoder_shn.h \
@@ -24,23 +24,19 @@ SOURCES += decoder_shn.cpp \
            vario.c \
            wave.c
 
-TARGET = $$PLUGINS_PREFIX/Input/shn
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = shn
 
 INCLUDEPATH += $$EXTRA_PREFIX/libshn/include
 
 unix{
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_shn
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_shn.so
+        TARGET = plugin_input_shn
+        QMAKE_CLEAN = libplugin_input_shn.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libshn.so
+        QMAKE_CLEAN = libshn.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
-}
-
-win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
 }

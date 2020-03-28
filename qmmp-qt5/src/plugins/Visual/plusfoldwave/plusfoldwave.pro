@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/plusfoldwave
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = plusfoldwave
 
 HEADERS += plusfoldwave.h \
            visualplusfoldwavefactory.h
@@ -9,13 +10,8 @@ HEADERS += plusfoldwave.h \
 SOURCES += plusfoldwave.cpp \
            visualplusfoldwavefactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libplusfoldwave.so
+    QMAKE_CLEAN = libplusfoldwave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

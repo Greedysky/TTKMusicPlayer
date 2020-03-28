@@ -1,4 +1,5 @@
-include(../../../qmmp.pri)
+include($$PWD/../plugins.pri)
+
 TEMPLATE = subdirs
 
 SUBDIRS += normalanalyzer normalewave normalhistogram normalline normalflowwave normalspacewave

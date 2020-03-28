@@ -29,10 +29,9 @@
  *
  */
 
-#include <QtPlugin>
 #include "decoderalacfactory.h"
 #include "decoder_alac.h"
-#include "alacwrap.h"
+#include "alachelper.h"
 
 bool DecoderALACFactory::canDecode(QIODevice *) const
 {
@@ -59,8 +58,8 @@ Decoder *DecoderALACFactory::create(const QString &path, QIODevice *)
 
 QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    ALACWrap alac(path.toUtf8().constData());
-    if(!alac.initialize())
+    ALACHelper helper(path.toUtf8().constData());
+    if(!helper.initialize())
     {
         return QList <TrackInfo *>();
     }
@@ -68,10 +67,10 @@ QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, Track
     TrackInfo *info = new TrackInfo(path);
     if(parts & TrackInfo::Properties)
     {
-        info->setValue(Qmmp::BITRATE, alac.bitrate());
-        info->setValue(Qmmp::SAMPLERATE, alac.samplerate());
-        info->setValue(Qmmp::CHANNELS, alac.channels());
-        info->setDuration(alac.totalTime());
+        info->setValue(Qmmp::BITRATE, helper.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
+        info->setValue(Qmmp::CHANNELS, helper.channels());
+        info->setDuration(helper.totalTime());
     }
 
     return QList <TrackInfo *>() << info;
@@ -81,5 +80,3 @@ MetaDataModel* DecoderALACFactory::createMetaDataModel(const QString &, bool)
 {
     return nullptr;
 }
-
-Q_EXPORT_PLUGIN2(alac,DecoderALACFactory)

@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decodermpegfactory.h \
 	   tagextractor.h \
@@ -8,7 +8,8 @@ SOURCES += decodermpegfactory.cpp \
 	   tagextractor.cpp \
 	   mpegmetadatamodel.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/mpeg
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = mpeg
 
 contains(CONFIG, WITH_MAD){
     INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
@@ -25,7 +26,7 @@ unix:contains(CONFIG, WITH_MPG123){
 }
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libmpeg.so
+    QMAKE_CLEAN = libmpeg.so
     target.path = $$PLUGIN_DIR/Input
     INSTALLS += target
     contains(CONFIG, WITH_MAD):{
@@ -39,8 +40,6 @@ unix {
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll \
             -L$$EXTRA_PREFIX/libmad/lib -lmad
 }

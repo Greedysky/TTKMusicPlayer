@@ -1,7 +1,8 @@
-include(../../plugins.pri)
-include(../common/common.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/normalhistogram
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = normalhistogram
 
 HEADERS += normalhistogram.h \
            visualnormalhistogramfactory.h
@@ -9,13 +10,8 @@ HEADERS += normalhistogram.h \
 SOURCES += normalhistogram.cpp \
            visualnormalhistogramfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libnormalhistogram.so
+    QMAKE_CLEAN = libnormalhistogram.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }
