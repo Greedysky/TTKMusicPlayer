@@ -45,8 +45,6 @@ DecoderProperties DecoderVorbisFactory::properties() const
     properties.filters << "*.ogg";
     properties.description = tr("Ogg Vorbis Files");
     properties.contentTypes << "application/ogg" << "audio/x-vorbis+ogg";
-    properties.hasSettings = false;
-    properties.noInput = false;
     return properties;
 }
 

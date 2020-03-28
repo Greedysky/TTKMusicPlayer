@@ -43,8 +43,6 @@ DecoderProperties DecoderOpusFactory::properties() const
     properties.filters << "*.opus";
     properties.description = tr("Ogg Opus Files");
     properties.contentTypes << "audio/opus";
-    properties.hasSettings = false;
-    properties.noInput = false;
     return properties;
 }
 

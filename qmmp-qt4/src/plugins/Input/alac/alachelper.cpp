@@ -30,12 +30,11 @@
  */
 
 #include <QFileInfo>
-#include <qmmp/qmmp.h>
-#include "alacwrap.h"
+#include "alachelper.h"
 
 int host_bigendian = 0;
 
-ALACWrap::ALACWrap(const QString &path)
+ALACHelper::ALACHelper(const QString &path)
 {
     {
         uint32_t integer = 0x000000aa;
@@ -51,12 +50,12 @@ ALACWrap::ALACWrap(const QString &path)
     m_stream = nullptr;
 }
 
-ALACWrap::~ALACWrap()
+ALACHelper::~ALACHelper()
 {
     close();
 }
 
-void ALACWrap::close()
+void ALACHelper::close()
 {
     m_totalTime = 0;
     m_bitrate = 0;
@@ -69,12 +68,12 @@ void ALACWrap::close()
         alac_destroy(m_alac);
 }
 
-bool ALACWrap::initialize()
+bool ALACHelper::initialize()
 {
     m_totalTime = 0;
     m_bitrate = 0;
 
-    m_file = fopen(m_path.toLocal8Bit().data(), "rb");
+    m_file = fopen(m_path.toLocal8Bit().constData(), "rb");
     if(m_file == nullptr)
     {
         return false;
@@ -118,27 +117,27 @@ bool ALACWrap::initialize()
     return true;
 }
 
-qint64 ALACWrap::totalTime() const
+qint64 ALACHelper::totalTime() const
 {
     return m_totalTime;
 }
 
-int ALACWrap::bitrate() const
+int ALACHelper::bitrate() const
 {
     return m_bitrate;
 }
 
-int ALACWrap::samplerate() const
+int ALACHelper::samplerate() const
 {
     return m_demux.sample_rate;
 }
 
-int ALACWrap::channels() const
+int ALACHelper::channels() const
 {
     return m_demux.num_channels;
 }
 
-qint64 ALACWrap::read(unsigned char *data, qint64 size)
+int ALACHelper::read(unsigned char *data, int size)
 {
     int copy_data;
     int current_size = size;
@@ -176,7 +175,7 @@ qint64 ALACWrap::read(unsigned char *data, qint64 size)
     return size - current_size;
 }
 
-void ALACWrap::seek(qint64 pos)
+void ALACHelper::seek(qint64 pos)
 {
     stream_setpos(m_stream, pos);
 }

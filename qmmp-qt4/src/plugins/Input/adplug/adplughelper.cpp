@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,9 +18,9 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include "adplugwrap.h"
+#include "adplughelper.h"
 
-AdplugWrap::AdplugWrap(const std::string &filename)
+AdplugHelper::AdplugHelper(const std::string &filename)
     : m_opl(new CEmuopl(rate(), true, false)),
       m_player(CAdPlug::factory(filename.c_str(), m_opl.get()))
 {
@@ -28,7 +28,7 @@ AdplugWrap::AdplugWrap(const std::string &filename)
         throw InvalidFile();
 }
 
-AdplugWrap::Frame AdplugWrap::read()
+AdplugHelper::Frame AdplugHelper::read()
 {
     size_t to_write;
     size_t bufsiz = sizeof(m_buf) / sizeof(*m_buf);
@@ -56,7 +56,7 @@ AdplugWrap::Frame AdplugWrap::read()
     return Frame(to_write * 2, reinterpret_cast<unsigned char *>(m_buf));
 }
 
-std::vector<std::string> AdplugWrap::instruments()
+std::vector<std::string> AdplugHelper::instruments()
 {
     std::vector<std::string> insts;
     for(unsigned int i = 0; i < instrument_count(); i++)

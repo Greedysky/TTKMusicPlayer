@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,9 +31,9 @@ bool DecoderAdplug::initialize()
 {
     try
     {
-        m_adplug = std::unique_ptr<AdplugWrap>(new AdplugWrap(m_path.toUtf8().constData()));
+        m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(m_path.toUtf8().constData()));
     }
-    catch(const AdplugWrap::InvalidFile &)
+    catch(const AdplugHelper::InvalidFile &)
     {
         return false;
     }
@@ -56,13 +56,13 @@ int DecoderAdplug::bitrate() const
     return m_adplug->depth();
 }
 
-qint64 DecoderAdplug::read(unsigned char *audio, qint64 maxSize)
+qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
 {
     qint64 copied;
 
-    copied = copy(audio, maxSize);
+    copied = copy(audio, max_size);
     audio += copied;
-    maxSize -= copied;
+    max_size -= copied;
 
     /* Some songs loop endlessly.  If we pass the length threshold (Adplug
     * caps the reported length at 10 minutes), then report EOF.
@@ -74,7 +74,7 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 maxSize)
 
     if(m_buf_filled == 0)
     {
-        AdplugWrap::Frame frame = m_adplug->read();
+        AdplugHelper::Frame frame = m_adplug->read();
         if(frame.n == 0)
         {
             return copied;
@@ -84,7 +84,7 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 maxSize)
         m_buf_filled += frame.n;
     }
 
-    copied += copy(audio, maxSize);
+    copied += copy(audio, max_size);
     m_time += copied / m_divisor;
     return copied;
 }
@@ -100,8 +100,8 @@ qint64 DecoderAdplug::copy(unsigned char *audio, qint64 max_size)
     return to_copy;
 }
 
-void DecoderAdplug::seek(qint64 time)
+void DecoderAdplug::seek(qint64 pos)
 {
-    m_adplug->seek(time);
-    m_time = time;
+    m_adplug->seek(pos);
+    m_time = pos;
 }

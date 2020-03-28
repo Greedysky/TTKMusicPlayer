@@ -30,12 +30,12 @@
  */
 
 #include "decoder_alac.h"
-#include "alacwrap.h"
+#include "alachelper.h"
 
 DecoderALAC::DecoderALAC(const QString &path)
     : Decoder()
 {
-    m_alac = new ALACWrap(path);
+    m_alac = new ALACHelper(path);
 }
 
 DecoderALAC::~DecoderALAC()

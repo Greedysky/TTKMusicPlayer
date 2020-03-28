@@ -38,7 +38,6 @@ DecoderProperties DecoderAACFactory::properties() const
     properties.description = tr("AAC Files");
     properties.contentTypes << "audio/aacp" << "audio/aac";
     properties.shortName = "aac";
-    properties.hasSettings = false;
     return properties;
 }
 

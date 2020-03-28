@@ -32,7 +32,7 @@
 #include <QtPlugin>
 #include "decoderalacfactory.h"
 #include "decoder_alac.h"
-#include "alacwrap.h"
+#include "alachelper.h"
 
 bool DecoderALACFactory::canDecode(QIODevice *) const
 {
@@ -59,7 +59,7 @@ Decoder *DecoderALACFactory::create(const QString &path, QIODevice *)
 
 QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    ALACWrap alac(path.toUtf8().constData());
+    ALACHelper alac(path.toUtf8().constData());
     if(!alac.initialize())
     {
         return QList <TrackInfo *>();

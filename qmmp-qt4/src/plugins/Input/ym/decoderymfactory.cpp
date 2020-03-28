@@ -40,7 +40,6 @@ DecoderProperties DecoderYmFactory::properties() const
     properties.filters << "*.ym";
     properties.description = tr("YM Files");
     properties.shortName = "ym";
-    properties.hasSettings = false;
     properties.noInput = true;
     properties.protocols << "file";
     return properties;

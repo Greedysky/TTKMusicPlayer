@@ -18,8 +18,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OPTIMFROGWRAP_H
-#define OPTIMFROGWRAP_H
+#ifndef OptimFROGHelper_H
+#define OptimFROGHelper_H
 
 #include <map>
 #include <QFile>
@@ -28,13 +28,13 @@
 #include <qt_windows.h>
 #endif
 
-class OptimFROGWrap
+class OptimFROGHelper
 {
 public:
-    explicit OptimFROGWrap(QIODevice *i);
-    OptimFROGWrap(const OptimFROGWrap &) = delete;
-    OptimFROGWrap &operator=(const OptimFROGWrap &) = delete;
-    ~OptimFROGWrap();
+    explicit OptimFROGHelper(QIODevice *i);
+    OptimFROGHelper(const OptimFROGHelper &) = delete;
+    OptimFROGHelper &operator=(const OptimFROGHelper &) = delete;
+    ~OptimFROGHelper();
 
     bool initialize();
 

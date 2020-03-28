@@ -30,12 +30,12 @@
  */
 
 #include "decoder_alac.h"
-#include "alachelper.h"
+#include "alacwrap.h"
 
 DecoderALAC::DecoderALAC(const QString &path)
     : Decoder()
 {
-    m_alac = new ALACHelper(path);
+    m_alac = new ALACWrap(path);
 }
 
 DecoderALAC::~DecoderALAC()
@@ -47,13 +47,13 @@ bool DecoderALAC::initialize()
 {
     if(!m_alac->initialize())
     {
-        qDebug("ALACHelper: initialize false");
+        qDebug("ALACWrap: initialize false");
         return false;
     }
 
     configure(m_alac->samplerate(), 2, Qmmp::PCM_S16LE);
 
-    qDebug("ALACHelper: initialize success");
+    qDebug("ALACWrap: initialize success");
     return true;
 }
 
@@ -67,12 +67,12 @@ int DecoderALAC::bitrate() const
     return m_alac->bitrate();
 }
 
-qint64 DecoderALAC::read(unsigned char *data, qint64 size)
+qint64 DecoderALAC::read(unsigned char *data, qint64 maxSize)
 {
-    return m_alac->read(data, size);
+    return m_alac->read(data, maxSize);
 }
 
-void DecoderALAC::seek(qint64 pos)
+void DecoderALAC::seek(qint64 time)
 {
-    m_alac->seek(pos);
+    m_alac->seek(time);
 }

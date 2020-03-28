@@ -28,6 +28,8 @@ class DecoderCDAudioFactory : public QObject, DecoderFactory
     Q_OBJECT
     Q_INTERFACES(DecoderFactory)
 public:
+    DecoderCDAudioFactory::DecoderCDAudioFactory();
+
     virtual bool canDecode(QIODevice *input) const override;
     virtual DecoderProperties properties() const override;
     virtual Decoder *create(const QString &path, QIODevice *input) override;

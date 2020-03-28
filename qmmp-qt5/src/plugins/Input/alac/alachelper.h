@@ -29,8 +29,8 @@
  *
  */
 
-#ifndef ALACHelper_H
-#define ALACHelper_H
+#ifndef ALACHELPER_H
+#define ALACHELPER_H
 
 #include <QObject>
 

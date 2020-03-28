@@ -18,7 +18,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <qmmp/statehandler.h>
 #include "gmehelper.h"
 #include "decoder_gme.h"
 

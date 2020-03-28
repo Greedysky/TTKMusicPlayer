@@ -21,7 +21,7 @@
 #ifndef DECODER_ADPLUG_H
 #define DECODER_ADPLUG_H
 
-#include "adplugwrap.h"
+#include "adplughelper.h"
 #include <qmmp/decoder.h>
 
 class DecoderAdplug : public Decoder
@@ -39,7 +39,7 @@ private:
     qint64 copy(unsigned char *, qint64);
 
     QString m_path;
-    std::unique_ptr<AdplugWrap> m_adplug;
+    std::unique_ptr<AdplugHelper> m_adplug;
     unsigned char *m_bufptr = nullptr;
     qint64 m_buf_filled = 0;
     unsigned long m_time = 0;

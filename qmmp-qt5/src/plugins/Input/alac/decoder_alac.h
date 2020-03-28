@@ -34,7 +34,7 @@
 
 #include <qmmp/decoder.h>
 
-class ALACHelper;
+class ALACWrap;
 
 class DecoderALAC : public Decoder
 {
@@ -50,7 +50,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    ALACHelper *m_alac;
+    ALACWrap *m_alac;
 
 };
 

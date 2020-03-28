@@ -22,7 +22,6 @@
 #include <QStringList>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <qmmp/trackinfo.h>
 #include <qmmp/decoderfactory.h>
 #include <qmmp/soundcore.h>
 #include "cueparser.h"

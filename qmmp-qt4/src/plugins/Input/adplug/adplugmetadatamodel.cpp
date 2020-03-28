@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,28 +19,28 @@
  ***************************************************************************/
 
 #include "adplugmetadatamodel.h"
-#include "adplugwrap.h"
+#include "adplughelper.h"
 
 AdplugMetaDataModel::AdplugMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
     try
     {
-        AdplugWrap adplug(path.toUtf8().constData());
+        AdplugHelper adplug(path.toUtf8().constData());
         fill_in_extra_properties(&adplug);
         fill_in_descriptions(&adplug);
     }
-    catch(const AdplugWrap::InvalidFile &)
+    catch(const AdplugHelper::InvalidFile &)
     {
     }
 }
 
-void AdplugMetaDataModel::fill_in_extra_properties(AdplugWrap *wrap)
+void AdplugMetaDataModel::fill_in_extra_properties(AdplugHelper *helper)
 {
-    if(wrap->instrument_count() != 0)
+    if(helper->instrument_count() != 0)
     {
         QString text;
-        for(const std::string &s : wrap->instruments())
+        for(const std::string &s : helper->instruments())
         {
             text += QString::fromStdString(s) + "\n";
         }
@@ -48,20 +48,20 @@ void AdplugMetaDataModel::fill_in_extra_properties(AdplugWrap *wrap)
     }
 }
 
-void AdplugMetaDataModel::fill_in_descriptions(AdplugWrap *wrap)
+void AdplugMetaDataModel::fill_in_descriptions(AdplugHelper *helper)
 {
-    m_ap << MetaDataItem(tr("Title"), QString::fromStdString(wrap->title()));
-    m_ap << MetaDataItem(tr("Format"), QString::fromStdString(wrap->format()));
-    m_ap << MetaDataItem(tr("Author"), QString::fromStdString(wrap->author()));
-    m_ap << MetaDataItem(tr("Description"), QString::fromStdString(wrap->author()));
+    m_ap << MetaDataItem(tr("Title"), QString::fromStdString(helper->title()));
+    m_ap << MetaDataItem(tr("Format"), QString::fromStdString(helper->format()));
+    m_ap << MetaDataItem(tr("Author"), QString::fromStdString(helper->author()));
+    m_ap << MetaDataItem(tr("Description"), QString::fromStdString(helper->author()));
 
-    if(wrap->pattern_count() != 0)
+    if(helper->pattern_count() != 0)
     {
-        m_ap << MetaDataItem(tr("Patterns"), QString::number(wrap->pattern_count()));
+        m_ap << MetaDataItem(tr("Patterns"), QString::number(helper->pattern_count()));
     }
-    if(wrap->instrument_count() != 0)
+    if(helper->instrument_count() != 0)
     {
-        m_ap << MetaDataItem(tr("Instruments"), QString::number(wrap->instrument_count()));
+        m_ap << MetaDataItem(tr("Instruments"), QString::number(helper->instrument_count()));
     }
 }
 

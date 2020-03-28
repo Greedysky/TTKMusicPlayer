@@ -29,7 +29,6 @@
 
 #include <qmmp/buffer.h>
 #include <qmmp/visual.h>
-#include <qmmp/statehandler.h>
 #include "outputalsa.h"
 
 OutputALSA::OutputALSA() : m_inited(false)

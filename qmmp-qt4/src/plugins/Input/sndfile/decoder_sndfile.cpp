@@ -20,7 +20,6 @@
 
 #include <QObject>
 #include <QFile>
-#include <QFileInfo>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
 #include "decoder_sndfile.h"

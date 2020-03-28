@@ -3,13 +3,13 @@ include(../../plugins.pri)
 HEADERS += decoderadplugfactory.h \
            magic.h \
            decoder_adplug.h \
-           adplugwrap.h \
+           adplughelper.h \
            adplugmetadatamodel.h
 
 SOURCES += decoderadplugfactory.cpp \
            magic.cpp \
            decoder_adplug.cpp \
-           adplugwrap.cpp \
+           adplughelper.cpp \
            adplugmetadatamodel.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/adplug

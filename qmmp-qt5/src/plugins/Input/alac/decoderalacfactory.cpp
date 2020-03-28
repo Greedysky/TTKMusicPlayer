@@ -29,9 +29,10 @@
  *
  */
 
+#include <QtPlugin>
 #include "decoderalacfactory.h"
 #include "decoder_alac.h"
-#include "alachelper.h"
+#include "alacwrap.h"
 
 bool DecoderALACFactory::canDecode(QIODevice *) const
 {
@@ -45,6 +46,8 @@ DecoderProperties DecoderALACFactory::properties() const
     properties.filters << "*.alac";
     properties.description = tr("ALAC Files");
     properties.shortName = "alac";
+    properties.hasSettings = false;
+    properties.noInput = true;
     properties.protocols << "file";
     return properties;
 }
@@ -56,7 +59,7 @@ Decoder *DecoderALACFactory::create(const QString &path, QIODevice *)
 
 QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    ALACHelper alac(path.toUtf8().constData());
+    ALACWrap alac(path.toUtf8().constData());
     if(!alac.initialize())
     {
         return QList <TrackInfo *>();
@@ -78,3 +81,5 @@ MetaDataModel* DecoderALACFactory::createMetaDataModel(const QString &, bool)
 {
     return nullptr;
 }
+
+Q_EXPORT_PLUGIN2(alac,DecoderALACFactory)

@@ -3,12 +3,12 @@ include(../../plugins.pri)
 HEADERS += decoderoptimfrogfactory.h \
            decoder_optimfrog.h \
            optimfrogmetadatamodel.h \
-           optimfrogwrap.h
+           optimfroghelper.h
 
 SOURCES += decoderoptimfrogfactory.cpp \
            decoder_optimfrog.cpp \
            optimfrogmetadatamodel.cpp \
-           optimfrogwrap.cpp
+           optimfroghelper.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/optimfrog
 

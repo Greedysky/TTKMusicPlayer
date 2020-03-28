@@ -29,8 +29,8 @@
  *
  */
 
-#ifndef ALACWRAP_H
-#define ALACWRAP_H
+#ifndef ALACHELPER_H
+#define ALACHELPER_H
 
 #include <QObject>
 
@@ -40,20 +40,23 @@ extern "C" {
 #include "alac_stream.h"
 }
 
-class ALACWrap
+class ALACHelper
 {
 public:
-    ALACWrap(const QString &path);
-    virtual ~ALACWrap();
+    ALACHelper(const QString &path);
+    virtual ~ALACHelper();
 
     void close();
+
     bool initialize();
     qint64 totalTime() const;
     void seek(qint64 time);
+
     int bitrate() const;
     int samplerate() const;
     int channels() const;
-    qint64 read(unsigned char *data, qint64 size);
+
+    int read(unsigned char *data, int size);
 
 private:
     FILE *m_file;

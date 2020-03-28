@@ -67,6 +67,14 @@ contains(CONFIG, SPEEX_PLUGIN){
     SUBDIRS += speex
 }
 
+contains(CONFIG, TTA_PLUGIN){
+    SUBDIRS += tta
+}
+
+contains(CONFIG, SHN_PLUGIN){
+    SUBDIRS += shn
+}
+
 unix:!android{
     contains(CONFIG, CDAUDIO_PLUGIN){
         SUBDIRS += cdaudio
