@@ -1,8 +1,8 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/plusvolumewave
-
-include(../common/common.pri)
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = plusvolumewave
 
 HEADERS += plusvolumewave.h \
            visualplusvolumewavefactory.h
@@ -10,13 +10,8 @@ HEADERS += plusvolumewave.h \
 SOURCES += plusvolumewave.cpp \
            visualplusvolumewavefactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libplusvolumewave.so
+    QMAKE_CLEAN = libplusvolumewave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

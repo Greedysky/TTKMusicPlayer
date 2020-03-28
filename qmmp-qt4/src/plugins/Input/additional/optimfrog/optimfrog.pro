@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../additional.pri)
 
 HEADERS += decoderoptimfrogfactory.h \
            decoder_optimfrog.h \
@@ -10,18 +10,14 @@ SOURCES += decoderoptimfrogfactory.cpp \
            optimfrogmetadatamodel.cpp \
            optimfroghelper.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/optimfrog
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = optimfrog
 
 INCLUDEPATH += $$EXTRA_PREFIX/liboptimfrog/include
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/liboptimfrog.so
+    QMAKE_CLEAN = liboptimfrog.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG
-}
-
-win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
 }

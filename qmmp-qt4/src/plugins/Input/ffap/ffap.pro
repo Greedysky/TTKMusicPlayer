@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decoderffapfactory.h \
            ffap.h \
@@ -14,7 +14,8 @@ SOURCES += decoderffapfactory.cpp \
            ffapmetadatamodel.cpp \
            decoder_ffapcue.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/ffap
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = ffap
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 
@@ -50,14 +51,12 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 #}
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libffap.so
+    QMAKE_CLEAN = libffap.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
 }

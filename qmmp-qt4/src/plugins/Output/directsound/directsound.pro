@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += outputdirectsoundfactory.h \
            outputdirectsound.h
@@ -6,9 +6,8 @@ HEADERS += outputdirectsoundfactory.h \
 SOURCES += outputdirectsoundfactory.cpp \
            outputdirectsound.cpp
 
-HEADERS += ../../../../src/qmmp/output.h
-
-TARGET = $$PLUGINS_PREFIX/Output/directsound
+DESTDIR = $$PLUGINS_PREFIX/Output
+TARGET = directsound
 
 LIBS += -ldxguid -lstrmiids -ldmoguids -lmsdmo -lole32 -loleaut32 -luuid -lgdi32 -ldsound -lksuser
 

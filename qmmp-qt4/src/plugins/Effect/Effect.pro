@@ -1,4 +1,5 @@
-include (../../../qmmp.pri)
+include($$PWD/../plugins.pri)
+
 TEMPLATE = subdirs
 
 SUBDIRS += crossfade stereo mono monotostereo

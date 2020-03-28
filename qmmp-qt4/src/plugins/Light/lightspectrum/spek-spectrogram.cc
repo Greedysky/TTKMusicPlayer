@@ -2,7 +2,7 @@
 #include "spek-fft.h"
 #include "spek-ruler.h"
 #include "spek-spectrogram.h"
-#include "soundcore.h"
+#include <qmmp/soundcore.h>
 
 #include <cmath>
 #include <QMenu>

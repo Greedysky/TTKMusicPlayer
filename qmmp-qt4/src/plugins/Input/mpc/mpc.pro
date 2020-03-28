@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decodermpcfactory.h \
            decoder_mpc.h \
@@ -8,18 +8,19 @@ SOURCES += decoder_mpc.cpp \
            decodermpcfactory.cpp \
            mpcmetadatamodel.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/mpc
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = mpc
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libmpcdec/include
 
 unix {
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_mpc
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_mpc.so
+        TARGET = plugin_input_mpc
+        QMAKE_CLEAN = libplugin_input_mpc.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libmpc.so
+        QMAKE_CLEAN = libmpc.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
@@ -28,8 +29,6 @@ unix {
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libmpcdec/lib -lmpcdec \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
 }

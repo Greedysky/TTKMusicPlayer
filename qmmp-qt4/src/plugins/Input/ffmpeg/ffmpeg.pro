@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decoderffmpegfactory.h \
            decoder_ffmpeg.h \
@@ -10,17 +10,18 @@ SOURCES += decoder_ffmpeg.cpp \
            ffmpegmetadatamodel.cpp \
            replaygainreader.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/ffmpeg
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = ffmpeg
 
 INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 
 unix {
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_ffmpeg
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_ffmpeg.so
+        TARGET = plugin_input_ffmpeg
+        QMAKE_CLEAN = libplugin_input_ffmpeg.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libffmpeg.so
+        QMAKE_CLEAN = libffmpeg.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
@@ -28,8 +29,6 @@ unix {
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec.dll -lavformat.dll -lavutil.dll
 }
 

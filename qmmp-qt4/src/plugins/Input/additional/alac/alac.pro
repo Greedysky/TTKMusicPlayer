@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../additional.pri)
 
 HEADERS += decoderalacfactory.h \
            decoder_alac.h \
@@ -15,10 +15,11 @@ SOURCES += decoderalacfactory.cpp \
            alac_demux.c \
            alac_stream.c
 
-TARGET = $$PLUGINS_PREFIX/Input/alac
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = alac
 
 unix:{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libalac.so
+    QMAKE_CLEAN = libalac.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
 }

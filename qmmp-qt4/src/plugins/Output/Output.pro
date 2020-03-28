@@ -1,4 +1,4 @@
-include(../../../qmmp.pri)
+include($$PWD/../plugins.pri)
 
 TEMPLATE = subdirs
 SUBDIRS += null

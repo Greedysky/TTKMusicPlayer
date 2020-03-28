@@ -1,8 +1,8 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/normalspacewave
-
-include(../common/common.pri)
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = normalspacewave
 
 HEADERS += normalspacewave.h \
            visualnormalspacewavefactory.h
@@ -10,13 +10,8 @@ HEADERS += normalspacewave.h \
 SOURCES += normalspacewave.cpp \
            visualnormalspacewavefactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libnormalspacewave.so
+    QMAKE_CLEAN = libnormalspacewave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

@@ -1,8 +1,8 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/plusmonowave
-
-include(../common/common.pri)
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = plusmonowave
 
 HEADERS += plusmonowave.h \
            visualplusmonowavefactory.h
@@ -10,13 +10,8 @@ HEADERS += plusmonowave.h \
 SOURCES += plusmonowave.cpp \
            visualplusmonowavefactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libplusmonowave.so
+    QMAKE_CLEAN = libplusmonowave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }

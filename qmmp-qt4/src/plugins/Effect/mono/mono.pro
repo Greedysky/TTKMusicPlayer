@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += monoplugin.h \
            effectmonofactory.h
@@ -6,10 +6,11 @@ HEADERS += monoplugin.h \
 SOURCES += monoplugin.cpp \
            effectmonofactory.cpp
 
-TARGET = $$PLUGINS_PREFIX/Effect/mono
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = mono
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libmono.so
+    QMAKE_CLEAN = libmono.so
     target.path = $$LIB_DIR/qmmp/Effect
     INSTALLS += target
 }

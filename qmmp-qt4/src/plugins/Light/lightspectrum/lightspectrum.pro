@@ -1,6 +1,7 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
-TARGET = $$PLUGINS_PREFIX/Light/lightspectrum
+DESTDIR = $$PLUGINS_PREFIX/Light
+TARGET = lightspectrum
 
 SOURCES += \
         spek-ruler.cc \
@@ -23,12 +24,11 @@ HEADERS  += \
 INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 
 win32:{
-    INCLUDEPATH += ./
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec.dll -lavformat.dll -lavutil.dll
 }
 
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Light/liblightspectrum.so
+    QMAKE_CLEAN = liblightspectrum.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil

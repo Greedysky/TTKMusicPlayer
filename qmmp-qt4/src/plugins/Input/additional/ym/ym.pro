@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../additional.pri)
 
 HEADERS += decoderymfactory.h \
            decoder_ym.h \
@@ -17,10 +17,11 @@ SOURCES += decoderymfactory.cpp \
            ym_load.cpp \
            ym_music.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/ym
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = ym
 
 unix:{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libym.so
+    QMAKE_CLEAN = libym.so
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
 }

@@ -1,7 +1,7 @@
-include(../../../qmmp.pri)
+include($$PWD/../plugins.pri)
 
 TEMPLATE = subdirs
-SUBDIRS += mpeg vorbis cue sndfile wavpack
+SUBDIRS += additional mpeg vorbis cue sndfile wavpack
 
 contains(CONFIG, FLAC_PLUGIN){
     SUBDIRS += flac
@@ -45,34 +45,6 @@ contains(CONFIG, OPUS_PLUGIN){
 
 contains(CONFIG, AAC_PLUGIN){
     SUBDIRS += aac
-}
-
-contains(CONFIG, ADPLUG_PLUGIN){
-    SUBDIRS += adplug
-}
-
-contains(CONFIG, YM_PLUGIN){
-    SUBDIRS += ym
-}
-
-contains(CONFIG, ALAC_PLUGIN){
-    SUBDIRS += alac
-}
-
-contains(CONFIG, OPTIMFROG_PLUGIN){
-    SUBDIRS += optimfrog
-}
-
-contains(CONFIG, SPEEX_PLUGIN){
-    SUBDIRS += speex
-}
-
-contains(CONFIG, TTA_PLUGIN){
-    SUBDIRS += tta
-}
-
-contains(CONFIG, SHN_PLUGIN){
-    SUBDIRS += shn
 }
 
 unix:!android{

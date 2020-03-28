@@ -6,17 +6,20 @@
 
 QT       += core gui
 
-include(../../qmmp.pri)
+include($$PWD/../../qmmp.pri)
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TARGET = app
+win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+
 win32:{
-    TARGET = ../../../bin/$$TTKMusicPlayer/app
-    LIBS += -L../../bin/$$TTKMusicPlayer -lqmmp0
+    LIBS += -L$$OUT_PWD/../../bin/$$TTKMusicPlayer -lqmmp0
 }
 unix:{
-    TARGET = ../../lib/$$TTKMusicPlayer/app
-    LIBS += -L../../lib/$$TTKMusicPlayer -lqmmp
-    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$OUT_PWD/../../lib/$$TTKMusicPlayer -lqmmp
+    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 TEMPLATE = app
 

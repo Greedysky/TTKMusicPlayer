@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += outputnullfactory.h \
            outputnull.h
@@ -6,10 +6,11 @@ HEADERS += outputnullfactory.h \
 SOURCES += outputnullfactory.cpp \
            outputnull.cpp
 
-TARGET = $$PLUGINS_PREFIX/Output/null
+DESTDIR = $$PLUGINS_PREFIX/Output
+TARGET = null
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Output/libnull.so
+    QMAKE_CLEAN = libnull.so
     target.path = $$LIB_DIR/qmmp/Output
     INSTALLS += target
 }

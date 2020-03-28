@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += decoderflacfactory.h \
            decoder_flac.h \
@@ -9,19 +9,20 @@ SOURCES += decoder_flac.cpp \
            decoderflacfactory.cpp \
            cueparser.cpp \
            flacmetadatamodel.cpp
-    
-TARGET = $$PLUGINS_PREFIX/Input/flac
+
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = flac
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libflac/include
 
 unix {
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_flac
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_flac.so
+        TARGET = plugin_input_flac
+        QMAKE_CLEAN = libplugin_input_flac.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libflac.so
+        QMAKE_CLEAN = libflac.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
@@ -31,8 +32,6 @@ unix {
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libflac/lib -llibFLAC \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll \
             -L$$EXTRA_PREFIX/libogg/lib -logg \

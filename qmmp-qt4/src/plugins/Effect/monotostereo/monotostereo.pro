@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
 
 HEADERS += monotostereoplugin.h \
            effectmonotostereofactory.h
@@ -6,10 +6,11 @@ HEADERS += monotostereoplugin.h \
 SOURCES += monotostereoplugin.cpp \
            effectmonotostereofactory.cpp
 
-TARGET = $$PLUGINS_PREFIX/Effect/monotostereo
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = monotostereo
 
 unix {
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Effect/libmonotostereo.so
+    QMAKE_CLEAN = libmonotostereo.so
     target.path = $$LIB_DIR/qmmp/Effect
     INSTALLS += target
 }

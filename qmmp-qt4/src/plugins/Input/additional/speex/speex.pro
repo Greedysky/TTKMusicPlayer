@@ -1,4 +1,4 @@
-include(../../plugins.pri)
+include($$PWD/../additional.pri)
 
 HEADERS += decoderspeexfactory.h \
            decoder_speex.h \
@@ -10,18 +10,19 @@ SOURCES += decoderspeexfactory.cpp \
            speexhelper.cpp \
            speexmetadatamodel.cpp
 
-TARGET = $$PLUGINS_PREFIX/Input/speex
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = speex
 
 INCLUDEPATH += $$EXTRA_PREFIX/libspeex/include \
                $$EXTRA_PREFIX/libogg/include
 
 unix{
     unix:android {
-        TARGET = $$PLUGINS_PREFIX/../plugin_input_speex
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/../libplugin_input_speex.so
+        TARGET = plugin_input_speex
+        QMAKE_CLEAN = libplugin_input_speex.so
         target.path = $$LIB_DIR
     }else{
-        QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libspeex.so
+        QMAKE_CLEAN = libspeex.so
         target.path = $$LIB_DIR/qmmp/Input
     }
     INSTALLS += target
@@ -30,8 +31,6 @@ unix{
 }
 
 win32 {
-    HEADERS += ../../../../src/qmmp/metadatamodel.h \
-               ../../../../src/qmmp/decoderfactory.h
     LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex.dll \
             -L$$EXTRA_PREFIX/libogg/lib -logg
 }

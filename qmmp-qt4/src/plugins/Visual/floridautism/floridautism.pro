@@ -1,8 +1,8 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/floridautism
-
-include(../common/common.pri)
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = floridautism
 
 HEADERS += floridautism.h \
            visualfloridautismfactory.h
@@ -10,13 +10,8 @@ HEADERS += floridautism.h \
 SOURCES += floridautism.cpp \
            visualfloridautismfactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/florid.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libfloridautism.so
+    QMAKE_CLEAN = libfloridautism.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
     LIBS += -L/usr/lib -I/usr/include

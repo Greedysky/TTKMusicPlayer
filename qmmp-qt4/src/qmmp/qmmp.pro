@@ -1,4 +1,4 @@
-include(../../qmmp.pri)
+include($$PWD/../../qmmp.pri)
 
 HEADERS += \
     buffer.h \
@@ -84,9 +84,10 @@ SOURCES += recycler.cpp \
     florid.cpp \
     trackinfo.cpp
 
-unix:TARGET = ../../lib/$$TTKMusicPlayer/qmmp
-win32:TARGET = ../../../bin/$$TTKMusicPlayer/qmmp
+win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
+unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
 
+TARGET = qmmp
 CONFIG += shared warn_on qt thread
 TEMPLATE = lib
 
@@ -148,14 +149,14 @@ unix {
     DESTDIR = .
 }
 
-INCLUDEPATH += ./ ../../../extra/gcc/libtaglib/include
+INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include
 
 win32:{
-    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag.dll
+    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag.dll
 }
 
 unix {
-    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
     CONFIG += create_pc create_prl no_install_prl
     QMAKE_PKGCONFIG_NAME = qmmp
     QMAKE_PKGCONFIG_DESCRIPTION = qmmp core library

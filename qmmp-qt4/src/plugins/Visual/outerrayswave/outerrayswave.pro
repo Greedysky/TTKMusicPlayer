@@ -1,8 +1,8 @@
-include(../../plugins.pri)
+include($$PWD/../../plugins.pri)
+include($$PWD/../common/common.pri)
 
-TARGET = $$PLUGINS_PREFIX/Visual/outerrayswave
-
-include(../common/common.pri)
+DESTDIR = $$PLUGINS_PREFIX/Visual
+TARGET = outerrayswave
 
 HEADERS += outerrayswave.h \
            visualouterrayswavefactory.h
@@ -10,13 +10,8 @@ HEADERS += outerrayswave.h \
 SOURCES += outerrayswave.cpp \
            visualouterrayswavefactory.cpp
 
-win32:{
-    HEADERS += ../../../../src/qmmp/visual.h
-    INCLUDEPATH += ./
-}
-
 unix{
-    QMAKE_CLEAN = $$PLUGINS_PREFIX/Visual/libouterrayswave.so
+    QMAKE_CLEAN = libouterrayswave.so
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
 }
