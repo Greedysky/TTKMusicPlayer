@@ -1,7 +1,7 @@
 include($$PWD/additional.pri)
 
 TEMPLATE = subdirs
-SUBDIRS += ym alac tta shn
+SUBDIRS += ym alac tta shn vtx dca dumb
 
 contains(CONFIG, ADPLUG_PLUGIN){
     SUBDIRS += adplug

@@ -30,8 +30,8 @@ DecoderProperties DecoderSHNFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("SHN Plugin");
-    properties.filters << "*.tta";
-    properties.description = tr("Shorten Music Files");
+    properties.filters << "*.shn";
+    properties.description = tr("Shorten Audio Files");
     properties.shortName = "shn";
     properties.noInput = true;
     properties.protocols << "shn";

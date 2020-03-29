@@ -37,7 +37,7 @@ DecoderProperties DecoderYmFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("YM Plugin");
     properties.filters << "*.ym";
-    properties.description = tr("YM Files");
+    properties.description = tr("ST-Sound, ATARI-ST Audio Files");
     properties.shortName = "ym";
     properties.noInput = true;
     properties.protocols << "file";

@@ -34,7 +34,7 @@ DecoderProperties DecoderAACFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("AAC Plugin");
     properties.filters << "*.aac";
-    properties.description = tr("AAC Files");
+    properties.description = tr("MPEG-4 and MPEG-2 AAC Audio Files");
     properties.contentTypes << "audio/aacp" << "audio/aac";
     properties.shortName = "aac";
     return properties;

@@ -4,8 +4,8 @@ HEADERS += decodergmefactory.h \
            decoder_gme.h \
            gmehelper.h
     
-SOURCES += decoder_gme.cpp \
-           decodergmefactory.cpp \
+SOURCES += decodergmefactory.cpp \
+           decoder_gme.cpp \
            gmehelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

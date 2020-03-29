@@ -454,7 +454,7 @@ ConversionResult ConvertUTF8toUTF16BE(const UTF8** sourceStart, const UTF8* sour
 ///////////////////////////////////////////////////////////////////////
 int stdio_iconv(const char *in, int inlen, char *out, int outlen, const char *cs_in, const char *cs_out)
 {
-// NOTE: this function must support utf8->utf8 conversion, used for validation
+    // NOTE: this function must support utf8->utf8 conversion, used for validation
     int len = -1;
     *out = 0;
     if(inlen==0)

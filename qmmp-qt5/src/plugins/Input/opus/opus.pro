@@ -4,8 +4,8 @@ HEADERS += decoderopusfactory.h \
            decoder_opus.h \
            opusmetadatamodel.h
     
-SOURCES += decoder_opus.cpp \
-           decoderopusfactory.cpp \
+SOURCES += decoderopusfactory.cpp \
+           decoder_opus.cpp \
            opusmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

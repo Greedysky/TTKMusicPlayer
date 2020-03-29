@@ -4,8 +4,8 @@ HEADERS += decoderaacfactory.h \
            decoder_aac.h \
            aacfile.h
           
-SOURCES += decoder_aac.cpp \
-           decoderaacfactory.cpp \
+SOURCES += decoderaacfactory.cpp \
+           decoder_aac.cpp \
            aacfile.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

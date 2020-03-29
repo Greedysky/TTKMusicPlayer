@@ -4,8 +4,8 @@ HEADERS += decodermpcfactory.h \
            decoder_mpc.h \
            mpcmetadatamodel.h
     
-SOURCES += decoder_mpc.cpp \
-           decodermpcfactory.cpp \
+SOURCES += decodermpcfactory.cpp \
+           decoder_mpc.cpp \
            mpcmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

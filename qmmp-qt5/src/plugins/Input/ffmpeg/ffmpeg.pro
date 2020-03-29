@@ -5,8 +5,8 @@ HEADERS += decoderffmpegfactory.h \
            ffmpegmetadatamodel.h \
            replaygainreader.h
     
-SOURCES += decoder_ffmpeg.cpp \
-           decoderffmpegfactory.cpp \
+SOURCES += decoderffmpegfactory.cpp \
+           decoder_ffmpeg.cpp \
            ffmpegmetadatamodel.cpp \
            replaygainreader.cpp
 

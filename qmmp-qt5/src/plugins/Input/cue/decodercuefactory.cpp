@@ -34,7 +34,7 @@ DecoderProperties DecoderCUEFactory::properties() const
     properties.name = tr("CUE Plugin");
     properties.shortName = "cue";
     properties.filters << "*.cue";
-    properties.description = tr("CUE Files");
+    properties.description = tr("Cuesheet Files");
     properties.protocols << "cue";
     properties.hasSettings = true;
     properties.noInput = true;

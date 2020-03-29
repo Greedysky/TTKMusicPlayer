@@ -27,8 +27,6 @@ SOURCES += decoder_shn.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = shn
 
-INCLUDEPATH += $$EXTRA_PREFIX/libshn/include
-
 unix{
     unix:android {
         TARGET = plugin_input_shn

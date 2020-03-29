@@ -4,8 +4,8 @@ HEADERS += decodersidfactory.h \
            decoder_sid.h \
            sidhelper.h
     
-SOURCES += decoder_sid.cpp \
-           decodersidfactory.cpp \
+SOURCES += decodersidfactory.cpp \
+           decoder_sid.cpp \
            sidhelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

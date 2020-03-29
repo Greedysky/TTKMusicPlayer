@@ -4,8 +4,8 @@ HEADERS += decoderwildmidifactory.h \
            decoder_wildmidi.h \
            wildmidihelper.h
     
-SOURCES += decoder_wildmidi.cpp \
-           decoderwildmidifactory.cpp \
+SOURCES += decoderwildmidifactory.cpp \
+           decoder_wildmidi.cpp \
            wildmidihelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

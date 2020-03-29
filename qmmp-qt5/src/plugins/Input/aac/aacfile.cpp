@@ -189,7 +189,6 @@ void AACFile::parseADTS()
     /* Read all frames to ensure correct time and bitrate */
     for(frames = 0; /* */; frames++)
     {
-        //qDebug("frame header = %d", buf[0]);
         buf_at += m_input->read((char *)buf + buf_at, FAAD_MIN_STREAMSIZE*MAX_CHANNELS - buf_at);
 
         if(buf_at > 7)

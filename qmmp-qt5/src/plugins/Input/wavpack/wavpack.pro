@@ -5,8 +5,8 @@ HEADERS += decoderwavpackfactory.h \
            cueparser.h \
            wavpackmetadatamodel.h
     
-SOURCES += decoder_wavpack.cpp \
-           decoderwavpackfactory.cpp \
+SOURCES += decoderwavpackfactory.cpp \
+           decoder_wavpack.cpp \
            cueparser.cpp \
            wavpackmetadatamodel.cpp
 

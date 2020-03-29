@@ -4,8 +4,8 @@ HEADERS += decoderxmpfactory.h \
            decoder_xmp.h \
            xmpmetadatamodel.h
 
-SOURCES += decoder_xmp.cpp \
-           decoderxmpfactory.cpp \
+SOURCES += decoderxmpfactory.cpp \
+           decoder_xmp.cpp \
            xmpmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

@@ -5,8 +5,8 @@ HEADERS += decodermodplugfactory.h \
            archivereader.h \
            modplugmetadatamodel.h
     
-SOURCES += decoder_modplug.cpp \
-           decodermodplugfactory.cpp \
+SOURCES += decodermodplugfactory.cpp \
+           decoder_modplug.cpp \
            archivereader.cpp \
            modplugmetadatamodel.cpp
 

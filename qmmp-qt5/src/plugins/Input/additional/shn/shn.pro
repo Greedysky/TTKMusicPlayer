@@ -9,8 +9,8 @@ HEADERS += decodershnfactory.h \
            shndec.h \
            shorten.h
     
-SOURCES += decoder_shn.cpp \
-           decodershnfactory.cpp \
+SOURCES += decodershnfactory.cpp \
+           decoder_shn.cpp \
            shnmetadatamodel.cpp \
            shnhelper.cpp \
            array.c \
@@ -26,8 +26,6 @@ SOURCES += decoder_shn.cpp \
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = shn
-
-INCLUDEPATH += $$EXTRA_PREFIX/libshn/include
 
 unix{
     unix:android {

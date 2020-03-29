@@ -8,16 +8,14 @@ HEADERS += decoderttafactory.h \
            filter.h \
            ttadec.h
     
-SOURCES += decoder_tta.cpp \
+SOURCES += decoderttafactory.cpp \
            ttametadatamodel.cpp \
-           decoderttafactory.cpp \
+           decoder_tta.cpp \
            ttahelper.cpp \
            ttadec.c
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = tta
-
-INCLUDEPATH += $$EXTRA_PREFIX/libtta/include
 
 unix{
     unix:android {

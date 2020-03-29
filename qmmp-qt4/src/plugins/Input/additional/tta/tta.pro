@@ -17,8 +17,6 @@ SOURCES += decoder_tta.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = tta
 
-INCLUDEPATH += $$EXTRA_PREFIX/libtta/include
-
 unix{
     unix:android {
         TARGET = plugin_input_tta

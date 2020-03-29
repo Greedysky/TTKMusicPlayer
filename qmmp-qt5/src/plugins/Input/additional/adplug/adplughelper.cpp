@@ -24,8 +24,7 @@ AdplugHelper::AdplugHelper(const std::string &filename)
     : m_opl(new CEmuopl(rate(), true, false)),
       m_player(CAdPlug::factory(filename.c_str(), m_opl.get()))
 {
-    if(!m_player)
-        throw InvalidFile();
+
 }
 
 AdplugHelper::Frame AdplugHelper::read()
@@ -54,6 +53,11 @@ AdplugHelper::Frame AdplugHelper::read()
     m_opl->update(m_buf, to_write);
     m_remaining -= to_write;
     return Frame(to_write * 2, reinterpret_cast<unsigned char *>(m_buf));
+}
+
+bool AdplugHelper::initialize()
+{
+    return m_player.get();
 }
 
 std::vector<std::string> AdplugHelper::instruments()

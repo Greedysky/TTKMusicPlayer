@@ -241,7 +241,7 @@ const char *get_error_str (int error) {
 int open_tta_file (const char *filename, tta_info *info, unsigned int data_offset) {
 	unsigned int checksum;
 	unsigned int datasize;
-	unsigned int origsize;
+    unsigned int origsize;
     FILE *infile;
 	tta_hdr ttahdr;
 

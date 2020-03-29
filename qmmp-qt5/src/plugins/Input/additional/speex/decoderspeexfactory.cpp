@@ -31,7 +31,7 @@ DecoderProperties DecoderSpeexFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("SPEEX Plugin");
     properties.filters << "*.spx";
-    properties.description = tr("Speex Music Files");
+    properties.description = tr("Speex Audio Files");
     properties.shortName = "speex";
     properties.noInput = true;
     properties.protocols << "speex";
