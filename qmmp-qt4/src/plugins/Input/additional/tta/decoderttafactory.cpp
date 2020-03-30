@@ -77,7 +77,7 @@ QList<TrackInfo *> DecoderTTAFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setDuration(helper.totalTime() / 1000);
+        info->setDuration(helper.totalTime() * 1000);
     }
 
     return QList<TrackInfo *>() << info;

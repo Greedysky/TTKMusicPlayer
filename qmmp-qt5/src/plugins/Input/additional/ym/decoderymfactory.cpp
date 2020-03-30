@@ -72,7 +72,7 @@ QList<TrackInfo *> DecoderYmFactory::createPlayList(const QString &path, TrackIn
 
         if(parts & TrackInfo::Properties)
         {
-            info->setDuration(musicInfo.musicTimeInSec / 1000);
+            info->setDuration(musicInfo.musicTimeInSec * 1000);
         }
     }
 

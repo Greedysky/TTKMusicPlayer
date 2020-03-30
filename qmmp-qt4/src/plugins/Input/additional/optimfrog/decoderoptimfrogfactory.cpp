@@ -75,7 +75,7 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
             info->setValue(Qmmp::BITRATE, helper.bitrate());
             info->setValue(Qmmp::SAMPLERATE, helper.rate());
             info->setValue(Qmmp::CHANNELS, helper.channels());
-            info->setDuration(helper.length() / 1000);
+            info->setDuration(helper.length());
         }
 
         if((parts & TrackInfo::MetaData) && helper.hasTags())

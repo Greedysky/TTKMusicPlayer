@@ -64,7 +64,7 @@ QList<TrackInfo *> DecoderSHNFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setDuration(helper.totalTime() / 1000);
+        info->setDuration(helper.totalTime() * 1000);
     }
 
     return QList<TrackInfo *>() << info;

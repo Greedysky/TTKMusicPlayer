@@ -358,7 +358,7 @@ void DumbHelper::seek(qint64 time)
 
 int DumbHelper::bitrate() const
 {
-    return 1;
+    return 8;
 }
 
 int DumbHelper::samplerate() const
