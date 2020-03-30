@@ -5,8 +5,8 @@ HEADERS += decoderflacfactory.h \
            cueparser.h \
            flacmetadatamodel.h
     
-SOURCES += decoder_flac.cpp \
-           decoderflacfactory.cpp \
+SOURCES += decoderflacfactory.cpp \
+           decoder_flac.cpp \
            cueparser.cpp \
            flacmetadatamodel.cpp
 

@@ -1,12 +1,12 @@
 include($$PWD/../../plugins.pri)
 
 HEADERS += decodercuefactory.h \
-           cueparser.h \
            decoder_cue.h \
+           cueparser.h \
            cuemetadatamodel.h
     
-SOURCES += decoder_cue.cpp \
-           decodercuefactory.cpp \
+SOURCES += decodercuefactory.cpp \
+           decoder_cue.cpp \
            cueparser.cpp \
            cuemetadatamodel.cpp
 

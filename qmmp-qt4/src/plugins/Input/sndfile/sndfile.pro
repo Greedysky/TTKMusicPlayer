@@ -3,8 +3,8 @@ include($$PWD/../../plugins.pri)
 HEADERS += decodersndfilefactory.h \
            decoder_sndfile.h
            
-SOURCES += decoder_sndfile.cpp \
-           decodersndfilefactory.cpp
+SOURCES += decodersndfilefactory.cpp \
+           decoder_sndfile.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = sndfile

@@ -70,6 +70,8 @@ int stdio_id3v2_add_genre(metaInfo_t *it, char *genre);
 int stdio_id3v2_load_txx(int version_major, metaInfo_t *it, uint8_t *readptr, int synched_size);
 int stdio_id3v2_load_rva2(int version_major, metaInfo_t *it, uint8_t *readptr, int synched_size);
 int stdio_id3v2_load_ufid(int version_major, metaInfo_t *it, uint8_t *readptr, int synched_size);
+///
+int stdio_iconv(const char *in, int inlen, char *out, int outlen, const char *cs_in, const char *cs_out);
 const char *stdio_detect_charset(const char *s);
 const char *stdio_detect_charset_len(const char *s, int len);
 ///

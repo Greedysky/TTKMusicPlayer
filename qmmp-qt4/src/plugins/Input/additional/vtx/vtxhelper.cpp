@@ -68,6 +68,7 @@ void VTXHelper::close()
 
 bool VTXHelper::initialize()
 {
+    ayemu_init(&m_info->ay);
     FILE *file = stdio_open(m_path.toLocal8Bit().constData());
     if(!file)
     {
@@ -119,7 +120,6 @@ bool VTXHelper::initialize()
     }
     free(buf);
 
-    ayemu_init(&m_info->ay);
     ayemu_set_chip_type(&m_info->ay, m_info->decoder->chiptype, nullptr);
     ayemu_set_chip_freq(&m_info->ay, m_info->decoder->chipFreq);
     ayemu_set_stereo(&m_info->ay, (ayemu_stereo_t)m_info->decoder->stereo, nullptr);

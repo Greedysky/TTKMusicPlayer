@@ -19,5 +19,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = alac
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libalac.so
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libalac.so
 }

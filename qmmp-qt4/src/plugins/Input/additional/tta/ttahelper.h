@@ -25,6 +25,18 @@ extern "C" {
 }
 #include <QVariantMap>
 
+typedef struct {
+    tta_info* tta;
+    char* buffer;
+    int remaining;
+
+    int samples_to_skip;
+    int currentsample;
+    int startsample;
+    int endsample;
+    float readpos;
+} tta_info_t;
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -50,14 +62,7 @@ public:
 
 private:
     QString m_path;
-    tta_info* m_tta;
-    int m_currentsample;
-    int m_startsample, m_endsample;
-
-    char* m_buffer;
-    int m_remaining;
-    int m_samples_to_skip;
-    float m_readpos;
+    tta_info_t* m_info;
 };
 
 #endif // TTAHELPER_H

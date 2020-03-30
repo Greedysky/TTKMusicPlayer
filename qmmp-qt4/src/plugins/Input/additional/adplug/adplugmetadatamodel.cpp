@@ -24,14 +24,11 @@
 AdplugMetaDataModel::AdplugMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
-    try
+    AdplugHelper helper(path.toUtf8().constData());
+    if(helper.initialize())
     {
-        AdplugHelper adplug(path.toUtf8().constData());
-        fill_in_extra_properties(&adplug);
-        fill_in_descriptions(&adplug);
-    }
-    catch(const AdplugHelper::InvalidFile &)
-    {
+        fill_in_extra_properties(&helper);
+        fill_in_descriptions(&helper);
     }
 }
 

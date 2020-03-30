@@ -25,6 +25,9 @@ extern "C" {
 }
 #include <QVariantMap>
 
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class SHNHelper
 {
 public:
@@ -48,7 +51,6 @@ public:
 private:
     QString m_path;
     shn_info_t *m_info;
-
 };
 
 #endif

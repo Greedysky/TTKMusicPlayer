@@ -9,8 +9,8 @@ HEADERS += decodershnfactory.h \
            shndec.h \
            shorten.h
     
-SOURCES += decoder_shn.cpp \
-           decodershnfactory.cpp \
+SOURCES += decodershnfactory.cpp \
+           decoder_shn.cpp \
            shnmetadatamodel.cpp \
            shnhelper.cpp \
            array.c \

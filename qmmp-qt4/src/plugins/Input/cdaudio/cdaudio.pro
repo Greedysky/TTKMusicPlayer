@@ -1,10 +1,10 @@
 include($$PWD/../../plugins.pri)
 
 HEADERS += decodercdaudiofactory.h \
-           decoder_cdaudio.h \
+           decoder_cdaudio.h
 
-SOURCES += decoder_cdaudio.cpp \
-           decodercdaudiofactory.cpp \
+SOURCES += decodercdaudiofactory.cpp \
+           decoder_cdaudio.cpp
 
 INCLUDEPATH += $$EXTRA_PREFIX/libcddb/include \
                $$EXTRA_PREFIX/libcdio/include \

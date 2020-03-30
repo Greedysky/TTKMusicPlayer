@@ -70,7 +70,7 @@ DecoderProperties DecoderAdplugFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("AdPlug Plugin");
     properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds";
-    properties.description = tr("AdPlug Files");
+    properties.description = tr("AdLib Sound Files");
     properties.shortName = "adplug";
     return properties;
 }
@@ -83,29 +83,28 @@ Decoder *DecoderAdplugFactory::create(const QString &path, QIODevice *)
 QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     QList<TrackInfo *> list;
-    try
+
+    AdplugHelper helper(path.toUtf8().constData());
+    if(!helper.initialize())
     {
-        AdplugHelper adplug(path.toUtf8().constData());
-        TrackInfo *info = new TrackInfo(path);
-
-        if(parts & TrackInfo::MetaData)
-        {
-            info->setValue(Qmmp::TITLE, QString::fromStdString(adplug.title()));
-            info->setValue(Qmmp::ARTIST, QString::fromStdString(adplug.author()));
-        }
-
-        if(parts & TrackInfo::Properties)
-        {
-            info->setValue(Qmmp::CHANNELS, adplug.channels());
-            info->setValue(Qmmp::FORMAT_NAME, QString::fromStdString(adplug.format()));
-            info->setDuration(adplug.length() / 1000);
-        }
-
-        list << info;
+        return list;
     }
-    catch(const AdplugHelper::InvalidFile &)
+    TrackInfo *info = new TrackInfo(path);
+
+    if(parts & TrackInfo::MetaData)
     {
+        info->setValue(Qmmp::TITLE, QString::fromStdString(helper.title()));
+        info->setValue(Qmmp::ARTIST, QString::fromStdString(helper.author()));
     }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::CHANNELS, helper.channels());
+        info->setValue(Qmmp::FORMAT_NAME, QString::fromStdString(helper.format()));
+        info->setDuration(helper.length() / 1000);
+    }
+
+    list << info;
     return list;
 }
 

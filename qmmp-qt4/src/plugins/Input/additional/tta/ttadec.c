@@ -242,7 +242,7 @@ int open_tta_file (const char *filename, tta_info *info, unsigned int data_offse
 	unsigned int checksum;
 	unsigned int datasize;
 	unsigned int origsize;
-    FILE *infile;
+	FILE *infile;
 	tta_hdr ttahdr;
 
 	// clear the memory

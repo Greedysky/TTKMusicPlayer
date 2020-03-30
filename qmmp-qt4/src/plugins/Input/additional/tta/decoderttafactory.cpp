@@ -32,7 +32,7 @@ DecoderProperties DecoderTTAFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("TTA Plugin");
     properties.filters << "*.tta";
-    properties.description = tr("TTA Music Files");
+    properties.description = tr("TTA True Audio Files");
     properties.shortName = "tta";
     properties.noInput = true;
     properties.protocols << "tta";

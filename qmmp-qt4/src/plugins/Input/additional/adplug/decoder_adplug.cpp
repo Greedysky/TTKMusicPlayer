@@ -29,15 +29,11 @@ DecoderAdplug::DecoderAdplug(const QString &path)
 
 bool DecoderAdplug::initialize()
 {
-    try
-    {
-        m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(m_path.toUtf8().constData()));
-    }
-    catch(const AdplugHelper::InvalidFile &)
+    m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(m_path.toUtf8().constData()));
+    if(!m_adplug->initialize())
     {
         return false;
     }
-
     configure(m_adplug->rate(), m_adplug->channels(), Qmmp::PCM_S16LE);
 
     m_length = m_adplug->length();

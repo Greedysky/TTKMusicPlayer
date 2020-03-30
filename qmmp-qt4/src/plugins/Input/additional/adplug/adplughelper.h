@@ -40,18 +40,14 @@ public:
       unsigned char *buf;
     };
 
-    class InvalidFile : public std::exception
-    {
-      public:
-        InvalidFile() : std::exception() { }
-    };
-
     explicit AdplugHelper(const std::string &);
     AdplugHelper(const AdplugHelper &) = delete;
 
     AdplugHelper &operator=(const AdplugHelper &) = delete;
 
     static std::string version() { return CAdPlug::get_version(); }
+
+    bool initialize();
 
     int rate() { return 44100; }
     int depth() { return 16; }

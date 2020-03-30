@@ -47,7 +47,6 @@ void TTAHelper::close()
         player_stop(m_info->tta);
         close_tta_file(m_info->tta);
         free(m_info->tta);
-
         free(m_info);
     }
 }

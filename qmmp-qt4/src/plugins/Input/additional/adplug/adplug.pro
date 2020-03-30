@@ -1,16 +1,16 @@
 include($$PWD/../additional.pri)
 
 HEADERS += decoderadplugfactory.h \
-           magic.h \
            decoder_adplug.h \
            adplughelper.h \
-           adplugmetadatamodel.h
+           adplugmetadatamodel.h \
+           magic.h
 
 SOURCES += decoderadplugfactory.cpp \
-           magic.cpp \
            decoder_adplug.cpp \
            adplughelper.cpp \
-           adplugmetadatamodel.cpp
+           adplugmetadatamodel.cpp \
+           magic.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = adplug
