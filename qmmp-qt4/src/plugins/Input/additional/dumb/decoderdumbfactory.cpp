@@ -20,6 +20,7 @@
 #include "dumbhelper.h"
 #include "decoder_dumb.h"
 #include "decoderdumbfactory.h"
+#include "dumbmetadatamodel.h"
 
 bool DecoderDumbFactory::canDecode(QIODevice *) const
 {
@@ -76,9 +77,9 @@ QList<TrackInfo *> DecoderDumbFactory::createPlayList(const QString &path, Track
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderDumbFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderDumbFactory::createMetaDataModel(const QString &path, bool)
 {
-    return nullptr;
+    return new DumbMetaDataModel(path);
 }
 
 Q_EXPORT_PLUGIN2(dumb,DecoderDumbFactory)

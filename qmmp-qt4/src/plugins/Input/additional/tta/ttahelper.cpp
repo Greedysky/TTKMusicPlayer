@@ -28,10 +28,10 @@ TTAHelper::TTAHelper(const QString &url)
 {
     m_path = url;
     m_info = (tta_info_t*)malloc(sizeof(tta_info_t));
+    memset(m_info, 0, sizeof(tta_info_t));
+
     m_info->tta = (tta_info*)malloc(sizeof(tta_info));
     m_info->buffer = (char*)malloc(sizeof(char) * PCM_BUFFER_LENGTH * MAX_BSIZE * MAX_NCH);
-
-    memset(m_info, 0, sizeof(tta_info_t));
 }
 
 TTAHelper::~TTAHelper()

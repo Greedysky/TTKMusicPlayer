@@ -243,89 +243,87 @@ int open_tta_file (const char *filename, tta_info *info, unsigned int data_offse
 	unsigned int datasize;
     unsigned int origsize;
     FILE *infile;
-	tta_hdr ttahdr;
 
 	// clear the memory
-	memset (info, 0, sizeof(tta_info));
-
-	// open file
-	infile = stdio_open(filename);
-	if (!infile) {
-		info->STATE = OPEN_ERROR;
-		return -1;
-	}
-	info->HANDLE = infile;
-
-	// get file size
+    memset (info, 0, sizeof(tta_info));
+    // open file
+    infile = stdio_open(filename);
+    if (!infile) {
+        info->STATE = OPEN_ERROR;
+        return -1;
+    }
+    info->HANDLE = infile;
+    // get file size
     info->FILESIZE = stdio_length(infile);
+    // read id3 tags
+    if (!data_offset) {
+        if ((data_offset = skip_id3_tag (info)) < 0) {
+            stdio_close(infile);
+            return -1;
+        }
+    } else {
+        stdio_seek(infile, data_offset, SEEK_SET);
+    }
 
-	// read id3 tags
-	if (!data_offset) {
-		if ((data_offset = skip_id3_tag (info)) < 0) {
-		    stdio_close(infile);
-		    return -1;
-		}
-	} else stdio_seek(infile, data_offset, SEEK_SET);
-
-	// read TTA header
-	if (stdio_read(&ttahdr, 1, sizeof (ttahdr), infile) == 0) {
+    tta_hdr ttahdr;
+    // read TTA header
+    if (stdio_read(&ttahdr, 1, sizeof (ttahdr), infile) == 0) {
         printf("tta: failed to read header\n");
-		stdio_close(infile);
-		info->STATE = READ_ERROR;
-		return -1;
-	}
+        stdio_close(infile);
+        info->STATE = READ_ERROR;
+        return -1;
+    }
 
-	// check for TTA3 signature
-	if (ENDSWAP_INT32(ttahdr.TTAid) != TTA1_SIGN) {
+    // check for TTA3 signature
+    if (ENDSWAP_INT32(ttahdr.TTAid) != TTA1_SIGN) {
         printf ("tta: format error (wrong signature)\n");
-		stdio_close(infile);
-		info->STATE = FORMAT_ERROR;
-		return -1;
-	}
+        stdio_close(infile);
+        info->STATE = FORMAT_ERROR;
+        return -1;
+    }
 
-	ttahdr.CRC32 = ENDSWAP_INT32(ttahdr.CRC32);
-	checksum = crc32((unsigned char *) &ttahdr,
-	sizeof(tta_hdr) - sizeof(int));
-	if (checksum != ttahdr.CRC32) {
+    ttahdr.CRC32 = ENDSWAP_INT32(ttahdr.CRC32);
+    checksum = crc32((unsigned char *) &ttahdr,
+    sizeof(tta_hdr) - sizeof(int));
+    if (checksum != ttahdr.CRC32) {
         printf ("tta: file error: crc32 mismatch\n");
-		stdio_close(infile);
-		info->STATE = FILE_ERROR;
-		return -1;
-	}
+        stdio_close(infile);
+        info->STATE = FILE_ERROR;
+        return -1;
+    }
 
-	ttahdr.AudioFormat = ENDSWAP_INT16(ttahdr.AudioFormat);
-	ttahdr.NumChannels = ENDSWAP_INT16(ttahdr.NumChannels);
-	ttahdr.BitsPerSample = ENDSWAP_INT16(ttahdr.BitsPerSample);
-	ttahdr.SampleRate = ENDSWAP_INT32(ttahdr.SampleRate);
-	ttahdr.DataLength = ENDSWAP_INT32(ttahdr.DataLength);
+    ttahdr.AudioFormat = ENDSWAP_INT16(ttahdr.AudioFormat);
+    ttahdr.NumChannels = ENDSWAP_INT16(ttahdr.NumChannels);
+    ttahdr.BitsPerSample = ENDSWAP_INT16(ttahdr.BitsPerSample);
+    ttahdr.SampleRate = ENDSWAP_INT32(ttahdr.SampleRate);
+    ttahdr.DataLength = ENDSWAP_INT32(ttahdr.DataLength);
 
-	// check for player supported formats
-	if (ttahdr.AudioFormat != WAVE_FORMAT_PCM ||
-		ttahdr.NumChannels > MAX_NCH ||
-		ttahdr.BitsPerSample > MAX_BPS) {
+    // check for player supported formats
+    if (ttahdr.AudioFormat != WAVE_FORMAT_PCM ||
+        ttahdr.NumChannels > MAX_NCH ||
+        ttahdr.BitsPerSample > MAX_BPS) {
         printf ("tta: format error: invalid samplerate\n");
-		stdio_close(infile);
-		info->STATE = FORMAT_ERROR;
-		return -1;
-	}
+        stdio_close(infile);
+        info->STATE = FORMAT_ERROR;
+        return -1;
+    }
 
-	// fill the File Info
-	info->NCH = ttahdr.NumChannels;
-	info->BPS = ttahdr.BitsPerSample;
-	info->BSIZE = (ttahdr.BitsPerSample + 7)/8;
-	info->FORMAT = ttahdr.AudioFormat;
-	info->SAMPLERATE = ttahdr.SampleRate;
-	info->DATALENGTH = ttahdr.DataLength;
-	info->FRAMELEN = (int) (FRAME_TIME * ttahdr.SampleRate);
-	info->LENGTH = ttahdr.DataLength / ttahdr.SampleRate;
-	info->DATAPOS = data_offset;
+    // fill the File Info
+    info->NCH = ttahdr.NumChannels;
+    info->BPS = ttahdr.BitsPerSample;
+    info->BSIZE = (ttahdr.BitsPerSample + 7)/8;
+    info->FORMAT = ttahdr.AudioFormat;
+    info->SAMPLERATE = ttahdr.SampleRate;
+    info->DATALENGTH = ttahdr.DataLength;
+    info->FRAMELEN = (int) (FRAME_TIME * ttahdr.SampleRate);
+    info->LENGTH = ttahdr.DataLength / ttahdr.SampleRate;
+    info->DATAPOS = data_offset;
 
-        datasize = info->FILESIZE - info->DATAPOS;
-        origsize = info->DATALENGTH * info->BSIZE * info->NCH;
+    datasize = info->FILESIZE - info->DATAPOS;
+    origsize = info->DATALENGTH * info->BSIZE * info->NCH;
 
-	info->COMPRESS = (double) datasize / origsize;
-	info->BITRATE = (int) (info->COMPRESS * info->SAMPLERATE *
-		info->NCH * info->BPS / 1000);
+    info->COMPRESS = (double) datasize / origsize;
+    info->BITRATE = (int) (info->COMPRESS * info->SAMPLERATE * info->NCH * info->BPS / 1000);
 
 	return 0;
 }

@@ -358,8 +358,6 @@ static int read_chunk_stbl(qtmovie_t *qtmovie, size_t chunk_len)
         sub_chunk_len = stream_read_uint32(qtmovie->stream);
         if (sub_chunk_len <= 1 || sub_chunk_len > size_remaining)
         {
-            fprintf(stderr, "strange size for chunk inside stbl (%lu) (remaining: %lu)\n",
-                    sub_chunk_len, size_remaining);
             return 0;
         }
 
