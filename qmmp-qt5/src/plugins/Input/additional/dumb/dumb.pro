@@ -15,12 +15,19 @@ HEADERS += decoderdumbfactory.h \
            internal/stack_alloc.h \
            internal/tarray.h \
            tools/it/modulus.h \
-           dumb.h
+           dumb.h \
+           modloader.h \
+           umr.h \
+           unmo3.h \
+           urf.h
 
 SOURCES += decoderdumbfactory.cpp \
            decoder_dumb.cpp \
            dumbhelper.cpp \
            dumbmetadatamodel.cpp \
+           modloader.cpp \
+           unrealfmt.cpp \
+           unrealfmtdata.cpp \
            it/loadmod2.c \
            it/itorder.c \
            it/readokt2.c \

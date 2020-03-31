@@ -17,7 +17,7 @@
  ================================================= */
 
 #include "dumbhelper.h"
-
+#include "modloader.h"
 extern "C" {
 #include "stdio_meta.h"
 }
@@ -32,7 +32,7 @@ const int MOD_EXT_COUNT = 6;
 
 const char * exts[]=
 {
-    "mod", "mdz", "stk", "m15", "fst", "oct",
+    "mod", "mdz", "stk", "m15", "fst", "oct", "nt"
     "s3m", "s3z",
     "stm", "stz",
     "it", "itz",
@@ -41,143 +41,18 @@ const char * exts[]=
     "mtm", "mtz",
     "669",
     "psm",
+    "umx",
     "am", "j2b",
     "dsm",
     "amf",
     "okt", "okta",
+    "mo3",
     nullptr
 };
 
 const char **dumb_exts()
 {
     return exts;
-}
-
-int is_mod_ext(const char *ext)
-{
-    for(int i = 0; exts[i] && i < MOD_EXT_COUNT; i++)
-    {
-        if(!strcasecmp(ext, exts[i]))
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-DUH *open_module(const char *fname, const char *ext, int *start_order, int *is_it, int *is_dos, const char** filetype)
-{
-    *filetype = nullptr;
-    DUH * duh = nullptr;
-
-    *is_it = 0;
-    *is_dos = 1;
-
-    uint8_t ptr[2000];
-    FILE *fp = stdio_open(fname);
-    if(!fp)
-    {
-        return nullptr;
-    }
-
-    char path[256] = {0};
-    memcpy(path, fname, strlen(fname));
-    int size = stdio_read(ptr, 1, 2000, fp);
-    stdio_close(fp);
-
-    fname = path;
-    DUMBFILE *f = dumbfile_open(fname);
-    if(!f)
-    {
-        return nullptr;
-    }
-
-    if(size >= 4 && ptr[0] == 'I' && ptr[1] == 'M' && ptr[2] == 'P' && ptr[3] == 'M')
-    {
-        *is_it = 1;
-        duh = dumb_read_it_quick(f);
-        *filetype = "IT";
-    }
-    else if(size >= 17 && !memcmp(ptr, "Extended Module: ", 17))
-    {
-        duh = dumb_read_xm_quick(f);
-        *filetype = "XM";
-    }
-    else if(size >= 0x30 && ptr[0x2C] == 'S' && ptr[0x2D] == 'C' && ptr[0x2E] == 'R' && ptr[0x2F] == 'M')
-    {
-        duh = dumb_read_s3m_quick(f);
-        *filetype = "S3M";
-    }
-    else if(size >= 1168 && /*ptr[28] == 0x1A &&*/ ptr[29] == 2 &&
-        (!strncasecmp((const char*)ptr + 20, "!Scream!", 8) ||
-         !strncasecmp((const char*)ptr + 20, "BMOD2STM", 8) ||
-         !strncasecmp((const char*)ptr + 20, "WUZAMOD!", 8)))
-    {
-        duh = dumb_read_stm_quick(f);
-        *filetype = "STM";
-    }
-    else if(size >= 2 && ((ptr[0] == 0x69 && ptr[1] == 0x66) || (ptr[0] == 0x4A && ptr[1] == 0x4E)))
-    {
-        duh = dumb_read_669_quick(f);
-        *filetype = "669";
-    }
-    else if(size >= 0x30 && ptr[0x2C] == 'P' && ptr[0x2D] == 'T' && ptr[0x2E] == 'M' && ptr[0x2F] == 'F')
-    {
-        duh = dumb_read_ptm_quick(f);
-        *filetype = "PTM";
-    }
-    else if(size >= 4 && ptr[0] == 'P' && ptr[1] == 'S' && ptr[2] == 'M' && ptr[3] == ' ')
-    {
-        duh = dumb_read_psm_quick(f, *start_order);
-        *start_order = 0;
-        *filetype = "PSM";
-    }
-    else if(size >= 4 && ptr[0] == 'P' && ptr[1] == 'S' && ptr[2] == 'M' && ptr[3] == 254)
-    {
-        duh = dumb_read_old_psm_quick(f);
-        *filetype = "PSM";
-    }
-    else if(size >= 3 && ptr[0] == 'M' && ptr[1] == 'T' && ptr[2] == 'M')
-    {
-        duh = dumb_read_mtm_quick(f);
-        *filetype = "MTM";
-    }
-    else if( size >= 4 && ptr[0] == 'R' && ptr[1] == 'I' && ptr[2] == 'F' && ptr[3] == 'F')
-    {
-        duh = dumb_read_riff_quick(f);
-        *filetype = "RIFF";
-    }
-    else if(size >= 32 && !memcmp(ptr, "ASYLUM Music Format", 19 ) && !memcmp(ptr + 19, " V1.0", 5))
-    {
-        duh = dumb_read_asy_quick(f);
-        *filetype = "ASY";
-    }
-    else if(size >= 3 && ptr[0] == 'A' && ptr[1] == 'M' && ptr[2] == 'F')
-    {
-        duh = dumb_read_amf_quick(f);
-        *filetype = "AMF";
-    }
-    else if(size >= 8 && !memcmp(ptr, "OKTASONG", 8))
-    {
-        duh = dumb_read_okt_quick(f);
-        *filetype = "OKT";
-    }
-
-    if(!duh)
-    {
-        dumbfile_close(f);
-        f = dumbfile_open(fname);
-        *is_dos = 0;
-        duh = dumb_read_mod_quick(f, is_mod_ext(ext) ? 0 : 1);
-        *filetype = "MOD";
-    }
-
-    if(f)
-    {
-        dumbfile_close(f);
-    }
-
-    return duh;
 }
 
 int cdumb_startrenderer(dumb_info_t *info)
@@ -263,10 +138,8 @@ const char *convstr(const char* str, int sz, char *out, int out_sz)
 DumbHelper::DumbHelper(const QString &url)
 {
     m_path = url;
-    m_info = (dumb_info_t*)malloc(sizeof(dumb_info_t));
+    m_info = (dumb_info_t*)calloc(sizeof(dumb_info_t), 1);
     m_totalTime = 0;
-
-    memset(m_info, 0, sizeof(dumb_info_t));
 }
 
 DumbHelper::~DumbHelper()
@@ -294,21 +167,18 @@ void DumbHelper::close()
 
 bool DumbHelper::initialize()
 {
+    dumb_register_stdfiles();
+    const char *uri = m_path.toLocal8Bit().constData();
+    const char *ext = uri + strlen(uri) - 1;
+    while (*ext != '.' && ext > uri)
     {
-        dumb_register_stdfiles();
-        const char *uri = m_path.toLocal8Bit().constData();
-        const char *ext = uri + strlen(uri) - 1;
-        while (*ext != '.' && ext > uri)
-        {
-            ext--;
-        }
-        ext++;
-
-        int start_order = 0;
-        int is_dos, is_it;
-        const char *ftype;
-        m_info->duh = open_module(uri, ext, &start_order, &is_it, &is_dos, &ftype);
+        ext--;
     }
+    ext++;
+
+    int is_dos, is_it, is_ptcompat;
+    const char *ftype;
+    m_info->duh = open_module(uri, &is_it, &is_dos, &is_ptcompat, 0, &ftype);
 
     if(!m_info->duh)
     {
@@ -317,17 +187,13 @@ bool DumbHelper::initialize()
 
     dumb_it_do_initial_runthrough(m_info->duh);
 
-    m_info->bits_per_sample = conf_bps;
-    m_info->channels = 2;
-    m_info->samplerate = conf_samplerate;
     m_info->readpos = 0;
+    m_totalTime = duh_get_length(m_info->duh) / 65536.0f;
 
     if(cdumb_startrenderer(m_info) < 0)
     {
         return false;
     }
-
-    m_totalTime = duh_get_length(m_info->duh) / 65536.0f;
 
     return true;
 }
@@ -339,7 +205,8 @@ int DumbHelper::totalTime() const
 
 void DumbHelper::seek(qint64 time)
 {
-    if(time < m_info->readpos)
+    float skiptime = time;
+    if(skiptime < m_info->readpos)
     {
         if(cdumb_startrenderer(m_info) < 0)
         {
@@ -348,12 +215,12 @@ void DumbHelper::seek(qint64 time)
     }
     else
     {
-        time -= m_info->readpos;
+        skiptime -= m_info->readpos;
     }
 
-    int pos = time * samplerate();
+    int pos = skiptime * samplerate();
     duh_sigrenderer_generate_samples(m_info->renderer, 0, 65536.0f / samplerate(), pos, nullptr);
-    m_info->readpos = duh_sigrenderer_get_position(m_info->renderer) / 65536.f;
+    m_info->readpos = time;
 }
 
 int DumbHelper::bitrate() const
@@ -363,17 +230,17 @@ int DumbHelper::bitrate() const
 
 int DumbHelper::samplerate() const
 {
-    return m_info->samplerate;
+    return conf_samplerate;
 }
 
 int DumbHelper::channels() const
 {
-    return m_info->channels;
+    return 2;
 }
 
 int DumbHelper::bitsPerSample() const
 {
-    return m_info->bits_per_sample;
+    return conf_bps;
 }
 
 int DumbHelper::read(unsigned char *buf, int size)

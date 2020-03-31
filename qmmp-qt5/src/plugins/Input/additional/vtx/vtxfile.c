@@ -5,15 +5,14 @@
 #include <ctype.h>
 #include <unistd.h>
 
-#ifdef _WIN32
-#include "mman.h"
-#else
 #include <sys/mman.h>
-#endif
 #include <sys/stat.h>
 #include <fcntl.h>
 
 #include "ayemu.h"
+
+//#define trace(...) { fprintf (stderr, __VA_ARGS__); }
+#define trace(fmt,...)
 
 #define AYEMU_VTX_STRING_MAX 254
 
@@ -101,6 +100,8 @@ static data_ptr_t read_header(data_ptr_t buf, ayemu_vtx_t **target, size_t size)
   else if (strncmp (hdr, "ym", 2) == 0)
     vtx->chiptype = AYEMU_YM;
   else {
+    trace ("File is _not_ VORTEX format!\n"
+	     "It not begins with 'ay' or 'ym' string.\n");
     goto clean_and_ret_null;
   }
 
@@ -141,11 +142,11 @@ ayemu_vtx_t * ayemu_vtx_header(data_ptr_t buf, size_t size)
 
 ayemu_vtx_t * ayemu_vtx_load(data_ptr_t buf, size_t size)
 {
-  ayemu_vtx_t *vtx;
+  ayemu_vtx_t *vtx = NULL;
 
   const char *data = read_header(buf, &vtx, size);
 
-  if (! data) {
+  if (!vtx) {
     fprintf(stderr, "ayemu_vtx_load: Cannot parse file header\n");
     return NULL;
   }
@@ -156,6 +157,7 @@ ayemu_vtx_t * ayemu_vtx_load(data_ptr_t buf, size_t size)
   if ((vtx->regdata = (unsigned char *) malloc (vtx->regdata_size)) == NULL) {
     fprintf (stderr, "ayemu_vtx_load_data: Can allocate %d bytes"
 	     " for unpack register data\n", vtx->regdata_size);
+    ayemu_vtx_free(vtx);
     return NULL;
   }
 
@@ -207,16 +209,12 @@ void ayemu_vtx_free(ayemu_vtx_t *vtx)
 
 
 
-
+#if 0
 ayemu_vtx_t * ayemu_vtx_header_from_file(const char *filename)
 {
   ayemu_vtx_t *ret;
   size_t size;
-#ifdef _WIN32
-  const size_t page_size = 4096;
-#else
   const size_t page_size = (size_t) sysconf (_SC_PAGESIZE);
-#endif
   int fd;
   struct stat st;
 
@@ -255,11 +253,7 @@ ayemu_vtx_t * ayemu_vtx_header_from_file(const char *filename)
 ayemu_vtx_t * ayemu_vtx_load_from_file(const char *filename)
 {
   size_t size;
-#ifdef _WIN32
-  const size_t page_size = 4096;
-#else
   const size_t page_size = (size_t) sysconf (_SC_PAGESIZE);
-#endif
   int fd;
   struct stat st;
   ayemu_vtx_t *ret;
@@ -294,3 +288,4 @@ ayemu_vtx_t * ayemu_vtx_load_from_file(const char *filename)
 
   return ret;
 }
+#endif

@@ -451,6 +451,8 @@ struct DUMB_IT_SIGDATA
 	IT_MIDI *midi;
 
 	IT_CHECKPOINT *checkpoint;
+
+	int initial_runthrough;
 };
 
 
@@ -745,6 +747,8 @@ struct DUMB_IT_SIGRENDERER
     int ramp_style;
     
 	//int max_output;
+
+	int initial_runthrough;
 };
 
 

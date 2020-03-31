@@ -16,53 +16,54 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef TTAHELPER_H
-#define TTAHELPER_H
+#include "v2mhelper.h"
+#include "decoder_v2m.h"
 
-extern "C" {
-#include "ttadec.h"
-#include "stdio_meta_type.h"
-}
-#include <QVariantMap>
-
-typedef struct {
-    tta_info tta;
-    char* buffer;
-    int remaining;
-
-    int samples_to_skip;
-    int currentsample;
-    int startsample;
-    int endsample;
-    float readpos;
-} tta_info_t;
-
-/*!
- * @author Greedysky <greedysky@163.com>
- */
-class TTAHelper
+DecoderV2M::DecoderV2M(const QString &path) : Decoder()
 {
-public:
-    TTAHelper(const QString &url);
-    ~TTAHelper();
+    m_v2m = new V2MHelper(path);
+}
 
-    void close();
+DecoderV2M::~DecoderV2M()
+{
+    delete m_v2m;
+}
 
-    bool initialize();
-    int totalTime() const;
-    void seek(qint64 time);
+bool DecoderV2M::initialize()
+{
+    if(!m_v2m->initialize())
+    {
+        return false;
+    }
 
-    int bitrate() const;
-    int samplerate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    int rate = m_v2m->samplerate();
+    int channels = m_v2m->channels();
+    if(rate == 0 || channels == 0)
+    {
+        return false;
+    }
 
-    int read(unsigned char *buf, int size);
-    QVariantMap readTags(stdio_meta_type stdio_meta);
+    configure(rate, channels, Qmmp::PCM_S16LE);
 
-private:
-    QString m_path;
-    tta_info_t* m_info;
-};
+    return true;
+}
 
-#endif // TTAHELPER_H
+qint64 DecoderV2M::totalTime() const
+{
+    return m_v2m->totalTime();
+}
+
+void DecoderV2M::seek(qint64 pos)
+{
+    m_v2m->seek(pos);
+}
+
+int DecoderV2M::bitrate() const
+{
+    return m_v2m->bitrate();
+}
+
+qint64 DecoderV2M::read(unsigned char *data, qint64 size)
+{
+    return m_v2m->read(data, size);
+}

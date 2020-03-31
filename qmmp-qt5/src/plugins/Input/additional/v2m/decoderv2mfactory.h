@@ -16,53 +16,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef TTAHELPER_H
-#define TTAHELPER_H
+#ifndef DECODERV2MFACTORY_H
+#define DECODERV2MFACTORY_H
 
-extern "C" {
-#include "ttadec.h"
-#include "stdio_meta_type.h"
-}
-#include <QVariantMap>
-
-typedef struct {
-    tta_info tta;
-    char* buffer;
-    int remaining;
-
-    int samples_to_skip;
-    int currentsample;
-    int startsample;
-    int endsample;
-    float readpos;
-} tta_info_t;
+#include <qmmp/decoderfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class TTAHelper
+class DecoderV2MFactory : public QObject, DecoderFactory
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
+    Q_INTERFACES(DecoderFactory)
 public:
-    TTAHelper(const QString &url);
-    ~TTAHelper();
+    virtual bool canDecode(QIODevice *input) const override;
+    virtual DecoderProperties properties() const override;
+    virtual Decoder *create(const QString &path, QIODevice *input) override;
+    virtual QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles) override;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
-    void close();
-
-    bool initialize();
-    int totalTime() const;
-    void seek(qint64 time);
-
-    int bitrate() const;
-    int samplerate() const;
-    int channels() const;
-    int bitsPerSample() const;
-
-    int read(unsigned char *buf, int size);
-    QVariantMap readTags(stdio_meta_type stdio_meta);
-
-private:
-    QString m_path;
-    tta_info_t* m_info;
 };
 
-#endif // TTAHELPER_H
+#endif

@@ -41,10 +41,8 @@ int ayemu_vtx_get_next_frame(vtx_info_t *info)
 VTXHelper::VTXHelper(const QString &path)
 {
     m_path = path;
-    m_info = (vtx_info_t*)malloc(sizeof(vtx_info_t));
+    m_info = (vtx_info_t*)calloc(sizeof(vtx_info_t), 1);
     m_totalTime = 0;
-
-    memset(m_info, 0, sizeof(vtx_info_t));
 }
 
 VTXHelper::~VTXHelper()
