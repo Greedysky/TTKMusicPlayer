@@ -17,40 +17,33 @@
  ================================================= */
 
 #include <QtPlugin>
-#include "dumbhelper.h"
-#include "decoder_dumb.h"
-#include "decoderdumbfactory.h"
-#include "dumbmetadatamodel.h"
+#include "v2mhelper.h"
+#include "decoder_v2m.h"
+#include "decoderv2mfactory.h"
 
-bool DecoderDumbFactory::canDecode(QIODevice *) const
+bool DecoderV2MFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderDumbFactory::properties() const
+DecoderProperties DecoderV2MFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("DUMB Plugin");
-
-    const char **exts = dumb_exts();
-    for(const char *q = *exts; q != nullptr; )
-    {
-        properties.filters << QString("*.") + q;
-        q = *(++exts);
-    }
-    properties.description = tr("Dynamic Universal Music Bibliotheque Files");
-    properties.shortName = "dumb";
+    properties.name = tr("V2M Plugin");
+    properties.filters << "*.v2m";
+    properties.description = tr("V2 Module Player Files");
+    properties.shortName = "v2m";
     properties.noInput = true;
-    properties.protocols << "dumb";
+    properties.protocols << "v2m";
     return properties;
 }
 
-Decoder *DecoderDumbFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderV2MFactory::create(const QString &path, QIODevice *)
 {
-    return new DecoderDumb(path);
+    return new DecoderV2M(path);
 }
 
-QList<TrackInfo *> DecoderDumbFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo *> DecoderV2MFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
@@ -59,7 +52,7 @@ QList<TrackInfo *> DecoderDumbFactory::createPlayList(const QString &path, Track
         return QList<TrackInfo *>() << info;
     }
 
-    DumbHelper helper(path);
+    V2MHelper helper(path);
     if(!helper.initialize())
     {
         return QList<TrackInfo *>();
@@ -77,9 +70,10 @@ QList<TrackInfo *> DecoderDumbFactory::createPlayList(const QString &path, Track
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderDumbFactory::createMetaDataModel(const QString &path, bool)
+MetaDataModel* DecoderV2MFactory::createMetaDataModel(const QString &, bool)
 {
-    return new DumbMetaDataModel(path);
+    return nullptr;
 }
 
-Q_EXPORT_PLUGIN2(dumb, DecoderDumbFactory)
+Q_EXPORT_PLUGIN2(v2m, DecoderV2MFactory)
+

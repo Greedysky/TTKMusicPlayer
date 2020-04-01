@@ -25,9 +25,7 @@ extern "C" {
 SHNHelper::SHNHelper(const QString &path)
 {
     m_path = path;
-    m_info = (shn_info_t*)malloc(sizeof(shn_info_t));
-
-    memset(m_info, 0, sizeof(shn_info_t));
+    m_info = (shn_info_t*)calloc(sizeof(shn_info_t), 1);
 }
 
 SHNHelper::~SHNHelper()

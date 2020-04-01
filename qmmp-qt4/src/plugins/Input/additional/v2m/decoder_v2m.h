@@ -16,53 +16,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef TTAHELPER_H
-#define TTAHELPER_H
+#ifndef DECODER_V2M_H
+#define DECODER_V2M_H
 
-extern "C" {
-#include "ttadec.h"
-#include "stdio_meta_type.h"
-}
-#include <QVariantMap>
+#include <qmmp/decoder.h>
 
-typedef struct {
-    tta_info tta;
-    char* buffer;
-    int remaining;
-
-    int samples_to_skip;
-    int currentsample;
-    int startsample;
-    int endsample;
-    float readpos;
-} tta_info_t;
+class V2MHelper;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class TTAHelper
+class DecoderV2M : public Decoder
 {
 public:
-    TTAHelper(const QString &url);
-    ~TTAHelper();
+    DecoderV2M(const QString &path);
+    virtual ~DecoderV2M();
 
-    void close();
-
-    bool initialize();
-    int totalTime() const;
-    void seek(qint64 time);
-
-    int bitrate() const;
-    int samplerate() const;
-    int channels() const;
-    int bitsPerSample() const;
-
-    int read(unsigned char *buf, int size);
-    QVariantMap readTags(stdio_meta_type stdio_meta);
+    // Standard Decoder API
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
-    QString m_path;
-    tta_info_t* m_info;
+    V2MHelper* m_v2m;
 };
 
-#endif // TTAHELPER_H
+#endif // DECODER_V2M_H

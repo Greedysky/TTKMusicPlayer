@@ -283,7 +283,7 @@ void lh5_decode(const unsigned char *inp, unsigned char *outp, unsigned long ori
 	  *(inp+4),*(inp+5),*(inp+6),*(inp+7));
 #endif
 
-  buffer = (unsigned char *) malloc(DICSIZ);
+  buffer = (unsigned char *) calloc(1, DICSIZ);
   if (!buffer) error ("Out of memory");
 
   bitbuf = 0;  subbitbuf = 0;  bitcount = 0;

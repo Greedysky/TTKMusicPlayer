@@ -16,35 +16,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef TTAHELPER_H
-#define TTAHELPER_H
+#ifndef V2MHELPER_H
+#define V2MHELPER_H
 
-extern "C" {
-#include "ttadec.h"
-#include "stdio_meta_type.h"
-}
-#include <QVariantMap>
+#include <QObject>
+#include "v2mplayer.h"
 
 typedef struct {
-    tta_info tta;
-    char* buffer;
-    int remaining;
-
-    int samples_to_skip;
-    int currentsample;
-    int startsample;
-    int endsample;
+    uint8_t *tune;
+    int len;
+    V2MPlayer *player;
+    int currsample;
+    int totalsamples;
     float readpos;
-} tta_info_t;
+} v2m_info_t;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class TTAHelper
+class V2MHelper
 {
 public:
-    TTAHelper(const QString &url);
-    ~TTAHelper();
+    V2MHelper(const QString &path);
+    virtual ~V2MHelper();
 
     void close();
 
@@ -58,11 +52,11 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readTags(stdio_meta_type stdio_meta);
 
 private:
     QString m_path;
-    tta_info_t* m_info;
+    v2m_info_t *m_info;
+    qint64 m_totalTime;
 };
 
-#endif // TTAHELPER_H
+#endif

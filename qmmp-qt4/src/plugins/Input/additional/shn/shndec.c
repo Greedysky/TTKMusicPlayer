@@ -1,5 +1,4 @@
 /*
-    SHN (Shorten) plugin for DeaDBeeF Player
     Copyright (C) 2009-2014 Alexey Yakovenko <waker@users.sourceforge.net>
 
     Based on xmms-shn, http://www.etree.org/shnutils/xmms-shn/

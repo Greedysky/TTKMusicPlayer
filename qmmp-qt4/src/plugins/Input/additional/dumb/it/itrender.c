@@ -1310,6 +1310,9 @@ static void update_smooth_effects_playing(IT_PLAYING *playing)
 
 static void update_smooth_effects(DUMB_IT_SIGRENDERER *sigrenderer)
 {
+	if (sigrenderer->initial_runthrough) {
+		return;
+	}
 	int i;
 
 	for (i = 0; i < DUMB_IT_N_CHANNELS; i++) {
@@ -1398,6 +1401,10 @@ static void update_playing_effects(IT_PLAYING *playing)
 
 static void update_effects(DUMB_IT_SIGRENDERER *sigrenderer)
 {
+	if (sigrenderer->initial_runthrough) {
+		return;
+	}
+
     int i;
 
 	if (sigrenderer->globalvolslide) {
@@ -4068,6 +4075,10 @@ static void playing_volume_setup(DUMB_IT_SIGRENDERER * sigrenderer, IT_PLAYING *
 
 static void process_playing(DUMB_IT_SIGRENDERER *sigrenderer, IT_PLAYING *playing, float invt2g)
 {
+	if (sigrenderer->initial_runthrough) {
+		return;
+	}
+
 	DUMB_IT_SIGDATA * sigdata = sigrenderer->sigdata;
 
 	if (playing->instrument) {
@@ -4093,7 +4104,7 @@ static void process_playing(DUMB_IT_SIGRENDERER *sigrenderer, IT_PLAYING *playin
 	playing->sample_vibrato_time += playing->sample->vibrato_speed;
 }
 
-#if (defined(_MSC_VER) && _MSC_VER < 1800) || defined(__ANDROID__)
+#if (defined(_MSC_VER) && _MSC_VER < 1800) || defined(ANDROID)
 static float log2(float x) {return (float)log(x)/(float)log(2.0f);}
 #endif
 
@@ -4619,6 +4630,10 @@ static const int aiPTMVolScaled[] =
 
 static float calculate_volume(DUMB_IT_SIGRENDERER *sigrenderer, IT_PLAYING *playing, float volume)
 {
+	if (sigrenderer->initial_runthrough) {
+		return 0;
+	}
+
 	if (volume != 0) {
 		int vol;
 
@@ -5875,7 +5890,9 @@ long dumb_it_build_checkpoints(DUMB_IT_SIGDATA *sigdata, int startorder)
 			return checkpoint->time;
 		}
 
+		sigrenderer->initial_runthrough = sigdata->initial_runthrough;
 		l = it_sigrenderer_get_samples(sigrenderer, 0, 1.0f, IT_CHECKPOINT_INTERVAL, NULL);
+		sigrenderer->initial_runthrough = 0;
 		if (l < IT_CHECKPOINT_INTERVAL) {
 			_dumb_it_end_sigrenderer(sigrenderer);
 			checkpoint->next = NULL;
@@ -5906,8 +5923,11 @@ void dumb_it_do_initial_runthrough(DUH *duh)
 	if (duh) {
 		DUMB_IT_SIGDATA *sigdata = duh_get_it_sigdata(duh);
 
-		if (sigdata)
+		if (sigdata) {
+			sigdata->initial_runthrough = 1;
 			duh_set_length(duh, dumb_it_build_checkpoints(sigdata, 0));
+			sigdata->initial_runthrough = 0;
+		}
 	}
 }
 

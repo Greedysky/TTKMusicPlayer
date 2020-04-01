@@ -56,11 +56,6 @@ EXTERN void ayemu_vtx_getframe(const ayemu_vtx_t *vtx, size_t frame_n,
  */
 EXTERN void ayemu_vtx_free(ayemu_vtx_t *vtx);
 
-/*! Load song header from file.
- * Helper (non-all platform) function
- */
-EXTERN ayemu_vtx_t * ayemu_vtx_header_from_file(const char *filename);
-
 /*! Load song header and data from file.
  * Helper (non-all platform) function
  */

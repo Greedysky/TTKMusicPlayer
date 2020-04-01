@@ -309,7 +309,7 @@ error:
 DCAHelper::DCAHelper(const QString &path)
 {
     m_path = path;
-    m_info = (dca_info_t* )calloc(1, sizeof(dca_info_t));
+    m_info = (dca_info_t*)calloc(sizeof(dca_info_t), 1);
     m_totalTime = 0;
 }
 
@@ -470,7 +470,7 @@ int DCAHelper::read(unsigned char *buf, int size)
     {
         if(m_info->currentsample + size / samplesize > m_info->endsample)
         {
-            size = (m_info->endsample - m_info->currentsample + 1) * samplesize;
+            size = (int)((m_info->endsample - m_info->currentsample + 1) * samplesize);
             if(size <= 0)
             {
                 return 0;
@@ -557,7 +557,7 @@ void DCAHelper::seek(qint64 time)
 
     stdio_seek(m_info->file, offs, SEEK_SET);
     m_info->remaining = 0;
-    m_info->samples_to_skip = sample - nframe * m_info->frame_length;
+    m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
 
     m_info->currentsample = sample;
     m_info->readpos = (float)(sample - m_info->startsample) / samplerate();

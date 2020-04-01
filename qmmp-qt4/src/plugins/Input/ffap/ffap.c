@@ -1,5 +1,4 @@
 /*
-    DeaDBeeF - ultimate music player for GNU/Linux systems with X11
     Copyright (C) 2009-2011 Alexey Yakovenko <waker@users.sourceforge.net>
     based on apedec from FFMpeg Copyright (c) 2007 Benjamin Zores <ben@geexbox.org>
     based upon libdemac from Dave Chapman.
@@ -25,15 +24,6 @@
      no mallocs/reallocs during decoding
      streaming through fixed ringbuffer (small mem footprint)
      24bit support merged from rockbox
-*/
-
-/*
-   main changes compared to DeaDBeeF:
-     removed deadbeef functions and structures
-     added public callback api
-     added mingw support
-     fixed some gcc warnings
-
 */
 
 #if HAVE_CONFIG_H
@@ -378,9 +368,6 @@ ape_read_header (FFap_decoder *decoder)
         return -1;
     }
 
-    /*if(deadbeef->fread (ape->magic, 1, 4, fp) != 4) {
-        return -1;
-    }*/
     if(memcmp (ape->magic, "MAC ", 4))
         return -1;
 
@@ -426,15 +413,10 @@ ape_read_header (FFap_decoder *decoder)
             return -1;
         }
 
-        /*if(deadbeef->fread (ape->md5, 1, 16, fp) != 16) {
-            return -1;
-        }*/
-
         /* Skip any unknown bytes at the end of the descriptor.
            This is for future compatibility */
 
         if(ape->descriptorlength > 52) {
-            //deadbeef->fseek (fp, ape->descriptorlength - 52, SEEK_CUR);
             decoder->seek(ape->descriptorlength - 52, SEEK_CUR, decoder->client_data);
         }
 
@@ -493,7 +475,6 @@ ape_read_header (FFap_decoder *decoder)
         }
 
         if(ape->formatflags & MAC_FORMAT_FLAG_HAS_PEAK_LEVEL) {
-            //deadbeef->fseek(fp, 4, SEEK_CUR); /* Skip the peak level */
             decoder->seek(4, SEEK_CUR, decoder->client_data); /* Skip the peak level */
             ape->headerlength += 4;
         }
@@ -523,7 +504,6 @@ ape_read_header (FFap_decoder *decoder)
 
         /* Skip any stored wav header */
         if(!(ape->formatflags & MAC_FORMAT_FLAG_CREATE_WAV_HEADER)) {
-            //deadbeef->fseek (fp, ape->wavheaderlength, SEEK_CUR);
             decoder->seek(ape->wavheaderlength, SEEK_CUR, decoder->client_data);
         }
     }
@@ -686,11 +666,6 @@ int ffap_init(FFap_decoder *decoder)
 
     memset(decoder->ape_ctx, 0, sizeof(APEContext));
 
-    /*int skip = deadbeef->junk_get_leading_size (info->fp);
-    if(skip > 0) {
-        deadbeef->fseek (info->fp, skip, SEEK_SET);
-        info->ape_ctx.skip_header = skip;
-    }*/
     //ape_read_header (info->fp, &info->ape_ctx);
     ape_read_header(decoder);
     int i;

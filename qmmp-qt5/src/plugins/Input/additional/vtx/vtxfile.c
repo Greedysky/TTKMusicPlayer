@@ -5,14 +5,10 @@
 #include <ctype.h>
 #include <unistd.h>
 
-#include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
 #include "ayemu.h"
-
-//#define trace(...) { fprintf (stderr, __VA_ARGS__); }
-#define trace(fmt,...)
 
 #define AYEMU_VTX_STRING_MAX 254
 
@@ -100,8 +96,6 @@ static data_ptr_t read_header(data_ptr_t buf, ayemu_vtx_t **target, size_t size)
   else if (strncmp (hdr, "ym", 2) == 0)
     vtx->chiptype = AYEMU_YM;
   else {
-    trace ("File is _not_ VORTEX format!\n"
-	     "It not begins with 'ay' or 'ym' string.\n");
     goto clean_and_ret_null;
   }
 
@@ -206,86 +200,3 @@ void ayemu_vtx_free(ayemu_vtx_t *vtx)
     free (vtx);
   }
 }
-
-
-
-#if 0
-ayemu_vtx_t * ayemu_vtx_header_from_file(const char *filename)
-{
-  ayemu_vtx_t *ret;
-  size_t size;
-  const size_t page_size = (size_t) sysconf (_SC_PAGESIZE);
-  int fd;
-  struct stat st;
-
-  // printf("Page size is %d\n", page_size);
-
-  if (stat(filename, &st) != 0) {
-    fprintf(stderr, "Can't stat file %s: %s\n", filename, strerror(errno));
-    return NULL;
-  }
-  size = st.st_size;
-
-  fd = open(filename, O_RDONLY, 0);
-  if (fd == 0) {
-    fprintf(stderr, "Can't open file %s: %s\n", filename, strerror(errno));
-    return NULL;
-  }
-
-  size_t data_len = (size / page_size + 1) * page_size;
-
-  char *data = mmap(NULL, data_len, PROT_READ, MAP_PRIVATE, fd, 0);
-  if (data == (void*)(-1)) {
-    fprintf(stderr, "Can't mmap file %s: %s\n", filename, strerror(errno));
-    return NULL;
-  }
-
-  ret = ayemu_vtx_header(data, size);
-
-  if (munmap(data, data_len) != 0) {
-    fprintf(stderr, "Can't munmmap file %s: %s\n", filename, strerror(errno));
-  }
-
-  return ret;
-}
-
-
-ayemu_vtx_t * ayemu_vtx_load_from_file(const char *filename)
-{
-  size_t size;
-  const size_t page_size = (size_t) sysconf (_SC_PAGESIZE);
-  int fd;
-  struct stat st;
-  ayemu_vtx_t *ret;
-
-  // printf("Page size is %d\n", page_size);
-
-  if (stat(filename, &st) != 0) {
-    fprintf(stderr, "Can't stat file %s: %s\n", filename, strerror(errno));
-    return NULL;
-  }
-  size = st.st_size;
-
-  fd = open(filename, O_RDONLY, 0);
-  if (fd == 0) {
-    fprintf(stderr, "Can't open file %s: %s\n", filename, strerror(errno));
-    return NULL;
-  }
-
-  size_t data_len = (size / page_size + 1) * page_size;
-
-  char *data = mmap(NULL, data_len, PROT_READ, MAP_PRIVATE, fd, 0);
-  if (data == (void*)(-1)) {
-    fprintf(stderr, "Can't mmap file %s: %s\n", filename, strerror(errno));
-    return NULL;
-  }
-
-  ret = ayemu_vtx_load(data, size);
-
-  if (munmap(data, data_len) != 0) {
-    fprintf(stderr, "Can't munmmap file %s: %s\n", filename, strerror(errno));
-  }
-
-  return ret;
-}
-#endif

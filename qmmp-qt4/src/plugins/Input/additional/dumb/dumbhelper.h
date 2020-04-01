@@ -29,9 +29,6 @@ typedef struct {
     DUH *duh;
     DUH_SIGRENDERER *renderer;
     int can_loop;
-    int channels;
-    int samplerate;
-    int bits_per_sample;
     float readpos;
 } dumb_info_t;
 

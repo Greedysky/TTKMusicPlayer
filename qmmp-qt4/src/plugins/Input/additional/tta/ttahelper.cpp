@@ -27,10 +27,7 @@ extern "C" {
 TTAHelper::TTAHelper(const QString &url)
 {
     m_path = url;
-    m_info = (tta_info_t*)malloc(sizeof(tta_info_t));
-    memset(m_info, 0, sizeof(tta_info_t));
-
-    m_info->tta = (tta_info*)malloc(sizeof(tta_info));
+    m_info = (tta_info_t*)calloc(sizeof(tta_info_t), 1);
     m_info->buffer = (char*)malloc(sizeof(char) * PCM_BUFFER_LENGTH * MAX_BSIZE * MAX_NCH);
 }
 
@@ -44,27 +41,26 @@ void TTAHelper::close()
     if(m_info)
     {
         free(m_info->buffer);
-        player_stop(m_info->tta);
-        close_tta_file(m_info->tta);
-        free(m_info->tta);
+        player_stop(&m_info->tta);
+        close_tta_file(&m_info->tta);
         free(m_info);
     }
 }
 
 bool TTAHelper::initialize()
 {
-    if(open_tta_file(m_path.toLocal8Bit().constData(), m_info->tta, 0) != 0)
+    if(open_tta_file(m_path.toLocal8Bit().constData(), &m_info->tta, 0) != 0)
     {
         return false;
     }
 
-    if(player_init(m_info->tta) != 0)
+    if(player_init(&m_info->tta) != 0)
     {
         return false;
     }
 
     m_info->startsample = 0;
-    m_info->endsample = m_info->tta->DATALENGTH - 1;
+    m_info->endsample = m_info->tta.DATALENGTH - 1;
     m_info->readpos = 0;
 
     return true;
@@ -72,13 +68,13 @@ bool TTAHelper::initialize()
 
 int TTAHelper::totalTime() const
 {
-    return m_info->tta->LENGTH;
+    return m_info->tta.LENGTH;
 }
 
 void TTAHelper::seek(qint64 time)
 {
     const int sample = time * samplerate();
-    m_info->samples_to_skip = set_position(m_info->tta, sample + m_info->startsample);
+    m_info->samples_to_skip = set_position(&m_info->tta, sample + m_info->startsample);
     if(m_info->samples_to_skip < 0)
     {
         return;
@@ -91,22 +87,22 @@ void TTAHelper::seek(qint64 time)
 
 int TTAHelper::bitrate() const
 {
-    return m_info->tta->BITRATE;
+    return m_info->tta.BITRATE;
 }
 
 int TTAHelper::samplerate() const
 {
-    return m_info->tta->SAMPLERATE;
+    return m_info->tta.SAMPLERATE;
 }
 
 int TTAHelper::channels() const
 {
-    return m_info->tta->NCH;
+    return m_info->tta.NCH;
 }
 
 int TTAHelper::bitsPerSample() const
 {
-    return m_info->tta->BPS;
+    return m_info->tta.BPS;
 }
 
 int TTAHelper::read(unsigned char *buf, int size)
@@ -156,7 +152,7 @@ int TTAHelper::read(unsigned char *buf, int size)
 
         if(size > 0 && !m_info->remaining)
         {
-            m_info->remaining = get_samples(m_info->tta, m_info->buffer);
+            m_info->remaining = get_samples(&m_info->tta, m_info->buffer);
             if(m_info->remaining <= 0)
             {
                 break;
