@@ -197,7 +197,7 @@ private:
     bool init_decoder();                                      // initialize Speex decoder
     int decode(float *buffer);                      // decode at maximum 2000 samples to buffer
     int close_decoder();                                      // free Speex decoder
-    int readtags(char *tagdata, long size);                 // read tags
+    int readMetaTags(char *tagdata, long size);                 // read tags
     void free_tags();                                          // free all tags from memory
     void stream_free_tags(int32_t stream);                  // free tags from specified stream
     void *header_to_decoder(SpeexHeader *header, int enh_enabled, int *frame_size, int *rate, int *nframes, int forceMode, int *channels, SpeexStereoState *stereo);

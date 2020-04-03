@@ -19,6 +19,7 @@
 #include "sc68helper.h"
 #include "decoder_sc68.h"
 #include "decodersc68factory.h"
+#include "sc68metadatamodel.h"
 
 bool DecoderSC68Factory::canDecode(QIODevice *) const
 {
@@ -57,6 +58,16 @@ QList<TrackInfo *> DecoderSC68Factory::createPlayList(const QString &path, Track
         return QList<TrackInfo *>();
     }
 
+    if(parts & TrackInfo::MetaData)
+    {
+        info->setValue(Qmmp::TITLE, helper.title());
+        info->setValue(Qmmp::ARTIST, helper.artist());
+        info->setValue(Qmmp::ALBUM, helper.album());
+        info->setValue(Qmmp::YEAR, helper.year());
+        info->setValue(Qmmp::GENRE, helper.genre());
+        info->setValue(Qmmp::TRACK, helper.track());
+    }
+
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());
@@ -69,7 +80,7 @@ QList<TrackInfo *> DecoderSC68Factory::createPlayList(const QString &path, Track
     return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &path, bool)
 {
-    return nullptr;
+    return new SC68MetaDataModel(path);
 }

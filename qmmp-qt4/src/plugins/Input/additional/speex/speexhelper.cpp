@@ -643,7 +643,7 @@ bool SpeexHelper::initfile()
                 if(op.packetno == 1)
                 {
                     // extract tags
-                    if(readtags((char *)op.packet, op.bytes) != 0)
+                    if(readMetaTags((char *)op.packet, op.bytes) != 0)
                     {
                         stream_free_tags(m_streamcount - 1);
                     }
@@ -890,7 +890,7 @@ int SpeexHelper::close_decoder()
     return 0;
 }
 
-int SpeexHelper::readtags(char *tagdata, long size)
+int SpeexHelper::readMetaTags(char *tagdata, long size)
 {
     if(m_streamcount < 1)
     {

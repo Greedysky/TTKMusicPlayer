@@ -55,7 +55,7 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readTags();
+    QVariantMap readMetaTags();
 
 private:
     QString m_path;

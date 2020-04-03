@@ -64,6 +64,14 @@ QList<TrackInfo *> DecoderPSFFactory::createPlayList(const QString &path, TrackI
         return QList<TrackInfo *>();
     }
 
+    if(parts & TrackInfo::MetaData)
+    {
+        info->setValue(Qmmp::TITLE, helper.title());
+        info->setValue(Qmmp::ARTIST, helper.artist());
+        info->setValue(Qmmp::ALBUM, helper.album());
+        info->setValue(Qmmp::YEAR, helper.year());
+    }
+
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());

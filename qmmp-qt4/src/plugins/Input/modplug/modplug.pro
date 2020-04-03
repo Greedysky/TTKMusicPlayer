@@ -16,6 +16,10 @@ TARGET = modplug
 DEFINES += HAVE_STDINT_H \
            HAVE_INTTYPES_H
            
+# Disbale gcc warnings
+QMAKE_CFLAGS += -w
+QMAKE_CXXFLAGS += -w
+
 INCLUDEPATH += $$EXTRA_PREFIX/libmodplug/include
 
 unix {

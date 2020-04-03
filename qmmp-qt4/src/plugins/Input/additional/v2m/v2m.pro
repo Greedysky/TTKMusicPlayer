@@ -25,6 +25,10 @@ SOURCES += decoderv2mfactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = v2m
 
+# Disbale gcc warnings
+QMAKE_CFLAGS += -w
+QMAKE_CXXFLAGS += -w
+
 INCLUDEPATH += $$PWD
 
 unix{

@@ -265,7 +265,7 @@ int DumbHelper::read(unsigned char *buf, int size)
     return ret * samplesize;
 }
 
-QVariantMap DumbHelper::readTags()
+QVariantMap DumbHelper::readMetaTags()
 {
     QVariantMap data;
     if(!m_info->duh)

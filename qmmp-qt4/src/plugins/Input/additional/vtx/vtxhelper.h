@@ -19,11 +19,11 @@
 #ifndef VTXHELPER_H
 #define VTXHELPER_H
 
-#include <QObject>
-
 extern "C" {
 #include "ayemu.h"
+#include "stdio_file.h"
 }
+#include <QVariantMap>
 
 #define AY_FRAME_SIZE 14
 
@@ -58,18 +58,17 @@ public:
 
     int read(unsigned char *buf, int size);
 
-    inline QString title() const { return m_title; }
-    inline QString artist() const { return m_artist; }
-    inline QString album() const { return m_album; }
-    inline QString tracker() const { return m_tracker; }
-    inline QString comment() const { return m_comment; }
+    inline QString title() const { return m_meta.value("title").toString(); }
+    inline QString artist() const { return m_meta.value("artist").toString(); }
+    inline QString album() const { return m_meta.value("album").toString(); }
+    inline QString tracker() const { return m_meta.value("tracker").toString(); }
+    inline QString comment() const { return m_meta.value("comment").toString(); }
 
 private:
     QString m_path;
     vtx_info_t *m_info;
     qint64 m_totalTime;
-    QString m_title, m_album, m_artist;
-    QString m_tracker, m_comment;
+    QVariantMap m_meta;
 };
 
 #endif

@@ -18,6 +18,7 @@
 
 #include "dumbhelper.h"
 #include "modloader.h"
+
 extern "C" {
 #include "stdio_meta.h"
 }
@@ -225,7 +226,7 @@ void DumbHelper::seek(qint64 time)
 
 int DumbHelper::bitrate() const
 {
-    return 8;
+    return 2 * bitsPerSample() / 8;
 }
 
 int DumbHelper::samplerate() const
@@ -245,8 +246,8 @@ int DumbHelper::bitsPerSample() const
 
 int DumbHelper::read(unsigned char *buf, int size)
 {
-    int samplesize = (bitsPerSample() >> 3) * channels();
-    int length = size / samplesize;
+    const int samplesize = (bitsPerSample() >> 3) * channels();
+    const int length = size / samplesize;
 
     DUMB_IT_SIGRENDERER *itsr = duh_get_it_sigrenderer(m_info->renderer);
     if(m_info->can_loop)
@@ -264,7 +265,7 @@ int DumbHelper::read(unsigned char *buf, int size)
     return ret * samplesize;
 }
 
-QVariantMap DumbHelper::readTags()
+QVariantMap DumbHelper::readMetaTags()
 {
     QVariantMap data;
     if(!m_info->duh)

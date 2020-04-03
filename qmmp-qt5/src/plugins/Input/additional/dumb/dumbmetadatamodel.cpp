@@ -31,7 +31,7 @@ QList<MetaDataItem> DumbMetaDataModel::extraProperties() const
     DumbHelper helper(m_path);
     if(helper.initialize())
     {
-        const QVariantMap &data = helper.readTags();
+        const QVariantMap &data = helper.readMetaTags();
         for(const QString &key : data.keys())
         {
             ep << MetaDataItem(key, data[key]);
