@@ -28,6 +28,11 @@
 
 FILE *stdio_open(const char *fname)
 {
+    if(!memcmp(fname, "file://", 7))
+    {
+        fname += 7;
+    }
+
     FILE *file = fopen(fname, "rb");
     if(!file)
     {

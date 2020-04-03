@@ -136,7 +136,6 @@ static sBool sdLoadPatch(file &in, sInt pn, sInt fver=-1)
 		if (in.read(&fver,4)<4) return 0;
 	}
 
-	int rss=v2vsizes[fver]-255*3-1;
 	sU8 *patch=soundmem+128*4+v2soundsize*pn;
 
 	// fill patch with default values

@@ -12,6 +12,10 @@ SOURCES += projectmplugin.cpp \
            projectmwidget.cpp \
            visualfloridprojectmfactory.cpp
 
+# Disbale gcc warnings
+QMAKE_CFLAGS += -w
+QMAKE_CXXFLAGS += -w
+
 INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
 
 win32:{

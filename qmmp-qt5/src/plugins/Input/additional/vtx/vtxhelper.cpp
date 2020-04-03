@@ -18,10 +18,6 @@
 
 #include "vtxhelper.h"
 
-extern "C" {
-#include "stdio_file.h"
-}
-
 int ayemu_vtx_get_next_frame(vtx_info_t *info)
 {
     int numframes = info->decoder->regdata_size / AY_FRAME_SIZE;
@@ -107,11 +103,12 @@ bool VTXHelper::initialize()
     }
 
     m_totalTime = hdr->regdata_size * 1.0 / AY_FRAME_SIZE / hdr->playerFreq;
-    m_title = hdr->title;
-    m_artist = hdr->author;
-    m_album = hdr->from;
-    m_tracker = hdr->tracker;
-    m_comment = hdr->comment;
+
+    m_meta.insert("title", hdr->title);
+    m_meta.insert("artist", hdr->author);
+    m_meta.insert("album", hdr->from);
+    m_meta.insert("tracker", hdr->tracker);
+    m_meta.insert("comment", hdr->comment);
 
     ayemu_vtx_free(hdr);
     stdio_close(file);
@@ -165,7 +162,7 @@ int VTXHelper::bitsPerSample() const
 
 int VTXHelper::read(unsigned char *buf, int size)
 {
-    int initsize = size;
+    const int initsize = size;
     int donow = 0;
 
     while(size > 0) 

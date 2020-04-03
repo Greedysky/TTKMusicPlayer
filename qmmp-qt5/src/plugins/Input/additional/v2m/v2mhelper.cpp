@@ -154,7 +154,7 @@ int V2MHelper::totalTime() const
 
 int V2MHelper::bitrate() const
 {
-    return 8;
+    return 2 * bitsPerSample() / 8;
 }
 
 int V2MHelper::samplerate() const
@@ -174,8 +174,8 @@ int V2MHelper::bitsPerSample() const
 
 int V2MHelper::read(unsigned char *buf, int size)
 {
-    int samplesize = (bitsPerSample() >> 3) * channels();
-    int samples = size / samplesize;
+    const int samplesize = (bitsPerSample() >> 3) * channels();
+    const int samples = size / samplesize;
 
     if(m_info->currsample > m_info->totalsamples)
     {

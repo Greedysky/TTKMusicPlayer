@@ -24,6 +24,7 @@
 extern "C" {
 #include "dca.h"
 #include "gettimeofday.h"
+#include "stdio_file.h"
 }
 
 #define BUFFER_SIZE 24576

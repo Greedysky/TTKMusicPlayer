@@ -13,3 +13,4 @@ SOURCES += \
 
 # Disbale gcc warnings
 QMAKE_CFLAGS += -w
+QMAKE_CXXFLAGS += -w

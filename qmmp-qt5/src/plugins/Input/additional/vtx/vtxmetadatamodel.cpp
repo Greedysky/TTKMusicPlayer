@@ -65,7 +65,7 @@ QList<Qmmp::MetaData> VTXFileTagModel::keys() const
 
 QString VTXFileTagModel::value(Qmmp::MetaData key) const
 {
-    if(m_vtx)
+    if(m_vtx && m_vtx->initialize())
     {
         switch((int) key)
         {

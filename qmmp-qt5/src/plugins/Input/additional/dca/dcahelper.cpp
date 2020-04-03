@@ -18,10 +18,6 @@
 
 #include "dcahelper.h"
 
-extern "C" {
-#include "stdio_file.h"
-}
-
 #ifdef WORDS_BIGENDIAN
 #define s16_LE(s16,channels) s16_swap (s16, channels)
 #define s16_BE(s16,channels) do {} while (0)
@@ -465,7 +461,7 @@ int DCAHelper::bitsPerSample() const
 
 int DCAHelper::read(unsigned char *buf, int size)
 {
-    int samplesize = channels() * bitsPerSample() / 8;
+    const int samplesize = channels() * bitsPerSample() / 8;
     if(m_info->endsample >= 0)
     {
         if(m_info->currentsample + size / samplesize > m_info->endsample)
