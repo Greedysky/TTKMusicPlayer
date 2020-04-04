@@ -166,10 +166,5 @@ DEFINES += HAVE_STDLIB_H \
            EMU68_EXPORT
 
 unix{
-    unix:android {
-        TARGET = plugin_input_sc68
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_sc68.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsc68.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsc68.so
 }

@@ -31,10 +31,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = dca
 
 unix{
-    unix:android {
-        TARGET = plugin_input_dca
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_dca.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libdca.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libdca.so
 }

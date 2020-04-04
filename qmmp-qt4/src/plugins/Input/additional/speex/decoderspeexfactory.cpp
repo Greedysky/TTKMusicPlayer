@@ -30,7 +30,7 @@ bool DecoderSpeexFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderSpeexFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("SPEEX Plugin");
+    properties.name = tr("Speex Plugin");
     properties.filters << "*.spx";
     properties.description = tr("Speex Audio Files");
     properties.shortName = "speex";
@@ -59,6 +59,7 @@ QList<TrackInfo *> DecoderSpeexFactory::createPlayList(const QString &path, Trac
         SpeexHelper helper(&file);
         if(!helper.initialize())
         {
+            delete info;
             return QList<TrackInfo *>();
         }
 

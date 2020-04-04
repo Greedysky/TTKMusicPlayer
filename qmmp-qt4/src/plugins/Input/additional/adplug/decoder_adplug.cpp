@@ -85,6 +85,12 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
     return copied;
 }
 
+void DecoderAdplug::seek(qint64 pos)
+{
+    m_adplug->seek(pos);
+    m_time = pos;
+}
+
 qint64 DecoderAdplug::copy(unsigned char *audio, qint64 max_size)
 {
     qint64 to_copy = qMin(m_buf_filled, max_size);
@@ -94,10 +100,4 @@ qint64 DecoderAdplug::copy(unsigned char *audio, qint64 max_size)
     m_buf_filled -= to_copy;
 
     return to_copy;
-}
-
-void DecoderAdplug::seek(qint64 pos)
-{
-    m_adplug->seek(pos);
-    m_time = pos;
 }

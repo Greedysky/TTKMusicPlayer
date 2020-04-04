@@ -134,6 +134,33 @@ int VTXHelper::totalTime() const
     return m_totalTime;
 }
 
+void VTXHelper::seek(qint64 time)
+{
+    const int sample = time * samplerate();
+    // get frame
+    int num_frames = m_info->decoder->regdata_size / AY_FRAME_SIZE;
+    int samples_per_frame = samplerate() / m_info->decoder->playerFreq;
+    // start of frame
+    m_info->vtx_pos = sample / samples_per_frame;
+    if(m_info->vtx_pos >= num_frames)
+    {
+        return; // eof
+    }
+    // copy register data
+    int n;
+    unsigned char *p = m_info->decoder->regdata + m_info->vtx_pos;
+    for(n = 0 ; n < AY_FRAME_SIZE ; n++, p += num_frames)
+    {
+        m_info->regs[n] = *p;
+    }
+    // set number of bytes left in frame
+    m_info->left = samplerate() / m_info->decoder->playerFreq - (sample % samples_per_frame);
+    // mul by rate to get number of bytes
+    m_info->left *= m_info->rate;
+    m_info->currentsample = sample;
+    m_info->readpos = (float)m_info->currentsample / samplerate();
+}
+
 int VTXHelper::bitrate() const
 {
     return m_info->rate;
@@ -190,29 +217,7 @@ int VTXHelper::read(unsigned char *data, int size)
     return initsize - size;
 }
 
-void VTXHelper::seek(qint64 time)
+QVariantMap VTXHelper::readMetaTags()
 {
-    const int sample = time * samplerate();
-	// get frame
-    int num_frames = m_info->decoder->regdata_size / AY_FRAME_SIZE;
-    int samples_per_frame = samplerate() / m_info->decoder->playerFreq;
-    // start of frame
-    m_info->vtx_pos = sample / samples_per_frame;
-    if(m_info->vtx_pos >= num_frames)
-    {
-        return; // eof
-    }
-    // copy register data
-    int n;
-    unsigned char *p = m_info->decoder->regdata + m_info->vtx_pos;
-    for(n = 0 ; n < AY_FRAME_SIZE ; n++, p += num_frames)
-    {
-        m_info->regs[n] = *p;
-    }
-    // set number of bytes left in frame
-    m_info->left = samplerate() / m_info->decoder->playerFreq - (sample % samples_per_frame);
-    // mul by rate to get number of bytes
-    m_info->left *= m_info->rate;
-    m_info->currentsample = sample;
-    m_info->readpos = (float)m_info->currentsample / samplerate();
+    return m_meta;
 }

@@ -17,7 +17,7 @@
  ================================================= */
 
 #include <QFileInfo>
-#include "AlacHelper.h"
+#include "alachelper.h"
 
 int host_bigendian = 0;
 

@@ -21,7 +21,7 @@
 
 #include <qmmp/decoderfactory.h>
 
-class DecoderALACFactory : public QObject, DecoderFactory
+class DecoderAlacFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
     Q_INTERFACES(DecoderFactory)

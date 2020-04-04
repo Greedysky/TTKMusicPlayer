@@ -67,6 +67,7 @@ QString VTXFileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_vtx && m_vtx->initialize())
     {
+        m_vtx->readMetaTags();
         switch((int) key)
         {
         case Qmmp::TITLE: return m_vtx->title();

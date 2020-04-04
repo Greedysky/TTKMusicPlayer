@@ -17,12 +17,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libspeex/include \
                $$EXTRA_PREFIX/libogg/include
 
 unix{
-    unix:android {
-        TARGET = plugin_input_speex
-        QMAKE_CLEAN = $$DESTDIR/libplugin_input_speex.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/libspeex.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/libspeex.so
     LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
 }

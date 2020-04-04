@@ -82,14 +82,19 @@ Decoder *DecoderAdplugFactory::create(const QString &path, QIODevice *)
 
 QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo *> list;
+    TrackInfo *info = new TrackInfo(path);
+
+    if(parts == TrackInfo::NoParts)
+    {
+        return QList<TrackInfo *>() << info;
+    }
 
     AdplugHelper helper(path.toUtf8().constData());
     if(!helper.initialize())
     {
-        return list;
+        delete info;
+        return QList<TrackInfo *>();
     }
-    TrackInfo *info = new TrackInfo(path);
 
     if(parts & TrackInfo::MetaData)
     {
@@ -104,8 +109,7 @@ QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, Tra
         info->setDuration(helper.length() * 1000);
     }
 
-    list << info;
-    return list;
+    return QList<TrackInfo *>() << info;
 }
 
 MetaDataModel *DecoderAdplugFactory::createMetaDataModel(const QString &path, bool)

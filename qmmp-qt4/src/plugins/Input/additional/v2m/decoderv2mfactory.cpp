@@ -55,6 +55,7 @@ QList<TrackInfo *> DecoderV2MFactory::createPlayList(const QString &path, TrackI
     V2MHelper helper(path);
     if(!helper.initialize())
     {
+        delete info;
         return QList<TrackInfo *>();
     }
 

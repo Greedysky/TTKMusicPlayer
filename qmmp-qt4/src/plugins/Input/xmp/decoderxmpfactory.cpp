@@ -67,6 +67,11 @@ QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackI
 {
     TrackInfo *info = new TrackInfo(path);
 
+    if(parts == TrackInfo::NoParts)
+    {
+        return QList<TrackInfo *>() << info;
+    }
+
     xmp_context ctx = xmp_create_context();
     if(xmp_load_module(ctx, path.toLocal8Bit().data()) != 0)
     {
@@ -75,6 +80,7 @@ QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackI
         delete info;
         return QList<TrackInfo *>();
     }
+
     xmp_module_info mi;
     xmp_get_module_info(ctx, &mi);
 

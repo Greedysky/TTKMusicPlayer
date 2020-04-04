@@ -61,7 +61,9 @@ QList<TrackInfo *> DecoderOpusFactory::createPlayList(const QString &path, Track
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
+    {
         return QList<TrackInfo *>() << info;
+    }
 
     TagLib::Ogg::Opus::File fileRef(QStringToFileName(path));
 

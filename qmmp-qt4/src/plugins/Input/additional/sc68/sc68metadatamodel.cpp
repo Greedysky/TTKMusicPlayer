@@ -82,6 +82,7 @@ QString SC68FileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_sc68 && m_sc68->initialize())
     {
+        m_sc68->readMetaTags();
         switch((int) key)
         {
         case Qmmp::TITLE: return m_sc68->title();

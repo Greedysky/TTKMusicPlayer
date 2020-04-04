@@ -52,33 +52,41 @@ Decoder *DecoderYmFactory::create(const QString &path, QIODevice *)
 
 QList<TrackInfo *> DecoderYmFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <TrackInfo *> list;
-    CYmMusic *music = new CYmMusic;
-    if(music->load(path.toLocal8Bit().constData()))
+    TrackInfo *info = new TrackInfo(path);
+
+    if(parts == TrackInfo::NoParts)
     {
-        TrackInfo *info = new TrackInfo(path);
-        ymMusicInfo_t musicInfo;
-        music->getMusicInfo(&musicInfo);
+        return QList<TrackInfo *>() << info;
+    }
 
-        if(parts & TrackInfo::MetaData)
-        {
-            char* title = strdup(musicInfo.pSongName);
-            char* composer = strdup(musicInfo.pSongAuthor);
-            char* comment = strdup(musicInfo.pSongComment);
+    CYmMusic *music = new CYmMusic;
+    if(!music->load(path.toLocal8Bit().constData()))
+    {
+        delete info;
+        return QList<TrackInfo *>();
+    }
 
-            info->setValue(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
-            info->setValue(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
-            info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
-        }
+    ymMusicInfo_t musicInfo;
+    music->getMusicInfo(&musicInfo);
 
-        if(parts & TrackInfo::Properties)
-        {
-            info->setDuration(musicInfo.musicTimeInSec * 1000);
-        }
+    if(parts & TrackInfo::MetaData)
+    {
+        char* title = strdup(musicInfo.pSongName);
+        char* composer = strdup(musicInfo.pSongAuthor);
+        char* comment = strdup(musicInfo.pSongComment);
+
+        info->setValue(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
+        info->setValue(Qmmp::COMPOSER, QString::fromUtf8(composer).trimmed());
+        info->setValue(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setDuration(musicInfo.musicTimeInSec * 1000);
     }
 
     delete music;
-    return list;
+    return QList<TrackInfo *>() << info;
 }
 
 MetaDataModel* DecoderYmFactory::createMetaDataModel(const QString &, bool)

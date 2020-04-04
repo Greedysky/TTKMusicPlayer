@@ -21,15 +21,15 @@
 #include "decoder_alac.h"
 #include "alachelper.h"
 
-bool DecoderALACFactory::canDecode(QIODevice *) const
+bool DecoderAlacFactory::canDecode(QIODevice *) const
 {
     return false;
 }
 
-DecoderProperties DecoderALACFactory::properties() const
+DecoderProperties DecoderAlacFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("ALAC Plugin");
+    properties.name = tr("Alac Plugin");
     properties.filters << "*.alac";
     properties.description = tr("Apple Lossless Audio Codec Audio Files");
     properties.shortName = "alac";
@@ -39,20 +39,27 @@ DecoderProperties DecoderALACFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderALACFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderAlacFactory::create(const QString &path, QIODevice *)
 {
-    return new DecoderALAC(path);
+    return new DecoderAlac(path);
 }
 
-QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo *> DecoderAlacFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    ALACHelper helper(path.toUtf8().constData());
-    if(!helper.initialize())
+    TrackInfo *info = new TrackInfo(path);
+
+    if(parts == TrackInfo::NoParts)
     {
-        return QList <TrackInfo *>();
+        return QList<TrackInfo *>() << info;
     }
 
-    TrackInfo *info = new TrackInfo(path);
+    AlacHelper helper(path.toUtf8().constData());
+    if(!helper.initialize())
+    {
+        delete info;
+        return QList<TrackInfo *>();
+    }
+
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());
@@ -61,12 +68,12 @@ QList<TrackInfo *> DecoderALACFactory::createPlayList(const QString &path, Track
         info->setDuration(helper.totalTime());
     }
 
-    return QList <TrackInfo *>() << info;
+    return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderALACFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderAlacFactory::createMetaDataModel(const QString &, bool)
 {
     return nullptr;
 }
 
-Q_EXPORT_PLUGIN2(alac,DecoderALACFactory)
+Q_EXPORT_PLUGIN2(alac,DecoderAlacFactory)

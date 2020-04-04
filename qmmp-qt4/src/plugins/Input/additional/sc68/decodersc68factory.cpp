@@ -32,7 +32,7 @@ DecoderProperties DecoderSC68Factory::properties() const
     DecoderProperties properties;
     properties.name = tr("SC68 Plugin");
     properties.filters << "*.sndh" << "*.snd" << "*.sc68";
-    properties.description = tr("Audio Overload Files");
+    properties.description = tr("Atari ST(E) And Amiga Audio Files");
     properties.shortName = "sc68";
     properties.noInput = true;
     properties.protocols << "sc68";
@@ -56,11 +56,13 @@ QList<TrackInfo *> DecoderSC68Factory::createPlayList(const QString &path, Track
     SC68Helper helper(path);
     if(!helper.initialize())
     {
+        delete info;
         return QList<TrackInfo *>();
     }
 
     if(parts & TrackInfo::MetaData)
     {
+        helper.readMetaTags();
         info->setValue(Qmmp::TITLE, helper.title());
         info->setValue(Qmmp::ARTIST, helper.artist());
         info->setValue(Qmmp::ALBUM, helper.album());

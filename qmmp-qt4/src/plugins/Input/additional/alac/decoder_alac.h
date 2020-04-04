@@ -21,13 +21,13 @@
 
 #include <qmmp/decoder.h>
 
-class ALACHelper;
+class AlacHelper;
 
-class DecoderALAC : public Decoder
+class DecoderAlac : public Decoder
 {
 public:
-    DecoderALAC(const QString &path);
-    virtual ~DecoderALAC();
+    DecoderAlac(const QString &path);
+    virtual ~DecoderAlac();
 
     // Standard Decoder API
     virtual bool initialize() override;
@@ -37,7 +37,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    ALACHelper *m_alac;
+    AlacHelper *m_alac;
 
 };
 

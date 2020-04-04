@@ -149,6 +149,24 @@ int PSFHelper::totalTime() const
     return m_info->duration;
 }
 
+void PSFHelper::seek(qint64 time)
+{
+    const int sample = time * samplerate();
+    if(sample > m_info->currentsample)
+    {
+        m_info->samples_to_skip = sample - m_info->currentsample;
+    }
+    else
+    {
+        // restart song
+        ao_command(m_info->type, m_info->decoder, COMMAND_RESTART, 0);
+        m_info->samples_to_skip = sample;
+    }
+
+    m_info->currentsample = sample;
+    m_info->readpos = (float)sample / samplerate();
+}
+
 int PSFHelper::bitrate() const
 {
     return 2 * bitsPerSample() / 8;
@@ -215,24 +233,6 @@ int PSFHelper::read(unsigned char *buf, int size)
     m_info->currentsample += (initsize - size) / (channels() * bitsPerSample() / 8);
     m_info->readpos = (float)m_info->currentsample / samplerate();
     return initsize - size;
-}
-
-void PSFHelper::seek(qint64 time)
-{
-    const int sample = time * samplerate();
-    if(sample > m_info->currentsample)
-    {
-        m_info->samples_to_skip = sample - m_info->currentsample;
-    }
-    else
-    {
-        // restart song
-        ao_command(m_info->type, m_info->decoder, COMMAND_RESTART, 0);
-        m_info->samples_to_skip = sample;
-    }
-
-    m_info->currentsample = sample;
-    m_info->readpos = (float)sample / samplerate();
 }
 
 QVariantMap PSFHelper::readMetaTags()

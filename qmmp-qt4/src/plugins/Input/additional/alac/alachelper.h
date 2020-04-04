@@ -27,11 +27,11 @@ extern "C" {
 #include "alac_stream.h"
 }
 
-class ALACHelper
+class AlacHelper
 {
 public:
-    ALACHelper(const QString &path);
-    virtual ~ALACHelper();
+    AlacHelper(const QString &path);
+    virtual ~AlacHelper();
 
     void close();
 

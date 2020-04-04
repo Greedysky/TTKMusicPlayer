@@ -127,10 +127,5 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$PWD
 
 unix{
-    unix:android {
-        TARGET = plugin_input_dumb
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_dumb.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libdumb.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libdumb.so
 }

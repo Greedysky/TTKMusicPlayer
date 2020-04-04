@@ -203,7 +203,9 @@ QList<TrackInfo *> DecoderMPEGFactory::createPlayList(const QString &path, Track
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
+    {
         return QList<TrackInfo *>() << info;
+    }
 
     TagLib::Tag *tag = 0;
     TagLib::FileStream stream(QStringToFileName(path), true);

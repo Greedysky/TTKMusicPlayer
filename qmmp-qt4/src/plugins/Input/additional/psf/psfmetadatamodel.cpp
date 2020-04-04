@@ -84,6 +84,7 @@ QString PSFFileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_psf && m_psf->initialize())
     {
+        m_psf->readMetaTags();
         switch((int) key)
         {
         case Qmmp::TITLE: return m_psf->title();

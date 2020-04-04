@@ -62,11 +62,13 @@ QList<TrackInfo *> DecoderPSFFactory::createPlayList(const QString &path, TrackI
     PSFHelper helper(path);
     if(!helper.initialize())
     {
+        delete info;
         return QList<TrackInfo *>();
     }
 
     if(parts & TrackInfo::MetaData)
     {
+        helper.readMetaTags();
         info->setValue(Qmmp::TITLE, helper.title());
         info->setValue(Qmmp::ARTIST, helper.artist());
         info->setValue(Qmmp::ALBUM, helper.album());

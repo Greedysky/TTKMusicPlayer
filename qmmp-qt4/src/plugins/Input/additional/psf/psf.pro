@@ -120,10 +120,5 @@ TARGET = psf
 INCLUDEPATH += $$PWD
 
 unix{
-    unix:android {
-        TARGET = plugin_input_psf
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_psf.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libpsf.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libpsf.so
 }

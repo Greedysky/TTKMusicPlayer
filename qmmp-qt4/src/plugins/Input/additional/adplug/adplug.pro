@@ -22,14 +22,8 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
                $$EXTRA_PREFIX/libadplug/include/libbinio
 
-
 unix:{
-    unix:android {
-        TARGET = plugin_input_adplug
-        QMAKE_CLEAN = $$DESTDIR/libplugin_input_adplug.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/libadplug.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/libadplug.so
     LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug$$STATIC_LIBRARY_SUFFIX -lbinio$$STATIC_LIBRARY_SUFFIX
 }
 

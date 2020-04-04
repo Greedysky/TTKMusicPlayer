@@ -439,6 +439,22 @@ int DCAHelper::totalTime() const
     return m_totalTime;
 }
 
+void DCAHelper::seek(qint64 time)
+{
+    int sample = time * samplerate();
+    // calculate file offset from framesize / framesamples
+    sample += m_info->startsample;
+    int64_t nframe = sample / m_info->frame_length;
+    int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
+
+    stdio_seek(m_info->file, offs, SEEK_SET);
+    m_info->remaining = 0;
+    m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
+
+    m_info->currentsample = sample;
+    m_info->readpos = (float)(sample - m_info->startsample) / samplerate();
+}
+
 int DCAHelper::bitrate() const
 {
     return m_info->bitrate;
@@ -541,20 +557,4 @@ int DCAHelper::read(unsigned char *buf, int size)
     m_info->currentsample += (initsize - size) / samplesize;
 
     return initsize - size;
-}
-
-void DCAHelper::seek(qint64 time)
-{
-    int sample = time * samplerate();
-    // calculate file offset from framesize / framesamples
-    sample += m_info->startsample;
-    int64_t nframe = sample / m_info->frame_length;
-    int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
-
-    stdio_seek(m_info->file, offs, SEEK_SET);
-    m_info->remaining = 0;
-    m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
-
-    m_info->currentsample = sample;
-    m_info->readpos = (float)(sample - m_info->startsample) / samplerate();
 }
