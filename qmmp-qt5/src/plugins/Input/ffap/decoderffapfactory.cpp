@@ -78,7 +78,9 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
+    {
         return QList<TrackInfo *>() << info;
+    }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::APE::File file(&stream);

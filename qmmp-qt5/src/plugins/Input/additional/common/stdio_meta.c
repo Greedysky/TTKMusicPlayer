@@ -1267,7 +1267,7 @@ int stdio_apev2_add_frame(metaInfo_t *it, apev2_tag_t *tag_store, apev2_frame_t 
                    strncasecmp(key, "replaygain_track_gain", 21) &&
                    strncasecmp(key, "replaygain_track_peak", 21))
                 {
-                    stdio_append_meta(it, key, value);;
+                    stdio_append_meta(it, key, value);
                 }
             }
         }

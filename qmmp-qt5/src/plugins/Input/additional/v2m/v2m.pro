@@ -32,10 +32,5 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$PWD
 
 unix{
-    unix:android {
-        TARGET = plugin_input_v2m
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_v2m.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libv2m.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libv2m.so
 }

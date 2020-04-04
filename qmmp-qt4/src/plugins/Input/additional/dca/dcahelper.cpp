@@ -244,7 +244,7 @@ int dca_decode_data(dca_info_t *ddb_state, uint8_t * start, int size, int probe)
         {
             if(ddb_state->bufpos == ddb_state->buf + HEADER_SIZE)
             {
-                int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bit_rate, &ddb_state->frame_length);
+                int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bitrate, &ddb_state->frame_length);
                 if(!length)
                 {
                     for(ddb_state->bufptr = ddb_state->buf; ddb_state->bufptr < ddb_state->buf + HEADER_SIZE-1; ddb_state->bufptr++)
@@ -441,7 +441,7 @@ int DCAHelper::totalTime() const
 
 int DCAHelper::bitrate() const
 {
-    return m_info->bit_rate;
+    return m_info->bitrate;
 }
 
 int DCAHelper::samplerate() const

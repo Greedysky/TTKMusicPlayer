@@ -115,7 +115,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
         filters.removeAll("*.tak");
 
-
     DecoderProperties properties;
     properties.name = tr("FFmpeg Plugin");
     properties.filters = filters;
@@ -156,7 +155,9 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
+    {
         return QList<TrackInfo *>() << info;
+    }
 
     AVFormatContext *in = nullptr;
 

@@ -66,6 +66,7 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
         OptimFROGHelper helper(&file);
         if(!helper.initialize())
         {
+            delete info;
             return QList<TrackInfo *>();
         }
 

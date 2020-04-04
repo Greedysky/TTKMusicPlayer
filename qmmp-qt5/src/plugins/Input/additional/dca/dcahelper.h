@@ -46,7 +46,7 @@ typedef struct {
     int sample_rate;
     int frame_length;
     int flags;
-    int bit_rate;
+    int bitrate;
     int frame_byte_size;
     int bits_per_sample;
     int channels;

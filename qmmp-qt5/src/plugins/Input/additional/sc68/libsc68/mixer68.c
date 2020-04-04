@@ -282,7 +282,7 @@ void mixer68_mult_LR(u32 *dst, u32 *src, int nb,
  */
 void mixer68_fill(u32 * dst, int nb, const u32 sign)
 {
-  u32 * const end = dst+nb;;
+  u32 * const end = dst+nb;
 
   if (nb&1) {
     *dst++ = sign;

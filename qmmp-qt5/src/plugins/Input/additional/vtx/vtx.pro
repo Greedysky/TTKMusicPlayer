@@ -27,10 +27,5 @@ SOURCES += mman.c
 }
 
 unix{
-    unix:android {
-        TARGET = plugin_input_vtx
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_vtx.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libvtx.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libvtx.so
 }

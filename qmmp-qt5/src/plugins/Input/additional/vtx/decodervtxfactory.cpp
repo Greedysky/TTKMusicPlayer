@@ -55,11 +55,13 @@ QList<TrackInfo *> DecoderVTXFactory::createPlayList(const QString &path, TrackI
     VTXHelper helper(path);
     if(!helper.initialize())
     {
+        delete info;
         return QList<TrackInfo *>();
     }
 
     if(parts & TrackInfo::MetaData)
     {
+        helper.readMetaTags();
         info->setValue(Qmmp::ALBUM, helper.album());
         info->setValue(Qmmp::ARTIST, helper.artist());
         info->setValue(Qmmp::COMMENT, helper.comment());

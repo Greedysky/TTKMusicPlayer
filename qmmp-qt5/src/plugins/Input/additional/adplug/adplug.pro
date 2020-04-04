@@ -24,12 +24,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
 
 
 unix:{
-    unix:android {
-        TARGET = plugin_input_adplug
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_adplug.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libadplug.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libadplug.so
     LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug$$STATIC_LIBRARY_SUFFIX -lbinio$$STATIC_LIBRARY_SUFFIX
 }
 

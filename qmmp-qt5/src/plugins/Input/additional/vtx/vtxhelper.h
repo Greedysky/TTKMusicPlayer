@@ -59,6 +59,7 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
+    QVariantMap readMetaTags();
 
     inline QString title() const { return m_meta.value("title").toString(); }
     inline QString artist() const { return m_meta.value("artist").toString(); }

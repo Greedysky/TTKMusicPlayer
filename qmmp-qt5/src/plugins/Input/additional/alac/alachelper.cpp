@@ -17,11 +17,11 @@
  ================================================= */
 
 #include <QFileInfo>
-#include "alachelper.h"
+#include "AlacHelper.h"
 
 int host_bigendian = 0;
 
-ALACHelper::ALACHelper(const QString &path)
+AlacHelper::AlacHelper(const QString &path)
 {
     {
         uint32_t integer = 0x000000aa;
@@ -37,12 +37,12 @@ ALACHelper::ALACHelper(const QString &path)
     m_stream = nullptr;
 }
 
-ALACHelper::~ALACHelper()
+AlacHelper::~AlacHelper()
 {
     close();
 }
 
-void ALACHelper::close()
+void AlacHelper::close()
 {
     m_totalTime = 0;
     m_bitrate = 0;
@@ -55,7 +55,7 @@ void ALACHelper::close()
         alac_destroy(m_alac);
 }
 
-bool ALACHelper::initialize()
+bool AlacHelper::initialize()
 {
     m_totalTime = 0;
     m_bitrate = 0;
@@ -104,27 +104,32 @@ bool ALACHelper::initialize()
     return true;
 }
 
-qint64 ALACHelper::totalTime() const
+qint64 AlacHelper::totalTime() const
 {
     return m_totalTime;
 }
 
-int ALACHelper::bitrate() const
+void AlacHelper::seek(qint64 pos)
+{
+    stream_setpos(m_stream, pos);
+}
+
+int AlacHelper::bitrate() const
 {
     return m_bitrate;
 }
 
-int ALACHelper::samplerate() const
+int AlacHelper::samplerate() const
 {
     return m_demux.sample_rate;
 }
 
-int ALACHelper::channels() const
+int AlacHelper::channels() const
 {
     return m_demux.num_channels;
 }
 
-int ALACHelper::read(unsigned char *data, int size)
+int AlacHelper::read(unsigned char *data, int size)
 {
     int copy_data;
     int current_size = size;
@@ -160,9 +165,4 @@ int ALACHelper::read(unsigned char *data, int size)
     }
 
     return size - current_size;
-}
-
-void ALACHelper::seek(qint64 pos)
-{
-    stream_setpos(m_stream, pos);
 }

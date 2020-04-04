@@ -244,7 +244,7 @@ int dca_decode_data(dca_info_t *ddb_state, uint8_t * start, int size, int probe)
         {
             if(ddb_state->bufpos == ddb_state->buf + HEADER_SIZE)
             {
-                int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bit_rate, &ddb_state->frame_length);
+                int length = dca_syncinfo(ddb_state->state, ddb_state->buf, &ddb_state->flags, &ddb_state->sample_rate, &ddb_state->bitrate, &ddb_state->frame_length);
                 if(!length)
                 {
                     for(ddb_state->bufptr = ddb_state->buf; ddb_state->bufptr < ddb_state->buf + HEADER_SIZE-1; ddb_state->bufptr++)
@@ -439,9 +439,25 @@ int DCAHelper::totalTime() const
     return m_totalTime;
 }
 
+void DCAHelper::seek(qint64 time)
+{
+    int sample = time * samplerate();
+    // calculate file offset from framesize / framesamples
+    sample += m_info->startsample;
+    int64_t nframe = sample / m_info->frame_length;
+    int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
+
+    stdio_seek(m_info->file, offs, SEEK_SET);
+    m_info->remaining = 0;
+    m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
+
+    m_info->currentsample = sample;
+    m_info->readpos = (float)(sample - m_info->startsample) / samplerate();
+}
+
 int DCAHelper::bitrate() const
 {
-    return m_info->bit_rate;
+    return m_info->bitrate;
 }
 
 int DCAHelper::samplerate() const
@@ -541,20 +557,4 @@ int DCAHelper::read(unsigned char *buf, int size)
     m_info->currentsample += (initsize - size) / samplesize;
 
     return initsize - size;
-}
-
-void DCAHelper::seek(qint64 time)
-{
-    int sample = time * samplerate();
-    // calculate file offset from framesize / framesamples
-    sample += m_info->startsample;
-    int64_t nframe = sample / m_info->frame_length;
-    int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
-
-    stdio_seek(m_info->file, offs, SEEK_SET);
-    m_info->remaining = 0;
-    m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
-
-    m_info->currentsample = sample;
-    m_info->readpos = (float)(sample - m_info->startsample) / samplerate();
 }

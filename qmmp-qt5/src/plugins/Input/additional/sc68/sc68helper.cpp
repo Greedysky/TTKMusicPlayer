@@ -140,6 +140,31 @@ int SC68Helper::totalTime() const
     return m_totalTime;
 }
 
+void SC68Helper::seek(qint64 time)
+{
+    const int sample = time * samplerate();
+    if(sample < m_info->currentsample)
+    {
+        sc68_stop(m_info->sc68);
+        sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
+        m_info->currentsample = 0;
+    }
+
+    char buffer[512 * 4];
+    while(m_info->currentsample < sample)
+    {
+        int sz = (int)(sample - m_info->currentsample);
+        sz = MIN(sz, sizeof(buffer)>>2);
+        int res = sc68_process(m_info->sc68, buffer, &sz);
+        if(res & SC68_END)
+        {
+            break;
+        }
+        m_info->currentsample += sz;
+    }
+    m_info->readpos = (float)m_info->currentsample / samplerate();
+}
+
 int SC68Helper::bitrate() const
 {
     return 2 * bitsPerSample() / 8;
@@ -181,31 +206,6 @@ int SC68Helper::read(unsigned char *buf, int size)
         size -= n<<2;
     }
     return initsize - size;
-}
-
-void SC68Helper::seek(qint64 time)
-{
-    const int sample = time * samplerate();
-    if(sample < m_info->currentsample)
-    {
-        sc68_stop(m_info->sc68);
-        sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
-        m_info->currentsample = 0;
-    }
-
-    char buffer[512 * 4];
-    while(m_info->currentsample < sample)
-    {
-        int sz = (int)(sample - m_info->currentsample);
-        sz = MIN(sz, sizeof(buffer)>>2);
-        int res = sc68_process(m_info->sc68, buffer, &sz);
-        if(res & SC68_END)
-        {
-            break;
-        }
-        m_info->currentsample += sz;
-    }
-    m_info->readpos = (float)m_info->currentsample / samplerate();
 }
 
 QVariantMap SC68Helper::readMetaTags()

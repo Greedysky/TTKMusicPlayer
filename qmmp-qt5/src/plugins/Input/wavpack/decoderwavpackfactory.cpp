@@ -71,16 +71,16 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
+    {
         return QList<TrackInfo *>() << info;
+    }
 
     char err[80] = { 0 };
 
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-    WavpackContext *ctx = WavpackOpenFileInput (path.toUtf8().constData(),
-                                                err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+    WavpackContext *ctx = WavpackOpenFileInput (path.toUtf8().constData(), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
-    WavpackContext *ctx = WavpackOpenFileInput (path.toLocal8Bit().constData(),
-                                                err, OPEN_WVC | OPEN_TAGS, 0);
+    WavpackContext *ctx = WavpackOpenFileInput (path.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
     if(!ctx)
     {

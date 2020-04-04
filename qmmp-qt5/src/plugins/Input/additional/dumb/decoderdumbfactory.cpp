@@ -29,7 +29,7 @@ bool DecoderDumbFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderDumbFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("DUMB Plugin");
+    properties.name = tr("Dumb Plugin");
 
     const char **exts = dumb_exts();
     for(const char *q = *exts; q != nullptr; )
@@ -61,6 +61,7 @@ QList<TrackInfo *> DecoderDumbFactory::createPlayList(const QString &path, Track
     DumbHelper helper(path);
     if(!helper.initialize())
     {
+        delete info;
         return QList<TrackInfo *>();
     }
 

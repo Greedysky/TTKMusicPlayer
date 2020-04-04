@@ -54,6 +54,7 @@ QList<TrackInfo *> DecoderDCAFactory::createPlayList(const QString &path, TrackI
     DCAHelper helper(path);
     if(!helper.initialize())
     {
+        delete info;
         return QList<TrackInfo *>();
     }
 

@@ -62,7 +62,9 @@ QList<TrackInfo *> DecoderVorbisFactory::createPlayList(const QString &path, Tra
     TrackInfo *info = new TrackInfo(path);
 
     if(parts == TrackInfo::NoParts)
+    {
         return QList<TrackInfo *>() << info;
+    }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::Ogg::Vorbis::File fileRef(&stream);
@@ -77,6 +79,7 @@ QList<TrackInfo *> DecoderVorbisFactory::createPlayList(const QString &path, Tra
         info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
         info->setValue(Qmmp::YEAR, tag->year());
         info->setValue(Qmmp::TRACK, tag->track());
+
         TagLib::Ogg::FieldListMap items = tag->fieldListMap();
         if(!items["ALBUMARTIST"].isEmpty())
             info->setValue(Qmmp::ALBUMARTIST, TStringToQString(items["ALBUMARTIST"].toString()));

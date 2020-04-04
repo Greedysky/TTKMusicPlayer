@@ -152,6 +152,35 @@ int V2MHelper::totalTime() const
     return m_totalTime;
 }
 
+void V2MHelper::seek(qint64 time)
+{
+    const int sample = time * samplerate();
+    if(sample >= m_info->totalsamples)
+    {
+        return; // seek beyond eof
+    }
+
+    if(sample < m_info->currsample)
+    {
+        m_info->player->Play(0);
+        m_info->currsample = 0;
+        m_info->readpos = 0;
+    }
+
+    float buffer[2048 * channels()];
+    while(m_info->currsample < sample)
+    {
+        int samples = sample - m_info->currsample;
+        if(samples > 2048)
+        {
+            samples = 2048;
+        }
+        m_info->player->Render(buffer, samples);
+        m_info->currsample += samples;
+    }
+    m_info->readpos = sample / (float)samplerate();
+}
+
 int V2MHelper::bitrate() const
 {
     return 2 * bitsPerSample() / 8;
@@ -187,33 +216,4 @@ int V2MHelper::read(unsigned char *buf, int size)
     m_info->currsample += samples;
 
     return size;
-}
-
-void V2MHelper::seek(qint64 time)
-{
-    const int sample = time * samplerate();
-    if(sample >= m_info->totalsamples)
-    {
-        return; // seek beyond eof
-    }
-
-    if(sample < m_info->currsample)
-    {
-        m_info->player->Play(0);
-        m_info->currsample = 0;
-        m_info->readpos = 0;
-    }
-
-    float buffer[2048 * channels()];
-    while(m_info->currsample < sample)
-    {
-        int samples = sample - m_info->currsample;
-        if(samples > 2048)
-        {
-            samples = 2048;
-        }
-        m_info->player->Render(buffer, samples);
-        m_info->currsample += samples;
-    }
-    m_info->readpos = sample / (float)samplerate();
 }

@@ -765,7 +765,7 @@ void psx_hw_frame(mips_cpu_context *cpu)
 {
 	if (cpu->psf_refresh == 50)
 	{
-		cpu->fcnt++;;
+        cpu->fcnt++;
 
 		if (cpu->fcnt < 6)
 		{
