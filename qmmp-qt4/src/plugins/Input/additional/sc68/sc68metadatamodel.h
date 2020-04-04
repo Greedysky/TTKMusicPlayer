@@ -20,7 +20,7 @@
 #define SC68METADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
-#include "SC68helper.h"
+#include "sc68helper.h"
 
 class SC68MetaDataModel : public MetaDataModel
 {

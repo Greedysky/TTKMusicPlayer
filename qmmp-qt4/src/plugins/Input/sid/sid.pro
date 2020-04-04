@@ -11,6 +11,10 @@ SOURCES += decodersidfactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = sid
 
+# Disbale gcc warnings
+QMAKE_CFLAGS += -w
+QMAKE_CXXFLAGS += -w
+
 INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
 
 unix {
