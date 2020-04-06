@@ -32,5 +32,5 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$PWD
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libv2m.so
+    QMAKE_CLEAN = $$DESTDIR/libv2m.so
 }

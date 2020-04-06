@@ -17,9 +17,9 @@ INCLUDEPATH += $$EXTRA_PREFIX/libsndfile/include \
 unix {
     unix:android {
         TARGET = plugin_input_sndfile
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_sndfile.so
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_sndfile.so
     }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsndfile.so
+        QMAKE_CLEAN = $$DESTDIR/libsndfile.so
     }
     LIBS += -L$$EXTRA_PREFIX/libsndfile/lib -lsndfile$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libflac/lib -lFLAC$$STATIC_LIBRARY_SUFFIX \

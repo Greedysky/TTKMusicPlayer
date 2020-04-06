@@ -56,5 +56,5 @@ unix {
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
+    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }

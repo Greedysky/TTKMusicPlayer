@@ -11,6 +11,6 @@ SOURCES += floridancient.cpp \
            visualfloridancientfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridancient.so
+    QMAKE_CLEAN = $$DESTDIR/libfloridancient.so
     LIBS += -L/usr/lib -I/usr/include
 }

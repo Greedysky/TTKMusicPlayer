@@ -34,6 +34,6 @@ unix {
 win32 {
     LIBS += -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisfile -lvorbis \
             -L$$EXTRA_PREFIX/libogg/lib -logg \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll -lm
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm
     LD_FLAGS += -no-undefined
 }

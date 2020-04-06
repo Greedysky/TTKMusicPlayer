@@ -127,5 +127,5 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$PWD
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libdumb.so
+    QMAKE_CLEAN = $$DESTDIR/libdumb.so
 }

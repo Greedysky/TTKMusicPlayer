@@ -27,5 +27,5 @@ unix:{
 
 win32:{
     LIBS += -L$$EXTRA_PREFIX/libfaad2/lib -lfaad \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }

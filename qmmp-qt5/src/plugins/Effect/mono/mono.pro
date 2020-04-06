@@ -10,5 +10,5 @@ DESTDIR = $$PLUGINS_PREFIX/Effect
 TARGET = mono
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libmono.so
+    QMAKE_CLEAN = $$DESTDIR/libmono.so
 }

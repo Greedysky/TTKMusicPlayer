@@ -29,8 +29,8 @@ unix {
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libflac/lib -llibFLAC \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll \
+    LIBS += -L$$EXTRA_PREFIX/libflac/lib -lFLAC \
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
             -L$$EXTRA_PREFIX/libogg/lib -logg \
             -lm
 }

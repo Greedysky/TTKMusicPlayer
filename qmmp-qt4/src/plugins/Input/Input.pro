@@ -47,12 +47,10 @@ contains(CONFIG, AAC_PLUGIN){
     SUBDIRS += aac
 }
 
-unix:!android{
-    contains(CONFIG, CDAUDIO_PLUGIN){
-        SUBDIRS += cdaudio
-    }
+contains(CONFIG, SID_PLUGIN){
+    SUBDIRS += sid
+}
 
-    contains(CONFIG, SID_PLUGIN){
-        SUBDIRS += sid
-    }
+contains(CONFIG, CDAUDIO_PLUGIN){
+    SUBDIRS += cdaudio
 }

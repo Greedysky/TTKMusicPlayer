@@ -11,5 +11,5 @@ SOURCES += normalhistogram.cpp \
            visualnormalhistogramfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libnormalhistogram.so
+    QMAKE_CLEAN = $$DESTDIR/libnormalhistogram.so
 }

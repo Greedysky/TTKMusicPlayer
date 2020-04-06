@@ -11,5 +11,5 @@ SOURCES += outerewave.cpp \
            visualouterewavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libouterewave.so
+    QMAKE_CLEAN = $$DESTDIR/libouterewave.so
 }

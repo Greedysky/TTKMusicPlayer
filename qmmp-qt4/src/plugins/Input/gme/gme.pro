@@ -24,5 +24,5 @@ unix{
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme.dll
+    LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme
 }

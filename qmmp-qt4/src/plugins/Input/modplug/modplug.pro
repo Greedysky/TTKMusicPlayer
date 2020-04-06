@@ -33,6 +33,9 @@ unix {
 }
 
 win32 {
+    contains(CONFIG, USE_STATIC_LIBRARY){
+        DEFINES += MODPLUG_STATIC
+    }
     LIBS += -L$$EXTRA_PREFIX/libmodplug/lib -lmodplug
     DEFINES -= UNICODE
 }

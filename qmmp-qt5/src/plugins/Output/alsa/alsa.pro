@@ -9,7 +9,7 @@ SOURCES += outputalsa.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Output
 TARGET = alsa
 
-QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libalsa.so
+QMAKE_CLEAN = $$DESTDIR/libalsa.so
 
 INCLUDEPATH += $$EXTRA_PREFIX/libalsa/include
 

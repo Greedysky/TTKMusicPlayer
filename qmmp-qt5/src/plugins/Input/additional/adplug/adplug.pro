@@ -24,7 +24,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libadplug/include \
 
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libadplug.so
+    QMAKE_CLEAN = $$DESTDIR/libadplug.so
     LIBS += -L$$EXTRA_PREFIX/libadplug/lib -ladplug$$STATIC_LIBRARY_SUFFIX -lbinio$$STATIC_LIBRARY_SUFFIX
 }
 

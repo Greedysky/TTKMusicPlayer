@@ -11,5 +11,5 @@ SOURCES += outerrayswave.cpp \
            visualouterrayswavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libouterrayswave.so
+    QMAKE_CLEAN = $$DESTDIR/libouterrayswave.so
 }

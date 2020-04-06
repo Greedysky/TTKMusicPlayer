@@ -10,5 +10,5 @@ DESTDIR = $$PLUGINS_PREFIX/Effect
 TARGET = monotostereo
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libmonotostereo.so
+    QMAKE_CLEAN = $$DESTDIR/libmonotostereo.so
 }

@@ -13,6 +13,6 @@ HEADERS  += \
         visuallightenvelopefactory.h
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/liblightenvelope.so
+    QMAKE_CLEAN = $$DESTDIR/liblightenvelope.so
     LIBS += -L/usr/lib -I/usr/include
 }

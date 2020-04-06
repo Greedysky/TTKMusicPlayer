@@ -11,6 +11,6 @@ SOURCES += floridsurround.cpp \
            visualfloridsurroundfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridsurround.so
+    QMAKE_CLEAN = $$DESTDIR/libfloridsurround.so
     LIBS += -L/usr/lib -I/usr/include
 }

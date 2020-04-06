@@ -96,7 +96,7 @@ VERSION = $$QMMP_VERSION
 INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include
 
 win32:{
-    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag.dll
+    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag
 }
 
 unix {

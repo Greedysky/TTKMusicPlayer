@@ -25,4 +25,4 @@ LIBS += -L/usr/lib \
 
 linux-g++|linux-g++-32|linux-g++-64:LIBS += -ldl
 
-QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libladspa.so
+QMAKE_CLEAN = $$DESTDIR/libladspa.so

@@ -25,14 +25,17 @@ INCLUDEPATH += $$EXTRA_PREFIX/libmodplug/include
 unix {
     unix:android {
         TARGET = plugin_input_modplug
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_modplug.so
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_modplug.so
     }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libmodplug.so
+        QMAKE_CLEAN = $$DESTDIR/libmodplug.so
     }
     LIBS += -L$$EXTRA_PREFIX/libmodplug/lib -lmodplug$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {
+    contains(CONFIG, USE_STATIC_LIBRARY){
+        DEFINES += MODPLUG_STATIC
+    }
     LIBS += -L$$EXTRA_PREFIX/libmodplug/lib -lmodplug
     DEFINES -= UNICODE
 }

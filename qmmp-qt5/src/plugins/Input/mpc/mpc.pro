@@ -17,9 +17,9 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
 unix {
     unix:android {
         TARGET = plugin_input_mpc
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_mpc.so
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_mpc.so
     }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libmpc.so
+        QMAKE_CLEAN = $$DESTDIR/libmpc.so
     }
     LIBS += -L$$EXTRA_PREFIX/libmpcdec/lib -lmpcdec$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
@@ -27,5 +27,5 @@ unix {
 
 win32 {
     LIBS += -L$$EXTRA_PREFIX/libmpcdec/lib -lmpcdec \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }

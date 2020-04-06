@@ -11,6 +11,6 @@ SOURCES += floridautism.cpp \
            visualfloridautismfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridautism.so
+    QMAKE_CLEAN = $$DESTDIR/libfloridautism.so
     LIBS += -L/usr/lib -I/usr/include
 }

@@ -10,5 +10,5 @@ DESTDIR = $$PLUGINS_PREFIX/Output
 TARGET = null
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libnull.so
+    QMAKE_CLEAN = $$DESTDIR/libnull.so
 }

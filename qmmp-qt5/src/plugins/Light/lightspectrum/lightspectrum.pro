@@ -29,6 +29,6 @@ win32:{
 }
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/liblightspectrum.so
+    QMAKE_CLEAN = $$DESTDIR/liblightspectrum.so
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
 }

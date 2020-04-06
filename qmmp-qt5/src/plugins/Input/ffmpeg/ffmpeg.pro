@@ -18,9 +18,9 @@ INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 unix {
     unix:android {
         TARGET = plugin_input_ffmpeg
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplugin_input_ffmpeg.so
+        QMAKE_CLEAN = $$DESTDIR/libplugin_input_ffmpeg.so
     }else{
-        QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libffmpeg.so
+        QMAKE_CLEAN = $$DESTDIR/libffmpeg.so
     }
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
 }

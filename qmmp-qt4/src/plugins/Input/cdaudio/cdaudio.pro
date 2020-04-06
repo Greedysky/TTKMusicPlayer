@@ -20,8 +20,8 @@ unix {
 }
 
 win32 {
-  LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio \
-          -L$$EXTRA_PREFIX/libcdio_paranoia/lib -lcdio_paranoia -lcdio_cdda \
-          -L$$EXTRA_PREFIX/libcddb/lib -lcddb \
-          -lm -lwinmm -mwindows -liconv -lws2_32
+    LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio \
+            -L$$EXTRA_PREFIX/libcdio_paranoia/lib -lcdio_paranoia -lcdio_cdda \
+            -L$$EXTRA_PREFIX/libcddb/lib -lcddb \
+            -lm -lwinmm -mwindows -liconv -lws2_32 -lregex
 }

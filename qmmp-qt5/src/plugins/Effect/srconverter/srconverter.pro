@@ -21,6 +21,6 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsrconverter.so
+    QMAKE_CLEAN = $$DESTDIR/libsrconverter.so
     LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate$$STATIC_LIBRARY_SUFFIX
 }

@@ -14,10 +14,13 @@ TARGET = wildmidi
 INCLUDEPATH += $$EXTRA_PREFIX/libwildmidi/include
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libwildmidi.so
+    QMAKE_CLEAN = $$DESTDIR/libwildmidi.so
     LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib/x86_64-linux-gnu -lWildMidi$$STATIC_LIBRARY_SUFFIX
 }
 
 win32:{
-    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib -lWildMidi.dll
+    contains(CONFIG, USE_STATIC_LIBRARY){
+        DEFINES += WILDMIDI_STATIC
+    }
+    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib -lWildMidi
 }

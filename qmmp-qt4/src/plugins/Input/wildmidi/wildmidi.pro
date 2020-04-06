@@ -19,5 +19,8 @@ unix:{
 }
 
 win32:{
-    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib -lWildMidi.dll
+    contains(CONFIG, USE_STATIC_LIBRARY){
+        DEFINES += WILDMIDI_STATIC
+    }
+    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib -lWildMidi
 }

@@ -31,5 +31,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = dca
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libdca.so
+    QMAKE_CLEAN = $$DESTDIR/libdca.so
 }

@@ -14,6 +14,6 @@ TARGET = crossfade
 FORMS += settingsdialog.ui
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libcrossfade.so
+    QMAKE_CLEAN = $$DESTDIR/libcrossfade.so
     LIBS += -L/usr/lib -I/usr/include
 }

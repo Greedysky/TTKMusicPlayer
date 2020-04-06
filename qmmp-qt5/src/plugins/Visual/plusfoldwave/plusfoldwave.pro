@@ -11,5 +11,5 @@ SOURCES += plusfoldwave.cpp \
            visualplusfoldwavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplusfoldwave.so
+    QMAKE_CLEAN = $$DESTDIR/libplusfoldwave.so
 }

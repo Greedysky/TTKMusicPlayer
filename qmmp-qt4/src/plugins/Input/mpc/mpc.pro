@@ -27,5 +27,5 @@ unix {
 
 win32 {
     LIBS += -L$$EXTRA_PREFIX/libmpcdec/lib -lmpcdec \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }

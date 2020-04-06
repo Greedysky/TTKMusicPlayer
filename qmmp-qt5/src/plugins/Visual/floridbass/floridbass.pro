@@ -11,6 +11,6 @@ SOURCES += floridbass.cpp \
            visualfloridbassfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfloridbass.so
+    QMAKE_CLEAN = $$DESTDIR/libfloridbass.so
     LIBS += -L/usr/lib -I/usr/include
 }

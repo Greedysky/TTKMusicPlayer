@@ -11,5 +11,5 @@ SOURCES += normalflowwave.cpp \
            visualnormalflowwavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libnormalflowwave.so
+    QMAKE_CLEAN = $$DESTDIR/libnormalflowwave.so
 }

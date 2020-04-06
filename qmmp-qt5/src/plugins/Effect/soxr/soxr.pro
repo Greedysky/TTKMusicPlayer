@@ -20,7 +20,7 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsoxr.so
+    QMAKE_CLEAN = $$DESTDIR/libsoxr.so
     LIBS += -L/usr/lib -I/usr/include
     LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr$$STATIC_LIBRARY_SUFFIX
 }

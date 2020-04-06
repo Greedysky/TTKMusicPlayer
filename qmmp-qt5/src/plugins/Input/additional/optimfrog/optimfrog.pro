@@ -16,6 +16,6 @@ TARGET = optimfrog
 INCLUDEPATH += $$EXTRA_PREFIX/liboptimfrog/include
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/liboptimfrog.so
+    QMAKE_CLEAN = $$DESTDIR/liboptimfrog.so
     LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG
 }

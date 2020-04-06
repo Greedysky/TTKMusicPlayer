@@ -17,5 +17,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = asap
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libasap.so
+    QMAKE_CLEAN = $$DESTDIR/libasap.so
 }

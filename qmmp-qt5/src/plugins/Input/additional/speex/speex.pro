@@ -17,12 +17,12 @@ INCLUDEPATH += $$EXTRA_PREFIX/libspeex/include \
                $$EXTRA_PREFIX/libogg/include
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libspeex.so
+    QMAKE_CLEAN = $$DESTDIR/libspeex.so
     LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex.dll \
+    LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex \
             -L$$EXTRA_PREFIX/libogg/lib -logg
 }

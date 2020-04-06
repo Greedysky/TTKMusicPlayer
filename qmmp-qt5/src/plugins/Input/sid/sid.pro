@@ -18,7 +18,7 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsid.so
+    QMAKE_CLEAN = $$DESTDIR/libsid.so
     LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp$$STATIC_LIBRARY_SUFFIX
 }
 

@@ -11,5 +11,5 @@ SOURCES += plusxrays.cpp \
            visualplusxraysfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplusxrays.so
+    QMAKE_CLEAN = $$DESTDIR/libplusxrays.so
 }

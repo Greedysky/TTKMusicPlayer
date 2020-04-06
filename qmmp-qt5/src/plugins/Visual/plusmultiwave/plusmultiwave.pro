@@ -11,5 +11,5 @@ SOURCES += plusmultiwave.cpp \
            visualplusmultiwavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplusmultiwave.so
+    QMAKE_CLEAN = $$DESTDIR/libplusmultiwave.so
 }

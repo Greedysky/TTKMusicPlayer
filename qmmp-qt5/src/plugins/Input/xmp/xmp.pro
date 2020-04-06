@@ -14,10 +14,13 @@ TARGET = xmp
 INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libxmp.so
+    QMAKE_CLEAN = $$DESTDIR/libxmp.so
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX
 }
 
 win32:{
-    LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp_dll
+    contains(CONFIG, USE_STATIC_LIBRARY){
+        DEFINES += BUILDING_STATIC
+    }
+    LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp
 }

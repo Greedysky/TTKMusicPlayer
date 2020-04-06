@@ -11,5 +11,5 @@ SOURCES += normalline.cpp \
            visualnormallinefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libnormalline.so
+    QMAKE_CLEAN = $$DESTDIR/libnormalline.so
 }

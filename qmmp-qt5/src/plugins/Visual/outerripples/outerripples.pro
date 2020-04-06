@@ -11,5 +11,5 @@ SOURCES += outerripples.cpp \
            visualouterripplesfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libouterripples.so
+    QMAKE_CLEAN = $$DESTDIR/libouterripples.so
 }

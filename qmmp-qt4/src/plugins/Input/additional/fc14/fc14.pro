@@ -28,5 +28,5 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = fc14
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libfc14.so
+    QMAKE_CLEAN = $$DESTDIR/libfc14.so
 }

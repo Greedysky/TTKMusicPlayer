@@ -26,7 +26,7 @@ unix:contains(CONFIG, WITH_MPG123){
 }
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libmpeg.so
+    QMAKE_CLEAN = $$DESTDIR/libmpeg.so
     contains(CONFIG, WITH_MAD):{
         LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
                 -L$$EXTRA_PREFIX/libmad/lib -lmad$$STATIC_LIBRARY_SUFFIX
@@ -38,6 +38,6 @@ unix {
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll \
+    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
             -L$$EXTRA_PREFIX/libmad/lib -lmad
 }

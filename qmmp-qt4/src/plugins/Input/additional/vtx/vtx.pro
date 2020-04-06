@@ -27,5 +27,5 @@ SOURCES += mman.c
 }
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libvtx.so
+    QMAKE_CLEAN = $$DESTDIR/libvtx.so
 }

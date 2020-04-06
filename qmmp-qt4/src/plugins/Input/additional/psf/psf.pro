@@ -120,5 +120,5 @@ TARGET = psf
 INCLUDEPATH += $$PWD
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libpsf.so
+    QMAKE_CLEAN = $$DESTDIR/libpsf.so
 }

@@ -29,5 +29,6 @@ unix {
 
 win32 {
     LIBS += -L$$EXTRA_PREFIX/libopusfile/lib -lopusfile -lopus \
-            -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll -lm
+            -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lm \
+            -L$$EXTRA_PREFIX/libogg/lib -logg
 }

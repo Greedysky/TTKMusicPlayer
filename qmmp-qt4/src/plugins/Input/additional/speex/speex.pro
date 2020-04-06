@@ -23,6 +23,6 @@ unix{
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex.dll \
+    LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex \
             -L$$EXTRA_PREFIX/libogg/lib -logg
 }

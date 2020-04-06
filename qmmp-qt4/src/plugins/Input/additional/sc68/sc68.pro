@@ -166,5 +166,5 @@ DEFINES += HAVE_STDLIB_H \
            EMU68_EXPORT
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libsc68.so
+    QMAKE_CLEAN = $$DESTDIR/libsc68.so
 }

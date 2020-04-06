@@ -11,5 +11,5 @@ SOURCES += plusmonowave.cpp \
            visualplusmonowavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libplusmonowave.so
+    QMAKE_CLEAN = $$DESTDIR/libplusmonowave.so
 }

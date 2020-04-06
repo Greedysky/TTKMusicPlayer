@@ -14,6 +14,6 @@ TARGET = stereo
 FORMS += settingsdialog.ui
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/$$DESTDIR/libstereo.so
+    QMAKE_CLEAN = $$DESTDIR/libstereo.so
     LIBS += -L/usr/lib -I/usr/include
 }
