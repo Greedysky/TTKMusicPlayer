@@ -1,6 +1,6 @@
 include($$PWD/../../qmmp.pri)
 
-EXTRA_PREFIX= $$PWD/../../../extra/gcc
+EXTRA_PREFIX = $$PWD/../../../extra/gcc
 
 unix {
     isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer

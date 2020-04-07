@@ -87,7 +87,7 @@ SOURCES += recycler.cpp \
 win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
 
-TARGET = qmmp
+TARGET = $${TARGET}
 CONFIG += shared warn_on qt thread
 TEMPLATE = lib
 
@@ -100,12 +100,7 @@ win32:{
 }
 
 unix {
-    unix:android{
-        INCLUDEPATH += $$PWD/../../../extra/android/libtaglib/include
-        LIBS += -L$$PWD/../../../extra/android/libtaglib/lib -ltag
-    }else{
-        LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
-    }
+    LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
     CONFIG += create_pc create_prl no_install_prl
     QMAKE_PKGCONFIG_NAME = qmmp
     QMAKE_PKGCONFIG_DESCRIPTION = qmmp core library

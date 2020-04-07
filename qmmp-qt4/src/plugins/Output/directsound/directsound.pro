@@ -7,6 +7,6 @@ SOURCES += outputdirectsoundfactory.cpp \
            outputdirectsound.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Output
-TARGET = directsound
+TARGET = $${TARGET}
 
 LIBS += -ldxguid -lstrmiids -ldmoguids -lmsdmo -lole32 -loleaut32 -luuid -lgdi32 -ldsound -lksuser

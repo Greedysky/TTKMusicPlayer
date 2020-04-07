@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = plusvolumewave
+TARGET = $${TARGET}
 
 HEADERS += plusvolumewave.h \
            visualplusvolumewavefactory.h
@@ -11,5 +11,5 @@ SOURCES += plusvolumewave.cpp \
            visualplusvolumewavefactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libplusvolumewave.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

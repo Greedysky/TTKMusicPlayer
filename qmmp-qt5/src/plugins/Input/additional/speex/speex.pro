@@ -11,13 +11,13 @@ SOURCES += decoderspeexfactory.cpp \
            speexmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = speex
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libspeex/include \
                $$EXTRA_PREFIX/libogg/include
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libspeex.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libspeex/lib -lspeex$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
 }

@@ -11,17 +11,12 @@ SOURCES += decoderffmpegfactory.cpp \
            replaygainreader.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = ffmpeg
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 
 unix {
-    unix:android {
-        TARGET = plugin_input_ffmpeg
-        QMAKE_CLEAN = $$DESTDIR/libplugin_input_ffmpeg.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/libffmpeg.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
 }
 

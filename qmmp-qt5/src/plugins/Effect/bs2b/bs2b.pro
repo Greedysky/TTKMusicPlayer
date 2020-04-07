@@ -9,7 +9,7 @@ SOURCES += bs2bplugin.cpp \
            settingsdialog.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = bs2b
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libbs2b/include
 
@@ -20,6 +20,6 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libbs2b.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b$$STATIC_LIBRARY_SUFFIX
 }

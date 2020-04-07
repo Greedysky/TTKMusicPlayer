@@ -11,11 +11,11 @@ SOURCES += decoderoptimfrogfactory.cpp \
            optimfroghelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = optimfrog
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/liboptimfrog/include
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/liboptimfrog.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/liboptimfrog/lib -lOptimFROG
 }

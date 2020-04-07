@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = floridelectric
+TARGET = $${TARGET}
 
 HEADERS += floridelectric.h \
            visualfloridelectricfactory.h
@@ -11,6 +11,6 @@ SOURCES += floridelectric.cpp \
            visualfloridelectricfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libfloridelectric.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
 }

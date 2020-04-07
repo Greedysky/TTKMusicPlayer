@@ -9,7 +9,7 @@ SOURCES += decodermpegfactory.cpp \
 	   mpegmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = mpeg
+TARGET = $${TARGET}
 
 contains(CONFIG, WITH_MAD){
     INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
@@ -26,7 +26,7 @@ unix:contains(CONFIG, WITH_MPG123){
 }
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libmpeg.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     contains(CONFIG, WITH_MAD):{
         LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
                 -L$$EXTRA_PREFIX/libmad/lib -lmad$$STATIC_LIBRARY_SUFFIX

@@ -9,7 +9,7 @@ SOURCES += decodersidfactory.cpp \
            sidhelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = sid
+TARGET = $${TARGET}
 
 # Disbale gcc warnings
 QMAKE_CFLAGS += -w
@@ -18,7 +18,7 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libsid.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp$$STATIC_LIBRARY_SUFFIX
 }
 

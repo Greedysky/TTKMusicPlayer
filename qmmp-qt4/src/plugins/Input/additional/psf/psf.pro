@@ -115,10 +115,10 @@ SOURCES += zlib/adler32.c \
            zlib/zutil.c
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = psf
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$PWD
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libpsf.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

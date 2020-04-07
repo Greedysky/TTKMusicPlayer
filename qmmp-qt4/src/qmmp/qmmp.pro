@@ -87,7 +87,7 @@ SOURCES += recycler.cpp \
 win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
 
-TARGET = qmmp
+TARGET = $${TARGET}
 CONFIG += shared warn_on qt thread
 TEMPLATE = lib
 

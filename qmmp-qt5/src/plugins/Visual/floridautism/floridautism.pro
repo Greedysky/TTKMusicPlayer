@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = floridautism
+TARGET = $${TARGET}
 
 HEADERS += floridautism.h \
            visualfloridautismfactory.h
@@ -11,6 +11,6 @@ SOURCES += floridautism.cpp \
            visualfloridautismfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libfloridautism.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
 }

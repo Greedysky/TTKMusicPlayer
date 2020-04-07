@@ -11,7 +11,7 @@ SOURCES += soxresampler.cpp \
 FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = soxr
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libsoxr/include
 
@@ -20,7 +20,7 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libsoxr.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
     LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr$$STATIC_LIBRARY_SUFFIX
 }

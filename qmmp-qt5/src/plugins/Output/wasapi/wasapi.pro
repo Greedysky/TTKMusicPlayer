@@ -7,6 +7,6 @@ SOURCES += outputwasapifactory.cpp \
            outputwasapi.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Output
-TARGET = wasapi
+TARGET = $${TARGET}
 
 LIBS += -lstrmiids -ldmoguids -lmsdmo -lole32 -loleaut32 -luuid -lgdi32 -lksuser

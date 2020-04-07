@@ -15,7 +15,7 @@ SOURCES += decoderffapfactory.cpp \
            decoder_ffapcue.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = ffap
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 
@@ -51,7 +51,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 #}
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libffap.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 

@@ -11,10 +11,10 @@ INCLUDEPATH += $$EXTRA_PREFIX/libcddb/include \
                $$EXTRA_PREFIX/libcdio_paranoia/include
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = cdaudio
+TARGET = $${TARGET}
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libcdaudio.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libcdio/lib -lcdio$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libcdio_paranoia/lib -lcdio_paranoia$$STATIC_LIBRARY_SUFFIX -lcdio_cdda$$STATIC_LIBRARY_SUFFIX
 }

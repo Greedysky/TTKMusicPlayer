@@ -7,8 +7,8 @@ SOURCES += monoplugin.cpp \
            effectmonofactory.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = mono
+TARGET = $${TARGET}
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libmono.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

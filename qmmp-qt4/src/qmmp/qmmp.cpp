@@ -89,11 +89,7 @@ QString Qmmp::pluginPath()
 #if defined(Q_OS_WIN) && !defined(Q_OS_CYGWIN)
     QDir dir(qApp->applicationDirPath() + "/plugins");
 #else
-    #ifndef Q_OS_ANDROID
-        QDir dir(qApp->applicationDirPath() + "/qmmp");
-    #else
-        QDir dir(qApp->applicationDirPath());
-    #endif
+    QDir dir(qApp->applicationDirPath() + "/qmmp");
 #endif
     return dir.canonicalPath();
 }

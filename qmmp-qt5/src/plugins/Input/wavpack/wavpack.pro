@@ -11,17 +11,12 @@ SOURCES += decoderwavpackfactory.cpp \
            wavpackmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = wavpack
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libwavpack/include
 
 unix {
-    unix:android {
-        TARGET = plugin_input_wavpack
-        QMAKE_CLEAN = $$DESTDIR/libplugin_input_wavpack.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/libwavpack.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libwavpack/lib -lwavpack$$STATIC_LIBRARY_SUFFIX
 }
 

@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 
 QT += opengl
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = floridprojectm
+TARGET = $${TARGET}
 
 HEADERS += projectmplugin.h \
            projectmwidget.h \
@@ -23,6 +23,6 @@ win32:{
 }
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libfloridprojectm.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM$$STATIC_LIBRARY_SUFFIX
 }

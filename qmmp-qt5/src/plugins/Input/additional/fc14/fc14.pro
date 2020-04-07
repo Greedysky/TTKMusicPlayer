@@ -25,8 +25,8 @@ SOURCES += decoderfc14factory.cpp \
            Paula.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = fc14
+TARGET = $${TARGET}
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libfc14.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

@@ -9,12 +9,12 @@ SOURCES += decoderxmpfactory.cpp \
            xmpmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = xmp
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libxmp/include
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libxmp.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libxmp/lib -lxmp$$STATIC_LIBRARY_SUFFIX
 }
 

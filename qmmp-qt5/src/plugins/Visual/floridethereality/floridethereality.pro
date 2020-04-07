@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = floridethereality
+TARGET = $${TARGET}
 
 HEADERS += ethereality.h \
            floridethereality.h \
@@ -15,5 +15,5 @@ SOURCES += ethereality.cpp \
 RESOURCES += floridethereality.qrc
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libfloridethereality.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

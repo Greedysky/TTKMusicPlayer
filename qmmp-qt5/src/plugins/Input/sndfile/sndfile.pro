@@ -7,7 +7,7 @@ SOURCES += decodersndfilefactory.cpp \
            decoder_sndfile.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = sndfile
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libsndfile/include \
                $$EXTRA_PREFIX/libflac/include \
@@ -15,12 +15,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libsndfile/include \
                $$EXTRA_PREFIX/libogg/include
 
 unix {
-    unix:android {
-        TARGET = plugin_input_sndfile
-        QMAKE_CLEAN = $$DESTDIR/libplugin_input_sndfile.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/libsndfile.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libsndfile/lib -lsndfile$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libflac/lib -lFLAC$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisenc$$STATIC_LIBRARY_SUFFIX -lvorbis$$STATIC_LIBRARY_SUFFIX \

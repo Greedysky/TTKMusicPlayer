@@ -7,8 +7,8 @@ SOURCES += outputnullfactory.cpp \
            outputnull.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Output
-TARGET = null
+TARGET = $${TARGET}
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libnull.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

@@ -142,7 +142,7 @@ SOURCES += decodersc68factory.cpp \
            desa68/desa68.c
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = sc68
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$PWD \
                $$PWD/file68 \
@@ -166,5 +166,5 @@ DEFINES += HAVE_STDLIB_H \
            EMU68_EXPORT
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libsc68.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

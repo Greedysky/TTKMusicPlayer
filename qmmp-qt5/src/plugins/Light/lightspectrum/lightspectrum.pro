@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../../Visual/common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
-TARGET = lightspectrum
+TARGET = $${TARGET}
 
 SOURCES += \
         spek-ruler.cc \
@@ -29,6 +29,6 @@ win32:{
 }
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/liblightspectrum.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
 }

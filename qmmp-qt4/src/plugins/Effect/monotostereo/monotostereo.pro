@@ -7,8 +7,8 @@ SOURCES += monotostereoplugin.cpp \
            effectmonotostereofactory.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = monotostereo
+TARGET = $${TARGET}
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libmonotostereo.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

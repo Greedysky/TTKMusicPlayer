@@ -9,17 +9,12 @@ SOURCES += decodergmefactory.cpp \
            gmehelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = gme
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libgme/include
 
 unix{
-    unix:android {
-        TARGET = plugin_input_gme
-        QMAKE_CLEAN = $$DESTDIR/libplugin_input_gme.so
-    }else{
-        QMAKE_CLEAN = $$DESTDIR/libgme.so
-    }
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libgme/lib -lgme$$STATIC_LIBRARY_SUFFIX
 }
 

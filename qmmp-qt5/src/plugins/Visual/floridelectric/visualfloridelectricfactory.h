@@ -1,5 +1,5 @@
 /* =================================================
- * This file is part of the TTK Music Player qmmp plugin project
+ * This file is part of the TTK qmmp plugin project
  * Copyright (C) 2015 - 2020 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify

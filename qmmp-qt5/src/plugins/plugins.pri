@@ -1,10 +1,6 @@
 include($$PWD/../../qmmp.pri)
 
-unix:android {
-    EXTRA_PREFIX=$$PWD/../../../extra/android
-}else{
-    EXTRA_PREFIX=$$PWD/../../../extra/gcc
-}
+EXTRA_PREFIX = $$PWD/../../../extra/gcc
 
 unix {
     QMAKE_LIBDIR += $$OUT_PWD/../../../../lib/$$TTKMusicPlayer

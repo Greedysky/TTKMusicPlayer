@@ -9,11 +9,11 @@ SOURCES += crossfadeplugin.cpp \
            settingsdialog.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = crossfade
+TARGET = $${TARGET}
 
 FORMS += settingsdialog.ui
 
 unix {
-    QMAKE_CLEAN = $$DESTDIR/libcrossfade.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
 }

@@ -28,8 +28,8 @@ SOURCES += decoderdcafactory.cpp \
            bitstream.c
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = dca
+TARGET = $${TARGET}
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libdca.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

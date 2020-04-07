@@ -9,7 +9,7 @@ SOURCES += srconverter.cpp \
            settingsdialog.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = srconverter
+TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libsoxr/include \
                $$EXTRA_PREFIX/libsamplerate/include
@@ -21,6 +21,6 @@ win32:{
 }
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libsrconverter.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate$$STATIC_LIBRARY_SUFFIX
 }

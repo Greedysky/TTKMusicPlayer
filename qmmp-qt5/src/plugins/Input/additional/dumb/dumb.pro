@@ -118,7 +118,7 @@ SOURCES += decoderdumbfactory.cpp \
            helpers/resamp3.inc
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = dumb
+TARGET = $${TARGET}
 
 # Disbale gcc warnings
 QMAKE_CFLAGS += -w
@@ -127,5 +127,5 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$PWD
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libdumb.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

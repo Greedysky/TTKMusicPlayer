@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../../Visual/common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Light
-TARGET = lightenvelope
+TARGET = $${TARGET}
 
 SOURCES += \
         lightenvelope.cpp \
@@ -13,6 +13,6 @@ HEADERS  += \
         visuallightenvelopefactory.h
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/liblightenvelope.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
 }

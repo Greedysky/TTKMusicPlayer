@@ -18,8 +18,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef OptimFROGHelper_H
-#define OptimFROGHelper_H
+#ifndef OPTIMFROGHELPER_H
+#define OPTIMFROGHELPER_H
 
 #include <map>
 #include <QFile>

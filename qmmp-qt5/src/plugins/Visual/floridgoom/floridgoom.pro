@@ -1,7 +1,7 @@
 include($$PWD/../../plugins.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = floridgoom
+TARGET = $${TARGET}
 
 HEADERS += goomwidget.h \
            visualfloridgoomfactory.h \
@@ -82,6 +82,6 @@ contains(QT_ARCH, x86_64){
 QMAKE_CFLAGS += -Werror=implicit-function-declaration
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libfloridgoom.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
 }

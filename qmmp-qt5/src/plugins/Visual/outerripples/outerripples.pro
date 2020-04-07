@@ -2,7 +2,7 @@ include($$PWD/../../plugins.pri)
 include($$PWD/../common/common.pri)
 
 DESTDIR = $$PLUGINS_PREFIX/Visual
-TARGET = outerripples
+TARGET = $${TARGET}
 
 HEADERS += outerripples.h \
            visualouterripplesfactory.h
@@ -11,5 +11,5 @@ SOURCES += outerripples.cpp \
            visualouterripplesfactory.cpp
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libouterripples.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

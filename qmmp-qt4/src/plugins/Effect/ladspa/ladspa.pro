@@ -16,7 +16,7 @@ SOURCES += ladspahost.cpp \
            ladspabutton.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = ladspa
+TARGET = $${TARGET}
 
 FORMS += settingsdialog.ui
 
@@ -25,4 +25,4 @@ LIBS += -L/usr/lib \
 
 linux-g++|linux-g++-32|linux-g++-64:LIBS += -ldl
 
-QMAKE_CLEAN = $$DESTDIR/libladspa.so
+QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

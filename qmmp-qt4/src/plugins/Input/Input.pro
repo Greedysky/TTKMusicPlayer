@@ -15,14 +15,12 @@ contains(CONFIG, MUSEPACK_PLUGIN){
     SUBDIRS += mpc
 }
 
-!android{
-    contains(CONFIG, FFAP_PLUGIN){
-        SUBDIRS += ffap
-    }
+contains(CONFIG, FFAP_PLUGIN){
+    SUBDIRS += ffap
+}
 
-    contains(CONFIG, XMP_PLUGIN){
-        SUBDIRS += xmp
-    }
+contains(CONFIG, XMP_PLUGIN){
+    SUBDIRS += xmp
 }
 
 contains(CONFIG, FFMPEG_PLUGIN){
@@ -33,10 +31,8 @@ contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme
 }
 
-!android{
-    contains(CONFIG, WILDMIDI_PLUGIN){
-        SUBDIRS += wildmidi
-    }
+contains(CONFIG, WILDMIDI_PLUGIN){
+    SUBDIRS += wildmidi
 }
 
 contains(CONFIG, OPUS_PLUGIN){

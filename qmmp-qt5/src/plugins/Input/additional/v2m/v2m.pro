@@ -23,7 +23,7 @@ SOURCES += decoderv2mfactory.cpp \
            v2mplayer.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = v2m
+TARGET = $${TARGET}
 
 # Disbale gcc warnings
 QMAKE_CFLAGS += -w
@@ -32,5 +32,5 @@ QMAKE_CXXFLAGS += -w
 INCLUDEPATH += $$PWD
 
 unix{
-    QMAKE_CLEAN = $$DESTDIR/libv2m.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

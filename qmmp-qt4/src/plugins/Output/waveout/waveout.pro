@@ -7,6 +7,6 @@ SOURCES += outputwaveoutfactory.cpp \
            outputwaveout.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Output
-TARGET = waveout
+TARGET = $${TARGET}
 
 LIBS += -lwinmm

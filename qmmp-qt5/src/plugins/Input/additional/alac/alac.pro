@@ -16,8 +16,8 @@ SOURCES += decoderalacfactory.cpp \
            alac_stream.c
 
 DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = alac
+TARGET = $${TARGET}
 
 unix:{
-    QMAKE_CLEAN = $$DESTDIR/libalac.so
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
