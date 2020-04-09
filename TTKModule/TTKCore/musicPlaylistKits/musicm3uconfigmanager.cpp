@@ -20,9 +20,9 @@ bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
 
     const QStringList data(QString(m_file.readAll()).split("\n"));
 
-    QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*) - (.*)");
+    QRegExp regx("#EXTINF:(-{0,1}\\d+),(.*)");
     int length = 0;
-    bool hasExtInf = false;
+    bool valid = false;
 
     foreach(QString str, data)
     {
@@ -35,7 +35,7 @@ bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
         if(regx.indexIn(str) > -1)
         {
             length = regx.cap(1).toInt();
-            hasExtInf = true;
+            valid = true;
         }
 
         if(str.startsWith("#"))
@@ -43,9 +43,10 @@ bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
             continue;
         }
 
-        item.m_songs << MusicSong(str, 0,
-                                  hasExtInf ? MusicTime::msecTime2LabelJustified(length * MT_S2MS) : QString(),
-                                  QString());
+        if(valid)
+        {
+            item.m_songs << MusicSong(str, 0, MusicTime::msecTime2LabelJustified(length * MT_S2MS), QString());
+        }
     }
 
     m_file.close();
@@ -69,7 +70,7 @@ bool MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const
     data << QString("#EXTM3U");
     foreach(const MusicSong &song, item.m_songs)
     {
-        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.getMusicPlayTime())/1000)
+        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.getMusicPlayTime()) / MT_S2MS)
                                                  .arg(song.getMusicArtistFront())
                                                  .arg(song.getMusicArtistBack()));
         data.append(song.getMusicPath());
