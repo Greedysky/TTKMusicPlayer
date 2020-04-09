@@ -42,23 +42,41 @@
  *
  *  MPEG File(*.mp1 *.mp2 *.mp3 *.wav)
  *
- *  Game File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
+ *  Game Audio File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
  *
  *  FLAC File(*.flac *.oga)
  *
  *  Monkey's Audio File(*.ape)
  *
- *  OptimFrog File(*.ofr *.ofs)
- *
- *  AdPlug File(*.adl *.hsc *.ksm *.lds)
- *
- *  YM File(*.ym)
- *
- *  ALAC File(*.alac)
- *
  *  FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)
  *
  *  ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
+ *
+ *  AdLib Sound File(*.adl *.hsc *.ksm *.lds)
+ *
+ *  Apple Lossless Audio File(*.alac)
+ *
+ *  Another Slight Atari File(*.sap *.cm3 *.cmc *.cmr *.cms *.dmc *.dlt *.mpd *.mpt *.rmt *.tm2 *.tm8 *.tmc *.fc)
+ *
+ *  DTS Coherent Acoustics File(*.wav *.dts *.cpt)
+ *
+ *  Dynamic Universal File(*.mod *.mdz *.stk *.m15 *.fst *.oct *.nt *.s3m *.s3z *.stm *.stz *.it *.itz *.xm *.xmz *ptm *.ptz *mtm *.mtz *669 *psm *umx *am *.j2b *dsm *amf *okt *.okta *mo3)
+ *
+ *  Future Composer File(*.fc *.fc13 *.fc14 *.smod)
+ *
+ *  OptimFrog File(*.ofr *.ofs)
+ *
+ *  Audio Overload File(*.psf *.psf2 *.spu *.ssf *.qsf *.dsf *.minipsf *.minipsf2 *.minissf *.miniqsf *.minidsf)
+ *
+ *  Atari ST(E) And Amiga File(*.sndh *.snd *.sc68)
+ *
+ *  Speex Audio File(*.spx)
+ *
+ *  V2 Module Audio File(*.v2m)
+ *
+ *  AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.psc *.ay *.ym)
+ *
+ *  ST-Sound File(*.ym)
  *
  *  Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
  *
