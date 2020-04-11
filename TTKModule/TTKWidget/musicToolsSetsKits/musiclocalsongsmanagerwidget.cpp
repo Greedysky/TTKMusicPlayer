@@ -147,7 +147,7 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
         itemsSelected();
         return;
     }
-    if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0 )
+    if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
         MusicMessageBox message;
         message.setText(tr("please select one item"));
@@ -166,7 +166,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
         return;
     }
 
-    if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0 )
+    if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
         MusicMessageBox message;
         message.setText(tr("please select one item"));
@@ -278,7 +278,7 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
     controlEnabled(true);
-    addAllItems( m_fileNames = m_ui->songlistsTable->getFiles() );
+    addAllItems(m_fileNames = m_ui->songlistsTable->getFiles());
     loadingLabelState(false);
 }
 

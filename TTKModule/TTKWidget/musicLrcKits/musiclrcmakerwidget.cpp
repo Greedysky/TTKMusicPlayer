@@ -364,7 +364,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
     cursor.movePosition(QTextCursor::Start);
     m_ui->makeTextEdit->setTextCursor(cursor);
     m_ui->makeTextEdit->setCurrentCharFormat(QTextCharFormat());
-    m_lineItem->setText( cursor.block().text() );
+    m_lineItem->setText(cursor.block().text());
 
     m_ui->stackedWidget->setCurrentIndex(LRC_MAKER_INDEX_2);
 }
@@ -394,7 +394,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
         for(int i=0; i<m_analysis->getLineMax(); ++i)
         {
-            m_musicLrcContainer[i]->setText( QString() );
+            m_musicLrcContainer[i]->setText(QString());
         }
         setItemStyleSheet(0, -3, 90);
         setItemStyleSheet(1, -6, 35);
@@ -445,7 +445,7 @@ void MusicLrcMakerWidget::keyReleaseEvent(QKeyEvent* event)
 void MusicLrcMakerWidget::createCurrentLine(int key)
 {
     QTextCursor cursor = m_ui->makeTextEdit->textCursor();
-    if(m_ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_currentLine )
+    if(m_ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_currentLine)
     {
         switch(key)
         {
@@ -457,7 +457,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
             case Qt::Key_Up:
                 {
                     cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor);
-                    m_lineItem->setText( cursor.block().text() );
+                    m_lineItem->setText(cursor.block().text());
 
                     if(--m_currentLine < 0)
                     {
@@ -480,7 +480,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                         return;
                     }
                     cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-                    m_lineItem->setText( cursor.block().text() );
+                    m_lineItem->setText(cursor.block().text());
 
                     if(++m_currentLine >= m_plainText.count())
                     {
@@ -610,7 +610,7 @@ void MusicLrcMakerWidget::createSecondWidget()
 
     QFont font = m_ui->makeTextEdit->font();
     font.setPointSize(15);
-    m_ui->makeTextEdit->setFont( font );
+    m_ui->makeTextEdit->setFont(font);
 
     m_ui->timeSlider_S->setFocusPolicy(Qt::NoFocus);
     m_ui->timeSlider_S->setStyleSheet(MusicUIObject::MQSSSliderStyle09);

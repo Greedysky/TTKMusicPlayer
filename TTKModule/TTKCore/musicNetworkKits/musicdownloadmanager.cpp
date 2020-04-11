@@ -11,7 +11,7 @@ void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
 {
 #ifndef MUSIC_MOBILE
     m_queueList << object;
-    const QObject *to = M_CONNECTION_PTR->value( MusicDownloadStatusObject::getClassName() );
+    const QObject *to = M_CONNECTION_PTR->value(MusicDownloadStatusObject::getClassName());
     if(to)
     {
         QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));

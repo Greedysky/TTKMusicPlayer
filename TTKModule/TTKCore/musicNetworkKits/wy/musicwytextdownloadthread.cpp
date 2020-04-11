@@ -78,6 +78,6 @@ void MusicWYTextDownLoadThread::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged( transferData() );
+    Q_EMIT downLoadDataChanged(transferData());
     deleteAll();
 }

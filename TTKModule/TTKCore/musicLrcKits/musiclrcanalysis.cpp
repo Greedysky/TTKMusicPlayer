@@ -410,7 +410,7 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
 //    {
 //        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
 //        {
-//            if((m_currentLrcIndex = i - getMiddle() - 1) < 0 )
+//            if((m_currentLrcIndex = i - getMiddle() - 1) < 0)
 //            {
 //                m_currentLrcIndex = 0;
 //            }

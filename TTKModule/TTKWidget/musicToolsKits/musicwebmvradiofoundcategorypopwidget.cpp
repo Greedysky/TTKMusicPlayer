@@ -100,7 +100,7 @@ void MusicWebMVRadioFoundCategoryPopWidget::closeMenu()
 
 void MusicWebMVRadioFoundCategoryPopWidget::popupMenu()
 {
-    m_menu->exec( mapToGlobal(QPoint(0, 0)) );
+    m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
 void MusicWebMVRadioFoundCategoryPopWidget::initWidget()

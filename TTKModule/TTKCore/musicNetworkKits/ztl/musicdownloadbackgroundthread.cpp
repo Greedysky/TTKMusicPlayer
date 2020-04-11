@@ -14,7 +14,7 @@ void MusicDownloadBackgroundThread::downLoadFinished()
 {
     if(++m_index >= m_counter)
     {
-        M_BACKGROUND_PTR->setArtistName( m_artName );
+        M_BACKGROUND_PTR->setArtistName(m_artName);
 #ifndef MUSIC_MOBILE
         MusicTopAreaWidget::instance()->musicBackgroundThemeDownloadFinished();
 #else

@@ -94,7 +94,7 @@ qint64 MusicTime::timestamp(bool ms)
 
 void MusicTime::InitSRand()
 {
-    qsrand( timestamp() );
+    qsrand(timestamp());
 }
 
 qint64 MusicTime::labelJustified2MsecTime(const QString &time)

@@ -75,7 +75,7 @@ void MusicUserManagerDialog::createButtonPopMenu()
 void MusicUserManagerDialog::musicUserLogoff()
 {
     m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
-                            QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
+                            QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed()/(MT_S2MS * 30)));
 
     MusicUserConfigManager xml;
     if(!xml.readConfig())
@@ -83,7 +83,7 @@ void MusicUserManagerDialog::musicUserLogoff()
         return;
     }
     MusicUserRecords records;
-    xml.readUserData( records );
+    xml.readUserData(records);
 
     int index = -1;
     for(int i=0; i<records.count(); ++i)
@@ -97,7 +97,7 @@ void MusicUserManagerDialog::musicUserLogoff()
     {
         records[index].m_autoFlag = false;  //auto login flag
     }
-    xml.writeUserData( records );
+    xml.writeUserData(records);
 
     m_userUID.m_uid.clear();
     Q_EMIT userStateChanged(MusicUserUIDItem(), QString());

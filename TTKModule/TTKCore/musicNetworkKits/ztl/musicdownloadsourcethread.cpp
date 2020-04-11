@@ -22,7 +22,7 @@ void MusicDownloadSourceThread::startToDownload(const QString &url)
     MusicObject::setSslConfiguration(&request);
 #endif
 
-    m_reply = m_manager->get( request );
+    m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 

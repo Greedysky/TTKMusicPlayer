@@ -259,7 +259,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &data)
 
     for(int i=0; i<m_analysis->getLineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText( QString() );
+        m_musicLrcContainer[i]->setText(QString());
     }
     setItemStyleSheet(0, -3, 90);
     setItemStyleSheet(1, -6, 35);
@@ -320,13 +320,13 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 void MusicSoundKMicroWidget::paintEvent(QPaintEvent *event)
 {
     MusicAbstractMoveWidget::paintEvent(event);
-    m_searchWidget->move( geometry().topRight() + QPoint(5, -4) );
+    m_searchWidget->move(geometry().topRight() + QPoint(5, -4));
 }
 
 void MusicSoundKMicroWidget::mouseMoveEvent(QMouseEvent *event)
 {
     MusicAbstractMoveWidget::mouseMoveEvent(event);
-    m_searchWidget->move( geometry().topRight() + QPoint(5, -4) );
+    m_searchWidget->move(geometry().topRight() + QPoint(5, -4));
 }
 
 void MusicSoundKMicroWidget::multiMediaChanged()

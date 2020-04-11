@@ -183,7 +183,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
 
 void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 {
-    cpoyFileFromLocal( path );
+    cpoyFileFromLocal(path);
     m_myBackgroundList->updateLastedItem();
 }
 
@@ -208,7 +208,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
     }
     else
     {
-        cpoyFileFromLocal( customSkinPath );
+        cpoyFileFromLocal(customSkinPath);
     }
     m_myBackgroundList->updateLastedItem();
 }

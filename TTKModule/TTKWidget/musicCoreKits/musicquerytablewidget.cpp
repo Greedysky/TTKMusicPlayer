@@ -55,7 +55,7 @@ void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
     Q_UNUSED(text);
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput( d );
+    setQueryInput(d);
 }
 
 void MusicQueryItemTableWidget::itemCellClicked(int row, int column)
@@ -97,7 +97,7 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
     const QString &songName = (row != -1 && rowCount() > 0) ? item(row, 1)->toolTip() : QString();
     const QString &artistName = (row != -1 && rowCount() > 0) ? item(row, 2)->toolTip() : QString();
 
-    switch( action->data().toInt() )
+    switch(action->data().toInt())
     {
         case 0: musicDownloadLocal(row); break;
         case 1: Q_EMIT restartSearchQuery(songName); break;

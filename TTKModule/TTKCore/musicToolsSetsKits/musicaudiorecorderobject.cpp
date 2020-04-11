@@ -17,7 +17,7 @@ MusicAudioRecorderObject::MusicAudioRecorderObject(QObject *parent)
     m_mpAudioOutputFile = nullptr;
 
     m_mpOutputFile = new QFile(this);
-    m_mpOutputFile->setFileName( MUSIC_RECORD_FILE );
+    m_mpOutputFile->setFileName(MUSIC_RECORD_FILE);
 
     m_mFormatFile.setSampleSize(16);
     m_mFormatFile.setSampleType(QAudioFormat::SignedInt);

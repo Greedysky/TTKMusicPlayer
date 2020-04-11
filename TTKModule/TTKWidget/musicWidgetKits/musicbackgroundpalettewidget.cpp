@@ -26,7 +26,7 @@ MusicBackgroundPalette::~MusicBackgroundPalette()
 void MusicBackgroundPalette::setPixmap(const QColor &color)
 {
     QPixmap pixmap(90, 30);
-    pixmap.fill( m_color = color );
+    pixmap.fill(m_color = color);
     QLabel::setPixmap(pixmap);
 }
 
@@ -34,9 +34,9 @@ void MusicBackgroundPalette::copyColorToMemory(const QColor &color)
 {
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(color);
-    if(image.save( MUSIC_COLOR_FILE ))
+    if(image.save(MUSIC_COLOR_FILE))
     {
-        Q_EMIT currentColorToMemoryChanged( MUSIC_COLOR_FILE );
+        Q_EMIT currentColorToMemoryChanged(MUSIC_COLOR_FILE);
     }
 }
 
@@ -200,9 +200,9 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
         m_confirmButtonClicked = true;
         QImage image(16, 16, QImage::Format_ARGB32);
         image.fill(m_currentColor);
-        if(image.save( MUSIC_COLOR_FILE ))
+        if(image.save(MUSIC_COLOR_FILE))
         {
-            Q_EMIT currentColorToFileChanged( MUSIC_COLOR_FILE );
+            Q_EMIT currentColorToFileChanged(MUSIC_COLOR_FILE);
         }
     }
     close();
@@ -215,7 +215,7 @@ void MusicBackgroundPaletteWidget::showPaletteDialog()
     {
         return;
     }
-    currentColorToFile( m_currentColor = paletteColor );
+    currentColorToFile(m_currentColor = paletteColor);
 }
 
 void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
@@ -226,16 +226,16 @@ void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
 
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(m_currentColor = color);
-    if(image.save( MUSIC_COLOR_FILE ))
+    if(image.save(MUSIC_COLOR_FILE))
     {
-        currentColorToMemory( MUSIC_COLOR_FILE );
+        currentColorToMemory(MUSIC_COLOR_FILE);
     }
 }
 
 void MusicBackgroundPaletteWidget::currentColorToMemory(const QString &path)
 {
     updateBackground(path);
-    Q_EMIT currentColorToMemoryChanged( path );
+    Q_EMIT currentColorToMemoryChanged(path);
 }
 
 int MusicBackgroundPaletteWidget::exec()

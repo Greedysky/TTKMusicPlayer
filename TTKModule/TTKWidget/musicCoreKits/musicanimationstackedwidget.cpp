@@ -43,7 +43,7 @@ void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
 void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
 {
     QWidget *w = widget(m_previousIndex);
-    QPixmap pixmap( w->size() );
+    QPixmap pixmap(w->size());
     pixmap.fill(Qt::transparent);
     w->setAttribute(Qt::WA_TranslucentBackground, true);
     w->render(&pixmap);
@@ -78,7 +78,7 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
 void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter)
 {
     QWidget *w = widget(m_currentIndex);
-    QPixmap pixmap( w->size() );
+    QPixmap pixmap(w->size());
     pixmap.fill(Qt::transparent);
     w->setAttribute(Qt::WA_TranslucentBackground, true);
     w->render(&pixmap);
@@ -201,6 +201,6 @@ void MusicAnimationStackedWidget::animationFinished()
     w->show();
     w->raise();
 
-    setCurrentWidget( w );
+    setCurrentWidget(w);
     update();
 }

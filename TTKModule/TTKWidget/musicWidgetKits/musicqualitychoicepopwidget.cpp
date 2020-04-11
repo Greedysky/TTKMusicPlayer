@@ -228,7 +228,7 @@ void MusicQualityChoicePopWidget::itemCellClicked(int row)
             }
         default: break;
     }
-    setStyleSheet( styleSheet() + style);
+    setStyleSheet(styleSheet() + style);
 
     MusicRightAreaWidget::instance()->researchQueryByQuality(m_currentQuality);
 }

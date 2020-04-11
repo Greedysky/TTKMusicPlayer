@@ -30,7 +30,7 @@ void MusicUtils::File::checkCacheSize(quint64 cacheSize, bool disabled, const QS
 {
     if(disabled)
     {
-        quint64 size = dirSize( path );
+        quint64 size = dirSize(path);
         if(size > cacheSize)
         {
             const QFileInfoList &fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -66,7 +66,7 @@ QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, const QSt
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         foreach(const QFileInfo &fileInfo, folderList)
         {
-            fileList.append( getFileListByDir(fileInfo.absoluteFilePath(), filter, recursively) );
+            fileList.append(getFileListByDir(fileInfo.absoluteFilePath(), filter, recursively));
         }
     }
 

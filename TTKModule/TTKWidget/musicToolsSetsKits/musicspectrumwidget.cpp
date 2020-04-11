@@ -281,7 +281,7 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
 
         const int index = findSpectrumWidget(name);
         Light *light = TTKStatic_cast(Light*, m_types[index].m_obj);
-        light->open(url.isEmpty() ? SoundCore::instance()->path() : url );
+        light->open(url.isEmpty() ? SoundCore::instance()->path() : url);
     }
     else
     {

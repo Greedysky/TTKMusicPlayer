@@ -47,7 +47,7 @@ public:
     /*!
      * Read history download datas from xml file by given name.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig( mappingFilePathFromEnum() ); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(mappingFilePathFromEnum()); }
 
     /*!
      * Read datas from config file.

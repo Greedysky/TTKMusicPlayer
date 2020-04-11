@@ -125,7 +125,7 @@ void MusicIdentifySongsThread::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged( QString() );
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }
 
@@ -137,7 +137,7 @@ void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
     if(ok)
     {
         const QVariantMap &value = dt.toMap();
-        if(QDateTime::fromString( value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
+        if(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
         {
             m_accessKey = value["key"].toString();
             m_accessSecret = value["secret"].toString();

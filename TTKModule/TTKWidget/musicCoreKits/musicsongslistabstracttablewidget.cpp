@@ -112,7 +112,7 @@ void MusicSongsListAbstractTableWidget::musicFileInformation()
     }
 
     MusicFileInformationWidget file;
-    file.setFileInformation( getCurrentSongPath() );
+    file.setFileInformation(getCurrentSongPath());
     file.exec();
 }
 
@@ -133,7 +133,7 @@ void MusicSongsListAbstractTableWidget::musicAlbumFoundWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName(), QString() );
+    MusicRightAreaWidget::instance()->musicAlbumFound(getCurrentSongName(), QString());
 }
 
 void MusicSongsListAbstractTableWidget::musicSimilarFoundWidget()
@@ -143,7 +143,7 @@ void MusicSongsListAbstractTableWidget::musicSimilarFoundWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicSimilarFound( getCurrentSongName() );
+    MusicRightAreaWidget::instance()->musicSimilarFound(getCurrentSongName());
 }
 
 void MusicSongsListAbstractTableWidget::musicSongSharedWidget()
@@ -190,7 +190,7 @@ void MusicSongsListAbstractTableWidget::musicPlayedSimilarFoundWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicSimilarFound( getSongName(m_playRowIndex) );
+    MusicRightAreaWidget::instance()->musicSimilarFound(getSongName(m_playRowIndex));
 }
 
 void MusicSongsListAbstractTableWidget::musicSongPlayedSharedWidget()
@@ -215,7 +215,7 @@ void MusicSongsListAbstractTableWidget::musicSongPlayedKMicroWidget()
         return;
     }
 
-    MusicLeftAreaWidget::instance()->createSoundKMicroWidget( getSongName(m_playRowIndex) );
+    MusicLeftAreaWidget::instance()->createSoundKMicroWidget(getSongName(m_playRowIndex));
 }
 
 void MusicSongsListAbstractTableWidget::createMoreMenu(QMenu *menu)
@@ -231,12 +231,12 @@ void MusicSongsListAbstractTableWidget::createMoreMenu(QMenu *menu)
 
 QString MusicSongsListAbstractTableWidget::getCurrentSongPath() const
 {
-    if(rowCount() == 0 || currentRow() < 0 )
+    if(rowCount() == 0 || currentRow() < 0)
     {
         return QString();
     }
 
-    return getSongPath( currentRow() );
+    return getSongPath(currentRow());
 }
 
 QString MusicSongsListAbstractTableWidget::getSongPath(int index) const
@@ -246,12 +246,12 @@ QString MusicSongsListAbstractTableWidget::getSongPath(int index) const
 
 QString MusicSongsListAbstractTableWidget::getCurrentSongName() const
 {
-    if(rowCount() == 0 || currentRow() < 0 )
+    if(rowCount() == 0 || currentRow() < 0)
     {
         return QString();
     }
 
-    return getSongName( currentRow() );
+    return getSongName(currentRow());
 }
 
 QString MusicSongsListAbstractTableWidget::getSongName(int index) const

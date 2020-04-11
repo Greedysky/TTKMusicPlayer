@@ -775,7 +775,7 @@ void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int
 void MusicSongsSummariziedWidget::isCurrentIndex(bool &state)
 {
     const int cIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
-    state = ( cIndex == m_currentPlayToolIndex );
+    state = (cIndex == m_currentPlayToolIndex);
 }
 
 void MusicSongsSummariziedWidget::isSearchFileListEmpty(bool &empty)
@@ -794,7 +794,7 @@ void MusicSongsSummariziedWidget::setMusicPlayCount(int index)
     if(!songs->isEmpty() && index < songs->count())
     {
         MusicSong *song = &(*songs)[index];
-        song->setMusicPlayCount( song->getMusicPlayCount() + 1);
+        song->setMusicPlayCount(song->getMusicPlayCount() + 1);
     }
 }
 

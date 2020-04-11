@@ -175,8 +175,8 @@ void MusicLrcManager::setFontFamily(int index)
 
 void MusicLrcManager::setFontType(int type)
 {
-    m_font.setBold( (type == 1 || type == 3) );
-    m_font.setItalic( (type == 2 || type == 3) );
+    m_font.setBold((type == 1 || type == 3));
+    m_font.setItalic((type == 2 || type == 3));
 }
 
 void MusicLrcManager::setSelfGeometry(const QPoint &point)
@@ -224,7 +224,7 @@ void MusicLrcManager::setLrcFontSize(int size)
     {
         m_font.setPointSize(size);
     }
-    setText( text() );
+    setText(text());
     update();
 }
 

@@ -202,7 +202,7 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->bottomCenterWidgetLayout->addWidget(m_ui->musicTimeWidget, 3, 0, 1, 6);
     }
 
-    m_musicWindowExtras->disableBlurBehindWindow( !con );
+    m_musicWindowExtras->disableBlurBehindWindow(!con);
 }
 
 void MusicBottomAreaWidget::resizeWindow()

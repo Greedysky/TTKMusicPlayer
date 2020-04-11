@@ -497,10 +497,10 @@ void MusicUserDialog::readFromUserSettings()
     const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
-        m_ui->automaticLogin->setChecked( m_records[index].m_autoFlag );
-        m_ui->rememberPwd->setChecked( m_records[index].m_rememberFlag );
-        m_ui->passwLineEdit->setText( m_records[index].m_password );
-        m_ui->serverComboBox->setCurrentIndex( m_records[index].m_server );
+        m_ui->automaticLogin->setChecked(m_records[index].m_autoFlag);
+        m_ui->rememberPwd->setChecked(m_records[index].m_rememberFlag);
+        m_ui->passwLineEdit->setText(m_records[index].m_password);
+        m_ui->serverComboBox->setCurrentIndex(m_records[index].m_server);
     }
 }
 

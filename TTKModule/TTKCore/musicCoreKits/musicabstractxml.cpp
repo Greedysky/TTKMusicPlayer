@@ -21,7 +21,7 @@ bool MusicAbstractXml::readConfig(const QString &name)
 {
     delete m_file;
     delete m_document;
-    m_file = new QFile( name );
+    m_file = new QFile(name);
     m_document = new QDomDocument;
 
     if(!m_file->open(QIODevice::ReadOnly | QIODevice::Text))
@@ -42,7 +42,7 @@ bool MusicAbstractXml::writeConfig(const QString &name)
 {
     delete m_file;
     delete m_document;
-    m_file = new QFile( name );
+    m_file = new QFile(name);
     m_document = new QDomDocument;
 
     if(!m_file->open(QFile::WriteOnly | QFile::Text))
@@ -150,7 +150,7 @@ void MusicAbstractXml::createProcessingInstruction()
 QDomElement MusicAbstractXml::createRoot(const QString &node)
 {
     const QDomElement &domElement = m_document->createElement(node);
-    m_document->appendChild( domElement );
+    m_document->appendChild(domElement);
     return domElement;
 }
 
@@ -158,7 +158,7 @@ QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttr
 {
     QDomElement domElement = m_document->createElement(node);
     writeAttribute(domElement, attr);
-    m_document->appendChild( domElement );
+    m_document->appendChild(domElement);
     return domElement;
 }
 
@@ -169,14 +169,14 @@ QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttr
     {
         writeAttribute(domElement, attr);
     }
-    m_document->appendChild( domElement );
+    m_document->appendChild(domElement);
     return domElement;
 }
 
 QDomElement MusicAbstractXml::writeDomNode(QDomElement &element, const QString &node)
 {
     const QDomElement &domElement = m_document->createElement(node);
-    element.appendChild( domElement );
+    element.appendChild(domElement);
     return domElement;
 }
 
@@ -225,8 +225,8 @@ void MusicAbstractXml::writeAttribute(QDomElement &element, const MusicXmlAttrib
 QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QString &node, const MusicXmlAttribute &attr, const QString &text)
 {
     QDomElement domElement = writeDomElement(element, node, attr);
-    const QDomText &domText = m_document->createTextNode( text );
-    domElement.appendChild( domText );
+    const QDomText &domText = m_document->createTextNode(text);
+    domElement.appendChild(domText);
     return domElement;
 }
 
@@ -238,15 +238,15 @@ QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, con
     }
 
     QDomElement domElement = writeDomElementMutil(element, node, attrs);
-    const QDomText &domText = m_document->createTextNode( text );
-    domElement.appendChild( domText );
+    const QDomText &domText = m_document->createTextNode(text);
+    domElement.appendChild(domText);
     return domElement;
 }
 
 QDomElement MusicAbstractXml::writeDomText(QDomElement &element, const QString &node, const QString &text)
 {
     QDomElement domElement = writeDomNode(element, node);
-    const QDomText &domText = m_document->createTextNode( text );
-    domElement.appendChild( domText );
+    const QDomText &domText = m_document->createTextNode(text);
+    domElement.appendChild(domText);
     return domElement;
 }

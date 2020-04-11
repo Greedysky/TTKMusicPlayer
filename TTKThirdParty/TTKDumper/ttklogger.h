@@ -87,7 +87,7 @@ public:
     inline TTKLogger &operator <<(bool t)
     {
 #ifdef TTK_DEBUG
-        m_streamString.append( QString("%1 ").arg(t ? "true" : "false") );
+        m_streamString.append(QString("%1 ").arg(t ? "true" : "false"));
 #else
         Q_UNUSED(t);
 #endif
@@ -155,7 +155,7 @@ private:
     TTKLogger &debugData(const T &data)
     {
 #ifdef TTK_DEBUG
-        m_streamString.append( QString("%1 %2 ").arg(m_levelType).arg(data) );
+        m_streamString.append(QString("%1 %2 ").arg(m_levelType).arg(data));
 #else
         Q_UNUSED(data);
 #endif

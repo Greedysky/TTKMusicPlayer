@@ -70,7 +70,7 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 {
     m_ui->stateLabel->setText(tr("lrc is searching now!"));
     const QString &text = m_ui->songSearchEdit->text().trimmed();
-    m_ui->tableWidget->startSearchQuery( text );
+    m_ui->tableWidget->startSearchQuery(text);
     m_ui->functionTopLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 245)));
 }
 

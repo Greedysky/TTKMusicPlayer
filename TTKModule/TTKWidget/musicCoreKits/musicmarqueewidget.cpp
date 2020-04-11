@@ -90,5 +90,5 @@ void MusicMarqueeWidget::hideEvent(QHideEvent *event)
 void MusicMarqueeWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    setText( text() );
+    setText(text());
 }

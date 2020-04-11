@@ -174,7 +174,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
         text.append(tr("Current version is updated!"));
         m_ui->titleLable_F->setAlignment(Qt::AlignCenter);
     }
-    m_ui->titleLable_F->setText( text );
+    m_ui->titleLable_F->setText(text);
 }
 
 void MusicSourceUpdateWidget::downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft)

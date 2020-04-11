@@ -486,7 +486,7 @@ void MusicSettingWidget::testNetworkProxy()
 void MusicSettingWidget::testProxyStateChanged(bool state)
 {
     MusicMessageBox message;
-    message.setText(state ? tr("Test Successed!") : tr("Test Failed!") );
+    message.setText(state ? tr("Test Successed!") : tr("Test Failed!"));
     message.exec();
 }
 
@@ -523,7 +523,7 @@ void MusicSettingWidget::saveResults()
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, list);
     M_SETTING_PTR->setValue(MusicSettingManager::CloseEvent, m_ui->quitRadioBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
-    M_NETWORK_PTR->setBlockNetWork( m_ui->closeNetWorkCheckBox->isChecked() );
+    M_NETWORK_PTR->setBlockNetWork(m_ui->closeNetWorkCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, m_ui->setDefaultPlayerCheckBox->isChecked());
 
     if(m_ui->setDefaultPlayerCheckBox->isChecked())

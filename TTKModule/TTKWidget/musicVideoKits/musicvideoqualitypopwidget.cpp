@@ -27,10 +27,10 @@ void MusicVideoQualityPopWidget::setQualityActionState()
     QList<QAction*> actions = m_actionGroup->actions();
     if(actions.count() >= 4)
     {
-        actions[0]->setEnabled( findExistByBitrate(MB_250) );
-        actions[1]->setEnabled( findExistByBitrate(MB_500) );
-        actions[2]->setEnabled( findExistByBitrate(MB_750) );
-        actions[3]->setEnabled( findExistByBitrate(MB_1000) );
+        actions[0]->setEnabled(findExistByBitrate(MB_250));
+        actions[1]->setEnabled(findExistByBitrate(MB_500));
+        actions[2]->setEnabled(findExistByBitrate(MB_750));
+        actions[3]->setEnabled(findExistByBitrate(MB_1000));
     }
 }
 
@@ -45,13 +45,13 @@ void MusicVideoQualityPopWidget::setQualityText(const QString &url)
         case MB_1000:  style = MusicUIObject::MQSSVideoBtnSQMode; break;
         default: break;
     }
-    setStyleSheet( style );
+    setStyleSheet(style);
 }
 
 void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
 {
     QString url;
-    switch( action->data().toInt() )
+    switch(action->data().toInt())
     {
         case 0: url = findMVUrlByBitrate(MB_250); break;
         case 1: url = findMVUrlByBitrate(MB_500); break;
@@ -59,8 +59,8 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
         case 3: url = findMVUrlByBitrate(MB_1000); break;
         default: break;
     }
-    setQualityText( url );
-    Q_EMIT mediaUrlChanged( url );
+    setQualityText(url);
+    Q_EMIT mediaUrlChanged(url);
 }
 
 void MusicVideoQualityPopWidget::initWidget()

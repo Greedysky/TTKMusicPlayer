@@ -53,7 +53,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
     connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     /// only download music data can that show progress
@@ -96,7 +96,7 @@ void MusicDataDownloadThread::downLoadFinished()
     {
         if(m_needUpdate)
         {
-            Q_EMIT downLoadDataChanged( transferData() );
+            Q_EMIT downLoadDataChanged(transferData());
             TTK_LOGGER_INFO("data download has finished!");
         }
     }

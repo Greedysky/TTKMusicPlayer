@@ -146,7 +146,7 @@ bool MusicRightAreaWidget::getInteriorLrcVisible() const
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
-    return ( M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool() );
+    return (M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
@@ -182,7 +182,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     if(checkSettingParameterValue())
     {
         m_musicLrcForInterior->stopLrcMask();
-        m_musicLrcForInterior->setCurrentSongName( name );
+        m_musicLrcForInterior->setCurrentSongName(name);
 
         MusicLrcAnalysis::State state;
         if(QFileInfo(path).suffix().toLower() == KRC_FILE_PREFIX)
@@ -718,8 +718,8 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 
     if(deskLrc)
     {
-        m_musicLrcForDesktop->setCurrentSongName( deskLrc->getCurrentSongName() );
-        m_musicLrcForDesktop->showPlayStatus( deskLrc->getPlayStatus() );
+        m_musicLrcForDesktop->setCurrentSongName(deskLrc->getCurrentSongName());
+        m_musicLrcForDesktop->showPlayStatus(deskLrc->getPlayStatus());
     }
     m_musicLrcForDesktop->applySettingParameter();
     m_musicLrcForDesktop->initCurrentLrc();

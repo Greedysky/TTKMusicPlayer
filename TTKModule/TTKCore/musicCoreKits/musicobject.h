@@ -305,7 +305,7 @@ namespace MusicObject
         QAndroidJniObject mediaDir = QAndroidJniObject::callStaticObjectMethod("android/os/Environment",
                                                                            "getExternalStorageDirectory",
                                                                            "()Ljava/io/File;");
-        QAndroidJniObject mediaPath = mediaDir.callObjectMethod( "getAbsolutePath", "()Ljava/lang/String;" );
+        QAndroidJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
         QString path = mediaPath.toString() + "/TTKMobile/";
         if(!QDir().exists(path))
         {

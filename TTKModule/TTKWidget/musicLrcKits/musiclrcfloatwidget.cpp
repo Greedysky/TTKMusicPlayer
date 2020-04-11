@@ -78,7 +78,7 @@ void MusicLrcFloatWidget::resizeWindow(int width, int height)
     m_rectIn = QRect(566 + width, 138 + height/2, 115, 210);
     m_rectOut = QRect(676 + width, 189 + height/2, 115, 105);
 
-    setGeometry( m_rectOut );
+    setGeometry(m_rectOut);
 
     m_floatSettingWidget->resizeWindow(width, height);
     m_floatPhotoWidget->resizeWindow(width, height);

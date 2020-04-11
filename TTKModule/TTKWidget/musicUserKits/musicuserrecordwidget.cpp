@@ -172,7 +172,7 @@ void MusicUserRecordWidget::openFileButtonClickedS()
         return;
     }
     m_ui->bigPixmapLabel_S->setImagePath(m_iconLocalPath);
-    m_ui->smlPixmapLabel_S->setPixmap(QPixmap( m_iconLocalPath ).scaled(m_ui->smlPixmapLabel_S->size()));
+    m_ui->smlPixmapLabel_S->setPixmap(QPixmap(m_iconLocalPath).scaled(m_ui->smlPixmapLabel_S->size()));
 }
 
 void MusicUserRecordWidget::saveFileButtonClickedS()

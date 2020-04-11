@@ -81,7 +81,7 @@ bool MusicToastLabel::bold() const
 void MusicToastLabel::popup(QWidget *parent)
 {
     const QPoint &globalPoint = parent->mapToGlobal(QPoint(0, 0));
-    move( globalPoint.x() + (parent->width() - width())/2, globalPoint.y() + (parent->height() - height())/2);
+    move(globalPoint.x() + (parent->width() - width())/2, globalPoint.y() + (parent->height() - height())/2);
     show();
 }
 

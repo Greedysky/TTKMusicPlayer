@@ -31,5 +31,5 @@ void MusicLocalSongsManagerThread::run()
         }
     }
     ///The name and path search ended when sending the corresponding
-    Q_EMIT setSongNamePath( list );
+    Q_EMIT setSongNamePath(list);
 }

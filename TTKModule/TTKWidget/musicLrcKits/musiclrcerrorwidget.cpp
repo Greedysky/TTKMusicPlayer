@@ -61,7 +61,7 @@ void MusicLrcErrorWidget::buttonClicked(int index)
     if(index == 3)
     {
         m_ui->textEdit->setEnabled(true);
-        m_ui->textEdit->setText( QString() );
+        m_ui->textEdit->setText(QString());
     }
 }
 

@@ -61,7 +61,7 @@ MusicSpectrumLayoutWidget::~MusicSpectrumLayoutWidget()
 
 void MusicSpectrumLayoutWidget::popupMenu()
 {
-    m_menu->exec( mapToGlobal(QPoint(-m_containWidget->width() + width(), 0)));
+    m_menu->exec(mapToGlobal(QPoint(-m_containWidget->width() + width(), 0)));
 }
 
 void MusicSpectrumLayoutWidget::labelClicked(int index)

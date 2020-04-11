@@ -100,7 +100,7 @@ void MusicPlaylistFoundCategoryPopWidget::closeMenu()
 
 void MusicPlaylistFoundCategoryPopWidget::popupMenu()
 {
-    m_menu->exec( mapToGlobal(QPoint(0, 0)) );
+    m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
 void MusicPlaylistFoundCategoryPopWidget::initWidget()

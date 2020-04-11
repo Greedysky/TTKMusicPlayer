@@ -38,7 +38,7 @@ void MusicSongCheckToolsRenameThread::run()
 
                 if((!tag.getArtist().isEmpty() && !tag.getTitle().isEmpty()) &&
                     (tag.getArtist() != song.getMusicArtistFront() ||
-                     tag.getTitle() != song.getMusicArtistBack()) )
+                     tag.getTitle() != song.getMusicArtistBack()))
                 {
                     m_datas << MusicSongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle(), song.getMusicPath());
                 }

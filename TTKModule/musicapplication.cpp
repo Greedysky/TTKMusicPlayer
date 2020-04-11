@@ -397,7 +397,7 @@ void MusicApplication::showCurrentSong(int index)
     m_bottomAreaWidget->setLabelText(name);
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
-    M_BACKGROUND_PTR->setArtistName( getCurrentFileName() );
+    M_BACKGROUND_PTR->setArtistName(getCurrentFileName());
     m_topAreaWidget->musicBackgroundThemeDownloadFinished();
 }
 
@@ -688,7 +688,7 @@ void MusicApplication::musicActionVolumeSub()
     {
         currentVol = 0;   //reset music volume
     }
-    musicVolumeChanged( currentVol );
+    musicVolumeChanged(currentVol);
 }
 
 void MusicApplication::musicActionVolumePlus()
@@ -699,7 +699,7 @@ void MusicApplication::musicActionVolumePlus()
     {
         currentVol = 100;   //reset music volume
     }
-    musicVolumeChanged( currentVol );
+    musicVolumeChanged(currentVol);
 }
 
 void MusicApplication::musicSetting()
@@ -1029,7 +1029,7 @@ void MusicApplication::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveResizeWidget::closeEvent(event);
     event->ignore();
-    if(!m_bottomAreaWidget->getSystemCloseConfig() && m_bottomAreaWidget->systemTrayIsVisible() )
+    if(!m_bottomAreaWidget->getSystemCloseConfig() && m_bottomAreaWidget->systemTrayIsVisible())
     {
         hide();
         m_bottomAreaWidget->showMessage(tr("Prompt"), tr("TTKMusicPlayer will run in the background"));
@@ -1142,7 +1142,7 @@ void MusicApplication::readXMLConfigFromText()
     m_applicationObject->loadNetWorkSetting();
 
     //
-    switch( M_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt() )
+    switch(M_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt())
     {
         case MusicObject::PM_PlayOrder:
             musicPlayOrder();break;
@@ -1250,7 +1250,7 @@ void MusicApplication::readXMLConfigFromText()
     m_rightAreaWidget->setDestopLrcVisible(value);
 
     //Reset geometry
-    setGeometry( xml.readWindowGeometry() );
+    setGeometry(xml.readWindowGeometry());
 
     //Reset window concise
     if(M_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
@@ -1289,6 +1289,7 @@ void MusicApplication::writeXMLConfigToText()
         lastPlayIndex[1] = QString::number(item.m_toolIndex);
         lastPlayIndex[2] = QString::number(m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path));
     }
+
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTheme, m_topAreaWidget->getBackgroundPath());
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparent, m_topAreaWidget->getBackgroundAlpha());

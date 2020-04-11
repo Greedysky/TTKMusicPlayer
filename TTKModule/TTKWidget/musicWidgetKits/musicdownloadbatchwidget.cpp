@@ -175,14 +175,14 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
         return;
     }
 
-    down.readDownloadData( records );
+    down.readDownloadData(records);
     MusicSong record;
     record.setMusicName(musicSong);
     record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
     record.setMusicSizeStr(musicAttr.m_size);
     record.setMusicAddTimeStr("-1");
     records << record;
-    down.writeDownloadData( records );
+    down.writeDownloadData(records);
     //
     if(QFile::exists(downloadName))
     {

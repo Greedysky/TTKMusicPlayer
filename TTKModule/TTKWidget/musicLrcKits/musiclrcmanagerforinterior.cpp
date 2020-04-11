@@ -21,7 +21,7 @@ void MusicLrcManagerForInterior::paintEvent(QPaintEvent *)
 
     QFont font(m_font);
     int ttplus = font.pointSize() - m_gradientFontSize;
-    font.setPointSize( ttplus = (ttplus < 0) ? 0 : ttplus );
+    font.setPointSize(ttplus = (ttplus < 0) ? 0 : ttplus);
     painter.setFont(font);
     m_geometry.setX(MusicUtils::Widget::fontTextWidth(font, text()));
 

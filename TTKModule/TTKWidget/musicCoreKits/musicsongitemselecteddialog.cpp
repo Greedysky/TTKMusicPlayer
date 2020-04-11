@@ -119,7 +119,7 @@ void MusicSongItemSelectedDialog::createAllItems(MusicSongItems *items)
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
-    Q_EMIT itemListsChanged( m_ui->itemTableWidget->getSelectedItems() );
+    Q_EMIT itemListsChanged(m_ui->itemTableWidget->getSelectedItems());
     accept();
 }
 

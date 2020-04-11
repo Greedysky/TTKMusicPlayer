@@ -14,7 +14,7 @@ void MusicSkinConfigManager::readSkinData(MusicSkinConfigItem &item)
 
 void MusicSkinConfigManager::writeSkinData(const MusicSkinConfigItem &item, const QString &path)
 {
-    if(!writeConfig( path ))
+    if(!writeConfig(path))
     {
         return;
     }

@@ -82,6 +82,6 @@ void MusicKWTextDownLoadThread::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged( transferData() );
+    Q_EMIT downLoadDataChanged(transferData());
     deleteAll();
 }

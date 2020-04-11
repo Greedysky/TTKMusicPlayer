@@ -31,7 +31,7 @@ void MusicMovingClickedSlider::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_isMoving = false;
-        Q_EMIT sliderMoved( m_value );
+        Q_EMIT sliderMoved(m_value);
     }
 }
 
@@ -41,7 +41,7 @@ void MusicMovingClickedSlider::mouseMoveEvent(QMouseEvent *event)
     if(m_mousePress)
     {
         m_isMoving = true;
-        Q_EMIT sliderMoved( m_value );
+        Q_EMIT sliderMoved(m_value);
     }
 }
 
@@ -50,7 +50,7 @@ void MusicMovingClickedSlider::mouseReleaseEvent(QMouseEvent *event)
     MusicClickedSlider::mouseReleaseEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        Q_EMIT sliderReleasedAt( m_value );
+        Q_EMIT sliderReleasedAt(m_value);
         m_isMoving = false;
     }
 }

@@ -84,7 +84,7 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 
     for(int i=0; i<list.count(); ++i)
     {
-        if(downloadDataFrom(musicSongInfos[ list[i] ], play && (i == 0)))
+        if(downloadDataFrom(musicSongInfos[list[i]], play && (i == 0)))
         {
             continue;
         }
@@ -146,7 +146,7 @@ void MusicQueryFoundTableWidget::searchChanged(QAction *action)
     }
 
     const MusicObject::MusicSongInformation &info = musicSongInfos[row];
-    switch( action->data().toInt() )
+    switch(action->data().toInt())
     {
         case 0: addSearchMusicToPlaylist(row, true); break;
         case 1: addSearchMusicToPlaylist(row, false); break;

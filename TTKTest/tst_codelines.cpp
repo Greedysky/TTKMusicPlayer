@@ -81,7 +81,7 @@ void CodeLinesTest::codeLines()
         }, true);
 
         eventLoop.quit();
-    } );
+    });
     eventLoop.exec();
 
     TTK_LOGGER_INFO("All File Count " << fileCount);

@@ -171,11 +171,8 @@ bool QDlnaClient::isConnected() const
 
 QString QDlnaClient::tryToPlayFile(const QString &url)
 {
-    TTK_D(QDlnaClient);
-    TTK_LOGGER_INFO(url << d->m_controlURL << d->m_isConnected);
-    const QString &uploadState = uploadFileToPlay(url);
+    uploadFileToPlay(url);
     const QString &playState = startPlay(0);
-    TTK_LOGGER_INFO(uploadState << "playState " << playState);
     return playState;
 }
 

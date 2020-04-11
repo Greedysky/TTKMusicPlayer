@@ -203,7 +203,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
     const QString &in = m_path[0].trimmed();
     const QString &out = m_ui->outputLineEdit->text().trimmed();
 
-    if(in.isEmpty() || out.isEmpty() )
+    if(in.isEmpty() || out.isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("the out is empty!"));

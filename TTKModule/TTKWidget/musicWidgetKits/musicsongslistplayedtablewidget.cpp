@@ -101,7 +101,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
         setItem(i, 4, item);
     }
 
-    setFixedHeight( qMax(365, allRowsHeight()) );
+    setFixedHeight(qMax(365, allRowsHeight()));
 }
 
 void MusicSongsListPlayedTableWidget::clearAllItems()
@@ -146,7 +146,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     setCellWidget(index, 0, m_musicSongsPlayWidget);
     m_playRowIndex = index;
 
-    setFixedHeight( qMax(365, allRowsHeight()) );
+    setFixedHeight(qMax(365, allRowsHeight()));
 
     if(m_scrollBar)
     {
@@ -190,7 +190,7 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
     setItem(m_playRowIndex, 2, new QTableWidgetItem);
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
 
-    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicPlayTime() );
+    item = new QTableWidgetItem((*m_musicSongs)[m_playRowIndex].getMusicPlayTime());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
@@ -202,7 +202,7 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 
-    setFixedHeight( qMax(365, allRowsHeight()) );
+    setFixedHeight(qMax(365, allRowsHeight()));
 }
 
 void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
@@ -296,10 +296,10 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
         --m_playRowIndex;
     }
 
-    removeRow( index );
-    m_musicSongs->removeAt( index );
+    removeRow(index);
+    m_musicSongs->removeAt(index);
 
-    setFixedHeight( qMax(365, allRowsHeight()) );
+    setFixedHeight(qMax(365, allRowsHeight()));
 
     Q_EMIT setDeleteItemAt(index);
 }

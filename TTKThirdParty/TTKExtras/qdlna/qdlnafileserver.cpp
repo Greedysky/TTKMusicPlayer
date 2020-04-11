@@ -52,14 +52,15 @@ void QDlnaFileServer::setPrefixPath(const QString &path)
     d->m_prefix = path;
 }
 
-QString QDlnaFileServer::getLocalAddress() const
+QString QDlnaFileServer::getLocalAddress(const QString &prefix) const
 {
+    const QString &value = prefix.left(prefix.lastIndexOf("."));
     foreach(const QHostAddress &address, QNetworkInterface::allAddresses())
     {
-        if(address.protocol() == QAbstractSocket::IPv4Protocol)
-        {
-            return QString("http://%1:11111/").arg(address.toString());
-        }
+      if(address.toString().contains(value))
+      {
+          return QString("http://%1:11111/").arg(address.toString());
+      }
     }
     return "http://0.0.0.0:11111/";
 }

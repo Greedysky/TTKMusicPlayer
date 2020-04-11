@@ -117,7 +117,6 @@ void QDlnaFinder::readResponse()
         d->m_udpSock->readDatagram(datagram.data(), datagram.size());
 
         QDlnaClient *client = new QDlnaClient(QString::fromUtf8(datagram.data()));
-        TTK_LOGGER_INFO(client->server());
         if(client->server() == DEFAULT_ROUTER_IP || d->findClient(client->server()))
         {
             delete client;

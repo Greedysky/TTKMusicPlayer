@@ -70,7 +70,7 @@ bool MusicUserWindow::disConnectDatabase()
             return false;
         }
     }
-    QSqlDatabase::removeDatabase( connectionName );
+    QSqlDatabase::removeDatabase(connectionName);
     return true;
 }
 
@@ -113,7 +113,7 @@ bool MusicUserWindow::connectDatabase()
     catch(QString exception)
     {
         MusicMessageBox message;
-        message.setText( exception );
+        message.setText(exception);
         message.exec();
         return false;
     }

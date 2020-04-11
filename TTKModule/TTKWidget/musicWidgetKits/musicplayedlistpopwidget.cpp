@@ -287,7 +287,7 @@ void MusicPlayedListPopWidget::initWidget()
     QVBoxLayout *containLayout = new QVBoxLayout(m_containWidget);
     containLayout->setContentsMargins(0, 0, 0, 0);
     containLayout->setSpacing(0);
-    containLayout->addWidget( createContainerWidget() );
+    containLayout->addWidget(createContainerWidget());
 
     m_scrollArea = new QScrollArea(this);
     m_scrollArea->setWidgetResizable(true);

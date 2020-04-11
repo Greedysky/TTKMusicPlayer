@@ -41,8 +41,7 @@ bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
         nullptr,
         OPEN_EXISTING,
         0,
-        nullptr
-    );
+        nullptr);
 
     if(hDevice == INVALID_HANDLE_VALUE)
     {
@@ -64,8 +63,7 @@ bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
         pHeader,
         sizeof(STORAGE_DESCRIPTOR_HEADER),
         &bytes,
-        nullptr
-    );
+        nullptr);
 
     if(!bResult)
     {
@@ -83,8 +81,7 @@ bool MusicDeviceInfoObject::getDisksProperty(const QString &drive) const
         pDev,
         pHeader->Size,
         &bytes,
-        nullptr
-    );
+        nullptr);
 
     free(pHeader);
     CloseHandle(hDevice);
@@ -154,8 +151,7 @@ MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
                 &maxLength,
                 &fileSysFlags,
                 fileSysTypeName,
-                BUFFER_SIZE
-                ))
+                BUFFER_SIZE))
             {
                 item.m_name = QString::fromStdWString(dirveName);
             }

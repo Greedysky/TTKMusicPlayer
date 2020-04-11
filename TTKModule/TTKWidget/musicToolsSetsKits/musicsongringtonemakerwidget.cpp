@@ -101,9 +101,9 @@ void MusicSongRingtoneMaker::initInputPath()
     if(tag.read(m_inputFilePath))
     {
         QString name = QFileInfo(m_inputFilePath).fileName();
-        m_ui->songLabelValue->setToolTip( name );
+        m_ui->songLabelValue->setToolTip(name);
         name = MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 220);
-        m_ui->songLabelValue->setText(tr("SongName: %1 ( %2, %3, %4)").arg(name).arg(tag.getLengthString()).arg(tag.getSampleRate()).arg(tag.getBitrate()));
+        m_ui->songLabelValue->setText(tr("SongName: %1 (%2, %3, %4)").arg(name).arg(tag.getLengthString()).arg(tag.getSampleRate()).arg(tag.getBitrate()));
     }
     else
     {
@@ -122,7 +122,7 @@ void MusicSongRingtoneMaker::initInputPath()
 
 void MusicSongRingtoneMaker::initOutputPath()
 {
-    QString value = QString("Files (*.%1 )").arg(m_ui->formatCombo->currentText().toLower());
+    QString value = QString("Files (*.%1)").arg(m_ui->formatCombo->currentText().toLower());
             value = MusicUtils::File::getSaveFileDialog(this, value);
     if(value.isEmpty())
     {
@@ -134,7 +134,7 @@ void MusicSongRingtoneMaker::initOutputPath()
         << "-t" << QString::number(m_stopPos) << "-acodec" << "copy"
         << "-ab" << m_ui->kbpsCombo->currentText() + "k"
         << "-ar" << m_ui->hzCombo->currentText()
-        << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1) << value );
+        << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1) << value);
 }
 
 void MusicSongRingtoneMaker::playInputSong()
@@ -173,9 +173,9 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 {
     m_startPos = start;
     m_stopPos = end;
-    m_ui->startTimeLabel->setText( tr("Begin: ") + MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz") );
-    m_ui->stopTimeLabel->setText( tr("End: ") + MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
-    m_ui->ringLabelValue->setText( tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
+    m_ui->startTimeLabel->setText(tr("Begin: ") + MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz"));
+    m_ui->stopTimeLabel->setText(tr("End: ") + MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz"));
+    m_ui->ringLabelValue->setText(tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
 }
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)

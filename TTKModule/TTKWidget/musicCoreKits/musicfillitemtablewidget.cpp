@@ -5,7 +5,7 @@ MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     MusicUtils::Widget::setTransparent(this, 255);
-    setStyleSheet( styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
+    setStyleSheet(styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
 
     m_checkBoxDelegate = new MusicCheckBoxDelegate(this);
     m_checkBoxDelegate->setFillBackground(true);

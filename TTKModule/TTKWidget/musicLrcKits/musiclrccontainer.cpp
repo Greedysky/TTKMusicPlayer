@@ -34,7 +34,7 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
         manager->setLinearGradientColor(color);
     }
 
-    M_SETTING_PTR->setValue( (m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, color.m_index);
+    M_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, color.m_index);
     Q_EMIT linearGradientColorChanged();
 }
 
@@ -110,7 +110,7 @@ void MusicLrcContainer::linkLrcStateChanged()
     m_linkLocalLrc = !m_linkLocalLrc;
     foreach(MusicLrcManager *w, m_musicLrcContainer)
     {
-        w->setVisible( m_linkLocalLrc );
+        w->setVisible(m_linkLocalLrc);
     }
 }
 

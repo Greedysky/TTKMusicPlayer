@@ -237,7 +237,7 @@ void MusicVideoPlayWidget::switchToPlayView()
 
 void MusicVideoPlayWidget::searchButtonClicked()
 {
-    videoResearchButtonSearched( getSearchText() );
+    videoResearchButtonSearched(getSearchText());
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)

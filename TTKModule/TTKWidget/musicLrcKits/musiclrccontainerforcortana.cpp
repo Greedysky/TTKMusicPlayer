@@ -98,8 +98,8 @@ void MusicLrcContainerForCortana::initCurrentLrc() const
 void MusicLrcContainerForCortana::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
     m_reverse = !m_reverse;
-    m_musicLrcContainer[ m_reverse]->reset();
-    m_musicLrcContainer[ m_reverse]->setText(second);
+    m_musicLrcContainer[m_reverse]->reset();
+    m_musicLrcContainer[m_reverse]->setText(second);
     m_musicLrcContainer[!m_reverse]->setText(first);
     m_musicLrcContainer[!m_reverse]->startLrcMask(time);
 
@@ -107,7 +107,7 @@ void MusicLrcContainerForCortana::updateCurrentLrc(const QString &first, const Q
     m_musicLrcContainer[0]->setGeometry(0, 2, width, m_geometry.y());
     width = m_musicLrcContainer[1]->x();
     int pos = m_geometry.x() - width;
-    if(pos < 0 )
+    if(pos < 0)
     {
         pos = 0;
     }

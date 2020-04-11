@@ -11,7 +11,7 @@ MusicPlayBackModePopWidget::MusicPlayBackModePopWidget(QWidget *parent)
 
 void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
 {
-    switch( mode )
+    switch(mode)
     {
         case MusicObject::PM_PlayOrder:
                 setStyleSheet(MusicUIObject::MQSSBtnOrder);

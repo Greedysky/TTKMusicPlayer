@@ -42,7 +42,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip( record.getMusicName() );
+    item->setToolTip(record.getMusicName());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
@@ -56,7 +56,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     item->setData(MUSIC_PROCS_ROLE, 100);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem( record.getMusicSizeStr() );
+                      item = new QTableWidgetItem(record.getMusicSizeStr());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
@@ -67,7 +67,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     setItem(index, 3, item);
 
     //just fix table widget size hint
-    setFixedHeight( allRowsHeight() );
+    setFixedHeight(allRowsHeight());
 }
 
 
@@ -172,7 +172,7 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip( record.getMusicName() );
+    item->setToolTip(record.getMusicName());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
@@ -182,7 +182,7 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
-                      item = new QTableWidgetItem( record.getMusicSizeStr() );
+                      item = new QTableWidgetItem(record.getMusicSizeStr());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColorStyle12_S));
 #else
@@ -193,7 +193,7 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
     setItem(index, 2, item);
 
     //just fix table widget size hint
-    setFixedHeight( allRowsHeight() );
+    setFixedHeight(allRowsHeight());
 }
 
 void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)

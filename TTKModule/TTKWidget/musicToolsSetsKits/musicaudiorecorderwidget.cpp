@@ -106,14 +106,13 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
 
 void MusicAudioRecorderWidget::onTimerout()
 {
-    QString text = MusicTime::normalTime2Label( ++m_time );
-    m_ui->timer->setText( text );
+    m_ui->timer->setText(MusicTime::normalTime2Label(++m_time));
 }
 
 void MusicAudioRecorderWidget::initMonitor()
 {
     m_mFormatSound.setSampleSize(16); //set sample sze to 16 bit
-    m_mFormatSound.setSampleType(QAudioFormat::UnSignedInt ); //Sample type as usigned integer sample
+    m_mFormatSound.setSampleType(QAudioFormat::UnSignedInt); //Sample type as usigned integer sample
     m_mFormatSound.setByteOrder(QAudioFormat::LittleEndian); //Byte order
     m_mFormatSound.setCodec("audio/pcm"); //set codec as simple audio/pcm
 
@@ -247,24 +246,27 @@ void MusicAudioRecorderWidget::onReadMore()
         //Assign sound samples to short array
         short* resultingData = (short*)m_mBuffer.data();
         short *outdata=resultingData;
-        outdata[ 0 ] = resultingData [ 0 ];
-        int iIndex;
+        outdata[0] = resultingData[0];
+
+        int index;
         if(false)
         {
             //Remove noise using Low Pass filter algortm[Simple algorithm used to remove noise]
-            for ( iIndex=1; iIndex < len; iIndex++ )
+            for(index=1; index < len; index++)
             {
-                outdata[ iIndex ] = 0.333 * resultingData[iIndex ] + ( 1.0 - 0.333 ) * outdata[ iIndex-1 ];
+                outdata[index] = 0.333 * resultingData[index] + (1.0 - 0.333) * outdata[index - 1];
             }
         }
+
         m_miMaxValue = 0;
-        for ( iIndex=0; iIndex < len; iIndex++ )
+        for(index=0; index < len; index++)
         {
             //Cange volume to each integer data in a sample
-            int value = applyVolumeToSample( outdata[ iIndex ]);
-            outdata[ iIndex ] = value;
+            int value = applyVolumeToSample(outdata[index]);
+            outdata[index] = value;
             m_miMaxValue = m_miMaxValue >= value ? m_miMaxValue : value;
         }
+
         //write modified sond sample to outputdevice for playback audio
         m_mpOutputDevSound->write((char*)outdata, len);
         QTimer::singleShot(MT_S2MS, this, SLOT(onTimeOut()));

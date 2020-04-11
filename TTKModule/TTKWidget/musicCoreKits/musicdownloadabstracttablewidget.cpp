@@ -55,7 +55,7 @@ void MusicDownloadAbstractTableWidget::musicPlay()
     }
 
     const QString &path = (*m_musicSongs)[currentRow()].getMusicPath();
-    Q_EMIT addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
+    Q_EMIT addSongToPlay(QStringList(QFile::exists(path) ? path : QString()));
 }
 
 void MusicDownloadAbstractTableWidget::setDeleteItemAt()
@@ -76,7 +76,7 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
         m_musicSongs->removeAt(index);
     }
     //just fix table widget size hint
-    setFixedHeight( allRowsHeight() );
+    setFixedHeight(allRowsHeight());
     Q_EMIT updateItemTitle(m_parentToolIndex);
 }
 
@@ -102,7 +102,7 @@ void MusicDownloadAbstractTableWidget::downloadProgressChanged(float percent, co
         if(it && it->data(MUSIC_TIMES_ROLE).toLongLong() == time)
         {
             item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
-            item(i, 3)->setText( total );
+            item(i, 3)->setText(total);
 
             (*m_musicSongs)[i].setMusicSizeStr(total);
             break;

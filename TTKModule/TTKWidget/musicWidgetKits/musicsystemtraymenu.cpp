@@ -64,8 +64,8 @@ void MusicSystemTrayMenu::setLabelText(const QString &text) const
 
 void MusicSystemTrayMenu::showDesktopLrc(bool show) const
 {
-    m_showLrcAction->setText( show ? tr("hideDeskLrc") : tr("showDeskLrc"));
-    m_lockLrcAction->setEnabled( show );
+    m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
+    m_lockLrcAction->setEnabled(show);
 }
 
 void MusicSystemTrayMenu::lockDesktopLrc(bool lock)

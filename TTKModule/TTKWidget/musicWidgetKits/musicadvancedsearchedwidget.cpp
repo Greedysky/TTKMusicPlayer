@@ -35,7 +35,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     songWidgetLayout->setSpacing(10);
     songWidgetLayout->addStretch(1);
     songWidgetLayout->addWidget(songLabel);
-    songWidgetLayout->addWidget( createSearchPairWidget(&m_songEdit) );
+    songWidgetLayout->addWidget(createSearchPairWidget(&m_songEdit));
     songWidgetLayout->addStretch(1);
     songWidget->setLayout(songWidgetLayout);
     m_tabWidget->addTab(songWidget, tr("Song"));
@@ -47,7 +47,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     artistWidgetLayout->setSpacing(10);
     artistWidgetLayout->addStretch(1);
     artistWidgetLayout->addWidget(artistLabel);
-    artistWidgetLayout->addWidget( createSearchPairWidget(&m_artistEdit) );
+    artistWidgetLayout->addWidget(createSearchPairWidget(&m_artistEdit));
     artistWidgetLayout->addStretch(1);
     artistWidget->setLayout(artistWidgetLayout);
     m_tabWidget->addTab(artistWidget, tr("Artist"));
@@ -59,7 +59,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     albumWidgetLayout->setSpacing(10);
     albumWidgetLayout->addStretch(1);
     albumWidgetLayout->addWidget(albumLabel);
-    albumWidgetLayout->addWidget( createSearchPairWidget(&m_albumEdit) );
+    albumWidgetLayout->addWidget(createSearchPairWidget(&m_albumEdit));
     albumWidgetLayout->addStretch(1);
     albumWidget->setLayout(albumWidgetLayout);
     m_tabWidget->addTab(albumWidget, tr("Album"));
@@ -71,7 +71,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     playlistWidgetLayout->setSpacing(10);
     playlistWidgetLayout->addStretch(1);
     playlistWidgetLayout->addWidget(playlistLabel);
-    playlistWidgetLayout->addWidget( createSearchPairWidget(&m_playlistEdit) );
+    playlistWidgetLayout->addWidget(createSearchPairWidget(&m_playlistEdit));
     playlistWidgetLayout->addStretch(1);
     playlistWidget->setLayout(playlistWidgetLayout);
     m_tabWidget->addTab(playlistWidget, tr("Playlist"));
@@ -83,7 +83,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     movieWidgetLayout->setSpacing(10);
     movieWidgetLayout->addStretch(1);
     movieWidgetLayout->addWidget(movieLabel);
-    movieWidgetLayout->addWidget( createSearchPairWidget(&m_movieEdit) );
+    movieWidgetLayout->addWidget(createSearchPairWidget(&m_movieEdit));
     movieWidgetLayout->addStretch(1);
     movieWidget->setLayout(movieWidgetLayout);
     m_tabWidget->addTab(movieWidget, tr("Movie"));

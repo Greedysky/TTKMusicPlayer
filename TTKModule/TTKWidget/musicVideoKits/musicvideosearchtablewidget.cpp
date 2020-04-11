@@ -39,7 +39,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput( d );
+    setQueryInput(d);
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
@@ -57,7 +57,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
     //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput( d );
+    setQueryInput(d);
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
@@ -76,7 +76,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-    setQueryInput( d );
+    setQueryInput(d);
     //
     m_singleRadioMode = true;
     d->setMusicSongInfos(MusicObject::MusicSongInformations() << data.value<MusicObject::MusicSongInformation>());

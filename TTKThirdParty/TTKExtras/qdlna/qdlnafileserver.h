@@ -36,8 +36,9 @@ public:
     QDlnaFileServer(QObject *parent = nullptr);
 
     void start();
+
     void setPrefixPath(const QString &path);
-    QString getLocalAddress() const;
+    QString getLocalAddress(const QString &prefix) const;
 
 private Q_SLOTS:
     void handleRequest(QHttpRequest *request, QHttpResponse *response);

@@ -64,7 +64,7 @@ std::string Base64::base64Decode(const std::string &bytes)
     unsigned char char_array_4[4], char_array_3[3];
     std::string ret;
 
-    while(length-- && ( bytes[in] != '=') && isBase64(bytes[in]))
+    while(length-- && (bytes[in] != '=') && isBase64(bytes[in]))
     {
         char_array_4[i++] = bytes[in]; in++;
         if(i ==4)

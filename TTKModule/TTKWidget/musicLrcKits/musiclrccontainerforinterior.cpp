@@ -125,7 +125,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
 
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText( QString() );
+        m_musicLrcContainer[i]->setText(QString());
     }
     if(state == MusicLrcAnalysis::OpenFileFail)
     {
@@ -259,7 +259,7 @@ void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
     }
 
     m_changeSpeedValue += timeValue;
-    revertLrcTimeSpeed( timeValue );
+    revertLrcTimeSpeed(timeValue);
 }
 
 void MusicLrcContainerForInterior::revertLrcTimeSpeed()
@@ -268,7 +268,7 @@ void MusicLrcContainerForInterior::revertLrcTimeSpeed()
     {
         return;
     }
-    revertLrcTimeSpeed( -m_changeSpeedValue );
+    revertLrcTimeSpeed(-m_changeSpeedValue);
 }
 
 void MusicLrcContainerForInterior::saveLrcTimeChanged()
@@ -469,8 +469,8 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
     menu.addMenu(&changeLrcLinkMenu);
-    menu.addAction(tr("copyToClip"), this, SLOT(lrcCopyClipboard()))->setEnabled( fileCheck );
-    menu.addAction(tr("showLrcFile"), this, SLOT(lrcOpenFileDir()))->setEnabled( fileCheck );
+    menu.addAction(tr("copyToClip"), this, SLOT(lrcCopyClipboard()))->setEnabled(fileCheck);
+    menu.addAction(tr("showLrcFile"), this, SLOT(lrcOpenFileDir()))->setEnabled(fileCheck);
 
     menu.addSeparator();
     menu.addAction(tr("customSetting"), this, SLOT(currentLrcCustom()));
@@ -681,7 +681,7 @@ void MusicLrcContainerForInterior::initCurrentLrc(const QString &str)
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText( QString() );
+        m_musicLrcContainer[i]->setText(QString());
     }
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(str);
 }

@@ -41,7 +41,7 @@ void MusicLocalSongSearchEdit::keyPressEvent(QKeyEvent *event)
 void MusicLocalSongSearchEdit::keyReleaseEvent(QKeyEvent *event)
 {
     QLineEdit::keyReleaseEvent(event);
-    switch( event->key() )
+    switch(event->key())
     {
         case Qt::Key_Return:
         case Qt::Key_Enter:

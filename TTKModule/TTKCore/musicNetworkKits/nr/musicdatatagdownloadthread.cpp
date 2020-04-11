@@ -59,7 +59,7 @@ void MusicDataTagDownloadThread::downLoadFinished()
         loop.exec();
     }
 
-    Q_EMIT downLoadDataChanged( transferData() );
+    Q_EMIT downLoadDataChanged(transferData());
     TTK_LOGGER_INFO("data download has finished!");
 }
 

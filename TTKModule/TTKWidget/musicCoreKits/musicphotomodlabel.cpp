@@ -89,7 +89,7 @@ void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
 void MusicPhotoModLabel::mousePressEvent(QMouseEvent *event)
 {
 //    QWidget::mousePressEvent(event);
-    if(event->button() == Qt::MiddleButton || event->button() == Qt::LeftButton )
+    if(event->button() == Qt::MiddleButton || event->button() == Qt::LeftButton)
     {
         m_picMoved = true;
         m_pressedPos = event->pos();

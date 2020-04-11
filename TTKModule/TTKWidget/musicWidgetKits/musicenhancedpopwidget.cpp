@@ -121,7 +121,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
         case 4: style += "#EnhancedWidget{ margin-left: -144px; }"; break;
         default: break;
     }
-    setStyleSheet( style );
+    setStyleSheet(style);
 
     const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
     m_caseButton->setStyleSheet(type ? MusicUIObject::MQSSEnhanceOn : MusicUIObject::MQSSEnhanceOff);

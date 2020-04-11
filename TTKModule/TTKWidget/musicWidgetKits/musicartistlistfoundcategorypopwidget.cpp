@@ -99,7 +99,7 @@ void MusicArtistListFoundCategoryPopWidget::closeMenu()
 
 void MusicArtistListFoundCategoryPopWidget::popupMenu()
 {
-    m_menu->exec( mapToGlobal(QPoint(0, 0)) );
+    m_menu->exec(mapToGlobal(QPoint(0, 0)));
 }
 
 void MusicArtistListFoundCategoryPopWidget::initWidget()

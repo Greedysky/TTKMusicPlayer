@@ -47,14 +47,14 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
         MusicDownLoadQueryKWMovieThread *d = new MusicDownLoadQueryKWMovieThread(this);
         d->setQueryExtraMovie(false);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-        setQueryInput( d );
+        setQueryInput(d);
         m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
     }
     else
     {
         MusicDownLoadQueryBDLearnThread *d = new MusicDownLoadQueryBDLearnThread(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
-        setQueryInput( d );
+        setQueryInput(d);
         m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
     }
 }

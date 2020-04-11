@@ -238,10 +238,10 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
     const int indexCheck = m_currentIndex * PHOTO_PERLINE;
     for(int i=0; i<m_planes.count(); ++i)
     {
-        m_planes[i]->setPhoto( (indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString() );
+        m_planes[i]->setPhoto((indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString());
         //check show radio button
-        m_planes[i]->setBoxChecked( m_selectNum.contains(indexCheck + i) );
-        m_planes[i]->setBoxVisible( (indexCheck + i) < m_artPath.count() );
+        m_planes[i]->setBoxChecked(m_selectNum.contains(indexCheck + i));
+        m_planes[i]->setBoxVisible((indexCheck + i) < m_artPath.count());
     }
 }
 

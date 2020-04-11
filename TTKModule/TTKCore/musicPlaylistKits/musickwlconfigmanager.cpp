@@ -10,7 +10,7 @@ MusicKWLConfigManager::MusicKWLConfigManager(QObject *parent)
 bool MusicKWLConfigManager::readConfig(const QString &name)
 {
     delete m_file;
-    m_file = new QFile( name );
+    m_file = new QFile(name);
     if(!m_file->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         return false;

@@ -71,7 +71,7 @@ void MusicPlayer::playNext()
 void MusicPlayer::playPrevious()
 {
     int index = m_playlist->currentIndex();
-    m_playlist->setCurrentIndex((--index < 0) ? 0 : index );
+    m_playlist->setCurrentIndex((--index < 0) ? 0 : index);
 }
 
 int MusicPlayer::volume() const
@@ -240,7 +240,7 @@ void MusicPlayer::removeCurrentMedia()
 
 void MusicPlayer::update()
 {
-    Q_EMIT positionChanged( position() );
+    Q_EMIT positionChanged(position());
 
     if(m_musicEnhanced == Enhanced3D && !m_music->isMuted())
     {
@@ -283,7 +283,7 @@ void MusicPlayer::getCurrentDuration()
     }
     else
     {
-        Q_EMIT durationChanged( m_duration = dur );
+        Q_EMIT durationChanged(m_duration = dur);
     }
 }
 

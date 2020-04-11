@@ -166,7 +166,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters( QStringList() << "All File(*.*)" << "MP3 File(*.mp3)" );
+    dialog.setNameFilters(QStringList() << "All File(*.*)" << "MP3 File(*.mp3)");
     if(dialog.exec())
     {
         setControlEnabled(false);
@@ -292,13 +292,13 @@ void MusicVolumeGainWidget::analysisOutput()
     while(m_process->canReadLine())
     {
         QByteArray data = m_process->readLine();
-        if(data.contains( GAIN_TRACKDB ))
+        if(data.contains(GAIN_TRACKDB))
         {
             data.replace(GAIN_TRACKDB, QByteArray());
             data.replace("\r\n", QByteArray());
             track = QString(data.trimmed());
         }
-        if(data.contains( GAIN_ALBUMDB ))
+        if(data.contains(GAIN_ALBUMDB))
         {
             data.replace(GAIN_ALBUMDB, QByteArray());
             data.replace("\r\n", QByteArray());

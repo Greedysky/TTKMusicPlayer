@@ -68,7 +68,7 @@ QString MusicFunctionToolBoxTopWidget::getTitle(bool suffix)
     {
         const int index = text.lastIndexOf("[");
         m_suffixString = text.right(text.count() - index);
-        text = text.left( index );
+        text = text.left(index);
     }
     return text;
 }
@@ -144,15 +144,15 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 
         QMimeData *mimeData = new QMimeData;
         mimeData->setData(DRAG_FORMAT, QByteArray::number(m_index));
-        mimeData->setText( getTitle(true) );
+        mimeData->setText(getTitle(true));
 
         QDrag *drag = new QDrag(this);
         drag->setMimeData(mimeData);
         drag->setHotSpot(QPoint(0, height()/2));
 #ifdef TTK_GREATER_NEW
-        drag->setPixmap( grab(rect()) );
+        drag->setPixmap(grab(rect()));
 #else
-        drag->setPixmap( QPixmap::grabWidget(this, rect()) );
+        drag->setPixmap(QPixmap::grabWidget(this, rect()));
 #endif
         drag->exec(Qt::MoveAction);
     }
@@ -444,7 +444,7 @@ void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
     m_currentIndex = index;
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        m_itemList[i].m_widgetItem->setItemExpand( i == index );
+        m_itemList[i].m_widgetItem->setItemExpand(i == index);
     }
 }
 

@@ -97,7 +97,7 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 
     foreach(const QFileInfo &f, dir.entryInfoList())
     {
-        if(f.fileName().contains( name ))
+        if(f.fileName().contains(name))
         {
             ++count;
         }
@@ -105,7 +105,7 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 
     const QString &fileName = QString("%1%2%3").arg(BACKGROUND_DIR_FULL).arg(name).arg(count);
     m_ui->imageLabel->saveImagePath(fileName + JPG_FILE);
-    QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE );
+    QFile::rename(fileName + JPG_FILE, fileName + SKN_FILE);
     close();
 }
 
