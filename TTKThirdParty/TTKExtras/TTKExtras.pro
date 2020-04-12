@@ -19,7 +19,7 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-include(../../TTKVersion.pri)
+include($$PWD/../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
@@ -38,16 +38,16 @@ win32:msvc{
 LIBS += -L$$DESTDIR -lTTKUi
 INCLUDEPATH += $$PWD
 
-include(../TTKExtrasDefine.pri)
+include($$PWD/../TTKExtrasDefine.pri)
 
-include(qalg/QAlg.pri)
-include(qdlna/QDlna.pri)
-include(qhttpserver/QHttpServer.pri)
-include(qoss/QOss.pri)
-include(qjson/QJson.pri)
-include(qkugou/QKuGou.pri)
-include(qrencode/QRencode.pri)
-include(qshortcut/QShortCut.pri)
+include($$PWD/qalg/QAlg.pri)
+include($$PWD/qdlna/QDlna.pri)
+include($$PWD/qhttpserver/QHttpServer.pri)
+include($$PWD/qoss/QOss.pri)
+include($$PWD/qjson/QJson.pri)
+include($$PWD/qkugou/QKuGou.pri)
+include($$PWD/qrencode/QRencode.pri)
+include($$PWD/qshortcut/QShortCut.pri)
 
 win32{
     RC_FILE = TTKExtras.rc

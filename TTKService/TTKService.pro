@@ -28,23 +28,23 @@ win32{
         CONFIG -= TTK_NO_MSVC_LINK_NEED
     }
 }
-include(../TTKMusicPlayer.pri)
+include($$PWD/../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 TARGET = TTKService
 
 LIBS += -L$$DESTDIR -lTTKCore -lTTKDumper
 
-INCLUDEPATH += ../TTKModule
+INCLUDEPATH += $$PWD/../TTKModule
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    ../TTKModule/musicapplication.h \
-    ../TTKModule/musicleftareawidget.h \
-    ../TTKModule/musictopareawidget.h \
-    ../TTKModule/musicrightareawidget.h \
-    ../TTKModule/musicbottomareawidget.h \
-    ../TTKModule/musicapplicationobject.h
+    $$PWD/../TTKModule/musicapplication.h \
+    $$PWD/../TTKModule/musicleftareawidget.h \
+    $$PWD/../TTKModule/musictopareawidget.h \
+    $$PWD/../TTKModule/musicrightareawidget.h \
+    $$PWD/../TTKModule/musicbottomareawidget.h \
+    $$PWD/../TTKModule/musicapplicationobject.h
 
 }
 

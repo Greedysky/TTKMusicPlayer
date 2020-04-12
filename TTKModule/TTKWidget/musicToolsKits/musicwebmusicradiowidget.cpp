@@ -111,7 +111,6 @@ void MusicWebMusicRadioWidget::itemCellDoubleClicked(int row, int column)
         m_musicRadio->setNetworkCookie(m_cookJar);
     }
 
-    TTK_LOGGER_INFO(channels[row].m_id);
     if(!channels.isEmpty())
     {
         m_musicRadio->updateRadioList(channels[row].m_id);

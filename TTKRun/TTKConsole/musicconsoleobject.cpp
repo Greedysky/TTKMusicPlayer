@@ -70,7 +70,7 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
 
 MusicConsoleObject::~MusicConsoleObject()
 {
-    qDebug() << "\nRelease all!";
+    TTK_LOGGER_INFO("\nRelease all!");
     delete m_musicPlayer;
     delete m_musicPlaylist;
 }
@@ -90,10 +90,10 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
 
     if(app.arguments().count() == 1)
     {
-        qDebug() << "\nOptions:";
-        qDebug() << "-u //Music play url path";
-        qDebug() << "-d //Music play dir path";
-        qDebug() << "-l //Music playlist url path\n";
+        TTK_LOGGER_INFO("\nOptions:");
+        TTK_LOGGER_INFO("-u //Music play url path");
+        TTK_LOGGER_INFO("-d //Music play dir path");
+        TTK_LOGGER_INFO("-l //Music playlist url path\n");
         return false;
     }
 
@@ -102,12 +102,12 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         const QString &url = parser.value(op1);
         if(url.isEmpty())
         {
-            qDebug() << "Music play url path is empty!";
+            TTK_LOGGER_ERROR("Music play url path is empty!");
             return false;
         }
         else
         {
-            qDebug() << "Add play url path: " << url;
+            TTK_LOGGER_INFO("Add play url path: " << url);
             m_musicPlaylist->addMedia(0, url);
             m_musicPlaylist->setCurrentIndex(0);
         }
@@ -117,14 +117,14 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         const QString &url = parser.value(op2);
         if(url.isEmpty())
         {
-            qDebug() << "Music play dir path is empty!";
+            TTK_LOGGER_ERROR("Music play dir path is empty!");
             return false;
         }
         else
         {
             foreach(const QFileInfo &file, MusicUtils::File::getFileListByDir(url, MusicFormats::supportFormatsFilterString(), true))
             {
-                qDebug() << "Add play url path: " << file.absoluteFilePath();
+                TTK_LOGGER_INFO("Add play url path: " << file.absoluteFilePath());
                 m_musicPlaylist->appendMedia(0, file.absoluteFilePath());
             }
 
@@ -139,14 +139,14 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         const QString &url = parser.value(op3);
         if(url.isEmpty())
         {
-            qDebug() << "Music playlist path is empty!";
+            TTK_LOGGER_ERROR("Music playlist path is empty!");
             return false;
         }
         else
         {
             if(QFileInfo(url).suffix().toLower() != LST_FILE_PREFIX)
             {
-                qDebug() << "Music playlist format not support!";
+                TTK_LOGGER_INFO("Music playlist format not support!");
                 return false;
             }
 
@@ -154,7 +154,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
             MusicTKPLConfigManager manager;
             if(!manager.readConfig(url))
             {
-                qDebug() << "Music playlist read error!";
+                TTK_LOGGER_ERROR("Music playlist read error!");
                 return false;
             }
             manager.readPlaylistData(items);
@@ -163,7 +163,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
             {
                 foreach(const MusicSong &song, item.m_songs)
                 {
-                    qDebug() << "Add play url path: " << song.getMusicPath();
+                    TTK_LOGGER_INFO("Add play url path: " << song.getMusicPath());
                     m_musicPlaylist->appendMedia(0, song.getMusicPath());
                 }
             }
@@ -176,16 +176,16 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
     }
     else
     {
-        qDebug() << "Options error!";
+        TTK_LOGGER_ERROR("Options error!");
         return false;
     }
 
-    qDebug() << "\nMusic Files count: " << m_musicPlaylist->mediaCount() << "\n";
+    TTK_LOGGER_INFO("\nMusic Files count: " << m_musicPlaylist->mediaCount() << "\n");
 
     m_musicPlayer->play();
     m_musicPlayer->setVolume(m_volume);
 #else
-    qDebug() << "Qt version less than 5.2 not support commend line!";
+    TTK_LOGGER_ERROR("Qt version less than 5.2 not support commend line!");
 #endif
 
     return app.exec();
@@ -203,7 +203,7 @@ void MusicConsoleObject::positionChanged(qint64 position)
 
 void MusicConsoleObject::currentIndexChanged(int index)
 {
-    qDebug() << "\nCurrent Play Indedx: " << index;
+    TTK_LOGGER_INFO("\nCurrent Play Indedx: " << index);
     QTimer::singleShot(MT_S2MS, this, SLOT(resetVolume()));
 }
 
@@ -356,7 +356,7 @@ void MusicConsoleObject::musicEnhancedVocal()
 
 void MusicConsoleObject::print(qint64 position, qint64 duration)
 {
-    qDebug() << QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6")
+    TTK_LOGGER_INFO(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6"))
                 .arg(m_musicPlaylist->currentMediaString())
                 .arg(MusicTime::msecTime2LabelJustified(position))
                 .arg(MusicTime::msecTime2LabelJustified(duration))

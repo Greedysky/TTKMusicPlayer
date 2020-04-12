@@ -20,7 +20,7 @@ QT       += core
 
 TEMPLATE = lib
 
-include(../../TTKVersion.pri)
+include($$PWD/../../TTKVersion.pri)
 
 win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
@@ -52,7 +52,7 @@ HEADERS += \
     $$PWD/ttklogger.h
 
 #load extra define
-include(../TTKExtrasDefine.pri)
+include($$PWD/../TTKExtrasDefine.pri)
 
 win32{
     RC_FILE = TTKDumper.rc

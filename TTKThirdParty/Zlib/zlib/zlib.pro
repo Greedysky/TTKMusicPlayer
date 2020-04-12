@@ -18,7 +18,7 @@
 
 TEMPLATE = lib
 
-include(../../../TTKVersion.pri)
+include($$PWD/../../../TTKVersion.pri)
 
 win32:DESTDIR = $$OUT_PWD/../../../bin/$$TTKMusicPlayer
 unix:DESTDIR = $$OUT_PWD/../../../lib/$$TTKMusicPlayer

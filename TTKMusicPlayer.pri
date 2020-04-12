@@ -21,14 +21,14 @@ QT       += core gui xml sql
 equals(QT_MAJOR_VERSION, 4){
 QT       += network
 CONFIG   += gcc
-include(TTKExtra/Qt4/qmmp.pri)
+include($$PWD/TTKExtra/Qt4/qmmp.pri)
 }
 equals(QT_MAJOR_VERSION, 5){
 QT       += widgets multimediawidgets
-include(TTKExtra/Qt5/qmmp.pri)
+include($$PWD/TTKExtra/Qt5/qmmp.pri)
 }
 
-include(TTKVersion.pri)
+include($$PWD/TTKVersion.pri)
 win32:DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 unix:DESTDIR = $$OUT_PWD/../lib/$$TTKMusicPlayer
 
@@ -104,6 +104,6 @@ DEFINES += TTK_LIBRARY QMMP_LIBRARY
 HEADERS += $$PWD/musicglobal.h
 INCLUDEPATH += $$PWD
 #########################################
-include(TTKThirdParty/TTKThirdParty.pri)
+include($$PWD/TTKThirdParty/TTKThirdParty.pri)
 #########################################
-include(TTKModule/TTKModule.pri)
+include($$PWD/TTKModule/TTKModule.pri)

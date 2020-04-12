@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-include(../../../TTKVersion.pri)
+include($$PWD/../../../TTKVersion.pri)
 unix:VERSION += 1.0.0.0
 
 QT       += core gui

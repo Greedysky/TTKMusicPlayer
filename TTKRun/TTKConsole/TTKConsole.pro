@@ -17,7 +17,7 @@
 # =================================================
 
 QT       += core
-include(../../TTKVersion.pri)
+include($$PWD/../../TTKVersion.pri)
 unix:VERSION += 1.0.0.0
 
 TEMPLATE = app
@@ -57,7 +57,7 @@ SOURCES += \
     musicconsoleobject.cpp
 
 HEADERS += \
-    ../musicrunglobaldefine.h \
+    $$PWD/../musicrunglobaldefine.h \
     musicconsoleobject.h
 
 win32{

@@ -18,7 +18,7 @@
 
 QT       += core
 
-include(../../TTKVersion.pri)
+include($$PWD/../../TTKVersion.pri)
 unix:VERSION += 1.0.0.0
 
 win32:DESTDIR = $$OUT_PWD/../../bin
@@ -45,11 +45,11 @@ SOURCES += \
     musicinitobject.cpp
 
 HEADERS += \
-    ../musicrunglobaldefine.h \
+    $$PWD/../musicrunglobaldefine.h \
     musicinitobject.h
 
 RESOURCES += \
-    ../../TTKQrc/MusicApp.qrc
+    $$PWD/../../TTKQrc/MusicApp.qrc
 
 win32{
     RC_FILE = TTKInit.rc

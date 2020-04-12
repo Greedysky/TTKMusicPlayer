@@ -19,7 +19,7 @@
 TEMPLATE = lib
 CONFIG += TTK_BUILD_LIB
 
-include(../TTKMusicPlayer.pri)
+include($$PWD/../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 TARGET = TTKCore

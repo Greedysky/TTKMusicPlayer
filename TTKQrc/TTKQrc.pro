@@ -21,7 +21,7 @@ msvc{
     CONFIG += staticlib
 }
 
-include(../TTKVersion.pri)
+include($$PWD/../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32:DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer

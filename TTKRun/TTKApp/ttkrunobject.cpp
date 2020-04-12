@@ -1,7 +1,6 @@
 #include "ttkrunobject.h"
 #include "musicinitobject.h"
 
-
 #include <QProcess>
 #include <QApplication>
 

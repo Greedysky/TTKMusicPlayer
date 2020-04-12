@@ -19,7 +19,7 @@
 QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-include(../../TTKVersion.pri)
+include($$PWD/../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32:DESTDIR = $$OUT_PWD/../../bin
@@ -47,19 +47,19 @@ SOURCES += \
     ttklocalpeer.cpp \
     ttkrunapplication.cpp \
     ttkrunobject.cpp \
-    ../TTKInit/musicinitobject.cpp
+    $$PWD/../TTKInit/musicinitobject.cpp
 
 
 HEADERS += \
-    ../musicrunglobaldefine.h \
+    $$PWD/../musicrunglobaldefine.h \
     ttkrunobject.h \
     ttklocalpeer.h \
     ttkrunapplication.h \
-    ../TTKInit/musicinitobject.h
+    $$PWD/../TTKInit/musicinitobject.h
 
 
 RESOURCES += \
-    ../../TTKQrc/MusicApp.qrc
+    $$PWD/../../TTKQrc/MusicApp.qrc
 
 win32{
     RC_FILE = TTKApp.rc

@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-include(TTKVersion.pri)
+include($$PWD/TTKVersion.pri)
 
 TEMPLATE = subdirs
 SUBDIRS = TTKQrc TTKThirdParty TTKModule TTKService TTKRun TTKTest
