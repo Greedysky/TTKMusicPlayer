@@ -19,7 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QtCore/qglobal.h>
+#include "musicglobal.h"
+#include "musicotherdefine.h"
+#include "musicnumberdefine.h"
 
 ///
 #ifdef TTK_LIBRARY
@@ -136,11 +138,5 @@
 #    define MUSIC_GUI_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
-
-///
-#include "musicglobal.h"
-#include "musicotherdefine.h"
-#include "musicnumberdefine.h"
-///
 
 #endif // MUSICGLOBALDEFINE_H
