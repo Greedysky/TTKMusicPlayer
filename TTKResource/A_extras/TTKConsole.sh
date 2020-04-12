@@ -1,6 +1,6 @@
 #!/bin/sh
 
-routine="../TTKRoutine.sh"
+routine="TTKRoutine.sh"
 appname=`basename $0 | sed s,\.sh$,,`  
 
 if [ -z "$appname" ]; then

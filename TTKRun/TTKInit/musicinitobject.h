@@ -63,7 +63,7 @@
 #define S_TTKINIT_FULL            MusicObject::getAppDir() + "TTKInit.sh"
 #define S_TTKMUSICPLAYER_FULL     MusicObject::getAppDir() + "TTKMusicPlayer.sh"
 #define S_TTKROUTINE_FULL         MusicObject::getAppDir() + "TTKRoutine.sh"
-#define S_TTKCONSOLE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKConsole.sh"
+#define S_TTKCONSOLE_FULL         MusicObject::getAppDir() + "/TTKConsole.sh"
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.sh"
 #define S_TTKROUTINECOPY_FULL     MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKRoutineCopy.sh"
 #endif
