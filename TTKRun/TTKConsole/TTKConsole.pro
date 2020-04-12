@@ -23,11 +23,6 @@ unix:VERSION += 1.0.0.0
 TEMPLATE = app
 CONFIG += console
 
-UI_DIR = ./.build/ui
-MOC_DIR = ./.build/moc
-OBJECTS_DIR = ./.build/obj
-RCC_DIR = ./.build/rcc
-
 DEFINES += TTK_LIBRARY
 
 win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
