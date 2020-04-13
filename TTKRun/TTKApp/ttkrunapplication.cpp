@@ -40,7 +40,7 @@ TTKRunApplication::TTKRunApplication(const QString &appId, int &argc, char **arg
     initialize(appId);
 }
 
-#if QT_VERSION < 0x050000
+#ifndef TTK_GREATER_NEW
 TTKRunApplication::TTKRunApplication(int &argc, char **argv, Type type)
     : QApplication(argc, argv, type)
 {

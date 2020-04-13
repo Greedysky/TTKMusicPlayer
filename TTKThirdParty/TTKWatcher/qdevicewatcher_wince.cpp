@@ -8,7 +8,7 @@
 #include <QtCore/QCoreApplication>
 
 #ifdef UNICODE
-#  if QT_VERSION >= 0x040000
+#  if TTK_QT_VERSION_CHECK(4,0,0)
 #    define TCHAR2QString(x) QString::fromUtf16(x)
 #  else
 #    define TCHAR2QString(x) QString::fromUcs2(x)
