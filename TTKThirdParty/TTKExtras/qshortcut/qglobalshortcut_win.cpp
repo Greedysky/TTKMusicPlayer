@@ -1,24 +1,15 @@
 #include "qglobalshortcut_p.h"
 #include <qt_windows.h>
-#include <QtDebug>
 
-#if(QT_VERSION<0x050000)
+#ifndef TTK_GREATER_NEW
 bool QGlobalShortcutPrivate::eventFilter(void* message)
 {
-    MSG* msg = TTKStatic_cast(MSG*, message);
-    if (msg->message == WM_HOTKEY)
-    {
-        const quint32 keycode = HIWORD(msg->lParam);
-        const quint32 modifiers = LOWORD(msg->lParam);
-        activateShortcut(keycode, modifiers);
-    }
-    return false;
-}
 #else
 bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
 {
+#endif
     MSG* msg = TTKStatic_cast(MSG*, message);
-    if (msg->message == WM_HOTKEY)
+    if(msg->message == WM_HOTKEY)
     {
         const quint32 keycode = HIWORD(msg->lParam);
         const quint32 modifiers = LOWORD(msg->lParam);
@@ -26,23 +17,22 @@ bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message
     }
     return false;
 }
-#endif
 
 quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 {
     // MOD_ALT, MOD_CONTROL, (MOD_KEYUP), MOD_SHIFT, MOD_WIN
     quint32 native = 0;
-    if (modifiers & Qt::ShiftModifier)
+    if(modifiers & Qt::ShiftModifier)
         native |= MOD_SHIFT;
-    if (modifiers & Qt::ControlModifier)
+    if(modifiers & Qt::ControlModifier)
         native |= MOD_CONTROL;
-    if (modifiers & Qt::AltModifier)
+    if(modifiers & Qt::AltModifier)
         native |= MOD_ALT;
-    if (modifiers & Qt::MetaModifier)
+    if(modifiers & Qt::MetaModifier)
         native |= MOD_WIN;
     // TODO: resolve these?
-    //if (modifiers & Qt::KeypadModifier)
-    //if (modifiers & Qt::GroupSwitchModifier)
+    //if(modifiers & Qt::KeypadModifier)
+    //if(modifiers & Qt::GroupSwitchModifier)
     return native;
 }
 
