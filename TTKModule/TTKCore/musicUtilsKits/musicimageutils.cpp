@@ -45,7 +45,7 @@ void gaussBlur(int* pix, int w, int h, int radius)
             {
                 int k = x + i;
 
-                if (0 <= k && k <= w)
+                if(0 <= k && k <= w)
                 {
                     int color = rowData[k];
                     int cr = (color & 0x00ff0000) >> 16;
@@ -84,7 +84,7 @@ void gaussBlur(int* pix, int w, int h, int radius)
             {
                 int k = y + j;
 
-                if (0 <= k && k <= h)
+                if(0 <= k && k <= h)
                 {
                     int color = listData[k];
                     int cr = (color & 0x00ff0000) >> 16;

@@ -38,7 +38,7 @@ public:
     void waitForBytesWritten();
 
 Q_SIGNALS:
-    void newRequest(QHttpRequest *, QHttpResponse *);
+    void newRequest(QHttpRequest *request, QHttpResponse *response);
     void allBytesWritten();
 
 private Q_SLOTS:

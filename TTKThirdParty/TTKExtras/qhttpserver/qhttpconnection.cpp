@@ -83,7 +83,8 @@ QHttpConnectionPrivate::~QHttpConnectionPrivate()
 
 void QHttpConnectionPrivate::invalidateRequest()
 {
-    if (m_request && !m_request->successful()) {
+    if(m_request && !m_request->successful())
+    {
         Q_EMIT m_request->end();
     }
 
@@ -96,7 +97,7 @@ void QHttpConnectionPrivate::writeCount(qint64 count)
 
     m_transmitPos += count;
 
-    if (m_transmitPos == m_transmitLen)
+    if(m_transmitPos == m_transmitLen)
     {
         m_transmitLen = 0;
         m_transmitPos = 0;
@@ -108,7 +109,8 @@ void QHttpConnectionPrivate::parseRequest()
 {
     Q_ASSERT(m_parser);
 
-    while (m_socket->bytesAvailable()) {
+    while(m_socket->bytesAvailable())
+    {
         QByteArray arr = m_socket->readAll();
         http_parser_execute(m_parser, m_parserSettings, arr.constData(), arr.size());
     }
@@ -186,8 +188,10 @@ void QHttpConnection::responseDone()
 {
     TTK_D(QHttpConnection);
     QHttpResponse *response = TTKObject_cast(QHttpResponse*, QObject::sender());
-    if (response->isLast())
+    if(response->isLast())
+    {
         d->m_socket->disconnectFromHost();
+    }
 }
 
 /* URL Utilities */
@@ -210,16 +214,18 @@ QUrl createUrl(const char *urlData, const http_parser_url &urlInfo)
     url.setQuery(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_QUERY));
 #else
     url.setPath(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_PATH));
-    if (HAS_URL_FIELD(urlInfo, UF_QUERY)) {
-        url.setEncodedQuery(QByteArray(urlData + urlInfo.field_data[UF_QUERY].off,
-                                       urlInfo.field_data[UF_QUERY].len));
+    if(HAS_URL_FIELD(urlInfo, UF_QUERY))
+    {
+        url.setEncodedQuery(QByteArray(urlData + urlInfo.field_data[UF_QUERY].off, urlInfo.field_data[UF_QUERY].len));
     }
 #endif
     url.setFragment(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_FRAGMENT));
     url.setUserInfo(CHECK_AND_GET_FIELD(urlData, urlInfo, UF_USERINFO));
 
-    if (HAS_URL_FIELD(urlInfo, UF_PORT))
+    if(HAS_URL_FIELD(urlInfo, UF_PORT))
+    {
         url.setPort(urlInfo.port);
+    }
 
     return url;
 }
@@ -280,8 +286,10 @@ int QHttpConnectionPrivate::HeadersComplete(http_parser *parser)
     theConnection->m_request->setRemotePort(theConnection->m_socket->peerPort());
 
     QHttpResponse *response = new QHttpResponse(theConnection->m_parent);
-    if (parser->http_major < 1 || parser->http_minor < 1)
+    if(parser->http_major < 1 || parser->http_minor < 1)
+    {
         response->setKeepAlive(false);
+    }
 
     QObject::connect(theConnection->m_parent, SIGNAL(destroyed()), response, SLOT(connectionClosed()));
     QObject::connect(response, SIGNAL(done()), theConnection->m_parent, SLOT(responseDone()));
@@ -318,11 +326,10 @@ int QHttpConnectionPrivate::HeaderField(http_parser *parser, const char *at, siz
 
     // insert the header we parsed previously
     // into the header map
-    if (!theConnection->m_currentHeaderField.isEmpty() &&
-        !theConnection->m_currentHeaderValue.isEmpty()) {
+    if(!theConnection->m_currentHeaderField.isEmpty() && !theConnection->m_currentHeaderValue.isEmpty())
+    {
         // header names are always lower-cased
-        theConnection->m_currentHeaders[theConnection->m_currentHeaderField.toLower()] =
-            theConnection->m_currentHeaderValue;
+        theConnection->m_currentHeaders[theConnection->m_currentHeaderField.toLower()] = theConnection->m_currentHeaderValue;
         // clear header value. this sets up a nice
         // feedback loop where the next time
         // HeaderValue is called, it can simply append

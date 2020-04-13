@@ -186,9 +186,9 @@ qint64 QDesWrapPrivate::bitTransform(int *array, int len, qint64 source)
     qint64 dest = 0;
     const qint64 bts = source;
 
-    for (int bti = 0; bti < len; bti++)
+    for(int bti = 0; bti < len; bti++)
     {
-        if (array[bti] >= 0 && (bts & ARRAYMASK[array[bti]]) != 0)
+        if(array[bti] >= 0 && (bts & ARRAYMASK[array[bti]]) != 0)
         {
             dest |= ARRAYMASK[bti];
         }
@@ -199,7 +199,7 @@ qint64 QDesWrapPrivate::bitTransform(int *array, int len, qint64 source)
 void QDesWrapPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrap::Mode mode)
 {
     qint64 temp = bitTransform(ARRAYPC_1, 56, key);
-    for (int j = 0; j < 16; j++)
+    for(int j = 0; j < 16; j++)
     {
         const qint64 source = temp;
         temp = ((source & ARRAYLSMASK[ARRAYLS[j]]) << (28 - ARRAYLS[j])) | ((source & ~ARRAYLSMASK[ARRAYLS[j]]) >> ARRAYLS[j]);
@@ -209,7 +209,7 @@ void QDesWrapPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrap::Mode mode)
     if(mode == QDesWrap::DECRYPT)
     {
         qint64 t;
-        for (int j = 0; j < 8; j++)
+        for(int j = 0; j < 8; j++)
         {
             t = K[j];
             K[j] = K[15 - j];
@@ -229,19 +229,19 @@ qint64 QDesWrapPrivate::DES64(qint64 *subkeys, qint64 data)
     pSource[0] = (int) (out & qint64(0x00000000ffffffffl));
     pSource[1] = (int) ((out & qint64(0xffffffff00000000l)) >> 32);
 
-    for (int i = 0; i < 16; i++)
+    for(int i = 0; i < 16; i++)
     {
         r = pSource[1];
         r = bitTransform(ARRAYE, 64, r);
         r ^= subkeys[i];
 
-        for (int k = 0; k < 8; ++k)
+        for(int k = 0; k < 8; ++k)
         {
             pR[k] = (char) (0xff & (r >> (k * 8)));
         }
 
         sOut = 0;
-        for (int sbi = 7; sbi >= 0; sbi--)
+        for(int sbi = 7; sbi >= 0; sbi--)
         {
             sOut <<= 4;
             sOut |= MATRIXNSBOX[sbi][pR[sbi]];
@@ -270,7 +270,7 @@ qint64 QDesWrapPrivate::DES64(qint64 *subkeys, qint64 data)
 char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
 {
     qint64 keyl = 0;
-    for (int i = 0; i < 8; i++)
+    for(int i = 0; i < 8; i++)
     {
         const qint64 temp = (qint64) key[i] << (i * 8);
         keyl |= temp;
@@ -279,24 +279,24 @@ char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
     const int num = srcLength / 8;
 
     qint64* subKey = new qint64[16];
-    for (int i = 0; i < 16; i++)
+    for(int i = 0; i < 16; i++)
     {
         subKey[i] = 0;
     }
     DESSubKeys(keyl, subKey, m_mode);
 
     qint64* pSrc = (qint64*) malloc(num * sizeof(qint64));
-    for (int i = 0; i < num; i++)
+    for(int i = 0; i < num; i++)
     {
         pSrc[i] = 0;
-        for (int j = 0; j < 8; j++)
+        for(int j = 0; j < 8; j++)
         {
             pSrc[i] |= (qint64) src[i * 8 + j] << (j * 8);
         }
     }
 
     qint64* pEncyrpt = (qint64*) malloc((((num + 1) * 8 + 1) / 8) * sizeof(qint64));
-    for (int i = 0; i < num; i++)
+    for(int i = 0; i < num; i++)
     {
         pEncyrpt[i] = DES64(subKey, pSrc[i]);
     }
@@ -308,7 +308,7 @@ char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
     memcpy(szTail, src + num * 8, srcLength - num * 8);
 
     qint64 tail64 = 0;
-    for (int i = 0; i < tailNum; i++)
+    for(int i = 0; i < tailNum; i++)
     {
         tail64 = tail64 | (qint64(szTail[i])) << (i * 8);
     }
@@ -317,9 +317,9 @@ char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
     char* result = (char*) malloc((num + 1) * 8);
 
     int temp = 0;
-    for (int i = 0; i < (num + 1); i++)
+    for(int i = 0; i < (num + 1); i++)
     {
-        for (int j = 0; j < 8; ++j)
+        for(int j = 0; j < 8; ++j)
         {
             result[temp] = (char) (0xff & (pEncyrpt[i] >> (j * 8)));
             temp++;
