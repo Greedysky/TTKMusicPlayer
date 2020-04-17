@@ -1,12 +1,12 @@
-#include "qossuploaddata.h"
-#include "qossdatainterface_p.h"
+#include "qsyncuploaddata.h"
+#include "qsyncdatainterface_p.h"
 
 #include <QFile>
 
-class QOSSUploadDataPrivate : public QOSSDataInterfacePrivate
+class QSyncUploadDataPrivate : public QSyncDataInterfacePrivate
 {
 public:
-    QOSSUploadDataPrivate() : QOSSDataInterfacePrivate()
+    QSyncUploadDataPrivate() : QSyncDataInterfacePrivate()
     {
     }
 
@@ -15,27 +15,27 @@ public:
 
 
 
-QOSSUploadData::QOSSUploadData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QOSSDataInterface(networkManager, parent)
+QSyncUploadData::QSyncUploadData(QNetworkAccessManager *networkManager, QObject *parent)
+    : QSyncDataInterface(networkManager, parent)
 {
-    TTK_INIT_PUBLIC(QOSSUploadData);
+    TTK_INIT_PUBLIC(QSyncUploadData);
     TTK_INIT_PRIVATE;
-    TTK_D(QOSSUploadData);
+    TTK_D(QSyncUploadData);
     d->m_manager = networkManager;
 }
 
-void QOSSUploadData::uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
+void QSyncUploadData::uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
 {
-    TTK_D(QOSSUploadData);
+    TTK_D(QSyncUploadData);
     d->m_uploadTime = time;
 
     const QString &method = "PUT";
     const QString &url = "/" + fileName;
     const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QOSSConf::OSS_HOST;
+    const QString &host = bucket + "." + QSyncConf::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QOSSUtils::getGMT());
+    headers.insert("Date", QSyncUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
 
@@ -66,9 +66,9 @@ void QOSSUploadData::uploadDataOperator(const QString &time, const QString &buck
     }
 }
 
-void QOSSUploadData::receiveDataFromServer()
+void QSyncUploadData::receiveDataFromServer()
 {
-    TTK_D(QOSSUploadData);
+    TTK_D(QSyncUploadData);
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
@@ -88,8 +88,8 @@ void QOSSUploadData::receiveDataFromServer()
     }
 }
 
-void QOSSUploadData::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
+void QSyncUploadData::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
-    TTK_D(QOSSUploadData);
+    TTK_D(QSyncUploadData);
     Q_EMIT uploadProgressChanged(d->m_uploadTime, bytesSent, bytesTotal);
 }

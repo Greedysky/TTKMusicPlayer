@@ -1,5 +1,5 @@
-#ifndef QOSSCONF_H
-#define QOSSCONF_H
+#ifndef QSYNCCONF_H
+#define QSYNCCONF_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -25,15 +25,15 @@
 #define DATA_BUCKET     "greedysky-data"
 #define MUSIC_BUCKET    "greedysky-music"
 
-/*! @brief The class of the alioss data item.
+/*! @brief The class of the sync data item.
  * @author Greedysky <greedysky@163.com>
  */
-struct MUSIC_EXTRAS_EXPORT QOSSConf
+struct MUSIC_EXTRAS_EXPORT QSyncConf
 {
-    static QString OSS_HOST;
+    static QString HOST;
 
-    static QString ACCESS_KEY;
-    static QByteArray SECRET_KEY;
+    static QString NAME;
+    static QByteArray KEY;
 
     static QString VERSION;
 
@@ -44,4 +44,4 @@ struct MUSIC_EXTRAS_EXPORT QOSSConf
 
 };
 
-#endif // QOSSCONF_H
+#endif

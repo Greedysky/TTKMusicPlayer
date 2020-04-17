@@ -5,8 +5,8 @@
 #include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
-#///Oss import
-#include "qoss/qossconf.h"
+#///Sync import
+#include "qsync/qsyncconf.h"
 
 #include <QFile>
 
@@ -38,7 +38,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(QOSSConf::generateDataBucketUrl() + OS_ACRUA_URL);
+    download->startToDownload(QSyncConf::generateDataBucketUrl() + OS_ACRUA_URL);
 
     loop.exec();
 

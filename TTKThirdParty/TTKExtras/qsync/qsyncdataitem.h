@@ -1,5 +1,5 @@
-#ifndef QOSSUTILS_H
-#define QOSSUTILS_H
+#ifndef QSYNCDATAITEM_H
+#define QSYNCDATAITEM_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,27 +21,31 @@
 
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The class of the alioss cloud data item.
+/*! @brief The class of the sync data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QOSSUtils
+typedef struct MUSIC_EXTRAS_EXPORT QSyncDataItem
 {
-public:
-    /*!
-     * Get authorization code.
-     */
-    static QString getAuthorizationCode(const QString &key, const QString &method,
-                                        const TTKStringMap &headers, const QString &resource);
-    /*!
-     * Create sign for normal auth.
-     */
-    static QString createSignForNormalAuth(const QString &method, const QString &access, const QString &secret,
-                                           const TTKStringMap &headers, const QString &resource);
-    /*!
-     * Get GMT.
-     */
-    static QString getGMT();
+    QString m_name;
+    QString m_hash;
+    QString m_mimeType;
+    QString m_putTime;
+    int m_size;
 
-};
+    QSyncDataItem()
+    {
+        m_size = 0;
+    }
 
-#endif // QOSSUTILS_H
+    inline void clear()
+    {
+        m_name.clear();
+        m_hash.clear();
+        m_mimeType.clear();
+        m_putTime.clear();
+        m_size = 0;
+    }
+}QSyncDataItem;
+TTK_DECLARE_LISTS(QSyncDataItem)
+
+#endif

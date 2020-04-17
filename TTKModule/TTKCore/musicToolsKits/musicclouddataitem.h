@@ -20,8 +20,8 @@
  ================================================= */
 
 #include "musicglobaldefine.h"
-#///Oss import
-#include "qoss/qossdataitem.h"
+#///Sync import
+#include "qsync/qsyncdataitem.h"
 
 /*! @brief The class of the cloud data item.
  * @author Greedysky <greedysky@163.com>
@@ -39,7 +39,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
     QString m_id;
     QString m_path;
     State m_state;
-    QOSSDataItem m_dataItem;
+    QSyncDataItem m_dataItem;
 
     inline bool isValid() const
     {

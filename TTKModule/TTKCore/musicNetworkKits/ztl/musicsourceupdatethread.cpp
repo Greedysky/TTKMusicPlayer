@@ -3,8 +3,8 @@
 #include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
-#///Oss import
-#include "qoss/qossconf.h"
+#///Sync import
+#include "qsync/qsyncconf.h"
 
 #define OS_VERSION_URL       "version"
 
@@ -18,7 +18,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QOSSConf::generateDataBucketUrl() + OS_VERSION_URL);
+    download->startToDownload(QSyncConf::generateDataBucketUrl() + OS_VERSION_URL);
 }
 
 QString MusicSourceUpdateThread::getVersion() const

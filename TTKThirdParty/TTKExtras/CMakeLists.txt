@@ -137,14 +137,14 @@ set(MUSIC_HEADERS
     qrencode/rscode.h
     qrencode/split.h
     qrencode/qrcodewidget.h
-    qoss/qossconf.h
-    qoss/qossdataitem.h
-    qoss/qossutils.h
-    qoss/qossdatainterface.h
-    qoss/qosslistdata.h
-    qoss/qossdeletedata.h
-    qoss/qossuploaddata.h
-    qoss/qossdownloaddata.h
+    qsync/qsyncconf.h
+    qsync/qsyncdataitem.h
+    qsync/qsyncutils.h
+    qsync/qsyncdatainterface.h
+    qsync/qsynclistdata.h
+    qsync/qsyncdeletedata.h
+    qsync/qsyncuploaddata.h
+    qsync/qsyncdownloaddata.h
     qjson/parser.h
     qjson/parserrunnable.h
     qjson/qobjecthelper.h
@@ -184,13 +184,13 @@ set(MUSIC_SOURCES
     qrencode/rscode.c
     qrencode/split.c
     qrencode/qrcodewidget.cpp
-    qoss/qossconf.cpp
-    qoss/qossutils.cpp
-    qoss/qossdatainterface.cpp
-    qoss/qosslistdata.cpp
-    qoss/qossdeletedata.cpp
-    qoss/qossuploaddata.cpp
-    qoss/qossdownloaddata.cpp
+    qsync/qsyncconf.cpp
+    qsync/qsyncutils.cpp
+    qsync/qsyncdatainterface.cpp
+    qsync/qsynclistdata.cpp
+    qsync/qsyncdeletedata.cpp
+    qsync/qsyncuploaddata.cpp
+    qsync/qsyncdownloaddata.cpp
     qjson/parser.cpp
     qjson/qobjecthelper.cpp
     qjson/json_scanner.cpp

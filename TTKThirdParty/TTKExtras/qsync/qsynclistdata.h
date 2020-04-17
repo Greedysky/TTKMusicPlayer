@@ -1,5 +1,5 @@
-#ifndef QOSSDATAITEM_H
-#define QOSSDATAITEM_H
+#ifndef QSYNCLISTDATA_H
+#define QSYNCLISTDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,33 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "qsyncdatainterface.h"
 
-/*! @brief The class of the alioss data item.
+/*! @brief The class of the sync cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_EXTRAS_EXPORT QOSSDataItem
+class MUSIC_EXTRAS_EXPORT QSyncListData : public QSyncDataInterface
 {
-    QString m_name;
-    QString m_hash;
-    QString m_mimeType;
-    QString m_putTime;
-    int m_size;
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit QSyncListData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    /*!
+     * List data to operator.
+     */
+    void listDataOperator(const QString &bucket);
 
-    QOSSDataItem()
-    {
-        m_size = 0;
-    }
+Q_SIGNALS:
+    /*!
+     * Receive data finshed.
+     */
+    void receiveFinshed(const QSyncDataItems &items);
 
-    inline void clear()
-    {
-        m_name.clear();
-        m_hash.clear();
-        m_mimeType.clear();
-        m_putTime.clear();
-        m_size = 0;
-    }
-}QOSSDataItem;
-TTK_DECLARE_LISTS(QOSSDataItem)
+protected Q_SLOTS:
+    /*!
+     * Receive data from server finshed.
+     */
+    virtual void receiveDataFromServer() override;
 
-#endif // QOSSDATAITEM_H
+};
+
+#endif

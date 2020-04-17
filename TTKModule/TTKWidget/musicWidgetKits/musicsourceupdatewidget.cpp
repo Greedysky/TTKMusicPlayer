@@ -11,8 +11,8 @@
 #include "musicsourceupdatewidget.h"
 #///QJson import
 #include "qjson/parser.h"
-#///Oss import
-#include "qoss/qossconf.h"
+#///Sync import
+#include "qsync/qsyncconf.h"
 
 #include <QBoxLayout>
 
@@ -137,7 +137,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 #ifdef Q_OS_WIN
     m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
     const QString &localDwonload = "v" + m_newVersionStr + EXE_FILE;
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(QOSSConf::generateDataBucketUrl()).arg(localDwonload),
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(QSyncConf::generateDataBucketUrl()).arg(localDwonload),
                                                                     UPDATE_DIR_FULL + localDwonload, MusicObject::DownloadOther, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));

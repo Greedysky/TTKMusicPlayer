@@ -1,5 +1,5 @@
-#ifndef QOSSDATAINTERFACE_P_H
-#define QOSSDATAINTERFACE_P_H
+#ifndef QSYNCDATAINTERFACE_P_H
+#define QSYNCDATAINTERFACE_P_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,29 +19,29 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "qossdatainterface.h"
+#include "qsyncdatainterface.h"
 
-class QOSSDataInterfacePrivate : public TTKPrivate<QOSSDataInterface>
+class QSyncDataInterfacePrivate : public TTKPrivate<QSyncDataInterface>
 {
 public:
-    QOSSDataInterfacePrivate()
+    QSyncDataInterfacePrivate()
     {
         m_manager = nullptr;
     }
 
     void insertAuthorization(const QString &method, TTKStringMap &headers, const QString &resource) const
     {
-        if(!QOSSConf::ACCESS_KEY.isEmpty() && !QOSSConf::SECRET_KEY.isEmpty())
+        if(!QSyncConf::NAME.isEmpty() && !QSyncConf::KEY.isEmpty())
         {
-            headers.insert("Authorization", QOSSUtils::createSignForNormalAuth(method, QOSSConf::ACCESS_KEY, QOSSConf::SECRET_KEY, headers, resource));
+            headers.insert("Authorization", QSyncUtils::createSignForNormalAuth(method, QSyncConf::NAME, QSyncConf::KEY, headers, resource));
         }
-        else if(!QOSSConf::ACCESS_KEY.isEmpty())
+        else if(!QSyncConf::NAME.isEmpty())
         {
-            headers.insert("Authorization", QOSSConf::ACCESS_KEY);
+            headers.insert("Authorization", QSyncConf::NAME);
         }
     }
 
     QNetworkAccessManager *m_manager;
 };
 
-#endif // QOSSDATAINTERFACE_P_H
+#endif

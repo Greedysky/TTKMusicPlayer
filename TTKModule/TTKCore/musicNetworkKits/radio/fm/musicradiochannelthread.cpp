@@ -1,8 +1,8 @@
 #include "musicradiochannelthread.h"
 #///QJson import
 #include "qjson/parser.h"
-#///Oss import
-#include "qoss/qossconf.h"
+#///Sync import
+#include "qsync/qsyncconf.h"
 
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
@@ -70,7 +70,7 @@ void MusicRadioChannelThread::downLoadFinished()
                 MusicRadioChannelInfo channel;
                 channel.m_id = value["channel_id"].toString();
                 channel.m_name = value["channel_name"].toString();
-                channel.m_coverUrl = QOSSConf::generateDataBucketUrl() + QString("%1/%2%3").arg(OS_RADIO_URL).arg(i + 1).arg(JPG_FILE);
+                channel.m_coverUrl = QSyncConf::generateDataBucketUrl() + QString("%1/%2%3").arg(OS_RADIO_URL).arg(i + 1).arg(JPG_FILE);
                 m_channels << channel;
             }
         }

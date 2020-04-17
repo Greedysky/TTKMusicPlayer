@@ -21,7 +21,7 @@
 
 #include "musicabstractmovedialog.h"
 
-class QOSSDataItem;
+class QSyncDataItem;
 
 namespace Ui {
 class MusicCloudFileInformationWidget;
@@ -45,7 +45,7 @@ public:
     /*!
      * Set music file song path name.
      */
-    void setFileInformation(QOSSDataItem *data);
+    void setFileInformation(QSyncDataItem *data);
 
 public Q_SLOTS:
     /*!

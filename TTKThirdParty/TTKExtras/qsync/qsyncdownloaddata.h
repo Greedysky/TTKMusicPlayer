@@ -1,5 +1,5 @@
-#ifndef QOSSLISTDATA_H
-#define QOSSLISTDATA_H
+#ifndef QSYNCDOWNLOADDATA_H
+#define QSYNCDOWNLOADDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,36 +19,54 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "qossdatainterface.h"
+#include "qsyncdatainterface.h"
 
-/*! @brief The class of the alioss cloud data item.
+/*! @brief The class of the sync cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QOSSListData : public QOSSDataInterface
+class MUSIC_EXTRAS_EXPORT QSyncDownloadData : public QSyncDataInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QOSSListData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    explicit QSyncDownloadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+
     /*!
-     * List data to operator.
+     * Get download data operator.
      */
-    void listDataOperator(const QString &bucket);
+    void downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
+
+    /*!
+     * Get download url request.
+     */
+    QString getDownloadUrl(const QString &bucket, const QString &fileName);
+    /*!
+     * Get download url request by content type.
+     */
+    QString getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType);
 
 Q_SIGNALS:
     /*!
-     * Receive data finshed.
+     * download file finshed.
      */
-    void receiveFinshed(const QOSSDataItems &items);
+    void downloadFileFinished(const QString &time);
+    /*!
+     * Show download progress.
+     */
+    void downloadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
 
 protected Q_SLOTS:
     /*!
      * Receive data from server finshed.
      */
     virtual void receiveDataFromServer() override;
+    /*!
+     * Show download progress.
+     */
+    void downloadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 };
 
-#endif // QOSSLISTDATA_H
+#endif

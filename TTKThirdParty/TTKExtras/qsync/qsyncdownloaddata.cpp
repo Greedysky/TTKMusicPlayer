@@ -1,13 +1,13 @@
-#include "qossdownloaddata.h"
-#include "qossdatainterface_p.h"
+#include "qsyncdownloaddata.h"
+#include "qsyncdatainterface_p.h"
 
 #include <QFile>
 #include <QDateTime>
 
-class QOSSDownloadDataPrivate : public QOSSDataInterfacePrivate
+class QSyncDownloadDataPrivate : public QSyncDataInterfacePrivate
 {
 public:
-    QOSSDownloadDataPrivate() : QOSSDataInterfacePrivate()
+    QSyncDownloadDataPrivate() : QSyncDataInterfacePrivate()
     {
     }
 
@@ -17,28 +17,28 @@ public:
 
 
 
-QOSSDownloadData::QOSSDownloadData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QOSSDataInterface(networkManager, parent)
+QSyncDownloadData::QSyncDownloadData(QNetworkAccessManager *networkManager, QObject *parent)
+    : QSyncDataInterface(networkManager, parent)
 {
-    TTK_INIT_PUBLIC(QOSSDownloadData);
+    TTK_INIT_PUBLIC(QSyncDownloadData);
     TTK_INIT_PRIVATE;
-    TTK_D(QOSSDownloadData);
+    TTK_D(QSyncDownloadData);
     d->m_manager = networkManager;
 }
 
-void QOSSDownloadData::downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
+void QSyncDownloadData::downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath)
 {
-    TTK_D(QOSSDownloadData);
+    TTK_D(QSyncDownloadData);
     d->m_downloadTime = time;
     d->m_downloadPath = filePath;
 
     const QString &method = "GET";
     const QString &url = "/" + fileName;
     const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QOSSConf::OSS_HOST;
+    const QString &host = bucket + "." + QSyncConf::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QOSSUtils::getGMT());
+    headers.insert("Date", QSyncUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
 
@@ -65,32 +65,32 @@ void QOSSDownloadData::downloadDataOperator(const QString &time, const QString &
     }
 }
 
-QString QOSSDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName)
+QString QSyncDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName)
 {
     return getDownloadUrl(bucket, fileName, "application/x-www-form-urlencoded");
 }
 
-QString QOSSDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType)
+QString QSyncDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType)
 {
     const qint64 deadline = QDateTime::currentDateTime().toUTC().addSecs(60 * 30).toMSecsSinceEpoch() / 1000;
 
     const QString &encodeKey = pathEncode(fileName);
     const QString &method = "GET";
     const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QOSSConf::OSS_HOST;
+    const QString &host = bucket + "." + QSyncConf::HOST;
 
     TTKStringMap headers;
     headers.insert("Date", QString::number(deadline));
     headers.insert("Content-Type", contentType);
     headers.insert("Host", host);
 
-    const QString &signature = QOSSUtils::getAuthorizationCode(QOSSConf::SECRET_KEY, method, headers, resource);
-    return QString("http://%1/%2?OSSAccessKeyId=%3&Expires=%4&Signature=%5").arg(host).arg(encodeKey).arg(QOSSConf::ACCESS_KEY).arg(deadline).arg(signature);
+    const QString &signature = QSyncUtils::getAuthorizationCode(QSyncConf::KEY, method, headers, resource);
+    return QString("http://%1/%2?OSSAccessKeyId=%3&Expires=%4&Signature=%5").arg(host).arg(encodeKey).arg(QSyncConf::NAME).arg(deadline).arg(signature);
 }
 
-void QOSSDownloadData::receiveDataFromServer()
+void QSyncDownloadData::receiveDataFromServer()
 {
-    TTK_D(QOSSDownloadData);
+    TTK_D(QSyncDownloadData);
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply)
     {
@@ -116,8 +116,8 @@ void QOSSDownloadData::receiveDataFromServer()
     }
 }
 
-void QOSSDownloadData::downloadProgress(qint64 bytesSent, qint64 bytesTotal)
+void QSyncDownloadData::downloadProgress(qint64 bytesSent, qint64 bytesTotal)
 {
-    TTK_D(QOSSDownloadData);
+    TTK_D(QSyncDownloadData);
     Q_EMIT downloadProgressChanged(d->m_downloadTime, bytesSent, bytesTotal);
 }

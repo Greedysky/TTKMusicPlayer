@@ -1,5 +1,5 @@
-#ifndef QOSSDATAINTERFACE_H
-#define QOSSDATAINTERFACE_H
+#ifndef QSYNCDATAINTERFACE_H
+#define QSYNCDATAINTERFACE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,24 +19,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "qossdataitem.h"
-#include "qossutils.h"
-#include "qossconf.h"
+#include "qsyncdataitem.h"
+#include "qsyncutils.h"
+#include "qsyncconf.h"
 #include <QtNetwork/QNetworkReply>
 
-class QOSSDataInterfacePrivate;
+class QSyncDataInterfacePrivate;
 
-/*! @brief The class of the alioss cloud data item.
+/*! @brief The class of the sync cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QOSSDataInterface : public QObject
+class MUSIC_EXTRAS_EXPORT QSyncDataInterface : public QObject
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QOSSDataInterface(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    explicit QSyncDataInterface(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
 protected Q_SLOTS:
     /*!
@@ -60,8 +60,8 @@ protected:
     QString pathDecode(const QString &data) const;
 
 protected:
-    TTK_DECLARE_PRIVATE(QOSSDataInterface)
+    TTK_DECLARE_PRIVATE(QSyncDataInterface)
 
 };
 
-#endif // QOSSDATAINTERFACE_H
+#endif

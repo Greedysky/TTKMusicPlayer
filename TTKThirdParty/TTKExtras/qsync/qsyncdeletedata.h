@@ -1,5 +1,5 @@
-#ifndef QOSSUPLOADDATA_H
-#define QOSSUPLOADDATA_H
+#ifndef QSYNCDELETEDATA_H
+#define QSYNCDELETEDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,45 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "qossdatainterface.h"
+#include "qsyncdatainterface.h"
 
-/*! @brief The class of the alioss cloud data item.
+/*! @brief The class of the sync cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QOSSUploadData : public QOSSDataInterface
+class MUSIC_EXTRAS_EXPORT QSyncDeleteData : public QSyncDataInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QOSSUploadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
-
+    explicit QSyncDeleteData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
     /*!
-     * Get uplaod data operator.
+     * Delete data operater.
      */
-    void uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
+    void deleteDataOperator(const QString &bucket, const QString &fileName);
 
 Q_SIGNALS:
     /*!
-     * Uplaod file finshed.
+     * Delete file finished.
      */
-    void uploadFileFinished(const QString &time);
-    /*!
-     * Show upload progress.
-     */
-    void uploadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
+    void deleteFileFinished(bool state);
 
 protected Q_SLOTS:
     /*!
-     * Receive data from server finshed.
+     * Receive data from server.
      */
     virtual void receiveDataFromServer() override;
-    /*!
-     * Show upload progress.
-     */
-    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 };
 
-#endif // QOSSUPLOADDATA_H
+#endif

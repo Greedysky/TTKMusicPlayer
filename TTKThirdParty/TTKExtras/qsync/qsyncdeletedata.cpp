@@ -1,22 +1,22 @@
-#include "qossdeletedata.h"
-#include "qossdatainterface_p.h"
+#include "qsyncdeletedata.h"
+#include "qsyncdatainterface_p.h"
 
-QOSSDeleteData::QOSSDeleteData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QOSSDataInterface(networkManager, parent)
+QSyncDeleteData::QSyncDeleteData(QNetworkAccessManager *networkManager, QObject *parent)
+    : QSyncDataInterface(networkManager, parent)
 {
 
 }
 
-void QOSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fileName)
+void QSyncDeleteData::deleteDataOperator(const QString &bucket, const QString &fileName)
 {
-    TTK_D(QOSSDataInterface);
+    TTK_D(QSyncDataInterface);
     const QString &method = "DELETE";
     const QString &url = "/" + fileName;
     const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QOSSConf::OSS_HOST;
+    const QString &host = bucket + "." + QSyncConf::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QOSSUtils::getGMT());
+    headers.insert("Date", QSyncUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
 
@@ -37,7 +37,7 @@ void QOSSDeleteData::deleteDataOperator(const QString &bucket, const QString &fi
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 }
 
-void QOSSDeleteData::receiveDataFromServer()
+void QSyncDeleteData::receiveDataFromServer()
 {
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply)

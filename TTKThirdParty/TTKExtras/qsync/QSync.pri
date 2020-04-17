@@ -21,21 +21,21 @@ QT       += network
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/qossconf.h \
-    $$PWD/qossdataitem.h \
-    $$PWD/qossutils.h \
-    $$PWD/qossdatainterface.h \
-    $$PWD/qossdatainterface_p.h \
-    $$PWD/qosslistdata.h \
-    $$PWD/qossdeletedata.h \
-    $$PWD/qossuploaddata.h \
-    $$PWD/qossdownloaddata.h
+    $$PWD/qsyncconf.h \
+    $$PWD/qsyncdataitem.h \
+    $$PWD/qsyncutils.h \
+    $$PWD/qsyncdatainterface.h \
+    $$PWD/qsyncdatainterface_p.h \
+    $$PWD/qsynclistdata.h \
+    $$PWD/qsyncdeletedata.h \
+    $$PWD/qsyncuploaddata.h \
+    $$PWD/qsyncdownloaddata.h
 
 SOURCES += \
-    $$PWD/qossconf.cpp \
-    $$PWD/qossutils.cpp \
-    $$PWD/qossdatainterface.cpp \
-    $$PWD/qosslistdata.cpp \
-    $$PWD/qossdeletedata.cpp \
-    $$PWD/qossuploaddata.cpp \
-    $$PWD/qossdownloaddata.cpp
+    $$PWD/qsyncconf.cpp \
+    $$PWD/qsyncutils.cpp \
+    $$PWD/qsyncdatainterface.cpp \
+    $$PWD/qsynclistdata.cpp \
+    $$PWD/qsyncdeletedata.cpp \
+    $$PWD/qsyncuploaddata.cpp \
+    $$PWD/qsyncdownloaddata.cpp

@@ -1,4 +1,4 @@
-#include "qossutils.h"
+#include "qsyncutils.h"
 
 #include <QLocale>
 #include <QDateTime>
@@ -54,14 +54,14 @@ static inline TTKStringMap formatHeader(const TTKStringMap &headers)
     return value;
 }
 
-QString QOSSUtils::getAuthorizationCode(const QString &key, const QString &method, const TTKStringMap &headers, const QString &resource)
+QString QSyncUtils::getAuthorizationCode(const QString &key, const QString &method, const TTKStringMap &headers, const QString &resource)
 {
     const QString &content_md5 = headers.value("Content-Md5", "");
     const QString &content_type = headers.value("Content-Type", "");
     const QString &date = headers.value("Date", "");
     const QString &canonicalized_resource = resource;
 
-    QString canonicalized_oss_headers = "";
+    QString canonicalized_headers = "";
     TTKStringMap origin_headers = formatHeader(headers);
 
     if(origin_headers.size() > 0)
@@ -72,22 +72,22 @@ QString QOSSUtils::getAuthorizationCode(const QString &key, const QString &metho
             it.next();
             if(it.key().startsWith(self_define_header_prefix))
             {
-                canonicalized_oss_headers += it.key() + ":" + it.value() + "\n";
+                canonicalized_headers += it.key() + ":" + it.value() + "\n";
             }
         }
     }
 
-    const QString &sign = method + "\n" + content_md5 + "\n" + content_type + "\n" + date + "\n" + canonicalized_oss_headers + canonicalized_resource;
+    const QString &sign = method + "\n" + content_md5 + "\n" + content_type + "\n" + date + "\n" + canonicalized_headers + canonicalized_resource;
     return hmacSha1(key.toUtf8(), sign.toUtf8());
 }
 
-QString QOSSUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,
+QString QSyncUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,
                                           const TTKStringMap &headers, const QString &resource)
 {
     return QString("OSS ") + access + ":" + getAuthorizationCode(secret,  method, headers, resource);
 }
 
-QString QOSSUtils::getGMT()
+QString QSyncUtils::getGMT()
 {
     QLocale local(QLocale::English, QLocale::UnitedStates);
     return local.toString(QDateTime::currentDateTime().toUTC(), "ddd, dd MMM yyyy hh:mm:ss") + " GMT";

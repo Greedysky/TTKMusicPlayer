@@ -2,8 +2,8 @@
 #include "ui_musiccloudfileinformationwidget.h"
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
-#///Oss import
-#include "qoss/qossdataitem.h"
+#///Sync import
+#include "qsync/qsyncdataitem.h"
 
 MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -24,7 +24,7 @@ MusicCloudFileInformationWidget::~MusicCloudFileInformationWidget()
     delete m_ui;
 }
 
-void MusicCloudFileInformationWidget::setFileInformation(QOSSDataItem *data)
+void MusicCloudFileInformationWidget::setFileInformation(QSyncDataItem *data)
 {
     m_ui->filePathEdit->setText(data->m_name);
     m_ui->fileFormatEdit->setText(data->m_mimeType);

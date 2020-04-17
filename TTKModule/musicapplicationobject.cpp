@@ -25,11 +25,11 @@
 #include "musicscreensaverwidget.h"
 
 #include "qdevicewatcher.h"
-#include "qoss/qossconf.h"
+#include "qsync/qsyncconf.h"
 
 #define MARGIN_SIDE     5
 #define MARGIN_SIDE_BY  1
-#define OSS_HOST_URL    "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
+#define SYNC_HOST_URL    "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
 
 MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
 
@@ -96,8 +96,8 @@ void MusicApplicationObject::loadNetWorkSetting()
     // ssl support check
     TTK_LOGGER_INFO(QString("App Support ssl: %1").arg(QSslSocket::supportsSsl() ? "true" : "false"));
 #endif
-    // oss host init
-    QOSSConf::OSS_HOST = MusicUtils::Algorithm::mdII(OSS_HOST_URL, false);
+    // sync host init
+    QSyncConf::HOST = MusicUtils::Algorithm::mdII(SYNC_HOST_URL, false);
     //
     m_sourceUpdatehread->startToDownload();
     m_counterPVThread->startToDownload();

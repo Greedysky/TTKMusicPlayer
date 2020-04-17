@@ -1,25 +1,25 @@
-#include "qosslistdata.h"
-#include "qossdatainterface_p.h"
+#include "qsynclistdata.h"
+#include "qsyncdatainterface_p.h"
 
 #include <QDateTime>
 #include <QtXml/QDomDocument>
 
-QOSSListData::QOSSListData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QOSSDataInterface(networkManager, parent)
+QSyncListData::QSyncListData(QNetworkAccessManager *networkManager, QObject *parent)
+    : QSyncDataInterface(networkManager, parent)
 {
 
 }
 
-void QOSSListData::listDataOperator(const QString &bucket)
+void QSyncListData::listDataOperator(const QString &bucket)
 {
-    TTK_D(QOSSDataInterface);
+    TTK_D(QSyncDataInterface);
     const QString &method = "GET";
     const QString &url = "/";
     const QString &resource = "/" + bucket + "/";
-    const QString &host = bucket + "." + QOSSConf::OSS_HOST;
+    const QString &host = bucket + "." + QSyncConf::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QOSSUtils::getGMT());
+    headers.insert("Date", QSyncUtils::getGMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
 
@@ -40,9 +40,9 @@ void QOSSListData::listDataOperator(const QString &bucket)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 }
 
-void QOSSListData::receiveDataFromServer()
+void QSyncListData::receiveDataFromServer()
 {
-    QOSSDataItems items;
+    QSyncDataItems items;
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200)
     {
@@ -52,7 +52,7 @@ void QOSSListData::receiveDataFromServer()
             const QDomNodeList &nodeList = docment.elementsByTagName("Contents");
             for(int i=0; i<nodeList.count(); ++i)
             {
-                QOSSDataItem item;
+                QSyncDataItem item;
                 const QDomNodeList &childList = nodeList.at(i).childNodes();
                 for(int j=0; j<childList.count(); ++j)
                 {

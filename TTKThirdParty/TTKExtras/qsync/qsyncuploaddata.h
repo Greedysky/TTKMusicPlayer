@@ -1,5 +1,5 @@
-#ifndef QOSSDOWNLOADDATA_H
-#define QOSSDOWNLOADDATA_H
+#ifndef QSYNCUPLOADDATA_H
+#define QSYNCUPLOADDATA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,43 +19,34 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "qossdatainterface.h"
+#include "qsyncdatainterface.h"
 
-/*! @brief The class of the alioss cloud data item.
+/*! @brief The class of the sync cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QOSSDownloadData : public QOSSDataInterface
+class MUSIC_EXTRAS_EXPORT QSyncUploadData : public QSyncDataInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit QOSSDownloadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+    explicit QSyncUploadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
     /*!
-     * Get download data operator.
+     * Get uplaod data operator.
      */
-    void downloadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
-
-    /*!
-     * Get download url request.
-     */
-    QString getDownloadUrl(const QString &bucket, const QString &fileName);
-    /*!
-     * Get download url request by content type.
-     */
-    QString getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType);
+    void uploadDataOperator(const QString &time, const QString &bucket, const QString &fileName, const QString &filePath);
 
 Q_SIGNALS:
     /*!
-     * download file finshed.
+     * Uplaod file finshed.
      */
-    void downloadFileFinished(const QString &time);
+    void uploadFileFinished(const QString &time);
     /*!
-     * Show download progress.
+     * Show upload progress.
      */
-    void downloadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
+    void uploadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
 
 protected Q_SLOTS:
     /*!
@@ -63,10 +54,10 @@ protected Q_SLOTS:
      */
     virtual void receiveDataFromServer() override;
     /*!
-     * Show download progress.
+     * Show upload progress.
      */
-    void downloadProgress(qint64 bytesSent, qint64 bytesTotal);
+    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 };
 
-#endif // QOSSDOWNLOADDATA_H
+#endif
