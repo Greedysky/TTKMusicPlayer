@@ -105,7 +105,7 @@ QList<TrackInfo *> DecoderAdplugFactory::createPlayList(const QString &path, Tra
     {
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::FORMAT_NAME, QString::fromStdString(helper.format()));
-        info->setDuration(helper.length() * 1000);
+        info->setDuration(helper.length());
     }
 
     return QList<TrackInfo *>() << info;

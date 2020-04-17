@@ -95,6 +95,15 @@ void SC68Helper::close()
 
 bool SC68Helper::initialize()
 {
+    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    if(!file)
+    {
+        return false;
+    }
+
+    const int64_t size = stdio_length(file);
+    stdio_close(file);
+
     m_info->sc68 = sc68_create(nullptr);
     if(!m_info->sc68)
     {
@@ -128,6 +137,7 @@ bool SC68Helper::initialize()
     }
 
     m_totalTime = m_info->totalsamples / samplerate();
+    m_info->bitrate = size * 8.0 / m_totalTime;
     m_info->readpos = 0;
 
     sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
@@ -167,7 +177,7 @@ void SC68Helper::seek(qint64 time)
 
 int SC68Helper::bitrate() const
 {
-    return 2 * bitsPerSample() / 8;
+    return m_info->bitrate;
 }
 
 int SC68Helper::samplerate() const

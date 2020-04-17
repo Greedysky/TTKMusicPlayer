@@ -87,7 +87,7 @@ bool FC14Helper::initialize()
     m_info->channels = 2;
     m_info->sample_rate = 44100;
     m_info->bits_per_sample = 16;
-    m_info->bitrate = 2 * m_info->bits_per_sample / 8;
+    m_info->bitrate = size * 8.0 / m_info->length;
 
     return true;
 }
@@ -99,7 +99,7 @@ int FC14Helper::totalTime() const
 
 void FC14Helper::seek(qint64 time)
 {
-    fc14dec_seek(m_info->fc, time * 1000);
+    fc14dec_seek(m_info->fc, time);
 }
 
 int FC14Helper::bitrate() const

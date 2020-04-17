@@ -53,11 +53,6 @@ qint64 DecoderPSF::totalTime() const
     return m_psf->totalTime();
 }
 
-void DecoderPSF::seek(qint64 pos)
-{
-    m_psf->seek(pos);
-}
-
 int DecoderPSF::bitrate() const
 {
     return m_psf->bitrate();
@@ -66,4 +61,9 @@ int DecoderPSF::bitrate() const
 qint64 DecoderPSF::read(unsigned char *data, qint64 size)
 {
     return m_psf->read(data, size);
+}
+
+void DecoderPSF::seek(qint64 pos)
+{
+    m_psf->seek(pos);
 }

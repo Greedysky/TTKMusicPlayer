@@ -53,11 +53,6 @@ qint64 DecoderDumb::totalTime() const
     return m_dumb->totalTime();
 }
 
-void DecoderDumb::seek(qint64 pos)
-{
-    m_dumb->seek(pos);
-}
-
 int DecoderDumb::bitrate() const
 {
     return m_dumb->bitrate();
@@ -66,4 +61,9 @@ int DecoderDumb::bitrate() const
 qint64 DecoderDumb::read(unsigned char *data, qint64 size)
 {
     return m_dumb->read(data, size);
+}
+
+void DecoderDumb::seek(qint64 pos)
+{
+    m_dumb->seek(pos);
 }

@@ -168,6 +168,15 @@ void DumbHelper::close()
 
 bool DumbHelper::initialize()
 {
+    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    if(!file)
+    {
+        return false;
+    }
+
+    const int64_t size = stdio_length(file);
+    stdio_close(file);
+
     dumb_register_stdfiles();
     const char *uri = m_path.toLocal8Bit().constData();
     const char *ext = uri + strlen(uri) - 1;
@@ -189,7 +198,8 @@ bool DumbHelper::initialize()
     dumb_it_do_initial_runthrough(m_info->duh);
 
     m_info->readpos = 0;
-    m_totalTime = duh_get_length(m_info->duh) / 65536.0f;
+    m_totalTime = duh_get_length(m_info->duh) / 65536.0f * 1000;
+    m_info->bitrate = size * 8.0 / m_totalTime;
 
     if(cdumb_startrenderer(m_info) < 0)
     {
@@ -226,7 +236,7 @@ void DumbHelper::seek(qint64 time)
 
 int DumbHelper::bitrate() const
 {
-    return 2 * bitsPerSample() / 8;
+    return m_info->bitrate;
 }
 
 int DumbHelper::samplerate() const

@@ -29,7 +29,7 @@ typedef struct {
     sc68_t *sc68;
     int trk;
     int loop;
-
+    int bitrate;
     int currentsample;
     int totalsamples;
     float readpos;

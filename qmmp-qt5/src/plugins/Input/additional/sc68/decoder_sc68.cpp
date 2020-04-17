@@ -53,11 +53,6 @@ qint64 DecoderSC68::totalTime() const
     return m_sc68->totalTime();
 }
 
-void DecoderSC68::seek(qint64 pos)
-{
-    m_sc68->seek(pos);
-}
-
 int DecoderSC68::bitrate() const
 {
     return m_sc68->bitrate();
@@ -66,4 +61,9 @@ int DecoderSC68::bitrate() const
 qint64 DecoderSC68::read(unsigned char *data, qint64 size)
 {
     return m_sc68->read(data, size);
+}
+
+void DecoderSC68::seek(qint64 pos)
+{
+    m_sc68->seek(pos);
 }

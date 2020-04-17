@@ -33,7 +33,7 @@ DecoderProperties DecoderAyflyFactory::properties() const
     properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*psg";
     properties.filters << "*.stc" << "*.stp";
     properties.filters << "*.pt1" << "*.pt2" << "*.pt3" << "*.psc";
-    properties.filters << "*.ay" << "*.ym" << "*.ayl";
+    properties.filters << "*.ay" << "*.ym";
     properties.description = tr("AY/YM Audio Files");
     properties.shortName = "alfly";
     properties.noInput = true;
@@ -75,7 +75,7 @@ QList<TrackInfo *> DecoderAyflyFactory::createPlayList(const QString &path, Trac
         info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setDuration(helper.totalTime() * 1000);
+        info->setDuration(helper.totalTime());
     }
 
     return QList<TrackInfo *>() << info;

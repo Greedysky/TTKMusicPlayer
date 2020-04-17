@@ -25,6 +25,7 @@
 typedef struct {
     uint8_t *tune;
     int len;
+    int bitrate;
     V2MPlayer *player;
     int currsample;
     int totalsamples;

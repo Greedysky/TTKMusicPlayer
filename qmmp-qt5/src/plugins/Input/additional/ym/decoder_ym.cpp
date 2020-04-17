@@ -27,8 +27,7 @@
 #include <QFileInfo>
 #include "decoder_ym.h"
 
-DecoderYm::DecoderYm(const QString &path)
-    : Decoder()
+DecoderYm::DecoderYm(const QString &path) : Decoder()
 {
     m_path = path;
     m_bitrate = 0;
@@ -63,7 +62,7 @@ bool DecoderYm::initialize()
 
         m_totalTime = info.musicTimeInMs;
         m_freq = 44100;
-        m_bitrate = ((QFileInfo(m_path).size () * 8.0) / m_totalTime) + 0.5;
+        m_bitrate = (QFileInfo(m_path).size () * 8.0) / m_totalTime + 0.5;
     }
     else
     {
@@ -102,7 +101,7 @@ qint64 DecoderYm::totalTime() const
 
 int DecoderYm::bitrate() const
 {
-    return m_bitrate ? m_bitrate : 1;
+    return m_bitrate ? m_bitrate : 0;
 }
 
 qint64 DecoderYm::read(unsigned char *data, qint64 size)

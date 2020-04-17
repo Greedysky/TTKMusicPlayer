@@ -21,6 +21,8 @@
 
 #include <qmmp/decoder.h>
 
+class FC14Helper;
+
 class DecoderFC14 : public Decoder
 {
 public:
@@ -34,6 +36,8 @@ public:
     virtual qint64 read(unsigned char *data, qint64 maxSize) override;
     virtual void seek(qint64 time) override;
 
+private:
+    FC14Helper* m_fc14;
 };
 
 #endif

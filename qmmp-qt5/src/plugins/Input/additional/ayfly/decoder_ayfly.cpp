@@ -53,11 +53,6 @@ qint64 DecoderAyfly::totalTime() const
     return m_ayfly->totalTime();
 }
 
-void DecoderAyfly::seek(qint64 pos)
-{
-    m_ayfly->seek(pos);
-}
-
 int DecoderAyfly::bitrate() const
 {
     return m_ayfly->bitrate();
@@ -66,4 +61,9 @@ int DecoderAyfly::bitrate() const
 qint64 DecoderAyfly::read(unsigned char *data, qint64 size)
 {
     return m_ayfly->read(data, size);
+}
+
+void DecoderAyfly::seek(qint64 pos)
+{
+    m_ayfly->seek(pos);
 }

@@ -16,80 +16,54 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "fc14helper.h"
 #include "decoder_fc14.h"
 
-DecoderFC14::DecoderFC14(const QString &path)
-    : Decoder()
+DecoderFC14::DecoderFC14(const QString &path) : Decoder()
 {
-//    m_path = path;
-//    m_bitrate = 0;
-//    m_totalTime = 0;
-//    m_freq = 0;
-//    m_music = nullptr;
+    m_fc14 = new FC14Helper(path);
 }
 
 DecoderFC14::~DecoderFC14()
 {
-//    deinit();
+    delete m_fc14;
 }
 
 bool DecoderFC14::initialize()
 {
-//    m_totalTime = 0;
-//    m_freq = 0;
-//    m_bitrate = 0;
+    if(!m_fc14->initialize())
+    {
+        return false;
+    }
 
-//    m_music = new CYmMusic;
-//    if(m_music == nullptr)
-//    {
-//        qWarning("DecoderYm: failed to create CYmMusic");
-//        return false;
-//    }
+    int rate = m_fc14->samplerate();
+    int channels = m_fc14->channels();
+    if(rate == 0 || channels == 0)
+    {
+        return false;
+    }
 
-//    ymMusicInfo_t info;
-//    if(m_music->load(m_path.toLocal8Bit().constData()))
-//    {
-//        m_music->getMusicInfo(&info);
-//        m_music->setLoopMode(YMFALSE);
+    configure(rate, channels, Qmmp::PCM_S16LE);
 
-//        m_totalTime = info.musicTimeInMs;
-//        m_freq = 44100;
-//        m_bitrate = ((QFileInfo(m_path).size () * 8.0) / m_totalTime) + 0.5;
-//    }
-//    else
-//    {
-//        if(m_music)
-//        {
-//            delete m_music;
-//        }
-//        m_music = nullptr;
-//        qWarning("DecoderYm: failed to open: %s", qPrintable(m_path));
-//        return false;
-//    }
-
-//    configure(m_freq, 2, Qmmp::PCM_S16LE);
-    
-//    qDebug("DecoderYm: detected format: \"%s\"", info.pSongType);
-//    qDebug("DecoderYm: initialize success");
     return true;
 }
 
 qint64 DecoderFC14::totalTime() const
 {
-    return 0;
+    return m_fc14->totalTime();
 }
 
 int DecoderFC14::bitrate() const
 {
-    return 1;
+    return m_fc14->bitrate();
 }
 
 qint64 DecoderFC14::read(unsigned char *data, qint64 size)
 {
-    return 0;
+    return m_fc14->read(data, size);
 }
 
 void DecoderFC14::seek(qint64 pos)
 {
-
+    m_fc14->seek(pos);
 }

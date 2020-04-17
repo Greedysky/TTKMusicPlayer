@@ -130,6 +130,15 @@ void V2MHelper::close()
 
 bool V2MHelper::initialize()
 {
+    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    if(!file)
+    {
+        return false;
+    }
+
+    const int64_t size = stdio_length(file);
+    stdio_close(file);
+
     if(load_and_convert(m_path.toLocal8Bit().constData(), &m_info->tune, &m_info->len) < 0)
     {
         return false;
@@ -139,8 +148,8 @@ bool V2MHelper::initialize()
     m_info->player->Init();
     m_info->player->Open(m_info->tune);
 
-    int totalsamples = get_total_samples(m_info->player);
-    m_totalTime = totalsamples / 44100.f;
+    m_totalTime = get_total_samples(m_info->player) / samplerate();
+    m_info->bitrate = size * 8.0 / m_totalTime;
     m_info->readpos = 0;
 
     m_info->player->Play();
@@ -183,7 +192,7 @@ void V2MHelper::seek(qint64 time)
 
 int V2MHelper::bitrate() const
 {
-    return 2 * bitsPerSample() / 8;
+    return m_info->bitrate;
 }
 
 int V2MHelper::samplerate() const

@@ -78,8 +78,8 @@ bool AyflyHelper::initialize()
         return false;
     }
 
-    m_info->length = ay_getsonglength(m_info->ay) / 50;
-    m_info->rate = 2 * bitsPerSample() / 8;
+    m_info->length = ay_getsonglength(m_info->ay) / 50 * 1000;
+    m_info->rate = size * 8.0 / m_info->length;
 
     m_meta.insert("title", ay_getsongname(m_info->ay));
     m_meta.insert("artist", ay_getsongauthor(m_info->ay));
@@ -94,7 +94,7 @@ int AyflyHelper::totalTime() const
 
 void AyflyHelper::seek(qint64 time)
 {
-    ay_seeksong(m_info->ay, time);
+    ay_seeksong(m_info->ay, time / 1000 * 50);
 }
 
 int AyflyHelper::bitrate() const

@@ -140,13 +140,12 @@ bool PSFHelper::initialize()
             break;
         }
     }
-
     return true;
 }
 
 int PSFHelper::totalTime() const
 {
-    return m_info->duration;
+    return m_info->duration * 1000;
 }
 
 void PSFHelper::seek(qint64 time)
@@ -169,7 +168,7 @@ void PSFHelper::seek(qint64 time)
 
 int PSFHelper::bitrate() const
 {
-    return 2 * bitsPerSample() / 8;
+    return m_info->filesize * 8.0 / totalTime();
 }
 
 int PSFHelper::samplerate() const

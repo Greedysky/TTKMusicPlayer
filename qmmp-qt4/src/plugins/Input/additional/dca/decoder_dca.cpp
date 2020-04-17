@@ -53,11 +53,6 @@ qint64 DecoderDCA::totalTime() const
     return m_dca->totalTime();
 }
 
-void DecoderDCA::seek(qint64 pos)
-{
-    m_dca->seek(pos);
-}
-
 int DecoderDCA::bitrate() const
 {
     return m_dca->bitrate();
@@ -66,4 +61,9 @@ int DecoderDCA::bitrate() const
 qint64 DecoderDCA::read(unsigned char *data, qint64 size)
 {
     return m_dca->read(data, size);
+}
+
+void DecoderDCA::seek(qint64 pos)
+{
+    m_dca->seek(pos);
 }

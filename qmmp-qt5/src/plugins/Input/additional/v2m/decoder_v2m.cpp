@@ -53,11 +53,6 @@ qint64 DecoderV2M::totalTime() const
     return m_v2m->totalTime();
 }
 
-void DecoderV2M::seek(qint64 pos)
-{
-    m_v2m->seek(pos);
-}
-
 int DecoderV2M::bitrate() const
 {
     return m_v2m->bitrate();
@@ -66,4 +61,9 @@ int DecoderV2M::bitrate() const
 qint64 DecoderV2M::read(unsigned char *data, qint64 size)
 {
     return m_v2m->read(data, size);
+}
+
+void DecoderV2M::seek(qint64 pos)
+{
+    m_v2m->seek(pos);
 }

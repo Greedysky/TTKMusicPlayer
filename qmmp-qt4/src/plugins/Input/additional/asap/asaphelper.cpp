@@ -92,7 +92,7 @@ bool AsapHelper::initialize()
     m_info->channels = ASAPInfo_GetChannels(info);
     m_info->sample_rate = ASAP_SAMPLE_RATE;
     m_info->bits_per_sample = 32;
-    m_info->bitrate = 2 * m_info->bits_per_sample / 8;
+    m_info->bitrate = size * 8.0 / m_info->length;
 
     return true;
 }
@@ -104,7 +104,7 @@ int AsapHelper::totalTime() const
 
 void AsapHelper::seek(qint64 time)
 {
-    ASAP_Seek(m_info->asap, time * 1000);
+    ASAP_Seek(m_info->asap, time);
 }
 
 int AsapHelper::bitrate() const
