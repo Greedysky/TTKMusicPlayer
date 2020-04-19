@@ -16,15 +16,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALLIGHTSPECTRUMFACTORY_H
-#define VISUALLIGHTSPECTRUMFACTORY_H
+#ifndef LIGHTENVELOPEFACTORY_H
+#define LIGHTENVELOPEFACTORY_H
 
 #include <qmmp/lightfactory.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualLightSpectrumFactory : public QObject, public LightFactory
+class LightEnvelopeFactory : public QObject, public LightFactory
 {
     Q_OBJECT
     Q_INTERFACES(LightFactory)

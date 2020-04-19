@@ -6,11 +6,11 @@ TARGET = $${TARGET}
 
 SOURCES += \
         lightenvelope.cpp \
-        visuallightenvelopefactory.cpp
+        lightenvelopefactory.cpp
 
 HEADERS  += \
         lightenvelope.h \
-        visuallightenvelopefactory.h
+        lightenvelopefactory.h
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

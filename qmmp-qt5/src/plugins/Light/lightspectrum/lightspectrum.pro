@@ -11,7 +11,7 @@ SOURCES += \
         spek-fft.cc \
         spek-palette.cc \
         spek-pipeline.cc \
-        visuallightspectrumfactory.cpp
+        lightspectrumfactory.cpp
 
 HEADERS  += \
         spek-audio.h \
@@ -20,7 +20,7 @@ HEADERS  += \
         spek-pipeline.h \
         spek-ruler.h \
         spek-spectrogram.h \
-        visuallightspectrumfactory.h
+        lightspectrumfactory.h
 
 INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 

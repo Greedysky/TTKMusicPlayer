@@ -16,22 +16,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALLIGHTENVELOPEFACTORY_H
-#define VISUALLIGHTENVELOPEFACTORY_H
+#include <QtPlugin>
+#include <qmmp/qmmp.h>
+#include "lightenvelopefactory.h"
+#include "lightenvelope.h"
 
-#include <qmmp/lightfactory.h>
-
-/*!
- * @author Greedysky <greedysky@163.com>
- */
-class VisualLightEnvelopeFactory : public QObject, public LightFactory
+const LightProperties LightEnvelopeFactory::properties() const
 {
-    Q_OBJECT
-    Q_INTERFACES(LightFactory)
-public:
-    virtual const LightProperties properties() const override;
-    virtual Light *create(QWidget *parent) override;
+    LightProperties properties;
+    properties.name = tr("Light Envelope Plugin");
+    properties.shortName = "lightenvelope";
+    properties.hasSettings = false;
+    return properties;
+}
 
-};
+Light *LightEnvelopeFactory::create(QWidget *parent)
+{
+    return new LightEnvelope(parent);
+}
 
-#endif
+Q_EXPORT_PLUGIN2(lightenvelope,LightEnvelopeFactory)
