@@ -6,7 +6,7 @@
 #///QJson import
 #include "qjson/parser.h"
 #///Sync import
-#include "qsync/qsyncconf.h"
+#include "qsync/qsyncutils.h"
 
 #include <QFile>
 
@@ -38,8 +38,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(QSyncConf::generateDataBucketUrl() + OS_ACRUA_URL);
-
+    download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();
 
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();

@@ -85,7 +85,7 @@ bool MusicCloudManagerTableWidget::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(QSyncConf::generateDataBucketUrl() + OS_CLOUD_URL);
+    download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_CLOUD_URL);
 
     loop.exec();
     updateListToServer();

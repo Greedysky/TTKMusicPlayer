@@ -10,7 +10,7 @@
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
     : QObject(parent)
 {
-    MusicTime::InitSRand();
+    MusicTime::initSRand();
 
     m_run = false;
     m_random = false;

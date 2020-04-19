@@ -1,4 +1,5 @@
 #include "qsyncutils.h"
+#include "qsyncconf.h"
 
 #include <QLocale>
 #include <QDateTime>
@@ -91,4 +92,9 @@ QString QSyncUtils::getGMT()
 {
     QLocale local(QLocale::English, QLocale::UnitedStates);
     return local.toString(QDateTime::currentDateTime().toUTC(), "ddd, dd MMM yyyy hh:mm:ss") + " GMT";
+}
+
+QString QSyncUtils::generateDataBucketUrl()
+{
+    return QString("http://%1.%2/").arg(DATA_BUCKET).arg(QSyncConf::HOST);
 }

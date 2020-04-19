@@ -8,7 +8,7 @@
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #///Sync import
-#include "qsync/qsyncconf.h"
+#include "qsync/qsyncutils.h"
 
 #include <QEvent>
 #include <QTimer>
@@ -378,7 +378,7 @@ void MusicScreenSaverWidget::initialize()
     MusicDownloadQueueDatas datas;
     for(int i=0; i<OS_COUNT; i++)
     {
-        const QString &url = QSyncConf::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
+        const QString &url = QSyncUtils::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
         const QString &path = QString("%1%2/").arg(SCREEN_DIR_FULL).arg(i);
         QDir().mkpath(path);
 

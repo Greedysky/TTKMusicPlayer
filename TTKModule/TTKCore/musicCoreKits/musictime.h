@@ -163,7 +163,7 @@ public:
     /*!
      * Init random time seed.
      */
-    static void InitSRand();
+    static void initSRand();
     //
     /*!
      * Transform string format(mm:ss) to msec time.

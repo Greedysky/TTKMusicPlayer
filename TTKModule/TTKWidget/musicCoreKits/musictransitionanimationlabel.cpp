@@ -7,7 +7,7 @@
 MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
     : QLabel(parent)
 {
-    MusicTime::InitSRand();
+    MusicTime::initSRand();
     m_type = FadeEffect;
     m_isAnimating = false;
     m_currentValue = 0;

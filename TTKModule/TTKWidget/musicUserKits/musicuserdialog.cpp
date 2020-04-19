@@ -21,7 +21,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    MusicTime::InitSRand();
+    MusicTime::initSRand();
     changeVerificationCode();
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));

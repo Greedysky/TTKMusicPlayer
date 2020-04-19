@@ -114,7 +114,7 @@ void MusicBarrageWidget::barrageStateChanged(bool on)
 
 void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
 {
-    MusicTime::InitSRand();
+    MusicTime::initSRand();
 
     QLabel *label = createLabel(record);
     createAnimation(label);
@@ -136,7 +136,7 @@ void MusicBarrageWidget::deleteItems()
 
 void MusicBarrageWidget::createLabel()
 {
-    MusicTime::InitSRand();
+    MusicTime::initSRand();
     foreach(const MusicBarrageRecord &record, m_barrageRecords)
     {
         createLabel(record);

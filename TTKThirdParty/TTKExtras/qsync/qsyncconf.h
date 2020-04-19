@@ -36,12 +36,6 @@ struct MUSIC_EXTRAS_EXPORT QSyncConf
     static QByteArray KEY;
 
     static QString VERSION;
-
-    /*!
-     * Generate data bucket url.
-     */
-    static QString generateDataBucketUrl();
-
 };
 
 #endif
