@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>478</width>
+    <width>498</width>
     <height>358</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>470</width>
+     <width>490</width>
      <height>350</height>
     </rect>
    </property>
@@ -48,7 +48,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>452</x>
+     <x>472</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -63,7 +63,7 @@
     <rect>
      <x>144</x>
      <y>29</y>
-     <width>321</width>
+     <width>341</width>
      <height>261</height>
     </rect>
    </property>
@@ -184,7 +184,7 @@
       <rect>
        <x>100</x>
        <y>188</y>
-       <width>201</width>
+       <width>215</width>
        <height>22</height>
       </rect>
      </property>
@@ -194,7 +194,7 @@
       <rect>
        <x>100</x>
        <y>220</y>
-       <width>201</width>
+       <width>215</width>
        <height>22</height>
       </rect>
      </property>
@@ -424,8 +424,8 @@
   <widget class="QPushButton" name="confirm">
    <property name="geometry">
     <rect>
-     <x>224</x>
-     <y>301</y>
+     <x>234</x>
+     <y>305</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -437,8 +437,8 @@
   <widget class="QPushButton" name="cancel">
    <property name="geometry">
     <rect>
-     <x>334</x>
-     <y>301</y>
+     <x>344</x>
+     <y>305</y>
      <width>60</width>
      <height>25</height>
     </rect>
@@ -452,7 +452,7 @@
     <rect>
      <x>134</x>
      <y>29</y>
-     <width>340</width>
+     <width>360</width>
      <height>325</height>
     </rect>
    </property>

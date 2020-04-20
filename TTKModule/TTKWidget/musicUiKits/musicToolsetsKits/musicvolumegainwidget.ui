@@ -312,11 +312,14 @@ QProgressBar::chunk {
     <property name="text">
      <string>音轨音量</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>405</x>
       <y>115</y>
       <width>55</width>
       <height>25</height>
@@ -324,6 +327,9 @@ QProgressBar::chunk {
     </property>
     <property name="text">
      <string>音轨增益</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
@@ -338,6 +344,9 @@ QProgressBar::chunk {
     <property name="text">
      <string>专辑增益</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_9">
     <property name="geometry">
@@ -351,6 +360,25 @@ QProgressBar::chunk {
     <property name="text">
      <string>专辑音量</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>115</y>
+      <width>580</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(200, 200, 200)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
    <zorder>addFileButton</zorder>
    <zorder>addFilesButton</zorder>
@@ -361,15 +389,16 @@ QProgressBar::chunk {
    <zorder>progressBar</zorder>
    <zorder>progressBarAll</zorder>
    <zorder>groupBox</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_4</zorder>
    <zorder>functionBottomLabel</zorder>
    <zorder>tableWidget</zorder>
-   <zorder>label_5</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_9</zorder>
    <zorder>label_6</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
    <zorder>label_7</zorder>
    <zorder>label_8</zorder>
-   <zorder>label_9</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>

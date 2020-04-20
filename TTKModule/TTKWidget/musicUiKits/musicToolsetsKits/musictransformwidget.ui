@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
+    <width>488</width>
     <height>371</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>475</width>
+     <width>480</width>
      <height>364</height>
     </rect>
    </property>
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>456</x>
+     <x>461</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -155,7 +155,7 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>475</width>
+     <width>480</width>
      <height>339</height>
     </rect>
    </property>
@@ -167,7 +167,7 @@
    <property name="geometry">
     <rect>
      <x>114</x>
-     <y>134</y>
+     <y>140</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -177,7 +177,7 @@
    <property name="geometry">
     <rect>
      <x>34</x>
-     <y>159</y>
+     <y>170</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -190,7 +190,7 @@
    <property name="geometry">
     <rect>
      <x>334</x>
-     <y>134</y>
+     <y>140</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -200,7 +200,7 @@
    <property name="geometry">
     <rect>
      <x>114</x>
-     <y>159</y>
+     <y>170</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -210,7 +210,7 @@
    <property name="geometry">
     <rect>
      <x>274</x>
-     <y>134</y>
+     <y>140</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -223,7 +223,7 @@
    <property name="geometry">
     <rect>
      <x>244</x>
-     <y>159</y>
+     <y>170</y>
      <width>81</width>
      <height>20</height>
     </rect>
@@ -236,7 +236,7 @@
    <property name="geometry">
     <rect>
      <x>54</x>
-     <y>134</y>
+     <y>140</y>
      <width>51</width>
      <height>20</height>
     </rect>
@@ -249,7 +249,7 @@
    <property name="geometry">
     <rect>
      <x>334</x>
-     <y>159</y>
+     <y>170</y>
      <width>101</width>
      <height>22</height>
     </rect>
@@ -258,7 +258,7 @@
   <widget class="QPushButton" name="transformButton">
    <property name="geometry">
     <rect>
-     <x>314</x>
+     <x>171</x>
      <y>324</y>
      <width>141</width>
      <height>31</height>
@@ -272,7 +272,7 @@
    <property name="geometry">
     <rect>
      <x>34</x>
-     <y>104</y>
+     <y>108</y>
      <width>200</width>
      <height>20</height>
     </rect>
@@ -284,9 +284,9 @@
   <widget class="QCheckBox" name="krc2lrcBox">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>104</y>
-     <width>170</width>
+     <x>244</x>
+     <y>108</y>
+     <width>200</width>
      <height>20</height>
     </rect>
    </property>
