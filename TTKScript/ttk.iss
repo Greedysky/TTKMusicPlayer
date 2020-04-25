@@ -2,7 +2,7 @@
 
 #define MyAppNameZh "ÃÏÃÏø·“Ù"
 #define MyAppNameEN "TTKMusicPlayer"
-#define MyAppVersion "2.11.1.0"
+#define MyAppVersion "2.12.0.0"
 #define MyAppPublisher "Greedysky Studio"
 #define MyAppCopyright "Copyright (c) 2015 - 2020 Greedysky Studio"
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
@@ -60,7 +60,7 @@ Name: "{group}\–∂‘ÿ{#MyAppNameZh}"; Filename: "{uninstallexe}"
 ; Name: "chinese"; MessagesFile: "_resourcesPath_\ChineseSimp.isl"
 
 [PostCompile]
-Name: "make_cert.bat";Parameters:"D:\Qt\v2.11.1.0.exe" ;Flags: cmdprompt redirectoutput
+Name: "make_cert.bat";Parameters:"D:\Qt\v{#MyAppVersion}.exe" ;Flags: cmdprompt redirectoutput
 
 [Code]
 // for dll
