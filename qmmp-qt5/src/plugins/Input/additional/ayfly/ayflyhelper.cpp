@@ -17,7 +17,7 @@
  ================================================= */
 
 #include "ayflyhelper.h"
-#include <QDebug>
+
 AyflyHelper::AyflyHelper(const QString &path)
 {
     m_path = path;
