@@ -5,7 +5,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicaudiorecorderwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongsmanagerwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.h
@@ -26,7 +25,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicaudiorecorderwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongsmanagerwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.cpp

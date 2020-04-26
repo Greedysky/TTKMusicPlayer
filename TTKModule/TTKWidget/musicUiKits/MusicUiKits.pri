@@ -48,7 +48,6 @@ FORMS    += \
     $$PWD/musicLrcKits/musiclrccolorwidget.ui \
     $$PWD/musicLrcKits/musiclrcposterwidget.ui \
     $$PWD/musicLrcKits/musiclrcdownloadbatchwidget.ui \
-    $$PWD/musicToolsetsKits/musicaudiorecorderwidget.ui \
     $$PWD/musicToolsetsKits/musicdesktopwallpaperwidget.ui \
     $$PWD/musicToolsetsKits/musicfileinformationwidget.ui \
     $$PWD/musicToolsetsKits/musiclocalsongsmanagerwidget.ui \

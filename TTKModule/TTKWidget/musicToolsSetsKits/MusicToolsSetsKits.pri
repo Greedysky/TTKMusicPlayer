@@ -21,7 +21,6 @@ INCLUDEPATH += $$PWD
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicmobiledeviceswidget.h \
-    $$PWD/musicaudiorecorderwidget.h \
     $$PWD/musictimerwidget.h \
     $$PWD/musiclocalsongsmanagerwidget.h \
     $$PWD/musictransformwidget.h \
@@ -47,7 +46,6 @@ HEADERS  += \
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
-    $$PWD/musicaudiorecorderwidget.cpp \
     $$PWD/musictimerwidget.cpp \
     $$PWD/musiclocalsongsmanagerwidget.cpp \
     $$PWD/musictransformwidget.cpp \

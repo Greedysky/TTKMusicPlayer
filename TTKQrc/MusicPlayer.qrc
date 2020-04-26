@@ -109,7 +109,6 @@
     <qresource prefix="/tools">
         <file alias="lb_ktv">../TTKResource/tools/lb_ktv.png</file>
         <file alias="lb_localmanager">../TTKResource/tools/lb_localmanager.png</file>
-        <file alias="lb_recorder">../TTKResource/tools/lb_recorder.png</file>
         <file alias="lb_bell">../TTKResource/tools/lb_thebell.png</file>
         <file alias="lb_timer">../TTKResource/tools/lb_timer.png</file>
         <file alias="lb_transform">../TTKResource/tools/lb_transform.png</file>
