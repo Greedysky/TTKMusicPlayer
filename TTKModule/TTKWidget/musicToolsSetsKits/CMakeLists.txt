@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.h
+    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicaudiorecorderwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictimerwidget.h
@@ -34,7 +34,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.cpp
+    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp

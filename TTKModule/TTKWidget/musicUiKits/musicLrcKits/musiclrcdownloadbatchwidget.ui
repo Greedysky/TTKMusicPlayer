@@ -67,60 +67,6 @@
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>405</x>
-      <y>43</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-weight:bold; color:#464646</string>
-    </property>
-    <property name="text">
-     <string>扫描范围:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="itemLabel">
-    <property name="geometry">
-     <rect>
-      <x>465</x>
-      <y>43</y>
-      <width>75</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:#9F9F9F</string>
-    </property>
-    <property name="text">
-     <string>全部列表</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="MusicClickedLabel" name="modifiedItemButton">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>43</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:#2F93E1</string>
-    </property>
-    <property name="text">
-     <string>更改</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QPushButton" name="addButton">
     <property name="geometry">
      <rect>
@@ -316,9 +262,16 @@ font-weight:bold;</string>
      <string>文件名</string>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>itemLabel</zorder>
-   <zorder>modifiedItemButton</zorder>
+   <widget class="MusicSongItemSelectedAreaWidget" name="selectedAreaWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>395</x>
+      <y>40</y>
+      <width>175</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>addButton</zorder>
    <zorder>optionInfoWidget</zorder>
    <zorder>skipAlreadyLrcCheckBox</zorder>
@@ -332,6 +285,7 @@ font-weight:bold;</string>
    <zorder>label_status</zorder>
    <zorder>label_index</zorder>
    <zorder>label_path</zorder>
+   <zorder>selectedAreaWidget</zorder>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
@@ -340,15 +294,15 @@ font-weight:bold;</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicClickedLabel</class>
-   <extends>QLabel</extends>
-   <header>musicclickedlabel.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MusicLrcDownloadBatchTableWidget</class>
    <extends>QWidget</extends>
    <header>musiclrcdownloadbatchwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicSongItemSelectedAreaWidget</class>
+   <extends>QWidget</extends>
+   <header>musicsongitemselectedareawidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

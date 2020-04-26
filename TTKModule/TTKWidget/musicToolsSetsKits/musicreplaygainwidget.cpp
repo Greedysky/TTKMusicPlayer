@@ -1,19 +1,24 @@
-#include "musicvolumegainwidget.h"
-#include "ui_musicvolumegainwidget.h"
+#include "musicreplaygainwidget.h"
+#include "ui_musicreplaygainwidget.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicsemaphoreloop.h"
 #include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 #include "musicsinglemanager.h"
+#include "musicqmmputils.h"
 
 #include <QProcess>
+#include <QPluginLoader>
+
+///qmmp incldue
+#include "lightfactory.h"
 
 #define GAIN_DEFAULT 89
 #define GAIN_TRACKDB "Recommended \"Track\" dB change:"
 #define GAIN_ALBUMDB "Recommended \"Album\" dB change for all files:"
 
-MusicVolumeGainTableWidget::MusicVolumeGainTableWidget(QWidget *parent)
+MusicReplayGainTableWidget::MusicReplayGainTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     setColumnCount(5);
@@ -25,21 +30,21 @@ MusicVolumeGainTableWidget::MusicVolumeGainTableWidget(QWidget *parent)
     headerview->resizeSection(4, 60);
 }
 
-MusicVolumeGainTableWidget::~MusicVolumeGainTableWidget()
+MusicReplayGainTableWidget::~MusicReplayGainTableWidget()
 {
 
 }
 
-void MusicVolumeGainTableWidget::itemCellClicked(int row, int column)
+void MusicReplayGainTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
 }
 
 
-MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
+MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicVolumeGainWidget), m_process(nullptr)
+      m_ui(new Ui::MusicReplayGainWidget), m_process(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -52,6 +57,8 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+
+    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MQSSTabWidgetStyle01);
 
     m_ui->addFileButton->setIcon(QIcon(":/toolSets/btn_gain_add_file"));
     m_ui->addFileButton->setIconSize(QSize(40, 40));
@@ -95,25 +102,43 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
     m_currentIndex = -1;
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
-    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
+    initialize();
 
+    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
     connect(m_ui->addFileButton, SIGNAL(clicked()), SLOT(addFileButtonClicked()));
     connect(m_ui->addFilesButton, SIGNAL(clicked()), SLOT(addFilesButtonClicked()));
     connect(m_ui->rmFileButton, SIGNAL(clicked()), SLOT(rmFileButtonClicked()));
     connect(m_ui->rmFilesButton, SIGNAL(clicked()), SLOT(rmFilesButtonClicked()));
     connect(m_ui->analysisButton, SIGNAL(clicked()), SLOT(analysisButtonClicked()));
     connect(m_ui->applyButton, SIGNAL(clicked()), SLOT(applyButtonClicked()));
-    connect(m_ui->volumeLineEdit, SIGNAL(textChanged(QString)), SLOT(volumeLineTextChanged(QString)));
+    connect(m_ui->volumeLineEdit, SIGNAL(textChanged(QString)), SLOT(lineTextChanged(QString)));
 }
 
-MusicVolumeGainWidget::~MusicVolumeGainWidget()
+MusicReplayGainWidget::~MusicReplayGainWidget()
 {
     M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_process;
     delete m_ui;
 }
 
-void MusicVolumeGainWidget::createItemFinished(const QString &track, const QString &album)
+void MusicReplayGainWidget::initialize()
+{
+    QPluginLoader loader;
+    loader.setFileName(MusicUtils::QMMP::pluginPath("Light", "lightreplaygain"));
+    const QObject *obj = loader.instance();
+    LightFactory *factory = nullptr;
+    if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
+    {
+        Light *lightWidget = factory->create(this);
+        m_ui->replayGainLayout->addWidget(lightWidget);
+    }
+    else
+    {
+
+    }
+}
+
+void MusicReplayGainWidget::createItemFinished(const QString &track, const QString &album)
 {
     if(m_currentIndex >= m_paths.count())
     {
@@ -151,7 +176,7 @@ void MusicVolumeGainWidget::createItemFinished(const QString &track, const QStri
     m_ui->tableWidget->setItem(row, 4, item);
 }
 
-void MusicVolumeGainWidget::setControlEnabled(bool enable)
+void MusicReplayGainWidget::setControlEnabled(bool enable)
 {
     m_ui->addFileButton->setEnabled(enable);
     m_ui->addFilesButton->setEnabled(enable);
@@ -161,7 +186,7 @@ void MusicVolumeGainWidget::setControlEnabled(bool enable)
     m_ui->applyButton->setEnabled(enable);
 }
 
-void MusicVolumeGainWidget::addFileButtonClicked()
+void MusicReplayGainWidget::addFileButtonClicked()
 {
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
@@ -190,7 +215,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
     }
 }
 
-void MusicVolumeGainWidget::addFilesButtonClicked()
+void MusicReplayGainWidget::addFilesButtonClicked()
 {
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::Directory);
@@ -215,7 +240,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
     }
 }
 
-void MusicVolumeGainWidget::rmFileButtonClicked()
+void MusicReplayGainWidget::rmFileButtonClicked()
 {
     const int row = m_ui->tableWidget->currentRow();
     if(row < 0)
@@ -228,19 +253,19 @@ void MusicVolumeGainWidget::rmFileButtonClicked()
     m_ui->tableWidget->removeRow(row);
 }
 
-void MusicVolumeGainWidget::rmFilesButtonClicked()
+void MusicReplayGainWidget::rmFilesButtonClicked()
 {
     m_paths.clear();
     m_ui->tableWidget->clear();
     m_currentIndex = -1;
 }
 
-void MusicVolumeGainWidget::analysisButtonClicked()
+void MusicReplayGainWidget::analysisButtonClicked()
 {
     ///do nothing here
 }
 
-void MusicVolumeGainWidget::applyButtonClicked()
+void MusicReplayGainWidget::applyButtonClicked()
 {
     if(m_paths.isEmpty())
     {
@@ -274,7 +299,7 @@ void MusicVolumeGainWidget::applyButtonClicked()
     message.exec();
 }
 
-void MusicVolumeGainWidget::volumeLineTextChanged(const QString &text)
+void MusicReplayGainWidget::lineTextChanged(const QString &text)
 {
     const double d = text.toDouble();
     for(int i=0; i<m_ui->tableWidget->rowCount(); ++i)
@@ -286,7 +311,7 @@ void MusicVolumeGainWidget::volumeLineTextChanged(const QString &text)
     }
 }
 
-void MusicVolumeGainWidget::analysisOutput()
+void MusicReplayGainWidget::analysisOutput()
 {
     QString track, album;
     while(m_process->canReadLine())
@@ -312,7 +337,7 @@ void MusicVolumeGainWidget::analysisOutput()
     }
 }
 
-void MusicVolumeGainWidget::applyOutput()
+void MusicReplayGainWidget::applyOutput()
 {
     while(m_process->canReadLine())
     {
@@ -332,7 +357,7 @@ void MusicVolumeGainWidget::applyOutput()
     }
 }
 
-void MusicVolumeGainWidget::show()
+void MusicReplayGainWidget::show()
 {
     if(!QFile::exists(MAKE_GAIN_FULL))
     {

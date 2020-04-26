@@ -76,6 +76,9 @@
       <height>390</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>

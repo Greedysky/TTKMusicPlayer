@@ -69,21 +69,7 @@ public:
 
     virtual ~MusicLrcDownloadBatchWidget();
 
-Q_SIGNALS:
-    /*!
-     * Get music datas from container.
-     */
-    void getMusicLists(MusicSongItems &songs);
-
 public Q_SLOTS:
-    /*!
-     * Modified item button clicked.
-     */
-    void modifiedItemButtonClicked();
-    /*!
-     * Item lists changed.
-     */
-    void itemListsChanged(const TTKIntList &items);
     /*!
      * Add button clicked.
      */
@@ -98,16 +84,9 @@ public Q_SLOTS:
     void show();
 
 protected:
-    /*!
-     * Get selected song items.
-     */
-    void getSelectedSongItems();
-
     Ui::MusicLrcDownloadBatchWidget *m_ui;
 
     MusicSongs m_localSongs;
-    bool m_selectedItemIdFlag;
-    TTKIntList m_selectedItemIds;
 
 };
 

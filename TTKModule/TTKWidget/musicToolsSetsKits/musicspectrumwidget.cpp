@@ -267,10 +267,10 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
             QPluginLoader loader;
             loader.setFileName(MusicUtils::QMMP::pluginPath("Light", name));
             const QObject *obj = loader.instance();
-            LightFactory *decoderfac = nullptr;
-            if(obj && (decoderfac = TTKObject_cast(LightFactory*, obj)))
+            LightFactory *factory = nullptr;
+            if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
             {
-                Light *lightWidget = decoderfac->create(this);
+                Light *lightWidget = factory->create(this);
                 MusicSpectrum sp;
                 sp.m_name = name;
                 sp.m_obj = lightWidget;

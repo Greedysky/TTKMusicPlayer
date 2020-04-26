@@ -6,7 +6,7 @@
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
 #include "musicnetworkconnectiontestwidget.h"
-#include "musicvolumegainwidget.h"
+#include "musicreplaygainwidget.h"
 #include "musicsongdlnatransferwidget.h"
 #include "musicsongringtonemakerwidget.h"
 #include "musicmessagebox.h"
@@ -153,7 +153,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 8:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicVolumeGainWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicReplayGainWidget);
                 break;
             }
         case 9:

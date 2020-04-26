@@ -45,21 +45,7 @@ public:
 
     virtual ~MusicSongCheckToolsWidget();
 
-Q_SIGNALS:
-    /*!
-     * Get music datas from container.
-     */
-    void getMusicLists(MusicSongItems &songs);
-
 public Q_SLOTS:
-    /*!
-     * Modified item button clicked.
-     */
-    void modifiedItemButtonClicked();
-    /*!
-     * Item lists changed.
-     */
-    void itemListsChanged(const TTKIntList &items);
     /*!
      * Rename button clicked.
      */
@@ -115,10 +101,6 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Get selected song items.
-     */
-    void getSelectedSongItems();
-    /*!
      * Rename widget init.
      */
     void initRenameWidget();
@@ -138,8 +120,6 @@ protected:
     Ui::MusicSongCheckToolsWidget *m_ui;
 
     MusicSongs m_localSongs;
-    bool m_selectedItemIdFlag;
-    TTKIntList m_selectedItemIds;
     MusicSongCheckToolsRenameThread *m_renameCore;
     MusicSongCheckToolsDuplicateThread *m_duplicateCore;
     MusicSongCheckToolsQualityThread *m_qualityCore;

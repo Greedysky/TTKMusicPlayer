@@ -3,10 +3,7 @@
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
 #include "musicsongchecktoolsthread.h"
-#include "musicconnectionpool.h"
 #include "musicmessagebox.h"
-#include "musicsongssummariziedwidget.h"
-#include "musicsongitemselecteddialog.h"
 
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -24,45 +21,20 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_ui->modifiedItemButton, SIGNAL(clicked()), SLOT(modifiedItemButtonClicked()));
-
-    m_selectedItemIdFlag = false;
 
     initRenameWidget();
     initQualityWidget();
     initDuplicateWidget();
 
     switchToSelectedItemStyle(0);
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicSongCheckToolsWidget::~MusicSongCheckToolsWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
     delete m_renameCore;
     delete m_duplicateCore;
     delete m_qualityCore;
     delete m_ui;
-}
-
-void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
-{
-    MusicSongItems songs;
-    Q_EMIT getMusicLists(songs);
-
-    m_selectedItemIdFlag = true;
-    MusicSongItemSelectedDialog dialog;
-    connect(&dialog, SIGNAL(itemListsChanged(TTKIntList)), SLOT(itemListsChanged(TTKIntList)));
-    dialog.createAllItems(&songs);
-    dialog.exec();
-}
-
-void MusicSongCheckToolsWidget::itemListsChanged(const TTKIntList &items)
-{
-    m_selectedItemIds = items;
-    m_ui->itemLabel->setText(tr("Custom Lists"));
 }
 
 void MusicSongCheckToolsWidget::renameButtonClicked()
@@ -108,7 +80,8 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
 
     m_ui->renameTableWidget->clear();
     m_renameCore->stopAndQuitThread();
-    getSelectedSongItems();
+    m_localSongs = m_ui->selectedAreaWidget->getSelectedSongItems();
+
     m_renameCore->setMode(MusicObject::Check);
     m_renameCore->setRenameSongs(&m_localSongs);
     m_renameCore->start();
@@ -170,7 +143,8 @@ void MusicSongCheckToolsWidget::qualityReCheckButtonClicked()
     m_ui->qualityCheckButton->setText(tr("StopCheck"));
 
     m_qualityCore->stopAndQuitThread();
-    getSelectedSongItems();
+    m_localSongs = m_ui->selectedAreaWidget->getSelectedSongItems();
+
     m_qualityCore->setQualitySongs(&m_localSongs);
     m_qualityCore->start();
 }
@@ -228,7 +202,8 @@ void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
     m_ui->duplicateSelectAllButton->setChecked(false);
 
     m_qualityCore->stopAndQuitThread();
-    getSelectedSongItems();
+    m_localSongs = m_ui->selectedAreaWidget->getSelectedSongItems();
+
     m_duplicateCore->setMode(MusicObject::Check);
     m_duplicateCore->setDuplicateSongs(&m_localSongs);
     m_duplicateCore->start();
@@ -260,32 +235,6 @@ void MusicSongCheckToolsWidget::show()
 {
     setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveWidget::show();
-}
-
-void MusicSongCheckToolsWidget::getSelectedSongItems()
-{
-    m_localSongs.clear();
-
-    MusicSongItems songs;
-    Q_EMIT getMusicLists(songs);
-
-    foreach(const MusicSongItem &item, songs)
-    {
-        if(m_selectedItemIdFlag)
-        {
-            if(m_selectedItemIds.contains(item.m_itemIndex))
-            {
-                m_localSongs << item.m_songs;
-            }
-        }
-        else
-        {
-            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST && item.m_itemIndex != MUSIC_RECENT_LIST)
-            {
-                m_localSongs << item.m_songs;
-            }
-        }
-    }
 }
 
 void MusicSongCheckToolsWidget::initRenameWidget()

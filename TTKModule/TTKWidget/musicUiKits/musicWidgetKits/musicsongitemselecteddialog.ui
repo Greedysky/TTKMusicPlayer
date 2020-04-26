@@ -116,7 +116,7 @@
   <customwidget>
    <class>MusicSongItemSelectedTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>musicsongitemselecteddialog.h</header>
+   <header>musicsongitemselectedareawidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

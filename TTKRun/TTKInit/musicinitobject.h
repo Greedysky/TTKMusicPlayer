@@ -87,7 +87,7 @@ public:
     void checkValid();
 
     /*!
-     * Init all parameter.
+     * Init parameters.
      */
     void initialize();
     /*!

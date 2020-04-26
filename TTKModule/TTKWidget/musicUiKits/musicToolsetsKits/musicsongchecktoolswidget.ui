@@ -854,58 +854,14 @@
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="MusicSongItemSelectedAreaWidget" name="selectedAreaWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>35</y>
-      <width>60</width>
-      <height>20</height>
+      <x>485</x>
+      <y>32</y>
+      <width>175</width>
+      <height>25</height>
      </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-weight:bold; color:#464646</string>
-    </property>
-    <property name="text">
-     <string>扫描范围:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="itemLabel">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>35</y>
-      <width>75</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:#9F9F9F</string>
-    </property>
-    <property name="text">
-     <string>全部列表</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="MusicClickedLabel" name="modifiedItemButton">
-    <property name="geometry">
-     <rect>
-      <x>635</x>
-      <y>35</y>
-      <width>30</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color:#2F93E1</string>
-    </property>
-    <property name="text">
-     <string>更改</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
@@ -919,6 +875,12 @@
    <class>MusicClickedLabel</class>
    <extends>QLabel</extends>
    <header>musicclickedlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicSongItemSelectedAreaWidget</class>
+   <extends>QWidget</extends>
+   <header>musicsongitemselectedareawidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -1,5 +1,5 @@
-#ifndef MUSICVOLUMEGAINWIDGET_H
-#define MUSICVOLUMEGAINWIDGET_H
+#ifndef MUSICREPLAYGAINWIDGET_H
+#define MUSICREPLAYGAINWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -22,20 +22,20 @@
 #include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
 
-/*! @brief The class of the volume gain table widget.
+/*! @brief The class of the replay gain table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicVolumeGainTableWidget : public MusicAbstractTableWidget
+class MUSIC_WIDGET_EXPORT MusicReplayGainTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVolumeGainTableWidget)
+    TTK_DECLARE_MODULE(MusicReplayGainTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVolumeGainTableWidget(QWidget *parent = nullptr);
+    explicit MusicReplayGainTableWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicVolumeGainTableWidget();
+    virtual ~MusicReplayGainTableWidget();
 
 public Q_SLOTS:
     /*!
@@ -47,23 +47,23 @@ public Q_SLOTS:
 
 
 namespace Ui {
-class MusicVolumeGainWidget;
+class MusicReplayGainWidget;
 }
 class QProcess;
-/*! @brief The class of the volume gain widget.
+/*! @brief The class of the replay gain widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicVolumeGainWidget : public MusicAbstractMoveWidget
+class MUSIC_TOOLSET_EXPORT MusicReplayGainWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVolumeGainWidget)
+    TTK_DECLARE_MODULE(MusicReplayGainWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVolumeGainWidget(QWidget *parent = nullptr);
+    explicit MusicReplayGainWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicVolumeGainWidget();
+    virtual ~MusicReplayGainWidget();
 
 public Q_SLOTS:
     /*!
@@ -97,9 +97,9 @@ private Q_SLOTS:
      */
     void applyButtonClicked();
     /*!
-     * Music gain volume input value changed.
+     * Music gain input value changed.
      */
-    void volumeLineTextChanged(const QString &text);
+    void lineTextChanged(const QString &text);
     /*!
      * Analysis output by process.
      */
@@ -111,6 +111,10 @@ private Q_SLOTS:
 
 protected:
     /*!
+     * Init parameters.
+     */
+    void initialize();
+    /*!
      * Create table item finished.
      */
     void createItemFinished(const QString &track, const QString &album);
@@ -119,11 +123,11 @@ protected:
      */
     void setControlEnabled(bool enable);
 
-    Ui::MusicVolumeGainWidget *m_ui;
+    Ui::MusicReplayGainWidget *m_ui;
     QProcess *m_process;
     QStringList m_paths;
     int m_currentIndex;
 
 };
 
-#endif // MUSICVOLUMEGAINWIDGET_H
+#endif // MUSICREPLAYGAINWIDGET_H

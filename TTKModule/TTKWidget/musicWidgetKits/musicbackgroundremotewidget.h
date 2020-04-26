@@ -93,7 +93,7 @@ public:
     virtual ~MusicBackgroundThunderWidget();
 
     /*!
-     * Init the current download object.
+     * Init parameters.
      */
     void initialize();
 
@@ -147,7 +147,7 @@ public:
     explicit MusicBackgroundDailyWidget(QWidget *parent = nullptr);
 
     /*!
-     * Init the current download object.
+     * Init parameters.
      */
     void initialize();
 

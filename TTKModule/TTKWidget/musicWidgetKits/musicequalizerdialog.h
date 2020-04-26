@@ -80,7 +80,7 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Init widget and parameters.
+     * Init parameters.
      */
     void initialize();
     /*!
