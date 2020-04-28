@@ -208,6 +208,8 @@ void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
     connect(&dialog, SIGNAL(itemListsChanged(TTKIntList)), SLOT(itemListsChanged(TTKIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();
+
+    Q_EMIT confirmChanged();
 }
 
 void MusicSongItemSelectedAreaWidget::itemListsChanged(const TTKIntList &items)

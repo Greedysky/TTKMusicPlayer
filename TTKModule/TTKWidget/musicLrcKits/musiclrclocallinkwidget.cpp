@@ -164,7 +164,7 @@ void MusicLrcLocalLinkWidget::deleteFoundLrc()
     if(row < 0)
     {
         MusicMessageBox message;
-        message.setText(tr("please select one item"));
+        message.setText(tr("Please Select One Item First!"));
         message.exec();
         return;
     }
@@ -178,7 +178,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     if(row < 0)
     {
         MusicMessageBox message;
-        message.setText(tr("please select one item"));
+        message.setText(tr("Please Select One Item First!"));
         message.exec();
         return;
     }

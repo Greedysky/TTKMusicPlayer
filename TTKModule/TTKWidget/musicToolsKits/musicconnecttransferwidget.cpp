@@ -125,7 +125,7 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
     if(list.isEmpty())
     {
         MusicMessageBox message;
-        message.setText(tr("please select one item"));
+        message.setText(tr("Please Select One Item First!"));
         message.exec();
         return paths;
     }

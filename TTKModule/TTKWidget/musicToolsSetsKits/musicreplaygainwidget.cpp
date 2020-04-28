@@ -7,6 +7,7 @@
 #include "musicwidgetheaders.h"
 #include "musicsinglemanager.h"
 #include "musicqmmputils.h"
+#include "musictoastlabel.h"
 
 #include <QProcess>
 #include <QPluginLoader>
@@ -99,9 +100,11 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     m_ui->volumeLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->volumeLineEdit->setValidator(new QRegExpValidator(QRegExp("-?[0-9]+$"), this));
 
-    m_currentIndex = -1;
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
+    m_replayGainWidget = nullptr;
+    m_currentIndex = -1;
+
     initialize();
 
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
@@ -112,6 +115,7 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     connect(m_ui->analysisButton, SIGNAL(clicked()), SLOT(analysisButtonClicked()));
     connect(m_ui->applyButton, SIGNAL(clicked()), SLOT(applyButtonClicked()));
     connect(m_ui->volumeLineEdit, SIGNAL(textChanged(QString)), SLOT(lineTextChanged(QString)));
+    connect(m_ui->selectedAreaWidget, SIGNAL(confirmChanged()), SLOT(confirmDataChanged()));
 }
 
 MusicReplayGainWidget::~MusicReplayGainWidget()
@@ -129,12 +133,15 @@ void MusicReplayGainWidget::initialize()
     LightFactory *factory = nullptr;
     if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
     {
-        Light *lightWidget = factory->create(this);
-        m_ui->replayGainLayout->addWidget(lightWidget);
+        m_replayGainWidget = factory->create(this);
+        m_replayGainWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04 + MusicUIObject::MQSSCheckBoxStyle01 + \
+                                          MusicUIObject::MQSSScrollBarStyle03 + MusicUIObject::MQSSProgressBar01);
+        m_ui->replayGainLayout->addWidget(m_replayGainWidget);
     }
     else
     {
-
+        MusicToastLabel *toast = new MusicToastLabel(this);
+        toast->defaultLabel(this, tr("ReplayGain Init Error!"));
     }
 }
 
@@ -246,7 +253,7 @@ void MusicReplayGainWidget::rmFileButtonClicked()
     if(row < 0)
     {
         MusicMessageBox message;
-        message.setText(tr("please select one item"));
+        message.setText(tr("Please Select One Item First!"));
         message.exec();
         return;
     }
@@ -354,6 +361,15 @@ void MusicReplayGainWidget::applyOutput()
         {
             m_ui->progressBar->setValue(80);
         }
+    }
+}
+
+void MusicReplayGainWidget::confirmDataChanged()
+{
+    const MusicSongs songs(m_ui->selectedAreaWidget->getSelectedSongItems());
+    foreach(const MusicSong &song, songs)
+    {
+        m_replayGainWidget->open(song.getMusicPath());
     }
 }
 

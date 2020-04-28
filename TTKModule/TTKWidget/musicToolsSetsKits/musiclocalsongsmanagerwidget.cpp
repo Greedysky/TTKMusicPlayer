@@ -150,7 +150,7 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
         MusicMessageBox message;
-        message.setText(tr("please select one item"));
+        message.setText(tr("Please Select One Item First!"));
         message.exec();
         return;
     }
@@ -169,7 +169,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
         MusicMessageBox message;
-        message.setText(tr("please select one item"));
+        message.setText(tr("Please Select One Item First!"));
         message.exec();
         return;
     }

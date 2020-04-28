@@ -49,6 +49,7 @@ public Q_SLOTS:
 namespace Ui {
 class MusicReplayGainWidget;
 }
+class Light;
 class QProcess;
 /*! @brief The class of the replay gain widget.
  * @author Greedysky <greedysky@163.com>
@@ -108,6 +109,10 @@ private Q_SLOTS:
      * Apply output by process.
      */
     void applyOutput();
+    /*!
+     * Confirm Data changed.
+     */
+    void confirmDataChanged();
 
 protected:
     /*!
@@ -126,6 +131,7 @@ protected:
     Ui::MusicReplayGainWidget *m_ui;
     QProcess *m_process;
     QStringList m_paths;
+    Light *m_replayGainWidget;
     int m_currentIndex;
 
 };

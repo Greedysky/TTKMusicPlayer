@@ -109,6 +109,10 @@ Q_SIGNALS:
      * Get music datas from container.
      */
     void getMusicLists(MusicSongItems &songs);
+    /*!
+     * Confirm changed.
+     */
+    void confirmChanged();
 
 public Q_SLOTS:
     /*!
