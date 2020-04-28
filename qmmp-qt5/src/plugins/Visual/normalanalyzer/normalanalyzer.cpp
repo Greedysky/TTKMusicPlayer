@@ -4,10 +4,10 @@
 #include <QMenu>
 #include <QActionGroup>
 #include <QPaintEvent>
-
-#include <qmmp/qmmp.h>
 #include <math.h>
 #include <stdlib.h>
+#include <qmmp/qmmp.h>
+
 #include "fft.h"
 #include "inlines.h"
 #include "normalanalyzer.h"

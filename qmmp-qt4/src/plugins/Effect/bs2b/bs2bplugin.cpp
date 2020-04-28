@@ -21,7 +21,6 @@
 #include <QSettings>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/qmmp.h>
 #include "bs2bplugin.h"
 
 Bs2bPlugin *Bs2bPlugin::m_instance = nullptr;

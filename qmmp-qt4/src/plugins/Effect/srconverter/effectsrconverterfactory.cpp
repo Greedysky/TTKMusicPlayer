@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "settingsdialog.h"
 #include "srconverter.h"
 #include "effectsrconverterfactory.h"

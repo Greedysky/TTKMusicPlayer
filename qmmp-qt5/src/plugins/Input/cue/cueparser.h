@@ -25,7 +25,6 @@
 #include <QMap>
 #include <QString>
 #include <QStringList>
-#include <qmmp/qmmp.h>
 #include <qmmp/trackinfo.h>
 
 /**

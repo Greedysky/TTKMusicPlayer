@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "effectmonotostereofactory.h"
 #include "monotostereoplugin.h"
 

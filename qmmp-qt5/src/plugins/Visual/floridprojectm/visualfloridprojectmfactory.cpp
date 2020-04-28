@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualfloridprojectmfactory.h"
 #include "projectmplugin.h"
 

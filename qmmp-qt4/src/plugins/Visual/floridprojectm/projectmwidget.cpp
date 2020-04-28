@@ -40,7 +40,7 @@ void ProjectMWidget::initializeGL()
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glLineStipple(2, 0xAAAA);
 
-    if (!m_projectM)
+    if(!m_projectM)
     {
         projectM::Settings settings;
         settings.meshX = 32;
@@ -70,7 +70,7 @@ void ProjectMWidget::initializeGL()
         RatingList list;
         list.push_back(3);
         list.push_back(3);
-        foreach (QFileInfo info, l)
+        foreach(QFileInfo info, l)
         {
             m_projectM->addPresetURL(info.absoluteFilePath().toStdString(), info.fileName().toStdString(), list);
         }
@@ -81,7 +81,7 @@ void ProjectMWidget::initializeGL()
 
 void ProjectMWidget::resizeGL (int w, int h)
 {
-    if (m_projectM)
+    if(m_projectM)
     {
         m_projectM->projectM_resetGL(w, h);
         initializeGL();
@@ -90,8 +90,10 @@ void ProjectMWidget::resizeGL (int w, int h)
 
 void ProjectMWidget::paintGL()
 {
-    if (m_projectM)
+    if(m_projectM)
+    {
         m_projectM->renderFrame();
+    }
 }
 
 void ProjectMWidget::nextPreset()

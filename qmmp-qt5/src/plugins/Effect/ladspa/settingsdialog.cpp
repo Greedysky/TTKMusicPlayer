@@ -26,7 +26,6 @@
 #include <QWidget>
 #include <QLabel>
 #include <QIcon>
-#include <qmmp/qmmp.h>
 #include "ui_settingsdialog.h"
 #include "ladspaslider.h"
 #include "ladspabutton.h"

@@ -20,7 +20,6 @@
 
 #include <QRegExp>
 #include <QSettings>
-#include <qmmp/qmmp.h>
 #include "gmehelper.h"
 
 GmeHelper::GmeHelper()

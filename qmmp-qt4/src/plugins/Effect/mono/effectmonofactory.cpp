@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "effectmonofactory.h"
 #include "monoplugin.h"
 

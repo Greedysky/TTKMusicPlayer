@@ -6,8 +6,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-
 #include <qmmp/qmmp.h>
+
 #include "goomwidget.h"
 
 GoomWidget::GoomWidget(QWidget *parent)

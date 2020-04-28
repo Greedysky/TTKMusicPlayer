@@ -26,7 +26,6 @@
 #include <QList>
 #include <QObject>
 #include <stddef.h>
-#include <qmmp/qmmp.h>
 #include "ladspa.h"
 
 class QWidget;

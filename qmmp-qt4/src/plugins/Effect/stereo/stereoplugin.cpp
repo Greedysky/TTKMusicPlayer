@@ -23,7 +23,6 @@
 #include <QSettings>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/qmmp.h>
 #include "stereoplugin.h"
 
 StereoPlugin *StereoPlugin::m_instance = nullptr;

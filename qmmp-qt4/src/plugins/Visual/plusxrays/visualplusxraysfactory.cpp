@@ -1,5 +1,4 @@
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "visualplusxraysfactory.h"
 #include "plusxrays.h"
 

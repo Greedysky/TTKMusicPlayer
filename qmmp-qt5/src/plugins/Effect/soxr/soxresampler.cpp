@@ -21,7 +21,6 @@
 #include <QSettings>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/qmmp.h>
 #include "soxresampler.h"
 
 SoXResampler::SoXResampler() : Effect()

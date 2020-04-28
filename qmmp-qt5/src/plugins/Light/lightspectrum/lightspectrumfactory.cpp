@@ -16,7 +16,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <qmmp/qmmp.h>
 #include "lightspectrumfactory.h"
 #include "spek-spectrogram.h"
 

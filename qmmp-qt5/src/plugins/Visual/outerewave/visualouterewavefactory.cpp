@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualouterewavefactory.h"
 #include "outerewave.h"
 

@@ -27,7 +27,6 @@
 #include <math.h>
 #include <stdlib.h>
 #include <dlfcn.h>
-#include <qmmp/qmmp.h>
 #include <qmmp/audioparameters.h>
 #include "ladspahost.h"
 

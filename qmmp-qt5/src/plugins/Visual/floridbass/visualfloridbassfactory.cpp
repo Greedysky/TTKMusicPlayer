@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualfloridbassfactory.h"
 #include "floridbass.h"
 

@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "effectcrossfadefactory.h"
 #include "settingsdialog.h"
 #include "crossfadeplugin.h"

@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualnormalhistogramfactory.h"
 #include "normalhistogram.h"
 

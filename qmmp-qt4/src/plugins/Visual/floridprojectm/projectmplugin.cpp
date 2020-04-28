@@ -34,7 +34,9 @@ void ProjectMPlugin::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void ProjectMPlugin::stop()
@@ -46,8 +48,10 @@ void ProjectMPlugin::stop()
 void ProjectMPlugin::timeout()
 {
     projectM *instance = m_projectMWidget->projectMInstance();
-    if (!instance)
+    if(!instance)
+    {
         return;
+    }
 
     if(takeData(m_left, m_right))
     {

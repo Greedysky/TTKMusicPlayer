@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QSettings>
-#include <qmmp/qmmp.h>
 #include <qmmp/statehandler.h>
 #include <qmmp/soundcore.h>
 #include "crossfadeplugin.h"

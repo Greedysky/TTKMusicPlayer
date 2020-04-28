@@ -19,9 +19,7 @@
  ***************************************************************************/
 
 #include <QSettings>
-
 #include <qmmp/qmmp.h>
-
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)

@@ -17,7 +17,6 @@
  ================================================= */
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "lightenvelopefactory.h"
 #include "lightenvelope.h"
 

@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <stdlib.h>
-#include <qmmp/qmmp.h>
 #include "monoplugin.h"
 
 MonoPlugin::MonoPlugin() : Effect()

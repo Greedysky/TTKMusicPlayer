@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "outputalsa.h"
 #include "outputalsafactory.h"
 

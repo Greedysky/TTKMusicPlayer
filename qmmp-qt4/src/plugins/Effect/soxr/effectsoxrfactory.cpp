@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "settingsdialog.h"
 #include "soxresampler.h"
 #include "effectsoxrfactory.h"

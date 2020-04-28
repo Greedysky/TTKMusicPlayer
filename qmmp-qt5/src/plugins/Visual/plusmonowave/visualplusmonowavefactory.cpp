@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualplusmonowavefactory.h"
 #include "plusmonowave.h"
 

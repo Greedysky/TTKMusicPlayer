@@ -21,7 +21,6 @@
 #include <QSettings>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/qmmp.h>
 #include "srconverter.h"
 
 SRConverter::SRConverter() : Effect()

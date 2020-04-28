@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualfloridancientfactory.h"
 #include "floridancient.h"
 

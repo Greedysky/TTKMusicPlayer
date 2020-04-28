@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualnormalspacewavefactory.h"
 #include "normalspacewave.h"
 

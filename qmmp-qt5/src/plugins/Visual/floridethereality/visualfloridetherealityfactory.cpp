@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualfloridetherealityfactory.h"
 #include "floridethereality.h"
 

@@ -17,7 +17,6 @@
  ================================================= */
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "lightspectrumfactory.h"
 #include "spek-spectrogram.h"
 

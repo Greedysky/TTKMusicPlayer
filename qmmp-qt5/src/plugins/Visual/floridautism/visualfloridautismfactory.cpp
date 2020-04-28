@@ -1,4 +1,3 @@
-#include <qmmp/qmmp.h>
 #include "visualfloridautismfactory.h"
 #include "floridautism.h"
 

@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <bs2b/bs2bversion.h>
-#include <qmmp/qmmp.h>
 #include "effectbs2bfactory.h"
 #include "settingsdialog.h"
 #include "bs2bplugin.h"

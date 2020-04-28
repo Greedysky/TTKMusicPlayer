@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QtPlugin>
-#include <qmmp/qmmp.h>
 #include "effectstereofactory.h"
 #include "settingsdialog.h"
 #include "stereoplugin.h"

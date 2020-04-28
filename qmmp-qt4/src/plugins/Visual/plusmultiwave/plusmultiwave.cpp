@@ -4,7 +4,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "plusmultiwave.h"
