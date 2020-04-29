@@ -53,6 +53,14 @@ ReplayGainWidget::ReplayGainWidget(QWidget *parent)
     m_ui.tableWidget->verticalHeader()->setDefaultSectionSize(fontMetrics().height() + 3);
     m_ui.tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 
+#ifdef Q_OS_UNIX
+    m_ui.skipScannedCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui.trackCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui.albumCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui.calculateButton->setFocusPolicy(Qt::NoFocus);
+    m_ui.writeButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     connect(m_ui.calculateButton, SIGNAL(clicked()), SLOT(calculateButtonClicked()));
     connect(m_ui.writeButton, SIGNAL(clicked()), SLOT(writeButtonClicked()));
 }

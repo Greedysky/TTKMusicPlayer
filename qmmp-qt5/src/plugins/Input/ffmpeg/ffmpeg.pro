@@ -15,15 +15,15 @@ SOURCES += decoderffmpegfactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-INCLUDEPATH += $$EXTRA_PREFIX/libav/include
+INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include
 
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
+    LIBS += -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec -lavformat -lavutil -lswresample
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec.dll -lavformat.dll -lavutil.dll
+    LIBS += -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec.dll -lavformat.dll -lavutil.dll -lswresample.dll
 }
 
 DEFINES += __STDC_CONSTANT_MACROS
