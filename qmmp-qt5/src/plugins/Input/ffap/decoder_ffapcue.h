@@ -25,7 +25,7 @@
 
 class Output;
 class QIDevice;
-class CUEParser;
+class CueParser;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
@@ -46,18 +46,18 @@ public:
     virtual void next() override;
 
 private:
-    Decoder *m_decoder;
-    qint64 m_length;
-    qint64 m_offset;
-    qint64 length_in_bytes;
-    qint64 m_totalBytes;
-    QString m_path;
-    CUEParser *m_parser;
-    int m_track;
-    char *m_buf; //buffer for remainig data
-    qint64 m_buf_size;
-    qint64 m_sz; //sample size
-    QIODevice *m_input;
+    Decoder *m_decoder = nullptr;
+    CueParser *m_parser = nullptr;
+    char *m_buf = nullptr; //buffer for remainig data
+    qint64 m_duration = 0;
+    qint64 m_offset = 0;
+    qint64 m_trackSize = 0;
+    qint64 m_written = 0;
+    QString m_url;
+    int m_track = 0;
+    qint64 m_buf_size = 0;
+    qint64 m_frameSize = 0;
+    QIODevice *m_input = nullptr;
 };
 
 #endif // DECODER_FFAPCUE_H

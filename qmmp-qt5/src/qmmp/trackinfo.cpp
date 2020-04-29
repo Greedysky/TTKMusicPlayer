@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2018-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2018-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,14 +24,14 @@
 TrackInfo::TrackInfo()
 {
     m_duration = 0;
-    m_parts = NoParts;
+    m_parts = Parts();
 }
 
 TrackInfo::TrackInfo(const QString &path)
 {
     m_path = path;
     m_duration = 0;
-    m_parts = NoParts;
+    m_parts = Parts();
 }
 
 TrackInfo::TrackInfo(const TrackInfo &other)
@@ -55,11 +55,11 @@ TrackInfo &TrackInfo::operator=(const TrackInfo &info)
 bool TrackInfo::operator==(const TrackInfo &info) const
 {
     return m_duration == info.duration() &&
-           m_path == info.path() &&
-           m_metaData == info.metaData () &&
-           m_properties == info.properties() &&
-           m_replayGainInfo == info.replayGainInfo() &&
-           m_parts == info.parts();
+            m_path == info.path() &&
+            m_metaData == info.metaData () &&
+            m_properties == info.properties() &&
+            m_replayGainInfo == info.replayGainInfo() &&
+            m_parts == info.parts();
 }
 
 bool TrackInfo::operator!=(const TrackInfo &info) const
@@ -182,19 +182,19 @@ void TrackInfo::setValues(const QMap<Qmmp::ReplayGainKey, double> &replayGainInf
 
 void TrackInfo::updateValues(const QMap<Qmmp::MetaData, QString> &metaData)
 {
-    foreach(Qmmp::MetaData key, metaData.keys())
+    for(const Qmmp::MetaData &key : metaData.keys())
         setValue(key, metaData[key]);
 }
 
 void TrackInfo::updateValues(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    foreach(Qmmp::TrackProperty key, properties.keys())
+    for(const Qmmp::TrackProperty &key : properties.keys())
         setValue(key, properties[key]);
 }
 
 void TrackInfo::updateValues(const QMap<Qmmp::ReplayGainKey, double> &replayGainInfo)
 {
-    foreach(Qmmp::ReplayGainKey key, replayGainInfo.keys())
+    for(const Qmmp::ReplayGainKey &key : replayGainInfo.keys())
         setValue(key, replayGainInfo[key]);
 }
 

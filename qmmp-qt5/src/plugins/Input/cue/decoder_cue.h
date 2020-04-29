@@ -25,7 +25,7 @@
 
 class Output;
 class QIDevice;
-class CUEParser;
+class CueFile;
 
 class DecoderCUE : public Decoder
 {
@@ -49,7 +49,7 @@ private:
     qint64 length_in_bytes;
     qint64 m_totalBytes;
     QString m_path;
-    CUEParser *m_parser;
+    CueFile *m_cueFile;
     int m_track;
     char *m_buf; //buffer for remainig data
     qint64 m_buf_size;

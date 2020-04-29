@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,33 +29,33 @@
 #define SAMPLES_PER_WRITE 512
 #define SAMPLE_BUFFER_SIZE ((FLAC__MAX_BLOCK_SIZE + SAMPLES_PER_WRITE) * MAX_SUPPORTED_CHANNELS * (32/8))
 
-class CUEParser;
+class CueParser;
 
 struct flac_data
 {
     //FLAC__SeekableStreamDecoder *decoder;
-    FLAC__StreamDecoder *decoder;
-    int bitrate;
-    int abort; /* abort playing (due to an error) */
+    FLAC__StreamDecoder *decoder = nullptr;
+    int bitrate = 0;
+    int abort = 0; /* abort playing (due to an error) */
 
-    qint64 length;
-    qint64 total_samples;
+    qint64 length = 0;
+    qint64 total_samples = 0;
 
     FLAC__byte sample_buffer[SAMPLE_BUFFER_SIZE];
-    unsigned sample_buffer_fill;
+    unsigned sample_buffer_fill = 0;
 
     /* sound parameters */
-    unsigned bits_per_sample;
-    unsigned sample_rate;
-    unsigned channels;
+    unsigned bits_per_sample = 0;
+    unsigned sample_rate = 0;
+    unsigned channels = 0;
 
-    FLAC__uint64 last_decode_position;
+    FLAC__uint64 last_decode_position = 0;
 
     //counters
-    qint64 read_bytes;
-    qint64 frame_counter;
+    qint64 read_bytes = 0;
+    qint64 frame_counter = 0;
 
-    QIODevice *input;
+    QIODevice *input = nullptr;
 };
 
 class DecoderFLAC : public Decoder
@@ -80,17 +80,17 @@ private:
     uint findID3v2(char *data, ulong size); //retuns ID3v2 tag size
     ChannelMap findChannelMap(int channels);
 
-    struct flac_data *m_data;
-    qint64 length_in_bytes;
-    qint64 m_totalBytes;
-    qint64 m_offset;
-    qint64 m_length;
-    QString m_path;
-    CUEParser *m_parser;
-    int m_track;
-    char *m_buf; //buffer for remainig data
-    qint64 m_buf_size;
-    qint64 m_sz; //sample size
+    struct flac_data *m_data = nullptr;
+    qint64 length_in_bytes = 0;
+    qint64 m_totalBytes = 0;
+    qint64 m_offset = 0;
+    qint64 m_length = 0;
+    QString m_path = 0;
+    CueParser *m_parser = nullptr;
+    int m_track = 0;
+    char *m_buf = nullptr; //buffer for remainig data
+    qint64 m_buf_size = 0;
+    qint64 m_sz = 0; //sample size
 };
 
 #endif // __decoder_flac_h

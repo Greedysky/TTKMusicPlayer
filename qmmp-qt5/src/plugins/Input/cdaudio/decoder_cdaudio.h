@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -63,16 +63,16 @@ private:
     static void saveToCache(QList <CDATrack> tracks,  uint disc_id);
     static bool readFromCache(QList <CDATrack> *tracks, uint disc_id);
     // libcdio variables
-    lsn_t m_first_sector;
-    lsn_t m_last_sector;
-    lsn_t m_current_sector;
-    CdIo_t *m_cdio;
+    lsn_t m_first_sector = -1;
+    lsn_t m_last_sector = -1;
+    lsn_t m_current_sector = -1;
+    CdIo_t *m_cdio = nullptr;
     //other variables
     QString m_url;
-    int m_bitrate;
-    qint64 m_totalTime;
+    int m_bitrate = 0;
+    qint64 m_totalTime = 0;
     char *m_buffer;
-    qint64 m_buffer_at;
+    qint64 m_buffer_at = 0;
     //tracks cache
     static QList <CDATrack> m_track_cache;
 };

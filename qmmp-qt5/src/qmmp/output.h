@@ -119,11 +119,11 @@ public:
      * Returns plugin file path.
      * @param factory Output plugin factory.
      */
-    static QString file(OutputFactory *factory);
+    static QString file(const OutputFactory *factory);
     /*!
      * Selects current output \b factory.
      */
-    static void setCurrentFactory(OutputFactory* factory);
+    static void setCurrentFactory(const OutputFactory* factory);
     /*!
      * Returns selected output factory.
      */

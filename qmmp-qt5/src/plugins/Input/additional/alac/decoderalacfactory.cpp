@@ -38,25 +38,26 @@ DecoderProperties DecoderAlacFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderAlacFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderAlacFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderAlac(path);
 }
 
-QList<TrackInfo *> DecoderAlacFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderAlacFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     AlacHelper helper(path.toUtf8().constData());
     if(!helper.initialize())
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     if(parts & TrackInfo::Properties)
@@ -67,10 +68,12 @@ QList<TrackInfo *> DecoderAlacFactory::createPlayList(const QString &path, Track
         info->setDuration(helper.totalTime());
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderAlacFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderAlacFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

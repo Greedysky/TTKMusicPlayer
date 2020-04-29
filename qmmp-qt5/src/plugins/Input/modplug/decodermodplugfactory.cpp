@@ -51,14 +51,15 @@ DecoderProperties DecoderModPlugFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderModPlugFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderModPlugFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderModPlug(path);
 }
 
-QList<TrackInfo *> DecoderModPlugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderModPlugFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <TrackInfo*> list;
+    QList<TrackInfo*> list;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     bool useFileName = settings.value("UseFileName", false).toBool();
 
@@ -106,7 +107,9 @@ QList<TrackInfo *> DecoderModPlugFactory::createPlayList(const QString &path, Tr
     return list;
 }
 
-MetaDataModel* DecoderModPlugFactory::createMetaDataModel(const QString &path, bool)
+MetaDataModel* DecoderModPlugFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return new ModPlugMetaDataModel(path);
 }

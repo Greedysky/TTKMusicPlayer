@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,25 +17,38 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-
-#include <QFile>
-#include <QDir>
-#include <QDirIterator>
-#include <QSettings>
 #include <QTextStream>
 #include <QTextCodec>
-#include <qmmp/decoder.h>
-#include <qmmp/metadatamanager.h>
 #include "cueparser.h"
 
-CUEParser::CUEParser(const QByteArray &array, const QString &path)
+CueParser::CueParser()
+{}
+
+CueParser::CueParser(const QByteArray &data, const QByteArray &codecName)
 {
-    QString album, genre, date, comment;
-    QTextStream textStream (array);
-    textStream.setCodec("UTF-8");
-    m_filePath = path;
-    QString artist;
+    loadData(data, codecName);
+}
+
+CueParser::~CueParser()
+{
+    clear();
+}
+
+void CueParser::loadData(const QByteArray &data, const QByteArray &codecName)
+{
+    loadData(data, QTextCodec::codecForName(codecName));
+}
+
+void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
+{
+    clear();
+
+    QString artist, album, genre, date, comment, file;
     double album_peak = 0.0, album_gain = 0.0;
+    QTextStream textStream(data);
+
+    textStream.setCodec(codec ? codec : QTextCodec::codecForName("UTF-8"));
+
     while (!textStream.atEnd())
     {
         QString line = textStream.readLine().trimmed();
@@ -43,7 +56,12 @@ CUEParser::CUEParser(const QByteArray &array, const QString &path)
         if(words.size() < 2)
             continue;
 
-        if(words[0] == "PERFORMER")
+        if(words[0] == "FILE")
+        {
+            file = words[1];
+            m_files << file;
+        }
+        else if(words[0] == "PERFORMER")
         {
             if(m_tracks.isEmpty())
                 artist = words[1];
@@ -59,7 +77,7 @@ CUEParser::CUEParser(const QByteArray &array, const QString &path)
         }
         else if(words[0] == "TRACK")
         {
-            TrackInfo info("ape://" + path + QString("#%1").arg(words[1].toInt()));
+            TrackInfo info;
             info.setValue(Qmmp::TRACK, words[1].toInt());
             info.setValue(Qmmp::ALBUM, album);
             info.setValue(Qmmp::GENRE, genre);
@@ -79,9 +97,7 @@ CUEParser::CUEParser(const QByteArray &array, const QString &path)
             if(m_tracks.isEmpty())
                 continue;
             m_tracks.last()->offset = getLength(words[2]);
-            int c = m_tracks.count();
-            if(c > 1)
-                m_tracks[c - 2]->info.setDuration(m_tracks[c - 1]->offset - m_tracks[c - 2]->offset);
+            m_tracks.last()->file = file;
         }
         else if(words[0] == "REM")
         {
@@ -104,76 +120,165 @@ CUEParser::CUEParser(const QByteArray &array, const QString &path)
         }
     }
     if(m_tracks.isEmpty())
+        qWarning("CueParser: invalid cue data");
+}
+
+QList<TrackInfo*> CueParser::createPlayList() const
+{
+    QList<TrackInfo*> out;
+    for(const CUETrack *track : m_tracks)
+        out << new TrackInfo(track->info);
+    return out;
+}
+
+QList<TrackInfo*> CueParser::createPlayList(int track) const
+{
+    QList<TrackInfo*> out;
+    if(track < 1 || track > m_tracks.count())
     {
-        qWarning("CUEParser: invalid cue file");
-        return;
+        qWarning("CueParser: invalid track number: %d", track);
+        return out;
     }
+    out << new TrackInfo(m_tracks.at(track - 1)->info);
+    return out;
+}
 
-    QList<TrackInfo *> f_list = MetaDataManager::instance()->createPlayList(m_filePath, TrackInfo::Properties);
-    if(!f_list.isEmpty())
+const QStringList &CueParser::files() const
+{
+    return m_files;
+}
+
+qint64 CueParser::offset(int track) const
+{
+    if(track < 1 || track > m_tracks.count())
     {
-        //calculate last item length
-        m_tracks.last()->info.setDuration(qMax(0LL, f_list.first()->duration() - m_tracks.last()->offset));
-        //add properties
-        foreach(CUETrack *cueTrack, m_tracks)
-            cueTrack->info.setValues(f_list.first()->properties());
-        qDeleteAll(f_list);
-        f_list.clear();
+        qWarning("CueParser: invalid track number: %d", track);
+        return 0;
     }
-}
-
-CUEParser::~CUEParser()
-{
-    qDeleteAll(m_tracks);
-    m_tracks.clear();
-}
-
-QList<TrackInfo *> CUEParser::createPlayList()
-{
-    QList<TrackInfo *> list;
-    foreach(CUETrack *track, m_tracks)
-    {
-        list << new TrackInfo(track->info);
-    }
-    return list;
-}
-
-const QString CUEParser::filePath() const
-{
-    return m_filePath;
-}
-
-qint64 CUEParser::offset(int track) const
-{
     return m_tracks.at(track - 1)->offset;
 }
 
-qint64 CUEParser::duration(int track) const
+qint64 CueParser::duration(int track) const
 {
+    if(track < 1 || track > m_tracks.count())
+    {
+        qWarning("CueParser: invalid track number: %d", track);
+        return 0;
+    }
     return m_tracks.at(track - 1)->info.duration();
 }
 
-int CUEParser::count() const
+QString CueParser::file(int track) const
+{
+    if(track < 1 || track > m_tracks.count())
+    {
+        qWarning("CueParser: invalid track number: %d", track);
+        return 0;
+    }
+    return m_tracks.at(track - 1)->file;
+}
+
+QString CueParser::url(int track) const
+{
+    if(track < 1 || track > m_tracks.count())
+    {
+        qWarning("CueParser: invalid track number: %d", track);
+        return QString();
+    }
+    return m_tracks.at(track - 1)->info.path();
+}
+
+int CueParser::count() const
 {
     return m_tracks.count();
 }
 
-TrackInfo *CUEParser::info(int track)
+bool CueParser::isEmpty() const
 {
+    return m_tracks.isEmpty();
+}
+
+const TrackInfo *CueParser::info(int track) const
+{
+    if(track < 1 || track > m_tracks.count())
+    {
+        qWarning("CueParser: invalid track number: %d", track);
+        return nullptr;
+    }
     return &m_tracks.at(track - 1)->info;
 }
 
-const QString CUEParser::trackURL(int track) const
+void CueParser::setDuration(const QString &file, qint64 duration)
 {
-    return m_tracks.at(track - 1)->info.path();
+    for(int i = 0; i < m_tracks.count(); ++i)
+    {
+        CUETrack *track = m_tracks.at(i);
+        if(track->file == file)
+        {
+            if((i == m_tracks.count() - 1) || (m_tracks.at(i + 1)->file != track->file))
+                track->info.setDuration(duration - track->offset);
+            else
+                track->info.setDuration(m_tracks.at(i + 1)->offset - track->offset);
+
+            if(track->info.duration() < 0)
+                track->info.setDuration(0);
+        }
+    }
 }
 
-const QMap<Qmmp::ReplayGainKey, double>  CUEParser::replayGain(int track) const
+void CueParser::setDuration(qint64 duration)
 {
-    return m_tracks.at(track - 1)->info.replayGainInfo();
+    for(int i = 0; i < m_tracks.count(); ++i)
+    {
+        CUETrack *track = m_tracks.at(i);
+
+        if(i == m_tracks.count() - 1)
+            track->info.setDuration(duration - track->offset);
+        else
+            track->info.setDuration(m_tracks.at(i + 1)->offset - track->offset);
+
+        if(track->info.duration() < 0)
+            track->info.setDuration(0);
+    }
 }
 
-QStringList CUEParser::splitLine(const QString &line)
+void CueParser::setProperties(const QString &file, const QMap<Qmmp::TrackProperty, QString> &properties)
+{
+    for(CUETrack *track : m_tracks)
+    {
+        if(track->file == file)
+            track->info.setValues(properties);
+    }
+}
+
+void CueParser::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
+{
+    for(CUETrack *track : m_tracks)
+        track->info.setValues(properties);
+}
+
+void CueParser::setMetaData(int track, Qmmp::MetaData key, const QVariant &value)
+{
+    if(track < 1 || track > m_tracks.count())
+        qWarning("CueParser: invalid track number: %d", track);
+
+    m_tracks.at(track - 1)->info.setValue(key, value);
+}
+
+void CueParser::setUrl(const QString &scheme, const QString &path)
+{
+    for(int i = 0; i < m_tracks.count(); ++i)
+        m_tracks.at(i)->info.setPath(QString("%1://%2#%3").arg(scheme).arg(path).arg(m_tracks.at(i)->info.value(Qmmp::TRACK)));
+}
+
+void CueParser::clear()
+{
+    qDeleteAll(m_tracks);
+    m_tracks.clear();
+    m_files.clear();
+}
+
+QStringList CueParser::splitLine(const QString &line)
 {
     //qDebug("raw string = %s",qPrintable(line));
     QStringList list;
@@ -189,7 +294,7 @@ QStringList CUEParser::splitLine(const QString &line)
             if(end == -1) //ignore invalid line
             {
                 list.clear();
-                qWarning("CUEParser: unable to parse line: %s",qPrintable(line));
+                qWarning("CueParser: unable to parse line: %s",qPrintable(line));
                 return list;
             }
             list << buf.mid (1, end - 1);
@@ -208,7 +313,7 @@ QStringList CUEParser::splitLine(const QString &line)
     return list;
 }
 
-qint64 CUEParser::getLength(const QString &str)
+qint64 CueParser::getLength(const QString &str)
 {
     QStringList list = str.split(":");
     if(list.size() == 2)

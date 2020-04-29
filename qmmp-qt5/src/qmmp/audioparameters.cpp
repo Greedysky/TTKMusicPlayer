@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -146,11 +146,11 @@ const QString AudioParameters::toString() const
     { Qmmp::PCM_U32LE, "u32le" },
     { Qmmp::PCM_U32BE, "u32be" },
     { Qmmp::PCM_FLOAT, "float" },
-    { Qmmp::PCM_UNKNOWM, QString() }
+    { Qmmp::PCM_UNKNOWN, QString() }
     };
 
     QString name = "unknown";
-    for(int i = 0; format_names[i].format != Qmmp::PCM_UNKNOWM; ++i)
+    for(int i = 0; format_names[i].format != Qmmp::PCM_UNKNOWN; ++i)
     {
         if(m_format == format_names[i].format)
         {
@@ -235,6 +235,6 @@ Qmmp::AudioFormat AudioParameters::findAudioFormat(int bits, ByteOrder byteOrder
     case 32:
         return (byteOrder == LittleEndian) ? Qmmp::PCM_U32LE : Qmmp::PCM_U32BE;
     default:
-        return Qmmp::PCM_UNKNOWM;
+        return Qmmp::PCM_UNKNOWN;
     }
 }

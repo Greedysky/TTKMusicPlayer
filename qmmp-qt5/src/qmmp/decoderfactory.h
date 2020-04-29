@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,21 +30,11 @@
 #include "metadatamodel.h"
 #include "trackinfo.h"
 
-/*! @brief Helper class to store input plugin properties.
+/*! @brief Structure to store input plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT DecoderProperties
+struct QMMP_EXPORT DecoderProperties
 {
-public:
-    /*!
-     * Constructor
-     */
-    DecoderProperties()
-    {
-        hasSettings = false;
-        noInput = false;
-        priority = 0;
-    }
     QString name;             /*!< Input plugin full name */
     QString shortName;        /*!< Input plugin short name for internal usage */
     QStringList filters;      /*!< File filters (example: "*.mp3") */
@@ -52,9 +42,9 @@ public:
     QStringList contentTypes; /*!< Supported content types */
     QStringList protocols;    /*!< A list of supported protocols.
                                *   Should be empty if plugin uses stream input. */
-    bool hasSettings;         /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
-    bool noInput;             /*!< Should be \b true if plugin has own input, otherwise \b false */
-    int priority;             /*!< Decoder priority. Decoders with lowest value will be used first */
+    bool hasSettings = false; /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
+    bool noInput = false;     /*!< Should be \b true if plugin has own input, otherwise \b false */
+    int priority = 0;         /*!< Decoder priority. Decoders with lowest value will be used first */
 };
 /*! @brief Input plugin interface (decoder factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -88,7 +78,7 @@ public:
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist).
      */
-    virtual QList<TrackInfo *> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
+    virtual QList<TrackInfo*> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.

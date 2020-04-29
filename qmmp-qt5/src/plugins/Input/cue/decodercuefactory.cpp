@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,7 +20,7 @@
 
 #include "decoder_cue.h"
 #include "cuemetadatamodel.h"
-#include "cueparser.h"
+#include "cuefile.h"
 #include "decodercuefactory.h"
 
 bool DecoderCUEFactory::canDecode(QIODevice *) const
@@ -41,34 +41,30 @@ DecoderProperties DecoderCUEFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderCUEFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderCUEFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderCUE(path);
 }
 
-QList<TrackInfo *> DecoderCUEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
+QList<TrackInfo*> DecoderCUEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
     Q_UNUSED(parts);
-    CUEParser parser(path);
+    CueFile cueFile(path);
     if(path.contains("://"))
     {
-        QList<TrackInfo *> list;
         int track = path.section("#", -1).toInt();
-        if(!parser.count() || track <= 0 || track > parser.count())
-            return list;
-        list = parser.createPlayList();
-        TrackInfo *info = list.takeAt(track - 1);
-        qDeleteAll(list);
-        return QList<TrackInfo *>() << info;
+        return cueFile.createPlayList(track);
     }
     else
     {
-        ignoredPaths->append(parser.dataFiles());
-        return parser.createPlayList();
+        ignoredPaths->append(cueFile.dataFilePaths());
+        return cueFile.createPlayList();
     }
 }
 
-MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool)
+MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(readOnly);
     return path.startsWith("cue://") ? new CUEMetaDataModel(path) : nullptr;
 }

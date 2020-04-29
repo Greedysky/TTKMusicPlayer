@@ -2,12 +2,12 @@ include($$PWD/../../plugins.pri)
 
 HEADERS += decodercuefactory.h \
            decoder_cue.h \
-           cueparser.h \
+           cuefile.h \
            cuemetadatamodel.h
     
 SOURCES += decodercuefactory.cpp \
            decoder_cue.cpp \
-           cueparser.cpp \
+           cuefile.cpp \
            cuemetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

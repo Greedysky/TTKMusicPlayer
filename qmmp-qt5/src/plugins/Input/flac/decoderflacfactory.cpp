@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 #include <taglib/tmap.h>
 #include <taglib/tfilestream.h>
 #include <taglib/id3v2framefactory.h>
-#include "cueparser.h"
+#include <qmmp/cueparser.h>
 #include "decoder_flac.h"
 #include "flacmetadatamodel.h"
 #include "decoderflacfactory.h"
@@ -60,32 +60,26 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *input)
     return new DecoderFLAC(path, input);
 }
 
-QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    //extract metadata of the one cue track
-    if(path.contains("://"))
+    Q_UNUSED(ignoredFiles);
+
+    int track = -1; //cue track
+    QString filePath = path;
+
+    if(path.contains("://")) //is it cue track?
     {
-        QString filePath = path;
         filePath.remove("flac://");
         filePath.remove(QRegExp("#\\d+$"));
-        int track = path.section("#", -1).toInt();
-        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::AllParts, ignoredFiles);
-        if(list.isEmpty() || track <= 0 || track > list.count())
-        {
-            qDeleteAll(list);
-            list.clear();
-            return list;
-        }
-        TrackInfo *info = list.takeAt(track - 1);
-        qDeleteAll(list);
-        return QList<TrackInfo *>() << info;
+        track = path.section("#", -1).toInt();
+        parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
 
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo *info = new TrackInfo(filePath);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     TagLib::Ogg::XiphComment *tag = nullptr;
@@ -94,15 +88,15 @@ QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, Track
     TagLib::FLAC::File *flacFile = nullptr;
     TagLib::Ogg::FLAC::File *oggFlacFile = nullptr;
 
-    TagLib::FileStream stream(QStringToFileName(path), true);
+    TagLib::FileStream stream(QStringToFileName(filePath), true);
 
-    if(path.endsWith(".flac", Qt::CaseInsensitive))
+    if(filePath.endsWith(".flac", Qt::CaseInsensitive))
     {
         flacFile = new TagLib::FLAC::File(&stream, TagLib::ID3v2::FrameFactory::instance());
         tag = flacFile->xiphComment();
         ap = flacFile->audioProperties();
     }
-    else if(path.endsWith(".oga", Qt::CaseInsensitive))
+    else if(filePath.endsWith(".oga", Qt::CaseInsensitive))
     {
         oggFlacFile = new TagLib::Ogg::FLAC::File(&stream);
         tag = oggFlacFile->tag();
@@ -111,15 +105,37 @@ QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, Track
     else
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
+    }
+
+    if((parts & TrackInfo::Properties) && ap)
+    {
+        info->setValue(Qmmp::BITRATE, ap->bitrate());
+        info->setValue(Qmmp::SAMPLERATE, ap->sampleRate());
+        info->setValue(Qmmp::CHANNELS, ap->channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, ap->bitsPerSample());
+        info->setValue(Qmmp::FORMAT_NAME, flacFile ? "FLAC" : "Ogg FLAC");
+        info->setValue(Qmmp::FILE_SIZE, QFileInfo(filePath).size()); //adds file size for cue tracks
+        info->setDuration(ap->lengthInMilliseconds());
+    }
+
+    if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
+    {
+        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
+        if(items.contains("REPLAYGAIN_TRACK_GAIN"))
+            info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].front()));
+        if(items.contains("REPLAYGAIN_TRACK_PEAK"))
+            info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK,TStringToQString(items["REPLAYGAIN_TRACK_PEAK"].front()));
+        if(items.contains("REPLAYGAIN_ALBUM_GAIN"))
+            info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN,TStringToQString(items["REPLAYGAIN_ALBUM_GAIN"].front()));
+        if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
+            info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
 
     if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
     {
-        if(tag->fieldListMap().contains("CUESHEET"))
+        if(tag->fieldListMap().contains("CUESHEET") && ap)
         {
-            delete info;
-
             QByteArray data(tag->fieldListMap()["CUESHEET"].toString().toCString(true));
             QString diskNumber;
 
@@ -129,19 +145,24 @@ QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, Track
                 diskNumber = TStringToQString(fld.toString()).trimmed();
             }
 
+            CueParser parser(data);
+
+            if(!diskNumber.isEmpty())
+            {
+                for(int i = 1; i <= parser.count(); ++i)
+                    parser.setMetaData(i, Qmmp::DISCNUMBER, diskNumber);
+            }
+            parser.setDuration(ap->lengthInMilliseconds());
+            parser.setProperties(info->properties());
+            parser.setUrl("flac", filePath);
+
             if(flacFile)
                 delete flacFile;
             if(oggFlacFile)
                 delete oggFlacFile;
 
-            CUEParser parser(data, path);
-            if(!diskNumber.isEmpty())
-            {
-                for(int i = 1; i <= parser.count(); ++i)
-                    parser.info(i)->setValue(Qmmp::DISCNUMBER, diskNumber);
-            }
-
-            return parser.createPlayList();
+            delete info;
+            return (track > 0) ? parser.createPlayList(track) : parser.createPlayList();
         }
 
         info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
@@ -162,34 +183,11 @@ QList<TrackInfo *> DecoderFLACFactory::createPlayList(const QString &path, Track
 
     }
 
-    if((parts & TrackInfo::Properties) && ap)
-    {
-        info->setValue(Qmmp::BITRATE, ap->bitrate());
-        info->setValue(Qmmp::SAMPLERATE, ap->sampleRate());
-        info->setValue(Qmmp::CHANNELS, ap->channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, ap->bitsPerSample());
-        info->setValue(Qmmp::FORMAT_NAME, flacFile ? "FLAC" : "Ogg FLAC");
-        info->setDuration(ap->lengthInMilliseconds());
-    }
-
-    if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
-    {
-        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
-        if(items.contains("REPLAYGAIN_TRACK_GAIN"))
-            info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].front()));
-        if(items.contains("REPLAYGAIN_TRACK_PEAK"))
-            info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK,TStringToQString(items["REPLAYGAIN_TRACK_PEAK"].front()));
-        if(items.contains("REPLAYGAIN_ALBUM_GAIN"))
-            info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN,TStringToQString(items["REPLAYGAIN_ALBUM_GAIN"].front()));
-        if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
-            info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
-    }
-
     if(flacFile)
         delete flacFile;
     if(oggFlacFile)
         delete oggFlacFile;
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
 MetaDataModel* DecoderFLACFactory::createMetaDataModel(const QString &path, bool readOnly)

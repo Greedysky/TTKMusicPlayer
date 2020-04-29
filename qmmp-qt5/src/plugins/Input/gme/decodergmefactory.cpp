@@ -42,12 +42,13 @@ DecoderProperties DecoderGmeFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderGmeFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderGmeFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderGme(path);
 }
 
-QList<TrackInfo *> DecoderGmeFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
     GmeHelper helper;
     //is it one track?
@@ -57,7 +58,7 @@ QList<TrackInfo *> DecoderGmeFactory::createPlayList(const QString &path, TrackI
         filePath.remove("gme://");
         filePath.remove(QRegExp("#\\d+$"));
         int track = path.section("#", -1).toInt();
-        QList<TrackInfo *> list = createPlayList(filePath, parts, ignoredFiles);
+        QList<TrackInfo*> list = createPlayList(filePath, parts, ignoredFiles);
         if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
@@ -66,19 +67,21 @@ QList<TrackInfo *> DecoderGmeFactory::createPlayList(const QString &path, TrackI
         }
         TrackInfo *info = list.takeAt(track - 1);
         qDeleteAll(list);
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     Music_Emu *emu = helper.load(path);
     if(!emu)
     {
         qWarning("DecoderGmeFactory: unable to open file");
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
     return helper.createPlayList(parts);
 }
 
-MetaDataModel* DecoderGmeFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderGmeFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

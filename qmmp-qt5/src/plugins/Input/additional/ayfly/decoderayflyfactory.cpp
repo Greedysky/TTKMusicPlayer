@@ -40,25 +40,26 @@ DecoderProperties DecoderAyflyFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderAyflyFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderAyflyFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderAyfly(path);
 }
 
-QList<TrackInfo *> DecoderAyflyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     AyflyHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     if(parts & TrackInfo::MetaData)
@@ -77,10 +78,12 @@ QList<TrackInfo *> DecoderAyflyFactory::createPlayList(const QString &path, Trac
         info->setDuration(helper.totalTime());
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderAyflyFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderAyflyFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

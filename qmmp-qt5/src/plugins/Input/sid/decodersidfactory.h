@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,7 +39,7 @@ public:
     virtual bool canDecode(QIODevice *input) const override;
     virtual DecoderProperties properties() const override;
     virtual Decoder *create(const QString &path, QIODevice *input) override;
-    virtual QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *) override;
+    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *) override;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
 private:

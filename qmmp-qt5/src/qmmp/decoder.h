@@ -135,13 +135,13 @@ public:
      */
     const QMap<Qmmp::TrackProperty, QString> &properties() const;
     /*!
-     * Returns DecoderFactory pointer which supports file \b path or 0 if file \b path is unsupported
+     * Returns DecoderFactory pointer which supports file \b path or nullptr if file \b path is unsupported
      * @param path Full local file path.
      * @param useContent Content-based file type determination (\b true - enabled, \b false - disabled)
      */
     static DecoderFactory *findByFilePath(const QString &path, bool useContent = false);
     /*!
-     * Returns DecoderFactory pointer which supports mime type \b mime or \b 0 if mime type \b mime is unsupported
+     * Returns DecoderFactory pointer which supports mime type \b mime or \b nullptr if mime type \b mime is unsupported
      */
     static DecoderFactory *findByMime(const QString &mime);
     /*!
@@ -150,7 +150,7 @@ public:
      */
     static DecoderFactory *findByContent(QIODevice *input);
     /*!
-     * Returns DecoderFactory pointer which supports protocol \b p or \b 0 if \b url is not supported.
+     * Returns DecoderFactory pointer which supports protocol \b p or \b nullptr if \b protocol is not supported.
      */
     static DecoderFactory *findByProtocol(const QString &p);
     /*!
@@ -170,7 +170,7 @@ public:
      * Returns plugin file path.
      * @param factory Decoder plugin factory.
      */
-    static QString file(DecoderFactory *factory);
+    static QString file(const DecoderFactory *factory);
     /*!
      * Returns a list of supported protocols (including meta-protocols).
      * This fuction ignores disabled decoders.
@@ -181,12 +181,12 @@ public:
      * @param factory Decoder plugin factory.
      * @param enable Plugin enable state (\b true - enable, \b false - disable)
      */
-    static void setEnabled(DecoderFactory* factory, bool enable = true);
+    static void setEnabled(DecoderFactory *factory, bool enable = true);
     /*!
      * Returns \b true if input plugin is enabled, otherwise returns \b false
      * @param factory Decoder plugin factory.
      */
-    static bool isEnabled(DecoderFactory* factory);
+    static bool isEnabled(const DecoderFactory* factory);
 
 protected:
     /*!

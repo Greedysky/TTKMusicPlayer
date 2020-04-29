@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -93,18 +93,18 @@ public:
      * Returns plugin file path.
      * @param factory Effect plugin factory.
      */
-    static QString file(EffectFactory *factory);
+    static QString file(const EffectFactory *factory);
     /*!
      * Sets whether the effect plugin is enabled.
      * @param factory Effect plugin factory.
      * @param enable Plugin enable state (\b true - enable, \b false - disable)
      */
-    static void setEnabled(EffectFactory* factory, bool enable = true);
+    static void setEnabled(EffectFactory *factory, bool enable = true);
     /*!
      * Returns \b true if input plugin is enabled, otherwise returns \b false
      * @param factory Effect plugin factory.
      */
-    static bool isEnabled(EffectFactory* factory);
+    static bool isEnabled(const EffectFactory* factory);
     /*!
      * Finds effect factory object by short name \b shortName. Returns effect factory pointer.
      * If no match is found, 0 is returned. The search is case sensitive.

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,8 +25,8 @@
 #include "qmmp_export.h"
 
 #define QMMP_VERSION_MAJOR 1
-#define QMMP_VERSION_MINOR 3
-#define QMMP_VERSION_PATCH 7
+#define QMMP_VERSION_MINOR 4
+#define QMMP_VERSION_PATCH 0
 #define QMMP_VERSION_STABLE 1
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
@@ -38,6 +38,15 @@
 #define QStringToFileName(s) TagLib::FileName(reinterpret_cast<const wchar_t *>(s.utf16()))
 #else
 #define QStringToFileName(s) s.toLocal8Bit().constData()
+#endif
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 7, 0))
+// this adds const to non-const objects (like std::as_const)
+template <typename T>
+Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
+// prevent rvalue arguments:
+template <typename T>
+void qAsConst(const T &&) = delete;
 #endif
 
 
@@ -105,7 +114,7 @@ public:
      */
     enum AudioFormat
     {
-        PCM_UNKNOWM = -1, /*!< Unknown format */
+        PCM_UNKNOWN = -1, /*!< Unknown format */
         PCM_S8 = 0, /*!< Signed 8 bit */
         PCM_U8,     /*!< Unsigned 8 bit */
         PCM_S16LE,  /*!< Signed 16 bit Little Endian */

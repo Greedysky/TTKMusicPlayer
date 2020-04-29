@@ -32,7 +32,7 @@ HEADERS += \
     eqsettings.h \
     qmmpevents_p.h \
     volume.h \
-    volumecontrol_p.h \
+    volumehandler.h \
     outputwriter_p.h \
     recycler_p.h \
     qmmpplugincache_p.h \
@@ -45,7 +45,8 @@ HEADERS += \
     tagreadandwrite.h \
     florid.h \
     qmmp_export.h \
-    trackinfo.h
+    trackinfo.h \
+    cueparser.h
 
 SOURCES += recycler.cpp \
     decoder.cpp \
@@ -58,7 +59,7 @@ SOURCES += recycler.cpp \
     effect.cpp \
     statehandler.cpp \
     qmmp.cpp \
-    volumecontrol.cpp \
+    volumehandler.cpp \
     metadatamodel.cpp \
     tagmodel.cpp \
     abstractengine.cpp \
@@ -82,7 +83,8 @@ SOURCES += recycler.cpp \
     visualbuffer.cpp \
     tagreadandwrite.cpp \
     florid.cpp \
-    trackinfo.cpp
+    trackinfo.cpp \
+    cueparser.cpp
 
 win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer

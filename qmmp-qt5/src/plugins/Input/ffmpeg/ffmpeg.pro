@@ -3,11 +3,13 @@ include($$PWD/../../plugins.pri)
 HEADERS += decoderffmpegfactory.h \
            decoder_ffmpeg.h \
            ffmpegmetadatamodel.h \
+           decoder_ffmpegcue.h \
            replaygainreader.h
     
 SOURCES += decoderffmpegfactory.cpp \
            decoder_ffmpeg.cpp \
            ffmpegmetadatamodel.cpp \
+           decoder_ffmpegcue.cpp \
            replaygainreader.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

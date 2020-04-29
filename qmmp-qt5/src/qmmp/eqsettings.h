@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,6 +30,16 @@ class QMMP_EXPORT EqSettings
 {
 public:
     /*!
+     * Equalizer band number
+     */
+    enum Bands
+    {
+        EQ_BANDS_10 = 10, /*!< 10 bands */
+        EQ_BANDS_15 = 15, /*!< 15 bands */
+        EQ_BANDS_25 = 25, /*!< 25 bands */
+        EQ_BANDS_31 = 31  /*!< 31 bands */
+    };
+    /*!
      * Constructs a copy of \b other.
      */
     EqSettings(const EqSettings &other);
@@ -37,9 +47,9 @@ public:
      * Constructs an empty equalizer settings (0 dB, disabled)
      * @param bands - Number of bands (supported: 10, 15, 25, 31)
      */
-    EqSettings(int bands = EQ_BANDS_10);
+    EqSettings(Bands bands = EQ_BANDS_10);
     /*!
-     * Returns \b true if equalizer os enabled, otherwise returns \b false.
+     * Returns \b true if equalizer is enabled, otherwise returns \b false.
      */
     bool isEnabled() const;
     /*!
@@ -55,6 +65,10 @@ public:
      */
     int bands() const;
     /*!
+     * Returns \b true if two passes is enabled, otherwise returns \b false.
+     */
+    bool twoPasses() const;
+    /*!
      *  Enables equalizer if \p enabled is \b true or disables it if \p enabled is \b false.
      */
     void setEnabled(bool enabled = true);
@@ -69,6 +83,10 @@ public:
      */
     void setPreamp(double preamp);
     /*!
+     *  Enables two passes for equalizer if \p enabled is \b true or disables it if \p enabled is \b false.
+     */
+    void setTwoPasses(bool enabled = true);
+    /*!
      * Assigns equalizer settings \b s to this settings.
      */
     EqSettings &operator=(const EqSettings &s);
@@ -80,22 +98,13 @@ public:
      * Returns \b true if equalizer settins \b s is not equal to this settings; otherwise returns false.
      */
     bool operator!=(const EqSettings &s) const;
-    /*!
-     * Equalizer bands number
-     */
-    enum BANDS
-    {
-        EQ_BANDS_10 = 10, /*!< 10 bands */
-        EQ_BANDS_15 = 15, /*!< 15 bands */
-        EQ_BANDS_25 = 25, /*!< 25 bands */
-        EQ_BANDS_31 = 31  /*!< 31 bands */
-    };
 
 private:
-    double m_gains[31];
-    double m_preamp;
-    bool m_is_enabled;
+    double m_gains[31] = { 0 };
+    double m_preamp = 0;
+    bool m_is_enabled = false;
     int m_bands;
+    bool m_two_passes = false;
 };
 
 #endif // EQSETTINGS_H

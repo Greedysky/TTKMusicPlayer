@@ -72,10 +72,13 @@ bool TagReadAndWrite::readFile(const QString &path)
     if(tagFile.audioProperties())
     {
         TagLib::AudioProperties *properties = tagFile.audioProperties();
-        m_parameters[TAG_BITRATE] = QString("%1 kbps").arg(properties->bitrate());
-        m_parameters[TAG_SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
-        m_parameters[TAG_CHANNEL] = QString::number(properties->channels());
-        m_parameters[TAG_LENGTH] = QString::number(properties->lengthInMilliseconds());
+        if(properties)
+        {
+            m_parameters[TAG_BITRATE] = QString("%1 kbps").arg(properties->bitrate());
+            m_parameters[TAG_SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
+            m_parameters[TAG_CHANNEL] = QString::number(properties->channels());
+            m_parameters[TAG_LENGTH] = QString::number(properties->lengthInMilliseconds());
+        }
     }
 
     return true;

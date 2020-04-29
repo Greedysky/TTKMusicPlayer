@@ -41,7 +41,7 @@ ChannelMap::ChannelMap(int channels)
 int ChannelMap::mask() const
 {
     int mask = 0;
-    foreach(Qmmp::ChannelPosition channel, *this)
+    for(const Qmmp::ChannelPosition channel : qAsConst(*this))
     {
         mask |= channel;
     }
@@ -79,7 +79,7 @@ const QString ChannelMap::toString() const
     names.insert(Qmmp::CHAN_SIDE_RIGHT, "SR");
 
 
-    foreach(Qmmp::ChannelPosition channel, *this)
+    for(const Qmmp::ChannelPosition channel : qAsConst(*this))
     {
        list << names.value(channel);
     }

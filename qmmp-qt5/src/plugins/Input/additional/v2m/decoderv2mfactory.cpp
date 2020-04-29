@@ -37,25 +37,26 @@ DecoderProperties DecoderV2MFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderV2MFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderV2MFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderV2M(path);
 }
 
-QList<TrackInfo *> DecoderV2MFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderV2MFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     V2MHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     if(parts & TrackInfo::Properties)
@@ -67,10 +68,12 @@ QList<TrackInfo *> DecoderV2MFactory::createPlayList(const QString &path, TrackI
         info->setDuration(helper.totalTime());
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderV2MFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderV2MFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

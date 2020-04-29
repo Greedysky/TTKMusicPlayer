@@ -54,23 +54,16 @@ public:
 
 };
 
-/*! @brief Helper class to store Light plugin properies.
+/*! @brief Structure to store Light plugin properies.
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT LightProperties
+struct QMMP_EXPORT LightProperties
 {
-public:
-    /*!
-     * Constructor
-     */
-    LightProperties()
-    {
-        hasSettings = false;
-    }
     QString name;      /*!< Light plugin full name */
     QString shortName; /*!< Light plugin short name for internal usage */
-    bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    bool hasSettings = false;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
+
 /*! @brief Light plugin interface (Light factory).
  * @author Greedysky <greedysky@163.com>
  */

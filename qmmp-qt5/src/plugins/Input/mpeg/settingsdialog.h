@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,48 +17,33 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#ifndef CUEPARSER_H
-#define CUEPARSER_H
-
-#include <QList>
-#include <QMap>
-#include <QString>
-#include <QStringList>
-#include <qmmp/trackinfo.h>
+#include <QDialog>
+#include "ui_settingsdialog.h"
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class CUEParser
+class SettingsDialog : public QDialog
 {
+Q_OBJECT
 public:
-    CUEParser(const QString &path);
+    SettingsDialog(bool using_rusxmms, QWidget *parent = nullptr);
 
-    ~CUEParser();
+    ~SettingsDialog();
 
-    QList<TrackInfo *> createPlayList();
-    const QString filePath(int track) const;
-    const QStringList dataFiles() const;
-    qint64 offset(int track) const;
-    qint64 duration(int track) const;
-    int count() const;
-    TrackInfo *info(int track);
-    const QString trackURL(int track) const;
-    const QMap<Qmmp::ReplayGainKey, double> replayGain(int track) const;
+    enum TagType {ID3v1 = 0, ID3v2, APE, Disabled};
+
+public slots:
+    void accept() override;
 
 private:
-    struct CUETrack
-    {
-        TrackInfo info;
-        qint64 offset;
-        QString file;
-    };
-    QList <CUETrack *> m_tracks;
-    bool m_dirty;
-    QStringList splitLine(const QString &line);
-    qint64 getLength(const QString &str);
-    QString getDirtyPath(const QString &cue_path, const QString &path);
+    void findCodecs();
+    Ui::SettingsDialog m_ui;
+    QList<QTextCodec *> codecs;
+
 };
 
 #endif

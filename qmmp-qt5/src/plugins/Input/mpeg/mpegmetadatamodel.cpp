@@ -37,7 +37,7 @@
 #include "mpegmetadatamodel.h"
 
 MPEGMetaDataModel::MPEGMetaDataModel(bool using_rusxmms, const QString &path, bool readOnly) :
-    MetaDataModel(readOnly, MetaDataModel::IS_COVER_EDITABLE)
+    MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
     m_file = new TagLib::MPEG::File(m_stream, TagLib::ID3v2::FrameFactory::instance());

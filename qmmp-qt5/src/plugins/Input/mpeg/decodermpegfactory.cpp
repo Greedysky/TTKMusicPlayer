@@ -41,6 +41,7 @@
 #include "decoder_mpg123.h"
 #endif
 #include "decodermpegfactory.h"
+#include "settingsdialog.h"
 
 #define CSTR_TO_QSTR(str,utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
@@ -174,8 +175,9 @@ DecoderProperties DecoderMPEGFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderMPEGFactory::create(const QString &, QIODevice *input)
+Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(path);
     Decoder *d = nullptr;
 #if defined(WITH_MAD) && defined(WITH_MPG123)
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -197,130 +199,139 @@ Decoder *DecoderMPEGFactory::create(const QString &, QIODevice *input)
     return d;
 }
 
-QList<TrackInfo *> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
-    TagLib::Tag *tag = nullptr;
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::MPEG::File fileRef(&stream, TagLib::ID3v2::FrameFactory::instance());
 
     if(parts & TrackInfo::MetaData)
     {
-//        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-//        settings.beginGroup("MPEG");
+        QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+        settings.beginGroup("MPEG");
 
-        QTextCodec *codec = nullptr;
+        QList< QMap<Qmmp::MetaData, QString> > metaData;
+        uint tag_array[3];
+        tag_array[0] = settings.value("tag_1", SettingsDialog::ID3v2).toInt();
+        tag_array[1] = settings.value("tag_2", SettingsDialog::APE).toInt();
+        tag_array[2] = settings.value("tag_3", SettingsDialog::ID3v1).toInt();
+        bool merge = settings.value("merge_tags", false).toBool();
 
-//        uint tag_array[3];
-//        tag_array[0] = settings.value("tag_1", SettingsDialog::ID3v2).toInt();
-//        tag_array[1] = settings.value("tag_2", SettingsDialog::APE).toInt();
-//        tag_array[2] = settings.value("tag_3", SettingsDialog::ID3v1).toInt();
-
-//        QByteArray codecName;
-//        for(int i = 0; i < 3; ++i)
-//        {
-//            codecName.clear();
-//            switch ((uint) tag_array[i])
-//            {
-//            case SettingsDialog::ID3v1:
-//                codecName = settings.value("ID3v1_encoding","ISO-8859-1").toByteArray();
-//                tag = fileRef.ID3v1Tag();
-//                break;
-//            case SettingsDialog::ID3v2:
-//                codecName = settings.value("ID3v2_encoding","UTF-8").toByteArray ();
-                tag = fileRef.ID3v2Tag();
-//                break;
-//            case SettingsDialog::APE:
-//                codecName = "UTF-8";
-//                tag = fileRef.APETag();
-//                break;
-//            case SettingsDialog::Disabled:
-//                break;
-//            }
-//            if(tag && !tag->isEmpty())
-//            {
-//                if(codecName.contains("UTF"))
-//                    codecName = "UTF-8";
-//                if(!codecName.isEmpty())
-//                    codec = QTextCodec::codecForName(codecName);
-//                break;
-//            }
-//        }
-//        settings.endGroup();
-
-        if(m_using_rusxmms)
-            codec = QTextCodec::codecForName("UTF-8");
-
-        if(!codec)
-            codec = QTextCodec::codecForName("UTF-8");
-
-        if(tag && codec)
+        for(int i = 0; i < 3; ++i)
         {
-            bool utf = codec->name().contains("UTF");
-            info->setValue(Qmmp::ALBUM, CSTR_TO_QSTR(tag->album(), utf));
-            info->setValue(Qmmp::ARTIST, CSTR_TO_QSTR(tag->artist(), utf));
-            info->setValue(Qmmp::COMMENT, CSTR_TO_QSTR(tag->comment(), utf));
-            info->setValue(Qmmp::GENRE, CSTR_TO_QSTR(tag->genre(), utf));
-            info->setValue(Qmmp::TITLE, CSTR_TO_QSTR(tag->title(), utf));
-            info->setValue(Qmmp::YEAR, tag->year());
-            info->setValue(Qmmp::TRACK, tag->track());
+            QTextCodec *codec = nullptr;
+            TagLib::Tag *tag = nullptr;
+            QByteArray codecName;
 
-            if(tag == fileRef.ID3v2Tag())
+            switch ((uint) tag_array[i])
             {
-                if(!fileRef.ID3v2Tag()->frameListMap()["TPE2"].isEmpty())
-                {
-                    TagLib::String albumArtist;
-                    albumArtist = fileRef.ID3v2Tag()->frameListMap()["TPE2"].front()->toString();
-                    info->setValue(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(albumArtist, utf));
-                }
-                if(!fileRef.ID3v2Tag()->frameListMap()["TCOM"].isEmpty())
-                {
-                    TagLib::String composer;
-                    composer = fileRef.ID3v2Tag()->frameListMap()["TCOM"].front()->toString();
-                    info->setValue(Qmmp::COMPOSER, CSTR_TO_QSTR(composer, utf));
-                }
-                if(!fileRef.ID3v2Tag()->frameListMap()["TPOS"].isEmpty())
-                {
-                    TagLib::String disc = fileRef.ID3v2Tag()->frameListMap()["TPOS"].front()->toString();
-                    info->setValue(Qmmp::DISCNUMBER, CSTR_TO_QSTR(disc, utf));
-                }
+            case SettingsDialog::ID3v1:
+                codecName = settings.value("ID3v1_encoding","ISO-8859-1").toByteArray();
+                tag = fileRef.ID3v1Tag();
+                break;
+            case SettingsDialog::ID3v2:
+                codecName = settings.value("ID3v2_encoding","UTF-8").toByteArray ();
+                tag = fileRef.ID3v2Tag();
+                break;
+            case SettingsDialog::APE:
+                codecName = "UTF-8";
+                tag = fileRef.APETag();
+                break;
+            case SettingsDialog::Disabled:
+                break;
             }
-            else if(tag == fileRef.APETag())
+
+            if(m_using_rusxmms || codecName.contains("UTF"))
+                codec = QTextCodec::codecForName("UTF-8");
+            else if(!codecName.isEmpty())
+                codec = QTextCodec::codecForName(codecName);
+
+            if(!codec)
+                codec = QTextCodec::codecForName("UTF-8");
+
+            if(tag && codec && !tag->isEmpty())
             {
-                TagLib::APE::Item fld;
-                if(!(fld = fileRef.APETag()->itemListMap()["ALBUM ARTIST"]).isEmpty())
-                    info->setValue(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(fld.toString(), true));
-                if(!(fld = fileRef.APETag()->itemListMap()["COMPOSER"]).isEmpty())
-                    info->setValue(Qmmp::COMPOSER, CSTR_TO_QSTR(fld.toString(), true));
+                bool utf = codec->name().contains("UTF");
+                QMap<Qmmp::MetaData, QString> tags = {
+                    { Qmmp::ARTIST, CSTR_TO_QSTR(tag->artist(), utf) },
+                    { Qmmp::ALBUM, CSTR_TO_QSTR(tag->album(), utf) },
+                    { Qmmp::COMMENT, CSTR_TO_QSTR(tag->comment(), utf) },
+                    { Qmmp::GENRE, CSTR_TO_QSTR(tag->genre(), utf) },
+                    { Qmmp::TITLE, CSTR_TO_QSTR(tag->title(), utf) },
+                    { Qmmp::YEAR, QString::number(tag->year()) },
+                    { Qmmp::TRACK, QString::number(tag->track()) },
+                };
+
+                if(tag == fileRef.ID3v2Tag())
+                {
+                    if(!fileRef.ID3v2Tag()->frameListMap()["TPE2"].isEmpty())
+                    {
+                        TagLib::String albumArtist = fileRef.ID3v2Tag()->frameListMap()["TPE2"].front()->toString();
+                        tags.insert(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(albumArtist, utf));
+                    }
+                    if(!fileRef.ID3v2Tag()->frameListMap()["TCOM"].isEmpty())
+                    {
+                        TagLib::String composer = fileRef.ID3v2Tag()->frameListMap()["TCOM"].front()->toString();
+                        tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(composer, utf));
+                    }
+                    if(!fileRef.ID3v2Tag()->frameListMap()["TPOS"].isEmpty())
+                    {
+                        TagLib::String disc = fileRef.ID3v2Tag()->frameListMap()["TPOS"].front()->toString();
+                        tags.insert(Qmmp::DISCNUMBER, CSTR_TO_QSTR(disc, utf));
+                    }
+                }
+                else if(tag == fileRef.APETag())
+                {
+                    TagLib::APE::Item fld;
+                    if(!(fld = fileRef.APETag()->itemListMap()["ALBUM ARTIST"]).isEmpty())
+                        tags.insert(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(fld.toString(), true));
+                    if(!(fld = fileRef.APETag()->itemListMap()["COMPOSER"]).isEmpty())
+                        tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(fld.toString(), true));
+                }
+
+                metaData << tags;
+
+                if(!merge)
+                    break;
+            }
+        }
+        settings.endGroup();
+
+        for(const QMap<Qmmp::MetaData, QString> &tags : qAsConst(metaData))
+        {
+            for(int i = Qmmp::TITLE; i < Qmmp::DISCNUMBER; ++i)
+            {
+                Qmmp::MetaData key = static_cast<Qmmp::MetaData>(i);
+                if(info->value(key).length() < tags.value(key).length())
+                    info->setValue(key, tags.value(key));
             }
         }
     }
 
-    TagLib::MPEG::Properties *ap = fileRef.audioProperties();
-    if((parts & TrackInfo::Properties) && ap)
+    if((parts & TrackInfo::Properties) && fileRef.audioProperties())
     {
-        info->setValue(Qmmp::BITRATE, ap->bitrate());
-        info->setValue(Qmmp::SAMPLERATE, ap->sampleRate());
-        info->setValue(Qmmp::CHANNELS, ap->channels());
+        info->setValue(Qmmp::BITRATE, fileRef.audioProperties()->bitrate());
+        info->setValue(Qmmp::SAMPLERATE, fileRef.audioProperties()->sampleRate());
+        info->setValue(Qmmp::CHANNELS, fileRef.audioProperties()->channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, 32); //float
-        switch(ap->version())
+        switch(fileRef.audioProperties()->version())
         {
         case TagLib::MPEG::Header::Version1:
-            info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-1 layer %1").arg(ap->layer()));
+            info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-1 layer %1").arg(fileRef.audioProperties()->layer()));
             break;
         case TagLib::MPEG::Header::Version2:
-            info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-2 layer %1").arg(ap->layer()));
+            info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-2 layer %1").arg(fileRef.audioProperties()->layer()));
             break;
         case TagLib::MPEG::Header::Version2_5:
-            info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-2.5 layer %1").arg(ap->layer()));
+            info->setValue(Qmmp::FORMAT_NAME, QString("MPEG-2.5 layer %1").arg(fileRef.audioProperties()->layer()));
         }
-        info->setDuration(ap->lengthInMilliseconds());
+        info->setDuration(fileRef.audioProperties()->lengthInMilliseconds());
     }
 
     if(parts & TrackInfo::ReplayGainInfo)
@@ -362,7 +373,7 @@ QList<TrackInfo *> DecoderMPEGFactory::createPlayList(const QString &path, Track
         }
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
 MetaDataModel* DecoderMPEGFactory::createMetaDataModel(const QString &path, bool readOnly)

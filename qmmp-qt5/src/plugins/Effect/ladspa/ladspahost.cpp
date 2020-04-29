@@ -55,7 +55,7 @@ LADSPAHost::LADSPAHost(QObject *parent) : QObject(parent)
         int id = settings.value("id").toInt();
 
         LADSPAPlugin *plugin = nullptr;
-        foreach(LADSPAPlugin *p, plugins())
+        for(LADSPAPlugin *p : plugins())
         {
             if(p->unique_id == id)
             {
@@ -67,7 +67,7 @@ LADSPAHost::LADSPAHost(QObject *parent) : QObject(parent)
             continue;
 
         LADSPAEffect *effect = createEffect(plugin);
-        foreach(LADSPAControl *c, effect->controls)
+        for(LADSPAControl *c : qAsConst(effect->controls))
             c->value = settings.value(QString("port%1").arg(c->port), c->value).toFloat();
 
         m_effects.append(effect);
@@ -91,7 +91,7 @@ LADSPAHost::~LADSPAHost()
 
         settings.setValue("id", (quint64)m_effects[i]->plugin->desc->UniqueID);
 
-        foreach(LADSPAControl *c, m_effects[i]->controls)
+        for(const LADSPAControl *c : qAsConst(m_effects[i]->controls))
             settings.setValue(QString("port%1").arg(c->port), c->value);
 
         settings.endGroup();
@@ -104,7 +104,7 @@ void LADSPAHost::configure(quint32 freq, int chan)
     m_chan = chan;
     m_freq = freq;
 
-    foreach(LADSPAEffect *e, m_effects)
+    for(LADSPAEffect *e : qAsConst(m_effects))
     {
         //deactivate effect
         deactivateEffect(e);
@@ -148,7 +148,7 @@ void LADSPAHost::loadModules()
     }
     else
         directories = ladspa_path.split(':');
-    foreach(QString dir, directories)
+    for(const QString &dir : qAsConst(directories))
         findModules(dir);
 }
 
@@ -157,9 +157,9 @@ void LADSPAHost::findModules(const QString &path)
     QDir dir (path);
     dir.setFilter(QDir::Files | QDir::Hidden);
     dir.setSorting(QDir::Name);
-    QFileInfoList files = dir.entryInfoList((QStringList() << "*.so"));
+    const QFileInfoList files = dir.entryInfoList((QStringList() << "*.so"));
 
-    foreach(QFileInfo file, files)
+    for(const QFileInfo &file : qAsConst(files))
     {
         void *library = dlopen(qPrintable(file.absoluteFilePath ()), RTLD_LAZY);
         if(!library)
@@ -358,15 +358,15 @@ void LADSPAHost::activateEffect(LADSPAEffect *e)
     {
         LADSPA_Handle handle = desc->instantiate(desc, m_freq);
 
-        foreach(LADSPAControl *c, e->controls)
+        for(LADSPAControl *c : qAsConst(e->controls))
         {
             desc->connect_port(handle, c->port, &c->value);
         }
-        foreach(int port, e->in_ports)
+        for(int port : qAsConst(e->in_ports))
         {
             desc->connect_port(handle, port, m_buf[in_at++]);
         }
-        foreach(int port, e->out_ports)
+        for(int port : qAsConst(e->out_ports))
         {
             desc->connect_port(handle, port, m_buf[out_at++]);
         }
@@ -380,7 +380,7 @@ void LADSPAHost::activateEffect(LADSPAEffect *e)
 void LADSPAHost::deactivateEffect(LADSPAEffect *e)
 {
     const LADSPA_Descriptor *desc = e->plugin->desc;
-    foreach(LADSPA_Handle handle, e->handles)
+    for(const LADSPA_Handle &handle : qAsConst(e->handles))
     {
         if(desc->deactivate)
             desc->deactivate(handle);

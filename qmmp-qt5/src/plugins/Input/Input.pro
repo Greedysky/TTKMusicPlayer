@@ -23,9 +23,9 @@ contains(CONFIG, XMP_PLUGIN){
     SUBDIRS += xmp
 }
 
-contains(CONFIG, FFMPEG_PLUGIN){
-    SUBDIRS += ffmpeg
-}
+#contains(CONFIG, FFMPEG_PLUGIN){
+#    SUBDIRS += ffmpeg
+#}
 
 contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme

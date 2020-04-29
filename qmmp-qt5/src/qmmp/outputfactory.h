@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,22 +31,14 @@ class Volume;
 class Decoder;
 class Output;
 
-/*! @brief Helper class to store output plugin properies.
+/*! @brief Helper structure to store output plugin properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT OutputProperties
+struct OutputProperties
 {
-public:
-    /*!
-     * Constructor
-     */
-    OutputProperties()
-    {
-        hasSettings = false;
-    }
-    QString name;        /*!< Effect plugin full name */
-    QString shortName;   /*!< Effect plugin short name for internal usage */
-    bool hasSettings;    /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    QString name;              /*!< Effect plugin full name */
+    QString shortName;         /*!< Effect plugin short name for internal usage */
+    bool hasSettings = false;  /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
 };
 /*! @brief %Output plugin interface (output factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -68,7 +60,7 @@ public:
     virtual Output *create() = 0;
     /*!
      * Creates volume control object provided by plugin.
-     * Returns \b 0 if volume control is not supported by plugin.
+     * Returns \b nullptr if volume control is not supported by plugin.
      */
     virtual Volume *createVolume() = 0;
 

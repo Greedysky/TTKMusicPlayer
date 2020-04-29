@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -53,7 +53,7 @@ void AbstractEngine::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach(QString filePath, Qmmp::findPlugins("Engines"))
+    for(const QString &filePath : Qmmp::findPlugins("Engines"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
@@ -79,7 +79,7 @@ AbstractEngine *AbstractEngine::create(InputSource *s, QObject *parent)
 
 
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -103,7 +103,7 @@ QList<EngineFactory *> AbstractEngine::factories()
 {
     loadPlugins();
     QList<EngineFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->engineFactory())
             list.append(item->engineFactory());
@@ -115,7 +115,7 @@ QList<EngineFactory *> AbstractEngine::enabledFactories()
 {
     loadPlugins();
     QList<EngineFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -128,7 +128,7 @@ QList<EngineFactory *> AbstractEngine::enabledFactories()
 EngineFactory *AbstractEngine::findByFilePath(const QString& source)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -158,13 +158,13 @@ void AbstractEngine::setEnabled(EngineFactory *factory, bool enable)
     settings.setValue("Engine/disabled_plugins", m_disabledNames);
 }
 
-bool AbstractEngine::isEnabled(EngineFactory *factory)
+bool AbstractEngine::isEnabled(const EngineFactory *factory)
 {
     loadPlugins();
     return !m_disabledNames.contains(factory->properties().shortName);
 }
 
-bool AbstractEngine::isEnabled(AbstractEngine *engine)
+bool AbstractEngine::isEnabled(const AbstractEngine *engine)
 {
     if(engine->objectName().isEmpty()) //qmmp engine
         return true;
@@ -173,10 +173,10 @@ bool AbstractEngine::isEnabled(AbstractEngine *engine)
     return !m_disabledNames.contains(engine->objectName());
 }
 
-QString AbstractEngine::file(EngineFactory *factory)
+QString AbstractEngine::file(const EngineFactory *factory)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(const QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == factory->properties().shortName)
             return item->file();
@@ -189,7 +189,7 @@ QStringList AbstractEngine::protocols()
     loadPlugins();
     QStringList protocolsList;
 
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;

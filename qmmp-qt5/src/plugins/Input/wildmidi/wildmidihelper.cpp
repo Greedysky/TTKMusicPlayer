@@ -113,13 +113,14 @@ void WildMidiHelper::removePtr(void *t)
 
 QStringList WildMidiHelper::configFiles() const
 {
-    QStringList files = QStringList() << Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg";
-    foreach(QString path, files)
+    const QStringList paths = { Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg" };
+    QStringList filtered;
+    for(const QString &path : qAsConst(paths))
     {
-        if(!QFile::exists(path))
-            files.removeAll(path);
+        if(QFile::exists(path))
+            filtered << path;
     }
-    return files;
+    return filtered;
 }
 
 quint32 WildMidiHelper::sampleRate()

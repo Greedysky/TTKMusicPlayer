@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,7 +29,7 @@
 #include "effect.h"
 #include "statehandler.h"
 #include "inputsource.h"
-#include "volumecontrol_p.h"
+#include "volumehandler.h"
 #include "enginefactory.h"
 #include "metadatamanager.h"
 #include "qmmpsettings.h"
@@ -46,9 +46,8 @@ SoundCore::SoundCore(QObject *parent)
     m_instance = this;
     m_engine = nullptr;
     m_nextState = NO_ENGINE;
-    m_muted = false;
     m_handler = new StateHandler(this);
-    m_volumeControl = new VolumeControl(this);
+    m_volumeControl = new VolumeHandler(this);
     connect(m_handler, SIGNAL(elapsedChanged(qint64)), SIGNAL(elapsedChanged(qint64)));
     connect(m_handler, SIGNAL(bitrateChanged(int)), SIGNAL(bitrateChanged(int)));
     connect(m_handler, SIGNAL(audioParametersChanged(AudioParameters)), SIGNAL(audioParametersChanged(AudioParameters)));
@@ -58,12 +57,12 @@ SoundCore::SoundCore(QObject *parent)
     connect(m_volumeControl, SIGNAL(volumeChanged(int, int)), SIGNAL(volumeChanged(int, int)));
     connect(m_volumeControl, SIGNAL(volumeChanged(int)), SIGNAL(volumeChanged(int)));
     connect(m_volumeControl, SIGNAL(balanceChanged(int)), SIGNAL(balanceChanged(int)));
+    connect(m_volumeControl, SIGNAL(mutedChanged(bool)), SIGNAL(mutedChanged(bool)));
 }
 
 SoundCore::~SoundCore()
 {
     stop();
-    MetaDataManager::destroy();
     m_instance = nullptr;
 }
 
@@ -158,13 +157,7 @@ void SoundCore::setVolume(int L, int R)
 
 void SoundCore::setMuted(bool mute)
 {
-    if(m_muted != mute)
-    {
-        m_muted = mute;
-        emit mutedChanged(mute);
-        if(m_engine)
-            m_engine->setMuted(mute);
-    }
+    m_volumeControl->setMuted(mute);
 }
 
 void SoundCore::changeVolume(int delta)
@@ -217,7 +210,7 @@ int SoundCore::balance() const
 
 bool SoundCore::isMuted() const
 {
-    return m_muted;
+    return m_volumeControl->isMuted();
 }
 
 qint64 SoundCore::elapsed() const
@@ -283,7 +276,6 @@ void SoundCore::startNextSource()
     {
         if((m_engine = AbstractEngine::create(s, this)))
         {
-            m_engine->setMuted(m_muted);
             m_engine->play();
             m_nextState = NO_ENGINE;
             return;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2017-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2017-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,7 +21,7 @@
 #ifndef QMMP_EXPORT_H
 #define QMMP_EXPORT_H
 
-#include <QObject>
+#include <QtGlobal>
 
 #ifdef QMMP_LIBRARY
 #    define QMMP_EXPORT Q_DECL_EXPORT

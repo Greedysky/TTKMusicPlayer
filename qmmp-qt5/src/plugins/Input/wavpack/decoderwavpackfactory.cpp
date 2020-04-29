@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,10 +18,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
+#include <qmmp/cueparser.h>
 #include "wavpackmetadatamodel.h"
 #include "decoder_wavpack.h"
 #include "decoderwavpackfactory.h"
-#include "cueparser.h"
 
 bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 {
@@ -42,51 +42,70 @@ DecoderProperties DecoderWavPackFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderWavPack(path);
 }
 
-QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    //extract metadata of one cue track
-    if(path.contains("://"))
+    Q_UNUSED(ignoredFiles);
+
+    int track = -1; //cue track
+    QString filePath = path;
+
+    if(path.contains("://")) //is it cue track?
     {
-        QString filePath = path;
         filePath.remove("wvpack://");
         filePath.remove(QRegExp("#\\d+$"));
-        int track = path.section("#", -1).toInt();
-        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::AllParts, ignoredFiles);
-        if(list.isEmpty() || track <= 0 || track > list.count())
-        {
-            qDeleteAll(list);
-            list.clear();
-            return list;
-        }
-        TrackInfo *info = list.takeAt(track - 1);
-        qDeleteAll(list);
-        return QList<TrackInfo *>() << info;
+        track = path.section("#", -1).toInt();
+        parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
 
-    TrackInfo *info = new TrackInfo(path);
+    TrackInfo *info = new TrackInfo(filePath);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     char err[80] = { 0 };
 
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-    WavpackContext *ctx = WavpackOpenFileInput (path.toUtf8().constData(), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+    WavpackContext *ctx = WavpackOpenFileInput(filePath.toUtf8().constData(), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
-    WavpackContext *ctx = WavpackOpenFileInput (path.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
+    WavpackContext *ctx = WavpackOpenFileInput(filePath.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
     if(!ctx)
     {
         qWarning("DecoderWavPackFactory: error: %s", err);
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, WavpackGetAverageBitrate(ctx, 1));
+        info->setValue(Qmmp::SAMPLERATE, WavpackGetSampleRate(ctx));
+        info->setValue(Qmmp::CHANNELS, WavpackGetNumChannels(ctx));
+        info->setValue(Qmmp::BITS_PER_SAMPLE, WavpackGetBitsPerSample(ctx));
+        info->setValue(Qmmp::FORMAT_NAME, "WavPack");
+        info->setValue(Qmmp::FILE_SIZE, QFileInfo(filePath).size()); //adds file size for cue tracks
+        info->setDuration((qint64)WavpackGetNumSamples(ctx) * 1000 / WavpackGetSampleRate(ctx));
+    }
+
+    if(parts & TrackInfo::ReplayGainInfo)
+    {
+        char value[200] = { 0 };
+        WavpackGetTagItem(ctx, "REPLAYGAIN_TRACK_GAIN", value, sizeof(value));
+        info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, value);
+        WavpackGetTagItem(ctx, "REPLAYGAIN_TRACK_PEAK", value, sizeof(value));
+        info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, value);
+        WavpackGetTagItem(ctx, "REPLAYGAIN_ALBUM_GAIN", value, sizeof(value));
+        info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN, value);
+        WavpackGetTagItem(ctx, "REPLAYGAIN_ALBUM_PEAK", value, sizeof(value));
+        info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, value);
     }
 
     if(parts & TrackInfo::MetaData)
@@ -94,13 +113,18 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
         int cue_len = WavpackGetTagItem (ctx, "cuesheet", nullptr, 0);
         if(cue_len > 0)
         {
-            delete info;
             char value[cue_len + 1];
             memset(value, 0, cue_len + 1);
             WavpackGetTagItem(ctx, "cuesheet", value, cue_len + 1);
+
+            CueParser parser(value);
+            parser.setDuration(info->duration());
+            parser.setProperties(info->properties());
+            parser.setUrl("wvpack", filePath);
+
             WavpackCloseFile(ctx);
-            CUEParser parser(value, path);
-            return parser.createPlayList();
+            delete info;
+            return (track > 0) ? parser.createPlayList(track) : parser.createPlayList();
         }
         else
         {
@@ -128,31 +152,8 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
         }
     }
 
-    if(parts & TrackInfo::Properties)
-    {
-        info->setValue(Qmmp::BITRATE, WavpackGetAverageBitrate(ctx, 1));
-        info->setValue(Qmmp::SAMPLERATE, WavpackGetSampleRate(ctx));
-        info->setValue(Qmmp::CHANNELS, WavpackGetNumChannels(ctx));
-        info->setValue(Qmmp::BITS_PER_SAMPLE, WavpackGetBitsPerSample(ctx));
-        info->setValue(Qmmp::FORMAT_NAME, "WavPack");
-        info->setDuration((qint64)WavpackGetNumSamples(ctx) * 1000 / WavpackGetSampleRate(ctx));
-    }
-
-    if(parts & TrackInfo::ReplayGainInfo)
-    {
-        char value[200] = { 0 };
-        WavpackGetTagItem(ctx, "REPLAYGAIN_TRACK_GAIN", value, sizeof(value));
-        info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, value);
-        WavpackGetTagItem(ctx, "REPLAYGAIN_TRACK_PEAK", value, sizeof(value));
-        info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, value);
-        WavpackGetTagItem(ctx, "REPLAYGAIN_ALBUM_GAIN", value, sizeof(value));
-        info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN, value);
-        WavpackGetTagItem(ctx, "REPLAYGAIN_ALBUM_PEAK", value, sizeof(value));
-        info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, value);
-    }
-
     WavpackCloseFile (ctx);
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
 MetaDataModel* DecoderWavPackFactory::createMetaDataModel(const QString &path, bool readOnly)

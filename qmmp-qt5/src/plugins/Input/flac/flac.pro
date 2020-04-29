@@ -2,12 +2,10 @@ include($$PWD/../../plugins.pri)
 
 HEADERS += decoderflacfactory.h \
            decoder_flac.h \
-           cueparser.h \
            flacmetadatamodel.h
     
 SOURCES += decoderflacfactory.cpp \
            decoder_flac.cpp \
-           cueparser.cpp \
            flacmetadatamodel.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

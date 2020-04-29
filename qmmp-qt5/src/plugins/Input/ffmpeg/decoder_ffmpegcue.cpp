@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,31 +21,17 @@
 #include <QObject>
 #include <QFile>
 #include <QRegExp>
-#include <taglib/apefile.h>
-#include <taglib/apetag.h>
-#include <taglib/tfilestream.h>
 #include <qmmp/cueparser.h>
-#include "decoder_ffap.h"
-#include "decoder_ffapcue.h"
+#include "decoder_ffmpeg.h"
+#include "decoder_ffmpegcue.h"
 
-DecoderFFapCUE::DecoderFFapCUE(const QString &url)
+DecoderFFmpegCue::DecoderFFmpegCue(const QString &url)
     : Decoder()
 {
-    m_decoder = nullptr;
-    m_parser = nullptr;
-    m_buf = nullptr;
-    m_duration = 0;
-    m_offset = 0;
-    m_trackSize = 0;
-    m_written = 0;
     m_url = url;
-    m_track = 0;
-    m_buf_size = 0;
-    m_frameSize = 0;
-    m_input = nullptr;
 }
 
-DecoderFFapCUE::~DecoderFFapCUE()
+DecoderFFmpegCue::~DecoderFFmpegCue()
 {
     if(m_decoder)
         delete m_decoder;
@@ -54,49 +40,58 @@ DecoderFFapCUE::~DecoderFFapCUE()
         delete m_parser;
     m_parser = nullptr;
     if(m_buf)
-        delete[] m_buf;
+        delete [] m_buf;
     m_buf = nullptr;
     if(m_input)
         m_input->deleteLater();
     m_input = nullptr;
 }
 
-bool DecoderFFapCUE::initialize()
+bool DecoderFFmpegCue::initialize()
 {
     QString filePath = m_url;
-    if(!m_url.startsWith("ape://") || filePath.endsWith(".ape"))
+    if(!m_url.startsWith("ffmpeg://"))
     {
-        qWarning("DecoderFFapCUE: invalid url.");
+        qWarning("DecoderFFmpegCue: invalid url.");
         return false;
     }
-    filePath.remove("ape://");
+    filePath.remove("ffmpeg://");
     filePath.remove(QRegExp("#\\d+$"));
     m_track = m_url.section("#", -1).toInt();
 
-    TagLib::FileStream stream(QStringToFileName(filePath), true);
-    TagLib::APE::File file(&stream);
-
-    TagLib::APE::Tag *tag = file.APETag();
-
-    if(!tag || !tag->itemListMap().contains("CUESHEET"))
+    AVFormatContext *in = nullptr;
+#ifdef Q_OS_WIN
+    if(avformat_open_input(&in, filePath.toUtf8().constData(), nullptr, nullptr) < 0)
+#else
+    if(avformat_open_input(&in, filePath.toLocal8Bit().constData(), nullptr, nullptr) < 0)
+#endif
     {
-        qWarning("DecoderFFapCUE: unable to find cuesheet comment.");
+        qDebug("DecoderFFmpegCue: unable to open file");
         return false;
     }
 
-    m_parser = new CueParser(tag->itemListMap()["CUESHEET"].toString().toCString(true));
-    m_parser->setDuration(file.audioProperties()->lengthInMilliseconds());
-    m_parser->setUrl("ape", filePath);
+    avformat_find_stream_info(in, nullptr);
+    AVDictionaryEntry *cuesheet = av_dict_get(in->metadata, "cuesheet", nullptr, 0);
+    if(!cuesheet)
+    {
+        avformat_close_input(&in);
+        qWarning("DecoderFFmpegCue: unable to find cuesheet comment.");
+        return false;
+    }
+
+    m_parser = new CueParser(cuesheet->value);
+    m_parser->setDuration(in->duration * 1000 / AV_TIME_BASE);
+    m_parser->setUrl("ffmpeg", filePath);
 
     if(m_track > m_parser->count() || m_parser->isEmpty())
     {
-        qWarning("DecoderFFapCUE: invalid cuesheet");
+        qWarning("DecoderFFmpegCue: invalid cuesheet");
         return false;
     }
     m_input = new QFile(filePath);
     if(!m_input->open(QIODevice::ReadOnly))
     {
-        qWarning("DecoderFFapCUE: %s", qPrintable(m_input->errorString()));
+        qWarning("DecoderFFmpegCue:: %s", qPrintable(m_input->errorString()));
         return false;
     }
     QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
@@ -105,7 +100,7 @@ bool DecoderFFapCUE::initialize()
     m_duration = m_parser->duration(m_track);
     m_offset = m_parser->offset(m_track);
 
-    m_decoder = new DecoderFFap(filePath, m_input);
+    m_decoder = new DecoderFFmpeg(filePath, m_input);
     if(!m_decoder->initialize())
     {
         qWarning("DecoderFFapCUE: invalid audio file");
@@ -113,12 +108,9 @@ bool DecoderFFapCUE::initialize()
     }
     m_decoder->seek(m_offset);
 
-    configure(m_decoder->audioParameters().sampleRate(),
-              m_decoder->audioParameters().channels(),
-              m_decoder->audioParameters().format());
+    configure(m_decoder->audioParameters());
 
-    m_trackSize = audioParameters().sampleRate() *
-            audioParameters().channels() *
+    m_trackSize = audioParameters().sampleRate() * audioParameters().channels() *
             audioParameters().sampleSize() * m_duration / 1000;
     m_written = 0;
 
@@ -129,12 +121,12 @@ bool DecoderFFapCUE::initialize()
     return true;
 }
 
-qint64 DecoderFFapCUE::totalTime() const
+qint64 DecoderFFmpegCue::totalTime() const
 {
     return m_decoder ? m_duration : 0;
 }
 
-void DecoderFFapCUE::seek(qint64 pos)
+void DecoderFFmpegCue::seek(qint64 pos)
 {
     m_decoder->seek(m_offset + pos);
     m_written = audioParameters().sampleRate() *
@@ -142,7 +134,7 @@ void DecoderFFapCUE::seek(qint64 pos)
             audioParameters().sampleSize() * pos/1000;
 }
 
-qint64 DecoderFFapCUE::read(unsigned char *data, qint64 size)
+qint64 DecoderFFmpegCue::read(unsigned char *data, qint64 size)
 {
     if(m_trackSize - m_written < m_frameSize) //end of cue track
         return 0;
@@ -151,13 +143,13 @@ qint64 DecoderFFapCUE::read(unsigned char *data, qint64 size)
 
     if(m_buf) //read remaining data first
     {
-        len = qMin(m_buf_size, size);
+        len = qMin(m_bufSize, size);
         memmove(data, m_buf, len);
-        if(size >= m_buf_size)
+        if(size >= m_bufSize)
         {
             delete[] m_buf;
             m_buf = nullptr;
-            m_buf_size = 0;
+            m_bufSize = 0;
         }
         else
             memmove(m_buf, m_buf + len, size - len);
@@ -175,23 +167,23 @@ qint64 DecoderFFapCUE::read(unsigned char *data, qint64 size)
     }
 
     qint64 len2 = qMax(qint64(0), m_trackSize - m_written);
-    len2 = (len2 / m_frameSize) * m_frameSize; //whole of samples of each channel
+    len2 = (len2 / m_frameSize) * m_frameSize; //integer number of samples
     m_written += len2;
     //save data of the next track
     if(m_buf)
         delete[] m_buf;
-    m_buf_size = len - len2;
-    m_buf = new char[m_buf_size];
-    memmove(m_buf, data + len2, m_buf_size);
+    m_bufSize = len - len2;
+    m_buf = new char[m_bufSize];
+    memmove(m_buf, data + len2, m_bufSize);
     return len2;
 }
 
-int DecoderFFapCUE::bitrate() const
+int DecoderFFmpegCue::bitrate() const
 {
     return m_decoder->bitrate();
 }
 
-const QString DecoderFFapCUE::nextURL() const
+const QString DecoderFFmpegCue::nextURL() const
 {
     if(m_track +1 <= m_parser->count())
         return m_parser->url(m_track + 1);
@@ -199,7 +191,7 @@ const QString DecoderFFapCUE::nextURL() const
         return QString();
 }
 
-void DecoderFFapCUE::next()
+void DecoderFFmpegCue::next()
 {
     if(m_track +1 <= m_parser->count())
     {

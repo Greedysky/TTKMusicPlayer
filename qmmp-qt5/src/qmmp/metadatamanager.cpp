@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,6 +22,7 @@
 #include <QFileInfo>
 #include <QBuffer>
 #include <QMutexLocker>
+#include <QCoreApplication>
 #include "decoder.h"
 #include "decoderfactory.h"
 #include "abstractengine.h"
@@ -35,21 +36,17 @@ MetaDataManager* MetaDataManager::m_instance = nullptr;
 
 MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
 {
-    if(m_instance)
-        qFatal("MetaDataManager is already created");
-    m_instance = this;
     m_settings = QmmpSettings::instance();
 }
 
 MetaDataManager::~MetaDataManager()
 {
     clearCoverCache();
-    m_instance = nullptr;
 }
 
-QList<TrackInfo *> MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const
+QList<TrackInfo*> MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const
 {
-    QList <TrackInfo *> list;
+    QList<TrackInfo*> list;
     DecoderFactory *fact = nullptr;
     EngineFactory *efact = nullptr;
     QStringList dummyList;
@@ -67,16 +64,19 @@ QList<TrackInfo *> MetaDataManager::createPlayList(const QString &path, TrackInf
     else
     {
         QString scheme = path.section("://",0,0);
-        if(InputSource::protocols().contains(scheme))
+        if(InputSource::findByUrl(path))
         {
             list << new TrackInfo(path);
         }
         else
         {
-            foreach(fact, Decoder::factories())
+            for(DecoderFactory *f : Decoder::factories())
             {
-                if(fact->properties().protocols.contains(scheme) && Decoder::isEnabled(fact))
+                if(f->properties().protocols.contains(scheme) && Decoder::isEnabled(f))
+                {
+                    fact = f;
                     break;
+                }
             }
         }
     }
@@ -86,7 +86,7 @@ QList<TrackInfo *> MetaDataManager::createPlayList(const QString &path, TrackInf
     else if(efact)
         list = efact->createPlayList(path, parts, ignoredPaths);
 
-    foreach(TrackInfo *info, list)
+    for(TrackInfo *info : qAsConst(list))
     {
         if(info->value(Qmmp::DECODER).isEmpty() && (fact || efact))
             info->setValue(Qmmp::DECODER, fact ? fact->properties().shortName : efact->properties().shortName);
@@ -119,7 +119,7 @@ MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool re
         {
             return fact->createMetaDataModel(path, readOnly);
         }
-        foreach(efact, AbstractEngine::enabledFactories())
+        for(EngineFactory *efact : AbstractEngine::enabledFactories())
         {
             if(efact->properties().protocols.contains(scheme))
                 model = efact->createMetaDataModel(path, readOnly);
@@ -133,12 +133,12 @@ MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool re
 QStringList MetaDataManager::filters() const
 {
     QStringList filters;
-    foreach(DecoderFactory *fact, Decoder::enabledFactories())
+    for(const DecoderFactory *fact : Decoder::enabledFactories())
     {
         if(!fact->properties().filters.isEmpty())
             filters << fact->properties().description + " (" + fact->properties().filters.join(" ") + ")";
     }
-    foreach(EngineFactory *fact, AbstractEngine::enabledFactories())
+    for(const EngineFactory *fact : AbstractEngine::enabledFactories())
     {
         if(!fact->properties().filters.isEmpty())
             filters << fact->properties().description + " (" + fact->properties().filters.join(" ") + ")";
@@ -149,12 +149,12 @@ QStringList MetaDataManager::filters() const
 QStringList MetaDataManager::nameFilters() const
 {
     QStringList filters;
-    foreach(DecoderFactory *fact, Decoder::enabledFactories())
+    for(const DecoderFactory *fact : Decoder::enabledFactories())
     {
         if(Decoder::isEnabled(fact))
             filters << fact->properties().filters;
     }
-    foreach(EngineFactory *fact, AbstractEngine::enabledFactories())
+    for(const EngineFactory *fact : AbstractEngine::enabledFactories())
     {
         if(AbstractEngine::isEnabled(fact))
             filters << fact->properties().filters;
@@ -173,6 +173,11 @@ QStringList MetaDataManager::protocols() const
     p << AbstractEngine::protocols();
     p.removeDuplicates();
     return p;
+}
+
+QList<QRegularExpression> MetaDataManager::regExps() const
+{
+    return InputSource::regExps();
 }
 
 bool MetaDataManager::supports(const QString &fileName) const
@@ -245,9 +250,10 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting(QDir::Name);
     QFileInfoList file_list = dir.entryInfoList(m_settings->coverNameFilters());
-    foreach(QFileInfo i, file_list)
+    const auto fileListCopy = file_list; //avoid container modification
+    for(const QFileInfo &i : qAsConst(fileListCopy))
     {
-        foreach(QString pattern, m_settings->coverNameFilters(false))
+        for(const QString &pattern : m_settings->coverNameFilters(false))
         {
             if(QRegExp (pattern, Qt::CaseInsensitive, QRegExp::Wildcard).exactMatch(i.fileName()))
             {
@@ -261,8 +267,8 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     depth--;
     dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
     dir.setSorting(QDir::Name);
-    QFileInfoList dir_info_list = dir.entryInfoList();
-    foreach(QFileInfo i, dir_info_list)
+    const QFileInfoList dir_info_list = dir.entryInfoList();
+    for(const QFileInfo &i : qAsConst(dir_info_list))
     {
         file_list << findCoverFiles(QDir(i.absoluteFilePath()), depth);
     }
@@ -307,10 +313,33 @@ void MetaDataManager::prepareForAnotherThread()
     protocols(); //this hack should load all required plugins
 }
 
+bool MetaDataManager::hasMatch(const QList<QRegularExpression> &regExps, const QString &path)
+{
+    for(const QRegularExpression &re : qAsConst(regExps))
+    {
+        if(re.match(path).hasMatch())
+            return true;
+    }
+    return false;
+}
+
+bool MetaDataManager::hasMatch(const QList<QRegExp> &regExps, const QString &path)
+{
+    for(const QRegExp &re : qAsConst(regExps))
+    {
+        if(re.exactMatch(path))
+            return true;
+    }
+    return false;
+}
+
 MetaDataManager *MetaDataManager::instance()
 {
     if(!m_instance)
-        new MetaDataManager();
+    {
+        m_instance = new MetaDataManager();
+        qAddPostRoutine(&MetaDataManager::destroy);
+    }
     return m_instance;
 }
 
@@ -318,4 +347,5 @@ void MetaDataManager::destroy()
 {
     if(m_instance)
         delete m_instance;
+    m_instance = nullptr;
 }

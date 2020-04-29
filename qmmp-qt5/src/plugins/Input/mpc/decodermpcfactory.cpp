@@ -49,18 +49,19 @@ DecoderProperties DecoderMPCFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderMPCFactory::create(const QString &, QIODevice *input)
+Decoder *DecoderMPCFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(path);
     return new DecoderMPC(input);
 }
 
-QList<TrackInfo *> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
@@ -94,7 +95,7 @@ QList<TrackInfo *> DecoderMPCFactory::createPlayList(const QString &path, TrackI
         info->setDuration(ap->lengthInMilliseconds());
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
 MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, bool readOnly)

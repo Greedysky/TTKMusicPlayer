@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,11 +17,13 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-
-#ifndef VOLUMECONTROL_P_H
-#define VOLUMECONTROL_P_H
+ 
+#ifndef VOLUMEHANDLER_H
+#define VOLUMEHANDLER_H
 
 #include <QObject>
+#include <QMutex>
+#include <atomic>
 #include "qmmp.h"
 #include "volume.h"
 #include "buffer.h"
@@ -29,11 +31,11 @@
 class QTimer;
 class SoftwareVolume;
 
-/*! @internal
- * @brief The VolumeControl class provides volume control access
+/*!
+ * @brief The VolumeHandler class provides volume control access
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT VolumeControl : public QObject
+class QMMP_EXPORT VolumeHandler : public QObject
 {
     Q_OBJECT
 public:
@@ -41,11 +43,11 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    VolumeControl(QObject *parent = nullptr);
+    VolumeHandler(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
-    ~VolumeControl();
+    ~VolumeHandler();
     /*!
      * Setups volume level.
      * Subclass should reimplement this fucntion.
@@ -59,7 +61,7 @@ public:
     void changeVolume(int delta);
     /*!
      * Sets the volume of the left and right channels with keeping of the balance.
-     * @param volume volume of the left and right channels \b[0..100].
+     * @param volume volume of the left and right channels \b [0..100].
      */
     void setVolume(int volume);
     /*!
@@ -67,6 +69,10 @@ public:
      * @param balance balance between left and right channels \b [-100..100].
      */
     void setBalance(int balance);
+    /*!
+     * Sets volume mute state to \b muted.
+     */
+    void setMuted(bool muted);
     /*!
      * Returns left channel volume.
      */
@@ -83,6 +89,20 @@ public:
      * Returns the balance between left and right channels.
      */
     int balance() const;
+    /*!
+     * Returns \b true if volume is muted, otherwise returns \b false.
+     */
+    bool isMuted() const;
+    /*!
+     * Changes buffer volume (software mode only).
+     * \param b \b Buffer pointer.
+     * \param chan \b Number of channels.
+     */
+    void apply(Buffer *b, int chan);
+    /*!
+     * Returns a pointer to the global VolumeHandler instance.
+     */
+    static VolumeHandler *instance();
 
 signals:
     /*!
@@ -93,14 +113,19 @@ signals:
     void volumeChanged(int left, int right);
     /*!
      * Emitted when the highest volume of the left and right channels has changed.
-     * @param volume new value of the highest volume of the left and right channels.
+     * @param volume New value of the highest volume of the left and right channels.
      */
     void volumeChanged(int volume);
     /*!
      * Emitted when the balance between left and right channels has changed.
-     * @param volume new balance value.
+     * @param balance New balance value.
      */
     void balanceChanged(int balance);
+    /*!
+     * Emitted when volume mute state has changed
+     * \param muted New volume mute state.
+     */
+    void mutedChanged(bool muted);
 
 public slots:
     /*!
@@ -113,32 +138,16 @@ public slots:
     void reload();
 
 private:
-    int m_left, m_right;
-    bool m_prev_block;
-    Volume *m_volume;
+    VolumeSettings m_settings;
+    bool m_prev_block = false;
+    std::atomic_bool m_muted = ATOMIC_VAR_INIT(false);
+    std::atomic_bool m_apply = ATOMIC_VAR_INIT(false);
+    QMutex m_mutex;
+    double m_scaleLeft = 0, m_scaleRight = 0;
+    Volume *m_volume = nullptr;
     QTimer *m_timer;
+    static VolumeHandler *m_instance;
 
-};
-/*! @internal
- * @brief The SoftwareVolume class provides access to the software volume control.
- * @author Ilya Kotov <forkotov02@ya.ru>
- */
-class QMMP_EXPORT SoftwareVolume : public Volume
-{
-public:
-    SoftwareVolume();
-    ~SoftwareVolume();
-
-    virtual void setVolume(const VolumeSettings &v) override;
-    virtual VolumeSettings volume() const override;
-    void changeVolume(Buffer *b, int chan);
-
-    static SoftwareVolume *instance();
-
-private:
-    int m_left, m_right;
-    double m_scaleLeft, m_scaleRight;
-    static SoftwareVolume *m_instance;
 };
 
 #endif

@@ -44,25 +44,26 @@ DecoderProperties DecoderYmFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderYmFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderYmFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderYm(path);
 }
 
-QList<TrackInfo *> DecoderYmFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     CYmMusic *music = new CYmMusic;
     if(!music->load(path.toLocal8Bit().constData()))
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     ymMusicInfo_t musicInfo;
@@ -85,10 +86,12 @@ QList<TrackInfo *> DecoderYmFactory::createPlayList(const QString &path, TrackIn
     }
 
     delete music;
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderYmFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderYmFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

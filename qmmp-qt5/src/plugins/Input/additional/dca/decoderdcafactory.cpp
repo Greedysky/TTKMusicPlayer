@@ -37,25 +37,26 @@ DecoderProperties DecoderDCAFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderDCAFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderDCAFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderDCA(path);
 }
 
-QList<TrackInfo *> DecoderDCAFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderDCAFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     DCAHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     if(parts & TrackInfo::Properties)
@@ -67,10 +68,12 @@ QList<TrackInfo *> DecoderDCAFactory::createPlayList(const QString &path, TrackI
         info->setDuration(helper.totalTime());
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderDCAFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderDCAFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

@@ -67,7 +67,7 @@
  *    GainHandle_t **a = (GainHandle_t **) malloc(num_songs*sizeof(GainHandle_t *));
  *
  *
- *    for (i = 0; i < num_songs; i++)
+ *    for(i = 0; i < num_songs; i++)
  *    {
  *        GainHandle_t *handle;
  *        InitGainAnalysis (&handle, 44100);
@@ -79,7 +79,7 @@
  *        fprintf("Recommended dB change for song %2d: %+6.2f dB\n", i+1, GetTitleGain(handle));
  *    }
  *    fprintf ("Recommended dB change for whole album: %+6.2f dB\n", GetAlbumGain(a, num_songs));
- *    for (i = 0; i < num_songs; i++)
+ *    for(i = 0; i < num_songs; i++)
  *        DeinitGainAbalysis(a[i]);
  */
 
@@ -261,7 +261,7 @@ int ResetSampleFrequency (GainHandle_t *handle, long samplefreq)
 {
     int  i = 0;
     // zero out initial values
-    for (i = 0; i < MAX_ORDER; i++)
+    for(i = 0; i < MAX_ORDER; i++)
     {
         handle->linprebuf[i] = handle->lstepbuf[i] = handle->loutbuf[i] = 0;
         handle->rinprebuf[i] = handle->rstepbuf[i] = handle->routbuf[i] = 0.;
@@ -297,7 +297,7 @@ int ResetSampleFrequency (GainHandle_t *handle, long samplefreq)
 int InitGainAnalysis (GainHandle_t **handle, long samplefreq )
 {
     *handle = malloc(sizeof(GainHandle_t));
-    if (ResetSampleFrequency(*handle, samplefreq) != INIT_GAIN_ANALYSIS_OK) {
+    if(ResetSampleFrequency(*handle, samplefreq) != INIT_GAIN_ANALYSIS_OK) {
         return INIT_GAIN_ANALYSIS_ERROR;
     }
 
@@ -328,7 +328,7 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
     long            cursamplepos;
     int             i;
 
-    if ( num_samples == 0 )
+    if( num_samples == 0 )
         return GAIN_ANALYSIS_OK;
 
     cursamplepos = 0;
@@ -340,7 +340,7 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
     default: return GAIN_ANALYSIS_ERROR;
     }
 
-    if (num_samples < MAX_ORDER)
+    if(num_samples < MAX_ORDER)
     {
         memcpy (handle->linprebuf + MAX_ORDER, left_samples , num_samples * sizeof(Float_t) );
         memcpy (handle->rinprebuf + MAX_ORDER, right_samples, num_samples * sizeof(Float_t) );
@@ -355,11 +355,11 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
     {
         cursamples = batchsamples > handle->sampleWindow - handle->totsamp ?
                     handle->sampleWindow - handle->totsamp : batchsamples;
-        if (cursamplepos < MAX_ORDER)
+        if(cursamplepos < MAX_ORDER)
         {
             curleft  = handle->linpre + cursamplepos;
             curright = handle->rinpre + cursamplepos;
-            if (cursamples > MAX_ORDER - cursamplepos)
+            if(cursamples > MAX_ORDER - cursamplepos)
                 cursamples = MAX_ORDER - cursamplepos;
         }
         else
@@ -426,12 +426,12 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
         batchsamples    -= cursamples;
         cursamplepos    += cursamples;
         handle->totsamp += cursamples;
-        if (handle->totsamp == handle->sampleWindow)
+        if(handle->totsamp == handle->sampleWindow)
         {  // Get the Root Mean Square (RMS) for this set of samples
             double val  = STEPS_per_dB * 10. * log10((handle->lsum+handle->rsum) / handle->totsamp * 0.5 + 1.e-37);
             int    ival = (int) val;
-            if ( ival <                     0 ) ival = 0;
-            if ( ival >= (int)(sizeof(handle->A)/sizeof(*handle->A)) ) ival = sizeof(handle->A)/sizeof(*handle->A) - 1;
+            if( ival <                     0 ) ival = 0;
+            if( ival >= (int)(sizeof(handle->A)/sizeof(*handle->A)) ) ival = sizeof(handle->A)/sizeof(*handle->A) - 1;
             handle->A [ival]++;
             handle->lsum = handle->rsum = 0.;
             memmove (handle->loutbuf , handle->loutbuf  + handle->totsamp, MAX_ORDER * sizeof(Float_t) );
@@ -440,10 +440,10 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
             memmove (handle->rstepbuf, handle->rstepbuf + handle->totsamp, MAX_ORDER * sizeof(Float_t) );
             handle->totsamp = 0;
         }
-        if (handle->totsamp > handle->sampleWindow)   // somehow I really screwed up: Error in programming! Contact author about totsamp > sampleWindow
+        if(handle->totsamp > handle->sampleWindow)   // somehow I really screwed up: Error in programming! Contact author about totsamp > sampleWindow
             return GAIN_ANALYSIS_ERROR;
     }
-    if (num_samples < MAX_ORDER)
+    if(num_samples < MAX_ORDER)
     {
         memmove(handle->linprebuf, handle->linprebuf + num_samples, (MAX_ORDER-num_samples) * sizeof(Float_t) );
         memmove(handle->rinprebuf, handle->rinprebuf + num_samples, (MAX_ORDER-num_samples) * sizeof(Float_t) );
@@ -467,15 +467,15 @@ static Float_t analyzeResult (Uint32_t* Array, size_t len)
     size_t    i;
 
     elems = 0;
-    for (i = 0; i < len; i++)
+    for(i = 0; i < len; i++)
         elems += Array[i];
-    if (elems == 0)
+    if(elems == 0)
         return GAIN_NOT_ENOUGH_SAMPLES;
 
     upper = (Int32_t) ceil (elems * (1. - RMS_PERCENTILE));
-    for (i = len; i-- > 0; )
+    for(i = len; i-- > 0; )
     {
-        if ((upper -= Array[i]) <= 0)
+        if((upper -= Array[i]) <= 0)
             break;
     }
 
@@ -489,13 +489,13 @@ Float_t GetTitleGain(GainHandle_t *handle)
 
     retval = analyzeResult (handle->A, sizeof(handle->A)/sizeof(*handle->A));
 
-    /*for (i = 0; i < (int)(sizeof(handle->A)/sizeof(*handle->A)); i++ )
+    /*for(i = 0; i < (int)(sizeof(handle->A)/sizeof(*handle->A)); i++ )
     {
         handle->B[i] += handle->A[i];
         handle->A[i]  = 0;
     }*/
 
-    for (i = 0; i < MAX_ORDER; i++ )
+    for(i = 0; i < MAX_ORDER; i++ )
     {
         handle->linprebuf[i] = handle->lstepbuf[i] = handle->loutbuf[i] = 0.f;
         handle->rinprebuf[i] = handle->rstepbuf[i] = handle->routbuf[i] = 0.f;

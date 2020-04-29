@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -71,11 +71,6 @@ public:
      */
     virtual void pause() = 0;
     /*!
-     * Mutes/Restores volume. Subclass should reimplement this function.
-     * @param muted - state of volume (\b true - mute, \b false - restore)
-     */
-    virtual void setMuted(bool muted) = 0;
-    /*!
      * Creates Engine object.
      * @param s InputSource object.
      * @param parent Parent object.
@@ -105,17 +100,17 @@ public:
      * This function uses \b QObject::objectName() function.
      * @param factory Engine plugin factory.
      */
-    static bool isEnabled(EngineFactory *factory);
+    static bool isEnabled(const EngineFactory *factory);
     /*!
      * Returns \b true if engine is enabled, otherwise returns \b false
      * @param engine Engine object.
      */
-    static bool isEnabled(AbstractEngine *engine);
+    static bool isEnabled(const AbstractEngine *engine);
     /*!
      * Returns plugin file path.
      * @param factory Engine plugin factory.
      */
-    static QString file(EngineFactory *factory);
+    static QString file(const EngineFactory *factory);
     /*!
      * Returns a list of supported protocols (including meta-protocols).
      * This fuction ignores disabled engines.

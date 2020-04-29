@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,6 +21,7 @@
 #ifndef VISUALFACTORY_H
 #define VISUALFACTORY_H
 
+#include <QString>
 #include "qmmp_export.h"
 
 class QObject;
@@ -28,22 +29,14 @@ class QWidget;
 class QDialog;
 class Visual;
 
-/*! @brief Helper class to store visual plugin properies.
+/*! @brief Structure to store visual plugin properies.
  *  @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT VisualProperties
+struct QMMP_EXPORT VisualProperties
 {
-public:
-    /*!
-     * Constructor
-     */
-    VisualProperties()
-    {
-        hasSettings = false;
-    }
-    QString name;        /*!< Effect plugin full name */
-    QString shortName;   /*!< Effect plugin short name for internal usage */
-    bool hasSettings;    /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    QString name;              /*!< Effect plugin full name */
+    QString shortName;         /*!< Effect plugin short name for internal usage */
+    bool hasSettings = false;  /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
 };
 /*! @brief %Visual plugin interface (visual factory).
  * @author Ilya Kotov <forkotov02@ya.ru>

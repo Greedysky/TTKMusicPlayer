@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -69,6 +69,28 @@ QMap<Qmmp::MetaData, QString> InputSource::takeMetaData()
     return m_metaData;
 }
 
+void InputSource::setProperty(Qmmp::TrackProperty key, const QVariant &value)
+{
+    QString strValue = value.toString();
+    if(strValue.isEmpty() || strValue == "0")
+        m_properties.remove(key);
+    else
+        m_properties[key] = strValue;
+}
+
+void InputSource::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
+{
+    for(const Qmmp::TrackProperty &key : properties.keys())
+    {
+        setProperty(key, properties.value(key));
+    }
+}
+
+const QMap<Qmmp::TrackProperty, QString> &InputSource::properties() const
+{
+    return m_properties;
+}
+
 void InputSource::addMetaData(const QMap<Qmmp::MetaData, QString> &metaData)
 {
     m_metaData = metaData;
@@ -99,24 +121,14 @@ QList<QmmpPluginCache*> *InputSource::m_cache = nullptr;
 InputSource *InputSource::create(const QString &url, QObject *parent)
 {
     loadPlugins();
-    InputSourceFactory *factory = nullptr;
     if(!url.contains("://")) //local file path doesn't contain "://"
     {
         qDebug("InputSource: using file transport");
         return new FileInputSource(url, parent);
     }
-    foreach(QmmpPluginCache *item, *m_cache)
-    {
-        if(m_disabledNames.contains(item->shortName()))
-            continue;
 
-        factory = item->inputSourceFactory();
+    InputSourceFactory *factory = findByUrl(url);
 
-        if(factory && factory->properties().protocols.contains(url.section("://", 0, 0)))
-            break;
-        else
-            factory = nullptr;
-    }
     if(factory)
     {
         qDebug("InputSource: using %s transport", qPrintable(url.section("://", 0, 0)));
@@ -133,7 +145,7 @@ QList<InputSourceFactory *> InputSource::factories()
 {
     loadPlugins();
     QList<InputSourceFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->inputSourceFactory())
             list.append(item->inputSourceFactory());
@@ -145,7 +157,7 @@ QList<InputSourceFactory *> InputSource::enabledFactories()
 {
     loadPlugins();
     QList<InputSourceFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -155,10 +167,10 @@ QList<InputSourceFactory *> InputSource::enabledFactories()
     return list;
 }
 
-QString InputSource::file(InputSourceFactory *factory)
+QString InputSource::file(const InputSourceFactory *factory)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(const QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == factory->properties().shortName)
             return item->file();
@@ -171,7 +183,7 @@ QStringList InputSource::protocols()
     loadPlugins();
     QStringList protocolsList;
 
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -180,6 +192,51 @@ QStringList InputSource::protocols()
     }
     protocolsList.removeDuplicates();
     return protocolsList;
+}
+
+QList<QRegularExpression> InputSource::regExps()
+{
+    loadPlugins();
+    QList<QRegularExpression> regExpList;
+
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+        if(item->inputSourceFactory())
+            regExpList << item->inputSourceFactory()->properties().regExps;
+    }
+    return regExpList;
+}
+
+InputSourceFactory *InputSource::findByUrl(const QString &url)
+{
+    loadPlugins();
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+
+        InputSourceFactory *factory = item->inputSourceFactory();
+        for(const QRegularExpression &r : factory->properties().regExps)
+        {
+            if(r.match(url).hasMatch())
+                return factory;
+        }
+    }
+
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+
+        InputSourceFactory *factory = item->inputSourceFactory();
+
+        if(factory && factory->properties().protocols.contains(url.section("://", 0, 0)))
+            return factory;
+    }
+
+    return nullptr;
 }
 
 void InputSource::setEnabled(InputSourceFactory *factory, bool enable)
@@ -201,7 +258,7 @@ void InputSource::setEnabled(InputSourceFactory *factory, bool enable)
     settings.setValue("Transports/disabled_plugins", m_disabledNames);
 }
 
-bool InputSource::isEnabled(InputSourceFactory *factory)
+bool InputSource::isEnabled(const InputSourceFactory *factory)
 {
     loadPlugins();
     return !m_disabledNames.contains(factory->properties().shortName);
@@ -214,7 +271,7 @@ void InputSource::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach(QString filePath, Qmmp::findPlugins("Transports"))
+    for(const QString &filePath : Qmmp::findPlugins("Transports"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())

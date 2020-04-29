@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -47,8 +47,9 @@ DecoderProperties DecoderVorbisFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderVorbisFactory::create(const QString &, QIODevice *input)
+Decoder *DecoderVorbisFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(path);
     return new DecoderVorbis(input);
 }
 
@@ -57,13 +58,13 @@ MetaDataModel* DecoderVorbisFactory::createMetaDataModel(const QString &path, bo
     return new VorbisMetaDataModel(path, readOnly);
 }
 
-QList<TrackInfo *> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     TagLib::FileStream stream(QStringToFileName(path), true);
@@ -114,5 +115,5 @@ QList<TrackInfo *> DecoderVorbisFactory::createPlayList(const QString &path, Tra
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,29 +22,23 @@
 #define INPUTSOURCEFACTORY_H
 
 #include <QObject>
+#include <QRegularExpression>
+#include <QList>
 #include "qmmp_export.h"
 
 class QStringList;
 class InputSource;
 
-/*! @brief Helper class to store transport plugin properies.
+/*! @brief Structure to store transport plugin properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT InputSourceProperties
+struct QMMP_EXPORT InputSourceProperties
 {
-public:
-    /*!
-     * Constructor
-     */
-    InputSourceProperties()
-    {
-        hasSettings = false;
-    }
-
-    QString name;          /*!< Transport plugin full name */
-    QString shortName;     /*!< Transport plugin name for internal usage */
-    QStringList protocols; /*!< A list of supported protocols. */
-    bool hasSettings;      /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
+    QString name;                      /*!< Transport plugin full name */
+    QString shortName;                 /*!< Transport plugin name for internal usage */
+    QList<QRegularExpression> regExps; /*!< A list of regular expressions for supported URLs (has highest priority). */
+    QStringList protocols;             /*!< A list of supported protocols. */
+    bool hasSettings = false;          /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
 };
 
 
@@ -64,7 +58,20 @@ public:
      * @param parent Parent object.
      */
     virtual InputSource *create(const QString &url, QObject *parent = nullptr) = 0;
-
+    /*!
+     * Shows settings dialog.
+     * @param parent Parent widget.
+     */
+    virtual void showSettings(QWidget *parent) = 0;
+    /*!
+     * Shows about dialog.
+     * @param parent Parent widget.
+     */
+    virtual void showAbout(QWidget *parent) = 0;
+    /*!
+     * Returns translation file path without locale code and extension
+     */
+    virtual QString translation() const = 0;
 };
 
 Q_DECLARE_INTERFACE(InputSourceFactory, "InputSourceFactory/1.0")

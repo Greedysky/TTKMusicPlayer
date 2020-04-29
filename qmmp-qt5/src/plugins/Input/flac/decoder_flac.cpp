@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,7 +34,7 @@
 #include <QIODevice>
 #include <FLAC/all.h>
 #include <stdint.h>
-#include "cueparser.h"
+#include <qmmp/cueparser.h>
 #include "decoder_flac.h"
 
 #define BITRATE_CALC_TIME_MS 2000
@@ -267,13 +267,6 @@ DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
     m_data = new flac_data;
     m_data->decoder = nullptr;
     m_data->input = i;
-    m_parser = nullptr;
-    length_in_bytes = 0;
-    m_totalBytes = 0;
-    m_sz = 0;
-    m_buf = nullptr;
-    m_offset = 0;
-    m_track = 0;
 }
 
 
@@ -304,31 +297,32 @@ bool DecoderFLAC::initialize()
             TagLib::FileStream stream(QStringToFileName(p), true);
             TagLib::FLAC::File fileRef(&stream, TagLib::ID3v2::FrameFactory::instance());
             //looking for cuesheet comment
-            TagLib::Ogg::XiphComment *xiph_comment = fileRef.xiphComment();
+            TagLib::Ogg::XiphComment *tag = fileRef.xiphComment();
+            TagLib::FLAC::Properties *ap = fileRef.audioProperties();
 
-            if(xiph_comment && xiph_comment->fieldListMap().contains("CUESHEET"))
+            if(ap && tag && tag->fieldListMap().contains("CUESHEET"))
             {
                 qDebug("DecoderFLAC: using cuesheet xiph comment.");
-                m_parser = new CUEParser(xiph_comment->fieldListMap()["CUESHEET"].toString()
-                                            .toCString(true), p);
+                m_parser = new CueParser(tag->fieldListMap()["CUESHEET"].toString() .toCString(true));
+                m_parser->setDuration(fileRef.audioProperties()->lengthInMilliseconds());
+                m_parser->setUrl("flac", p);
                 m_track = m_path.section("#", -1).toInt();
-                if(m_track > m_parser->count())
+                if(m_track < 1 || m_track > m_parser->count())
                 {
                     qWarning("DecoderFLAC: invalid cuesheet xiph comment");
                     return false;
                 }
                 m_data->input = new QFile(p);
                 m_data->input->open(QIODevice::ReadOnly);
-                if(xiph_comment->contains("DISCNUMBER") && !xiph_comment->fieldListMap()["DISCNUMBER"].isEmpty())
+                if(tag->contains("DISCNUMBER") && !tag->fieldListMap()["DISCNUMBER"].isEmpty())
                 {
-                    TagLib::StringList fld = xiph_comment->fieldListMap()["DISCNUMBER"];
+                    TagLib::StringList fld = tag->fieldListMap()["DISCNUMBER"];
                     for(int i = 1; i <= m_parser->count(); i++)
                     {
-                        m_parser->info(i)->setValue(Qmmp::DISCNUMBER, TStringToQString(fld.toString()));
+                        m_parser->setMetaData(i, Qmmp::DISCNUMBER, TStringToQString(fld.toString()));
                     }
                 }
-                QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
-                addMetaData(metaData); //send metadata
+                addMetaData(m_parser->info(m_track)->metaData()); //send metadata
             }
             else
             {
@@ -338,7 +332,7 @@ bool DecoderFLAC::initialize()
         }
         else
         {
-            qWarning("DecoderFLAC: cannot initialize.  No input.");
+            qWarning("DecoderFLAC: cannot initialize. No input.");
             return false;
         }
     }
@@ -456,7 +450,7 @@ bool DecoderFLAC::initialize()
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length/1000;
-        setReplayGainInfo(m_parser->replayGain(m_track));
+        setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         seek(0);
     }
     m_totalBytes = 0;
@@ -557,7 +551,7 @@ void DecoderFLAC::deinit()
 const QString DecoderFLAC::nextURL() const
 {
     if(m_parser && m_track +1 <= m_parser->count())
-        return m_parser->trackURL(m_track + 1);
+        return m_parser->url(m_track + 1);
     else
         return QString();
 }
@@ -573,7 +567,7 @@ void DecoderFLAC::next()
                           audioParameters().channels() *
                           audioParameters().sampleSize() * m_length/1000;
         addMetaData(m_parser->info(m_track)->metaData());
-        setReplayGainInfo(m_parser->replayGain(m_track));
+        setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         m_totalBytes = 0;
     }
 }

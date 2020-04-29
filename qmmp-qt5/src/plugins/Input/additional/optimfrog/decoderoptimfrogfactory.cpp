@@ -41,23 +41,19 @@ DecoderProperties DecoderOptimFROGFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderOptimFROGFactory::create(const QString &, QIODevice *input)
+Decoder *DecoderOptimFROGFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(path);
     return new DecoderOptimFROG(input);
 }
 
-MetaDataModel *DecoderOptimFROGFactory::createMetaDataModel(const QString &path, bool)
-{
-    return new OptimFROGMetaDataModel(path);
-}
-
-QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderOptimFROGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     QFile file(path);
@@ -67,7 +63,7 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
         if(!helper.initialize())
         {
             delete info;
-            return QList<TrackInfo *>();
+            return QList<TrackInfo*>();
         }
 
         if(parts & TrackInfo::Properties)
@@ -100,5 +96,11 @@ QList<TrackInfo *> DecoderOptimFROGFactory::createPlayList(const QString &path, 
         }
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
+}
+
+MetaDataModel *DecoderOptimFROGFactory::createMetaDataModel(const QString &path, bool readOnly)
+{
+    Q_UNUSED(readOnly);
+    return new OptimFROGMetaDataModel(path);
 }

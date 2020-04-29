@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,24 +33,17 @@
 
 FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
 #ifdef HAS_PICTURE_LIST
-    : MetaDataModel(true, MetaDataModel::IS_COVER_EDITABLE)
+    : MetaDataModel(true, MetaDataModel::IsCoverEditable)
 #else
     : MetaDataModel(true)
 #endif
 {
-    m_file = nullptr;
-    m_stream = nullptr;
-    m_tag = nullptr;
-
+    m_path = path;
     if(path.startsWith("flac://"))
     {
-        QString p = path;
-        p.remove("flac://");
-        p.remove(QRegExp("#\\d+$"));
-        m_path = p;
+        m_path.remove("flac://");
+        m_path.remove(QRegExp("#\\d+$"));
     }
-    else
-        m_path = path;
 
     if(m_path.endsWith(".flac", Qt::CaseInsensitive))
     {

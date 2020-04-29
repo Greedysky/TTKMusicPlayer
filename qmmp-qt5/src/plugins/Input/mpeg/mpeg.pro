@@ -2,11 +2,15 @@ include($$PWD/../../plugins.pri)
 
 HEADERS += decodermpegfactory.h \
 	   tagextractor.h \
-	   mpegmetadatamodel.h
+	   mpegmetadatamodel.h \
+	   settingsdialog.h
 
 SOURCES += decodermpegfactory.cpp \
 	   tagextractor.cpp \
-	   mpegmetadatamodel.cpp
+	   mpegmetadatamodel.cpp \
+	   settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

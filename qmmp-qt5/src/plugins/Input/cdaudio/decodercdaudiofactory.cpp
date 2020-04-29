@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -48,14 +48,15 @@ DecoderProperties DecoderCDAudioFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderCDAudioFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderCDAudioFactory::create(const QString &url, QIODevice *input)
 {
-    return new DecoderCDAudio(path);
+    Q_UNUSED(input);
+    return new DecoderCDAudio(url);
 }
 
-QList<TrackInfo *> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList<TrackInfo *> list;
+    QList<TrackInfo*> list;
 
     if(path.contains("#"))
         return list;
@@ -63,14 +64,16 @@ QList<TrackInfo *> DecoderCDAudioFactory::createPlayList(const QString &path, Tr
     QString device_path = path;
     device_path.remove("cdda://");
     QList <CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
-    foreach(CDATrack t, tracks)
+    for(const CDATrack &t : qAsConst(tracks))
     {
         list << new TrackInfo(t.info);
     }
     return list;
 }
 
-MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(readOnly);
+    Q_UNUSED(path);
     return nullptr;
 }

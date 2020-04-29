@@ -9,7 +9,7 @@
 #include "audioparameters.h"
 #include "qmmpsettings.h"
 #include "buffer.h"
-#include "volumecontrol_p.h"
+#include "volumehandler.h"
 #include "qmmp.h"
 #include "qmmpplugincache_p.h"
 #include "output.h"
@@ -18,7 +18,7 @@ Output::Output()
 {
     m_frequency = 0;
     m_sample_size = 0;
-    m_format = Qmmp::PCM_UNKNOWM;
+    m_format = Qmmp::PCM_UNKNOWN;
 }
 
 void Output::configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
@@ -83,7 +83,7 @@ void Output::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach(QString filePath, Qmmp::findPlugins("Output"))
+    for(const QString &filePath : Qmmp::findPlugins("Output"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
@@ -114,7 +114,7 @@ QList<OutputFactory *> Output::factories()
 {
     loadPlugins();
     QList<OutputFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->outputFactory())
             list.append(item->outputFactory());
@@ -122,10 +122,10 @@ QList<OutputFactory *> Output::factories()
     return list;
 }
 
-QString Output::file(OutputFactory *factory)
+QString Output::file(const OutputFactory *factory)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(const QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == factory->properties().shortName)
             return item->file();
@@ -133,7 +133,7 @@ QString Output::file(OutputFactory *factory)
     return QString();
 }
 
-void Output::setCurrentFactory(OutputFactory* factory)
+void Output::setCurrentFactory(const OutputFactory *factory)
 {
     loadPlugins();
     if(file(factory).isEmpty())
@@ -160,7 +160,7 @@ OutputFactory *Output::currentFactory()
     QString name = settings.value("Output/current_plugin", "oss4").toString();
 #endif
 #endif //QMMP_DEFAULT_OUTPUT
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == name && item->outputFactory())
             return item->outputFactory();

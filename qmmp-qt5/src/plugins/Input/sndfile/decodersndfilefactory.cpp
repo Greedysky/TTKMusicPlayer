@@ -121,18 +121,19 @@ DecoderProperties DecoderSndFileFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderSndFileFactory::create(const QString &, QIODevice *input)
+Decoder *DecoderSndFileFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(path);
     return new DecoderSndFile(input);
 }
 
-QList<TrackInfo *> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     SF_INFO snd_info;
@@ -147,7 +148,7 @@ QList<TrackInfo *> DecoderSndFileFactory::createPlayList(const QString &path, Tr
     if(!sndfile)
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     if(parts & TrackInfo::MetaData)
@@ -202,10 +203,12 @@ QList<TrackInfo *> DecoderSndFileFactory::createPlayList(const QString &path, Tr
     }
 
     sf_close(sndfile);
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -440,6 +440,12 @@ VolumeSettings VolumeALSA::volume() const
     return vol;
 }
 
+Volume::VolumeFlags VolumeALSA::flags() const
+{
+
+    return Volume::HasNotifySignal;
+}
+
 int VolumeALSA::setupMixer(QString card, QString device)
 {
     char *name;
@@ -559,7 +565,3 @@ int VolumeALSA::getMixer(snd_mixer_t **mixer, QString card)
     return (*mixer != nullptr);
 }
 
-bool VolumeALSA::hasNotifySignal() const
-{
-    return true;
-}

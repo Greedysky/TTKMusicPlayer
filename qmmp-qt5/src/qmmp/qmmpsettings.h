@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,6 +37,24 @@ class QMMP_EXPORT QmmpSettings : public QObject
     Q_OBJECT
 public:
     /*!
+     * This enum describes possible replaygain modes.
+     */
+    enum ReplayGainMode
+    {
+        REPLAYGAIN_TRACK = 0, /*!< Use track gain/peak */
+        REPLAYGAIN_ALBUM,     /*!< Use album gain/peak */
+        REPLAYGAIN_DISABLED   /*!< Disable ReplayGain */
+    };
+
+    /*!
+     * This enum describes proxy types.
+     */
+    enum ProxyType
+    {
+        HTTP_PROXY = 0, /*!< HTTP proxy */
+        SOCKS5_PROXY    /*!< SOCKS5 proxy */
+    };
+    /*!
      * Constructor.
      * @param parent Parent object.
      * This functions is for internal usage only, use QmmpSettings::instance() instead.
@@ -46,15 +64,6 @@ public:
      * Destructor.
      */
     virtual ~QmmpSettings();
-    /*!
-     * This enum describes possible replaygain modes.
-     */
-    enum ReplayGainMode
-    {
-        REPLAYGAIN_TRACK = 0, /*!< Use track gain/peak */
-        REPLAYGAIN_ALBUM,     /*!< Use album gain/peak */
-        REPLAYGAIN_DISABLED   /*!< Disable ReplayGain */
-    };
     /*!
      * Returns current ReplayGain mode.
      */
@@ -132,18 +141,23 @@ public:
     /*!
      * Returns global proxy url.
      */
-    QUrl proxy() const;
+    const QUrl &proxy() const;
+    /*!
+     * Returls global proxy type.
+     */
+    ProxyType proxyType() const;
     /*!
      * Sets network settings.
      * @param use_proxy Enables or disables global proxy.
      * @param auth Enables or disables proxy authentication.
+     * @param type Proxy type.
      * @param proxy Proxy url.
      */
-    void setNetworkSettings(bool use_proxy, bool auth, const QUrl &proxy);
+    void setNetworkSettings(bool use_proxy, bool auth, ProxyType type, const QUrl &proxy);
     /*!
      * Returns equalizer settings.
      */
-    EqSettings eqSettings() const;
+    const EqSettings &eqSettings() const;
     /*!
      * Changes equalizer settings to \b settings.
      */
@@ -152,7 +166,7 @@ public:
      * Reads equalizer settings. Call this function before equalizer usage.
      * @param bands Number of bands.
      */
-    void readEqSettings(int bands = EqSettings::EQ_BANDS_10);
+    void readEqSettings(EqSettings::Bands bands = EqSettings::EQ_BANDS_10);
     /*!
      * Returns buffer size in milliseconds.
      */
@@ -171,6 +185,17 @@ public:
      * Returns volume adjustment step.
      */
     int volumeStep() const;
+    /*!
+     * Enables/Disables average bitrate displaying.
+     * @param enabled State of the average bitrate displaying
+     * (\b true - enabled, \b false - disabled). This function emits
+     * \b audioSettingsChanged() signal.
+     */
+    void setAverageBitrate(bool enabled);
+    /*!
+     * Returns \b true if average bitrate displaying is enabled, otherwise returns \b false
+     */
+    bool averageBitrate() const;
     /*!
      * Enables/Disables file type determination by content.
      * @param enabled State of the content based type determination.
@@ -225,6 +250,7 @@ private:
     bool m_aud_dithering;
     Qmmp::AudioFormat m_aud_format;
     int m_volume_step;
+    bool m_average_bitrate;
     //cover settings
     QStringList m_cover_inc;
     QStringList m_cover_exclude;
@@ -234,6 +260,7 @@ private:
     bool m_proxy_enabled;
     bool m_proxy_auth;
     QUrl m_proxy_url;
+    ProxyType m_proxy_type;
     //equalizer settings
     EqSettings m_eq_settings;
     //buffer size

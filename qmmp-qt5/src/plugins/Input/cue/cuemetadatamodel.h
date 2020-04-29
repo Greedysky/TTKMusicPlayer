@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,7 +23,7 @@
 
 #include <qmmp/metadatamodel.h>
 
-class CUEParser;
+class CueFile;
 
 class CUEMetaDataModel : public MetaDataModel
 {
@@ -35,7 +35,7 @@ public:
     virtual QString coverPath() const override;
 
 private:
-    CUEParser *m_parser;
+    CueFile *m_cueFile;
     QString m_path;
 };
 

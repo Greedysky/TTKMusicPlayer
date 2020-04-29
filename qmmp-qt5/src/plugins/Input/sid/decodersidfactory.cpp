@@ -60,17 +60,18 @@ DecoderProperties DecoderSIDFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderSIDFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderSID(&m_db, path);
 }
 
-QList<TrackInfo *> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     SIDHelper helper(&m_db);
     helper.load(path);
 
-    QList<TrackInfo *> list = helper.createPlayList(parts);
+    QList<TrackInfo*> list = helper.createPlayList(parts);
     if(list.isEmpty())
     {
         return list;
@@ -87,12 +88,14 @@ QList<TrackInfo *> DecoderSIDFactory::createPlayList(const QString &path, TrackI
         }
         TrackInfo *info = list.takeAt(track - 1);
         qDeleteAll(list);
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
     return list;
 }
 
-MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

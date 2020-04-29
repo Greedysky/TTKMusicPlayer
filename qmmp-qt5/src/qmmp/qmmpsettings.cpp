@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -42,9 +42,10 @@ QmmpSettings::QmmpSettings(QObject *parent) : QObject(parent)
     settings.endGroup();
     //audio settings
     m_aud_software_volume = settings.value("Output/software_volume", false).toBool();
-    m_aud_format = (Qmmp::AudioFormat) settings.value("Output/format", Qmmp::PCM_S16LE).toInt();
+    m_aud_format = static_cast<Qmmp::AudioFormat>(settings.value("Output/format", Qmmp::PCM_S16LE).toInt());
     m_aud_dithering = settings.value("Output/dithering", true).toBool();
     m_volume_step = settings.value("Output/volume_step", 5).toInt();
+    m_average_bitrate = settings.value("Output/average_bitrate", false).toBool();
     //cover settings
     settings.beginGroup("Cover");
     m_cover_inc = settings.value("include", (QStringList() << "*.jpg" << "*.png")).toStringList();
@@ -55,6 +56,7 @@ QmmpSettings::QmmpSettings(QObject *parent) : QObject(parent)
     //network settings
     m_proxy_enabled = settings.value("Proxy/use_proxy", false).toBool();
     m_proxy_auth = settings.value("Proxy/authentication", false).toBool();
+    m_proxy_type = static_cast<ProxyType>(settings.value("Proxy/proxy_type", HTTP_PROXY).toInt());
     m_proxy_url = settings.value("Proxy/url").toUrl();
     //buffer
     m_buffer_size = settings.value("Output/buffer_size", 500).toInt();
@@ -163,21 +165,27 @@ bool QmmpSettings::useProxyAuth() const
     return m_proxy_auth;
 }
 
-QUrl QmmpSettings::proxy() const
+const QUrl &QmmpSettings::proxy() const
 {
-    return  m_proxy_url;
+    return m_proxy_url;
 }
 
-void QmmpSettings::setNetworkSettings(bool use_proxy, bool auth, const QUrl &proxy)
+QmmpSettings::ProxyType QmmpSettings::proxyType() const
+{
+    return m_proxy_type;
+}
+
+void QmmpSettings::setNetworkSettings(bool use_proxy, bool auth, ProxyType type, const QUrl &proxy)
 {
     m_proxy_enabled = use_proxy;
     m_proxy_auth = auth;
+    m_proxy_type = type;
     m_proxy_url = proxy;
     m_timer->start();
     emit networkSettingsChanged();
 }
 
-EqSettings QmmpSettings::eqSettings() const
+const EqSettings &QmmpSettings::eqSettings() const
 {
     return m_eq_settings;
 }
@@ -189,7 +197,7 @@ void QmmpSettings::setEqSettings(const EqSettings &settings)
     emit eqSettingsChanged();
 }
 
-void QmmpSettings::readEqSettings(int bands)
+void QmmpSettings::readEqSettings(EqSettings::Bands bands)
 {
     m_eq_settings = EqSettings(bands);
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
@@ -199,6 +207,7 @@ void QmmpSettings::readEqSettings(int bands)
     m_eq_settings.setPreamp(settings.value("preamp", 0).toDouble());
     m_eq_settings.setEnabled(settings.value("enabled", false).toBool());
     settings.endGroup();
+    m_eq_settings.setTwoPasses(settings.value("Equalizer/two_passes", true).toBool());
     emit eqSettingsChanged();
 }
 
@@ -222,6 +231,18 @@ int QmmpSettings::volumeStep() const
     return m_volume_step;
 }
 
+void QmmpSettings::setAverageBitrate(bool enabled)
+{
+    m_average_bitrate = enabled;
+    m_timer->start();
+    emit audioSettingsChanged();
+}
+
+bool QmmpSettings::averageBitrate() const
+{
+    return m_average_bitrate;
+}
+
 void QmmpSettings::sync()
 {
     qDebug("%s", Q_FUNC_INFO);
@@ -238,6 +259,7 @@ void QmmpSettings::sync()
     settings.setValue("Output/format", m_aud_format);
     settings.setValue("Output/dithering", m_aud_dithering);
     settings.setValue("Output/volume_step", m_volume_step);
+    settings.setValue("Output/average_bitrate", m_average_bitrate);
     //cover settings
     settings.beginGroup("Cover");
     settings.setValue("include", m_cover_inc);
@@ -249,6 +271,7 @@ void QmmpSettings::sync()
     settings.setValue("Proxy/use_proxy", m_proxy_enabled);
     settings.setValue("Proxy/authentication", m_proxy_auth);
     settings.setValue("Proxy/url", m_proxy_url);
+    settings.setValue("Proxy/proxy_type", m_proxy_type);
     //equalizer settings
     settings.beginGroup(QString("Equalizer_%1").arg(m_eq_settings.bands()));
     for(int i = 0; i < m_eq_settings.bands(); ++i)
@@ -256,6 +279,7 @@ void QmmpSettings::sync()
     settings.setValue("preamp", m_eq_settings.preamp());
     settings.setValue("enabled", m_eq_settings.isEnabled());
     settings.endGroup();
+    settings.setValue("Equalizer/two_passes", m_eq_settings.twoPasses());
     //buffer size
     settings.setValue("Output/buffer_size", m_buffer_size);
     //file type determination

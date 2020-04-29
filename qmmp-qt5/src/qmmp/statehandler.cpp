@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -133,7 +133,8 @@ void StateHandler::dispatch(const QHash<QString, QString> &info)
 {
     m_mutex.lock();
     QHash<QString, QString> tmp = info;
-    foreach(QString value, tmp.values()) //remove empty keys
+    const auto values = tmp.values();
+    for(const QString &value : values) //remove empty keys
     {
         if(value.isEmpty())
             tmp.remove(tmp.key(value));
@@ -157,9 +158,9 @@ void StateHandler::dispatch(Qmmp::State state)
         m_elapsed = -1;
         m_bitrate = 0;
         m_info.clear();
-        m_metaData.clear();
         m_streamInfo.clear();
         m_sendAboutToFinish = true;
+        m_audioParameters = AudioParameters(44100, ChannelMap(2), Qmmp::PCM_UNKNOWN);
     }
     if(m_state != state)
     {

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -48,9 +48,9 @@ public:
 private:
     QString m_path;
     QList<TagModel* > m_tags;
-    TagLib::Ogg::XiphComment *m_tag;
-    TagLib::File *m_file;
-    TagLib::FileStream *m_stream;
+    TagLib::Ogg::XiphComment *m_tag = nullptr;
+    TagLib::File *m_file = nullptr;
+    TagLib::FileStream *m_stream = nullptr;
 };
 
 class VorbisCommentModel : public TagModel

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -140,7 +140,6 @@ private:
     bool m_sendAboutToFinish;
     int m_bitrate;
     static StateHandler* m_instance;
-    QMap <Qmmp::MetaData, QString> m_metaData;
     TrackInfo m_info;
     QHash <QString, QString> m_streamInfo;
     Qmmp::State m_state;

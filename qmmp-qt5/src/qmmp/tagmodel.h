@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,7 +37,6 @@ public:
      */
     enum ModelCap
     {
-        NoOptions = 0x0,    /*!< No capabilities */
         CreateRemove = 0x1, /*!< Can create/remove tag */
         Save = 0x2,         /*!< Can save changes */
         DefaultCaps = CreateRemove | Save,

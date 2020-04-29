@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,22 +26,14 @@ EqSettings::EqSettings(const EqSettings &other)
     m_preamp = other.m_preamp;
     m_is_enabled = other.m_is_enabled;
     m_bands = other.m_bands;
+    m_two_passes = other.m_two_passes;
     for(int i = 0; i < 31; ++i)
         m_gains[i] = other.m_gains[i];
 }
 
-EqSettings::EqSettings(int bands)
+EqSettings::EqSettings(Bands bands)
 {
-    if(bands != 10 && bands != 15 && bands != 25 && bands != 31)
-    {
-        qWarning("EqSettings: invalid number of bands (%d), using 10 bands as fallback", bands);
-        bands = 10;
-    }
-    for(int i = 0; i < 31; ++i)
-        m_gains[i] = 0;
     m_bands = bands;
-    m_preamp = 0;
-    m_is_enabled = false;
 }
 
 bool EqSettings::isEnabled() const
@@ -61,7 +53,12 @@ double EqSettings::preamp() const
 
 int EqSettings::bands() const
 {
-    return m_bands;
+    return static_cast<int>(m_bands);
+}
+
+bool EqSettings::twoPasses() const
+{
+    return m_two_passes;
 }
 
 void EqSettings::setEnabled(bool enabled)
@@ -79,6 +76,11 @@ void EqSettings::setPreamp(double preamp)
     m_preamp = preamp;
 }
 
+void EqSettings::setTwoPasses(bool enabled)
+{
+    m_two_passes = enabled;
+}
+
 EqSettings &EqSettings::operator=(const EqSettings &s)
 {
     for(int i = 0; i < m_bands; ++i)
@@ -86,6 +88,7 @@ EqSettings &EqSettings::operator=(const EqSettings &s)
     m_preamp = s.m_preamp;
     m_is_enabled = s.m_is_enabled;
     m_bands = s.m_bands;
+    m_two_passes = s.m_two_passes;
     return *this;
 }
 
@@ -96,7 +99,7 @@ bool EqSettings::operator==(const EqSettings &s) const
         if(m_gains[i] != s.m_gains[i])
             return false;
     }
-    return (m_preamp == s.m_preamp) && (m_is_enabled == s.m_is_enabled) && (m_bands == s.m_bands);
+    return (m_preamp == s.m_preamp) && (m_is_enabled == s.m_is_enabled) && (m_bands == s.m_bands) && (m_two_passes == s.m_two_passes);
 }
 
 bool EqSettings::operator!=(const EqSettings &s) const

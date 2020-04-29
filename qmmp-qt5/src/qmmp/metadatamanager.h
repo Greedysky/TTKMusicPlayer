@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,6 +26,7 @@
 #include <QPixmap>
 #include <QDir>
 #include <QMutex>
+#include <QRegularExpression>
 #include "trackinfo.h"
 #include "metadatamodel.h"
 
@@ -42,14 +43,6 @@ class QMMP_EXPORT MetaDataManager
 {
 public:
     /*!
-     * Constructor. Use MetaDataManager::instance() instead.
-     */
-    MetaDataManager();
-    /*!
-     * Destructor. Use MetaDataManager::destroy() instead.
-     */
-    ~MetaDataManager();
-    /*!
      * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue)
      * @param path Local file path or URL.
@@ -57,7 +50,7 @@ public:
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist)
      */
-    QList <TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts, QStringList *ignoredPaths = nullptr) const;
+    QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts, QStringList *ignoredPaths = nullptr) const;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param url File path or URL.
@@ -77,6 +70,10 @@ public:
      * Returns a list of the suported protocols
      */
     QStringList protocols() const;
+    /*!
+     * Returns a list of supported regular expressions for URL.
+     */
+    QList<QRegularExpression> regExps() const;
     /*!
      * Returns \b true if \b file is supported and exists, otherwise returns \b false
      */
@@ -111,15 +108,23 @@ public:
      */
     void prepareForAnotherThread();
     /*!
+     * Returns \b true if the one regular expression in the list \b regExps matched against the \b path or \b false otherwise.
+     */
+    static bool hasMatch(const QList<QRegularExpression> &regExps, const QString &path);
+    /*!
+     * Returns \b true if the one regular expression in the list \b regExps matched against the \b path or \b false otherwise.
+     */
+    static bool hasMatch(const QList<QRegExp> &regExps, const QString &path);
+    /*!
      * Returns a pointer to the MetaDataManager instance.
      */
     static MetaDataManager* instance();
-    /*!
-     * Destroys MetaDataManager object.
-     */
-    static void destroy();
 
 private:
+    MetaDataManager();
+    ~MetaDataManager();
+    static void destroy();
+
     struct CoverCacheItem
     {
         QString url;

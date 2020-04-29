@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -57,7 +57,6 @@ public:
     virtual void seek(qint64 time) override;
     virtual void stop() override;
     virtual void pause() override;
-    virtual void setMuted(bool muted) override;
     void addEffect(EffectFactory *factory);
     void removeEffect(EffectFactory *factory);
 
@@ -81,7 +80,7 @@ private:
     void prepareEffects(Decoder *d);
 
     DecoderFactory *m_factory;
-	QList<Effect*> m_effects;
+    QList<Effect*> m_effects;
     QList<Effect*> m_blockedEffects;
     OutputWriter *m_output;
 
@@ -96,7 +95,6 @@ private:
     QHash <Decoder*, InputSource*> m_inputs;
     AudioParameters m_ap;
     bool m_next;
-    bool m_muted;
     QSharedPointer<TrackInfo> m_trackInfo;
     static QmmpAudioEngine *m_instance;
     ReplayGain *m_replayGain;

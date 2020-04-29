@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov <forkotov02@ya.ru>              *
+ *   Copyright (C) 2009-2020 by Ilya Kotov <forkotov02@ya.ru>              *
  *   Copyright (C) 2009 by Sebastian Pipping <sebastian@pipping.org>       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

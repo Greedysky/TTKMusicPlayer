@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 #include <qmmp/output.h>
 #include <qmmp/decoderfactory.h>
 #include <qmmp/soundcore.h>
-#include "cueparser.h"
+#include "cuefile.h"
 #include "decoder_cue.h"
 
 DecoderCUE::DecoderCUE(const QString &url)
@@ -32,7 +32,7 @@ DecoderCUE::DecoderCUE(const QString &url)
 {
     m_path = url;
     m_decoder = nullptr;
-    m_parser = nullptr;
+    m_cueFile = nullptr;
     m_track = 0;
     m_buf = nullptr;
     m_input = nullptr;
@@ -43,9 +43,9 @@ DecoderCUE::~DecoderCUE()
     if(m_decoder)
         delete m_decoder;
     m_decoder = nullptr;
-    if(m_parser)
-        delete m_parser;
-    m_parser = nullptr;
+    if(m_cueFile)
+        delete m_cueFile;
+    m_cueFile = nullptr;
     if(m_buf)
         delete[] m_buf;
     m_buf = nullptr;
@@ -56,14 +56,14 @@ DecoderCUE::~DecoderCUE()
 
 bool DecoderCUE::initialize()
 {
-    m_parser = new CUEParser(m_path);
-    if(m_parser->count() == 0)
+    m_cueFile = new CueFile(m_path);
+    if(m_cueFile->count() == 0)
     {
         qWarning("DecoderCUE: invalid cue file");
         return false;
     }
     m_track = m_path.section("#", -1).toInt();
-    m_path = m_parser->filePath(m_track);
+    m_path = m_cueFile->dataFilePath(m_track);
     if(!QFile::exists(m_path))
     {
         qWarning("DecoderCUE: file \"%s\" doesn't exist", qPrintable(m_path));
@@ -75,8 +75,8 @@ bool DecoderCUE::initialize()
         qWarning("DecoderCUE: unsupported file format");
         return false;
     }
-    m_length = m_parser->duration(m_track);
-    m_offset = m_parser->offset(m_track);
+    m_length = m_cueFile->duration(m_track);
+    m_offset = m_cueFile->offset(m_track);
     if(!df->properties().noInput)
     {
         m_input = new QFile(m_path);
@@ -95,14 +95,14 @@ bool DecoderCUE::initialize()
     m_decoder->seek(m_offset);
 
     configure(m_decoder->audioParameters());
-    setReplayGainInfo(m_parser->replayGain(m_track));
+    setReplayGainInfo(m_cueFile->info(m_track)->replayGainInfo());
     length_in_bytes = audioParameters().sampleRate() *
                       audioParameters().frameSize() * m_length/1000;
     m_totalBytes = 0;
 
     m_sz = audioParameters().frameSize();
 
-    addMetaData(m_parser->info(m_track)->metaData());
+    addMetaData(m_cueFile->info(m_track)->metaData());
     return true;
 }
 
@@ -169,23 +169,23 @@ int DecoderCUE::bitrate() const
 
 const QString DecoderCUE::nextURL() const
 {
-    if(m_track +1 <= m_parser->count() && m_parser->filePath(m_track) == m_parser->filePath(m_track + 1))
-        return m_parser->trackURL(m_track + 1);
+    if(m_track +1 <= m_cueFile->count() && m_cueFile->dataFilePath(m_track) == m_cueFile->dataFilePath(m_track + 1))
+        return m_cueFile->url(m_track + 1);
     else
         return QString();
 }
 
 void DecoderCUE::next()
 {
-    if(m_track +1 <= m_parser->count())
+    if(m_track +1 <= m_cueFile->count())
     {
         m_track++;
-        m_length = m_parser->duration(m_track);
-        m_offset = m_parser->offset(m_track);
+        m_length = m_cueFile->duration(m_track);
+        m_offset = m_cueFile->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length/1000;
-        addMetaData(m_parser->info(m_track)->metaData());
-        setReplayGainInfo(m_parser->replayGain(m_track));
+        addMetaData(m_cueFile->info(m_track)->metaData());
+        setReplayGainInfo(m_cueFile->info(m_track)->replayGainInfo());
         m_totalBytes = 0;
     }
 }

@@ -55,12 +55,13 @@ DecoderProperties DecoderWildMidiFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderWildMidiFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderWildMidiFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderWildMidi(path);
 }
 
-QList<TrackInfo *> DecoderWildMidiFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderWildMidiFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
     WildMidiHelper *helper = WildMidiHelper::instance();
@@ -78,10 +79,12 @@ QList<TrackInfo *> DecoderWildMidiFactory::createPlayList(const QString &path, T
             WildMidiHelper::instance()->removePtr(midi_ptr);
         }
     }
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &, bool)
+MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
     return nullptr;
 }

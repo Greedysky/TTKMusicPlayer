@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,7 +34,7 @@
 #include "eqsettings.h"
 #include "trackinfo.h"
 
-class VolumeControl;
+class VolumeHandler;
 class AbstractEngine;
 class InputSource;
 class StateHandler;
@@ -272,11 +272,10 @@ private:
     QString m_path;
     static SoundCore* m_instance;
     StateHandler *m_handler;
-    VolumeControl *m_volumeControl;
+    VolumeHandler *m_volumeControl;
     AbstractEngine *m_engine;
     QQueue<InputSource *> m_sources;
     int m_nextState;
-    bool m_muted;
 };
 
 #endif

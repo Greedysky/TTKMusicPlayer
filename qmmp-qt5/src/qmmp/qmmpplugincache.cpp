@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -200,7 +200,7 @@ void QmmpPluginCache::cleanup(QSettings *settings)
 {
     settings->beginGroup("PluginCache");
 
-    foreach(QString key, settings->allKeys())
+    for(const QString &key : settings->allKeys())
     {
 #ifdef Q_OS_WIN
         if(!QFile::exists(key))

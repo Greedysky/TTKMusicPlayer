@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -76,8 +76,7 @@ public:
 
     virtual void setVolume(const VolumeSettings &vol) override;
     virtual VolumeSettings volume() const override;
-
-    virtual bool hasNotifySignal() const override;
+    virtual VolumeFlags flags() const override;
 
 private:
     //alsa mixer
@@ -85,8 +84,8 @@ private:
     void parseMixerName(char *str, char **name, int *index);
     int getMixer(snd_mixer_t **m_mixer, QString card);
     snd_mixer_elem_t* getMixerElem(snd_mixer_t *m_mixer, char *name, int index);
-    snd_mixer_t *m_mixer;
-    snd_mixer_elem_t *pcm_element;
+    snd_mixer_t *m_mixer = nullptr;
+    snd_mixer_elem_t *pcm_element = nullptr;
 };
 
 #endif // OUTPUTALSA_H

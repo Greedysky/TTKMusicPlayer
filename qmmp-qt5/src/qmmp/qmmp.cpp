@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,6 +25,8 @@
 #include <QFile>
 #include <QByteArray>
 
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
 #define DEV_SUFFIX "dev"
 
 #include "qmmp.h"
@@ -60,8 +62,6 @@ QString Qmmp::configDir()
 void Qmmp::setConfigDir(const QString &path)
 {
     m_configDir = path;
-    if(!m_configDir.endsWith('/'))
-        m_configDir.append('/');
 }
 
 QString Qmmp::strVersion()
@@ -86,11 +86,7 @@ QString Qmmp::pluginPath()
     if(!path.isEmpty())
         return path;
 		
-#if defined(Q_OS_WIN) && !defined(Q_OS_CYGWIN)
     QDir dir(qApp->applicationDirPath() + "/plugins");
-#else
-    QDir dir(qApp->applicationDirPath() + "/qmmp");
-#endif
     return dir.canonicalPath();
 }
 
@@ -98,7 +94,7 @@ QStringList Qmmp::findPlugins(const QString &prefix)
 {
     QDir pluginDir(pluginPath() + "/" + prefix);
     QStringList paths;
-    foreach(QFileInfo info, pluginDir.entryInfoList(QStringList() << "*.dll" << "*.so", QDir::Files))
+    for(const QFileInfo &info : pluginDir.entryInfoList(QStringList() << "*.dll" << "*.so", QDir::Files))
         paths << info.canonicalFilePath();
     return paths;
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,8 +41,6 @@ public:
     Buffer(size_t sz)
     {
         data = new float[sz];
-        samples = 0;
-        rate = 0;
         size = sz;
     }
     /*!
@@ -57,10 +55,10 @@ public:
         size = 0;
     }
 
-    float *data;                         /*!< Audio data. */
-    size_t samples;                      /*!< Audio data size in samples. */
-    size_t size;                         /*!< Buffer size in samples. */
-    unsigned int rate;                   /*!< Buffer bitrate. */
+    float *data = nullptr;               /*!< Audio data. */
+    size_t samples = 0;                  /*!< Audio data size in samples. */
+    size_t size = 0;                     /*!< Buffer size in samples. */
+    unsigned int rate = 0;               /*!< Buffer bitrate. */
     QSharedPointer<TrackInfo> trackInfo; /*!< Attached track information. */
 };
 

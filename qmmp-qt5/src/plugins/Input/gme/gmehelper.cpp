@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -79,9 +79,9 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
     return m_emu;
 }
 
-QList<TrackInfo *> GmeHelper::createPlayList(TrackInfo::Parts parts)
+QList<TrackInfo*> GmeHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo *> list;
+    QList<TrackInfo*> list;
     if(!m_emu)
         return list;
     int count = gme_track_count(m_emu);

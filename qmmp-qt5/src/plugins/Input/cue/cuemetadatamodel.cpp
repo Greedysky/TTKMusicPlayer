@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,24 +19,24 @@
  ***************************************************************************/
 
 #include <qmmp/metadatamanager.h>
-#include "cueparser.h"
+#include "cuefile.h"
 #include "cuemetadatamodel.h"
 
 CUEMetaDataModel::CUEMetaDataModel(const QString &url) : MetaDataModel(true)
 {
-    m_parser = new CUEParser(url);
-    if(m_parser->count() == 0)
+    m_cueFile = new CueFile(url);
+    if(m_cueFile->count() == 0)
     {
         qWarning("CUEMetaDataModel: invalid cue file");
         return;
     }
     int track = url.section("#", -1).toInt();
-    m_path = m_parser->filePath(track);
+    m_path = m_cueFile->dataFilePath(track);
 }
 
 CUEMetaDataModel::~CUEMetaDataModel()
 {
-    delete m_parser;
+    delete m_cueFile;
 }
 
 QList<MetaDataItem> CUEMetaDataModel::extraProperties() const

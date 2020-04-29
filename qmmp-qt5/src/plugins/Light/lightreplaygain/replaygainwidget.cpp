@@ -31,6 +31,8 @@
 #include <taglib/id3v2tag.h>
 #include <taglib/textidentificationframe.h>
 #include <taglib/mp4file.h>
+#include <taglib/opusfile.h>
+
 #include "replaygainner.h"
 #include "gain_analysis.h"
 #include "replaygainwidget.h"
@@ -120,7 +122,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
     }
 
     bool stopped = true;
-    foreach(ReplayGainner *scanner, m_scanners)
+    for(ReplayGainner *scanner : qAsConst(m_scanners))
     {
         if(scanner->isRunning() || scanner->isPending())
         {
@@ -135,7 +137,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
         QMultiMap<QString, ReplayGainInfoItem*> itemGroupMap; //items grouped  by album
 
         //group by album name
-        foreach(ReplayGainner *scanner, m_scanners)
+        for(ReplayGainner *scanner : qAsConst(m_scanners))
         {
             if(!scanner->hasValues())
             {
@@ -151,7 +153,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
             itemGroupMap.insert(album, item);
         }
         //calculate album peak and gain
-        foreach(QString album, itemGroupMap.keys())
+        for(const QString &album : itemGroupMap.keys())
         {
             QList<ReplayGainInfoItem*> items = itemGroupMap.values(album);
             GainHandle_t **a = (GainHandle_t **) malloc(items.count()*sizeof(GainHandle_t *));
@@ -165,8 +167,8 @@ void ReplayGainWidget::scanFinished(const QString &url)
 
             double album_gain = GetAlbumGain(a, items.count());
             free(a);
-
-            foreach(ReplayGainInfoItem *item, items)
+			
+            for(ReplayGainInfoItem *item : qAsConst(items))
             {
                 item->info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = album_peak;
                 item->info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = album_gain;
@@ -184,7 +186,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
         {
             QString url = m_ui.tableWidget->item(i, 0)->data(Qt::UserRole).toString();
             bool found = false;
-            foreach(ReplayGainInfoItem *item, m_replayGainItemList)
+            for(const ReplayGainInfoItem *item : qAsConst(m_replayGainItemList))
             {
                 if(item->url == url)
                 {
@@ -228,7 +230,8 @@ void ReplayGainWidget::open(const QString &track)
             ext == "oga" || //ogg flac
             ext == "ogg" ||  //ogg vorbis
             ext == "wv" || //wavpack
-            ext == "m4a") //aac (mp4 container)
+            ext == "m4a" || //aac (mp4 container)
+            ext == "opus")
     {
         QTableWidgetItem *item = new QTableWidgetItem(track);
         item->setData(Qt::UserRole, track);
@@ -259,7 +262,7 @@ void ReplayGainWidget::stop()
         return;
     }
 
-    foreach(ReplayGainner *scaner, m_scanners)
+    for(ReplayGainner *scaner : qAsConst(m_scanners))
     {
         scaner->stop();
     }
@@ -271,7 +274,7 @@ void ReplayGainWidget::stop()
 
 ReplayGainner *ReplayGainWidget::findScannerByUrl(const QString &url)
 {
-    foreach(ReplayGainner *scanner, m_scanners)
+    for(ReplayGainner *scanner : qAsConst(m_scanners))
     {
         if(scanner->url() == url)
         {
@@ -283,7 +286,7 @@ ReplayGainner *ReplayGainWidget::findScannerByUrl(const QString &url)
 
 QString ReplayGainWidget::getAlbumName(const QString &url)
 {
-    QList<TrackInfo *> infoList = MetaDataManager::instance()->createPlayList(url);
+    QList<TrackInfo*> infoList = MetaDataManager::instance()->createPlayList(url);
     if(infoList.isEmpty())
     {
         return QString();
@@ -410,7 +413,7 @@ void ReplayGainWidget::writeButtonClicked()
 
     qDebug("ReplayGainWidget: writing ReplayGain values...");
 
-    foreach(ReplayGainInfoItem *item, m_replayGainItemList)
+    for(ReplayGainInfoItem *item : qAsConst(m_replayGainItemList))
     {
         QString ext = item->url.section(".", -1).toLower();
 
@@ -449,6 +452,12 @@ void ReplayGainWidget::writeButtonClicked()
         {
             TagLib::MP4::File file(qPrintable(item->url));
             writeMP4Tag(file.tag(), item);
+            file.save();
+        }
+        else if(ext == "opus")
+        {
+            TagLib::Ogg::Opus::File file(qPrintable(item->url));
+            writeVorbisComment(file.tag(), item);
             file.save();
         }
     }

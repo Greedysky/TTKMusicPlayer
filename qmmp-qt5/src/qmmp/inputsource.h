@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -97,6 +97,21 @@ public:
      */
     QMap<Qmmp::MetaData, QString> takeMetaData();
     /*!
+     * Sets extra stream property.
+     * \param key Property key.
+     * \param value Property value.
+     */
+    void setProperty(Qmmp::TrackProperty key, const QVariant &value);
+    /*!
+     * Updates all extra stream properties.
+     * \param properties New track properties.
+     */
+    void setProperties(const QMap<Qmmp::TrackProperty, QString> &properties);
+    /*!
+     * Returns stream properties
+     */
+    const QMap<Qmmp::TrackProperty, QString> &properties() const;
+    /*!
      * Informs input source object about received stream information (for example icy data).
      * Call of this function is required for all non-local streams/files
      * @param info Stream information map.
@@ -130,22 +145,30 @@ public:
      * Returns plugin file path.
      * @param factory Transport plugin factory.
      */
-    static QString file(InputSourceFactory *factory);
+    static QString file(const InputSourceFactory *factory);
     /*!
      * Returns a list of supported protocols.
      */
     static QStringList protocols();
     /*!
+     * Returns a list of supported regular expressions for URL.
+     */
+    static QList<QRegularExpression> regExps();
+    /*!
+     * Returns InputSourceFactory pointer which supports URL \b url or \b nullptr if \b URL is not supported.
+     */
+    static InputSourceFactory *findByUrl(const QString &url);
+    /*!
      * Sets whether the input plugin is enabled.
      * @param factory Transport plugin factory.
      * @param enable Plugin enable state (\b true - enable, \b false - disable)
      */
-    static void setEnabled(InputSourceFactory* factory, bool enable = true);
+    static void setEnabled(InputSourceFactory *factory, bool enable = true);
     /*!
      * Returns \b true if input plugin is enabled, otherwise returns \b false
      * @param factory Decoder plugin factory.
      */
-    static bool isEnabled(InputSourceFactory* factory);
+    static bool isEnabled(const InputSourceFactory* factory);
 
 signals:
     /*!
@@ -161,6 +184,7 @@ private:
     QString m_path;
     qint64 m_offset;
     QMap<Qmmp::MetaData, QString> m_metaData;
+    QMap<Qmmp::TrackProperty, QString> m_properties;
     QHash<QString, QString> m_streamInfo;
     bool m_hasMetaData, m_hasStreamInfo;
     static void loadPlugins();

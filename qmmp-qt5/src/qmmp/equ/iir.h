@@ -58,15 +58,23 @@
 #endif
 
 /*
+ * Equalizer options
+ */
+typedef enum {
+    EQ_TWO_PASSES = 0x01,
+    EQ_CLIP = 0x02
+
+} eq_option_t;
+
+/*
  * Function prototypes
  */
-void init_iir(unsigned int srate, int band_num);
-void clean_history();
-void set_gain(int index, int chn, float val);
-void set_preamp(int chn, float val);
-
-
-int iir(float * d, int samples, int nch);
+void eq_init_iir(unsigned int srate, int band_num);
+void eq_clean_history();
+void eq_set_gain(int index, int chn, float val);
+void eq_set_preamp(int chn, float val);
+void eq_set_option(eq_option_t option, int enabled);
+int eq_iir(float * d, int samples, int nch);
 
 #ifdef ARCH_X86
 __inline__ int round_trick(float floatvalue_to_round);
@@ -81,6 +89,7 @@ __inline__ int round_ppc(float x);
 extern float preamp[EQ_CHANNELS];
 extern sIIRCoefficients *iir_cf;
 extern int band_count;
+extern unsigned int eq_options;
 
 #ifdef BENCHMARK
 extern double timex;

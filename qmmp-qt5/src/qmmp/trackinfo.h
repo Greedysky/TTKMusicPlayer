@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2018-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2018-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -52,7 +52,6 @@ public:
      */
     enum Part
     {
-        NoParts = 0x0,                                        /*!< No parts. */
         MetaData = 0x1,                                       /*!< Metadata (artist, album, etc). */
         Properties = 0x2,                                     /*!< File/Stream properties. */
         ReplayGainInfo = 0x4,                                 /*!< ReplayGain information. */

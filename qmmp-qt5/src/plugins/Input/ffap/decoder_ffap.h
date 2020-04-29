@@ -44,7 +44,7 @@ private:
     // helper functions
     void deinit();
     //uint findID3v2(char *data, ulong size); //retuns ID3v2 tag size
-    FFap_decoder *m_ffap_decoder;
+    FFap_decoder *m_ffap_decoder = nullptr;
     QString m_path;
 };
 

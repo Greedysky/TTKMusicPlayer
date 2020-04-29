@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,15 +25,12 @@
 WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly)
 {
-    if(path.contains("://"))
+    m_path = path;
+    if(m_path.contains("://"))
     {
-        QString p = path;
-        p.remove("wvpack://");
-        p.remove(QRegExp("#\\d+$"));
-        m_path = p;
+        m_path.remove("wvpack://");
+        m_path.remove(QRegExp("#\\d+$"));
     }
-    else
-        m_path = path;
 
     char err[80] = {0};
     int flags = OPEN_WVC | OPEN_TAGS;

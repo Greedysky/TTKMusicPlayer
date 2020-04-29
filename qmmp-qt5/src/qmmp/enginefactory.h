@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,26 +33,18 @@
 
 class AbstractEngine;
 
-/*! @brief Helper class to store custom audio engine properies.
+/*! @brief Structure to store custom audio engine properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT EngineProperties
+struct QMMP_EXPORT EngineProperties
 {
-public:
-    /*!
-     * Constructor
-     */
-    EngineProperties()
-    {
-        hasSettings = false;
-    }
     QString name;             /*!< Input plugin full name */
     QString shortName;        /*!< Input plugin short name for internal usage */
     QStringList filters;      /*!< File filters (example: "*.mp3,*.ogg") */
     QString description;      /*!< File filter description */
     QStringList contentTypes; /*!< Supported content types */
     QStringList protocols;    /*!< Supported protocols. Should be empty if plugin uses stream input. */
-    bool hasSettings;         /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    bool hasSettings = false; /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
 };
 /*! @brief Engine plugin interface.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -85,7 +77,7 @@ public:
      * @param parts parts of metadata which should be extracted from file.
      * (useful to exclude cue data files from playlist).
      */
-    virtual QList<TrackInfo *> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
+    virtual QList<TrackInfo*> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.

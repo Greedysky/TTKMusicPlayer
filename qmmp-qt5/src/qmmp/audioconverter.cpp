@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -44,7 +44,7 @@
 
 AudioConverter::AudioConverter()
 {
-    m_format = Qmmp::PCM_UNKNOWM;
+    m_format = Qmmp::PCM_UNKNOWN;
 }
 
 void AudioConverter::configure(Qmmp::AudioFormat f)
@@ -99,7 +99,7 @@ void AudioConverter::toFloat(const unsigned char *in, float *out, size_t samples
         INT_TO_FLOAT(quint32, qFromBigEndian, in, out, samples, 0x80000000, 0x80000000);
         break;
     case Qmmp::PCM_FLOAT:
-    case Qmmp::PCM_UNKNOWM:
+    case Qmmp::PCM_UNKNOWN:
         memcpy((void*)out, (void*)in, samples * sizeof(float));
     }
 }
@@ -151,7 +151,7 @@ void AudioConverter::fromFloat(const float *in, const unsigned char *out, size_t
         FLOAT_TO_INT(quint32, qToBigEndian, in, out, samples, 0x80000000, 0x80000000, 0x7FFFFF80);
         break;
     case Qmmp::PCM_FLOAT:
-    case Qmmp::PCM_UNKNOWM:
+    case Qmmp::PCM_UNKNOWN:
         memcpy((void*)out, (void*)in, samples * sizeof(float));
     }
 }

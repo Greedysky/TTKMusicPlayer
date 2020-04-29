@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,12 +28,11 @@ class QObject;
 class QWidget;
 class Effect;
 
-/*! @brief Helper class to store effect plugin properties.
+/*! @brief Structure to store effect plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QMMP_EXPORT EffectProperties
+struct QMMP_EXPORT EffectProperties
 {
-public:
     /*!
      * This enum describes effect preferd position.
      */
@@ -43,19 +42,13 @@ public:
         EFFECT_PRIORITY_DEFAULT,    /*!< Default priority */
         EFFECT_PRIORITY_HIGH        /*!< High priority */
     };
-    /*!
-     * Constructor
-     */
-    EffectProperties()
-    {
-        hasSettings = false;
-        priority = EFFECT_PRIORITY_DEFAULT;
-    }
-    QString name;        /*!< Effect plugin full name */
-    QString shortName;   /*!< Effect plugin short name for internal usage */
-    bool hasSettings;    /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
-    int priority;        /*!< Effect priority. Effecs with higher priority will be applied first */
+
+    QString name;               /*!< Effect plugin full name */
+    QString shortName;          /*!< Effect plugin short name for internal usage */
+    bool hasSettings = false;   /*!< Should be \b true if plugin has settings dialog,and \b false otherwise */
+    int priority = EFFECT_PRIORITY_DEFAULT;  /*!< Effect priority. Effecs with higher priority will be applied first */
 };
+
 /*! @brief Effect plugin interface (effect factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */

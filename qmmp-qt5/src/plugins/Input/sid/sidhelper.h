@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,7 +38,7 @@ public:
     ~SIDHelper();
 
     SidTune *load(const QString &url);
-    QList<TrackInfo *> createPlayList(TrackInfo::Parts parts);
+    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
 
 private:
     QString m_path;

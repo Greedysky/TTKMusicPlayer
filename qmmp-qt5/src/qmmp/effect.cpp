@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -85,7 +85,7 @@ void Effect::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach(QString filePath, Qmmp::findPlugins("Effect"))
+    for(const QString &filePath : Qmmp::findPlugins("Effect"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
@@ -112,7 +112,7 @@ QList<EffectFactory *> Effect::factories()
 {
     loadPlugins();
     QList<EffectFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->effectFactory())
             list.append(item->effectFactory());
@@ -124,7 +124,7 @@ QList<EffectFactory *> Effect::enabledFactories()
 {
     loadPlugins();
     QList<EffectFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_enabledNames.contains(item->shortName()) && item->effectFactory())
             list.append(item->effectFactory());
@@ -132,10 +132,10 @@ QList<EffectFactory *> Effect::enabledFactories()
     return list;
 }
 
-QString Effect::file(EffectFactory *factory)
+QString Effect::file(const EffectFactory *factory)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(const QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == factory->properties().shortName)
             return item->file();
@@ -143,7 +143,7 @@ QString Effect::file(EffectFactory *factory)
     return QString();
 }
 
-void Effect::setEnabled(EffectFactory* factory, bool enable)
+void Effect::setEnabled(EffectFactory *factory, bool enable)
 {
     loadPlugins();
     if(!factories().contains(factory))
@@ -171,7 +171,7 @@ void Effect::setEnabled(EffectFactory* factory, bool enable)
     settings.setValue("Effect/enabled_plugins", m_enabledNames);
 }
 
-bool Effect::isEnabled(EffectFactory* factory)
+bool Effect::isEnabled(const EffectFactory *factory)
 {
     loadPlugins();
     return m_enabledNames.contains(factory->properties().shortName);
@@ -180,7 +180,7 @@ bool Effect::isEnabled(EffectFactory* factory)
 EffectFactory *Effect::findFactory(const QString &shortName)
 {
     loadPlugins();
-    foreach(EffectFactory *f, factories())
+    for(EffectFactory *f : factories())
     {
         if(shortName == f->properties().shortName)
             return f;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,7 +28,7 @@
 
 OpusMetaDataModel::OpusMetaDataModel(const QString &path, bool readOnly)
 #ifdef HAS_PICTURE_LIST
-    : MetaDataModel(readOnly, MetaDataModel::IS_COVER_EDITABLE)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 #else
     : MetaDataModel(readOnly)
 #endif

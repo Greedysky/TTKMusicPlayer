@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -56,9 +56,9 @@ SidTune *SIDHelper::load(const QString &url)
     return m_tune;
 }
 
-QList<TrackInfo *> SIDHelper::createPlayList(TrackInfo::Parts parts)
+QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList<TrackInfo *> list;
+    QList<TrackInfo*> list;
     if(!m_tune || !m_tune->getInfo())
         return list;
     int count = m_tune->getInfo()->songs();

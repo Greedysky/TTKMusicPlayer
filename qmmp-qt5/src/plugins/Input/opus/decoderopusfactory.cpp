@@ -55,13 +55,13 @@ MetaDataModel* DecoderOpusFactory::createMetaDataModel(const QString &path, bool
     return new OpusMetaDataModel(path, readOnly);
 }
 
-QList<TrackInfo *> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     TagLib::Ogg::Opus::File fileRef(QStringToFileName(path));
@@ -110,5 +110,5 @@ QList<TrackInfo *> DecoderOpusFactory::createPlayList(const QString &path, Track
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }

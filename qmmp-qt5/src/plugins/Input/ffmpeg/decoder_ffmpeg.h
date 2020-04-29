@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -50,24 +50,22 @@ private:
     //helper functions
     void fillBuffer();
 
-    AVFormatContext *ic;
-    AVCodecContext *c;
-
-    int m_bitrate, audioIndex;
+    AVFormatContext *m_formatContext = nullptr;
+    AVCodecContext *m_codecContext = nullptr;
+    AVIOContext *m_stream = nullptr;
+    AVFrame *m_frame = nullptr;
+    int m_bitrate = 0, m_audioIndex = 0;
 
     QString m_path;
-    qint64 m_totalTime;
-    AVPacket m_pkt;
-    AVPacket m_temp_pkt;
-    qint64 m_output_at;
-    uchar *m_input_buf;
-    int64_t m_seekTime;
-    qint64  m_skipBytes;
-    int m_channels;
+    qint64 m_totalTime = 0;
+    AVPacket *m_pkt = nullptr;
+    qint64 m_output_size = 0;
+    uchar *m_input_buf = nullptr;
+    int64_t m_seekTime = -1;
+    qint64  m_skipBytes = 0;
+    int m_channels = 0;
+    bool m_eof = false;
 
-    qint64 ffmpeg_decode();
-    AVIOContext *m_stream;
-    AVFrame *m_decoded_frame;
 };
 
 #endif // DECODER_FFMPEG_H

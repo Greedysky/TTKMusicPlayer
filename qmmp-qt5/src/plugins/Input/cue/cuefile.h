@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,45 +17,35 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-
-#ifndef CUEPARSER_H
-#define CUEPARSER_H
+#ifndef CUEFILE_H
+#define CUEFILE_H
 
 #include <QList>
 #include <QMap>
 #include <QString>
 #include <QStringList>
-#include <QUrl>
+#include <qmmp/qmmp.h>
 #include <qmmp/trackinfo.h>
+#include <qmmp/cueparser.h>
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class CUEParser
+class CueFile : public CueParser
 {
 public:
-    CUEParser(const QByteArray &array, const QString &path);
-    ~CUEParser();
+    CueFile(const QString &path);
+    ~CueFile();
 
-    QList<TrackInfo *> createPlayList();
-    const QString filePath() const;
-    qint64 offset(int track) const;
-    qint64 duration(int track) const;
-    int count() const;
-    TrackInfo *info(int track);
-    const QString trackURL(int track) const;
-    const QMap<Qmmp::ReplayGainKey, double> replayGain(int track) const;
+    QString dataFilePath(int track) const;
+    QStringList dataFilePaths() const;
 
 private:
-    struct CUETrack
-    {
-        TrackInfo info;
-        qint64 offset;
-    };
-    QList <CUETrack *> m_tracks;
     QStringList splitLine(const QString &line);
-    qint64 getLength(const QString &str);
-    QString m_filePath;
+    QString getDirtyPath(const QString &cue_path, const QString &path);
+    QMap<QString, QString> m_dataFiles; //name, full path
+    bool m_dirty;
+
 };
 
-#endif
+#endif //CUEFILE_H

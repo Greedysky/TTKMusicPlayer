@@ -102,7 +102,7 @@ void Decoder::setProperty(Qmmp::TrackProperty key, const QVariant &value)
 
 void Decoder::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    foreach(Qmmp::TrackProperty key, properties.keys())
+    for(const Qmmp::TrackProperty &key : properties.keys())
     {
         setProperty(key, properties.value(key));
     }
@@ -130,7 +130,7 @@ void Decoder::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach(QString filePath, Qmmp::findPlugins("Input"))
+    for(const QString &filePath : Qmmp::findPlugins("Input"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
@@ -145,10 +145,10 @@ void Decoder::loadPlugins()
     QmmpPluginCache::cleanup(&settings);
 }
 
-QString Decoder::file(DecoderFactory *factory)
+QString Decoder::file(const DecoderFactory *factory)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(const QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == factory->properties().shortName)
             return item->file();
@@ -161,7 +161,7 @@ QStringList Decoder::protocols()
     loadPlugins();
     QStringList protocolsList;
 
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -186,7 +186,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
             return nullptr;
         }
 
-        foreach(QmmpPluginCache *item, *m_cache)
+        for(QmmpPluginCache *item : qAsConst(*m_cache))
         {
             if(m_disabledNames.contains(item->shortName()))
                 continue;
@@ -203,7 +203,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
         fact = nullptr;
     }
 
-    QList<DecoderFactory*> filtered = findByFileExtension(path);
+    const QList<DecoderFactory*> filtered = findByFileExtension(path);
 
     if(filtered.isEmpty())
         return nullptr;
@@ -220,7 +220,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
         return nullptr;
     }
 
-    foreach(fact, filtered)
+    for(DecoderFactory *fact : qAsConst(filtered))
     {
         if(fact->canDecode(&file))
             return fact;
@@ -237,7 +237,7 @@ DecoderFactory *Decoder::findByMime(const QString& type)
     if(type.isEmpty())
         return nullptr;
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -251,7 +251,7 @@ DecoderFactory *Decoder::findByMime(const QString& type)
 DecoderFactory *Decoder::findByContent(QIODevice *input)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -265,7 +265,7 @@ DecoderFactory *Decoder::findByContent(QIODevice *input)
 DecoderFactory *Decoder::findByProtocol(const QString &p)
 {
     loadPlugins();
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -280,7 +280,7 @@ QList<DecoderFactory *> Decoder::findByFileExtension(const QString &path)
 {
     QList<DecoderFactory*> filtered;
     DecoderFactory *fact = nullptr;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -288,7 +288,7 @@ QList<DecoderFactory *> Decoder::findByFileExtension(const QString &path)
         if(!(fact = item->decoderFactory()))
             continue;
 
-        foreach(QString filter, fact->properties().filters)
+        for(const QString &filter : fact->properties().filters)
         {
             QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
             if(regexp.exactMatch(path))
@@ -302,7 +302,7 @@ QList<DecoderFactory *> Decoder::findByFileExtension(const QString &path)
     return filtered;
 }
 
-void Decoder::setEnabled(DecoderFactory* factory, bool enable)
+void Decoder::setEnabled(DecoderFactory *factory, bool enable)
 {
     loadPlugins();
     if(!factories().contains(factory))
@@ -321,7 +321,7 @@ void Decoder::setEnabled(DecoderFactory* factory, bool enable)
     settings.setValue("Decoder/disabled_plugins", m_disabledNames);
 }
 
-bool Decoder::isEnabled(DecoderFactory* factory)
+bool Decoder::isEnabled(const DecoderFactory *factory)
 {
     loadPlugins();
     return !m_disabledNames.contains(factory->properties().shortName);
@@ -331,7 +331,7 @@ QList<DecoderFactory *> Decoder::factories()
 {
     loadPlugins();
     QList<DecoderFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->decoderFactory())
             list.append(item->decoderFactory());
@@ -343,7 +343,7 @@ QList<DecoderFactory *> Decoder::enabledFactories()
 {
     loadPlugins();
     QList<DecoderFactory *> list;
-    foreach(QmmpPluginCache *item, *m_cache)
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;

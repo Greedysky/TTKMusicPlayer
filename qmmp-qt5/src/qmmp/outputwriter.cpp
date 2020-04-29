@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2012-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,7 +25,7 @@
 #include "output.h"
 #include "audioconverter.h"
 #include "channelconverter_p.h"
-#include "volumecontrol_p.h"
+#include "volumehandler.h"
 #include "outputwriter_p.h"
 
 extern "C" {
@@ -35,26 +35,7 @@ extern "C" {
 OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
 {
     m_handler = StateHandler::instance();
-    m_frequency = 0;
-    m_channels = 0;
-    m_output = nullptr;
-    m_format = Qmmp::PCM_UNKNOWM;
-    m_totalWritten = 0;
-    m_currentMilliseconds = -1;
-    m_bytesPerMillisecond = 0;
-    m_user_stop = false;
-    m_finish = false;
-    m_kbps = 0;
-    m_skip = false;
-    m_pause = false;
-    m_paused = false;
-    m_useEq = false;
-    m_muted = false;
     m_settings = QmmpSettings::instance();
-    m_format_converter = nullptr;
-    m_channel_converter = nullptr;
-    m_output_buf = nullptr;
-    m_output_size = 0;
 }
 
 OutputWriter::~OutputWriter()
@@ -90,6 +71,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
     m_chan_map = m_output->channelMap();
     m_channels = m_chan_map.count();
     m_format = m_output->format();
+    m_abr = m_settings->averageBitrate();
 
     qDebug("OutputWriter: [%s] %s ==> %s",
            qPrintable(Output::currentFactory()->properties().shortName),
@@ -111,7 +93,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
     m_bytesPerMillisecond = m_frequency * m_channels * AudioParameters::sampleSize(m_format) / 1000;
     m_recycler.configure(m_in_params.sampleRate(), m_in_params.channels()); //calculate output buffer size
     updateEqSettings();
-    clean_history();
+    eq_clean_history();
     return true;
 }
 
@@ -125,11 +107,6 @@ void OutputWriter::pause()
 void OutputWriter::stop()
 {
     m_user_stop = true;
-}
-
-void OutputWriter::setMuted(bool muted)
-{
-    m_muted = muted;
 }
 
 void OutputWriter::finish()
@@ -205,7 +182,7 @@ bool OutputWriter::prepareConverters()
 
 void OutputWriter::startVisualization()
 {
-    foreach(Visual *visual, *Visual::visuals())
+    for(Visual *visual : *Visual::visuals())
     {
         QMetaObject::invokeMethod(visual, "start", Qt::QueuedConnection);
     }
@@ -214,7 +191,7 @@ void OutputWriter::startVisualization()
 void OutputWriter::stopVisualization()
 {
     Visual::clearBuffer();
-    foreach(Visual *visual, *Visual::visuals())
+    for(Visual *visual : *Visual::visuals())
     {
         QMetaObject::invokeMethod(visual, "stop", Qt::QueuedConnection);
     }
@@ -293,10 +270,14 @@ void OutputWriter::run()
         {
             if((b = recycler()->next()))
             {
-                if(b->rate)
+                if(b->rate && !m_abr)
                     m_kbps = b->rate;
                 if(b->trackInfo)
+                {
                     m_output->setTrackInfo(*b->trackInfo);
+                    if(m_abr)
+                        m_kbps = b->trackInfo->value(Qmmp::BITRATE).toInt();
+                }
             }
         }
 
@@ -308,14 +289,12 @@ void OutputWriter::run()
             m_mutex.lock();
             if(m_useEq)
             {
-                iir(b->data, b->samples, m_channels);
+                eq_iir(b->data, b->samples, m_channels);
             }
             m_mutex.unlock();
             dispatchVisual(b);
-            if(SoftwareVolume::instance())
-                SoftwareVolume::instance()->changeVolume(b, m_channels);
-            if(m_muted)
-                memset(b->data, 0, b->size * sizeof(float));
+            if(VolumeHandler::instance())
+                VolumeHandler::instance()->apply(b, m_channels);
             if(m_channel_converter)
                 m_channel_converter->applyEffect(b);
             l = 0;
@@ -409,16 +388,18 @@ void OutputWriter::updateEqSettings()
         double preamp = m_settings->eqSettings().preamp();
         int bands =  m_settings->eqSettings().bands();
 
-        init_iir(m_frequency, bands);
+        eq_init_iir(m_frequency, bands);
+        eq_set_option(EQ_TWO_PASSES, m_settings->eqSettings().twoPasses());
+        eq_set_option(EQ_CLIP, 1);
 
         for(int ch = 0; ch < m_channels; ++ch)
         {
-            set_preamp(ch, 1.0 + 0.0932471 *preamp + 0.00279033 * preamp * preamp);
+            eq_set_preamp(ch, 1.0 + 0.0932471 *preamp + 0.00279033 * preamp * preamp);
 
             for(int i = 0; i < bands; ++i)
             {
                 double value =  m_settings->eqSettings().gain(i);
-                set_gain(i, ch, 0.03 * value + 0.000999999 * value * value);
+                eq_set_gain(i, ch, 0.03 * value + 0.000999999 * value * value);
             }
         }
     }

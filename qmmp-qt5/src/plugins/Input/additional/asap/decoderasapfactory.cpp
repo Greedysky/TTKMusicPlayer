@@ -41,25 +41,26 @@ DecoderProperties DecoderAsapFactory::properties() const
     return properties;
 }
 
-Decoder *DecoderAsapFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderAsapFactory::create(const QString &path, QIODevice *input)
 {
+    Q_UNUSED(input);
     return new DecoderAsap(path);
 }
 
-QList<TrackInfo *> DecoderAsapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
 
-    if(parts == TrackInfo::NoParts)
+    if(parts == TrackInfo::Parts())
     {
-        return QList<TrackInfo *>() << info;
+        return QList<TrackInfo*>() << info;
     }
 
     AsapHelper helper(path);
     if(!helper.initialize())
     {
         delete info;
-        return QList<TrackInfo *>();
+        return QList<TrackInfo*>();
     }
 
     if(parts & TrackInfo::MetaData)
@@ -79,10 +80,11 @@ QList<TrackInfo *> DecoderAsapFactory::createPlayList(const QString &path, Track
         info->setDuration(helper.totalTime());
     }
 
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderAsapFactory::createMetaDataModel(const QString &path, bool)
+MetaDataModel* DecoderAsapFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(readOnly);
     return new AsapMetaDataModel(path);
 }

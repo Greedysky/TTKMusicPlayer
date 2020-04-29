@@ -47,7 +47,6 @@ QmmpAudioEngine::QmmpAudioEngine(QObject *parent)
     m_sample_size = 0;
     m_decoder = nullptr;
     m_output = nullptr;
-    m_muted = false;
     m_replayGain = nullptr;
     m_dithering = nullptr;
     m_converter = new AudioConverter;
@@ -169,7 +168,7 @@ bool QmmpAudioEngine::enqueue(InputSource *source)
 
 void QmmpAudioEngine::addEffect(EffectFactory *factory)
 {
-    foreach(Effect *effect, m_effects)
+    for(const Effect *effect : qAsConst(m_effects))
     {
         if(effect->factory() == factory)
         {
@@ -201,7 +200,7 @@ void QmmpAudioEngine::addEffect(EffectFactory *factory)
 void QmmpAudioEngine::removeEffect(EffectFactory *factory)
 {
     Effect *effect = nullptr;
-    foreach(Effect *e, m_effects)
+    for(Effect *e : qAsConst(m_effects))
     {
         if(e->factory() == factory)
         {
@@ -249,15 +248,6 @@ void QmmpAudioEngine::pause()
     }
 }
 
-void QmmpAudioEngine::setMuted(bool muted)
-{
-    m_muted = muted;
-    if(m_output)
-    {
-        m_output->setMuted(muted);
-    }
-}
-
 void QmmpAudioEngine::stop()
 {
     m_user_stop = true;
@@ -294,7 +284,7 @@ qint64 QmmpAudioEngine::produceSound(unsigned char *data, qint64 size, quint32 b
 
     b->samples = samples;
     b->rate = brate;
-    foreach(Effect* effect, m_effects)
+    for(Effect *effect : qAsConst(m_effects))
     {
         effect->applyEffect(b);
     }
@@ -391,6 +381,7 @@ void QmmpAudioEngine::run()
             nextURL.clear();
             info.setValues(m);
             info.setValues(m_decoder->properties());
+            info.updateValues(m_inputs[m_decoder]->properties());
             info.setValues(m_decoder->replayGainInfo());
             info.setDuration(m_decoder->totalTime());
             if(StateHandler::instance()->dispatch(info))
@@ -599,7 +590,7 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
     if(fileInfo.isFile() || factory->properties().protocols.contains(scheme))
     {
         QStringList ignoredPaths;
-        QList<TrackInfo *> list = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
+        QList<TrackInfo*> list = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
         if(!list.isEmpty())
         {
             TrackInfo *info = list.takeFirst();
@@ -627,7 +618,6 @@ void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, 
 OutputWriter *QmmpAudioEngine::createOutput()
 {
     OutputWriter *output = new OutputWriter(nullptr);
-    output->setMuted(m_muted);
     if(!output->initialize(m_ap.sampleRate(), m_ap.channelMap()))
     {
         delete output;
@@ -651,7 +641,8 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
     m_converter->configure(m_ap.format());
     m_ap = AudioParameters(m_ap.sampleRate(), m_ap.channelMap(), Qmmp::PCM_FLOAT);
     //remove disabled and external effects
-    foreach(Effect *e, m_effects)
+    const QList<Effect *> tmp = m_effects;
+    for(Effect *e : qAsConst(tmp))
     {
         if(!e->factory() || !Effect::isEnabled(e->factory()))
         {
@@ -689,13 +680,16 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
         m_ap = m_effects.last()->audioParameters();
     }
 
-    foreach(EffectFactory *factory, Effect::enabledFactories())
+    for(EffectFactory *factory : Effect::enabledFactories())
     {
         Effect *effect = nullptr;
-        foreach(Effect *e, tmp_effects) //find effect
+        for(Effect *e : qAsConst(tmp_effects)) //find effect
         {
             if(e->factory() == factory)
+            {
                 effect = e;
+                break;
+            }
         }
 
         if(effect && (effect->audioParameters() != m_ap ||

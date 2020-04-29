@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QSettings>
+#include <qmmp/cueparser.h>
 extern "C"{
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
@@ -28,11 +29,12 @@ extern "C"{
 
 #include "ffmpegmetadatamodel.h"
 #include "decoder_ffmpeg.h"
+#include "decoder_ffmpegcue.h"
 #include "decoderffmpegfactory.h"
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {
-#if(LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
+#if (LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
     avcodec_register_all();
     avformat_network_init();
     av_register_all();
@@ -84,8 +86,9 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    QStringList filters;
-    filters << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.aac" << "*.ra" << "*.shn" << "*.vqf" << "*.ac3" << "*.tak";
+    QStringList filters = {
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.dsf", "*.dsdiff"
+    };
     filters = settings.value("FFMPEG/filters", filters).toStringList();
 
     if(!avcodec_find_decoder(AV_CODEC_ID_WMAV1))
@@ -114,6 +117,11 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.vqf");
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
         filters.removeAll("*.tak");
+    if(!avcodec_find_decoder(AV_CODEC_ID_DSD_LSBF))
+    {
+        filters.removeAll("*.dsf");
+        filters.removeAll("*.dsdiff");
+    }
 
     DecoderProperties properties;
     properties.name = tr("FFmpeg Plugin");
@@ -141,63 +149,115 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/true-hd" << "audio/x-matroska";
     properties.shortName = "ffmpeg";
     properties.hasSettings = true;
+    properties.protocols << "ffmpeg";
     properties.priority = 10;
     return properties;
 }
 
 Decoder *DecoderFFmpegFactory::create(const QString &path, QIODevice *input)
 {
-    return new DecoderFFmpeg(path, input);
+    if(path.startsWith("ffmpeg://"))
+        return new DecoderFFmpegCue(path);
+    else
+        return new DecoderFFmpeg(path, input);
 }
 
-QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    TrackInfo *info = new TrackInfo(path);
+    int track = -1; //cue track
+    QString filePath = path;
 
-    if(parts == TrackInfo::NoParts)
+    if(path.contains("://")) //is it cue track?
     {
-        return QList<TrackInfo *>() << info;
+        filePath.remove("ffmpeg://");
+        filePath.remove(QRegExp("#\\d+$"));
+        track = path.section("#", -1).toInt();
+        parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }
+
+     TrackInfo *info = new TrackInfo(filePath);
+
+    if(parts == TrackInfo::Parts())
+        return QList<TrackInfo*>() << info;
 
     AVFormatContext *in = nullptr;
 
 #ifdef Q_OS_WIN
-    if(avformat_open_input(&in, path.toUtf8().constData(), nullptr, nullptr) < 0)
+    if(avformat_open_input(&in, filePath.toUtf8().constData(), nullptr, nullptr) < 0)
 #else
-    if(avformat_open_input(&in, path.toLocal8Bit().constData(), nullptr, nullptr) < 0)
+    if(avformat_open_input(&in, filePath.toLocal8Bit().constData(), nullptr, nullptr) < 0)
 #endif
     {
         qDebug("DecoderFFmpegFactory: unable to open file");
         delete info;
-        return  QList<TrackInfo *>();
+        return  QList<TrackInfo*>();
     }
 
     avformat_find_stream_info(in, nullptr);
 
+    if(parts & TrackInfo::Properties)
+    {
+        int idx = av_find_best_stream(in, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
+        if(idx >= 0)
+        {
+    #if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+            AVCodecParameters *c = in->streams[idx]->codecpar;
+    #else
+            AVCodecContext *c = in->streams[idx]->codec;
+    #endif
+            info->setValue(Qmmp::BITRATE, int(c->bit_rate) / 1000);
+            info->setValue(Qmmp::SAMPLERATE, c->sample_rate);
+            info->setValue(Qmmp::CHANNELS, c->channels);
+            info->setValue(Qmmp::BITS_PER_SAMPLE, c->bits_per_raw_sample);
+
+            AVCodec *codec = avcodec_find_decoder(c->codec_id);
+            if(codec)
+                info->setValue(Qmmp::FORMAT_NAME, QString::fromLatin1(codec->name));
+            info->setValue(Qmmp::FILE_SIZE, QFileInfo(filePath).size()); //adds file size for cue tracks
+            info->setDuration(in->duration * 1000 / AV_TIME_BASE);
+        }
+    }
+
     if(parts & TrackInfo::MetaData)
     {
-        AVDictionaryEntry *album = av_dict_get(in->metadata,"album", nullptr, 0);
+        AVDictionaryEntry *cuesheet = av_dict_get(in->metadata,"cuesheet",nullptr,0);
+        if(cuesheet)
+        {
+            CueParser parser(cuesheet->value);
+            parser.setDuration(info->duration());
+            parser.setProperties(info->properties());
+            parser.setUrl("ffmpeg", filePath);
+
+            avformat_close_input(&in);
+            delete info;
+            return (track > 0) ? parser.createPlayList(track) : parser.createPlayList();
+        }
+
+        AVDictionaryEntry *album = av_dict_get(in->metadata,"album",nullptr,0);
         AVDictionaryEntry *album_artist = av_dict_get(in->metadata,"album_artist",nullptr,0);
-        AVDictionaryEntry *artist = av_dict_get(in->metadata,"artist", nullptr, 0);
+        AVDictionaryEntry *artist = av_dict_get(in->metadata,"artist",nullptr,0);
         AVDictionaryEntry *composer = av_dict_get(in->metadata,"composer",nullptr,0);
-        AVDictionaryEntry *comment = av_dict_get(in->metadata,"comment", nullptr, 0);
-        AVDictionaryEntry *genre = av_dict_get(in->metadata,"genre", nullptr, 0);
-        AVDictionaryEntry *title = av_dict_get(in->metadata,"title", nullptr, 0);
-        AVDictionaryEntry *year = av_dict_get(in->metadata,"year", nullptr, 0);
-        AVDictionaryEntry *track = av_dict_get(in->metadata,"track", nullptr, 0);
+        AVDictionaryEntry *comment = av_dict_get(in->metadata,"comment",nullptr,0);
+        AVDictionaryEntry *genre = av_dict_get(in->metadata,"genre",nullptr,0);
+        AVDictionaryEntry *title = av_dict_get(in->metadata,"title",nullptr,0);
+        AVDictionaryEntry *year = av_dict_get(in->metadata,"date",nullptr,0);
+        AVDictionaryEntry *track = av_dict_get(in->metadata,"track",nullptr,0);
 
         if(!album)
-            album = av_dict_get(in->metadata,"WM/AlbumTitle", nullptr, 0);
+            album = av_dict_get(in->metadata,"WM/AlbumTitle",nullptr,0);
+
         if(!artist)
-            artist = av_dict_get(in->metadata,"author", nullptr, 0);
+            artist = av_dict_get(in->metadata,"author",nullptr,0);
+
         if(!year)
-            year = av_dict_get(in->metadata,"WM/Year", nullptr, 0);
+            year = av_dict_get(in->metadata,"WM/Year",nullptr,0);
         if(!year)
-            year = av_dict_get(in->metadata,"date", nullptr, 0);
+            year = av_dict_get(in->metadata,"year",nullptr,0);
+
         if(!track)
-            track = av_dict_get(in->metadata,"WM/Track", nullptr, 0);
+            track = av_dict_get(in->metadata,"WM/Track",nullptr,0);
         if(!track)
-            track = av_dict_get(in->metadata,"WM/TrackNumber", nullptr, 0);
+            track = av_dict_get(in->metadata,"WM/TrackNumber",nullptr,0);
 
         if(album)
             info->setValue(Qmmp::ALBUM, QString::fromUtf8(album->value).trimmed());
@@ -219,31 +279,14 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
             info->setValue(Qmmp::TRACK, track->value);
     }
 
-    if(parts & TrackInfo::Properties)
-    {
-        int idx = av_find_best_stream(in, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
-        if(idx >= 0)
-        {
-    #if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
-            AVCodecParameters *c = in->streams[idx]->codecpar;
-    #else
-            AVCodecContext *c = in->streams[idx]->codec;
-    #endif
-            info->setValue(Qmmp::BITRATE, int(c->bit_rate) / 1000);
-            info->setValue(Qmmp::SAMPLERATE, c->sample_rate);
-            info->setValue(Qmmp::CHANNELS, c->channels);
-            info->setValue(Qmmp::BITS_PER_SAMPLE, c->bits_per_raw_sample);
-
-            info->setValue(Qmmp::FORMAT_NAME, QString::fromLatin1(c->codec->name));
-            info->setDuration(in->duration * 1000 / AV_TIME_BASE);
-        }
-    }
-
     avformat_close_input(&in);
-    return QList<TrackInfo *>() << info;
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool)
+MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(readOnly);
     return new FFmpegMetaDataModel(path);
 }
+
+

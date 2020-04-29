@@ -272,7 +272,7 @@ SCALARPRODUCT_LOOP 0
 
 
 
-; void ff_add_hfyu_median_prediction_mmx2(uint8_t *dst, const uint8_t *top, const uint8_t *diff, int w, int *left, int *left_top)
+; void ff_add_hfyu_median_prediction_mmx2(uint8_t *dst, const uint8_t *top, const uint8_t *diaff, int w, int *left, int *left_top)
 cglobal add_hfyu_median_prediction_mmx2, 6,6,0, dst, top, diff, w, left, left_top
     movq    mm0, [topq]
     movq    mm2, mm0

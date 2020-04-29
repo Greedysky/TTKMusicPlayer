@@ -30,7 +30,7 @@
 
 VorbisMetaDataModel::VorbisMetaDataModel(const QString &path, bool readOnly)
 #ifdef HAS_PICTURE_LIST
-    : MetaDataModel(readOnly, MetaDataModel::IS_COVER_EDITABLE)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 #else
     : MetaDataModel(readOnly)
 #endif

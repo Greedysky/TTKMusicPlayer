@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -78,14 +78,7 @@ static void cddb_log_handler(cddb_log_level_t level, const char *message)
 
 DecoderCDAudio::DecoderCDAudio(const QString &url) : Decoder()
 {
-    m_bitrate = 0;
-    m_totalTime = 0;
-    m_first_sector = -1;
-    m_last_sector  = -1;
-    m_current_sector  = -1;
     m_url = url;
-    m_cdio = nullptr;
-    m_buffer_at = 0;
     m_buffer = new char[CDDA_BUFFER_SIZE];
 }
 
@@ -209,6 +202,8 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
             t.info.setValue(Qmmp::TITLE, QString::fromLocal8Bit(cdtext->field[CDTEXT_TITLE]));
             t.info.setValue(Qmmp::ARTIST, QString::fromLocal8Bit(cdtext->field[CDTEXT_PERFORMER]));
             t.info.setValue(Qmmp::GENRE, QString::fromLocal8Bit(cdtext->field[CDTEXT_GENRE]));
+            t.info.setValue(Qmmp::COMMENT, QString::fromLocal8Bit(cdtext->field[CDTEXT_MESSAGE]));
+            t.info.setValue(Qmmp::COMPOSER, QString::fromLocal8Bit(cdtext->field[CDTEXT_COMPOSER]));
             use_cddb = false;
         }
 #else
@@ -218,6 +213,8 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
             t.info.setValue(Qmmp::TITLE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_TITLE,i)));
             t.info.setValue(Qmmp::ARTIST, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_PERFORMER,i)));
             t.info.setValue(Qmmp::GENRE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_GENRE,i)));
+            t.info.setValue(Qmmp::COMMENT, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_MESSAGE,i)));
+            t.info.setValue(Qmmp::COMPOSER, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_COMPOSER,i)));
             use_cddb = false;
         }
 #endif
@@ -249,7 +246,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
             {
                 cddb_http_enable (cddb_conn);
                 cddb_set_http_path_query (cddb_conn, settings.value("cddb_path").toByteArray().constData());
-                if(QmmpSettings::instance()->isProxyEnabled())
+                if(QmmpSettings::instance()->isProxyEnabled() && QmmpSettings::instance()->proxyType() == QmmpSettings::HTTP_PROXY)
                 {
                     QUrl proxy = QmmpSettings::instance()->proxy();
                     cddb_http_proxy_enable (cddb_conn);
@@ -300,14 +297,11 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
                     {
                         cddb_track_t *cddb_track = cddb_disc_get_track (cddb_disc, i - 1);
                         int t = i - first_track_number;
-                        tracks[t].info.setValue(Qmmp::ARTIST,
-                                                QString::fromUtf8(cddb_track_get_artist(cddb_track)));
-                        tracks[t].info.setValue(Qmmp::TITLE,
-                                                QString::fromUtf8(cddb_track_get_title(cddb_track)));
-                        tracks[t].info.setValue(Qmmp::GENRE,
-                                                QString::fromUtf8(cddb_disc_get_genre(cddb_disc)));
-                        tracks[t].info.setValue(Qmmp::ALBUM,
-                                                QString::fromUtf8(cddb_disc_get_title(cddb_disc)));
+                        tracks[t].info.setValue(Qmmp::ARTIST, QString::fromUtf8(cddb_track_get_artist(cddb_track)));
+                        tracks[t].info.setValue(Qmmp::TITLE, QString::fromUtf8(cddb_track_get_title(cddb_track)));
+                        tracks[t].info.setValue(Qmmp::GENRE, QString::fromUtf8(cddb_disc_get_genre(cddb_disc)));
+                        tracks[t].info.setValue(Qmmp::ALBUM, QString::fromUtf8(cddb_disc_get_title(cddb_disc)));
+                        tracks[t].info.setValue(Qmmp::YEAR, cddb_disc_get_year(cddb_disc));
                     }
                     saveToCache(tracks,  id);
                 }
@@ -349,6 +343,7 @@ void DecoderCDAudio::saveToCache(QList <CDATrack> tracks,  uint disc_id)
         settings.setValue(QString("title%1").arg(i), meta[Qmmp::TITLE]);
         settings.setValue(QString("genre%1").arg(i), meta[Qmmp::GENRE]);
         settings.setValue(QString("album%1").arg(i), meta[Qmmp::ALBUM]);
+        settings.setValue(QString("year%1").arg(i), meta[Qmmp::YEAR]);
     }
 }
 
@@ -368,6 +363,7 @@ bool DecoderCDAudio::readFromCache(QList <CDATrack> *tracks, uint disc_id)
         (*tracks)[i].info.setValue(Qmmp::TITLE, settings.value(QString("title%1").arg(i)).toString());
         (*tracks)[i].info.setValue(Qmmp::GENRE, settings.value(QString("genre%1").arg(i)).toString());
         (*tracks)[i].info.setValue(Qmmp::ALBUM, settings.value(QString("album%1").arg(i)).toString());
+        (*tracks)[i].info.setValue(Qmmp::YEAR, settings.value(QString("year%1").arg(i)).toString());
     }
     return true;
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -59,18 +59,18 @@ public:
      * Returns plugin file path.
      * @param factory Visual plugin factory.
      */
-    static QString file(VisualFactory *factory);
+    static QString file(const VisualFactory *factory);
     /*!
      * Sets whether the visual plugin is enabled.
      * @param factory Visual plugin factory.
      * @param enable Plugin enable state (\b true - enable, \b false - disable)
      */
-    static void setEnabled(VisualFactory* factory, bool enable = true);
+    static void setEnabled(VisualFactory *factory, bool enable = true);
     /*!
      * Returns \b true if visual plugin is enabled, otherwise returns \b false
      * @param factory Effect plugin factory.
      */
-    static bool isEnabled(VisualFactory* factory);
+    static bool isEnabled(const VisualFactory *factory);
     /*!
      * Adds external visualization \b visual.
      */
@@ -149,7 +149,7 @@ protected:
 
 private:
     static QList<VisualFactory*> *m_factories;
-    static QHash <VisualFactory*, QString> *m_files;
+    static QHash <const VisualFactory*, QString> *m_files;
     static void checkFactories();
     static QList<Visual*>  m_visuals;
     static QHash<VisualFactory*, Visual*> m_vis_map; //internal visualization

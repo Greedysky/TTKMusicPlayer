@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@ extern "C"{
 }
 #include <qmmp/decoder.h>
 
-class CUEParser;
+class CueParser;
 
 class DecoderWavPack : public Decoder
 {
@@ -48,19 +48,19 @@ private:
     void deinit();
     qint64 wavpack_decode(unsigned char *data, qint64 size);
     ChannelMap findChannelMap(int channels);
-    WavpackContext *m_context;
-    int32_t *m_output_buf; // output buffer
-    int m_chan;
-    qint64 m_totalTime;
-    qint64 m_length_in_bytes;
-    qint64 m_totalBytes;
-    qint64 m_offset;
-    qint64 m_length;
+    WavpackContext *m_context = nullptr;
+    int32_t *m_output_buf = nullptr; // output buffer
+    int m_chan = 0;
+    qint64 m_totalTime = 0;
+    qint64 m_length_in_bytes = 0;
+    qint64 m_totalBytes = 0;
+    qint64 m_offset = 0;
+    qint64 m_length = 0;
     QString m_path;
-    CUEParser *m_parser;
-    int m_track;
-    int m_bps;
-    qint64 m_frame_size; //frame size
+    CueParser *m_parser = nullptr;
+    int m_track = 0;
+    int m_bps = 0;
+    qint64 m_frame_size = 0; //frame size
 };
 
 #endif // DECODER_WAVPACK_H
