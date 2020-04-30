@@ -21,11 +21,9 @@ QT       += core gui xml sql
 equals(QT_MAJOR_VERSION, 4){
 QT       += network
 CONFIG   += gcc
-include($$PWD/TTKExtra/Qt4/qmmp.pri)
 }
 equals(QT_MAJOR_VERSION, 5){
 QT       += widgets multimediawidgets
-include($$PWD/TTKExtra/Qt5/qmmp.pri)
 }
 
 include($$PWD/TTKVersion.pri)
@@ -44,6 +42,7 @@ unix:!mac{
 }
 
 ##qmmp lib check
+include($$PWD/TTKExtra/qmmp.pri)
 win32:{
     QMMP_DEPANDS = $$DESTDIR
     equals(QT_MAJOR_VERSION, 4){

@@ -17,7 +17,7 @@ QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &forma
 #ifdef Q_OS_WIN
     path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
 #elif defined Q_OS_UNIX
-    path = path + QString("qmmp/%1/lib%2.so").arg(module).arg(format);
+    path = path + QString("plugins/%1/lib%2.so").arg(module).arg(format);
 #endif
     return path;
 }
