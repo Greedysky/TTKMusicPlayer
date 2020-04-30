@@ -25,8 +25,7 @@ CONFIG += console
 
 DEFINES += TTK_LIBRARY
 
-win32:DESTDIR = $$OUT_PWD/../../bin
-unix:DESTDIR = $$OUT_PWD/../../lib
+DESTDIR = $$OUT_PWD/../../bin
 TARGET = TTKConsole
 
 LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKCore

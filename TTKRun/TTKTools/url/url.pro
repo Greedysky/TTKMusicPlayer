@@ -41,8 +41,8 @@ INCLUDEPATH += \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits
 
-win32:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
-unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
+unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
 SOURCES += \
     mainurl.cpp\

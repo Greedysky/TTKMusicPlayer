@@ -21,8 +21,7 @@ QT       += core
 include($$PWD/../../TTKVersion.pri)
 unix:VERSION += 1.0.0.0
 
-win32:DESTDIR = $$OUT_PWD/../../bin
-unix:DESTDIR = $$OUT_PWD/../../lib
+DESTDIR = $$OUT_PWD/../../bin
 TARGET = TTKInit
 
 TEMPLATE = app
