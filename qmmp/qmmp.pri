@@ -1,0 +1,76 @@
+#Common settings for Qmmp build
+
+#Extra clean target
+
+unix: QMAKE_DISTCLEAN += -r .build
+
+#Some conf to redirect intermediate stuff in separate dirs
+
+UI_DIR=./.build/ui/
+MOC_DIR=./.build/moc/
+OBJECTS_DIR=./.build/obj
+RCC_DIR=./.build/rcc
+
+#Defines
+
+DEFINES += QT_NO_CAST_FROM_BYTEARRAY QT_STRICT_ITERATORS
+
+equals(QT_MAJOR_VERSION, 5){
+CONFIG -= depend_includepath
+QT += widgets
+unix:DEFINES += QMMP_WS_X11
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050400 QT_DEPRECATED_WARNINGS
+}
+
+#Configuration
+
+CONFIG += hide_symbols
+CONFIG += c++11
+QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CFLAGS += -std=gnu11
+DEFINES += QMMP_LIBRARY
+
+
+#Version
+
+TTKMusicPlayer = 2.12.0.0
+QMMP_VERSION = 1.4.0
+CONFIG += USE_STATIC_LIBRARY
+
+#Comment/uncomment this if you want to change plugins list
+
+CONFIG += JACK_PLUGIN
+CONFIG += FLAC_PLUGIN
+CONFIG += MUSEPACK_PLUGIN
+CONFIG += FFAP_PLUGIN
+CONFIG += FFMPEG_PLUGIN
+CONFIG += MODPLUG_PLUGIN
+CONFIG += WILDMIDI_PLUGIN
+CONFIG += GME_PLUGIN
+CONFIG += XMP_PLUGIN
+CONFIG += OPUS_PLUGIN
+CONFIG += ALSA_PLUGIN
+CONFIG += AAC_PLUGIN
+CONFIG += CDAUDIO_PLUGIN
+CONFIG += BS2B_PLUGIN
+CONFIG += SOXR_PLUGIN
+CONFIG += LADSPA_PLUGIN
+CONFIG += SRC_PLUGIN
+CONFIG += SID_PLUGIN
+CONFIG += OPTIMFROG_PLUGIN
+CONFIG += ADPLUG_PLUGIN
+CONFIG += SPEEX_PLUGIN
+
+#additional features
+
+CONFIG += WITH_MAD
+CONFIG += WITH_ENCA
+
+CONFIG -= $$DISABLED_PLUGINS
+
+contains(CONFIG, USE_STATIC_LIBRARY){
+    STATIC_LIBRARY_SUFFIX = _static
+    DEFINES += TAGLIB_STATIC
+}else{
+    STATIC_LIBRARY_SUFFIX =
+}
