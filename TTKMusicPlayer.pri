@@ -27,8 +27,7 @@ QT       += widgets multimediawidgets
 }
 
 include($$PWD/TTKVersion.pri)
-win32:DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
-unix:DESTDIR = $$OUT_PWD/../lib/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 
 ##openssl lib check
 win32:{
@@ -44,12 +43,7 @@ unix:!mac{
 ##qmmp lib check
 include($$PWD/TTKExtra/qmmp.pri)
 win32:{
-    QMMP_DEPANDS = $$DESTDIR
-    equals(QT_MAJOR_VERSION, 4){
-        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp0.dll
-    }else{
-        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp1.dll
-    }
+    QMMP_DEPANDS = $$DESTDIR/qmmp1.dll
     QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
 }
 unix:!mac{
@@ -81,7 +75,7 @@ win32{
         QT  += multimedia
         gcc{
             QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
-            LIBS += -L$$DESTDIR -lqmmp0 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+            LIBS += -L$$DESTDIR -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
         }
     }
 }

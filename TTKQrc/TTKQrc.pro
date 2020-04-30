@@ -24,8 +24,7 @@ msvc{
 include($$PWD/../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32:DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
-unix:DESTDIR = $$OUT_PWD/../lib/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 TARGET = TTKUi
 
 RESOURCES += \

@@ -43,7 +43,7 @@ INCLUDEPATH += \
     $$PWD/../../../TTKModule/TTKWidget/musicCoreKits \
 
 win32:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
-unix:LIBS += -L$$OUT_PWD/../../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
 SOURCES += \
     mainskin.cpp \

@@ -22,8 +22,7 @@ TEMPLATE = lib
 
 include($$PWD/../../TTKVersion.pri)
 
-win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
-unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKDumper
 
 CONFIG       += warn_off

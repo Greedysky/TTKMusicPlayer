@@ -47,7 +47,7 @@ else{
 
 ##update translation
 unix:{
-    output = $$OUT_PWD/lib/$$TTKMusicPlayer/MLanguage
+    output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
     !exists($$output):system(mkdir $$output)
 
     system(find TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
