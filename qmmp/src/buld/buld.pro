@@ -11,22 +11,22 @@ include($$PWD/../../qmmp.pri)
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = app
-win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
-unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 
-win32:{
-    LIBS += -L$$OUT_PWD/../../bin/$$TTKMusicPlayer -lqmmp1
-    msvc:{
-        HEADERS += ../../src/qmmp/volume.h \
-                   ../../src/qmmp/soundcore.h \
-                   ../../src/qmmp/qmmpsettings.h \
-                   ../../src/qmmp/visual.h
-    }
+unix:LIBS += -L$$DESTDIR -lqmmp
+win32:LIBS += -L$$DESTDIR -lqmmp1
+
+win32:msvc:{
+    HEADERS += ../../src/qmmp/volume.h \
+               ../../src/qmmp/soundcore.h \
+               ../../src/qmmp/qmmpsettings.h \
+               ../../src/qmmp/visual.h
 }
+
 unix:{
-    LIBS += -L$$OUT_PWD/../../lib/$$TTKMusicPlayer -lqmmp
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
+
 TEMPLATE = app
 
 SOURCES += main.cpp\

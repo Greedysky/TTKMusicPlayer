@@ -2,16 +2,11 @@ include($$PWD/../../qmmp.pri)
 
 EXTRA_PREFIX = $$PWD/../../../extra/gcc
 
-QMAKE_LIBDIR += $$OUT_PWD/../../../../lib/$$TTKMusicPlayer
-PLUGINS_PREFIX = $$OUT_PWD/../../../../lib/$$TTKMusicPlayer/plugins
+QMAKE_LIBDIR += $$OUT_PWD/../../../../bin/$$TTKMusicPlayer
+PLUGINS_PREFIX = $$OUT_PWD/../../../../bin/$$TTKMusicPlayer/plugins
 
-unix {
-    LIBS += -lqmmp
-}
-
-win32 {
-    LIBS += -lqmmp1
-}
+unix:LIBS += -lqmmp
+win32:LIBS += -lqmmp1
 
 INCLUDEPATH += $$PWD/../
 

@@ -86,8 +86,7 @@ SOURCES += recycler.cpp \
     trackinfo.cpp \
     cueparser.cpp
 
-win32:DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
-unix:DESTDIR = $$OUT_PWD/../../lib/$$TTKMusicPlayer
+DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 
 TARGET = $${TARGET}
 CONFIG += shared warn_on qt thread

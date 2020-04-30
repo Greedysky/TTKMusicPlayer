@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <QtGlobal>
 
 extern "C" {
 #define __STDC_CONSTANT_MACROS
@@ -10,13 +11,17 @@ extern "C" {
 
 #include "spek-audio.h"
 
+#ifdef Q_CC_GNU
+#  pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 class AudioFileImpl : public AudioFile
 {
 public:
     AudioFileImpl(
-        AudioError error, AVFormatContext *format_context, int audio_stream,
-        const std::string& codec_name, int bit_rate, int sample_rate, int bits_per_sample,
-        int streams, int channels, double duration
+        AudioError error, AVFormatContext *format_context, AVCodecContext *codec_context,
+        int audio_stream, const std::string& codec_name, int bit_rate, int sample_rate,
+        int bits_per_sample, int streams, int channels, double duration
     );
     ~AudioFileImpl() override;
     void start(int channel, int samples) override;
@@ -38,6 +43,7 @@ public:
 private:
     AudioError error;
     AVFormatContext *format_context;
+    AVCodecContext *codec_context;
     int audio_stream;
     std::string codec_name;
     int bit_rate;
@@ -77,42 +83,42 @@ std::unique_ptr<AudioFile> Audio::open(const std::string& file_name, int stream)
     AudioError error = AudioError::OK;
 
     AVFormatContext *format_context = nullptr;
-    if(avformat_open_input(&format_context, file_name.c_str(), nullptr, nullptr) != 0) {
+    if (avformat_open_input(&format_context, file_name.c_str(), nullptr, nullptr) != 0) {
         error = AudioError::CANNOT_OPEN_FILE;
     }
 
-    if(!error && avformat_find_stream_info(format_context, nullptr) < 0) {
+    if (!error && avformat_find_stream_info(format_context, nullptr) < 0) {
         // 24-bit APE returns an error but parses the stream info just fine.
         // TODO: old comment, verify
-        if(format_context->nb_streams <= 0) {
+        if (format_context->nb_streams <= 0) {
             error = AudioError::NO_STREAMS;
         }
     }
 
     int audio_stream = -1;
     int streams = 0;
-    if(!error) {
-        for(unsigned int i = 0; i < format_context->nb_streams; i++) {
-            if(format_context->streams[i]->codec->codec_type == AVMEDIA_TYPE_AUDIO) {
-                if(stream == streams) {
+    if (!error) {
+        for (unsigned int i = 0; i < format_context->nb_streams; i++) {
+            if (format_context->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO) {
+                if (stream == streams) {
                     audio_stream = i;
                 }
                 streams++;
             }
         }
-        if(audio_stream == -1) {
+        if (audio_stream == -1) {
             error = AudioError::NO_AUDIO;
         }
     }
 
     AVStream *avstream = nullptr;
-    AVCodecContext *codec_context = nullptr;
+    AVCodecParameters *codecpar = nullptr;
     AVCodec *codec = nullptr;
-    if(!error) {
+    if (!error) {
         avstream = format_context->streams[audio_stream];
-        codec_context = avstream->codec;
-        codec = avcodec_find_decoder(codec_context->codec_id);
-        if(!codec) {
+        codecpar = avstream->codecpar;
+        codec = avcodec_find_decoder(codecpar->codec_id);
+        if (!codec) {
             error = AudioError::NO_DECODER;
         }
     }
@@ -123,48 +129,60 @@ std::unique_ptr<AudioFile> Audio::open(const std::string& file_name, int stream)
     int bits_per_sample = 0;
     int channels = 0;
     double duration = 0;
-    if(!error) {
+    if (!error) {
         // We can already fill in the stream info even if the codec won't be able to open it.
         codec_name = codec->long_name;
-        bit_rate = codec_context->bit_rate;
-        sample_rate = codec_context->sample_rate;
-        bits_per_sample = codec_context->bits_per_raw_sample;
-        if(!bits_per_sample) {
+        bit_rate = codecpar->bit_rate;
+        sample_rate = codecpar->sample_rate;
+        bits_per_sample = codecpar->bits_per_raw_sample;
+        if (!bits_per_sample) {
             // APE uses bpcs, FLAC uses bprs.
-            bits_per_sample = codec_context->bits_per_coded_sample;
+            bits_per_sample = codecpar->bits_per_coded_sample;
         }
-        if(codec_context->codec_id == AV_CODEC_ID_AAC ||
-            codec_context->codec_id == AV_CODEC_ID_MUSEPACK8 ||
-            codec_context->codec_id == AV_CODEC_ID_WMAV1 ||
-            codec_context->codec_id == AV_CODEC_ID_WMAV2) {
+        if (codecpar->codec_id == AV_CODEC_ID_AAC ||
+            codecpar->codec_id == AV_CODEC_ID_MUSEPACK8 ||
+            codecpar->codec_id == AV_CODEC_ID_WMAV1 ||
+            codecpar->codec_id == AV_CODEC_ID_WMAV2) {
             // These decoders set both bps and bitrate.
             bits_per_sample = 0;
         }
-        if(bits_per_sample) {
+        if (bits_per_sample) {
             bit_rate = 0;
         }
-        channels = codec_context->channels;
+        channels = codecpar->channels;
 
-        if(avstream->duration != AV_NOPTS_VALUE) {
+        if (avstream->duration != AV_NOPTS_VALUE) {
             duration = avstream->duration * av_q2d(avstream->time_base);
-        } else if(format_context->duration != AV_NOPTS_VALUE) {
+        } else if (format_context->duration != AV_NOPTS_VALUE) {
             duration = format_context->duration / (double) AV_TIME_BASE;
         } else {
             error = AudioError::NO_DURATION;
         }
 
-        if(!error && channels <= 0) {
+        if (!error && channels <= 0) {
             error = AudioError::NO_CHANNELS;
         }
     }
 
-    if(!error && avcodec_open2(codec_context, codec, nullptr) < 0) {
+    AVCodecContext *codec_context = nullptr;
+    if (!error) {
         error = AudioError::CANNOT_OPEN_DECODER;
+        // Allocate a codec context for the decoder.
+        codec_context = avcodec_alloc_context3(codec);
+        if (codec_context) {
+            // Copy codec parameters from input stream to output codec context.
+            if (avcodec_parameters_to_context(codec_context, codecpar) == 0) {
+                // Finally, init the decoder.
+                if (avcodec_open2(codec_context, codec, nullptr) == 0) {
+                    error = AudioError::OK;
+                }
+            }
+        }
     }
 
-    if(!error) {
-        AVSampleFormat fmt = codec_context->sample_fmt;
-        if(fmt != AV_SAMPLE_FMT_S16 && fmt != AV_SAMPLE_FMT_S16P &&
+    if (!error) {
+        AVSampleFormat fmt = (AVSampleFormat)codecpar->format;
+        if (fmt != AV_SAMPLE_FMT_S16 && fmt != AV_SAMPLE_FMT_S16P &&
             fmt != AV_SAMPLE_FMT_S32 && fmt != AV_SAMPLE_FMT_S32P &&
             fmt != AV_SAMPLE_FMT_FLT && fmt != AV_SAMPLE_FMT_FLTP &&
             fmt != AV_SAMPLE_FMT_DBL && fmt != AV_SAMPLE_FMT_DBLP ) {
@@ -173,27 +191,27 @@ std::unique_ptr<AudioFile> Audio::open(const std::string& file_name, int stream)
     }
 
     return std::unique_ptr<AudioFile>(new AudioFileImpl(
-        error, format_context, audio_stream,
-        codec_name, bit_rate, sample_rate, bits_per_sample,
-        streams, channels, duration
+        error, format_context, codec_context,
+        audio_stream, codec_name, bit_rate, sample_rate,
+        bits_per_sample, streams, channels, duration
     ));
 }
 
 AudioFileImpl::AudioFileImpl(
-    AudioError error, AVFormatContext *format_context, int audio_stream,
-    const std::string& codec_name, int bit_rate, int sample_rate, int bits_per_sample,
-    int streams, int channels, double duration
+    AudioError error, AVFormatContext *format_context, AVCodecContext *codec_context,
+    int audio_stream, const std::string& codec_name, int bit_rate, int sample_rate,
+    int bits_per_sample, int streams, int channels, double duration
 ) :
-    error(error), format_context(format_context), audio_stream(audio_stream),
-    codec_name(codec_name), bit_rate(bit_rate),
-    sample_rate(sample_rate), bits_per_sample(bits_per_sample),
-    streams(streams), channels(channels), duration(duration)
+    error(error), format_context(format_context), codec_context(codec_context),
+    audio_stream(audio_stream), codec_name(codec_name), bit_rate(bit_rate),
+    sample_rate(sample_rate),
+    bits_per_sample(bits_per_sample), streams(streams), channels(channels), duration(duration)
 {
     av_init_packet(&this->packet);
     this->packet.data = nullptr;
     this->packet.size = 0;
     this->offset = 0;
-    this->frame = avcodec_alloc_frame();
+    this->frame = av_frame_alloc();
     this->buffer_len = 0;
     this->buffer = nullptr;
     this->frames_per_interval = 0;
@@ -203,25 +221,22 @@ AudioFileImpl::AudioFileImpl(
 
 AudioFileImpl::~AudioFileImpl()
 {
-    if(this->buffer) {
+    if (this->buffer) {
         av_freep(&this->buffer);
     }
-    if(this->frame) {
-        avcodec_free_frame(&this->frame);
+    if (this->frame) {
+        av_frame_free(&this->frame);
     }
-    if(this->packet.data) {
+    if (this->packet.data) {
         this->packet.data -= this->offset;
         this->packet.size += this->offset;
         this->offset = 0;
-        av_free_packet(&this->packet);
+        av_packet_unref(&this->packet);
     }
-    if(this->format_context) {
-        if(this->audio_stream >= 0) {
-            auto codec_context = this->format_context->streams[this->audio_stream]->codec;
-            if(codec_context) {
-                avcodec_close(codec_context);
-            }
-        }
+    if (this->codec_context) {
+        avcodec_free_context(&codec_context);
+    }
+    if (this->format_context) {
         avformat_close_input(&this->format_context);
     }
 }
@@ -229,7 +244,7 @@ AudioFileImpl::~AudioFileImpl()
 void AudioFileImpl::start(int channel, int samples)
 {
     this->channel = channel;
-    if(channel < 0 || channel >= this->channels) {
+    if (channel < 0 || channel >= this->channels) {
         assert(false);
         this->error = AudioError::NO_CHANNELS;
     }
@@ -244,30 +259,30 @@ void AudioFileImpl::start(int channel, int samples)
 
 int AudioFileImpl::read()
 {
-    if(!!this->error) {
+    if (!!this->error) {
         return -1;
     }
 
-    for(;;) {
+    for (;;) {
         while (this->packet.size > 0) {
-//            avcodec_free_frame(&this->frame);
-            auto codec_context = this->format_context->streams[this->audio_stream]->codec;
+            av_frame_unref(this->frame);
             int got_frame = 0;
-            int len = avcodec_decode_audio4(codec_context, this->frame, &got_frame, &this->packet);
-            if(len < 0) {
+            int len = avcodec_decode_audio4(this->codec_context, this->frame, &got_frame, &this->packet
+            );
+            if (len < 0) {
                 // Error, skip the frame.
                 break;
             }
             this->packet.data += len;
             this->packet.size -= len;
             this->offset += len;
-            if(!got_frame) {
+            if (!got_frame) {
                 // No data yet, get more frames.
                 continue;
             }
             // We have data, return it and come back for more later.
             int samples = this->frame->nb_samples;
-            if(samples > this->buffer_len) {
+            if (samples > this->buffer_len) {
                 this->buffer = static_cast<float*>(
                     av_realloc(this->buffer, samples * sizeof(float))
                 );
@@ -276,10 +291,10 @@ int AudioFileImpl::read()
 
             AVSampleFormat format = static_cast<AVSampleFormat>(this->frame->format);
             int is_planar = av_sample_fmt_is_planar(format);
-            for(int sample = 0; sample < samples; ++sample) {
+            for (int sample = 0; sample < samples; ++sample) {
                 uint8_t *data;
                 int offset;
-                if(is_planar) {
+                if (is_planar) {
                     data = this->frame->data[this->channel];
                     offset = sample;
                 } else {
@@ -314,21 +329,21 @@ int AudioFileImpl::read()
             }
             return samples;
         }
-        if(this->packet.data) {
+        if (this->packet.data) {
             this->packet.data -= this->offset;
             this->packet.size += this->offset;
             this->offset = 0;
-            av_free_packet(&this->packet);
+            av_packet_unref(&this->packet);
         }
 
         int res = 0;
         while ((res = av_read_frame(this->format_context, &this->packet)) >= 0) {
-            if(this->packet.stream_index == this->audio_stream) {
+            if (this->packet.stream_index == this->audio_stream) {
                 break;
             }
-            av_free_packet(&this->packet);
+            av_packet_unref(&this->packet);
         }
-        if(res < 0) {
+        if (res < 0) {
             // End of file or error.
             return 0;
         }
