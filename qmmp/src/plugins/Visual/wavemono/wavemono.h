@@ -16,24 +16,52 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALNORMALSPACEWAVEFACTORY_H
-#define VISUALNORMALSPACEWAVEFACTORY_H
+#ifndef WAVMONO_H
+#define WAVMONO_H
 
-#include <QObject>
-#include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
+
+class QTimer;
+class QPainter;
+class QPaintEvent;
+class QHideEvent;
+class QShowEvent;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualNormalSpaceWaveFactory : public QObject, public VisualFactory
+class WaveMono : public Visual
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
-    Q_INTERFACES(VisualFactory)
 public:
-    virtual VisualProperties properties() const override;
-    virtual Visual *create(QWidget *parent) override;
+    explicit WaveMono(QWidget *parent = nullptr);
+    virtual ~WaveMono();
+
+public slots:
+    virtual void start() override;
+    virtual void stop() override;
+
+private slots:
+    void timeout();
+
+private:
+    void clear();
+    virtual void hideEvent(QHideEvent *e) override;
+    virtual void showEvent(QShowEvent *e) override;
+    virtual void paintEvent(QPaintEvent *) override;
+
+    void process();
+    void draw(QPainter *p);
+
+    QImage m_backgroundImage;
+    int m_pixPos;
+    QTimer *m_timer;
+    double *m_intern_vis_data;
+    int *m_x_scale, m_cols, m_rows;
+    double m_analyzer_falloff;
+    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
+    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
+    bool m_running;
 
 };
 

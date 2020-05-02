@@ -1,228 +1,221 @@
 #include "lightenvelope.h"
-#include "inlines.h"
-#include <qmmp/soundcore.h>
 
-#include <QDebug>
+#include <QMenu>
 #include <QPainter>
 #include <QPaintEvent>
+#include <QSettings>
 
-#define VISUAL_NODE_SIZE 512 //samples
-#define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
+#include <qmmp/buffer.h>
+#include <qmmp/decoder.h>
+#include <qmmp/soundcore.h>
+#include <qmmp/inputsource.h>
+#include <qmmp/decoderfactory.h>
+#include <qmmp/audioconverter.h>
 
-LightEnvelopeThead::LightEnvelopeThead(QObject *parent) :
-    QThread(parent)
+#define NUMBER_OF_VALUES 4096
+
+LightEnvelopeScanner::LightEnvelopeScanner(QObject *parent)
+    : QThread(parent)
 {
-    init();
+
 }
 
-LightEnvelopeThead::~LightEnvelopeThead()
+LightEnvelopeScanner::~LightEnvelopeScanner()
 {
-    free();
+    stop();
 }
 
-bool LightEnvelopeThead::init(const QString &path)
+bool LightEnvelopeScanner::scan(const QString &path)
 {
-    free();
-    init();
-
-    m_source = InputSource::create(path, this);
-    if(m_source->ioDevice() && !m_source->ioDevice()->isOpen() && !m_source->ioDevice()->open(QIODevice::ReadOnly))
+    InputSource *source = InputSource::create(path, this);
+    if(!source->initialize())
     {
-        m_source->deleteLater();
-        m_source = nullptr;
+        delete source;
+        qWarning("LightEnvelopeScanner: invalid path");
         return false;
+    }
+
+    if(source->ioDevice() && !source->ioDevice()->open(QIODevice::ReadOnly))
+    {
+        source->deleteLater();
+        qWarning("LightEnvelopeScanner: cannot open input stream, error: %s",
+                 qPrintable(source->ioDevice()->errorString()));
+        return false;
+
     }
 
     DecoderFactory *factory = nullptr;
-    if(!m_source->path().contains("://"))
-    {
-        factory = Decoder::findByFilePath(m_source->path(), QmmpSettings::instance()->determineFileTypeByContent());
-    }
+
+    if(!source->path().contains("://"))
+        factory = Decoder::findByFilePath(source->path());
+    if(!factory)
+        factory = Decoder::findByMime(source->contentType());
+    if(!factory && source->ioDevice() && source->path().contains("://")) //ignore content of local files
+        factory = Decoder::findByContent(source->ioDevice());
+    if(!factory && source->path().contains("://"))
+        factory = Decoder::findByProtocol(source->path().section("://",0,0));
     if(!factory)
     {
-        factory = Decoder::findByMime(m_source->contentType());
-    }
-    if(factory && !factory->properties().noInput && m_source->ioDevice() && m_source->path().contains("://"))
-    {
-        factory = (factory->canDecode(m_source->ioDevice()) ? factory : 0);
-    }
-    if(!factory && m_source->ioDevice() && m_source->path().contains("://")) //ignore content of local files
-    {
-        factory = Decoder::findByContent(m_source->ioDevice());
-    }
-    if(!factory && m_source->path().contains("://"))
-    {
-        factory = Decoder::findByProtocol(m_source->path().section("://",0,0));
-    }
-    if(!factory)
-    {
-        qDebug("LightEnvelopeThead: unsupported file format");
+        qWarning("LightEnvelopeScanner: unsupported file format");
+        source->deleteLater();
         return false;
     }
-
-    qDebug("LightEnvelopeThead: selected decoder: %s",qPrintable(factory->properties().shortName));
-    if(factory->properties().noInput && m_source->ioDevice())
+    qDebug("LightEnvelopeScanner: selected decoder: %s", qPrintable(factory->properties().shortName));
+    if(factory->properties().noInput && source->ioDevice())
     {
-        m_source->ioDevice()->close();
+        source->ioDevice()->close();
     }
-
-    Decoder *decoder = factory->create(m_source->path(), m_source->ioDevice());
+    Decoder *decoder = factory->create(source->path(), source->ioDevice());
     if(!decoder->initialize())
     {
-        qDebug("LightEnvelopeThead: invalid file format");
+        qWarning("LightEnvelopeScanner: invalid file format");
+        source->deleteLater();
         delete decoder;
         return false;
     }
 
     m_decoder = decoder;
-    AudioParameters ap = m_decoder->audioParameters();
-    //output buffer for decoder
-    m_bks = ap.frameSize() * QMMP_BLOCK_FRAMES; //block size
-    m_output_size = m_bks * 4;
-    m_sample_size = ap.sampleSize();
-    m_output_buf = new unsigned char[m_output_size];
-    memset(m_output_buf, 0, sizeof(unsigned char)*m_output_size);
-
-    m_converter.configure(ap.format());
-    m_recycler.configure(ap.sampleRate(), ap.channels());
+    m_input = source;
+    if(!decoder->totalTime())
+    {
+        source->setOffset(-1);
+    }
+    m_user_stop = false;
 
     return true;
 }
 
-void LightEnvelopeThead::stopAndQuitThread()
+void LightEnvelopeScanner::stop()
 {
     if(isRunning())
     {
-        m_run = false;
+        m_mutex.lock();
+        m_user_stop = true;
+        m_mutex.unlock();
         wait();
     }
-    quit();
-}
 
-void LightEnvelopeThead::start()
-{
-    m_run = true;
-    QThread::start();
-}
-
-void LightEnvelopeThead::run()
-{
-    qint64 len = 0;
-    while (m_run && !m_finish)
+    if(m_decoder)
     {
-        m_mutex.lock ();
-        len = m_decoder->read((m_output_buf + m_output_at), m_output_size - m_output_at);
+        delete m_decoder;
+        m_decoder = nullptr;
+    }
+
+    if(m_input)
+    {
+        delete m_input;
+        m_input = nullptr;
+    }
+}
+
+const QList<int> &LightEnvelopeScanner::data() const
+{
+    QMutexLocker locker(&m_mutex);
+    return m_data;
+}
+
+const AudioParameters &LightEnvelopeScanner::audioParameters() const
+{
+    return m_ap;
+}
+
+void LightEnvelopeScanner::run()
+{
+    m_ap = m_decoder->audioParameters();
+    unsigned char tmp[QMMP_BLOCK_FRAMES * m_ap.frameSize() * 4];
+    float out[QMMP_BLOCK_FRAMES * m_ap.channels() * sizeof(float)];
+    AudioConverter converter;
+    converter.configure(m_ap.format());
+    m_data.clear();
+
+    const qint64 frames = m_decoder->totalTime() * m_ap.sampleRate() / 1000;
+    int samplesPerValue = frames / NUMBER_OF_VALUES * m_ap.channels();
+
+    m_mutex.lock();
+    float *max = new float[m_ap.channels()]{ -1.0 };
+    float *min = new float[m_ap.channels()]{ 1.0 };
+    float *rms = new float[m_ap.channels()]{ 0 };
+    int counter = 0;
+    int channels = m_ap.channels();
+    while (!m_user_stop)
+    {
+        m_mutex.unlock();
+        qint64 len = m_decoder->read(tmp, sizeof(tmp));
         if(len > 0)
         {
-            m_bitrate = m_decoder->bitrate();
-            m_output_at += len;
-            flush(false);
-            emit bufferChanged(m_recycler.next(), m_decoder->audioParameters().channels(), m_output_size);
+            converter.toFloat(tmp, out, len / m_ap.sampleSize());
+
+            for(uint sample = 0; sample < len / sizeof(float); sample++)
+            {
+                int ch = sample % channels;
+                min[ch] = qMin(min[ch], out[sample]);
+                max[ch] = qMax(max[ch], out[sample]);
+                rms[ch] += (out[sample] * out[sample]);
+
+                counter++;
+                if(counter >= samplesPerValue)
+                {
+                    m_mutex.lock();
+                    for(int ch = 0; ch < channels; ++ch)
+                    {
+                        m_data << max[ch] * 1000;
+                        m_data << min[ch] * 1000;
+                        m_data << std::sqrt(rms[ch] / (counter / channels)) * 1000;
+                        max[ch] = -1.0;
+                        min[ch] = 1.0;
+                        rms[ch] = 0;
+                    }
+                    if(m_data.size() / 3 / channels % (NUMBER_OF_VALUES / 64) == 0)
+                        emit dataChanged();
+                    m_mutex.unlock();
+                    counter = 0;
+                }
+            }
         }
-        else if(len == 0)
+        else
         {
-            flush(true);
-            m_finish = true;
-            emit finished();
-        }
-        m_mutex.unlock();
-    }
-}
-
-qint64 LightEnvelopeThead::produceSound(unsigned char *data, quint64 size, quint32 brate)
-{
-    Buffer *b = m_recycler.get();
-    quint64 sz = size < m_bks ? size : m_bks;
-    size_t samples = sz / m_sample_size;
-
-    m_converter.toFloat(data, b->data, samples);
-    b->samples = samples;
-    b->rate = brate;
-    memmove(data, data + sz, size - sz);
-    m_recycler.add();
-    return sz;
-}
-
-void LightEnvelopeThead::flush(bool final)
-{
-    ulong min = final ? 0 : m_bks;
-    while ((!m_finish || !m_run) && m_output_at > min)
-    {
-        m_recycler.mutex()->lock ();
-        while ((m_recycler.full() || m_recycler.blocked()) && (!m_finish))
-        {
-            m_mutex.unlock();
-            m_recycler.done();
-            m_mutex.lock ();
-        }
-        m_output_at -= produceSound(m_output_buf, m_output_at, m_bitrate);
-
-        if(!m_recycler.empty())
-        {
-            m_recycler.cond()->wakeOne();
+            m_mutex.lock();
+            break;
         }
 
-        m_recycler.mutex()->unlock();
+        m_mutex.lock();
     }
+    delete [] min;
+    delete [] max;
+    delete [] rms;
+    m_mutex.unlock();
 }
 
-void LightEnvelopeThead::free()
-{
-    if(m_output_buf)
-    {
-        delete []m_output_buf;
-    }
-    delete m_source;
-    delete m_decoder;
-}
-
-void LightEnvelopeThead::init()
-{
-    m_sample_size = 0;
-    m_bitrate = 0;
-    m_finish = false;
-    m_run = false;
-    m_output_at = 0;
-    m_output_size = 0;
-    m_bks = 0;
-    m_output_buf = nullptr;
-    m_source = nullptr;
-    m_decoder = nullptr;
-}
 
 
 LightEnvelope::LightEnvelope(QWidget *parent) :
     Light(parent)
 {
-    init();
+    m_scanner = new LightEnvelopeScanner(this);
+    connect(m_scanner, SIGNAL(finished()), SLOT(scanFinished()));
+    connect(m_scanner, SIGNAL(dataChanged()), SLOT(dataChanged()));
 
-    m_analyzer_falloff = 2.2;
-    setWindowTitle(tr("LightEnvelope"));
-    setMinimumSize(2*300-30, 105);
+    m_showTwoChannelsAction = new QAction(tr("Double Channels"), this);
+    m_showTwoChannelsAction->setCheckable(true);
+    //: Root mean square
+    m_showRmsAction = new QAction(tr("Root Mean Square"), this);
+    m_showRmsAction->setCheckable(true);
 
-    m_buffer = new float[VISUAL_BUFFER_SIZE];
-    m_vis_data = 0;
-    m_x_scale = new int[2];
-
-    m_lightThread = new LightEnvelopeThead(this);
-    connect(m_lightThread, SIGNAL(bufferChanged(Buffer*,int,quint64)), SLOT(bufferChanged(Buffer*,int,quint64)));
-    connect(m_lightThread, SIGNAL(finished()), SLOT(finished()));
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
+    connect(SoundCore::instance(), SIGNAL(elapsedChanged(qint64)), SLOT(positionChanged(qint64)));
+
+    readSettings();
 }
 
 LightEnvelope::~LightEnvelope()
 {
-    delete[] m_buffer;
-    delete[] m_x_scale;
-
-    this->stop();
-    delete m_lightThread;
+//    stop();
+    delete m_scanner;
 }
 
 void LightEnvelope::open(const QString &path)
 {
-    init();
-    if(m_lightThread->init(path))
+    if(m_scanner->scan(path))
     {
         start();
     }
@@ -234,146 +227,208 @@ void LightEnvelope::open(const QString &path)
 
 void LightEnvelope::start()
 {
-    m_lightThread->start();
+    m_scanner->start();
 }
 
 void LightEnvelope::stop()
 {
-    m_lightThread->stopAndQuitThread();
+//    m_scanner->stop();
 }
 
-void LightEnvelope::bufferChanged(Buffer *buffer, int chans, quint64 size)
+void LightEnvelope::readSettings()
 {
-    if(!buffer)
-    {
-        return;
-    }
-
-    m_output_size = size;
-    if(VISUAL_BUFFER_SIZE == m_buffer_at)
-    {
-        m_buffer_at -= VISUAL_NODE_SIZE;
-        memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        return;
-    }
-
-    int frames = qMin(int(buffer->samples/chans), VISUAL_BUFFER_SIZE - m_buffer_at);
-    mono_from_multichannel(m_buffer + m_buffer_at, buffer->data, frames, chans);
-
-    m_buffer_at += frames;
-
-    m_mutex.lock();
-    if(m_buffer_at < VISUAL_NODE_SIZE)
-    {
-        m_mutex.unlock ();
-        return;
-    }
-
-    process(m_buffer);
-
-    m_buffer_at -= VISUAL_NODE_SIZE;
-    memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    m_mutex.unlock();
-
-    update();
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("LightEnvelope");
+    m_showTwoChannelsAction->setChecked(settings.value("show_two_channels", true).toBool());
+    m_showRmsAction->setChecked(settings.value("show_rms", true).toBool());
+    settings.endGroup();
+    drawWaveform();
 }
 
-void LightEnvelope::finished()
+void LightEnvelope::writeSettings()
 {
-    m_backgroundImage = m_backgroundImage.copy(0, 0, m_pixPos, m_rows);
-    update();
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("LightEnvelope");
+    settings.setValue("show_two_channels", m_showTwoChannelsAction->isChecked());
+    settings.setValue("show_rms", m_showRmsAction->isChecked());
+    settings.endGroup();
+    drawWaveform();
+}
+
+void LightEnvelope::scanFinished()
+{
+    m_data = m_scanner->data();
+    m_channels = m_scanner->audioParameters().channels();
+    delete m_scanner;
+    m_scanner = nullptr;
+    drawWaveform();
+}
+
+void LightEnvelope::dataChanged()
+{
+    if(!m_scanner->isRunning())
+    {
+        return;
+    }
+
+    m_data = m_scanner->data();
+    m_channels = m_scanner->audioParameters().channels();
+    drawWaveform();
 }
 
 void LightEnvelope::mediaUrlChanged()
 {
-    open(SoundCore::instance()->path());
+
+}
+
+void LightEnvelope::positionChanged(qint64 elapsed)
+{
+    m_elapsed = elapsed;
+    m_duration = SoundCore::instance()->duration();
+    if(isVisible())
+    {
+        update();
+    }
 }
 
 void LightEnvelope::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
-    draw(&painter);
-}
 
-void LightEnvelope::init()
-{
-    m_pixPos = 0;
-    m_buffer_at = 0;
-    m_rows = 0;
-    m_cols = 0;
-    m_output_size = 0;
-}
-
-void LightEnvelope::process(float *buffer)
-{
-    if(m_pixPos >= m_output_size)
+    if(!m_pixmap.isNull())
     {
+        painter.drawPixmap(0, 0, width(), height(), m_pixmap);
+    }
+
+    if(m_duration > 0)
+    {
+        const int x = width() * m_elapsed / m_duration;
+        QColor color = "#33CA10";
+        color.setAlpha(0x96);
+        QBrush brush(color);
+        painter.fillRect(0, 0, x, height(), brush);
+        color.setAlpha(0xff);
+        painter.setPen(color);
+        painter.drawLine(x, 0, x, height());
+    }
+}
+
+void LightEnvelope::contextMenuEvent(QContextMenuEvent *)
+{
+    QMenu menu(this);
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
+
+    menu.addAction(m_showTwoChannelsAction);
+    menu.addAction(m_showRmsAction);
+    menu.exec(QCursor::pos());
+}
+
+void LightEnvelope::drawWaveform()
+{
+    if(m_data.isEmpty())
+    {
+        m_pixmap = QPixmap();
+        update();
         return;
     }
 
-    const int rows = height();
-    const int cols = width();
+    const bool showTwoChannels = m_showTwoChannelsAction->isChecked();
+    const bool showRms = m_showRmsAction->isChecked();
 
-    if(m_rows != rows || m_cols != cols)
+    m_pixmap = QPixmap(width(), height());
+    m_pixmap.fill(Qt::black);
+
+    float step = float(width()) / NUMBER_OF_VALUES;
+
+    QPainter painter(&m_pixmap);
+    painter.setPen(Qt::white);
+    painter.setBrush(Qt::white);
+
+    for(int i = 0; i < m_data.size() - m_channels * 3; i+=3)
     {
-        m_rows = rows;
-        m_cols = cols;
-        m_backgroundImage = QImage(m_output_size, m_rows, QImage::Format_RGB32);
-        m_backgroundImage.fill(Qt::black);
-        for(int i = 0; i < m_cols; ++i)
+        const int ch = (i / 3) % m_channels;
+        const float x1 = step * (i / m_channels / 3);
+        const float x2 = step * (i / m_channels / 3 + 1);
+        bool draw = false;
+        float zeroPos = 0, ratio = 0;
+        if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
-            m_backgroundImage.setPixel(i, m_rows / 2, qRgb(0xff, 0xff, 0xff));
+            zeroPos = height() / 2;
+            ratio = float(height() / 4) / 1000;
+            draw = true;
+        }
+        else if(ch == 0 || (ch == 1 && showTwoChannels))
+        {
+            zeroPos = ((ch == 0) ? 1 : 3) * height() / 4;
+            ratio = float(height() / 8) / 1000;
+            draw = true;
         }
 
-        m_vis_data = 0;
-        for(int i = 0; i < 2; ++i)
+        if(draw)
         {
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+            float y1 = zeroPos - m_data[i] * ratio;
+            float y2 = zeroPos - m_data[i + 1] * ratio;
+            float y3 = zeroPos - m_data[i + m_channels * 3] * ratio;
+            float y4 = zeroPos - m_data[i + m_channels * 3 + 1] * ratio;
+
+            QPointF points[4] = {
+                { x1, y1 },
+                { x1, y2 },
+                { x2, y4 },
+                { x2, y3 }
+            };
+
+            painter.drawPolygon(points, 4);
         }
     }
 
-    short dest[256];
-    short y = 0;
-    int k, magnitude = 0;
-    calc_freq (dest, buffer);
-    const double y_scale = (double) 1.25 * m_rows / log(256);
-
-    if(m_x_scale[0] == m_x_scale[1])
+    if(!showRms)
     {
-        y = dest[0];
-    }
-    for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
-    {
-        y = qMax(dest[k], y);
+        update();
+        return;
     }
 
-    y >>= 7; //256
+    painter.setPen(QColor("#DDDDDD"));
+    painter.setBrush(QColor("#DDDDDD"));
 
-    if(y)
+    for(int i = 0; i < m_data.size() - m_channels * 3; i+=3)
     {
-        magnitude = int(log (y) * y_scale);
-        magnitude = qBound(0, magnitude, m_rows);
-    }
+        const int ch = (i / 3) % m_channels;
+        const float x1 = step * (i / m_channels / 3);
+        const float x2 = step * (i / m_channels / 3 + 1);
+        bool draw = false;
+        float zeroPos = 0, ratio = 0;
+        if(ch == 0 && (m_channels == 1 || !showTwoChannels))
+        {
+            zeroPos = height() / 2;
+            ratio = float(height() / 4) / 1000;
+            draw = true;
+        }
+        else if(ch == 0 || (ch == 1 && showTwoChannels))
+        {
+            zeroPos = ((ch == 0) ? 1 : 3) * height() / 4;
+            ratio = float(height() / 8) / 1000;
+            draw = true;
+        }
 
-    m_vis_data -= m_analyzer_falloff * m_rows / 15;
-    m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
+        if(draw)
+        {
+            float y1 = zeroPos + m_data[i + 2] * ratio;
+            float y2 = zeroPos - m_data[i + 2] * ratio;
+            float y3 = zeroPos + m_data[i + m_channels * 3 + 2] * ratio;
+            float y4 = zeroPos - m_data[i + m_channels * 3 + 2] * ratio;
 
-    for(int i=0; i<m_vis_data/2; ++i)
-    {
-        int g = qMin(0x5f + i*3, 0xff);
-        m_backgroundImage.setPixel(m_pixPos, qMax(m_rows / 2 - i, 0), qRgb(0, g, 0));
-        m_backgroundImage.setPixel(m_pixPos, qMin(m_rows / 2 + i, m_rows), qRgb(0, g, 0));
-    }
-    m_backgroundImage.setPixel(m_pixPos, m_rows / 2, qRgb(0xff, 0xff, 0xff));
-    m_pixPos++;
-}
+            QPointF points[4] = {
+                { x1, y1 },
+                { x1, y2 },
+                { x2, y4 },
+                { x2, y3 }
+            };
 
-void LightEnvelope::draw(QPainter *p)
-{
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    if(!m_backgroundImage.isNull())
-    {
-        p->drawImage(0, 0, m_backgroundImage.scaled(size()));
+            painter.drawPolygon(points, 4);
+        }
     }
+    update();
 }

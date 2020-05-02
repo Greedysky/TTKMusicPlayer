@@ -7,9 +7,9 @@
 
 #include "fft.h"
 #include "inlines.h"
-#include "normalspacewave.h"
+#include "plusspacewave.h"
 
-NormalSpaceWave::NormalSpaceWave (QWidget *parent)
+PlusSpaceWave::PlusSpaceWave (QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
@@ -21,7 +21,7 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent)
     m_analyzer_falloff = 1.2;
     m_cell_size = QSize(3, 2);
 
-    setWindowTitle(tr("Normal SpaceWave Widget"));
+    setWindowTitle(tr("Plus SpaceWave Widget"));
     setMinimumSize(2*300-30, 105);
 
     m_timer = new QTimer(this);
@@ -35,7 +35,7 @@ NormalSpaceWave::NormalSpaceWave (QWidget *parent)
     clear();
 }
 
-NormalSpaceWave::~NormalSpaceWave()
+PlusSpaceWave::~PlusSpaceWave()
 {
     if(m_intern_vis_data)
     {
@@ -51,7 +51,7 @@ NormalSpaceWave::~NormalSpaceWave()
     }
 }
 
-void NormalSpaceWave::start()
+void PlusSpaceWave::start()
 {
     m_running = true;
     if(isVisible())
@@ -60,21 +60,21 @@ void NormalSpaceWave::start()
     }
 }
 
-void NormalSpaceWave::stop()
+void PlusSpaceWave::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void NormalSpaceWave::clear()
+void PlusSpaceWave::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void NormalSpaceWave::timeout()
+void PlusSpaceWave::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -83,12 +83,12 @@ void NormalSpaceWave::timeout()
     }
 }
 
-void NormalSpaceWave::hideEvent(QHideEvent *)
+void PlusSpaceWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void NormalSpaceWave::showEvent(QShowEvent *)
+void PlusSpaceWave::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -96,14 +96,14 @@ void NormalSpaceWave::showEvent(QShowEvent *)
     }
 }
 
-void NormalSpaceWave::paintEvent(QPaintEvent *e)
+void PlusSpaceWave::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void NormalSpaceWave::contextMenuEvent(QContextMenuEvent *)
+void PlusSpaceWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
 
@@ -111,7 +111,7 @@ void NormalSpaceWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalSpaceWave::process()
+void PlusSpaceWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -194,7 +194,7 @@ void NormalSpaceWave::process()
     }
 }
 
-void NormalSpaceWave::draw(QPainter *p)
+void PlusSpaceWave::draw(QPainter *p)
 {
     QLinearGradient line(0, 0, width(), 0);
     line.setColorAt(1.0 * 1 / 7, QColor(242, 51, 255, 200));

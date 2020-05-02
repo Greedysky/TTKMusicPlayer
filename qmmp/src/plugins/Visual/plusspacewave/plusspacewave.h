@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef NORMALSPACEWAVE_H
-#define NORMALSPACEWAVE_H
+#ifndef PLUSSPACEWAVE_H
+#define PLUSSPACEWAVE_H
 
 #include <qmmp/visual.h>
 
@@ -30,12 +30,12 @@ class QShowEvent;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class NormalSpaceWave : public Visual
+class PlusSpaceWave : public Visual
 {
     Q_OBJECT
 public:
-    explicit NormalSpaceWave(QWidget *parent = nullptr);
-    virtual ~NormalSpaceWave();
+    explicit PlusSpaceWave(QWidget *parent = nullptr);
+    virtual ~PlusSpaceWave();
 
 public slots:
     virtual void start() override;

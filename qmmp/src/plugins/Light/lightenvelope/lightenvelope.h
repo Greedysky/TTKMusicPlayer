@@ -20,52 +20,42 @@
 #define LIGHTENVELOPE_H
 
 #include <QThread>
+#include <QMutex>
+#include <QPixmap>
 #include <qmmp/lightfactory.h>
-#include <qmmp/inputsource.h>
-#include <qmmp/decoderfactory.h>
-#include <qmmp/qmmpsettings.h>
-#include <qmmp/decoder.h>
-#include <qmmp/buffer.h>
-#include <qmmp/audioconverter.h>
-#include <qmmp/recycler_p.h>
+#include <qmmp/audioparameters.h>
+
+class Decoder;
+class InputSource;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class LightEnvelopeThead : public QThread
+class LightEnvelopeScanner : public QThread
 {
     Q_OBJECT
 public:
-    explicit LightEnvelopeThead(QObject *parent = nullptr);
-    virtual ~LightEnvelopeThead();
+    explicit LightEnvelopeScanner(QObject *parent);
+    ~LightEnvelopeScanner();
 
-    bool init(const QString &path);
-    void stopAndQuitThread();
+    bool scan(const QString &path);
+    void stop();
+
+    const QList<int> &data() const;
+    const AudioParameters &audioParameters() const;
 
 signals:
-    void finished();
-    void bufferChanged(Buffer *buffer, int chans, quint64 size);
+    void dataChanged();
 
-public slots:
-    void start();
+private:
     virtual void run() override;
 
-protected:
-    qint64 produceSound(unsigned char *data, quint64 size, quint32 brate);
-    void flush(bool final);
-    void free();
-    void init();
-
-    int m_sample_size, m_bitrate;
-    bool m_finish, m_run;
-    quint64 m_output_at, m_output_size, m_bks;
-    unsigned char *m_output_buf;
-    AudioConverter m_converter;
-    Recycler m_recycler;
-    QMutex m_mutex;
-    InputSource *m_source;
-    Decoder *m_decoder;
-
+    bool m_user_stop = false;
+    Decoder *m_decoder = nullptr;
+    InputSource *m_input = nullptr;
+    mutable QMutex m_mutex;
+    QList<int> m_data;
+    AudioParameters m_ap;
 };
 
 /*!
@@ -76,31 +66,33 @@ class LightEnvelope : public Light
     Q_OBJECT
 public:
     explicit LightEnvelope(QWidget *parent = nullptr);
-    virtual ~LightEnvelope();
+    ~LightEnvelope();
 
     virtual void open(const QString &path) override;
     virtual void start() override;
     virtual void stop() override;
 
-public slots:
-    void bufferChanged(Buffer *buffer, int chans, quint64 size);
-    void finished();
+private slots:
+    void readSettings();
+    void writeSettings();
+    void scanFinished();
+    void dataChanged();
     void mediaUrlChanged();
+    void positionChanged(qint64 elapsed);
 
-protected:
-    virtual void paintEvent(QPaintEvent *) override;
-    void init();
-    void process(float *buffer);
-    void draw(QPainter *p);
+private:
+    void paintEvent(QPaintEvent *e) override;
+    void contextMenuEvent(QContextMenuEvent *e) override;
 
-    QImage m_backgroundImage;
-    LightEnvelopeThead *m_lightThread;
-    double m_vis_data, m_analyzer_falloff;
-    int *m_x_scale, m_buffer_at, m_cols, m_rows;
-    float *m_buffer;
-    QMutex m_mutex;
-    quint64 m_pixPos, m_output_size;
+    void drawWaveform();
 
+    LightEnvelopeScanner *m_scanner = nullptr;
+    QAction *m_showTwoChannelsAction, *m_showRmsAction;
+    QList<int> m_data;
+    int m_channels = 0;
+    qint64 m_elapsed = 0;
+    qint64 m_duration = 0;
+    QPixmap m_pixmap;
 };
 
 #endif

@@ -6,9 +6,9 @@
 
 #include "fft.h"
 #include "inlines.h"
-#include "plusmonowave.h"
+#include "wavemono.h"
 
-PlusMonoWave::PlusMonoWave (QWidget *parent)
+WaveMono::WaveMono (QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
@@ -19,7 +19,7 @@ PlusMonoWave::PlusMonoWave (QWidget *parent)
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
-    setWindowTitle(tr("Plus MonoWave Widget"));
+    setWindowTitle(tr("Wave Mono Widget"));
     setMinimumSize(2*300-30, 105);
 
     m_timer = new QTimer(this);
@@ -29,7 +29,7 @@ PlusMonoWave::PlusMonoWave (QWidget *parent)
     clear();
 }
 
-PlusMonoWave::~PlusMonoWave()
+WaveMono::~WaveMono()
 {
     if(m_intern_vis_data)
     {
@@ -41,7 +41,7 @@ PlusMonoWave::~PlusMonoWave()
     }
 }
 
-void PlusMonoWave::start()
+void WaveMono::start()
 {
     m_running = true;
     if(isVisible())
@@ -50,21 +50,21 @@ void PlusMonoWave::start()
     }
 }
 
-void PlusMonoWave::stop()
+void WaveMono::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void PlusMonoWave::clear()
+void WaveMono::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void PlusMonoWave::timeout()
+void WaveMono::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -73,12 +73,12 @@ void PlusMonoWave::timeout()
     }
 }
 
-void PlusMonoWave::hideEvent(QHideEvent *)
+void WaveMono::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusMonoWave::showEvent(QShowEvent *)
+void WaveMono::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -86,14 +86,14 @@ void PlusMonoWave::showEvent(QShowEvent *)
     }
 }
 
-void PlusMonoWave::paintEvent(QPaintEvent *e)
+void WaveMono::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusMonoWave::process()
+void WaveMono::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -168,7 +168,7 @@ void PlusMonoWave::process()
     }
 }
 
-void PlusMonoWave::draw(QPainter *p)
+void WaveMono::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 

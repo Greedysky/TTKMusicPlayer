@@ -6,9 +6,9 @@
 
 #include "fft.h"
 #include "inlines.h"
-#include "plusmultiwave.h"
+#include "wavemulti.h"
 
-PlusMultiWave::PlusMultiWave (QWidget *parent)
+WaveMulti::WaveMulti (QWidget *parent)
     : Visual(parent)
 {
     m_vis_data = 0;
@@ -19,7 +19,7 @@ PlusMultiWave::PlusMultiWave (QWidget *parent)
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
-    setWindowTitle(tr("Plus MultiWave Widget"));
+    setWindowTitle(tr("Wave Multi Widget"));
     setMinimumSize(2*300-30, 105);
 
     m_timer = new QTimer(this);
@@ -29,7 +29,7 @@ PlusMultiWave::PlusMultiWave (QWidget *parent)
     clear();
 }
 
-PlusMultiWave::~PlusMultiWave()
+WaveMulti::~WaveMulti()
 {
     if(m_x_scale)
     {
@@ -37,7 +37,7 @@ PlusMultiWave::~PlusMultiWave()
     }
 }
 
-void PlusMultiWave::start()
+void WaveMulti::start()
 {
     m_running = true;
     if(isVisible())
@@ -46,21 +46,21 @@ void PlusMultiWave::start()
     }
 }
 
-void PlusMultiWave::stop()
+void WaveMulti::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void PlusMultiWave::clear()
+void WaveMulti::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void PlusMultiWave::timeout()
+void WaveMulti::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -69,12 +69,12 @@ void PlusMultiWave::timeout()
     }
 }
 
-void PlusMultiWave::hideEvent(QHideEvent *)
+void WaveMulti::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusMultiWave::showEvent(QShowEvent *)
+void WaveMulti::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -82,14 +82,14 @@ void PlusMultiWave::showEvent(QShowEvent *)
     }
 }
 
-void PlusMultiWave::paintEvent(QPaintEvent *e)
+void WaveMulti::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusMultiWave::process()
+void WaveMulti::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -152,7 +152,7 @@ void PlusMultiWave::process()
     m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
 }
 
-void PlusMultiWave::draw(QPainter *p)
+void WaveMulti::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 

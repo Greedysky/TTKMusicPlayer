@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALPLUSMONOWAVEFACTORY_H
-#define VISUALPLUSMONOWAVEFACTORY_H
+#ifndef VISUALPLUSSPACEWAVEFACTORY_H
+#define VISUALPLUSSPACEWAVEFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,7 +26,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualPlusMonoWaveFactory : public QObject, public VisualFactory
+class VisualPLusSpaceWaveFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
