@@ -166,6 +166,30 @@ protected:
 };
 
 
+/*! @brief The class of the music spectrum wave layout widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOLSET_EXPORT MusicSpectrumWaveLayoutWidget : public MusicSpectrumLayoutWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSpectrumWaveLayoutWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicSpectrumWaveLayoutWidget(QWidget *parent = nullptr);
+
+    virtual ~MusicSpectrumWaveLayoutWidget();
+
+protected:
+    /*!
+     * Spectrum types list.
+     */
+    virtual QStringList spectrumTypeList() const override;
+
+};
+
+
 /*! @brief The class of the music spectrum florid layout widget.
  * @author Greedysky <greedysky@163.com>
  */

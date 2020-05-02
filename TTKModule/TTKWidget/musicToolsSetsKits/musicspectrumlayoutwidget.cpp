@@ -152,7 +152,6 @@ MusicSpectrumNormalLayoutWidget::MusicSpectrumNormalLayoutWidget(QWidget *parent
     items << ItemInfo(":/spectrum/normal_3", tr("FlowWave"));
     items << ItemInfo(":/spectrum/normal_4", tr("Histogram"));
     items << ItemInfo(":/spectrum/normal_5", tr("Line"));
-    items << ItemInfo(":/spectrum/normal_6", tr("SpaceWave"));
     addItems(items);
 }
 
@@ -163,8 +162,7 @@ MusicSpectrumNormalLayoutWidget::~MusicSpectrumNormalLayoutWidget()
 
 QStringList MusicSpectrumNormalLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "normalanalyzer" << "normalewave" << "normalflowwave"
-                         << "normalhistogram" << "normalline" << "normalspacewave";
+    return QStringList() << "normalanalyzer" << "normalewave" << "normalflowwave" << "normalhistogram" << "normalline";
 }
 
 
@@ -174,12 +172,9 @@ MusicSpectrumPlusLayoutWidget::MusicSpectrumPlusLayoutWidget(QWidget *parent)
 {
     ItemInfos items;
     items << ItemInfo(":/spectrum/plus_1", tr("FoldWave"));
-    items << ItemInfo(":/spectrum/plus_2", tr("Monowave"));
-    items << ItemInfo(":/spectrum/plus_3", tr("Multiwave"));
-    items << ItemInfo(":/spectrum/plus_4", tr("XRays"));
-    items << ItemInfo(":/spectrum/plus_5", tr("PointXRays"));
-    items << ItemInfo(":/spectrum/plus_6", tr("VolumeWave"));
-    items << ItemInfo(":/spectrum/plus_7", tr("LightEnvelope"));
+    items << ItemInfo(":/spectrum/plus_2", tr("SpaceWave"));
+    items << ItemInfo(":/spectrum/plus_3", tr("XRays"));
+    items << ItemInfo(":/spectrum/plus_4", tr("VolumeWave"));
     addItems(items);
 }
 
@@ -190,8 +185,29 @@ MusicSpectrumPlusLayoutWidget::~MusicSpectrumPlusLayoutWidget()
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "plusfoldwave" << "plusmonowave" << "plusmultiwave" << "plusxrays"
-                         << "pluspointxrays" << "plusvolumewave" << "lightenvelope";
+    return QStringList() << "plusfoldwave" << "plusspacewave" << "plusxrays" << "plusvolumewave";
+}
+
+
+
+MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
+    : MusicSpectrumLayoutWidget(parent)
+{
+    ItemInfos items;
+    items << ItemInfo(":/spectrum/wave_1", tr("Monowave"));
+    items << ItemInfo(":/spectrum/wave_2", tr("Multiwave"));
+    items << ItemInfo(":/spectrum/wave_3", tr("LightEnvelope"));
+    addItems(items);
+}
+
+MusicSpectrumWaveLayoutWidget::~MusicSpectrumWaveLayoutWidget()
+{
+
+}
+
+QStringList MusicSpectrumWaveLayoutWidget::spectrumTypeList() const
+{
+    return QStringList() << "wavemono" << "wavemulti" << "lightenvelope";
 }
 
 

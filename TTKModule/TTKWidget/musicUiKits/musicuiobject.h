@@ -520,7 +520,7 @@ namespace MusicUIObject
     const QString MQSSTabWidgetStyle01 = " \
             QTabWidget{ border:none; } \
             QTabWidget::pane{ border:none; } \
-            QTabBar::tab{ height:30px; width:125px; background-color:#BFBFBF; color:white; } \
+            QTabBar::tab{ height:30px; width:100px; background-color:#BFBFBF; color:white; } \
             QTabBar::tab:selected{ background-color:#158FE1; color:white}";
 
 

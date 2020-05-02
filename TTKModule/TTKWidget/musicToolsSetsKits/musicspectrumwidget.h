@@ -60,13 +60,17 @@ public Q_SLOTS:
      */
     void tabIndexChanged(int index);
     /*!
-     * Spectrum Type Changed.
+     * Spectrum Normal Type Changed.
      */
-    void spectrumTypeChanged(bool &state, const QString &name);
+    void spectrumNormalTypeChanged(bool &state, const QString &name);
     /*!
      * Spectrum Plus Type Changed.
      */
     void spectrumPlusTypeChanged(bool &state, const QString &name);
+    /*!
+     * Spectrum Wave Type Changed.
+     */
+    void spectrumWaveTypeChanged(bool &state, const QString &name);
     /*!
      * Spectrum Florid Type Changed.
      */

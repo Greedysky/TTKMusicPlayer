@@ -82,11 +82,11 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="spectrumWidget">
+    <widget class="QWidget" name="spectrumNormalWidget">
      <attribute name="title">
       <string>频谱显示</string>
      </attribute>
-     <layout class="QVBoxLayout" name="spectrumLayout">
+     <layout class="QVBoxLayout" name="spectrumNormalLayout">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -103,7 +103,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="spectrumFuncionts" native="true">
+       <widget class="QWidget" name="spectrumNormalFuncionts" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -117,9 +117,9 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#spectrumFuncionts{background-color:#dddddd;}</string>
+         <string notr="true">#spectrumNormalFuncionts{background-color:#dddddd;}</string>
         </property>
-        <layout class="QHBoxLayout" name="spectrumFunciontsLayout">
+        <layout class="QHBoxLayout" name="spectrumNormalFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
@@ -146,7 +146,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="MusicSpectrumNormalLayoutWidget" name="normalLayoutButton">
+          <widget class="MusicSpectrumNormalLayoutWidget" name="spectrumNormalLayoutButton">
            <property name="minimumSize">
             <size>
              <width>60</width>
@@ -168,11 +168,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="spectrumAreaWidget" native="true">
+       <widget class="QWidget" name="spectrumNormalAreaWidget" native="true">
         <property name="styleSheet">
-         <string notr="true">#spectrumAreaWidget{background-color:#eeeeee;}</string>
+         <string notr="true">#spectrumNormalAreaWidget{background-color:#eeeeee;}</string>
         </property>
-        <layout class="QVBoxLayout" name="spectrumAreaLayout">
+        <layout class="QVBoxLayout" name="spectrumNormalAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>
@@ -254,7 +254,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="MusicSpectrumPlusLayoutWidget" name="plusLayoutButton">
+          <widget class="MusicSpectrumPlusLayoutWidget" name="spectrumPlusLayoutButton">
            <property name="minimumSize">
             <size>
              <width>60</width>
@@ -298,11 +298,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="floridWidget">
+    <widget class="QWidget" name="spectrumWaveWidget">
      <attribute name="title">
-      <string>炫光显示</string>
+      <string>波纹显示</string>
      </attribute>
-     <layout class="QVBoxLayout" name="floridLayout">
+     <layout class="QVBoxLayout" name="spectrumWaveLayout">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -319,7 +319,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="floridFuncionts" native="true">
+       <widget class="QWidget" name="spectrumWaveFuncionts" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -333,9 +333,9 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#floridFuncionts{background-color:#dddddd;}</string>
+         <string notr="true">#spectrumWaveFuncionts{background-color:#dddddd;}</string>
         </property>
-        <layout class="QHBoxLayout" name="floridFunciontsLayout">
+        <layout class="QHBoxLayout" name="spectrumWaveFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
@@ -362,7 +362,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="MusicSpectrumFloridLayoutWidget" name="floridLayoutButton">
+          <widget class="MusicSpectrumWaveLayoutWidget" name="spectrumWaveLayoutButton">
            <property name="minimumSize">
             <size>
              <width>60</width>
@@ -384,11 +384,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="floridAreaWidget" native="true">
+       <widget class="QWidget" name="spectrumWaveAreaWidget" native="true">
         <property name="styleSheet">
-         <string notr="true">#floridAreaWidget{background-color:#eeeeee;}</string>
+         <string notr="true">#spectrumWaveAreaWidget{background-color:#eeeeee;}</string>
         </property>
-        <layout class="QVBoxLayout" name="floridAreaLayout">
+        <layout class="QVBoxLayout" name="spectrumWaveAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>
@@ -406,11 +406,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="lightWidget">
+    <widget class="QWidget" name="spectrumFloridWidget">
      <attribute name="title">
-      <string>音质检测</string>
+      <string>炫光显示</string>
      </attribute>
-     <layout class="QVBoxLayout" name="lightLayout">
+     <layout class="QVBoxLayout" name="spectrumFloridLayout">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -427,7 +427,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="lightFuncionts" native="true">
+       <widget class="QWidget" name="spectrumFloridFuncionts" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -441,9 +441,117 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#lightFuncionts{background-color:#dddddd;}</string>
+         <string notr="true">#spectrumFloridFuncionts{background-color:#dddddd;}</string>
         </property>
-        <layout class="QHBoxLayout" name="lightFunciontsLayout">
+        <layout class="QHBoxLayout" name="spectrumFloridFunciontsLayout">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>1</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="MusicSpectrumFloridLayoutWidget" name="spectrumFloridLayoutButton">
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>类型</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="spectrumFloridAreaWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#spectrumFloridAreaWidget{background-color:#eeeeee;}</string>
+        </property>
+        <layout class="QVBoxLayout" name="spectrumFloridAreaLayout">
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="spectrumLightWidget">
+     <attribute name="title">
+      <string>音质检测</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="spectrumLightLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="spectrumLightFuncionts" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#spectrumLightFuncionts{background-color:#dddddd;}</string>
+        </property>
+        <layout class="QHBoxLayout" name="spectrumLightFunciontsLayout">
          <property name="leftMargin">
           <number>9</number>
          </property>
@@ -511,11 +619,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="lightAreaWidget" native="true">
+       <widget class="QWidget" name="spectrumLightAreaWidget" native="true">
         <property name="styleSheet">
-         <string notr="true">#lightAreaWidget{background-color:#eeeeee;}</string>
+         <string notr="true">#spectrumLightAreaWidget{background-color:#eeeeee;}</string>
         </property>
-        <layout class="QVBoxLayout" name="lightAreaLayout">
+        <layout class="QVBoxLayout" name="spectrumLightAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>
@@ -553,6 +661,11 @@
   </customwidget>
   <customwidget>
    <class>MusicSpectrumFloridLayoutWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicspectrumlayoutwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSpectrumWaveLayoutWidget</class>
    <extends>QToolButton</extends>
    <header>musicspectrumlayoutwidget.h</header>
   </customwidget>
