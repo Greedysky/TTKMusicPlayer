@@ -2,65 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>ReplayGainWidget</name>
-    <message>
-        <source>ReplayGain Scanner</source>
-        <translation>回放增益掃描器</translation>
-    </message>
-    <message>
-        <source>Write track gain/peak</source>
-        <translation>寫下曲目增益/峰值</translation>
-    </message>
-    <message>
-        <source>Title</source>
-        <translation>題頭</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation>進度</translation>
-    </message>
-    <message>
-        <source>Track Gain</source>
-        <translation>曲目增益</translation>
-    </message>
-    <message>
-        <source>Album Gain</source>
-        <translation>專輯增益</translation>
-    </message>
-    <message>
-        <source>Track Peak</source>
-        <translation>曲目峰值</translation>
-    </message>
-    <message>
-        <source>Album Peak</source>
-        <translation>專輯峰值</translation>
-    </message>
-    <message>
-        <source>Skip already scanned files</source>
-        <translation>跳過已掃描過得文件</translation>
-    </message>
-    <message>
-        <source>Calculate</source>
-        <translation>計算</translation>
-    </message>
-    <message>
-        <source>Write Tags</source>
-        <translation>寫標簽</translation>
-    </message>
-    <message>
-        <source>Write album gain/peak</source>
-        <translation>寫專輯的增益/峰值</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>錯誤</translation>
-    </message>
-    <message>
-        <source>%1 dB</source>
-        <translation>%1分貝</translation>
-    </message>
-</context>
-<context>
     <name>ColorWidget</name>
     <message>
         <source>Close</source>
@@ -104,6 +45,17 @@
     <message>
         <source>Fullscreen</source>
         <translation>全屏顯示</translation>
+    </message>
+</context>
+<context>
+    <name>LightEnvelope</name>
+    <message>
+        <source>Double Channels</source>
+        <translation>雙通道</translation>
+    </message>
+    <message>
+        <source>Root Mean Square</source>
+        <translation>顯示均方根差</translation>
     </message>
 </context>
 <context>
@@ -1082,14 +1034,14 @@
         <translation>全選</translation>
     </message>
     <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicconnecttransferwidget.cpp" line="128"/>
+        <source>Please Select One Item First!</source>
+        <translation>請選擇壹首歌曲！</translation>
+    </message>
+    <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicconnecttransferwidget.cpp" line="183"/>
         <source>allcanceled</source>
         <translation>取消</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicconnecttransferwidget.cpp" line="128"/>
-        <source>please select one item</source>
-        <translation>請選擇壹首歌曲</translation>
     </message>
 </context>
 <context>
@@ -2192,6 +2144,12 @@
         <translation>全選</translation>
     </message>
     <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="153"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="172"/>
+        <source>Please Select One Item First!</source>
+        <translation>請選擇壹首歌曲！</translation>
+    </message>
+    <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="408"/>
         <source>Overall</source>
         <translation>全盤掃描</translation>
@@ -2210,12 +2168,6 @@
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="452"/>
         <source>please select one dirver</source>
         <translation>請選擇某壹個盤符</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="153"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="172"/>
-        <source>please select one item</source>
-        <translation>請選擇壹首歌曲</translation>
     </message>
 </context>
 <context>
@@ -2846,10 +2798,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>扫描范围:</source>
-        <translation>掃描範圍:</translation>
-    </message>
-    <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcdownloadbatchwidget.ui" line="83"/>
         <source>添加</source>
         <translation type="unfinished"></translation>
@@ -3154,8 +3102,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrclocallinkwidget.cpp" line="167"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrclocallinkwidget.cpp" line="181"/>
-        <source>please select one item</source>
-        <translation>請選擇壹個歌詞</translation>
+        <source>Please Select One Item First!</source>
+        <translation type="unfinished">請選擇壹個歌詞！</translation>
     </message>
 </context>
 <context>
@@ -4481,22 +4429,27 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation>增強應用</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="254"/>
-        <source>please select one item</source>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="144"/>
+        <source>ReplayGain Init Error!</source>
+        <translation>回放增益模塊初始化錯誤!</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="256"/>
+        <source>Please Select One Item First!</source>
         <translation>請選擇某壹條記錄！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="278"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="280"/>
         <source>Music gain list is empty!</source>
         <translation>輸入列表不能為空！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="303"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="305"/>
         <source>Music gain finished!</source>
         <translation>音樂增強完成！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="379"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="381"/>
         <source>Lack of plugin file!</source>
         <translation>缺少相應的插件文件!</translation>
     </message>
@@ -5638,10 +5591,6 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsongchecktoolswidget.cpp" line="22"/>
         <source>Close</source>
         <translation>關閉</translation>
-    </message>
-    <message>
-        <source>Custom Lists</source>
-        <translation>自定義列表</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsongchecktoolswidget.cpp" line="47"/>
@@ -7046,47 +6995,47 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFloridLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="205"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="221"/>
         <source>Goom</source>
         <translation>古姆</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="206"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="222"/>
         <source>ProjectM</source>
         <translation>炫彩</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="207"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="223"/>
         <source>Ethereality</source>
         <translation>空靈</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="208"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="224"/>
         <source>Reverb</source>
         <translation>混響</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="209"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="225"/>
         <source>Autism</source>
         <translation>孤獨患者</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="210"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="226"/>
         <source>Bass</source>
         <translation>爆炸低音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="211"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="227"/>
         <source>Surround</source>
         <translation>動感環繞</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="212"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="228"/>
         <source>Ancient</source>
         <translation>純美古風</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="213"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="229"/>
         <source>Electric</source>
         <translation>激燃電音</translation>
     </message>
@@ -7118,46 +7067,44 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>Line</source>
         <translation>線條</translation>
     </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="155"/>
-        <source>SpaceWave</source>
-        <translation>條紋</translation>
-    </message>
 </context>
 <context>
     <name>MusicSpectrumPlusLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="176"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="174"/>
         <source>FoldWave</source>
         <translation>疊紋</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="177"/>
-        <source>Monowave</source>
-        <translation>聲譜</translation>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="175"/>
+        <source>SpaceWave</source>
+        <translation>條紋</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="178"/>
-        <source>Multiwave</source>
-        <translation>包酪</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="179"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="176"/>
         <source>XRays</source>
         <translation>射線</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="180"/>
-        <source>PointXRays</source>
-        <translation>點線</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="181"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="177"/>
         <source>VolumeWave</source>
         <translation>音量表</translation>
     </message>
+</context>
+<context>
+    <name>MusicSpectrumWaveLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="182"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="197"/>
+        <source>Monowave</source>
+        <translation>聲譜</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="198"/>
+        <source>Multiwave</source>
+        <translation>包酪</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="199"/>
         <source>LightEnvelope</source>
         <translation>全包酪</translation>
     </message>
@@ -7180,6 +7127,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="163"/>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="271"/>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="379"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="487"/>
         <source>类型</source>
         <translation>類型</translation>
     </message>
@@ -7190,21 +7138,26 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="303"/>
+        <source>波纹显示</source>
+        <translation>波紋顯示</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="411"/>
         <source>炫光显示</source>
         <translation>炫光顯示</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="411"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="519"/>
         <source>音质检测</source>
         <translation>音質檢測</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="487"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="595"/>
         <source>当前歌曲</source>
         <translation>當前歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="506"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicspectrumwidget.ui" line="614"/>
         <source>其他歌曲</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7214,7 +7167,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="335"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="347"/>
         <source>Spectrum Init Error!</source>
         <translation>頻譜摸塊初始化措誤!</translation>
     </message>
@@ -8964,6 +8917,65 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKCore/musicUtilsKits/musicnumberutils.cpp" line="138"/>
         <source>LLess</source>
         <translation>無損音質</translation>
+    </message>
+</context>
+<context>
+    <name>ReplayGainWidget</name>
+    <message>
+        <source>ReplayGain Scanner</source>
+        <translation>回放增益掃描器</translation>
+    </message>
+    <message>
+        <source>Write track gain/peak</source>
+        <translation>寫下曲目增益/峰值</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation>題頭</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>進度</translation>
+    </message>
+    <message>
+        <source>Track Gain</source>
+        <translation>曲目增益</translation>
+    </message>
+    <message>
+        <source>Album Gain</source>
+        <translation>專輯增益</translation>
+    </message>
+    <message>
+        <source>Track Peak</source>
+        <translation>曲目峰值</translation>
+    </message>
+    <message>
+        <source>Album Peak</source>
+        <translation>專輯峰值</translation>
+    </message>
+    <message>
+        <source>Skip already scanned files</source>
+        <translation>跳過已掃描過得文件</translation>
+    </message>
+    <message>
+        <source>Calculate</source>
+        <translation>計算</translation>
+    </message>
+    <message>
+        <source>Write Tags</source>
+        <translation>寫標簽</translation>
+    </message>
+    <message>
+        <source>Write album gain/peak</source>
+        <translation>寫專輯的增益/峰值</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <source>%1 dB</source>
+        <translation>%1分貝</translation>
     </message>
 </context>
 <context>
