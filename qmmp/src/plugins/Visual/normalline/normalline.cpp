@@ -332,8 +332,6 @@ void NormalLine::draw(QPainter *p)
 
         const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height();
         p->fillRect(x, height() - offset, m_cell_size.width() - 1, offset, line);
-
-        p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height(),
-                     m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
+        p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height(), m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
 }

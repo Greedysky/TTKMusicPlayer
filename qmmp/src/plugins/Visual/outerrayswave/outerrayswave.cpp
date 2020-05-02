@@ -103,7 +103,7 @@ void OuterRaysWave::process()
         delete[] m_intern_vis_data;
     }
 
-    m_intern_vis_data = new int[m_cols];
+    m_intern_vis_data = new int[m_cols]{0};
 
     const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
     int pos = 0;
@@ -111,7 +111,7 @@ void OuterRaysWave::process()
     for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
-        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows * 1.0);
+        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows / 2);
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
     }
 }

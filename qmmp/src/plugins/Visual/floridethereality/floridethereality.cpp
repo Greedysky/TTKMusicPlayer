@@ -180,7 +180,7 @@ void FloridEthereality::process()
     for(int i = 0; i < m_cols * 2; ++i)
     {
         pos += step;
-        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows * 1.0);
+        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows / 2);
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
         m_intern_vis_data[m_cols * 2 - i - 1] = m_intern_vis_data[i];
     }

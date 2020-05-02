@@ -379,14 +379,12 @@ void NormalAnalyzer::draw(QPainter *p)
 
         for(int j = 0; j <= m_intern_vis_data[i] * maxed; ++j)
         {
-            p->fillRect(x, height() - j * m_cell_size.height() + 1,
-                         m_cell_size.width() - 2, m_cell_size.height() - 2, line);
+            p->fillRect(x, height() - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
         }
 
         if(m_show_peaks)
         {
-            p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height() + 1,
-                         m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
+            p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
         }
     }
 }

@@ -242,13 +242,9 @@ void FloridAncient::process()
         {
             delete[] m_x_scale;
         }
-        m_intern_vis_data = new double[m_cols];
-        m_x_scale = new int[m_cols + 1];
+        m_intern_vis_data = new double[m_cols]{0};
+        m_x_scale = new int[m_cols + 1]{0};
 
-        for(int i = 0; i < m_cols; ++i)
-        {
-            m_intern_vis_data[i] = 0;
-        }
         for(int i = 0; i < m_cols + 1; ++i)
         {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
@@ -314,7 +310,7 @@ void FloridAncient::draw(QPainter *p)
         p->save();
         p->rotate(startAngle);
         const int value = m_intern_vis_data[int(offset * 0.8)];
-        p->drawLine(0, DISTANCE + 5 + value * 0.2, 0.5, DISTANCE + 5 + value * 0.3);
+        p->drawLine(0, DISTANCE + 5 + value * 0.2, 0, DISTANCE + 5 + value * 0.3);
 
         p->restore();
         startAngle += 360.0 / m_cols;
