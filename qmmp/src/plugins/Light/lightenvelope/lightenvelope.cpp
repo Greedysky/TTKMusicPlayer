@@ -209,7 +209,7 @@ LightEnvelope::LightEnvelope(QWidget *parent) :
 
 LightEnvelope::~LightEnvelope()
 {
-//    stop();
+    stop();
     delete m_scanner;
 }
 
@@ -232,7 +232,7 @@ void LightEnvelope::start()
 
 void LightEnvelope::stop()
 {
-//    m_scanner->stop();
+    m_scanner->stop();
 }
 
 void LightEnvelope::readSettings()
@@ -259,8 +259,6 @@ void LightEnvelope::scanFinished()
 {
     m_data = m_scanner->data();
     m_channels = m_scanner->audioParameters().channels();
-    delete m_scanner;
-    m_scanner = nullptr;
     drawWaveform();
 }
 
@@ -278,7 +276,8 @@ void LightEnvelope::dataChanged()
 
 void LightEnvelope::mediaUrlChanged()
 {
-
+    stop();
+    open(SoundCore::instance()->path());
 }
 
 void LightEnvelope::positionChanged(qint64 elapsed)

@@ -51,7 +51,7 @@ public:
 
 private slots:
     void typeChanged(QAction *action);
-    void urlChanged();
+    void mediaUrlChanged();
 
 private:
     virtual void paintEvent(QPaintEvent *event) override;

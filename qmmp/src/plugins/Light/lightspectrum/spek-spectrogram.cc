@@ -51,7 +51,7 @@ LightSpectrum::LightSpectrum(QWidget *parent) :
     lrange(LRANGE)
 {
     this->create_palette();
-    connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(urlChanged()));
+    connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
 LightSpectrum::~LightSpectrum()
@@ -271,7 +271,7 @@ void LightSpectrum::typeChanged(QAction *action)
     start();
 }
 
-void LightSpectrum::urlChanged()
+void LightSpectrum::mediaUrlChanged()
 {
     open(SoundCore::instance()->path());
 }
