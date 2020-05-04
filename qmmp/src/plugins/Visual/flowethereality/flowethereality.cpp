@@ -1,10 +1,10 @@
 #include <QPainter>
 #include "fft.h"
 #include "inlines.h"
-#include "floridethereality.h"
+#include "flowethereality.h"
 #include "ethereality.h"
 
-FloridEthereality::FloridEthereality (QWidget *parent)
+FlowEthereality::FlowEthereality (QWidget *parent)
     : Florid(parent)
 {
     m_useImage = false;
@@ -16,7 +16,7 @@ FloridEthereality::FloridEthereality (QWidget *parent)
     m_pos_y = 0;
 
     qsrand(QDateTime::currentMSecsSinceEpoch());
-    setWindowTitle(tr("Florid Ethereality Widget"));
+    setWindowTitle(tr("Flow Ethereality Widget"));
 
     for(int i = 0; i < 50; i++)
     {
@@ -31,7 +31,7 @@ FloridEthereality::FloridEthereality (QWidget *parent)
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 }
 
-FloridEthereality::~FloridEthereality()
+FlowEthereality::~FlowEthereality()
 {
     if(m_intern_vis_data)
     {
@@ -40,7 +40,7 @@ FloridEthereality::~FloridEthereality()
     qDeleteAll(m_etherealitys);
 }
 
-void FloridEthereality::start()
+void FlowEthereality::start()
 {
     Florid::start();
     m_running = true;
@@ -54,7 +54,7 @@ void FloridEthereality::start()
     }
 }
 
-void FloridEthereality::stop()
+void FlowEthereality::stop()
 {
     Florid::stop();
     m_running = false;
@@ -66,14 +66,14 @@ void FloridEthereality::stop()
     clear();
 }
 
-void FloridEthereality::clear()
+void FlowEthereality::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void FloridEthereality::timeout()
+void FlowEthereality::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -124,7 +124,7 @@ void FloridEthereality::timeout()
     }
 }
 
-void FloridEthereality::hideEvent(QHideEvent *)
+void FlowEthereality::hideEvent(QHideEvent *)
 {
     m_timer->stop();
     foreach(Ethereality *ethereality, m_etherealitys)
@@ -133,7 +133,7 @@ void FloridEthereality::hideEvent(QHideEvent *)
     }
 }
 
-void FloridEthereality::showEvent(QShowEvent *)
+void FlowEthereality::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -145,7 +145,7 @@ void FloridEthereality::showEvent(QShowEvent *)
     }
 }
 
-void FloridEthereality::resizeEvent(QResizeEvent *)
+void FlowEthereality::resizeEvent(QResizeEvent *)
 {
     const int perWidth = width() / 50;
     for(int i = 0; i < m_etherealitys.size(); i++)
@@ -156,7 +156,7 @@ void FloridEthereality::resizeEvent(QResizeEvent *)
     }
 }
 
-void FloridEthereality::process()
+void FlowEthereality::process()
 {
     static fft_state *state = nullptr;
     if(!state)

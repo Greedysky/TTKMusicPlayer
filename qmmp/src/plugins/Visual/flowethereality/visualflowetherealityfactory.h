@@ -16,50 +16,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef FLORIDETHEREALITY_H
-#define FLORIDETHEREALITY_H
+#ifndef VISUALFLOWETHEREALITYFACTORY_H
+#define VISUALFLOWETHEREALITYFACTORY_H
 
-#include <qmmp/florid.h>
-
-class QTimer;
-class QHideEvent;
-class QShowEvent;
-class Ethereality;
+#include <QObject>
+#include <qmmp/visualfactory.h>
+#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FloridEthereality : public Florid
+class VisualFlowEtherealityFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    explicit FloridEthereality(QWidget *parent = nullptr);
-    virtual ~FloridEthereality();
-
-public Q_SLOTS:
-    virtual void start() override;
-    virtual void stop() override;
-
-private Q_SLOTS:
-    void timeout();
-
-private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
-    virtual void resizeEvent(QResizeEvent *e) override;
-
-    void process();
-
-    int m_pos_x;
-    int m_pos_y;
-    QTimer *m_timer;
-    int *m_intern_vis_data;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int m_cols, m_rows;
-    bool m_running;
-    QList<Ethereality*> m_etherealitys;
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 

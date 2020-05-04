@@ -6,11 +6,11 @@ TARGET = $${TARGET}
 
 HEADERS += projectmplugin.h \
            projectmwidget.h \
-           visualfloridprojectmfactory.h
+           visualflowprojectmfactory.h
 
 SOURCES += projectmplugin.cpp \
            projectmwidget.cpp \
-           visualfloridprojectmfactory.cpp
+           visualflowprojectmfactory.cpp
 
 # Disbale gcc warnings
 QMAKE_CFLAGS += -w

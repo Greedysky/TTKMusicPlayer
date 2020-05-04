@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALFLORIDGOOMFACTORY_H
-#define VISUALFLORIDGOOMFACTORY_H
+#ifndef VISUALFLOWPROJECTMFACTORY_H
+#define VISUALFLOWPROJECTMFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,7 +26,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualFloridGoomFactory : public QObject, public VisualFactory
+class VisualFlowProjectMFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")

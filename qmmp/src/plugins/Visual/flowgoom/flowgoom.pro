@@ -4,7 +4,7 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 TARGET = $${TARGET}
 
 HEADERS += goomwidget.h \
-           visualfloridgoomfactory.h \
+           visualflowgoomfactory.h \
            cpu_info.h \
            default_scripts.h \
            drawmethods.h \
@@ -37,7 +37,7 @@ HEADERS += goomwidget.h \
            attributes.h
 
 SOURCES += goomwidget.cpp \
-           visualfloridgoomfactory.cpp \
+           visualflowgoomfactory.cpp \
            config_param.c \
            convolve_fx.c \
            cpu_info.c \

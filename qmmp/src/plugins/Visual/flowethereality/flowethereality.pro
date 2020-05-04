@@ -5,14 +5,14 @@ DESTDIR = $$PLUGINS_PREFIX/Visual
 TARGET = $${TARGET}
 
 HEADERS += ethereality.h \
-           floridethereality.h \
-           visualfloridetherealityfactory.h
+           flowethereality.h \
+           visualflowetherealityfactory.h
            
 SOURCES += ethereality.cpp \
-           floridethereality.cpp \
-           visualfloridetherealityfactory.cpp
+           flowethereality.cpp \
+           visualflowetherealityfactory.cpp
 
-RESOURCES += floridethereality.qrc
+RESOURCES += flowethereality.qrc
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
