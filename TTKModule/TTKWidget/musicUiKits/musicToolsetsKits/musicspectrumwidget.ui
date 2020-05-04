@@ -406,6 +406,114 @@
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="spectrumFlowWidget">
+     <attribute name="title">
+      <string>流光显示</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="spectrumFlowLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="spectrumFlowFuncionts" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#spectrumFlowFuncionts{background-color:#dddddd;}</string>
+        </property>
+        <layout class="QHBoxLayout" name="spectrumFlowFunciontsLayout">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>1</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="MusicSpectrumFlowLayoutWidget" name="spectrumFlowLayoutButton">
+           <property name="minimumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>60</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>类型</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="spectrumFlowAreaWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#spectrumFlowAreaWidget{background-color:#eeeeee;}</string>
+        </property>
+        <layout class="QVBoxLayout" name="spectrumFlowAreaLayout">
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
     <widget class="QWidget" name="spectrumFloridWidget">
      <attribute name="title">
       <string>炫光显示</string>
@@ -457,7 +565,7 @@
           <number>0</number>
          </property>
          <item>
-          <spacer name="horizontalSpacer_5">
+          <spacer name="horizontalSpacer_6">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -666,6 +774,11 @@
   </customwidget>
   <customwidget>
    <class>MusicSpectrumWaveLayoutWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicspectrumlayoutwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSpectrumFlowLayoutWidget</class>
    <extends>QToolButton</extends>
    <header>musicspectrumlayoutwidget.h</header>
   </customwidget>

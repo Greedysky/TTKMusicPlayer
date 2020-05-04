@@ -190,6 +190,30 @@ QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
 
 
 
+MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
+    : MusicSpectrumLayoutWidget(parent)
+{
+    m_exclusive = true;
+
+    ItemInfos items;
+    items << ItemInfo(":/spectrum/flow_1", tr("Goom"));
+    items << ItemInfo(":/spectrum/flow_2", tr("ProjectM"));
+    items << ItemInfo(":/spectrum/flow_3", tr("Ethereality"));
+    addItems(items);
+}
+
+MusicSpectrumFlowLayoutWidget::~MusicSpectrumFlowLayoutWidget()
+{
+
+}
+
+QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
+{
+    return QStringList() << "flowgoom" << "flowprojectm" << "flowethereality";
+}
+
+
+
 MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
     : MusicSpectrumLayoutWidget(parent)
 {
@@ -218,15 +242,12 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
     m_exclusive = true;
 
     ItemInfos items;
-    items << ItemInfo(":/spectrum/florid_1", tr("Goom"));
-    items << ItemInfo(":/spectrum/florid_2", tr("ProjectM"));
-    items << ItemInfo(":/spectrum/florid_3", tr("Ethereality"));
-    items << ItemInfo(":/spectrum/florid_4", tr("Reverb"));
-    items << ItemInfo(":/spectrum/florid_5", tr("Autism"));
-    items << ItemInfo(":/spectrum/florid_6", tr("Bass"));
-    items << ItemInfo(":/spectrum/florid_7", tr("Surround"));
-    items << ItemInfo(":/spectrum/florid_8", tr("Ancient"));
-    items << ItemInfo(":/spectrum/florid_9", tr("Electric"));
+    items << ItemInfo(":/spectrum/florid_1", tr("Reverb"));
+    items << ItemInfo(":/spectrum/florid_2", tr("Autism"));
+    items << ItemInfo(":/spectrum/florid_3", tr("Bass"));
+    items << ItemInfo(":/spectrum/florid_4", tr("Surround"));
+    items << ItemInfo(":/spectrum/florid_5", tr("Ancient"));
+    items << ItemInfo(":/spectrum/florid_6", tr("Electric"));
     addItems(items);
 }
 
@@ -237,6 +258,6 @@ MusicSpectrumFloridLayoutWidget::~MusicSpectrumFloridLayoutWidget()
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "floridgoom" << "floridprojectm" << "floridethereality" << "floridreverb" << "floridautism"
-                         << "floridbass" << "floridsurround" << "floridancient" << "floridelectric";
+    return QStringList() << "floridreverb" << "floridautism" << "floridbass" << "floridsurround"
+                         << "floridancient" << "floridelectric";
 }

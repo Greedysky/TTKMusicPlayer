@@ -49,12 +49,14 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->spectrumNormalLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
     m_ui->spectrumPlusLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
     m_ui->spectrumWaveLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
+    m_ui->spectrumFlowLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
     m_ui->spectrumFloridLayoutButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle06);
 
 #ifdef Q_OS_UNIX
     m_ui->spectrumNormalLayoutButton->setFocusPolicy(Qt::NoFocus);
     m_ui->spectrumPlusLayoutButton->setFocusPolicy(Qt::NoFocus);
     m_ui->spectrumWaveLayoutButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->spectrumFlowLayoutButton->setFocusPolicy(Qt::NoFocus);
     m_ui->spectrumFloridLayoutButton->setFocusPolicy(Qt::NoFocus);
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
@@ -65,6 +67,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     connect(m_ui->spectrumNormalLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumNormalTypeChanged(bool&,QString)));
     connect(m_ui->spectrumPlusLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumPlusTypeChanged(bool&,QString)));
     connect(m_ui->spectrumWaveLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumWaveTypeChanged(bool&,QString)));
+    connect(m_ui->spectrumFlowLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFlowTypeChanged(bool&,QString)));
     connect(m_ui->spectrumFloridLayoutButton, SIGNAL(stateChanged(bool&,QString)), SLOT(spectrumFloridTypeChanged(bool&,QString)));
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
 }
@@ -93,9 +96,12 @@ void MusicSpectrumWidget::tabIndexChanged(int index)
             adjustWidgetLayout(m_ui->spectrumWaveLayout->count() - ITEM_DEFAULT_COUNT);
             break;
         case 3:
-            adjustWidgetLayout(m_ui->spectrumFloridLayout->count() - ITEM_DEFAULT_COUNT);
+            adjustWidgetLayout(m_ui->spectrumFlowLayout->count() - ITEM_DEFAULT_COUNT);
             break;
         case 4:
+            adjustWidgetLayout(m_ui->spectrumFloridLayout->count() - ITEM_DEFAULT_COUNT);
+            break;
+        case 5:
             adjustWidgetLayout(m_ui->spectrumLightLayout->count() - ITEM_DEFAULT_COUNT);
             break;
         default:
@@ -126,6 +132,11 @@ void MusicSpectrumWidget::spectrumWaveTypeChanged(bool &state, const QString &na
         createSpectrumWidget(state, name, m_ui->spectrumWaveAreaLayout);
     }
     adjustWidgetLayout(m_ui->spectrumWaveAreaLayout->count() - ITEM_DEFAULT_COUNT);
+}
+
+void MusicSpectrumWidget::spectrumFlowTypeChanged(bool &state, const QString &name)
+{
+    createFlowWidget(state, name, m_ui->spectrumFlowAreaLayout);
 }
 
 void MusicSpectrumWidget::spectrumFloridTypeChanged(bool &state, const QString &name)
@@ -225,19 +236,29 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
     }
 }
 
+void MusicSpectrumWidget::createFlowWidget(bool &state, const QString &name, QLayout *layout)
+{
+    createModuleWidget(state, name, layout, m_lastFlowName);
+}
+
 void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, QLayout *layout)
 {
-    const int index = findSpectrumWidget(m_lastFloridName);
+    createModuleWidget(state, name, layout, m_lastFloridName);
+}
+
+void MusicSpectrumWidget::createModuleWidget(bool &state, const QString &name, QLayout *layout, QString &module)
+{
+    const int index = findSpectrumWidget(module);
     if(index != -1)
     {
         MusicSpectrum t = m_types.takeAt(index);
         layout->removeWidget(t.m_obj);
-        MusicUtils::QMMP::enabledVisualPlugin(m_lastFloridName, false);
+        MusicUtils::QMMP::enabledVisualPlugin(module, false);
     }
 
     if(!state)
     {
-        m_lastFloridName.clear();
+        module.clear();
         return;
     }
 
@@ -253,7 +274,7 @@ void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, Q
 
     if(!vs->isEmpty())
     {
-        m_lastFloridName = name;
+        module = name;
         MusicSpectrum sp;
         sp.m_name = name;
         sp.m_obj = vs->last();

@@ -72,6 +72,10 @@ public Q_SLOTS:
      */
     void spectrumWaveTypeChanged(bool &state, const QString &name);
     /*!
+     * Spectrum Flow Type Changed.
+     */
+    void spectrumFlowTypeChanged(bool &state, const QString &name);
+    /*!
      * Spectrum Florid Type Changed.
      */
     void spectrumFloridTypeChanged(bool &state, const QString &name);
@@ -98,9 +102,17 @@ protected:
      */
     void createSpectrumWidget(bool &state, const QString &name, QLayout *layout);
     /*!
+     * Create flow widget.
+     */
+    void createFlowWidget(bool &state, const QString &name, QLayout *layout);
+    /*!
      * Create florid widget.
      */
     void createFloridWidget(bool &state, const QString &name, QLayout *layout);
+    /*!
+     * Create module widget.
+     */
+    void createModuleWidget(bool &state, const QString &name, QLayout *layout, QString &module);
     /*!
      * Create light widget.
      */
@@ -119,6 +131,7 @@ protected:
     void showMessageBoxWidget();
 
     QLayout *m_spectrumLayout;
+    QString m_lastFlowName;
     QString m_lastFloridName;
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;
