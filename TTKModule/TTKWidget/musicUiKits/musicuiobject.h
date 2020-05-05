@@ -516,11 +516,11 @@ namespace MusicUIObject
             QTableWidget{ background:rgba(0, 0, 0, 255); }";
 
 
-///TableWidget
+///TabWidget
     const QString MQSSTabWidgetStyle01 = " \
             QTabWidget{ border:none; } \
             QTabWidget::pane{ border:none; } \
-            QTabBar::tab{ height:30px; width:100px; background-color:#BFBFBF; color:white; } \
+            QTabBar::tab{ height:30px; width:100px; background-color:#BFBFBF; color:white; margin-left:0; margin-right:0; } \
             QTabBar::tab:selected{ background-color:#158FE1; color:white}";
 
 
