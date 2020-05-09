@@ -43,7 +43,7 @@ public:
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, OUTPUT)
     {
-        initialize(Output::currentFactory() == factory, false, factory->properties().name, path);
+        initialize(Output::currentFactory() == factory, true, factory->properties().name, path);
         m_factory = factory;
     }
 
@@ -64,7 +64,12 @@ public:
                 break;
             case MusicPluginItem::EFFECT: break;
             case MusicPluginItem::VISUAL: break;
-            case MusicPluginItem::OUTPUT: break;
+            case MusicPluginItem::OUTPUT:
+                if(enabled)
+                {
+                    Output::setCurrentFactory(TTKStatic_cast(OutputFactory*, m_factory));
+                }
+                break;
             default: break;
         }
     }
@@ -128,8 +133,17 @@ MusicPluginWidget::~MusicPluginWidget()
 
 void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
-    if(column == 0 && item->type() == MusicPluginItem::DECODER)
+    if(column == 0 && (item->type() == MusicPluginItem::DECODER || item->type() == MusicPluginItem::OUTPUT))
     {
+        if(item->type() == MusicPluginItem::OUTPUT)
+        {
+            QTreeWidgetItem *parent = item->parent();
+            for(int i=0; i<parent->childCount(); ++i)
+            {
+                parent->child(i)->setData(column, MUSIC_CHECK_ROLE, Qt::Unchecked);
+            }
+        }
+
         const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECK_ROLE).toInt());
         item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
