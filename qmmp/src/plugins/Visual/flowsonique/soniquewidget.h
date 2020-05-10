@@ -52,7 +52,12 @@ private:
     VisData *m_visData;
     unsigned long *m_texture;
     unsigned long *m_visproc;
+#ifdef Q_OS_UNIX
+    void *m_instance;
+#else
     HINSTANCE m_instance;
+#endif
+
 
     int m_currentIndex;
     QStringList m_presetList;

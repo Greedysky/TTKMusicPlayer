@@ -1,8 +1,12 @@
-#include "SoniqueWidget.h"
+#include "soniquewidget.h"
 #include <qmmp/qmmp.h>
 
 #include <QDir>
 #include <QDateTime>
+
+#ifdef Q_OS_UNIX
+#include <dlfcn.h>
+#endif
 
 typedef VisInfo* (*SoniqueModule)();
 
@@ -108,7 +112,11 @@ SoniqueWidget::~SoniqueWidget()
 
     if(m_instance)
     {
+#ifdef Q_OS_UNIX
+        dlclose(m_instance);
+#else
         FreeLibrary(m_instance);
+#endif
     }
 
     kiss_fft_free(m_kiss_cfg);
@@ -294,11 +302,19 @@ void SoniqueWidget::generatePreset()
     {
         delete m_sonique;
         m_sonique = nullptr;
+#ifdef Q_OS_UNIX
+        dlclose(m_instance);
+#else
         FreeLibrary(m_instance);
+#endif
     }
 
     const char *module_path = m_presetList[m_currentIndex].toLocal8Bit().constData();
+#ifdef Q_OS_UNIX
+    m_instance = dlopen(module_path, RTLD_LAZY);
+#else
     m_instance = LoadLibraryA(module_path);
+#endif
     qDebug("[SoniqueWidget] url is %s", module_path);
 
     if(!m_instance)
@@ -308,7 +324,11 @@ void SoniqueWidget::generatePreset()
     }
 
     // resolve function address here
+#ifdef Q_OS_UNIX
+    SoniqueModule module = (SoniqueModule)dlsym(m_instance, "QueryModule");
+#else
     SoniqueModule module = (SoniqueModule)GetProcAddress(m_instance, "QueryModule");
+#endif
     if(!module)
     {
         qDebug("Wrong svp file loaded");
