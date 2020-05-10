@@ -4,7 +4,7 @@
 #include "flowethereality.h"
 #include "ethereality.h"
 
-FlowEthereality::FlowEthereality (QWidget *parent)
+FlowEthereality::FlowEthereality(QWidget *parent)
     : Florid(parent)
 {
     m_useImage = false;

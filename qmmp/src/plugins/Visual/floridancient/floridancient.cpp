@@ -100,7 +100,7 @@ void AncientLabel::paintEvent(QPaintEvent *event)
 
 
 
-FloridAncient::FloridAncient (QWidget *parent)
+FloridAncient::FloridAncient(QWidget *parent)
     : Florid(parent)
 {
     m_gradientOn = true;
@@ -255,7 +255,7 @@ void FloridAncient::process()
     short y;
     int k, magnitude;
 
-    calc_freq (dest, m_left_buffer);
+    calc_freq(dest, m_left_buffer);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -277,7 +277,7 @@ void FloridAncient::process()
 
         if(y)
         {
-            magnitude = int(log (y) * y_scale);
+            magnitude = int(log(y) * y_scale);
             magnitude = qBound(0, magnitude, m_rows);
         }
 

@@ -12,7 +12,7 @@
 #include "normalline.h"
 #include "colorwidget.h"
 
-NormalLine::NormalLine (QWidget *parent)
+NormalLine::NormalLine(QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
@@ -249,8 +249,8 @@ void NormalLine::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq (dest_l, m_left_buffer);
-    calc_freq (dest_r, m_right_buffer);
+    calc_freq(dest_l, m_left_buffer);
+    calc_freq(dest_r, m_right_buffer);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -276,12 +276,12 @@ void NormalLine::process()
 
         if(yl)
         {
-            magnitude_l = int(log (yl) * y_scale);
+            magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
         if(yr)
         {
-            magnitude_r = int(log (yr) * y_scale);
+            magnitude_r = int(log(yr) * y_scale);
             magnitude_r = qBound(0, magnitude_r, m_rows);
         }
 

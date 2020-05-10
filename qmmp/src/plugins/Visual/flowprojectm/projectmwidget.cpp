@@ -79,7 +79,7 @@ void ProjectMWidget::initializeGL()
     }
 }
 
-void ProjectMWidget::resizeGL (int w, int h)
+void ProjectMWidget::resizeGL(int w, int h)
 {
     if(m_projectM)
     {

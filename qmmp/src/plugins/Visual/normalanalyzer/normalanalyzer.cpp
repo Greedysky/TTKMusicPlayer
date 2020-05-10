@@ -12,7 +12,7 @@
 #include "inlines.h"
 #include "normalanalyzer.h"
 
-NormalAnalyzer::NormalAnalyzer (QWidget *parent)
+NormalAnalyzer::NormalAnalyzer(QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
@@ -172,11 +172,11 @@ void NormalAnalyzer::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("NormalAnalyzer");
-    QAction *act = m_fpsGroup->checkedAction ();
+    QAction *act = m_fpsGroup->checkedAction();
     settings.setValue("refresh_rate", act ? act->data().toInt() : 25);
-    act = m_peaksFalloffGroup->checkedAction ();
+    act = m_peaksFalloffGroup->checkedAction();
     settings.setValue("peak_falloff", act ? act->data().toDouble() : 0.2);
-    act = m_analyzerFalloffGroup->checkedAction ();
+    act = m_analyzerFalloffGroup->checkedAction();
     settings.setValue("analyzer_falloff", act ? act->data().toDouble() : 2.2);
     settings.setValue("show_peaks", m_peaksAction->isChecked());
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
@@ -293,8 +293,8 @@ void NormalAnalyzer::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq (dest_l, m_left_buffer);
-    calc_freq (dest_r, m_right_buffer);
+    calc_freq(dest_l, m_left_buffer);
+    calc_freq(dest_r, m_right_buffer);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -320,12 +320,12 @@ void NormalAnalyzer::process()
 
         if(yl)
         {
-            magnitude_l = int(log (yl) * y_scale);
+            magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
         if(yr)
         {
-            magnitude_r = int(log (yr) * y_scale);
+            magnitude_r = int(log(yr) * y_scale);
             magnitude_r = qBound(0, magnitude_r, m_rows);
         }
 
@@ -391,7 +391,7 @@ void NormalAnalyzer::draw(QPainter *p)
 
 void NormalAnalyzer::createMenu()
 {
-    m_menu = new QMenu (this);
+    m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 

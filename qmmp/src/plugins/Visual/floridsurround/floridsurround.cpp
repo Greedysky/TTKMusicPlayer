@@ -3,7 +3,7 @@
 #include "inlines.h"
 #include "floridsurround.h"
 
-FloridSurround::FloridSurround (QWidget *parent)
+FloridSurround::FloridSurround(QWidget *parent)
     : Florid(parent)
 {
     m_gradientOn = true;

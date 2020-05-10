@@ -2,14 +2,14 @@
 #include "projectmwidget.h"
 #include "projectmplugin.h"
 
-ProjectMPlugin::ProjectMPlugin (QWidget *parent)
+ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     : Florid(parent)
 {
     m_useImage = false;
     m_running = false;
 
     setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
-    setWindowTitle(tr("Florid ProjectM Widget"));
+    setWindowTitle(tr("Flow ProjectM Widget"));
     setWindowIcon(parent->windowIcon());
 
     m_projectMWidget = new ProjectMWidget(this);
@@ -18,8 +18,6 @@ ProjectMPlugin::ProjectMPlugin (QWidget *parent)
     layout->addWidget(m_projectMWidget);
     layout->setContentsMargins(0,0,0,0);
     setLayout(layout);
-
-    addActions(m_projectMWidget->actions());
 
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);

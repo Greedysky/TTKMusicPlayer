@@ -62,7 +62,7 @@ void AutismLabel::paintEvent(QPaintEvent *event)
 
 
 
-FloridAutism::FloridAutism (QWidget *parent)
+FloridAutism::FloridAutism(QWidget *parent)
     : Florid(parent)
 {
     m_index = 0;

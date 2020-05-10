@@ -8,7 +8,7 @@
 #include "inlines.h"
 #include "wavemulti.h"
 
-WaveMulti::WaveMulti (QWidget *parent)
+WaveMulti::WaveMulti(QWidget *parent)
     : Visual(parent)
 {
     m_vis_data = 0;
@@ -128,7 +128,7 @@ void WaveMulti::process()
     short dest[256];
     short y = 0;
     int k, magnitude = 0;
-    calc_freq (dest, m_left_buffer);
+    calc_freq(dest, m_left_buffer);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     if(m_x_scale[0] == m_x_scale[1])
@@ -144,7 +144,7 @@ void WaveMulti::process()
 
     if(y)
     {
-        magnitude = int(log (y) * y_scale);
+        magnitude = int(log(y) * y_scale);
         magnitude = qBound(0, magnitude, m_rows);
     }
 

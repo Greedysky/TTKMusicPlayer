@@ -3,7 +3,7 @@
 #include "inlines.h"
 #include "floridbass.h"
 
-FloridBass::FloridBass (QWidget *parent)
+FloridBass::FloridBass(QWidget *parent)
     : Florid(parent)
 {
     m_gradientOn = true;

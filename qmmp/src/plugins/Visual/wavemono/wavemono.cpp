@@ -8,7 +8,7 @@
 #include "inlines.h"
 #include "wavemono.h"
 
-WaveMono::WaveMono (QWidget *parent)
+WaveMono::WaveMono(QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
@@ -137,7 +137,7 @@ void WaveMono::process()
     short y;
     int k, magnitude;
 
-    calc_freq (dest, m_left_buffer);
+    calc_freq(dest, m_left_buffer);
 
     double y_scale = (double) 1.25 * m_cols / log(256);
 
@@ -159,7 +159,7 @@ void WaveMono::process()
 
         if(y)
         {
-            magnitude = int(log (y) * y_scale);
+            magnitude = int(log(y) * y_scale);
             magnitude = qBound(0, magnitude, m_cols);
         }
 

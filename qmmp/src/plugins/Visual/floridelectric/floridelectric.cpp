@@ -228,7 +228,7 @@ void ElectricLabel::resizeWindow(const QRect &rect)
 
 
 
-FloridElectric::FloridElectric (QWidget *parent)
+FloridElectric::FloridElectric(QWidget *parent)
     : Florid(parent)
 {
     m_running = false;

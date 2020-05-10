@@ -8,7 +8,7 @@
 #include "inlines.h"
 #include "outerripples.h"
 
-OuterRipples::OuterRipples (QWidget *parent)
+OuterRipples::OuterRipples(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
@@ -130,7 +130,7 @@ void OuterRipples::process()
     short y;
     int k, magnitude;
 
-    calc_freq (dest, m_left_buffer);
+    calc_freq(dest, m_left_buffer);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -152,7 +152,7 @@ void OuterRipples::process()
 
         if(y)
         {
-            magnitude = int(log (y) * y_scale);
+            magnitude = int(log(y) * y_scale);
             magnitude = qBound(0, magnitude, m_rows);
         }
 

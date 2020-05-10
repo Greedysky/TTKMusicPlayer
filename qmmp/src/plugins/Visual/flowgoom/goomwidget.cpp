@@ -19,11 +19,11 @@ GoomWidget::GoomWidget(QWidget *parent)
     m_fps = 25;
     m_running = false;
 
-    setWindowTitle("Florid Goom Widget");
+    setWindowTitle("Flow Goom Widget");
     setMinimumSize(150,150);
 
     m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL (timeout()), SLOT(timeout()));
+    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 
     clear();
     createMenu();
@@ -74,7 +74,7 @@ void GoomWidget::timeout()
             m_out[0][i] = m_buf[0][i] * 32767.0;
             m_out[1][i] = m_buf[1][i] * 32767.0;
         }
-        goom_update (m_goom, m_out, 0, m_fps, "", "");
+        goom_update(m_goom, m_out, 0, m_fps, "", "");
         update();
     }
 }
@@ -105,7 +105,7 @@ void GoomWidget::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Goom");
-    QAction *act = m_fpsGroup->checkedAction ();
+    QAction *act = m_fpsGroup->checkedAction();
     settings.setValue("refresh_rate", act ? act->data().toInt() : 25);
     settings.endGroup();
 }
@@ -146,7 +146,7 @@ void GoomWidget::clear()
 
 void GoomWidget::createMenu()
 {
-    m_menu = new QMenu (this);
+    m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 

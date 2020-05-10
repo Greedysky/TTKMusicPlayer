@@ -9,7 +9,7 @@
 #include "inlines.h"
 #include "plusspacewave.h"
 
-PlusSpaceWave::PlusSpaceWave (QWidget *parent)
+PlusSpaceWave::PlusSpaceWave(QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
@@ -153,7 +153,7 @@ void PlusSpaceWave::process()
     short y;
     int k, magnitude;
 
-    calc_freq (dest, m_left_buffer);
+    calc_freq(dest, m_left_buffer);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -175,7 +175,7 @@ void PlusSpaceWave::process()
 
         if(y)
         {
-            magnitude = int(log (y) * y_scale);
+            magnitude = int(log(y) * y_scale);
             magnitude = qBound(0, magnitude, m_rows);
         }
 
