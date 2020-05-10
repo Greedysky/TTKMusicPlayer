@@ -162,15 +162,6 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->volumeLeftlabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
-    m_ui->volumeRightLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
-
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle08);
-    m_ui->volumeSlider->setRange(-100, 100);
-    m_ui->volumeSlider->setValue(0);
-    m_ui->volumeSlider->setToolTip("0");
-    connect(m_ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(volumeSliderChanged(int)));
-
     m_ui->stateComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->stateComboBox));
     m_ui->stateComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
     m_ui->stateComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
@@ -238,8 +229,6 @@ void MusicSoundEffectsWidget::setInputObject(QObject *object)
         m_ui->eqButton->setText(tr("On"));
     }
 
-    m_ui->volumeSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalance).toInt());
-
     connect(m_ui->eqButton, SIGNAL(clicked()), SLOT(equalizerButtonChanged()));
     connect(m_ui->eqEffectButton, SIGNAL(clicked()), object, SLOT(musicSetEqualizer()));
 }
@@ -291,13 +280,6 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->LADSPAWidget->setPluginEnabled(false);
 #endif
     }
-}
-
-void MusicSoundEffectsWidget::volumeSliderChanged(int value)
-{
-    m_ui->volumeSlider->setToolTip(QString::number(value));
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalance, value);
-    Q_EMIT volumeChanged(value);
 }
 
 int MusicSoundEffectsWidget::exec()

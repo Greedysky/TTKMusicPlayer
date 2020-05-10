@@ -67,7 +67,6 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicSoundEffectsWidget::getClassName() && to == MusicPlayer::getClassName())
     {
-        QObject::connect(first, SIGNAL(volumeChanged(int)), second, SLOT(setSoundEffectVolume(int)));
         QObject::connect(first, SIGNAL(setEqInformation()), second, SLOT(setEqInformation()));
     }
     else if(from == MusicSongSearchTableWidget::getClassName() && to == MusicDownloadStatusObject::getClassName())

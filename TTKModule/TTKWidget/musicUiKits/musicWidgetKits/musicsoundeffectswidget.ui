@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>368</width>
-    <height>473</height>
+    <height>448</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>360</width>
-     <height>465</height>
+     <height>440</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>360</width>
-     <height>440</height>
+     <height>415</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -93,19 +93,6 @@
      <string>均衡器: </string>
     </property>
    </widget>
-   <widget class="QLabel" name="volumeLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>60</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>声音平衡: </string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="eqButton">
     <property name="geometry">
      <rect>
@@ -130,45 +117,6 @@
     </property>
     <property name="text">
      <string>调整</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="volumeLeftlabel">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>410</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>左</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="volumeRightLabel">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>410</y>
-      <width>20</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>右</string>
-    </property>
-   </widget>
-   <widget class="MusicClickedSlider" name="volumeSlider">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>410</y>
-      <width>230</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
    <widget class="MusicSoundEffectsItemWidget" name="BS2BWidget" native="true">
@@ -258,11 +206,6 @@
   <zorder>topTitleCloseButton</zorder>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>MusicClickedSlider</class>
-   <extends>QSlider</extends>
-   <header>musicclickedslider.h</header>
-  </customwidget>
   <customwidget>
    <class>MusicSoundEffectsItemWidget</class>
    <extends>QWidget</extends>

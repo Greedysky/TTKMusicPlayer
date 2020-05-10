@@ -132,14 +132,6 @@ Q_SIGNALS:
      * Current position changed.
      */
     void positionChanged(qint64 position);
-    /*!
-     * Current volume changed.
-     */
-    void volumeChanged(int volume);
-    /*!
-     * Current mute state changed.
-     */
-    void mutedChanged(bool muted);
 
 public Q_SLOTS:
     /*!
@@ -166,10 +158,6 @@ public Q_SLOTS:
      * Read equalizer effect from config file.
      */
     void setEqInformation();
-    /*!
-     * Set current player volume.
-     */
-    void setSoundEffectVolume(int value);
     /*!
      * Remove current music media data.
      */
@@ -200,7 +188,7 @@ protected:
     qint64 m_duration;
 
     int m_tryTimes;
-    int m_volumeMusic3D, m_balance;
+    int m_volumeMusic3D;
     float m_posOnCircle;
 
 };

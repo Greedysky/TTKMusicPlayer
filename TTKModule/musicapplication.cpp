@@ -1165,7 +1165,6 @@ void MusicApplication::readXMLConfigFromText()
 
     //The size of the volume of the allocation of songs
     musicVolumeChanged(M_SETTING_PTR->value(MusicSettingManager::Volume).toInt());
-//    m_musicPlayer->setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalance).toInt());
 
     //Configure playback mode
     m_ui->musicEnhancedButton->setEnhancedMusicConfig(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt());

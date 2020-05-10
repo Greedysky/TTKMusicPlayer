@@ -122,10 +122,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Set current player volume.
-     */
-    void volumeChanged(int value);
-    /*!
      * Read equalizer effect from config file.
      */
     void setEqInformation();
@@ -143,10 +139,6 @@ public Q_SLOTS:
      * State combobox index changed.
      */
     void stateComboBoxChanged(int index);
-    /*!
-     * Volume slider changed.
-     */
-    void volumeSliderChanged(int value);
     /*!
      * Override exec function.
      */

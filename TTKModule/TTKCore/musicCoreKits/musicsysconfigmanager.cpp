@@ -136,9 +136,6 @@ void MusicSysConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("equalizerEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValue,
                      readXmlAttributeByTagNameValue("equalizerValue"));
-//    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalance,
-//                     readXmlAttributeByTagNameValue("enhancedBalance").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalance, 0);
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnable,
                      readXmlAttributeByTagNameValue("enhancedFadeEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValue,
@@ -291,7 +288,6 @@ void MusicSysConfigManager::writeSysConfigData()
     const int equalizerEnable = M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt();
     const QString &equalizerValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString();
     const int equalizerIndex = M_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt();
-    const int enhancedBalance = M_SETTING_PTR->value(MusicSettingManager::EnhancedBalance).toInt();
     const int enhancedFadeEnable = M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnable).toInt();
     const int enhancedFadeInValue = M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValue).toInt();
     const int enhancedFadeOutValue = M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValue).toInt();
@@ -427,7 +423,6 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(equalizerSettingDom, "equalizerEnable", MusicXmlAttribute("value", equalizerEnable));
     writeDomElement(equalizerSettingDom, "equalizerIndex", MusicXmlAttribute("value", equalizerIndex));
     writeDomElement(equalizerSettingDom, "equalizerValue", MusicXmlAttribute("value", equalizerValue));
-    writeDomElement(equalizerSettingDom, "enhancedBalance", MusicXmlAttribute("value", enhancedBalance));
     writeDomElement(equalizerSettingDom, "enhancedFadeEnable", MusicXmlAttribute("value", enhancedFadeEnable));
     writeDomElement(equalizerSettingDom, "enhancedFadeInValue", MusicXmlAttribute("value", enhancedFadeInValue));
     writeDomElement(equalizerSettingDom, "enhancedFadeOutValue", MusicXmlAttribute("value", enhancedFadeOutValue));

@@ -16,7 +16,6 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_music = new SoundCore(this);
     m_posOnCircle = 0;
     m_volumeMusic3D = 0;
-    m_balance = 0;
     m_duration = 0;
     m_tryTimes = 0;
 
@@ -113,7 +112,6 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
     {
         m_music->setBalance(0);
         m_music->setVolume(m_volumeMusic3D, m_volumeMusic3D);
-        m_music->setBalance(m_balance);
         setMusicEnhancedCase();
     }
 }
@@ -161,7 +159,6 @@ void MusicPlayer::play()
     {
         setVolume(volume);
     }
-    setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalance).toInt());
 }
 
 void MusicPlayer::pause()
@@ -224,12 +221,6 @@ void MusicPlayer::setEqInformation()
     {
         setEnabledEffect(false);
     }
-}
-
-void MusicPlayer::setSoundEffectVolume(int value)
-{
-    m_balance = value;
-    m_music->setBalance(value);
 }
 
 void MusicPlayer::removeCurrentMedia()

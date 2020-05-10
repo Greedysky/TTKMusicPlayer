@@ -105,7 +105,6 @@ public:
         EqualizerValue,                  /*!< Equalizer Value Parameter*/
         EqualizerIndex,                  /*!< Equalizer Index Parameter*/
         EnhancedMusic,                   /*!< Enhanced Music Parameter*/
-        EnhancedBalance,                 /*!< Enhanced Balance Parameter*/
         EnhancedFadeEnable,              /*!< Enhanced Fade Enable Parameter*/
         EnhancedFadeInValue,             /*!< Enhanced Fade In Value Parameter*/
         EnhancedFadeOutValue,            /*!< Enhanced Fade Out Value Parameter*/
