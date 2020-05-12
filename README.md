@@ -80,7 +80,7 @@ TTKMusicPlayer can meet your most demands
  * Game Audio File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
  * FLAC File(*.flac *.oga)
  * Monkey's Audio File(*.ape)
- * FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3)
+ * FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3 *.tak *.dsf *.dsdiff)
  * ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
  * AdLib Sound File(*.adl *.hsc *.ksm *.lds)
  * Apple Lossless Audio File(*.alac)
@@ -111,8 +111,13 @@ Screenshots.
  * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  * Local music transferred to the cloud or mobile device.
  * Local music and the human voice humming recognition.
- * Music song, artist, album, playlistm, toplist and movie search supported.
- * Music song spectrum and test supported.
+ * Music song, artist, album, playlist, toplist and movie search supported.
+ * Music song, artist, album and playlist search supported.
+ * Music DSP effects and Visual effects supported.
+ * Music song spectrum(projectm, goom, sonique, florid, wavebar) and test supported.
+ * Music replay gain scan and write supported.
+ * Music audio formats conveter supported.
+ * Music screen saver supported.
  
 
 Screenshots
