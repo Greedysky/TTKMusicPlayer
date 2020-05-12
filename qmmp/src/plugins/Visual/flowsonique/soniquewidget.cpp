@@ -2,11 +2,8 @@
 #include <qmmp/qmmp.h>
 
 #include <QDir>
+#include <QLibrary>
 #include <QDateTime>
-
-#ifdef Q_OS_UNIX
-#include <dlfcn.h>
-#endif
 
 typedef VisInfo* (*SoniqueModule)();
 
@@ -93,10 +90,9 @@ SoniqueWidget::SoniqueWidget(QWidget *parent)
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
     m_sonique = nullptr;
-    m_texture = nullptr;
     m_visData= new VisData;
+    m_texture = nullptr;
     m_visproc  = nullptr;
-    m_instance = nullptr;
     m_currentIndex = -1;
 
     m_kiss_cfg = kiss_fft_alloc(FFT_SIZE, 0, nullptr, nullptr);
@@ -106,18 +102,10 @@ SoniqueWidget::SoniqueWidget(QWidget *parent)
 
 SoniqueWidget::~SoniqueWidget()
 {
-    delete m_sonique;
     delete m_visData;
     delete m_visproc;
 
-    if(m_instance)
-    {
-#ifdef Q_OS_UNIX
-        dlclose(m_instance);
-#else
-        FreeLibrary(m_instance);
-#endif
-    }
+    closePreset();
 
     kiss_fft_free(m_kiss_cfg);
     free(m_in_freq_data);
@@ -126,6 +114,7 @@ SoniqueWidget::~SoniqueWidget()
 
 void SoniqueWidget::addBuffer(float *left, float *right)
 {
+    m_mutex.lock();
     if(!m_sonique)
     {
        return;
@@ -135,8 +124,8 @@ void SoniqueWidget::addBuffer(float *left, float *right)
     {
         for(int i=0; i<FFT_SIZE; i++)
         {
-            m_visData->Waveform[0][i] = left[i];
-            m_visData->Waveform[1][i] = right[i];
+            m_visData->Waveform[0][i] = left[i] * 64.0;
+            m_visData->Waveform[1][i] = right[i] * 64.0;
         }
     }
 
@@ -186,6 +175,8 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
     glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_texture);
     update();
+
+    m_mutex.unlock();
 }
 
 void SoniqueWidget::initializeGL()
@@ -230,6 +221,7 @@ void SoniqueWidget::resizeGL(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
+    m_mutex.lock();
     if(!m_sonique)
     {
         return;
@@ -240,6 +232,7 @@ void SoniqueWidget::resizeGL(int w, int h)
 
     delete m_texture;
     m_texture = new unsigned long[w * h]{0};
+    m_mutex.unlock();
 }
 
 void SoniqueWidget::paintGL()
@@ -296,46 +289,46 @@ void SoniqueWidget::randomPreset()
     generatePreset();
 }
 
+void SoniqueWidget::closePreset()
+{
+    if(m_sonique && m_sonique->Version > 0)
+    {
+        m_sonique->Deinit();
+    }
+}
+
 void SoniqueWidget::generatePreset()
 {
-    if(m_instance)
-    {
-        delete m_sonique;
-        m_sonique = nullptr;
-#ifdef Q_OS_UNIX
-        dlclose(m_instance);
-#else
-        FreeLibrary(m_instance);
-#endif
-    }
+    m_mutex.lock();
+    closePreset();
 
-    const char *module_path = m_presetList[m_currentIndex].toLocal8Bit().constData();
-#ifdef Q_OS_UNIX
-    m_instance = dlopen(module_path, RTLD_LAZY);
-#else
-    m_instance = LoadLibraryA(module_path);
-#endif
-    qDebug("[SoniqueWidget] url is %s", module_path);
-
-    if(!m_instance)
-    {
-        qDebug("Could not load the svp file");
-        return;
-    }
-
+    const QString &module_path = m_presetList[m_currentIndex];
     // resolve function address here
-#ifdef Q_OS_UNIX
-    SoniqueModule module = (SoniqueModule)dlsym(m_instance, "QueryModule");
-#else
-    SoniqueModule module = (SoniqueModule)GetProcAddress(m_instance, "QueryModule");
-#endif
+    SoniqueModule module = (SoniqueModule)QLibrary::resolve(module_path, "QueryModule");
+    qDebug("[SoniqueWidget] url is %s", module_path.toLocal8Bit().constData());
+
     if(!module)
     {
+        m_mutex.unlock();
         qDebug("Wrong svp file loaded");
         return;
     }
 
     m_sonique = module();
-    m_sonique->OpenSettings((Qmmp::pluginPath() + "/../MPlugins/config/sonique/vis.ini").toLocal8Bit().data());
+
+    const QString &dir = QFileInfo(m_presetList[m_currentIndex]).absolutePath();
+    const QFileInfoList iniList(getFileListByDir(dir, QStringList() << "*.ini", true));
+    if(!iniList.isEmpty())
+    {
+        char *init_path = iniList.first().absoluteFilePath().toLocal8Bit().data();
+        m_sonique->OpenSettings(init_path);
+        qDebug("[SoniqueWidget] ini url is %s", init_path);
+    }
+    else
+    {
+        m_sonique->OpenSettings(nullptr);
+    }
+
     m_sonique->Initialize();
+    m_mutex.unlock();
 }

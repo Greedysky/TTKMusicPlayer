@@ -51,8 +51,8 @@ void SoniquePlugin::timeout()
         float right[QMMP_VISUAL_NODE_SIZE];
         for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; i++)
         {
-            left[i] = m_left[i] * 32767.0;
-            right[i] = m_right[i] * 32767.0;
+            left[i] = m_left[i];
+            right[i] = m_right[i];
         }
 
         m_soniqueWidget->addBuffer(left, right);
