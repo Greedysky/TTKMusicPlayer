@@ -19,7 +19,6 @@
 #ifndef SONIQUEWIDGET_H
 #define SONIQUEWIDGET_H
 
-#include <QMutex>
 #include <QGLWidget>
 #include "vis.h"
 #include "kiss_fft.h"
@@ -60,7 +59,6 @@ private:
     HINSTANCE m_instance;
 #endif
 
-    QMutex m_mutex;
     int m_currentIndex;
     QStringList m_presetList;
 

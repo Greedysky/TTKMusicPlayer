@@ -119,7 +119,6 @@ SoniqueWidget::~SoniqueWidget()
 
 void SoniqueWidget::addBuffer(float *left, float *right)
 {
-    m_mutex.lock();
     if(!m_sonique)
     {
        return;
@@ -180,8 +179,6 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
     glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_texture);
     update();
-
-    m_mutex.unlock();
 }
 
 void SoniqueWidget::initializeGL()
@@ -199,7 +196,7 @@ void SoniqueWidget::initializeGL()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,		GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,		GL_CLAMP);
 
-    if(!m_sonique)
+    if(m_presetList.isEmpty())
     {
         const QString &dir = Qmmp::pluginPath() + "/../MPlugins/config/sonique";
         const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp", true));
@@ -226,7 +223,6 @@ void SoniqueWidget::resizeGL(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    m_mutex.lock();
     if(!m_sonique)
     {
         return;
@@ -237,7 +233,6 @@ void SoniqueWidget::resizeGL(int w, int h)
 
     delete m_texture;
     m_texture = new unsigned long[w * h]{0};
-    m_mutex.unlock();
 }
 
 void SoniqueWidget::paintGL()
@@ -313,7 +308,6 @@ void SoniqueWidget::closePreset()
 
 void SoniqueWidget::generatePreset()
 {
-    m_mutex.lock();
     closePreset();
 
     const char *module_path = m_presetList[m_currentIndex].toLocal8Bit().constData();
@@ -326,7 +320,6 @@ void SoniqueWidget::generatePreset()
 
     if(!m_instance)
     {
-        m_mutex.unlock();
         qDebug("Could not load the svp file");
         return;
     }
@@ -338,7 +331,6 @@ void SoniqueWidget::generatePreset()
 #endif
     if(!module)
     {
-        m_mutex.unlock();
         qDebug("Wrong svp file loaded");
         return;
     }
@@ -359,5 +351,4 @@ void SoniqueWidget::generatePreset()
     }
 
     m_sonique->Initialize();
-    m_mutex.unlock();
 }
