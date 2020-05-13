@@ -5,6 +5,10 @@
 #include <QLibrary>
 #include <QDateTime>
 
+#ifdef Q_OS_UNIX
+#include <dlfcn.h>
+#endif
+
 typedef VisInfo* (*SoniqueModule)();
 
 #define SPECTRUM_SIZE   256
@@ -93,6 +97,7 @@ SoniqueWidget::SoniqueWidget(QWidget *parent)
     m_visData= new VisData;
     m_texture = nullptr;
     m_visproc  = nullptr;
+    m_instance = nullptr;
     m_currentIndex = -1;
 
     m_kiss_cfg = kiss_fft_alloc(FFT_SIZE, 0, nullptr, nullptr);
@@ -291,9 +296,18 @@ void SoniqueWidget::randomPreset()
 
 void SoniqueWidget::closePreset()
 {
-    if(m_sonique && m_sonique->Version > 0)
+    if(m_instance)
     {
-        m_sonique->Deinit();
+        if(m_sonique && m_sonique->Version > 0)
+        {
+            m_sonique->Deinit();
+        }
+#ifdef Q_OS_UNIX
+        dlclose(m_instance);
+#else
+        FreeLibrary(m_instance);
+#endif
+        m_sonique = nullptr;
     }
 }
 
@@ -302,11 +316,26 @@ void SoniqueWidget::generatePreset()
     m_mutex.lock();
     closePreset();
 
-    const QString &module_path = m_presetList[m_currentIndex];
-    // resolve function address here
-    SoniqueModule module = (SoniqueModule)QLibrary::resolve(module_path, "QueryModule");
-    qDebug("[SoniqueWidget] url is %s", module_path.toLocal8Bit().constData());
+    const char *module_path = m_presetList[m_currentIndex].toLocal8Bit().constData();
+#ifdef Q_OS_UNIX
+    m_instance = dlopen(module_path, RTLD_LAZY);
+#else
+    m_instance = LoadLibraryA(module_path);
+#endif
+    qDebug("[SoniqueWidget] url is %s", module_path);
 
+    if(!m_instance)
+    {
+        m_mutex.unlock();
+        qDebug("Could not load the svp file");
+        return;
+    }
+
+#ifdef Q_OS_UNIX
+    SoniqueModule module = (SoniqueModule)dlsym(m_instance, "QueryModule");
+#else
+    SoniqueModule module = (SoniqueModule)GetProcAddress(m_instance, "QueryModule");
+#endif
     if(!module)
     {
         m_mutex.unlock();

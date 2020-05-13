@@ -54,6 +54,11 @@ private:
     VisData *m_visData;
     unsigned long *m_texture;
     unsigned long *m_visproc;
+#ifdef Q_OS_UNIX
+    void *m_instance;
+#else
+    HINSTANCE m_instance;
+#endif
 
     QMutex m_mutex;
     int m_currentIndex;
