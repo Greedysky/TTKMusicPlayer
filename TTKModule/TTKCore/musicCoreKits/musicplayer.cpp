@@ -17,7 +17,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     m_posOnCircle = 0;
     m_volumeMusic3D = 0;
     m_duration = 0;
-    m_tryTimes = 0;
+    m_durationTimes = 0;
 
     setEnabledEffect(false);
 
@@ -147,18 +147,12 @@ void MusicPlayer::play()
         return;
     }
 
-    m_tryTimes = 0;
+    m_durationTimes = 0;
     m_timer.start(MT_S2MS);
+
+    getCurrentDuration();
     ///Every second Q_EMITs a signal change information
     Q_EMIT positionChanged(0);
-    getCurrentDuration();
-
-    ///Read the configuration settings for the sound
-    const int volume = M_SETTING_PTR->value(MusicSettingManager::Volume).toInt();
-    if(volume != -1)
-    {
-        setVolume(volume);
-    }
 }
 
 void MusicPlayer::pause()
@@ -268,7 +262,7 @@ void MusicPlayer::update()
 void MusicPlayer::getCurrentDuration()
 {
     const qint64 dur = duration();
-    if((dur == 0 || m_duration == dur) && m_tryTimes++ < 10)
+    if((dur == 0 || m_duration == dur) && m_durationTimes++ < 10)
     {
         QTimer::singleShot(50 * MT_MS, this, SLOT(getCurrentDuration()));
     }
