@@ -79,6 +79,10 @@ public:
      * Get current player postion.
      */
     qint64 position() const;
+    /*!
+     * Set current play pos.
+     */
+    void setPosition(qint64 position);
 
     /*!
      * Set current player to next music.
@@ -105,10 +109,6 @@ public:
      * Set current player mute or not.
      */
     void setMuted(bool muted);
-    /*!
-     * Set current play pos.
-     */
-    void setPosition(qint64 position);
 
     /*!
      * Set current music enhanced effect.
@@ -169,9 +169,9 @@ private Q_SLOTS:
      */
     void update();
     /*!
-     * Get current duration by time out.
+     * Query current duration by time out.
      */
-    void getCurrentDuration();
+    void queryCurrentDuration();
 
 protected:
     /*!

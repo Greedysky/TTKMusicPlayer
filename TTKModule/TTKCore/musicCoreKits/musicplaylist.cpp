@@ -49,7 +49,7 @@ MusicPlayItem MusicPlaylist::currentItem() const
     return m_mediaList.isEmpty() ? MusicPlayItem() : m_mediaList[m_currentIndex];
 }
 
-QString MusicPlaylist::currentMediaString() const
+QString MusicPlaylist::currentMediaPath() const
 {
     return currentItem().m_path;
 }

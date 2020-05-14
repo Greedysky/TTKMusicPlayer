@@ -131,7 +131,7 @@ QString MusicApplication::getCurrentFileName() const
     if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
     {
         const MusicSongs &songs = items[m_currentMusicSongTreeIndex].m_songs;
-        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlaylist->currentMediaString());
+        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlaylist->currentMediaPath());
         return (index != -1) ?songs[index].getMusicName() : QString();
     }
     return QString();
@@ -148,7 +148,7 @@ QString MusicApplication::getCurrentFilePath() const
     if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
     {
         const MusicSongs &songs = items[m_currentMusicSongTreeIndex].m_songs;
-        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlaylist->currentMediaString());
+        const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlaylist->currentMediaPath());
         return (index != -1) ?songs[index].getMusicPath() : QString();
     }
     return QString();

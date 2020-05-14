@@ -88,7 +88,7 @@ public:
     /*!
      * Get current play music media path.
      */
-    QString currentMediaString() const;
+    QString currentMediaPath() const;
 
     /*!
      * Get all music media path.
