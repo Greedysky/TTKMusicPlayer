@@ -120,14 +120,6 @@ public Q_SLOTS:
      */
     void musicListSongSortBy(QAction *action);
     /*!
-     * Show share list dialog.
-     */
-    void showShareListDialog();
-    /*!
-     * Show enhance lossless dialog.
-     */
-    void showEnhanceLosslessDialog();
-    /*!
      * Add music to played list and play later.
      */
     void addToPlayLater();

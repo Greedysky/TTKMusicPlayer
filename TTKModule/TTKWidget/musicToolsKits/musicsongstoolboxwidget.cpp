@@ -1,7 +1,5 @@
 #include "musicsongstoolboxwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
-#include "musicsonglistsharingwidget.h"
-#include "musicsonglistenhancelosslesswidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
@@ -162,16 +160,6 @@ void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
         }
         Q_EMIT musicListSongSortBy(m_index);
     }
-}
-
-void MusicSongsToolBoxTopWidget::showShareListDialog()
-{
-    MusicSongListSharingWidget(this).exec();
-}
-
-void MusicSongsToolBoxTopWidget::showEnhanceLosslessDialog()
-{
-    MusicSongListEnhanceLosslessWidget(this).exec();
 }
 
 void MusicSongsToolBoxTopWidget::addToPlayLater()

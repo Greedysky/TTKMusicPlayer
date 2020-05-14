@@ -411,8 +411,6 @@
         <file alias="btn_detect_unlove_normal">../TTKResource/toolSets/btn_detect_unlove_normal.png</file>
         <file alias="btn_detect_unlove_hover">../TTKResource/toolSets/btn_detect_unlove_hover.png</file>
         <file alias="btn_detect_unlove_disable">../TTKResource/toolSets/btn_detect_unlove_disable.png</file>
-        <file alias="btn_kukou_input">../TTKResource/toolSets/btn_kukou_input.png</file>
-        <file alias="btn_kukou_output">../TTKResource/toolSets/btn_kukou_output.png</file>
         <file alias="btn_duplicate_clicked">../TTKResource/toolSets/btn_duplicate_clicked.png</file>
         <file alias="btn_duplicate_hover">../TTKResource/toolSets/btn_duplicate_hover.png</file>
         <file alias="btn_duplicate_normal">../TTKResource/toolSets/btn_duplicate_normal.png</file>

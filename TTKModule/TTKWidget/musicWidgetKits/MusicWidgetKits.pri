@@ -41,7 +41,6 @@ HEADERS  += \
     $$PWD/musicdownloadmgmtwidget.h \
     $$PWD/musicdownloadstatusobject.h \
     $$PWD/musicsongsharingwidget.h \
-    $$PWD/musicsonglistsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
     $$PWD/musicsimilarfoundwidget.h \
@@ -54,7 +53,6 @@ HEADERS  += \
     $$PWD/musicplaylistfoundwidget.h \
     $$PWD/musicplaylistfoundinfowidget.h \
     $$PWD/musicplaylistfoundtablewidget.h \
-    $$PWD/musicsonglistenhancelosslesswidget.h \
     $$PWD/musicenhancedpopwidget.h \
     $$PWD/musicplaybackmodepopwidget.h \
     $$PWD/musicqualitychoicepopwidget.h \
@@ -98,7 +96,6 @@ SOURCES += \
     $$PWD/musicdownloadmgmtwidget.cpp \
     $$PWD/musicdownloadstatusobject.cpp \
     $$PWD/musicsongsharingwidget.cpp \
-    $$PWD/musicsonglistsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
     $$PWD/musicsimilarfoundwidget.cpp \
@@ -111,7 +108,6 @@ SOURCES += \
     $$PWD/musicplaylistfoundwidget.cpp \
     $$PWD/musicplaylistfoundinfowidget.cpp \
     $$PWD/musicplaylistfoundtablewidget.cpp \
-    $$PWD/musicsonglistenhancelosslesswidget.cpp \
     $$PWD/musicenhancedpopwidget.cpp \
     $$PWD/musicplaybackmodepopwidget.cpp \
     $$PWD/musicqualitychoicepopwidget.cpp \

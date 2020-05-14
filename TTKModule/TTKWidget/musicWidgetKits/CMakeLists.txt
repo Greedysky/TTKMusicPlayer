@@ -33,8 +33,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.h
     ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicsonglistsharingwidget.h
-    ${MUSIC_WIDGET_DIR}/musicsonglistenhancelosslesswidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundcommentswidget.h
@@ -88,8 +86,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsonglistsharingwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsonglistenhancelosslesswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundcommentswidget.cpp

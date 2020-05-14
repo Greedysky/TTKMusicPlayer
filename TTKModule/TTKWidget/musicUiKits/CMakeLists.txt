@@ -60,8 +60,6 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsongslistiteminfowidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsourceupdatewidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsoundeffectswidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsonglistsharingwidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsonglistenhancelosslesswidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicmessageaboutdialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musiccolordialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsongitemselecteddialog.ui

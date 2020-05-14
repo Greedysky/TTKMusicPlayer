@@ -77,12 +77,10 @@ FORMS    += \
     $$PWD/musicWidgetKits/musiccolordialog.ui \
     $$PWD/musicWidgetKits/musicsettingwidget.ui \
     $$PWD/musicWidgetKits/musicsongsharingwidget.ui \
-    $$PWD/musicWidgetKits/musicsonglistsharingwidget.ui \
     $$PWD/musicWidgetKits/musicsongslistiteminfowidget.ui \
     $$PWD/musicWidgetKits/musicsourceupdatewidget.ui \
     $$PWD/musicWidgetKits/musicsoundeffectswidget.ui \
     $$PWD/musicWidgetKits/musicmessageaboutdialog.ui \
-    $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui \
     $$PWD/musicWidgetKits/musicdownloadbatchwidget.ui \
     $$PWD/musicWidgetKits/musicsongitemselecteddialog.ui \
     $$PWD/musicWidgetKits/musicmessagefeedbackdialog.ui \
