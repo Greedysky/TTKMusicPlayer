@@ -531,6 +531,11 @@ namespace MusicUIObject
             QTextEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
 
+///HeadView
+    const QString MQSSHeaderView01 = " \
+            QHeaderView{ background-color:white; color:black; }";
+
+
 ///Widget
     const QString MQSSWidgetStyle01 = " \
             QWidget{ background:rgba(255, 255, 255, 50); color:white; font-weight:bold; }";
