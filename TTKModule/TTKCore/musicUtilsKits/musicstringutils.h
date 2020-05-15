@@ -60,7 +60,7 @@ namespace MusicUtils
         /*!
          * Get string splite path.
          */
-        MUSIC_UTILS_EXPORT QString stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = false);
+        MUSIC_UTILS_EXPORT QString stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
         /*!
          * Get split string value.
          */
