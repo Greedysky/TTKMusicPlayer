@@ -21,7 +21,7 @@ QT       += core
 include($$PWD/../../TTKVersion.pri)
 unix:VERSION += 1.0.0.0
 
-DESTDIR = $$OUT_PWD/../../bin
+DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKInit
 
 TEMPLATE = app
@@ -32,7 +32,7 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKConfig
+LIBS += -L$$DESTDIR -lTTKConfig
 
 INCLUDEPATH += \
     $$PWD/../ \

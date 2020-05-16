@@ -15,9 +15,6 @@ if(UNIX)
 add_definitions(-DCONFIG_DLL_DIR=\\\"${LIBRARY_OUTPUT_PATH}/\\\")
 endif()
 
-set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
-
 include_directories(${MUSIC_CONFIG_DIR})
 
 set(MUSIC_HEADERS
@@ -59,6 +56,9 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   
   add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Gui Qt5::Widgets)
+  if(WIN32)
+      list(APPEND QT5_LIBS TTKConfig)
+  endif()
   target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
@@ -66,5 +66,8 @@ else()
   
   add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   list(APPEND QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY})
+  if(WIN32)
+      list(APPEND QT4_LIBS TTKConfig)
+  endif()
   target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
 endif()

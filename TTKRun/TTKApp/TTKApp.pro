@@ -22,7 +22,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 include($$PWD/../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-DESTDIR = $$OUT_PWD/../../bin
+DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKMusicPlayer
 
 TEMPLATE = app
@@ -34,7 +34,7 @@ win32:msvc{
 }
 
 win32{
-    LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKConfig
+    LIBS += -L$$DESTDIR -lTTKConfig
 }
 else{
     DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/$$TTKMusicPlayer/\\\"

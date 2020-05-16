@@ -12,9 +12,6 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
-set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
-
 include_directories(${MUSIC_CONFIG_DIR})
 
 set(MUSIC_SOURCES

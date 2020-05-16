@@ -245,6 +245,8 @@ v2.13.X.0 Final 2020.XX.XX
 添加ReplayGain。
 添加Wave可视化。
 添加Sonique可视化。
+移除部分组件。
+优化控制遥控器。
 Bug修复。
 
 ......

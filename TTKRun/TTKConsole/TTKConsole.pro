@@ -25,11 +25,11 @@ CONFIG += console
 
 DEFINES += TTK_LIBRARY
 
-DESTDIR = $$OUT_PWD/../../bin
+DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKConsole
 
-LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKCore
-unix:LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+LIBS += -L$$DESTDIR -lTTKCore
+unix:LIBS += -L$$DESTDIR -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
 win32:msvc{
     CONFIG +=c++11

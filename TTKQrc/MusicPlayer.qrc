@@ -367,7 +367,6 @@
         <file alias="lb_mobile_devices">../TTKResource/toolSets/lb_mobile_devices.png</file>
         <file alias="lb_mobile_usb">../TTKResource/toolSets/lb_mobile_usb.png</file>
         <file alias="lb_mobile_computer">../TTKResource/toolSets/lb_mobile_computer.png</file>
-        <file alias="lb_rate">../TTKResource/toolSets/lb_rate.gif</file>
         <file alias="lb_upgrade">../TTKResource/toolSets/lb_upgrade.png</file>
         <file alias="lb_upgradeMain">../TTKResource/toolSets/lb_upgradeMain.png</file>
         <file alias="btn_gain_add_file">../TTKResource/toolSets/btn_gain_add_file.png</file>
