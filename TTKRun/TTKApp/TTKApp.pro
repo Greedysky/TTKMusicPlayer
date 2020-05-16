@@ -33,11 +33,12 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
+LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKConfig
+
 INCLUDEPATH += \
     $$PWD/../ \
-    $$PWD/../TTKInit \
     $$PWD/../../ \
-    $$PWD/../../TTKThirdParty \
+    $$PWD/../../TTKConfig \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
@@ -45,17 +46,12 @@ SOURCES += \
     ttkrunmain.cpp \
     ttklocalpeer.cpp \
     ttkrunapplication.cpp \
-    ttkrunobject.cpp \
-    $$PWD/../TTKInit/musicinitobject.cpp
-
+    ttkrunobject.cpp
 
 HEADERS += \
-    $$PWD/../musicrunglobaldefine.h \
     ttkrunobject.h \
     ttklocalpeer.h \
     ttkrunapplication.h \
-    $$PWD/../TTKInit/musicinitobject.h
-
 
 RESOURCES += \
     $$PWD/../../TTKQrc/MusicApp.qrc

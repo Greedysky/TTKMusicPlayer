@@ -104,21 +104,25 @@
 //
 #define APPDATA_DIR             "AppData/"
 #define DOWNLOADS_DIR           "Downloads/"
+#define APPCACHE_DIR            "AppCache/"
 
-
+//
 #define LRC_DIR                 "MLrc/"
 #define MUSIC_DIR               "Music/"
 #define MOVIE_DIR               "Movie/"
-#define THEME_DIR               "MTheme/"
-#define CACHE_DIR               "MCached/"
-#define ART_DIR                 "MArt/"
 #define UPDATE_DIR              "MUpdate/"
+//
+#define LANGUAGE_DIR            "MLanguage/"
+#define PLUGINS_DIR             "MPlugins/"
+#define THEME_DIR               "MTheme/"
+//
+#define ART_DIR                 "MArt/"
+#define BACKGROUND_DIR          "MArt/background/"
+#define CACHE_DIR               "MCached/"
 #define SCREEN_DIR              "MScreen/"
+//
 #define AVATAR_DIR              "avatar/"
 #define USER_THEME_DIR          "theme/"
-#define PLUGINS_DIR             "MPlugins/"
-#define BACKGROUND_DIR          "MArt/background/"
-#define LANGUAGE_DIR            "MLanguage/"
 
 
 #define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TEX_FILE)
@@ -150,21 +154,24 @@
 #if defined (Q_OS_ANDROID)
 #  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
 #  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + DOWNLOADS_DIR
+#  define APPCACHE_DIR_FULL     MusicObject::getAppDir() + APPCACHE_DIR
 #else
 #  define MAIN_DIR_FULL         MusicObject::getAppDir() + "../"
-#  define APPDATA_DIR_FULL      MAIN_DIR_FULL + APPDATA_DIR
+#  define APPDATA_DIR_FULL      MusicObject::getHomeDir() + APPDATA_DIR
 #  define DOWNLOADS_DIR_FULL    MAIN_DIR_FULL + DOWNLOADS_DIR
+#  define APPCACHE_DIR_FULL     MusicObject::getHomeDir() + APPCACHE_DIR
 #endif
 
 
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOADS_DIR_FULL + MUSIC_DIR
 #define MOVIE_DIR_FULL          DOWNLOADS_DIR_FULL + MOVIE_DIR
-#define CACHE_DIR_FULL          DOWNLOADS_DIR_FULL + CACHE_DIR
-#define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
-#define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 #define UPDATE_DIR_FULL         DOWNLOADS_DIR_FULL + UPDATE_DIR
-#define SCREEN_DIR_FULL         DOWNLOADS_DIR_FULL + SCREEN_DIR
+//
+#define CACHE_DIR_FULL          APPCACHE_DIR_FULL + CACHE_DIR
+#define ART_DIR_FULL            APPCACHE_DIR_FULL + ART_DIR
+#define BACKGROUND_DIR_FULL     APPCACHE_DIR_FULL + BACKGROUND_DIR
+#define SCREEN_DIR_FULL         APPCACHE_DIR_FULL + SCREEN_DIR
 
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
@@ -315,6 +322,14 @@ namespace MusicObject
 #else
         return QCoreApplication::applicationDirPath() + "/";
 #endif
+    }
+
+    /*!
+     * Get application dir.
+     */
+    static QString getHomeDir()
+    {
+        return  QDir::homePath() +"/.ttkmp/";
     }
 }
 

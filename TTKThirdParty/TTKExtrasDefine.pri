@@ -20,8 +20,3 @@ INCLUDEPATH += \
     $$PWD/ \
     $$PWD/../ \
     $$PWD/TTKDumper
-
-HEADERS  += \
-    $$PWD/musicextrasglobaldefine.h \
-    $$PWD/../musicglobal.h \
-    $$PWD/../ttkprivate.h

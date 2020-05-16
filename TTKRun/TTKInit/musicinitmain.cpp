@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include "musicinitobject.h"
+#include "musicconfigobject.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,10 +9,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
 
-    MusicInitObject object;
+    MusicConfigObject object;
     object.initialize();
     TTK_LOGGER_INFO("Parameter Init success!");
 
-//    return app.exec();
     return 0;
 }

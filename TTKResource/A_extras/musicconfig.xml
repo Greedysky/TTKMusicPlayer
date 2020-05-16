@@ -6,7 +6,7 @@
         <lastPlayIndex value="1">-1,-1</lastPlayIndex>
     </musicSetting>
     <plusSetting>
-        <geometry value="242,84,1033,690"/>
+        <geometry value="242,84,1000,690"/>
         <language value="0"/>
         <autoPlay value="0"/>
         <closeEvent value="1"/>

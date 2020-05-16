@@ -16,10 +16,15 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-QT       += core gui testlib
-equals(QT_MAJOR_VERSION, 5){
-QT       += widgets
-}
+QT       += core
+
+include($$PWD/../TTKVersion.pri)
+unix:VERSION += 1.0.0.0
+
+DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
+TARGET = TTKConfig
+
+TEMPLATE = lib
 
 win32:msvc{
     CONFIG +=c++11
@@ -27,22 +32,23 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-TARGET = TTKTest
-
-TEMPLATE = app
-DEFINES += TTK_LIBRARY
+DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/\\\"
 
 INCLUDEPATH += \
     $$PWD/../ \
-    $$PWD/../TTKThirdParty \
     $$PWD/../TTKThirdParty/TTKDumper \
     $$PWD/../TTKModule/TTKCore/musicCoreKits
 
-HEADERS  += \
-    musicautotest.h \
-    tst_codelines.h
+SOURCES += \
+    musicconfigobject.cpp
 
-SOURCES  += \
-    musicapplicationmain.cpp \
-    tst_codelines.cpp
+HEADERS += \
+    musicconfigdefine.h \
+    musicconfigobject.h
 
+RESOURCES += \
+    $$PWD/../TTKQrc/MusicApp.qrc
+
+win32{
+    RC_FILE = TTKConfig.rc
+}

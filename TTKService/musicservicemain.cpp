@@ -1,5 +1,6 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
+#include "musicconfigobject.h"
 #include "ttkdumper.h"
 
 #include <QScreen>
@@ -43,6 +44,9 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName(APP_NAME);
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
+
+    MusicConfigObject object;
+    object.checkValid();
 
     TTKDumper dumper;
     dumper.run();

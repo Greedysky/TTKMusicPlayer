@@ -32,23 +32,17 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
+LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKConfig
+
 INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../ \
-    $$PWD/../../TTKThirdParty \
+    $$PWD/../../TTKConfig \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += \
-    musicinitmain.cpp \
-    musicinitobject.cpp
-
-HEADERS += \
-    $$PWD/../musicrunglobaldefine.h \
-    musicinitobject.h
-
-RESOURCES += \
-    $$PWD/../../TTKQrc/MusicApp.qrc
+    musicinitmain.cpp
 
 win32{
     RC_FILE = TTKInit.rc

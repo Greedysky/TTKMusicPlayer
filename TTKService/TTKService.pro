@@ -32,9 +32,12 @@ unix:VERSION += $$TTKMusicPlayer
 
 TARGET = TTKService
 
-LIBS += -L$$DESTDIR -lTTKCore -lTTKDumper
+LIBS += -L$$DESTDIR -lTTKCore -lTTKDumper -lTTKConfig
 
-INCLUDEPATH += $$PWD/../TTKModule
+INCLUDEPATH += \
+    $$PWD/../TTKModule \
+    $$PWD/../TTKRun \
+    $$PWD/../TTKConfig
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \

@@ -1,5 +1,5 @@
 #include "ttkrunobject.h"
-#include "musicinitobject.h"
+#include "musicconfigobject.h"
 
 #include <QProcess>
 #include <QApplication>
@@ -38,7 +38,7 @@ TTKRunObject::TTKRunObject(QObject *parent)
 
 void TTKRunObject::checkValid()
 {
-    MusicInitObject object;
+    MusicConfigObject object;
     object.checkValid();
 }
 
@@ -52,7 +52,8 @@ void TTKRunObject::run(int argc, char **argv)
         list << QString::fromLocal8Bit(argv[1]) << QString::fromLocal8Bit(argv[2]);
     }
 
-    d->m_process->start(S_TTKSERVICE_FULL, list);
+    MusicConfigObject object;
+    d->m_process->start(object.getAppPath(), list);
 }
 
 void TTKRunObject::finished(int code)

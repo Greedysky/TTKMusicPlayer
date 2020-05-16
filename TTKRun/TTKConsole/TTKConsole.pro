@@ -40,7 +40,6 @@ win32:msvc{
 INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../ \
-    $$PWD/../../TTKThirdParty \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../TTKModule/TTKCore/musicPlaylistKits \
@@ -51,7 +50,6 @@ SOURCES += \
     musicconsoleobject.cpp
 
 HEADERS += \
-    $$PWD/../musicrunglobaldefine.h \
     musicconsoleobject.h
 
 win32{
