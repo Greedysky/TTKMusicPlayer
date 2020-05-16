@@ -27,14 +27,13 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrccolorwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcposterwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcdownloadbatchwidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicaudiorecorderwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicdesktopwallpaperwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicfileinformationwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musiclocalsongsmanagerwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicnetworkconnectiontestwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musictimerwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musictransformwidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicvolumegainwidget.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicreplaygainwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongringtonemakerwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongchecktoolswidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsoundkmicrowidget.ui

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME TTKInit)
+set(TARGET_NAME TTKConfig)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
@@ -11,20 +11,18 @@ endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
-
-set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
-set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
+add_definitions(-DCONFIG_DLL_DIR=\\\"${LIBRARY_OUTPUT_PATH}/\\\")
 
 set(MUSIC_HEADERS
-    ../musicrunglobaldefine.h
-    musicinitobject.h
+    musicconfigglobaldefine.h
+    musicconfigdefine.h
+    musicconfigobject.h
   )
 
 set(MUSIC_SOURCES
-    musicinitobject.cpp
-    musicinitmain.cpp
+    musicconfigobject.cpp
   )
-  
+
 SET(MUSIC_QRC
     ${MUSIC_QRC_DIR}/MusicApp.qrc
 )
@@ -37,12 +35,26 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
-  add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  if(TTK_BUILD_SHARED)
+    add_library(${TARGET_NAME} SHARED ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  else()
+    add_library(${TARGET_NAME} STATIC ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  endif()
   target_link_libraries(${TARGET_NAME} Qt5::Core)
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
-  add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  if(TTK_BUILD_SHARED)
+    add_library(${TARGET_NAME} SHARED ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  else()
+    add_library(${TARGET_NAME} STATIC ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
+  endif()
   target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY})
 endif()
+
+set_target_properties(
+${PROJECT_NAME}
+PROPERTIES
+VERSION ${TTK_MAJOR_VERSION})
+

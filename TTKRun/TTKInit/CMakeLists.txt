@@ -15,34 +15,21 @@ add_definitions(-DQT_THREAD)
 set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 
-set(MUSIC_HEADERS
-    ../musicrunglobaldefine.h
-    musicinitobject.h
-  )
+include_directories(${MUSIC_CONFIG_DIR})
 
 set(MUSIC_SOURCES
-    musicinitobject.cpp
     musicinitmain.cpp
   )
-  
-SET(MUSIC_QRC
-    ${MUSIC_QRC_DIR}/MusicApp.qrc
-)
 
 if(WIN32)
     list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
-  QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-  QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
-  add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  target_link_libraries(${TARGET_NAME} Qt5::Core)
+  add_executable(${TARGET_NAME} ${MUSIC_SOURCES})
+  target_link_libraries(${TARGET_NAME} Qt5::Core TTKConfig)
 else()
-  QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
-  QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
-  
-  add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY})
+  add_executable(${TARGET_NAME} ${MUSIC_SOURCES})
+  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY} TTKConfig)
 endif()

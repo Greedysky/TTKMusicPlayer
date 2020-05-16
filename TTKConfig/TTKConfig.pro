@@ -19,7 +19,7 @@
 QT       += core
 
 include($$PWD/../TTKVersion.pri)
-unix:VERSION += 1.0.0.0
+unix:VERSION += $$TTKMusicPlayer
 
 DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 TARGET = TTKConfig

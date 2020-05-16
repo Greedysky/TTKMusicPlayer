@@ -11,26 +11,40 @@ endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
+if(UNIX)
+add_definitions(-DCONFIG_DLL_DIR=\\\"${LIBRARY_OUTPUT_PATH}/\\\")
+endif()
 
 set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 
+include_directories(${MUSIC_CONFIG_DIR})
+
 set(MUSIC_HEADERS
     ../musicrunglobaldefine.h
-    ../TTKInit/musicinitobject.h
     ttklocalpeer.h
     ttkrunapplication.h
     ttkrunobject.h
   )
 
 set(MUSIC_SOURCES
-    ../TTKInit/musicinitobject.cpp
     ttklocalpeer.cpp
     ttkrunapplication.cpp
     ttkrunobject.cpp
     ttkrunmain.cpp
   )
-  
+
+if(UNIX)
+set(MUSIC_HEADERS
+    ${MUSIC_CONFIG_DIR}/musicconfigobject.h
+    ${MUSIC_HEADERS}
+  )
+set(MUSIC_SOURCES
+    ${MUSIC_CONFIG_DIR}/musicconfigobject.cpp
+    ${MUSIC_SOURCES}
+  )
+endif()
+
 SET(MUSIC_QRC
     ${MUSIC_QRC_DIR}/MusicApp.qrc
 )

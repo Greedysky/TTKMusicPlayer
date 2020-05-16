@@ -21,10 +21,11 @@
 
 #include "musicobject.h"
 
-#define C_LRC_DIR_FULL            LRC_DIR_FULL
-#define C_MUSIC_DIR_FULL          MUSIC_DIR_FULL
-#define C_MOVIE_DIR_FULL          MOVIE_DIR_FULL
-#define C_UPDATE_DIR_FULL         UPDATE_DIR_FULL
+#define C_DOWNLOADS_DIR_FULL      QString(TTK_STRCAT(CONFIG_DLL_DIR, "../")) + DOWNLOADS_DIR
+#define C_LRC_DIR_FULL            C_DOWNLOADS_DIR_FULL + LRC_DIR
+#define C_MUSIC_DIR_FULL          C_DOWNLOADS_DIR_FULL + MUSIC_DIR
+#define C_MOVIE_DIR_FULL          C_DOWNLOADS_DIR_FULL + MOVIE_DIR
+#define C_UPDATE_DIR_FULL         C_DOWNLOADS_DIR_FULL + UPDATE_DIR
 //
 #define C_CACHE_DIR_FULL          CACHE_DIR_FULL
 #define C_ART_DIR_FULL            ART_DIR_FULL

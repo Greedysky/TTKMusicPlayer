@@ -49,10 +49,11 @@ void MusicConfigObject::checkTheDirectoryExist()
     dirIsExist(C_LRC_DIR_FULL);
     dirIsExist(C_MUSIC_DIR_FULL);
     dirIsExist(C_MOVIE_DIR_FULL);
+    dirIsExist(C_UPDATE_DIR_FULL);
+
     dirIsExist(C_CACHE_DIR_FULL);
     dirIsExist(C_ART_DIR_FULL);
     dirIsExist(C_BACKGROUND_DIR_FULL);
-    dirIsExist(C_UPDATE_DIR_FULL);
     dirIsExist(C_SCREEN_DIR_FULL);
 
     dirIsExist(C_AVATAR_DIR_FULL);

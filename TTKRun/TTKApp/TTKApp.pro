@@ -33,7 +33,14 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKConfig
+win32{
+    LIBS += -L$$DESTDIR/$$TTKMusicPlayer -lTTKConfig
+}
+else{
+    DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/$$TTKMusicPlayer/\\\"
+    SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
+    HEADERS += $$PWD/../../TTKConfig/musicconfigobject.h
+}
 
 INCLUDEPATH += \
     $$PWD/../ \
