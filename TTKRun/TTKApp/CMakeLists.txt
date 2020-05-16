@@ -13,6 +13,8 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 if(UNIX)
 add_definitions(-DCONFIG_DLL_DIR=\\\"${LIBRARY_OUTPUT_PATH}/\\\")
+set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 endif()
 
 include_directories(${MUSIC_CONFIG_DIR})
