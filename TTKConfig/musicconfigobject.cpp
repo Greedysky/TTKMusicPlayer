@@ -77,11 +77,11 @@ void MusicConfigObject::checkTheFileNeededExist()
     copyFile(":/data/musicbarrage.ttk", C_BARRAGEPATH_FULL);
 
 #ifdef Q_OS_UNIX
+    copyLinuxShellFile(":/data/TTKRoutine.sh", C_TTKROUTINE_FULL);
     copyLinuxShellFile(":/data/TTKInit.sh", C_TTKINIT_FULL);
     copyLinuxShellFile(":/data/TTKMusicPlayer.sh", C_TTKMUSICPLAYER_FULL);
     copyLinuxShellFile(":/data/TTKConsole.sh", C_TTKCONSOLE_FULL);
     copyLinuxShellFile(":/data/TTKService.sh", C_TTKSERVICE_FULL);
-    copyLinuxShellFile(":/data/TTKRoutine.sh", C_TTKROUTINE_FULL);
     copyLinuxShellFile(":/data/TTKRoutineCopy.sh", C_TTKROUTINECOPY_FULL);
 #endif
 }

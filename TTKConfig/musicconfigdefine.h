@@ -53,10 +53,10 @@
 #ifdef Q_OS_WIN
 #define C_TTKSERVICE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "TTKService.exe")
 #else
-#define C_TTKINIT_FULL            TTK_STRCAT(CONFIG_DLL_DIR, "../TTKInit.sh")
-#define C_TTKMUSICPLAYER_FULL     TTK_STRCAT(CONFIG_DLL_DIR, "../TTKMusicPlayer.sh")
 #define C_TTKROUTINE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "../TTKRoutine.sh")
-#define C_TTKCONSOLE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "../TTKConsole.sh")
+#define C_TTKINIT_FULL            TTK_STRCAT(CONFIG_DLL_DIR, "TTKInit.sh")
+#define C_TTKMUSICPLAYER_FULL     TTK_STRCAT(CONFIG_DLL_DIR, "TTKMusicPlayer.sh")
+#define C_TTKCONSOLE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "TTKConsole.sh")
 #define C_TTKSERVICE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "TTKService.sh")
 #define C_TTKROUTINECOPY_FULL     TTK_STRCAT(CONFIG_DLL_DIR, "TTKRoutineCopy.sh")
 #endif

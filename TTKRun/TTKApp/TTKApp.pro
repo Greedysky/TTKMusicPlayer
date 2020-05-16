@@ -37,7 +37,7 @@ win32{
     LIBS += -L$$DESTDIR -lTTKConfig
 }
 else{
-    DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/$$TTKMusicPlayer/\\\"
+    DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/\\\"
     SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
     HEADERS += $$PWD/../../TTKConfig/musicconfigobject.h
 }
