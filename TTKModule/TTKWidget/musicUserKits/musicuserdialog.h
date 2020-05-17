@@ -24,7 +24,6 @@
 #include "musicabstractmovedialog.h"
 
 class MusicUserModel;
-class MusicAuthenticationThread;
 
 namespace Ui {
 class MusicUserDialog;
@@ -98,14 +97,6 @@ public Q_SLOTS:
      */
     void userEditTextChanged(const QString &uid);
     /*!
-     * Server type changed.
-     */
-    void userServerComboBoxChanged(int index);
-    /*!
-     * Network login changed.
-     */
-    void networkLoginChanged();
-    /*!
      * Send recieved icon data from net.
      */
     void downLoadFinished(const QByteArray &data);
@@ -131,14 +122,6 @@ protected:
      * Clear origin data in need.
      */
     void clearOriginData();
-    /*!
-     * Select local login mode.
-     */
-    void localLoginMode();
-    /*!
-     * Select network login mode.
-     */
-    void networkLoginMode();
     /*!
      * Read user setting to config file.
      */
@@ -168,7 +151,6 @@ protected:
     MusicUserModel *m_userModel;
     MusicUserRecords m_records;
     MusicUserUIDItem m_userUID;
-    MusicAuthenticationThread *m_loginThread;
 
 };
 

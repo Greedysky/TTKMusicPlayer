@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>389</width>
-    <height>284</height>
+    <height>254</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>381</width>
-     <height>276</height>
+     <height>246</height>
     </rect>
    </property>
    <property name="text">
@@ -67,7 +67,7 @@
      <x>4</x>
      <y>29</y>
      <width>381</width>
-     <height>251</height>
+     <height>221</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -108,7 +108,7 @@
       <rect>
        <x>70</x>
        <y>37</y>
-       <width>200</width>
+       <width>220</width>
        <height>30</height>
       </rect>
      </property>
@@ -127,7 +127,7 @@
       <rect>
        <x>70</x>
        <y>80</y>
-       <width>200</width>
+       <width>220</width>
        <height>30</height>
       </rect>
      </property>
@@ -141,7 +141,7 @@
     <widget class="QPushButton" name="forgotPwdButton">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>295</x>
        <y>79</y>
        <width>60</width>
        <height>30</height>
@@ -154,7 +154,7 @@
     <widget class="QPushButton" name="registerButton">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>295</x>
        <y>35</y>
        <width>60</width>
        <height>30</height>
@@ -168,7 +168,7 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>165</y>
+       <y>135</y>
        <width>90</width>
        <height>15</height>
       </rect>
@@ -181,7 +181,7 @@
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>165</y>
+       <y>135</y>
        <width>90</width>
        <height>15</height>
       </rect>
@@ -194,23 +194,13 @@
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>200</y>
+       <y>170</y>
        <width>255</width>
        <height>30</height>
       </rect>
      </property>
      <property name="text">
       <string>登录</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="serverComboBox">
-     <property name="geometry">
-      <rect>
-       <x>70</x>
-       <y>120</y>
-       <width>200</width>
-       <height>30</height>
-      </rect>
      </property>
     </widget>
    </widget>
@@ -684,7 +674,6 @@
  <tabstops>
   <tabstop>userComboBox</tabstop>
   <tabstop>passwLineEdit</tabstop>
-  <tabstop>serverComboBox</tabstop>
   <tabstop>rememberPwd</tabstop>
   <tabstop>automaticLogin</tabstop>
   <tabstop>loginButton</tabstop>

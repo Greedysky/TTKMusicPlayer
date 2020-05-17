@@ -9,10 +9,11 @@
 
 #include "musicuserrecordwidget.h"
 #include "musicdownloadsourcethread.h"
-#include "musicwyauthenticationthread.h"
 
 #include <QValidator>
 #include <QStyledItemDelegate>
+
+#define DEFAULT_LOGIN_SERVER    0
 
 MusicUserDialog::MusicUserDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -34,18 +35,10 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     secondStatckWidget();
     thirdStatckWidget();
 
-    m_ui->serverComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->serverComboBox));
-    m_ui->serverComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->serverComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    m_ui->serverComboBox->addItem(QIcon(":/image/lb_defaultArt"), tr("localDB"));
-    m_ui->serverComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("wangyiDB"));
-
-    m_loginThread = nullptr;
-    m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), 0);
+    m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), DEFAULT_LOGIN_SERVER);
 
     connect(m_ui->userComboBox, SIGNAL(currentIndexChanged(QString)), SLOT(userComboBoxChanged(QString)));
     connect(m_ui->userComboBox, SIGNAL(editTextChanged(QString)), SLOT(userEditTextChanged(QString)));
-    connect(m_ui->serverComboBox, SIGNAL(currentIndexChanged(int)), SLOT(userServerComboBoxChanged(int)));
 
     readFromUserConfig();
 }
@@ -53,7 +46,6 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
 MusicUserDialog::~MusicUserDialog()
 {
     delete m_ui;
-    delete m_loginThread;
 }
 
 bool MusicUserDialog::checkToAutoLogin()
@@ -92,14 +84,33 @@ void MusicUserDialog::userLogin()
 
 void MusicUserDialog::checkUserLogin()
 {
-    if(m_ui->serverComboBox->currentIndex() <= 0)
+    const MusicUserUIDItem uid(m_ui->userComboBox->currentText(), DEFAULT_LOGIN_SERVER);
+    const QString &pwd = m_ui->passwLineEdit->text();
+
+    if(!m_ui->rememberPwd->isChecked() || pwd != m_userModel->getUserPWDMD5(m_userUID))
     {
-        localLoginMode();
+        if(!m_userModel->passwordCheck(uid, pwd))
+        {
+            MusicMessageBox message;
+            message.setText(tr("You passwd is incorrect or user is not exist"));
+            message.exec();
+            return;
+        }
     }
-    else
+
+    if(uid.m_uid.trimmed().isEmpty() || pwd.trimmed().isEmpty())
     {
-        networkLoginMode();
+        MusicMessageBox message;
+        message.setText(tr("You entered is incorrect"));
+        message.exec();
+        return;
     }
+
+    writeToUserConfig();
+
+    m_userUID = uid;
+    Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
+    close();
 }
 
 void MusicUserDialog::registerUser()
@@ -126,7 +137,7 @@ void MusicUserDialog::checkRegisterUser()
             message.exec();
             return;
         }
-        if(!m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), m_ui->serverComboBox->currentIndex()),
+        if(!m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), DEFAULT_LOGIN_SERVER),
                                                   m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
         {
             MusicMessageBox message;
@@ -156,7 +167,7 @@ void MusicUserDialog::userForgotPasswd()
 
 void MusicUserDialog::checkUserForgotPasswd()
 {
-     const MusicUserUIDItem user(m_ui->userLineEdit->text(), m_ui->serverComboBox->currentIndex());
+     const MusicUserUIDItem user(m_ui->userLineEdit->text(), DEFAULT_LOGIN_SERVER);
      const QString &mail = m_ui->mailLineEdit->text();
 
      if(user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty())
@@ -205,7 +216,7 @@ void MusicUserDialog::changeVerificationCode()
 
 void MusicUserDialog::userComboBoxChanged(const QString &uid)
 {
-    m_userUID = MusicUserUIDItem(uid, m_ui->serverComboBox->currentIndex());
+    m_userUID = MusicUserUIDItem(uid, DEFAULT_LOGIN_SERVER);
     readFromUserSettings();
 }
 
@@ -213,7 +224,7 @@ void MusicUserDialog::userEditTextChanged(const QString &uid)
 {
     if(m_userModel->getAllUsers().contains(uid))
     {
-        m_userUID = MusicUserUIDItem(uid, m_ui->serverComboBox->currentIndex());
+        m_userUID = MusicUserUIDItem(uid, DEFAULT_LOGIN_SERVER);
         readFromUserSettings();
     }
     else
@@ -221,59 +232,6 @@ void MusicUserDialog::userEditTextChanged(const QString &uid)
         m_ui->automaticLogin->setChecked(false);
         m_ui->rememberPwd->setChecked(false);
         m_ui->passwLineEdit->clear();
-    }
-}
-
-void MusicUserDialog::userServerComboBoxChanged(int index)
-{
-    const bool s = (index <= 0);
-    m_ui->forgotPwdButton->setEnabled(s);
-    m_ui->registerButton->setEnabled(s);
-    m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), index);
-}
-
-void MusicUserDialog::networkLoginChanged()
-{
-    MusicUserInfoRecord v(m_loginThread->getInfoRecord());
-    if(v.isEmpty())
-    {
-        MusicMessageBox message;
-        message.setText(tr("Login error"));
-        message.exec();
-        return;
-    }
-
-    v.m_item = MusicUserUIDItem(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
-    v.m_password = m_ui->passwLineEdit->text();
-
-    if(v.m_item.m_uid.trimmed().isEmpty() || v.m_password.trimmed().isEmpty())
-    {
-        MusicMessageBox message;
-        message.setText(tr("You entered is incorrect"));
-        message.exec();
-        return;
-    }
-
-    if(!m_userModel->addUser(v) && !m_userModel->updateUser(v))
-    {
-        MusicMessageBox message;
-        message.setText(tr("You passwd is incorrect or user is not exist"));
-        message.exec();
-    }
-    else
-    {
-        m_userUID = v.m_item;
-
-        writeToUserConfig();
-        Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
-        close();
-
-        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-        connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!v.m_coverUrl.isEmpty())
-        {
-            download->startToDownload(v.m_coverUrl);
-        }
     }
 }
 
@@ -415,58 +373,6 @@ void MusicUserDialog::clearOriginData()
 #else
     m_ui->userComboBox->setCurrentIndex(-1);
 #endif
-    m_ui->serverComboBox->setCurrentIndex(0);
-}
-
-void MusicUserDialog::localLoginMode()
-{
-    const MusicUserUIDItem uid(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
-    const QString &pwd = m_ui->passwLineEdit->text();
-
-    if(!m_ui->rememberPwd->isChecked() || pwd != m_userModel->getUserPWDMD5(m_userUID))
-    {
-        if(!m_userModel->passwordCheck(uid, pwd))
-        {
-            MusicMessageBox message;
-            message.setText(tr("You passwd is incorrect or user is not exist"));
-            message.exec();
-            return;
-        }
-    }
-
-    if(uid.m_uid.trimmed().isEmpty() || pwd.trimmed().isEmpty())
-    {
-        MusicMessageBox message;
-        message.setText(tr("You entered is incorrect"));
-        message.exec();
-        return;
-    }
-
-    writeToUserConfig();
-
-    m_userUID = uid;
-    Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
-    close();
-}
-
-void MusicUserDialog::networkLoginMode()
-{
-    if(!m_loginThread)
-    {
-        m_loginThread = new MusicWYAuthenticationThread(this);
-        connect(m_loginThread, SIGNAL(downLoadDataChanged(QString)), SLOT(networkLoginChanged()));
-    }
-
-    QString pwd = m_ui->passwLineEdit->text();
-    const QString &user = m_ui->userComboBox->currentText();
-    const QString &ew = m_userModel->userPasswordEncryption(pwd);
-
-    if(pwd.length() != ew.length())
-    {
-        pwd = ew;
-    }
-
-    m_loginThread->startToDownload(user, pwd);
 }
 
 void MusicUserDialog::readFromUserConfig()
@@ -500,7 +406,6 @@ void MusicUserDialog::readFromUserSettings()
         m_ui->automaticLogin->setChecked(m_records[index].m_autoFlag);
         m_ui->rememberPwd->setChecked(m_records[index].m_rememberFlag);
         m_ui->passwLineEdit->setText(m_records[index].m_password);
-        m_ui->serverComboBox->setCurrentIndex(m_records[index].m_server);
     }
 }
 

@@ -5,14 +5,13 @@
 #include "musicsinglemanager.h"
 
 MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
-    : QLabel(parent)
+    : MusicClickedLabel(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
-    setMouseTracking(true);
 
-    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    setGeometry(windowSize.width() - 246, windowSize.height() - 169, 246, 169);
+    const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    setGeometry(windowSize.width() - 266 - 15, windowSize.height() - 85 - 55, 266, 85);
     setPixmap(QPixmap(":/toolSets/lb_mobile_devices"));
 
     m_closeButton = new QToolButton(this);
@@ -20,22 +19,15 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     m_closeButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_closeButton->setToolTip(tr("Close"));
-    m_closeButton->setGeometry(215, 2, 28, 22);
+    m_closeButton->setGeometry(235, 2, 28, 22);
+
     connect(m_closeButton, SIGNAL(clicked()), SLOT(close()));
-
-    m_openButton = new QToolButton(this);
-    m_openButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_openButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_openButton->setText(tr("MobileOpen"));
-    m_openButton->setGeometry(160, 140, 75, 25);
-    connect(m_openButton, SIGNAL(clicked()), SLOT(showMobileManager()));
-
+    connect(this, SIGNAL(clicked()), SLOT(showMobileManager()));
 }
 
 MusicMobileDevicesWidget::~MusicMobileDevicesWidget()
 {
     delete m_closeButton;
-    delete m_openButton;
 }
 
 void MusicMobileDevicesWidget::showMobileManager()

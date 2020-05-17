@@ -19,16 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
-#include "musicobject.h"
-#include "musicglobaldefine.h"
+#include "musicclickedlabel.h"
 
 class QToolButton;
 
 /*! @brief The class of the mobile devices widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicMobileDevicesWidget : public QLabel
+class MUSIC_TOOLSET_EXPORT MusicMobileDevicesWidget : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMobileDevicesWidget)
@@ -48,7 +46,6 @@ public Q_SLOTS:
 
 protected:
     QToolButton *m_closeButton;
-    QToolButton *m_openButton;
 
 };
 
