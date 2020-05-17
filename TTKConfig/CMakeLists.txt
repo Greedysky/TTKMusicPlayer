@@ -11,7 +11,6 @@ endif(COMMAND cmake_policy)
 
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
-add_definitions(-DCONFIG_DLL_DIR=\\\"${LIBRARY_OUTPUT_PATH}/\\\")
 
 set(MUSIC_HEADERS
     musicconfigglobaldefine.h

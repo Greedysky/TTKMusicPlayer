@@ -12,7 +12,7 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 if(UNIX)
-add_definitions(-DCONFIG_DLL_DIR=\\\"${LIBRARY_OUTPUT_PATH}/\\\")
+add_definitions(-DCONFIG_OUT_BUILD)
 set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 endif()
@@ -36,6 +36,7 @@ set(MUSIC_SOURCES
 if(UNIX)
 set(MUSIC_HEADERS
     ${MUSIC_CONFIG_DIR}/musicconfigobject.h
+    ${MUSIC_CONFIG_DIR}/musicconfigdefine.h
     ${MUSIC_HEADERS}
   )
 set(MUSIC_SOURCES

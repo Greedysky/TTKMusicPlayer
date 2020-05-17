@@ -32,8 +32,6 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/\\\"
-
 INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../TTKThirdParty/TTKDumper \

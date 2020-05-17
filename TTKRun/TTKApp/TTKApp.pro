@@ -38,9 +38,10 @@ win32{
 }
 else{
     DESTDIR = $$OUT_PWD/../../bin
-    DEFINES += CONFIG_DLL_DIR=\\\"$$DESTDIR/$$TTKMusicPlayer/\\\"
+    DEFINES += CONFIG_OUT_BUILD
     SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
     HEADERS += $$PWD/../../TTKConfig/musicconfigobject.h
+    HEADERS += $$PWD/../../TTKConfig/musicconfigdefine.h
 }
 
 INCLUDEPATH += \

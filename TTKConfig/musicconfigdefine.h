@@ -20,8 +20,15 @@
  ================================================= */
 
 #include "musicobject.h"
+#include "ttkversion.h"
 
-#define C_DOWNLOADS_DIR_FULL      QString(TTK_STRCAT(CONFIG_DLL_DIR, "../")) + DOWNLOADS_DIR
+#ifdef CONFIG_OUT_BUILD
+#define CONFIG_DLL_DIR            MusicObject::getAppDir() + "/" + TTKMUSIC_VERSION_STR + "/"
+#else
+#define CONFIG_DLL_DIR            MusicObject::getAppDir() + "/"
+#endif
+//
+#define C_DOWNLOADS_DIR_FULL      CONFIG_DLL_DIR + "../" + DOWNLOADS_DIR
 #define C_LRC_DIR_FULL            C_DOWNLOADS_DIR_FULL + LRC_DIR
 #define C_MUSIC_DIR_FULL          C_DOWNLOADS_DIR_FULL + MUSIC_DIR
 #define C_MOVIE_DIR_FULL          C_DOWNLOADS_DIR_FULL + MOVIE_DIR
@@ -44,21 +51,21 @@
 #define C_AVATAR_DIR_FULL         AVATAR_DIR_FULL
 #define C_USER_THEME_DIR_FULL     USER_THEME_DIR_FULL
 //
-#define C_TEMPPATH_FULL           TTK_STRCAT(CONFIG_DLL_DIR, TEMPPATH)
-#define C_THEME_DIR_FULL          TTK_STRCAT(CONFIG_DLL_DIR, THEME_DIR)
-#define C_PLUGINS_DIR_FULL        TTK_STRCAT(CONFIG_DLL_DIR, PLUGINS_DIR)
-#define C_LANGUAGE_DIR_FULL       TTK_STRCAT(CONFIG_DLL_DIR, LANGUAGE_DIR)
+#define C_TEMPPATH_FULL           CONFIG_DLL_DIR + TEMPPATH
+#define C_THEME_DIR_FULL          CONFIG_DLL_DIR + THEME_DIR
+#define C_PLUGINS_DIR_FULL        CONFIG_DLL_DIR + PLUGINS_DIR
+#define C_LANGUAGE_DIR_FULL       CONFIG_DLL_DIR + LANGUAGE_DIR
 
 
 #ifdef Q_OS_WIN
-#define C_TTKSERVICE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "TTKService.exe")
+#define C_TTKSERVICE_FULL         CONFIG_DLL_DIR + "TTKService.exe"
 #else
-#define C_TTKROUTINE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "../TTKRoutine.sh")
-#define C_TTKMUSICPLAYER_FULL     TTK_STRCAT(CONFIG_DLL_DIR, "../TTKMusicPlayer.sh")
-#define C_TTKINIT_FULL            TTK_STRCAT(CONFIG_DLL_DIR, "TTKInit.sh")
-#define C_TTKCONSOLE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "TTKConsole.sh")
-#define C_TTKSERVICE_FULL         TTK_STRCAT(CONFIG_DLL_DIR, "TTKService.sh")
-#define C_TTKROUTINECOPY_FULL     TTK_STRCAT(CONFIG_DLL_DIR, "TTKRoutineCopy.sh")
+#define C_TTKROUTINE_FULL         CONFIG_DLL_DIR + "../TTKRoutine.sh"
+#define C_TTKMUSICPLAYER_FULL     CONFIG_DLL_DIR + "../TTKMusicPlayer.sh"
+#define C_TTKINIT_FULL            CONFIG_DLL_DIR + "TTKInit.sh"
+#define C_TTKCONSOLE_FULL         CONFIG_DLL_DIR + "TTKConsole.sh"
+#define C_TTKSERVICE_FULL         CONFIG_DLL_DIR + "TTKService.sh"
+#define C_TTKROUTINECOPY_FULL     CONFIG_DLL_DIR + "TTKRoutineCopy.sh"
 #endif
 
 #endif
