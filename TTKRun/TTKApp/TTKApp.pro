@@ -40,8 +40,9 @@ else{
     DESTDIR = $$OUT_PWD/../../bin
     DEFINES += CONFIG_OUT_BUILD
     SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
-    HEADERS += $$PWD/../../TTKConfig/musicconfigobject.h
-    HEADERS += $$PWD/../../TTKConfig/musicconfigdefine.h
+    HEADERS += \
+        $$PWD/../../TTKConfig/musicconfigobject.h
+        $$PWD/../../TTKConfig/musicconfigdefine.h
 }
 
 INCLUDEPATH += \

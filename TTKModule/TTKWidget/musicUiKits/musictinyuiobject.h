@@ -55,7 +55,12 @@ namespace MusicUIObject
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_setting_normal); } \
             QPushButton:hover{ background-image: url(:/tiny/btn_setting_hover); }";
-            
+
+    const QString MQSSTinyBtnVisual = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_visual_normal); } \
+            QPushButton:hover{ background-image: url(:/tiny/btn_visual_hover); }";
+
     const QString MQSSTinyBtnWallpaperOn = " \
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_wallpaper_on_normal); } \

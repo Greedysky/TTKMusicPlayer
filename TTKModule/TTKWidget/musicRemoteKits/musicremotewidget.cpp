@@ -6,7 +6,6 @@
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
 #include "musicremotewidgetforripple.h"
-#include "musicremotewidgetforrayswave.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 #include "musicsettingmanager.h"
@@ -21,55 +20,54 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     drawWindowShadow(false);
     setMouseTracking(true);
 
-    m_showMainWindow = new QPushButton(this);
-    m_PreSongButton = new QPushButton(this);
-    m_NextSongButton = new QPushButton(this);
-    m_PlayButton = new QPushButton(this);
-    m_SettingButton = new QPushButton(this);
+    m_showMainWindowButton = new QPushButton(this);
+    m_preSongButton = new QPushButton(this);
+    m_nextSongButton = new QPushButton(this);
+    m_playButton = new QPushButton(this);
+    m_settingButton = new QPushButton(this);
 #ifdef Q_OS_UNIX
-    m_showMainWindow->setFocusPolicy(Qt::NoFocus);
-    m_PreSongButton->setFocusPolicy(Qt::NoFocus);
-    m_NextSongButton->setFocusPolicy(Qt::NoFocus);
-    m_PlayButton->setFocusPolicy(Qt::NoFocus);
-    m_SettingButton->setFocusPolicy(Qt::NoFocus);
+    m_showMainWindowButton->setFocusPolicy(Qt::NoFocus);
+    m_preSongButton->setFocusPolicy(Qt::NoFocus);
+    m_nextSongButton->setFocusPolicy(Qt::NoFocus);
+    m_playButton->setFocusPolicy(Qt::NoFocus);
+    m_settingButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
 
-    m_showMainWindow->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
-    m_showMainWindow->setIcon(QIcon(":/image/lb_app_logo"));
-    m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_hover"));
+    m_showMainWindowButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
+    m_showMainWindowButton->setIcon(QIcon(":/image/lb_app_logo"));
 
-    m_showMainWindow->setToolTip(tr("showMainWindow"));
-    m_PreSongButton->setToolTip(tr("Previous"));
-    m_NextSongButton->setToolTip(tr("Next"));
-    m_PlayButton->setToolTip(tr("Play"));
-    m_SettingButton->setToolTip(tr("showSetting"));
+    m_showMainWindowButton->setToolTip(tr("showMainWindow"));
+    m_preSongButton->setToolTip(tr("Previous"));
+    m_nextSongButton->setToolTip(tr("Next"));
+    m_playButton->setToolTip(tr("Play"));
+    m_settingButton->setToolTip(tr("showSetting"));
 
-    m_PreSongButton->setFixedSize(28, 28);
-    m_NextSongButton->setFixedSize(28, 28);
-    m_PlayButton->setFixedSize(28, 28);
-    m_SettingButton->setFixedSize(20, 20);
-    m_showMainWindow->setFixedSize(30, 30);
+    m_preSongButton->setFixedSize(28, 28);
+    m_nextSongButton->setFixedSize(28, 28);
+    m_playButton->setFixedSize(28, 28);
+    m_settingButton->setFixedSize(20, 20);
+    m_showMainWindowButton->setFixedSize(30, 30);
 
-    m_PreSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPrevious);
-    m_NextSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnNext);
-    m_PlayButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlay);
-    m_SettingButton->setStyleSheet(MusicUIObject::MQSSTinyBtnSetting);
+    m_preSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPrevious);
+    m_nextSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnNext);
+    m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlay);
+    m_settingButton->setStyleSheet(MusicUIObject::MQSSTinyBtnSetting);
     m_mainWidget->setStyleSheet(QString("#mainWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle04));
 
-    m_showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
-    m_PreSongButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_NextSongButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_PlayButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_SettingButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_showMainWindowButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_preSongButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_nextSongButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_settingButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(m_showMainWindow, SIGNAL(clicked()), SIGNAL(musicWindowSignal()));
-    connect(m_PlayButton, SIGNAL(clicked()), SIGNAL(musicKeySignal()));
-    connect(m_PreSongButton, SIGNAL(clicked()), SIGNAL(musicPlayPreviousSignal()));
-    connect(m_NextSongButton, SIGNAL(clicked()), SIGNAL(musicPlayNextSignal()));
-    connect(m_SettingButton, SIGNAL(clicked()), SIGNAL(musicSettingSignal()));
+    connect(m_showMainWindowButton, SIGNAL(clicked()), SIGNAL(musicWindowChanged()));
+    connect(m_playButton, SIGNAL(clicked()), SIGNAL(musicKeyChanged()));
+    connect(m_preSongButton, SIGNAL(clicked()), SIGNAL(musicPlayPreviousChanged()));
+    connect(m_nextSongButton, SIGNAL(clicked()), SIGNAL(musicPlayNextChanged()));
+    connect(m_settingButton, SIGNAL(clicked()), SIGNAL(musicSettingChanged()));
 
     m_volumeWidget = new QWidget(m_mainWidget);
     QHBoxLayout *volumeLayout = new QHBoxLayout(m_volumeWidget);
@@ -82,7 +80,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, m_volumeWidget);
     m_volumeSlider->setRange(0, 100);
     m_volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle01);
-    m_volumeSlider->setFixedWidth(45);
+    m_volumeSlider->setFixedWidth(42);
 
     volumeLayout->addWidget(m_volumeButton);
     volumeLayout->addWidget(m_volumeSlider);
@@ -90,7 +88,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
 
     connect(m_volumeButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicVolumeMute()));
-    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SLOT(musicVolumeChanged(int)));
+    connect(m_volumeSlider, SIGNAL(valueChanged(int)), SLOT(musicVolumeSliderChanged(int)));
 }
 
 MusicRemoteWidget::~MusicRemoteWidget()
@@ -98,17 +96,17 @@ MusicRemoteWidget::~MusicRemoteWidget()
     delete m_volumeButton;
     delete m_volumeSlider;
     delete m_volumeWidget;
-    delete m_showMainWindow;
-    delete m_PreSongButton;
-    delete m_NextSongButton;
-    delete m_PlayButton;
-    delete m_SettingButton;
+    delete m_showMainWindowButton;
+    delete m_preSongButton;
+    delete m_nextSongButton;
+    delete m_playButton;
+    delete m_settingButton;
     delete m_mainWidget;
 }
 
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
-    m_PlayButton->setStyleSheet(status ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSTinyBtnPause);
+    m_playButton->setStyleSheet(status ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSTinyBtnPause);
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)
@@ -132,13 +130,12 @@ int MusicRemoteWidget::mapRemoteTypeIndex()
     else if(TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
     else if(TTKObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
     else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
-    else if(TTKObject_cast(MusicRemoteWidgetForRaysWave*, this)) return RaysWave;
     else return Null;
 }
 
-void MusicRemoteWidget::musicVolumeChanged(int value)
+void MusicRemoteWidget::musicVolumeSliderChanged(int value)
 {
-    Q_EMIT musicVolumeSignal(value);
+    Q_EMIT musicVolumeChanged(value);
 
     QString style = MusicUIObject::MQSSTinyBtnSoundWhite;
     if(66 < value && value <=100)
@@ -180,7 +177,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setAttribute(Qt::WA_TranslucentBackground);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
-    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
+    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowChanged()));
     menu.addSeparator();
 
     QAction * action = menu.addAction(tr("SquareRemote"));
@@ -201,9 +198,6 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     action = menu.addAction(tr("RippleRemote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);
-    action = menu.addAction(tr("RaysWaveRemote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRaysWave*, this));
-    action->setData(RaysWave);
     menu.addAction(tr("quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
 

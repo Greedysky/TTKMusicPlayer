@@ -26,12 +26,12 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     QHBoxLayout *toolbox = new QHBoxLayout(toolWidget);
     toolbox->setContentsMargins(0, 0, 0, 0);
     toolbox->setSpacing(1);
-    toolbox->addWidget(m_PreSongButton);
-    toolbox->addWidget(m_PlayButton);
-    toolbox->addWidget(m_NextSongButton);
+    toolbox->addWidget(m_preSongButton);
+    toolbox->addWidget(m_playButton);
+    toolbox->addWidget(m_nextSongButton);
     toolbox->addWidget(m_volumeWidget);
-    toolbox->addWidget(m_SettingButton);
-    toolbox->addWidget(m_showMainWindow);
+    toolbox->addWidget(m_settingButton);
+    toolbox->addWidget(m_showMainWindowButton);
     toolWidget->setLayout(toolbox);
 
     QVBoxLayout *mvbox = new QVBoxLayout(mvWidget);
@@ -45,7 +45,6 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     m_iconLabel->setFixedSize(80, 80);
     m_songName->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
     m_songArtist->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
-
 }
 
 MusicRemoteWidgetForComplexStyle::~MusicRemoteWidgetForComplexStyle()

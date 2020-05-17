@@ -495,6 +495,8 @@
         <file alias="btn_open_files">../TTKResource/tiny/btn_open_files.png</file>
         <file alias="btn_list_menu_normal">../TTKResource/tiny/btn_list_menu_normal.png</file>
         <file alias="btn_list_menu_hover">../TTKResource/tiny/btn_list_menu_hover.png</file>
+        <file alias="btn_visual_normal">../TTKResource/tiny/btn_visual_normal.png</file>
+        <file alias="btn_visual_hover">../TTKResource/tiny/btn_visual_hover.png</file>
         <file alias="lb_number0">../TTKResource/tiny/lb_number0.png</file>
         <file alias="lb_number1">../TTKResource/tiny/lb_number1.png</file>
         <file alias="lb_number2">../TTKResource/tiny/lb_number2.png</file>

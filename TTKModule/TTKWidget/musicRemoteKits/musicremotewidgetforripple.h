@@ -43,7 +43,26 @@ public:
      */
     virtual void setLabelText(const QString &value) override;
 
+public Q_SLOTS:
+    /*!
+     * Visual mode changed.
+     */
+    void visualModeChanged();
+
 protected:
+    /*!
+     * Create visual widget.
+     */
+    void createVisualWidget();
+    /*!
+     * Remove visual widget.
+     */
+    void removeVisualWidget();
+
+    bool m_mode;
+    QWidget *m_visual;
+    QVBoxLayout *m_visualLayout;
+    QPushButton *m_visualModeButton;
     MusicMarqueeWidget *m_songNameLabel;
 
 };

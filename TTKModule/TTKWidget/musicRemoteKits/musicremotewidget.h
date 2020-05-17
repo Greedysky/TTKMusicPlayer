@@ -46,8 +46,7 @@ public:
         SimpleStyle,    /*!< Romote SimpleStyle type*/
         ComplexStyle,   /*!< Romote ComplexStyle type*/
         Diamond,        /*!< Romote Diamond type*/
-        Ripple,         /*!< Romote Ripple type*/
-        RaysWave        /*!< Romote RaysWave type*/
+        Ripple          /*!< Romote Ripple type*/
     };
 
     /*!
@@ -78,27 +77,27 @@ Q_SIGNALS:
     /*!
      * Set show application normal.
      */
-    void musicWindowSignal();
+    void musicWindowChanged();
     /*!
      * Set current play state.
      */
-    void musicKeySignal();
+    void musicKeyChanged();
     /*!
      * Set current play to previous.
      */
-    void musicPlayPreviousSignal();
+    void musicPlayPreviousChanged();
     /*!
      * Set current play to next.
      */
-    void musicPlayNextSignal();
+    void musicPlayNextChanged();
     /*!
      * Set current play volume by value.
      */
-    void musicVolumeSignal(int value);
+    void musicVolumeChanged(int value);
     /*!
      * Show current setting widget.
      */
-    void musicSettingSignal();
+    void musicSettingChanged();
     /*!
      * Change diff remote style by type.
      */
@@ -108,7 +107,7 @@ public Q_SLOTS:
     /*!
      * Set current play volume change by value.
      */
-    void musicVolumeChanged(int value);
+    void musicVolumeSliderChanged(int value);
     /*!
      * Override show function.
      */
@@ -128,9 +127,9 @@ protected:
      */
     void adjustPostion(QWidget *w);
 
-    QPushButton *m_showMainWindow, *m_PreSongButton;
-    QPushButton *m_NextSongButton, *m_PlayButton;
-    QPushButton *m_SettingButton;
+    QPushButton *m_showMainWindowButton, *m_preSongButton;
+    QPushButton *m_nextSongButton, *m_playButton;
+    QPushButton *m_settingButton;
     QWidget *m_mainWidget, *m_volumeWidget;
     QToolButton *m_volumeButton;
     MusicClickedSlider *m_volumeSlider;

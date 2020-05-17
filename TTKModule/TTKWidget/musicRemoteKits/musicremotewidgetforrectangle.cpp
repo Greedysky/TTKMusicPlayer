@@ -16,6 +16,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(5, 0, 5, 0);
     mhbox->setSpacing(0);
+
     m_songNameLabel = new MusicMarqueeWidget(this);
     mhbox->addWidget(m_songNameLabel);
     m_songNameLabel->setStyleSheet(MusicUIObject::MQSSWidgetStyle01);
@@ -24,15 +25,16 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     m_toolWidget->setObjectName("toolWidget");
     m_toolWidget->setStyleSheet(QString("#toolWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle04));
     vbox->addWidget(m_toolWidget);
+
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(0);
-    hbox->addWidget(m_showMainWindow);
-    hbox->addWidget(m_PreSongButton);
-    hbox->addWidget(m_PlayButton);
-    hbox->addWidget(m_NextSongButton);
+    hbox->addWidget(m_preSongButton);
+    hbox->addWidget(m_playButton);
+    hbox->addWidget(m_nextSongButton);
     hbox->addWidget(m_volumeWidget);
-    hbox->addWidget(m_SettingButton);
+    hbox->addWidget(m_settingButton);
+    hbox->addWidget(m_showMainWindowButton);
     m_toolWidget->setLayout(hbox);
 }
 
@@ -43,5 +45,5 @@ MusicRemoteWidgetForRectangle::~MusicRemoteWidgetForRectangle()
 
 void MusicRemoteWidgetForRectangle::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));
+    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, width() - 20));
 }

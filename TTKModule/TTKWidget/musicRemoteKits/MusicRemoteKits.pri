@@ -27,8 +27,7 @@ HEADERS  += \
     $$PWD/musicremotewidgetforsimplestyle.h \
     $$PWD/musicremotewidgetforcomplexstyle.h \
     $$PWD/musicremotewidgetforstrip.h \
-    $$PWD/musicremotewidgetforripple.h \
-    $$PWD/musicremotewidgetforrayswave.h
+    $$PWD/musicremotewidgetforripple.h
 
 }
 
@@ -41,7 +40,6 @@ SOURCES += \
     $$PWD/musicremotewidgetforsimplestyle.cpp \
     $$PWD/musicremotewidgetforcomplexstyle.cpp \
     $$PWD/musicremotewidgetforstrip.cpp \
-    $$PWD/musicremotewidgetforripple.cpp \
-    $$PWD/musicremotewidgetforrayswave.cpp
+    $$PWD/musicremotewidgetforripple.cpp
 
 }

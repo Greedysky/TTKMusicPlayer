@@ -817,7 +817,6 @@ void MusicApplication::musicCreateRightMenu()
     musicRemoteControl.addAction(tr("ComplexStyleRemote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
     musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
     musicRemoteControl.addAction(tr("RippleRemote"), m_topAreaWidget, SLOT(musicRippleRemote()));
-    musicRemoteControl.addAction(tr("RaysWaveRemote"), m_topAreaWidget, SLOT(musicRaysWaveRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
