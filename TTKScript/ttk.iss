@@ -8,7 +8,7 @@
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
 #define MyAppExeName "TTKMusicPlayer.exe"
 #define OutputPath "D:\Qt"
-#define SourceMain "D:\Qt\TTKMusicPlayer\TTKMusicPlayer.exe"
+#define SourceMain "D:\Qt\TTKMusicPlayer\" + MyAppVersion + "\TTKMusicPlayer.exe"
 #define SourceFolder "D:\Qt\TTKMusicPlayer\*"
 #define ResourcesIcon "qicon.dll"
 #define SetupIconFilePath "resource\" + ResourcesIcon
@@ -44,7 +44,7 @@ DisableDirPage=yes
 
 [Files]
 Source: {#ResourcesPath}; DestDir: {tmp}; Flags: dontcopy solidbreak ; Attribs: hidden system
-Source: {#SourceMain}; DestDir: "{app}"; Flags: ignoreversion
+Source: {#SourceMain}; DestDir: "{app}\{#MyAppVersion}"; Flags: ignoreversion
 Source: {#SourceFolder}; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Messages]
@@ -52,7 +52,7 @@ SetupAppTitle={#MyAppNameZh} 安装向导
 SetupWindowTitle={#MyAppNameZh} 安装向导
 
 [Icons]
-Name: "{group}\{#MyAppNameZh}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{group}\{#MyAppNameZh}"; Filename: "{app}\{#MyAppVersion}\{#MyAppExeName}"
 Name: "{group}\卸载{#MyAppNameZh}"; Filename: "{uninstallexe}"
 
 ; 中文汉化语言包
@@ -453,7 +453,7 @@ procedure DeinitializeSetup();
     // 检查是否需要自动运行
     if BtngetChecked(checkboxAutoRun)=true then
     begin
-      Exec(ExpandConstant('{app}\{#MyAppExeName}'),'','',SW_SHOW, ewNoWait,RCode);
+      Exec(ExpandConstant('{app}\{#MyAppVersion}\{#MyAppExeName}'),'','',SW_SHOW, ewNoWait,RCode);
     end
 
     gdipShutdown;
@@ -537,7 +537,7 @@ procedure CurPageChanged(CurPageID: Integer);
           begin
             DeleteFile(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'));
           end;
-          CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),'快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{app}\{#ResourcesIcon}'),0,SW_SHOWNORMAL);
+          CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),'快捷方式',ExpandConstant('{app}\{#MyAppVersion}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}\{#MyAppVersion}'),ExpandConstant('{app}\{#ResourcesIcon}'),0,SW_SHOWNORMAL);
         end
 
         // 固定到任务栏
