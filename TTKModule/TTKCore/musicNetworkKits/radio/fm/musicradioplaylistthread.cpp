@@ -22,7 +22,7 @@ void MusicRadioPlaylistThread::startToDownload(const QString &id)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_PLAYLIST_URL, false) + id));
+    request.setUrl(QUrl("https://api.douban.com/v2/fm/playlist?channel=" + id + "&kbps=128&app_name=radio_website&version=100&type=n"));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     MusicObject::setSslConfiguration(&request);

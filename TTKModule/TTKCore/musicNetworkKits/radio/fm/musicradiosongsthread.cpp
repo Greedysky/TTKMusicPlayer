@@ -23,8 +23,11 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     m_songInfo = MusicObject::MusicSongInformation();
     m_manager = new QNetworkAccessManager(this);
 
+    TTK_LOGGER_INFO(id);
+
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_SONG_URL, false) + id));
+//    request.setUrl(QUrl("https://api.douban.com/v2/fm/playlist?channel=" + id + "&kbps=128&app_name=radio_website&version=100&type=n"));
+    request.setUrl(QUrl("https://api.douban.com/v2/fm/playlist?channel=" + id + "&kbps=128&app_name=radio_website&version=100&type=s"));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     MusicObject::setSslConfiguration(&request);
@@ -58,33 +61,27 @@ void MusicRadioSongsThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            value = value["data"].toMap();
-            const QVariantList &songLists = value["songList"].toList();
+            const QVariantList &songLists = value["song"].toList();
             foreach(const QVariant &var, songLists)
             {
                 value = var.toMap();
-                if(value.isEmpty() || value["songLink"].toString().isEmpty())
+                if(value.isEmpty() || value["url"].toString().isEmpty())
                 {
                     continue;
                 }
 
                 MusicObject::MusicSongAttribute attr;
-                attr.m_url = value["songLink"].toString();
-                attr.m_bitrate = value["rate"].toInt();
-                attr.m_format = value["format"].toString();
-                attr.m_size = MusicUtils::Number::size2Label(value["size"].toLongLong());
+                attr.m_url = value["url"].toString();
+                attr.m_bitrate = value["kbps"].toInt();
+                attr.m_format = value["file_ext"].toString();
 
                 m_songInfo.m_songAttrs << attr;
-                m_songInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
-                m_songInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
-                m_songInfo.m_smallPicUrl = value["songPicRadio"].toString();
-                m_songInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
-                m_songInfo.m_lrcUrl = value["lrcLink"].toString();
-
-                if(!m_songInfo.m_lrcUrl.contains("http://"))
-                {
-                    m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(RADIO_LRC_URL, false) + m_songInfo.m_lrcUrl;
-                }
+                m_songInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
+                m_songInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist"].toString());
+                m_songInfo.m_smallPicUrl = value["picture"].toString();
+                m_songInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumtitle"].toString());
+                m_songInfo.m_lrcUrl = "https://api.douban.com/v2/fm/lyric?sid=" + value["sid"].toString() + "&ssid=" + value["ssid"].toString();
+                TTK_LOGGER_INFO(m_songInfo.m_lrcUrl);
             }
         }
     }

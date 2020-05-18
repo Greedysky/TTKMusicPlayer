@@ -8,8 +8,6 @@
 #include <QNetworkCookieJar>
 #include <QNetworkAccessManager>
 
-#define OS_RADIO_URL  "BaiduRadio"
-
 MusicRadioChannelThread::MusicRadioChannelThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
 {
@@ -27,7 +25,7 @@ void MusicRadioChannelThread::startToDownload(const QString &id)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_CHANNEL_URL, false)));
+    request.setUrl(QUrl("https://api.douban.com/v2/fm/app_channels"));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     MusicObject::setSslConfiguration(&request);
@@ -62,16 +60,26 @@ void MusicRadioChannelThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            const QVariantList &channels = value["channel_list"].toList();
-
-            for(int i=0; i<channels.count(); ++i)
+            const QVariantList &groups = value["groups"].toList();
+            for(int i=0; i<groups.count(); ++i)
             {
-                value = channels[i].toMap();
-                MusicRadioChannelInfo channel;
-                channel.m_id = value["channel_id"].toString();
-                channel.m_name = value["channel_name"].toString();
-                channel.m_coverUrl = QSyncUtils::generateDataBucketUrl() + QString("%1/%2%3").arg(OS_RADIO_URL).arg(i + 1).arg(JPG_FILE);
-                m_channels << channel;
+                value = groups[i].toMap();
+                const int group = value["group_id"].toInt();
+                if(group != 4 && group != 5 && group != 6)
+                {
+                    continue;
+                }
+
+                const QVariantList &channels = value["chls"].toList();
+                for(int i=0; i<channels.count(); ++i)
+                {
+                    value = channels[i].toMap();
+                    MusicRadioChannelInfo channel;
+                    channel.m_id = value["id"].toString();
+                    channel.m_name = value["name"].toString();
+                    channel.m_coverUrl = value["cover"].toString();
+                    m_channels << channel;
+                }
             }
         }
     }

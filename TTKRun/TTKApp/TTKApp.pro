@@ -41,7 +41,7 @@ else{
     DEFINES += CONFIG_OUT_BUILD
     SOURCES += $$PWD/../../TTKConfig/musicconfigobject.cpp
     HEADERS += \
-        $$PWD/../../TTKConfig/musicconfigobject.h
+        $$PWD/../../TTKConfig/musicconfigobject.h \
         $$PWD/../../TTKConfig/musicconfigdefine.h
 }
 

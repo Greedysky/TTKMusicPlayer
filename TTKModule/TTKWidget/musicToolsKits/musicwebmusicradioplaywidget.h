@@ -54,7 +54,7 @@ public:
     /*!
      * Update radio list by given category.
      */
-    void updateRadioList(const QString &category);
+    void updateRadioList(const QString &id);
 
 public Q_SLOTS:
     /*!
@@ -81,10 +81,6 @@ public Q_SLOTS:
      * Radio resource download.
      */
     void radioResourceDownload();
-    /*!
-     * Get playList finished.
-     */
-    void getPlaylistFinished();
     /*!
      * Get song information finished.
      */
@@ -125,13 +121,12 @@ protected:
     void startToPlay();
 
     Ui::MusicWebMusicRadioPlayWidget *m_ui;
-    int m_currentPlaylistIndex;
     bool m_isPlaying;
+    QString m_currentID;
+
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_mediaPlayer;
-    MusicRadioPlaylistThread *m_playListThread;
     MusicRadioSongsThread *m_songsThread;
-    QStringList m_playListIds;
 
 };
 

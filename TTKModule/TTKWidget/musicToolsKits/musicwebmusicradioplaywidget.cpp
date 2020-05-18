@@ -15,13 +15,12 @@
 
 MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicWebMusicRadioPlayWidget), m_playListThread(nullptr),
+      m_ui(new Ui::MusicWebMusicRadioPlayWidget),
       m_songsThread(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    m_currentPlaylistIndex = 0;
     m_isPlaying = false;
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(9);
@@ -76,7 +75,6 @@ MusicWebMusicRadioPlayWidget::~MusicWebMusicRadioPlayWidget()
     delete m_analysis;
     delete m_mediaPlayer;
     delete m_songsThread;
-    delete m_playListThread;
     delete m_ui;
 }
 
@@ -89,21 +87,17 @@ void MusicWebMusicRadioPlayWidget::closeEvent(QCloseEvent *event)
 
 void MusicWebMusicRadioPlayWidget::setNetworkCookie(QNetworkCookieJar *jar)
 {
-    if(m_songsThread == nullptr || m_playListThread == nullptr)
+    if(m_songsThread == nullptr)
     {
-        m_playListThread = new MusicRadioPlaylistThread(this, jar);
-        connect(m_playListThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getPlaylistFinished()));
         m_songsThread = new MusicRadioSongsThread(this, jar);
         connect(m_songsThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
     }
 }
 
-void MusicWebMusicRadioPlayWidget::updateRadioList(const QString &category)
+void MusicWebMusicRadioPlayWidget::updateRadioList(const QString &id)
 {
-    if(m_playListThread)
-    {
-        m_playListThread->startToDownload(category);
-    }
+    m_currentID = id;
+    m_songsThread->startToDownload(m_currentID);
 }
 
 void MusicWebMusicRadioPlayWidget::mediaAutionPlayError(int code)
@@ -128,22 +122,12 @@ void MusicWebMusicRadioPlayWidget::radioPlay()
 
 void MusicWebMusicRadioPlayWidget::radioPrevious()
 {
-    if(m_playListIds.isEmpty())
+    if(m_currentID.isEmpty())
     {
         return;
     }
 
-    --m_currentPlaylistIndex;
-    if(m_currentPlaylistIndex > m_playListIds.count())
-    {
-        m_currentPlaylistIndex = m_playListIds.count() - 1;
-    }
-    else if(m_currentPlaylistIndex < 0)
-    {
-        m_currentPlaylistIndex = 0;
-    }
-
-    m_songsThread->startToDownload(m_playListIds[m_currentPlaylistIndex]);
+    m_songsThread->startToDownload(m_currentID);
 
     if(!m_isPlaying)
     {
@@ -153,22 +137,12 @@ void MusicWebMusicRadioPlayWidget::radioPrevious()
 
 void MusicWebMusicRadioPlayWidget::radioNext()
 {
-    if(m_playListIds.isEmpty())
+    if(m_currentID.isEmpty())
     {
         return;
     }
 
-    ++m_currentPlaylistIndex;
-    if(m_currentPlaylistIndex > m_playListIds.count())
-    {
-        m_currentPlaylistIndex = m_playListIds.count() - 1;
-    }
-    else if(m_currentPlaylistIndex < 0)
-    {
-        m_currentPlaylistIndex = 0;
-    }
-
-    m_songsThread->startToDownload(m_playListIds[m_currentPlaylistIndex]);
+    m_songsThread->startToDownload(m_currentID);
 
     if(!m_isPlaying)
     {
@@ -200,16 +174,6 @@ void MusicWebMusicRadioPlayWidget::radioResourceDownload()
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(info, MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
-}
-
-void MusicWebMusicRadioPlayWidget::getPlaylistFinished()
-{
-    m_playListIds = m_playListThread->getMusicPlaylist();
-    m_currentPlaylistIndex = 0;
-    if(m_songsThread && !m_playListIds.isEmpty())
-    {
-        m_songsThread->startToDownload(m_playListIds.first());
-    }
 }
 
 void MusicWebMusicRadioPlayWidget::getSongInfoFinished()
