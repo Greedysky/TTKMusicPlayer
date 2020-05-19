@@ -57,7 +57,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             attr.m_url = value["url"].toString();
             attr.m_size = MusicUtils::Number::size2Label(value["fileSize"].toInt());
             attr.m_format = value["extName"].toString();
-            attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitRate/1000);
+            attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitRate / 1000);
             info->m_songAttrs.append(attr);
         }
     }

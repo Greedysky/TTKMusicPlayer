@@ -84,6 +84,6 @@ void MusicFMRadioChannelThread::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged("query finished!");
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

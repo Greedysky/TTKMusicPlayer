@@ -91,7 +91,7 @@ bool MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const
     {
         data << QString("File%1=%2").arg(count).arg(song.getMusicPath());
         data << QString("Title%1=%2").arg(count).arg(song.getMusicName());
-        data << QString("Length%1=%2").arg(count).arg(MusicTime::MusicTime::labelJustified2MsecTime(song.getMusicPlayTime())/1000);
+        data << QString("Length%1=%2").arg(count).arg(MusicTime::MusicTime::labelJustified2MsecTime(song.getMusicPlayTime()) / 1000);
         ++count;
     }
     data << "NumberOfEntries=" + QString::number(item.m_songs.count());

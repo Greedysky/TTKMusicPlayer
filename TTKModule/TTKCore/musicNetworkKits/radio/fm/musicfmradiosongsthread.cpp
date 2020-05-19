@@ -71,6 +71,12 @@ void MusicFMRadioSongsThread::downLoadFinished()
                 attr.m_bitrate = value["kbps"].toInt();
                 attr.m_format = value["file_ext"].toString();
 
+                const QVariantMap &formats = value["available_formats"].toMap();
+                if(formats.contains(QString::number(attr.m_bitrate)))
+                {
+                    attr.m_size = MusicUtils::Number::size2Label(formats[QString::number(attr.m_bitrate)].toInt() * 1000);
+                }
+
                 m_songInfo.m_songAttrs << attr;
                 m_songInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                 m_songInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist"].toString());
@@ -81,6 +87,6 @@ void MusicFMRadioSongsThread::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged("query finished!");
+    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

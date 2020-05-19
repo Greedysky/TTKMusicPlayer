@@ -40,7 +40,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
 #ifdef Q_OS_UNIX
     m_visualModeButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    m_visualModeButton->setToolTip(tr("visualMode"));
+    m_visualModeButton->setToolTip(tr("Visual Mode"));
     m_visualModeButton->setFixedSize(26, 18);
     m_visualModeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnVisual);
     m_visualModeButton->setCursor(QCursor(Qt::PointingHandCursor));
