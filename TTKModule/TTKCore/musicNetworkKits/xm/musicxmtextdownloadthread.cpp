@@ -15,7 +15,7 @@ void MusicXMTextDownLoadThread::startToDownload()
     {
         if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
         {
-            m_timer.start(MT_S2MS);
+            m_speedTimer.start();
             m_manager = new QNetworkAccessManager(this);
 
             m_lrcType = MusicUtils::String::stringSplitToken(m_url);
@@ -48,7 +48,7 @@ void MusicXMTextDownLoadThread::downLoadFinished()
         deleteAll();
         return;
     }
-    m_timer.stop();
+    m_speedTimer.stop();
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -84,6 +84,6 @@ void MusicXMTextDownLoadThread::downLoadFinished()
         }
     }
 
-    Q_EMIT downLoadDataChanged(transferData());
+    Q_EMIT downLoadDataChanged(mapCurrentQueryData());
     deleteAll();
 }

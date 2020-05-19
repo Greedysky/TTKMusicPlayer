@@ -72,16 +72,15 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Transfer the enum type to string.
+     * Map the enum type to string.
      */
-    QString transferData() const;
+    QString mapCurrentQueryData() const;
 
     QFile *m_file;
-    QString m_url, m_savePathName;
+    QString m_url, m_savePath;
     MusicObject::DownloadType m_downloadType;
     qint64 m_hasReceived, m_currentReceived, m_totalSize;
-    QTimer m_timer;
-
+    QTimer m_speedTimer;
 };
 
 #endif // MUSICDOWNLOADTHREADABSTRACT_H

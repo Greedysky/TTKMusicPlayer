@@ -16,12 +16,12 @@ void MusicDJRadioProgramThread::startToDownload(MusicObject::Program type)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request, type == MusicObject::Recommed ?
                       MusicUtils::Algorithm::mdII(DJ_RECOMMEND_N_URL, false):
                       MusicUtils::Algorithm::mdII(DJ_HOT_N_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_HOT_NDT_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);

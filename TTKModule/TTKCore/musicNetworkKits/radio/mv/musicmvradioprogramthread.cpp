@@ -92,9 +92,9 @@ void MusicMVRadioProgramThread::downLoadFinished()
                             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["time"].toInt());
 
                             musicInfo.m_songId = value["mvhash"].toString();
-                            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                             readFromMusicMVAttribute(&musicInfo);
-                            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                             if(musicInfo.m_songAttrs.isEmpty())
                             {

@@ -94,9 +94,9 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artMap["artistName"].toString());
                     }
 
-                    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     readFromMusicMVAttribute(&musicInfo);
-                    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

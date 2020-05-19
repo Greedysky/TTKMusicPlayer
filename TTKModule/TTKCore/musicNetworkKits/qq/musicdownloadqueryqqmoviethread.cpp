@@ -129,9 +129,9 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);
 
                     musicInfo.m_songId = value["vid"].toString();
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     readFromMusicMVAttribute(&musicInfo, false);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -228,9 +228,9 @@ void MusicDownLoadQueryQQMovieThread::singleDownLoadFinished()
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     readFromMusicMVAttribute(&musicInfo, true);
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
     {
@@ -329,9 +329,9 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
                     attr.m_bitrate = MB_1000;
 
                 bitRate = flValue["id"].toULongLong();
-                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                 const QString &key = getMovieKey(bitRate, info->m_songId);
-                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                 if(!key.isEmpty())
                 {
                     const QString &fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitRate - 10000);

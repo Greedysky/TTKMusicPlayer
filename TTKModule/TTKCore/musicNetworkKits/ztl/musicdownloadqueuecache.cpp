@@ -106,7 +106,7 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
         return;
     }
 
-    m_timer.start(MT_S2MS);
+    m_speedTimer.start();
     m_request->setUrl(QUrl(url));
     m_reply = m_manager->get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -120,7 +120,7 @@ void MusicDownloadQueueCache::downLoadFinished()
     {
         return;
     }
-    m_timer.stop();
+    m_speedTimer.stop();
 
     m_file->flush();
     m_file->close();

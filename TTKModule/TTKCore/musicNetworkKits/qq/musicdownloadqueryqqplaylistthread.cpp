@@ -189,9 +189,9 @@ void MusicDownLoadQueryQQPlaylistThread::downLoadFinished()
                     item.m_description = value["introduction"].toString();
                     item.m_updateTime = value["commit_time"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     getMoreDetails(&item);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                     value = value["creator"].toMap();
                     item.m_nickName = value["name"].toString();
@@ -273,9 +273,9 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
                         musicInfo.m_discNumber = value["cdIdx"].toString();
                         musicInfo.m_trackNumber = value["belongCD"].toString();
 
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

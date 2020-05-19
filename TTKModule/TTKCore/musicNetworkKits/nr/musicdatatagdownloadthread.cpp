@@ -59,14 +59,14 @@ void MusicDataTagDownloadThread::downLoadFinished()
         loop.exec();
     }
 
-    Q_EMIT downLoadDataChanged(transferData());
+    Q_EMIT downLoadDataChanged(mapCurrentQueryData());
     TTK_LOGGER_INFO("data download has finished!");
 }
 
 void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
 {
     MusicSongTag tag;
-    if(tag.read(m_savePathName))
+    if(tag.read(m_savePath))
     {
         if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool())
         {

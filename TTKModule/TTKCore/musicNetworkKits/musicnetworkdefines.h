@@ -26,7 +26,7 @@ namespace MusicObject
 {
     enum NetworkCode
     {
-        NetworkInit = 0xFFFFF00,  /*!< Network state init*/
+        NetworkQuery = 0xFFFFF00, /*!< Network state query*/
         NetworkSuccess = 0,       /*!< Network state success*/
         NetworkError = -1,        /*!< Network state error*/
         NetworkUnKnow = 2,        /*!< Network state unknow*/

@@ -5,31 +5,36 @@
 #include "musiccoreutils.h"
 
 #include <QSslError>
-#include <QNetworkAccessManager>
 #include <QNetworkRequest>
+#include <QNetworkAccessManager>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicNetworkAbstract(parent)
 {
     m_url = url;
-    m_savePathName = save;
+    m_savePath = save;
     m_downloadType = type;
     m_hasReceived = 0;
     m_currentReceived = 0;
 
-    if(QFile::exists(m_savePathName))
+    if(QFile::exists(m_savePath))
     {
-        QFile::remove(m_savePathName);
+        QFile::remove(m_savePath);
     }
-    m_file = new QFile(m_savePathName, this);
+    m_file = new QFile(m_savePath, this);
 
     M_DOWNLOAD_MANAGER_PTR->connectNetworkMultiValue(this);
-    m_timer.setInterval(MT_S2MS);
-    connect(&m_timer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
+
+    m_speedTimer.setInterval(MT_S2MS);
+    connect(&m_speedTimer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
 }
 
 MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
 {
+    if(m_speedTimer.isActive())
+    {
+        m_speedTimer.stop();
+    }
     M_DOWNLOAD_MANAGER_PTR->removeNetworkMultiValue(this);
 }
 
@@ -82,7 +87,7 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
     m_hasReceived = m_currentReceived;
 }
 
-QString MusicDownLoadThreadAbstract::transferData() const
+QString MusicDownLoadThreadAbstract::mapCurrentQueryData() const
 {
     switch(m_downloadType)
     {

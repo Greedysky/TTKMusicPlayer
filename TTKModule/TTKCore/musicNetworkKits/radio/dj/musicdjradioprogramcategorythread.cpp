@@ -59,11 +59,11 @@ void MusicDJRadioProgramCategoryThread::startToSearch(const QString &category)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_N_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_NDT_URL, false).arg(category));
-    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
@@ -81,11 +81,11 @@ void MusicDJRadioProgramCategoryThread::getProgramInfo(MusicResultsItem &item)
     TTK_LOGGER_INFO(QString("%1 getProgramInfo %2").arg(getClassName()).arg(item.m_id));
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_N_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_NDT_URL, false).arg(item.m_id));
-    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -155,12 +155,12 @@ void MusicDJRadioProgramCategoryThread::downLoadFinished()
                     MusicResultsItem info;
                     info.m_id = QString::number(value["id"].toInt());
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     info.m_coverUrl = value["picUrl"].toString();
                     info.m_name = value["name"].toString();
                     value = value["dj"].toMap();
                     info.m_nickName = value["nickname"].toString();
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                     Q_EMIT createProgramItem(info);
                 }
@@ -216,9 +216,9 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
                     musicInfo.m_songId = QString::number(mainSongObject["id"].toInt());
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     readFromMusicSongAttribute(&musicInfo, mainSongObject, m_searchQuality, true);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     //
                     if(!categoryFlag)
                     {

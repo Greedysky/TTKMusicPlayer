@@ -45,7 +45,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
         return;
     }
 
-    m_timer.start(MT_S2MS);
+    m_speedTimer.start();
 
     QNetworkRequest request;
     request.setUrl(url);
@@ -61,7 +61,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     {
         m_createItemTime = MusicTime::timestamp();
         M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPair(m_createItemTime, this, m_recordType));
-        Q_EMIT createDownloadItem(m_savePathName, m_createItemTime);
+        Q_EMIT createDownloadItem(m_savePath, m_createItemTime);
     }
 }
 
@@ -74,7 +74,7 @@ void MusicDataDownloadThread::downLoadFinished()
     }
 
     m_redirection = false;
-    m_timer.stop();
+    m_speedTimer.stop();
     m_file->flush();
     m_file->close();
 
@@ -96,7 +96,7 @@ void MusicDataDownloadThread::downLoadFinished()
     {
         if(m_needUpdate)
         {
-            Q_EMIT downLoadDataChanged(transferData());
+            Q_EMIT downLoadDataChanged(mapCurrentQueryData());
             TTK_LOGGER_INFO("data download has finished!");
         }
     }
