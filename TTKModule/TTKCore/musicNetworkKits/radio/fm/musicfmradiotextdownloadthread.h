@@ -1,5 +1,5 @@
-#ifndef MUSICRADIOCHANNELTHREAD_H
-#define MUSICRADIOCHANNELTHREAD_H
+#ifndef MUSICFMRADIOTEXTDOWNLOADTHREAD_H
+#define MUSICFMRADIOTEXTDOWNLOADTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,42 +19,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicradiothreadabstract.h"
+#include "musicdownloadthreadabstract.h"
 
-/*! @brief The class of the radio channel info item.
+/*! @brief The class of fm radio thread of text.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicRadioChannelInfo
-{
-    QString m_id;
-    QString m_name;
-    QString m_coverUrl;
-}MusicRadioChannelInfo;
-TTK_DECLARE_LISTS(MusicRadioChannelInfo)
-
-/*! @brief The class of music radio thread of song channel.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_NETWORK_EXPORT MusicRadioChannelThread : public MusicRadioThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicFMRadioTextDownLoadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioChannelThread)
+    TTK_DECLARE_MODULE(MusicFMRadioTextDownLoadThread)
 public:
     /*!
-     * Object contsructor.
+     * Object contsructor provide download URL\ save local path and download type.
      */
-    explicit MusicRadioChannelThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
-
-    virtual ~MusicRadioChannelThread();
+    MusicFMRadioTextDownLoadThread(const QString &url, const QString &save, MusicObject::DownloadType  type, QObject *parent = nullptr);
 
     /*!
      * Start to download data.
      */
-    virtual void startToDownload(const QString &id) override;
-    /*!
-     * Get music channel.
-     */
-    inline const MusicRadioChannelInfos& getMusicChannel() const { return m_channels; }
+    virtual void startToDownload() override;
 
 public Q_SLOTS:
     /*!
@@ -62,9 +45,6 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override;
 
-protected:
-    MusicRadioChannelInfos m_channels;
-
 };
 
-#endif // MUSICRADIOCHANNELTHREAD_H
+#endif // MUSICFMRADIOTEXTDOWNLOADTHREAD_H

@@ -22,7 +22,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicWebMusicRadioWidget;
+class MusicWebFMRadioWidget;
 
 /*! @brief The class of the web radio widget.
  * @author Greedysky <greedysky@163.com>
@@ -55,7 +55,7 @@ public Q_SLOTS:
     void openMVRadioWindow();
 
 protected:
-    MusicWebMusicRadioWidget *m_musicRadio;
+    MusicWebFMRadioWidget *m_musicRadio;
 
 };
 

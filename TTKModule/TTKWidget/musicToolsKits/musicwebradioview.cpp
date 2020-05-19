@@ -1,5 +1,5 @@
 #include "musicwebradioview.h"
-#include "musicwebmusicradiowidget.h"
+#include "musicwebfmradiowidget.h"
 #include "musicuiobject.h"
 #include "musicrightareawidget.h"
 #include "musicwidgetheaders.h"
@@ -11,7 +11,7 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    m_musicRadio = new MusicWebMusicRadioWidget(this);
+    m_musicRadio = new MusicWebFMRadioWidget(this);
 
     QWidget *bottomWidget = new QWidget(this);
     bottomWidget->setFixedHeight(40);

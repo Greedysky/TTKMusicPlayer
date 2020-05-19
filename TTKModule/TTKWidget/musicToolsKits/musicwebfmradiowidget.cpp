@@ -1,6 +1,6 @@
-#include "musicwebmusicradiowidget.h"
-#include "musicradiochannelthread.h"
-#include "musicwebmusicradioplaywidget.h"
+#include "musicwebfmradiowidget.h"
+#include "musicfmradiochannelthread.h"
+#include "musicwebfmradioplaywidget.h"
 #include "musicwidgetutils.h"
 #include "musicuiobject.h"
 #include "musicdownloadsourcethread.h"
@@ -15,11 +15,10 @@
 #else
 #include <QDesktopServices>
 #endif
-#include <QNetworkCookieJar>
 
 #define ICON_SIZE       50
 
-MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
+MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent), m_musicRadio(nullptr), m_getChannelThread(nullptr)
 {
     setIconSize(QSize(ICON_SIZE, ICON_SIZE));
@@ -32,7 +31,6 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     headerview->resizeSection(3, 75);
 
     m_outerIndex = -1;
-    m_cookJar = new QNetworkCookieJar(this);
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
@@ -41,26 +39,25 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
 
 }
 
-MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
+MusicWebFMRadioWidget::~MusicWebFMRadioWidget()
 {
-    delete m_cookJar;
     delete m_musicRadio;
     delete m_getChannelThread;
 }
 
-void MusicWebMusicRadioWidget::initListItems(int index)
+void MusicWebFMRadioWidget::initListItems(int index)
 {
     m_outerIndex = index;
     if(rowCount() == 0)
     {
         delete m_getChannelThread;
-        m_getChannelThread = new MusicRadioChannelThread(this, m_cookJar);
+        m_getChannelThread = new MusicFMRadioChannelThread(this);
         connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
         m_getChannelThread->startToDownload(QString());
     }
 }
 
-void MusicWebMusicRadioWidget::itemCellEntered(int row, int column)
+void MusicWebFMRadioWidget::itemCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 3);
     if(it)
@@ -85,7 +82,7 @@ void MusicWebMusicRadioWidget::itemCellEntered(int row, int column)
     MusicAbstractTableWidget::itemCellEntered(row, column);
 }
 
-void MusicWebMusicRadioWidget::itemCellClicked(int row, int column)
+void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
 
@@ -95,7 +92,7 @@ void MusicWebMusicRadioWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicWebMusicRadioWidget::itemCellDoubleClicked(int row, int column)
+void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
 {
     Q_UNUSED(column);
 
@@ -104,24 +101,23 @@ void MusicWebMusicRadioWidget::itemCellDoubleClicked(int row, int column)
         return;
     }
 
-    const MusicRadioChannelInfos &channels = m_getChannelThread->getMusicChannel();
+    const MusicFMRadioChannelInfos &channels = m_getChannelThread->getMusicChannel();
     if(m_musicRadio == nullptr)
     {
-        m_musicRadio = new MusicWebMusicRadioPlayWidget(this);
-        m_musicRadio->setNetworkCookie(m_cookJar);
+        m_musicRadio = new MusicWebFMRadioPlayWidget(this);
     }
 
     if(!channels.isEmpty())
     {
-        m_musicRadio->updateRadioList(channels[row].m_id);
+        m_musicRadio->updateRadioSong(channels[row].m_id);
     }
     m_musicRadio->show();
 }
 
-void MusicWebMusicRadioWidget::addListWidgetItem()
+void MusicWebFMRadioWidget::addListWidgetItem()
 {
-    const MusicRadioChannelInfos &channels = m_getChannelThread->getMusicChannel();
-    foreach(const MusicRadioChannelInfo &channel, channels)
+    const MusicFMRadioChannelInfos &channels = m_getChannelThread->getMusicChannel();
+    foreach(const MusicFMRadioChannelInfo &channel, channels)
     {
         const int index = rowCount();
         setRowCount(index + 1);
@@ -170,7 +166,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
     }
 }
 
-void MusicWebMusicRadioWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
+void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
 {
     QTableWidgetItem *it = item(ext["id"].toInt(), 1);
     if(it)
@@ -181,7 +177,7 @@ void MusicWebMusicRadioWidget::downLoadFinished(const QByteArray &data, const QV
     }
 }
 
-void MusicWebMusicRadioWidget::musicPlayClicked()
+void MusicWebFMRadioWidget::musicPlayClicked()
 {
     const int row = currentRow();
     if(row >= 0)
@@ -190,7 +186,7 @@ void MusicWebMusicRadioWidget::musicPlayClicked()
     }
 }
 
-void MusicWebMusicRadioWidget::sendToDesktopLink()
+void MusicWebFMRadioWidget::sendToDesktopLink()
 {
     const int row = currentRow();
     if(row < 0)
@@ -219,7 +215,7 @@ void MusicWebMusicRadioWidget::sendToDesktopLink()
 #endif
 }
 
-void MusicWebMusicRadioWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);

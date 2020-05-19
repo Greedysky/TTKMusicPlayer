@@ -60,7 +60,7 @@ FORMS    += \
     $$PWD/musicToolsetsKits/musicsoundkmicrowidget.ui \
     $$PWD/musicToolsetsKits/musicspectrumwidget.ui \
     $$PWD/musicToolsetsKits/musicsongdlnatransferwidget.ui \
-    $$PWD/musicToolsKits/musicwebmusicradioplaywidget.ui \
+    $$PWD/musicToolsKits/musicwebfmradioplaywidget.ui \
     $$PWD/musicToolsKits/musicconnecttransferwidget.ui \
     $$PWD/musicToolsKits/musiccloudfileinformationwidget.ui \
     $$PWD/musicToolsKits/musictoolsetswidget.ui \

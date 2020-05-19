@@ -73,10 +73,10 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
     if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimit).toInt() == 0)
     {
         const int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimit).toInt();
-        if(limitValue != 0 && delta > limitValue*MH_KB)
+        if(limitValue != 0 && delta > limitValue * MH_KB)
         {
-            MusicUtils::Core::sleep(MT_S2MS - limitValue*MH_KB*MT_S2MS/delta);
-            delta = limitValue*MH_KB;
+            MusicUtils::Core::sleep(MT_S2MS - limitValue * MH_KB * MT_S2MS / delta);
+            delta = limitValue * MH_KB;
         }
     }
     m_hasReceived = m_currentReceived;

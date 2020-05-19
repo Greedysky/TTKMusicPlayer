@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradiochannelthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradioplaylistthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradiosongsthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradiothreadabstract.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiotextdownloadthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiothreadabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategorythread.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramthread.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategorythread.h
@@ -137,10 +137,10 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
 )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradiochannelthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradioplaylistthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradiosongsthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicradiothreadabstract.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiochannelthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiotextdownloadthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiosongsthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/fm/musicfmradiothreadabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategorythread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategorythread.cpp

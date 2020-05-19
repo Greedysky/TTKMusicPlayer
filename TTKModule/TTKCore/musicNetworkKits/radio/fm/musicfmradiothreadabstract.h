@@ -1,5 +1,5 @@
-#ifndef MUSICRADIOTHREADABSTRACT_H
-#define MUSICRADIOTHREADABSTRACT_H
+#ifndef MUSICFMRADIOTHREADABSTRACT_H
+#define MUSICFMRADIOTHREADABSTRACT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -23,25 +23,24 @@
 #include "musicstringutils.h"
 #include "musicnetworkabstract.h"
 
-const QString RADIO_CHANNEL_URL  = "Mlh6UmtFUnVBNUVhcE5xSGkzaXArYXBHOEw5TlNrUDcwQTV4UEs1QXRib085YThhYkVaam9nR2U2WmRvamU2NA==";
-const QString RADIO_PLAYLIST_URL = "NlVIR2JEMVQvcGFqYWxQcTdpREJPQWhCUWRSejFXNlQ5RnkvTU1rQmtnTFF0b3M3QkhyYzRldzNSY3JTOXkxZENDUGdVZkhwbjVBaC83UDY=";
-const QString RADIO_SONG_URL     = "T2JMRFREMFM2aG9hTzFPaENXV1RhTW5YS2UwT3hiYmdnRlUwNDRLdjNxVlV3SmJnN3JqWUU4aHhYeURlWWcrTlhYTHJmZU1yMVcxNE5IZVdsQWJCMTNVcjNhWEszU1hN";
-const QString RADIO_LRC_URL      = "NmdYZm9tYkZjdHJOc1ZNNjIxSFdsc0NZc0xWa1RsM0dhMCtSaTdveGZPaz0=";
+const QString FM_CHANNEL_URL  = "emFrU3NhdGU2YUJDeTZNdGQ0Snh2cmJBZ0lKdm5VNm5pb2tLNzNtTHRDcTVFVDV4RWRYN1pOcHlJa0l6VTVmbA==";
+const QString FM_SONG_URL     = "RXUydVV6M21qbDNWc3BVT29idUF6VXlBalBrRU55eTY4bkxhOEx0ZTUweFE1TDlwenJYYmRTdTZiZVF4OElUUmFxcVNWbEhWR0FxTUhjOEVrZmE5QTE0R1c2UUFsYVIvbEFpcFBET1FMb3RsZ24zK2VsTHV2dDkvb1lwM0w0RUZoK0RqZWJSTlJLYz0=";
+const QString FM_LRC_URL      = "TWNqdlhpeEtEVm1qbzN4TXNNZ2hYTU1TdGFLZ0I0bUNWQkZ1WlRHZ2UzWXAwdCtYNGk3bit3eW1tb1JCeGhBUTNEU2xTNEUzckVvPQ==";
 
-/*! @brief The class of music radio thread base.
+/*! @brief The class of fm radio thread base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicRadioThreadAbstract : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicFMRadioThreadAbstract : public MusicNetworkAbstract
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioThreadAbstract)
+    TTK_DECLARE_MODULE(MusicFMRadioThreadAbstract)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRadioThreadAbstract(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
+    explicit MusicFMRadioThreadAbstract(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
 
-    virtual ~MusicRadioThreadAbstract();
+    virtual ~MusicFMRadioThreadAbstract();
 
     /*!
      * Start to download data.
@@ -54,4 +53,4 @@ protected:
 
 };
 
-#endif // MUSICRADIOTHREADABSTRACT_H
+#endif // MUSICFMRADIOTHREADABSTRACT_H

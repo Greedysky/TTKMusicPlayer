@@ -1,4 +1,4 @@
-#include "musicradiosongsthread.h"
+#include "musicfmradiosongsthread.h"
 #include "musicnumberutils.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -7,43 +7,35 @@
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
 
-MusicRadioSongsThread::MusicRadioSongsThread(QObject *parent, QNetworkCookieJar *cookie)
-    : MusicRadioThreadAbstract(parent, cookie)
+MusicFMRadioSongsThread::MusicFMRadioSongsThread(QObject *parent, QNetworkCookieJar *cookie)
+    : MusicFMRadioThreadAbstract(parent, cookie)
 {
 
 }
 
-MusicRadioSongsThread::~MusicRadioSongsThread()
+MusicFMRadioSongsThread::~MusicFMRadioSongsThread()
 {
     deleteAll();
 }
 
-void MusicRadioSongsThread::startToDownload(const QString &id)
+void MusicFMRadioSongsThread::startToDownload(const QString &id)
 {
     m_songInfo = MusicObject::MusicSongInformation();
     m_manager = new QNetworkAccessManager(this);
 
-    TTK_LOGGER_INFO(id);
-
     QNetworkRequest request;
-//    request.setUrl(QUrl("https://api.douban.com/v2/fm/playlist?channel=" + id + "&kbps=128&app_name=radio_website&version=100&type=n"));
-    request.setUrl(QUrl("https://api.douban.com/v2/fm/playlist?channel=" + id + "&kbps=128&app_name=radio_website&version=100&type=s"));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(FM_SONG_URL, false).arg(id)));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     MusicObject::setSslConfiguration(&request);
 #endif
-    if(m_cookJar)
-    {
-        m_manager->setCookieJar(m_cookJar);
-        m_cookJar->setParent(nullptr);
-    }
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicRadioSongsThread::downLoadFinished()
+void MusicFMRadioSongsThread::downLoadFinished()
 {
     if(!m_reply)
     {
@@ -54,7 +46,6 @@ void MusicRadioSongsThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         const QByteArray &bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
         const QVariant &data = parser.parse(bytes, &ok);
@@ -62,6 +53,11 @@ void MusicRadioSongsThread::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             const QVariantList &songLists = value["song"].toList();
+            if(songLists.isEmpty())
+            {
+                TTK_LOGGER_ERROR("The fm radio song is empty");
+            }
+
             foreach(const QVariant &var, songLists)
             {
                 value = var.toMap();
@@ -80,8 +76,7 @@ void MusicRadioSongsThread::downLoadFinished()
                 m_songInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist"].toString());
                 m_songInfo.m_smallPicUrl = value["picture"].toString();
                 m_songInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumtitle"].toString());
-                m_songInfo.m_lrcUrl = "https://api.douban.com/v2/fm/lyric?sid=" + value["sid"].toString() + "&ssid=" + value["ssid"].toString();
-                TTK_LOGGER_INFO(m_songInfo.m_lrcUrl);
+                m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString()).arg(value["ssid"].toString());
             }
         }
     }

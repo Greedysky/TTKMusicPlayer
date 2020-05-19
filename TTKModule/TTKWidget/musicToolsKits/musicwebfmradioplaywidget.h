@@ -1,5 +1,5 @@
-#ifndef MUSICWEBMUSICRADIOPLAYWIDGET_H
-#define MUSICWEBMUSICRADIOPLAYWIDGET_H
+#ifndef MUSICWEBFMRADIOPLAYWIDGET_H
+#define MUSICWEBFMRADIOPLAYWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -25,36 +25,31 @@
 class QNetworkCookieJar;
 class MusicLrcAnalysis;
 class MusicCoreMPlayer;
-class MusicRadioSongsThread;
-class MusicRadioPlaylistThread;
+class MusicFMRadioSongsThread;
 
 namespace Ui {
-class MusicWebMusicRadioPlayWidget;
+class MusicWebFMRadioPlayWidget;
 }
 
 /*! @brief The class of the web music radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMusicRadioPlayWidget : public MusicAbstractMoveWidget
+class MUSIC_TOOL_EXPORT MusicWebFMRadioPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebMusicRadioPlayWidget)
+    TTK_DECLARE_MODULE(MusicWebFMRadioPlayWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMusicRadioPlayWidget(QWidget *parent = nullptr);
+    explicit MusicWebFMRadioPlayWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicWebMusicRadioPlayWidget();
+    virtual ~MusicWebFMRadioPlayWidget();
 
     /*!
-     * Set network cookie.
+     * Update radio song by given id.
      */
-    void setNetworkCookie(QNetworkCookieJar *jar);
-    /*!
-     * Update radio list by given category.
-     */
-    void updateRadioList(const QString &id);
+    void updateRadioSong(const QString &id);
 
 public Q_SLOTS:
     /*!
@@ -120,14 +115,14 @@ protected:
      */
     void startToPlay();
 
-    Ui::MusicWebMusicRadioPlayWidget *m_ui;
+    Ui::MusicWebFMRadioPlayWidget *m_ui;
     bool m_isPlaying;
     QString m_currentID;
 
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_mediaPlayer;
-    MusicRadioSongsThread *m_songsThread;
+    MusicFMRadioSongsThread *m_songsThread;
 
 };
 
-#endif // MUSICWEBMUSICRADIOPLAYWIDGET_H
+#endif // MUSICWEBFMRADIOPLAYWIDGET_H

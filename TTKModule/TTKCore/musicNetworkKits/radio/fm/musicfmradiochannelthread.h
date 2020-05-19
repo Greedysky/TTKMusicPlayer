@@ -1,5 +1,5 @@
-#ifndef MUSICRADIOPLAYLISTTHREAD_H
-#define MUSICRADIOPLAYLISTTHREAD_H
+#ifndef MUSICFMRADIOCHANNELTHREAD_H
+#define MUSICFMRADIOCHANNELTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,32 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QStringList>
-#include "musicradiothreadabstract.h"
+#include "musicfmradiothreadabstract.h"
 
-/*! @brief The class of music radio thread of playlist.
+/*! @brief The class of the fm radio channel info item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicRadioPlaylistThread : public MusicRadioThreadAbstract
+typedef struct MUSIC_NETWORK_EXPORT MusicFMRadioChannelInfo
+{
+    QString m_id;
+    QString m_name;
+    QString m_coverUrl;
+}MusicFMRadioChannelInfo;
+TTK_DECLARE_LISTS(MusicFMRadioChannelInfo)
+
+/*! @brief The class of fm radio thread of song channel.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicFMRadioChannelThread : public MusicFMRadioThreadAbstract
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioPlaylistThread)
+    TTK_DECLARE_MODULE(MusicFMRadioChannelThread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRadioPlaylistThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
+    explicit MusicFMRadioChannelThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
 
-    virtual ~MusicRadioPlaylistThread();
+    virtual ~MusicFMRadioChannelThread();
 
     /*!
      * Start to download data.
      */
     virtual void startToDownload(const QString &id) override;
     /*!
-     * Get music playlist.
+     * Get music channel.
      */
-    inline const QStringList &getMusicPlaylist() const { return m_playlist; }
+    inline const MusicFMRadioChannelInfos& getMusicChannel() const { return m_channels; }
 
 public Q_SLOTS:
     /*!
@@ -53,8 +63,8 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 protected:
-    QStringList m_playlist;
+    MusicFMRadioChannelInfos m_channels;
 
 };
 
-#endif // MUSICRADIOPLAYLISTTHREAD_H
+#endif // MUSICFMRADIOCHANNELTHREAD_H

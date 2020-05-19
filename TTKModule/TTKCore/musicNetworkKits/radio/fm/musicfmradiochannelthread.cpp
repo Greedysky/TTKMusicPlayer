@@ -1,4 +1,4 @@
-#include "musicradiochannelthread.h"
+#include "musicfmradiochannelthread.h"
 #///QJson import
 #include "qjson/parser.h"
 #///Sync import
@@ -8,24 +8,24 @@
 #include <QNetworkCookieJar>
 #include <QNetworkAccessManager>
 
-MusicRadioChannelThread::MusicRadioChannelThread(QObject *parent, QNetworkCookieJar *cookie)
-    : MusicRadioThreadAbstract(parent, cookie)
+MusicFMRadioChannelThread::MusicFMRadioChannelThread(QObject *parent, QNetworkCookieJar *cookie)
+    : MusicFMRadioThreadAbstract(parent, cookie)
 {
 
 }
 
-MusicRadioChannelThread::~MusicRadioChannelThread()
+MusicFMRadioChannelThread::~MusicFMRadioChannelThread()
 {
     deleteAll();
 }
 
-void MusicRadioChannelThread::startToDownload(const QString &id)
+void MusicFMRadioChannelThread::startToDownload(const QString &id)
 {
     Q_UNUSED(id);
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl("https://api.douban.com/v2/fm/app_channels"));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(FM_CHANNEL_URL, false)));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     MusicObject::setSslConfiguration(&request);
@@ -41,7 +41,7 @@ void MusicRadioChannelThread::startToDownload(const QString &id)
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicRadioChannelThread::downLoadFinished()
+void MusicFMRadioChannelThread::downLoadFinished()
 {
     if(!m_reply)
     {
@@ -74,7 +74,7 @@ void MusicRadioChannelThread::downLoadFinished()
                 for(int i=0; i<channels.count(); ++i)
                 {
                     value = channels[i].toMap();
-                    MusicRadioChannelInfo channel;
+                    MusicFMRadioChannelInfo channel;
                     channel.m_id = value["id"].toString();
                     channel.m_name = value["name"].toString();
                     channel.m_coverUrl = value["cover"].toString();

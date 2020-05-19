@@ -1,5 +1,5 @@
-#ifndef MUSICRADIOSONGSTHREAD_H
-#define MUSICRADIOSONGSTHREAD_H
+#ifndef MUSICFMRADIOSONGSTHREAD_H
+#define MUSICFMRADIOSONGSTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,22 +19,22 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicradiothreadabstract.h"
+#include "musicfmradiothreadabstract.h"
 
-/*! @brief The class of music radio thread of song info.
+/*! @brief The class of fm radio thread of song info.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicRadioSongsThread : public MusicRadioThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicFMRadioSongsThread : public MusicFMRadioThreadAbstract
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioSongsThread)
+    TTK_DECLARE_MODULE(MusicFMRadioSongsThread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRadioSongsThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
+    explicit MusicFMRadioSongsThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
 
-    virtual ~MusicRadioSongsThread();
+    virtual ~MusicFMRadioSongsThread();
 
     /*!
      * Start to download data.
@@ -56,4 +56,4 @@ protected:
 
 };
 
-#endif // MUSICRADIOSONGSTHREAD_H
+#endif // MUSICFMRADIOSONGSTHREAD_H

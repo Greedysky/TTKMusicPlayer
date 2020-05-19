@@ -1,5 +1,5 @@
-#ifndef MUSICWEBMUSICRADIOWIDGET_H
-#define MUSICWEBMUSICRADIOWIDGET_H
+#ifndef MUSICWEBFMRADIOWIDGET_H
+#define MUSICWEBFMRADIOWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,24 +21,23 @@
 
 #include "musicabstracttablewidget.h"
 
-class QNetworkCookieJar;
-class MusicRadioChannelThread;
-class MusicWebMusicRadioPlayWidget;
+class MusicFMRadioChannelThread;
+class MusicWebFMRadioPlayWidget;
 
 /*! @brief The class of the web music radio list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMusicRadioWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicWebFMRadioWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWebMusicRadioWidget)
+    TTK_DECLARE_MODULE(MusicWebFMRadioWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMusicRadioWidget(QWidget *parent = nullptr);
+    explicit MusicWebFMRadioWidget(QWidget *parent = nullptr);
 
-    ~MusicWebMusicRadioWidget();
+    ~MusicWebFMRadioWidget();
 
     /*!
      * To init list items.
@@ -82,10 +81,9 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     int m_outerIndex;
-    QNetworkCookieJar *m_cookJar;
-    MusicWebMusicRadioPlayWidget *m_musicRadio;
-    MusicRadioChannelThread *m_getChannelThread;
+    MusicWebFMRadioPlayWidget *m_musicRadio;
+    MusicFMRadioChannelThread *m_getChannelThread;
 
 };
 
-#endif // MUSICWEBMUSICRADIOWIDGET_H
+#endif // MUSICWEBFMRADIOWIDGET_H
