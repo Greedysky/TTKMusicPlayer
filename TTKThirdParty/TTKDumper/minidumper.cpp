@@ -1,5 +1,6 @@
 #include "minidumper.h"
-#include "mini.h"
+#include "musicobject.h"
+#include "miniprocess.h"
 
 #ifdef Q_OS_WIN
 #include <wchar.h>
@@ -196,7 +197,12 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
 void errorHandler(int type)
 {
     TTK_LOGGER_INFO("Error Type " << type);
-    checkExtraProcessQuit();
+    QStringList origin;
+    origin << MAKE_TRANSFORM_PREFIX
+           << MAKE_KRC2LRC_PREFIX
+           << MAKE_PLAYER_PREFIX
+           << MAKE_GAIN_PREFIX;
+    killProcessByName(origin);
     exit(0);
 }
 

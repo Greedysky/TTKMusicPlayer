@@ -14,14 +14,15 @@ add_definitions(-DQT_THREAD)
 set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
     minidumper.h
+    miniprocess.h
     ttkdumper.h
     ttklogger.h
-    mini.h
   )
 
 set(MUSIC_SOURCES
     ttkdumper.cpp
     minidumper.cpp
+    miniprocess.cpp
   )
   
 if(WIN32)

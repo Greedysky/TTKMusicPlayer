@@ -24,6 +24,7 @@
 #include "musicsinglemanager.h"
 #include "musicscreensaverwidget.h"
 
+#include "miniprocess.h"
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconf.h"
 
@@ -462,4 +463,12 @@ void MusicApplicationObject::cleanUp()
 
     ///remove daily pic theme
     MusicUtils::File::removeRecursively(TTK_STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
+
+    ///clean thirdparty process
+    QStringList origin;
+    origin << MAKE_TRANSFORM_PREFIX
+           << MAKE_KRC2LRC_PREFIX
+           << MAKE_PLAYER_PREFIX
+           << MAKE_GAIN_PREFIX;
+    killProcessByName(origin);
 }

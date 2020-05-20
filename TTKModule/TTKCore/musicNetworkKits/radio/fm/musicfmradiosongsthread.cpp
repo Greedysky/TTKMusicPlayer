@@ -20,6 +20,7 @@ MusicFMRadioSongsThread::~MusicFMRadioSongsThread()
 
 void MusicFMRadioSongsThread::startToDownload(const QString &id)
 {
+    m_cachedID = id;
     m_songInfo = MusicObject::MusicSongInformation();
     m_manager = new QNetworkAccessManager(this);
 
@@ -56,6 +57,9 @@ void MusicFMRadioSongsThread::downLoadFinished()
             if(songLists.isEmpty())
             {
                 TTK_LOGGER_ERROR("The fm radio song is empty");
+                deleteAll();
+                startToDownload(m_cachedID);
+                return;
             }
 
             foreach(const QVariant &var, songLists)

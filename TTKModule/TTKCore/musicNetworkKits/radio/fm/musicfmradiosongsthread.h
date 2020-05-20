@@ -52,6 +52,7 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 protected:
+    QString m_cachedID;
     MusicObject::MusicSongInformation m_songInfo;
 
 };
