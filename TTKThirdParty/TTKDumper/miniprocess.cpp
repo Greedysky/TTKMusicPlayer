@@ -1,6 +1,8 @@
 #include "miniprocess.h"
+#include <QStringList>
 
 #ifdef Q_OS_WIN
+#include <qt_windows.h>
 #include "psapi.h"
 #include "tlhelp32.h"
 
@@ -76,7 +78,7 @@ static inline bool killProcess(LPCWSTR processName)
    return true;
 }
 
-static inline void checkExtraProcessQuit(const QStringList &origin)
+void killProcessByName(const QStringList &origin)
 {
     QStringList list(getProcessLists());
     foreach(const QString &process, origin)
