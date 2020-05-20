@@ -32,7 +32,7 @@ unix:VERSION += $$TTKMusicPlayer
 
 TARGET = TTKService
 
-LIBS += -L$$DESTDIR -lTTKCore -lTTKDumper -lTTKConfig
+LIBS += -L$$DESTDIR -lTTKCore -lTTKConfig
 
 INCLUDEPATH += \
     $$PWD/../TTKModule \
