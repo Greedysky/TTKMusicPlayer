@@ -22,6 +22,7 @@ class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
     MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber = nullptr);
+    ~MiniDumper();
 
     static void SetVersion(LPCWSTR szVersion);
     static void SetBuildNumber(LPCWSTR szBuildNumber);
@@ -44,6 +45,7 @@ class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
     MiniDumper();
+    ~MiniDumper();
 
 };
 

@@ -1,6 +1,26 @@
 #include "minidumper.h"
 #include "musicobject.h"
+#include "musicotherdefine.h"
 #include "miniprocess.h"
+
+void cleanAppicationCache()
+{
+    QFile::remove(TEMPPATH);
+    QFile::remove(MUSIC_COLOR_FILE);
+    QFile::remove(MUSIC_IMAGE_FILE);
+    QFile::remove(MUSIC_RECORD_FILE);
+    QFile::remove(MUSIC_RECORD_IN_FILE);
+    QFile::remove(MUSIC_RECORD_OUT_FILE);
+    QFile::remove(MUSIC_NETWORK_TEST_FILE);
+
+    ///clean thirdparty process
+    QStringList origin;
+    origin << MAKE_TRANSFORM_PREFIX
+           << MAKE_KRC2LRC_PREFIX
+           << MAKE_PLAYER_PREFIX
+           << MAKE_GAIN_PREFIX;
+    killProcessByName(origin);
+}
 
 #ifdef Q_OS_WIN
 #include <wchar.h>
@@ -20,6 +40,11 @@ MiniDumper::MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumb
     m_szDumpFilePath = nullptr;
 	
     ::SetUnhandledExceptionFilter(TopLevelFilter);
+}
+
+MiniDumper::~MiniDumper()
+{
+    cleanAppicationCache();
 }
 
 void MiniDumper::SetVersion(LPCWSTR szVersion)
@@ -53,13 +78,6 @@ void MiniDumper::SetDumpFilePath(LPCWSTR szFilePath)
 
 LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
 {
-    QStringList origin;
-    origin << MAKE_TRANSFORM_PREFIX
-           << MAKE_KRC2LRC_PREFIX
-           << MAKE_PLAYER_PREFIX
-           << MAKE_GAIN_PREFIX;
-    killProcessByName(origin);
-    //
     LONG retval = EXCEPTION_CONTINUE_SEARCH;
 
     // firstly see if dbghelp.dll is around and has the function we need
@@ -202,12 +220,7 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
 void errorHandler(int type)
 {
     TTK_LOGGER_INFO("Error Type " << type);
-    QStringList origin;
-    origin << MAKE_TRANSFORM_PREFIX
-           << MAKE_KRC2LRC_PREFIX
-           << MAKE_PLAYER_PREFIX
-           << MAKE_GAIN_PREFIX;
-    killProcessByName(origin);
+    cleanAppicationCache();
     exit(0);
 }
 
@@ -218,4 +231,10 @@ MiniDumper::MiniDumper()
     signal(SIGFPE, errorHandler);
     signal(SIGABRT, errorHandler);
 }
+
+MiniDumper::~MiniDumper()
+{
+    cleanAppicationCache();
+}
+
 #endif
