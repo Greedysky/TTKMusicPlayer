@@ -48,8 +48,12 @@ public:
         Windows_Server_2008,
         Windows_Server_2008_R2,
         Windows_Server_2012,
+        Windows_Unix,
+        Windows_Mac,
         Windows_Unkown
     };
+
+#ifdef Q_OS_WIN
     /*!
      * Check current is file associate.
      */
@@ -67,6 +71,21 @@ public:
      * Get local IE version.
      */
     int getLocalIEVersion() const;
+#endif
+
+    /*!
+     * Get local DPI x.
+     */
+    int getLogicalDotsPerInchX() const;
+    /*!
+     * Get local DPI y.
+     */
+    int getLogicalDotsPerInchY() const;
+    /*!
+     * Get local DPI.
+     */
+    int getLogicalDotsPerInch() const;
+
     /*!
      * Get local system name.
      */
@@ -77,6 +96,7 @@ public:
     void setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description);
 
 protected:
+#ifdef Q_OS_WIN
     /*!
      * Check current regedit item has exist.
      */
@@ -85,6 +105,7 @@ protected:
      * Create music regedit item.
      */
     void createMusicRegedit(const QString &key);
+#endif
 
 };
 

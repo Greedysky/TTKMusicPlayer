@@ -280,6 +280,7 @@ void MusicSettingWidget::initControllerParameter()
     //
     m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
+#ifdef Q_OS_WIN
     if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt() && MusicWindowsManager().isFileAssociate())
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
@@ -294,6 +295,11 @@ void MusicSettingWidget::initControllerParameter()
         m_ui->setDefaultPlayerCheckBox->setChecked(false);
         M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, false);
     }
+#else
+    m_ui->setDefaultPlayerCheckBox->setEnabled(true);
+    m_ui->setDefaultPlayerCheckBox->setChecked(false);
+    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, false);
+#endif
 }
 
 void MusicSettingWidget::clearFunctionTableSelection()

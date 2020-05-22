@@ -1,38 +1,34 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
 #include "musicconfigobject.h"
+#include "musicwindowsmanager.h"
 #include "ttkdumper.h"
 
-#include <QScreen>
 #include <QTranslator>
 #include <QApplication>
 
 #define TTK_DEBUG
 
-void loadDXcbPlugin(int argc, char *argv[])
+void loadAppScaledFactor(int argc, char *argv[])
 {
 #if TTK_QT_VERSION_CHECK(5,4,0)
-    #if TTK_QT_VERSION_CHECK(5,6,0)
-      Q_UNUSED(argc);
-      Q_UNUSED(argv);
+    #if TTK_QT_VERSION_CHECK(5,12,0)
       QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    #elif TTK_QT_VERSION_CHECK(5,6,0)
+      const float dpi = MusicWindowsManager().getLogicalDotsPerInch() / 96.0;
+      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
     #else
-      QApplication a(argc, argv);
       qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
-      QScreen *screen = QApplication::primaryScreen();
-      const float dpi = screen->logicalDotsPerInch() / 96;
-      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi));
-      Q_UNUSED(a);
     #endif
-#else
+#endif
     Q_UNUSED(argc);
     Q_UNUSED(argv);
-#endif
 }
 
 int main(int argc, char *argv[])
 {
-    loadDXcbPlugin(argc, argv);
+    loadAppScaledFactor(argc, argv);
+    //
     QApplication a(argc, argv);
 #if !defined TTK_DEBUG && !defined Q_OS_UNIX
     if(argc <= 1 || QString(argv[1]) != APP_NAME)
