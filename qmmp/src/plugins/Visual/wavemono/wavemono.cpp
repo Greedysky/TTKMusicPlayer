@@ -118,15 +118,13 @@ void WaveMono::process()
         {
             delete[] m_x_scale;
         }
-        m_intern_vis_data = new double[m_rows];
-        m_x_scale = new int[m_rows + 1];
+
+        m_intern_vis_data = new double[m_rows]{0};
+        m_x_scale = new int[m_rows + 1]{0};
+
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
 
-        for(int i = 0; i < m_rows; ++i)
-        {
-            m_intern_vis_data[i] = 0;
-        }
         for(int i = 0; i < m_rows + 1; ++i)
         {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_rows), i);

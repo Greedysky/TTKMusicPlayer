@@ -105,7 +105,7 @@ void FloridBass::process()
         delete[] m_intern_vis_data;
     }
 
-    m_intern_vis_data = new int[m_cols * 2];
+    m_intern_vis_data = new int[m_cols * 2]{0};
 
     const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
     int pos = 0;

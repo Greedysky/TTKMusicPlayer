@@ -273,15 +273,11 @@ void NormalAnalyzer::process()
         {
             delete[] m_x_scale;
         }
-        m_peaks = new double[m_cols * 2];
-        m_intern_vis_data = new double[m_cols * 2];
-        m_x_scale = new int[m_cols + 1];
 
-        for(int i = 0; i < m_cols * 2; ++i)
-        {
-            m_peaks[i] = 0;
-            m_intern_vis_data[i] = 0;
-        }
+        m_peaks = new double[m_cols * 2]{0};
+        m_intern_vis_data = new double[m_cols * 2]{0};
+        m_x_scale = new int[m_cols + 1]{0};
+
         for(int i = 0; i < m_cols + 1; ++i)
         {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);

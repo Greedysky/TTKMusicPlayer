@@ -130,12 +130,12 @@ void PlusVolumeWave::process()
         {
             delete[] m_x_scale;
         }
-        m_intern_vis_data = new double[2];
-        m_x_scale = new int[2];
+
+        m_intern_vis_data = new double[2]{0};
+        m_x_scale = new int[2]{0};
 
         for(int i = 0; i < 2; ++i)
         {
-            m_intern_vis_data[i] = 0;
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
         }
     }

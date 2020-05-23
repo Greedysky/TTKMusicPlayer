@@ -217,6 +217,7 @@ void NormalHistogram::process()
         {
             delete[] m_x_scale;
         }
+
         m_intern_vis_data = new double[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
