@@ -53,22 +53,22 @@ int MusicWindowsManager::getLocalIEVersion() const
         return -1;
     }
 
-    BYTE *pData = new BYTE[versionInfoSize];
-    if(!GetFileVersionInfoW(L"mshtml.dll", 0, versionInfoSize, pData))
+    BYTE *data = new BYTE[versionInfoSize];
+    if(!GetFileVersionInfoW(L"mshtml.dll", 0, versionInfoSize, data))
     {
-        delete[] pData;
+        delete[] data;
         return -1;
     }
 
     const VS_FIXEDFILEINFO *fixedFileInfo = nullptr;
     UINT fixedFileInfoSize = 0;
-    if(!VerQueryValueW(pData, L"\\", (LPVOID*)&fixedFileInfo, &fixedFileInfoSize))
+    if(!VerQueryValueW(data, L"\\", (LPVOID*)&fixedFileInfo, &fixedFileInfoSize))
     {
-        delete[] pData;
+        delete[] data;
         return -1;
     }
 
-    delete[] pData;
+    delete[] data;
     return HIWORD(fixedFileInfo->dwProductVersionMS);
 }
 #endif
@@ -113,16 +113,16 @@ MusicWindowsManager::SystemType MusicWindowsManager::getWindowSystemName() const
 {
 #ifdef Q_OS_WIN
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
-    HINSTANCE hinst = LoadLibraryW(L"ntdll.dll");
-    DWORD dwMajor, dwMinor, dwBuildNumber;
-    NTPROC proc = (NTPROC)GetProcAddress(hinst, "RtlGetNtVersionNumbers");
-    proc(&dwMajor, &dwMinor, &dwBuildNumber);
+    HINSTANCE instance = LoadLibraryW(L"ntdll.dll");
+    DWORD major, minor, buildNumber;
+    NTPROC proc = (NTPROC)GetProcAddress(instance, "RtlGetNtVersionNumbers");
+    proc(&major, &minor, &buildNumber);
 
-    if(dwMajor == 6 && dwMinor == 3)	//win 8.1
+    if(major == 6 && minor == 3)	//win 8.1
     {
         return Windows_8_1;
     }
-    if(dwMajor == 10 && dwMinor == 0)	//win 10
+    if(major == 10 && minor == 0)	//win 10
     {
         return Windows_10;
     }
@@ -191,6 +191,7 @@ MusicWindowsManager::SystemType MusicWindowsManager::getWindowSystemName() const
         default: return Windows_Unkown;
         }
     }
+    FreeLibrary(instance);
 #elif defined Q_OS_UNIX
     return Windows_Unix;
 #else

@@ -454,5 +454,5 @@ void MusicApplicationObject::cleanUp()
 {
     ///remove daily pic theme
     MusicUtils::File::removeRecursively(TTK_STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
-    ///other remove is ttkdumper
+    ///other remove in ttkdumper
 }

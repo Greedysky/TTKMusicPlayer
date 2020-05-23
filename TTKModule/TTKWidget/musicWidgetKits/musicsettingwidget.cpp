@@ -296,7 +296,7 @@ void MusicSettingWidget::initControllerParameter()
         M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, false);
     }
 #else
-    m_ui->setDefaultPlayerCheckBox->setEnabled(true);
+    m_ui->setDefaultPlayerCheckBox->setEnabled(false);
     m_ui->setDefaultPlayerCheckBox->setChecked(false);
     M_SETTING_PTR->setValue(MusicSettingManager::FileAssociation, false);
 #endif
