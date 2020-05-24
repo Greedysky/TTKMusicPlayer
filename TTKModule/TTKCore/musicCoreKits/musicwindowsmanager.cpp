@@ -1,6 +1,7 @@
 #include "musicwindowsmanager.h"
 #include "musicformats.h"
 
+#include <QScreen>
 #include <QSettings>
 #include <QProcess>
 #include <QStringList>
@@ -14,6 +15,7 @@
 #elif defined Q_OS_UNIX
 #include <X11/Xlib.h>
 #endif
+#define DEFAULT_DPI 96
 
 #ifdef Q_OS_WIN
 bool MusicWindowsManager::isFileAssociate()
@@ -75,20 +77,41 @@ int MusicWindowsManager::getLocalIEVersion() const
 
 QSize generateDPIValue()
 {
+    const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
-    return QSize(96, 96);
+  #ifdef TTK_GREATER_NEW
+    if(!qApp)
+    {
+        int count = 0;
+        QApplication(count, nullptr);
+    }
+
+    QScreen *screen = QApplication::primaryScreen();
+    if(!screen)
+    {
+        return defaultSize;
+    }
+
+    const double x = screen->logicalDotsPerInchX();
+    const double y = screen->logicalDotsPerInchY();
+
+    return QSize(x, y);
+  #endif
 #elif defined Q_OS_UNIX
     Display *dp = XOpenDisplay(nullptr);
+    if(!dp)
+    {
+        return defaultSize;
+    }
 
-    int screen = 0; /* Screen number */
-    double x = (DisplayWidth(dp, screen) * 25.4) / DisplayWidthMM(dp, screen);
-    double y = (DisplayHeight(dp, screen) * 25.4) / DisplayHeightMM(dp, screen);
+    const int screen = 0; /* Screen number */
+    const double x = (DisplayWidth(dp, screen) * 25.4) / DisplayWidthMM(dp, screen);
+    const double y = (DisplayHeight(dp, screen) * 25.4) / DisplayHeightMM(dp, screen);
 
     XCloseDisplay(dp);
     return QSize(x + 0.5, y + 0.5);
-#else
-    return QSize(96, 96);
 #endif
+    return defaultSize;
 }
 
 int MusicWindowsManager::getLogicalDotsPerInchX() const

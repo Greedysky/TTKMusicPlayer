@@ -19,10 +19,10 @@ MusicWindowExtras::MusicWindowExtras(QObject *parent)
     m_superClass = TTKStatic_cast(MusicApplication*, parent);
 
     disableBlurBehindWindow(QtWin::isCompositionEnabled());
-#  ifdef TTK_DEBUG
+#ifdef TTK_DEBUG
     createJumpList();
     createTaskbar();
-#  endif
+#endif
     createThumbnailToolBar();
 #else
     m_disableBlurBehindWindow = true;
