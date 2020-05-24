@@ -40,17 +40,6 @@ unix:!mac{
     exists($$SSL_DEPANDS):LIBS += -L$$DESTDIR -lssl
 }
 
-##qmmp lib check
-include($$PWD/TTKExtra/qmmp.pri)
-win32:{
-    QMMP_DEPANDS = $$DESTDIR/qmmp1.dll
-    QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
-}
-unix:!mac{
-    QMMP_DEPANDS = $$DESTDIR/libqmmp.so
-}
-!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
-
 win32{
     LIBS += -lIphlpapi -lVersion -lole32 -luuid
     equals(QT_MAJOR_VERSION, 5){
@@ -98,5 +87,3 @@ HEADERS += $$PWD/musicglobal.h
 INCLUDEPATH += $$PWD
 #########################################
 include($$PWD/TTKThirdParty/TTKThirdParty.pri)
-#########################################
-include($$PWD/TTKModule/TTKModule.pri)

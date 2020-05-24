@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicvideoqualitypopwidget.h \
     $$PWD/musicvideobarragestylepopwidget.h \
@@ -28,9 +27,7 @@ HEADERS  += \
     $$PWD/musicvideoplaywidget.h \
     $$PWD/musicvideofloatwidget.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicvideoqualitypopwidget.cpp \
     $$PWD/musicvideobarragestylepopwidget.cpp \
@@ -39,5 +36,3 @@ SOURCES += \
     $$PWD/musicvideosearchtablewidget.cpp \
     $$PWD/musicvideoplaywidget.cpp \
     $$PWD/musicvideofloatwidget.cpp
-
-}

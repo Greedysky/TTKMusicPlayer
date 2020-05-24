@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicsettingwidget.h \
     $$PWD/musicbackgroundskindialog.h \
@@ -71,9 +70,7 @@ HEADERS  += \
     $$PWD/musicmessagefeedbackdialog.h \
     $$PWD/musicpluginwidget.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicsettingwidget.cpp \
     $$PWD/musicbackgroundskindialog.cpp \
@@ -125,5 +122,3 @@ SOURCES += \
     $$PWD/musicripplespecturmobject.cpp \
     $$PWD/musicmessagefeedbackdialog.cpp \
     $$PWD/musicpluginwidget.cpp
-
-}

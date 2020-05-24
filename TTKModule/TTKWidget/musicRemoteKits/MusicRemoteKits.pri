@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicremotewidget.h \
     $$PWD/musicremotewidgetforsquare.h \
@@ -29,9 +28,7 @@ HEADERS  += \
     $$PWD/musicremotewidgetforstrip.h \
     $$PWD/musicremotewidgetforripple.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicremotewidget.cpp \
     $$PWD/musicremotewidgetforsquare.cpp \
@@ -41,5 +38,3 @@ SOURCES += \
     $$PWD/musicremotewidgetforcomplexstyle.cpp \
     $$PWD/musicremotewidgetforstrip.cpp \
     $$PWD/musicremotewidgetforripple.cpp
-
-}

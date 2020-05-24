@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicplaylistinterface.h \
     $$PWD/musicfplconfigmanager.h \
@@ -34,9 +33,7 @@ HEADERS  += \
     $$PWD/musictxtconfigmanager.h \
     $$PWD/musicnfnconfigmanager.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicasxconfigmanager.cpp \
     $$PWD/musicfplconfigmanager.cpp \
@@ -50,5 +47,3 @@ SOURCES += \
     $$PWD/musiccsvconfigmanager.cpp \
     $$PWD/musictxtconfigmanager.cpp \
     $$PWD/musicnfnconfigmanager.cpp
-
-}

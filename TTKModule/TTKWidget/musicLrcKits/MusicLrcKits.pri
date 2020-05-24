@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musiclrcmanager.h \
     $$PWD/musiclrcmanagerfordesktop.h \
@@ -44,9 +43,7 @@ HEADERS  += \
     $$PWD/musiclrcposterwidget.h \
     $$PWD/musiclrcdownloadbatchwidget.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musiclrcmanager.cpp \
     $$PWD/musiclrcmanagerfordesktop.cpp \
@@ -71,5 +68,3 @@ SOURCES += \
     $$PWD/musiclrctranslatedwidget.cpp \
     $$PWD/musiclrcposterwidget.cpp \
     $$PWD/musiclrcdownloadbatchwidget.cpp
-
-}

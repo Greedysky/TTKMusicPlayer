@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DTTK_LIBRARY)
+add_definitions(-DQMMP_LIBRARY)
 
 set(TTK_MAJOR_VERSION "2.12.0")
 set(TTK_VERSION ${TTK_MAJOR_VERSION}.0)

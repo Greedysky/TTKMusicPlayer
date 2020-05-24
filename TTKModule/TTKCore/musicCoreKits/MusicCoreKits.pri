@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicobject.h \
     $$PWD/musicformats.h \
@@ -51,9 +50,7 @@ HEADERS  += \
     $$PWD/musicsysconfigmanager.h \
     $$PWD/musicsinglemanager.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicformats.cpp \
     $$PWD/musictime.cpp \
@@ -79,5 +76,3 @@ SOURCES += \
     $$PWD/musicbackgroundconfigmanager.cpp \
     $$PWD/musicsysconfigmanager.cpp \
     $$PWD/musicsinglemanager.cpp
-
-}

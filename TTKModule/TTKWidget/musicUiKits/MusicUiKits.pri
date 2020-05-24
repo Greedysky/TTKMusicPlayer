@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicuiobject.h \
     $$PWD/musiccontextuiobject.h \
@@ -35,9 +34,8 @@ HEADERS  += \
     $$PWD/musicvideofloatuiobject.h \
     $$PWD/musicvideouiobject.h \
     $$PWD/musicwidgetheaders.h
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
+
 FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcKits/musiclrcartphotouploadwidget.ui \
@@ -85,4 +83,3 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicsongitemselecteddialog.ui \
     $$PWD/musicWidgetKits/musicmessagefeedbackdialog.ui \
     $$PWD/musicWidgetKits/musicpluginwidget.ui
-}

@@ -30,7 +30,6 @@ INCLUDEPATH += $$PWD \
                $$PWD/yyt \
                $$PWD/ztl
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/radio/fm/musicfmradiochannelthread.h \
     $$PWD/radio/fm/musicfmradiotextdownloadthread.h \
@@ -167,9 +166,7 @@ HEADERS  += \
     $$PWD/musicdownloadqueryartistlistthread.h \
     $$PWD/musicdownloadmanager.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/radio/fm/musicfmradiochannelthread.cpp \
     $$PWD/radio/fm/musicfmradiotextdownloadthread.cpp \
@@ -304,5 +301,3 @@ SOURCES += \
     $$PWD/musicdownloadsimilarthread.cpp \
     $$PWD/musicdownloadqueryartistlistthread.cpp \
     $$PWD/musicdownloadmanager.cpp
-
-}

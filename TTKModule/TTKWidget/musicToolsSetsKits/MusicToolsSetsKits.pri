@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musictimerwidget.h \
@@ -41,9 +40,7 @@ HEADERS  += \
     $$PWD/musicsongdlnatransferwidget.h \
     $$PWD/musicscreensaverwidget.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicmobiledeviceswidget.cpp \
     $$PWD/musictimerwidget.cpp \
@@ -65,5 +62,3 @@ SOURCES += \
     $$PWD/musicspectrumlayoutwidget.cpp \
     $$PWD/musicsongdlnatransferwidget.cpp \
     $$PWD/musicscreensaverwidget.cpp
-
-}

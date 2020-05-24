@@ -18,7 +18,6 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicdesktopwallpaperthread.h \
     $$PWD/musictimerautoobject.h \
@@ -28,9 +27,7 @@ HEADERS  += \
     $$PWD/musicsongchecktoolsthread.h \
     $$PWD/musicsongchecktoolsunit.h
 
-}
 
-contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicdesktopwallpaperthread.cpp \
     $$PWD/musictimerautoobject.cpp \
@@ -38,5 +35,3 @@ SOURCES += \
     $$PWD/musicaudiorecorderobject.cpp \
     $$PWD/musicnetworktestthread.cpp \
     $$PWD/musicsongchecktoolsthread.cpp
-
-}
