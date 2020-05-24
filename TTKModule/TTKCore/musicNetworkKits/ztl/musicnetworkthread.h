@@ -22,7 +22,6 @@
 #include <QTimer>
 #include "musicsingleton.h"
 
-#define M_NETWORK_PTR (MusicSingleton<MusicNetworkThread>::createInstance())
 #define NETWORK_DETECT_INTERVAL     5000             // second
 #define NETWORK_REQUEST_ADDRESS     "www.baidu.com"  // ip
 
@@ -78,5 +77,7 @@ private:
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 };
 
-#endif // MUSICNETWORKTHREAD_H
+#define M_NETWORK_PTR GetMusicNetworkThread()
+MUSIC_NETWORK_EXPORT MusicNetworkThread* GetMusicNetworkThread();
 
+#endif // MUSICNETWORKTHREAD_H

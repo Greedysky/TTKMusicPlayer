@@ -22,8 +22,6 @@
 #include <QMutex>
 #include "musicsingleton.h"
 
-#define M_DISPATCH_PTR (MusicSingleton<MusicDispatchManager>::createInstance())
-
 class QTimer;
 
 /*! @brief The class of the functions dispatch item.
@@ -94,5 +92,8 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicDispatchManager)
 
 };
+
+#define M_DISPATCH_PTR GetMusicDispatchManager()
+MUSIC_CORE_EXPORT MusicDispatchManager* GetMusicDispatchManager();
 
 #endif // MUSICDISPATCHMANAGER_H

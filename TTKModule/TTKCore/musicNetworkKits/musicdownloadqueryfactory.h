@@ -22,8 +22,6 @@
 #include "musicsingleton.h"
 #include "musicdownloadthreadabstract.h"
 
-#define M_DOWNLOAD_QUERY_PTR (MusicSingleton<MusicDownLoadQueryFactory>::createInstance())
-
 class MusicDownLoadSimilarThread;
 class MusicDownLoadSongSuggestThread;
 class MusicDownLoadCommentsThread;
@@ -123,5 +121,8 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)
 
 };
+
+#define M_DOWNLOAD_QUERY_PTR GetMusicDownLoadQueryFactory()
+MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory* GetMusicDownLoadQueryFactory();
 
 #endif // MUSICDOWNLOADQUERYFACTORY_H

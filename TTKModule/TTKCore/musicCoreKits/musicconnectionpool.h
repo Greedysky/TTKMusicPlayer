@@ -22,8 +22,6 @@
 #include <QMap>
 #include "musicsingleton.h"
 
-#define M_CONNECTION_PTR (MusicSingleton<MusicConnectionPool>::createInstance())
-
 /*! @brief The class of the qt signal and slot connection pool.
  * @author Greedysky <greedysky@163.com>
  */
@@ -88,5 +86,8 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 
 };
+
+#define M_CONNECTION_PTR GetMusicConnectionPool()
+MUSIC_CORE_EXPORT MusicConnectionPool* GetMusicConnectionPool();
 
 #endif // MUSICCONNECTIONPOOL_H

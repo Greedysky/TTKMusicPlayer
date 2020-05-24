@@ -23,7 +23,6 @@
 #include "musicsingleton.h"
 #include "musicwidgetutils.h"
 
-#define M_SINGLE_MANAGER_PTR (MusicSingleton<MusicSingleManager>::createInstance())
 /////////////////////////////////////////////////////////////////////////
 #define M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                      \
     MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
@@ -127,5 +126,8 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicSingleManager)
 
 };
+
+#define M_SINGLE_MANAGER_PTR GetMusicSingleManager()
+MUSIC_CORE_EXPORT MusicSingleManager* GetMusicSingleManager();
 
 #endif // MUSICSINGLEMANAGER_H

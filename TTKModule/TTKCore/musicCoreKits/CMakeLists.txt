@@ -43,6 +43,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.cpp
     ${MUSIC_CORE_DIR}/musicconnectionpool.cpp
     ${MUSIC_CORE_DIR}/musicwindowsmanager.cpp
+    ${MUSIC_CORE_DIR}/musicsingleton.cpp
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
     ${MUSIC_CORE_DIR}/musicsongtag.cpp

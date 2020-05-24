@@ -61,6 +61,7 @@ SOURCES += \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicwindowsmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
+    $$PWD/musicsingleton.cpp \
     $$PWD/musicsong.cpp \
     $$PWD/musicsongtag.cpp \
     $$PWD/musiccryptographichash.cpp \

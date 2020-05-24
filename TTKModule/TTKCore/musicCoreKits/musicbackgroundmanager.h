@@ -22,8 +22,6 @@
 #include "musicobject.h"
 #include "musicsingleton.h"
 
-#define M_BACKGROUND_PTR (MusicSingleton<MusicBackgroundManager>::createInstance())
-
 #define MAX_INDEX 5
 
 /*! @brief The class of the manager of dealing with artist pictures.
@@ -145,5 +143,8 @@ protected:
 
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 };
+
+#define M_BACKGROUND_PTR GetMusicBackgroundManager()
+MUSIC_CORE_EXPORT MusicBackgroundManager* GetMusicBackgroundManager();
 
 #endif // MUSICBACKGROUNDMANAGER_H
