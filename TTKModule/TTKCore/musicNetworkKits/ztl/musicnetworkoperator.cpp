@@ -1,10 +1,10 @@
 #include "musicnetworkoperator.h"
 #include "musicdownloadsourcethread.h"
 #include "musicobject.h"
+#///QJson import
+#include "qjson/parser.h"
 
-#include <QStringList>
-
-#define IP_CHECK_URL    "emtRdWI5YVg3eHduQjNwYUZNV2JXVjhGVmI2VnJJbEc="
+#define IP_CHECK_URL    "ZlhkcnFzd1RabVhCZXNWM1pnbk5hT1ErL2RpMUNjK0hYQ3FXUHdCOVNGSlpDU2ZmNTZnekhHUlo3WkwrUWhtQXljNitUcjJmZ0RId004OFc5QlVibjhvRGlRSzY3QXlVbmZHNFV3bkhZdGZMU2JTZ3lJTkNhOGZJUlNhcmlBUmcvRUVrQWc9PQ=="
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
@@ -21,46 +21,19 @@ void MusicNetworkOperator::startToDownload()
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
-    QTextStream in(TTKConst_cast(QByteArray*, &data));
-    in.setCodec("gb2312");
+    QString line;
 
-    QString text(in.readAll());
-    QRegExp regx("<iframe src=\"([^<]+)\" ");
-    regx.setMinimal(true);
-    const int pos = text.indexOf(regx);
-    while(pos != -1)
+    QJson::Parser parser;
+    bool ok;
+    const QVariant &json = parser.parse(data, &ok);
+    if(ok)
     {
-        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-        connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadQueryFinished(QByteArray)));
-        text = regx.cap(1);
-        if(!text.contains("http:"))
+        QVariantMap value = json.toMap();
+        if(value.contains("result"))
         {
-          text = "http:" + text;
+            value = value["result"].toMap();
+            line = value["operators"].toString();
         }
-        download->startToDownload(text);
-        break;
-    }
-
-    if(pos == -1)
-    {
-        Q_EMIT getNetworkOperatorFinished(QString());
-        deleteLater();
-    }
-}
-
-void MusicNetworkOperator::downLoadQueryFinished(const QByteArray &data)
-{
-    QTextStream in(TTKConst_cast(QByteArray*, &data));
-    in.setCodec("utf-8");
-
-    QString line, text(in.readAll());
-    QRegExp regx("<p align=\"center\">([^<]+)</p>");
-    int pos = text.indexOf(regx);
-    while(pos != -1)
-    {
-        line = regx.cap(0).remove("<p align=\"center\">").remove("</p>").trimmed();
-        line = line.right(2);
-        break;
     }
 
     Q_EMIT getNetworkOperatorFinished(line);

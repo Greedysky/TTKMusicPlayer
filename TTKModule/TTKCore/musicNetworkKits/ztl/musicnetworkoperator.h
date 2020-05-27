@@ -51,10 +51,6 @@ private Q_SLOTS:
      * Download data from net finished.
      */
     void downLoadFinished(const QByteArray &data);
-    /*!
-     * Download data from ip net finished.
-     */
-    void downLoadQueryFinished(const QByteArray &data);
 
 };
 
