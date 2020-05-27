@@ -18,7 +18,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionlistuiobject.h"
-#include "musicwindowsmanager.h"
+#include "musicplatformmanager.h"
 #include "musictopareawidget.h"
 #include "musicadvancedsearchedwidget.h"
 #include "musicrecommendfoundwidget.h"
@@ -775,7 +775,8 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
         m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
 #ifdef Q_OS_WIN
-        MusicWindowsManager().setLeftWinEnabled();
+        MusicPlatformManager platform;
+        platform.setLeftWinEnabled();
 #endif
         QTimer::singleShot(10 * MT_MS, this, SLOT(musicVideoActiveWindow()));
     }
@@ -840,7 +841,8 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
     else
     {
 #ifdef Q_OS_WIN
-        MusicWindowsManager().setLeftWinEnabled();
+        MusicPlatformManager platform;
+        platform.setLeftWinEnabled();
 #endif
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);

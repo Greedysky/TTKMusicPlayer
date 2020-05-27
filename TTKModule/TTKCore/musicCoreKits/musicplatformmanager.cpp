@@ -1,4 +1,4 @@
-#include "musicwindowsmanager.h"
+#include "musicplatformmanager.h"
 #include "musicformats.h"
 
 #include <QScreen>
@@ -18,12 +18,12 @@
 #define DEFAULT_DPI 96
 
 #ifdef Q_OS_WIN
-bool MusicWindowsManager::isFileAssociate()
+bool MusicPlatformManager::isFileAssociate()
 {
     return currentNodeHasExist(MP3_FILE_PREFIX);
 }
 
-void MusicWindowsManager::setMusicRegeditAssociateFileIcon()
+void MusicPlatformManager::setMusicRegeditAssociateFileIcon()
 {
     const QStringList &types = MusicFormats::supportFormatsString();
     for(int i=0; i<types.count(); ++i)
@@ -36,7 +36,7 @@ void MusicWindowsManager::setMusicRegeditAssociateFileIcon()
     }
 }
 
-void MusicWindowsManager::setLeftWinEnabled()
+void MusicPlatformManager::setLeftWinEnabled()
 {
     INPUT input[4];
     memset(input, 0, sizeof(input));
@@ -47,7 +47,7 @@ void MusicWindowsManager::setLeftWinEnabled()
     SendInput(4, input, sizeof(INPUT));
 }
 
-int MusicWindowsManager::getLocalIEVersion() const
+int MusicPlatformManager::getLocalIEVersion() const
 {
     const DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", nullptr);
     if(versionInfoSize == 0)
@@ -114,25 +114,25 @@ QSize generateDPIValue()
     return defaultSize;
 }
 
-int MusicWindowsManager::getLogicalDotsPerInchX() const
+int MusicPlatformManager::getLogicalDotsPerInchX() const
 {
     const QSize dpi(generateDPIValue());
     return dpi.width();
 }
 
-int MusicWindowsManager::getLogicalDotsPerInchY() const
+int MusicPlatformManager::getLogicalDotsPerInchY() const
 {
     const QSize dpi(generateDPIValue());
     return dpi.height();
 }
 
-int MusicWindowsManager::getLogicalDotsPerInch() const
+int MusicPlatformManager::getLogicalDotsPerInch() const
 {
     const QSize dpi(generateDPIValue());
     return (dpi.width() + dpi.height()) / 2;
 }
 
-MusicWindowsManager::SystemType MusicWindowsManager::getWindowSystemName() const
+MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() const
 {
 #ifdef Q_OS_WIN
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
@@ -223,7 +223,7 @@ MusicWindowsManager::SystemType MusicWindowsManager::getWindowSystemName() const
     return Windows_Unkown;
 }
 
-void MusicWindowsManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)
+void MusicPlatformManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)
 {
 #ifdef Q_OS_WIN
     HRESULT hres = CoInitialize(nullptr);
@@ -284,7 +284,7 @@ void MusicWindowsManager::setFileLink(const QString &src, const QString &des, co
 }
 
 #ifdef Q_OS_WIN
-bool MusicWindowsManager::currentNodeHasExist(const QString &key)
+bool MusicPlatformManager::currentNodeHasExist(const QString &key)
 {
     bool state = false;
     const QString &keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;
@@ -302,7 +302,7 @@ bool MusicWindowsManager::currentNodeHasExist(const QString &key)
     return state;
 }
 
-void MusicWindowsManager::createMusicRegedit(const QString &key)
+void MusicPlatformManager::createMusicRegedit(const QString &key)
 {
     QString keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;
     QSettings keyXSetting(keyX, QSettings::NativeFormat);

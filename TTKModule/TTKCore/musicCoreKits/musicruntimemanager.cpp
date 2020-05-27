@@ -1,5 +1,5 @@
 #include "musicruntimemanager.h"
-#include "musicsysconfigmanager.h"
+#include "musicconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicqmmputils.h"
@@ -27,9 +27,9 @@ void MusicRunTimeManager::run() const
     //detect the current network state
     M_NETWORK_PTR->start();
 
-    MusicSysConfigManager *xml = new MusicSysConfigManager;
-    xml->readConfig();
-    xml->readSysConfigData();
+    MusicConfigManager xml;
+    xml.readConfig();
+    xml.readSysConfigData();
 
     MusicUtils::File::checkCacheSize(
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
@@ -37,7 +37,6 @@ void MusicRunTimeManager::run() const
                 M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
     M_NETWORK_PTR->setBlockNetWork(
                 M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
-    delete xml;
 }
 
 QString MusicRunTimeManager::translator() const

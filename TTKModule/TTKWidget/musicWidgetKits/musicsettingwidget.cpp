@@ -11,7 +11,7 @@
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
-#include "musicwindowsmanager.h"
+#include "musicplatformmanager.h"
 #include "ttkversion.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"
@@ -215,7 +215,8 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->showInteriorCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool());
     m_ui->showInteriorCheckBox->setEnabled(false);
     m_ui->showCortanaCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowCortanaLrc).toBool());
-    if(MusicWindowsManager::Windows_10 != MusicWindowsManager().getWindowSystemName())
+    MusicPlatformManager platform;
+    if(MusicPlatformManager::Windows_10 != platform.getWindowSystemName())
     {
         m_ui->showCortanaCheckBox->hide();
     }
@@ -281,7 +282,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
 #ifdef Q_OS_WIN
-    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt() && MusicWindowsManager().isFileAssociate())
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt() && platform.isFileAssociate())
     {
         m_ui->setDefaultPlayerCheckBox->setChecked(true);
         if(m_ui->setDefaultPlayerCheckBox->isChecked())

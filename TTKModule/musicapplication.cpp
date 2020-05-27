@@ -2,7 +2,7 @@
 #include "ui_musicapplication.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicsysconfigmanager.h"
+#include "musicconfigmanager.h"
 #include "musicplayer.h"
 #include "musicformats.h"
 #include "musicplaylist.h"
@@ -1132,7 +1132,7 @@ void MusicApplication::readXMLConfigFromText()
     }
     const bool success = m_musicSongTreeWidget->addMusicLists(songs);
     //
-    MusicSysConfigManager xml;
+    MusicConfigManager xml;
     if(!xml.readConfig())
     {
         return;
@@ -1269,7 +1269,7 @@ void MusicApplication::readXMLConfigFromText()
 
 void MusicApplication::writeXMLConfigToText()
 {
-    MusicSysConfigManager xml;
+    MusicConfigManager xml;
     m_applicationObject->sideAnimationReset();
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusic, m_musicPlayer->getMusicEnhanced());

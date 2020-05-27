@@ -6,7 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicequalizerdialog.h"
 #include "musicsettingmanager.h"
-#include "musicwindowsmanager.h"
+#include "musicplatformmanager.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicmessageaboutdialog.h"
@@ -108,8 +108,8 @@ void MusicApplicationObject::applySettingParameter()
 #ifdef Q_OS_WIN
     if(M_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt())
     {
-        MusicWindowsManager windows;
-        windows.setMusicRegeditAssociateFileIcon();
+        MusicPlatformManager platform;
+        platform.setMusicRegeditAssociateFileIcon();
     }
 #endif
     if(!m_screenSaverWidget)
@@ -333,8 +333,8 @@ void MusicApplicationObject::musicToolSetsParameter()
 {
     m_musicTimerAutoObject->runTimerAutoConfig();
 #ifdef Q_OS_WIN
-    MusicWindowsManager windows;
-    const int version = windows.getLocalIEVersion();
+    MusicPlatformManager platform;
+    const int version = platform.getLocalIEVersion();
     if(version == -1 || version < 8)
     {
         MusicMessageBox message;

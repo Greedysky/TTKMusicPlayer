@@ -1,5 +1,5 @@
-#ifndef MUSICWINDOWSMANAGER_H
-#define MUSICWINDOWSMANAGER_H
+#ifndef MUSICPLATFORMMANAGER_H
+#define MUSICPLATFORMMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -22,12 +22,12 @@
 #include <QObject>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the windows system manager.
+/*! @brief The class of the platform system manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicWindowsManager
+class MUSIC_CORE_EXPORT MusicPlatformManager
 {
-    TTK_DECLARE_MODULE(MusicWindowsManager)
+    TTK_DECLARE_MODULE(MusicPlatformManager)
 public:
     enum SystemType
     {
@@ -109,4 +109,4 @@ protected:
 
 };
 
-#endif // MUSICWINDOWSMANAGER_H
+#endif // MUSICPLATFORMMANAGER_H

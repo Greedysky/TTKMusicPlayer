@@ -4,7 +4,7 @@
 #include "musicwidgetutils.h"
 #include "musicuiobject.h"
 #include "musicdownloadsourcethread.h"
-#include "musicwindowsmanager.h"
+#include "musicplatformmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicitemdelegate.h"
 #include "musiccoreutils.h"
@@ -207,11 +207,11 @@ void MusicWebFMRadioWidget::sendToDesktopLink()
     const QString &desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
 #endif
 
-    MusicWindowsManager win;
+    MusicPlatformManager platform;
 #ifdef Q_OS_WIN
-    win.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + "/" + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTER_RADIO).arg(row), tr("TTK Radio Link"));
+    platform.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + "/" + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTER_RADIO).arg(row), tr("TTK Radio Link"));
 #else
-    win.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTER_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::getAppDir(), fileName);
+    platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTER_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::getAppDir(), fileName);
 #endif
 }
 

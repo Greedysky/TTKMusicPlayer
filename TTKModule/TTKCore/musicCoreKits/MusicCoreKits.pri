@@ -31,7 +31,7 @@ HEADERS  += \
     $$PWD/musicabstractthread.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
-    $$PWD/musicwindowsmanager.h \
+    $$PWD/musicplatformmanager.h \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
@@ -39,15 +39,14 @@ HEADERS  += \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
     $$PWD/musicsemaphoreloop.h \
-    $$PWD/musiccategoryconfigmanager.h \
-    $$PWD/musiclicenseobject.h \
+    $$PWD/musiccategoryconfigmanager.h  \
     $$PWD/musicplaylistmanager.h \
     $$PWD/musichotkeymanager.h \
     $$PWD/musicruntimemanager.h \
     $$PWD/musicdispatchmanager.h \
     $$PWD/musicextractwrap.h \
     $$PWD/musicbackgroundconfigmanager.h \
-    $$PWD/musicsysconfigmanager.h \
+    $$PWD/musicconfigmanager.h \
     $$PWD/musicsinglemanager.h
 
 
@@ -59,7 +58,7 @@ SOURCES += \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicabstractthread.cpp \
     $$PWD/musicconnectionpool.cpp \
-    $$PWD/musicwindowsmanager.cpp \
+    $$PWD/musicplatformmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsingleton.cpp \
     $$PWD/musicsong.cpp \
@@ -68,12 +67,11 @@ SOURCES += \
     $$PWD/musicbackgroundmanager.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
-    $$PWD/musiclicenseobject.cpp \
     $$PWD/musicplaylistmanager.cpp \
     $$PWD/musichotkeymanager.cpp \
     $$PWD/musicruntimemanager.cpp \
     $$PWD/musicdispatchmanager.cpp \
     $$PWD/musicextractwrap.cpp \
     $$PWD/musicbackgroundconfigmanager.cpp \
-    $$PWD/musicsysconfigmanager.cpp \
+    $$PWD/musicconfigmanager.cpp \
     $$PWD/musicsinglemanager.cpp
