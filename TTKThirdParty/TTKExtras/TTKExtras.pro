@@ -20,7 +20,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 include($$PWD/../../TTKVersion.pri)
-unix:VERSION += $$TTKMusicPlayer
+CONFIG += plugin lib
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKExtras

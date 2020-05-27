@@ -17,7 +17,6 @@
 # =================================================
 
 include($$PWD/../../../TTKVersion.pri)
-unix:VERSION += 1.0.0.0
 
 QT       += core gui
 equals(QT_MAJOR_VERSION, 5){

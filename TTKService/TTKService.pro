@@ -19,7 +19,6 @@
 TEMPLATE = app
 
 include($$PWD/../TTKMusicPlayer.pri)
-unix:VERSION += $$TTKMusicPlayer
 
 TARGET = TTKService
 

@@ -61,8 +61,3 @@ else()
   target_link_libraries(${PROJECT_NAME} ${QT4_LIBS})
 endif()
 
-set_target_properties(
-${PROJECT_NAME}
-PROPERTIES
-VERSION "2.1.0")
-

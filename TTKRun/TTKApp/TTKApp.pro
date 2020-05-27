@@ -20,7 +20,6 @@ QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 include($$PWD/../../TTKVersion.pri)
-unix:VERSION += $$TTKMusicPlayer
 
 TARGET = TTKMusicPlayer
 

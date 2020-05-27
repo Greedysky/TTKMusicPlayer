@@ -23,8 +23,7 @@ include($$PWD/../../../TTKVersion.pri)
 DESTDIR = $$OUT_PWD/../../../bin/$$TTKMusicPlayer
 TARGET = TTKZip
 
-CONFIG       += warn_off
-unix:VERSION += 1.0.0
+CONFIG += warn_off plugin lib
 
 DEFINES += \
     ZLIB_DLL \

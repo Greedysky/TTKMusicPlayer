@@ -20,7 +20,7 @@ TEMPLATE = lib
 
 include($$PWD/TTKModule.pri)
 include($$PWD/../TTKMusicPlayer.pri)
-unix:VERSION += $$TTKMusicPlayer
+CONFIG += plugin lib
 
 
 ##qmmp lib check

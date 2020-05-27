@@ -25,8 +25,7 @@ include($$PWD/../../TTKVersion.pri)
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKWatcher
 
-CONFIG       += warn_off
-unix:VERSION += 2.1.0
+CONFIG += warn_off plugin lib
 
 unix{
     macx{

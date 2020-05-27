@@ -54,8 +54,3 @@ else()
   add_library(${PROJECT_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 endif()
 
-set_target_properties(
-${PROJECT_NAME}
-PROPERTIES
-VERSION "1.2.11")
-

@@ -25,8 +25,7 @@ include($$PWD/../../TTKVersion.pri)
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKDumper
 
-CONFIG       += warn_off
-unix:VERSION += 1.0.0
+CONFIG += plugin lib
 
 INCLUDEPATH += $$PWD/../../TTKModule/TTKCore/musicCoreKits
 

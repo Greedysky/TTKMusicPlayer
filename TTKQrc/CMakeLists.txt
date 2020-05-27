@@ -44,8 +44,3 @@ else()
   target_link_libraries(${PROJECT_NAME} ${QT_QTCORE_LIBRARY})
 endif()
 
-set_target_properties(
-${PROJECT_NAME}
-PROPERTIES
-VERSION ${TTK_MAJOR_VERSION})
-
