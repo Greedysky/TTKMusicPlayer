@@ -1,4 +1,6 @@
 # TTKMusicPlayer
+[简体中文](./README_cn.md) | [繁体中文](./README_tc.md)
+
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/Version-2.12.0.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
@@ -9,11 +11,9 @@
 
 Usage
 ----
-**The music player use of qmmp core library based on Qt.
-Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
+**The music player use of qmmp core library based on Qt. Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
 
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
-### 本项目代码不用于商用，仅限研究和学习使用，资源版权归个音乐平台所有。
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
@@ -95,27 +95,23 @@ TTKMusicPlayer can meet your most demands
  * AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.psc *.ay *.ym)
  * ST-Sound File(*.ym)
  * Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
- * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
-Screenshots.
+ * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
- * Perfect music. It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
+ * It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
  * User-friendly design. Attention to detail design, personalize, simple operation, found music more convenient.
- * Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtones Yang Hyun.
- * Audio format I choose. I made my songs, I decided to sound quality.
+ * Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtones.
  * Personalized skin. DIY your own personalized skin, creating a only part of your skin.
  * Music cube model. After entering the mini mode, it will remain in your desktop a "Clover" shaped icon, you can freely drag the desktop, you want to control the player, cut songs, play, lyrics control, volume adjustment in control.
- * Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
- * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. Speed flip - drop-down slider, you can auto-flip, no longer need to click the "Next" a one roll.
- * Local music search, and cloud music library and interactive, custom ringtone.
+ * Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects).
+ * Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier.
+ * Local music search, and cloud music library and interactive.
  * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  * Local music transferred to the cloud or mobile device.
  * Local music and the human voice humming recognition.
  * Music song, artist, album, playlist, toplist and movie search supported.
- * Music song, artist, album and playlist search supported.
  * Music DSP effects and Visual effects supported.
  * Music song spectrum(projectm, goom, sonique, florid, wavebar) and test supported.
  * Music replay gain scan and write supported.
- * Music audio formats conveter supported.
  * Music screen saver supported.
  
 
@@ -152,7 +148,7 @@ Screenshots
 ![Other Tools](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
 
 ### Spectrum
-![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
+![Spectrum](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
 
 ### Other Functions
 ![Other Functions](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)

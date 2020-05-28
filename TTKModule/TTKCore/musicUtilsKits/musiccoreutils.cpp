@@ -20,7 +20,7 @@ QString MusicUtils::Core::getLanguageName(int index)
     switch(index)
     {
         case 0 : return lan.append("cn.ln");
-        case 1 : return lan.append("cn_c.ln");
+        case 1 : return lan.append("tc.ln");
         case 2 : return lan.append("en.ln");
         default: return QString();
     }

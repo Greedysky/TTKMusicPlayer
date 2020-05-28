@@ -22,7 +22,7 @@ TEMPLATE = subdirs
 SUBDIRS = TTKConfig TTKQrc TTKThirdParty TTKModule TTKService TTKRun
 
 TRANSLATIONS += TTKLanguage/cn.ts \
-                TTKLanguage/cn_c.ts \
+                TTKLanguage/tc.ts \
                 TTKLanguage/en.ts
 
 ##find translation
