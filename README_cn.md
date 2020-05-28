@@ -1,71 +1,71 @@
 # TTKMusicPlayer
-[Ó¢ÎÄ](./README.md) | [·±ÌåÖĞÎÄ](./README_tc.md)
+[è‹±æ–‡ English](./README.md) | [ç¹ä½“ä¸­æ–‡ Chinese](./README_tc.md)
 
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
-![°æ±¾](https://img.shields.io/badge/Version-2.12.0.0-blue.svg?style=flat-square)
-![Ğí¿É](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
+![ç‰ˆæœ¬](https://img.shields.io/badge/Version-2.12.0.0-blue.svg?style=flat-square)
+![è®¸å¯](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
-![»Õ±ê](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
+![å¾½æ ‡](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
 
-### **|[¹ØÓÚ](https://github.com/Greedysky/TTKMusicplayer#Ê¹ÓÃ·½·¨)|[Ğí¿ÉÖ¤](https://github.com/Greedysky/TTKMusicplayer#Ğí¿ÉÖ¤)|[ÏÂÔØ](https://github.com/Greedysky/TTKMusicplayer#ÏÂÔØ)|[ÌØĞÔ](https://github.com/Greedysky/TTKMusicplayer#ÌØĞÔ)|[¿ìÕÕ](https://github.com/Greedysky/TTKMusicplayer#¿ìÕÕ)|[°æÈ¨](https://github.com/Greedysky/TTKMusicplayer#copyright)|[¹±Ï×](https://github.com/Greedysky/TTKMusicplayer#¹±Ï×)|**
+### **|[å…³äº](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#ä½¿ç”¨æ–¹æ³•)|[è®¸å¯è¯](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#è®¸å¯è¯)|[ä¸‹è½½](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#ä¸‹è½½)|[ç‰¹æ€§](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#ç‰¹æ€§)|[å¿«ç…§](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#å¿«ç…§)|[ç‰ˆæƒ](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#ç‰ˆæƒ)|[è´¡çŒ®](https://github.com/Greedysky/TTKMusicplayer/blob/master/README_cn.md#è´¡çŒ®)|**
 
-Ê¹ÓÃ·½·¨
+ä½¿ç”¨æ–¹æ³•
 ----
-**ÒôÀÖ²¥·ÅÆ÷»ùÓÚqmmpºÍQt¿â¿ª·¢. ±àÒë½Ì³ÌÎÒÒÑ¾­Ğ´ÔÚwikiÉÏÁË.(¿´ÕâÀï<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
+**éŸ³ä¹æ’­æ”¾å™¨åŸºäºqmmpå’ŒQtåº“å¼€å‘. ç¼–è¯‘æ•™ç¨‹æˆ‘å·²ç»å†™åœ¨wikiä¸Šäº†.(çœ‹è¿™é‡Œ<u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
 
-### ±¾ÏîÄ¿´úÂë²»ÓÃÓÚÉÌÓÃ£¬½öÏŞÑĞ¾¿ºÍÑ§Ï°Ê¹ÓÃ£¬×ÊÔ´°æÈ¨¹é¸öÒôÀÖÆ½Ì¨ËùÓĞ¡£
+### æœ¬é¡¹ç›®ä»£ç ä¸ç”¨äºå•†ç”¨ï¼Œä»…é™ç ”ç©¶å’Œå­¦ä¹ ä½¿ç”¨ï¼Œèµ„æºç‰ˆæƒå½’ä¸ªéŸ³ä¹å¹³å°æ‰€æœ‰ã€‚
  
-## ¹¹½¨×´Ì¬
- * »ùÓÚQt4.8.7µÄwindows-mingw 32bit°æ±¾²âÊÔÍ¨¹ı
- * »ùÓÚQt4.8.7µÄlinux-gcc 64bit°æ±¾²âÊÔÍ¨¹ı
- * »ùÓÚQt5.xµÄwindows-mingw 32bit°æ±¾²âÊÔÍ¨¹ı
- * »ùÓÚQt5.xµÄlinux-gcc 64bit°æ±¾²âÊÔÍ¨¹ı
+## æ„å»ºçŠ¶æ€
+ * åŸºäºQt4.8.7çš„windows-mingw 32bitç‰ˆæœ¬æµ‹è¯•é€šè¿‡
+ * åŸºäºQt4.8.7çš„linux-gcc 64bitç‰ˆæœ¬æµ‹è¯•é€šè¿‡
+ * åŸºäºQt5.xçš„windows-mingw 32bitç‰ˆæœ¬æµ‹è¯•é€šè¿‡
+ * åŸºäºQt5.xçš„linux-gcc 64bitç‰ˆæœ¬æµ‹è¯•é€šè¿‡
  
-| Æ½Ì¨ | Qt & ±àÒëÆ÷       | ×´Ì¬                                                                                      |
+| å¹³å° | Qt & ç¼–è¯‘å™¨       | çŠ¶æ€                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
 | Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/badge/build-passing-brightgreen.svg)                            |
 | Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/badge/build-passing-brightgreen.svg) |
 | Windows  | 5.x MSVC       | ![Windows](https://img.shields.io/badge/build-unknown-lightgrey.svg) |
 | OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg)                           |
  
-# ¿ª·¢Õß
+# å¼€å‘è€…
 
-Ğí¿ÉÖ¤
+è®¸å¯è¯
 ---
-TTKMusicPlayerÊÇ»ùÓÚ[license GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE)Ìõ¿îÊÚÈ¨µÄÃâ·ÑÈí¼ş¡£Èç¹ûÄúÊ¹ÓÃTTKMusicPlayer»òÕßËüµÄ¶¯Ì¬¿â£¬ÔòÎñ±ØÌí¼ÓÏà¹ØĞí¿ÉÖ¤µ½ÏîÄ¿ÖĞ¡£
+TTKMusicPlayeræ˜¯åŸºäº[license GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE)æ¡æ¬¾æˆæƒçš„å…è´¹è½¯ä»¶ã€‚å¦‚æœæ‚¨ä½¿ç”¨TTKMusicPlayeræˆ–è€…å®ƒçš„åŠ¨æ€åº“ï¼Œåˆ™åŠ¡å¿…æ·»åŠ ç›¸å…³è®¸å¯è¯åˆ°é¡¹ç›®ä¸­ã€‚
 
-API ÎÄµµ
+API æ–‡æ¡£
 ---
-ÎÄµµÇë¿´ÕâÀï: **<u>https://greedysky.github.io/ttkdocs/html/index.html</u>**
+æ–‡æ¡£è¯·çœ‹è¿™é‡Œ: **<u>https://greedysky.github.io/ttkdocs/html/index.html</u>**
 
-ÏÂÔØ
+ä¸‹è½½
 ---
 OSChina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
-QmmpÔ­°æÏÂÔØµØÖ·: **<u>http://qmmp.ylsoftware.com</u>**
+QmmpåŸç‰ˆä¸‹è½½åœ°å€: **<u>http://qmmp.ylsoftware.com</u>**
 
-QmmpÔ­°æ¾µÏñÏÂÔØÏÂÔØµØÖ·: **<u>https://github.com/Greedysky/qmmp</u>**
+QmmpåŸç‰ˆé•œåƒä¸‹è½½ä¸‹è½½åœ°å€: **<u>https://github.com/Greedysky/qmmp</u>**
 
-QmmpĞŞ¸Ä°æÏÂÔØÏÂÔØµØÖ·: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+Qmmpä¿®æ”¹ç‰ˆä¸‹è½½ä¸‹è½½åœ°å€: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
 
-QmmpĞŞ¸Ä°æ¶ş½øÖÆ¿âÏÂÔØµØÖ·: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
+Qmmpä¿®æ”¹ç‰ˆäºŒè¿›åˆ¶åº“ä¸‹è½½åœ°å€: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
-²¥·ÅÆ÷¼°ÆäËûÒÀÀµÏÂÔØµØÖ·: **<u>http://pan.baidu.com/s/1gdB5QLH</u>**
+æ’­æ”¾å™¨åŠå…¶ä»–ä¾èµ–ä¸‹è½½åœ°å€: **<u>http://pan.baidu.com/s/1gdB5QLH</u>**
 
-²¥·ÅÆ÷Æ¤·ôÏÂÔØµØÖ·: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
+æ’­æ”¾å™¨çš®è‚¤ä¸‹è½½åœ°å€: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
-²¥·ÅÆ÷¶ş½øÖÆÏÂÔØµØÖ·: **<u>http://download.csdn.net/album/detail/3094</u>**
+æ’­æ”¾å™¨äºŒè¿›åˆ¶ä¸‹è½½åœ°å€: **<u>http://download.csdn.net/album/detail/3094</u>**
 
-²¥·ÅÆ÷¶ş½øÖÆ±¸Ñ¡ÏÂÔØµØÖ·: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
+æ’­æ”¾å™¨äºŒè¿›åˆ¶å¤‡é€‰ä¸‹è½½åœ°å€: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
-²¥·ÅÆ÷ÒÆ¶¯°æµØÖ·: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/mobile</u>**
+æ’­æ”¾å™¨ç§»åŠ¨ç‰ˆåœ°å€: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/mobile</u>**
 
-¿á¹·ÆÆ½âÆ¤·ô×ÊÔ´µØÖ·: **<u>https://github.com/Greedysky/KugouResource</u>**
+é…·ç‹—ç ´è§£çš®è‚¤èµ„æºåœ°å€: **<u>https://github.com/Greedysky/KugouResource</u>**
 
-ÌØĞÔ
+ç‰¹æ€§
 -------
-TTKMusicPlayerµÄÒ»Ğ©ÌØĞÔ
- * Ö§³Ö¾ø´ó¶àÊıµÄÒôÆµ²¥·Å¸ñÊ½¡£
+TTKMusicPlayerçš„ä¸€äº›ç‰¹æ€§
+ * æ”¯æŒç»å¤§å¤šæ•°çš„éŸ³é¢‘æ’­æ”¾æ ¼å¼ã€‚
  * SID File(*.sid *.mus *.str *.prg *.P00)
  * MusePack File(*.mpc)
  * WavPack File(*.wv)
@@ -94,72 +94,72 @@ TTKMusicPlayerµÄÒ»Ğ©ÌØĞÔ
  * V2 Module Audio File(*.v2m)
  * AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.psc *.ay *.ym)
  * ST-Sound File(*.ym)
- * Ö§³ÖµÄ²¥·ÅÁĞ±í¸ñÊ½(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
- * »ªÀöÁ÷ĞÇìÅ¿áµÄ½çÃæÉè¼Æ£¬¿çÆ½Ì¨ÓĞÁ¼ºÃµÄĞÔÄÜ±íÏÖ¡£
- * ËÑË÷ºÍ¸ßËÙÏÂÔØ¡£¸èÇúËÑË÷¾«¶ÈÓÅ»¯£¬ÖÇÄÜ½ÚÊ¡´ø¿í£¬¿ÉÒÔ½ûÓÃÍøÂç¹¦ÄÜ£¬Ö§³Ö8¸ö¹úÄÚÒôÀÖÆ½Ì¨Çú¿â¡£
- * Ö§³Ö±¾µØ²¥·Å£¬¼æÈİËùÓĞÒôÆµÎÄ¼ş£¬³¬¼¶ÍêÃÀµÄÉùÒô£¬ÒôÀÖºÍ¸üÎüÒıÈË¡£
- * ÓÑºÃµÄÓÃ»§Éè¼Æ¡£×¢ÖØÏ¸½ÚÉè¼Æ£¬¸öĞÔ»¯£¬²Ù×÷¼òµ¥£¬·¢ÏÖÒôÀÖ¸ü·½±ã¡£
- * ¸öĞÔ»¯ÊÖ»úÁåÉù¡£ÁåÉùDIY£¬ÈÃÄãÓµÓĞ¸öĞÔ»¯µÄÁåÉù¡£
- * ¸öĞÔ»¯Æ¤·ô¡£DIYÄã×Ô¼ºµÄ¸öĞÔ»¯Æ¤·ô£¬´´ÔìÊôÓÚÄãµÄ×¨ÊôÆ¤·ô¡£
- * ÒôÀÖÁ¢·½ÌåÄ£ĞÍ¡£½øÈëÃÔÄãÄ£Ê½ºó£¬Ëü»áÔÚÄãµÄ×ÀÃæÉÏ±£ÁôÒ»¸ö¡°ÈıÒ¶²İ¡±ĞÎ×´µÄÍ¼±ê£¬Äã¿ÉÒÔ×ÔÓÉÍÏ¶¯×ÀÃæ£¬ÄãÏë¿ØÖÆ²¥·ÅÆ÷£¬¼ôÇĞ¸èÇú£¬²¥·Å£¬¿ØÖÆ¸è´Ê£¬¿ØÖÆÒôÁ¿¡£
- * ²ÊÉ«¶¨ÖÆÆ¤·ô¡£Äú¿ÉÒÔÑ¡Ôñ·ôÉ«£¬ÉèÖÃ×ÔÓÉµÄÍ¸Ã÷¶È£¬²¢Ö§³ÖÍ¸Ã÷Ä¥É°²£Á§£¨Windows AeroĞ§¹û£©¡£
- * ËÑË÷ÏÂÔØ¹ÜÀíÆ÷¡£ËÑË÷½á¹û±êÇ©ºÏ²¢-ËùÓĞµÄËÑË÷½á¹û±êÇ©¼¯ÖĞÔÚÒ»¸ö±êÇ©ÏÂ£¬Ê¹²Ù×÷¸üÈİÒ×¡£
- * ±¾µØÒôÀÖËÑË÷£¬ÔÆÒôÀÖ¿âºÍ»¥¶¯¡£
- * Ö§³Ö²»Í¬ÒôÀÖ¸ñÊ½µÄ×ª»»£¬¿ÉÒÔÏñÌÀÄ·Ã¨Ò»Ñù¸Ä±äÉùÒô£¬Ò²¿ÉÒÔÔöÇ¿ÉùÒô¡£
- * ±¾µØÒôÀÖ´«Êäµ½ÔÆ»òÒÆ¶¯Éè±¸¡£
- * ±¾µØÒôÀÖºÍÈËÉùºß³ªÊ¶±ğ¡£
- * Ö§³ÖÒôÀÖ¸èÇú¡¢ÒÕÊõ¼Ò¡¢×¨¼­¡¢²¥·ÅÁĞ±í¡¢ÈÈÃÅÁĞ±íºÍµçÓ°ËÑË÷¡£
- * Ö§³ÖÒôÀÖÊı×ÖĞÅºÅ´¦ÀíĞ§¹ûºÍÊÓ¾õĞ§¹û¡£
- * ÒôÀÖ¸èÇúÆ×£¨projectm£¬goom£¬sonique£¬florid£¬wavebar£©Ö§³Ö¡£
- * Ö§³ÖÒôÀÖÖØ·ÅÉ¨ÃèºÍĞ´Èë¡£
- * Ö§³ÖÒôÀÖÆÁÄ»±£»¤³ÌĞò¡£
+ * æ”¯æŒçš„æ’­æ”¾åˆ—è¡¨æ ¼å¼(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
+ * åä¸½æµæ˜Ÿç‚«é…·çš„ç•Œé¢è®¾è®¡ï¼Œè·¨å¹³å°æœ‰è‰¯å¥½çš„æ€§èƒ½è¡¨ç°ã€‚
+ * æœç´¢å’Œé«˜é€Ÿä¸‹è½½ã€‚æ­Œæ›²æœç´¢ç²¾åº¦ä¼˜åŒ–ï¼Œæ™ºèƒ½èŠ‚çœå¸¦å®½ï¼Œå¯ä»¥ç¦ç”¨ç½‘ç»œåŠŸèƒ½ï¼Œæ”¯æŒ8ä¸ªå›½å†…éŸ³ä¹å¹³å°æ›²åº“ã€‚
+ * æ”¯æŒæœ¬åœ°æ’­æ”¾ï¼Œå…¼å®¹æ‰€æœ‰éŸ³é¢‘æ–‡ä»¶ï¼Œè¶…çº§å®Œç¾çš„å£°éŸ³ï¼ŒéŸ³ä¹å’Œæ›´å¸å¼•äººã€‚
+ * å‹å¥½çš„ç”¨æˆ·è®¾è®¡ã€‚æ³¨é‡ç»†èŠ‚è®¾è®¡ï¼Œä¸ªæ€§åŒ–ï¼Œæ“ä½œç®€å•ï¼Œå‘ç°éŸ³ä¹æ›´æ–¹ä¾¿ã€‚
+ * ä¸ªæ€§åŒ–æ‰‹æœºé“ƒå£°ã€‚é“ƒå£°DIYï¼Œè®©ä½ æ‹¥æœ‰ä¸ªæ€§åŒ–çš„é“ƒå£°ã€‚
+ * ä¸ªæ€§åŒ–çš®è‚¤ã€‚DIYä½ è‡ªå·±çš„ä¸ªæ€§åŒ–çš®è‚¤ï¼Œåˆ›é€ å±äºä½ çš„ä¸“å±çš®è‚¤ã€‚
+ * éŸ³ä¹ç«‹æ–¹ä½“æ¨¡å‹ã€‚è¿›å…¥è¿·ä½ æ¨¡å¼åï¼Œå®ƒä¼šåœ¨ä½ çš„æ¡Œé¢ä¸Šä¿ç•™ä¸€ä¸ªâ€œä¸‰å¶è‰â€å½¢çŠ¶çš„å›¾æ ‡ï¼Œä½ å¯ä»¥è‡ªç”±æ‹–åŠ¨æ¡Œé¢ï¼Œä½ æƒ³æ§åˆ¶æ’­æ”¾å™¨ï¼Œå‰ªåˆ‡æ­Œæ›²ï¼Œæ’­æ”¾ï¼Œæ§åˆ¶æ­Œè¯ï¼Œæ§åˆ¶éŸ³é‡ã€‚
+ * å½©è‰²å®šåˆ¶çš®è‚¤ã€‚æ‚¨å¯ä»¥é€‰æ‹©è‚¤è‰²ï¼Œè®¾ç½®è‡ªç”±çš„é€æ˜åº¦ï¼Œå¹¶æ”¯æŒé€æ˜ç£¨ç ‚ç»ç’ƒï¼ˆWindows Aeroæ•ˆæœï¼‰ã€‚
+ * æœç´¢ä¸‹è½½ç®¡ç†å™¨ã€‚æœç´¢ç»“æœæ ‡ç­¾åˆå¹¶-æ‰€æœ‰çš„æœç´¢ç»“æœæ ‡ç­¾é›†ä¸­åœ¨ä¸€ä¸ªæ ‡ç­¾ä¸‹ï¼Œä½¿æ“ä½œæ›´å®¹æ˜“ã€‚
+ * æœ¬åœ°éŸ³ä¹æœç´¢ï¼Œäº‘éŸ³ä¹åº“å’Œäº’åŠ¨ã€‚
+ * æ”¯æŒä¸åŒéŸ³ä¹æ ¼å¼çš„è½¬æ¢ï¼Œå¯ä»¥åƒæ±¤å§†çŒ«ä¸€æ ·æ”¹å˜å£°éŸ³ï¼Œä¹Ÿå¯ä»¥å¢å¼ºå£°éŸ³ã€‚
+ * æœ¬åœ°éŸ³ä¹ä¼ è¾“åˆ°äº‘æˆ–ç§»åŠ¨è®¾å¤‡ã€‚
+ * æœ¬åœ°éŸ³ä¹å’Œäººå£°å“¼å”±è¯†åˆ«ã€‚
+ * æ”¯æŒéŸ³ä¹æ­Œæ›²ã€è‰ºæœ¯å®¶ã€ä¸“è¾‘ã€æ’­æ”¾åˆ—è¡¨ã€çƒ­é—¨åˆ—è¡¨å’Œç”µå½±æœç´¢ã€‚
+ * æ”¯æŒéŸ³ä¹æ•°å­—ä¿¡å·å¤„ç†æ•ˆæœå’Œè§†è§‰æ•ˆæœã€‚
+ * éŸ³ä¹æ­Œæ›²è°±ï¼ˆprojectmï¼Œgoomï¼Œsoniqueï¼Œfloridï¼Œwavebarï¼‰æ”¯æŒã€‚
+ * æ”¯æŒéŸ³ä¹é‡æ”¾æ‰«æå’Œå†™å…¥ã€‚
+ * æ”¯æŒéŸ³ä¹å±å¹•ä¿æŠ¤ç¨‹åºã€‚
  
 
-¿ìÕÕ
+å¿«ç…§
 ----
-### Ê×Ò³
-![Ê×Ò³](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
+### é¦–é¡µ
+![é¦–é¡µ](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
 
-### ËÑË÷
-![ËÑË÷](https://github.com/Greedysky/Resource/blob/master/Screen/2.jpg?raw=true)
+### æœç´¢
+![æœç´¢](https://github.com/Greedysky/Resource/blob/master/Screen/2.jpg?raw=true)
 
-### ¸è´Ê
-![¸è´Ê](https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true)
+### æ­Œè¯
+![æ­Œè¯](https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true)
 
-### ×ÀÃæ¸è´Ê
-![×ÀÃæ¸è´Ê](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
+### æ¡Œé¢æ­Œè¯
+![æ¡Œé¢æ­Œè¯](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
 
-### Ò£¿ØÆ÷
-![Ò£¿ØÆ÷](https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true)
+### é¥æ§å™¨
+![é¥æ§å™¨](https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true)
 
-### ¸è´ÊÍØÕ¹ÏÔÊ¾
-![¸è´ÊÍØÕ¹ÏÔÊ¾](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
+### æ­Œè¯æ‹“å±•æ˜¾ç¤º
+![æ­Œè¯æ‹“å±•æ˜¾ç¤º](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
 
 ### MV
 ![MV](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
 
-### ÊÓÆµµ¯Ä»
-![ÊÓÆµµ¯Ä»](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
+### è§†é¢‘å¼¹å¹•
+![è§†é¢‘å¼¹å¹•](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
 
-### ÒôĞ§
-![ÒôĞ§](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
+### éŸ³æ•ˆ
+![éŸ³æ•ˆ](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
 
-### ¹¤¾ß
-![¹¤¾ß](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
+### å·¥å…·
+![å·¥å…·](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
 
-### ÒôÀÖÆµÆ×
-![ÒôÀÖÆµÆ×](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
+### éŸ³ä¹é¢‘è°±
+![éŸ³ä¹é¢‘è°±](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
 
-### ÆäËû¹¦ÄÜ
-![ÆäËû¹¦ÄÜ](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
+### å…¶ä»–åŠŸèƒ½
+![å…¶ä»–åŠŸèƒ½](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
 
-°æÈ¨
+ç‰ˆæƒ
 -------
  * This file is part of the TTK Music Player project.
  * Copyright (c) 2015 - 2020 Greedysky Studio.
  * Mail: greedysky@163.com.
  
-¹±Ï×
+è´¡çŒ®
 -------
  * Fork this project on github and make a branch. Commit in that branch, and push, then create a pull request to be reviewed and merged.
  * Create an issue if you have any problem when using project or you find a bug, etc.

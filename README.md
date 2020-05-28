@@ -1,5 +1,5 @@
 # TTKMusicPlayer
-[¼òÌåÖĞÎÄ](./README_cn.md) | [·±ÌåÖĞÎÄ](./README_tc.md)
+[ç®€ä½“ä¸­æ–‡ Chinese](./README_cn.md) | [ç¹ä½“ä¸­æ–‡ Chinese](./README_tc.md)
 
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/Version-2.12.0.0-blue.svg?style=flat-square)
