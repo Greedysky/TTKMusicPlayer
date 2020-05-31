@@ -73,7 +73,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
     }
 }
 
-void MusicLrcContainerForDesktop::showPlayStatus(bool status) const
+void MusicLrcContainerForDesktop::setCurrentPlayStatus(bool status) const
 {
     m_toolPlayButton->setStyleSheet(status ? MusicUIObject::MQSSDeskTopPlay : MusicUIObject::MQSSDeskTopPause);
 }

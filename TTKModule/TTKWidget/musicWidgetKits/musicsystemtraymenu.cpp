@@ -78,7 +78,7 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
     MusicRightAreaWidget::instance()->setWindowLockedChanged();
 }
 
-void MusicSystemTrayMenu::showPlayStatus(bool status) const
+void MusicSystemTrayMenu::setCurrentPlayStatus(bool status) const
 {
 #ifndef Q_OS_UNIX
     m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MQSSContextPlay : MusicUIObject::MQSSContextPause);

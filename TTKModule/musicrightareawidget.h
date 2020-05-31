@@ -95,7 +95,7 @@ public:
     /*!
      * Set current play state button.
      */
-    void showPlayStatus(bool status) const;
+    void setCurrentPlayStatus(bool status) const;
     /*!
      * Get destop lrc visible state.
      */
@@ -132,7 +132,7 @@ public:
      * Check the current song already has lrc or not,
      * if not just download it.
      */
-    void musicCheckLrcValid() const;
+    void checkLrcValid() const;
     /*!
      * Show setting widget.
      */

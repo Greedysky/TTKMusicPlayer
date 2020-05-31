@@ -88,9 +88,7 @@
  *
  *  User-friendly design. Attention to detail design, personalize, simple operation, found music more convenient.
  *
- *  Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtones Yang Hyun.
- *
- *  Audio format I choose. I made my songs, I decided to sound quality.
+ *  Personalized cell phone ringtones. Ringtones DIY, so you have personalized ringtone.
  *
  *  Personalized skin. DIY your own personalized skin, creating a only part of your skin.
  *
@@ -98,7 +96,7 @@
  *
  *  Colorful custom skin. You can select skin color, set the transparency of freedom, and support transparent frosted glass (Windows Aero effects), music from becoming a type, colored.
  *
- *  Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. Speed flip - drop-down slider, you can auto-flip, no longer need to click the "Next" a one roll.
+ *  Search Download Manager. Search Results tab merger - all of the search results tab concentrated under one label, make operation easier. 
  *
  *  Local music search, and cloud music library and interactive, custom ringtone.
  *
@@ -115,8 +113,6 @@
  *  Music song spectrum(projectm, goom, sonique, florid, wavebar) and test supported.
  *
  *  Music replay gain scan and write supported.
- *
- *  Music audio formats conveter supported.
  *
  *  Music screen saver supported.
  *

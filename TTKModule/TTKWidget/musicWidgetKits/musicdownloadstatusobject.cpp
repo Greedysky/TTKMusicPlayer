@@ -87,7 +87,7 @@ bool MusicDownloadStatusObject::checkSettingParameterValue() const
     return M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
 }
 
-void MusicDownloadStatusObject::musicCheckLrcValid()
+void MusicDownloadStatusObject::checkLrcValid()
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -117,12 +117,12 @@ void MusicDownloadStatusObject::musicCheckLrcValid()
        ///Start the request query
        m_downloadLrcThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
        m_downloadLrcThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
-       connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicHaveNoLrcAlready()));
+       connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
        showDownLoadInfoFor(MusicObject::DW_Buffing);
     }
 }
 
-void MusicDownloadStatusObject::musicHaveNoLrcAlready()
+void MusicDownloadStatusObject::currentLrcDataDownload()
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {

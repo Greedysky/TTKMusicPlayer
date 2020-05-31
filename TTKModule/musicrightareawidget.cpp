@@ -124,9 +124,9 @@ void MusicRightAreaWidget::startTimerClock() const
     }
 }
 
-void MusicRightAreaWidget::showPlayStatus(bool status) const
+void MusicRightAreaWidget::setCurrentPlayStatus(bool status) const
 {
-    m_musicLrcForDesktop->showPlayStatus(status);
+    m_musicLrcForDesktop->setCurrentPlayStatus(status);
 }
 
 bool MusicRightAreaWidget::getDestopLrcVisible() const
@@ -187,12 +187,12 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         MusicLrcAnalysis::State state;
         if(QFileInfo(path).suffix().toLower() == KRC_FILE_PREFIX)
         {
-            TTK_LOGGER_INFO("use krc parser!");
+            TTK_LOGGER_INFO("Current in krc parser mode");
             state = m_lrcAnalysis->transKrcFileToTime(path);
         }
         else
         {
-            TTK_LOGGER_INFO("use lrc parser!");
+            TTK_LOGGER_INFO("Current in lrc parser mode");
             state = m_lrcAnalysis->transLrcFileToTime(path);
         }
 
@@ -224,9 +224,9 @@ void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
     m_musicLrcForInterior->setSongSpeedChanged(time);
 }
 
-void MusicRightAreaWidget::musicCheckLrcValid() const
+void MusicRightAreaWidget::checkLrcValid() const
 {
-    m_downloadStatusObject->musicCheckLrcValid();
+    m_downloadStatusObject->checkLrcValid();
 }
 
 void MusicRightAreaWidget::showSettingWidget() const
@@ -719,7 +719,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     if(deskLrc)
     {
         m_musicLrcForDesktop->setCurrentSongName(deskLrc->getCurrentSongName());
-        m_musicLrcForDesktop->showPlayStatus(deskLrc->getPlayStatus());
+        m_musicLrcForDesktop->setCurrentPlayStatus(deskLrc->getPlayStatus());
     }
     m_musicLrcForDesktop->applySettingParameter();
     m_musicLrcForDesktop->initCurrentLrc();

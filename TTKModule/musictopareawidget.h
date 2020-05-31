@@ -92,7 +92,7 @@ public:
     /*!
      * Set current play state button.
      */
-    void showPlayStatus(bool status);
+    void setCurrentPlayStatus(bool status);
     /*!
      * Set current song text.
      */

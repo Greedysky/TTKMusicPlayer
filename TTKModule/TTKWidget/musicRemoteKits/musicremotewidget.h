@@ -59,19 +59,20 @@ public:
     /*!
      * Set current play state button.
      */
-    void showPlayStatus(bool status) const;
+    void setCurrentPlayStatus(bool status) const;
     /*!
      * Set current volume value by index.
      */
     void setVolumeValue(int index);
     /*!
-     * Set current song text.
-     */
-    virtual void setLabelText(const QString &text);
-    /*!
      * Map remote type to index.
      */
     int mapRemoteTypeIndex();
+
+    /*!
+     * Set current song text.
+     */
+    virtual void setLabelText(const QString &text);
 
 Q_SIGNALS:
     /*!

@@ -104,7 +104,7 @@ MusicRemoteWidget::~MusicRemoteWidget()
     delete m_mainWidget;
 }
 
-void MusicRemoteWidget::showPlayStatus(bool status) const
+void MusicRemoteWidget::setCurrentPlayStatus(bool status) const
 {
     m_playButton->setStyleSheet(status ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSTinyBtnPause);
 }
@@ -117,11 +117,6 @@ void MusicRemoteWidget::setVolumeValue(int index)
     blockSignals(false);
 }
 
-void MusicRemoteWidget::setLabelText(const QString &text)
-{
-    Q_UNUSED(text);
-}
-
 int MusicRemoteWidget::mapRemoteTypeIndex()
 {
     if(TTKObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
@@ -131,6 +126,11 @@ int MusicRemoteWidget::mapRemoteTypeIndex()
     else if(TTKObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
     else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
     else return Null;
+}
+
+void MusicRemoteWidget::setLabelText(const QString &text)
+{
+    Q_UNUSED(text);
 }
 
 void MusicRemoteWidget::musicVolumeSliderChanged(int value)

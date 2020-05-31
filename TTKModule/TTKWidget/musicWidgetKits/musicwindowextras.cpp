@@ -51,7 +51,7 @@ void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 }
 
 #if defined Q_OS_WIN && defined TTK_WINEXTRAS
-void MusicWindowExtras::showPlayStatus(bool status) const
+void MusicWindowExtras::setCurrentPlayStatus(bool status) const
 {
     if(!status)
     {

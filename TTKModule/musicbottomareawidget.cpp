@@ -87,11 +87,11 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
     m_systemTrayMenu->showDesktopLrc(status);
 }
 
-void MusicBottomAreaWidget::showPlayStatus(bool status) const
+void MusicBottomAreaWidget::setCurrentPlayStatus(bool status) const
 {
-    m_systemTrayMenu->showPlayStatus(status);
+    m_systemTrayMenu->setCurrentPlayStatus(status);
 #if defined Q_OS_WIN && defined TTK_WINEXTRAS
-    m_musicWindowExtras->showPlayStatus(status);
+    m_musicWindowExtras->setCurrentPlayStatus(status);
 #endif
 }
 

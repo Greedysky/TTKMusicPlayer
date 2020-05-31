@@ -377,9 +377,9 @@ void MusicApplication::showCurrentSong(int index)
         m_musicPlayer->stop();
         m_rightAreaWidget->stopLrcMask();
 
-        m_bottomAreaWidget->showPlayStatus(m_playControl);
-        m_rightAreaWidget->showPlayStatus(m_playControl);
-        m_topAreaWidget->showPlayStatus(m_playControl);
+        m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
+        m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
+        m_topAreaWidget->setCurrentPlayStatus(m_playControl);
         m_ui->musicTimeWidget->setPlayState(m_playControl);
 
         durationChanged(0);
@@ -393,7 +393,7 @@ void MusicApplication::showCurrentSong(int index)
     m_ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
     M_BACKGROUND_PTR->clearArtistName();
-    m_rightAreaWidget->musicCheckLrcValid();
+    m_rightAreaWidget->checkLrcValid();
     m_bottomAreaWidget->setLabelText(name);
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
@@ -425,9 +425,9 @@ void MusicApplication::musicStatePlay()
         m_topAreaWidget->setTimerStop();
         m_rightAreaWidget->stopLrcMask();
     }
-    m_bottomAreaWidget->showPlayStatus(m_playControl);
-    m_rightAreaWidget->showPlayStatus(m_playControl);
-    m_topAreaWidget->showPlayStatus(m_playControl);
+    m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
+    m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
+    m_topAreaWidget->setCurrentPlayStatus(m_playControl);
     m_ui->musicTimeWidget->setPlayState(m_playControl);
 }
 
@@ -963,7 +963,7 @@ void MusicApplication::musicCurrentLrcUpdated()
     {
         file.remove();
     }
-    m_rightAreaWidget->musicCheckLrcValid();
+    m_rightAreaWidget->checkLrcValid();
 }
 
 void MusicApplication::resetCurrentSongLrcIndex()
@@ -1235,9 +1235,9 @@ void MusicApplication::readXMLConfigFromText()
         m_playControl = true;
         musicStatePlay();
     }
-    m_bottomAreaWidget->showPlayStatus(m_playControl);
-    m_rightAreaWidget->showPlayStatus(m_playControl);
-    m_topAreaWidget->showPlayStatus(m_playControl);
+    m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
+    m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
+    m_topAreaWidget->setCurrentPlayStatus(m_playControl);
 
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(M_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt());
