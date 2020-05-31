@@ -13,10 +13,6 @@ SOURCES += decodermodplugfactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-# Disbale gcc warnings
-QMAKE_CFLAGS += -w
-QMAKE_CXXFLAGS += -w
-
 DEFINES += HAVE_STDINT_H \
            HAVE_INTTYPES_H
            

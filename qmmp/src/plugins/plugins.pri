@@ -10,5 +10,5 @@ win32:LIBS += -lqmmp1
 
 INCLUDEPATH += $$PWD/../
 
-CONFIG += warn_on plugin lib thread link_pkgconfig
+CONFIG += warn_off plugin lib thread link_pkgconfig
 TEMPLATE = lib

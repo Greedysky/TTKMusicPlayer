@@ -120,10 +120,6 @@ SOURCES += decoderdumbfactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-# Disbale gcc warnings
-QMAKE_CFLAGS += -w
-QMAKE_CXXFLAGS += -w
-
 INCLUDEPATH += $$PWD
 
 unix{

@@ -11,10 +11,6 @@ SOURCES += decodervorbisfactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-# Disbale gcc warnings
-QMAKE_CFLAGS += -w
-QMAKE_CXXFLAGS += -w
-
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                $$EXTRA_PREFIX/libogg/include \
                $$EXTRA_PREFIX/libvorbis/include
