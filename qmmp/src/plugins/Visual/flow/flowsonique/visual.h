@@ -1,3 +1,4 @@
+#pragma once
 
 // Note! 
 // *Video points to memory in 32bit video memory, ie, the following can be used
@@ -125,6 +126,4 @@ typedef struct _VisInfo
 
 // DLL exports this function - it should return a pointer to a static structure
 // as above.
-extern "C"
-DLLEXPORT VisInfo* QueryModule(void);
-
+extern "C" DLLEXPORT VisInfo* QueryModule(void);

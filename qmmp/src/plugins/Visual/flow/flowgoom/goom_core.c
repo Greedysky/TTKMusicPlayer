@@ -165,8 +165,7 @@ int goom_set_screenbuffer(PluginInfo *goomInfo, void *buffer)
 
 * WARNING: this is a 600 lines function ! (21-11-2003)
 */
-guint32 *goom_update (PluginInfo *goomInfo, gint16 data[2][512],
-                      int forceMode, float fps, const char *songTitle, const char *message)
+guint32 *goom_update (PluginInfo *goomInfo, gint16 data[2][512], int forceMode, float fps)
 {
     Pixel *return_val;
     guint32 pointWidth;
@@ -632,24 +631,10 @@ guint32 *goom_update (PluginInfo *goomInfo, gint16 data[2][512],
             /*char title[1024];*/
             char text[64];
 
-            /*
-             * Le message
-             */
-            update_message (goomInfo, message);
-
             if(fps > 0) {
                 sprintf (text, "%2.0f fps", fps);
                 goom_draw_text (goomInfo->p1,goomInfo->screen.width,goomInfo->screen.height,
                                 10, 24, text, 1, 0);
-            }
-
-            /*
-             * Le titre
-             */
-            if(songTitle != NULL) {
-                strncpy (goomInfo->update.titleText, songTitle, 1023);
-                goomInfo->update.titleText[1023]=0;
-                goomInfo->update.timeOfTitleDisplay = 200;
             }
 
             if(goomInfo->update.timeOfTitleDisplay) {

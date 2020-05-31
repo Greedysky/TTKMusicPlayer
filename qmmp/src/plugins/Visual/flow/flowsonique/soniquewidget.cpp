@@ -2,7 +2,6 @@
 #include <qmmp/qmmp.h>
 
 #include <QDir>
-#include <QLibrary>
 #include <QDateTime>
 
 #ifdef Q_OS_UNIX

@@ -74,7 +74,7 @@ void GoomWidget::timeout()
             m_out[0][i] = m_buf[0][i] * 32767.0;
             m_out[1][i] = m_buf[1][i] * 32767.0;
         }
-        goom_update(m_goom, m_out, 0, m_fps, "", "");
+        goom_update(m_goom, m_out, 0, m_fps);
         update();
     }
 }

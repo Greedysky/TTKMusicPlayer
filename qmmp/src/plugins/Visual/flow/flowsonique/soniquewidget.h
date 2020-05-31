@@ -20,7 +20,7 @@
 #define SONIQUEWIDGET_H
 
 #include <QGLWidget>
-#include "vis.h"
+#include "visual.h"
 #include "kiss_fft.h"
 
 /*!

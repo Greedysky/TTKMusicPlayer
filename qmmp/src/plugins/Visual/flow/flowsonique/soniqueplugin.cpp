@@ -1,7 +1,7 @@
 #include <QBoxLayout>
 #include "soniquewidget.h"
 #include "soniqueplugin.h"
-#include <QLibrary>
+
 #include <QMenu>
 
 SoniquePlugin::SoniquePlugin(QWidget *parent)

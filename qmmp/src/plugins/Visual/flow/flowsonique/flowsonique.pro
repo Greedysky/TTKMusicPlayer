@@ -6,7 +6,7 @@ TARGET = $${TARGET}
 
 HEADERS += soniqueplugin.h \
            soniquewidget.h \
-           vis.h \
+           visual.h \
            kiss_fft.h \
            visualflowsoniquefactory.h
 
@@ -17,4 +17,8 @@ SOURCES += soniqueplugin.cpp \
 
 win32:{
     LIBS += -lglu32 -lopengl32
+}
+
+unix{
+    QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
