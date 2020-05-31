@@ -19,7 +19,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
     m_nextSongButton->hide();
 
     QHBoxLayout *mhbox = new QHBoxLayout(m_mainWidget);
-    mhbox->setContentsMargins(0, 0, 0, 0);
+    mhbox->setContentsMargins(0, 0, 3, 0);
     mhbox->setSpacing(3);
     mhbox->addWidget(m_playButton);
     mhbox->addWidget(m_songNameLabel);

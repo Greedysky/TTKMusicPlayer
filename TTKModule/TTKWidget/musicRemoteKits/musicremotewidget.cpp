@@ -1,5 +1,4 @@
 #include "musicremotewidget.h"
-#include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforrectangle.h"
 #include "musicremotewidgetforsquare.h"
 #include "musicremotewidgetforsimplestyle.h"
@@ -49,7 +48,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_nextSongButton->setFixedSize(28, 28);
     m_playButton->setFixedSize(28, 28);
     m_settingButton->setFixedSize(20, 20);
-    m_showMainWindowButton->setFixedSize(30, 30);
+    m_showMainWindowButton->setFixedSize(22, 22);
 
     m_preSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPrevious);
     m_nextSongButton->setStyleSheet(MusicUIObject::MQSSTinyBtnNext);
@@ -123,7 +122,6 @@ int MusicRemoteWidget::mapRemoteTypeIndex()
     else if(TTKObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
     else if(TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
     else if(TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
-    else if(TTKObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
     else if(TTKObject_cast(MusicRemoteWidgetForRipple*, this)) return Ripple;
     else return Null;
 }
@@ -192,9 +190,6 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     action = menu.addAction(tr("ComplexStyleRemote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this));
     action->setData(ComplexStyle);
-    action = menu.addAction(tr("DiamondRemote"));
-    action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForDiamond*, this));
-    action->setData(Diamond);
     action = menu.addAction(tr("RippleRemote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);

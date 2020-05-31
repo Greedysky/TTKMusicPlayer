@@ -6,7 +6,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicremotewidgetforsquare.h"
 #include "musicremotewidgetforrectangle.h"
-#include "musicremotewidgetfordiamond.h"
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
@@ -301,16 +300,6 @@ void MusicTopAreaWidget::musicPlaylistTransparent(int index)
     Q_EMIT setTransparent(m_backgroundAListlpha = index);
 }
 
-void MusicTopAreaWidget::musicDiamondRemote()
-{
-    if(m_musicRemoteWidget)
-    {
-        delete m_musicRemoteWidget;
-    }
-    m_musicRemoteWidget = new MusicRemoteWidgetForDiamond;
-    createRemoteWidget();
-}
-
 void MusicTopAreaWidget::musicSquareRemote()
 {
     if(m_musicRemoteWidget)
@@ -419,7 +408,6 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
         case MusicRemoteWidget::Rectangle: musicRectangleRemote(); break;
         case MusicRemoteWidget::SimpleStyle: musicSimpleStyleRemote(); break;
         case MusicRemoteWidget::ComplexStyle: musicComplexStyleRemote(); break;
-        case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
         case MusicRemoteWidget::Ripple: musicRippleRemote(); break;
         default: break;
     }

@@ -27,7 +27,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     vbox->addWidget(m_toolWidget);
 
     QHBoxLayout *hbox = new QHBoxLayout(m_toolWidget);
-    hbox->setContentsMargins(0, 0, 0, 0);
+    hbox->setContentsMargins(0, 0, 3, 0);
     hbox->setSpacing(0);
     hbox->addWidget(m_preSongButton);
     hbox->addWidget(m_playButton);

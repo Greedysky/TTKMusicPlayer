@@ -45,7 +45,6 @@ public:
         Rectangle,      /*!< Romote Rectangle type*/
         SimpleStyle,    /*!< Romote SimpleStyle type*/
         ComplexStyle,   /*!< Romote ComplexStyle type*/
-        Diamond,        /*!< Romote Diamond type*/
         Ripple          /*!< Romote Ripple type*/
     };
 
