@@ -21,7 +21,7 @@
 
 extern "C" {
 #include "dumb.h"
-#include "internal/it.h"
+#include "it.h"
 }
 #include <QVariantMap>
 

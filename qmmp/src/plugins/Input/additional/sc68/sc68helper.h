@@ -21,7 +21,7 @@
 
 extern "C" {
 #include "stdio_file.h"
-#include "libsc68/sc68/sc68.h"
+#include "sc68.h"
 }
 #include <QVariantMap>
 

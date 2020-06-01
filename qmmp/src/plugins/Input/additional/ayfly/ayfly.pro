@@ -3,35 +3,24 @@ include($$PWD/../common/common.pri)
 
 HEADERS += decoderayflyfactory.h \
            decoder_ayfly.h \
-           ayflyhelper.h \
-           ayfly/AbstractAudio.h \
-           ayfly/ay.h  \
-           ayfly/ayfly.h  \
-           ayfly/ayflyString.h  \
-           ayfly/Filter3.h \
-           ayfly/z80ex/z80ex.h
+           ayflyhelper.h
     
 SOURCES += decoderayflyfactory.cpp \
            decoder_ayfly.cpp \
-           ayflyhelper.cpp \
-           ayfly/AbstractAudio.cpp \
-           ayfly/ay.cpp  \
-           ayfly/formats.cpp  \
-           ayfly/speccy.cpp  \
-           ayfly/lha.cpp  \
-           ayfly/common.cpp  \
-           ayfly/ayflyString.cpp  \
-           ayfly/Filter3.cpp \
-           ayfly/z80ex/z80ex.c
+           ayflyhelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-INCLUDEPATH += $$PWD/ayfly \
-               $$PWD/ayfly/z80ex
-
 DEFINES += DISABLE_AUDIO
 
-unix{
+INCLUDEPATH += $$EXTRA_PREFIX/libayfly/include
+
+unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+    LIBS += -L$$EXTRA_PREFIX/libayfly/lib -layfly$$STATIC_LIBRARY_SUFFIX
+}
+
+win32 {
+    LIBS += -L$$EXTRA_PREFIX/libayfly/lib -layfly
 }

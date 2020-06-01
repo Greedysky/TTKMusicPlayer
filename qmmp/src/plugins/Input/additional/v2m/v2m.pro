@@ -3,30 +3,22 @@ include($$PWD/../common/common.pri)
 
 HEADERS += decoderv2mfactory.h \
            decoder_v2m.h \
-           v2mhelper.h \
-           tool/file.h \
-           libv2.h \
-           phonemtab.h \
-           sounddef.h \
-           synth.h \
-           types.h \
-           v2mconv.h \
-           v2mplayer.h
+           v2mhelper.h
     
 SOURCES += decoderv2mfactory.cpp \
            decoder_v2m.cpp \
-           v2mhelper.cpp \
-           tool/file.cpp \
-           sounddef.cpp \
-           synth_core.cpp \
-           v2mconv.cpp \
-           v2mplayer.cpp
+           v2mhelper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$EXTRA_PREFIX/libv2m/include
 
-unix{
+unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
+    LIBS += -L$$EXTRA_PREFIX/libv2m/lib -lv2m$$STATIC_LIBRARY_SUFFIX
+}
+
+win32 {
+    LIBS += -L$$EXTRA_PREFIX/libv2m/lib -lv2m
 }

@@ -20,7 +20,7 @@
 #define AYFLYHELPER_H
 
 extern "C" {
-#include "ayfly/ayfly.h"
+#include "ayfly.h"
 #include "stdio_file.h"
 }
 #include <QVariantMap>
