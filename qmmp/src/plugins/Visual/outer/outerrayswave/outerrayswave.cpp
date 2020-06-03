@@ -16,8 +16,8 @@ OuterRaysWave::OuterRaysWave (QWidget *parent)
 
     m_intern_vis_data = nullptr;
     m_running = false;
-    m_cols = 0;
     m_rows = 0;
+    m_cols = 0;
 
     setWindowTitle(tr("Outer RaysWave Widget"));
 
@@ -95,15 +95,21 @@ void OuterRaysWave::process()
         state = fft_init();
     }
 
-    m_cols = width();
-    m_rows = height();
+    const int rows = height();
+    const int cols = width();
 
-    if(m_intern_vis_data)
+    if(m_rows != rows || m_cols != cols)
     {
-        delete[] m_intern_vis_data;
-    }
+        m_rows = rows;
+        m_cols = cols;
 
-    m_intern_vis_data = new int[m_cols]{0};
+        if(m_intern_vis_data)
+        {
+            delete[] m_intern_vis_data;
+        }
+
+        m_intern_vis_data = new int[m_cols]{0};
+    }
 
     const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
     int pos = 0;

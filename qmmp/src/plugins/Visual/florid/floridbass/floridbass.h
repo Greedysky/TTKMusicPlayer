@@ -57,7 +57,7 @@ private:
     int *m_intern_vis_data;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int m_cols, m_rows;
+    int m_rows, m_cols;
     bool m_running;
 
 };

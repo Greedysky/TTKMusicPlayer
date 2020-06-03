@@ -74,9 +74,8 @@ private:
     bool m_show_peaks, m_update, m_running;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_cols, m_rows;
+    int *m_x_scale, m_rows, m_cols;
 
-    //colors
     QList<QColor> m_colors;
     QSize m_cell_size;
     QMenu *m_menu;

@@ -8,7 +8,7 @@
 
 #include "fft.h"
 #include "inlines.h"
-#include "outerewave.h"
+#include "outerblurwave.h"
 #include "colorwidget.h"
 
 #include <QGraphicsView>
@@ -19,7 +19,7 @@
 #define HEIGHT_OFFSET  2
 #define HEIGHT_LIMIT   0.7
 
-OuterEWave::OuterEWave(QWidget *parent)
+OuterBlurWave::OuterBlurWave(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
@@ -33,7 +33,7 @@ OuterEWave::OuterEWave(QWidget *parent)
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle(tr("Outer EWave Widget"));
+    setWindowTitle(tr("Outer BlurWave Widget"));
     setMinimumWidth(2*300-30);
 
     m_timer = new QTimer(this);
@@ -67,7 +67,7 @@ OuterEWave::OuterEWave(QWidget *parent)
     m_graphics_item->setGraphicsEffect(blur_effect);
 }
 
-OuterEWave::~OuterEWave()
+OuterBlurWave::~OuterBlurWave()
 {
     if(m_intern_vis_data)
     {
@@ -79,7 +79,7 @@ OuterEWave::~OuterEWave()
     }
 }
 
-void OuterEWave::start()
+void OuterBlurWave::start()
 {
     m_running = true;
     if(isVisible())
@@ -90,21 +90,21 @@ void OuterEWave::start()
     readSettings();
 }
 
-void OuterEWave::stop()
+void OuterBlurWave::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void OuterEWave::clear()
+void OuterBlurWave::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void OuterEWave::timeout()
+void OuterBlurWave::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -113,21 +113,21 @@ void OuterEWave::timeout()
     }
 }
 
-void OuterEWave::readSettings()
+void OuterBlurWave::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("OuterEWave");
+    settings.beginGroup("OuterBlurWave");
     m_color = ColorWidget::readSingleColorConfig(settings.value("colors").toString());
     m_opacity = settings.value("opacity").toDouble();
     settings.endGroup();
 }
 
-void OuterEWave::hideEvent(QHideEvent *)
+void OuterBlurWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void OuterEWave::showEvent(QShowEvent *)
+void OuterBlurWave::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -135,19 +135,19 @@ void OuterEWave::showEvent(QShowEvent *)
     }
 }
 
-void OuterEWave::paintEvent(QPaintEvent *)
+void OuterBlurWave::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     draw(&painter);
 }
 
-void OuterEWave::resizeEvent(QResizeEvent *e)
+void OuterBlurWave::resizeEvent(QResizeEvent *e)
 {
     double offset = 6 * e->size().width() * 0.6 / minimumWidth();
     m_cell_size.setWidth(offset < 6 ? 6 : offset);
 }
 
-void OuterEWave::process()
+void OuterBlurWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -162,6 +162,7 @@ void OuterEWave::process()
     {
         m_rows = rows;
         m_cols = cols;
+
         if(m_intern_vis_data)
         {
             delete[] m_intern_vis_data;
@@ -230,7 +231,7 @@ void OuterEWave::process()
     }
 }
 
-void OuterEWave::draw(QPainter *p)
+void OuterBlurWave::draw(QPainter *p)
 {
     Q_UNUSED(p);
     if(m_cols == 0)
@@ -274,7 +275,7 @@ void OuterEWave::draw(QPainter *p)
     m_graphics_item->setPolygon(points);
 }
 
-QPointF OuterEWave::viewToItemPoint(const QPoint &pt)
+QPointF OuterBlurWave::viewToItemPoint(const QPoint &pt)
 {
     return QPointF(m_graphics_item->mapFromScene(m_graphics_view->mapToScene(pt)));
 }

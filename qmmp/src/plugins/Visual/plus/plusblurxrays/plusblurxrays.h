@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef OUTEREWAVE_H
-#define OUTEREWAVE_H
+#ifndef PLUSBLURXRAYS_H
+#define PLUSBLURXRAYS_H
 
 #include <qmmp/visual.h>
 
@@ -27,18 +27,15 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-class QGraphicsView;
-class QGraphicsPolygonItem;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class OuterEWave : public Visual
+class PlusBlurXRays : public Visual
 {
     Q_OBJECT
 public:
-    explicit OuterEWave(QWidget *parent = nullptr);
-    virtual ~OuterEWave();
+    explicit PlusBlurXRays(QWidget *parent = nullptr);
+    virtual ~PlusBlurXRays();
 
 public slots:
     virtual void start() override;
@@ -47,33 +44,31 @@ public slots:
 private slots:
     void timeout();
     void readSettings();
+    void writeSettings();
+    void changeColor();
 
 private:
     void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
-    virtual void resizeEvent(QResizeEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
+    void blur();
     void process();
+    void drawLine(int x, int y1, int y2);
     void draw(QPainter *p);
-    QPointF viewToItemPoint(const QPoint &pt);
 
-    QColor m_color;
-    qreal m_opacity;
+    QList<QColor> m_colors;
     QTimer *m_timer;
-    double *m_intern_vis_data;
-    double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_cols, m_rows;
     bool m_running;
+    int *m_intern_vis_data, m_rows, m_cols;
+    QAction *m_screenAction;
 
-    QSize m_cell_size;
-    //
-    QGraphicsView *m_graphics_view;
-    QGraphicsPolygonItem *m_graphics_item;
-
+    int m_image_size;
+    unsigned int *m_image, *m_corner;
 };
 
 #endif

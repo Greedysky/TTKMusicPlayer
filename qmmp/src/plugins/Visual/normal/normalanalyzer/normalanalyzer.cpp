@@ -261,6 +261,7 @@ void NormalAnalyzer::process()
     {
         m_rows = rows;
         m_cols = cols;
+
         if(m_peaks)
         {
             delete[] m_peaks;

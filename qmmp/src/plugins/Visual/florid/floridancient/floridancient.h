@@ -90,7 +90,7 @@ private:
     double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_cols, m_rows;
+    int *m_x_scale, m_rows, m_cols;
     bool m_running;
 
     QSize m_cell_size;

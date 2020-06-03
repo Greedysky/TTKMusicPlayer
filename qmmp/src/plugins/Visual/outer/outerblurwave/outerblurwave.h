@@ -16,11 +16,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef NORMALHISTOGRAM_H
-#define NORMALHISTOGRAM_H
+#ifndef OUTERBLURWAVE_H
+#define OUTERBLURWAVE_H
 
 #include <qmmp/visual.h>
-#include "colorwidget.h"
 
 class QTimer;
 class QPainter;
@@ -28,15 +27,18 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
+class QGraphicsView;
+class QGraphicsPolygonItem;
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class NormalHistogram : public Visual
+class OuterBlurWave : public Visual
 {
     Q_OBJECT
 public:
-    explicit NormalHistogram(QWidget *parent = nullptr);
-    virtual ~NormalHistogram();
+    explicit OuterBlurWave(QWidget *parent = nullptr);
+    virtual ~OuterBlurWave();
 
 public slots:
     virtual void start() override;
@@ -44,37 +46,33 @@ public slots:
 
 private slots:
     void timeout();
-    void starTimeout();
     void readSettings();
-    void writeSettings();
-    void changeColor();
-    void changeStarState(bool state);
-    void changeStarColor();
 
 private:
     void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void resizeEvent(QResizeEvent *e) override;
 
     void process();
     void draw(QPainter *p);
+    QPointF viewToItemPoint(const QPoint &pt);
 
-    QList<QColor> m_colors;
-    QAction *m_screenAction;
-    QAction *m_starAction;
-    QColor m_starColor;
-    QList<StarPoint*> m_starPoints;
-    QTimer *m_timer, *m_starTimer;
+    QColor m_color;
+    qreal m_opacity;
+    QTimer *m_timer;
     double *m_intern_vis_data;
-    int *m_x_scale, m_rows, m_cols;
     double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
+    int *m_x_scale, m_rows, m_cols;
     bool m_running;
 
     QSize m_cell_size;
+
+    QGraphicsView *m_graphics_view;
+    QGraphicsPolygonItem *m_graphics_item;
 
 };
 

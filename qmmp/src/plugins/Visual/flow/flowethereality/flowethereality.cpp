@@ -164,15 +164,21 @@ void FlowEthereality::process()
         state = fft_init();
     }
 
-    m_cols = width();
-    m_rows = height();
+    const int rows = height();
+    const int cols = width();
 
-    if(m_intern_vis_data)
+    if(m_rows != rows || m_cols != cols)
     {
-        delete[] m_intern_vis_data;
-    }
+        m_rows = rows;
+        m_cols = cols;
 
-    m_intern_vis_data = new int[m_cols * 2]{0};
+        if(m_intern_vis_data)
+        {
+            delete[] m_intern_vis_data;
+        }
+
+        m_intern_vis_data = new int[m_cols * 2]{0};
+    }
 
     const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
     int pos = 0;

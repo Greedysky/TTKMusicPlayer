@@ -57,7 +57,7 @@ private:
     int m_pixPos;
     QTimer *m_timer;
     double m_vis_data;
-    int *m_x_scale, m_cols, m_rows;
+    int *m_x_scale, m_rows, m_cols;
     double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];

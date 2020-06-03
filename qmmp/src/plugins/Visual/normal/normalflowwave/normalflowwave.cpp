@@ -196,6 +196,7 @@ void NormalFlowWave::process()
     {
         m_rows = rows;
         m_cols = cols;
+
         if(m_intern_vis_data)
         {
             delete[] m_intern_vis_data;

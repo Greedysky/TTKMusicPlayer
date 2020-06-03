@@ -1,4 +1,4 @@
 
 TEMPLATE = subdirs
 
-SUBDIRS += outerrayswave outerripples outerewave
+SUBDIRS += outerrayswave outerripples outerblurwave

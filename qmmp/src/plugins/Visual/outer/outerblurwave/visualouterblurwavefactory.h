@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALOUTEREWAVEFACTORY_H
-#define VISUALOUTEREWAVEFACTORY_H
+#ifndef VISUALOUTERBLURWAVEFACTORY_H
+#define VISUALOUTERBLURWAVEFACTORY_H
 
 #include <QObject>
 #include <qmmp/visualfactory.h>
@@ -26,7 +26,7 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualOuterEWaveFactory : public QObject, public VisualFactory
+class VisualOuterBlurWaveFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")

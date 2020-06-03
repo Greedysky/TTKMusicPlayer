@@ -9,18 +9,21 @@
 
 #include "fft.h"
 #include "inlines.h"
-#include "plusxrays.h"
+#include "plusblurxrays.h"
 #include "colorwidget.h"
 
-PlusXRays::PlusXRays (QWidget *parent)
+PlusBlurXRays::PlusBlurXRays (QWidget *parent)
     : Visual(parent)
 {
     m_intern_vis_data = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
+    m_image_size = 0;
+    m_image = nullptr;
+    m_corner = nullptr;
 
-    setWindowTitle(tr("Plus XRays Widget"));
+    setWindowTitle(tr("Plus Blur XRays Widget"));
     setMinimumSize(2*300-30, 105);
 
     m_timer = new QTimer(this);
@@ -31,23 +34,23 @@ PlusXRays::PlusXRays (QWidget *parent)
     m_screenAction->setCheckable(true);
     connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 
-    m_gridAction = new QAction(tr("Grid"), this);
-    m_gridAction->setCheckable(true);
-    connect(m_gridAction, SIGNAL(triggered(bool)), this, SLOT(changeGridState(bool)));
-
     clear();
     readSettings();
 }
 
-PlusXRays::~PlusXRays()
+PlusBlurXRays::~PlusBlurXRays()
 {
     if(m_intern_vis_data)
     {
         delete[] m_intern_vis_data;
     }
+    if(m_image)
+    {
+        delete[] m_image;
+    }
 }
 
-void PlusXRays::start()
+void PlusBlurXRays::start()
 {
     m_running = true;
     if(isVisible())
@@ -56,21 +59,21 @@ void PlusXRays::start()
     }
 }
 
-void PlusXRays::stop()
+void PlusBlurXRays::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void PlusXRays::clear()
+void PlusBlurXRays::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void PlusXRays::timeout()
+void PlusBlurXRays::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -79,25 +82,23 @@ void PlusXRays::timeout()
     }
 }
 
-void PlusXRays::readSettings()
+void PlusBlurXRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("PlusXRays");
+    settings.beginGroup("PlusBlurXRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
-    m_gridAction->setChecked(settings.value("show_grid", false).toBool());
     settings.endGroup();
 }
 
-void PlusXRays::writeSettings()
+void PlusBlurXRays::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("PlusXRays");
+    settings.beginGroup("PlusBlurXRays");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
-    settings.setValue("show_grid", m_gridAction->isChecked());
     settings.endGroup();
 }
 
-void PlusXRays::changeColor()
+void PlusBlurXRays::changeColor()
 {
     ColorWidget c;
     c.setColors(m_colors);
@@ -107,18 +108,12 @@ void PlusXRays::changeColor()
     }
 }
 
-void PlusXRays::changeGridState(bool state)
-{
-    m_gridAction->setChecked(state);
-    update();
-}
-
-void PlusXRays::hideEvent(QHideEvent *)
+void PlusBlurXRays::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusXRays::showEvent(QShowEvent *)
+void PlusBlurXRays::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -126,14 +121,14 @@ void PlusXRays::showEvent(QShowEvent *)
     }
 }
 
-void PlusXRays::paintEvent(QPaintEvent *e)
+void PlusBlurXRays::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusXRays::contextMenuEvent(QContextMenuEvent *)
+void PlusBlurXRays::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
@@ -142,11 +137,30 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(m_screenAction);
     menu.addSeparator();
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
-    menu.addAction(m_gridAction);
     menu.exec(QCursor::pos());
 }
 
-void PlusXRays::process()
+void PlusBlurXRays::blur()
+{
+    for(int y = 0; y < m_rows; y ++)
+    {
+        uint32_t * p = m_corner + m_cols * y;
+        uint32_t * end = p + m_cols;
+        uint32_t * plast = p - m_cols;
+        uint32_t * pnext = p + m_cols;
+
+        /* We do a quick and dirty average of four color values, first masking
+         * off the lowest two bits.  Over a large area, this masking has the net
+         * effect of subtracting 1.5 from each value, which by a happy chance
+         * is just right for a gradual fade effect. */
+        for(; p < end; p ++)
+        {
+            *p = ((*plast ++ &0xFCFCFC) + (p[-1] & 0xFCFCFC) + (p[1] & 0xFCFCFC) + (*pnext ++ &0xFCFCFC)) >> 2;
+        }
+    }
+}
+
+void PlusBlurXRays::process()
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -168,6 +182,14 @@ void PlusXRays::process()
         }
 
         m_intern_vis_data = new int[m_cols]{0};
+
+        m_image_size = (m_cols << 2) * (m_rows + 2);
+        if(m_image)
+        {
+            delete[] m_image;
+        }
+        m_image = new unsigned int[m_image_size]{0};
+        m_corner = m_image + m_cols + 1;
     }
 
     const int step = (QMMP_VISUAL_NODE_SIZE << 8) / m_cols;
@@ -181,47 +203,54 @@ void PlusXRays::process()
     }
 }
 
-void PlusXRays::draw(QPainter *p)
+void PlusBlurXRays::drawLine(int x, int y1, int y2)
 {
-    if(m_gridAction->isChecked())
-    {
-        p->setPen(QPen(QColor(255, 255, 255, 50), 1));
-        int per = width() / 8;
-        for(int w=0; w<width(); ++w)
-        {
-            p->drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
-        }
+    int y, h;
 
-        per = height() / 8;
-        for(int h=0; h<height(); ++h)
-        {
-            p->drawLine(QPoint(0, h*per), QPoint(width(), h*per));
-        }
+    if(y1 < y2)
+    {
+        y = y1 + 1;
+        h = y2 - y1;
+    }
+    else if(y2 < y1)
+    {
+        y = y2;
+        h = y1 - y2;
+    }
+    else
+    {
+        y = y1;
+        h = 1;
     }
 
-    QLinearGradient line(0, 0, 0, height());
-    for(int i = 0; i < m_colors.count(); ++i)
+    unsigned int *p = m_corner + y * m_cols + x;
+
+    for(; h--; p += m_cols)
     {
-        line.setColorAt((i + 1) * 1.0 / m_colors.count(), m_colors[i]);
+        *p = m_colors.isEmpty() ? 0xFF3F7F : m_colors.first().rgba();
     }
-    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setPen(QPen(line, 1));
+}
+
+void PlusBlurXRays::draw(QPainter *p)
+{
+    if(m_cols == 0)
+    {
+        return;
+    }
+
+    blur();
 
     const float maxed = takeMaxRange();
+    int value = m_rows / 2 - m_intern_vis_data[0] * maxed;
+    value = qBound(0, value, m_rows - 1);
 
-    for(int i = 0; i < m_cols; ++i)
+    for(int i = 0; i < m_cols; i++)
     {
-        if((i + 1) >= m_cols)
-        {
-            break;
-        }
-
-        int pFront = m_rows / 2 - m_intern_vis_data[i] * maxed;
-        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1] * maxed;
-        if(pFront > pEnd)
-        {
-            qSwap(pFront, pEnd);
-        }
-        p->drawLine(i, pFront, i + 1, pEnd);
+        int y = m_rows / 2 - m_intern_vis_data[i] * maxed;
+        y = qBound(0, y, m_rows - 1);
+        drawLine(i, value, y);
+        value = y;
     }
+
+    p->drawImage(0, 0, QImage((unsigned char *)m_image, m_cols, m_rows, QImage::Format_RGB32));
 }
