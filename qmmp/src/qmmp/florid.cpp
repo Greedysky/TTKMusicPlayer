@@ -18,6 +18,7 @@
 
 #include "florid.h"
 
+#include <soundcore.h>
 #include <qmath.h>
 #include <QBitmap>
 #include <QPainter>
@@ -100,7 +101,7 @@ Florid::Florid(QWidget *parent)
     setMinimumSize(580, 320);
 
     m_useImage = true;
-    m_scale = false;
+    m_renderLabel = false;
     m_averageColor = QColor(255, 255, 255);
     m_gradientOn = false;
     m_roundLabel = new RoundAnimationLabel(this);
@@ -108,6 +109,7 @@ Florid::Florid(QWidget *parent)
     m_screenAction = new QAction(tr("Fullscreen"), this);
     m_screenAction->setCheckable(true);
     connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
+    connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
 Florid::~Florid()
@@ -122,8 +124,8 @@ void Florid::setPixmap(const QPixmap &pix)
         return;
     }
 
-    m_scale = false;
     m_image = pix.toImage();
+    update();
 }
 
 void Florid::start()
@@ -144,112 +146,10 @@ void Florid::stop()
     m_roundLabel->stop();
 }
 
-void Florid::gaussBlur(QImage &img, int radius)
+void Florid::mediaUrlChanged()
 {
-    int* pix = (int*)img.bits();
-    int w = img.width();
-    int h = img.height();
-    float sigma =  1.0 * radius / 2.57;
-    float deno  =  1.0 / (sigma * sqrt(2.0 * M_PI));
-    float nume  = -1.0 / (2.0 * sigma * sigma);
-
-    float* gaussMatrix = (float*)malloc(sizeof(float)* (radius + radius + 1));
-    float gaussSum = 0.0;
-    for(int i = 0, x = -radius; x <= radius; ++x, ++i)
-    {
-        float g = deno * exp(1.0 * nume * x * x);
-
-        gaussMatrix[i] = g;
-        gaussSum += g;
-    }
-
-    int len = radius + radius + 1;
-    for(int i = 0; i < len; ++i)
-    {
-        gaussMatrix[i] /= gaussSum;
-    }
-
-    int* rowData  = (int*)malloc(w * sizeof(int));
-    int* listData = (int*)malloc(h * sizeof(int));
-
-    for(int y = 0; y < h; ++y)
-    {
-        memcpy(rowData, pix + y * w, sizeof(int) * w);
-
-        for(int x = 0; x < w; ++x)
-        {
-            float r = 0, g = 0, b = 0;
-            gaussSum = 0;
-
-            for(int i = -radius; i <= radius; ++i)
-            {
-                int k = x + i;
-
-                if(0 <= k && k <= w)
-                {
-                    int color = rowData[k];
-                    int cr = (color & 0x00ff0000) >> 16;
-                    int cg = (color & 0x0000ff00) >> 8;
-                    int cb = (color & 0x000000ff);
-
-                    r += cr * gaussMatrix[i + radius];
-                    g += cg * gaussMatrix[i + radius];
-                    b += cb * gaussMatrix[i + radius];
-
-                    gaussSum += gaussMatrix[i + radius];
-                }
-            }
-
-            int cr = (int)(r / gaussSum);
-            int cg = (int)(g / gaussSum);
-            int cb = (int)(b / gaussSum);
-
-            pix[y * w + x] = cr << 16 | cg << 8 | cb | 0xff000000;
-        }
-    }
-
-    for(int x = 0; x < w; ++x)
-    {
-        for(int y = 0; y < h; ++y)
-        {
-            listData[y] = pix[y * w + x];
-        }
-
-        for(int y = 0; y < h; ++y)
-        {
-            float r = 0, g = 0, b = 0;
-            gaussSum = 0;
-
-            for(int j = -radius; j <= radius; ++j)
-            {
-                int k = y + j;
-
-                if(0 <= k && k <= h)
-                {
-                    int color = listData[k];
-                    int cr = (color & 0x00ff0000) >> 16;
-                    int cg = (color & 0x0000ff00) >> 8;
-                    int cb = (color & 0x000000ff);
-
-                    r += cr * gaussMatrix[j + radius];
-                    g += cg * gaussMatrix[j + radius];
-                    b += cb * gaussMatrix[j + radius];
-
-                    gaussSum += gaussMatrix[j + radius];
-                }
-            }
-
-            int cr = (int)(r / gaussSum);
-            int cg = (int)(g / gaussSum);
-            int cb = (int)(b / gaussSum);
-
-            pix[y * w + x] = cr << 16 | cg << 8 | cb | 0xff000000;
-        }
-    }
-
-    free(gaussMatrix);
-    free(rowData);
-    free(listData);
+    m_renderLabel = false;
+    update();
 }
 
 void Florid::reRenderImage(QColor &avg, const QImage *input)
@@ -277,49 +177,14 @@ void Florid::reRenderImage(QColor &avg, const QImage *input)
    avg.setBlue(b /= size);
 }
 
-void Florid::reRenderImage(int delta, const QImage *input, QImage *output)
+void Florid::reRenderLabel()
 {
-    for(int w=0; w<input->width(); w++)
-    {
-        for(int h=0; h<input->height(); h++)
-        {
-            const QRgb rgb = input->pixel(w, h);
-            output->setPixel(w, h, qRgb(colorBurnTransform(qRed(rgb), delta),
-                                        colorBurnTransform(qGreen(rgb), delta),
-                                        colorBurnTransform(qBlue(rgb), delta)));
-        }
-    }
-}
-
-int Florid::colorBurnTransform(int c, int delta)
-{
-    if(0 > delta || delta > 0xFF)
-    {
-        return c;
-    }
-
-    int result = (c - (int)(c*delta)/(0xFF - delta));
-    if(result > 0xFF)
-    {
-        result = 0xFF;
-    }
-    else if(result < 0)
-    {
-        result = 0;
-    }
-    return result;
-}
-
-void Florid::resizeEvent(QResizeEvent *event)
-{
-    Visual::resizeEvent(event);
-    if(!m_image.isNull() && !m_scale)
+    if(!m_image.isNull() && !m_renderLabel)
     {
         reRenderImage(m_averageColor, &m_image);
+
         m_roundLabel->setPixmap(QPixmap::fromImage(m_image));
-        reRenderImage(50, &m_image, &m_image);
-        gaussBlur(m_image, 50);
-        m_scale = true;
+        m_renderLabel = true;
     }
 }
 
@@ -330,6 +195,7 @@ void Florid::paintEvent(QPaintEvent *)
     {
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
         painter.drawImage(0, 0, m_image.scaled(size()));
+        painter.fillRect(rect(), QColor(150, 150, 150, 150));
 
         const QPoint &pt = rect().center();
         if(m_gradientOn)
@@ -344,6 +210,8 @@ void Florid::paintEvent(QPaintEvent *)
             painter.setBrush(gradient);
             painter.drawEllipse(pt.x() - length, pt.y() - length, 2 * length, 2 * length);
         }
+
+        reRenderLabel();
         m_roundLabel->setGeometry(pt.x() - DISTANCE, pt.y() - DISTANCE, 2 * DISTANCE, 2 * DISTANCE);
     }
     else
