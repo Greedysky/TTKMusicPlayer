@@ -174,7 +174,8 @@ MusicSpectrumPlusLayoutWidget::MusicSpectrumPlusLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/plus_1", tr("FoldWave"));
     items << ItemInfo(":/spectrum/plus_2", tr("SpaceWave"));
     items << ItemInfo(":/spectrum/plus_3", tr("XRays"));
-    items << ItemInfo(":/spectrum/plus_4", tr("VolumeWave"));
+    items << ItemInfo(":/spectrum/plus_4", tr("BlurXRays"));
+    items << ItemInfo(":/spectrum/plus_5", tr("VolumeWave"));
     addItems(items);
 }
 
@@ -185,7 +186,7 @@ MusicSpectrumPlusLayoutWidget::~MusicSpectrumPlusLayoutWidget()
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "plusfoldwave" << "plusspacewave" << "plusxrays" << "plusvolumewave";
+    return QStringList() << "plusfoldwave" << "plusspacewave" << "plusxrays" << "plusblurxrays" << "plusvolumewave";
 }
 
 

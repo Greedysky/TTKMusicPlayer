@@ -98,7 +98,7 @@ void MusicUtils::QMMP::showEffectSetting(const QString &name, QWidget *parent)
 void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("OuterEWave");
+    settings.beginGroup("OuterBlurWave");
 
     QString colors = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
     settings.setValue("colors", colors.remove(";"));

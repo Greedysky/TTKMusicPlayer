@@ -111,6 +111,10 @@ Q_SIGNALS:
      * Search current music song from net.
      */
     void musicSearchButtonClicked();
+    /*!
+     * Background pixmap data changed.
+     */
+    void backgroundPixmapChanged(const QPixmap &pix);
 
 public Q_SLOTS:
     /*!

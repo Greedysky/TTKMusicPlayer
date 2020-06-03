@@ -84,12 +84,12 @@ public:
      * Destructor.
      */
     virtual ~Florid();
-     /*!
-     * Set background pixmap.
-     */
-    void setPixmap(const QPixmap &pix);
 
 public slots:
+    /*!
+    * Set background pixmap.
+    */
+   void setPixmap(const QPixmap &pix);
     /*!
      * Starts visualization.
      */
@@ -99,31 +99,32 @@ public slots:
      */
     virtual void stop() override;
 
-protected:
-    /*!
-    * Gauss Blur.
+private slots:
+   /*!
+    * Current media url changed.
     */
-    void gaussBlur(QImage &img, int radius);
+   void mediaUrlChanged();
+
+protected:
     /*!
     * Rerender the image by color burn transform.
     */
     void reRenderImage(QColor &avg, const QImage *input);
     /*!
-    * Rerender the image by color burn transform.
+    * Rerender the image label.
     */
-    void reRenderImage(int delta, const QImage *input, QImage *output);
+    void reRenderLabel();
     /*!
      * Image color burn transform.
      */
     int colorBurnTransform(int c, int delta);
 
-    virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 protected:
     QImage m_image;
-    bool m_useImage, m_scale;
+    bool m_useImage, m_renderLabel;
     QColor m_averageColor;
     bool m_gradientOn;
     RoundAnimationLabel *m_roundLabel;

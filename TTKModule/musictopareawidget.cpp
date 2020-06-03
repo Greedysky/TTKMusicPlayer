@@ -474,6 +474,8 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     paint.end();
 
     Q_EMIT setTransparent(m_backgroundAListlpha);
+    Q_EMIT backgroundPixmapChanged(after);
+
     m_ui->background->setPixmap(after);
 }
 

@@ -278,11 +278,14 @@ void MusicSpectrumWidget::createModuleWidget(bool &state, const QString &name, Q
         MusicSpectrum sp;
         sp.m_name = name;
         sp.m_obj = vs->last();
-        TTKStatic_cast(Florid*, sp.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+
         layout->addWidget(sp.m_obj);
         m_types << sp;
         sp.m_obj->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+
+        TTKStatic_cast(Florid*, sp.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
         connect(sp.m_obj, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
+        connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), sp.m_obj, SLOT(setPixmap(QPixmap)));
     }
     else
     {
