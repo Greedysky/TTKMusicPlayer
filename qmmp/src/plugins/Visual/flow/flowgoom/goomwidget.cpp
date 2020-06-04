@@ -15,17 +15,12 @@ GoomWidget::GoomWidget(QWidget *parent)
 {
     m_useImage = false;
     m_update = false;
-    m_goom = 0;
+    m_goom = nullptr;
     m_fps = 25;
-    m_running = false;
 
     setWindowTitle("Flow Goom Widget");
     setMinimumSize(150,150);
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
-
-    clear();
     createMenu();
     readSettings();
 }
@@ -36,47 +31,7 @@ GoomWidget::~GoomWidget()
     {
         goom_close(m_goom);
     }
-    m_goom = 0;
-}
-
-void GoomWidget::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void GoomWidget::stop()
-{
-    m_running = false;
-    m_timer->stop();
-}
-
-void GoomWidget::timeout()
-{
-    if(m_image.size() != size() || !m_goom)
-    {
-        if(!m_goom)
-        {
-            m_goom = goom_init(width(), height());
-        }
-        m_image = QImage(size(), QImage::Format_RGB32);
-        goom_set_resolution(m_goom, width(), height());
-        goom_set_screenbuffer(m_goom, m_image.bits());
-    }
-
-    if(takeData(m_buf[0], m_buf[1]))
-    {
-        for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; i++)
-        {
-            m_out[0][i] = m_buf[0][i] * 32767.0;
-            m_out[1][i] = m_buf[1][i] * 32767.0;
-        }
-        goom_update(m_goom, m_out, 0, m_fps);
-        update();
-    }
+    m_goom = nullptr;
 }
 
 void GoomWidget::readSettings()
@@ -110,18 +65,15 @@ void GoomWidget::writeSettings()
     settings.endGroup();
 }
 
-void GoomWidget::hideEvent(QHideEvent *)
+void GoomWidget::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
-    clear();
+    Florid::hideEvent(e);
+    clearImage();
 }
 
-void GoomWidget::showEvent(QShowEvent *)
+void GoomWidget::showEvent(QShowEvent *e)
 {
-    if(m_running)
-    {
-        m_timer->start();
-    }
+    Florid::showEvent(e);
 }
 
 void GoomWidget::paintEvent(QPaintEvent *)
@@ -138,7 +90,29 @@ void GoomWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void GoomWidget::clear()
+void GoomWidget::process(float *left, float *right)
+{
+    if(m_image.size() != size() || !m_goom)
+    {
+        if(!m_goom)
+        {
+            m_goom = goom_init(width(), height());
+        }
+
+        m_image = QImage(size(), QImage::Format_RGB32);
+        goom_set_resolution(m_goom, width(), height());
+        goom_set_screenbuffer(m_goom, m_image.bits());
+    }
+
+    for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; i++)
+    {
+        left[i] = left[i] * 32767.0;
+        right[i] = right[i] * 32767.0;
+    }
+    goom_update(m_goom, m_out, 0, m_fps);
+}
+
+void GoomWidget::clearImage()
 {
     m_image.fill(Qt::black);
     update();

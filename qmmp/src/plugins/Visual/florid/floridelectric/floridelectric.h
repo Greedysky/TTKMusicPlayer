@@ -21,12 +21,6 @@
 
 #include <qmmp/florid.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
 class QPropertyAnimation;
 
 /*!
@@ -42,7 +36,7 @@ public:
     void start();
     void setColor(const QColor &color);
 
-protected Q_SLOTS:
+protected slots:
     void timeout();
     void finished();
     void posValueChanged(const QVariant &value);
@@ -72,7 +66,7 @@ public:
     void start();
     void setColor(const QColor &color);
 
-protected Q_SLOTS:
+protected slots:
     void timeout();
     void finished();
     void sizeValueChanged(const QVariant &value);
@@ -122,19 +116,11 @@ public slots:
     virtual void start() override;
     virtual void stop() override;
 
-private slots:
-    void timeout();
-
 private:
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
-    QTimer *m_timer;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    bool m_running;
+    virtual void process(float *left, float *right) override;
 
     ElectricLabel* m_label;
 

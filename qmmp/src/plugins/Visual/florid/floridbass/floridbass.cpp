@@ -7,79 +7,15 @@ FloridBass::FloridBass(QWidget *parent)
     : Florid(parent)
 {
     m_gradientOn = true;
-    m_intern_vis_data = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     setWindowTitle(tr("Florid Bass Widget"));
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_timer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
-
-    clear();
 }
 
 FloridBass::~FloridBass()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
-}
 
-void FloridBass::start()
-{
-    Florid::start();
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void FloridBass::stop()
-{
-    Florid::stop();
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void FloridBass::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void FloridBass::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        Florid::start();
-        process();
-        update();
-    }
-    else
-    {
-        Florid::stop();
-    }
-}
-
-void FloridBass::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void FloridBass::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
 }
 
 void FloridBass::paintEvent(QPaintEvent *e)
@@ -89,7 +25,7 @@ void FloridBass::paintEvent(QPaintEvent *e)
     draw(&painter);
 }
 
-void FloridBass::process()
+void FloridBass::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -119,7 +55,7 @@ void FloridBass::process()
     for(int i = 0; i < m_cols * 2; ++i)
     {
         pos += step;
-        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows / 2);
+        m_intern_vis_data[i] = int(left[pos >> 8] * m_rows / 2);
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
         m_intern_vis_data[m_cols * 2 - i - 1] = m_intern_vis_data[i];
     }
@@ -141,6 +77,7 @@ void FloridBass::draw(QPainter *p)
     {
         p->save();
         p->rotate(startAngle);
+
         int value1 = m_intern_vis_data[i];
         int value2 = m_intern_vis_data[i + 1];
         if(value1 > value2)

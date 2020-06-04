@@ -104,22 +104,12 @@ FloridAncient::FloridAncient(QWidget *parent)
     : Florid(parent)
 {
     m_gradientOn = true;
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     setWindowTitle(tr("Florid Ancient Widget"));
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_cell_size = QSize(6, 2);
-
-    clear();
 
     for(int i=0; i<ANIMATION_SIZE; ++i)
     {
@@ -130,10 +120,6 @@ FloridAncient::FloridAncient(QWidget *parent)
 
 FloridAncient::~FloridAncient()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -143,12 +129,6 @@ FloridAncient::~FloridAncient()
 void FloridAncient::start()
 {
     Florid::start();
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-
     for(int i=0; i<m_labels.size(); ++i)
     {
         m_labels[i]->start();
@@ -158,48 +138,6 @@ void FloridAncient::start()
 void FloridAncient::stop()
 {
     Florid::stop();
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void FloridAncient::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void FloridAncient::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        for(int i=0; i<m_labels.size(); ++i)
-        {
-            m_labels[i]->setColor(m_averageColor);
-        }
-
-        Florid::start();
-        process();
-        update();
-    }
-    else
-    {
-        Florid::stop();
-    }
-}
-
-void FloridAncient::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void FloridAncient::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
 }
 
 void FloridAncient::paintEvent(QPaintEvent *e)
@@ -219,8 +157,13 @@ void FloridAncient::resizeEvent(QResizeEvent *e)
     m_roundLabel->raise();
 }
 
-void FloridAncient::process()
+void FloridAncient::process(float *left, float *)
 {
+    for(int i=0; i<m_labels.size(); ++i)
+    {
+        m_labels[i]->setColor(m_averageColor);
+    }
+    //
     static fft_state *state = nullptr;
     if(!state)
     {
@@ -245,7 +188,7 @@ void FloridAncient::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols]{0};
+        m_intern_vis_data = new int[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -258,7 +201,7 @@ void FloridAncient::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)

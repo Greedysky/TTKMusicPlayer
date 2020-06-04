@@ -1,4 +1,3 @@
-#include <QTimer>
 #include <QPainter>
 #include <QPaintEvent>
 #include <math.h>
@@ -14,77 +13,18 @@ OuterRipples::OuterRipples(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose, false);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_cell_size = QSize(15, 6);
 
     setWindowTitle(tr("Outer Ripples Widget"));
-
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    clear();
 }
 
 OuterRipples::~OuterRipples()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
-    }
-}
-
-void OuterRipples::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void OuterRipples::stop()
-{
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void OuterRipples::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void OuterRipples::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
-}
-
-void OuterRipples::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void OuterRipples::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
     }
 }
 
@@ -94,7 +34,7 @@ void OuterRipples::paintEvent(QPaintEvent *)
     draw(&painter);
 }
 
-void OuterRipples::process()
+void OuterRipples::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -120,7 +60,7 @@ void OuterRipples::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols]{0};
+        m_intern_vis_data = new int[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -133,7 +73,7 @@ void OuterRipples::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)

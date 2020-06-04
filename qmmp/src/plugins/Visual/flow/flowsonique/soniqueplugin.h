@@ -19,7 +19,6 @@
 #ifndef SONIQUEPLUGIN_H
 #define SONIQUEPLUGIN_H
 
-#include <QTimer>
 #include <qmmp/florid.h>
 
 class SoniqueWidget;
@@ -34,24 +33,12 @@ public:
     explicit SoniquePlugin(QWidget *parent = nullptr);
     virtual ~SoniquePlugin();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
 private:
-    virtual void showEvent(QShowEvent *) override;
-    virtual void hideEvent(QHideEvent *) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override;
 
-    QTimer *m_timer;
-    SoniqueWidget *m_soniqueWidget;
-    bool m_running;
+    virtual void process(float *left, float *right) override;
 
-    float m_left[QMMP_VISUAL_NODE_SIZE];
-    float m_right[QMMP_VISUAL_NODE_SIZE];
+    SoniqueWidget *m_soniqueWidget;
 
 };
 

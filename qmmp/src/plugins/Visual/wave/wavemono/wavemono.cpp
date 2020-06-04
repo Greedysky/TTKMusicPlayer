@@ -54,6 +54,7 @@ void WaveMono::process(float *left, float *)
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;

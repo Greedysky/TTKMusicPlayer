@@ -1,4 +1,3 @@
-#include <QTimer>
 #include <QPainter>
 #include <QMenu>
 #include <QPaintEvent>
@@ -12,87 +11,29 @@
 PlusSpaceWave::PlusSpaceWave(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_intern_ray_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
     m_analyzer_falloff = 1.2;
     m_cell_size = QSize(3, 2);
 
     setWindowTitle(tr("Plus SpaceWave Widget"));
     setMinimumSize(2*300-30, 105);
 
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_screenAction = new QAction(tr("Fullscreen"), this);
     m_screenAction->setCheckable(true);
     connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
-
-    clear();
 }
 
 PlusSpaceWave::~PlusSpaceWave()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_intern_ray_data)
     {
         delete[] m_intern_ray_data;
     }
+
     if(m_x_scale)
     {
         delete[] m_x_scale;
-    }
-}
-
-void PlusSpaceWave::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void PlusSpaceWave::stop()
-{
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void PlusSpaceWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void PlusSpaceWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
-}
-
-void PlusSpaceWave::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void PlusSpaceWave::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
     }
 }
 
@@ -106,12 +47,11 @@ void PlusSpaceWave::paintEvent(QPaintEvent *e)
 void PlusSpaceWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-
     menu.addAction(m_screenAction);
     menu.exec(QCursor::pos());
 }
 
-void PlusSpaceWave::process()
+void PlusSpaceWave::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -142,7 +82,7 @@ void PlusSpaceWave::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols]{0};
+        m_intern_vis_data = new int[m_cols]{0};
         m_intern_ray_data = new int[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
@@ -156,7 +96,7 @@ void PlusSpaceWave::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)
@@ -192,7 +132,7 @@ void PlusSpaceWave::process()
     for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
-        m_intern_ray_data[i] = int(m_left_buffer[pos >> 8] * m_rows / 2);
+        m_intern_ray_data[i] = int(left[pos >> 8] * m_rows / 2);
         m_intern_ray_data[i] = qBound(-m_rows / 2, m_intern_ray_data[i], m_rows / 2);
     }
 }
@@ -231,6 +171,7 @@ void PlusSpaceWave::draw(QPainter *p)
     ray_line.setColorAt(1.0 * 5 / 7, QColor(255, 64, 59));
     ray_line.setColorAt(1.0 * 7 / 7, QColor(255, 64, 59));
     p->setPen(QPen(ray_line, 2));
+
     for(int i = 0; i < m_cols; ++i)
     {
         x = i * m_cell_size.width() + 1;
@@ -241,10 +182,12 @@ void PlusSpaceWave::draw(QPainter *p)
 
         int pFront = m_rows - m_intern_ray_data[i] * maxed;
         int pEnd = m_rows - m_intern_ray_data[i + 1] * maxed;
+
         if(pFront > pEnd)
         {
             qSwap(pFront, pEnd);
         }
+
         p->drawLine(x, pFront, x + 1, pEnd);
     }
 }

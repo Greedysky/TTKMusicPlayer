@@ -114,6 +114,10 @@ protected:
     * Rerender the image label.
     */
     void reRenderLabel();
+    /*!
+     * UnProcess current visual data.
+     */
+    virtual void unprocess();
 
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

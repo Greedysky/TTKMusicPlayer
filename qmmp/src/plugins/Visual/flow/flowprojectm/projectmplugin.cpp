@@ -7,7 +7,6 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     : Florid(parent)
 {
     m_useImage = false;
-    m_running = false;
 
     setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
     setWindowTitle(tr("Flow ProjectM Widget"));
@@ -18,63 +17,11 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
     layout->addWidget(m_projectMWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
-
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
 
 ProjectMPlugin::~ProjectMPlugin()
 {
-}
 
-void ProjectMPlugin::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void ProjectMPlugin::stop()
-{
-    m_running = false;
-    m_timer->stop();
-}
-
-void ProjectMPlugin::timeout()
-{
-    projectM *instance = m_projectMWidget->projectMInstance();
-    if(!instance)
-    {
-        return;
-    }
-
-    if(takeData(m_left, m_right))
-    {
-        for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; i++)
-        {
-            m_buf[0][i] = m_left[i] * 32767.0;
-            m_buf[1][i] = m_right[i] * 32767.0;
-        }
-
-        m_projectMWidget->projectMInstance()->pcm()->addPCM16(m_buf);
-        m_projectMWidget->update();
-    }
-}
-
-void ProjectMPlugin::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
-}
-
-void ProjectMPlugin::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
 }
 
 void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
@@ -86,4 +33,23 @@ void ProjectMPlugin::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("&Previous Preset"), m_projectMWidget, SLOT(previousPreset()), tr("P"));
     menu.addAction(tr("&Random Preset"), m_projectMWidget, SLOT(randomPreset()), tr("R"));
     menu.exec(QCursor::pos());
+}
+
+void ProjectMPlugin::process(float *left, float *right)
+{
+    projectM *instance = m_projectMWidget->projectMInstance();
+    if(!instance)
+    {
+        return;
+    }
+
+    short buf[2][QMMP_VISUAL_NODE_SIZE];
+    for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; i++)
+    {
+        buf[0][i] = left[i] * 32767.0;
+        buf[1][i] = right[i] * 32767.0;
+    }
+
+    m_projectMWidget->projectMInstance()->pcm()->addPCM16(buf);
+    m_projectMWidget->update();
 }

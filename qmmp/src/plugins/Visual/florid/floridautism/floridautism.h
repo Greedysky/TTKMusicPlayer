@@ -21,12 +21,6 @@
 
 #include <qmmp/florid.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -40,7 +34,7 @@ public:
     void start(const QPoint &pos);
     void setColor(const QColor &color);
 
-protected Q_SLOTS:
+protected slots:
     void updateRender();
 
 protected:
@@ -64,24 +58,13 @@ public:
     explicit FloridAutism(QWidget *parent = nullptr);
     virtual ~FloridAutism();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
 private:
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
+    virtual void process(float *left, float *right) override;
+
     int m_index;
-    QTimer *m_timer;
-    bool m_running;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
     QList<AutismLabel*> m_labels;
 
 };

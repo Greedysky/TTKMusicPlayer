@@ -103,7 +103,6 @@ void PlusBlurXRays::process(float *left, float *)
         }
 
         m_intern_vis_data = new int[m_cols]{0};
-
         m_image_size = (m_cols << 2) * (m_rows + 2);
 
         if(m_image)

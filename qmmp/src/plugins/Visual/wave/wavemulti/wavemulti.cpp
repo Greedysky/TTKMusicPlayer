@@ -115,6 +115,7 @@ void WaveMulti::draw(QPainter *p)
             m_pixPos = m_cols - 1;
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
+
         for(int i=0; i<m_vis_data * maxed / 2; ++i)
         {
             int r = qMin(0x5f + i*3, 0xff);

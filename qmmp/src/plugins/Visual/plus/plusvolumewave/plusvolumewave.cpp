@@ -1,4 +1,3 @@
-#include <QTimer>
 #include <QPainter>
 #include <QMenu>
 #include <QPaintEvent>
@@ -13,81 +12,22 @@
 PlusVolumeWave::PlusVolumeWave(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
+    m_analyzer_falloff = 1.2;
 
     setWindowTitle(tr("Plus VolumeWave Widget"));
     setMinimumSize(2*300-30, 105);
 
-    m_analyzer_falloff = 1.2;
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_screenAction = new QAction(tr("Fullscreen"), this);
     m_screenAction->setCheckable(true);
     connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
-
-    clear();
 }
 
 PlusVolumeWave::~PlusVolumeWave()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
-    }
-}
-
-void PlusVolumeWave::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void PlusVolumeWave::stop()
-{
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void PlusVolumeWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void PlusVolumeWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
-}
-
-void PlusVolumeWave::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void PlusVolumeWave::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
     }
 }
 
@@ -101,12 +41,11 @@ void PlusVolumeWave::paintEvent(QPaintEvent *e)
 void PlusVolumeWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-
     menu.addAction(m_screenAction);
     menu.exec(QCursor::pos());
 }
 
-void PlusVolumeWave::process()
+void PlusVolumeWave::process(float *left, float *right)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -126,12 +65,13 @@ void PlusVolumeWave::process()
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[2]{0};
+        m_intern_vis_data = new int[2]{0};
         m_x_scale = new int[2]{0};
 
         for(int i = 0; i < 2; ++i)
@@ -145,8 +85,8 @@ void PlusVolumeWave::process()
     short yl, yr;
     int k, magnitude_l, magnitude_r;
 
-    calc_freq(dest_l, m_left_buffer);
-    calc_freq(dest_r, m_right_buffer);
+    calc_freq(dest_l, left);
+    calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -158,6 +98,7 @@ void PlusVolumeWave::process()
         yl = dest_l[0];
         yr = dest_r[0];
     }
+
     for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
     {
         yl = qMax(dest_l[k], yl);
@@ -172,6 +113,7 @@ void PlusVolumeWave::process()
         magnitude_l = int(log(yl) * y_scale);
         magnitude_l = qBound(0, magnitude_l, m_rows);
     }
+
     if(yr)
     {
         magnitude_r = int(log(yr) * y_scale);

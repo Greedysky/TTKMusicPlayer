@@ -15,13 +15,9 @@
 NormalAnalyzer::NormalAnalyzer(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_peaks = nullptr;
     m_x_scale = nullptr;
-    m_rows = 0;
-    m_cols = 0;
     m_update = false;
-    m_running = false;
 
     for(int i=0; i<50; ++i)
     {
@@ -30,9 +26,6 @@ NormalAnalyzer::NormalAnalyzer(QWidget *parent)
 
     setWindowTitle(tr("Normal Analyzer Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
@@ -44,7 +37,6 @@ NormalAnalyzer::NormalAnalyzer(QWidget *parent)
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(15, 6);
 
-    clear();
     createMenu();
     readSettings();
 }
@@ -56,10 +48,7 @@ NormalAnalyzer::~NormalAnalyzer()
     {
         delete[] m_peaks;
     }
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
+
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -68,36 +57,17 @@ NormalAnalyzer::~NormalAnalyzer()
 
 void NormalAnalyzer::start()
 {
-    m_running = true;
+    Visual::start();
     if(isVisible())
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
 
 void NormalAnalyzer::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    Visual::stop();
     m_starTimer->stop();
-    clear();
-}
-
-void NormalAnalyzer::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void NormalAnalyzer::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
 }
 
 void NormalAnalyzer::starTimeout()
@@ -134,6 +104,7 @@ void NormalAnalyzer::readSettings()
                 act->setChecked(true);
             }
         }
+
         foreach(QAction *act, m_peaksFalloffGroup->actions())
         {
             if(m_peaks_falloff == act->data().toDouble())
@@ -141,6 +112,7 @@ void NormalAnalyzer::readSettings()
                 act->setChecked(true);
             }
         }
+
         foreach(QAction *act, m_analyzerFalloffGroup->actions())
         {
             if(m_analyzer_falloff == act->data().toDouble())
@@ -155,11 +127,13 @@ void NormalAnalyzer::readSettings()
             m_fpsGroup->actions().at(1)->setChecked(true);
             m_timer->setInterval(QMMP_VISUAL_INTERVAL);
         }
+
         if(!m_peaksFalloffGroup->checkedAction())
         {
             m_peaksFalloffGroup->actions().at(1)->setChecked(2);
             m_peaks_falloff = 0.2;
         }
+
         if(!m_peaksFalloffGroup->checkedAction())
         {
             m_peaksFalloffGroup->actions().at(1)->setChecked(2);
@@ -216,17 +190,17 @@ void NormalAnalyzer::changeStarColor()
     }
 }
 
-void NormalAnalyzer::hideEvent(QHideEvent *)
+void NormalAnalyzer::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
+    Visual::hideEvent(e);
     m_starTimer->stop();
 }
 
-void NormalAnalyzer::showEvent(QShowEvent *)
+void NormalAnalyzer::showEvent(QShowEvent *e)
 {
+    Visual::showEvent(e);
     if(m_running)
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
@@ -246,7 +220,7 @@ void NormalAnalyzer::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void NormalAnalyzer::process()
+void NormalAnalyzer::process(float *left, float *right)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -266,17 +240,19 @@ void NormalAnalyzer::process()
         {
             delete[] m_peaks;
         }
+
         if(m_intern_vis_data)
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
 
         m_peaks = new double[m_cols * 2]{0};
-        m_intern_vis_data = new double[m_cols * 2]{0};
+        m_intern_vis_data = new int[m_cols * 2]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -290,8 +266,8 @@ void NormalAnalyzer::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq(dest_l, m_left_buffer);
-    calc_freq(dest_r, m_right_buffer);
+    calc_freq(dest_l, left);
+    calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -306,6 +282,7 @@ void NormalAnalyzer::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
@@ -320,6 +297,7 @@ void NormalAnalyzer::process()
             magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
+
         if(yr)
         {
             magnitude_r = int(log(yr) * y_scale);

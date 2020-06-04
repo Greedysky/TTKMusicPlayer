@@ -14,11 +14,7 @@
 NormalEWave::NormalEWave(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     for(int i=0; i<50; ++i)
     {
@@ -28,9 +24,6 @@ NormalEWave::NormalEWave(QWidget *parent)
     setWindowTitle(tr("Normal EWave Widget"));
     setMinimumSize(2*300-30, 105);
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
 
@@ -39,21 +32,15 @@ NormalEWave::NormalEWave(QWidget *parent)
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
 
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(6, 2);
 
-    clear();
     readSettings();
 }
 
 NormalEWave::~NormalEWave()
 {
     qDeleteAll(m_starPoints);
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -62,36 +49,17 @@ NormalEWave::~NormalEWave()
 
 void NormalEWave::start()
 {
-    m_running = true;
+    Visual::start();
     if(isVisible())
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
 
 void NormalEWave::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    Visual::stop();
     m_starTimer->stop();
-    clear();
-}
-
-void NormalEWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void NormalEWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
 }
 
 void NormalEWave::starTimeout()
@@ -154,17 +122,17 @@ void NormalEWave::changeStarColor()
     }
 }
 
-void NormalEWave::hideEvent(QHideEvent *)
+void NormalEWave::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
+    Visual::hideEvent(e);
     m_starTimer->stop();
 }
 
-void NormalEWave::showEvent(QShowEvent *)
+void NormalEWave::showEvent(QShowEvent *e)
 {
+    Visual::showEvent(e);
     if(m_running)
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
@@ -188,7 +156,7 @@ void NormalEWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalEWave::process()
+void NormalEWave::process(float *left, float *right)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -208,12 +176,13 @@ void NormalEWave::process()
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols * 2]{0};
+        m_intern_vis_data = new int[m_cols * 2]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -227,8 +196,8 @@ void NormalEWave::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq(dest_l, m_left_buffer);
-    calc_freq(dest_r, m_right_buffer);
+    calc_freq(dest_l, left);
+    calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -243,6 +212,7 @@ void NormalEWave::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
@@ -257,6 +227,7 @@ void NormalEWave::process()
             magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
+
         if(yr)
         {
             magnitude_r = int(log(yr) * y_scale);

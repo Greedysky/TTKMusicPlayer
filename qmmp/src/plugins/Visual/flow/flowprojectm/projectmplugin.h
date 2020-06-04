@@ -19,7 +19,6 @@
 #ifndef PROJECTMPLUGIN_H
 #define PROJECTMPLUGIN_H
 
-#include <QTimer>
 #include <qmmp/florid.h>
 
 class ProjectMWidget;
@@ -34,25 +33,12 @@ public:
     explicit ProjectMPlugin(QWidget *parent = nullptr);
     virtual ~ProjectMPlugin();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
 private:
-    virtual void showEvent(QShowEvent *) override;
-    virtual void hideEvent(QHideEvent *) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override;
 
-    QTimer *m_timer;
-    ProjectMWidget *m_projectMWidget;
-    bool m_running;
+    virtual void process(float *left, float *right) override;
 
-    short m_buf[2][QMMP_VISUAL_NODE_SIZE];
-    float m_left[QMMP_VISUAL_NODE_SIZE];
-    float m_right[QMMP_VISUAL_NODE_SIZE];
+    ProjectMWidget *m_projectMWidget;
 
 };
 

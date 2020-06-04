@@ -114,6 +114,10 @@ public slots:
      */
     virtual void stop();
     /*!
+     * Update current visual data.
+     */
+    void updateVisual();
+    /*!
      * Menu fullscreen changed.
      */
     void changeFullScreen(bool state);
@@ -157,13 +161,13 @@ protected:
      */
     virtual void process(float *left, float *right) = 0;
     /*!
+     * UnProcess current visual data.
+     */
+    virtual void unprocess();
+    /*!
      * Take visual maxed value range.
      */
     float takeMaxRange() const;
-    /*!
-     * Update current visual data.
-     */
-    void updateVisual();
     /*!
      * Clear current visual data.
      */

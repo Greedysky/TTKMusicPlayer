@@ -62,7 +62,7 @@ void PlusFoldWave::start()
 
 void PlusFoldWave::stop()
 {
-    Visual::start();
+    Visual::stop();
     m_starTimer->stop();
 }
 
@@ -182,12 +182,13 @@ void PlusFoldWave::process(float *left, float *right)
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols * 2]{0};
+        m_intern_vis_data = new int[m_cols * 2]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -232,6 +233,7 @@ void PlusFoldWave::process(float *left, float *right)
             magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
+
         if(yr)
         {
             magnitude_r = int(log(yr) * y_scale);

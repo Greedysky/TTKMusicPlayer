@@ -22,14 +22,8 @@
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 
-class QTimer;
 class QMenu;
-class QAction;
 class QActionGroup;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -46,7 +40,6 @@ public slots:
     virtual void stop() override;
 
 private slots:
-    void timeout();
     void starTimeout();
     void readSettings();
     void writeSettings();
@@ -55,26 +48,24 @@ private slots:
     void changeStarColor();
 
 private:
-    void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void mousePressEvent(QMouseEvent *e) override;
 
-    void process();
+    virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
+
     void createMenu();
 
     QAction *m_starAction;
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;
-    QTimer *m_timer, *m_starTimer;
-    double *m_intern_vis_data, *m_peaks;
+    QTimer *m_starTimer;
+    double *m_peaks;
     double m_peaks_falloff, m_analyzer_falloff;
-    bool m_show_peaks, m_update, m_running;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int *m_x_scale, m_rows, m_cols;
+    bool m_show_peaks, m_update;
+    int *m_x_scale;
 
     QList<QColor> m_colors;
     QSize m_cell_size;

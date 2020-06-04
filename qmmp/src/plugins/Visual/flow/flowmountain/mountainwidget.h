@@ -21,7 +21,6 @@
 
 #include <QGLWidget>
 
-
 #define NUM_BANDS 32
 #define DB_RANGE 40
 #define BAR_SPACING (3.2f / NUM_BANDS)

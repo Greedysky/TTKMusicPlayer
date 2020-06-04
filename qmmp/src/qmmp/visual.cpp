@@ -110,6 +110,12 @@ bool Visual::takeData(float *left, float *right)
     return node != nullptr;
 }
 
+void Visual::unprocess()
+{
+    m_running = false;
+    m_timer->stop();
+}
+
 float Visual::takeMaxRange() const
 {
     if(!SoundCore::instance())
@@ -118,18 +124,6 @@ float Visual::takeMaxRange() const
     }
 
     return SoundCore::instance()->volume() * 1.0 / 100;
-}
-
-void Visual::updateVisual()
-{
-    float left[QMMP_VISUAL_NODE_SIZE];
-    float right[QMMP_VISUAL_NODE_SIZE];
-
-    if(takeData(left, right))
-    {
-        process(left, right);
-        update();
-    }
 }
 
 void Visual::clear()
@@ -267,9 +261,24 @@ void Visual::start()
 
 void Visual::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    unprocess();
     clear();
+}
+
+void Visual::updateVisual()
+{
+    float left[QMMP_VISUAL_NODE_SIZE];
+    float right[QMMP_VISUAL_NODE_SIZE];
+
+    if(takeData(left, right))
+    {
+        process(left, right);
+        update();
+    }
+    else
+    {
+        unprocess();
+    }
 }
 
 void Visual::changeFullScreen(bool state)

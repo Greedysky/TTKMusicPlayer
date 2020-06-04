@@ -27,23 +27,13 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
 
     m_color = QColor(0x0, 0xff, 0xff);
     m_opacity = 1.0;
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     setWindowTitle(tr("Outer BlurWave Widget"));
     setMinimumWidth(2*300-30);
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_cell_size = QSize(6, 2);
-
-    clear();
 
     m_graphics_view = new QGraphicsView(this);
     m_graphics_view->setStyleSheet("background: transparent; border:0px");
@@ -69,10 +59,6 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
 
 OuterBlurWave::~OuterBlurWave()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -81,36 +67,14 @@ OuterBlurWave::~OuterBlurWave()
 
 void OuterBlurWave::start()
 {
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
+    Visual::start();
     //load last color settings
     readSettings();
 }
 
 void OuterBlurWave::stop()
 {
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void OuterBlurWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void OuterBlurWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
+    Visual::stop();
 }
 
 void OuterBlurWave::readSettings()
@@ -120,19 +84,6 @@ void OuterBlurWave::readSettings()
     m_color = ColorWidget::readSingleColorConfig(settings.value("colors").toString());
     m_opacity = settings.value("opacity").toDouble();
     settings.endGroup();
-}
-
-void OuterBlurWave::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void OuterBlurWave::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
 }
 
 void OuterBlurWave::paintEvent(QPaintEvent *)
@@ -147,7 +98,7 @@ void OuterBlurWave::resizeEvent(QResizeEvent *e)
     m_cell_size.setWidth(offset < 6 ? 6 : offset);
 }
 
-void OuterBlurWave::process()
+void OuterBlurWave::process(float *left, float *right)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -167,12 +118,13 @@ void OuterBlurWave::process()
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols * 2]{0};
+        m_intern_vis_data = new int[m_cols * 2]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -186,8 +138,8 @@ void OuterBlurWave::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq(dest_l, m_left_buffer);
-    calc_freq(dest_r, m_right_buffer);
+    calc_freq(dest_l, left);
+    calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -202,6 +154,7 @@ void OuterBlurWave::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
@@ -216,6 +169,7 @@ void OuterBlurWave::process()
             magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
+
         if(yr)
         {
             magnitude_r = int(log(yr) * y_scale);
@@ -263,6 +217,7 @@ void OuterBlurWave::draw(QPainter *p)
         {
             offset = height() + HEIGHT_OFFSET;
         }
+
         points << viewToItemPoint(QPoint(x, offset));
     }
     points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));

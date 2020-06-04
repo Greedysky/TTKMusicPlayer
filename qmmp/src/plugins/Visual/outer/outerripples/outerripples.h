@@ -21,12 +21,6 @@
 
 #include <qmmp/visual.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -37,29 +31,14 @@ public:
     explicit OuterRipples(QWidget *parent = nullptr);
     virtual ~OuterRipples();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
 private:
-    void clear();
-    virtual void hideEvent(QHideEvent *) override;
-    virtual void showEvent(QShowEvent *) override;
     virtual void paintEvent(QPaintEvent *) override;
 
-    void process();
+    virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    QTimer *m_timer;
-    double *m_intern_vis_data;
-    int *m_x_scale, m_rows, m_cols;
+    int *m_x_scale;
     double m_analyzer_falloff;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    bool m_running;
 
     QSize m_cell_size;
 

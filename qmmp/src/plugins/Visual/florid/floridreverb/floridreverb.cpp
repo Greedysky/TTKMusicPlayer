@@ -7,85 +7,19 @@ FloridReverb::FloridReverb(QWidget *parent)
     : Florid(parent)
 {
     m_gradientOn = true;
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     setWindowTitle(tr("Florid Reverb Widget"));
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_cell_size = QSize(6, 2);
-
-    clear();
 }
 
 FloridReverb::~FloridReverb()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
-    }
-}
-
-void FloridReverb::start()
-{
-    Florid::start();
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void FloridReverb::stop()
-{
-    Florid::stop();
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void FloridReverb::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void FloridReverb::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        Florid::start();
-        process();
-        update();
-    }
-    else
-    {
-        Florid::stop();
-    }
-}
-
-void FloridReverb::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void FloridReverb::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
     }
 }
 
@@ -96,8 +30,8 @@ void FloridReverb::paintEvent(QPaintEvent *e)
     draw(&painter);
 }
 
-void FloridReverb::process()
-{
+void FloridReverb::process(float *left, float *)
+{ 
     static fft_state *state = nullptr;
     if(!state)
     {
@@ -122,7 +56,7 @@ void FloridReverb::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols]{0};
+        m_intern_vis_data = new int[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -135,7 +69,7 @@ void FloridReverb::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)

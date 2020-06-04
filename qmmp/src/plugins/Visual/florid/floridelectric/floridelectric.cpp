@@ -231,14 +231,7 @@ void ElectricLabel::resizeWindow(const QRect &rect)
 FloridElectric::FloridElectric(QWidget *parent)
     : Florid(parent)
 {
-    m_running = false;
-
     setWindowTitle(tr("Florid Electric Widget"));
-
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 
     m_label = new ElectricLabel(this);
 }
@@ -251,46 +244,12 @@ FloridElectric::~FloridElectric()
 void FloridElectric::start()
 {
     Florid::start();
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-
     m_label->start();
 }
 
 void FloridElectric::stop()
 {
     Florid::stop();
-    m_running = false;
-    m_timer->stop();
-}
-
-void FloridElectric::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        m_label->setColor(m_averageColor);
-        Florid::start();
-    }
-    else
-    {
-        Florid::stop();
-    }
-}
-
-void FloridElectric::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void FloridElectric::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
 }
 
 void FloridElectric::paintEvent(QPaintEvent *e)
@@ -303,4 +262,9 @@ void FloridElectric::resizeEvent(QResizeEvent *e)
     Florid::resizeEvent(e);
     m_label->resizeWindow(QRect(0, 0, width(), height()));
     m_roundLabel->raise();
+}
+
+void FloridElectric::process(float *, float *)
+{
+    m_label->setColor(m_averageColor);
 }

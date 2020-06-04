@@ -21,12 +21,6 @@
 
 #include <qmmp/visual.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -37,29 +31,12 @@ public:
     explicit OuterRaysWave(QWidget *parent = nullptr);
     virtual ~OuterRaysWave();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
 private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *e) override;
 
-    void process();
+    virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    QTimer *m_timer;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    bool m_running;
-    int *m_intern_vis_data, m_rows, m_cols;
-
 };
-
 
 #endif

@@ -26,14 +26,8 @@ extern "C" {
 #include "goom.h"
 }
 
-class QTimer;
 class QMenu;
-class QAction;
 class QActionGroup;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -45,25 +39,22 @@ public:
     explicit GoomWidget(QWidget *parent = nullptr);
     virtual ~GoomWidget();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
 private slots:
-    void timeout();
     void readSettings();
     void writeSettings();
 
 private:
-    void clear();
     virtual void hideEvent(QHideEvent *) override;
     virtual void showEvent(QShowEvent *) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void mousePressEvent(QMouseEvent *e) override;
+
+    virtual void process(float *left, float *right) override;
+
+    void clearImage();
     void createMenu();
 
-    QTimer *m_timer;
-    bool m_update, m_running;
+    bool m_update;
     QMenu *m_menu;
     QActionGroup *m_fpsGroup;
     PluginInfo *m_goom;

@@ -14,11 +14,7 @@
 NormalHistogram::NormalHistogram(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_cell_size = QSize(15, 6);
 
@@ -29,10 +25,6 @@ NormalHistogram::NormalHistogram(QWidget *parent)
 
     setWindowTitle(tr("Normal Histogram Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
@@ -47,17 +39,12 @@ NormalHistogram::NormalHistogram(QWidget *parent)
 
     m_starTimer->setInterval(1000);
 
-    clear();
     readSettings();
 }
 
 NormalHistogram::~NormalHistogram()
 {
     qDeleteAll(m_starPoints);
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -66,36 +53,17 @@ NormalHistogram::~NormalHistogram()
 
 void NormalHistogram::start()
 {
-    m_running = true;
+    Visual::start();
     if(isVisible())
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
 
 void NormalHistogram::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    Visual::stop();
     m_starTimer->stop();
-    clear();
-}
-
-void NormalHistogram::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void NormalHistogram::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
 }
 
 void NormalHistogram::starTimeout()
@@ -158,17 +126,17 @@ void NormalHistogram::changeStarColor()
     }
 }
 
-void NormalHistogram::hideEvent(QHideEvent *)
+void NormalHistogram::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
+    Visual::hideEvent(e);
     m_starTimer->stop();
 }
 
-void NormalHistogram::showEvent(QShowEvent *)
+void NormalHistogram::showEvent(QShowEvent *e)
 {
+    Visual::showEvent(e);
     if(m_running)
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
@@ -194,7 +162,7 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalHistogram::process()
+void NormalHistogram::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -220,7 +188,7 @@ void NormalHistogram::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols]{0};
+        m_intern_vis_data = new int[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -233,7 +201,7 @@ void NormalHistogram::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)

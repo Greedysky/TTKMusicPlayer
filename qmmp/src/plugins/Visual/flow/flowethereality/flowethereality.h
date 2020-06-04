@@ -36,29 +36,18 @@ public:
     explicit FlowEthereality(QWidget *parent = nullptr);
     virtual ~FlowEthereality();
 
-public Q_SLOTS:
+public slots:
     virtual void start() override;
     virtual void stop() override;
 
-private Q_SLOTS:
-    void timeout();
-
 private:
-    void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
-    void process();
+    virtual void process(float *left, float *right) override;
 
-    int m_pos_x;
-    int m_pos_y;
-    QTimer *m_timer;
-    int *m_intern_vis_data;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    int m_rows, m_cols;
-    bool m_running;
+    int m_pos_x, m_pos_y;
     QList<Ethereality*> m_etherealitys;
 
 };

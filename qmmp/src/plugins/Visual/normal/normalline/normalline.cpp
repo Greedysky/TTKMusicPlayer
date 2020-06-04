@@ -15,12 +15,8 @@
 NormalLine::NormalLine(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_peaks = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     for(int i=0; i<50; ++i)
     {
@@ -29,9 +25,6 @@ NormalLine::NormalLine(QWidget *parent)
 
     setWindowTitle(tr("Normal Line Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
@@ -46,11 +39,9 @@ NormalLine::NormalLine(QWidget *parent)
 
     m_peaks_falloff = 0.2;
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(3, 2);
 
-    clear();
     readSettings();
 }
 
@@ -61,10 +52,7 @@ NormalLine::~NormalLine()
     {
         delete[] m_peaks;
     }
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
+
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -73,37 +61,17 @@ NormalLine::~NormalLine()
 
 void NormalLine::start()
 {
-    m_running = true;
+    Visual::start();
     if(isVisible())
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
 
 void NormalLine::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    Visual::stop();
     m_starTimer->stop();
-    clear();
-}
-
-void NormalLine::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-
-void NormalLine::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
 }
 
 void NormalLine::starTimeout()
@@ -166,17 +134,17 @@ void NormalLine::changeStarColor()
     }
 }
 
-void NormalLine::hideEvent(QHideEvent *)
+void NormalLine::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
+    Visual::hideEvent(e);
     m_starTimer->stop();
 }
 
-void NormalLine::showEvent(QShowEvent *)
+void NormalLine::showEvent(QShowEvent *e)
 {
+    Visual::showEvent(e);
     if(m_running)
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
@@ -202,7 +170,7 @@ void NormalLine::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalLine::process()
+void NormalLine::process(float *left, float *right)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -222,17 +190,19 @@ void NormalLine::process()
         {
             delete[] m_peaks;
         }
+
         if(m_intern_vis_data)
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
         }
 
         m_peaks = new double[m_cols * 2]{0};
-        m_intern_vis_data = new double[m_cols * 2]{0};
+        m_intern_vis_data = new int[m_cols * 2]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -246,8 +216,8 @@ void NormalLine::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq(dest_l, m_left_buffer);
-    calc_freq(dest_r, m_right_buffer);
+    calc_freq(dest_l, left);
+    calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -262,6 +232,7 @@ void NormalLine::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
@@ -276,6 +247,7 @@ void NormalLine::process()
             magnitude_l = int(log(yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
+
         if(yr)
         {
             magnitude_r = int(log(yr) * y_scale);

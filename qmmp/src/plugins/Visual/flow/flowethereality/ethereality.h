@@ -37,7 +37,7 @@ public:
 
     bool isRunning() const;
 
-private Q_SLOTS:
+private slots:
     void timeout();
 
 protected:

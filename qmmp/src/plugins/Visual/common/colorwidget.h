@@ -82,7 +82,7 @@ public:
      */
     QList<QColor> getColors() const;
 
-public Q_SLOTS:
+public slots:
     /*!
      * Add button clicked.
      */

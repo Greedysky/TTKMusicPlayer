@@ -58,7 +58,7 @@ Q_SIGNALS:
     void playbackModeChanged(SongPlayType mode);
     void removeCurrentMedia();
 
-public Q_SLOTS:
+public slots:
     void setCurrentIndex(int index = -2);
     void appendMedia(const QString &content);
     void appendMedia(const QStringList &items);

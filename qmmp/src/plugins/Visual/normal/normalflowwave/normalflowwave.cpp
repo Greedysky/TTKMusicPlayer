@@ -14,11 +14,7 @@
 NormalFlowWave::NormalFlowWave(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_cell_size = QSize(15, 6);
 
@@ -29,10 +25,6 @@ NormalFlowWave::NormalFlowWave(QWidget *parent)
 
     setWindowTitle(tr("Normal FlowWave Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
@@ -47,17 +39,12 @@ NormalFlowWave::NormalFlowWave(QWidget *parent)
 
     m_starTimer->setInterval(1000);
 
-    clear();
     readSettings();
 }
 
 NormalFlowWave::~NormalFlowWave()
 {
     qDeleteAll(m_starPoints);
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -66,36 +53,17 @@ NormalFlowWave::~NormalFlowWave()
 
 void NormalFlowWave::start()
 {
-    m_running = true;
+    Visual::start();
     if(isVisible())
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
 
 void NormalFlowWave::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    Visual::stop();
     m_starTimer->stop();
-    clear();
-}
-
-void NormalFlowWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void NormalFlowWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
 }
 
 void NormalFlowWave::starTimeout()
@@ -146,17 +114,17 @@ void NormalFlowWave::changeStarColor()
     }
 }
 
-void NormalFlowWave::hideEvent(QHideEvent *)
+void NormalFlowWave::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
+    Visual::hideEvent(e);
     m_starTimer->stop();
 }
 
-void NormalFlowWave::showEvent(QShowEvent *)
+void NormalFlowWave::showEvent(QShowEvent *e)
 {
+    Visual::showEvent(e);
     if(m_running)
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
@@ -181,7 +149,7 @@ void NormalFlowWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalFlowWave::process()
+void NormalFlowWave::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -207,7 +175,7 @@ void NormalFlowWave::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_cols]{0};
+        m_intern_vis_data = new int[m_cols]{0};
         m_x_scale = new int[m_cols + 1]{0};
 
         for(int i = 0; i < m_cols + 1; ++i)
@@ -220,7 +188,7 @@ void NormalFlowWave::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)

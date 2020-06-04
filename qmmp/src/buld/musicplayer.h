@@ -86,12 +86,12 @@ Q_SIGNALS:
     void volumeChanged(int volume);
     void mutedChanged(bool muted);
 
-public Q_SLOTS:
+public slots:
     void play();
     void pause();
     void stop();
 
-private Q_SLOTS:
+private slots:
     void setTimeOut();
     void removeCurrentMedia();
 

@@ -14,71 +14,12 @@ OuterRaysWave::OuterRaysWave (QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose, false);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    m_intern_vis_data = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
-
     setWindowTitle(tr("Outer RaysWave Widget"));
-
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-
-    clear();
 }
 
 OuterRaysWave::~OuterRaysWave()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
-}
 
-void OuterRaysWave::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void OuterRaysWave::stop()
-{
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void OuterRaysWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void OuterRaysWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
-}
-
-void OuterRaysWave::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void OuterRaysWave::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
 }
 
 void OuterRaysWave::paintEvent(QPaintEvent *)
@@ -87,7 +28,7 @@ void OuterRaysWave::paintEvent(QPaintEvent *)
     draw(&painter);
 }
 
-void OuterRaysWave::process()
+void OuterRaysWave::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -117,7 +58,7 @@ void OuterRaysWave::process()
     for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
-        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows / 2);
+        m_intern_vis_data[i] = int(left[pos >> 8] * m_rows / 2);
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
     }
 }
@@ -138,10 +79,12 @@ void OuterRaysWave::draw(QPainter *p)
 
         int pFront = m_rows / 2 - m_intern_vis_data[i] * maxed;
         int pEnd = m_rows / 2 - m_intern_vis_data[i + 1] * maxed;
+
         if(pFront > pEnd)
         {
             qSwap(pFront, pEnd);
         }
+
         p->drawLine(i, pFront, i + 1, pEnd);
     }
 }

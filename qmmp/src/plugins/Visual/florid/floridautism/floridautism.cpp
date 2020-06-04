@@ -66,7 +66,6 @@ FloridAutism::FloridAutism(QWidget *parent)
     : Florid(parent)
 {
     m_index = 0;
-    m_running = false;
 
     setWindowTitle(tr("Florid Autism Widget"));
 
@@ -76,66 +75,12 @@ FloridAutism::FloridAutism(QWidget *parent)
         m_labels << label;
     }
 
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
     m_timer->setInterval(700);
 }
 
 FloridAutism::~FloridAutism()
 {
 
-}
-
-void FloridAutism::start()
-{
-    Florid::start();
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void FloridAutism::stop()
-{
-    Florid::stop();
-    m_running = false;
-    m_timer->stop();
-}
-
-void FloridAutism::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        Florid::start();
-
-        AutismLabel *label = m_labels[m_index];
-        label->setColor(m_averageColor);
-        label->start(rect().center());
-
-        ++m_index;
-        if(m_index >= m_labels.count())
-        {
-            m_index = 0;
-        }
-    }
-    else
-    {
-        Florid::stop();
-    }
-}
-
-void FloridAutism::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void FloridAutism::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
 }
 
 void FloridAutism::paintEvent(QPaintEvent *e)
@@ -151,4 +96,17 @@ void FloridAutism::resizeEvent(QResizeEvent *e)
         label->setGeometry(0, 0, width(), height());
     }
     m_roundLabel->raise();
+}
+
+void FloridAutism::process(float *, float *)
+{
+    AutismLabel *label = m_labels[m_index];
+    label->setColor(m_averageColor);
+    label->start(rect().center());
+
+    ++m_index;
+    if(m_index >= m_labels.count())
+    {
+        m_index = 0;
+    }
 }
