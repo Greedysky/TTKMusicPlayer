@@ -16,36 +16,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef PROJECTMWIDGET_H
-#define PROJECTMWIDGET_H
+#ifndef VISUALFLOWMOUNTAINFACTORY_H
+#define VISUALFLOWMOUNTAINFACTORY_H
 
-#include <QGLWidget>
-#include <libprojectM/projectM.hpp>
+#include <QObject>
+#include <qmmp/visualfactory.h>
+#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class ProjectMWidget : public QGLWidget
+class VisualFlowMountainFactory : public QObject, public VisualFactory
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    explicit ProjectMWidget(QWidget *parent = nullptr);
-    virtual ~ProjectMWidget();
-
-    projectM *projectMInstance();
-
-protected:
-    virtual void initializeGL() override;
-    virtual void resizeGL(int width, int height) override;
-    virtual void paintGL() override;
-
-public slots:
-    void nextPreset();
-    void previousPreset();
-    void randomPreset();
-
-private:
-    projectM *m_projectM;
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
 

@@ -90,6 +90,7 @@ QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, 
 SoniqueWidget::SoniqueWidget(QWidget *parent)
     : QGLWidget(parent)
 {
+    setMinimumSize(580, 320);
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
     m_sonique = nullptr;

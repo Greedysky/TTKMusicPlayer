@@ -16,36 +16,43 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef PROJECTMWIDGET_H
-#define PROJECTMWIDGET_H
+#ifndef MOUNTAINPLUGIN_H
+#define MOUNTAINPLUGIN_H
 
-#include <QGLWidget>
-#include <libprojectM/projectM.hpp>
+#include <QTimer>
+#include <qmmp/florid.h>
+
+class MountainWidget;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class ProjectMWidget : public QGLWidget
+class MountainPlugin : public Florid
 {
     Q_OBJECT
 public:
-    explicit ProjectMWidget(QWidget *parent = nullptr);
-    virtual ~ProjectMWidget();
-
-    projectM *projectMInstance();
-
-protected:
-    virtual void initializeGL() override;
-    virtual void resizeGL(int width, int height) override;
-    virtual void paintGL() override;
+    explicit MountainPlugin(QWidget *parent = nullptr);
+    virtual ~MountainPlugin();
 
 public slots:
-    void nextPreset();
-    void previousPreset();
-    void randomPreset();
+    virtual void start() override;
+    virtual void stop() override;
+
+private slots:
+    void timeout();
 
 private:
-    projectM *m_projectM;
+    virtual void showEvent(QShowEvent *) override;
+    virtual void hideEvent(QHideEvent *) override;
+    virtual void contextMenuEvent(QContextMenuEvent *) override;
+
+    QTimer *m_timer;
+    MountainWidget *m_mountainWidget;
+    bool m_running;
+
+    float m_buf[2][QMMP_VISUAL_NODE_SIZE];
+    float m_left[QMMP_VISUAL_NODE_SIZE];
+    float m_right[QMMP_VISUAL_NODE_SIZE];
 
 };
 

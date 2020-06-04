@@ -5,6 +5,8 @@
 ProjectMWidget::ProjectMWidget(QWidget *parent)
     : QGLWidget(parent)
 {
+    setMinimumSize(580, 320);
+
     m_projectM = nullptr;
 }
 
@@ -21,7 +23,7 @@ projectM *ProjectMWidget::projectMInstance()
 void ProjectMWidget::initializeGL()
 {
     glShadeModel(GL_SMOOTH);
-    glClearColor(0,0,0,0);
+    glClearColor(0, 0, 0, 0);
     // Setup our viewport
     glViewport(0, 0, width(), height());
     // Change to the projection matrix and set our viewing volume.

@@ -1,3 +1,4 @@
+#include <QMenu>
 #include <QBoxLayout>
 #include "projectmwidget.h"
 #include "projectmplugin.h"
@@ -10,13 +11,12 @@ ProjectMPlugin::ProjectMPlugin(QWidget *parent)
 
     setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
     setWindowTitle(tr("Flow ProjectM Widget"));
-    setWindowIcon(parent->windowIcon());
 
     m_projectMWidget = new ProjectMWidget(this);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(m_projectMWidget);
-    layout->setContentsMargins(0,0,0,0);
+    layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
 
     m_timer = new QTimer(this);
