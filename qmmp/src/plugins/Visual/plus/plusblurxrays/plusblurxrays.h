@@ -21,12 +21,6 @@
 
 #include <qmmp/visual.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -37,34 +31,21 @@ public:
     explicit PlusBlurXRays(QWidget *parent = nullptr);
     virtual ~PlusBlurXRays();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
 private slots:
-    void timeout();
     void readSettings();
     void writeSettings();
     void changeColor();
 
 private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
+    virtual void process(float *left, float *right) override;
     void blur();
-    void process();
     void drawLine(int x, int y1, int y2);
     void draw(QPainter *p);
 
     QList<QColor> m_colors;
-    QTimer *m_timer;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    bool m_running;
-    int *m_intern_vis_data, m_rows, m_cols;
     QAction *m_screenAction;
 
     int m_image_size;

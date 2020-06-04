@@ -214,6 +214,7 @@ void NormalHistogram::process()
         {
             delete[] m_intern_vis_data;
         }
+
         if(m_x_scale)
         {
             delete[] m_x_scale;
@@ -233,7 +234,6 @@ void NormalHistogram::process()
     int k, magnitude;
 
     calc_freq(dest, m_left_buffer);
-
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for(int i = 0; i < m_cols; i++)
@@ -245,6 +245,7 @@ void NormalHistogram::process()
         {
             y = dest[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             y = qMax(dest[k], y);

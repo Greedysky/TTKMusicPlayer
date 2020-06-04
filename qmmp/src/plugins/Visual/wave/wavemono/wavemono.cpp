@@ -1,4 +1,3 @@
-#include <QTimer>
 #include <QPainter>
 #include <QPaintEvent>
 #include <math.h>
@@ -11,78 +10,19 @@
 WaveMono::WaveMono(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
     setWindowTitle(tr("Wave Mono Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    clear();
 }
 
 WaveMono::~WaveMono()
 {
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
-    }
-}
-
-void WaveMono::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void WaveMono::stop()
-{
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void WaveMono::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void WaveMono::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
-}
-
-void WaveMono::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void WaveMono::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
     }
 }
 
@@ -93,7 +33,7 @@ void WaveMono::paintEvent(QPaintEvent *e)
     draw(&painter);
 }
 
-void WaveMono::process()
+void WaveMono::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -119,7 +59,7 @@ void WaveMono::process()
             delete[] m_x_scale;
         }
 
-        m_intern_vis_data = new double[m_rows]{0};
+        m_intern_vis_data = new int[m_rows]{0};
         m_x_scale = new int[m_rows + 1]{0};
 
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
@@ -135,8 +75,7 @@ void WaveMono::process()
     short y;
     int k, magnitude;
 
-    calc_freq(dest, m_left_buffer);
-
+    calc_freq(dest, left);
     double y_scale = (double) 1.25 * m_cols / log(256);
 
     for(int i = 0; i < m_rows; i++)
@@ -148,6 +87,7 @@ void WaveMono::process()
         {
             y = dest[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             y = qMax(dest[k], y);

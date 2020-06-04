@@ -1,4 +1,3 @@
-#include <QTimer>
 #include <QPainter>
 #include <QPaintEvent>
 #include <math.h>
@@ -13,20 +12,11 @@ WaveMulti::WaveMulti(QWidget *parent)
 {
     m_vis_data = 0;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
     setWindowTitle(tr("Wave Multi Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
-
-    clear();
 }
 
 WaveMulti::~WaveMulti()
@@ -37,51 +27,6 @@ WaveMulti::~WaveMulti()
     }
 }
 
-void WaveMulti::start()
-{
-    m_running = true;
-    if(isVisible())
-    {
-        m_timer->start();
-    }
-}
-
-void WaveMulti::stop()
-{
-    m_running = false;
-    m_timer->stop();
-    clear();
-}
-
-void WaveMulti::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void WaveMulti::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
-}
-
-void WaveMulti::hideEvent(QHideEvent *)
-{
-    m_timer->stop();
-}
-
-void WaveMulti::showEvent(QShowEvent *)
-{
-    if(m_running)
-    {
-        m_timer->start();
-    }
-}
-
 void WaveMulti::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
@@ -89,7 +34,7 @@ void WaveMulti::paintEvent(QPaintEvent *e)
     draw(&painter);
 }
 
-void WaveMulti::process()
+void WaveMulti::process(float *left, float *)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -110,10 +55,13 @@ void WaveMulti::process()
         {
             delete[] m_x_scale;
         }
+
         m_vis_data = 0;
         m_x_scale = new int[2];
+
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
+
         for(int i = 0; i < m_cols; ++i)
         {
             m_backgroundImage.setPixel(i, m_rows / 2, qRgb(0xff, 0xff, 0xff));
@@ -128,13 +76,15 @@ void WaveMulti::process()
     short dest[256];
     short y = 0;
     int k, magnitude = 0;
-    calc_freq(dest, m_left_buffer);
+
+    calc_freq(dest, left);
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
     if(m_x_scale[0] == m_x_scale[1])
     {
         y = dest[0];
     }
+
     for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
     {
         y = qMax(dest[k], y);
@@ -165,7 +115,7 @@ void WaveMulti::draw(QPainter *p)
             m_pixPos = m_cols - 1;
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
-        for(int i=0; i<m_vis_data*maxed/2; ++i)
+        for(int i=0; i<m_vis_data * maxed / 2; ++i)
         {
             int r = qMin(0x5f + i*3, 0xff);
             m_backgroundImage.setPixel(m_pixPos, qMax(m_rows / 2 - i, 0), qRgb(r, 0, 0));

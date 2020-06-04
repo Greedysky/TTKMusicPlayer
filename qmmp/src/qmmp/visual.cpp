@@ -18,12 +18,11 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
+#include <QTimer>
 #include <QCloseEvent>
 #include <QSettings>
-#include <QDir>
-#include <QObject>
 #include <QList>
-#include <QMetaObject>
+#include <QFileInfo>
 #include <QApplication>
 #include <QPluginLoader>
 #include "statehandler.h"
@@ -32,18 +31,44 @@
 #include "visual.h"
 #include "soundcore.h"
 
-Visual::Visual(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f)
+Visual::Visual(QWidget *parent, Qt::WindowFlags f)
+    : QWidget(parent, f)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, false);
+
+    m_running = false;
+    m_rows = 0;
+    m_cols = 0;
+    m_intern_vis_data = nullptr;
+
+    m_timer = new QTimer(this);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
+    connect(m_timer, SIGNAL(timeout()), SLOT(updateVisual()));
 }
 
 Visual::~Visual()
 {
-
+    if(m_intern_vis_data)
+    {
+        delete[] m_intern_vis_data;
+    }
 }
 
-void Visual::closeEvent (QCloseEvent *event)
+void Visual::showEvent(QShowEvent *)
+{
+    if(m_running)
+    {
+        m_timer->start();
+    }
+}
+
+void Visual::hideEvent(QHideEvent *)
+{
+    m_timer->stop();
+}
+
+void Visual::closeEvent(QCloseEvent *event)
 {
     m_visuals.removeAll(this);
     if(event->spontaneous () && m_vis_map.key(this))
@@ -93,6 +118,25 @@ float Visual::takeMaxRange() const
     }
 
     return SoundCore::instance()->volume() * 1.0 / 100;
+}
+
+void Visual::updateVisual()
+{
+    float left[QMMP_VISUAL_NODE_SIZE];
+    float right[QMMP_VISUAL_NODE_SIZE];
+
+    if(takeData(left, right))
+    {
+        process(left, right);
+        update();
+    }
+}
+
+void Visual::clear()
+{
+    m_rows = 0;
+    m_cols = 0;
+    update();
 }
 
 //static members
@@ -210,6 +254,22 @@ void Visual::clearBuffer()
     m_buffer.mutex()->lock();
     m_buffer.clear();
     m_buffer.mutex()->unlock();
+}
+
+void Visual::start()
+{
+    m_running = true;
+    if(isVisible())
+    {
+        m_timer->start();
+    }
+}
+
+void Visual::stop()
+{
+    m_running = false;
+    m_timer->stop();
+    clear();
 }
 
 void Visual::changeFullScreen(bool state)

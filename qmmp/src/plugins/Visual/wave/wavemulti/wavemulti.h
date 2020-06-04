@@ -21,12 +21,6 @@
 
 #include <qmmp/visual.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -37,31 +31,17 @@ public:
     explicit WaveMulti(QWidget *parent = nullptr);
     virtual ~WaveMulti();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
-private slots:
-    void timeout();
-
 private:
-    void clear();
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
     virtual void paintEvent(QPaintEvent *) override;
 
-    void process();
+    virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
     QImage m_backgroundImage;
     int m_pixPos;
-    QTimer *m_timer;
     double m_vis_data;
-    int *m_x_scale, m_rows, m_cols;
+    int *m_x_scale;
     double m_analyzer_falloff;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    bool m_running;
 
 };
 

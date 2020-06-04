@@ -14,11 +14,7 @@
 PlusFoldWave::PlusFoldWave(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_vis_data = nullptr;
     m_x_scale = nullptr;
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
 
     for(int i=0; i<50; ++i)
     {
@@ -27,9 +23,6 @@ PlusFoldWave::PlusFoldWave(QWidget *parent)
 
     setWindowTitle(tr("Plus FoldWave Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
@@ -43,21 +36,15 @@ PlusFoldWave::PlusFoldWave(QWidget *parent)
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
 
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(3, 2);
 
-    clear();
     readSettings();
 }
 
 PlusFoldWave::~PlusFoldWave()
 {
     qDeleteAll(m_starPoints);
-    if(m_intern_vis_data)
-    {
-        delete[] m_intern_vis_data;
-    }
     if(m_x_scale)
     {
         delete[] m_x_scale;
@@ -66,36 +53,17 @@ PlusFoldWave::~PlusFoldWave()
 
 void PlusFoldWave::start()
 {
-    m_running = true;
+    Visual::start();
     if(isVisible())
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
 
 void PlusFoldWave::stop()
 {
-    m_running = false;
-    m_timer->stop();
+    Visual::start();
     m_starTimer->stop();
-    clear();
-}
-
-void PlusFoldWave::clear()
-{
-    m_rows = 0;
-    m_cols = 0;
-    update();
-}
-
-void PlusFoldWave::timeout()
-{
-    if(takeData(m_left_buffer, m_right_buffer))
-    {
-        process();
-        update();
-    }
 }
 
 void PlusFoldWave::starTimeout()
@@ -158,17 +126,17 @@ void PlusFoldWave::changeStarColor()
     }
 }
 
-void PlusFoldWave::hideEvent(QHideEvent *)
+void PlusFoldWave::hideEvent(QHideEvent *e)
 {
-    m_timer->stop();
+    Visual::hideEvent(e);
     m_starTimer->stop();
 }
 
-void PlusFoldWave::showEvent(QShowEvent *)
+void PlusFoldWave::showEvent(QShowEvent *e)
 {
+    Visual::showEvent(e);
     if(m_running)
     {
-        m_timer->start();
         m_starTimer->start();
     }
 }
@@ -194,7 +162,7 @@ void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusFoldWave::process()
+void PlusFoldWave::process(float *left, float *right)
 {
     static fft_state *state = nullptr;
     if(!state)
@@ -233,8 +201,8 @@ void PlusFoldWave::process()
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq(dest_l, m_left_buffer);
-    calc_freq(dest_r, m_right_buffer);
+    calc_freq(dest_l, left);
+    calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
@@ -249,6 +217,7 @@ void PlusFoldWave::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
+
         for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
