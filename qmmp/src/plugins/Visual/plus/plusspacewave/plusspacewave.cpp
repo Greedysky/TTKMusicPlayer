@@ -18,10 +18,6 @@ PlusSpaceWave::PlusSpaceWave(QWidget *parent)
 
     setWindowTitle(tr("Plus SpaceWave Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_screenAction = new QAction(tr("Fullscreen"), this);
-    m_screenAction->setCheckable(true);
-    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 }
 
 PlusSpaceWave::~PlusSpaceWave()

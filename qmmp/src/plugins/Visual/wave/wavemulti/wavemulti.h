@@ -39,7 +39,7 @@ private:
 
     QImage m_backgroundImage;
     int m_pixPos;
-    double m_vis_data;
+    int m_vis_data;
     int *m_x_scale;
     double m_analyzer_falloff;
 

@@ -63,7 +63,7 @@ void FloridBass::process(float *left, float *)
 
 void FloridBass::draw(QPainter *p)
 {
-    if(m_cols == 0)
+    if(m_rows == 0)
     {
         return;
     }

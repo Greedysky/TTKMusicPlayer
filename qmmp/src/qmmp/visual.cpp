@@ -18,6 +18,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
+#include <QAction>
 #include <QTimer>
 #include <QCloseEvent>
 #include <QSettings>
@@ -45,6 +46,10 @@ Visual::Visual(QWidget *parent, Qt::WindowFlags f)
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), SLOT(updateVisual()));
+
+    m_screenAction = new QAction(tr("Fullscreen"), this);
+    m_screenAction->setCheckable(true);
+    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 }
 
 Visual::~Visual()
@@ -110,10 +115,9 @@ bool Visual::takeData(float *left, float *right)
     return node != nullptr;
 }
 
-void Visual::unprocess()
+void Visual::processPatch(bool state)
 {
-    m_running = false;
-    m_timer->stop();
+    Q_UNUSED(state);
 }
 
 float Visual::takeMaxRange() const
@@ -252,6 +256,11 @@ void Visual::clearBuffer()
 
 void Visual::start()
 {
+    if(m_running)
+    {
+        return;
+    }
+    //
     m_running = true;
     if(isVisible())
     {
@@ -261,7 +270,8 @@ void Visual::start()
 
 void Visual::stop()
 {
-    unprocess();
+    m_running = false;
+    m_timer->stop();
     clear();
 }
 
@@ -272,12 +282,14 @@ void Visual::updateVisual()
 
     if(takeData(left, right))
     {
+        processPatch(true);
+        //
         process(left, right);
         update();
     }
     else
     {
-        unprocess();
+        processPatch(false);
     }
 }
 

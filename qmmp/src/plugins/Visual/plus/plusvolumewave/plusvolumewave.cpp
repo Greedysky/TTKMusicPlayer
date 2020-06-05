@@ -17,10 +17,6 @@ PlusVolumeWave::PlusVolumeWave(QWidget *parent)
 
     setWindowTitle(tr("Plus VolumeWave Widget"));
     setMinimumSize(2*300-30, 105);
-
-    m_screenAction = new QAction(tr("Fullscreen"), this);
-    m_screenAction->setCheckable(true);
-    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
 }
 
 PlusVolumeWave::~PlusVolumeWave()

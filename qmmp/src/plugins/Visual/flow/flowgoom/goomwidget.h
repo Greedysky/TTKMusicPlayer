@@ -59,10 +59,8 @@ private:
     QActionGroup *m_fpsGroup;
     PluginInfo *m_goom;
 
-    QImage m_image;
-    float m_buf[2][QMMP_VISUAL_NODE_SIZE];
-    gint16 m_out[2][QMMP_VISUAL_NODE_SIZE];
     int m_fps;
+    QImage m_image;
 
 };
 

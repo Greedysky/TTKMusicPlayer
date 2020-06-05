@@ -45,8 +45,7 @@ private:
     void drawLine(int x, int y1, int y2);
     void draw(QPainter *p);
 
-    QList<QColor> m_colors;
-    QAction *m_screenAction;
+    QColor m_color;
 
     int m_image_size;
     unsigned int *m_image, *m_corner;

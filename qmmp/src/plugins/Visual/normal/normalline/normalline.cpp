@@ -29,10 +29,6 @@ NormalLine::NormalLine(QWidget *parent)
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
 
-    m_screenAction = new QAction(tr("Fullscreen"), this);
-    m_screenAction->setCheckable(true);
-    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
-
     m_starAction = new QAction(tr("Star"), this);
     m_starAction->setCheckable(true);
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
@@ -122,15 +118,12 @@ void NormalLine::changeStarState(bool state)
 void NormalLine::changeStarColor()
 {
     ColorWidget c;
-    c.setColors(QList<QColor>() << m_starColor);
+    c.setSingleColorMode(true);
+    c.setColor(m_starColor);
     if(c.exec())
     {
-        QList<QColor> colors(c.getColors());
-        if(!colors.isEmpty())
-        {
-            m_starColor = colors.first();
-            update();
-        }
+        m_starColor = c.getColor();
+        update();
     }
 }
 

@@ -115,10 +115,12 @@ protected:
     */
     void reRenderLabel();
     /*!
-     * UnProcess current visual data.
+     * Process current patch visual data by state.
      */
-    virtual void unprocess();
+    virtual void processPatch(bool state);
 
+    virtual void hideEvent(QHideEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
@@ -128,7 +130,6 @@ protected:
     QColor m_averageColor;
     bool m_gradientOn;
     RoundAnimationLabel *m_roundLabel;
-    QAction *m_screenAction;
 
 };
 

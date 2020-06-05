@@ -23,7 +23,6 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
     m_color = QColor(0x0, 0xff, 0xff);
     m_opacity = 1.0;
@@ -188,7 +187,7 @@ void OuterBlurWave::process(float *left, float *right)
 void OuterBlurWave::draw(QPainter *p)
 {
     Q_UNUSED(p);
-    if(m_cols == 0)
+    if(m_rows == 0)
     {
         return;
     }

@@ -104,12 +104,14 @@ void GoomWidget::process(float *left, float *right)
         goom_set_screenbuffer(m_goom, m_image.bits());
     }
 
+    short buf[2][QMMP_VISUAL_NODE_SIZE];
     for(size_t i = 0; i < QMMP_VISUAL_NODE_SIZE; i++)
     {
-        left[i] = left[i] * 32767.0;
-        right[i] = right[i] * 32767.0;
+        buf[0][i] = left[i] * 32767.0;
+        buf[1][i] = right[i] * 32767.0;
     }
-    goom_update(m_goom, m_out, 0, m_fps);
+
+    goom_update(m_goom, buf, 0, m_fps);
 }
 
 void GoomWidget::clearImage()

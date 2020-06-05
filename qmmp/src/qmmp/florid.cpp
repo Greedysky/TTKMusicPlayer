@@ -106,10 +106,6 @@ Florid::Florid(QWidget *parent)
     m_gradientOn = false;
     m_roundLabel = new RoundAnimationLabel(this);
 
-    m_screenAction = new QAction(tr("Fullscreen"), this);
-    m_screenAction->setCheckable(true);
-
-    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
@@ -132,21 +128,13 @@ void Florid::setPixmap(const QPixmap &pix)
 void Florid::start()
 {
     Visual::start();
-    if(!m_useImage)
-    {
-        return;
-    }
-    m_roundLabel->start();
+    processPatch(true);
 }
 
 void Florid::stop()
 {
     Visual::stop();
-    if(!m_useImage)
-    {
-        return;
-    }
-    m_roundLabel->stop();
+    processPatch(false);
 }
 
 void Florid::mediaUrlChanged()
@@ -191,9 +179,29 @@ void Florid::reRenderLabel()
     }
 }
 
-void Florid::unprocess()
+void Florid::processPatch(bool state)
 {
-    stop();
+    if(!m_useImage)
+    {
+        return;
+    }
+
+    state ? m_roundLabel->start() : m_roundLabel->stop();
+}
+
+void Florid::hideEvent(QHideEvent *e)
+{
+    Visual::hideEvent(e);
+    processPatch(false);
+}
+
+void Florid::showEvent(QShowEvent *e)
+{
+    Visual::showEvent(e);
+    if(m_running)
+    {
+        processPatch(true);
+    }
 }
 
 void Florid::paintEvent(QPaintEvent *)

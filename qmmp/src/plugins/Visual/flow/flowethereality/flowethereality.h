@@ -36,16 +36,11 @@ public:
     explicit FlowEthereality(QWidget *parent = nullptr);
     virtual ~FlowEthereality();
 
-public slots:
-    virtual void start() override;
-    virtual void stop() override;
-
 private:
-    virtual void hideEvent(QHideEvent *e) override;
-    virtual void showEvent(QShowEvent *e) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
     virtual void process(float *left, float *right) override;
+    virtual void processPatch(bool state) override;
 
     int m_pos_x, m_pos_y;
     QList<Ethereality*> m_etherealitys;

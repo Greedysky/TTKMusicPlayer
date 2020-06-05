@@ -28,48 +28,6 @@ FlowEthereality::~FlowEthereality()
     qDeleteAll(m_etherealitys);
 }
 
-void FlowEthereality::start()
-{
-    Florid::start();
-    if(isVisible())
-    {
-        foreach(Ethereality *ethereality, m_etherealitys)
-        {
-            ethereality->start();
-        }
-    }
-}
-
-void FlowEthereality::stop()
-{
-    Florid::stop();
-    foreach(Ethereality *ethereality, m_etherealitys)
-    {
-        ethereality->stop();
-    }
-}
-
-void FlowEthereality::hideEvent(QHideEvent *e)
-{
-    Florid::hideEvent(e);
-    foreach(Ethereality *ethereality, m_etherealitys)
-    {
-        ethereality->stop();
-    }
-}
-
-void FlowEthereality::showEvent(QShowEvent *e)
-{
-    Florid::showEvent(e);
-    if(m_running)
-    {
-        foreach(Ethereality *ethereality, m_etherealitys)
-        {
-            ethereality->start();
-        }
-    }
-}
-
 void FlowEthereality::resizeEvent(QResizeEvent *)
 {
     const int perWidth = width() / 50;
@@ -115,11 +73,6 @@ void FlowEthereality::process(float *left, float *)
         m_intern_vis_data[i] = qBound(-m_rows / 2, m_intern_vis_data[i], m_rows / 2);
         m_intern_vis_data[m_cols * 2 - i - 1] = m_intern_vis_data[i];
     }
-    //
-    if(m_cols == 0)
-    {
-        return;
-    }
 
     int max = 0;
     for(int i = 0; i < m_rows * 2; ++i)
@@ -149,6 +102,26 @@ void FlowEthereality::process(float *left, float *)
         else
         {
             ethereality->start();
+        }
+    }
+}
+
+void FlowEthereality::processPatch(bool state)
+{
+    Florid::processPatch(state);
+
+    if(state)
+    {
+        foreach(Ethereality *ethereality, m_etherealitys)
+        {
+            ethereality->start();
+        }
+    }
+    else
+    {
+        foreach(Ethereality *ethereality, m_etherealitys)
+        {
+            ethereality->stop();
         }
     }
 }

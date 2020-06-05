@@ -18,7 +18,10 @@ Ethereality::Ethereality(QWidget *parent)
 
 void Ethereality::start()
 {
-    m_timer->start();
+    if(!m_timer->isActive())
+    {
+        m_timer->start();
+    }
 }
 
 void Ethereality::stop()

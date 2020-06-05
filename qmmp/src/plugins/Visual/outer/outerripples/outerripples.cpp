@@ -11,7 +11,6 @@ OuterRipples::OuterRipples(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
     m_x_scale = nullptr;
     m_analyzer_falloff = 2.2;

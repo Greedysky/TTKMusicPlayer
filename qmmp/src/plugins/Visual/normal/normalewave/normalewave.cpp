@@ -110,15 +110,12 @@ void NormalEWave::changeStarState(bool state)
 void NormalEWave::changeStarColor()
 {
     ColorWidget c;
-    c.setColors(QList<QColor>() << m_starColor);
+    c.setSingleColorMode(true);
+    c.setColor(m_starColor);
     if(c.exec())
     {
-        QList<QColor> colors(c.getColors());
-        if(!colors.isEmpty())
-        {
-            m_starColor = colors.first();
-            update();
-        }
+        m_starColor = c.getColor();
+        update();
     }
 }
 
@@ -244,7 +241,7 @@ void NormalEWave::process(float *left, float *right)
 
 void NormalEWave::draw(QPainter *p)
 {
-    if(m_cols == 0)
+    if(m_rows == 0)
     {
         return;
     }

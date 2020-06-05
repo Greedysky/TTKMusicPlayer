@@ -12,7 +12,6 @@ OuterRaysWave::OuterRaysWave (QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
-    setAttribute(Qt::WA_QuitOnClose, false);
 
     setWindowTitle(tr("Outer RaysWave Widget"));
 }

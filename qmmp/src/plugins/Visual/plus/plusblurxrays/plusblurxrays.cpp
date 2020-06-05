@@ -21,10 +21,6 @@ PlusBlurXRays::PlusBlurXRays(QWidget *parent)
     setWindowTitle(tr("Plus Blur XRays Widget"));
     setMinimumSize(2*300-30, 105);
 
-    m_screenAction = new QAction(tr("Fullscreen"), this);
-    m_screenAction->setCheckable(true);
-    connect(m_screenAction, SIGNAL(triggered(bool)), this, SLOT(changeFullScreen(bool)));
-
     readSettings();
 }
 
@@ -40,7 +36,7 @@ void PlusBlurXRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PlusBlurXRays");
-    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+    m_color = ColorWidget::readSingleColorConfig(settings.value("color").toString());
     settings.endGroup();
 }
 
@@ -48,17 +44,17 @@ void PlusBlurXRays::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PlusBlurXRays");
-    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.setValue("color", ColorWidget::writeSingleColorConfig(m_color));
     settings.endGroup();
 }
 
 void PlusBlurXRays::changeColor()
 {
     ColorWidget c;
-    c.setColors(m_colors);
+    c.setColor(m_color);
     if(c.exec())
     {
-        m_colors = c.getColors();
+        m_color = c.getColor();
     }
 }
 
@@ -169,13 +165,13 @@ void PlusBlurXRays::drawLine(int x, int y1, int y2)
 
     for(; h--; p += m_cols)
     {
-        *p = m_colors.isEmpty() ? 0xFF3F7F : m_colors.first().rgba();
+        *p = !m_color.isValid() ? 0xFF3F7F : m_color.rgba();
     }
 }
 
 void PlusBlurXRays::draw(QPainter *p)
 {
-    if(m_cols == 0)
+    if(m_rows == 0)
     {
         return;
     }

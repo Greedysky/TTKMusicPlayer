@@ -45,7 +45,6 @@ private:
     void draw(QPainter *p);
 
     QList<QColor> m_colors;
-    QAction *m_screenAction;
     QAction *m_gridAction;
 
 };

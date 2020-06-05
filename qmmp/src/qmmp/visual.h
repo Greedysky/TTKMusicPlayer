@@ -161,9 +161,9 @@ protected:
      */
     virtual void process(float *left, float *right) = 0;
     /*!
-     * UnProcess current visual data.
+     * Process current patch visual data by state.
      */
-    virtual void unprocess();
+    virtual void processPatch(bool state);
     /*!
      * Take visual maxed value range.
      */
@@ -178,6 +178,7 @@ protected:
     bool m_running;
     int m_rows, m_cols;
     int *m_intern_vis_data;
+    QAction *m_screenAction;
 
 private:
     static QList<VisualFactory*> *m_factories;

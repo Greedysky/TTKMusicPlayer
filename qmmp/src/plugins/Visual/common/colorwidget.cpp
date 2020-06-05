@@ -10,7 +10,7 @@ const QString MPushButtonStyle04 = " \
         QPushButton::disabled{ color:#999999;}";
 
 const QString MToolButtonStyle03 = " background-color:transparent; \
-        QToolButton::hover{ background-color:rgba(255, 255, 255, 20)}";
+        QToolButton::hover{ border:none; background-color:rgba(255, 255, 255, 20)}";
 
 
 ColorWidget::ColorWidget(QWidget *parent)
@@ -24,6 +24,7 @@ ColorWidget::ColorWidget(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
 
     m_leftButtonPress = false;
+    m_singleColorMode = false;
 
     m_ui->topTitleCloseButton->setIcon(style()->standardPixmap(QStyle::SP_TitleBarCloseButton));
     m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle03);
@@ -40,6 +41,17 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->downButton->setStyleSheet(MPushButtonStyle04);
     m_ui->confirmButton->setStyleSheet(MPushButtonStyle04);
     m_ui->cancelButton->setStyleSheet(MPushButtonStyle04);
+
+#ifdef Q_OS_UNIX
+    m_ui->topTitleCloseButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->addButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->modifyButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->upButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->downButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -97,6 +109,20 @@ QString ColorWidget::writeColorConfig(const QList<QColor> &colors)
     return value;
 }
 
+void ColorWidget::setSingleColorMode(bool mode)
+{
+    if(m_singleColorMode = mode)
+    {
+        m_ui->upButton->setEnabled(false);
+        m_ui->downButton->setEnabled(false);
+    }
+    else
+    {
+        m_ui->upButton->setEnabled(true);
+        m_ui->downButton->setEnabled(true);
+    }
+}
+
 void ColorWidget::setColors(const QList<QColor> &colors)
 {
     foreach(const QColor &color, colors)
@@ -117,6 +143,35 @@ QList<QColor> ColorWidget::getColors() const
     return colors;
 }
 
+void ColorWidget::setColor(const QColor &color)
+{
+    if(m_ui->listWidget->count() < 1)
+    {
+        QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
+        it->setBackgroundColor(color);
+        m_ui->listWidget->addItem(it);
+
+        if(m_singleColorMode)
+        {
+            m_ui->addButton->setEnabled(false);
+        }
+    }
+    else
+    {
+        m_ui->listWidget->item(0)->setBackgroundColor(color);
+    }
+}
+
+QColor ColorWidget::getColor() const
+{
+    if(m_ui->listWidget->count() < 1)
+    {
+        return QColor();
+    }
+
+    return m_ui->listWidget->item(0)->backgroundColor();
+}
+
 void ColorWidget::addButtonClicked()
 {
     QColorDialog getColor(Qt::white, this);
@@ -127,6 +182,11 @@ void ColorWidget::addButtonClicked()
         it->setBackgroundColor(color);
         m_ui->listWidget->addItem(it);
     }
+
+    if(m_singleColorMode)
+    {
+        m_ui->addButton->setEnabled(false);
+    }
 }
 
 void ColorWidget::deleteButtonClicked()
@@ -135,6 +195,10 @@ void ColorWidget::deleteButtonClicked()
     if(index >= 0)
     {
         delete m_ui->listWidget->takeItem(index);
+        if(m_singleColorMode)
+        {
+            m_ui->addButton->setEnabled(true);
+        }
     }
 }
 

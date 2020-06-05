@@ -74,6 +74,11 @@ public:
     static QString writeColorConfig(const QList<QColor> &colors);
 
     /*!
+     * Set single color mode.
+     */
+    void setSingleColorMode(bool mode);
+
+    /*!
      * Set current colors.
      */
     void setColors(const QList<QColor> &colors);
@@ -81,6 +86,15 @@ public:
      * Get selected colors.
      */
     QList<QColor> getColors() const;
+
+    /*!
+     * Set current color.
+     */
+    void setColor(const QColor &color);
+    /*!
+     * Get selected color.
+     */
+    QColor getColor() const;
 
 public slots:
     /*!
@@ -115,6 +129,7 @@ protected:
     Ui::ColorWidget *m_ui;
     QPoint m_pressAt;
     bool m_leftButtonPress;
+    bool m_singleColorMode;
 };
 
 #endif // ColorWidget_H

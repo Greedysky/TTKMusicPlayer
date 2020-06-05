@@ -178,15 +178,12 @@ void NormalAnalyzer::changeStarState(bool state)
 void NormalAnalyzer::changeStarColor()
 {
     ColorWidget c;
-    c.setColors(QList<QColor>() << m_starColor);
+    c.setSingleColorMode(true);
+    c.setColor(m_starColor);
     if(c.exec())
     {
-        QList<QColor> colors(c.getColors());
-        if(!colors.isEmpty())
-        {
-            m_starColor = colors.first();
-            update();
-        }
+        m_starColor = c.getColor();
+        update();
     }
 }
 

@@ -62,7 +62,7 @@ void FloridSurround::process(float *left, float *)
 
 void FloridSurround::draw(QPainter *p)
 {
-    if(m_cols == 0)
+    if(m_rows == 0)
     {
         return;
     }

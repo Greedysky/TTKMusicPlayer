@@ -38,7 +38,6 @@ private:
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    QAction *m_screenAction;
     int *m_intern_ray_data, *m_x_scale;
     double m_analyzer_falloff;
 
