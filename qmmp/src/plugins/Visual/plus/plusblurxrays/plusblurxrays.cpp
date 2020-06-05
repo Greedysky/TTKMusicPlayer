@@ -51,6 +51,7 @@ void PlusBlurXRays::writeSettings()
 void PlusBlurXRays::changeColor()
 {
     ColorWidget c;
+    c.setSingleColorMode(true);
     c.setColor(m_color);
     if(c.exec())
     {
