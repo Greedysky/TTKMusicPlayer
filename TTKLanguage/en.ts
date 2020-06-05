@@ -6755,32 +6755,32 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFloridLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="246"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="248"/>
         <source>Reverb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="247"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="249"/>
         <source>Autism</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="248"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="250"/>
         <source>Bass</source>
         <translation type="unfinished">Bass</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="249"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="251"/>
         <source>Surround</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="250"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="252"/>
         <source>Ancient</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="251"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="253"/>
         <source>Electric</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6788,22 +6788,27 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFlowLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="199"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="200"/>
         <source>Goom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="200"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="201"/>
         <source>ProjectM</source>
         <translation>Dazzle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="201"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="202"/>
         <source>Sonique</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="202"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="203"/>
+        <source>Mountain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="204"/>
         <source>Ethereality</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6855,6 +6860,11 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="177"/>
+        <source>BlurXRays</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="178"/>
         <source>VolumeWave</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6862,17 +6872,17 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumWaveLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="222"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="224"/>
         <source>Monowave</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="223"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="225"/>
         <source>Multiwave</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="224"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="226"/>
         <source>LightEnvelope</source>
         <translation>Envelope</translation>
     </message>
@@ -6941,7 +6951,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="368"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="371"/>
         <source>Spectrum Init Error!</source>
         <translation type="unfinished"></translation>
     </message>

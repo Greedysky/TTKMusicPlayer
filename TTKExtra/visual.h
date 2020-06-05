@@ -108,11 +108,15 @@ public slots:
     /*!
      * Starts visualization.
      */
-    virtual void start() = 0;
+    virtual void start();
     /*!
      * Stops visualization.
      */
-    virtual void stop() = 0;
+    virtual void stop();
+    /*!
+     * Update current visual data.
+     */
+    void updateVisual();
     /*!
      * Menu fullscreen changed.
      */
@@ -133,6 +137,16 @@ protected:
      * QWidget's close event. Reimplementation should call base function.
      * @param event QCloseEvent insatance.
      */
+    virtual void showEvent(QShowEvent *event) override;
+    /*!
+     * QWidget's close event. Reimplementation should call base function.
+     * @param event QCloseEvent insatance.
+     */
+    virtual void hideEvent(QHideEvent *event) override;
+    /*!
+     * QWidget's close event. Reimplementation should call base function.
+     * @param event QCloseEvent insatance.
+     */
     virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Takes visualization data. Caller should allocate \b QMMP_VISUAL_NODE_SIZE
@@ -143,9 +157,28 @@ protected:
      */
     bool takeData(float *left, float *right = nullptr);
     /*!
+     * Process current visual data.
+     */
+    virtual void process(float *left, float *right) = 0;
+    /*!
+     * Process current patch visual data by state.
+     */
+    virtual void processPatch(bool state);
+    /*!
      * Take visual maxed value range.
      */
     float takeMaxRange() const;
+    /*!
+     * Clear current visual data.
+     */
+    void clear();
+
+protected:
+    QTimer *m_timer;
+    bool m_running;
+    int m_rows, m_cols;
+    int *m_intern_vis_data;
+    QAction *m_screenAction;
 
 private:
     static QList<VisualFactory*> *m_factories;

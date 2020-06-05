@@ -41,7 +41,7 @@
     </message>
 </context>
 <context>
-    <name>Florid</name>
+    <name>Visual</name>
     <message>
         <source>Fullscreen</source>
         <translation>全屏顯示</translation>
@@ -6846,32 +6846,32 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFloridLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="246"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="248"/>
         <source>Reverb</source>
         <translation>混響</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="247"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="249"/>
         <source>Autism</source>
         <translation>孤獨患者</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="248"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="250"/>
         <source>Bass</source>
         <translation>爆炸低音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="249"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="251"/>
         <source>Surround</source>
         <translation>動感環繞</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="250"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="252"/>
         <source>Ancient</source>
         <translation>純美古風</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="251"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="253"/>
         <source>Electric</source>
         <translation>激燃電音</translation>
     </message>
@@ -6879,22 +6879,27 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumFlowLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="199"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="200"/>
         <source>Goom</source>
         <translation>古姆</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="200"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="201"/>
         <source>ProjectM</source>
         <translation>炫彩</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="201"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="202"/>
         <source>Sonique</source>
         <translation>索妮可</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="202"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="203"/>
+        <source>Mountain</source>
+        <translation>高山</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="204"/>
         <source>Ethereality</source>
         <translation>空靈</translation>
     </message>
@@ -6946,6 +6951,11 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="177"/>
+        <source>BlurXRays</source>
+        <translation>模紋</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="178"/>
         <source>VolumeWave</source>
         <translation>音量表</translation>
     </message>
@@ -6953,17 +6963,17 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
 <context>
     <name>MusicSpectrumWaveLayoutWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="222"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="224"/>
         <source>Monowave</source>
         <translation>聲譜</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="223"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="225"/>
         <source>Multiwave</source>
         <translation>包酪</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="224"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumlayoutwidget.cpp" line="226"/>
         <source>LightEnvelope</source>
         <translation>全包酪</translation>
     </message>
@@ -7032,7 +7042,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="368"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="371"/>
         <source>Spectrum Init Error!</source>
         <translation>頻譜摸塊初始化措誤!</translation>
     </message>
@@ -8383,10 +8393,6 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
-    </message>
 </context>
 <context>
     <name>NormalEWave</name>
@@ -8417,10 +8423,6 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
-    </message>
 </context>
 <context>
     <name>NormalHistogram</name>
@@ -8435,10 +8437,6 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <source>StarColor</source>
         <translation>星星顏色</translation>
-    </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
     </message>
 </context>
 <context>
@@ -8474,10 +8472,6 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
-    </message>
 </context>
 <context>
     <name>PlusFoldWave</name>
@@ -8493,31 +8487,12 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <source>StarColor</source>
         <translation>星星顏色</translation>
     </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
-    </message>
 </context>
 <context>
-    <name>PlusPointXRays</name>
-    <message>
-        <source>Grid</source>
-        <translation>網格</translation>
-    </message>
+    <name>PlusBlurXRays</name>
     <message>
         <source>Color</source>
-        <translation>顏色</translation>
-    </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
-    </message>
-</context>
-<context>
-    <name>PlusVolumeWave</name>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
+        <translation>颜色</translation>
     </message>
 </context>
 <context>
@@ -8529,10 +8504,6 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <source>Color</source>
         <translation>顏色</translation>
-    </message>
-    <message>
-        <source>Fullscreen</source>
-        <translation>全屏顯示</translation>
     </message>
 </context>
 <context>
