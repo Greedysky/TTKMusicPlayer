@@ -7,7 +7,7 @@
 MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
     : QLabel(parent)
 {
-    MusicTime::initSRand();
+    MusicTime::initRandom();
     m_type = FadeEffect;
     m_isAnimating = false;
     m_currentValue = 0;
@@ -54,7 +54,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         return;
     }
 
-    m_type = TTKStatic_cast(AnimationType, qrand() % 5);
+    m_type = TTKStatic_cast(AnimationType, MusicTime::random(5));
     switch(m_type)
     {
         case FadeEffect: m_animation->setDuration(200); break;

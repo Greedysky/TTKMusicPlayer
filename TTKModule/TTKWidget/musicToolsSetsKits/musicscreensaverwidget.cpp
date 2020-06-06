@@ -483,7 +483,7 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
 
     if(!intVector.isEmpty())
     {
-        const int index = intVector[qrand() % intVector.count()];
+        const int index = intVector[MusicTime::random(intVector.count())];
         QPixmap background(QString("%1%2/").arg(SCREEN_DIR_FULL).arg(index) + OS_WALLPAPER_NAME);
         QPixmap bar(QString("%1%2/").arg(SCREEN_DIR_FULL).arg(index) + OS_WALLBAR_NAME);
         MusicUtils::Image::fusionPixmap(background, bar, QPoint(100, 900));

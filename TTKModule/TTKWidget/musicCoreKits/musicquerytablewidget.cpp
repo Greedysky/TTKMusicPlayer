@@ -162,7 +162,7 @@ void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)
 
 QString MusicQueryItemTableWidget::randToGetStrength() const
 {
-    switch(qrand()%5)
+    switch(MusicTime::random(5))
     {
         case 0: return QString(":/video/lb_video_1");
         case 1: return QString(":/video/lb_video_2");

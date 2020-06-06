@@ -54,7 +54,12 @@ void MusicTextDownLoadThread::downLoadFinished()
         {
             QTextStream outstream(m_file);
             outstream.setCodec("utf-8");
-            outstream << QString(bytes).remove("\r").toUtf8() << endl;
+            outstream << QString(bytes).remove("\r").toUtf8();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+            outstream << Qt::endl;
+#else
+            outstream << endl;
+#endif
             m_file->close();
             TTK_LOGGER_INFO("text download has finished!");
         }

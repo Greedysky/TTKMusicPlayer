@@ -102,8 +102,6 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
         hDll = ::LoadLibraryW(L"DBGHELP.DLL");
     }
 
-    LPCWSTR szResult = nullptr;
-
     if(hDll)
     {
         MINIDUMPWRITEDUMP pDump = (MINIDUMPWRITEDUMP)::GetProcAddress(hDll, "MiniDumpWriteDump");
@@ -180,13 +178,11 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
                     if(bOK)
                     {
                         swprintf(szScratch, sizeof(szScratch), L"Saved dump file to '%s'", szDumpPath);
-                        szResult = szScratch;
                         retval = EXCEPTION_EXECUTE_HANDLER;
                     }
                     else
                     {
                         swprintf(szScratch, sizeof(szScratch),L"Failed to save dump file to '%s' (error %d)", szDumpPath, GetLastError());
-                        szResult = szScratch;
                     }
                     ::CloseHandle(hFile);
 
@@ -196,19 +192,10 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
                 else
                 {
                     swprintf(szScratch, sizeof(szScratch),L"Failed to create dump file '%s' (error %d)", szDumpPath, GetLastError());
-                    szResult = szScratch;
                 }
             }
 
         }
-        else
-        {
-            szResult = L"DBGHELP.DLL too old";
-        }
-    }
-    else
-    {
-        szResult = L"DBGHELP.DLL not found";
     }
 
     return retval;

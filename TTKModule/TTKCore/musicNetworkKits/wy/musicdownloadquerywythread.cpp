@@ -1,5 +1,4 @@
 #include "musicdownloadquerywythread.h"
-#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 

@@ -216,8 +216,7 @@ QString MusicSongTag::getBitrate() const
 
 QString MusicSongTag::getLengthString() const
 {
-    return MusicTime::msecTime2LabelJustified(
-           m_parameters[TagReadAndWrite::TAG_LENGTH].toULongLong());
+    return MusicTime::msecTime2LabelJustified(m_parameters[TagReadAndWrite::TAG_LENGTH].toULongLong());
 }
 
 QString MusicSongTag::findLegalDataString(TagReadAndWrite::MusicTag type) const

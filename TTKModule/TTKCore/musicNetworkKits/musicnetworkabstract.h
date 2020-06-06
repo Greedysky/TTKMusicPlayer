@@ -21,6 +21,7 @@
 
 #include <QNetworkReply>
 #include <QSslConfiguration>
+#include "musictime.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"
 #include "musicalgorithmutils.h"

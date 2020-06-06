@@ -1,7 +1,6 @@
 #include "musicdatadownloadthread.h"
 #include "musicdownloadmanager.h"
 #include "musicnumberutils.h"
-#include "musictime.h"
 
 MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)

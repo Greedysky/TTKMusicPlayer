@@ -64,7 +64,12 @@ void MusicWYTextDownLoadThread::downLoadFinished()
                     const QString &data = value["lyric"].toString();
                     QTextStream outstream(m_file);
                     outstream.setCodec("utf-8");
-                    outstream << data.toUtf8() << endl;
+                    outstream << data.toUtf8();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+                    outstream << Qt::endl;
+#else
+                    outstream << endl;
+#endif
                     m_file->close();
                     TTK_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));
                 }

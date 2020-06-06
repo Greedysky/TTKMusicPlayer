@@ -1,6 +1,9 @@
 #include "musictime.h"
 
 #include <QDateTime>
+#if TTK_QT_VERSION_CHECK(5,10,0)
+#include <QRandomGenerator>
+#endif
 
 MusicTime::MusicTime()
 {
@@ -92,9 +95,22 @@ qint64 MusicTime::timestamp(bool ms)
     return ms ? t : t / 1000;
 }
 
-void MusicTime::initSRand()
+void MusicTime::initRandom()
 {
+#if TTK_QT_VERSION_CHECK(5,10,0)
+    QRandomGenerator::global()->seed(timestamp());
+#else
     qsrand(timestamp());
+#endif
+}
+
+int MusicTime::random(int value)
+{
+#if TTK_QT_VERSION_CHECK(5,10,0)
+    return QRandomGenerator::global()->bounded(value);
+#else
+    return qrand() % value;
+#endif
 }
 
 qint64 MusicTime::labelJustified2MsecTime(const QString &time)

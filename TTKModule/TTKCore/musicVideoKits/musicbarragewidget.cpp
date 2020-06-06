@@ -17,7 +17,7 @@ MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &
 
 void MusicBarrageAnimation::animationFinished()
 {
-    setDuration(qrand()%(10*MT_S2MS) + MT_S2MS);
+    setDuration(MusicTime::random(10 * MT_S2MS) + MT_S2MS);
     setSize(m_parentSize);
     start();
 }
@@ -25,14 +25,14 @@ void MusicBarrageAnimation::animationFinished()
 void MusicBarrageAnimation::setSize(const QSize &size)
 {
     m_parentSize = size;
-    const int randHeight = qrand()%size.height();
+    const int randHeight = MusicTime::random(size.height());
     setStartValue(QPoint(0, randHeight));
     setEndValue(QPoint(size.width(), randHeight));
 }
 
 void MusicBarrageAnimation::initialize()
 {
-    setDuration(qrand()%10000 + MT_S2MS);
+    setDuration(MusicTime::random(10000) + MT_S2MS);
     setEasingCurve(QEasingCurve::Linear);
 
     connect(this, SIGNAL(finished()), SLOT(animationFinished()));
@@ -114,7 +114,7 @@ void MusicBarrageWidget::barrageStateChanged(bool on)
 
 void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
 {
-    MusicTime::initSRand();
+    MusicTime::initRandom();
 
     QLabel *label = createLabel(record);
     createAnimation(label);
@@ -136,7 +136,7 @@ void MusicBarrageWidget::deleteItems()
 
 void MusicBarrageWidget::createLabel()
 {
-    MusicTime::initSRand();
+    MusicTime::initRandom();
     foreach(const MusicBarrageRecord &record, m_barrageRecords)
     {
         createLabel(record);

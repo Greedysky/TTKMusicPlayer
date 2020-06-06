@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musictime.h"
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 

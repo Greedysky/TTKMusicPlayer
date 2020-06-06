@@ -4,7 +4,7 @@
 MusicPlaylist::MusicPlaylist(QObject *parent)
     : QObject(parent)
 {
-    MusicTime::initSRand();
+    MusicTime::initRandom();
     m_currentIndex = -1;
     m_playbackMode = MusicObject::PM_PlayOrder;
 }

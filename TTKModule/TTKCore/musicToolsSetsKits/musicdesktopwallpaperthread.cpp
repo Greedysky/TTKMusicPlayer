@@ -2,7 +2,6 @@
 #include "musicbackgroundconfigmanager.h"
 #include "musicbackgroundmanager.h"
 #include "musicextractwrap.h"
-#include "musictime.h"
 
 #include <QTimer>
 #include <QPixmap>
@@ -10,7 +9,7 @@
 MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
     : QObject(parent)
 {
-    MusicTime::initSRand();
+    MusicTime::initRandom();
 
     m_run = false;
     m_random = false;
@@ -93,7 +92,7 @@ void MusicDesktopWallpaperThread::timeout()
     {
         if(m_random) ///random mode
         {
-            m_currentImageIndex = qrand() % m_path.size();
+            m_currentImageIndex = MusicTime::random(m_path.size());
         }
         else if(++m_currentImageIndex >= m_path.size())
         {

@@ -3,7 +3,6 @@
 #include "musiclrcfromkrc.h"
 #endif
 #include <qmath.h>
-#include "musictime.h"
 #include "musicstringutils.h"
 #include "musicapplication.h"
 #include "musicdownloadqueryfactory.h"
@@ -452,7 +451,12 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
 
     QTextStream outstream(&file);
     outstream.setCodec("utf-8");
-    outstream << data << endl;
+    outstream << data;
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    outstream << Qt::endl;
+#else
+    outstream << endl;
+#endif
     file.close();
 }
 

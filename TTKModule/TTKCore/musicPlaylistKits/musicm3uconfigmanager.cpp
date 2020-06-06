@@ -1,5 +1,4 @@
 #include "musicm3uconfigmanager.h"
-#include "musictime.h"
 
 MusicM3UConfigManager::MusicM3UConfigManager()
     : MusicPlaylistInterface()

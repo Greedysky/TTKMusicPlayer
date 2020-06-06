@@ -1,5 +1,4 @@
 #include "musicplsconfigmanager.h"
-#include "musictime.h"
 
 MusicPLSConfigManager::MusicPLSConfigManager()
     : MusicPlaylistInterface()

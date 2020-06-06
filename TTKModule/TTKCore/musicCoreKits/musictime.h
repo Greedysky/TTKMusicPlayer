@@ -161,9 +161,13 @@ public:
      */
     static qint64 timestamp(bool ms = true);
     /*!
-     * Init random time seed.
+     * Init random value seed.
      */
-    static void initSRand();
+    static void initRandom();
+    /*!
+     * Get random value.
+     */
+    static int random(int value = RAND_MAX);
     //
     /*!
      * Transform string format(mm:ss) to msec time.

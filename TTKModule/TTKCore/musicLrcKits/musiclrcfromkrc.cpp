@@ -82,7 +82,12 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
         {
             QTextStream outstream(&file);
             outstream.setCodec("utf-8");
-            outstream << m_data << endl;
+            outstream << m_data;
+#if TTK_QT_VERSION_CHECK(5,15,0)
+            outstream << Qt::endl;
+#else
+            outstream << endl;
+#endif
             file.close();
         }
     }

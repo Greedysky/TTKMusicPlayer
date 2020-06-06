@@ -113,7 +113,12 @@ public:
 #ifdef TTK_DEBUG
         if(t == LOG_END)
         {
-            m_stream << QString("[%1 %2]:  %3").arg(CURRENT_DATE).arg(CURRENT_TIME).arg(m_streamString) << endl;
+            m_stream << QString("[%1 %2]:  %3").arg(CURRENT_DATE).arg(CURRENT_TIME).arg(m_streamString);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+            m_stream << Qt::endl;
+#else
+            m_stream << endl;
+#endif
             m_streamString.clear();
         }
         else
@@ -136,7 +141,12 @@ private:
         m_file.setFileName("logger.txt");
         m_file.open(QIODevice::WriteOnly | QIODevice::Append);
         m_stream.setDevice(&m_file);
-        m_stream << QString().rightJustified(70, '=') << endl;
+        m_stream << QString().rightJustified(70, '=');
+#if TTK_QT_VERSION_CHECK(5,15,0)
+        m_stream << Qt::endl;
+#else
+        m_stream << endl;
+#endif
         m_levelType = "[Info]";
 #endif
     }

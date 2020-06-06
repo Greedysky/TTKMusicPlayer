@@ -63,7 +63,12 @@ void MusicFMRadioTextDownLoadThread::downLoadFinished()
 
             QTextStream outstream(m_file);
             outstream.setCodec("utf-8");
-            outstream << lrcData << endl;
+            outstream << lrcData;
+#if TTK_QT_VERSION_CHECK(5,15,0)
+            outstream << Qt::endl;
+#else
+            outstream << endl;
+#endif
             m_file->close();
             TTK_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));
         }

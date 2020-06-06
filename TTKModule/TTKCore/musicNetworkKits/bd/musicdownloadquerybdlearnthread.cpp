@@ -1,7 +1,6 @@
 #include "musicdownloadquerybdlearnthread.h"
 #include "musicdownloadbdinterface.h"
 #include "musicsemaphoreloop.h"
-#include "musictime.h"
 #include "musicurlutils.h"
 #include "musiccoreutils.h"
 #///QJson import

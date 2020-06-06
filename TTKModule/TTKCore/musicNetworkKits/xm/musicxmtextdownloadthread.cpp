@@ -59,7 +59,12 @@ void MusicXMTextDownLoadThread::downLoadFinished()
             {
                 QTextStream outstream(m_file);
                 outstream.setCodec("utf-8");
-                outstream << QString(bytes).remove("\r").toUtf8() << endl;
+                outstream << QString(bytes).remove("\r").toUtf8();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+                outstream << Qt::endl;
+#else
+                outstream << endl;
+#endif
             }
             else if(m_lrcType == "trc")
             {
@@ -67,7 +72,12 @@ void MusicXMTextDownLoadThread::downLoadFinished()
                 outstream.setCodec("utf-8");
                 QString data = QString(bytes).remove("\r");
                 data.remove(QRegExp("<[^>]*>"));
-                outstream << data.toUtf8() << endl;
+                outstream << data.toUtf8();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+                outstream << Qt::endl;
+#else
+                outstream << endl;
+#endif
             }
             else if(m_lrcType == "txt")
             {
