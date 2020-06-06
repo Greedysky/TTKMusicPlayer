@@ -3,7 +3,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "wavemulti.h"
 
@@ -36,12 +35,6 @@ void WaveMulti::paintEvent(QPaintEvent *e)
 
 void WaveMulti::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 

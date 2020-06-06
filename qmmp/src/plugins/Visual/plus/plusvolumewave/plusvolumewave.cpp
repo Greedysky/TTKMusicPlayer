@@ -3,9 +3,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-
 #include <qmmp/soundcore.h>
-#include "fft.h"
+
 #include "inlines.h"
 #include "plusvolumewave.h"
 
@@ -43,12 +42,6 @@ void PlusVolumeWave::contextMenuEvent(QContextMenuEvent *)
 
 void PlusVolumeWave::process(float *left, float *right)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 
@@ -143,8 +136,8 @@ void PlusVolumeWave::draw(QPainter *p)
         float left = 1.0f, right = 1.0f;
         if(SoundCore::instance())
         {
-            left = SoundCore::instance()->leftVolume()*1.0/100;
-            right = SoundCore::instance()->rightVolume()*1.0/100;
+            left = SoundCore::instance()->leftVolume() / 100.0;
+            right = SoundCore::instance()->rightVolume() / 100.0;
         }
         const int wid = ceil(m_rows / 2);
         p->fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
@@ -153,6 +146,6 @@ void PlusVolumeWave::draw(QPainter *p)
 
     p->setPen(Qt::white);
     p->drawText(10, height() / 4, "L");
-    p->drawText(10, height()*3/4, "R");
+    p->drawText(10, height() * 3 / 4, "R");
 
 }

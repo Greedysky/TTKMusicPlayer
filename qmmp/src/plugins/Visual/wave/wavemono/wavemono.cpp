@@ -3,7 +3,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "wavemono.h"
 
@@ -35,12 +34,6 @@ void WaveMono::paintEvent(QPaintEvent *e)
 
 void WaveMono::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 

@@ -1,5 +1,4 @@
 #include <QPainter>
-#include "fft.h"
 #include "inlines.h"
 #include "flowethereality.h"
 #include "ethereality.h"
@@ -41,12 +40,6 @@ void FlowEthereality::resizeEvent(QResizeEvent *)
 
 void FlowEthereality::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 

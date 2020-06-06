@@ -1,5 +1,4 @@
 #include <QPainter>
-#include "fft.h"
 #include "inlines.h"
 #include "floridancient.h"
 
@@ -164,12 +163,6 @@ void FloridAncient::process(float *left, float *)
         m_labels[i]->setColor(m_averageColor);
     }
     //
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
 

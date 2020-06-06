@@ -1,5 +1,4 @@
 #include <QPainter>
-#include "fft.h"
 #include "inlines.h"
 #include "floridreverb.h"
 
@@ -32,12 +31,6 @@ void FloridReverb::paintEvent(QPaintEvent *e)
 
 void FloridReverb::process(float *left, float *)
 { 
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
 

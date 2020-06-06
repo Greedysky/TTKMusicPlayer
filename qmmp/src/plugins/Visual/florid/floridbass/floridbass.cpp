@@ -1,6 +1,4 @@
 #include <QPainter>
-#include "fft.h"
-#include "inlines.h"
 #include "floridbass.h"
 
 FloridBass::FloridBass(QWidget *parent)
@@ -27,12 +25,6 @@ void FloridBass::paintEvent(QPaintEvent *e)
 
 void FloridBass::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 

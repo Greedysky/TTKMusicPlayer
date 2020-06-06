@@ -3,7 +3,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "outerripples.h"
 
@@ -35,12 +34,6 @@ void OuterRipples::paintEvent(QPaintEvent *)
 
 void OuterRipples::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
 

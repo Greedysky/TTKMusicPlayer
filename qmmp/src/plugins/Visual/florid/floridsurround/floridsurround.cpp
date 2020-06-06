@@ -1,5 +1,4 @@
 #include <QPainter>
-#include "fft.h"
 #include "inlines.h"
 #include "floridsurround.h"
 
@@ -26,12 +25,6 @@ void FloridSurround::paintEvent(QPaintEvent *e)
 
 void FloridSurround::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 

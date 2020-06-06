@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <qmmp/qmmp.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "normalhistogram.h"
 
@@ -157,12 +156,6 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
 
 void NormalHistogram::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
 

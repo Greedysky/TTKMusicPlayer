@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <qmmp/qmmp.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "normalline.h"
 #include "colorwidget.h"
@@ -165,12 +164,6 @@ void NormalLine::contextMenuEvent(QContextMenuEvent *)
 
 void NormalLine::process(float *left, float *right)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width() / 2;
 

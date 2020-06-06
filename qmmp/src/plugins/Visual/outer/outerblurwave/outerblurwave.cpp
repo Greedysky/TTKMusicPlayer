@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <qmmp/qmmp.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "outerblurwave.h"
 #include "colorwidget.h"
@@ -99,12 +98,6 @@ void OuterBlurWave::resizeEvent(QResizeEvent *e)
 
 void OuterBlurWave::process(float *left, float *right)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width() / 2;
 

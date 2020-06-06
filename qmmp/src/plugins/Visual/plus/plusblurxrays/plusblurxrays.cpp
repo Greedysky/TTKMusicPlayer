@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <qmmp/qmmp.h>
 
-#include "fft.h"
 #include "inlines.h"
 #include "plusblurxrays.h"
 #include "colorwidget.h"
@@ -80,12 +79,6 @@ void PlusBlurXRays::contextMenuEvent(QContextMenuEvent *)
 
 void PlusBlurXRays::process(float *left, float *)
 {
-    static fft_state *state = nullptr;
-    if(!state)
-    {
-        state = fft_init();
-    }
-
     const int rows = height();
     const int cols = width();
 
