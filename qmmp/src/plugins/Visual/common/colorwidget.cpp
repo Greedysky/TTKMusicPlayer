@@ -5,12 +5,12 @@
 #include <QColorDialog>
 
 const QString MPushButtonStyle04 = " \
-        QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777;} \
-        QPushButton::hover{ border:1px solid #555555; color:#444444;} \
-        QPushButton::disabled{ color:#999999;}";
+        QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777; } \
+        QPushButton::hover{ border:1px solid #555555; color:#444444; } \
+        QPushButton::disabled{ color:#999999; }";
 
-const QString MToolButtonStyle03 = " background-color:transparent; \
-        QToolButton::hover{ border:none; background-color:rgba(255, 255, 255, 20)}";
+const QString MToolButtonStyle03 = "QToolButton{ background-color:transparent; border:none; } \
+        QToolButton::hover{ background-color:rgba(255, 255, 255, 20); }";
 
 
 ColorWidget::ColorWidget(QWidget *parent)
@@ -43,7 +43,6 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->cancelButton->setStyleSheet(MPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
-    m_ui->topTitleCloseButton->setFocusPolicy(Qt::NoFocus);
     m_ui->addButton->setFocusPolicy(Qt::NoFocus);
     m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
     m_ui->modifyButton->setFocusPolicy(Qt::NoFocus);
