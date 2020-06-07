@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>428</width>
-    <height>308</height>
+    <width>448</width>
+    <height>333</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>420</width>
-     <height>300</height>
+     <width>440</width>
+     <height>325</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -51,7 +51,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>402</x>
+     <x>422</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -66,8 +66,8 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>420</width>
-     <height>275</height>
+     <width>440</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -79,7 +79,7 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>420</width>
+      <width>440</width>
       <height>150</height>
      </rect>
     </property>
@@ -95,8 +95,8 @@ QLabel{background:transparent;}</string>
      <rect>
       <x>10</x>
       <y>155</y>
-      <width>410</width>
-      <height>70</height>
+      <width>420</width>
+      <height>95</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -111,8 +111,8 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
    <widget class="QPushButton" name="confirmButton">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>235</y>
+      <x>360</x>
+      <y>260</y>
       <width>70</width>
       <height>30</height>
      </rect>
@@ -125,7 +125,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>240</y>
+      <y>260</y>
       <width>200</width>
       <height>25</height>
      </rect>
