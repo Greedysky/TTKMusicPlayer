@@ -405,7 +405,7 @@ void NormalAnalyzer::createMenu()
     }
 
     m_menu->addSeparator();
-    m_menu->addAction(tr("Fullscreen"), this, SLOT(changeFullScreen(bool)))->setCheckable(true);
+    m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
     m_menu->addAction(tr("Color"), this, SLOT(changeColor()));
     m_menu->addAction(m_starAction);
