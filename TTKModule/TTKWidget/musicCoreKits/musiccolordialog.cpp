@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QToolTip>
 #include <QMouseEvent>
+#include <QPainterPath>
 #include <QButtonGroup>
 
 MusicHlPalette::MusicHlPalette(QWidget *parent)

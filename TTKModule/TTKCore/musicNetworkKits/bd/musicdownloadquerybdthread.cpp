@@ -1,6 +1,4 @@
 #include "musicdownloadquerybdthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownLoadQueryBDThread::MusicDownLoadQueryBDThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)

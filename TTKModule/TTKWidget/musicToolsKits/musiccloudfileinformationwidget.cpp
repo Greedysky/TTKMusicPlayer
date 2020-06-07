@@ -2,7 +2,7 @@
 #include "ui_musiccloudfileinformationwidget.h"
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
-#///Sync import
+
 #include "qsync/qsyncdataitem.h"
 
 MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent)

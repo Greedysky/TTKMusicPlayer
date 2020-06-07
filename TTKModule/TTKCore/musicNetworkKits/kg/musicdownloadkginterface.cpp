@@ -4,9 +4,6 @@
 #include "musicalgorithmutils.h"
 #include "musicdownloadquerykgthread.h"
 
-#///QJson import
-#include "qjson/parser.h"
-
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslConfiguration>

@@ -10,7 +10,6 @@
 #include "musicsettingmanager.h"
 #include "ttkversion.h"
 #include "musicmessagebox.h"
-#include "musictime.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"

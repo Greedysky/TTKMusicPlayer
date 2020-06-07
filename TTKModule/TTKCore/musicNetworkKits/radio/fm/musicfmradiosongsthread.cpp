@@ -1,7 +1,5 @@
 #include "musicfmradiosongsthread.h"
 #include "musicnumberutils.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>

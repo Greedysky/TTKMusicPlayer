@@ -1,7 +1,5 @@
 #include "musicdownloadqueryqqplaylistthread.h"
 #include "musicsemaphoreloop.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #define REFER_URL   "cmw5eWcwaXhCSDYvU1RoR3U5ZFV2NVppeDlyVkwxbFZtYnJZK3g5SzViaHFXc3FYQ09RblRYVHhORGVFVmFnN0RRUm5jZz09"
 

@@ -97,9 +97,7 @@ qint64 MusicTime::timestamp(bool ms)
 
 void MusicTime::initRandom()
 {
-#if TTK_QT_VERSION_CHECK(5,10,0)
-    QRandomGenerator::global()->seed(timestamp());
-#else
+#if !TTK_QT_VERSION_CHECK(5,10,0)
     qsrand(timestamp());
 #endif
 }

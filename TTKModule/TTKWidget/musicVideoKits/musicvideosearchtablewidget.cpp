@@ -5,7 +5,6 @@
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
 #include "musicgiflabelwidget.h"
-#include "musictime.h"
 
 MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)

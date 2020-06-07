@@ -21,6 +21,8 @@
 
 #include "musicclickedlabel.h"
 
+#include <QPainterPath>
+
 /*! @brief The class of the label show code area widget.
  * @author Greedysky <greedysky@163.com>
  */

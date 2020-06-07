@@ -1,6 +1,4 @@
 #include "musickwtextdownloadthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicKWTextDownLoadThread::MusicKWTextDownLoadThread(const QString &url, const QString &save, MusicObject::DownloadType  type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)

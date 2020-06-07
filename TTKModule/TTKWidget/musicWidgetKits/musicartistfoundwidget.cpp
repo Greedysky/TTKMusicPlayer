@@ -8,7 +8,6 @@
 #include "musictinyuiobject.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
-#include "musictime.h"
 #include "musicimageutils.h"
 #include "qrencode/qrcodewidget.h"
 

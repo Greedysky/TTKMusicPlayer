@@ -1,8 +1,6 @@
 #include "musicwyauthenticationthread.h"
 #include "musicalgorithmutils.h"
 #include "musicsettingmanager.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #include <QNetworkCookie>
 

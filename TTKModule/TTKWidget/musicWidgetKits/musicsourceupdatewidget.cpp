@@ -6,12 +6,9 @@
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
 #include "musicurlutils.h"
-#include "musictime.h"
 #include "musicsettingmanager.h"
 #include "musicsourceupdatewidget.h"
-#///QJson import
-#include "qjson/parser.h"
-#///Sync import
+
 #include "qsync/qsyncutils.h"
 
 #include <QBoxLayout>

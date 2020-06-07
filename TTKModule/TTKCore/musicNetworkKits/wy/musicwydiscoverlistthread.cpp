@@ -1,7 +1,5 @@
 #include "musicwydiscoverlistthread.h"
 #include "musicdownloadwyinterface.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicWYDiscoverListThread::MusicWYDiscoverListThread(QObject *parent)
     : MusicDownLoadDiscoverListThread(parent)

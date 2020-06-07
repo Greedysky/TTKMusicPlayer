@@ -2,8 +2,6 @@
 #include "musicsemaphoreloop.h"
 #include "musicdownloadquerywythread.h"
 #include "musicdownloadwyinterface.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicWYTranslationThread::MusicWYTranslationThread(QObject *parent)
     : MusicTranslationThreadAbstract(parent)

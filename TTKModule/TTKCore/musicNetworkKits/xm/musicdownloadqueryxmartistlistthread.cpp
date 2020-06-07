@@ -1,6 +1,4 @@
 #include "musicdownloadqueryxmartistlistthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #define REFER_URL   "UWhHVHk0M0QwSEJ5djJjeVZmaTNqL0R3amVKTnA0anJtdUdvck9MeExYZStnaHpT"
 

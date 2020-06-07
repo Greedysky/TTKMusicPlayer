@@ -16,7 +16,6 @@
 #include "musicaudiorecorderobject.h"
 #include "musiccodecutils.h"
 #include "musicfileutils.h"
-#include "musictime.h"
 #include "musicsinglemanager.h"
 
 #ifdef Q_CC_GNU

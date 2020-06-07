@@ -1,7 +1,5 @@
 #include "musicdownloadbackgroundremotethread.h"
 #include "musicdownloadsourcethread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #define THUD_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
 #define BIGU_URL   "UEQvb1lxVXFnV0dqRmxzNkY0alFJUHZUSUhyZUVNY0Y2OGZ1L255cS9CMklCakk4Q1dNQkF3PT0="

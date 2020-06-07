@@ -20,7 +20,6 @@
 #include "musicleftareawidget.h"
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
-#include "musictime.h"
 #include "musicwidgetheaders.h"
 
 #include <QPainter>

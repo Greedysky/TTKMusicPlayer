@@ -2,9 +2,6 @@
 #include "musicdownloadquerykwthread.h"
 #include "musicsemaphoreloop.h"
 
-#///QJson import
-#include "qjson/parser.h"
-
 MusicKWSongCommentsThread::MusicKWSongCommentsThread(QObject *parent)
     : MusicDownLoadCommentsThread(parent)
 {

@@ -3,8 +3,6 @@
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicXMMVInfoConfigManager::MusicXMMVInfoConfigManager(QObject *parent)
     : MusicAbstractXml(parent)

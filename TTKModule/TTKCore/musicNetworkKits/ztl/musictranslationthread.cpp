@@ -1,7 +1,5 @@
 #include "musictranslationthread.h"
 #include "musicobject.h"
-#///QJson import
-#include "qjson/parser.h"
 
 const QString TRANSLATION_URL = "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU=";
 

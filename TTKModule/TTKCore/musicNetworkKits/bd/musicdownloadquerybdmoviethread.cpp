@@ -3,8 +3,6 @@
 #include "musicsemaphoreloop.h"
 #include "musiccoreutils.h"
 #include "musicnumberutils.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownLoadQueryBDMovieThread::MusicDownLoadQueryBDMovieThread(QObject *parent)
     : MusicDownLoadQueryMovieThread(parent)

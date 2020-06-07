@@ -1,7 +1,5 @@
 #include "musicdownloadquerykwtoplistthread.h"
 #include "musicnumberutils.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownLoadQueryKWToplistThread::MusicDownLoadQueryKWToplistThread(QObject *parent)
     : MusicDownLoadQueryToplistThread(parent)

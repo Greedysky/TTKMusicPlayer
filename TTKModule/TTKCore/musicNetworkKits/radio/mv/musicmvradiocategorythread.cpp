@@ -1,6 +1,4 @@
 #include "musicmvradiocategorythread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicMVRadioCategoryThread::MusicMVRadioCategoryThread(QObject *parent)
     : MusicMVRadioThreadAbstract(parent)

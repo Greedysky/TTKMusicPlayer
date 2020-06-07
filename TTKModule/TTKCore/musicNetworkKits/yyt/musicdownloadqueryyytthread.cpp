@@ -2,8 +2,6 @@
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
-#///QJson import
-#include "qjson/parser.h"
 
 const QString BD_MV_INFO_URL       = "dVBTZDgydDQvak9sYkp6c3VhYTZqV3k2NG9RK1dxcjNPYlZLWVZUWGx0aXlSRmY1YlBkV0ZGa0F5L2Y1U285M3VNTWtSYUI1N0tCRUNuK29VNUtqTXN6V0Y1TDZkYWJFS0Nqa280MjZHTnc4M1l3cUhqVldEOU9iblpSU0xvMzhSY0sxM1ZNRTZaUzM5RnhWRUJuWjRtdEJwWmFoNy9PYw==";
 const QString BD_MV_INFO_ATTR_URL  = "S2p0SWNvNVNIVUEzV1QxOE83eTRsM0EwR3dGMUV2SXVNNWs1bW1iNUN1L0lxNHFCbXNCMDlkVjhZdFdzZGlvNVhJZzZOLzBUZE1MYjRnbGxkRzhiN2c9PQ==";

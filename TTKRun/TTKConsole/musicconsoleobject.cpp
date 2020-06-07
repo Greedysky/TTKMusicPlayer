@@ -5,7 +5,6 @@
 #include "musicformats.h"
 #include "musictkplconfigmanager.h"
 #include "musichotkeymanager.h"
-#include "musictime.h"
 
 #if TTK_QT_VERSION_CHECK(5,2,0)
 #include <QCommandLineOption>

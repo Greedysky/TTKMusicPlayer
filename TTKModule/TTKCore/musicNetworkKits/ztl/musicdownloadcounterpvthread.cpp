@@ -1,6 +1,4 @@
 #include "musicdownloadcounterpvthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownloadCounterPVThread::MusicDownloadCounterPVThread(QObject *parent)
     : MusicNetworkAbstract(parent)

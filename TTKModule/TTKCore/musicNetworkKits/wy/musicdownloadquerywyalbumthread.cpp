@@ -1,6 +1,4 @@
 #include "musicdownloadquerywyalbumthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #include <QDateTime>
 

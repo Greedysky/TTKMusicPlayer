@@ -3,8 +3,6 @@
 #include "musicsemaphoreloop.h"
 #include "musicurlutils.h"
 
-#///QJson import
-#include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
 
 MusicBDSongCommentsThread::MusicBDSongCommentsThread(QObject *parent)

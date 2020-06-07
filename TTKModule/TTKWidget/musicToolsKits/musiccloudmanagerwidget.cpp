@@ -12,18 +12,15 @@
 #include "musicfileutils.h"
 #include "musicstringutils.h"
 #include "musicformats.h"
-#include "musictime.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
-#///Sync import
+
 #include "qsync/qsyncconf.h"
 #include "qsync/qsynclistdata.h"
 #include "qsync/qsyncuploaddata.h"
 #include "qsync/qsyncdeletedata.h"
 #include "qsync/qsyncdownloaddata.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #define OS_CLOUD_URL        "cloud"
 

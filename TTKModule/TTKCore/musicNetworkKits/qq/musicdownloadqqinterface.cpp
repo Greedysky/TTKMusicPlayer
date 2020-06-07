@@ -3,8 +3,6 @@
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
 #include "musicnetworkabstract.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>

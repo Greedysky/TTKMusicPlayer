@@ -1,7 +1,5 @@
 #include "musicdownloadquerykwthread.h"
 #include "musicnumberutils.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
     : MusicAbstractXml(parent)

@@ -5,8 +5,7 @@
 #include "musicurlutils.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkabstract.h"
-#///QJson import
-#include "qjson/parser.h"
+
 #include "qalg/qaeswrap.h"
 
 #include <QNetworkReply>

@@ -3,9 +3,7 @@
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
 #include "musicsettingmanager.h"
-#///QJson import
-#include "qjson/parser.h"
-#///Sync import
+
 #include "qsync/qsyncutils.h"
 
 #include <QFile>

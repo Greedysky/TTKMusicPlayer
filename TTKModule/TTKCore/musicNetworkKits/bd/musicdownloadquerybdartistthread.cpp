@@ -1,7 +1,5 @@
 #include "musicdownloadquerybdartistthread.h"
 #include "musicsemaphoreloop.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownLoadQueryBDArtistThread::MusicDownLoadQueryBDArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)

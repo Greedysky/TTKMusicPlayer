@@ -1,8 +1,6 @@
 #include "musicdjradioprogramcategorythread.h"
 #include "musicdjradiothreadabstract.h"
 #include "musicsemaphoreloop.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDJRadioProgramCategoryThread::MusicDJRadioProgramCategoryThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)

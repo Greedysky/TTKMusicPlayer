@@ -1,7 +1,5 @@
 #include "musicdownloadqueryqqrecommendthread.h"
 #include "musicsemaphoreloop.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownLoadQueryQQRecommendThread::MusicDownLoadQueryQQRecommendThread(QObject *parent)
     : MusicDownLoadQueryRecommendThread(parent)

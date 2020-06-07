@@ -1,7 +1,5 @@
 #include "musicxmartistsimilarthread.h"
 #include "musicdownloadxminterface.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicXMArtistSimilarThread::MusicXMArtistSimilarThread(QObject *parent)
     : MusicDownLoadSimilarThread(parent)

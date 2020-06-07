@@ -1,6 +1,4 @@
 #include "musicwyartistsimilarthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicWYArtistSimilarThread::MusicWYArtistSimilarThread(QObject *parent)
     : MusicDownLoadSimilarThread(parent)

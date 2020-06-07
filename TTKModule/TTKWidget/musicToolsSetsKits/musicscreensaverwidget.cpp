@@ -7,7 +7,7 @@
 #include "musicimageutils.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
-#///Sync import
+
 #include "qsync/qsyncutils.h"
 
 #include <QEvent>

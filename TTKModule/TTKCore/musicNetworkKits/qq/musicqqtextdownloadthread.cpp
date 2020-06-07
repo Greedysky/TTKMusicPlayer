@@ -1,6 +1,4 @@
 #include "musicqqtextdownloadthread.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #define HOST_URL    "ellnUHg0Um83L2x1U29LbWw1UjFtandwRHNIRUxPcnQ="
 #define REFER_URL   "YnZJaDZBVEFHSllTWlRualJFblR3U0NkYitRd1N1ZmNKaDZFQUdQVFRKND0="

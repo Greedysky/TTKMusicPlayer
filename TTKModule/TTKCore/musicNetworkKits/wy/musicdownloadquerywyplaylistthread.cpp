@@ -1,7 +1,5 @@
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicsemaphoreloop.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicDownLoadQueryWYPlaylistThread::MusicDownLoadQueryWYPlaylistThread(QObject *parent)
     : MusicDownLoadQueryPlaylistThread(parent)

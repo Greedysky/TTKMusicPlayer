@@ -1,7 +1,5 @@
 #include "musickgsongsuggestthread.h"
 #include "musicdownloadkginterface.h"
-#///QJson import
-#include "qjson/parser.h"
 
 MusicKGSongSuggestThread::MusicKGSongSuggestThread(QObject *parent)
     : MusicDownLoadSongSuggestThread(parent)

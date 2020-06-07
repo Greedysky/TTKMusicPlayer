@@ -1,9 +1,7 @@
 #include "musicsourceupdatethread.h"
 #include "musicdownloadsourcethread.h"
 #include "musicsettingmanager.h"
-#///QJson import
-#include "qjson/parser.h"
-#///Sync import
+
 #include "qsync/qsyncutils.h"
 
 #define OS_VERSION_URL       "version"

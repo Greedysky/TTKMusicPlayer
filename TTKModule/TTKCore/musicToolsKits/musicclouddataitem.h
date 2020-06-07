@@ -20,7 +20,7 @@
  ================================================= */
 
 #include "musicglobaldefine.h"
-#///Sync import
+
 #include "qsync/qsyncdataitem.h"
 
 /*! @brief The class of the cloud data item.

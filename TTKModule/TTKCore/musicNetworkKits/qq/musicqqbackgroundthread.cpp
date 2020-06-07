@@ -3,9 +3,6 @@
 #include "musicdatadownloadthread.h"
 #include "musicdownloadqqinterface.h"
 
-#///QJson import
-#include "qjson/parser.h"
-
 const QString BIG_ART_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0=";
 
 MusicQQBackgroundThread::MusicQQBackgroundThread(const QString &name, const QString &save, QObject *parent)

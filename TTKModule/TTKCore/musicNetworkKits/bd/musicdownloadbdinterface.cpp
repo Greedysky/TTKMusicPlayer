@@ -4,8 +4,7 @@
 #include "musicalgorithmutils.h"
 #include "musicurlutils.h"
 #include "musicnetworkabstract.h"
-#///QJson import
-#include "qjson/parser.h"
+
 #include "qalg/qaeswrap.h"
 
 #include <QNetworkReply>
