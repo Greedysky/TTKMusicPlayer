@@ -85,7 +85,7 @@ private:
     qint64 m_totalBytes = 0;
     qint64 m_offset = 0;
     qint64 m_length = 0;
-    QString m_path = 0;
+    QString m_path;
     CueParser *m_parser = nullptr;
     int m_track = 0;
     char *m_buf = nullptr; //buffer for remainig data

@@ -3,6 +3,8 @@
 #include "mountainwidget.h"
 #include "mountainplugin.h"
 
+#include "inlines.h"
+
 MountainPlugin::MountainPlugin(QWidget *parent)
     : Florid(parent)
 {
@@ -32,5 +34,15 @@ void MountainPlugin::contextMenuEvent(QContextMenuEvent *)
 
 void MountainPlugin::process(float *left, float *)
 {
-    m_mountainWidget->addBuffer(left);
+    const int size = QMMP_VISUAL_NODE_SIZE / 2;
+    short dest_l[size];
+    calc_freq(dest_l, left);
+
+    float buffer[size];
+    for(int i=0; i<size; ++i)
+    {
+        buffer[i] = dest_l[i] / ((QMMP_VISUAL_NODE_SIZE << 8) / (8.0 / 2));
+    }
+
+    m_mountainWidget->addBuffer(buffer);
 }
