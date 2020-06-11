@@ -35,7 +35,7 @@ bool MusicKWLConfigManager::readPlaylistData(MusicSongItems &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    const QDomNodeList &nodes = m_document->elementsByTagName("so");
+    const QDomNodeList &nodes = m_document->elementsByTagName(m_nodeHelper->nodeName("so"));
     for(int i=0; i<nodes.count(); ++i)
     {
         if(i == 0) //Skip root node

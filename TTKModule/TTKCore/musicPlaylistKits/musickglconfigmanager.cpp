@@ -15,7 +15,7 @@ bool MusicKGLConfigManager::readPlaylistData(MusicSongItems &items)
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
     QTextCodec *codec = QTextCodec::codecForName("windows-1252");
-    const QDomNodeList &nodes = m_document->elementsByTagName("File");
+    const QDomNodeList &nodes = m_document->elementsByTagName(m_nodeHelper->nodeName("File"));
     for(int i=0; i<nodes.count(); ++i)
     {
         MusicSong song;
@@ -23,11 +23,11 @@ bool MusicKGLConfigManager::readPlaylistData(MusicSongItems &items)
         for(int i=0; i<cNodes.count(); ++i)
         {
             const QDomNode &cNode = cNodes.at(i);
-            if(cNode.nodeName() == "Duration")
+            if(cNode.nodeName().toLower() == "duration")
             {
                 song.setMusicPlayTime(MusicTime::msecTime2LabelJustified(cNode.toElement().text().toULongLong()));
             }
-            else if(cNode.nodeName() == "FileName")
+            else if(cNode.nodeName().toLower() == "filename")
             {
                 const QFileInfo info(codec->fromUnicode(cNode.toElement().text()));
                 song.setMusicName(info.baseName());
@@ -42,7 +42,7 @@ bool MusicKGLConfigManager::readPlaylistData(MusicSongItems &items)
                     song.setMusicPath(song.getMusicPath() + info.fileName());
                 }
             }
-            else if(cNode.nodeName() == "FilePath")
+            else if(cNode.nodeName().toLower() == "filepath")
             {
                 const QString &path = codec->fromUnicode(cNode.toElement().text());
                 if(song.getMusicName().isEmpty())
@@ -54,7 +54,7 @@ bool MusicKGLConfigManager::readPlaylistData(MusicSongItems &items)
                     song.setMusicPath(path + song.getMusicName() + "." + song.getMusicType());
                 }
             }
-            else if(cNode.nodeName() == "FileSize")
+            else if(cNode.nodeName().toLower() == "filesize")
             {
                 song.setMusicSize(cNode.toElement().text().toLongLong());
             }

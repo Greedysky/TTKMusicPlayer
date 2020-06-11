@@ -12,7 +12,7 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    const QDomNodeList &itemNodes = m_document->elementsByTagName("Entry");
+    const QDomNodeList &itemNodes = m_document->elementsByTagName(m_nodeHelper->nodeName("Entry"));
     for(int i=0; i<itemNodes.count(); ++i)
     {
         const QDomNode &node = itemNodes.at(i);
@@ -22,12 +22,12 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
         for(int j=0; j<paramNodes.count(); ++j)
         {
             const QDomNode &paramNode = paramNodes.at(j);
-            if(paramNode.nodeName() == "Duration")
+            if(paramNode.nodeName().toLower() == "duration")
             {
                 duration = paramNode.toElement().attribute("value");
                 duration = duration.mid(3, 5);
             }
-            else if(paramNode.nodeName() == "Ref")
+            else if(paramNode.nodeName().toLower() == "ref")
             {
                 path = paramNode.toElement().attribute("href");
             }

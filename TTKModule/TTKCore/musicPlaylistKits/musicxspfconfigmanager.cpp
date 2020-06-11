@@ -9,7 +9,7 @@ MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
 
 bool MusicXSPFConfigManager::readPlaylistData(MusicSongItems &items)
 {
-    const QDomNodeList &trackNodes = m_document->elementsByTagName("trackList");
+    const QDomNodeList &trackNodes = m_document->elementsByTagName(m_nodeHelper->nodeName("trackList"));
     for(int i=0; i<trackNodes.count(); ++i)
     {
         const QDomNode &node = trackNodes.at(i);

@@ -4,17 +4,94 @@
 #   pragma GCC diagnostic ignored "-Wswitch"
 #endif
 
+MusicXmlNodeHelper::MusicXmlNodeHelper(const QDomNode& root)
+{
+    m_root    = root;
+    m_current = root;
+}
+
+void MusicXmlNodeHelper::load()
+{
+    do
+    {
+        if(!m_current.isNull() && m_current.isElement())
+        {
+            m_nodeNames.insert(m_current.nodeName());
+        }
+    } while(hasNext());
+}
+
+bool MusicXmlNodeHelper::hasNext()
+{
+    bool hasNext = false;
+    if(m_root.isNull() || m_current.isNull())
+    {
+        return hasNext;
+    }
+
+    if(m_current.hasChildNodes() && !m_current.firstChildElement().isNull())
+    {
+        m_current = m_current.firstChildElement();
+        hasNext = true;
+    }
+    else if(!m_current.nextSiblingElement().isNull())
+    {
+        m_current = m_current.nextSiblingElement();
+        hasNext = true;
+    }
+    else
+    {
+        while(m_current != m_root && m_current.nextSiblingElement().isNull())
+        {
+            m_current = m_current.parentNode();
+        }
+
+        if(m_current != m_root)
+        {
+            m_current = m_current.nextSiblingElement();
+            hasNext = true;
+        }
+        else
+        {
+            hasNext = false;
+        }
+    }
+
+    return hasNext;
+}
+
+QString MusicXmlNodeHelper::nodeName(const QString &name) const
+{
+    foreach(const QString &value, m_nodeNames)
+    {
+        if(value.toLower() == name.toLower())
+        {
+            return value;
+        }
+    }
+    return name;
+}
+
+QDomNode MusicXmlNodeHelper::next() const
+{
+    return m_current;
+}
+
+
+
 MusicAbstractXml::MusicAbstractXml(QObject *parent)
     : QObject(parent)
 {
     m_file = nullptr;
     m_document = nullptr;
+    m_nodeHelper = nullptr;
 }
 
 MusicAbstractXml::~MusicAbstractXml()
 {
     delete m_file;
     delete m_document;
+    delete m_nodeHelper;
 }
 
 bool MusicAbstractXml::readConfig(const QString &name)
@@ -28,6 +105,7 @@ bool MusicAbstractXml::readConfig(const QString &name)
     {
         return false;
     }
+
     if(!m_document->setContent(m_file))
     {
         m_file->close();
@@ -35,6 +113,10 @@ bool MusicAbstractXml::readConfig(const QString &name)
         m_file = nullptr;
         return false;
     }
+
+    m_nodeHelper = new MusicXmlNodeHelper(m_document->documentElement());
+    m_nodeHelper->load();
+
     return true;
 }
 
@@ -63,6 +145,10 @@ bool MusicAbstractXml::fromString(const QString &data)
     {
         return false;
     }
+
+    m_nodeHelper = new MusicXmlNodeHelper(m_document->documentElement());
+    m_nodeHelper->load();
+
     return true;
 }
 
@@ -77,6 +163,10 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
     {
         return false;
     }
+
+    m_nodeHelper = new MusicXmlNodeHelper(m_document->documentElement());
+    m_nodeHelper->load();
+
     return true;
 }
 
