@@ -248,7 +248,7 @@ void FloridAncient::draw(QPainter *p)
 
         p->save();
         p->rotate(startAngle);
-        const int value = m_intern_vis_data[int(offset * 0.8)];
+        const int value = m_intern_vis_data[int(offset * 0.6)];
         p->drawLine(0, DISTANCE + 5 + value * 0.2, 0, DISTANCE + 5 + value * 0.3);
 
         p->restore();

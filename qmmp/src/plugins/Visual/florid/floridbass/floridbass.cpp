@@ -77,13 +77,13 @@ void FloridBass::draw(QPainter *p)
             qSwap(value1, value2);
         }
 
-        p->drawLine(0, DISTANCE + 10 + value1 * 0.03, 0, DISTANCE + 10 + value2 * 0.03);
+        p->drawLine(0, DISTANCE + 10 + value1 * 0.015, 0, DISTANCE + 10 + value2 * 0.015);
 
         if(value1 < 0)
         {
            value1 = 0;
         }
-        p->drawPoint(0, DISTANCE + 20 + value1 * 0.3);
+        p->drawPoint(0, DISTANCE + 20 + value1 * 0.15);
 
         p->restore();
         startAngle += 360.0 / (m_rows * 2);

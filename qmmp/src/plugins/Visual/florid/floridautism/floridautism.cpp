@@ -55,7 +55,7 @@ void AutismLabel::paintEvent(QPaintEvent *event)
         QPainter painter(this);
         painter.setOpacity((2 * DISTANCE - m_crValue) * 0.8 / DISTANCE);
         painter.setRenderHint(QPainter::Antialiasing);
-        painter.setPen(QPen(m_color, 1));
+        painter.setPen(QPen(m_color, 2));
         painter.drawEllipse(m_pos, m_crValue, m_crValue);
     }
 }
