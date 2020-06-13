@@ -74,9 +74,9 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override;
     /*!
-     * Download key data from net finished.
+     * Download data from net finished.
      */
-    void keyDownLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &data);
 
 protected:
     MusicSongIdentifys m_songIdentifys;

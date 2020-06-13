@@ -35,7 +35,7 @@ bool MusicIdentifySongsThread::getKey()
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();
 
@@ -126,7 +126,7 @@ void MusicIdentifySongsThread::downLoadFinished()
     deleteAll();
 }
 
-void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
+void MusicIdentifySongsThread::downLoadFinished(const QByteArray &data)
 {
     QJson::Parser parser;
     bool ok;
