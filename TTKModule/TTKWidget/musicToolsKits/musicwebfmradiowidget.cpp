@@ -148,7 +148,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         setItem(index, 3, item);
 
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-        connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != COVER_URL_NULL)
         {
             QVariantMap map;
@@ -166,9 +166,15 @@ void MusicWebFMRadioWidget::addListWidgetItem()
     }
 }
 
-void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
+void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data)
 {
-    QTableWidgetItem *it = item(ext["id"].toInt(), 1);
+    MusicDownloadSourceThread *download(TTKStatic_cast(MusicDownloadSourceThread*, sender()));
+    if(!download)
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(download->getRawData()["id"].toInt(), 1);
     if(it)
     {
         QPixmap pix;

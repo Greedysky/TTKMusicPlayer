@@ -56,11 +56,11 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const QString &data);
+    void downLoadFinished(const QString &data);
     /*!
      * Send download data from net.
      */
-    virtual void downLoadDataChanged(const MusicSkinRemoteGroups &data);
+    virtual void downLoadFinished(const MusicSkinRemoteGroups &data);
 
 protected:
     /*!
@@ -114,7 +114,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadDataChanged(const MusicSkinRemoteGroups &data) override;
+    virtual void downLoadFinished(const MusicSkinRemoteGroups &data) override;
 
 protected:
     /*!
@@ -160,7 +160,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    virtual void downLoadDataChanged(const MusicSkinRemoteGroups &data) override;
+    virtual void downLoadFinished(const MusicSkinRemoteGroups &data) override;
 
 };
 

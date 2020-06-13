@@ -64,7 +64,7 @@ public Q_SLOTS:
     /*!
      * Send recieved data from net.
      */
-    void downLoadFinished(const QByteArray &data, const QVariantMap &ext);
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Music item has been clicked.
      */

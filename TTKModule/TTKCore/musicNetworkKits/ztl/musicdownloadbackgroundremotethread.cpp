@@ -76,11 +76,11 @@ MusicDownloadBackgroundThunderThread::MusicDownloadBackgroundThunderThread(QObje
 void MusicDownloadBackgroundThunderThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(THUD_URL, false));
 }
 
-void MusicDownloadBackgroundThunderThread::downLoadDataFinished(const QByteArray &bytes)
+void MusicDownloadBackgroundThunderThread::downLoadFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroups items;
 
@@ -104,11 +104,11 @@ MusicDownloadBackgroundBingThread::MusicDownloadBackgroundBingThread(QObject *pa
 void MusicDownloadBackgroundBingThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(BING_URL, false));
 }
 
-void MusicDownloadBackgroundBingThread::downLoadDataFinished(const QByteArray &bytes)
+void MusicDownloadBackgroundBingThread::downLoadFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroups items;
 

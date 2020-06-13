@@ -43,7 +43,7 @@ public Q_SLOTS:
     /*!
      * Download data from kuwo net finished.
      */
-    void downLoadDataFinished(const QByteArray &bytes);
+    void downLoadFinished(const QByteArray &bytes);
 
 };
 

@@ -14,11 +14,11 @@ void MusicKWBackgroundThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     ///Set search image API
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(m_artName));
 }
 
-void MusicKWBackgroundThread::downLoadDataFinished(const QByteArray &bytes)
+void MusicKWBackgroundThread::downLoadFinished(const QByteArray &bytes)
 {
     QJson::Parser parser;
     bool ok;

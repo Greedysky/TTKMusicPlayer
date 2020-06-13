@@ -247,7 +247,7 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
 
         //
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-        connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(lrcUrl);
     }
 }

@@ -13,7 +13,7 @@ MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
 void MusicNetworkOperator::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(IP_CHECK_URL, false));
 }
 

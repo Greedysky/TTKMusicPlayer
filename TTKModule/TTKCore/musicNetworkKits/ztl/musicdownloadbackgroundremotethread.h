@@ -110,7 +110,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadDataFinished(const QByteArray &bytes) = 0;
+    virtual void downLoadFinished(const QByteArray &bytes) = 0;
 
 };
 
@@ -137,7 +137,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadDataFinished(const QByteArray &bytes) override;
+    virtual void downLoadFinished(const QByteArray &bytes) override;
 
 };
 
@@ -164,7 +164,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadDataFinished(const QByteArray &bytes) override;
+    virtual void downLoadFinished(const QByteArray &bytes) override;
 
 };
 

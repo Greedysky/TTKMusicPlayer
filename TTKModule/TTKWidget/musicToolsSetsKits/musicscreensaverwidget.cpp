@@ -342,7 +342,7 @@ void MusicScreenSaverWidget::caseButtonOnAndOff()
     MusicApplicationObject::instance()->applySettingParameter();
 }
 
-void MusicScreenSaverWidget::downLoadDataChanged(const QString &data)
+void MusicScreenSaverWidget::downLoadFinished(const QString &data)
 {
     QVector<bool> statusVector(parseSettingParameter());
     if(data.contains(OS_WALLNAIL_NAME))

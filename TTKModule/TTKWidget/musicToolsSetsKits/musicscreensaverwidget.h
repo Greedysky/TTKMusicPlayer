@@ -198,7 +198,7 @@ private Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const QString &data);
+    void downLoadFinished(const QString &data);
     /*!
      * Current item has clicked.
      */

@@ -10,7 +10,7 @@ MusicVoiceTtsThread::MusicVoiceTtsThread(QObject *parent)
     m_person = 0;
 
     m_parser = new MusicDownloadSourceThread(this);
-    connect(m_parser, SIGNAL(downLoadByteDataChanged(QByteArray)), SIGNAL(downLoadDataChanged(QByteArray)));
+    connect(m_parser, SIGNAL(downLoadRawDataChanged(QByteArray)), SIGNAL(downLoadDataChanged(QByteArray)));
 }
 
 MusicVoiceTtsThread::~MusicVoiceTtsThread()

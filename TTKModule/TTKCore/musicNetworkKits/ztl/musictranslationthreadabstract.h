@@ -44,15 +44,6 @@ public:
      */
     virtual void startToDownload(const QString &data) = 0;
 
-Q_SIGNALS:
-    /*!
-     * Send translated data from net.
-     */
-    void downLoadDataChanged(const QString &data);
-
-protected:
-    QVariantMap m_rawData;
-
 };
 
 #endif // MUSICTRANSLATIONTHREADABSTRACT_H

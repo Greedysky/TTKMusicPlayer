@@ -120,7 +120,7 @@ public Q_SLOTS:
     /*!
      * Data download finished and send to shared on web.
      */
-    void downLoadDataChanged(const QString &playUrl, const QString &imageUrl);
+    void downLoadFinished(const QString &playUrl, const QString &imageUrl);
     /*!
      * Query url time out, that means share failed.
      */

@@ -81,7 +81,7 @@ bool MusicCloudManagerTableWidget::getKey()
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_CLOUD_URL);
 
     loop.exec();
@@ -114,7 +114,7 @@ void MusicCloudManagerTableWidget::itemCellClicked(int row, int column)
     Q_UNUSED(column);
 }
 
-void MusicCloudManagerTableWidget::keyDownLoadFinished(const QByteArray &data)
+void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &data)
 {
     QJson::Parser parser;
     bool ok;

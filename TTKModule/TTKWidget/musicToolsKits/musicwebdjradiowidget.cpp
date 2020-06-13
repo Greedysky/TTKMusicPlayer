@@ -133,7 +133,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     setItem(index, 5, item);
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != COVER_URL_NULL)
     {
         QVariantMap map;
@@ -143,9 +143,15 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     }
 }
 
-void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
+void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data)
 {
-    QTableWidgetItem *it = item(ext["id"].toInt(), 1);
+    MusicDownloadSourceThread *download(TTKStatic_cast(MusicDownloadSourceThread*, sender()));
+    if(!download)
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(download->getRawData()["id"].toInt(), 1);
     if(it)
     {
         QPixmap pix;

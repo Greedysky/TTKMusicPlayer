@@ -50,7 +50,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished();
+    virtual void downLoadFinished() override;
 
 };
 

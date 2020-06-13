@@ -35,7 +35,7 @@ bool MusicIdentifySongsThread::getKey()
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
     download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();
 

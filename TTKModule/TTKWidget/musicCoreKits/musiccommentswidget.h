@@ -47,9 +47,9 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Icon data download finished.
+     * Send recieved data from net.
      */
-    void iconDataDownloadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &data);
 
 protected:
     QTextEdit *m_userCommit;

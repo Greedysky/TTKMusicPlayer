@@ -78,9 +78,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Send raw data changed.
+     * Send download raw data changed.
      */
-    void rawDataChanged(const QVariantMap &data);
+    void downLoadRawDataChanged(const QByteArray &data);
     /*!
      * Send download data from net.
      */

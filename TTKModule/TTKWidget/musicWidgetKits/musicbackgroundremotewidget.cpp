@@ -21,7 +21,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     m_queryThread = nullptr;
 
     m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
-    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
+    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 }
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
@@ -37,7 +37,7 @@ void MusicBackgroundRemoteWidget::abort()
     m_downloadQueue->abort();
 }
 
-void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
+void MusicBackgroundRemoteWidget::downLoadFinished(const QString &data)
 {
     if(m_groups.isEmpty())
     {
@@ -53,7 +53,7 @@ void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
     m_backgroundList->updateItem(image, data);
 }
 
-void MusicBackgroundRemoteWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
+void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroups &data)
 {
     m_groups = data;
 }
@@ -103,7 +103,7 @@ void MusicBackgroundThunderWidget::initialize()
     if(!m_queryThread)
     {
         m_queryThread = new MusicDownloadBackgroundThunderThread(this);
-        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadDataChanged(MusicSkinRemoteGroups)));
+        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
         m_queryThread->startToDownload();
     }
 }
@@ -210,9 +210,9 @@ void MusicBackgroundThunderWidget::buttonClicked(int index)
     startToDownload(TTS_FILE);
 }
 
-void MusicBackgroundThunderWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
+void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups &data)
 {
-    MusicBackgroundRemoteWidget::downLoadDataChanged(data);
+    MusicBackgroundRemoteWidget::downLoadFinished(data);
 
     for(int i=0; i<m_groups.count(); ++i)
     {
@@ -265,7 +265,7 @@ void MusicBackgroundDailyWidget::initialize()
     if(!m_queryThread)
     {
         m_queryThread = new MusicDownloadBackgroundBingThread(this);
-        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadDataChanged(MusicSkinRemoteGroups)));
+        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
         m_queryThread->startToDownload();
     }
     else
@@ -292,8 +292,8 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
     }
 }
 
-void MusicBackgroundDailyWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
+void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroups &data)
 {
-    MusicBackgroundRemoteWidget::downLoadDataChanged(data);
+    MusicBackgroundRemoteWidget::downLoadFinished(data);
     startToDownload(TTS_FILE);
 }

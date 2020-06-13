@@ -79,9 +79,9 @@ public Q_SLOTS:
      */
     virtual void itemCellClicked(int row, int column) override;
     /*!
-     * Download key data from net finished.
+     * Send recieved data from net.
      */
-    void keyDownLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Receive data from sync finshed.
      */

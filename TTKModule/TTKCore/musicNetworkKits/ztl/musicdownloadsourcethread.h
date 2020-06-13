@@ -40,16 +40,6 @@ public:
      */
     void startToDownload(const QString &url);
 
-Q_SIGNALS:
-    /*!
-     * Send download byte data from net.
-     */
-    void downLoadByteDataChanged(const QByteArray &data);
-    /*!
-     * Send download ext data from net.
-     */
-    void downLoadExtDataChanged(const QByteArray &data, const QVariantMap &ext);
-
 public Q_SLOTS:
     /*!
      * Download data from net finished.
