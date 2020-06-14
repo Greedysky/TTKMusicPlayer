@@ -52,7 +52,12 @@ void MusicFunctionToolBoxTopWidget::setItemExpand(bool expand)
 
 bool MusicFunctionToolBoxTopWidget::isItemExpand() const
 {
-    return m_labelIcon->pixmap()->cacheKey() == QPixmap(":/tiny/lb_arrow_down_normal").cacheKey();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const QPixmap &pix =  m_labelIcon->pixmap(Qt::ReturnByValue);
+#else
+    const QPixmap &pix = *m_labelIcon->pixmap();
+#endif
+    return pix.cacheKey() == QPixmap(":/tiny/lb_arrow_down_normal").cacheKey();
 }
 
 void MusicFunctionToolBoxTopWidget::setTitle(const QString &text)

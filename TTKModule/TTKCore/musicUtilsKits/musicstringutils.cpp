@@ -194,7 +194,11 @@ QString MusicUtils::String::illegalCharactersReplaced(const QString &value)
 QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
 {
     QList<QColor> colors;
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const QStringList &rgbs = value.split(";", Qt::SkipEmptyParts);
+#else
     const QStringList &rgbs = value.split(";", QString::SkipEmptyParts);
+#endif
     foreach(const QString &rgb, rgbs)
     {
         const QStringList &var = rgb.split(",");

@@ -58,7 +58,12 @@ void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
     QWidget::wheelEvent(event);
     m_deltaPos = QPoint();
 
-    float delta = event->delta() / 100.0;
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const float delta = event->angleDelta().y() / 100.0;
+#else
+    const float delta = event->delta() / 100.0;
+#endif
+
     float dv = m_width*1.0/m_originWidth;
     if(dv >= 5 && delta >= 0)
     {

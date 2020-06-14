@@ -77,7 +77,11 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
         m_previousValue = m_scrollBar->value();
         m_firstInit = false;
     }
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    m_deltaValue += event->angleDelta().y();
+#else
     m_deltaValue += event->delta();
+#endif
     m_animationTimer->start();
 }
 
@@ -159,6 +163,10 @@ void MusicSmoothMovingScrollArea::wheelEvent(QWheelEvent *event)
         m_previousValue = m_scrollBar->value();
         m_firstInit = false;
     }
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    m_deltaValue += event->angleDelta().y();
+#else
     m_deltaValue += event->delta();
+#endif
     m_animationTimer->start();
 }

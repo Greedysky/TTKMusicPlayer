@@ -74,7 +74,11 @@ void MusicLrcFloatPhotoItem::sendUserBoxClicked()
 
 void MusicLrcFloatPhotoItem::sendUserSelectArt()
 {
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    if(!pixmap(Qt::ReturnByValue).isNull())
+#else
     if(!pixmap()->isNull())
+#endif
     {
         Q_EMIT itemClicked(m_index);
     }
@@ -93,7 +97,11 @@ void MusicLrcFloatPhotoItem::exportArtPixmap()
 void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicClickedLabel::contextMenuEvent(event);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    if(!pixmap(Qt::ReturnByValue).isNull())
+#else
     if(!pixmap()->isNull())
+#endif
     {
         QMenu menu(this);
         menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
@@ -105,7 +113,11 @@ void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
 void MusicLrcFloatPhotoItem::enterEvent(QEvent *event)
 {
     MusicClickedLabel::enterEvent(event);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    if(!pixmap(Qt::ReturnByValue).isNull())
+#else
     if(!pixmap()->isNull())
+#endif
     {
         setCursor(Qt::PointingHandCursor);
     }

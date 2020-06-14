@@ -42,12 +42,11 @@ void MusicTransitionAnimationLabel::stop()
 
 void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 {
-//    if(m_isAnimating)
-//    {
-//        return;
-//    }
-
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    if(m_noAnimationSet || pixmap(Qt::ReturnByValue).isNull())
+#else
     if(m_noAnimationSet || !pixmap())
+#endif
     {
         m_rendererPixmap = pix;
         QLabel::setPixmap(pix);
@@ -65,7 +64,11 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         default: break;
     }
 
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    m_previousPixmap = pixmap(Qt::ReturnByValue);
+#else
     m_previousPixmap = *pixmap();
+#endif
     m_currentPixmap = pix;
     m_isAnimating = true;
     m_animation->start();

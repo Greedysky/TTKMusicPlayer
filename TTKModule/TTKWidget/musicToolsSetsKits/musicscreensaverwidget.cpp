@@ -102,7 +102,12 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
     MusicUtils::Widget::setBorderShadow(this, &painter);
-    painter.drawPixmap(QRect(QPoint(4, 4), ITEM_SIZE), pixmap()->scaled(ITEM_SIZE));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const QPixmap &pix = pixmap(Qt::ReturnByValue);
+#else
+    const QPixmap &pix = *pixmap();
+#endif
+    painter.drawPixmap(QRect(QPoint(4, 4), ITEM_SIZE), pix.scaled(ITEM_SIZE));
 }
 
 
