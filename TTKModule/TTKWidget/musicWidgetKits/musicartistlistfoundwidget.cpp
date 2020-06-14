@@ -5,9 +5,9 @@
 #include "musicartistlistfoundcategorypopwidget.h"
 #include "musicpagingwidgetobject.h"
 #include "musicrightareawidget.h"
+#include "musicclickedgroup.h"
 
 #include <qmath.h>
-#include <QSignalMapper>
 
 #define WIDTH_LABEL_SIZE   150
 #define HEIGHT_LABEL_SIZE  25
@@ -120,13 +120,14 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
 #ifdef Q_OS_WIN
         containNumberLayout->setSpacing(15);
 #endif
-        QSignalMapper *group = new QSignalMapper(this);
-        connect(group, SIGNAL(mapped(int)), SLOT(numberButtonClicked(int)));
+        MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+        connect(clickedGroup, SIGNAL(clicked(int)), SLOT(numberButtonClicked(int)));
+
         for(int i=-1; i<27; ++i)
         {
             MusicClickedLabel *l = new MusicClickedLabel(QString(TTKStatic_cast(char, i + 65)), containNumberWidget);
             l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MQSSColorStyle08).arg(MusicUIObject::MQSSColorStyle11));
-            connect(l, SIGNAL(clicked()), group, SLOT(map()));
+
             if(i == -1)
             {
                 l->setText(tr("hot"));
@@ -135,7 +136,8 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
             {
                 l->setText(tr("#"));
             }
-            group->setMapping(l, i);
+
+            clickedGroup->mapped(l);
             containNumberLayout->addWidget(l);
         }
         containNumberWidget->setLayout(containNumberLayout);
@@ -157,7 +159,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
         mainlayout->addWidget(containWidget);
 
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
-        connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
+        connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));

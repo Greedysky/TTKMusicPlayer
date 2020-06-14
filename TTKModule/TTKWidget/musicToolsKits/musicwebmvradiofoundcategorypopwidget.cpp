@@ -2,8 +2,7 @@
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
-
-#include <QSignalMapper>
+#include "musicclickedgroup.h"
 
 #define ITEM_MAX_COLUMN     2
 #define ITEM_LABEL_WIDTH    20
@@ -28,17 +27,17 @@ void MusicWebMVRadioFoundCategoryItem::setCategory(const MusicResultsCategory &c
     QGridLayout *itemlayout = new QGridLayout(item);
     itemlayout->setContentsMargins(0, 0, 0, 0);
 
-    QSignalMapper *group = new QSignalMapper(this);
-    connect(group, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
+    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    connect(clickedGroup, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
     for(int i=0; i<m_category.m_items.count(); ++i)
     {
         MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_name, item);
         l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
-        connect(l, SIGNAL(clicked()), group, SLOT(map()));
-        group->setMapping(l, i);
+
         itemlayout->addWidget(l, i/ITEM_MAX_COLUMN, i%ITEM_MAX_COLUMN, Qt::AlignLeft);
+        clickedGroup->mapped(l);
     }
     item->setLayout(itemlayout);
 

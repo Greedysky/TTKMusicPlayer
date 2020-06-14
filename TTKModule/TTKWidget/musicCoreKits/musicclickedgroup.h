@@ -1,5 +1,5 @@
-#ifndef MUSICPAGINGWIDGETOBJECT_H
-#define MUSICPAGINGWIDGETOBJECT_H
+#ifndef MUSICCLICKEDGROUP_H
+#define MUSICCLICKEDGROUP_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,57 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicClickedLabel;
-
-/*! @brief The class of the paging widget object.
+/*! @brief The class of the label widget click group mapper.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPagingWidgetObject : public QObject
+class MUSIC_WIDGET_EXPORT MusicClickedGroup : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPagingWidgetObject)
+    TTK_DECLARE_MODULE(MusicClickedGroup)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPagingWidgetObject(QObject *parent = nullptr);
-
-    virtual ~MusicPagingWidgetObject();
+    explicit MusicClickedGroup(QObject *parent = nullptr);
 
     /*!
-     * Get create paging widget.
+     * Map the clicked widget.
      */
-    QWidget* getCreatePagingWidget();
-    /*!
-     * Create paging items.
-     */
-    QWidget* createPagingWidget(QWidget *parent, int total);
-    /*!
-     * Reset page to origin.
-     */
-    void reset(int total);
-    /*!
-     * Start to page by given index and total.
-     */
-    void paging(int index, int total);
-    /*!
-     * Get current page index.
-     */
-    int currentIndex() const;
+    void mapped(QWidget *widget);
 
 Q_SIGNALS:
     /*!
-     * Mapped the clicked page index.
+     * Index widget click emit.
      */
     void clicked(int index);
 
-protected:
-    int m_currentPage;
-    QWidget *m_pagingWidget;
-    QList<MusicClickedLabel*> m_pagingItems;
+private Q_SLOTS:
+    /*!
+     * Update the current clicked state.
+     */
+    void update();
+
+private:
+    QList<QWidget*> m_container;
 
 };
 
-#endif // MUSICPAGINGWIDGETOBJECT_H
+#endif // MUSICCLICKEDGROUP_H

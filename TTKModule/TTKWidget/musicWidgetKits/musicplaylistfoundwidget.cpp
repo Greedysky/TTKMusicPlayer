@@ -230,7 +230,7 @@ void MusicPlaylistFoundWidget::createPlaylistItem(const MusicResultsItem &item)
         mainlayout->addWidget(containWidget);
 
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
-        connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
+        connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));

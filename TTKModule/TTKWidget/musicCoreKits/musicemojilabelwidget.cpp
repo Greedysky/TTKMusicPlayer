@@ -4,10 +4,10 @@
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicstringutils.h"
+#include "musicclickedgroup.h"
 
 #include <QFile>
 #include <QButtonGroup>
-#include <QSignalMapper>
 
 MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     : QLabel(parent)
@@ -31,8 +31,8 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     labelIconLayout->setContentsMargins(0, 0, 0, 0);
     labelIconLayout->setSpacing(3);
 
-    QSignalMapper *mapper = new QSignalMapper(this);
-    connect(mapper, SIGNAL(mapped(int)), SLOT(labelClicked(int)));
+    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
 
     for(int i=0; i<3; ++i)
     {
@@ -42,10 +42,10 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
             l->setAlignment(Qt::AlignCenter);
             l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MQSSBorderStyle04).arg(MusicUIObject::MQSSBorderStyle05));
             l->setFixedSize(32, 32);
-            connect(l, SIGNAL(clicked()), mapper, SLOT(map()));
-            mapper->setMapping(l, i*7 + j);
             labelIconLayout->addWidget(l, i, j);
+
             m_labelItems << l;
+            clickedGroup->mapped(l);
         }
     }
     labelWidget->setLayout(labelIconLayout);

@@ -3,8 +3,7 @@
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
-
-#include <QSignalMapper>
+#include "musicclickedgroup.h"
 
 #define PAGE_SIZE   10
 
@@ -39,10 +38,9 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     }
     m_pagingItems << (new MusicClickedLabel(tr("pre"), m_pagingWidget)) << (new MusicClickedLabel(tr("next"), m_pagingWidget));
 
-    QSignalMapper *group = new QSignalMapper(m_pagingWidget);
-    connect(group, SIGNAL(mapped(int)), SIGNAL(mapped(int)));
+    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    connect(clickedGroup, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
 
-    int i=0;
     foreach(MusicClickedLabel *w, m_pagingItems)
     {
         QFont font(w->font());
@@ -50,8 +48,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
         w->setFont(font);
         w->setStyleSheet(MusicUIObject::MQSSColorStyle04);
         w->setFixedWidth(MusicUtils::Widget::fontTextWidth(font, w->text()));
-        connect(w, SIGNAL(clicked()), group, SLOT(map()));
-        group->setMapping(w, i++);
+        clickedGroup->mapped(w);
     }
 
     m_pagingItems[PAGE_SIZE]->hide();
@@ -69,7 +66,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     if(total != 0)
     {
         layout->addWidget(m_pagingItems[PAGE_SIZE]);
-        for(i=0; i<PAGE_SIZE; ++i)
+        for(int i=0; i<PAGE_SIZE; ++i)
         {
             layout->addWidget(m_pagingItems[i]);
         }

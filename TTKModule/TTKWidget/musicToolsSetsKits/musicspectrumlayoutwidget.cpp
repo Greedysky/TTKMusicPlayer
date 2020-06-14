@@ -1,10 +1,10 @@
 #include "musicspectrumlayoutwidget.h"
 #include "musicuiobject.h"
 #include "musicimageutils.h"
+#include "musicclickedgroup.h"
 
 #include <QPainter>
 #include <QScrollArea>
-#include <QSignalMapper>
 
 MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
     : MusicClickedLabel(parent)
@@ -126,16 +126,16 @@ void MusicSpectrumLayoutWidget::initWidget()
 
 void MusicSpectrumLayoutWidget::addItems(const ItemInfos &items)
 {
-    QSignalMapper *mapper = new QSignalMapper(this);
-    connect(mapper, SIGNAL(mapped(int)), SLOT(labelClicked(int)));
+    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    connect(clickedGroup, SIGNAL(clicked(int)), SLOT(labelClicked(int)));
 
     for(int i=0; i<items.count(); ++i)
     {
         const ItemInfo &info = items[i];
         MusicSpectrumLayoutItem *item = new MusicSpectrumLayoutItem(this);
         item->addItem(info.first, info.second);
-        connect(item, SIGNAL(clicked()), mapper, SLOT(map()));
-        mapper->setMapping(item, i);
+
+        clickedGroup->mapped(item);
         m_containLayout->addWidget(item);
         m_items << item;
     }

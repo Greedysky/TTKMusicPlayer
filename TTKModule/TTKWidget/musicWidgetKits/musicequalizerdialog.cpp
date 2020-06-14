@@ -7,8 +7,8 @@
 #include "musicsoundeffectswidget.h"
 #include "musicwidgetutils.h"
 #include "musicplayer.h"
+#include "musicclickedgroup.h"
 
-#include <QSignalMapper>
 #include <QAbstractItemView>
 #include <QStyledItemDelegate>
 
@@ -60,25 +60,35 @@ MusicEqualizerDialog::~MusicEqualizerDialog()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
     writeEqInformation();
-    delete m_signalMapper;
     delete m_ui;
 }
 
 void MusicEqualizerDialog::initialize()
 {
-    m_signalMapper = new QSignalMapper(this);
-    initSlider(m_ui->verticalSlider1, 0);
-    initSlider(m_ui->verticalSlider2, 1);
-    initSlider(m_ui->verticalSlider3, 2);
-    initSlider(m_ui->verticalSlider4, 3);
-    initSlider(m_ui->verticalSlider5, 4);
-    initSlider(m_ui->verticalSlider6, 5);
-    initSlider(m_ui->verticalSlider7, 6);
-    initSlider(m_ui->verticalSlider8, 7);
-    initSlider(m_ui->verticalSlider9, 8);
-    initSlider(m_ui->verticalSlider10, 9);
-    initSlider(m_ui->bwVerticalSlider, 10);
-    connect(m_signalMapper, SIGNAL(mapped(int)), SLOT(verticalSliderChanged(int)));
+    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
+    connect(clickedGroup, SIGNAL(clicked(int)), SLOT(verticalSliderChanged(int)));
+
+    QList<MusicClickedSlider*> sliders;
+    sliders << m_ui->verticalSlider1;
+    sliders << m_ui->verticalSlider2;
+    sliders << m_ui->verticalSlider3;
+    sliders << m_ui->verticalSlider4;
+    sliders << m_ui->verticalSlider5;
+    sliders << m_ui->verticalSlider6;
+    sliders << m_ui->verticalSlider7;
+    sliders << m_ui->verticalSlider8;
+    sliders << m_ui->verticalSlider9;
+    sliders << m_ui->verticalSlider10;
+    sliders << m_ui->bwVerticalSlider;
+
+    for(int i=0; i<sliders.count(); ++i)
+    {
+        MusicClickedSlider *slider = sliders[i];
+        slider->setRange(-15, 15);
+        slider->setStyleSheet(MusicUIObject::MQSSSliderStyle04);
+
+        clickedGroup->mapped(slider);
+    }
 
     connect(m_ui->showEqButton, SIGNAL(clicked()), SLOT(setEqEnable()));
     connect(m_ui->resetButton, SIGNAL(clicked()), SLOT(resetEq()));
@@ -97,14 +107,6 @@ void MusicEqualizerDialog::initialize()
     MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_30, 9);
     MusicUtils::Widget::setLabelFontSize(m_ui->showPerArea_31, 9);
 #endif
-}
-
-void MusicEqualizerDialog::initSlider(QSlider *slider, int index)
-{
-    slider->setRange(-15, 15);
-    slider->setStyleSheet(MusicUIObject::MQSSSliderStyle04);
-    connect(slider, SIGNAL(valueChanged(int)), m_signalMapper, SLOT(map()));
-    m_signalMapper->setMapping(slider, index);
 }
 
 void MusicEqualizerDialog::readEqInformation()

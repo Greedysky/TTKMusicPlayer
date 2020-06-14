@@ -35,6 +35,7 @@ HEADERS  += \
     $$PWD/musicmessagebox.h \
     $$PWD/musicprogresswidget.h \
     $$PWD/musicclickedlabel.h \
+    $$PWD/musicclickedgroup.h \
     $$PWD/musicclickedslider.h \
     $$PWD/musicmovingclickedslider.h \
     $$PWD/musicmovinglabelslider.h \
@@ -81,6 +82,7 @@ SOURCES += \
     $$PWD/musicmessagebox.cpp \
     $$PWD/musicprogresswidget.cpp \
     $$PWD/musicclickedlabel.cpp \
+    $$PWD/musicclickedgroup.cpp \
     $$PWD/musicclickedslider.cpp \
     $$PWD/musicmovingclickedslider.cpp \
     $$PWD/musicmovinglabelslider.cpp \
