@@ -378,7 +378,7 @@ void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
 void MusicScreenSaverWidget::initialize()
 {
     m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
-    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
+    connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDatas datas;
     for(int i=0; i<OS_COUNT; i++)
