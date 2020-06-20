@@ -21,8 +21,10 @@
 
 #include <QGLWidget>
 #if QT_VERSION >= 0x050400
-#include <QOpenGLWidget>
-#define QT_OPENGL_WIDGET
+#ifdef Q_OS_UNIX
+  #include <QOpenGLWidget>
+  #define QT_OPENGL_WIDGET
+#endif
 #endif
 #include <libprojectM/projectM.hpp>
 
