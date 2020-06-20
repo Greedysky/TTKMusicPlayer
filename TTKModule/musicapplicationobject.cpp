@@ -97,7 +97,7 @@ void MusicApplicationObject::loadNetWorkSetting()
 {
 #ifndef QT_NO_SSL
     // ssl support check
-    TTK_LOGGER_INFO(QString("App Support ssl: %1").arg(QSslSocket::supportsSsl() ? "true" : "false"));
+    TTK_LOGGER_INFO(QString("Application network support ssl: %1").arg(QSslSocket::supportsSsl() ? "true" : "false"));
 #endif
     // sync host init
     QSyncConf::HOST = MusicUtils::Algorithm::mdII(SYNC_HOST_URL, false);

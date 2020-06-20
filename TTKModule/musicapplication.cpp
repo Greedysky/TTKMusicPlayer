@@ -219,13 +219,6 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
     {
         m_musicSongTreeWidget->importOtherMusicSongs(files);
     }
-
-    if(!failedFiles.isEmpty())
-    {
-        MusicMessageBox message;
-        message.setText(tr("not supported count %1").arg(failedFiles.count()));
-        message.exec();
-    }
 }
 
 QString MusicApplication::musicDownloadContains(bool &contains) const
