@@ -29,7 +29,7 @@
 #    define QMMP_EXPORT Q_DECL_IMPORT
 #endif
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
 #define QMMP_GREATER_NEW
 #else
 #define Q_PLUGIN_METADATA(x)
