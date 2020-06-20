@@ -20,6 +20,10 @@
 #define MOUNTAINWIDGET_H
 
 #include <QGLWidget>
+#if QT_VERSION >= 0x050400
+#include <QOpenGLWidget>
+#define QT_OPENGL_WIDGET
+#endif
 
 #define NUM_BANDS 32
 #define DB_RANGE 40
@@ -29,7 +33,11 @@
 /*!
  * @author Greedysky <greedysky@163.com>
  */
+#ifdef QT_OPENGL_WIDGET
+class MountainWidget : public QOpenGLWidget
+#else
 class MountainWidget : public QGLWidget
+#endif
 {
     Q_OBJECT
 public:

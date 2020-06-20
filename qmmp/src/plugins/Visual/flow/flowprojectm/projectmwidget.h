@@ -20,12 +20,20 @@
 #define PROJECTMWIDGET_H
 
 #include <QGLWidget>
+#if QT_VERSION >= 0x050400
+#include <QOpenGLWidget>
+#define QT_OPENGL_WIDGET
+#endif
 #include <libprojectM/projectM.hpp>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
+#ifdef QT_OPENGL_WIDGET
+class ProjectMWidget : public QOpenGLWidget
+#else
 class ProjectMWidget : public QGLWidget
+#endif
 {
     Q_OBJECT
 public:

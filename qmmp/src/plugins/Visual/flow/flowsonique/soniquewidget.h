@@ -20,13 +20,21 @@
 #define SONIQUEWIDGET_H
 
 #include <QGLWidget>
+#if QT_VERSION >= 0x050400
+#include <QOpenGLWidget>
+#define QT_OPENGL_WIDGET
+#endif
 #include "visual.h"
 #include "kiss_fft.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
+#ifdef QT_OPENGL_WIDGET
+class SoniqueWidget : public QOpenGLWidget
+#else
 class SoniqueWidget : public QGLWidget
+#endif
 {
     Q_OBJECT
 public:

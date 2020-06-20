@@ -1,7 +1,11 @@
 #include "mountainwidget.h"
 
 MountainWidget::MountainWidget(QWidget *parent)
+#ifdef QT_OPENGL_WIDGET
+    : QOpenGLWidget(parent)
+#else
     : QGLWidget(parent)
+#endif
 {
     setMinimumSize(580, 320);
 
