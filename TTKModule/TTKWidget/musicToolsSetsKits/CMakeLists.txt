@@ -9,7 +9,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongsmanagerwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
@@ -29,7 +28,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongsmanagerwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musictransformwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicreplaygainwidget.cpp

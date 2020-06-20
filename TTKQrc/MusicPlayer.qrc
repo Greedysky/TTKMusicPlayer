@@ -113,7 +113,6 @@
         <file alias="lb_timer">../TTKResource/tools/lb_timer.png</file>
         <file alias="lb_transform">../TTKResource/tools/lb_transform.png</file>
         <file alias="lb_spectrum">../TTKResource/tools/lb_spectrum.png</file>
-        <file alias="lb_wallpaper">../TTKResource/tools/lb_wallpaper.png</file>
         <file alias="lb_phone">../TTKResource/tools/lb_phone.png</file>
         <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
         <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>

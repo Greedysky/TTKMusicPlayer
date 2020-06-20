@@ -3,7 +3,6 @@
 #include "musictimerwidget.h"
 #include "musiclocalsongsmanagerwidget.h"
 #include "musictransformwidget.h"
-#include "musicdesktopwallpaperwidget.h"
 #include "musicnetworkconnectiontestwidget.h"
 #include "musicreplaygainwidget.h"
 #include "musicsongdlnatransferwidget.h"
@@ -73,7 +72,6 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ToolItem(":/tools/lb_timer", tr("timer"))
           << ToolItem(":/tools/lb_transform", tr("transform"))
           << ToolItem(":/tools/lb_spectrum", tr("spectrum"))
-          << ToolItem(":/tools/lb_wallpaper", tr("wallpaper"))
           << ToolItem(":/tools/lb_connections" ,tr("connections"))
           << ToolItem(":/tools/lb_gain", tr("gain"))
           << ToolItem(":/tools/lb_dlna", tr("dlna"))
@@ -130,36 +128,25 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 5:
             {
-#ifdef Q_OS_WIN
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicDesktopWallpaperWidget);
-#else
-                MusicMessageBox message;
-                message.setText(tr("Not Supported On Current Plantform!"));
-                message.exec();
-#endif
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
                 break;
             }
         case 6:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicReplayGainWidget);
                 break;
             }
         case 7:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicReplayGainWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSongDlnaTransferWidget);
                 break;
             }
         case 8:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSongDlnaTransferWidget);
-                break;
-            }
-        case 9:
-            {
                 MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
                 break;
             }
-        case 10:
+        case 9:
             {
                 MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::ScreenSaverWidget);
                 break;

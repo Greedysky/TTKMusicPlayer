@@ -24,7 +24,6 @@ HEADERS  += \
     $$PWD/musiclocalsongsmanagerwidget.h \
     $$PWD/musictransformwidget.h \
     $$PWD/musicfileinformationwidget.h \
-    $$PWD/musicdesktopwallpaperwidget.h \
     $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicreplaygainwidget.h \
     $$PWD/musicsongringtonemakerwidget.h \
@@ -47,7 +46,6 @@ SOURCES += \
     $$PWD/musiclocalsongsmanagerwidget.cpp \
     $$PWD/musictransformwidget.cpp \
     $$PWD/musicfileinformationwidget.cpp \
-    $$PWD/musicdesktopwallpaperwidget.cpp \
     $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicreplaygainwidget.cpp \
     $$PWD/musicsongringtonemakerwidget.cpp \
