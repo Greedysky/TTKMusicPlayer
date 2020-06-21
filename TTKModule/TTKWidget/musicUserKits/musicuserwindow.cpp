@@ -3,7 +3,7 @@
 #include "musicuserdialog.h"
 #include "musicusermodel.h"
 #include "musicusermanagerdialog.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicimageutils.h"
@@ -112,9 +112,7 @@ bool MusicUserWindow::connectDatabase()
     }
     catch(QString exception)
     {
-        MusicMessageBox message;
-        message.setText(exception);
-        message.exec();
+        MusicToastLabel::popup(exception);
         return false;
     }
     return true;

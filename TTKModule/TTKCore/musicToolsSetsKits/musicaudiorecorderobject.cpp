@@ -1,5 +1,4 @@
 #include "musicaudiorecorderobject.h"
-#include "musicmessagebox.h"
 #include "musiccodecutils.h"
 #include "musicobject.h"
 
@@ -185,9 +184,7 @@ void MusicAudioRecorderObject::onRecordStart()
 
     if(m_mpAudioInputFile->error() != QAudio::NoError)
     {
-        MusicMessageBox message;
-        message.setText(tr("Audio Input Open Error"));
-        message.exec();
+        TTK_LOGGER_ERROR("Audio Input Open Error");
         return;
     }
 #ifdef TTK_GREATER_NEW
@@ -203,9 +200,7 @@ void MusicAudioRecorderObject::onRecordPlay()
     m_mpAudioOutputFile = new QAudioOutput(m_mFormatFile, this);
     if(m_mpAudioOutputFile->error() != QAudio::NoError)
     {
-        MusicMessageBox message;
-        message.setText(tr("Audio Output Open Error"));
-        message.exec();
+        TTK_LOGGER_ERROR("Audio Output Open Error");
         return;
     }
     connect(m_mpAudioOutputFile, SIGNAL(stateChanged(QAudio::State)), SLOT(onStateChange(QAudio::State)));

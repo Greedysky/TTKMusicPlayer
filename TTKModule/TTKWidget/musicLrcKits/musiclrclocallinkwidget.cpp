@@ -1,7 +1,7 @@
 #include "musiclrclocallinkwidget.h"
 #include "ui_musiclrclocallinkwidget.h"
 #include "musicconnectionpool.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musicfileutils.h"
 #include "musicdownloadstatusobject.h"
@@ -163,9 +163,7 @@ void MusicLrcLocalLinkWidget::deleteFoundLrc()
     const int row = m_ui->searchedTable->currentRow();
     if(row < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -177,9 +175,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     const int row = m_ui->searchedTable->currentRow();
     if(row < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

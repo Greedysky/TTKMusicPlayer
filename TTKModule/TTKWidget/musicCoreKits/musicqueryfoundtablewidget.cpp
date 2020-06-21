@@ -2,7 +2,7 @@
 #include "musicdatadownloadthread.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicsemaphoreloop.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
@@ -76,9 +76,7 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
     const TTKIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -97,9 +95,7 @@ void MusicQueryFoundTableWidget::downloadBatchData(bool music)
     const TTKIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -322,9 +318,7 @@ void MusicQueryFoundTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
     if(row < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

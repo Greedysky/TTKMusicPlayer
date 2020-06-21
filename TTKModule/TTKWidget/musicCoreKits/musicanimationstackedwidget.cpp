@@ -53,22 +53,22 @@ void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
     {
         case BottomToTop :
                 {
-                    painter.drawPixmap(0, height()/2, pixmap);
+                    painter.drawPixmap(0, height() / 2, pixmap);
                     break;
                 }
         case TopToBottom :
                 {
-                    painter.drawPixmap(0, -height()/2, pixmap);
+                    painter.drawPixmap(0, -height() / 2, pixmap);
                     break;
                 }
         case LeftToRight :
                 {
-                    painter.drawPixmap(width()/2, 0, pixmap);
+                    painter.drawPixmap(width() / 2, 0, pixmap);
                     break;
                 }
         case RightToLeft :
                 {
-                    painter.drawPixmap(-width()/2, 0, pixmap);
+                    painter.drawPixmap(-width() / 2, 0, pixmap);
                     break;
                 }
         default: break;
@@ -89,25 +89,25 @@ void MusicAnimationStackedWidget::renderCurrentWidget(QPainter &painter)
         case BottomToTop :
                 {
                     painter.translate(0, m_currentValue);
-                    painter.drawPixmap(0, -height()/2, pixmap);
+                    painter.drawPixmap(0, -height() / 2, pixmap);
                     break;
                 }
         case TopToBottom :
                 {
                     painter.translate(0, m_currentValue);
-                    painter.drawPixmap(0, height()/2, pixmap);
+                    painter.drawPixmap(0, height() / 2, pixmap);
                     break;
                 }
         case LeftToRight :
                 {
                     painter.translate(m_currentValue, 0);
-                    painter.drawPixmap(-width()/2, 0, pixmap);
+                    painter.drawPixmap(-width() / 2, 0, pixmap);
                     break;
                 }
         case RightToLeft :
                 {
                     painter.translate(m_currentValue, 0);
-                    painter.drawPixmap(width()/2, 0, pixmap);
+                    painter.drawPixmap(width() / 2, 0, pixmap);
                     break;
                 }
         default: break;

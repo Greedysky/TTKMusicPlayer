@@ -163,7 +163,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
     }
 
     setLrcSizeProperty(index);
-    index = (mapLrcSizeProperty(m_lrcSizeProperty) - index)/2;
+    index = (mapLrcSizeProperty(m_lrcSizeProperty) - index) / 2;
     m_lrcSizeProperty = size;
     m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->getCurrentIndex() - index - 1);
 
@@ -487,7 +487,7 @@ void MusicLrcContainerForInterior::paintEvent(QPaintEvent *event)
         linearGradient.setColorAt(0.5, Qt::transparent);
         linearGradient.setColorAt(1.0, QColor(255, 254, 161));
 
-        const int line = (height() - m_functionLabel->height())/2;
+        const int line = (height() - m_functionLabel->height()) / 2;
         QPainter painter(this);
         painter.setPen(QPen(linearGradient, 1));
         painter.drawLine(LRC_TIME_LABEL_POSITION, line, width() - LRC_TIME_LABEL_POSITION, line);
@@ -550,7 +550,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
             }
 
             int value = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
-            value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value))/2;
+            value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
 
             m_lrcAnalysis->setCurrentIndex(index);
             for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
@@ -638,20 +638,21 @@ void MusicLrcContainerForInterior::revertLrcTimeSpeed(qint64 pos)
         m_changeSpeedValue = 0;
     }
     //
-    MusicToastLabel *toast = new MusicToastLabel(this);
-    toast->setFontSize(15);
-    toast->setFontMargin(10, 10);
-
+    QString message;
     if(m_changeSpeedValue > 0)
-        toast->setText(tr("after%1s").arg(m_changeSpeedValue*1.0/MT_S2MS));
+    {
+        message = tr("after%1s").arg(m_changeSpeedValue * 1.0 / MT_S2MS);
+    }
     else if(m_changeSpeedValue < 0)
-        toast->setText(tr("before%1s").arg(-m_changeSpeedValue*1.0/MT_S2MS));
+    {
+        message = tr("before%1s").arg(-m_changeSpeedValue * 1.0 / MT_S2MS);
+    }
     else
-        toast->setText(tr("Restore"));
+    {
+        message = tr("Restore");
+    }
 
-    const QPoint &globalPoint = mapToGlobal(QPoint(0, 0));
-    toast->move(globalPoint.x() + (width() - toast->width())/2, globalPoint.y() + height() - toast->height() - 40);
-    toast->show();
+    MusicToastLabel::popup(message);
 }
 
 void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
@@ -672,7 +673,7 @@ void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
     const int h = MusicUtils::Widget::fontTextHeight(m_noLrcCurrentInfo->font());
     const int offset = height()/m_lrcAnalysis->getLineMax()*(m_lrcAnalysis->getMiddle() + 1) - 40;
 
-    m_noLrcCurrentInfo->setGeometry((width() - w)/2, offset, w, h);
+    m_noLrcCurrentInfo->setGeometry((width() - w) / 2, offset, w, h);
     m_noLrcCurrentInfo->show();
 }
 

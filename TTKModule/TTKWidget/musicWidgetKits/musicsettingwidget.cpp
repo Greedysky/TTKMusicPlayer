@@ -5,7 +5,7 @@
 #include "musicnetworkproxy.h"
 #include "musicnetworkoperator.h"
 #include "musicnetworkconnectiontestwidget.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musichotkeymanager.h"
 #include "musicapplicationobject.h"
 #include "musiclrccolorwidget.h"
@@ -492,9 +492,7 @@ void MusicSettingWidget::testNetworkProxy()
 
 void MusicSettingWidget::testProxyStateChanged(bool state)
 {
-    MusicMessageBox message;
-    message.setText(state ? tr("Test Successed!") : tr("Test Failed!"));
-    message.exec();
+    MusicToastLabel::popup(state ? tr("Test Successed!") : tr("Test Failed!"));
 }
 
 void MusicSettingWidget::testNetworkConnection()
@@ -1157,9 +1155,7 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
     QString value = m_ui->proxyIpEdit->text().trimmed();
     if(value.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("proxy hostname is empty"));
-        message.exec();
+        MusicToastLabel::popup(tr("proxy hostname is empty"));
         return false;
     }
     proxy.setHostName(value);
@@ -1167,9 +1163,7 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
     value = m_ui->proxyPortEdit->text().trimmed();
     if(value.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("proxy port is empty"));
-        message.exec();
+        MusicToastLabel::popup(tr("proxy port is empty"));
         return false;
     }
     proxy.setPort(value.toInt());

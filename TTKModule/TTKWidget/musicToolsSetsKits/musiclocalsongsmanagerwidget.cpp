@@ -3,7 +3,7 @@
 #include "musiclocalsongsmanagerthread.h"
 #include "musiclocalsongstablewidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
 #include "musicsinglemanager.h"
@@ -149,9 +149,7 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
     }
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -168,9 +166,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
 
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -448,9 +444,7 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
 {
     if(m_ui->filterComboBox->currentIndex() < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("please select one dirver"));
-        message.exec();
+        MusicToastLabel::popup(tr("please select one dirver"));
         return false;
     }
 

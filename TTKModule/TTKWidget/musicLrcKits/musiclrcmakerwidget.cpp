@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicinteriorlrcuiobject.h"
 #include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musictime.h"
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
@@ -265,9 +266,8 @@ void MusicLrcMakerWidget::saveButtonClicked()
     }
 
     m_analysis->saveLrcTimeChanged();
-    MusicMessageBox message;
-    message.setText(tr("save file finished"));
-    message.exec();
+
+    MusicToastLabel::popup(tr("save file finished"));
 }
 
 void MusicLrcMakerWidget::reMakeButtonClicked()
@@ -374,9 +374,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
     if(m_ui->stackedWidget->currentIndex() == 2 &&
        m_plainText.count() > m_ui->makeTextEdit->textCursor().blockNumber())
     {
-        MusicMessageBox message;
-        message.setText(tr("Lyrics make has not been completed!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Lyrics make has not been completed!"));
         return;
     }
 
@@ -699,9 +697,7 @@ bool MusicLrcMakerWidget::checkInputValid()
 
     if(errorFlag)
     {
-        MusicMessageBox message;
-        message.setText(msg);
-        message.exec();
+        MusicToastLabel::popup(msg);
         return false;
     }
     return true;

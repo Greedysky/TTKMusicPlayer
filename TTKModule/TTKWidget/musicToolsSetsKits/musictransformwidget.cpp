@@ -1,6 +1,6 @@
 #include "musictransformwidget.h"
 #include "ui_musictransformwidget.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicfileutils.h"
 #include "musiccoreutils.h"
 #include "musicwidgetutils.h"
@@ -190,13 +190,11 @@ void MusicTransformWidget::transformFinish()
     }
 }
 
-bool MusicTransformWidget::processTransform(const QString &para) const
+bool MusicTransformWidget::processTransform(const QString &para)
 {
     if(m_path.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("the input is empty!"));
-        message.exec();
+        MusicToastLabel::popup(tr("the input is empty!"));
         return false;
     }
 
@@ -205,9 +203,7 @@ bool MusicTransformWidget::processTransform(const QString &para) const
 
     if(in.isEmpty() || out.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("the out is empty!"));
-        message.exec();
+        MusicToastLabel::popup(tr("the out is empty!"));
         return false;
     }
 
@@ -287,9 +283,7 @@ int MusicTransformWidget::exec()
 {
     if(!QFile::exists(MAKE_TRANSFORM_FULL) || !QFile::exists(MAKE_KRC2LRC_FULL))
     {
-        MusicMessageBox message;
-        message.setText(tr("Lack of plugin file!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Lack of plugin file!"));
         return -1;
     }
 

@@ -42,7 +42,7 @@ void MusicRoundAnimationLabel::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     const QSize &self = size();
-    const QRect rotatedRect(-self.width()/2, -self.height()/2, self.width(), self.height());
+    const QRect rotatedRect(-self.width() / 2, -self.height() / 2, self.width(), self.height());
     const int cx = self.width() / 2;
     const int cy = self.height() / 2;
 

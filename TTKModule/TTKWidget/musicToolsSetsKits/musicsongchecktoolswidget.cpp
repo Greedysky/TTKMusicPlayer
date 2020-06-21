@@ -3,7 +3,7 @@
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
 #include "musicsongchecktoolsthread.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -103,9 +103,7 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const MusicSongCheckToolsRen
     else if(m_renameCore->getMode() == MusicObject::Apply &&
            !m_ui->renameTableWidget->getSelectedItems().isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("rename apply finished"));
-        message.exec();
+        MusicToastLabel::popup(tr("rename apply finished"));
     }
 }
 
@@ -225,9 +223,7 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const MusicSongCheckTools
     else if(m_duplicateCore->getMode() == MusicObject::Apply &&
            !m_ui->duplicateTableWidget->getSelectedItems().isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("duplicate apply finished"));
-        message.exec();
+        MusicToastLabel::popup(tr("duplicate apply finished"));
     }
 }
 

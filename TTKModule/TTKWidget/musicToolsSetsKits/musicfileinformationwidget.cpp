@@ -4,7 +4,7 @@
 #include "musicurlutils.h"
 #include "musicnumberutils.h"
 #include "musicsongtag.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicfileutils.h"
 
 #define ADVANCE_OFFSET  150
@@ -59,9 +59,7 @@ void MusicFileInformationWidget::musicOpenFileDir()
 {
     if(!MusicUtils::Url::openUrl(QFileInfo(m_path).absoluteFilePath()))
     {
-        MusicMessageBox message;
-        message.setText(tr("The origin one does not exist!"));
-        message.exec();
+        MusicToastLabel::popup(tr("The origin one does not exist!"));
     }
 }
 
@@ -176,9 +174,7 @@ void MusicFileInformationWidget::musicSaveTag()
 
     tag.save();
 
-    MusicMessageBox message;
-    message.setText(tr("Save Successfully!"));
-    message.exec();
+    MusicToastLabel::popup(tr("Save Successfully!"));
 }
 
 void MusicFileInformationWidget::setFileInformation(const QString &name)

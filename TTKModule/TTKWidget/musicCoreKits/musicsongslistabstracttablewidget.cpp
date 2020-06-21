@@ -1,6 +1,6 @@
 #include "musicsongslistabstracttablewidget.h"
 #include "musicurlutils.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicfileinformationwidget.h"
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
@@ -98,9 +98,7 @@ void MusicSongsListAbstractTableWidget::musicOpenFileDir()
 
     if(!MusicUtils::Url::openUrl(QFileInfo(path).absoluteFilePath()))
     {
-        MusicMessageBox message;
-        message.setText(tr("The origin one does not exist!"));
-        message.exec();
+        MusicToastLabel::popup(tr("The origin one does not exist!"));
     }
 }
 

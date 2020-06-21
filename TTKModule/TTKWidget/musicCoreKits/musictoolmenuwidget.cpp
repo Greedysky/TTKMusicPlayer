@@ -54,7 +54,7 @@ void MusicToolMenuWidget::popupMenu()
 {
     QPoint pos = mapToGlobal(QPoint(0, 0));
     pos.setY(pos.y() - m_containWidget->height() - 10);
-    pos.setX(pos.x() - (m_containWidget->width() - width())/2);
+    pos.setX(pos.x() - (m_containWidget->width() - width()) / 2);
 
     m_menu->exec(pos);
 }

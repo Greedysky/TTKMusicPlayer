@@ -139,7 +139,7 @@ void MusicVideoPlayWidget::popup(bool popup)
     if(popup)
     {
         const QSize &size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-        setGeometry((size.width() - WINDOW_WIDTH)/2, (size.height() - WINDOW_HEIGHT)/2, WINDOW_WIDTH, WINDOW_HEIGHT);
+        setGeometry((size.width() - WINDOW_WIDTH) / 2, (size.height() - WINDOW_HEIGHT) / 2, WINDOW_WIDTH, WINDOW_HEIGHT);
         resizeWindow(0, 0);
         setParent(nullptr);
         show();

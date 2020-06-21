@@ -1,6 +1,5 @@
 #include "musicreplaygainwidget.h"
 #include "ui_musicreplaygainwidget.h"
-#include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicsemaphoreloop.h"
 #include "musicfileutils.h"
@@ -141,8 +140,7 @@ void MusicReplayGainWidget::initialize()
     }
     else
     {
-        MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->defaultLabel(this, tr("ReplayGain Init Error!"));
+        MusicToastLabel::popup(tr("ReplayGain Init Error!"));
     }
 }
 
@@ -253,9 +251,7 @@ void MusicReplayGainWidget::rmFileButtonClicked()
     const int row = m_ui->tableWidget->currentRow();
     if(row < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
     m_ui->tableWidget->removeRow(row);
@@ -277,9 +273,7 @@ void MusicReplayGainWidget::applyButtonClicked()
 {
     if(m_paths.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("Music gain list is empty!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Music gain list is empty!"));
         return;
     }
 
@@ -302,9 +296,7 @@ void MusicReplayGainWidget::applyButtonClicked()
     disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(applyOutput()));
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(analysisOutput()));
 
-    MusicMessageBox message;
-    message.setText(tr("Music gain finished!"));
-    message.exec();
+    MusicToastLabel::popup(tr("Music gain finished!"));
 }
 
 void MusicReplayGainWidget::lineTextChanged(const QString &text)
@@ -381,9 +373,7 @@ void MusicReplayGainWidget::show()
 {
     if(!QFile::exists(MAKE_GAIN_FULL))
     {
-        MusicMessageBox message;
-        message.setText(tr("Lack of plugin file!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Lack of plugin file!"));
         return;
     }
 

@@ -93,7 +93,7 @@ protected:
     /*!
      * Start a process to transform.
      */
-    bool processTransform(const QString &para) const;
+    bool processTransform(const QString &para);
     /*!
      * Set music control enable or false when trans lrc.
      */

@@ -104,7 +104,7 @@ void MusicCutSliderWidget::resizeWindow(int width, int height)
         return;
     }
 
-    int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH))/2;
+    int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH)) / 2;
     m_leftControl->move(-PAINT_BUTTON_WIDTH/2, lineStartHeight + PAINT_SLIDER_HEIGHT);
     m_rightControl->move(-PAINT_BUTTON_WIDTH/2, lineStartHeight + PAINT_SLIDER_HEIGHT);
 }
@@ -168,7 +168,7 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
 
-    const int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH))/2;
+    const int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH)) / 2;
     painter.setBrush(QBrush(QColor(220, 220, 220)));
     painter.drawRect(0, lineStartHeight, m_width, PAINT_SLIDER_HEIGHT);
 
@@ -181,7 +181,7 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH/2 : rightX + PAINT_BUTTON_WIDTH/2, lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT);
 
     painter.setBrush(QBrush(QColor(0, 0, 0)));
-    painter.drawRect(m_position - PAINT_HANDER/2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER)/2, PAINT_HANDER, PAINT_HANDER);
+    painter.drawRect(m_position - PAINT_HANDER/2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER) / 2, PAINT_HANDER, PAINT_HANDER);
 
 }
 

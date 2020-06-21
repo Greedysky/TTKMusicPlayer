@@ -4,6 +4,7 @@
 #include "musicspectrumwidget.h"
 #include "musictimerautoobject.h"
 #include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicequalizerdialog.h"
 #include "musicsettingmanager.h"
 #include "musicplatformmanager.h"
@@ -263,7 +264,7 @@ void MusicApplicationObject::windowCloseAnimationFinished()
         m_quitContainer->resize(gifWidget->size());
 
         const QPoint &center = w->geometry().center();
-        m_quitContainer->move(QPoint(center.x() - m_quitContainer->width()/2, center.y() - m_quitContainer->height()/2));
+        m_quitContainer->move(QPoint(center.x() - m_quitContainer->width() / 2, center.y() - m_quitContainer->height() / 2));
 
         m_quitContainer->raise();
         m_quitContainer->show();
@@ -324,7 +325,7 @@ void MusicApplicationObject::musicResetWindow()
     {
         w->showNormal();
     }
-    w->setGeometry((rect.width() - WINDOW_WIDTH_MIN)/2, (rect.height() - WINDOW_HEIGHT_MIN)/2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+    w->setGeometry((rect.width() - WINDOW_WIDTH_MIN) / 2, (rect.height() - WINDOW_HEIGHT_MIN) / 2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
 void MusicApplicationObject::musicToolSetsParameter()
@@ -335,9 +336,7 @@ void MusicApplicationObject::musicToolSetsParameter()
     const int version = platform.getLocalIEVersion();
     if(version == -1 || version < 8)
     {
-        MusicMessageBox message;
-        message.setText(version == -1 ? QObject::tr("No IE Core Detected!") : QObject::tr("IE Version Less Than 8!"));
-        message.exec();
+        MusicToastLabel::popup(version == -1 ? QObject::tr("No IE Core Detected!") : QObject::tr("IE Version Less Than 8!"));
     }
 #endif
 }

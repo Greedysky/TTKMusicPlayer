@@ -2,7 +2,7 @@
 #include "ui_musiclrcartphotouploadwidget.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicfileutils.h"
 
 MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
@@ -89,9 +89,7 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
     const QString &name = m_ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("the art is empty!"));
-        message.exec();
+        MusicToastLabel::popup(tr("the art is empty!"));
         return;
     }
 

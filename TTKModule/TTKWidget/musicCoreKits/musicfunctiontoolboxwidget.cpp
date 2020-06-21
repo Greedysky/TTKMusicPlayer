@@ -96,7 +96,7 @@ void MusicFunctionToolBoxTopWidget::dragMoveEvent(QDragMoveEvent *event)
     if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnabled())
     {
         m_isDrawMoveState = true;
-        m_isDrawTopState = event->pos().y() < height()/2;
+        m_isDrawTopState = event->pos().y() < height() / 2;
         update();
     }
 }
@@ -153,7 +153,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 
         QDrag *drag = new QDrag(this);
         drag->setMimeData(mimeData);
-        drag->setHotSpot(QPoint(0, height()/2));
+        drag->setHotSpot(QPoint(0, height() / 2));
 #ifdef TTK_GREATER_NEW
         drag->setPixmap(grab(rect()));
 #else

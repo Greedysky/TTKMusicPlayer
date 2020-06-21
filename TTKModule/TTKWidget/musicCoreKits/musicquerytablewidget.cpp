@@ -157,7 +157,7 @@ void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
 void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryTableWidget::resizeEvent(event);
-    m_loadingLabel->move((width() - m_loadingLabel->width())/2, (height() - m_loadingLabel->height())/2);
+    m_loadingLabel->move((width() - m_loadingLabel->width()) / 2, (height() - m_loadingLabel->height()) / 2);
 }
 
 QString MusicQueryItemTableWidget::randToGetStrength() const

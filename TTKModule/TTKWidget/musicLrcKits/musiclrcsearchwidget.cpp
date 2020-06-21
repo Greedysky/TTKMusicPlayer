@@ -2,7 +2,7 @@
 #include "ui_musiclrcsearchwidget.h"
 #include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 
 MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -80,9 +80,7 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
     list.removeOne(m_ui->tableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

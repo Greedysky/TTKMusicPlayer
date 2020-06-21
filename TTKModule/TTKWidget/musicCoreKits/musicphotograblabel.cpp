@@ -53,8 +53,8 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
         m_ratio = img.height()*1.0f/height();
         m_imgRect = QRect(0, 0, img.width()/m_ratio, img.height()/m_ratio);
     }
-    m_imgRect.setX((width() - m_imgRect.width())/2);
-    m_imgRect.setY((height() - m_imgRect.height())/2);
+    m_imgRect.setX((width() - m_imgRect.width()) / 2);
+    m_imgRect.setY((height() - m_imgRect.height()) / 2);
 
     m_grabItem->setBorderRect(m_imgRect);
     m_grabItem->show();

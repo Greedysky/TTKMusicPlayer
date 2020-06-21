@@ -4,7 +4,7 @@
 #include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
 #include "musicdatatagdownloadthread.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicstringutils.h"
 #include "musicwidgetheaders.h"
@@ -262,8 +262,7 @@ void MusicDownloadWidget::queryAllFinishedMusic()
     else
     {
         close();
-        MusicMessageBox message(tr("No Resource found!"));
-        message.exec();
+        MusicToastLabel::popup(tr("No Resource found!"));
     }
 }
 
@@ -314,8 +313,7 @@ void MusicDownloadWidget::queryAllFinishedMovie()
     else
     {
         close();
-        MusicMessageBox message(tr("No Resource found!"));
-        message.exec();
+        MusicToastLabel::popup(tr("No Resource found!"));
     }
 }
 
@@ -411,8 +409,7 @@ void MusicDownloadWidget::startToDownload()
     hide(); ///hide download widget
     if(m_ui->viewArea->getCurrentItemRole().isEmpty())
     {
-        MusicMessageBox message(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

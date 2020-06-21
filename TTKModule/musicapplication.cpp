@@ -9,7 +9,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
 #include "ttkversion.h"
-#include "musicmessagebox.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
@@ -746,8 +745,7 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
         m_leftAreaWidget->musictLoveStateClicked(false);
     }
 
-    MusicToastLabel *toast = new MusicToastLabel(this);
-    toast->defaultLabel(this, !contains ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
+    MusicToastLabel::popup(!contains ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
 }
 
 void MusicApplication::musicWindowConciseChanged()

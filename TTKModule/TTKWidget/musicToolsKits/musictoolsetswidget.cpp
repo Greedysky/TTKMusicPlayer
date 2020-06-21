@@ -7,10 +7,8 @@
 #include "musicreplaygainwidget.h"
 #include "musicsongdlnatransferwidget.h"
 #include "musicsongringtonemakerwidget.h"
-#include "musicmessagebox.h"
 #include "musicapplication.h"
 #include "musicrightareawidget.h"
-#include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
 #include "musicsinglemanager.h"
 

@@ -145,7 +145,7 @@ void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)
 
 void MusicLrcContainerForWallpaper::updateAnimationLrc()
 {
-    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->getLineMax())/2 + 1;
+    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->getLineMax()) / 2 + 1;
     for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - length));

@@ -11,7 +11,6 @@
 #include "musiccsvconfigmanager.h"
 #include "musictxtconfigmanager.h"
 #include "musicnfnconfigmanager.h"
-#include "musicmessagebox.h"
 
 void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem& item)
 {

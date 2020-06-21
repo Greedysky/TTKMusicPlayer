@@ -2,7 +2,7 @@
 #include "ui_musicsongringtonemakerwidget.h"
 #include "musiccutsliderwidget.h"
 #include "musiccoremplayer.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musicsongtag.h"
 #include "musicfileutils.h"
@@ -191,9 +191,7 @@ int MusicSongRingtoneMaker::exec()
 {
     if(!QFile::exists(MAKE_TRANSFORM_FULL))
     {
-        MusicMessageBox message;
-        message.setText(tr("Lack of plugin file!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Lack of plugin file!"));
         return -1;
     }
 

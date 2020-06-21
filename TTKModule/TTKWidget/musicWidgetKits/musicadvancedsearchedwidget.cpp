@@ -5,7 +5,7 @@
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicalgorithmutils.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     : QWidget(parent)
@@ -114,9 +114,7 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     const int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     if(server > 5 || server < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Current server not support search!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Current server not support search!"));
         return;
     }
 

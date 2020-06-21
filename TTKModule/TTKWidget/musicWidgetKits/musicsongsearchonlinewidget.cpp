@@ -1,7 +1,6 @@
 #include "musicsongsearchonlinewidget.h"
 #include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musicdownloadbackgroundthread.h"
-#include "musicmessagebox.h"
 #include "musiccoremplayer.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
@@ -135,9 +134,7 @@ void MusicSongSearchTableWidget::auditionToMusic(int row)
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(musicSongInfos.isEmpty() || row < 0 || (row >= rowCount() - 1))
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -175,9 +172,7 @@ void MusicSongSearchTableWidget::auditionToMusicStop(int row)
 
     if(row < 0 || (row >= rowCount() - 1))
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -391,8 +386,7 @@ void MusicSongSearchTableWidget::mediaAutionPlayError(int code)
     {
         m_mediaPlayer->stop();
 
-        MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->defaultLabel(this, tr("Audio Play Time out!"));
+        MusicToastLabel::popup(tr("Audio Play Time out!"));
     }
 }
 
@@ -434,9 +428,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 
     if(row < 0 || (row >= rowCount() - 1))
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
     Q_EMIT showDownLoadInfoFor(MusicObject::DW_DownLoading);
@@ -548,9 +540,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     list.removeOne(m_searchTableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

@@ -191,8 +191,7 @@ void MusicVideoView::mediaAutionPlayError(int code)
     {
         stop();
 
-        MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->defaultLabel(this, tr("Audio Play Time out!"));
+        MusicToastLabel::popup(tr("Audio Play Time out!"));
     }
 }
 

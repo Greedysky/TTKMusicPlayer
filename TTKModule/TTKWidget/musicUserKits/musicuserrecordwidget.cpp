@@ -2,7 +2,7 @@
 #include "ui_musicuserrecordwidget.h"
 #include "musicuiobject.h"
 #include "musicusermodel.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicfileutils.h"
 #include "musicwidgetutils.h"
 #include "musicalgorithmutils.h"
@@ -206,45 +206,33 @@ void MusicUserRecordWidget::confirmButtonClickedT()
     {
         if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit_T->text().trimmed())
         {
-            MusicMessageBox message;
-            message.setText(tr("You verificationCode is incorrect"));
-            message.exec();
+            MusicToastLabel::popup(tr("You verificationCode is incorrect"));
             return;
         }
         if(!m_userModel->passwordCheck(m_userUID, m_ui->originPwdEdit_T->text()))
         {
-            MusicMessageBox message;
-            message.setText(tr("The origin password does not match"));
-            message.exec();
+            MusicToastLabel::popup(tr("The origin password does not match"));
             return;
         }
         if(m_ui->newPwdEdit_T->text() != m_ui->newCPwdEdit_T->text())
         {
-            MusicMessageBox message;
-            message.setText(tr("The two passwords do not match"));
-            message.exec();
+            MusicToastLabel::popup(tr("The two passwords do not match"));
             return;
         }
         if(!m_userModel->updateUserPwd(m_userUID, m_ui->newPwdEdit_T->text()))
         {
-            MusicMessageBox message;
-            message.setText(tr("The modity password failed"));
-            message.exec();
+            MusicToastLabel::popup(tr("The modity password failed"));
             return;
         }
 
         Q_EMIT userIconChanged(MusicUserUIDItem(), QString());
         close();
 
-        MusicMessageBox message;
-        message.setText(tr("The modity password successfully, please relogin"));
-        message.exec();
+        MusicToastLabel::popup(tr("The modity password successfully, please relogin"));
     }
     else
     {
-        MusicMessageBox message;
-        message.setText(tr("You entered is incorrect"));
-        message.exec();
+        MusicToastLabel::popup(tr("You entered is incorrect"));
     }
 }
 

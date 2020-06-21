@@ -2,7 +2,6 @@
 #include "musicstringutils.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
-#include "musicapplication.h"
 
 MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(QWidget *parent)
     : QLineEdit(parent)
@@ -34,7 +33,8 @@ void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
         m_focusBlock = true;
 
         MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->defaultLabel(MusicApplication::instance(), tr("Illegal Chars %1").arg(MusicUtils::String::illegalCharacters().join("")));
+        toast->setText(tr("Illegal Chars %1").arg(MusicUtils::String::illegalCharacters().join("")));
+        toast->popup();
         connect(toast, SIGNAL(animationCloseChanged()), SLOT(animationCloseChanged()));
     }
 }

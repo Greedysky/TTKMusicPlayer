@@ -3,6 +3,7 @@
 #include "musicsourceupdatethread.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
 #include "musicurlutils.h"
@@ -141,9 +142,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     connect(download, SIGNAL(downloadSpeedLabelChanged(QString,qint64)), SLOT(downloadSpeedLabelChanged(QString,qint64)));
     download->startToDownload();
 #else
-    MusicMessageBox message(this);
-    message.setText(tr("Current Platform Not Supported!"));
-    message.exec();
+    MusicToastLabel::popup(tr("Current Platform Not Supported!"));
 #endif
 }
 

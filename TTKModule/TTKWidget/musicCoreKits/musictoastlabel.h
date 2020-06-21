@@ -43,10 +43,6 @@ public:
     ~MusicToastLabel();
 
     /*!
-     * Create default label.
-     */
-    void defaultLabel(QWidget *parent, const QString &text);
-    /*!
      * Set text margin in the body.
      */
     void setFontMargin(int height, int width);
@@ -74,10 +70,15 @@ public:
      * Get context font bold.
      */
     bool bold() const;
+
     /*!
      * Popup the toast widget in parent widget.
      */
-    void popup(QWidget *parent);
+    void popup(QWidget *parent = nullptr);
+    /*!
+     * Create default label.
+     */
+    static void popup(const QString &text);
 
 Q_SIGNALS:
     /*!

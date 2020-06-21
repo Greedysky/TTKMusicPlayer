@@ -396,7 +396,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         MusicObject::MusicSongAttribute *attr = &info->m_songAttrs[i];
         const QString &urlPrefix = attr->m_url;
         QStringList urls;
-        qint64 round = attr->m_size.toLongLong()/20000000 + 1;
+        qint64 round = attr->m_size.toLongLong() / 20000000 + 1;
         qint64 start = 0, end = 0;
         while(round > 0)
         {

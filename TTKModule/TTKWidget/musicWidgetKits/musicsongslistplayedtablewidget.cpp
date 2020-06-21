@@ -5,7 +5,6 @@
 #include "musicrightareawidget.h"
 #include "musicdownloadwidget.h"
 #include "musiccoreutils.h"
-#include "musicmessagebox.h"
 
 #include <qmath.h>
 #include <QScrollBar>

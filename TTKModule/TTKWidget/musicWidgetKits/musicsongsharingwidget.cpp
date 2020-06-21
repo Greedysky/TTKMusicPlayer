@@ -2,7 +2,7 @@
 #include "ui_musicsongsharingwidget.h"
 #include "musicdownloadquerythreadabstract.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicurlutils.h"
@@ -249,9 +249,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
 
 void MusicSongSharingWidget::queryUrlTimeout()
 {
-    MusicMessageBox message;
-    message.setText(tr("Song does not support sharing!"));
-    message.exec();
+    MusicToastLabel::popup(tr("Song does not support sharing!"));
 }
 
 void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QString &imageUrl)

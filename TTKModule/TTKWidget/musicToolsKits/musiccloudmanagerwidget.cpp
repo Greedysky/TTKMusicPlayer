@@ -12,7 +12,7 @@
 #include "musicfileutils.h"
 #include "musicstringutils.h"
 #include "musicformats.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
 
@@ -200,9 +200,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
 {
     if(currentRow() < 0 || m_uploading)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -253,9 +251,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
 {
     if(currentRow() < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

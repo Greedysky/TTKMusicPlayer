@@ -3,7 +3,7 @@
 #include "ui_musicuserdialog.h"
 #include "musicuserlineedit.h"
 #include "musicusermodel.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicwidgetutils.h"
 
 #include "musicuserrecordwidget.h"
@@ -90,18 +90,14 @@ void MusicUserDialog::checkUserLogin()
     {
         if(!m_userModel->passwordCheck(uid, pwd))
         {
-            MusicMessageBox message;
-            message.setText(tr("You passwd is incorrect or user is not exist"));
-            message.exec();
+            MusicToastLabel::popup(tr("You passwd is incorrect or user is not exist"));
             return;
         }
     }
 
     if(uid.m_uid.trimmed().isEmpty() || pwd.trimmed().isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("You entered is incorrect"));
-        message.exec();
+        MusicToastLabel::popup(tr("You entered is incorrect"));
         return;
     }
 
@@ -124,38 +120,27 @@ void MusicUserDialog::checkRegisterUser()
     {
         if(m_ui->registerPwdLine->text() != m_ui->registerPwdCLine->text())
         {
-            MusicMessageBox message;
-            message.setText(tr("The two passwords do not match"));
-            message.exec();
+            MusicToastLabel::popup(tr("The two passwords do not match"));
             return;
         }
         if(!m_ui->agreementCheckBox->isChecked())
         {
-            MusicMessageBox message;
-            message.setText(tr("The agreement does not tick"));
-            message.exec();
+            MusicToastLabel::popup(tr("The agreement does not tick"));
             return;
         }
         if(!m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), DEFAULT_LOGIN_SERVER),
                                                   m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
         {
-            MusicMessageBox message;
-            message.setText(tr("The username is existed"));
-            message.exec();
+            MusicToastLabel::popup(tr("The username is existed"));
             return;
         }
 
-        MusicMessageBox message;
-        message.setText(tr("The register successfully"));
-        message.exec();
-
+        MusicToastLabel::popup(tr("The register successfully"));
         userLogin();
     }
     else
     {
-        MusicMessageBox message;
-        message.setText(tr("You entered is incorrect"));
-        message.exec();
+        MusicToastLabel::popup(tr("You entered is incorrect"));
     }
 }
 
@@ -171,37 +156,27 @@ void MusicUserDialog::checkUserForgotPasswd()
 
      if(user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty())
      {
-         MusicMessageBox message;
-         message.setText(tr("You entered is incorrect"));
-         message.exec();
+         MusicToastLabel::popup(tr("You entered is incorrect"));
          return;
      }
      if(!m_userModel->mailCheck(user, mail))
      {
-         MusicMessageBox message;
-         message.setText(tr("You mail is incorrect or user is not exist"));
-         message.exec();
+         MusicToastLabel::popup(tr("You mail is incorrect or user is not exist"));
          return;
      }
      if(!m_ui->pwdLineEdit->getStrStatus())
      {
-         MusicMessageBox message;
-         message.setText(tr("You passwd is incorrect"));
-         message.exec();
+         MusicToastLabel::popup(tr("You passwd is incorrect"));
          return;
      }
      if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit->text().trimmed())
      {
-         MusicMessageBox message;
-         message.setText(tr("You verificationCode is incorrect"));
-         message.exec();
+         MusicToastLabel::popup(tr("You verificationCode is incorrect"));
          return;
      }
      if(m_userModel->updateUser(user, m_ui->pwdLineEdit->text(), mail, QString(), QString()))
      {
-         MusicMessageBox message;
-         message.setText(tr("Change password successfully"));
-         message.exec();
+         MusicToastLabel::popup(tr("Change password successfully"));
      }
      userLogin();
 }

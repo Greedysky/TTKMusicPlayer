@@ -2,7 +2,7 @@
 #include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
 #include "musicnumberutils.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 
 #include <QScrollBar>
 
@@ -113,9 +113,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
 {
     if(currentRow() < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 
@@ -136,9 +134,7 @@ void MusicCloudUploadTableWidget::reuploadFiles()
 {
     if(currentRow() < 0)
     {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+        MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
 

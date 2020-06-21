@@ -7,7 +7,7 @@
 #include "musicvideoplaywidget.h"
 #include "musicdownloadstatusobject.h"
 #include "musicsettingwidget.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicalbumfoundwidget.h"
 #include "musicartistfoundwidget.h"
 #include "musicsimilarfoundwidget.h"
@@ -427,9 +427,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 {
                     musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
 
-                    MusicMessageBox message;
-                    message.setText(tr("enter input search text first"));
-                    message.exec();
+                    MusicToastLabel::popup(tr("enter input search text first"));
                     break;
                 }
 

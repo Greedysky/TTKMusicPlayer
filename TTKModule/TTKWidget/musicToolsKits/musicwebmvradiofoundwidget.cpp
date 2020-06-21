@@ -16,7 +16,7 @@ MusicWebMVRadioFoundItemWidget::MusicWebMVRadioFoundItemWidget(QWidget *parent)
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     m_playButton = new QPushButton(this);
-    m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30)/2, (HEIGHT_LABEL_SIZE - 30)/2, 30, 30);
+    m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30) / 2, (HEIGHT_LABEL_SIZE - 30) / 2, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
     m_playButton->setStyleSheet(MusicUIObject::MQSSTinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));

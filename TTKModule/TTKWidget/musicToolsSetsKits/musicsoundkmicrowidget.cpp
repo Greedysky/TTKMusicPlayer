@@ -13,6 +13,7 @@
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musicaudiorecorderobject.h"
 #include "musiccodecutils.h"
 #include "musicfileutils.h"
@@ -156,9 +157,7 @@ void MusicSoundKMicroWidget::playFinished()
     m_mediaPlayer->stop();
     if(m_ui->gifLabel->isRunning())
     {
-        MusicMessageBox message;
-        message.setText(tr("Record Finished"));
-        message.exec();
+        MusicToastLabel::popup(tr("Record Finished"));
 
         recordStateChanged(false);
 
@@ -297,9 +296,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
         }
         else
         {
-            MusicMessageBox message;
-            message.setText(tr("Input Error"));
-            message.exec();
+            MusicToastLabel::popup(tr("Input Error"));
         }
     }
 }

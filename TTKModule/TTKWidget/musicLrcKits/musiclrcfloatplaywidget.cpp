@@ -53,8 +53,8 @@ MusicLrcFloatPlayWidget::~MusicLrcFloatPlayWidget()
 
 void MusicLrcFloatPlayWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect((width - this->width())/2, height - this->height(), 145, 60);
-    m_rectOut = QRect((width - this->width())/2, height - 5, 145, 60);
+    m_rectIn = QRect((width - this->width()) / 2, height - this->height(), 145, 60);
+    m_rectOut = QRect((width - this->width()) / 2, height - 5, 145, 60);
 
     setGeometry(m_rectOut);
 
