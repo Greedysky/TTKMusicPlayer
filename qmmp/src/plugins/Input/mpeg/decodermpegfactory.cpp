@@ -127,7 +127,11 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
             ;
 
         if(dec_res == 0)
-            dec_res = mad_frame_decode(&frame, &stream);
+        {
+            while ((dec_res = mad_frame_decode(&frame, &stream)) == -1
+                   && MAD_RECOVERABLE(stream.error))
+                ;
+        }
 
         mad_stream_finish(&stream);
         mad_frame_finish(&frame);
