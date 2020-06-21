@@ -61,8 +61,8 @@ private:
 
     VisInfo *m_sonique;
     VisData *m_visData;
-    unsigned long *m_texture;
-    unsigned long *m_visproc;
+    unsigned int *m_texture;
+    unsigned int *m_visproc;
 #ifdef Q_OS_UNIX
     void *m_instance;
 #else

@@ -59,7 +59,7 @@
 
 typedef struct 
 {
-	unsigned long	MillSec;			// Sonique sets this to the time stamp of end this block of data
+	unsigned int	MillSec;			// Sonique sets this to the time stamp of end this block of data
 	unsigned char	Waveform[2][512];	// Sonique sets this to the PCM data being outputted at this time
 	unsigned char	Spectrum[2][256];	// Sonique sets this to a lowfidely version of the spectrum data
 										//   being outputted at this time
@@ -83,15 +83,15 @@ public:
 
 typedef struct _VisInfo
 {
-	unsigned long Version;				// 1 = supports Clicked(x,y,buttons)
+	unsigned int Version;				// 1 = supports Clicked(x,y,buttons)
 
 	char	*PluginName;				// Set to the name of the plugin
-	long	lRequired;					// Which vis data this plugin requires (set to a combination of
+	int		lRequired;					// Which vis data this plugin requires (set to a combination of
 										//   the VI_WAVEFORM, VI_SPECTRUM and SONIQEUVISPROC flags)
 
 	void	(*Initialize)(void);		// Called some time before your plugin is asked to render for
 										// the first time
-	BOOL	(*Render)( unsigned long *Video, int width, int height, int pitch, VisData* pVD);
+	BOOL	(*Render)( unsigned int *Video, int width, int height, int pitch, VisData* pVD);
 										// Called for each frame. Pitch is in pixels and can be negative.
 										// Render like this:
 										// for (y = 0; y < height; y++)
@@ -101,7 +101,7 @@ typedef struct _VisInfo
 										//	  Video += pitch;
 										// }
 										//				OR
-										// void PutPixel(int x, int y, unsigned long Pixel)
+										// void PutPixel(int x, int y, unsigned int Pixel)
 										// {
 										//    _ASSERT( x >= 0 && x < width && y >= 0 && y < height );
 										//	  Video[y*pitch+x] = Pixel;

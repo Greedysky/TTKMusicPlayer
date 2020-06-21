@@ -13,10 +13,10 @@ typedef VisInfo* (*SoniqueModule)();
 #define SPECTRUM_SIZE   256
 #define FFT_SIZE        (SPECTRUM_SIZE * 2)
 
-void customZoomandBlur(unsigned long *v, unsigned long *vt, int xs, int ys)
+void customZoomandBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
 {
     const float zoom = 0.8;
-    unsigned long *vtp = vt;
+    unsigned int *vtp = vt;
     //zoom
     const float centerX = xs / 2;
     const float centerY = ys / 2;
@@ -173,7 +173,7 @@ void SoniqueWidget::addBuffer(float *left, float *right)
     {
         if(!m_visproc)
         {
-            m_visproc = new unsigned long[w * h];
+            m_visproc = new unsigned int[w * h];
         }
         customZoomandBlur(m_texture, m_visproc, w, h);
     }
@@ -236,7 +236,7 @@ void SoniqueWidget::resizeGL(int w, int h)
     m_visproc = nullptr;
 
     delete m_texture;
-    m_texture = new unsigned long[w * h]{0};
+    m_texture = new unsigned int[w * h]{0};
 }
 
 void SoniqueWidget::paintGL()
