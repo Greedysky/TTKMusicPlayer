@@ -181,7 +181,7 @@ void SoniqueWidget::addBuffer(float *left, float *right)
     m_visData->MillSec = QDateTime::currentMSecsSinceEpoch();
     m_sonique->Render(m_texture, w, h, w, m_visData);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, m_texture);
     update();
 }
 
@@ -210,12 +210,6 @@ void SoniqueWidget::initializeGL()
         }
 
         randomPreset();
-    }
-    else
-    {
-        QImage image(width(), height(), QImage::Format_RGB32);
-        image.fill(Qt::black);
-        glTexImage2D(GL_TEXTURE_2D, 0, 3, image.width(), image.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
     }
 }
 

@@ -140,5 +140,4 @@ void GoomWidget::createMenu()
         act->setCheckable(true);
         refreshRate->addAction(act);
     }
-
 }
