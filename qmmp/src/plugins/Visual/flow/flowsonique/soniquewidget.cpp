@@ -2,10 +2,13 @@
 #include <qmmp/qmmp.h>
 
 #include <QDir>
+#include <QPainter>
 #include <QDateTime>
 
 #ifdef Q_OS_UNIX
 #include <dlfcn.h>
+#else
+#include <qt_windows.h>
 #endif
 
 typedef VisInfo* (*SoniqueModule)();
@@ -13,7 +16,7 @@ typedef VisInfo* (*SoniqueModule)();
 #define SPECTRUM_SIZE   256
 #define FFT_SIZE        (SPECTRUM_SIZE * 2)
 
-void customZoomandBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
+void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
 {
     const float zoom = 0.8;
     unsigned int *vtp = vt;
@@ -88,11 +91,7 @@ QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, 
 
 
 SoniqueWidget::SoniqueWidget(QWidget *parent)
-#ifdef QT_OPENGL_WIDGET
-    : QOpenGLWidget(parent)
-#else
-    : QGLWidget(parent)
-#endif
+    : QWidget(parent)
 {
     setMinimumSize(580, 320);
     qsrand(QDateTime::currentMSecsSinceEpoch());
@@ -100,19 +99,21 @@ SoniqueWidget::SoniqueWidget(QWidget *parent)
     m_sonique = nullptr;
     m_visData= new VisData;
     m_texture = nullptr;
-    m_visproc  = nullptr;
+    m_visProc  = nullptr;
     m_instance = nullptr;
     m_currentIndex = -1;
 
     m_kiss_cfg = kiss_fft_alloc(FFT_SIZE, 0, nullptr, nullptr);
     m_in_freq_data = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
     m_out_freq_data = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
+
+    initialize();
 }
 
 SoniqueWidget::~SoniqueWidget()
 {
     delete m_visData;
-    delete m_visproc;
+    delete m_visProc;
 
     closePreset();
 
@@ -171,79 +172,17 @@ void SoniqueWidget::addBuffer(float *left, float *right)
 
     if(m_sonique->lRequired & SONIQUEVISPROC)
     {
-        if(!m_visproc)
+        if(!m_visProc)
         {
-            m_visproc = new unsigned int[w * h];
+            m_visProc = new unsigned int[w * h];
         }
-        customZoomandBlur(m_texture, m_visproc, w, h);
+        customZoomAndBlur(m_texture, m_visProc, w, h);
     }
 
     m_visData->MillSec = QDateTime::currentMSecsSinceEpoch();
     m_sonique->Render(m_texture, w, h, w, m_visData);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, m_texture);
     update();
-}
-
-void SoniqueWidget::initializeGL()
-{
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_ALPHA_TEST);
-    glDisable(GL_LIGHTING);
-    glEnable(GL_TEXTURE_2D);
-
-    //visual texture
-    glBindTexture(GL_TEXTURE_2D, 0);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,	GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,	GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,		GL_CLAMP);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,		GL_CLAMP);
-
-    if(m_presetList.isEmpty())
-    {
-        const QString &dir = Qmmp::pluginPath() + "/../MPlugins/config/sonique";
-        const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp", true));
-        foreach(const QFileInfo &info, folderList)
-        {
-            m_presetList << info.absoluteFilePath();
-        }
-
-        randomPreset();
-    }
-}
-
-void SoniqueWidget::resizeGL(int w, int h)
-{
-    glViewport(0, 0, w, h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    if(!m_sonique)
-    {
-        return;
-    }
-
-    delete m_visproc;
-    m_visproc = nullptr;
-
-    delete m_texture;
-    m_texture = new unsigned int[w * h]{0};
-}
-
-void SoniqueWidget::paintGL()
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3f(1.0f, 1.0f, 1.0f);
-
-    glBegin(GL_QUADS);
-        glTexCoord2f( 0.0, 0.0 ); glVertex2f( -1.0, 1.0);
-        glTexCoord2f( 1.0, 0.0 ); glVertex2f( 1.0, 1.0);
-        glTexCoord2f( 1.0, 1.0 ); glVertex2f( 1.0, -1.0);
-        glTexCoord2f( 0.0, 1.0 ); glVertex2f( -1.0, -1.0);
-    glEnd();
 }
 
 void SoniqueWidget::nextPreset()
@@ -276,6 +215,30 @@ void SoniqueWidget::previousPreset()
     generatePreset();
 }
 
+void SoniqueWidget::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+
+    if(!m_sonique)
+    {
+        return;
+    }
+
+    delete m_visProc;
+    m_visProc = nullptr;
+
+    delete m_texture;
+    m_texture = new unsigned int[width() * height()]{0};
+}
+
+void SoniqueWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+
+    QPainter painter(this);
+    painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));
+}
+
 void SoniqueWidget::randomPreset()
 {
     if(m_presetList.isEmpty())
@@ -285,6 +248,18 @@ void SoniqueWidget::randomPreset()
 
     m_currentIndex = qrand() % m_presetList.count();
     generatePreset();
+}
+
+void SoniqueWidget::initialize()
+{
+    const QString &dir = Qmmp::pluginPath() + "/../MPlugins/config/sonique";
+    const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp", true));
+    foreach(const QFileInfo &info, folderList)
+    {
+        m_presetList << info.absoluteFilePath();
+    }
+
+    randomPreset();
 }
 
 void SoniqueWidget::closePreset()

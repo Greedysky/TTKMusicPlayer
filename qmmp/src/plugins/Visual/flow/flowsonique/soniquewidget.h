@@ -19,24 +19,14 @@
 #ifndef SONIQUEWIDGET_H
 #define SONIQUEWIDGET_H
 
-#include <QGLWidget>
-#if QT_VERSION >= 0x050400
-#ifdef Q_OS_UNIX
-  #include <QOpenGLWidget>
-  #define QT_OPENGL_WIDGET
-#endif
-#endif
+#include <QWidget>
 #include "visual.h"
 #include "kiss_fft.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-#ifdef QT_OPENGL_WIDGET
-class SoniqueWidget : public QOpenGLWidget
-#else
-class SoniqueWidget : public QGLWidget
-#endif
+class SoniqueWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -45,30 +35,29 @@ public:
 
     void addBuffer(float *left, float *right);
 
-protected:
-    virtual void initializeGL() override;
-    virtual void resizeGL(int width, int height) override;
-    virtual void paintGL() override;
-
 public slots:
     void nextPreset();
     void previousPreset();
     void randomPreset();
 
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
+
 private:
+    void initialize();
     void closePreset();
     void generatePreset();
 
     VisInfo *m_sonique;
     VisData *m_visData;
     unsigned int *m_texture;
-    unsigned int *m_visproc;
+    unsigned int *m_visProc;
 #ifdef Q_OS_UNIX
     void *m_instance;
 #else
     HINSTANCE m_instance;
 #endif
-
     int m_currentIndex;
     QStringList m_presetList;
 

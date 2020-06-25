@@ -15,10 +15,6 @@ SOURCES += soniqueplugin.cpp \
            kiss_fft.c \
            visualflowsoniquefactory.cpp
 
-win32:{
-    LIBS += -lglu32 -lopengl32
-}
-
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }
