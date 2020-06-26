@@ -128,6 +128,7 @@ bool DecoderAAC::initialize()
 
     memmove(m_input_buf, m_input_buf + res, m_input_at - res);
     m_input_at -= res;
+    setProperty(Qmmp::FORMAT_NAME, "AAC");
     configure(freq, chan, Qmmp::PCM_S16LE);
     qDebug("DecoderAAC: initialize succes");
     return true;

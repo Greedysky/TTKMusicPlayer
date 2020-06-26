@@ -356,6 +356,14 @@ bool DecoderMAD::findHeader()
     m_freq = header.samplerate;
     m_channels = MAD_NCHANNELS(&header);
     m_bitrate = header.bitrate / 1000;
+
+    if((header.flags & MAD_FLAG_LSF_EXT) && (header.flags & MAD_FLAG_MPEG_2_5_EXT))
+        setProperty(Qmmp::FORMAT_NAME, QString("MPEG-2.5 layer %1").arg(header.layer));
+    else if(header.flags & MAD_FLAG_LSF_EXT)
+        setProperty(Qmmp::FORMAT_NAME, QString("MPEG-2 layer %1").arg(header.layer));
+    else
+        setProperty(Qmmp::FORMAT_NAME, QString("MPEG-1 layer %1").arg(header.layer));
+
     mad_header_finish(&header);
     input()->seek(0);
     m_input_bytes = 0;

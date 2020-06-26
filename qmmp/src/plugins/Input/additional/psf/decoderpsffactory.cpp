@@ -80,6 +80,7 @@ QList<TrackInfo*> DecoderPSFFactory::createPlayList(const QString &path, TrackIn
         info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::FORMAT_NAME, "psf");
         info->setDuration(helper.totalTime());
     }
 

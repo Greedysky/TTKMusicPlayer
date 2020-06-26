@@ -65,6 +65,7 @@ QList<TrackInfo*> DecoderAlacFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
+        info->setValue(Qmmp::FORMAT_NAME, "alac");
         info->setDuration(helper.totalTime());
     }
 

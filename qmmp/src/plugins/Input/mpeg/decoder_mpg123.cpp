@@ -143,7 +143,19 @@ bool DecoderMPG123::initialize()
         m_totalTime = (qint64) mpg123_length(m_handle) * 1000 / m_rate;
     }
     else
+    {
+        if((err = mpg123_info(m_handle, &m_frame_info)) != MPG123_OK)
+            qWarning("DecoderMPG123: mpg123 error: %s", mpg123_plain_strerror(err));
+
+        if(m_frame_info.version == MPG123_1_0)
+            setProperty(Qmmp::FORMAT_NAME, QString("MPEG-1 layer %1").arg(m_frame_info.layer));
+        else if(m_frame_info.version == MPG123_2_0)
+            setProperty(Qmmp::FORMAT_NAME, QString("MPEG-2 layer %1").arg(m_frame_info.layer));
+        else if(m_frame_info.version == MPG123_2_5)
+            setProperty(Qmmp::FORMAT_NAME, QString("MPEG-2.5 layer %1").arg(m_frame_info.layer));
+
         m_totalTime = 0;
+    }
 
     configure(m_rate, channels, Qmmp::PCM_FLOAT);
     return true;

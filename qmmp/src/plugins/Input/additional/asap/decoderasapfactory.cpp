@@ -77,6 +77,7 @@ QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackI
         info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::FORMAT_NAME, "asap");
         info->setDuration(helper.totalTime());
     }
 
