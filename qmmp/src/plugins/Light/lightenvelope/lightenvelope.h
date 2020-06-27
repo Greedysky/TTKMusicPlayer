@@ -81,8 +81,8 @@ private slots:
     void positionChanged(qint64 elapsed);
 
 private:
-    void paintEvent(QPaintEvent *e) override;
-    void contextMenuEvent(QContextMenuEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     void drawWaveform();
 
