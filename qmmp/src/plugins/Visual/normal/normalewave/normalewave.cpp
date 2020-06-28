@@ -259,7 +259,6 @@ void NormalEWave::draw(QPainter *p)
 
     int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-    const float maxed = takeMaxRange();
 
     QPolygon points;
     points << QPoint(0, height());
@@ -270,7 +269,7 @@ void NormalEWave::draw(QPainter *p)
         {
             x += rdx; //correct right part position
         }
-        points << QPoint(x, height() - m_intern_vis_data[i] * maxed * m_cell_size.height());
+        points << QPoint(x, height() - m_intern_vis_data[i] * m_cell_size.height());
     }
     points << QPoint(width(), height());
     p->drawPolygon(points);

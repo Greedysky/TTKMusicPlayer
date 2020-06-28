@@ -30,7 +30,6 @@
 #include "visualfactory.h"
 #include "visualbuffer_p.h"
 #include "visual.h"
-#include "soundcore.h"
 
 Visual::Visual(QWidget *parent, Qt::WindowFlags f)
     : QWidget(parent, f)
@@ -118,16 +117,6 @@ bool Visual::takeData(float *left, float *right)
 void Visual::processPatch(bool state)
 {
     Q_UNUSED(state);
-}
-
-float Visual::takeMaxRange() const
-{
-    if(!SoundCore::instance())
-    {
-        return 1.0f;
-    }
-
-    return SoundCore::instance()->volume() * 1.0 / 100;
 }
 
 void Visual::clear()

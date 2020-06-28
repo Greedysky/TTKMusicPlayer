@@ -138,8 +138,6 @@ void PlusXRays::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 1));
 
-    const float maxed = takeMaxRange();
-
     for(int i = 0; i < m_cols; ++i)
     {
         if((i + 1) >= m_cols)
@@ -147,8 +145,8 @@ void PlusXRays::draw(QPainter *p)
             break;
         }
 
-        int pFront = m_rows / 2 - m_intern_vis_data[i] * maxed;
-        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1] * maxed;
+        int pFront = m_rows / 2 - m_intern_vis_data[i];
+        int pEnd = m_rows / 2 - m_intern_vis_data[i + 1];
 
         if(pFront > pEnd)
         {

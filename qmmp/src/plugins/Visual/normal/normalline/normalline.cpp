@@ -275,7 +275,6 @@ void NormalLine::draw(QPainter *p)
 
     int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-    const float maxed = takeMaxRange();
 
     for(int i = 0; i < m_cols * 2; ++i)
     {
@@ -285,8 +284,8 @@ void NormalLine::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height();
+        const int offset = m_intern_vis_data[i] * m_cell_size.height();
         p->fillRect(x, height() - offset, m_cell_size.width() - 1, offset, line);
-        p->fillRect(x, height() - int(m_peaks[i] * maxed) * m_cell_size.height(), m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
+        p->fillRect(x, height() - int(m_peaks[i]) * m_cell_size.height(), m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
 }

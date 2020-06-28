@@ -238,12 +238,10 @@ void NormalHistogram::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
-    const float maxed = takeMaxRange();
-
     for(int i = 0; i < m_cols; ++i)
     {
         x = i * m_cell_size.width() + 1;
-        const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height();
+        const int offset = m_intern_vis_data[i] * m_cell_size.height();
         p->fillRect(x, height() - offset + 1, m_cell_size.width() - 2, offset - 2, line);
     }
 }

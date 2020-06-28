@@ -226,12 +226,10 @@ void NormalFlowWave::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
-    const float maxed = takeMaxRange();
-
     for(int i = 0; i < m_cols; ++i)
     {
         x = i * m_cell_size.width() + 1;
-        for(int j = 0; j <= m_intern_vis_data[i]*maxed/2; ++j)
+        for(int j = 0; j <= m_intern_vis_data[i] / 2; ++j)
         {
             p->fillRect(x, height() / 2 - j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);
             p->fillRect(x, height() / 2 + j * m_cell_size.height() + 1, m_cell_size.width() - 2, m_cell_size.height() - 2, line);

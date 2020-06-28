@@ -135,12 +135,10 @@ void PlusSpaceWave::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
-    const float maxed = takeMaxRange();
-
     for(int i = 0; i < m_cols; ++i)
     {
         x = i * (m_cell_size.width() + 7) + 1;
-        const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() / 2;
+        const int offset = m_intern_vis_data[i] * m_cell_size.height() / 2;
         p->fillRect(x, height() / 2 - offset, (m_cell_size.width() + 7) - 1, offset, line);
     }
 
@@ -148,7 +146,7 @@ void PlusSpaceWave::draw(QPainter *p)
     for(int i = 0; i < m_cols; ++i)
     {
         x = i * m_cell_size.width() * 2 + 1;
-        const int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() * 0.8;
+        const int offset = m_intern_vis_data[i] * m_cell_size.height() * 0.8;
         p->drawPoint(x, height() / 2 - offset);
         p->drawPoint(x, height() / 2 + offset);
     }
@@ -169,8 +167,8 @@ void PlusSpaceWave::draw(QPainter *p)
             break;
         }
 
-        int pFront = m_rows - m_intern_ray_data[i] * maxed;
-        int pEnd = m_rows - m_intern_ray_data[i + 1] * maxed;
+        int pFront = m_rows - m_intern_ray_data[i];
+        int pEnd = m_rows - m_intern_ray_data[i + 1];
 
         if(pFront > pEnd)
         {

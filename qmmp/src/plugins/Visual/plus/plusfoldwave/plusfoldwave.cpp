@@ -255,7 +255,6 @@ void PlusFoldWave::draw(QPainter *p)
     p->setPen(QPen(line, 1));
 
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-    const float maxed = takeMaxRange();
 
     int x = 0, x1 = 0;
     for(int i = 0; i < m_cols * 2; ++i)
@@ -265,7 +264,7 @@ void PlusFoldWave::draw(QPainter *p)
         {
             x += rdx; //correct right part position
         }
-        int offset = m_intern_vis_data[i] * maxed * m_cell_size.height() / 2;
+        int offset = m_intern_vis_data[i] * m_cell_size.height() / 2;
         if(abs(offset) > height() / 2)
         {
             offset = height() / 2;
@@ -284,7 +283,7 @@ void PlusFoldWave::draw(QPainter *p)
             x1 += rdx; //correct right part position
         }
 
-        int offset1 = m_intern_vis_data[i + 1] * maxed * m_cell_size.height() / 2;
+        int offset1 = m_intern_vis_data[i + 1] * m_cell_size.height() / 2;
         if(abs(offset1) > height() / 2)
         {
             offset1 = height() / 2;

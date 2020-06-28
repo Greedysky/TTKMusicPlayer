@@ -99,8 +99,6 @@ void WaveMulti::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    const float maxed = takeMaxRange();
-
     if(m_cols != 0)
     {
         if(m_pixPos >= m_cols)
@@ -109,11 +107,11 @@ void WaveMulti::draw(QPainter *p)
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
 
-        for(int i=0; i<m_vis_data * maxed / 2; ++i)
+        for(int i=0; i<m_vis_data / 2; ++i)
         {
             int r = qMin(0x5f + i*3, 0xff);
-            m_backgroundImage.setPixel(m_pixPos, qMax(m_rows / 2 - i, 0), qRgb(r, 0, 0));
-            m_backgroundImage.setPixel(m_pixPos, qMin(m_rows / 2 + i, m_rows), qRgb(r, 0, 0));
+            m_backgroundImage.setPixel(m_pixPos, qMax(m_rows / 2 - i, 0), qRgb(r, r, r));
+            m_backgroundImage.setPixel(m_pixPos, qMin(m_rows / 2 + i, m_rows), qRgb(r, r, r));
         }
         m_backgroundImage.setPixel(m_pixPos, m_rows / 2, qRgb(0xff, 0xff, 0xff));
     }

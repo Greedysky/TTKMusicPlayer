@@ -172,13 +172,12 @@ void PlusBlurXRays::draw(QPainter *p)
 
     blur();
 
-    const float maxed = takeMaxRange();
-    int value = m_rows / 2 - m_intern_vis_data[0] * maxed;
+    int value = m_rows / 2 - m_intern_vis_data[0];
     value = qBound(0, value, m_rows - 1);
 
     for(int i = 0; i < m_cols; i++)
     {
-        int y = m_rows / 2 - m_intern_vis_data[i] * maxed;
+        int y = m_rows / 2 - m_intern_vis_data[i];
         y = qBound(0, y, m_rows - 1);
         drawLine(i, value, y);
         value = y;
