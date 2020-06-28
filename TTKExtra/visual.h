@@ -165,10 +165,6 @@ protected:
      */
     virtual void processPatch(bool state);
     /*!
-     * Take visual maxed value range.
-     */
-    float takeMaxRange() const;
-    /*!
      * Clear current visual data.
      */
     void clear();
