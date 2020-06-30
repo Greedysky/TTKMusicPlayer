@@ -16,25 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALWAVEMONOFACTORY_H
-#define VISUALWAVEMONOFACTORY_H
+#ifndef VISUALPALETTE_H
+#define VISUALPALETTE_H
 
-#include <QObject>
-#include <qmmp/visualfactory.h>
-#include <qmmp/visual.h>
+#include "qmmp_export.h"
 
-/*!
- * @author Greedysky <greedysky@163.com>
- */
-class VisualWaveMonoFactory : public QObject, public VisualFactory
-{
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
-    Q_INTERFACES(VisualFactory)
-public:
-    virtual VisualProperties properties() const override;
-    virtual Visual *create(QWidget *parent) override;
+namespace VisualPalette {
+typedef enum palette {
+    PALETTE_SPECTRUM,
+    PALETTE_SPECTROGRAM,
+    PALETTE_SOX,
+    PALETTE_MONO,
+    PALETTE_DEFAULT = PALETTE_SPECTROGRAM,
+}Palette;
 
-};
+QMMP_EXPORT uint32_t renderPalette(Palette palette, double level);
+}
 
 #endif

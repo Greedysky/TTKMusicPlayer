@@ -44,7 +44,7 @@ LightSpectrum::LightSpectrum(QWidget *parent) :
     window_function(WINDOW_DEFAULT),
     duration(0.0),
     sample_rate(0),
-    palette(PALETTE_SPECTRUM),
+    palette(VisualPalette::PALETTE_SPECTRUM),
     prev_width(-1),
     fft_bits(FFT_BITS),
     urange(URANGE),
@@ -86,8 +86,9 @@ void LightSpectrum::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu(this);
     QMenu typeMenu(tr("Type"), &menu);
     typeMenu.addAction(tr("Spectrum"))->setData(10);
-    typeMenu.addAction(tr("Sox"))->setData(20);
-    typeMenu.addAction(tr("Mono"))->setData(30);
+    typeMenu.addAction(tr("Spectrogram"))->setData(20);
+    typeMenu.addAction(tr("Sox"))->setData(30);
+    typeMenu.addAction(tr("Mono"))->setData(40);
     connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
     menu.addMenu(&typeMenu);
     menu.exec(QCursor::pos());
@@ -202,16 +203,15 @@ static void pipeline_cb(int bands, int sample, float *values, void *cb_data)
 {
     LightSpectrum *spek = static_cast<LightSpectrum*>(cb_data);
     if(sample == -1) {
-//        spek->stop();
         return;
     }
 
     // TODO: check image size, quit if wrong.
-    double range = spek->getURange() - spek->getLRange();
+    const double range = spek->getURange() - spek->getLRange();
     for(int y = 0; y < bands; y++) {
-        double value = fmin(spek->getURange(), fmax(spek->getLRange(), values[y]));
-        double level = (value - spek->getLRange()) / range;
-        uint32_t color = spek_palette(spek->getPalette(), level);
+        const double value = fmin(spek->getURange(), fmax(spek->getLRange(), values[y]));
+        const double level = (value - spek->getLRange()) / range;
+        const uint32_t color = VisualPalette::renderPalette(spek->getPalette(), level);
         spek->getPaintImage()->setPixel(sample, bands - y - 1, color);
     }
     spek->update();
@@ -242,7 +242,6 @@ void LightSpectrum::start()
         );
         spek_pipeline_start(this->pipeline);
 //        // TODO: extract conversion into a utility function.
-//        this->desc = QString(spek_pipeline_desc(this->pipeline).c_str());
         this->streams = spek_pipeline_streams(this->pipeline);
         this->channels = spek_pipeline_channels(this->pipeline);
         this->duration = spek_pipeline_duration(this->pipeline);
@@ -262,9 +261,10 @@ void LightSpectrum::typeChanged(QAction *action)
 {
     switch(action->data().toInt())
     {
-        case 10: palette = PALETTE_SPECTRUM; break;
-        case 20: palette = PALETTE_SOX; break;
-        case 30: palette = PALETTE_MONO; break;
+        case 10: palette = VisualPalette::PALETTE_SPECTRUM; break;
+        case 20: palette = VisualPalette::PALETTE_SPECTROGRAM; break;
+        case 30: palette = VisualPalette::PALETTE_SOX; break;
+        case 40: palette = VisualPalette::PALETTE_MONO; break;
         default: break;
     }
     create_palette();
@@ -280,7 +280,7 @@ void LightSpectrum::create_palette()
 {
     this->palette_image = QImage(RULER, bits_to_bands(this->fft_bits), QImage::Format_RGB32);
     for(int y = 0; y < bits_to_bands(this->fft_bits); y++) {
-        uint32_t color = spek_palette(this->palette, y / (double)bits_to_bands(this->fft_bits));
+        uint32_t color = VisualPalette::renderPalette(this->palette, y / (double)bits_to_bands(this->fft_bits));
         for(int j =0; j < RULER; ++j) {
             this->palette_image.setPixel(
                 j,

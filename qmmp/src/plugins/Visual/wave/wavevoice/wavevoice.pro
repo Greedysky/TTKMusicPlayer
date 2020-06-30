@@ -3,11 +3,11 @@ include($$PWD/../../Visual.pri)
 DESTDIR = $$PLUGINS_PREFIX/Visual
 TARGET = $${TARGET}
 
-HEADERS += wavemono.h \
-           visualwavemonofactory.h
+HEADERS += wavevoice.h \
+           visualwavevoicefactory.h
 
-SOURCES += wavemono.cpp \
-           visualwavemonofactory.cpp
+SOURCES += wavevoice.cpp \
+           visualwavevoicefactory.cpp
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

@@ -16,26 +16,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef WAVMONO_H
-#define WAVMONO_H
+#ifndef WAVEVOICE_H
+#define WAVEVOICE_H
 
 #include <qmmp/visual.h>
-
-typedef enum palette {
-    PALETTE_SPECTRUM,
-    PALETTE_SOX,
-    PALETTE_MONO,
-}Palette;
+#include <qmmp/visualpalette.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class WaveMono : public Visual
+class WaveVoice : public Visual
 {
     Q_OBJECT
 public:
-    explicit WaveMono(QWidget *parent = nullptr);
-    virtual ~WaveMono();
+    explicit WaveVoice(QWidget *parent = nullptr);
+    virtual ~WaveVoice();
 
 private slots:
     void typeChanged(QAction *action);
@@ -48,7 +43,7 @@ private:
     void draw(QPainter *p);
     void initialize();
 
-    Palette m_palette;
+    VisualPalette::Palette m_palette;
     QImage m_backgroundImage;
     int m_pixPos;
     int *m_x_scale;

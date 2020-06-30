@@ -1,4 +1,4 @@
 
 TEMPLATE = subdirs
 
-SUBDIRS += wavemono wavemulti
+SUBDIRS += wavecrest wavevoice wavevolume

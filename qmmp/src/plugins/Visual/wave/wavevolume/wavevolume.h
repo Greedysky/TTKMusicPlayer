@@ -16,24 +16,30 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALWAVEMULTIFACTORY_H
-#define VISUALWAVEMULTIFACTORY_H
+#ifndef WAVEVOLUME_H
+#define WAVEVOLUME_H
 
-#include <QObject>
-#include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class VisualWaveMultiFactory : public QObject, public VisualFactory
+class WaveVolume : public Visual
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
-    Q_INTERFACES(VisualFactory)
 public:
-    virtual VisualProperties properties() const override;
-    virtual Visual *create(QWidget *parent) override;
+    explicit WaveVolume(QWidget *parent = nullptr);
+    virtual ~WaveVolume();
+
+private:
+    virtual void paintEvent(QPaintEvent *) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
+
+    virtual void process(float *left, float *right) override;
+    void draw(QPainter *p);
+
+    double m_analyzer_falloff;
+    int *m_x_scale;
 
 };
 

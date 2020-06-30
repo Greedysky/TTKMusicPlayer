@@ -21,8 +21,8 @@
 
 #include <memory>
 #include <qmmp/lightfactory.h>
+#include <qmmp/visualpalette.h>
 
-#include "spek-palette.h"
 #include "spek-pipeline.h"
 
 class Audio;
@@ -47,7 +47,7 @@ public:
     inline QImage *getPaintImage() { return &image; }
     inline int getURange() const { return urange; }
     inline int getLRange() const { return lrange; }
-    inline Palette getPalette() const { return palette; }
+    inline VisualPalette::Palette getPalette() const { return palette; }
 
 private slots:
     void typeChanged(QAction *action);
@@ -73,7 +73,7 @@ private:
     QString desc;
     double duration;
     int sample_rate;
-    Palette palette;
+    VisualPalette::Palette palette;
     QImage palette_image;
     QImage image;
     int prev_width;

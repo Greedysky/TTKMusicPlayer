@@ -1,4 +1,4 @@
 
 TEMPLATE = subdirs
 
-SUBDIRS += plusfoldwave plusvolumewave plusspacewave plusxrays plusblurxrays
+SUBDIRS += plusfoldwave plusspacewave plusxrays plusblurxrays

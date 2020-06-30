@@ -4,9 +4,9 @@
 #include <stdlib.h>
 
 #include "inlines.h"
-#include "wavemulti.h"
+#include "wavecrest.h"
 
-WaveMulti::WaveMulti(QWidget *parent)
+WaveCrest::WaveCrest(QWidget *parent)
     : Visual(parent)
 {
     m_vis_data = 0;
@@ -14,11 +14,11 @@ WaveMulti::WaveMulti(QWidget *parent)
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
-    setWindowTitle(tr("Wave Multi Widget"));
+    setWindowTitle(tr("Wave Crest Widget"));
     setMinimumSize(2*300-30, 105);
 }
 
-WaveMulti::~WaveMulti()
+WaveCrest::~WaveCrest()
 {
     if(m_x_scale)
     {
@@ -26,14 +26,14 @@ WaveMulti::~WaveMulti()
     }
 }
 
-void WaveMulti::paintEvent(QPaintEvent *e)
+void WaveCrest::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void WaveMulti::process(float *left, float *)
+void WaveCrest::process(float *left, float *)
 {
     const int rows = height();
     const int cols = width();
@@ -95,7 +95,7 @@ void WaveMulti::process(float *left, float *)
     m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
 }
 
-void WaveMulti::draw(QPainter *p)
+void WaveCrest::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 

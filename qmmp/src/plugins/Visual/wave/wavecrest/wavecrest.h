@@ -16,30 +16,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef PLUSVOLUMEWAVE_H
-#define PLUSVOLUMEWAVE_H
+#ifndef WAVECREST_H
+#define WAVECREST_H
 
 #include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class PlusVolumeWave : public Visual
+class WaveCrest : public Visual
 {
     Q_OBJECT
 public:
-    explicit PlusVolumeWave(QWidget *parent = nullptr);
-    virtual ~PlusVolumeWave();
+    explicit WaveCrest(QWidget *parent = nullptr);
+    virtual ~WaveCrest();
 
 private:
     virtual void paintEvent(QPaintEvent *) override;
-    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    double m_analyzer_falloff;
+    QImage m_backgroundImage;
+    int m_pixPos;
+    int m_vis_data;
     int *m_x_scale;
+    double m_analyzer_falloff;
 
 };
 

@@ -16,19 +16,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef SPEKPALETTE_H
-#define SPEKPALETTE_H
+#ifndef VISUALWAVEVOLUMEFACTORY_H
+#define VISUALWAVEVOLUMEFACTORY_H
 
-#include <stdint.h>
+#include <QObject>
+#include <qmmp/visualfactory.h>
+#include <qmmp/visual.h>
 
-typedef enum palette {
-    PALETTE_SPECTRUM,
-    PALETTE_SOX,
-    PALETTE_MONO,
-    PALETTE_COUNT,
-    PALETTE_DEFAULT = PALETTE_SOX,
-}Palette;
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
+class VisualWaveVolumeFactory : public QObject, public VisualFactory
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
+public:
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
-uint32_t spek_palette(Palette palette, double level);
+};
 
 #endif

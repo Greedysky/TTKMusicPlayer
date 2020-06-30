@@ -6,19 +6,19 @@
 #include <qmmp/soundcore.h>
 
 #include "inlines.h"
-#include "plusvolumewave.h"
+#include "wavevolume.h"
 
-PlusVolumeWave::PlusVolumeWave(QWidget *parent)
+WaveVolume::WaveVolume(QWidget *parent)
     : Visual(parent)
 {
     m_x_scale = nullptr;
     m_analyzer_falloff = 1.2;
 
-    setWindowTitle(tr("Plus VolumeWave Widget"));
+    setWindowTitle(tr("Wave Volume Widget"));
     setMinimumSize(2*300-30, 105);
 }
 
-PlusVolumeWave::~PlusVolumeWave()
+WaveVolume::~WaveVolume()
 {
     if(m_x_scale)
     {
@@ -26,21 +26,21 @@ PlusVolumeWave::~PlusVolumeWave()
     }
 }
 
-void PlusVolumeWave::paintEvent(QPaintEvent *e)
+void WaveVolume::paintEvent(QPaintEvent *e)
 {
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusVolumeWave::contextMenuEvent(QContextMenuEvent *)
+void WaveVolume::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     menu.addAction(m_screenAction);
     menu.exec(QCursor::pos());
 }
 
-void PlusVolumeWave::process(float *left, float *right)
+void WaveVolume::process(float *left, float *right)
 {
     const int rows = height();
     const int cols = width();
@@ -117,7 +117,7 @@ void PlusVolumeWave::process(float *left, float *right)
 
 }
 
-void PlusVolumeWave::draw(QPainter *p)
+void WaveVolume::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
@@ -147,5 +147,4 @@ void PlusVolumeWave::draw(QPainter *p)
     p->setPen(Qt::white);
     p->drawText(10, height() / 4, "L");
     p->drawText(10, height() * 3 / 4, "R");
-
 }

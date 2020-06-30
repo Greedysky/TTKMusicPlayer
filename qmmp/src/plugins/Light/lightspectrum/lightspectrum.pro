@@ -9,14 +9,12 @@ SOURCES += \
         spek-spectrogram.cc \
         spek-audio.cc \
         spek-fft.cc \
-        spek-palette.cc \
         spek-pipeline.cc \
         lightspectrumfactory.cpp
 
 HEADERS  += \
         spek-audio.h \
         spek-fft.h \
-        spek-palette.h \
         spek-pipeline.h \
         spek-ruler.h \
         spek-spectrogram.h \

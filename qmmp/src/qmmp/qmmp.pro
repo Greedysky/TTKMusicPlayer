@@ -11,6 +11,7 @@ HEADERS += \
     decoderfactory.h \
     soundcore.h \
     visual.h \
+    visualpalette.h \
     visualfactory.h \
     effect.h \
     effectfactory.h \
@@ -56,6 +57,7 @@ SOURCES += recycler.cpp \
     equ/iir_fpu.c \
     soundcore.cpp \
     visual.cpp \
+    visualpalette.cpp \
     effect.cpp \
     statehandler.cpp \
     qmmp.cpp \
