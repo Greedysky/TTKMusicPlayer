@@ -11,6 +11,7 @@ HEADERS += \
     $$PWD/decoderfactory.h \
     $$PWD/soundcore.h \
     $$PWD/visual.h \
+    $$PWD/visualpalette.h \
     $$PWD/visualfactory.h \
     $$PWD/effect.h \
     $$PWD/effectfactory.h \
