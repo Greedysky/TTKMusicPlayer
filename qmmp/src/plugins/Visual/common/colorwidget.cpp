@@ -69,6 +69,11 @@ ColorWidget::~ColorWidget()
 
 QColor ColorWidget::readSingleColorConfig(const QString &value)
 {
+    if(value.isEmpty())
+    {
+        return Qt::white;
+    }
+
     QStringList var = value.split(',');
     if(var.count() != 3)
     {
@@ -84,6 +89,11 @@ QString ColorWidget::writeSingleColorConfig(const QColor &color)
 
 QList<QColor> ColorWidget::readColorConfig(const QString &value)
 {
+    if(value.isEmpty())
+    {
+        return QList<QColor>() << Qt::white;
+    }
+
     QList<QColor> colors;
     QStringList rgbs = value.split(';', QString::SkipEmptyParts);
     foreach(const QString &rgb, rgbs)
