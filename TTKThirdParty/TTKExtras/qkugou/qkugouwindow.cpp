@@ -151,8 +151,6 @@ void QKugouWindow::kugouSongIndexChanged(int index)
         case 1: url = QKugouUrl::getSongRankUrl(); break;
         case 2: url = QKugouUrl::getSongSingerUrl(); break;
         case 3: url = QKugouUrl::getSongCategoryUrl(); break;
-        case 4: url = QKugouUrl::getSongShowUrl(); break;
-        case 5: url = QKugouUrl::getSongHeroesUrl(); break;
     }
 
 #ifdef Q_OS_WIN
@@ -191,7 +189,6 @@ void QKugouWindow::kugouRadioIndexChanged(int index)
         case 0: url = QKugouUrl::getRadioPublicUrl(); break;
         case 1: url = QKugouUrl::getRadioHighFmUrl(); break;
         case 2: url = QKugouUrl::getRadioFxUrl(); break;
-        case 3: url = QKugouUrl::getRadioHomeUrl(); break;
     }
 
 #ifdef Q_OS_WIN
@@ -316,12 +313,6 @@ void QKugouWindow::createKugouSongWidget()
     bt = new QPushButton(tr(" SongCategory "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 3);
-    bt = new QPushButton(tr(" SongShow "), d->m_topWidget);
-    bt->setCursor(QCursor(Qt::PointingHandCursor));
-    d->m_buttonGroup->addButton(bt, 4);
-    bt = new QPushButton(tr(" SongHeroes "), d->m_topWidget);
-    bt->setCursor(QCursor(Qt::PointingHandCursor));
-    d->m_buttonGroup->addButton(bt, 5);
     connect(d->m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(kugouSongIndexChanged(int)));
 
     topLayout->addStretch(1);
@@ -329,16 +320,12 @@ void QKugouWindow::createKugouSongWidget()
     topLayout->addWidget(d->m_buttonGroup->button(1));
     topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addWidget(d->m_buttonGroup->button(3));
-    topLayout->addWidget(d->m_buttonGroup->button(4));
-    topLayout->addWidget(d->m_buttonGroup->button(5));
     topLayout->addStretch(1);
 #ifdef Q_OS_UNIX
     d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(3)->setFocusPolicy(Qt::NoFocus);
-    d->m_buttonGroup->button(4)->setFocusPolicy(Qt::NoFocus);
-    d->m_buttonGroup->button(5)->setFocusPolicy(Qt::NoFocus);
 #endif
     createWebViewer();
     layout->addWidget(d->m_topWidget);
@@ -378,16 +365,12 @@ void QKugouWindow::createKugouRadioWidget()
     bt = new QPushButton(tr(" RadioFx "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 2);
-    bt = new QPushButton(tr(" RadioHome "), d->m_topWidget);
-    bt->setCursor(QCursor(Qt::PointingHandCursor));
-    d->m_buttonGroup->addButton(bt, 3);
     connect(d->m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(kugouRadioIndexChanged(int)));
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
     topLayout->addWidget(d->m_buttonGroup->button(1));
     topLayout->addWidget(d->m_buttonGroup->button(2));
-    topLayout->addWidget(d->m_buttonGroup->button(3));
     topLayout->addStretch(1);
 
     createWebViewer();
