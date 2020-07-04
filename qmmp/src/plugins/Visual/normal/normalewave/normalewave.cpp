@@ -144,7 +144,6 @@ void NormalEWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction(tr("Color"), this, SLOT(changeColor()));
     menu.addAction(m_starAction);

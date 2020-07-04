@@ -317,7 +317,6 @@ void LightEnvelope::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction(m_showTwoChannelsAction);
     menu.addAction(m_showRmsAction);
