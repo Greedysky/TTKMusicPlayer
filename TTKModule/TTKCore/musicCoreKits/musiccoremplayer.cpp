@@ -1,5 +1,6 @@
 #include "musiccoremplayer.h"
 #include "musicobject.h"
+#include "musicnetworkabstract.h"
 
 #include <QProcess>
 
@@ -51,10 +52,16 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     m_process = new QProcess(this);
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
+    QString inputUrl = data;
+    if(inputUrl.contains(TTK_HTTPS))
+    {
+        inputUrl.replace(TTK_HTTPS, TTK_HTTP);
+    }
+
     switch(m_category)
     {
-        case MusicCategory: setMusicMedia(data); break;
-        case VideoCategory: setVideoMedia(data, winId); break;
+        case MusicCategory: setMusicMedia(inputUrl); break;
+        case VideoCategory: setVideoMedia(inputUrl, winId); break;
         case NullCategory: break;
         default: break;
     }

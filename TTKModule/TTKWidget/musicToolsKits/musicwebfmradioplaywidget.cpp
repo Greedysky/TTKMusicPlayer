@@ -200,6 +200,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
         createCoreModule();
     }
 
+    TTK_LOGGER_INFO(info.m_songAttrs.first().m_url);
     m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songAttrs.first().m_url);
     m_mediaPlayer->play();
 

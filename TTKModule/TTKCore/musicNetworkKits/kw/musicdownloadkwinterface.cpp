@@ -245,7 +245,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
         {
             value = value["songinfo"].toMap();
             info->m_smallPicUrl = value["artpic"].toString();
-            if(!info->m_smallPicUrl.contains("http://") && !info->m_smallPicUrl.contains(COVER_URL_NULL))
+            if(!info->m_smallPicUrl.contains(TTK_HTTP) && !info->m_smallPicUrl.contains(COVER_URL_NULL))
             {
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
             }

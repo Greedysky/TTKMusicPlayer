@@ -29,6 +29,10 @@
 #///QJson import
 #include "qjson/parser.h"
 
+#define TTK_HTTPM   "http:"
+#define TTK_HTTP    "http://"
+#define TTK_HTTPS   "https://"
+
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>
  */

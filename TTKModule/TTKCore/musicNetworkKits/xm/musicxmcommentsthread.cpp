@@ -97,9 +97,9 @@ void MusicXMSongCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nickName"].toString();
                     comment.m_coverUrl = value["avatar"].toString();
 
-                    if(comment.m_coverUrl.contains("https://"))
+                    if(comment.m_coverUrl.contains(TTK_HTTPS))
                     {
-                        comment.m_coverUrl.replace("https://", "http://");
+                        comment.m_coverUrl.replace(TTK_HTTPS, TTK_HTTP);
                     }
 
                     comment.m_playCount = QString::number(value["likes"].toLongLong());
@@ -202,9 +202,9 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nickName"].toString();
                     comment.m_coverUrl = value["avatar"].toString();
 
-                    if(comment.m_coverUrl.contains("https://"))
+                    if(comment.m_coverUrl.contains(TTK_HTTPS))
                     {
-                        comment.m_coverUrl.replace("https://", "http://");
+                        comment.m_coverUrl.replace(TTK_HTTPS, TTK_HTTP);
                     }
 
                     comment.m_playCount = QString::number(value["likes"].toLongLong());

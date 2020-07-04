@@ -3402,7 +3402,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicmessageaboutdialog.cpp" line="41"/>
         <source>Counter: %1</source>
-        <translation>软件启动次数: %1</translation>
+        <translation>软件使用数: %1</translation>
     </message>
 </context>
 <context>

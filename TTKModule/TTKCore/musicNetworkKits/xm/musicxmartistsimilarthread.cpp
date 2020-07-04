@@ -66,9 +66,9 @@ void MusicXMArtistSimilarThread::downLoadFinished()
                 info.m_coverUrl = value["artist_logo"].toString();
                 info.m_name = value["name"].toString();
                 info.m_updateTime.clear();
-                if(!info.m_coverUrl.contains("http:"))
+                if(!info.m_coverUrl.contains(TTK_HTTPM))
                 {
-                  info.m_coverUrl = "http:" + info.m_coverUrl;
+                  info.m_coverUrl = TTK_HTTPM + info.m_coverUrl;
                 }
                 Q_EMIT createSimilarItem(info);
             }

@@ -82,7 +82,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                 MusicResultsItem info;
                 info.m_nickName = value["albumid"].toString();
                 info.m_coverUrl = value["pic"].toString();
-                if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains(COVER_URL_NULL))
+                if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(COVER_URL_NULL))
                 {
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                 }
@@ -188,7 +188,7 @@ void MusicDownLoadQueryKWAlbumThread::singleDownLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["pic"].toString();
-                    if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains(COVER_URL_NULL))
+                    if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(COVER_URL_NULL))
                     {
                         info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                     }
