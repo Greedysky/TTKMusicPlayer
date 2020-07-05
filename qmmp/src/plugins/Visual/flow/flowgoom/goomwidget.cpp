@@ -124,7 +124,6 @@ void GoomWidget::createMenu()
 {
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
-    connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
