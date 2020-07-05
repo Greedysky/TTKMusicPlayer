@@ -17,7 +17,7 @@ QString QKugouUrl::getSongRecommendUrl()
 
 QString QKugouUrl::getSongRankUrl()
 {
-    return "http://www2.kugou.kugou.com/yueku/v9/rank/home/1-22943.html?ver=9173";
+    return "http://www2.kugou.kugou.com/yueku/v9/rank/home/1-6666.html?ver=9173";
 }
 
 QString QKugouUrl::getSongSingerUrl()
