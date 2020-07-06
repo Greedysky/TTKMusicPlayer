@@ -80,7 +80,7 @@ namespace MusicUtils
             if(alpha < 0) return 0;
             else if(alpha > key) return key;
 
-            return (key - alpha)*1.0/100*value + alpha;
+            return (key - alpha) * 1.0 / 100 * value + alpha;
         }
 
         /*!

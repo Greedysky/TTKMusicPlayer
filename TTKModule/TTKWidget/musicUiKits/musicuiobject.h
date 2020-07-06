@@ -455,7 +455,7 @@ namespace MusicUIObject
             QSlider::add-page:horizontal{ background:white; border:1px solid #ACF; }";
 
     const QString MQSSSliderStyle07 = " \
-            QSlider::add-page:Horizontal{ background-color:rgb(87, 97, 106); height:4px; } \
+            QSlider::add-page:Horizontal{ background-color:rgba(120, 120, 120, 100); height:4px; } \
             QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, \
             y2:0, stop:0 rgba(231, 80, 229, 255), stop:1 rgba(7, 208, 255, 255)); height:4px; } \
             QSlider::groove:Horizontal{ background:transparent; height:4px; } \
