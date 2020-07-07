@@ -90,15 +90,15 @@ bool MusicUserWindow::connectDatabase()
         data.setDatabaseName(DARABASEPATH_FULL);
         if(!data.isDriverAvailable(DB_SQLITE_DATABASE))
         {
-            throw QString("The driver name is not available!");
+            throw QString("The driver name is not available");
         }
         if(!data.isValid())
         {
-            throw QString("The database has not a valid driver!");
+            throw QString("The database has not a valid driver");
         }
         if(!data.isOpen() && !data.open())
         {
-            throw QString("Can not open database connection!");
+            throw QString("Can not open database connection");
         }
         if(!data.tables().contains("MusicUser"))
         {

@@ -69,7 +69,7 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
 
 MusicConsoleObject::~MusicConsoleObject()
 {
-    TTK_LOGGER_INFO("\nRelease all!");
+    TTK_LOGGER_INFO("\nRelease all");
     delete m_musicPlayer;
     delete m_musicPlaylist;
 }
@@ -101,7 +101,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         const QString &url = parser.value(op1);
         if(url.isEmpty())
         {
-            TTK_LOGGER_ERROR("Music play url path is empty!");
+            TTK_LOGGER_ERROR("Music play url path is empty");
             return false;
         }
         else
@@ -116,7 +116,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         const QString &url = parser.value(op2);
         if(url.isEmpty())
         {
-            TTK_LOGGER_ERROR("Music play dir path is empty!");
+            TTK_LOGGER_ERROR("Music play dir path is empty");
             return false;
         }
         else
@@ -138,14 +138,14 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         const QString &url = parser.value(op3);
         if(url.isEmpty())
         {
-            TTK_LOGGER_ERROR("Music playlist path is empty!");
+            TTK_LOGGER_ERROR("Music playlist path is empty");
             return false;
         }
         else
         {
             if(QFileInfo(url).suffix().toLower() != LST_FILE_PREFIX)
             {
-                TTK_LOGGER_INFO("Music playlist format not support!");
+                TTK_LOGGER_INFO("Music playlist format not support");
                 return false;
             }
 
@@ -153,7 +153,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
             MusicTKPLConfigManager manager;
             if(!manager.readConfig(url))
             {
-                TTK_LOGGER_ERROR("Music playlist read error!");
+                TTK_LOGGER_ERROR("Music playlist read error");
                 return false;
             }
             manager.readPlaylistData(items);
@@ -175,7 +175,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
     }
     else
     {
-        TTK_LOGGER_ERROR("Options error!");
+        TTK_LOGGER_ERROR("Options error");
         return false;
     }
 
@@ -184,7 +184,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
     m_musicPlayer->play();
     m_musicPlayer->setVolume(m_volume);
 #else
-    TTK_LOGGER_ERROR("Qt version less than 5.2 not support commend line!");
+    TTK_LOGGER_ERROR("Qt version less than 5.2 not support commend line");
 #endif
 
     return app.exec();

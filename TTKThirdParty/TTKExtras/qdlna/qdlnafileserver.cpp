@@ -84,12 +84,12 @@ void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *respon
         else
         {
             response->writeHead(404);
-            response->end("Resource not found!");
+            response->end("Resource not found");
         }
     }
     else
     {
         response->writeHead(403);
-        response->end("You aren't allowed here!");
+        response->end("You aren't allowed here");
     }
 }

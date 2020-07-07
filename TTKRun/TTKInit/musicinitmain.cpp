@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     MusicConfigObject object;
     object.initialize();
-    TTK_LOGGER_INFO("Parameter Init success!");
+    TTK_LOGGER_INFO("Parameter Init success");
 
     return 0;
 }

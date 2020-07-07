@@ -47,7 +47,7 @@ QString makeSocketGetReply(const QString &ip, const QString &port, const QString
     }
     else
     {
-        return "Couldn't connect!";
+        return "Couldn't connect";
     }
 
     if(!sock.waitForBytesWritten())
@@ -61,7 +61,7 @@ QString makeSocketGetReply(const QString &ip, const QString &port, const QString
     }
     else
     {
-        return "Couldn't get an answer!";
+        return "Couldn't get an answer";
     }
 }
 

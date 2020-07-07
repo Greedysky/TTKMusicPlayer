@@ -85,7 +85,7 @@ void killProcessByName(const QStringList &origin)
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
-            TTK_LOGGER_INFO("Windows Kill Process " << process << " Successed!");
+            TTK_LOGGER_INFO("Windows Kill Process " << process << " Successed");
         }
     }
 }
@@ -141,7 +141,7 @@ void killProcessByName(const QStringList &origin)
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {
-                TTK_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed!");
+                TTK_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed");
             }
         }
     }

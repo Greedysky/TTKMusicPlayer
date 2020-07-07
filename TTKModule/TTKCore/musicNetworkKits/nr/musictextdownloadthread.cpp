@@ -29,7 +29,7 @@ void MusicTextDownLoadThread::startToDownload()
         else
         {
             Q_EMIT downLoadDataChanged("The text file create failed");
-            TTK_LOGGER_ERROR("The text file create failed!");
+            TTK_LOGGER_ERROR("The text file create failed");
             deleteAll();
         }
     }
@@ -59,11 +59,11 @@ void MusicTextDownLoadThread::downLoadFinished()
             outstream << endl;
 #endif
             m_file->close();
-            TTK_LOGGER_INFO("text download has finished!");
+            TTK_LOGGER_INFO("text download has finished");
         }
         else
         {
-            TTK_LOGGER_ERROR("text download file error!");
+            TTK_LOGGER_ERROR("text download file error");
             m_file->remove();
             m_file->close();
         }

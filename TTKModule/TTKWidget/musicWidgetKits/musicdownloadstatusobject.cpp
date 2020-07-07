@@ -157,6 +157,6 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
     }
     else
     {
-        showDownLoadInfoFinished("find error!");
+        showDownLoadInfoFinished("find error");
     }
 }

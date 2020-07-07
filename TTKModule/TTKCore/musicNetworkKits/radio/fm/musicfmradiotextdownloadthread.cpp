@@ -29,7 +29,7 @@ void MusicFMRadioTextDownLoadThread::startToDownload()
         else
         {
             Q_EMIT downLoadDataChanged("The fm radio text file create failed");
-            TTK_LOGGER_ERROR(QString("%1 file create failed!").arg(getClassName()));
+            TTK_LOGGER_ERROR(QString("%1 file create failed").arg(getClassName()));
             deleteAll();
         }
     }
@@ -68,11 +68,11 @@ void MusicFMRadioTextDownLoadThread::downLoadFinished()
             outstream << endl;
 #endif
             m_file->close();
-            TTK_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));
+            TTK_LOGGER_INFO(QString("%1 download has finished").arg(getClassName()));
         }
         else
         {
-            TTK_LOGGER_ERROR(QString("%1 download file error!").arg(getClassName()));
+            TTK_LOGGER_ERROR(QString("%1 download file error").arg(getClassName()));
             m_file->remove();
             m_file->close();
         }

@@ -183,7 +183,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     QFile fileIn(path);
     if(!fileIn.open(QIODevice::ReadOnly))
     {
-        TTK_LOGGER_ERROR("Lrc Input File Error!");
+        TTK_LOGGER_ERROR("Lrc Input File Error");
         fileIn.close();
         close();
         return;
@@ -195,7 +195,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix()).arg(m_currentName).arg(LRC_FILE));
     if(!fileOut.open(QIODevice::WriteOnly))
     {
-        TTK_LOGGER_ERROR("Lrc Output File Error!");
+        TTK_LOGGER_ERROR("Lrc Output File Error");
         fileOut.close();
         close();
         return;
