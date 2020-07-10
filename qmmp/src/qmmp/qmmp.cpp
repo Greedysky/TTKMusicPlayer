@@ -25,17 +25,10 @@
 #include <QFile>
 #include <QByteArray>
 
-#define STR_HELPER(x) #x
-#define STR(x) STR_HELPER(x)
-#define DEV_SUFFIX "dev"
-
 #include "qmmp.h"
 
 QString Qmmp::m_configDir;
 QString Qmmp::m_langID;
-#ifdef Q_OS_WIN
-QString Qmmp::m_appDir;
-#endif
 
 QString Qmmp::configFile()
 {
@@ -44,19 +37,14 @@ QString Qmmp::configFile()
 
 QString Qmmp::configDir()
 {
-#ifdef Q_OS_WIN
     if(m_configDir.isEmpty())
-    {
-        if(isPortable())
-            return m_appDir + "/.qmmp";
-        else
-            return  QDir::homePath() +"/.qmmp";
-    }
+#ifdef Q_OS_WIN
+        return QString::fromLocal8Bit(getenv("APPDATA")) + "/ttkmp";
+#else
+        return QDir::homePath() + "/.config/ttkmp";
+#endif
     else
         return m_configDir;
-#else
-    return m_configDir.isEmpty() ? QDir::homePath() +"/.qmmp" : m_configDir;
-#endif
 }
 
 void Qmmp::setConfigDir(const QString &path)
@@ -70,13 +58,6 @@ QString Qmmp::strVersion()
             .arg(QMMP_VERSION_MAJOR)
             .arg(QMMP_VERSION_MINOR)
             .arg(QMMP_VERSION_PATCH);
-#if !QMMP_VERSION_STABLE
-#ifdef SVN_REVISION
-    ver += "-svn-" SVN_REVISION;
-#else
-    ver += "-" DEV_SUFFIX;
-#endif
-#endif
     return ver;
 }
 
@@ -102,10 +83,7 @@ QStringList Qmmp::findPlugins(const QString &prefix)
 QString Qmmp::systemLanguageID()
 {
     if(m_langID.isEmpty())
-    {
         m_langID = uiLanguageID();
-        //qDebug("Qmmp: setting ui language to '%s'", qPrintable(m_langID));
-    }
 
     if(m_langID != "auto")
         return m_langID;
@@ -139,18 +117,5 @@ void Qmmp::setUiLanguageID(const QString &code)
 
 QString Qmmp::dataPath()
 {
-//#if defined(Q_OS_WIN) && !defined(Q_OS_CYGWIN)
     return qApp->applicationDirPath();
-//#else
-//    return QDir(qApp->applicationDirPath() + "/../share/qmmp" APP_NAME_SUFFIX).absolutePath();
-//#endif
 }
-
-#ifdef Q_OS_WIN
-bool Qmmp::isPortable()
-{
-    if(m_appDir.isEmpty())
-        m_appDir = QCoreApplication::applicationDirPath();
-    return QFile::exists(m_appDir + "/qmmp_portable.txt");
-}
-#endif
