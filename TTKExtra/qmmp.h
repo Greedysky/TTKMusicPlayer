@@ -192,19 +192,9 @@ public:
      */
     static QString dataPath();
 
-#ifdef Q_OS_WIN
-    /*!
-     * Returns \b true if portable mode is enabled. Otherwise returns \b false.
-     */
-    static bool isPortable();
-#endif
-
 private:
     static QString m_configDir;
     static QString m_langID;
-#ifdef Q_OS_WIN
-    static QString m_appDir;
-#endif
 
 };
 
