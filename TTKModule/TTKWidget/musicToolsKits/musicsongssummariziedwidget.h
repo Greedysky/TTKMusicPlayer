@@ -58,9 +58,9 @@ public:
      */
     inline const MusicSongItems& getMusicLists() const  { return m_songItems; }
     /*!
-     * Input orther imported music datas into container.
+     * Input imported music datas into container.
      */
-    void importOtherMusicSongs(QStringList &filelist);
+    void importMusicSongsByPath(QStringList &filelist);
     /*!
      * Get music songs file name by index.
      */

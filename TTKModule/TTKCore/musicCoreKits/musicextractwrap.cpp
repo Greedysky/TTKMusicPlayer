@@ -13,9 +13,9 @@
 #  pragma GCC diagnostic ignored "-Wsign-compare"
 #endif
 
-bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
+bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &input)
 {
-    const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
     if(!zFile)
     {
         return false;
@@ -75,18 +75,28 @@ bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
     return true;
 }
 
-bool MusicExtractWrap::outputData(const QString &path)
+bool MusicExtractWrap::outputBinary(const QString &input)
 {
-    const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
+    return outputBinary(input, QFileInfo(input).absolutePath() + "/" + QFileInfo(input).baseName() + "/");
+}
+
+bool MusicExtractWrap::outputBinary(const QString &input, const QString &output)
+{
+    QStringList path;
+    return outputBinary(input, output, path);
+}
+
+bool MusicExtractWrap::outputBinary(const QString &input, const QString &output, QStringList &path)
+{
+    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
     if(!zFile)
     {
         return false;
     }
 
-    QDir dir(path);
-    const QString &diName = QFileInfo(path).absolutePath() + "/" + QFileInfo(path).baseName() + "/";
-    dir.mkpath(diName);
-    dir.cd(diName);
+    QDir dir;
+    dir.mkpath(output);
+    dir.cd(output);
 
     unz_file_info64 fileInfo;
     unz_global_info64 gInfo;
@@ -120,8 +130,8 @@ bool MusicExtractWrap::outputData(const QString &path)
         char dt[MH_KB] = {0};
         int size = 0;
 
-        QFile fileName(diName + file);
-        fileName.open(QFile::WriteOnly);
+        QFile outputFile(output + file);
+        outputFile.open(QFile::WriteOnly);
         while(true)
         {
             size= unzReadCurrentFile(zFile, dt, sizeof(dt));
@@ -129,10 +139,11 @@ bool MusicExtractWrap::outputData(const QString &path)
             {
                 break;
             }
-            fileName.write(dt, size);
+            outputFile.write(dt, size);
         }
 
-        fileName.close();
+        outputFile.close();
+        path << outputFile.fileName();
         unzCloseCurrentFile(zFile);
 
         if(i < gInfo.number_entry - 1 && unzGoToNextFile(zFile) != UNZ_OK)
@@ -145,9 +156,9 @@ bool MusicExtractWrap::outputData(const QString &path)
     return true;
 }
 
-bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &path)
+bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &input)
 {
-    const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
     if(!zFile)
     {
         return false;
@@ -230,15 +241,15 @@ bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &pa
     return true;
 }
 
-bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &path)
+bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &output)
 {
-    const zipFile &zFile = zipOpen64(path.toLocal8Bit().constData(), 0);
+    const zipFile &zFile = zipOpen64(output.toLocal8Bit().constData(), 0);
     if(!zFile)
     {
         return false;
     }
 
-    const QString &nPrefix = QFileInfo(path).baseName();
+    const QString &nPrefix = QFileInfo(output).baseName();
     int level = 5;
 
     zip_fileinfo fileInfo;
@@ -263,9 +274,9 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &pat
     return true;
 }
 
-bool MusicExtractWrap::outputText(QByteArray &data, const QString &path)
+bool MusicExtractWrap::outputData(QByteArray &data, const QString &input)
 {
-    const unzFile &zFile = unzOpen64(path.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
     if(!zFile)
     {
         return false;
@@ -320,15 +331,15 @@ bool MusicExtractWrap::outputText(QByteArray &data, const QString &path)
     return true;
 }
 
-bool MusicExtractWrap::inputText(const QByteArray &data, const QString &path)
+bool MusicExtractWrap::inputData(const QByteArray &data, const QString &output)
 {
-    const zipFile &zFile = zipOpen64(path.toLocal8Bit().constData(), 0);
+    const zipFile &zFile = zipOpen64(output.toLocal8Bit().constData(), 0);
     if(!zFile)
     {
         return false;
     }
 
-    const QString &nPrefix = QFileInfo(path).baseName();
+    const QString &nPrefix = QFileInfo(output).baseName();
     int level = 5;
 
     zip_fileinfo fileInfo;
