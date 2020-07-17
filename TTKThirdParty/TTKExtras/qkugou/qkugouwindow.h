@@ -24,7 +24,7 @@
 
 class QKugouWindowPrivate;
 
-/*! @brief The namespace of the kugou window widget.
+/*! @brief The class of the kugou window widget.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_EXTRAS_EXPORT QKugouWindow : public QWidget

@@ -26,7 +26,7 @@
 #include <QAbstractNativeEventFilter>
 #endif
 
-/*! @brief The namespace of the qglobal shortcut private.
+/*! @brief The class of the qglobal shortcut private.
  * @author libqxt <foundation@libqxt.org>
  */
 class MUSIC_EXTRAS_EXPORT QGlobalShortcutPrivate : public TTKPrivate<QGlobalShortcut>

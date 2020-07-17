@@ -1,5 +1,5 @@
-#ifndef QDESWRAP_H
-#define QDESWRAP_H
+#ifndef QIMAGEWRAP_H
+#define QIMAGEWRAP_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,38 +19,45 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include <QImage>
 #include "musicextrasglobaldefine.h"
 
-class QDesWrapPrivate;
-
-/*! @brief The class of the des wrapper.
+/*! @brief The class of the image wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QDesWrap
+namespace QImageWrap {
+/*! @brief The class of the gauss blur wrapper.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_EXTRAS_EXPORT QGaussBlur
 {
 public:
-    enum Mode
-    {
-        ENCRYPT = 0,
-        DECRYPT = 1
-    };
     /*!
-     * Object contsructor.
+     * Image gauss blur render.
      */
-    QDesWrap();
-
-    /*!
-     * Encrypt des by input.
-     */
-    QByteArray encrypt(const QByteArray &in, const QByteArray &key);
-    /*!
-     * Decrypt des by input.
-     */
-    QByteArray decrypt(const QByteArray &in, const QByteArray &key);
-
-private:
-    TTK_DECLARE_PRIVATE(QDesWrap)
+    void render(int* pix, int width, int height, int radius);
 
 };
 
-#endif // QDESWRAP_H
+
+class QWaterWavePrivate;
+/*! @brief The class of the water wave wrapper.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_EXTRAS_EXPORT QWaterWave
+{
+public:
+    QWaterWave(const QImage &image);
+
+    int* data();
+    void render();
+
+    void input(int depth);
+
+private:
+    TTK_DECLARE_PRIVATE(QWaterWave)
+
+};
+}
+
+#endif // QIMAGEWRAP_H

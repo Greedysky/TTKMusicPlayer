@@ -23,6 +23,9 @@
 #include "musicglobaldefine.h"
 
 class QPropertyAnimation;
+namespace QImageWrap {
+class QWaterWave;
+}
 
 /*! @brief The class of the label transition animation.
  * @author Greedysky <greedysky@163.com>
@@ -37,6 +40,7 @@ public:
         FadeEffect,
         BlindsEffect,
         CubeEffect,
+        WaterEffect,
         LeftToRightEffect,
         TopToBottomEffect
     };
@@ -96,6 +100,7 @@ protected:
     QPixmap m_rendererPixmap;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
+    QImageWrap::QWaterWave *m_waterWave;
 
 };
 

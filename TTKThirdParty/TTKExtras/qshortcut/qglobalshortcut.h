@@ -25,7 +25,7 @@
 
 class QGlobalShortcutPrivate;
 
-/*! @brief The namespace of the qglobal shortcut.
+/*! @brief The class of the qglobal shortcut.
  * @author libqxt <foundation@libqxt.org>
  */
 class MUSIC_EXTRAS_EXPORT QGlobalShortcut : public QObject

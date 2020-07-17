@@ -25,7 +25,7 @@
 
 class QRCodeQWidgetPrivate;
 
-/*! @brief The namespace of the qr code widget.
+/*! @brief The class of the qr code widget.
  * @author Jemy Graw <jemygraw@gmail.com>
  */
 class MUSIC_EXTRAS_EXPORT QRCodeQWidget : public QWidget

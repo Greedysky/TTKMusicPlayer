@@ -22,7 +22,7 @@
 #include <QObject>
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The namespace of the kugou url.
+/*! @brief The class of the kugou url.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_EXTRAS_EXPORT QKugouUrl

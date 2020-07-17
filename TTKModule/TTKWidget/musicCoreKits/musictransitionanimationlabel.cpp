@@ -1,5 +1,6 @@
 #include "musictransitionanimationlabel.h"
 #include "musictime.h"
+#include "qalg/qimagewrap.h"
 
 #include <QPainter>
 #include <QPropertyAnimation>
@@ -12,6 +13,7 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
     m_isAnimating = false;
     m_currentValue = 0;
     m_noAnimationSet = false;
+    m_waterWave = nullptr;
 
     m_animation = new QPropertyAnimation(this, QByteArray());
     m_animation->setDuration(200);
@@ -53,12 +55,13 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         return;
     }
 
-    m_type = TTKStatic_cast(AnimationType, MusicTime::random(5));
+    m_type = WaterEffect;
     switch(m_type)
     {
         case FadeEffect: m_animation->setDuration(200); break;
         case BlindsEffect: m_animation->setDuration(500); break;
         case CubeEffect: m_animation->setDuration(200); break;
+        case WaterEffect: m_animation->setDuration(1000); break;
         case LeftToRightEffect: m_animation->setDuration(150); break;
         case TopToBottomEffect: m_animation->setDuration(150); break;
         default: break;
@@ -71,6 +74,14 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 #endif
     m_currentPixmap = pix;
     m_isAnimating = true;
+
+    if(m_type == WaterEffect)
+    {
+        delete m_waterWave;
+        m_waterWave = new QImageWrap::QWaterWave(m_currentPixmap.toImage());
+        m_waterWave->input(100);
+    }
+
     m_animation->start();
 }
 
@@ -146,6 +157,14 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                     }
                 }
                 m_rendererPixmap = pix;
+                break;
+            }    
+            case WaterEffect:
+            {
+                m_waterWave->render();
+                QImage image = m_currentPixmap.toImage();
+                memcpy(image.bits(), (const uchar*)m_waterWave->data(), image.byteCount());
+                m_rendererPixmap = QPixmap::fromImage(image);
                 break;
             }
             case LeftToRightEffect:

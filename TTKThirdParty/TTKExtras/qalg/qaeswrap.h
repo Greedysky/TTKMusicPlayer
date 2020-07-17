@@ -21,7 +21,7 @@
 
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The namespace of the aes wrapper.
+/*! @brief The class of the aes wrapper.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_EXTRAS_EXPORT QAesWrap

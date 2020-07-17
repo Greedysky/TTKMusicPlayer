@@ -108,6 +108,7 @@ set(MUSIC_HEADERS
     qalg/cbc128.h
     qalg/qdeswrap.h
     qalg/qaeswrap.h
+    qalg/qimagewrap.h
     qdlna/qdlnaclient.h
     qdlna/qdlnafinder.h
     qdlna/qdlnahelper.h
@@ -161,6 +162,7 @@ set(MUSIC_SOURCES
     qalg/cbc128.cpp
     qalg/qdeswrap.cpp
     qalg/qaeswrap.cpp
+    qalg/qimagewrap.cpp
     qdlna/qdlnaclient.cpp
     qdlna/qdlnafinder.cpp
     qdlna/qdlnahelper.cpp
