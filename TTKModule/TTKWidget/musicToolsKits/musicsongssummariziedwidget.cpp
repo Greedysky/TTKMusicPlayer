@@ -126,7 +126,7 @@ void MusicSongsSummariziedWidget::appendMusicLists(const MusicSongItems &names)
     }
 }
 
-void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
+void MusicSongsSummariziedWidget::importMusicSongsByPath(QStringList &filelist)
 {
     if(!searchFileListEmpty() && m_musicSongSearchWidget)
     {
@@ -681,7 +681,7 @@ void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
     }
 
     QStringList files(items);
-    importOtherMusicSongs(files);
+    importMusicSongsByPath(files);
 
     const MusicSongItem *songItem = &m_songItems[MUSIC_NORMAL_LIST];
     const MusicSongs *musicSongs = &songItem->m_songs;

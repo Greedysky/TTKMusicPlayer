@@ -33,30 +33,38 @@ public:
     /*!
      * Transfer file to image data.
      */
-    static bool outputThunderSkin(QPixmap &image, const QString &path);
+    static bool outputThunderSkin(QPixmap &image, const QString &input);
 
     /*!
      * Transfer file to normal data.
      */
-    static bool outputData(const QString &path);
+    static bool outputBinary(const QString &input);
+    /*!
+     * Transfer file to normal data.
+     */
+    static bool outputBinary(const QString &input, const QString &output);
+    /*!
+     * Transfer file to normal data.
+     */
+    static bool outputBinary(const QString &input, const QString &output, QStringList &path);
 
     /*!
      * Transfer file to image data.
      */
-    static bool outputSkin(MusicBackgroundImage *image, const QString &path);
+    static bool outputSkin(MusicBackgroundImage *image, const QString &input);
     /*!
      * Transfer image data to file.
      */
-    static bool inputSkin(MusicBackgroundImage *image, const QString &path);
+    static bool inputSkin(MusicBackgroundImage *image, const QString &output);
 
     /*!
      * Transfer file to data.
      */
-    static bool outputText(QByteArray &data, const QString &path);
+    static bool outputData(QByteArray &data, const QString &input);
     /*!
      * Transfer data to file.
      */
-    static bool inputText(const QByteArray &data, const QString &path);
+    static bool inputData(const QByteArray &data, const QString &output);
 
 };
 

@@ -23,6 +23,7 @@
 #include "musictinyuiobject.h"
 #include "musicdispatchmanager.h"
 #include "musictkplconfigmanager.h"
+#include "musicextractwrap.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -181,9 +182,9 @@ void MusicApplication::radioExecuteOuter(const QString &path)
     m_leftAreaWidget->radioExecuteOuter(path);
 }
 
-void MusicApplication::musicImportSongsSettingPathOuter(const QStringList &path, bool play)
+void MusicApplication::musicImportSongsPathOuter(const QStringList &path, bool play)
 {
-    musicImportSongsSettingPath(path);
+    musicImportSongsPath(path);
 
     if(play)
     {
@@ -191,7 +192,7 @@ void MusicApplication::musicImportSongsSettingPathOuter(const QStringList &path,
     }
 }
 
-void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
+void MusicApplication::musicImportSongsPath(const QStringList &items)
 {
     if(items.isEmpty())
     {
@@ -201,22 +202,31 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
     QStringList files(items);
     const QStringList &sfx = MusicFormats::supportFormatsString();
 
-    QString suffix;
-
-    QStringList failedFiles;
     foreach(const QString &path, items)
     {
-        suffix = QFileInfo(path).suffix();
-        if(!sfx.contains(suffix.toLower()))
+        const QString &suffix = QFileInfo(path).suffix().toLower();
+        if(sfx.contains(suffix))
         {
-            failedFiles << path;
+            if(suffix == ZIP_FILE_PREFIX)
+            {
+                files.removeOne(path);
+                QStringList outputs;
+                if(!MusicExtractWrap::outputBinary(path, M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
+                {
+                    TTK_LOGGER_ERROR("Extract zip input error");
+                }
+                musicImportSongsPath(outputs);
+            }
+        }
+        else
+        {
             files.removeOne(path);
         }
     }
 
     if(!files.isEmpty())
     {
-        m_musicSongTreeWidget->importOtherMusicSongs(files);
+        m_musicSongTreeWidget->importMusicSongsByPath(files);
     }
 }
 
@@ -534,7 +544,7 @@ void MusicApplication::musicImportSongsOnlyFile()
 
     if(dialog.exec())
     {
-        musicImportSongsSettingPath(dialog.selectedFiles());
+        musicImportSongsPath(dialog.selectedFiles());
     }
 }
 
@@ -553,7 +563,7 @@ void MusicApplication::musicImportSongsOnlyDir()
                fileList << info.absoluteFilePath();
             }
         }
-        musicImportSongsSettingPath(fileList);
+        musicImportSongsPath(fileList);
     }
 }
 
@@ -1051,7 +1061,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
     {
         fileList << url.toLocalFile();
     }
-    musicImportSongsSettingPath(fileList);
+    musicImportSongsPath(fileList);
 }
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)

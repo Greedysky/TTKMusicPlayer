@@ -68,6 +68,8 @@
 #define APE_FILE_PREFIX         "ape"
 #define FLC_FILE_PREFIX         "flac"
 
+//zip ext
+#define ZIP_FILE_PREFIX         "zip"
 
 #define TTS_FILE                TTK_STRCAT(DOT, TTS_FILE_PREFIX)
 #define CFG_FILE                TTK_STRCAT(DOT, CFG_FILE_PREFIX)

@@ -80,13 +80,13 @@ public:
     /*!
      * Import outer music datas into container.
      */
-    void musicImportSongsSettingPathOuter(const QStringList &path, bool play);
+    void musicImportSongsPathOuter(const QStringList &path, bool play);
     //
 
     /*!
      * Import music datas into container.
      */
-    void musicImportSongsSettingPath(const QStringList &path);
+    void musicImportSongsPath(const QStringList &path);
     /*!
      * Get music current song download contains.
      */
