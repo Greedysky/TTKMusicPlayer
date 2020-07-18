@@ -209,7 +209,7 @@ void MusicBottomAreaWidget::resizeWindow()
 {
     int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - 155;
         h = h - m_ui->lrcDisplayAllButton->height() - 40;
-    m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h/2);
+    m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h / 2);
 }
 
 void MusicBottomAreaWidget::applySettingParameter()

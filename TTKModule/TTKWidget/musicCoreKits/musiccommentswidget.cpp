@@ -341,12 +341,12 @@ void MusicCommentsWidget::currentEMOJIchanged(const QString &data)
     m_messageEdit->insertPlainText(data);
 }
 
-void MusicCommentsWidget::mouseMoveEvent(QMouseEvent *event)
+void MusicCommentsWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 }
 
-void MusicCommentsWidget::mousePressEvent(QMouseEvent *event)
+void MusicCommentsWidget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 }

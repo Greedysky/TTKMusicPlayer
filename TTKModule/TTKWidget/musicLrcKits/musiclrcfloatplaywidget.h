@@ -54,8 +54,8 @@ protected:
      * Override the widget event.
      */
     virtual void enterEvent(QEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mousePressEvent(QMouseEvent *) override {}
+    virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
      * Set current play state icon.

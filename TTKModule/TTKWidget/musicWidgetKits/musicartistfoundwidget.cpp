@@ -601,7 +601,7 @@ void MusicArtistFoundWidget::createLabels()
     for(int i=1; i<=5; ++i)
     {
         QLabel *label = new QLabel(topRightWidget);
-        label->setPixmap(QPixmap((ceil(number/2.0) - i) >= 0 ? ":/tiny/lb_star" : ":/tiny/lb_unstar"));
+        label->setPixmap(QPixmap((ceil(number / 2.0) - i) >= 0 ? ":/tiny/lb_star" : ":/tiny/lb_unstar"));
         topRightLayout->addWidget(label, 0, i);
     }
 

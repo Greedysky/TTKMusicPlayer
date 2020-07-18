@@ -151,15 +151,15 @@ void MusicAnimationStackedWidget::setLength(int length, AnimationType type)
         case BottomToTop :
         case LeftToRight :
                 {
-                    m_animation->setStartValue(-length/2);
-                    m_animation->setEndValue(length/2);
+                    m_animation->setStartValue(-length / 2);
+                    m_animation->setEndValue(length / 2);
                     break;
                 }
         case TopToBottom :
         case RightToLeft :
                 {
-                    m_animation->setStartValue(length/2);
-                    m_animation->setEndValue(-length/2);
+                    m_animation->setStartValue(length / 2);
+                    m_animation->setEndValue(-length / 2);
                     break;
                 }
         default: break;

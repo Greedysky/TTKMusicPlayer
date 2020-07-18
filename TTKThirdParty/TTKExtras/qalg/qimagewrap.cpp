@@ -1,5 +1,7 @@
 #include "qimagewrap.h"
 
+#include <qmath.h>
+
 namespace QImageWrap {
 void QGaussBlur::render(int* pix, int width, int height, int radius)
 {

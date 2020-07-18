@@ -115,12 +115,12 @@ void MusicFoundAbstractWidget::mousePressEvent(QMouseEvent *event)
     Q_UNUSED(event);
 }
 
-void MusicFoundAbstractWidget::mouseReleaseEvent(QMouseEvent *event)
+void MusicFoundAbstractWidget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 }
 
-void MusicFoundAbstractWidget::mouseMoveEvent(QMouseEvent *event)
+void MusicFoundAbstractWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 }

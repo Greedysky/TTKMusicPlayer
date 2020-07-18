@@ -99,9 +99,9 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
 
     m_leaverAnimation = new QParallelAnimationGroup(this);
     QPropertyAnimation *topAnimation = new QPropertyAnimation(m_topWidget, "pos", m_leaverAnimation);
-    topAnimation->setDuration(MT_S2MS/2);
+    topAnimation->setDuration(MT_S2MS / 2);
     QPropertyAnimation *ctrlAnimation = new QPropertyAnimation(m_videoView->controlBarWidget(), "pos", m_leaverAnimation);
-    ctrlAnimation->setDuration(MT_S2MS/2);
+    ctrlAnimation->setDuration(MT_S2MS / 2);
     m_leaverAnimation->addAnimation(topAnimation);
     m_leaverAnimation->addAnimation(ctrlAnimation);
 

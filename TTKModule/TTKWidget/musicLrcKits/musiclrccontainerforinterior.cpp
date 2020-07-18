@@ -512,6 +512,26 @@ void MusicLrcContainerForInterior::resizeEvent(QResizeEvent *event)
     resizeWindow();
 }
 
+void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton)
+    {
+        if(m_functionLabel && m_functionLabel->geometry().contains(event->pos()))
+        {
+            return; //block mouse event in function label area
+        }
+
+        m_mouseMoved = false;
+        m_mouseLeftPressed = true;
+        setCursor(Qt::CrossCursor);
+
+        m_mousePressedAt = event->globalPos();
+        m_lrcChangeState = false;
+        m_lrcChangeOffset = 0;
+        update();
+    }
+}
+
 void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_mouseLeftPressed && m_lrcAnalysis->isValid())
@@ -564,20 +584,6 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcContainerForInterior::mousePressEvent(QMouseEvent *event)
-{
-    if(event->button() == Qt::LeftButton)
-    {
-        m_mouseMoved = false;
-        m_mouseLeftPressed = true;
-        setCursor(Qt::CrossCursor);
-        m_mousePressedAt = event->globalPos();
-        m_lrcChangeState = false;
-        m_lrcChangeOffset = 0;
-        update();
-    }
-}
-
 void MusicLrcContainerForInterior::mouseReleaseEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
@@ -600,7 +606,10 @@ void MusicLrcContainerForInterior::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicLrcContainerForInterior::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event);
+    if(m_functionLabel && m_functionLabel->geometry().contains(event->pos()))
+    {
+        return; //block mouse event in function label area
+    }
     MusicBottomAreaWidget::instance()->lrcWidgetShowFullScreen();
 }
 

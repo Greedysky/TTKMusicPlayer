@@ -57,8 +57,8 @@ protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override {}
-    virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mousePressEvent(QMouseEvent *) override {}
+    virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
      * Show animation in case.

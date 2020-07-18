@@ -60,8 +60,8 @@ MusicCutSliderWidget::MusicCutSliderWidget(QWidget *parent)
 {
     m_leftControl = new MusicMoveButton(this);
     m_rightControl = new MusicMoveButton(this);
-    m_leftControl->setGeometry(-PAINT_BUTTON_WIDTH/2, PAINT_BUTTON_HEIGHT, PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
-    m_rightControl->setGeometry(-PAINT_BUTTON_WIDTH/2, PAINT_BUTTON_HEIGHT, PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
+    m_leftControl->setGeometry(-PAINT_BUTTON_WIDTH / 2, PAINT_BUTTON_HEIGHT, PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
+    m_rightControl->setGeometry(-PAINT_BUTTON_WIDTH / 2, PAINT_BUTTON_HEIGHT, PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
 
     connect(m_leftControl, SIGNAL(moveChanged()), SLOT(buttonMoveUpdate()));
     connect(m_rightControl, SIGNAL(moveChanged()), SLOT(buttonMoveUpdate()));
@@ -105,33 +105,33 @@ void MusicCutSliderWidget::resizeWindow(int width, int height)
     }
 
     int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH)) / 2;
-    m_leftControl->move(-PAINT_BUTTON_WIDTH/2, lineStartHeight + PAINT_SLIDER_HEIGHT);
-    m_rightControl->move(-PAINT_BUTTON_WIDTH/2, lineStartHeight + PAINT_SLIDER_HEIGHT);
+    m_leftControl->move(-PAINT_BUTTON_WIDTH / 2, lineStartHeight + PAINT_SLIDER_HEIGHT);
+    m_rightControl->move(-PAINT_BUTTON_WIDTH / 2, lineStartHeight + PAINT_SLIDER_HEIGHT);
 }
 
 void MusicCutSliderWidget::buttonMoveUpdate()
 {
-    int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
-    int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
+    int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH / 2;
+    int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH / 2;
 
     if(leftX < 0)
     {
-        m_leftControl->move(-PAINT_BUTTON_WIDTH/2, m_leftControl->geometry().y());
+        m_leftControl->move(-PAINT_BUTTON_WIDTH / 2, m_leftControl->geometry().y());
         return;
     }
     else if(rightX < 0)
     {
-        m_rightControl->move(-PAINT_BUTTON_WIDTH/2, m_rightControl->geometry().y());
+        m_rightControl->move(-PAINT_BUTTON_WIDTH / 2, m_rightControl->geometry().y());
         return;
     }
     else if(leftX > m_width)
     {
-        m_leftControl->move(m_width - PAINT_BUTTON_WIDTH/2, m_leftControl->geometry().y());
+        m_leftControl->move(m_width - PAINT_BUTTON_WIDTH / 2, m_leftControl->geometry().y());
         return;
     }
     else if(rightX > m_width)
     {
-        m_rightControl->move(m_width - PAINT_BUTTON_WIDTH/2, m_leftControl->geometry().y());
+        m_rightControl->move(m_width - PAINT_BUTTON_WIDTH / 2, m_leftControl->geometry().y());
         return;
     }
 
@@ -151,14 +151,14 @@ void MusicCutSliderWidget::buttonMoveUpdate()
 
 void MusicCutSliderWidget::buttonReleaseLeft()
 {
-    int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
+    int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH / 2;
         leftX = leftX*m_duration/m_width;
     Q_EMIT buttonReleaseChanged(leftX);
 }
 
 void MusicCutSliderWidget::buttonReleaseRight()
 {
-    int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
+    int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH / 2;
         rightX = rightX*m_duration/m_width;
     Q_EMIT buttonReleaseChanged(rightX);
 }
@@ -178,10 +178,10 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     painter.setBrush(QBrush(QColor(MusicUIObject::MQSSColorStyle12_S)));
     const int leftX = m_leftControl->geometry().x();
     const int rightX = m_rightControl->geometry().x();
-    painter.drawRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH/2 : rightX + PAINT_BUTTON_WIDTH/2, lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT);
+    painter.drawRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH / 2 : rightX + PAINT_BUTTON_WIDTH / 2, lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT);
 
     painter.setBrush(QBrush(QColor(0, 0, 0)));
-    painter.drawRect(m_position - PAINT_HANDER/2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER) / 2, PAINT_HANDER, PAINT_HANDER);
+    painter.drawRect(m_position - PAINT_HANDER / 2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER) / 2, PAINT_HANDER, PAINT_HANDER);
 
 }
 

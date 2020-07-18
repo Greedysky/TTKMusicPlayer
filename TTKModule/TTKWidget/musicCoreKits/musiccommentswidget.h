@@ -104,8 +104,8 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     /*!
      * Int current comment label text.

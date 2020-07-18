@@ -2,7 +2,6 @@
 #include "musicobject.h"
 #include "qalg/qimagewrap.h"
 
-#include <qmath.h>
 #include <QBitmap>
 #include <QBuffer>
 #include <QPainter>

@@ -79,7 +79,7 @@ public:
     /*!
      * Get current line middle number.
      */
-    inline int getMiddle() const { return m_lineMax/2; }
+    inline int getMiddle() const { return m_lineMax / 2; }
 
     /*!
      * Set lrc container data from other raw data.

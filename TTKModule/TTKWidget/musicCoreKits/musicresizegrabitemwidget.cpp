@@ -74,20 +74,6 @@ void MusicResizeGrabItemWidget::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void MusicResizeGrabItemWidget::mouseReleaseEvent(QMouseEvent *event)
-{
-    if(event->button() == Qt::LeftButton)
-    {
-        m_isPressed = false;
-        if(m_direction != Direction_No)
-        {
-            setCursor(QCursor(Qt::SizeAllCursor));
-        }
-
-        Q_EMIT rectChanged();
-    }
-}
-
 void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
 {
     const QPoint &gloPoint = mapToParent(event->pos());
@@ -165,6 +151,20 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
         }
     }
     m_currentRect = geometry();
+}
+
+void MusicResizeGrabItemWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton)
+    {
+        m_isPressed = false;
+        if(m_direction != Direction_No)
+        {
+            setCursor(QCursor(Qt::SizeAllCursor));
+        }
+
+        Q_EMIT rectChanged();
+    }
 }
 
 void MusicResizeGrabItemWidget::resizeEvent(QResizeEvent *event)

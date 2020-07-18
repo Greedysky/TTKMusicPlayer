@@ -70,12 +70,12 @@ void MusicLrcTranslatedWidget::setPlainText(const QString &name, const QString &
     m_plainText->setText(text);
 }
 
-void MusicLrcTranslatedWidget::mouseMoveEvent(QMouseEvent *event)
+void MusicLrcTranslatedWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 }
 
-void MusicLrcTranslatedWidget::mousePressEvent(QMouseEvent *event)
+void MusicLrcTranslatedWidget::mouseMoveEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 }

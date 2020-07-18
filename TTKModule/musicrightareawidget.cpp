@@ -820,8 +820,8 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     const int height = m_musicLrcForInterior->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
-    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 300 : -320, height/2));
-    lrcDisplayAllAnimation->setEndValue(QPoint(0, height/2));
+    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 300 : -320, height / 2));
+    lrcDisplayAllAnimation->setEndValue(QPoint(0, height / 2));
     lrcDisplayAllAnimation->start();
 
     m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicUIObject::MQSSTinyBtnLrcExpand : MusicUIObject::MQSSTinyBtnLrcCollapse);
