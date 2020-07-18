@@ -47,12 +47,12 @@ class QWaterWavePrivate;
 class MUSIC_EXTRAS_EXPORT QWaterWave
 {
 public:
-    QWaterWave(const QImage &image);
+    QWaterWave(const QImage &image, int radius);
 
     int* data();
     void render();
 
-    void input(int depth);
+    void input(int x, int y);
 
 private:
     TTK_DECLARE_PRIVATE(QWaterWave)

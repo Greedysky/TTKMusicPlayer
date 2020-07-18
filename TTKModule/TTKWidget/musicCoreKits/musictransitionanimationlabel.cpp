@@ -39,6 +39,7 @@ void MusicTransitionAnimationLabel::stop()
     if(m_animation->state() == QPropertyAnimation::Running)
     {
         m_animation->stop();
+        animationFinished();
     }
 }
 
@@ -55,7 +56,9 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
         return;
     }
 
-    m_type = WaterEffect;
+    stop();
+
+    m_type = TTKStatic_cast(AnimationType, MusicTime::random(5));
     switch(m_type)
     {
         case FadeEffect: m_animation->setDuration(200); break;
@@ -78,8 +81,11 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     if(m_type == WaterEffect)
     {
         delete m_waterWave;
-        m_waterWave = new QImageWrap::QWaterWave(m_currentPixmap.toImage());
-        m_waterWave->input(100);
+        m_waterWave = new QImageWrap::QWaterWave(m_currentPixmap.toImage(), height() / 6);
+        for(int size = 0; size < 10; ++size)
+        {
+            m_waterWave->input(width() / 2, height() / 2);
+        }
     }
 
     m_animation->start();
@@ -110,7 +116,6 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             case FadeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
-
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);
                 QPainter paint(&pix);
@@ -139,7 +144,6 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             case CubeEffect:
             {
                 painter.drawPixmap(rect(), m_previousPixmap);
-
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);
                 const int s = 100;
@@ -164,7 +168,16 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 m_waterWave->render();
                 QImage image = m_currentPixmap.toImage();
                 memcpy(image.bits(), (const uchar*)m_waterWave->data(), image.byteCount());
-                m_rendererPixmap = QPixmap::fromImage(image);
+
+                painter.drawPixmap(rect(), m_previousPixmap);
+                QPixmap pix(size());
+                pix.fill(Qt::transparent);
+                QPainter paint(&pix);
+                paint.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * m_currentValue, 255.0)));
+                paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
+                paint.drawPixmap(rect(), QPixmap::fromImage(image));
+                paint.end();
+                m_rendererPixmap = pix;
                 break;
             }
             case LeftToRightEffect:

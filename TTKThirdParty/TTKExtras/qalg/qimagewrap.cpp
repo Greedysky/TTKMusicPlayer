@@ -116,13 +116,12 @@ public:
 
     int* data();
     void render();
-    void input(int depth);
-    void init(const QImage &image);
+    void init(const QImage &image, int radius);
 
-private:
     void setWaveSourcePower(int radius, int depth);
     void setWaveSourcePosition(int x, int y);
 
+private:
     void spreedRipple();
     void renderRipple();
 
@@ -194,14 +193,7 @@ void QWaterWavePrivate::render()
     renderRipple();
 }
 
-void QWaterWavePrivate::input(int depth)
-{
-    setWaveSourcePower(m_height / 10, depth);
-    setWaveSourcePosition(m_height / 4, m_height / 4);
-    setWaveSourcePosition(m_width - m_height / 4, m_height / 4);
-}
-
-void QWaterWavePrivate::init(const QImage &image)
+void QWaterWavePrivate::init(const QImage &image, int radius)
 {
     m_orginPixels = nullptr;
     m_newPixels = nullptr;
@@ -222,8 +214,10 @@ void QWaterWavePrivate::init(const QImage &image)
     m_buffer1 = new short[m_width * m_height]{};
     m_buffer2 = new short[m_width * m_height]{};
 
-    m_powerRate = 4;
+    m_powerRate = 2;
     m_scale = 1;
+
+    setWaveSourcePower(radius, 100);
 }
 
 void QWaterWavePrivate::setWaveSourcePower(int radius, int depth)
@@ -307,11 +301,11 @@ void QWaterWavePrivate::renderRipple()
 }
 
 
-QWaterWave::QWaterWave(const QImage &image)
+QWaterWave::QWaterWave(const QImage &image, int radius)
 {
     TTK_INIT_PRIVATE;
     TTK_D(QWaterWave);
-    d->init(image);
+    d->init(image, radius);
 }
 
 int* QWaterWave::data()
@@ -326,10 +320,10 @@ void QWaterWave::render()
     d->render();
 }
 
-void QWaterWave::input(int depth)
+void QWaterWave::input(int x, int y)
 {
     TTK_D(QWaterWave);
-    d->input(depth);
+    d->setWaveSourcePosition(x, y);
 }
 
 
