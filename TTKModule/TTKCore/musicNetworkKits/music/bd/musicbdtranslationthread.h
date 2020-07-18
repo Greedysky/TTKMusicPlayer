@@ -1,5 +1,5 @@
-#ifndef MUSICTRANSLATIONTHREAD_H
-#define MUSICTRANSLATIONTHREAD_H
+#ifndef MUSICBDTRANSLATIONTHREAD_H
+#define MUSICBDTRANSLATIONTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,15 +19,15 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musictranslationthreadabstract.h"
+#include "musicdownloadtranslationthread.h"
 
-/*! @brief The class of translation words thread.
+/*! @brief The class of baidu translation words thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicTranslationThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicBDTranslationThread : public MusicDownloadTranslationThread
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTranslationThread)
+    TTK_DECLARE_MODULE(MusicBDTranslationThread)
 public:
     enum TranslationType
     {
@@ -53,9 +53,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTranslationThread(QObject *parent = nullptr);
-
-    virtual ~MusicTranslationThread();
+    explicit MusicBDTranslationThread(QObject *parent = nullptr);
 
     /*!
      * Start to translation data.
@@ -80,4 +78,4 @@ protected:
 
 };
 
-#endif // MUSICTRANSLATIONTHREAD_H
+#endif // MUSICBDTRANSLATIONTHREAD_H

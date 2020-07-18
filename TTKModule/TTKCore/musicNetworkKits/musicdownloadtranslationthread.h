@@ -1,5 +1,5 @@
-#ifndef MUSICAUTHENTICATIONTHREAD_H
-#define MUSICAUTHENTICATIONTHREAD_H
+#ifndef MUSICDOWNLOADTRANSLATIONTHREAD_H
+#define MUSICDOWNLOADTRANSLATIONTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,23 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdatabaseobject.h"
 #include "musicnetworkabstract.h"
 
-/*! @brief The class to login authentication.
+/*! @brief The class of translation words thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicAuthenticationThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicDownloadTranslationThread : public MusicNetworkAbstract
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicAuthenticationThread)
+    TTK_DECLARE_MODULE(MusicDownloadTranslationThread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAuthenticationThread(QObject *parent = nullptr);
-
-    virtual ~MusicAuthenticationThread();
+    explicit MusicDownloadTranslationThread(QObject *parent = nullptr);
 
     /*!
      * Release the network object.
@@ -45,15 +42,8 @@ public:
      * Start to translation data.
      * Subclass should implement this function.
      */
-    virtual void startToDownload(const QString &usr, const QString &pwd) = 0;
-    /*!
-     * Get info record.
-     */
-    inline const MusicUserInfoRecord& getInfoRecord() const { return m_info; }
-
-protected:
-    MusicUserInfoRecord m_info;
+    virtual void startToDownload(const QString &data) = 0;
 
 };
 
-#endif // MUSICAUTHENTICATIONTHREAD_H
+#endif // MUSICDOWNLOADTRANSLATIONTHREAD_H

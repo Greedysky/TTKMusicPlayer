@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musictranslationthreadabstract.h"
+#include "musicdownloadtranslationthread.h"
 
 /*! @brief The class of wangyi translation words thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYTranslationThread : public MusicTranslationThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicWYTranslationThread : public MusicDownloadTranslationThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYTranslationThread)
@@ -33,8 +33,6 @@ public:
      * Object contsructor.
      */
     explicit MusicWYTranslationThread(QObject *parent = nullptr);
-
-    virtual ~MusicWYTranslationThread();
 
     /*!
      * Start to translation data.

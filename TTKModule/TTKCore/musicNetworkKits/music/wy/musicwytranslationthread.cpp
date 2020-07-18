@@ -4,19 +4,17 @@
 #include "musicdownloadwyinterface.h"
 
 MusicWYTranslationThread::MusicWYTranslationThread(QObject *parent)
-    : MusicTranslationThreadAbstract(parent)
+    : MusicDownloadTranslationThread(parent)
 {
 
-}
-
-MusicWYTranslationThread::~MusicWYTranslationThread()
-{
-    deleteAll();
 }
 
 void MusicWYTranslationThread::startToDownload(const QString &data)
 {
     Q_UNUSED(data);
+    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+    deleteAll();
+
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryWYThread *d = new MusicDownLoadQueryWYThread(this);
     d->setQueryAllRecords(false);

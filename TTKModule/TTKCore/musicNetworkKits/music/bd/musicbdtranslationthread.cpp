@@ -1,26 +1,24 @@
-#include "musictranslationthread.h"
+#include "musicbdtranslationthread.h"
 #include "musicobject.h"
 
 const QString TRANSLATION_URL = "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU=";
 
-MusicTranslationThread::MusicTranslationThread(QObject *parent)
-    : MusicTranslationThreadAbstract(parent)
+MusicBDTranslationThread::MusicBDTranslationThread(QObject *parent)
+    : MusicDownloadTranslationThread(parent)
 {
 
 }
 
-MusicTranslationThread::~MusicTranslationThread()
+void MusicBDTranslationThread::startToDownload(const QString &data)
 {
+    startToDownload(MusicBDTranslationThread::Type_Auto, MusicBDTranslationThread::Type_Zh, data);
+}
+
+void MusicBDTranslationThread::startToDownload(TranslationType from, TranslationType to, const QString &data)
+{
+    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     deleteAll();
-}
 
-void MusicTranslationThread::startToDownload(const QString &data)
-{
-    startToDownload(MusicTranslationThread::Type_Auto, MusicTranslationThread::Type_Zh, data);
-}
-
-void MusicTranslationThread::startToDownload(TranslationType from, TranslationType to, const QString &data)
-{
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from)).arg(data).arg(mapTypeFromEnumToString(to)));
     MusicObject::setSslConfiguration(&request);
@@ -30,7 +28,7 @@ void MusicTranslationThread::startToDownload(TranslationType from, TranslationTy
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-QString MusicTranslationThread::mapTypeFromEnumToString(TranslationType type)
+QString MusicBDTranslationThread::mapTypeFromEnumToString(TranslationType type)
 {
     switch(type)
     {
@@ -55,7 +53,7 @@ QString MusicTranslationThread::mapTypeFromEnumToString(TranslationType type)
     }
 }
 
-void MusicTranslationThread::downLoadFinished()
+void MusicBDTranslationThread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

@@ -85,7 +85,7 @@
 #include "musickgartistsimilarthread.h"
 #include "musickwartistsimilarthread.h"
 //
-#include "musictranslationthread.h"
+#include "musicbdtranslationthread.h"
 #include "musicwytranslationthread.h"
 //
 #include "musicdatadownloadthread.h"
@@ -334,19 +334,19 @@ MusicDownLoadDiscoverListThread *MusicDownLoadQueryFactory::getDiscoverListThrea
     return thread;
 }
 
-MusicTranslationThreadAbstract *MusicDownLoadQueryFactory::getTranslationThread(QObject *parent)
+MusicDownloadTranslationThread *MusicDownLoadQueryFactory::getTranslationThread(QObject *parent)
 {
-    MusicTranslationThreadAbstract *thread = nullptr;
+    MusicDownloadTranslationThread *thread = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
         case 0:  thread = new MusicWYTranslationThread(parent); break;
-        case 1:  thread = new MusicTranslationThread(parent); break;
-        case 2:  thread = new MusicTranslationThread(parent); break;
-        case 3:  thread = new MusicTranslationThread(parent); break;
-        case 4:  thread = new MusicTranslationThread(parent); break;
-        case 5:  thread = new MusicTranslationThread(parent); break;
-        default: thread = new MusicTranslationThread(parent);
+        case 1:  thread = new MusicBDTranslationThread(parent); break;
+        case 2:  thread = new MusicBDTranslationThread(parent); break;
+        case 3:  thread = new MusicBDTranslationThread(parent); break;
+        case 4:  thread = new MusicBDTranslationThread(parent); break;
+        case 5:  thread = new MusicBDTranslationThread(parent); break;
+        default: thread = new MusicBDTranslationThread(parent);
     }
     return thread;
 }

@@ -28,7 +28,7 @@ class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
 class MusicDownLoadQueryThreadAbstract;
 class MusicDownloadBackgroundThread;
-class MusicTranslationThreadAbstract;
+class MusicDownloadTranslationThread;
 
 /*! @brief The class to produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -97,7 +97,7 @@ public:
     /*!
      * Get translation object by type.
      */
-    MusicTranslationThreadAbstract *getTranslationThread(QObject *parent = nullptr);
+    MusicDownloadTranslationThread *getTranslationThread(QObject *parent = nullptr);
 
     /*!
      * Get download small picture object by type.

@@ -25,7 +25,7 @@
 #define MUSIC_TTKLRCF               "[TTKLRCF]"
 #define MUSIC_LRC_INTERIOR_MAX_LINE 11
 
-class MusicTranslationThreadAbstract;
+class MusicDownloadTranslationThread;
 
 /*! @brief The class of the core lrc analysis.
  * @author Greedysky <greedysky@163.com>
@@ -194,7 +194,7 @@ protected:
     QString m_currentLrcFileName;
     TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
-    MusicTranslationThreadAbstract *m_translationThread;
+    MusicDownloadTranslationThread *m_translationThread;
 
 };
 

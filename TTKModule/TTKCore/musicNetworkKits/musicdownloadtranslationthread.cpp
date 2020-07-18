@@ -1,6 +1,6 @@
-#include "musictranslationthreadabstract.h"
+#include "musicdownloadtranslationthread.h"
 
-MusicTranslationThreadAbstract::MusicTranslationThreadAbstract(QObject *parent)
+MusicDownloadTranslationThread::MusicDownloadTranslationThread(QObject *parent)
     : MusicNetworkAbstract(parent)
 {
     m_reply = nullptr;
@@ -10,7 +10,7 @@ MusicTranslationThreadAbstract::MusicTranslationThreadAbstract(QObject *parent)
 #endif
 }
 
-void MusicTranslationThreadAbstract::deleteAll()
+void MusicDownloadTranslationThread::deleteAll()
 {
     if(m_reply)
     {

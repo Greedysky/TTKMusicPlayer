@@ -6,7 +6,7 @@
 #include "musicstringutils.h"
 #include "musicapplication.h"
 #include "musicdownloadqueryfactory.h"
-#include "musictranslationthreadabstract.h"
+#include "musicdownloadtranslationthread.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
