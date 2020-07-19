@@ -20,7 +20,7 @@
  ================================================= */
 
 #include "musicabstractmovewidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicabstractqueryrequest.h"
 
 namespace Ui{
 class MusicDownloadResetWidget;
@@ -95,7 +95,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
+    void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
 
 protected:
     QWidget *m_parentClass;

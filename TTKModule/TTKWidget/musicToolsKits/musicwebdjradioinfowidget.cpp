@@ -1,12 +1,12 @@
 #include "musicwebdjradioinfowidget.h"
-#include "musicdjradioprogramcategorythread.h"
+#include "musicdjradioprogramcategoryrequest.h"
 #include "musicsettingmanager.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 
 #include <qmath.h>
 
 MusicWebDJRadioInfoTableWidget::MusicWebDJRadioInfoTableWidget(QWidget *parent)
-    : MusicQueryFoundTableWidget(parent)
+    : MusicItemQueryTableWidget(parent)
 {
 
 }
@@ -16,9 +16,9 @@ MusicWebDJRadioInfoTableWidget::~MusicWebDJRadioInfoTableWidget()
     clearAllItems();
 }
 
-void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
-    MusicQueryFoundTableWidget::setQueryInput(query);
+    MusicItemQueryTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
         connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
@@ -28,23 +28,23 @@ void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstr
 
 
 MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
-    : MusicFoundAbstractWidget(parent)
+    : MusicAbstractItemQueryWidget(parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    m_foundTableWidget = new MusicWebDJRadioInfoTableWidget(this);
-    m_foundTableWidget->hide();
+    m_queryTableWidget = new MusicWebDJRadioInfoTableWidget(this);
+    m_queryTableWidget->hide();
 
-    MusicDJRadioProgramCategoryThread *v = new MusicDJRadioProgramCategoryThread(this);
-    m_foundTableWidget->setQueryInput(v);
+    MusicDJRadioProgramCategoryRequest *v = new MusicDJRadioProgramCategoryRequest(this);
+    m_queryTableWidget->setQueryInput(v);
     connect(v, SIGNAL(createCategoryInfoItem(MusicResultsItem)), SLOT(createCategoryInfoItem(MusicResultsItem)));
 }
 
 void MusicWebDJRadioInfoWidget::setSongName(const QString &name)
 {
-    MusicFoundAbstractWidget::setSongName(name);
-    m_foundTableWidget->startSearchQuery(name);
+    MusicAbstractItemQueryWidget::setSongName(name);
+    m_queryTableWidget->startSearchQuery(name);
 }
 
 void MusicWebDJRadioInfoWidget::setSongNameById(const QString &id)
@@ -54,7 +54,7 @@ void MusicWebDJRadioInfoWidget::setSongNameById(const QString &id)
 
 void MusicWebDJRadioInfoWidget::resizeWindow()
 {
-    m_foundTableWidget->resizeWindow();
+    m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
@@ -87,7 +87,7 @@ void MusicWebDJRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
 
     if(!m_resizeWidgets.isEmpty())
     {
-        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
         {

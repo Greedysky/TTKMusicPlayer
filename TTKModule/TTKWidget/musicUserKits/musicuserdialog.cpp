@@ -7,7 +7,7 @@
 #include "musicwidgetutils.h"
 
 #include "musicuserrecordwidget.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 
 #include <QValidator>
 #include <QStyledItemDelegate>

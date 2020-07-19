@@ -1,7 +1,7 @@
 #include "musicsourceupdatewidget.h"
 #include "ui_musicsourceupdatewidget.h"
-#include "musicsourceupdatethread.h"
-#include "musicdatadownloadthread.h"
+#include "musicsourceupdaterequest.h"
+#include "musicdownloaddatarequest.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
@@ -68,7 +68,7 @@ MusicSourceUpdateNotifyWidget::~MusicSourceUpdateNotifyWidget()
 
 void MusicSourceUpdateNotifyWidget::start()
 {
-    MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
+    MusicSourceUpdateRequest *download = new MusicSourceUpdateRequest(this);
     connect(download, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
     download->startToDownload();
 }
@@ -125,7 +125,7 @@ MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 
 void MusicSourceUpdateWidget::start()
 {
-    MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
+    MusicSourceUpdateRequest *download = new MusicSourceUpdateRequest(this);
     connect(download, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
     download->startToDownload();
 }
@@ -135,7 +135,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 #ifdef Q_OS_WIN
     m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
     const QString &localDwonload = "v" + m_newVersionStr + EXE_FILE;
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(QSyncUtils::generateDataBucketUrl()).arg(localDwonload),
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(QString("%1%2").arg(QSyncUtils::generateDataBucketUrl()).arg(localDwonload),
                                                                     UPDATE_DIR_FULL + localDwonload, MusicObject::DownloadOther, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));

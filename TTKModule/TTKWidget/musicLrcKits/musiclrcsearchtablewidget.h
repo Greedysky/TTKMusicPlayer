@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicquerytablewidget.h"
+#include "musicitemsearchtablewidget.h"
 
 /*! @brief The class of the lrc search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcSearchTableWidget : public MusicQueryItemTableWidget
+class MUSIC_LRC_EXPORT MusicLrcSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcSearchTableWidget)

@@ -7,7 +7,7 @@
 #include "musicgiflabelwidget.h"
 
 MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
-    : MusicQueryItemTableWidget(parent)
+    : MusicItemSearchTableWidget(parent)
 {
     setColumnCount(9);
     resizeWindow(0);
@@ -36,13 +36,13 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
     //
-    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+    m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MovieQuery, text);
 }
 
 void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -54,13 +54,13 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
     //
-    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
+    m_downLoadManager->setQueryType(MusicAbstractQueryRequest::MovieQuery);
     m_downLoadManager->startToSingleSearch(text);
 }
 
@@ -73,7 +73,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
         return;
     }
     //
-    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
     //
@@ -124,7 +124,7 @@ void MusicVideoSearchTableWidget::resizeWindow(int delta)
 
 void MusicVideoSearchTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellEntered(row, column);
+    MusicItemSearchTableWidget::itemCellEntered(row, column);
     if(column == 6 || column == 7 || column == 8)
     {
        setCursor(QCursor(Qt::PointingHandCursor));
@@ -147,7 +147,7 @@ void MusicVideoSearchTableWidget::itemCellEntered(int row, int column)
 
 void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellClicked(row, column);
+    MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 6:
@@ -163,7 +163,7 @@ void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
 
 void MusicVideoSearchTableWidget::clearAllItems()
 {
-    MusicQueryItemTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::clearAllItems();
     setColumnCount(9);
 }
 
@@ -287,7 +287,7 @@ void MusicVideoSearchTableWidget::downloadLocalFromControl()
 
 void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryItemTableWidget::contextMenuEvent(event);
+    MusicItemSearchTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 
@@ -303,6 +303,6 @@ void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MovieQuery);
+    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MovieQuery);
     download->show();
 }

@@ -20,15 +20,15 @@
  ================================================= */
 
 #include "musicsingleton.h"
-#include "musicdownloadthreadabstract.h"
+#include "musicabstractdownloadrequest.h"
 
-class MusicDownLoadSimilarThread;
-class MusicDownLoadSongSuggestThread;
-class MusicDownLoadCommentsThread;
-class MusicDownLoadDiscoverListThread;
-class MusicDownLoadQueryThreadAbstract;
-class MusicDownloadBackgroundThread;
-class MusicDownloadTranslationThread;
+class MusicSimilarRequest;
+class MusicSongSuggestRequest;
+class MusicCommentsRequest;
+class MusicDiscoverListRequest;
+class MusicAbstractQueryRequest;
+class MusicDownloadBackgroundRequest;
+class MusicTranslationRequest;
 
 /*! @brief The class to produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -38,84 +38,84 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory
     TTK_DECLARE_MODULE(MusicDownLoadQueryFactory)
 public:
     /*!
-     * Get query thread object by type.
+     * Get query request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getQueryRequest(QObject *parent = nullptr);
     /*!
-     * Get movie thread object by type.
+     * Get movie request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getMovieThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getMovieRequest(QObject *parent = nullptr);
     /*!
-     * Get album thread object by type.
+     * Get album request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getAlbumRequest(QObject *parent = nullptr);
     /*!
-     * Get artist thread object by type.
+     * Get artist request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getArtistRequest(QObject *parent = nullptr);
     /*!
-     * Get artist category thread object by type.
+     * Get artist category request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getArtistListThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getArtistListRequest(QObject *parent = nullptr);
     /*!
-     * Get toplist thread object by type.
+     * Get toplist request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getToplistThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getToplistRequest(QObject *parent = nullptr);
     /*!
-     * Get playlist thread object by type.
+     * Get playlist request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getPlaylistRequest(QObject *parent = nullptr);
     /*!
-     * Get recommend thread object by type.
+     * Get recommend request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getRecommendThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getRecommendRequest(QObject *parent = nullptr);
     /*!
-     * Get similar song query thread object by type.
+     * Get similar song query request object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getSimilarSongThread(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *getSimilarSongRequest(QObject *parent = nullptr);
 
     /*!
-     * Get similar query thread object by type.
+     * Get similar query request object by type.
      */
-    MusicDownLoadSimilarThread *getSimilarArtistThread(QObject *parent = nullptr);
+    MusicSimilarRequest *getSimilarArtistRequest(QObject *parent = nullptr);
     /*!
-     * Get suggest thread object by type.
+     * Get suggest request object by type.
      */
-    MusicDownLoadSongSuggestThread *getSuggestThread(QObject *parent = nullptr);
+    MusicSongSuggestRequest *getSuggestRequest(QObject *parent = nullptr);
     /*!
-     * Get song comment thread object by type.
+     * Get song comment request object by type.
      */
-    MusicDownLoadCommentsThread *getSongCommentThread(QObject *parent = nullptr);
+    MusicCommentsRequest *getSongCommentRequest(QObject *parent = nullptr);
     /*!
-     * Get playlist comment thread object by type.
+     * Get playlist comment request object by type.
      */
-    MusicDownLoadCommentsThread *getPlaylistCommentThread(QObject *parent = nullptr);
+    MusicCommentsRequest *getPlaylistCommentRequest(QObject *parent = nullptr);
     /*!
-     * Get discover list thread object by type.
+     * Get discover list request object by type.
      */
-    MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = nullptr);
+    MusicDiscoverListRequest *getDiscoverListRequest(QObject *parent = nullptr);
     /*!
      * Get translation object by type.
      */
-    MusicDownloadTranslationThread *getTranslationThread(QObject *parent = nullptr);
+    MusicTranslationRequest *getTranslationRequest(QObject *parent = nullptr);
 
     /*!
      * Get download small picture object by type.
      */
-    MusicDownLoadThreadAbstract *getDownloadSmallPicThread(const QString &url, const QString &save,
-                                                           MusicObject::DownloadType type,
-                                                           QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *getDownloadSmallPicRequest(const QString &url, const QString &save,
+                                                             MusicObject::DownloadType type,
+                                                             QObject *parent = nullptr);
     /*!
      * Get download lrc object by type.
      */
-    MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
-                                                      MusicObject::DownloadType type,
-                                                      QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *getDownloadLrcRequest(const QString &url, const QString &save,
+                                                        MusicObject::DownloadType type,
+                                                        QObject *parent = nullptr);
     /*!
      * Get download big picture object by type.
      */
-    MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
-                                                           QObject *parent = nullptr);
+    MusicDownloadBackgroundRequest *getDownloadBigPicRequest(const QString &name, const QString &save,
+                                                             QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

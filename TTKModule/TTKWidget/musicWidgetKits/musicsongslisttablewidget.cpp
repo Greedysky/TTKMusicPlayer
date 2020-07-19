@@ -33,7 +33,7 @@
 
 
 MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
-    : MusicSongsListAbstractTableWidget(parent), m_openFileWidget(nullptr),
+    : MusicAbstractSongsListTableWidget(parent), m_openFileWidget(nullptr),
       m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
@@ -138,7 +138,7 @@ void MusicSongsListTableWidget::clearAllItems()
 
     m_playRowIndex = 0;
     //Remove all the original item
-    MusicSongsListAbstractTableWidget::clear();
+    MusicAbstractSongsListTableWidget::clear();
     setColumnCount(6);
 }
 
@@ -184,7 +184,7 @@ void MusicSongsListTableWidget::selectRow(int index)
     {
         return;
     }
-    MusicSongsListAbstractTableWidget::selectRow(index);
+    MusicAbstractSongsListTableWidget::selectRow(index);
 
     replacePlayWidgetRow();
     for(int i=0; i<columnCount(); ++i)
@@ -372,7 +372,7 @@ void MusicSongsListTableWidget::itemCellEntered(int row, int column)
         unsetCursor();
     }
 
-    MusicSongsListAbstractTableWidget::itemCellEntered(row, column);
+    MusicAbstractSongsListTableWidget::itemCellEntered(row, column);
 
     //To show music Songs Item information
     if(m_musicSongsInfoWidget == nullptr)
@@ -647,7 +647,7 @@ void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
 
 void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
 {
-    MusicSongsListAbstractTableWidget::mousePressEvent(event);
+    MusicAbstractSongsListTableWidget::mousePressEvent(event);
     closeRenameItem();
 
     if(event->button() == Qt::LeftButton)
@@ -660,7 +660,7 @@ void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
 
 void MusicSongsListTableWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    MusicSongsListAbstractTableWidget::mouseMoveEvent(event);
+    MusicAbstractSongsListTableWidget::mouseMoveEvent(event);
     if(m_leftButtonPressed && abs(m_dragStartPoint.y() - event->pos().y()) > 15)
     {
         m_mouseMoved = true;
@@ -671,7 +671,7 @@ void MusicSongsListTableWidget::mouseMoveEvent(QMouseEvent *event)
 
 void MusicSongsListTableWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    MusicSongsListAbstractTableWidget::mouseReleaseEvent(event);
+    MusicAbstractSongsListTableWidget::mouseReleaseEvent(event);
     startToDrag();
 
     m_leftButtonPressed = false;
@@ -682,7 +682,7 @@ void MusicSongsListTableWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicSongsListTableWidget::leaveEvent(QEvent *event)
 {
-    MusicSongsListAbstractTableWidget::leaveEvent(event);
+    MusicAbstractSongsListTableWidget::leaveEvent(event);
     itemCellEntered(-1, -1);
 
     delete m_musicSongsInfoWidget;
@@ -692,14 +692,14 @@ void MusicSongsListTableWidget::leaveEvent(QEvent *event)
 
 void MusicSongsListTableWidget::wheelEvent(QWheelEvent *event)
 {
-    MusicSongsListAbstractTableWidget::wheelEvent(event);
+    MusicAbstractSongsListTableWidget::wheelEvent(event);
     closeRenameItem();
     Q_EMIT showFloatWidget();
 }
 
 void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
+    MusicAbstractSongsListTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
 
@@ -771,7 +771,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()));
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()));
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumQueryWidget()));
     rightClickMenu.addSeparator();
 
     bool empty;

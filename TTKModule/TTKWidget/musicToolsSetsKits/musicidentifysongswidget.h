@@ -28,7 +28,7 @@ class QStackedWidget;
 class MusicCoreMPlayer;
 class MusicLrcAnalysis;
 class MusicAudioRecorderObject;
-class MusicIdentifySongsThread;
+class MusicIdentifySongsRequest;
 
 /*! @brief The class of the song identify widget.
  * @author Greedysky <greedysky@163.com>
@@ -36,7 +36,7 @@ class MusicIdentifySongsThread;
 class MUSIC_TOOLSET_EXPORT MusicIdentifySongsWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicIdentifySongsThread)
+    TTK_DECLARE_MODULE(MusicIdentifySongsRequest)
 public:
     /*!
      * Object contsructor.
@@ -102,7 +102,7 @@ protected:
     MusicCoreMPlayer *m_mediaPlayer;
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderObject *m_recordCore;
-    MusicIdentifySongsThread *m_detectedThread;
+    MusicIdentifySongsRequest *m_detectedThread;
     MusicObject::MusicSongInformation m_currentSong;
 
 };

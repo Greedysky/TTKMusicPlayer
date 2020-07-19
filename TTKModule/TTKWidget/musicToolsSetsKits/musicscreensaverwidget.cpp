@@ -3,7 +3,7 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
-#include "musicdownloadqueuecache.h"
+#include "musicdownloadqueuerequest.h"
 #include "musicimageutils.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
@@ -377,7 +377,7 @@ void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
 
 void MusicScreenSaverWidget::initialize()
 {
-    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
+    m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 
     MusicDownloadQueueDatas datas;

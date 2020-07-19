@@ -21,11 +21,11 @@
 
 #include <QWidget>
 #include "musicbackgroundlistwidget.h"
-#include "musicdownloadbackgroundremotethread.h"
+#include "musicdownloadbackgroundremoterequest.h"
 
 class QPushButton;
 class QListWidgetItem;
-class MusicDownloadQueueCache;
+class MusicDownloadQueueRequest;
 
 /*! @brief The class of the remote background widget.
  * @author Greedysky <greedysky@163.com>
@@ -43,7 +43,7 @@ public:
     ~MusicBackgroundRemoteWidget();
 
     /*!
-     * Abort the current download thread.
+     * Abort the current download request.
      */
     void abort();
 
@@ -71,8 +71,8 @@ protected:
     int m_currentIndex;
     MusicSkinRemoteGroups m_groups;
     MusicBackgroundListWidget *m_backgroundList;
-    MusicDownloadQueueCache *m_downloadQueue;
-    MusicDownloadBackgroundRemoteThread *m_queryThread;
+    MusicDownloadQueueRequest *m_downloadQueue;
+    MusicDownloadBackgroundRemoteRequest *m_downloadRequest;
 
 };
 

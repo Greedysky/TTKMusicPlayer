@@ -6,7 +6,7 @@
 #include "musicstringutils.h"
 #include "musicapplication.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadtranslationthread.h"
+#include "musictranslationrequest.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -585,7 +585,7 @@ QString MusicLrcAnalysis::getAllLrcString() const
 void MusicLrcAnalysis::getTranslatedLrc()
 {
     delete m_translationThread;
-    m_translationThread = M_DOWNLOAD_QUERY_PTR->getTranslationThread(this);
+    m_translationThread = M_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
     if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
     {
         connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(getTranslatedLrcFinished(QString)));

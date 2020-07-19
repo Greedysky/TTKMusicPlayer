@@ -58,7 +58,7 @@ void MusicDownloadResetWidget::show()
 void MusicDownloadResetWidget::restartToDownload()
 {
     MusicDownloadWidget *download = new MusicDownloadWidget(m_parentClass);
-    download->setSongName(m_currentName, MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(m_currentName, MusicAbstractQueryRequest::MusicQuery);
     download->show();
 
     close();
@@ -88,9 +88,9 @@ MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
     m_parentClass = TTKStatic_cast(QWidget*, parent);
 }
 
-void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
-    if(type == MusicDownLoadQueryThreadAbstract::MusicQuery)
+    if(type == MusicAbstractQueryRequest::MusicQuery)
     {
         bool exist = false;
         MusicApplication::instance()->musicDownloadContains(exist);

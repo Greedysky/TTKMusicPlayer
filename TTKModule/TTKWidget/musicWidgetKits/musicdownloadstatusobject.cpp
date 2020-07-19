@@ -7,7 +7,7 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadbackgroundthread.h"
+#include "musicdownloadbackgroundrequest.h"
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 
@@ -16,7 +16,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 {
     m_previousState = true;
     m_parentWidget = TTKStatic_cast(MusicApplication*, parent);
-    m_downloadLrcThread = nullptr;
+    m_downloadRequest = nullptr;
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
 #ifndef MUSIC_MOBILE
@@ -27,7 +27,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 
 MusicDownloadStatusObject::~MusicDownloadStatusObject()
 {
-    delete m_downloadLrcThread;
+    delete m_downloadRequest;
 }
 
 void MusicDownloadStatusObject::showDownLoadInfoFor(MusicObject::DownLoadMode type)
@@ -109,15 +109,15 @@ void MusicDownloadStatusObject::checkLrcValid()
            return;
        }
 
-       if(m_downloadLrcThread)
+       if(m_downloadRequest)
        {
-           delete m_downloadLrcThread;
-           m_downloadLrcThread = nullptr;
+           delete m_downloadRequest;
+           m_downloadRequest = nullptr;
        }
        ///Start the request query
-       m_downloadLrcThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-       m_downloadLrcThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
-       connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
+       m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+       m_downloadRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
+       connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
        showDownLoadInfoFor(MusicObject::DW_Buffing);
     }
 }
@@ -130,7 +130,7 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downloadRequest->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         const QString &filename = m_parentWidget->getCurrentFileName();
@@ -149,11 +149,11 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
         }
 
         ///download lrc
-        M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadBigPicRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }
     else
     {

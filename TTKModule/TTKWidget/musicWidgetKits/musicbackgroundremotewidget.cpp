@@ -1,5 +1,5 @@
 #include "musicbackgroundremotewidget.h"
-#include "musicdownloadqueuecache.h"
+#include "musicdownloadqueuerequest.h"
 #include "musicextractwrap.h"
 #include "musicwidgetheaders.h"
 
@@ -18,9 +18,9 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     setLayout(hbox);
 
     m_currentIndex = -1;
-    m_queryThread = nullptr;
+    m_downloadRequest = nullptr;
 
-    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
+    m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
 }
 
@@ -29,7 +29,7 @@ MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
     abort();
     delete m_backgroundList;
     delete m_downloadQueue;
-    delete m_queryThread;
+    delete m_downloadRequest;
 }
 
 void MusicBackgroundRemoteWidget::abort()
@@ -100,11 +100,11 @@ MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
 
 void MusicBackgroundThunderWidget::initialize()
 {
-    if(!m_queryThread)
+    if(!m_downloadRequest)
     {
-        m_queryThread = new MusicDownloadBackgroundThunderThread(this);
-        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
-        m_queryThread->startToDownload();
+        m_downloadRequest = new MusicDownloadBackgroundThunderRequest(this);
+        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
+        m_downloadRequest->startToDownload();
     }
 }
 
@@ -262,11 +262,11 @@ MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
 
 void MusicBackgroundDailyWidget::initialize()
 {
-    if(!m_queryThread)
+    if(!m_downloadRequest)
     {
-        m_queryThread = new MusicDownloadBackgroundBingThread(this);
-        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
-        m_queryThread->startToDownload();
+        m_downloadRequest = new MusicDownloadBackgroundBingRequest(this);
+        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
+        m_downloadRequest->startToDownload();
     }
     else
     {

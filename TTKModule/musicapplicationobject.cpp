@@ -19,8 +19,8 @@
 #include "musicurlutils.h"
 #include "musicfileutils.h"
 #include "musicalgorithmutils.h"
-#include "musicsourceupdatethread.h"
-#include "musicdownloadcounterpvthread.h"
+#include "musicsourceupdaterequest.h"
+#include "musicdownloadcounterpvrequest.h"
 #include "musicsinglemanager.h"
 #include "musicscreensaverwidget.h"
 
@@ -62,8 +62,8 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
-    m_sourceUpdatehread = new MusicSourceUpdateThread(this);
-    m_counterPVThread = new MusicDownloadCounterPVThread(this);
+    m_sourceUpdatehread = new MusicSourceUpdateRequest(this);
+    m_counterPVThread = new MusicDownloadCounterPVRequest(this);
 
     musicToolSetsParameter();
 }

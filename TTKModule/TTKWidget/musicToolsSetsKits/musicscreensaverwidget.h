@@ -24,7 +24,7 @@
 #include <QGridLayout>
 #include "musictransitionanimationlabel.h"
 
-class MusicDownloadQueueCache;
+class MusicDownloadQueueRequest;
 
 
 /*! @brief The class of the screen saver hover item.
@@ -213,7 +213,7 @@ private:
     bool m_currentState;
     QLineEdit *m_inputEdit;
     QPushButton *m_caseButton;
-    MusicDownloadQueueCache *m_downloadQueue;
+    MusicDownloadQueueRequest *m_downloadQueue;
     MusicScreenSaverListWidget *m_backgroundList;
 };
 

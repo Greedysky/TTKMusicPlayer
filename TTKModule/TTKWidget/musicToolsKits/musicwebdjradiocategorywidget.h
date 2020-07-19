@@ -20,10 +20,10 @@
  ================================================= */
 
 #include "musicclickedlabel.h"
-#include "musicfoundabstractwidget.h"
+#include "musicabstractitemquerywidget.h"
 
 class QGridLayout;
-class MusicDJRadioCategoryThread;
+class MusicDJRadioCategoryRequest;
 
 /*! @brief The class of music dj radio category item widget.
  * @author Greedysky <greedysky@163.com>
@@ -107,7 +107,7 @@ public Q_SLOTS:
 protected:
     QGridLayout *m_gridLayout;
     QList<QLabel*> m_resizeWidgets;
-    MusicDJRadioCategoryThread *m_categoryThread;
+    MusicDJRadioCategoryRequest *m_categoryThread;
 
 };
 

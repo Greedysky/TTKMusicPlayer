@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicfunctiontoolboxwidget.h"
-#include "musicdownloadabstracttablewidget.h"
+#include "musicabstractdownloadtablewidget.h"
 
 /*! @brief The class of the download record table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicDownloadRecordTableWidget : public MusicDownloadAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicDownloadRecordTableWidget : public MusicAbstractDownloadTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordTableWidget)
@@ -70,7 +70,7 @@ protected:
     /*!
      * Create widget item.
      */
-    void createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index);
+    void createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index);
     /*!
      * Create item.
      */

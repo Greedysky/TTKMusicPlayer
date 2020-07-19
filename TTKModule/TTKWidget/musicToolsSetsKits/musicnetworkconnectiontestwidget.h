@@ -70,7 +70,7 @@ private Q_SLOTS:
     void testFinshed(bool state);
 
 protected:
-    MusicNetworkTestThread *m_testThread;
+    MusicNetworkTestThread *m_thread;
     QLabel *m_iconLabel, *m_nameText, *m_stateText;
 
 };

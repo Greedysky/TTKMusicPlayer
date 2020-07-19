@@ -21,7 +21,7 @@
 
 #include "musicabstracttablewidget.h"
 
-class MusicFMRadioChannelThread;
+class MusicFMRadioChannelRequest;
 class MusicWebFMRadioPlayWidget;
 
 /*! @brief The class of the web music radio list widget.
@@ -82,7 +82,7 @@ protected:
 
     int m_outerIndex;
     MusicWebFMRadioPlayWidget *m_musicRadio;
-    MusicFMRadioChannelThread *m_getChannelThread;
+    MusicFMRadioChannelRequest *m_getChannelThread;
 
 };
 

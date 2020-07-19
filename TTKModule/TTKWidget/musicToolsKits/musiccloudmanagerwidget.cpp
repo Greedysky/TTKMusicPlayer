@@ -1,13 +1,13 @@
 #include "musiccloudmanagerwidget.h"
 #include "musicuiobject.h"
 #include "musicsemaphoreloop.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicitemdelegate.h"
 #include "musicnumberutils.h"
 #include "musicopenfilewidget.h"
 #include "musicsettingmanager.h"
 #include "musiccloudfileinformationwidget.h"
-#include "musicdatadownloadthread.h"
+#include "musicdownloaddatarequest.h"
 #include "musiccoreutils.h"
 #include "musicfileutils.h"
 #include "musicstringutils.h"
@@ -80,7 +80,7 @@ bool MusicCloudManagerTableWidget::getKey()
     MusicSemaphoreLoop loop;
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
-    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_CLOUD_URL);
 
@@ -264,7 +264,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
     const QString &url = m_syncDownloadData->getDownloadUrl(MUSIC_BUCKET, data.m_dataItem.m_name);
 
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
     download->setRecordType(MusicObject::RecordCloudDownload);
     download->startToDownload();
 }

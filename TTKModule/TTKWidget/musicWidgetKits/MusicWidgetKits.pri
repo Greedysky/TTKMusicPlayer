@@ -42,30 +42,30 @@ HEADERS  += \
     $$PWD/musicsongsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
-    $$PWD/musicsimilarfoundwidget.h \
+    $$PWD/musicsimilarquerywidget.h \
     $$PWD/musicvolumepopwidget.h \
     $$PWD/musicmorefunctionspopwidget.h \
-    $$PWD/musicalbumfoundwidget.h \
-    $$PWD/musicartistfoundwidget.h \
+    $$PWD/musicalbumquerywidget.h \
+    $$PWD/musicartistquerywidget.h \
     $$PWD/musicsoundeffectswidget.h \
     $$PWD/musicmessageaboutdialog.h \
-    $$PWD/musicplaylistfoundwidget.h \
-    $$PWD/musicplaylistfoundinfowidget.h \
-    $$PWD/musicplaylistfoundtablewidget.h \
+    $$PWD/musicplaylistquerywidget.h \
+    $$PWD/musicplaylistqueryinfowidget.h \
+    $$PWD/musicplaylistquerytablewidget.h \
     $$PWD/musicenhancedpopwidget.h \
     $$PWD/musicplaybackmodepopwidget.h \
     $$PWD/musicqualitychoicepopwidget.h \
     $$PWD/musicplayedlistpopwidget.h \
-    $$PWD/musicplaylistfoundcategorypopwidget.h \
-    $$PWD/musicplaylistfoundcommentswidget.h \
+    $$PWD/musicplaylistquerycategorypopwidget.h \
+    $$PWD/musicplaylistquerycommentswidget.h \
     $$PWD/musicfuntionanimationwidget.h \
-    $$PWD/musictoplistfoundwidget.h \
-    $$PWD/musictoplistfoundcategorypopwidget.h \
+    $$PWD/musictoplistquerywidget.h \
+    $$PWD/musictoplistquerycategorypopwidget.h \
     $$PWD/musicdownloadbatchwidget.h \
     $$PWD/musicadvancedsearchedwidget.h \
-    $$PWD/musicrecommendfoundwidget.h \
-    $$PWD/musicartistlistfoundwidget.h \
-    $$PWD/musicartistlistfoundcategorypopwidget.h \
+    $$PWD/musicrecommendquerywidget.h \
+    $$PWD/musicartistlistquerywidget.h \
+    $$PWD/musicartistlistquerycategorypopwidget.h \
     $$PWD/musicripplespecturmobject.h \
     $$PWD/musicpluginwidget.h
 
@@ -94,29 +94,29 @@ SOURCES += \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
-    $$PWD/musicsimilarfoundwidget.cpp \
+    $$PWD/musicsimilarquerywidget.cpp \
     $$PWD/musicvolumepopwidget.cpp \
     $$PWD/musicmorefunctionspopwidget.cpp \
-    $$PWD/musicalbumfoundwidget.cpp \
-    $$PWD/musicartistfoundwidget.cpp \
+    $$PWD/musicalbumquerywidget.cpp \
+    $$PWD/musicartistquerywidget.cpp \
     $$PWD/musicsoundeffectswidget.cpp \
     $$PWD/musicmessageaboutdialog.cpp \
-    $$PWD/musicplaylistfoundwidget.cpp \
-    $$PWD/musicplaylistfoundinfowidget.cpp \
-    $$PWD/musicplaylistfoundtablewidget.cpp \
+    $$PWD/musicplaylistquerywidget.cpp \
+    $$PWD/musicplaylistqueryinfowidget.cpp \
+    $$PWD/musicplaylistquerytablewidget.cpp \
     $$PWD/musicenhancedpopwidget.cpp \
     $$PWD/musicplaybackmodepopwidget.cpp \
     $$PWD/musicqualitychoicepopwidget.cpp \
     $$PWD/musicplayedlistpopwidget.cpp \
-    $$PWD/musicplaylistfoundcategorypopwidget.cpp \
-    $$PWD/musicplaylistfoundcommentswidget.cpp \
+    $$PWD/musicplaylistquerycategorypopwidget.cpp \
+    $$PWD/musicplaylistquerycommentswidget.cpp \
     $$PWD/musicfuntionanimationwidget.cpp \
-    $$PWD/musictoplistfoundwidget.cpp \
-    $$PWD/musictoplistfoundcategorypopwidget.cpp \
+    $$PWD/musictoplistquerywidget.cpp \
+    $$PWD/musictoplistquerycategorypopwidget.cpp \
     $$PWD/musicdownloadbatchwidget.cpp \
     $$PWD/musicadvancedsearchedwidget.cpp \
-    $$PWD/musicrecommendfoundwidget.cpp \
-    $$PWD/musicartistlistfoundwidget.cpp \
-    $$PWD/musicartistlistfoundcategorypopwidget.cpp \
+    $$PWD/musicrecommendquerywidget.cpp \
+    $$PWD/musicartistlistquerywidget.cpp \
+    $$PWD/musicartistlistquerycategorypopwidget.cpp \
     $$PWD/musicripplespecturmobject.cpp \
     $$PWD/musicpluginwidget.cpp

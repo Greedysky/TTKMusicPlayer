@@ -26,8 +26,8 @@
 class QDeviceWatcher;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
-class MusicSourceUpdateThread;
-class MusicDownloadCounterPVThread;
+class MusicSourceUpdateRequest;
+class MusicDownloadCounterPVRequest;
 class MusicScreenSaverBackgroundWidget;
 
 /*! @brief The class of the app object widget.
@@ -170,8 +170,8 @@ protected:
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
 
-    MusicSourceUpdateThread *m_sourceUpdatehread;
-    MusicDownloadCounterPVThread *m_counterPVThread;
+    MusicSourceUpdateRequest *m_sourceUpdatehread;
+    MusicDownloadCounterPVRequest *m_counterPVThread;
     MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 
     static MusicApplicationObject *m_instance;

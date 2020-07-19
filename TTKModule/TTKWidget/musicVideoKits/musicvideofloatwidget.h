@@ -19,14 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicfloatabstractwidget.h"
+#include "musicabstractfloatwidget.h"
 
 class QPushButton;
 
 /*! @brief The class of the video float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoFloatWidget : public MusicFloatAbstractWidget
+class MUSIC_VIDEO_EXPORT MusicVideoFloatWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoFloatWidget)

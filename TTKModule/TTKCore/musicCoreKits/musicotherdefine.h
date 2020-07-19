@@ -23,7 +23,6 @@
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"
 #define MUSIC_DAILY_DIR             "Bing"
-#define MUSIC_YYT_PREFIX            "TTK_YYT_"
 #define MUSIC_TIME_INIT             "00:00"
 #define MUSIC_NETWORK_TEST_FILE     "netwotk_test.tt"
 #define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
@@ -94,7 +93,7 @@
 #define VIDEO_WINDOW_INDEX_0        0
 #define VIDEO_WINDOW_INDEX_1        1
 
-//MusicPlaylistFoundWidget
+//MusicPlaylistQueryWidget
 #define PLAYLIST_WINDOW_INDEX_0     0
 #define PLAYLIST_WINDOW_INDEX_1     1
 

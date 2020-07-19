@@ -24,7 +24,7 @@
 
 class MusicCloudUploadTableWidget;
 class MusicCloudDownloadTableWidget;
-class MusicDownloadAbstractTableWidget;
+class MusicAbstractDownloadTableWidget;
 
 /*! @brief The class of the cloud tool box widget.
  * @author Greedysky <greedysky@163.com>
@@ -51,7 +51,7 @@ protected:
     /*!
      * Create widget item.
      */
-    void createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index);
+    void createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index);
     /*!
      * Create item.
      */

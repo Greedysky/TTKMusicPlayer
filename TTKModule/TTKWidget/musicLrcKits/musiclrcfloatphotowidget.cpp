@@ -130,7 +130,7 @@ void MusicLrcFloatPhotoItem::enterEvent(QEvent *event)
 
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
-    : MusicFloatAbstractWidget(parent)
+    : MusicAbstractFloatWidget(parent)
 {
     setObjectName("MusicLrcFloatPhotoWidget");
     setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
@@ -346,7 +346,7 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
 
 void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
 {
-    MusicFloatAbstractWidget::paintEvent(event);
+    MusicAbstractFloatWidget::paintEvent(event);
 
     QPainter painter(this);
     for(int i=0; i<= ceil(width()/PHOTO_BACKGROUNDG_WIDTH); ++i)

@@ -17,8 +17,8 @@
 #include "musicconnecttransferwidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicsongchecktoolstablewidget.h"
-#include "musicqueryfoundtablewidget.h"
-#include "musicdownloadabstracttablewidget.h"
+#include "musicitemquerytablewidget.h"
+#include "musicabstractdownloadtablewidget.h"
 #include "musiccloudtablewidget.h"
 #include "musiccloudmanagerwidget.h"
 #include "musicsongdlnatransferwidget.h"
@@ -52,7 +52,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     else if((from == MusicLocalSongsManagerWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicSongCheckToolsDuplicateTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicSongCheckToolsQualityTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
-            (from == MusicDownloadAbstractTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
+            (from == MusicAbstractDownloadTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
         QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second, SLOT(addSongToPlaylist(QStringList)));
     }
@@ -74,7 +74,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadMode)), second, SLOT(showDownLoadInfoFor(MusicObject::DownLoadMode)));
     }
     else if((from == MusicSongSearchTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
-            (from == MusicQueryFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
+            (from == MusicItemQueryTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
         QObject::connect(first, SIGNAL(musicSongToPlaylistChanged(QString,QString,QString,bool)), second, SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
     }

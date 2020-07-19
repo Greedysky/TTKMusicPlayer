@@ -6,7 +6,7 @@
 #include "musiccoreutils.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
-    : MusicQueryItemTableWidget(parent)
+    : MusicItemSearchTableWidget(parent)
 {
     setColumnCount(7);
     QHeaderView *headerview = horizontalHeader();
@@ -33,10 +33,10 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    MusicQueryItemTableWidget::startSearchQuery(text);
+    MusicItemSearchTableWidget::startSearchQuery(text);
     connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->run(true);
-    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
+    m_downLoadManager->startToSearch(MusicAbstractQueryRequest::LrcQuery, text);
 }
 
 void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
@@ -49,7 +49,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     ///download lrc
-    MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfos[row].m_lrcUrl,
+    MusicAbstractDownLoadRequest *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfos[row].m_lrcUrl,
                                      MusicUtils::String::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
                                      MusicObject::DownloadLrc, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));
@@ -67,12 +67,12 @@ void MusicLrcSearchTableWidget::itemCellEntered(int row, int column)
         unsetCursor();
     }
 
-    MusicQueryItemTableWidget::itemCellEntered(row, column);
+    MusicItemSearchTableWidget::itemCellEntered(row, column);
 }
 
 void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellClicked(row, column);
+    MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 6:
@@ -85,7 +85,7 @@ void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)
 
 void MusicLrcSearchTableWidget::clearAllItems()
 {
-    MusicQueryItemTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::clearAllItems();
     setColumnCount(7);
 }
 
@@ -155,7 +155,7 @@ void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicLrcSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryItemTableWidget::contextMenuEvent(event);
+    MusicItemSearchTableWidget::contextMenuEvent(event);
 
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);

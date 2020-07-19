@@ -1,6 +1,6 @@
 #include "musicsongsharingwidget.h"
 #include "ui_musicsongsharingwidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicabstractqueryrequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
@@ -9,7 +9,7 @@
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 
 #include "qrencode/qrcodewidget.h"
 
@@ -74,7 +74,7 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
         case Playlist:
             {
                 const QString &smallUrl = data["smallUrl"].toString();
-                MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+                MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
                 connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
                 if(!smallUrl.isEmpty() && smallUrl != COVER_URL_NULL)
                 {
@@ -105,8 +105,8 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         case Song:
             {
-                MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-                d->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
+                MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+                d->startToSearch(MusicAbstractQueryRequest::MusicQuery, m_ui->sharedName->text().trimmed());
 
                 MusicSemaphoreLoop loop;
                 connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
@@ -145,12 +145,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
         case Movie:
             {
                 QString server = m_data["queryServer"].toString(), id = m_data["id"].toString();
-                if(id.contains(MUSIC_YYT_PREFIX))
-                {
-                    id.remove(MUSIC_YYT_PREFIX);
-                    server = MusicUtils::Algorithm::mdII(YT_MV_SHARE, ALG_LOW_KEY, false).arg(id);
-                }
-                else if(server == QUERY_WY_INTERFACE)
+                if(server == QUERY_WY_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_LOW_KEY, false).arg(id);
                 else if(server == QUERY_QQ_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_LOW_KEY, false).arg(id);

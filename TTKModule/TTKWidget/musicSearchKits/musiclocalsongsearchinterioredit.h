@@ -21,9 +21,9 @@
 
 #include "musiclocalsongsearchedit.h"
 
-class MusicDownLoadDiscoverListThread;
+class MusicDiscoverListRequest;
 class MusicLocalSongSearchPopWidget;
-class MusicDownLoadSongSuggestThread;
+class MusicSongSuggestRequest;
 
 /*! @brief The class of the net search interior edit widget.
  * @author Greedysky <greedysky@163.com>
@@ -71,8 +71,8 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
 
     MusicLocalSongSearchPopWidget *m_popWidget;
-    MusicDownLoadDiscoverListThread *m_discoverThread;
-    MusicDownLoadSongSuggestThread *m_suggestThread;
+    MusicDiscoverListRequest *m_discoverThread;
+    MusicSongSuggestRequest *m_suggestThread;
 
 };
 

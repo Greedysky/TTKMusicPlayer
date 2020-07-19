@@ -36,7 +36,7 @@ void MusicCloudToolBoxWidget::updateItemTitle(int index)
     setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
-void MusicCloudToolBoxWidget::createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index)
+void MusicCloudToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index)
 {
     MusicSongItem *item = &m_songItems.last();
     item->m_itemName = text;

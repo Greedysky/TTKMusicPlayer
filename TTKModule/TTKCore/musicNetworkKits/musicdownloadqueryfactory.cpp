@@ -1,400 +1,400 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicsettingmanager.h"
 //
-#include "musicdownloadquerywythread.h"
-#include "musicdownloadqueryxmthread.h"
-#include "musicdownloadquerykgthread.h"
-#include "musicdownloadquerykwthread.h"
-#include "musicdownloadquerybdthread.h"
-#include "musicdownloadqueryqqthread.h"
+#include "musicwyqueryrequest.h"
+#include "musicxmqueryrequest.h"
+#include "musickgqueryrequest.h"
+#include "musickwqueryrequest.h"
+#include "musicbdqueryrequest.h"
+#include "musicqqqueryrequest.h"
 //
-#include "musicdownloadquerywymoviethread.h"
-#include "musicdownloadqueryxmmoviethread.h"
-#include "musicdownloadquerykgmoviethread.h"
-#include "musicdownloadquerykwmoviethread.h"
-#include "musicdownloadquerybdmoviethread.h"
-#include "musicdownloadqueryqqmoviethread.h"
+#include "musicwyquerymovierequest.h"
+#include "musicxmquerymovierequest.h"
+#include "musickgquerymovierequest.h"
+#include "musickwquerymovierequest.h"
+#include "musicbdquerymovierequest.h"
+#include "musicqqquerymovierequest.h"
 //
-#include "musicdownloadquerywyalbumthread.h"
-#include "musicdownloadqueryxmalbumthread.h"
-#include "musicdownloadquerykgalbumthread.h"
-#include "musicdownloadquerykwalbumthread.h"
-#include "musicdownloadquerybdalbumthread.h"
-#include "musicdownloadqueryqqalbumthread.h"
+#include "musicwyqueryalbumrequest.h"
+#include "musicxmqueryalbumrequest.h"
+#include "musickgqueryalbumrequest.h"
+#include "musickwqueryalbumrequest.h"
+#include "musicbdqueryalbumrequest.h"
+#include "musicqqqueryalbumrequest.h"
 //
-#include "musicdownloadquerywyartistthread.h"
-#include "musicdownloadqueryxmartistthread.h"
-#include "musicdownloadquerykgartistthread.h"
-#include "musicdownloadquerykwartistthread.h"
-#include "musicdownloadquerybdartistthread.h"
-#include "musicdownloadqueryqqartistthread.h"
+#include "musicwyqueryartistrequest.h"
+#include "musicxmqueryartistrequest.h"
+#include "musickgqueryartistrequest.h"
+#include "musickwqueryartistrequest.h"
+#include "musicbdqueryartistrequest.h"
+#include "musicqqqueryartistrequest.h"
 //
-#include "musicdownloadquerywyartistlistthread.h"
-#include "musicdownloadqueryxmartistlistthread.h"
-#include "musicdownloadquerykgartistlistthread.h"
-#include "musicdownloadquerykwartistlistthread.h"
-#include "musicdownloadquerybdartistlistthread.h"
-#include "musicdownloadqueryqqartistlistthread.h"
+#include "musicwyqueryartistlistrequest.h"
+#include "musicxmqueryartistlistrequest.h"
+#include "musickgqueryartistlistrequest.h"
+#include "musickwqueryartistlistrequest.h"
+#include "musicbdqueryartistlistrequest.h"
+#include "musicqqqueryartistlistrequest.h"
 //
-#include "musicdownloadquerywytoplistthread.h"
-#include "musicdownloadqueryqqtoplistthread.h"
-#include "musicdownloadqueryxmtoplistthread.h"
-#include "musicdownloadquerybdtoplistthread.h"
-#include "musicdownloadquerykgtoplistthread.h"
-#include "musicdownloadquerykwtoplistthread.h"
+#include "musicwyquerytoplistrequest.h"
+#include "musicqqquerytoplistrequest.h"
+#include "musicxmquerytoplistrequest.h"
+#include "musicbdquerytoplistrequest.h"
+#include "musickgquerytoplistrequest.h"
+#include "musickwquerytoplistrequest.h"
 //
-#include "musicdownloadquerywyplaylistthread.h"
-#include "musicdownloadqueryqqplaylistthread.h"
-#include "musicdownloadquerybdplaylistthread.h"
-#include "musicdownloadqueryxmplaylistthread.h"
-#include "musicdownloadquerykgplaylistthread.h"
-#include "musicdownloadquerykwplaylistthread.h"
+#include "musicwyqueryplaylistrequest.h"
+#include "musicqqqueryplaylistrequest.h"
+#include "musicbdqueryplaylistrequest.h"
+#include "musicxmqueryplaylistrequest.h"
+#include "musickgqueryplaylistrequest.h"
+#include "musickwqueryplaylistrequest.h"
 //
-#include "musicdownloadquerywyrecommendthread.h"
-#include "musicdownloadqueryqqrecommendthread.h"
-#include "musicdownloadquerybdrecommendthread.h"
-#include "musicdownloadqueryxmrecommendthread.h"
-#include "musicdownloadquerykgrecommendthread.h"
-#include "musicdownloadquerykwrecommendthread.h"
+#include "musicwyqueryrecommendrequest.h"
+#include "musicqqqueryrecommendrequest.h"
+#include "musicbdqueryrecommendrequest.h"
+#include "musicxmqueryrecommendrequest.h"
+#include "musickgqueryrecommendrequest.h"
+#include "musickwqueryrecommendrequest.h"
 //
-#include "musicwycommentsthread.h"
-#include "musicxmcommentsthread.h"
-#include "musicbdcommentsthread.h"
-#include "musickgcommentsthread.h"
-#include "musickwcommentsthread.h"
-#include "musicqqcommentsthread.h"
+#include "musicwycommentsrequest.h"
+#include "musicxmcommentsrequest.h"
+#include "musicbdcommentsrequest.h"
+#include "musickgcommentsrequest.h"
+#include "musickwcommentsrequest.h"
+#include "musicqqcommentsrequest.h"
 //
-#include "musicwydiscoverlistthread.h"
-#include "musicxmdiscoverlistthread.h"
-#include "musicbddiscoverlistthread.h"
-#include "musicqqdiscoverlistthread.h"
-#include "musickgdiscoverlistthread.h"
-#include "musickwdiscoverlistthread.h"
+#include "musicwydiscoverlistrequest.h"
+#include "musicxmdiscoverlistrequest.h"
+#include "musicbddiscoverlistrequest.h"
+#include "musicqqdiscoverlistrequest.h"
+#include "musickgdiscoverlistrequest.h"
+#include "musickwdiscoverlistrequest.h"
 //
-#include "musicwysongsuggestthread.h"
-#include "musicxmsongsuggestthread.h"
-#include "musicbdsongsuggestthread.h"
-#include "musicqqsongsuggestthread.h"
-#include "musickgsongsuggestthread.h"
-#include "musickwsongsuggestthread.h"
+#include "musicwysongsuggestrequest.h"
+#include "musicxmsongsuggestrequest.h"
+#include "musicbdsongsuggestrequest.h"
+#include "musicqqsongsuggestrequest.h"
+#include "musickgsongsuggestrequest.h"
+#include "musickwsongsuggestrequest.h"
 //
-#include "musicwyartistsimilarthread.h"
-#include "musicxmartistsimilarthread.h"
-#include "musicbdartistsimilarthread.h"
-#include "musicqqartistsimilarthread.h"
-#include "musickgartistsimilarthread.h"
-#include "musickwartistsimilarthread.h"
+#include "musicwyartistsimilarrequest.h"
+#include "musicxmartistsimilarrequest.h"
+#include "musicbdartistsimilarrequest.h"
+#include "musicqqartistsimilarrequest.h"
+#include "musickgartistsimilarrequest.h"
+#include "musickwartistsimilarrequest.h"
 //
-#include "musicbdtranslationthread.h"
-#include "musicwytranslationthread.h"
+#include "musicbdtranslationrequest.h"
+#include "musicwytranslationrequest.h"
 //
-#include "musicdatadownloadthread.h"
+#include "musicdownloaddatarequest.h"
 //
-#include "musictextdownloadthread.h"
-#include "musicwytextdownloadthread.h"
-#include "musicxmtextdownloadthread.h"
-#include "musickwtextdownloadthread.h"
-#include "musicqqtextdownloadthread.h"
+#include "musicdownloadtextrequest.h"
+#include "musicwydownloadtextrequest.h"
+#include "musicxmdownloadtextrequest.h"
+#include "musickwdownloadtextrequest.h"
+#include "musicqqdownloadtextrequest.h"
 //
-#include "musickwbackgroundthread.h"
-#include "musicqqbackgroundthread.h"
+#include "musickwdownloadbackgroundrequest.h"
+#include "musicqqdownloadbackgroundrequest.h"
 //
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getQueryRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYThread(parent);
+        case 0:  request = new MusicWYQueryRequest(parent); break;
+        case 1:  request = new MusicQQQueryRequest(parent); break;
+        case 2:  request = new MusicXMQueryRequest(parent); break;
+        case 3:  request = new MusicBDQueryRequest(parent); break;
+        case 4:  request = new MusicKWQueryRequest(parent); break;
+        case 5:  request = new MusicKGQueryRequest(parent); break;
+        default: request = new MusicWYQueryRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryrequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getMovieThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getMovieRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYMovieThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQMovieThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMMovieThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDMovieThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWMovieThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGMovieThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYMovieThread(parent);
+        case 0:  request = new MusicWYQueryMovieRequest(parent); break;
+        case 1:  request = new MusicQQQueryMovieRequest(parent); break;
+        case 2:  request = new MusicXMQueryMovieRequest(parent); break;
+        case 3:  request = new MusicBDQueryMovieRequest(parent); break;
+        case 4:  request = new MusicKWQueryMovieRequest(parent); break;
+        case 5:  request = new MusicKGQueryMovieRequest(parent); break;
+        default: request = new MusicWYQueryMovieRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryMovieThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryMovieRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getAlbumRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYAlbumThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQAlbumThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMAlbumThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDAlbumThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWAlbumThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGAlbumThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYAlbumThread(parent);
+        case 0:  request = new MusicWYQueryAlbumRequest(parent); break;
+        case 1:  request = new MusicQQQueryAlbumRequest(parent); break;
+        case 2:  request = new MusicXMQueryAlbumRequest(parent); break;
+        case 3:  request = new MusicBDQueryAlbumRequest(parent); break;
+        case 4:  request = new MusicKWQueryAlbumRequest(parent); break;
+        case 5:  request = new MusicKGQueryAlbumRequest(parent); break;
+        default: request = new MusicWYQueryAlbumRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryAlbumThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryAlbumRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYArtistThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQArtistThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMArtistThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDArtistThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWArtistThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGArtistThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYArtistThread(parent);
+        case 0:  request = new MusicWYQueryArtistRequest(parent); break;
+        case 1:  request = new MusicQQQueryArtistRequest(parent); break;
+        case 2:  request = new MusicXMQueryArtistRequest(parent); break;
+        case 3:  request = new MusicBDQueryArtistRequest(parent); break;
+        case 4:  request = new MusicKWQueryArtistRequest(parent); break;
+        case 5:  request = new MusicKGQueryArtistRequest(parent); break;
+        default: request = new MusicWYQueryArtistRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryArtistThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryArtistRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistListThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistListRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYArtistListThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQArtistListThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMArtistListThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDArtistListThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWArtistListThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGArtistListThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYArtistListThread(parent);
+        case 0:  request = new MusicWYQueryArtistListRequest(parent); break;
+        case 1:  request = new MusicQQQueryArtistListRequest(parent); break;
+        case 2:  request = new MusicXMQueryArtistListRequest(parent); break;
+        case 3:  request = new MusicBDQueryArtistListRequest(parent); break;
+        case 4:  request = new MusicKWQueryArtistListRequest(parent); break;
+        case 5:  request = new MusicKGQueryArtistListRequest(parent); break;
+        default: request = new MusicWYQueryArtistListRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryArtistListThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryArtistListRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getToplistThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getToplistRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYToplistThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQToplistThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMToplistThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDToplistThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWToplistThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGToplistThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYToplistThread(parent);
+        case 0:  request = new MusicWYQueryToplistRequest(parent); break;
+        case 1:  request = new MusicQQQueryToplistRequest(parent); break;
+        case 2:  request = new MusicXMQueryToplistRequest(parent); break;
+        case 3:  request = new MusicBDQueryToplistRequest(parent); break;
+        case 4:  request = new MusicKWQueryToplistRequest(parent); break;
+        case 5:  request = new MusicKGQueryToplistRequest(parent); break;
+        default: request = new MusicWYQueryToplistRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryToplistThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryToplistRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getPlaylistRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQPlaylistThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMPlaylistThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDPlaylistThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWPlaylistThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGPlaylistThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYPlaylistThread(parent);
+        case 0:  request = new MusicWYQueryPlaylistRequest(parent); break;
+        case 1:  request = new MusicQQQueryPlaylistRequest(parent); break;
+        case 2:  request = new MusicXMQueryPlaylistRequest(parent); break;
+        case 3:  request = new MusicBDQueryPlaylistRequest(parent); break;
+        case 4:  request = new MusicKWQueryPlaylistRequest(parent); break;
+        case 5:  request = new MusicKGQueryPlaylistRequest(parent); break;
+        default: request = new MusicWYQueryPlaylistRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryPlaylistThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryPlaylistRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getRecommendRequest(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicAbstractQueryRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicDownLoadQueryWYRecommendThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQRecommendThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMRecommendThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDRecommendThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWRecommendThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGRecommendThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYRecommendThread(parent);
+        case 0:  request = new MusicWYQueryRecommendRequest(parent); break;
+        case 1:  request = new MusicQQQueryRecommendRequest(parent); break;
+        case 2:  request = new MusicXMQueryRecommendRequest(parent); break;
+        case 3:  request = new MusicBDQueryRecommendRequest(parent); break;
+        case 4:  request = new MusicKWQueryRecommendRequest(parent); break;
+        case 5:  request = new MusicKGQueryRecommendRequest(parent); break;
+        default: request = new MusicWYQueryRecommendRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicDownLoadQueryRecommendThread server: %1").arg(thread->getQueryServer()));
-    return thread;
+    TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->getQueryServer()));
+    return request;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getSimilarSongThread(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getSimilarSongRequest(QObject *parent)
 {
-    return getQueryThread(parent);
+    return getQueryRequest(parent);
 }
 
-MusicDownLoadSimilarThread *MusicDownLoadQueryFactory::getSimilarArtistThread(QObject *parent)
+MusicSimilarRequest *MusicDownLoadQueryFactory::getSimilarArtistRequest(QObject *parent)
 {
-    MusicDownLoadSimilarThread *thread = nullptr;
+    MusicSimilarRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicWYArtistSimilarThread(parent); break;
-        case 1:  thread = new MusicQQArtistSimilarThread(parent); break;
-        case 2:  thread = new MusicXMArtistSimilarThread(parent); break;
-        case 3:  thread = new MusicBDArtistSimilarThread(parent); break;
-        case 4:  thread = new MusicKWArtistSimilarThread(parent); break;
-        case 5:  thread = new MusicKGArtistSimilarThread(parent); break;
-        default: thread = new MusicWYArtistSimilarThread(parent);
+        case 0:  request = new MusicWYArtistSimilarRequest(parent); break;
+        case 1:  request = new MusicQQArtistSimilarRequest(parent); break;
+        case 2:  request = new MusicXMArtistSimilarRequest(parent); break;
+        case 3:  request = new MusicBDArtistSimilarRequest(parent); break;
+        case 4:  request = new MusicKWArtistSimilarRequest(parent); break;
+        case 5:  request = new MusicKGArtistSimilarRequest(parent); break;
+        default: request = new MusicWYArtistSimilarRequest(parent);
     }
-    return thread;
+    return request;
 }
 
-MusicDownLoadSongSuggestThread *MusicDownLoadQueryFactory::getSuggestThread(QObject *parent)
+MusicSongSuggestRequest *MusicDownLoadQueryFactory::getSuggestRequest(QObject *parent)
 {
-    MusicDownLoadSongSuggestThread *thread = nullptr;
+    MusicSongSuggestRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicWYSongSuggestThread(parent); break;
-        case 1:  thread = new MusicQQSongSuggestThread(parent); break;
-        case 2:  thread = new MusicXMSongSuggestThread(parent); break;
-        case 3:  thread = new MusicBDSongSuggestThread(parent); break;
-        case 4:  thread = new MusicKWSongSuggestThread(parent); break;
-        case 5:  thread = new MusicKGSongSuggestThread(parent); break;
-        default: thread = new MusicWYSongSuggestThread(parent);
+        case 0:  request = new MusicWYSongSuggestRequest(parent); break;
+        case 1:  request = new MusicQQSongSuggestRequest(parent); break;
+        case 2:  request = new MusicXMSongSuggestRequest(parent); break;
+        case 3:  request = new MusicBDSongSuggestRequest(parent); break;
+        case 4:  request = new MusicKWSongSuggestRequest(parent); break;
+        case 5:  request = new MusicKGSongSuggestRequest(parent); break;
+        default: request = new MusicWYSongSuggestRequest(parent);
     }
-    return thread;
+    return request;
 }
 
-MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getSongCommentThread(QObject *parent)
+MusicCommentsRequest *MusicDownLoadQueryFactory::getSongCommentRequest(QObject *parent)
 {
-    MusicDownLoadCommentsThread *thread = nullptr;
+    MusicCommentsRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicWYSongCommentsThread(parent); break;
-        case 1:  thread = new MusicQQSongCommentsThread(parent); break;
-        case 2:  thread = new MusicXMSongCommentsThread(parent); break;
-        case 3:  thread = new MusicBDSongCommentsThread(parent); break;
-        case 4:  thread = new MusicKWSongCommentsThread(parent); break;
-        case 5:  thread = new MusicKGSongCommentsThread(parent); break;
-        default: thread = new MusicWYSongCommentsThread(parent);
+        case 0:  request = new MusicWYSongCommentsRequest(parent); break;
+        case 1:  request = new MusicQQSongCommentsRequest(parent); break;
+        case 2:  request = new MusicXMSongCommentsRequest(parent); break;
+        case 3:  request = new MusicBDSongCommentsRequest(parent); break;
+        case 4:  request = new MusicKWSongCommentsRequest(parent); break;
+        case 5:  request = new MusicKGSongCommentsRequest(parent); break;
+        default: request = new MusicWYSongCommentsRequest(parent);
     }
-    return thread;
+    return request;
 }
 
-MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getPlaylistCommentThread(QObject *parent)
+MusicCommentsRequest *MusicDownLoadQueryFactory::getPlaylistCommentRequest(QObject *parent)
 {
-    MusicDownLoadCommentsThread *thread = nullptr;
+    MusicCommentsRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicWYPlaylistCommentsThread(parent); break;
-        case 1:  thread = new MusicQQPlaylistCommentsThread(parent); break;
-        case 2:  thread = new MusicXMPlaylistCommentsThread(parent); break;
-        case 3:  thread = new MusicBDPlaylistCommentsThread(parent); break;
-        case 4:  thread = new MusicKWPlaylistCommentsThread(parent); break;
-        case 5:  thread = new MusicKGPlaylistCommentsThread(parent); break;
-        default: thread = new MusicWYPlaylistCommentsThread(parent);
+        case 0:  request = new MusicWYPlaylistCommentsRequest(parent); break;
+        case 1:  request = new MusicQQPlaylistCommentsRequest(parent); break;
+        case 2:  request = new MusicXMPlaylistCommentsRequest(parent); break;
+        case 3:  request = new MusicBDPlaylistCommentsRequest(parent); break;
+        case 4:  request = new MusicKWPlaylistCommentsRequest(parent); break;
+        case 5:  request = new MusicKGPlaylistCommentsRequest(parent); break;
+        default: request = new MusicWYPlaylistCommentsRequest(parent);
     }
-    return thread;
+    return request;
 }
 
-MusicDownLoadDiscoverListThread *MusicDownLoadQueryFactory::getDiscoverListThread(QObject *parent)
+MusicDiscoverListRequest *MusicDownLoadQueryFactory::getDiscoverListRequest(QObject *parent)
 {
-    MusicDownLoadDiscoverListThread *thread = nullptr;
+    MusicDiscoverListRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicWYDiscoverListThread(parent); break;
-        case 1:  thread = new MusicQQDiscoverListThread(parent); break;
-        case 2:  thread = new MusicXMDiscoverListThread(parent); break;
-        case 3:  thread = new MusicBDDiscoverListThread(parent); break;
-        case 4:  thread = new MusicKWDiscoverListThread(parent); break;
-        case 5:  thread = new MusicKGDiscoverListThread(parent); break;
-        default: thread = new MusicWYDiscoverListThread(parent);
+        case 0:  request = new MusicWYDiscoverListRequest(parent); break;
+        case 1:  request = new MusicQQDiscoverListRequest(parent); break;
+        case 2:  request = new MusicXMDiscoverListRequest(parent); break;
+        case 3:  request = new MusicBDDiscoverListRequest(parent); break;
+        case 4:  request = new MusicKWDiscoverListRequest(parent); break;
+        case 5:  request = new MusicKGDiscoverListRequest(parent); break;
+        default: request = new MusicWYDiscoverListRequest(parent);
     }
-    return thread;
+    return request;
 }
 
-MusicDownloadTranslationThread *MusicDownLoadQueryFactory::getTranslationThread(QObject *parent)
+MusicTranslationRequest *MusicDownLoadQueryFactory::getTranslationRequest(QObject *parent)
 {
-    MusicDownloadTranslationThread *thread = nullptr;
+    MusicTranslationRequest *request = nullptr;
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0:  thread = new MusicWYTranslationThread(parent); break;
-        case 1:  thread = new MusicBDTranslationThread(parent); break;
-        case 2:  thread = new MusicBDTranslationThread(parent); break;
-        case 3:  thread = new MusicBDTranslationThread(parent); break;
-        case 4:  thread = new MusicBDTranslationThread(parent); break;
-        case 5:  thread = new MusicBDTranslationThread(parent); break;
-        default: thread = new MusicBDTranslationThread(parent);
+        case 0:  request = new MusicWYTranslationRequest(parent); break;
+        case 1:  request = new MusicBDTranslationRequest(parent); break;
+        case 2:  request = new MusicBDTranslationRequest(parent); break;
+        case 3:  request = new MusicBDTranslationRequest(parent); break;
+        case 4:  request = new MusicBDTranslationRequest(parent); break;
+        case 5:  request = new MusicBDTranslationRequest(parent); break;
+        default: request = new MusicBDTranslationRequest(parent);
     }
-    return thread;
+    return request;
 }
 
-MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPicThread(const QString &url, const QString &save,
-                                                                                  MusicObject::DownloadType type,
-                                                                                  QObject *parent)
-{
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
-    switch(index)
-    {
-        case 0: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 1: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 2: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 3: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 4: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 5: return (new MusicDataDownloadThread(url, save, type, parent));
-    }
-    return (new MusicDataDownloadThread(url, save, type, parent));
-}
-
-MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrcThread(const QString &url, const QString &save,
-                                                                             MusicObject::DownloadType type,
-                                                                             QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadSmallPicRequest(const QString &url, const QString &save,
+                                                                                    MusicObject::DownloadType type,
+                                                                                    QObject *parent)
 {
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(index)
     {
-        case 0: return (new MusicWYTextDownLoadThread(url, save, type, parent));
-        case 1: return (new MusicQQTextDownLoadThread(url, save, type, parent));
-        case 2: return (new MusicXMTextDownLoadThread(url, save, type, parent));
-        case 3: return (new MusicTextDownLoadThread(url, save, type, parent));
-        case 4: return (new MusicKWTextDownLoadThread(url, save, type, parent));
-        case 5: return (new MusicTextDownLoadThread(url, save, type, parent));
+        case 0: return (new MusicDownloadDataRequest(url, save, type, parent));
+        case 1: return (new MusicDownloadDataRequest(url, save, type, parent));
+        case 2: return (new MusicDownloadDataRequest(url, save, type, parent));
+        case 3: return (new MusicDownloadDataRequest(url, save, type, parent));
+        case 4: return (new MusicDownloadDataRequest(url, save, type, parent));
+        case 5: return (new MusicDownloadDataRequest(url, save, type, parent));
     }
-    return (new MusicTextDownLoadThread(url, save, type, parent));
+    return (new MusicDownloadDataRequest(url, save, type, parent));
 }
 
-MusicDownloadBackgroundThread *MusicDownLoadQueryFactory::getDownloadBigPicThread(const QString &name, const QString &save,
-                                                                                  QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(const QString &url, const QString &save,
+                                                                               MusicObject::DownloadType type,
+                                                                               QObject *parent)
+{
+    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    switch(index)
+    {
+        case 0: return (new MusicWYDownLoadTextRequest(url, save, type, parent));
+        case 1: return (new MusicQQDownLoadTextRequest(url, save, type, parent));
+        case 2: return (new MusicXMDownLoadTextRequest(url, save, type, parent));
+        case 3: return (new MusicDownLoadTextRequest(url, save, type, parent));
+        case 4: return (new MusicKWDownLoadTextRequest(url, save, type, parent));
+        case 5: return (new MusicDownLoadTextRequest(url, save, type, parent));
+    }
+    return (new MusicDownLoadTextRequest(url, save, type, parent));
+}
+
+MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::getDownloadBigPicRequest(const QString &name, const QString &save,
+                                                                                    QObject *parent)
 {
     const bool index = M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool();
     if(index)
     {
-        return (new MusicQQBackgroundThread(name, save, parent));
+        return (new MusicQQDownloadBackgroundRequest(name, save, parent));
     }
     else
     {
-        return (new MusicKWBackgroundThread(name, save, parent));
+        return (new MusicKWDownloadBackgroundRequest(name, save, parent));
     }
 }

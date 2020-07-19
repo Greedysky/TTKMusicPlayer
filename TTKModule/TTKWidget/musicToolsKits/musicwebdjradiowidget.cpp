@@ -1,8 +1,8 @@
 #include "musicwebdjradiowidget.h"
 #include "musicuiobject.h"
 #include "musicwebdjradiocategorywidget.h"
-#include "musicwebdjradiofoundwidget.h"
-#include "musicdownloadsourcethread.h"
+#include "musicwebdjradioquerywidget.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicsettingmanager.h"
 #include "musicwidgetheaders.h"
 
@@ -22,7 +22,7 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
 
     verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
-    m_programThread = new MusicDJRadioProgramThread(this);
+    m_programThread = new MusicDJRadioProgramRequest(this);
     connect(m_programThread, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));
 }
 
@@ -132,7 +132,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     item->setTextAlignment(Qt::AlignCenter);
     setItem(index, 5, item);
 
-    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != COVER_URL_NULL)
     {
@@ -145,7 +145,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
 
 void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data)
 {
-    MusicDownloadSourceThread *download(TTKStatic_cast(MusicDownloadSourceThread*, sender()));
+    MusicDownloadSourceRequest *download(TTKStatic_cast(MusicDownloadSourceRequest*, sender()));
     if(!download)
     {
         return;
@@ -225,7 +225,7 @@ MusicWebDJRadioWidget::MusicWebDJRadioWidget(QWidget *parent)
 
     m_recommendWidget = nullptr;
     m_programWidget = nullptr;
-    m_foundWidget = nullptr;
+    m_queryTableWidget = nullptr;
 
     initFirstWidget();
 }
@@ -235,7 +235,7 @@ MusicWebDJRadioWidget::~MusicWebDJRadioWidget()
     delete m_recommendWidget;
     delete m_programWidget;
     delete m_categoryWidget;
-    delete m_foundWidget;
+    delete m_queryTableWidget;
 }
 
 void MusicWebDJRadioWidget::initialize()
@@ -250,9 +250,9 @@ void MusicWebDJRadioWidget::resizeWindow()
         m_categoryWidget->resizeWindow();
     }
 
-    if(m_foundWidget)
+    if(m_queryTableWidget)
     {
-        m_foundWidget->resizeWindow();
+        m_queryTableWidget->resizeWindow();
     }
 
     if(m_recommendWidget)
@@ -291,21 +291,21 @@ void MusicWebDJRadioWidget::createProgramWidget()
 
 void MusicWebDJRadioWidget::programItemClicked(const QString &rid, const QString &cid)
 {
-    delete m_foundWidget;
-    m_foundWidget = new MusicWebDJRadioFoundWidget(this);
-    connect(m_foundWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenu()));
+    delete m_queryTableWidget;
+    m_queryTableWidget = new MusicWebDJRadioQueryWidget(this);
+    connect(m_queryTableWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenu()));
 
     if(rid == "-1" && cid != "-1")
     {
-        m_foundWidget->setSongName(cid);
+        m_queryTableWidget->setSongName(cid);
     }
     else
     {
-        m_foundWidget->setSongNameById(rid);
+        m_queryTableWidget->setSongNameById(rid);
     }
 
-    addWidget(m_foundWidget);
-    setCurrentWidget(m_foundWidget);
+    addWidget(m_queryTableWidget);
+    setCurrentWidget(m_queryTableWidget);
 }
 
 void MusicWebDJRadioWidget::currentCategoryClicked(const MusicResultsItem &item)

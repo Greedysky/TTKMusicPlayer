@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicquerytablewidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicitemsearchtablewidget.h"
+#include "musicabstractqueryrequest.h"
 
 Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
 
@@ -39,7 +39,7 @@ typedef struct MUSIC_VIDEO_EXPORT MusicVideoItem
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoSearchTableWidget : public MusicQueryItemTableWidget
+class MUSIC_VIDEO_EXPORT MusicVideoSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoSearchTableWidget)

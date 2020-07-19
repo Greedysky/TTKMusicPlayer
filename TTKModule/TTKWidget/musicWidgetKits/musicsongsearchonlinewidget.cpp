@@ -1,12 +1,12 @@
 #include "musicsongsearchonlinewidget.h"
 #include "musiclocalsongsearchrecordconfigmanager.h"
-#include "musicdownloadbackgroundthread.h"
+#include "musicdownloadbackgroundrequest.h"
 #include "musiccoremplayer.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
-#include "musicdatadownloadthread.h"
+#include "musicdownloaddatarequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
 #include "musicgiflabelwidget.h"
@@ -18,7 +18,7 @@
 #include <QButtonGroup>
 
 MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
-    : MusicQueryItemTableWidget(parent), m_mediaPlayer(nullptr)
+    : MusicItemSearchTableWidget(parent), m_mediaPlayer(nullptr)
 {
     setColumnCount(9);
     QHeaderView *headerview = horizontalHeader();
@@ -69,18 +69,18 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     //
     if(!m_downLoadManager)
     {
-        MusicQueryItemTableWidget::startSearchQuery(text);
+        MusicItemSearchTableWidget::startSearchQuery(text);
     }
     else
     {
         const QString &quality = m_downLoadManager->getSearchQuality();
-        MusicQueryItemTableWidget::startSearchQuery(text);
+        MusicItemSearchTableWidget::startSearchQuery(text);
         m_downLoadManager->setSearchQuality(quality);
     }
     //
     m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
-    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+    m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
 }
 
 void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -94,12 +94,12 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     //
     if(!m_downLoadManager)
     {
-        MusicQueryItemTableWidget::startSearchQuery(text);
+        MusicItemSearchTableWidget::startSearchQuery(text);
     }
     else
     {
         const QString &quality = m_downLoadManager->getSearchQuality();
-        MusicQueryItemTableWidget::startSearchQuery(text);
+        MusicItemSearchTableWidget::startSearchQuery(text);
         m_downLoadManager->setSearchQuality(quality);
     }
     //
@@ -117,7 +117,7 @@ void MusicSongSearchTableWidget::musicDownloadLocal(int row)
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -186,7 +186,7 @@ void MusicSongSearchTableWidget::auditionToMusicStop(int row)
 
 void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
 {
-    MusicQueryItemTableWidget::startSearchQuery(QString());
+    MusicItemSearchTableWidget::startSearchQuery(QString());
     m_downLoadManager->setSearchQuality(quality);
 }
 
@@ -213,7 +213,7 @@ void MusicSongSearchTableWidget::resizeWindow()
 
 void MusicSongSearchTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellEntered(row, column);
+    MusicItemSearchTableWidget::itemCellEntered(row, column);
     if(column == 7 || column == 8)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
@@ -226,7 +226,7 @@ void MusicSongSearchTableWidget::itemCellEntered(int row, int column)
 
 void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellClicked(row, column);
+    MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 7:
@@ -248,7 +248,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongSearchTableWidget::clearAllItems()
 {
-    MusicQueryItemTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::clearAllItems();
     setColumnCount(9);
 }
 
@@ -334,7 +334,7 @@ void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 {
-//    MusicQueryItemTableWidget::actionGroupClick(action);
+//    MusicItemSearchTableWidget::actionGroupClick(action);
     const int row = currentRow();
     if(!m_downLoadManager || row < 0 || (row >= rowCount() - 1))
     {
@@ -376,7 +376,7 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
 
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -392,13 +392,13 @@ void MusicSongSearchTableWidget::mediaAutionPlayError(int code)
 
 void MusicSongSearchTableWidget::resizeEvent(QResizeEvent *event)
 {
-    MusicQueryItemTableWidget::resizeEvent(event);
+    MusicItemSearchTableWidget::resizeEvent(event);
     resizeWindow();
 }
 
 void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryItemTableWidget::contextMenuEvent(event);
+    MusicItemSearchTableWidget::contextMenuEvent(event);
 
     QMenu rightClickMenu(this);
     m_actionGroup->addAction(rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay")))->setData(4);
@@ -441,14 +441,14 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
     const QString &musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
     const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
 
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(musicSongAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(musicSongAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     download->startToDownload();
 
-    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
+    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                                     MusicObject::DownloadSmallBackground, this)->startToDownload();
     ///download big picture
-    M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
+    M_DOWNLOAD_QUERY_PTR->getDownloadBigPicRequest(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
 
     m_downloadData.clear();
     m_downloadData.m_songName = musicEnSong;
@@ -564,7 +564,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(index == 2)
     {
-        MusicDownLoadQueryThreadAbstract *d = m_searchTableWidget->getQueryInput();
+        MusicAbstractQueryRequest *d = m_searchTableWidget->getQueryInput();
         if(!d)
         {
             return;
@@ -582,7 +582,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         }
 
         MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
-        w->setSongName(selectedItems, MusicDownLoadQueryThreadAbstract::MusicQuery);
+        w->setSongName(selectedItems, MusicAbstractQueryRequest::MusicQuery);
         w->show();
     }
 }

@@ -4,7 +4,7 @@
 #include "musicconnectionpool.h"
 
 MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
-    : MusicDownloadAbstractTableWidget(parent)
+    : MusicAbstractDownloadTableWidget(parent)
 {
     M_CONNECTION_PTR->setValue(getClassName(), this);
 
@@ -93,7 +93,7 @@ void MusicDownloadToolBoxWidget::updateItemTitle(int index)
     }
 }
 
-void MusicDownloadToolBoxWidget::createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index)
+void MusicDownloadToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index)
 {
     MusicSongItem *item = &m_songItems.last();
     item->m_itemName = text;

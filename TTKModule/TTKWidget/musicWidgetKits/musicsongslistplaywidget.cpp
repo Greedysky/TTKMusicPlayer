@@ -222,7 +222,7 @@ void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
     QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
     addMenu->addAction(tr("musicCloud"));
 
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicPlayedSimilarFoundWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicPlayedSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), parent(), SLOT(musicSongPlayedSharedWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), parent(), SLOT(musicSongPlayedKMicroWidget()));
 }

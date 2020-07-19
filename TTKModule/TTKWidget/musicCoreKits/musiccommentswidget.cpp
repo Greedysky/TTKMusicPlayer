@@ -1,5 +1,5 @@
 #include "musiccommentswidget.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinteriorlrcuiobject.h"
@@ -126,9 +126,9 @@ void MusicCommentsItem::createSearchedItem(const MusicResultsItem &comments)
     m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
     m_userCommit->setText(comments.m_description);
 
-    MusicDownloadSourceThread *thread = new MusicDownloadSourceThread(this);
-    connect(thread, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    thread->startToDownload(comments.m_coverUrl);
+    MusicDownloadSourceRequest *request = new MusicDownloadSourceRequest(this);
+    connect(request, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    request->startToDownload(comments.m_coverUrl);
 }
 
 void MusicCommentsItem::downLoadFinished(const QByteArray &data)
@@ -149,7 +149,7 @@ MusicCommentsWidget::MusicCommentsWidget(QWidget *parent)
     m_messageEdit = nullptr;
     m_pagingWidgetObject = nullptr;
     m_messageComments = nullptr;
-    m_commentsThread = nullptr;
+    m_downloadRequest = nullptr;
     m_pagingWidgetObject = nullptr;
 }
 
@@ -161,7 +161,7 @@ MusicCommentsWidget::~MusicCommentsWidget()
     delete m_messageEdit;
     delete m_pagingWidgetObject;
     delete m_messageComments;
-    delete m_commentsThread;
+    delete m_downloadRequest;
 }
 
 void MusicCommentsWidget::initWidget(bool isPain)
@@ -294,14 +294,14 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     MusicSemaphoreLoop loop;
-    connect(m_commentsThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    m_commentsThread->startToSearch(name);
+    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    m_downloadRequest->startToSearch(name);
     loop.exec();
 
     TTKStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPagingWidget();
 
-    initLabel(name, m_commentsThread->getPageTotal());
+    initLabel(name, m_downloadRequest->getPageTotal());
 }
 
 void MusicCommentsWidget::createSearchedItem(const MusicResultsItem &comments)
@@ -323,9 +323,9 @@ void MusicCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
 
-    const int total = ceil(m_commentsThread->getPageTotal()*1.0/m_commentsThread->getPageSize());
+    const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
     m_pagingWidgetObject->paging(index, total);
-    m_commentsThread->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_downloadRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 void MusicCommentsWidget::createEMOJILabelWidget()
@@ -380,7 +380,7 @@ void MusicCommentsWidget::createPagingWidget()
     m_pagingWidgetObject = new MusicPagingWidgetObject(this);
     connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    const int total = ceil(m_commentsThread->getPageTotal()*1.0/m_commentsThread->getPageSize());
+    const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
     QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, total);
     m_messageComments->layout()->addWidget(w);
 }

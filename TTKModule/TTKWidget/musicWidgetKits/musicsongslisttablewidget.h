@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QTimer>
-#include "musicsongslistabstracttablewidget.h"
+#include "musicabstractsongslisttablewidget.h"
 
 class QPropertyAnimation;
 class MusicOpenFileWidget;
@@ -31,7 +31,7 @@ class MusicRenameLineEditDelegate;
 /*! @brief The class of the songs list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListTableWidget : public MusicSongsListAbstractTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListTableWidget)

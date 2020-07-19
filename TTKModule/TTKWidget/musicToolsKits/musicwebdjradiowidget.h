@@ -21,10 +21,10 @@
 
 #include "musicwidgetheaders.h"
 #include "musicabstracttablewidget.h"
-#include "musicdjradioprogramthread.h"
+#include "musicdjradioprogramrequest.h"
 
 class MusicWebDJRadioCategoryWidget;
-class MusicWebDJRadioFoundWidget;
+class MusicWebDJRadioQueryWidget;
 
 /*! @brief The class of music dj radio program table widget.
  * @author Greedysky <greedysky@163.com>
@@ -75,7 +75,7 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &data);
 
 protected:
-    MusicDJRadioProgramThread *m_programThread;
+    MusicDJRadioProgramRequest *m_programThread;
 
 };
 
@@ -165,7 +165,7 @@ protected:
 
     MusicWebDJRadioCategoryWidget *m_categoryWidget;
     MusicWebDJRadioProgramWidget *m_recommendWidget, *m_programWidget;
-    MusicWebDJRadioFoundWidget *m_foundWidget;
+    MusicWebDJRadioQueryWidget *m_queryTableWidget;
 
 };
 

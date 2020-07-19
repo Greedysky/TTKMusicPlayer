@@ -1,8 +1,8 @@
 #include "musiclrcdownloadbatchwidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicabstractqueryrequest.h"
 #include "ui_musiclrcdownloadbatchwidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdatadownloadthread.h"
+#include "musicdownloaddatarequest.h"
 #include "musicsemaphoreloop.h"
 #include "musiccoreutils.h"
 #include "musicuiobject.h"
@@ -159,15 +159,15 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         }
 
         MusicSemaphoreLoop loop;
-        MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+        MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        d->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, song->getMusicName().trimmed());
+        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->getMusicName().trimmed());
         loop.exec();
 
         if(!d->isEmpty())
         {
             const MusicObject::MusicSongInformation info(d->getMusicSongInfos().first());
-            MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
+            MusicAbstractDownLoadRequest *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
             d->startToDownload();
             loop.exec();
 #if TTK_QT_VERSION_CHECK(5,13,0)

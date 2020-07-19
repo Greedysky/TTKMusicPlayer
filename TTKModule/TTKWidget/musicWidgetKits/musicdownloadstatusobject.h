@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadquerythreadabstract.h"
+#include "musicabstractqueryrequest.h"
 
 class MusicApplication;
 
@@ -64,14 +64,14 @@ public Q_SLOTS:
      */
     void showDownLoadInfoFinished(const QString &type);
     /*!
-     * Show current net connect state changed by net thread.
+     * Show current net connect state changed by net request.
      */
     void networkConnectionStateChanged(bool state);
 
 protected:
     bool m_previousState;
     MusicApplication *m_parentWidget;
-    MusicDownLoadQueryThreadAbstract *m_downloadLrcThread;
+    MusicAbstractQueryRequest *m_downloadRequest;
 
 };
 

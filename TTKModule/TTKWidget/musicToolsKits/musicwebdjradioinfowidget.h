@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicfoundabstractwidget.h"
+#include "musicabstractitemquerywidget.h"
 
 /*! @brief The class of dj radio music info table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoTableWidget : public MusicQueryFoundTableWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioInfoTableWidget)
@@ -39,7 +39,7 @@ public:
     /*!
      * Set network query input.
      */
-    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
+    virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
 
 };
 
@@ -47,7 +47,7 @@ public:
 /*! @brief The class of dj radio music info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoWidget : public MusicFoundAbstractWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioInfoWidget)

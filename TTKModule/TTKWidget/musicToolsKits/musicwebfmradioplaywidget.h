@@ -25,7 +25,7 @@
 class QNetworkCookieJar;
 class MusicLrcAnalysis;
 class MusicCoreMPlayer;
-class MusicFMRadioSongsThread;
+class MusicFMRadioSongsRequest;
 
 namespace Ui {
 class MusicWebFMRadioPlayWidget;
@@ -121,7 +121,7 @@ protected:
 
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_mediaPlayer;
-    MusicFMRadioSongsThread *m_songsThread;
+    MusicFMRadioSongsRequest *m_songsThread;
 
 };
 

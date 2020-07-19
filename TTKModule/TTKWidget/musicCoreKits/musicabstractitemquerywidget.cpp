@@ -1,0 +1,210 @@
+#include "musicabstractitemquerywidget.h"
+#include "musicuiobject.h"
+#include "musicimageutils.h"
+
+MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    m_mainWindow = nullptr;
+    m_songButton = nullptr;
+    m_iconLabel = nullptr;
+    m_infoLabel = nullptr;
+    m_statusLabel = nullptr;
+    m_queryTableWidget = nullptr;
+    m_downloadRequest = nullptr;
+    m_container = new QStackedWidget(this);
+    m_container->hide();
+    m_shareType = MusicSongSharingWidget::Null;
+
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->setSpacing(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    initWidget();
+
+    layout->addWidget(m_mainWindow);
+    setLayout(layout);
+}
+
+MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
+{
+    qDeleteAll(m_resizeWidgets);
+    delete m_iconLabel;
+    delete m_statusLabel;
+    delete m_infoLabel;
+    delete m_songButton;
+//    delete m_downloadRequest;
+    delete m_queryTableWidget;
+//    delete m_container;
+    delete m_mainWindow;
+}
+
+void MusicAbstractItemQueryWidget::setSongName(const QString &name)
+{
+    m_songNameFull = name;
+}
+
+void MusicAbstractItemQueryWidget::initWidget()
+{
+    m_mainWindow = new QWidget(this);
+    m_mainWindow->setObjectName("MainWindow");
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
+
+    m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
+    m_statusLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSFontStyle01);
+
+    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
+    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
+    m_mainWindow->setLayout(mLayout);
+}
+
+void MusicAbstractItemQueryWidget::downLoadFinished(const QByteArray &data)
+{
+    if(m_iconLabel)
+    {
+        QPixmap pix;
+        pix.loadFromData(data);
+        QPixmap cv(":/image/lb_playlist_cover");
+        pix = pix.scaled(QSize(180, 180));
+        MusicUtils::Image::fusionPixmap(cv, pix, QPoint(0, 0));
+        m_iconLabel->setPixmap(cv);
+    }
+}
+
+void MusicAbstractItemQueryWidget::playAllButtonClicked()
+{
+    m_queryTableWidget->setSelectedAllItems(true);
+    m_queryTableWidget->downloadDataFrom(true);
+}
+
+void MusicAbstractItemQueryWidget::shareButtonClicked()
+{
+    QVariantMap data;
+    data["id"] = m_currentPlaylistItem.m_id;
+    data["songName"] = m_currentPlaylistItem.m_name;
+    data["smallUrl"] = m_currentPlaylistItem.m_coverUrl;
+
+    const MusicAbstractQueryRequest *th = m_queryTableWidget->getQueryInput();
+    if(th)
+    {
+        data["queryServer"] = th->getQueryServer();
+    }
+
+    MusicSongSharingWidget shareWidget(this);
+    shareWidget.setData(m_shareType, data);
+    shareWidget.exec();
+}
+
+void MusicAbstractItemQueryWidget::playButtonClicked()
+{
+    m_queryTableWidget->downloadDataFrom(true);
+}
+
+void MusicAbstractItemQueryWidget::downloadButtonClicked()
+{
+    m_queryTableWidget->downloadBatchData(true);
+}
+
+void MusicAbstractItemQueryWidget::addButtonClicked()
+{
+    m_queryTableWidget->downloadDataFrom(false);
+}
+
+void MusicAbstractItemQueryWidget::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicAbstractItemQueryWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicAbstractItemQueryWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicAbstractItemQueryWidget::initFirstWidget()
+{
+    QWidget *songWidget = new QWidget(this);
+    QVBoxLayout *vlayout = new QVBoxLayout(songWidget);
+    vlayout->setSpacing(0);
+    vlayout->setContentsMargins(0, 0, 0, 0);
+
+    QWidget *middleFuncWidget = new QWidget(songWidget);
+    middleFuncWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
+    middleFuncLayout->setContentsMargins(0, 5, 0, 5);
+    QLabel *marginLabel = new QLabel(middleFuncWidget);
+    marginLabel->setFixedWidth(1);
+    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
+    QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
+    playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
+    playButton->setIconSize(QSize(14, 14));
+    playButton->setFixedSize(55, 25);
+    playButton->setCursor(QCursor(Qt::PointingHandCursor));
+    QPushButton *addButton = new QPushButton(tr("add"), middleFuncWidget);
+    addButton->setFixedSize(55, 25);
+    addButton->setCursor(QCursor(Qt::PointingHandCursor));
+    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
+    downloadButton->setFixedSize(55, 25);
+    downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    allCheckBox->setFocusPolicy(Qt::NoFocus);
+    playButton->setFocusPolicy(Qt::NoFocus);
+    addButton->setFocusPolicy(Qt::NoFocus);
+    downloadButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    middleFuncLayout->addWidget(marginLabel);
+    middleFuncLayout->addWidget(allCheckBox);
+    middleFuncLayout->addStretch(1);
+    middleFuncLayout->addWidget(playButton);
+    middleFuncLayout->addWidget(addButton);
+    middleFuncLayout->addWidget(downloadButton);
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
+    connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
+    connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
+
+    vlayout->addWidget(middleFuncWidget);
+    //
+    vlayout->addWidget(m_queryTableWidget);
+    vlayout->addStretch(1);
+    songWidget->setLayout(vlayout);
+
+    m_queryTableWidget->show();
+    m_container->addWidget(songWidget);
+}
+
+void MusicAbstractItemQueryWidget::initSecondWidget()
+{
+    QWidget *songWidget = new QWidget(m_container);
+    QVBoxLayout *vlayout = new QVBoxLayout(songWidget);
+    vlayout->setSpacing(0);
+    vlayout->setContentsMargins(0, 0, 0, 0);
+    m_infoLabel = new QLabel(this);
+    m_infoLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    m_infoLabel->setWordWrap(true);
+    m_infoLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle03);
+    vlayout->addWidget(m_infoLabel);
+    songWidget->setLayout(vlayout);
+    m_container->addWidget(songWidget);
+}
+
+void MusicAbstractItemQueryWidget::setSongCountText()
+{
+    const MusicAbstractQueryRequest *d = m_queryTableWidget->getQueryInput();
+    if(!d)
+    {
+        return;
+    }
+
+    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
+    if(m_songButton)
+    {
+        m_songButton->setText(tr("songItems") + QString("(%1)").arg(musicSongInfos.count()));
+    }
+}

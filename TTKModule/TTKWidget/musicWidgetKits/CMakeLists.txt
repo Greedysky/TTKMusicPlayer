@@ -1,105 +1,105 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
-    ${MUSIC_WIDGET_DIR}/musicdownloadstatusobject.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.h
     ${MUSIC_WIDGET_DIR}/musicsystemtraymenu.h
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.h
     ${MUSIC_WIDGET_DIR}/musicwindowextras.h
-    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.h
-    ${MUSIC_WIDGET_DIR}/musicqualitychoicepopwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
-    ${MUSIC_WIDGET_DIR}/musicdownloadbatchwidget.h
+    ${MUSIC_WIDGET_DIR}/musicdownloadstatusobject.h
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
-    ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsimilarquerywidget.h
     ${MUSIC_WIDGET_DIR}/musicvolumepopwidget.h
     ${MUSIC_WIDGET_DIR}/musicmorefunctionspopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.h
+    ${MUSIC_WIDGET_DIR}/musicalbumquerywidget.h
+    ${MUSIC_WIDGET_DIR}/musicartistquerywidget.h
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.h
-    ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcommentswidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.h
-    ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerywidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistqueryinfowidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerytablewidget.h
+    ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicqualitychoicepopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerycategorypopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerycommentswidget.h
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.h
-    ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
-    ${MUSIC_WIDGET_DIR}/musictoplistfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.h
+    ${MUSIC_WIDGET_DIR}/musictoplistquerywidget.h
+    ${MUSIC_WIDGET_DIR}/musictoplistquerycategorypopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicdownloadbatchwidget.h
     ${MUSIC_WIDGET_DIR}/musicadvancedsearchedwidget.h
-    ${MUSIC_WIDGET_DIR}/musicrecommendfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicartistlistfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicartistlistfoundcategorypopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicrecommendquerywidget.h
+    ${MUSIC_WIDGET_DIR}/musicartistlistquerywidget.h
+    ${MUSIC_WIDGET_DIR}/musicartistlistquerycategorypopwidget.h
     ${MUSIC_WIDGET_DIR}/musicripplespecturmobject.h
     ${MUSIC_WIDGET_DIR}/musicpluginwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
-    ${MUSIC_WIDGET_DIR}/musicdownloadstatusobject.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.cpp
     ${MUSIC_WIDGET_DIR}/musicsystemtraymenu.cpp
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.cpp
     ${MUSIC_WIDGET_DIR}/musicwindowextras.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicqualitychoicepopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicdownloadbatchwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicdownloadstatusobject.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
-    ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsimilarquerywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicvolumepopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmorefunctionspopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicalbumquerywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicartistquerywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcommentswidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.cpp
-    ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistqueryinfowidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerytablewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicqualitychoicepopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerycategorypopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistquerycommentswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musictoplistfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musictoplistquerywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musictoplistquerycategorypopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicdownloadbatchwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicadvancedsearchedwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicrecommendfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicartistlistfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicartistlistfoundcategorypopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicrecommendquerywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicartistlistquerywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicartistlistquerycategorypopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicripplespecturmobject.cpp
     ${MUSIC_WIDGET_DIR}/musicpluginwidget.cpp
   )

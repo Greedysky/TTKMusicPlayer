@@ -11,10 +11,10 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradiowidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.h
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiofoundwidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.h
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradiofoundwidget.h
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradiofoundcategorypopwidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
@@ -36,10 +36,10 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebfmradiowidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.cpp
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiofoundwidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioquerywidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradioinfowidget.cpp
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradiofoundwidget.cpp
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradiofoundcategorypopwidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerywidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioquerycategorypopwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.cpp

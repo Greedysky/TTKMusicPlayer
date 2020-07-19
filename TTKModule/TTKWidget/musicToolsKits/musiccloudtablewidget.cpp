@@ -9,7 +9,7 @@
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
-    : MusicDownloadAbstractTableWidget(parent)
+    : MusicAbstractDownloadTableWidget(parent)
 {
     M_CONNECTION_PTR->setValue(getClassName(), this);
 
@@ -72,7 +72,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
 
 
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
-    : MusicDownloadAbstractTableWidget(parent)
+    : MusicAbstractDownloadTableWidget(parent)
 {
     M_CONNECTION_PTR->setValue(getClassName(), this);
 

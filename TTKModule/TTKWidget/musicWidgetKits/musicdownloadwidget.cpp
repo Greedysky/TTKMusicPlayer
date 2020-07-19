@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
-#include "musicdatatagdownloadthread.h"
+#include "musicdownloaddatatagrequest.h"
 #include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicstringutils.h"
@@ -134,21 +134,21 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_downloadOffset = 0;
     m_downloadTotal = 0;
     m_querySingleInfo = false;
-    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
 
-    m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
+    m_queryType = MusicAbstractQueryRequest::MusicQuery;
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
-    connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 MusicDownloadWidget::~MusicDownloadWidget()
 {
     delete m_ui;
-    delete m_downloadThread;
+    delete m_downloadRequest;
 }
 
 void MusicDownloadWidget::initWidget()
@@ -157,7 +157,7 @@ void MusicDownloadWidget::initWidget()
 
     controlEnabled(true);
 
-    if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
+    if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
     {
         m_ui->downloadPathEdit->setText(MOVIE_DIR_FULL);
     }
@@ -175,17 +175,17 @@ void MusicDownloadWidget::controlEnabled(bool enable)
     m_ui->settingButton->setEnabled(enable);
 }
 
-void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadWidget::setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type)
 {
     m_queryType = type;
     initWidget();
 
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
-    m_downloadThread->setQueryAllRecords(true);
-    m_downloadThread->startToSearch(type, name);
+    m_downloadRequest->setQueryAllRecords(true);
+    m_downloadRequest->startToSearch(type, name);
 }
 
-void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &info, MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type)
 {
     m_queryType = type;
     m_singleSongInfo = info;
@@ -194,11 +194,11 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     initWidget();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName).arg(info.m_songName), Qt::ElideRight, 200));
 
-    if(type == MusicDownLoadQueryThreadAbstract::MusicQuery)
+    if(type == MusicAbstractQueryRequest::MusicQuery)
     {
         queryAllFinishedMusic(info.m_songAttrs);
     }
-    else if(type == MusicDownLoadQueryThreadAbstract::MovieQuery)
+    else if(type == MusicAbstractQueryRequest::MovieQuery)
     {
         queryAllFinishedMovie(info.m_songAttrs);
     }
@@ -218,11 +218,11 @@ void MusicDownloadWidget::queryAllFinished()
     }
 
     m_ui->viewArea->clearAllItems();
-    if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
+    if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
     {
         queryAllFinishedMusic();
     }
-    else if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
+    else if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
     {
         queryAllFinishedMovie();
     }
@@ -230,10 +230,10 @@ void MusicDownloadWidget::queryAllFinished()
 
 MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformation()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downloadRequest->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &filename = m_downloadThread->getSearchedText();
+        const QString &filename = m_downloadRequest->getSearchedText();
         const QString &artistName = MusicUtils::String::artistName(filename);
         const QString &songName = MusicUtils::String::songName(filename);
 
@@ -392,7 +392,7 @@ void MusicDownloadWidget::downloadDirSelected()
         const QString path = dialog.directory().absolutePath();
         if(!path.isEmpty())
         {
-            if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
+            if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
             {
                 M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDir, path + "/");
             }
@@ -413,11 +413,11 @@ void MusicDownloadWidget::startToDownload()
         return;
     }
 
-    if(m_queryType == MusicDownLoadQueryThreadAbstract::MusicQuery)
+    if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
     {
         m_querySingleInfo ? startToDownloadMusic(m_singleSongInfo) : startToDownloadMusic();
     }
-    else if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
+    else if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
     {
         m_querySingleInfo ? startToDownloadMovie(m_singleSongInfo) : startToDownloadMovie();
     }
@@ -493,7 +493,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             }
             //
             m_downloadTotal = 1;
-            MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+            MusicDownloadDataTagRequest *downSong = new MusicDownloadDataTagRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
             downSong->setRecordType(MusicObject::RecordNormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
@@ -560,7 +560,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                     }
                 }
                 //
-                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicObject::DownloadVideo, this);
+                MusicDownloadDataRequest *download = new MusicDownloadDataRequest(urls[ul], downloadName, MusicObject::DownloadVideo, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();
             }

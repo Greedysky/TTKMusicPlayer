@@ -29,8 +29,8 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
     layout->addWidget(m_nameText);
     layout->addWidget(m_stateText);
 
-    m_testThread = new MusicNetworkTestThread(this);
-    connect(m_testThread, SIGNAL(networkConnectionTestChanged(bool)), SLOT(testFinshed(bool)));
+    m_thread = new MusicNetworkTestThread(this);
+    connect(m_thread, SIGNAL(networkConnectionTestChanged(bool)), SLOT(testFinshed(bool)));
     stop();
 
     setLayout(layout);
@@ -38,11 +38,11 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
 
 MusicNetworkConnectionItem::~MusicNetworkConnectionItem()
 {
-    if(m_testThread->isRunning())
+    if(m_thread->isRunning())
     {
-        m_testThread->stopAndQuitThread();
+        m_thread->stopAndQuitThread();
     }
-    delete m_testThread;
+    delete m_thread;
     delete m_iconLabel;
     delete m_nameText;
     delete m_stateText;
@@ -55,14 +55,14 @@ void MusicNetworkConnectionItem::setText(const QString &text)
 
 void MusicNetworkConnectionItem::setUrl(const QString &url)
 {
-    m_testThread->setUrl(url);
+    m_thread->setUrl(url);
 }
 
 void MusicNetworkConnectionItem::start()
 {
     m_stateText->setText(tr("Detecting"));
     m_stateText->setStyleSheet(MusicUIObject::MQSSColorStyle08);
-    m_testThread->start();
+    m_thread->start();
 }
 
 void MusicNetworkConnectionItem::stop()
@@ -71,9 +71,9 @@ void MusicNetworkConnectionItem::stop()
 
     m_stateText->setText(tr("Not Detected"));
     m_stateText->setStyleSheet(MusicUIObject::MQSSColorStyle03);
-    if(m_testThread->isRunning())
+    if(m_thread->isRunning())
     {
-        m_testThread->stopAndQuitThread();
+        m_thread->stopAndQuitThread();
     }
 }
 

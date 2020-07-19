@@ -2,9 +2,9 @@
 #include "ui_musicwebfmradioplaywidget.h"
 #include "musiccoremplayer.h"
 #include "musicuiobject.h"
-#include "musicfmradiosongsthread.h"
-#include "musicfmradiotextdownloadthread.h"
-#include "musicdatadownloadthread.h"
+#include "musicfmradiosongsrequest.h"
+#include "musicfmradiodownloadtextrequest.h"
+#include "musicdownloaddatarequest.h"
 #include "musiclrcanalysis.h"
 #include "musiccoreutils.h"
 #include "musicimageutils.h"
@@ -161,7 +161,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(info, MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(info, MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -174,7 +174,7 @@ void MusicWebFMRadioPlayWidget::getSongInfoFinished()
 void MusicWebFMRadioPlayWidget::createCoreModule()
 {
     m_mediaPlayer = new MusicCoreMPlayer(this);
-    m_songsThread = new MusicFMRadioSongsThread(this);
+    m_songsThread = new MusicFMRadioSongsRequest(this);
 
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
@@ -212,7 +212,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
     QString name = MusicUtils::String::lrcPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
-        MusicFMRadioTextDownLoadThread* lrcDownload = new MusicFMRadioTextDownLoadThread(info.m_lrcUrl, name, MusicObject::DownloadLrc, this);
+        MusicFMRadioDownLoadTextRequest* lrcDownload = new MusicFMRadioDownLoadTextRequest(info.m_lrcUrl, name, MusicObject::DownloadLrc, this);
         connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
         lrcDownload->startToDownload();
     }
@@ -224,7 +224,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDataDownloadThread *download = new MusicDataDownloadThread(info.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(info.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }

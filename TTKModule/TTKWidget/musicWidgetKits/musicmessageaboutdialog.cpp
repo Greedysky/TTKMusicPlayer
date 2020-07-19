@@ -2,7 +2,7 @@
 #include "ui_musicmessageaboutdialog.h"
 #include "ttkversion.h"
 #include "musicuiobject.h"
-#include "musicdownloadcounterpvthread.h"
+#include "musicdownloadcounterpvrequest.h"
 
 MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -25,14 +25,14 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_counterPVThread = new MusicDownloadCounterPVThread(this);
-    connect(m_counterPVThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
-    m_counterPVThread->startToDownload();
+    m_downloadRequest = new MusicDownloadCounterPVRequest(this);
+    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
+    m_downloadRequest->startToDownload();
 }
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()
 {
-    delete m_counterPVThread;
+    delete m_downloadRequest;
     delete m_ui;
 }
 

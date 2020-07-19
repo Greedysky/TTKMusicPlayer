@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicfloatabstractwidget.h"
+#include "musicabstractfloatwidget.h"
 
 class QPushButton;
 class MusicLrcFloatPhotoWidget;
@@ -28,7 +28,7 @@ class MusicLrcFloatSettingWidget;
 /*! @brief The class of the lrc float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicFloatAbstractWidget
+class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatWidget)

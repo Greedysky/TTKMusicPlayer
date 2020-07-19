@@ -1,6 +1,6 @@
 #include "musicwebdjradiocategorywidget.h"
-#include "musicdjradiocategorythread.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdjradiocategoryrequest.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicwidgetheaders.h"
 
 #define WIDTH_LABEL_SIZE   60
@@ -35,7 +35,7 @@ void MusicWebDJRadioCategoryItemWidget::setMusicResultsItem(const MusicResultsIt
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 
-    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
     {
@@ -82,7 +82,7 @@ MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     m_gridLayout->setVerticalSpacing(35);
     mainWindow->setLayout(m_gridLayout);
 
-    m_categoryThread = new MusicDJRadioCategoryThread(this);
+    m_categoryThread = new MusicDJRadioCategoryRequest(this);
     connect(m_categoryThread, SIGNAL(downLoadDataChanged(QString)), SLOT(createCategoryItems()));
 }
 

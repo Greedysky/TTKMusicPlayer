@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicclouddataitem.h"
-#include "musicdownloadabstracttablewidget.h"
+#include "musicabstractdownloadtablewidget.h"
 
 /*! @brief The class of the cloud shared song download table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicDownloadAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicAbstractDownloadTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudDownloadTableWidget)
@@ -49,7 +49,7 @@ protected:
 /*! @brief The class of the cloud shared song upload table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudUploadTableWidget : public MusicDownloadAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicCloudUploadTableWidget : public MusicAbstractDownloadTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudUploadTableWidget)

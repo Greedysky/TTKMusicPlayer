@@ -1,6 +1,6 @@
 #include "musiccoremplayer.h"
 #include "musicobject.h"
-#include "musicnetworkabstract.h"
+#include "musicabstractnetwork.h"
 
 #include <QProcess>
 

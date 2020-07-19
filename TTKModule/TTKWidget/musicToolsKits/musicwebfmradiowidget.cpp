@@ -1,9 +1,9 @@
 #include "musicwebfmradiowidget.h"
-#include "musicfmradiochannelthread.h"
+#include "musicfmradiochannelrequest.h"
 #include "musicwebfmradioplaywidget.h"
 #include "musicwidgetutils.h"
 #include "musicuiobject.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicplatformmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicitemdelegate.h"
@@ -51,7 +51,7 @@ void MusicWebFMRadioWidget::initListItems(int index)
     if(rowCount() == 0)
     {
         delete m_getChannelThread;
-        m_getChannelThread = new MusicFMRadioChannelThread(this);
+        m_getChannelThread = new MusicFMRadioChannelRequest(this);
         connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
         m_getChannelThread->startToDownload(QString());
     }
@@ -147,7 +147,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
                           item = new QTableWidgetItem;
         setItem(index, 3, item);
 
-        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != COVER_URL_NULL)
         {
@@ -168,7 +168,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
 
 void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data)
 {
-    MusicDownloadSourceThread *download(TTKStatic_cast(MusicDownloadSourceThread*, sender()));
+    MusicDownloadSourceRequest *download(TTKStatic_cast(MusicDownloadSourceRequest*, sender()));
     if(!download)
     {
         return;

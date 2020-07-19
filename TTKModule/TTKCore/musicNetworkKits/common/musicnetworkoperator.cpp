@@ -1,5 +1,5 @@
 #include "musicnetworkoperator.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicobject.h"
 
 #define IP_CHECK_URL    "ZlhkcnFzd1RabVhCZXNWM1pnbk5hT1ErL2RpMUNjK0hYQ3FXUHdCOVNGSlpDU2ZmNTZnekhHUlo3WkwrUWhtQXljNitUcjJmZ0RId004OFc5QlVibjhvRGlRSzY3QXlVbmZHNFV3bkhZdGZMU2JTZ3lJTkNhOGZJUlNhcmlBUmcvRUVrQWc9PQ=="
@@ -12,7 +12,7 @@ MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
 
 void MusicNetworkOperator::startToDownload()
 {
-    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(IP_CHECK_URL, false));
 }

@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
-#include "musicdatatagdownloadthread.h"
+#include "musicdownloaddatatagrequest.h"
 
 #include <QTimer>
 #include <QScrollBar>
@@ -90,18 +90,18 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     m_qulity->setCurrentIndex(0);
 }
 
-void MusicDownloadBatchTableItem::startToDownload(MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadBatchTableItem::startToDownload(MusicAbstractQueryRequest::QueryType type)
 {
     if(!M_NETWORK_PTR->isOnline() || m_qulity->currentIndex() < 0)
     {
         return;
     }
 
-    if(type == MusicDownLoadQueryThreadAbstract::MusicQuery)
+    if(type == MusicAbstractQueryRequest::MusicQuery)
     {
         startToDownloadMusic();
     }
-    else if(type == MusicDownLoadQueryThreadAbstract::MovieQuery)
+    else if(type == MusicAbstractQueryRequest::MovieQuery)
     {
         startToDownloadMovie();
     }
@@ -201,7 +201,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
         }
     }
     //
-    MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+    MusicDownloadDataTagRequest *downSong = new MusicDownloadDataTagRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
     downSong->setRecordType(MusicObject::RecordNormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 
@@ -245,7 +245,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
             }
         }
         //
-        MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicObject::DownloadVideo, this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(urls[ul], downloadName, MusicObject::DownloadVideo, this);
         download->startToDownload();
     }
 }
@@ -302,7 +302,7 @@ void MusicDownloadBatchTableWidget::createItem(const MusicObject::MusicSongInfor
     setCellWidget(index, 0, item);
 }
 
-void MusicDownloadBatchTableWidget::startToDownload(MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadBatchTableWidget::startToDownload(MusicAbstractQueryRequest::QueryType type)
 {
     foreach(MusicDownloadBatchTableItem *item, m_items)
     {
@@ -369,7 +369,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
 
     m_ui->qualityBox->setCurrentIndex(0);
 
-    m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
+    m_queryType = MusicAbstractQueryRequest::MusicQuery;
 
     m_ui->tableWidget->setParentObject(this);
     m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
@@ -387,7 +387,7 @@ MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
     delete m_ui;
 }
 
-void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformations &infos, MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformations &infos, MusicAbstractQueryRequest::QueryType type)
 {
     m_queryType = type;
 

@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsongslistabstracttablewidget.h"
+#include "musicabstractsongslisttablewidget.h"
 
 /*! @brief The class of the lcal songs table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsTableWidget : public MusicSongsListAbstractTableWidget
+class MUSIC_TOOLSET_EXPORT MusicLocalSongsTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongsTableWidget)

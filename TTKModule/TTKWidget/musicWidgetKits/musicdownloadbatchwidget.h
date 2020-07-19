@@ -21,7 +21,7 @@
 
 #include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicabstractqueryrequest.h"
 
 namespace Ui {
 class MusicDownloadBatchWidget;
@@ -49,7 +49,7 @@ public:
     /*!
      * Start to download data.
      */
-    void startToDownload(MusicDownLoadQueryThreadAbstract::QueryType type);
+    void startToDownload(MusicAbstractQueryRequest::QueryType type);
     /*!
      * Set current quality.
      */
@@ -109,7 +109,7 @@ public:
     /*!
      * Start to download music data.
      */
-    void startToDownload(MusicDownLoadQueryThreadAbstract::QueryType type);
+    void startToDownload(MusicAbstractQueryRequest::QueryType type);
 
 public Q_SLOTS:
     /*!
@@ -151,7 +151,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformations &infos, MusicDownLoadQueryThreadAbstract::QueryType type);
+    void setSongName(const MusicObject::MusicSongInformations &infos, MusicAbstractQueryRequest::QueryType type);
 
 public Q_SLOTS:
     /*!
@@ -166,7 +166,7 @@ public Q_SLOTS:
 protected:
     Ui::MusicDownloadBatchWidget *m_ui;
 
-    MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
+    MusicAbstractQueryRequest::QueryType m_queryType;
 };
 
 #endif // MUSICDOWNLOADBATCHWIDGET_H

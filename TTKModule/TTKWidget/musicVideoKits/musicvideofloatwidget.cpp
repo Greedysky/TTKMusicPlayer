@@ -3,7 +3,7 @@
 #include "musicwidgetheaders.h"
 
 MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
-    : MusicFloatAbstractWidget(parent)
+    : MusicAbstractFloatWidget(parent)
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle06);
 

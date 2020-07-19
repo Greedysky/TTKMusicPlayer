@@ -23,10 +23,13 @@ HEADERS  += \
     $$PWD/musicabstractmovedialog.h \
     $$PWD/musicabstractmovewidget.h \
     $$PWD/musicabstractmoveresizewidget.h \
-    $$PWD/musicsongslistabstracttablewidget.h \
+    $$PWD/musicabstractdownloadtablewidget.h \
+    $$PWD/musicabstractfloatwidget.h \
+    $$PWD/musicabstractitemquerywidget.h \
+    $$PWD/musicabstractsongslisttablewidget.h \
     $$PWD/musicfillitemtablewidget.h \
-    $$PWD/musicquerytablewidget.h \
-    $$PWD/musicqueryfoundtablewidget.h \
+    $$PWD/musicitemsearchtablewidget.h \
+    $$PWD/musicitemquerytablewidget.h \
     $$PWD/musicsmoothmovingwidget.h \
     $$PWD/musicitemdelegate.h \
     $$PWD/musiccolordialog.h \
@@ -43,8 +46,6 @@ HEADERS  += \
     $$PWD/musicroundanimationlabel.h \
     $$PWD/musicanimationstackedwidget.h \
     $$PWD/musictransitionanimationlabel.h \
-    $$PWD/musicfloatabstractwidget.h \
-    $$PWD/musicfoundabstractwidget.h \
     $$PWD/musiccutsliderwidget.h \
     $$PWD/musictextsliderwidget.h \
     $$PWD/musictoolmenuwidget.h \
@@ -58,7 +59,6 @@ HEADERS  += \
     $$PWD/musiccodeareawidget.h \
     $$PWD/musiclayoutanimationwidget.h \
     $$PWD/musiccommentswidget.h \
-    $$PWD/musicdownloadabstracttablewidget.h \
     $$PWD/musicfunctiontoolboxwidget.h \
     $$PWD/musicsongitemselectedareawidget.h \
     $$PWD/musictimesliderwidget.h \
@@ -70,10 +70,13 @@ SOURCES += \
     $$PWD/musicabstractmovedialog.cpp \
     $$PWD/musicabstractmovewidget.cpp \
     $$PWD/musicabstractmoveresizewidget.cpp \
-    $$PWD/musicsongslistabstracttablewidget.cpp \
+    $$PWD/musicabstractdownloadtablewidget.cpp \
+    $$PWD/musicabstractfloatwidget.cpp \
+    $$PWD/musicabstractitemquerywidget.cpp \
+    $$PWD/musicabstractsongslisttablewidget.cpp \
     $$PWD/musicfillitemtablewidget.cpp \
-    $$PWD/musicquerytablewidget.cpp \
-    $$PWD/musicqueryfoundtablewidget.cpp \
+    $$PWD/musicitemsearchtablewidget.cpp \
+    $$PWD/musicitemquerytablewidget.cpp \
     $$PWD/musicsmoothmovingwidget.cpp \
     $$PWD/musicitemdelegate.cpp \
     $$PWD/musiccolordialog.cpp \
@@ -90,8 +93,6 @@ SOURCES += \
     $$PWD/musicroundanimationlabel.cpp \
     $$PWD/musicanimationstackedwidget.cpp \
     $$PWD/musictransitionanimationlabel.cpp \
-    $$PWD/musicfloatabstractwidget.cpp \
-    $$PWD/musicfoundabstractwidget.cpp \
     $$PWD/musiccutsliderwidget.cpp \
     $$PWD/musictextsliderwidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
@@ -105,7 +106,6 @@ SOURCES += \
     $$PWD/musiccodeareawidget.cpp \
     $$PWD/musiclayoutanimationwidget.cpp \
     $$PWD/musiccommentswidget.cpp \
-    $$PWD/musicdownloadabstracttablewidget.cpp \
     $$PWD/musicfunctiontoolboxwidget.cpp \
     $$PWD/musicsongitemselectedareawidget.cpp \
     $$PWD/musictimesliderwidget.cpp \

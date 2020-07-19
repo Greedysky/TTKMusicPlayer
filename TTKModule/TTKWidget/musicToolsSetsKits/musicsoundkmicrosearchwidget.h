@@ -19,13 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicquerytablewidget.h"
+#include "musicitemsearchtablewidget.h"
 #include "musicabstractmovewidget.h"
 
 /*! @brief The class of the sound kmicro search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchTableWidget : public MusicQueryItemTableWidget
+class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundKMicroSearchTableWidget)

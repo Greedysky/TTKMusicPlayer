@@ -21,7 +21,7 @@
 
 #include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicabstractqueryrequest.h"
 
 namespace Ui {
 class MusicDownloadWidget;
@@ -154,11 +154,11 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
+    void setSongName(const QString &name, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformation &info, MusicDownLoadQueryThreadAbstract::QueryType type);
+    void setSongName(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
 
 Q_SIGNALS:
     /*!
@@ -250,8 +250,8 @@ protected:
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
     int m_downloadOffset, m_downloadTotal;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
-    MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
+    MusicAbstractQueryRequest *m_downloadRequest;
+    MusicAbstractQueryRequest::QueryType m_queryType;
     MusicObject::MusicSongInformation m_singleSongInfo;
 
 };

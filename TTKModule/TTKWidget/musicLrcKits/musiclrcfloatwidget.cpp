@@ -7,7 +7,7 @@
 #include "musicwidgetheaders.h"
 
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
-    : MusicFloatAbstractWidget(parent)
+    : MusicAbstractFloatWidget(parent)
 {
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle08);
 

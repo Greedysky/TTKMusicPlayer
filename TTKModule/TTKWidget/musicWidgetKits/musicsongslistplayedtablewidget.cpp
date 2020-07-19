@@ -10,7 +10,7 @@
 #include <QScrollBar>
 
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
-    : MusicSongsListAbstractTableWidget(parent)
+    : MusicAbstractSongsListTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::SingleSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -118,7 +118,7 @@ void MusicSongsListPlayedTableWidget::clearAllItems()
 
     m_playRowIndex = -1;
     //Remove all the original item
-    MusicSongsListAbstractTableWidget::clear();
+    MusicAbstractSongsListTableWidget::clear();
     setColumnCount(5);
 }
 
@@ -128,7 +128,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     {
         return;
     }
-    MusicSongsListAbstractTableWidget::selectRow(index);
+    MusicAbstractSongsListTableWidget::selectRow(index);
 
     replacePlayWidgetRow();
     for(int i=0; i<columnCount(); ++i)
@@ -250,7 +250,7 @@ void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
         unsetCursor();
     }
 
-    MusicSongsListAbstractTableWidget::itemCellEntered(row, column);
+    MusicAbstractSongsListTableWidget::itemCellEntered(row, column);
 }
 
 void MusicSongsListPlayedTableWidget::itemCellClicked(int row, int column)
@@ -318,7 +318,7 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
     const bool empty = true;
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumQueryWidget()));
     rightClickMenu.addSeparator();
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);

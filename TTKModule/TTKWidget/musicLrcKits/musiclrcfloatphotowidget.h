@@ -20,7 +20,7 @@
  ================================================= */
 
 #include "musicclickedlabel.h"
-#include "musicfloatabstractwidget.h"
+#include "musicabstractfloatwidget.h"
 
 class QCheckBox;
 class QPushButton;
@@ -98,7 +98,7 @@ protected:
 /*! @brief The class of the lrc photo float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicFloatAbstractWidget
+class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatPhotoWidget)

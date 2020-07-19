@@ -5,7 +5,7 @@
 #include "musicwidgetheaders.h"
 
 MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
-    : MusicFloatAbstractWidget(parent)
+    : MusicAbstractFloatWidget(parent)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(2, 2, 2, 2);
@@ -73,7 +73,7 @@ void MusicLrcFloatPlayWidget::musicStatePlay()
 
 void MusicLrcFloatPlayWidget::enterEvent(QEvent *event)
 {
-    MusicFloatAbstractWidget::enterEvent(event);
+    MusicAbstractFloatWidget::enterEvent(event);
     setCurrentPlayState();
 }
 

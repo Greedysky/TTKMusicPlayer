@@ -1,7 +1,7 @@
 #include "musicwebmvradioinfowidget.h"
-#include "musicmvradioprogramthread.h"
+#include "musicmvradioprogramrequest.h"
 #include "musicsettingmanager.h"
-#include "musicdownloadsourcethread.h"
+#include "musicdownloadsourcerequest.h"
 #include "musicdownloadwidget.h"
 #include "musicrightareawidget.h"
 
@@ -9,7 +9,7 @@
 Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
 
 MusicWebMVRadioInfoTableWidget::MusicWebMVRadioInfoTableWidget(QWidget *parent)
-    : MusicQueryFoundTableWidget(parent)
+    : MusicItemQueryTableWidget(parent)
 {
 
 }
@@ -19,9 +19,9 @@ MusicWebMVRadioInfoTableWidget::~MusicWebMVRadioInfoTableWidget()
     clearAllItems();
 }
 
-void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
-    MusicQueryFoundTableWidget::setQueryInput(query);
+    MusicItemQueryTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
         connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
@@ -61,30 +61,30 @@ void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MovieQuery);
+    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MovieQuery);
     download->show();
 }
 
 
 
 MusicWebMVRadioInfoWidget::MusicWebMVRadioInfoWidget(QWidget *parent)
-    : MusicFoundAbstractWidget(parent)
+    : MusicAbstractItemQueryWidget(parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    m_foundTableWidget = new MusicWebMVRadioInfoTableWidget(this);
-    m_foundTableWidget->hide();
+    m_queryTableWidget = new MusicWebMVRadioInfoTableWidget(this);
+    m_queryTableWidget->hide();
 
-    MusicMVRadioProgramThread *v = new MusicMVRadioProgramThread(this);
-    m_foundTableWidget->setQueryInput(v);
+    MusicMVRadioProgramRequest *v = new MusicMVRadioProgramRequest(this);
+    m_queryTableWidget->setQueryInput(v);
     connect(v, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryInfoItem(MusicResultsItem)));
 }
 
 void MusicWebMVRadioInfoWidget::setSongName(const QString &name)
 {
-    MusicFoundAbstractWidget::setSongName(name);
-    m_foundTableWidget->startSearchQuery(name);
+    MusicAbstractItemQueryWidget::setSongName(name);
+    m_queryTableWidget->startSearchQuery(name);
 }
 
 void MusicWebMVRadioInfoWidget::setSongNameById(const QString &id)
@@ -94,7 +94,7 @@ void MusicWebMVRadioInfoWidget::setSongNameById(const QString &id)
 
 void MusicWebMVRadioInfoWidget::resizeWindow()
 {
-    m_foundTableWidget->resizeWindow();
+    m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
@@ -121,7 +121,7 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
 
     if(!m_resizeWidgets.isEmpty())
     {
-        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+        MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
         {
@@ -140,7 +140,7 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
 
 void MusicWebMVRadioInfoWidget::downloadMVsButtonClicked()
 {
-    m_foundTableWidget->downloadBatchData(false);
+    m_queryTableWidget->downloadBatchData(false);
 }
 
 void MusicWebMVRadioInfoWidget::createLabels()
@@ -262,15 +262,15 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     middleFuncLayout->addWidget(allCheckBox);
     middleFuncLayout->addStretch(1);
     middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_foundTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_queryTableWidget, SLOT(setSelectedAllItems(bool)));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadMVsButtonClicked()));
 
     vlayout->addWidget(middleFuncWidget);
     //
-    vlayout->addWidget(m_foundTableWidget);
+    vlayout->addWidget(m_queryTableWidget);
     vlayout->addStretch(1);
     songWidget->setLayout(vlayout);
 
-    m_foundTableWidget->show();
+    m_queryTableWidget->show();
     m_container->addWidget(songWidget);
 }

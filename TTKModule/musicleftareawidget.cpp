@@ -121,7 +121,7 @@ void MusicLeftAreaWidget::setTransparent(int index)
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);
-    mgmt.setSongName(m_ui->showCurrentSong->text(), MusicDownLoadQueryThreadAbstract::MusicQuery);
+    mgmt.setSongName(m_ui->showCurrentSong->text(), MusicAbstractQueryRequest::MusicQuery);
 }
 
 void MusicLeftAreaWidget::musicDownloadSongFinished()

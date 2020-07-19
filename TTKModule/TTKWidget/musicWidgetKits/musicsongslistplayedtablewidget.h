@@ -19,14 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsongslistabstracttablewidget.h"
+#include "musicabstractsongslisttablewidget.h"
 
 class MusicSongsListPlayedWidget;
 
 /*! @brief The class of the songs played queue list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListPlayedTableWidget : public MusicSongsListAbstractTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListPlayedTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListPlayedTableWidget)

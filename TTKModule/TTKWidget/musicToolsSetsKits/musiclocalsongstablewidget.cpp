@@ -6,7 +6,7 @@
 Q_DECLARE_METATYPE(QFileInfoList)
 
 MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
-    : MusicSongsListAbstractTableWidget(parent)
+    : MusicAbstractSongsListTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     MusicUtils::Widget::setTransparent(this, 150);
@@ -76,7 +76,7 @@ void MusicLocalSongsTableWidget::itemCellClicked(int row, int column)
 
 void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
+    MusicAbstractSongsListTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
 
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
@@ -89,7 +89,7 @@ void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
     const bool empty = !m_musicSongs->isEmpty();
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumQueryWidget()));
     rightClickMenu.addSeparator();
 
     rightClickMenu.exec(QCursor::pos());

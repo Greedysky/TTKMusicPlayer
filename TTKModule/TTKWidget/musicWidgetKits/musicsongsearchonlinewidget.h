@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicquerytablewidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicitemsearchtablewidget.h"
+#include "musicabstractqueryrequest.h"
 
 #define AUDITION_PLAY TTKStatic_cast(int, Qt::yellow)
 #define AUDITION_STOP TTKStatic_cast(int, Qt::transparent)
@@ -56,7 +56,7 @@ class MusicCoreMPlayer;
 /*! @brief The class of the song search online table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongSearchTableWidget : public MusicQueryItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSearchTableWidget)

@@ -1,6 +1,6 @@
 #include "musicsoundkmicrosearchwidget.h"
-#include "musicdownloadquerykwmoviethread.h"
-#include "musicdownloadquerybdlearnthread.h"
+#include "musickwquerymovierequest.h"
+#include "musicbdquerylearnrequest.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musictoastlabel.h"
@@ -11,7 +11,7 @@
 #include <QButtonGroup>
 
 MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *parent)
-    : MusicQueryItemTableWidget(parent)
+    : MusicItemSearchTableWidget(parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -44,18 +44,17 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
 
     if(m_queryMovieMode)
     {
-        MusicDownLoadQueryKWMovieThread *d = new MusicDownLoadQueryKWMovieThread(this);
-        d->setQueryExtraMovie(false);
+        MusicKWQueryMovieRequest *d = new MusicKWQueryMovieRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
         setQueryInput(d);
-        m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+        m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MovieQuery, text);
     }
     else
     {
-        MusicDownLoadQueryBDLearnThread *d = new MusicDownLoadQueryBDLearnThread(this);
+        MusicBDQueryLearnRequest *d = new MusicBDQueryLearnRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
         setQueryInput(d);
-        m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+        m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
     }
 }
 
@@ -69,7 +68,7 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
 
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], m_queryMovieMode ? MusicDownLoadQueryThreadAbstract::MovieQuery : MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(musicSongInfos[row], m_queryMovieMode ? MusicAbstractQueryRequest::MovieQuery : MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -80,7 +79,7 @@ void MusicSoundKMicroSearchTableWidget::setQueryMovieFlag(bool flag)
 
 void MusicSoundKMicroSearchTableWidget::clearAllItems()
 {
-    MusicQueryItemTableWidget::clearAllItems();
+    MusicItemSearchTableWidget::clearAllItems();
     setColumnCount(5);
 }
 
@@ -136,7 +135,7 @@ void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellEntered(row, column);
+    MusicItemSearchTableWidget::itemCellEntered(row, column);
     QTableWidgetItem *it = item(row, 0);
     if(it)
     {
@@ -150,7 +149,7 @@ void MusicSoundKMicroSearchTableWidget::itemCellEntered(int row, int column)
 
 void MusicSoundKMicroSearchTableWidget::itemCellClicked(int row, int column)
 {
-    MusicQueryItemTableWidget::itemCellClicked(row, column);
+    MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
         case 4:
@@ -178,7 +177,7 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
 
 void MusicSoundKMicroSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicQueryItemTableWidget::contextMenuEvent(event);
+    MusicItemSearchTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
     createContextMenu(rightClickMenu);
 

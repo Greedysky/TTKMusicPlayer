@@ -1,8 +1,8 @@
 #include "musicidentifysongswidget.h"
 #include "musictoolsetsuiobject.h"
-#include "musicidentifysongsthread.h"
+#include "musicidentifysongsrequest.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdatadownloadthread.h"
+#include "musicdownloaddatarequest.h"
 #include "musicaudiorecorderobject.h"
 #include "musicsongsharingwidget.h"
 #include "musicdownloadwidget.h"
@@ -36,7 +36,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     m_mediaPlayer = nullptr;
     m_analysis = nullptr;
     m_recordCore = new MusicAudioRecorderObject(this);
-    m_detectedThread = new MusicIdentifySongsThread(this);
+    m_detectedThread = new MusicIdentifySongsRequest(this);
 
     QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
@@ -148,7 +148,7 @@ void MusicIdentifySongsWidget::musicSongDownload()
     if(!m_currentSong.m_singerName.isEmpty())
     {
         MusicDownloadWidget *download = new MusicDownloadWidget(this);
-        download->setSongName(m_currentSong, MusicDownLoadQueryThreadAbstract::MusicQuery);
+        download->setSongName(m_currentSong, MusicAbstractQueryRequest::MusicQuery);
         download->show();
     }
 }
@@ -277,9 +277,9 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     textLabel->setAlignment(Qt::AlignCenter);
     //
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+    MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    d->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
+    d->startToSearch(MusicAbstractQueryRequest::MusicQuery, textLabel->text().trimmed());
     loop.exec();
 
     if(!d->isEmpty())
@@ -302,7 +302,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
+            MusicDownloadDataRequest *download = new MusicDownloadDataRequest(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             download->startToDownload();
             loop.exec();
@@ -361,7 +361,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = MusicUtils::String::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(m_currentSong.m_lrcUrl, name, MusicObject::DownloadLrc, this);
+            MusicAbstractDownLoadRequest *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(m_currentSong.m_lrcUrl, name, MusicObject::DownloadLrc, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();
