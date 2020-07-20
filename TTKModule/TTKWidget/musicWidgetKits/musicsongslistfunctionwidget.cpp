@@ -36,7 +36,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     connect(searchButton, SIGNAL(clicked()), parent, SLOT(musicSearchWidget()));
 
     m_currentAnimationValue = 1;
-    m_timer.setInterval(3*MT_S2MS);
+    m_timer.setInterval(3 * MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 
     m_animation = new QPropertyAnimation(this, "windowOpacity", this);

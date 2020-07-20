@@ -20,7 +20,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     setWindowTitle(tr("TTKMovie"));
 
     m_leaverTimer = new QTimer(this);
-    m_leaverTimer->setInterval(4*MT_S2MS);
+    m_leaverTimer->setInterval(4 * MT_S2MS);
     m_leaverTimer->setSingleShot(true);
     connect(m_leaverTimer, SIGNAL(timeout()), SLOT(leaveTimeout()));
 

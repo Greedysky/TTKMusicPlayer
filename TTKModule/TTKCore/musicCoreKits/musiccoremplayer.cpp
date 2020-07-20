@@ -14,7 +14,7 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 
-    m_checkTimer.setInterval(5*MT_S2MS);
+    m_checkTimer.setInterval(5 * MT_S2MS);
     connect(&m_checkTimer, SIGNAL(timeout()), SLOT(checkTimerout()));
 }
 

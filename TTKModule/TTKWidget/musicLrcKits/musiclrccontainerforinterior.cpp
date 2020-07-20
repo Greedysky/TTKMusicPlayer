@@ -246,14 +246,14 @@ void MusicLrcContainerForInterior::lrcTimeSpeedChanged(QAction *action)
     int timeValue = 0;
     switch(action->data().toInt())
     {
-        case 0: timeValue = -0.5*MT_S2MS; break;
+        case 0: timeValue = -0.5 * MT_S2MS; break;
         case 1: timeValue = -MT_S2MS; break;
-        case 2: timeValue = -2*MT_S2MS; break;
-        case 3: timeValue = -5*MT_S2MS; break;
-        case 4: timeValue = 0.5*MT_S2MS; break;
+        case 2: timeValue = -2 * MT_S2MS; break;
+        case 3: timeValue = -5 * MT_S2MS; break;
+        case 4: timeValue = 0.5 * MT_S2MS; break;
         case 5: timeValue = MT_S2MS; break;
-        case 6: timeValue = 2*MT_S2MS; break;
-        case 7: timeValue = 5*MT_S2MS; break;
+        case 6: timeValue = 2 * MT_S2MS; break;
+        case 7: timeValue = 5 * MT_S2MS; break;
         default: break;
     }
 

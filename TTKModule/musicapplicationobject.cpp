@@ -127,7 +127,7 @@ void MusicApplicationObject::windowCloseAnimation()
 {
     if(M_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
-        MusicTopAreaWidget::instance()->setTimerStop();
+        MusicTopAreaWidget::instance()->setBackgroundAnimation(false);
         MusicApplication *w = MusicApplication::instance();
         w->setMinimumSize(0, 0); ///remove fixed size
 
@@ -259,7 +259,7 @@ void MusicApplicationObject::windowCloseAnimationFinished()
 
         MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
         gifWidget->setType(MusicGifLabelWidget::Gif_Close_White);
-        gifWidget->setInterval(25*MT_MS);
+        gifWidget->setInterval(25 * MT_MS);
         gifWidget->setInfinited(false);
         m_quitContainer->resize(gifWidget->size());
 

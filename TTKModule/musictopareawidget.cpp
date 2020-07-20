@@ -30,7 +30,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_musicBackgroundWidget = nullptr;
     m_musicRemoteWidget = nullptr;
 
-    m_pictureCarouselTimer.setInterval(10*MT_S2MS);
+    m_pictureCarouselTimer.setInterval(10 * MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
 
@@ -56,7 +56,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
 
-    musicBackgroundSliderStateChanged(true);
+    musicBackgroundAnimationChanged(true);
     m_musicUserWindow = new MusicUserWindow(this);
     ui->userWindow->addWidget(m_musicUserWindow);
 
@@ -143,9 +143,9 @@ bool MusicTopAreaWidget::getUserLoginState() const
     return m_musicUserWindow->isUserLogin();
 }
 
-void MusicTopAreaWidget::setTimerStop()
+void MusicTopAreaWidget::setBackgroundAnimation(bool state)
 {
-    m_pictureCarouselTimer.stop();
+    state ? m_pictureCarouselTimer.start() : m_pictureCarouselTimer.stop();
 }
 
 void MusicTopAreaWidget::setCurrentPlayStatus(bool status)
@@ -266,9 +266,9 @@ void MusicTopAreaWidget::musicBackgroundChanged()
     }
 }
 
-void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
+void MusicTopAreaWidget::musicBackgroundAnimationChanged(bool state)
 {
-    m_ui->background->setNoAnimation(state);
+    m_ui->background->setAnimation(state);
 }
 
 void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
@@ -276,7 +276,7 @@ void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
     if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinterior->artistBackgroundIsShow())
     {
         musicBackgroundChanged();
-        m_pictureCarouselTimer.start();
+        setBackgroundAnimation(true);
     }
     else
     {
@@ -286,9 +286,13 @@ void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
 
 void MusicTopAreaWidget::musicBackgroundThemeChangedByResize()
 {
-    musicBackgroundSliderStateChanged(true);
+    musicBackgroundAnimationChanged(true);
+    setBackgroundAnimation(false);
+    ///
     drawWindowBackgroundRectString();
-    musicBackgroundSliderStateChanged(false);
+    ///
+    musicBackgroundAnimationChanged(false);
+    setBackgroundAnimation(true);
 }
 
 void MusicTopAreaWidget::musicPlaylistTransparent(int index)
@@ -439,7 +443,7 @@ void MusicTopAreaWidget::createRemoteWidget()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
-    m_pictureCarouselTimer.stop();
+    setBackgroundAnimation(false);
     drawWindowBackgroundRect(MusicBackgroundSkinDialog::setBackgroundUrl(m_backgroundImagePath).toImage());
 }
 

@@ -55,7 +55,7 @@ public:
     /*!
      * Set no animation to start.
      */
-    inline void setNoAnimation(bool on) { m_noAnimationSet = on; }
+    inline void setAnimation(bool on) { m_noAnimationSet = on; }
     /*!
      * Get no animation state.
      */

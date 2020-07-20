@@ -86,9 +86,9 @@ public:
     bool getUserLoginState() const;
 
     /*!
-     * Stop background skin change tiemr.
+     * Stop background skin change timer.
      */
-    void setTimerStop();
+    void setBackgroundAnimation(bool state);
     /*!
      * Set current play state button.
      */
@@ -156,7 +156,7 @@ public Q_SLOTS:
     /*!
      * Current slider state changed.
      */
-    void musicBackgroundSliderStateChanged(bool state);
+    void musicBackgroundAnimationChanged(bool state);
     /*!
      * Current background skin download is finished.
      */

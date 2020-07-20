@@ -60,7 +60,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_topAreaWidget->setupUi(m_ui);
     m_rightAreaWidget->setupUi(m_ui);
     m_leftAreaWidget->setupUi(m_ui);
-    m_topAreaWidget->musicBackgroundSliderStateChanged(false);
+    m_topAreaWidget->musicBackgroundAnimationChanged(false);
 
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_leftAreaWidget, SLOT(setTransparent(int)));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBackgroundTransparentChanged()));
@@ -423,7 +423,7 @@ void MusicApplication::musicStatePlay()
         m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
         m_playControl = true;
         m_musicPlayer->pause();
-        m_topAreaWidget->setTimerStop();
+        m_topAreaWidget->setBackgroundAnimation(false);
         m_rightAreaWidget->stopLrcMask();
     }
     m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
