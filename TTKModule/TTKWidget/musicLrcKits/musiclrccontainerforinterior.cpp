@@ -316,7 +316,7 @@ void MusicLrcContainerForInterior::showSongCommentsWidget()
     delete m_commentsWidget;
     m_commentsWidget = new MusicLrcCommentsWidget(this);
     m_commentsWidget->initWidget(true);
-    m_commentsWidget->setGeometry(0, height()/5, width(), height()*4/5);
+    m_commentsWidget->setGeometry(0, height() / 5, width(), height()*4/5);
     m_commentsWidget->show();
     m_commentsWidget->setCurrentSongName(m_currentSongName);
 }
@@ -349,7 +349,7 @@ void MusicLrcContainerForInterior::getTranslatedLrcFinished(const QString &data)
     delete m_translatedWidget;
     m_translatedWidget = new MusicLrcTranslatedWidget(this);
     m_translatedWidget->setPlainText(m_currentSongName, text);
-    m_translatedWidget->setGeometry(0, height()/5, width(), height()*4/5);
+    m_translatedWidget->setGeometry(0, height() / 5, width(), height()*4/5);
     m_translatedWidget->show();
 }
 
@@ -680,7 +680,7 @@ void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
 {
     const int w = MusicUtils::Widget::fontTextWidth(m_noLrcCurrentInfo->font(), m_noLrcCurrentInfo->text());
     const int h = MusicUtils::Widget::fontTextHeight(m_noLrcCurrentInfo->font());
-    const int offset = height()/m_lrcAnalysis->getLineMax()*(m_lrcAnalysis->getMiddle() + 1) - 40;
+    const int offset = height() / m_lrcAnalysis->getLineMax()*(m_lrcAnalysis->getMiddle() + 1) - 40;
 
     m_noLrcCurrentInfo->setGeometry((width() - w) / 2, offset, w, h);
     m_noLrcCurrentInfo->show();
@@ -902,10 +902,10 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
 
     if(m_commentsWidget)
     {
-        m_commentsWidget->setGeometry(0, height()/5, width(), height()*4/5);
+        m_commentsWidget->setGeometry(0, height() / 5, width(), height()*4/5);
     }
     if(m_translatedWidget)
     {
-        m_translatedWidget->setGeometry(0, height()/5, width(), height()*4/5);
+        m_translatedWidget->setGeometry(0, height() / 5, width(), height()*4/5);
     }
 }

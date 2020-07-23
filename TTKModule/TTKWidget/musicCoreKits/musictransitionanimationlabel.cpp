@@ -147,9 +147,9 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);
                 const int s = 100;
-                for(int i=0; i<=width()/s; i+=2)
+                for(int i=0; i<=width() / s; i+=2)
                 {
-                    for(int j=0; j<=height()/s; ++j)
+                    for(int j=0; j<=height() / s; ++j)
                     {
                         const int index = (j % 2 == 0) ? i : (i + 1);
                         QPainter paint(&pix);

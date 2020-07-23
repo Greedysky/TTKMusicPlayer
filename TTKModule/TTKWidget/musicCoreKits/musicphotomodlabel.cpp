@@ -38,9 +38,9 @@ void MusicPhotoModLabel::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
     QPixmap pix(":/lrc/lb_transparent");
-    for(int i=0; i<ceil(width()/PIX_WIDTH); ++i)
+    for(int i=0; i<ceil(width() / PIX_WIDTH); ++i)
     {
-        for(int j=0; j<=ceil(height()/PIX_HEIGHT); ++j)
+        for(int j=0; j<=ceil(height() / PIX_HEIGHT); ++j)
         {
             painter.drawPixmap(i*PIX_WIDTH, j*PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, pix);
         }

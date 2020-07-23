@@ -46,12 +46,12 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
     if(img.width() > img.height())
     {
         m_ratio = img.width()*1.0f/width();
-        m_imgRect = QRect(0, 0, img.width()/m_ratio, img.height()/m_ratio);
+        m_imgRect = QRect(0, 0, img.width() / m_ratio, img.height() / m_ratio);
     }
     else
     {
         m_ratio = img.height()*1.0f/height();
-        m_imgRect = QRect(0, 0, img.width()/m_ratio, img.height()/m_ratio);
+        m_imgRect = QRect(0, 0, img.width() / m_ratio, img.height() / m_ratio);
     }
     m_imgRect.setX((width() - m_imgRect.width()) / 2);
     m_imgRect.setY((height() - m_imgRect.height()) / 2);
@@ -78,9 +78,9 @@ void MusicPhotoGrabLabel::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     QPixmap pix(":/lrc/lb_transparent");
-    for(int i=0; i<ceil(width()/PIX_WIDTH); ++i)
+    for(int i=0; i<ceil(width() / PIX_WIDTH); ++i)
     {
-        for(int j=0; j<=ceil(height()/PIX_HEIGHT); ++j)
+        for(int j=0; j<=ceil(height() / PIX_HEIGHT); ++j)
         {
             painter.drawPixmap(i*PIX_WIDTH, j*PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, pix);
         }

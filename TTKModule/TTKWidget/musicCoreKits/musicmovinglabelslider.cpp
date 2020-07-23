@@ -75,7 +75,7 @@ QPoint MusicMovingLabelSlider::limitLableGeometry(int x, int y, int z)
     if(0 < x && x < z)
     {
         pt.setX(y + x);
-        pt.setY(qint64(x)*maximum()/z);
+        pt.setY(qint64(x)*maximum() / z);
     }
     if(x <= 0)
     {

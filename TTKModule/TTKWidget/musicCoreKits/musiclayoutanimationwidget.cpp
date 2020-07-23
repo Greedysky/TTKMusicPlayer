@@ -108,7 +108,7 @@ void MusicVLayoutAnimationWidget::start()
         return;
     }
 
-    m_animation->setEndValue(height()/m_widgetLayout->count());
+    m_animation->setEndValue(height() / m_widgetLayout->count());
 
     MusicLayoutAnimationWidget::start();
 }
@@ -152,7 +152,7 @@ void MusicHLayoutAnimationWidget::start()
         return;
     }
 
-    m_animation->setEndValue(width()/m_widgetLayout->count());
+    m_animation->setEndValue(width() / m_widgetLayout->count());
 
     MusicLayoutAnimationWidget::start();
 }

@@ -31,7 +31,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
         getAllText[0].clear();
-        const int perTime = MusicApplication::instance()->duration()/getAllText.count();
+        const int perTime = MusicApplication::instance()->duration() / getAllText.count();
         foreach(const QString &oneLine, getAllText)
         {
             m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);

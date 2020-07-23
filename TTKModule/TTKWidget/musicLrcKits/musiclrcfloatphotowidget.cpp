@@ -349,7 +349,7 @@ void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
     MusicAbstractFloatWidget::paintEvent(event);
 
     QPainter painter(this);
-    for(int i=0; i<= ceil(width()/PHOTO_BACKGROUNDG_WIDTH); ++i)
+    for(int i=0; i<= ceil(width() / PHOTO_BACKGROUNDG_WIDTH); ++i)
     {
         painter.drawPixmap(PHOTO_BACKGROUNDG_WIDTH * i, 0, QPixmap(":/lrc/lb_film_bg"));
     }

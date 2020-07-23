@@ -171,7 +171,7 @@ void MusicPlaylistQueryWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        const int lineNumber = width()/LINE_SPACING_SIZE;
+        const int lineNumber = width() / LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -248,8 +248,8 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
     connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentPlaylistClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
-    const int lineNumber = width()/LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    const int lineNumber = width() / LINE_SPACING_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 
