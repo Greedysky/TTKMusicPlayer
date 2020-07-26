@@ -10,17 +10,16 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
+#define APP_KEY     "23649156"
+
 bool MusicXMQueryInterface::makeTokenQueryCookies(QString &tk, QString &tke)
 {
     QNetworkAccessManager manager;
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false)));
-    const QString &time = QString::number(MusicTime::timestamp());
-    const QString &appkey = "12574478";
-    const QString &sign = MusicUtils::Algorithm::md5((time + "&" + appkey).toUtf8()).toHex();
-    const QString &base = MusicUtils::Algorithm::mdII(XM_COOKIE_DATA_URL, false);
 
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(base).arg(time).arg(appkey).arg(sign)));
+    const QString &appkey = APP_KEY;
+
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false).arg(appkey)));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 
     QNetworkReply *reply = manager.get(request);
@@ -52,7 +51,7 @@ void MusicXMQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QS
     }
 
     const QString time = QString::number(MusicTime::timestamp());
-    const QString appkey = "12574478";
+    const QString appkey = APP_KEY;
     const QString token = tk.split("_").front();
     const QString data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
     const QString encode = QString("%1&%2&%3&%4").arg(token).arg(time).arg(appkey).arg(data);

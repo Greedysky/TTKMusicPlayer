@@ -201,7 +201,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             }
         case 2:
             {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_SG_SHARE, ALG_LOW_KEY, false).arg("1796845157"));
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_SG_SHARE, ALG_LOW_KEY, false).arg("1770851302"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_AR_SHARE, ALG_LOW_KEY, false).arg("2110200690"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_AL_SHARE, ALG_LOW_KEY, false).arg("2102764975"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_PL_SHARE, ALG_LOW_KEY, false).arg("358404263"));
