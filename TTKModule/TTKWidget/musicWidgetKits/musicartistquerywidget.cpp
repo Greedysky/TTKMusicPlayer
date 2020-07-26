@@ -159,7 +159,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
     label->setMusicResultsItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 
@@ -241,7 +241,7 @@ void MusicArtistSimilarQueryWidget::createArtistSimilarItem(const MusicResultsIt
     label->setMusicResultsItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 
@@ -309,7 +309,7 @@ void MusicArtistAlbumsQueryWidget::createArtistAlbumsItem(const MusicResultsItem
     label->setMusicResultsItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 
@@ -383,9 +383,20 @@ void MusicArtistQueryWidget::resizeWindow()
 {
     m_queryTableWidget->resizeWindow();
 
-    if(m_artistAlbums) m_artistAlbums->resizeWindow();
-    if(m_artistMvs) m_artistMvs->resizeWindow();
-    if(m_artistSim) m_artistSim->resizeWindow();
+    if(m_artistAlbums)
+    {
+        m_artistAlbums->resizeWindow();
+    }
+
+    if(m_artistMvs)
+    {
+        m_artistMvs->resizeWindow();
+    }
+
+    if(m_artistSim)
+    {
+        m_artistSim->resizeWindow();
+    }
 }
 
 void MusicArtistQueryWidget::queryAllFinished()
@@ -474,8 +485,15 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
 
 void MusicArtistQueryWidget::setCurrentIndex(int index)
 {
-    if(m_queryTableWidget) m_queryTableWidget->hide();
-    if(m_infoLabel) m_infoLabel->hide();
+    if(m_queryTableWidget)
+    {
+        m_queryTableWidget->hide();
+    }
+
+    if(m_infoLabel)
+    {
+        m_infoLabel->hide();
+    }
 
     delete m_artistAlbums;
     m_artistAlbums = nullptr;

@@ -17,22 +17,22 @@ void MusicConfigObject::checkValid()
 
 QString MusicConfigObject::getAppPath() const
 {
-    return C_TTKSERVICE_FULL;
+    return TTK_SERVICE_FULL;
 }
 
 void MusicConfigObject::initialize()
 {
     checkTheFileNeededExist();
 
-    copyFileOverwrite(":/data/musicconfig.xml", C_COFIGPATH_FULL);
-    copyFileOverwrite(":/data/music.tkpl", C_MUSICPATH_FULL);
-    copyFileOverwrite(":/data/musicdown.ttk", C_NORMALDOWNPATH_FULL);
-    copyFileOverwrite(":/data/musiccloud.ttk", C_CLOUDDOWNPATH_FULL);
-    copyFileOverwrite(":/data/musiccloudp.ttk", C_CLOUDUPPATH_FULL);
-    copyFileOverwrite(":/data/musichistory.ttk", C_MUSICSEARCH_FULL);
-    copyFileOverwrite(":/data/musicuser.dll", C_DARABASEPATH_FULL);
-    copyFileOverwrite(":/data/musicuser.ttk", C_USERPATH_FULL);
-    copyFileOverwrite(":/data/musicbarrage.ttk", C_BARRAGEPATH_FULL);
+    copyFileOverwrite(":/data/musicconfig.xml", TTK_COFIGPATH_FULL);
+    copyFileOverwrite(":/data/music.tkpl", TTK_MUSICPATH_FULL);
+    copyFileOverwrite(":/data/musicdown.ttk", TTK_NORMALDOWNPATH_FULL);
+    copyFileOverwrite(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
+    copyFileOverwrite(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
+    copyFileOverwrite(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
+    copyFileOverwrite(":/data/musicuser.dll", TTK_DARABASEPATH_FULL);
+    copyFileOverwrite(":/data/musicuser.ttk", TTK_USERPATH_FULL);
+    copyFileOverwrite(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 }
 
 void MusicConfigObject::dirIsExist(const QString &name)
@@ -46,43 +46,43 @@ void MusicConfigObject::dirIsExist(const QString &name)
 
 void MusicConfigObject::checkTheDirectoryExist()
 {
-    dirIsExist(C_LRC_DIR_FULL);
-    dirIsExist(C_MUSIC_DIR_FULL);
-    dirIsExist(C_MOVIE_DIR_FULL);
-    dirIsExist(C_UPDATE_DIR_FULL);
+    dirIsExist(TTK_LRC_DIR_FULL);
+    dirIsExist(TTK_MUSIC_DIR_FULL);
+    dirIsExist(TTK_MOVIE_DIR_FULL);
+    dirIsExist(TTK_UPDATE_DIR_FULL);
 
-    dirIsExist(C_CACHE_DIR_FULL);
-    dirIsExist(C_ART_DIR_FULL);
-    dirIsExist(C_BACKGROUND_DIR_FULL);
-    dirIsExist(C_SCREEN_DIR_FULL);
+    dirIsExist(TTK_CACHE_DIR_FULL);
+    dirIsExist(TTK_ART_DIR_FULL);
+    dirIsExist(TTK_BACKGROUND_DIR_FULL);
+    dirIsExist(TTK_SCREEN_DIR_FULL);
 
-    dirIsExist(C_AVATAR_DIR_FULL);
-    dirIsExist(C_USER_THEME_DIR_FULL);
+    dirIsExist(TTK_AVATAR_DIR_FULL);
+    dirIsExist(TTK_USER_THEME_DIR_FULL);
 
-    dirIsExist(C_THEME_DIR_FULL);
-    dirIsExist(C_PLUGINS_DIR_FULL);
-    dirIsExist(C_LANGUAGE_DIR_FULL);
+    dirIsExist(TTK_THEME_DIR_FULL);
+    dirIsExist(TTK_PLUGINS_DIR_FULL);
+    dirIsExist(TTK_LANGUAGE_DIR_FULL);
 }
 
 void MusicConfigObject::checkTheFileNeededExist()
 {
-    copyFile(":/data/musicconfig.xml", C_COFIGPATH_FULL);
-    copyFile(":/data/music.tkpl", C_MUSICPATH_FULL);
-    copyFile(":/data/musicdown.ttk", C_NORMALDOWNPATH_FULL);
-    copyFile(":/data/musiccloud.ttk", C_CLOUDDOWNPATH_FULL);
-    copyFile(":/data/musiccloudp.ttk", C_CLOUDUPPATH_FULL);
-    copyFile(":/data/musichistory.ttk", C_MUSICSEARCH_FULL);
-    copyFile(":/data/musicuser.dll", C_DARABASEPATH_FULL);
-    copyFile(":/data/musicuser.ttk", C_USERPATH_FULL);
-    copyFile(":/data/musicbarrage.ttk", C_BARRAGEPATH_FULL);
+    copyFile(":/data/musicconfig.xml", TTK_COFIGPATH_FULL);
+    copyFile(":/data/music.tkpl", TTK_MUSICPATH_FULL);
+    copyFile(":/data/musicdown.ttk", TTK_NORMALDOWNPATH_FULL);
+    copyFile(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
+    copyFile(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
+    copyFile(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
+    copyFile(":/data/musicuser.dll", TTK_DARABASEPATH_FULL);
+    copyFile(":/data/musicuser.ttk", TTK_USERPATH_FULL);
+    copyFile(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 
 #ifdef Q_OS_UNIX
-    copyLinuxShellFile(":/data/TTKRoutine.sh", C_TTKROUTINE_FULL);
-    copyLinuxShellFile(":/data/TTKInit.sh", C_TTKINIT_FULL);
-    copyLinuxShellFile(":/data/TTKMusicPlayer.sh", C_TTKMUSICPLAYER_FULL);
-    copyLinuxShellFile(":/data/TTKConsole.sh", C_TTKCONSOLE_FULL);
-    copyLinuxShellFile(":/data/TTKService.sh", C_TTKSERVICE_FULL);
-    copyLinuxShellFile(":/data/TTKRoutineCopy.sh", C_TTKROUTINECOPY_FULL);
+    copyLinuxShellFile(":/data/TTKRoutine.sh", TTK_ROUTINE_FULL);
+    copyLinuxShellFile(":/data/TTKInit.sh", TTK_INIT_FULL);
+    copyLinuxShellFile(":/data/TTKMusicPlayer.sh", TTK_MUSICPLAYER_FULL);
+    copyLinuxShellFile(":/data/TTKConsole.sh", TTK_CONSOLE_FULL);
+    copyLinuxShellFile(":/data/TTKService.sh", TTK_SERVICE_FULL);
+    copyLinuxShellFile(":/data/TTKRoutineCopy.sh", TTK_ROUTINECOPY_FULL);
 #endif
 }
 

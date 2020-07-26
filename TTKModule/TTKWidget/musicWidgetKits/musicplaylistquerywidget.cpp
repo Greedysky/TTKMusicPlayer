@@ -249,7 +249,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
     label->setMusicResultsItem(item);
 
     const int lineNumber = width() / LINE_SPACING_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 

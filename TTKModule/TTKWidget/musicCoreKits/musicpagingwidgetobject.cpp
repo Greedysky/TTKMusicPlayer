@@ -44,7 +44,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     foreach(MusicClickedLabel *w, m_pagingItems)
     {
         QFont font(w->font());
-        font.setPixelSize(17);
+        font.setPixelSize(14);
         w->setFont(font);
         w->setStyleSheet(MusicUIObject::MQSSColorStyle04);
         w->setFixedWidth(MusicUtils::Widget::fontTextWidth(font, w->text()));

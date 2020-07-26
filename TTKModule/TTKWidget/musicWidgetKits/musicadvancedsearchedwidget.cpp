@@ -183,11 +183,11 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
     {
         case 0:
             {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_LOW_KEY, false).arg("482395261"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_LOW_KEY, false).arg("12146142"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_LOW_KEY, false).arg("35579387"));
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_LOW_KEY, false).arg("28830412"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_LOW_KEY, false).arg("964486"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_LOW_KEY, false).arg("2901140"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_LOW_KEY, false).arg("988604820"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_LOW_KEY, false).arg("522362"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_LOW_KEY, false).arg("5343487"));
                 break;
             }
         case 1:
@@ -272,12 +272,17 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
             {
                 QRegExp regx;
                 if(type == 1)
+                {
                     regx.setPattern("id=(\\d+)");
+                }
                 else if(type == 3)
+                {
                     regx.setPattern("pid=(\\d+)");
+                }
                 else
+                {
                     regx.setPattern("/(\\d+)");
-
+                }
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
@@ -285,11 +290,17 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
             {
                 QRegExp regx;
                 if(type == 0)
+                {
                     regx.setPattern("hash=(\\w+)");
+                }
                 else if(type == 4)
+                {
                     regx.setPattern("/mv_(\\d+)");
+                }
                 else
+                {
                     regx.setPattern("/(\\d+)");
+                }
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }

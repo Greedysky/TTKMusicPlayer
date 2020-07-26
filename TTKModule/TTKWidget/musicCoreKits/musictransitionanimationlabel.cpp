@@ -167,8 +167,11 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
             {
                 m_waterWave->render();
                 QImage image = m_currentPixmap.toImage();
+#if TTK_QT_VERSION_CHECK(5,10,0)
+                memcpy(image.bits(), (const uchar*)m_waterWave->data(), image.sizeInBytes());
+#else
                 memcpy(image.bits(), (const uchar*)m_waterWave->data(), image.byteCount());
-
+#endif
                 painter.drawPixmap(rect(), m_previousPixmap);
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);

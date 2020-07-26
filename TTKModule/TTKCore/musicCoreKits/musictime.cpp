@@ -126,8 +126,7 @@ QString MusicTime::msecTime2LabelJustified()
     else
     {
         const int min = m_day * MT_H2S + m_hour * MT_H + m_min;
-        return QString::number(min).rightJustified(2, '0') + ":" +
-               QString::number(m_sec).rightJustified(2, '0');
+        return QString::number(min).rightJustified(2, '0') + ":" + QString::number(m_sec).rightJustified(2, '0');
     }
 }
 
@@ -141,8 +140,7 @@ QString MusicTime::msecTime2LabelJustified(qint64 time, bool greedy)
     else
     {
         const int min = t.getDay() * MT_H2S + t.getHour() * MT_H + t.getMinute();
-        return QString::number(min).rightJustified(2, '0') + ":" +
-               QString::number(t.getSecond()).rightJustified(2, '0');
+        return QString::number(min).rightJustified(2, '0') + ":" + QString::number(t.getSecond()).rightJustified(2, '0');
     }
 }
 
