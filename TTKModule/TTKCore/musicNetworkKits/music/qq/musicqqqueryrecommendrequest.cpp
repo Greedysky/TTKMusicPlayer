@@ -17,13 +17,13 @@ void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_RCM_URL, false);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_RECOMMEND_URL, false);
     m_searchText = id;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);

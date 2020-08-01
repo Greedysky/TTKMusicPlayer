@@ -19,14 +19,14 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     }
 
     QDesWrap des;
-    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_ATTR_LL_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
+    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter));
 
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(musicUrl);
-//    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+//    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -71,7 +71,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP3192") && bitrate == MB_192 && suffix == MP3_FILE_PREFIX)
@@ -80,7 +80,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP3H") && bitrate == MB_320 && suffix == MP3_FILE_PREFIX)
@@ -89,7 +89,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == FLC_FILE_PREFIX)
@@ -110,7 +110,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("192kmp3") && bitrate == MB_192 && suffix == MP3_FILE_PREFIX)
@@ -119,7 +119,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("320kmp3") && bitrate == MB_320 && suffix == MP3_FILE_PREFIX)
@@ -128,7 +128,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == FLC_FILE_PREFIX)
@@ -220,7 +220,7 @@ void MusicKWQueryInterface::readFromMusicSongPic(MusicObject::MusicSongInformati
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;

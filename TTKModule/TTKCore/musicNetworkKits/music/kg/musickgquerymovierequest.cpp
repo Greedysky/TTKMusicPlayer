@@ -27,7 +27,7 @@ void MusicKGQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -45,14 +45,14 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_AR_MV_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_ARTIST_MOVIE_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize);
     m_pageTotal = 0;
     m_pageSize = 20;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -232,11 +232,11 @@ void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     }
 
     const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8()).toHex().toLower();
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_MV_ATTR_URL, false).arg(QString(encodedData)).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_MOVIE_INFO_URL, false).arg(QString(encodedData)).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -296,11 +296,11 @@ void MusicKGQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInforma
         return;
     }
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_MV_HOME_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_MOVIE_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;

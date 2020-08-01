@@ -29,7 +29,7 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -47,14 +47,14 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_AR_MV_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset);
     m_pageTotal = 0;
     m_pageSize = 20;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -184,7 +184,7 @@ void MusicKWQueryMovieRequest::pageDownLoadFinished()
                     info.m_coverUrl = value["pic"].toString();
                     if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(COVER_URL_NULL))
                     {
-                        info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_MV_COVER_URL, false) + info.m_coverUrl;
+                        info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_COVER_URL, false) + info.m_coverUrl;
                     }
                     info.m_name = value["name"].toString();
                     info.m_updateTime.clear();
@@ -265,13 +265,13 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     }
 
     QDesWrap des;
-    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
+    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter));
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -315,13 +315,13 @@ void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInforma
         return;
     }
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_HOME_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_HOME_URL, false).arg(info->m_songId);
     info->m_songName = "Not Found";
     info->m_singerName = "Anonymous";
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;

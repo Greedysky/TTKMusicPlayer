@@ -14,13 +14,13 @@
 
 void MusicBDQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &id)
 {
-    const QString &key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(id).arg(MusicTime::timestamp());
+    const QString &key = MusicUtils::Algorithm::mdII(BD_SONG_INFO_DATA_URL, false).arg(id).arg(MusicTime::timestamp());
     QString eKey = QString(QAesWrap().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Url::urlEncode(eKey);
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(key).arg(eKey);
 
     request->setUrl(musicUrl);
-    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(request);
 }
 
@@ -140,11 +140,11 @@ void MusicBDQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
 void MusicBDQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info)
 {
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_DETAIL_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
@@ -201,11 +201,11 @@ void MusicBDQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
 
 void MusicBDQueryInterface::readFromMusicPayAttribute(MusicObject::MusicSongInformation *info)
 {
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_PATH_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
@@ -245,7 +245,7 @@ void MusicBDQueryInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfo
 
                 MusicObject::MusicSongAttribute attr;
                 attr.m_url = value["songLink"].toString();
-                attr.m_url.replace(MusicUtils::Algorithm::mdII(BD_SONG_YYDOWN_URL, false), MusicUtils::Algorithm::mdII(BD_SONG_SSDOWN_URL, false));
+                attr.m_url.replace(MusicUtils::Algorithm::mdII(BD_LISTEN_STRING, false), MusicUtils::Algorithm::mdII(BD_PREFIX_STRING, false));
                 attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                 attr.m_format = value["format"].toString();
                 attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["rate"].toInt());

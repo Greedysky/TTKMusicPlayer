@@ -148,13 +148,13 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 if(server == QUERY_WY_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_LOW_KEY, false).arg(id);
                 else if(server == QUERY_QQ_INTERFACE)
-                    server = MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                    server = MusicUtils::Algorithm::mdII(QQ_MOVIE_SHARE, ALG_LOW_KEY, false).arg(id);
                 else if(server == QUERY_KG_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_LOW_KEY, false).arg(id);
                 else if(server == QUERY_BD_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(BD_MV_SHARE, ALG_LOW_KEY, false).arg(id);
                 else if(server == QUERY_KW_INTERFACE)
-                    server = MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                    server = MusicUtils::Algorithm::mdII(KW_MOVIE_SHARE, ALG_LOW_KEY, false).arg(id);
                 else if(server == QUERY_XM_INTERFACE)
                     server = MusicUtils::Algorithm::mdII(XM_MV_SHARE, ALG_LOW_KEY, false).arg(id);
                 else

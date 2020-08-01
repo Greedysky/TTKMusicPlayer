@@ -21,7 +21,7 @@ void MusicBDQueryAlbumRequest::startToSearch(const QString &album)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -39,12 +39,12 @@ void MusicBDQueryAlbumRequest::startToSingleSearch(const QString &artist)
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_AR_ALBUM_URL, false).arg(artist);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_ALBUM_URL, false).arg(artist);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);

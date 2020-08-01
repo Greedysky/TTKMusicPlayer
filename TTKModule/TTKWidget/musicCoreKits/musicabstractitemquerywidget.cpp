@@ -33,9 +33,7 @@ MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
     delete m_statusLabel;
     delete m_infoLabel;
     delete m_songButton;
-//    delete m_downloadRequest;
     delete m_queryTableWidget;
-//    delete m_container;
     delete m_mainWindow;
 }
 

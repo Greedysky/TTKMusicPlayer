@@ -18,12 +18,12 @@ void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_AR_SIM_URL, false).arg(getArtistNameById(text));
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_SIMILAR_URL, false).arg(getArtistNameById(text));
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -81,7 +81,7 @@ QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
@@ -115,11 +115,11 @@ QString MusicKWArtistSimilarRequest::getArtistIdName(const QString &name)
         return QString();
     }
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_NINFO_URL, false).arg(name);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_NAME_URL, false).arg(name);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;

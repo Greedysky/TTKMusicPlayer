@@ -39,13 +39,13 @@ void MusicQQQueryArtistListRequest::startToPage(int offset)
     }
     catId += initial;
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_AR_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset + 1);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_ARTIST_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset + 1);
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);

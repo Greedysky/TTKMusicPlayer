@@ -37,16 +37,16 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = QString(MusicUtils::Algorithm::mdII(QQ_COMMIT_URL, false));
+    const QUrl &musicUrl = QString(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_SG_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
+    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -130,16 +130,16 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = QString(MusicUtils::Algorithm::mdII(QQ_COMMIT_URL, false));
+    const QUrl &musicUrl = QString(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
     m_pageTotal = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_PL_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
+    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }

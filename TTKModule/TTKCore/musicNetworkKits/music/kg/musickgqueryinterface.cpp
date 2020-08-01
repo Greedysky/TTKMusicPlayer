@@ -17,11 +17,11 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 
     const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloud").arg(hash).toUtf8()).toHex().toLower();
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_ATTR_URL, false).arg(QString(encodedData)).arg(hash);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(QString(encodedData)).arg(hash);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
@@ -98,7 +98,7 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInf
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
@@ -137,7 +137,7 @@ void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, c
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
