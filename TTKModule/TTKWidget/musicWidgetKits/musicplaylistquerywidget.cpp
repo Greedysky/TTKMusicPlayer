@@ -94,16 +94,15 @@ void MusicPlaylistQueryItemWidget::setMusicResultsItem(const MusicResultsItem &i
 
 void MusicPlaylistQueryItemWidget::downLoadFinished(const QByteArray &data)
 {
-    QPixmap pix;
-    pix.loadFromData(data);
-    if(!pix.isNull())
-    {
-        QPixmap cv(":/image/lb_album_cover");
-        cv = cv.scaled(m_iconLabel->size());
-        pix = pix.scaled(m_iconLabel->size());
-        MusicUtils::Image::fusionPixmap(pix, cv, QPoint(0, 0));
-        m_iconLabel->setPixmap(pix);
-    }
+    MusicImageRenderer *render = new MusicImageRenderer(this);
+    connect(render, SIGNAL(renderFinished(QPixmap)), SLOT(renderFinished(QPixmap)));
+    render->setInputData(data, m_iconLabel->size());
+    render->start();
+}
+
+void MusicPlaylistQueryItemWidget::renderFinished(const QPixmap &data)
+{
+    m_iconLabel->setPixmap(data);
     m_topListenButton->raise();
     m_playButton->raise();
 }

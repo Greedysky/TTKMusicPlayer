@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractitemquerywidget.h"
 #include "musiccategoryconfigmanager.h"
+#include "musicabstractitemquerywidget.h"
 
 class QGridLayout;
 class MusicPagingWidgetObject;
@@ -58,6 +58,10 @@ public Q_SLOTS:
      * Send recieved data from net.
      */
     void downLoadFinished(const QByteArray &data);
+    /*!
+     * Image render finished.
+     */
+    void renderFinished(const QPixmap &data);
     /*!
      * Current item clicked.
      */

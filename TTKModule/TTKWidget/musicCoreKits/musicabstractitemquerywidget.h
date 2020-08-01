@@ -21,6 +21,7 @@
 
 #include <QButtonGroup>
 #include "musicwidgetheaders.h"
+#include "musicimagerenderer.h"
 #include "musicsongsharingwidget.h"
 #include "musicitemquerytablewidget.h"
 

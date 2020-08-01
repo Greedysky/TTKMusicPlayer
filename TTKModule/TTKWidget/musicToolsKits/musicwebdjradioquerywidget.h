@@ -57,6 +57,10 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &data);
     /*!
+     * Image render finished.
+     */
+    void renderFinished(const QPixmap &data);
+    /*!
      * Current item clicked.
      */
     void currentItemClicked();

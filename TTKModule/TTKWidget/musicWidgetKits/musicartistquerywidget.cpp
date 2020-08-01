@@ -9,6 +9,7 @@
 #include "musicstringutils.h"
 #include "musicuiobject.h"
 #include "musicimageutils.h"
+
 #include "qrencode/qrcodewidget.h"
 
 #include <qmath.h>
@@ -70,15 +71,15 @@ void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &it
 
 void MusicArtistAlbumsItemWidget::downLoadFinished(const QByteArray &data)
 {
-    QPixmap pix;
-    pix.loadFromData(data);
-    if(!pix.isNull())
-    {
-        QPixmap cv(":/image/lb_album_cover");
-        pix = pix.scaled(m_iconLabel->size());
-        MusicUtils::Image::fusionPixmap(pix, cv, QPoint(0, 0));
-        m_iconLabel->setPixmap(pix);
-    }
+    MusicImageRenderer *render = new MusicImageRenderer(this);
+    connect(render, SIGNAL(renderFinished(QPixmap)), SLOT(renderFinished(QPixmap)));
+    render->setInputData(data, m_iconLabel->size());
+    render->start();
+}
+
+void MusicArtistAlbumsItemWidget::renderFinished(const QPixmap &data)
+{
+    m_iconLabel->setPixmap(data);
     m_playButton->raise();
 }
 
