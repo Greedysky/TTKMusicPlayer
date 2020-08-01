@@ -73,7 +73,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicResultsItem
 
     bool isEmpty() const
     {
-        return m_name == "-" && m_nickName == "-" && m_coverUrl == "-" && m_description == "-";
+        return m_name == "-" || m_nickName == "-" || m_coverUrl == "-" || m_description == "-";
     }
 }MusicResultsItem;
 TTK_DECLARE_LISTS(MusicResultsItem)

@@ -26,7 +26,7 @@ void MusicWYTranslationRequest::startToDownload(const QString &data)
     QUrl musicUrl;
     if(!d->isEmpty())
     {
-        musicUrl.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(d->getMusicSongInfos().first().m_songId));
+        musicUrl.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->getMusicSongInfos().first().m_songId));
     }
 
     QNetworkRequest request;

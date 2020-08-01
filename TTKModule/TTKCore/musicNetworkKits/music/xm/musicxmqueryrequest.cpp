@@ -40,9 +40,9 @@ void MusicXMQueryRequest::startToPage(int offset)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
-                      MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
+    makeTokenQueryUrl(&request, true,
+                      MusicUtils::Algorithm::mdII(XM_SONG_SEARCH_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_SONG_SEARCH_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -64,8 +64,8 @@ void MusicXMQueryRequest::startToSingleSearch(const QString &text)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_INFO_URL, false).arg(text),
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_SONG_INFO_DATA_URL, false).arg(text),
                       MusicUtils::Algorithm::mdII(XM_SONG_INFO_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
@@ -128,11 +128,12 @@ void MusicXMQueryRequest::downLoadFinished()
 
                     if(!m_querySimplify)
                     {
+                        const QVariantMap &lyricInfo = value["lyricInfo"].toMap();
+                        musicInfo.m_lrcUrl = lyricInfo["lyricFile"].toString();
+
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
 
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-                        readFromMusicSongLrc(&musicInfo);
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                         readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -201,8 +202,9 @@ void MusicXMQueryRequest::singleDownLoadFinished()
                 musicInfo.m_discNumber = "0";
                 musicInfo.m_trackNumber = value["track"].toString();
 
-                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-                readFromMusicSongLrc(&musicInfo);
+                const QVariantMap &lyricInfo = value["lyricInfo"].toMap();
+                musicInfo.m_lrcUrl = lyricInfo["lyricFile"].toString();
+
                 if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                 readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
                 if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;

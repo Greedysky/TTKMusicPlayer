@@ -78,6 +78,7 @@ public:
      * Make token query url string.
      */
     void makeTokenQueryUrl(QNetworkRequest *request, const QString &id);
+
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

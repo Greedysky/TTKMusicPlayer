@@ -33,8 +33,8 @@ void MusicWYQueryToplistRequest::startToSearch(const QString &toplist)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SG_TOPLIST_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SG_TOPLIST_NDT_URL, false).arg(toplist));
+                      MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(toplist));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -90,7 +90,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
                     const QVariantMap &albumObject = value["al"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();

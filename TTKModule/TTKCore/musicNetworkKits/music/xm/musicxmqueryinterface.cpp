@@ -17,10 +17,8 @@ bool MusicXMQueryInterface::makeTokenQueryCookies(QString &tk, QString &tke)
     QNetworkAccessManager manager;
     QNetworkRequest request;
 
-    const QString &appkey = APP_KEY;
-
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false).arg(appkey)));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false).arg(APP_KEY)));
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
 
     QNetworkReply *reply = manager.get(request);
     MusicSemaphoreLoop loop;
@@ -33,16 +31,26 @@ bool MusicXMQueryInterface::makeTokenQueryCookies(QString &tk, QString &tke)
     }
 
     const QList<QNetworkCookie> &cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
-    if(cookies.count() >= 2)
+    for(const QNetworkCookie &cookie : cookies)
     {
-        tk = cookies[0].value();
-        tke = cookies[1].value();
-        return true;
+        if(cookie.name() == "_m_h5_tk")
+        {
+            tk = cookie.value();
+        }
+        else if(cookie.name() == "_m_h5_tk_enc")
+        {
+            tke = cookie.value();
+        }
+
+        if(!tk.isEmpty() && !tke.isEmpty())
+        {
+            return true;
+        }
     }
     return false;
 }
 
-void MusicXMQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
+void MusicXMQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, bool mode, const QString &query, const QString &type)
 {
     QString tk, tke;
     if(!makeTokenQueryCookies(tk, tke))
@@ -53,13 +61,13 @@ void MusicXMQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QS
     const QString time = QString::number(MusicTime::timestamp());
     const QString appkey = APP_KEY;
     const QString token = tk.split("_").front();
-    const QString data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
+    const QString data = MusicUtils::Algorithm::mdII(XM_BASE_DATA_URL, false).arg(query);
     const QString encode = QString("%1&%2&%3&%4").arg(token).arg(time).arg(appkey).arg(data);
     const QString sign = MusicUtils::Algorithm::md5(encode.toUtf8()).toHex();
 
-    request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
+    request->setUrl(QUrl(MusicUtils::Algorithm::mdII(mode ? XM_ACS_BASE_URL : XM_BASE_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tke).toUtf8());
-    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(request);
 }
 
@@ -67,10 +75,9 @@ void MusicXMQueryInterface::readFromMusicSongLrc(MusicObject::MusicSongInformati
 {
     QNetworkAccessManager manager;
     QNetworkRequest request;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(info->m_songId),
-                      MusicUtils::Algorithm::mdII(XM_LRC_URL, false));
-
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_SONG_LRC_DATA_URL, false).arg(info->m_songId),
+                      MusicUtils::Algorithm::mdII(XM_SONG_LRC_URL, false));
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));

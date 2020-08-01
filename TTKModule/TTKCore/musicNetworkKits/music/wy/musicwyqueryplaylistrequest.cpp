@@ -37,8 +37,8 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_PL_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PL_NDT_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset));
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -61,8 +61,8 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_PL_ATTR_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PL_ATTR_NDT_URL, false).arg(playlist));
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(playlist));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -83,8 +83,8 @@ void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_PL_ATTR_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PL_ATTR_NDT_URL, false).arg(item.m_id));
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -235,7 +235,7 @@ void MusicWYQueryPlaylistRequest::getDetailsFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
                     const QVariantMap &albumObject = value["al"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();

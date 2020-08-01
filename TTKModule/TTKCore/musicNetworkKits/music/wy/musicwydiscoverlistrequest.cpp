@@ -22,8 +22,8 @@ void MusicWYDiscoverListRequest::startToSearch()
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SG_TOPLIST_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SG_TOPLIST_NDT_URL, false).arg(19723756));
+                      MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(19723756));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

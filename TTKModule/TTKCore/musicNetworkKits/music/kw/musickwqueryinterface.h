@@ -89,6 +89,7 @@ public:
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all);
+
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

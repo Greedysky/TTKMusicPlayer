@@ -21,8 +21,8 @@ void MusicWYSongSuggestRequest::startToSearch(const QString &text)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SUGGEST_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SUGGEST_NDT_URL, false).arg(text));
+                      MusicUtils::Algorithm::mdII(WY_SUGGEST_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_SUGGEST_DATA_URL, false).arg(text));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

@@ -20,9 +20,9 @@ void MusicXMQueryRecommendRequest::startToSearch(const QString &id)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_RCM_DATA_URL, false),
-                      MusicUtils::Algorithm::mdII(XM_RCM_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_RECOMMEND_DATA_URL, false),
+                      MusicUtils::Algorithm::mdII(XM_RECOMMEND_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

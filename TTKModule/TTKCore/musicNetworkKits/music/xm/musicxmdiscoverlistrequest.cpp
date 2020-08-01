@@ -22,9 +22,9 @@ void MusicXMDiscoverListRequest::startToSearch()
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg(103),
-                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_TOPLIST_DATA_URL, false).arg(103),
+                      MusicUtils::Algorithm::mdII(XM_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

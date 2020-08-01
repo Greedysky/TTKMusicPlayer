@@ -90,6 +90,7 @@ public:
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+
     /*!
      * Get music key.
      */

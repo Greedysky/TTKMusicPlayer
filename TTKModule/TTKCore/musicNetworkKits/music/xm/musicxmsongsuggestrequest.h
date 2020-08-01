@@ -19,12 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicxmqueryinterface.h"
 #include "musicsongsuggestrequest.h"
 
 /*! @brief The class to xiami query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicXMSongSuggestRequest : public MusicSongSuggestRequest
+class MUSIC_NETWORK_EXPORT MusicXMSongSuggestRequest : public MusicSongSuggestRequest,
+                                                       private MusicXMQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicXMSongSuggestRequest)

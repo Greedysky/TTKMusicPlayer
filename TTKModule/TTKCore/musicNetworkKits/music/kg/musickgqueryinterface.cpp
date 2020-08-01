@@ -60,8 +60,7 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariantMap &key, const QString &quality, bool all)
+void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     if(all)
     {

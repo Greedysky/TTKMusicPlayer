@@ -26,8 +26,8 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_NDT_URL, false).arg(m_searchText).arg(m_pageSize).arg(0).toUtf8());
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_searchText).arg(m_pageSize).arg(0).toUtf8());
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -53,8 +53,8 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(m_searchText).arg(m_pageSize*offset).arg(m_pageSize));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_searchText).arg(m_pageSize*offset).arg(m_pageSize));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -208,8 +208,8 @@ void MusicWYQueryMovieRequest::startMVListQuery(qint64 id)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SONG_MV_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_MV_NDT_URL, false).arg(id));
+                      MusicUtils::Algorithm::mdII(WY_MOVIE_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -287,8 +287,8 @@ void MusicWYQueryMovieRequest::getArtistMvsCount(qint64 id)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL_HIGHER));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL_HIGHER));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

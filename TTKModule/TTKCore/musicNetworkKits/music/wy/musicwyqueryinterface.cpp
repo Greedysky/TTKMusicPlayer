@@ -17,10 +17,10 @@ void MusicWYQueryInterface::makeTokenQueryRequest(QNetworkRequest *request)
 {
     request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
-    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL, ALG_UA_KEY, false).toUtf8());
 
     QString cookie = M_SETTING_PTR->value(MusicSettingManager::NetworkCookie).toString();
-    cookie = cookie.isEmpty() ? MusicUtils::Algorithm::mdII(WY_COOKIE_URL, ALG_UA_KEY, false) : cookie;
+    cookie = cookie.isEmpty() ? MusicUtils::Algorithm::mdII(WY_COOKIE_URL, false) : cookie;
     request->setRawHeader("Cookie", QString("MUSIC_U=%1; appver=2.0.3.131777; __remember_me=true; _ntes_nuid=%2; _ntes_nnid=%3; JSESSIONID-WYYY=%4; _iuqxldmzr_=32").arg(cookie)
                                             .arg(MusicUtils::Algorithm::mdII(WY_NUID_URL, ALG_UA_KEY, false))
                                             .arg(MusicUtils::Algorithm::mdII(WY_NNID_URL, ALG_UA_KEY, false))
@@ -38,12 +38,12 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
     request->setUrl(QUrl(query));
     makeTokenQueryRequest(request);
 
-    return "params=" + parameter + "&encSecKey=" + WY_SECKRY.toUtf8();
+    return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
 
 void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bitrate)
 {
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false).arg(bitrate*1000).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate*1000).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -115,7 +115,7 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             attr.m_format = suffix;
         }
         attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false).arg(encryptedId(dfsId)).arg(dfsId);
+        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_OLD_URL, false).arg(encryptedId(dfsId)).arg(dfsId);
         info->m_songAttrs.append(attr);
     }
 }
@@ -189,8 +189,8 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_NDT_URL, false).arg(info->m_songId).arg(bitrate*1000));
+                      MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate*1000));
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
@@ -254,7 +254,7 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
             attr.m_format = suffix;
         }
         attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false).arg(encryptedId(fid)).arg(fid);
+        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_OLD_URL, false).arg(encryptedId(fid)).arg(fid);
         info->m_songAttrs.append(attr);
     }
 }

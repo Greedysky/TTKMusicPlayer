@@ -19,30 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractxml.h"
 #include "musicxmqueryinterface.h"
 #include "musicquerymovierequest.h"
-
-/*! @brief The class to xiami query mv info xml data from net.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicXMMVInfoConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicXMMVInfoConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicXMMVInfoConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read datas from config file.
-     */
-    void readMovieInfoData(MusicObject::MusicSongInformation *info);
-
-};
-
 
 /*! @brief The class to xiami mv query download data from net.
  * @author Greedysky <greedysky@163.com>
@@ -89,11 +67,7 @@ protected:
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more);
-    /*!
-     * Read mv info attribute from query results.
-     */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &vid, const QString &uid);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info);
 
 };
 

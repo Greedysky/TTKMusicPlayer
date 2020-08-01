@@ -22,7 +22,7 @@ void MusicWYQueryRecommendRequest::startToSearch(const QString &id)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_RCM_N_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_RECOMMEND_URL, false),
                       QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
@@ -70,7 +70,7 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
                     const QVariantMap &albumObject = value["album"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();

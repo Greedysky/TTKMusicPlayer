@@ -36,7 +36,7 @@ void MusicXMQueryPlaylistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
+    makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -59,9 +59,9 @@ void MusicXMQueryPlaylistRequest::startToSearch(const QString &playlist)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_DATA_URL, false).arg(playlist).arg(1).arg(m_pageSize),
-                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_INFO_DATA_URL, false).arg(playlist).arg(1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_INFO_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -80,9 +80,9 @@ void MusicXMQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
     TTK_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_DATA_URL, false).arg(item.m_id).arg(1).arg(m_pageSize),
-                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id).arg(1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_INFO_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

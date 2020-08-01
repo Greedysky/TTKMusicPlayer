@@ -16,9 +16,9 @@ void MusicDJRadioProgramRequest::startToDownload(MusicObject::Program type)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request, type == MusicObject::Recommed ?
-                      MusicUtils::Algorithm::mdII(DJ_RECOMMEND_N_URL, false):
-                      MusicUtils::Algorithm::mdII(DJ_HOT_N_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_HOT_NDT_URL, false));
+                      MusicUtils::Algorithm::mdII(DJ_RECOMMEND_URL, false):
+                      MusicUtils::Algorithm::mdII(DJ_HOT_URL, false),
+                      MusicUtils::Algorithm::mdII(DJ_HOT_DATA_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

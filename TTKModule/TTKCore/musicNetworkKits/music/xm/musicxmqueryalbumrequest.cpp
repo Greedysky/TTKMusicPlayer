@@ -21,7 +21,7 @@ void MusicXMQueryAlbumRequest::startToSearch(const QString &album)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
+    makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_ALBUM_DATA_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(XM_ALBUM_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -45,9 +45,9 @@ void MusicXMQueryAlbumRequest::startToSingleSearch(const QString &artist)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_AR_ALBUM_DATA_URL, false).arg(artist),
-                      MusicUtils::Algorithm::mdII(XM_AR_ALBUM_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_ALBUM_DATA_URL, false).arg(artist),
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_ALBUM_URL , false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

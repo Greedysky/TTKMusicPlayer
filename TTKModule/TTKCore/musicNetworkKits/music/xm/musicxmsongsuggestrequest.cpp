@@ -1,5 +1,4 @@
 #include "musicxmsongsuggestrequest.h"
-#include "musicxmqueryinterface.h"
 
 MusicXMSongSuggestRequest::MusicXMSongSuggestRequest(QObject *parent)
     : MusicSongSuggestRequest(parent)
@@ -17,12 +16,14 @@ void MusicXMSongSuggestRequest::startToSearch(const QString &text)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_SUGGEST_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_SUGGEST_DATA_URL, false).arg(text),
+                      MusicUtils::Algorithm::mdII(XM_SUGGEST_URL, false));
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -51,21 +52,28 @@ void MusicXMSongSuggestRequest::downLoadFinished()
         const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
-            const QVariantList &datas = data.toList();
-            foreach(const QVariant &var, datas)
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
             {
-                if(m_interrupt) return;
-
-                if(var.isNull())
+                value = value["data"].toMap();
+                value = value["data"].toMap();
+                const QVariantList &datas = value["objectList"].toList();
+                foreach(const QVariant &var, datas)
                 {
-                    continue;
-                }
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
 
-                const QVariantMap &value = var.toMap();
-                MusicResultsItem item;
-                item.m_name = value["song_name"].toString();
-                item.m_nickName = value["artist_name"].toString();
-                m_items << item;
+                    value = var.toMap();
+                    if(value["musicType"].toString() == "song")
+                    {
+                        MusicResultsItem item;
+                        item.m_name = value["name"].toString();
+                        item.m_nickName = value["subName"].toString();
+                        m_items << item;
+                    }
+                }
             }
         }
     }

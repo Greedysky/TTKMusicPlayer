@@ -3807,7 +3807,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistqueryinfowidget.cpp" line="213"/>
         <source>Info</source>
-        <translation></translation>
+        <translation>歌單描述</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistqueryinfowidget.cpp" line="219"/>

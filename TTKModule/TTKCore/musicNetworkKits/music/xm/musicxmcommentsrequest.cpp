@@ -42,9 +42,9 @@ void MusicXMSongCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SG_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
-                      MusicUtils::Algorithm::mdII(XM_COMMIT_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_COMMENT_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -147,9 +147,9 @@ void MusicXMPlaylistCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_PL_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
-                      MusicUtils::Algorithm::mdII(XM_COMMIT_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_COMMENT_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

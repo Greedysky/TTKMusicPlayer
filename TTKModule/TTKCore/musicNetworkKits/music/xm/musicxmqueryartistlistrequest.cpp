@@ -30,13 +30,13 @@ void MusicXMQueryArtistListRequest::startToPage(int offset)
             catId = "class=1&type=1";
         }
     }
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_ARTIST_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize);
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);

@@ -45,8 +45,8 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_AR_LIST_N_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(0).arg(100).arg(initial));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_LIST_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId).arg(0).arg(100).arg(initial));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 

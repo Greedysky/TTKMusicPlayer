@@ -4,7 +4,7 @@
 MusicXMArtistSimilarRequest::MusicXMArtistSimilarRequest(QObject *parent)
     : MusicSimilarRequest(parent)
 {
-
+    m_pageSize = 20;
 }
 
 void MusicXMArtistSimilarRequest::startToSearch(const QString &text)
@@ -15,14 +15,14 @@ void MusicXMArtistSimilarRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_SIM_URL, false).arg(text);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_ARTIST_SIMILAR_URL, false).arg(text).arg(m_pageSize);
     deleteAll();
 
     m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);

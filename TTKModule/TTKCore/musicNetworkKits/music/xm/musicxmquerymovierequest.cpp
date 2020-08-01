@@ -3,55 +3,6 @@
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 
-MusicXMMVInfoConfigManager::MusicXMMVInfoConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
-{
-
-}
-
-void MusicXMMVInfoConfigManager::readMovieInfoData(MusicObject::MusicSongInformation *info)
-{
-    info->m_timeLength = MusicTime::msecTime2LabelJustified(readXmlTextByTagName("duration").toInt()*1000);
-
-    const QDomNodeList &resultlist = m_document->elementsByTagName("video");
-    for(int i=0; i<resultlist.count(); ++i)
-    {
-        const QDomNodeList &infolist = resultlist.at(i).childNodes();
-        MusicObject::MusicSongAttribute attr;
-        for(int j=0; j<infolist.count(); ++j)
-        {
-            const QDomNode &node = infolist.at(j);
-            if(node.nodeName() == "bitrate")
-            {
-                const int bitRate = node.toElement().text().toInt();
-                if(bitRate <= 375)
-                    attr.m_bitrate = MB_250;
-                else if(bitRate > 375 && bitRate <= 625)
-                    attr.m_bitrate = MB_500;
-                else if(bitRate > 625 && bitRate <= 875)
-                    attr.m_bitrate = MB_750;
-                else if(bitRate > 875)
-                    attr.m_bitrate = MB_1000;
-            }
-            else if(node.nodeName() == "length")
-            {
-                attr.m_size = node.toElement().text();
-            }
-            else if(node.nodeName() == "video_url")
-            {
-                attr.m_url = node.toElement().text();
-            }
-        }
-
-        if(!attr.m_url.isEmpty())
-        {
-            info->m_songAttrs.append(attr);
-        }
-    }
-}
-
-
-
 MusicXMQueryMovieRequest::MusicXMQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
@@ -75,9 +26,9 @@ void MusicXMQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(m_pageSize),
-                      MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_SONG_SEARCH_DATA_URL, false).arg(text).arg(1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_SONG_SEARCH_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -96,14 +47,16 @@ void MusicXMQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_MV_URL, false).arg(m_searchText).arg(offset + 1);
     m_pageTotal = 0;
     m_pageSize = 20;
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_MOVIE_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_MOVIE_URL, false));
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -168,7 +121,7 @@ void MusicXMQueryMovieRequest::downLoadFinished()
 
                     musicInfo.m_songId = value["mvId"].toString();
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-                    readFromMusicMVAttribute(&musicInfo, false);
+                    readFromMusicMVAttribute(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -207,44 +160,40 @@ void MusicXMQueryMovieRequest::pageDownLoadFinished()
     {
         const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
-        m_pageTotal = DEFAULT_LEVEL_HIGHER;
-        const QString html(bytes);
-        QRegExp regx;
-        regx.setMinimal(true);
-        //
-        regx.setPattern("<p class=\"counts\">.*(\\d+).*</p>");
-        if(html.indexOf(regx) != -1)
+        QJson::Parser parser;
+        bool ok;
+        const QVariant &data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            m_pageTotal = regx.cap(1).toInt();
-        }
-        //
-        regx.setPattern("<div class=\"mv_item100_block\">(.*)</div>");
-        int pos = html.indexOf(regx);
-        while(pos != -1)
-        {
-            if(m_interrupt) return;
-
-            const QString &cap = regx.cap(1);
-            QRegExp partial(".*src=\"([^\"]+).*href=\"([^\"]+).*title=\"([^\"]+).*>");
-            partial.setMinimal(true);
-            int pos_p = cap.indexOf(partial);
-            while(pos_p != -1)
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
             {
-                if(m_interrupt) return;
+                value = value["data"].toMap();
+                value = value["data"].toMap();
 
-                MusicResultsItem info;
-                info.m_id = partial.cap(2).remove("/mv/");
-                info.m_coverUrl = partial.cap(1).remove("@1e_1c_100Q_160w_90h").replace(TTK_HTTPS, TTK_HTTP);
-                info.m_name = partial.cap(3);
-                info.m_updateTime.clear();
-                Q_EMIT createMovieInfoItem(info);
+                const QVariantMap &paging = value["pagingVO"].toMap();
+                m_pageTotal = paging["count"].toLongLong();
 
-                pos_p += partial.matchedLength();
-                pos_p = partial.indexIn(cap, pos_p);
+                const QVariantList &datas = value["mvs"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+
+                    if(m_interrupt) return;
+
+                    MusicResultsItem info;
+                    info.m_id = value["mvId"].toString();
+                    info.m_coverUrl = value["mvCover"].toString();
+                    info.m_name = value["title"].toString();
+                    info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["publishTime"].toULongLong()).toString("yyyy.MM.dd");
+                    Q_EMIT createMovieInfoItem(info);
+                }
             }
-
-            pos += regx.matchedLength();
-            pos = regx.indexIn(html, pos);
         }
     }
 
@@ -263,7 +212,7 @@ void MusicXMQueryMovieRequest::singleDownLoadFinished()
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    readFromMusicMVAttribute(&musicInfo, true);
+    readFromMusicMVAttribute(&musicInfo);
     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
@@ -281,19 +230,19 @@ void MusicXMQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicXMQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more)
+void MusicXMQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {
         return;
     }
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(info->m_songId);
-
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    request.setRawHeader("Cookie", "xm_expect_legacy=1; ");
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_MOVIE_DATA_URL, false).arg(info->m_songId),
+                      MusicUtils::Algorithm::mdII(XM_MOVIE_URL, false));
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     QNetworkAccessManager manager;
@@ -308,101 +257,43 @@ void MusicXMQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
         return;
     }
 
-    const QString text(reply->readAll());
-    QRegExp regx;
-
-    if(more)
+    QJson::Parser parser;
+    bool ok;
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    if(ok)
     {
-        regx.setPattern("<h1([^<]+)>([^<]+)</h1>");
-        int pos = text.indexOf(regx);
-        while(pos != -1)
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
         {
-            info->m_songName = regx.cap(2);
-            pos += regx.matchedLength();
-            pos = regx.indexIn(text, pos);
-            break;
-        }
+            value = value["data"].toMap();
+            value = value["data"].toMap();
+            value = value["mvDetailVO"].toMap();
 
-        regx.setPattern("<a target=\"_blank\" title=([^<]+)>([^<]+)</a>");
-        pos = text.indexOf(regx);
-        while(pos != -1)
-        {
-            info->m_singerName = regx.cap(2);
-            pos += regx.matchedLength();
-            pos = regx.indexIn(text, pos);
-            break;
-        }
-    }
+            MusicObject::MusicSongInformation musicInfo;
+            musicInfo.m_songId = info->m_songId;
+            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
+            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
+            musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-    regx.setPattern("vid:\"(\\d+)\",uid:\"(\\d+)\"");
-    int pos = text.indexOf(regx);
-    QString uid, vid;
-    while(pos != -1)
-    {
-        vid = regx.cap(1);
-        uid = regx.cap(2);
-        pos += regx.matchedLength();
-        pos = regx.indexIn(text, pos);
-        break;
-    }
+            MusicObject::MusicSongAttribute attr;
+            attr.m_bitrate = MB_500;
+            attr.m_url = value["mp4Url"].toString();
+            attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
+            if(!findUrlFileSize(&attr)) return;
+            musicInfo.m_songAttrs.append(attr);
 
-    readFromMusicMVAttribute(info, vid, uid);
-}
-
-void MusicXMQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &vid, const QString &uid)
-{
-    if(vid.isEmpty() || uid.isEmpty() || !m_manager)
-    {
-        return;
-    }
-
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_MV_QUERY_URL, false).arg(vid).arg(uid);
-
-    QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
-
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
-    {
-        return;
-    }
-
-    MusicXMMVInfoConfigManager xml;
-    xml.fromByteArray(reply->readAll());
-    xml.readMovieInfoData(info);
-
-    for(int i=0; i<info->m_songAttrs.count(); ++i)
-    {
-        MusicObject::MusicSongAttribute *attr = &info->m_songAttrs[i];
-        const QString &urlPrefix = attr->m_url;
-        QStringList urls;
-        qint64 round = attr->m_size.toLongLong() / 20000000 + 1;
-        qint64 start = 0, end = 0;
-        while(round > 0)
-        {
-            end = start + 20000000;
-            if(end >= attr->m_size.toLongLong())
+            if(musicInfo.m_songAttrs.isEmpty())
             {
-                end = attr->m_size.toLongLong() - 1;
+                return;
             }
-            urls << (urlPrefix + QString("/start_%1/end_%2/1.flv").arg(start).arg(end));
-            start = end + 1;
-            --round;
-        }
 
-        if(urls.count() > 1)
-        {
-            attr->m_multiPart = true;
+            MusicSearchedItem item;
+            item.m_songName = musicInfo.m_songName;
+            item.m_singerName = musicInfo.m_singerName;
+            item.m_time = musicInfo.m_timeLength;
+            item.m_type = mapQueryServerString();
+            Q_EMIT createSearchedItem(item);
+            m_musicSongInfos << musicInfo;
         }
-        attr->m_size = MusicUtils::Number::size2Label(attr->m_size.toLongLong());
-        attr->m_url = urls.join(TTK_STR_SPLITER);
-        attr->m_format = MusicUtils::String::stringSplitToken(attr->m_url);
     }
 }

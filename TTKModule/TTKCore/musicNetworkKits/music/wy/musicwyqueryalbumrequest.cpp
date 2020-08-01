@@ -23,7 +23,7 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_ALBUM_N_URL, false).arg(album),
+                      MusicUtils::Algorithm::mdII(WY_ALBUM_URL, false).arg(album),
                       QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
@@ -47,8 +47,8 @@ void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(album),
-                      MusicUtils::Algorithm::mdII(WY_AR_ALBUM_DATA_N_URL, false));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(album),
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -104,7 +104,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
                     const QVariantMap &albumObject = value["al"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();

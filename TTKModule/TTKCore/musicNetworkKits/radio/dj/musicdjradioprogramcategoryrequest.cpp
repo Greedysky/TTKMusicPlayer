@@ -58,8 +58,8 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(DJ_DETAIL_N_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_DETAIL_NDT_URL, false).arg(category));
+                      MusicUtils::Algorithm::mdII(DJ_DETAIL_URL, false),
+                      MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(category));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
@@ -80,8 +80,8 @@ void MusicDJRadioProgramCategoryRequest::getProgramInfo(MusicResultsItem &item)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_N_URL, false),
-                      MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_NDT_URL, false).arg(item.m_id));
+                      MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
+                      MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
