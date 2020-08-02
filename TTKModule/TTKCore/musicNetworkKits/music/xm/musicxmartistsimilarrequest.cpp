@@ -1,5 +1,4 @@
 #include "musicxmartistsimilarrequest.h"
-#include "musicxmqueryinterface.h"
 
 MusicXMArtistSimilarRequest::MusicXMArtistSimilarRequest(QObject *parent)
     : MusicSimilarRequest(parent)
@@ -15,14 +14,16 @@ void MusicXMArtistSimilarRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_ARTIST_SIMILAR_URL, false).arg(text).arg(m_pageSize);
     deleteAll();
 
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    makeTokenQueryUrl(&request, false,
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_SIMILAR_DATA_URL, false).arg(text).arg(1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_SIMILAR_URL, false));
+    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -50,27 +51,29 @@ void MusicXMArtistSimilarRequest::downLoadFinished()
         const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
-            const QVariantList &datas = data.toList();
-            foreach(const QVariant &var, datas)
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
             {
-                if(m_interrupt) return;
-
-                if(var.isNull())
+                value = value["data"].toMap();
+                value = value["data"].toMap();
+                const QVariantList &datas = value["artists"].toList();
+                foreach(const QVariant &var, datas)
                 {
-                    continue;
-                }
+                    if(m_interrupt) return;
 
-                const QVariantMap &value = var.toMap();
-                MusicResultsItem info;
-                info.m_id = value["artist_id"].toString();
-                info.m_coverUrl = value["artist_logo"].toString();
-                info.m_name = value["name"].toString();
-                info.m_updateTime.clear();
-                if(!info.m_coverUrl.contains(TTK_HTTPM))
-                {
-                  info.m_coverUrl = TTK_HTTPM + info.m_coverUrl;
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    MusicResultsItem info;
+                    info.m_id = value["artistId"].toString();
+                    info.m_coverUrl = value["artistLogo"].toString();
+                    info.m_name = value["artistName"].toString();
+                    info.m_updateTime.clear();
+                    Q_EMIT createSimilarItem(info);
                 }
-                Q_EMIT createSimilarItem(info);
             }
         }
     }

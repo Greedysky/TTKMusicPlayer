@@ -20,11 +20,13 @@
  ================================================= */
 
 #include "musicsimilarrequest.h"
+#include "musicxmqueryinterface.h"
 
 /*! @brief The class to query xiami artist similar download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicXMArtistSimilarRequest : public MusicSimilarRequest
+class MUSIC_NETWORK_EXPORT MusicXMArtistSimilarRequest : public MusicSimilarRequest,
+                                                         private MusicXMQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicXMArtistSimilarRequest)
