@@ -46,7 +46,7 @@ Q_SIGNALS:
     /*!
      * Image render finished.
      */
-    void renderFinished(const QPixmap &data);
+    void renderFinished(const QImage &data);
 
 protected:
     /*!

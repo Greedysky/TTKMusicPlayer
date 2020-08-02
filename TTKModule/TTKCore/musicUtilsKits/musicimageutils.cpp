@@ -84,6 +84,18 @@ void MusicUtils::Image::fusionPixmap(QPixmap &back, const QPixmap &front, const 
     painter.drawPixmap(pt.x(), pt.y(), front);
 }
 
+void MusicUtils::Image::fusionPixmap(QImage &back, const QImage &front, const QPoint &pt)
+{
+    if(front.isNull())
+    {
+        return;
+    }
+
+    QPainter painter(&back);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.drawImage(pt.x(), pt.y(), front);
+}
+
 QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &src, int radius)
 {
     QImage pix = src.toImage();

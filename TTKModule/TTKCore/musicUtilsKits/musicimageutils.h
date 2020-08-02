@@ -54,9 +54,13 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT QByteArray getPixmapData(const QPixmap &pix);
         /*!
-         * Set fusion two image.
+         * Set fusion two pixmap.
          */
         MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
+        /*!
+         * Set fusion two image.
+         */
+        MUSIC_UTILS_EXPORT void fusionPixmap(QImage &back, const QImage &front, const QPoint &pt);
         /*!
          * Set fusion two image.
          */

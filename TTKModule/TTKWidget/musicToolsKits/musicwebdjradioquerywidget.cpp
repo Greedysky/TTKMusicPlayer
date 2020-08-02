@@ -68,14 +68,14 @@ void MusicWebDJRadioQueryItemWidget::setMusicResultsItem(const MusicResultsItem 
 void MusicWebDJRadioQueryItemWidget::downLoadFinished(const QByteArray &data)
 {
     MusicImageRenderer *render = new MusicImageRenderer(this);
-    connect(render, SIGNAL(renderFinished(QPixmap)), SLOT(renderFinished(QPixmap)));
+    connect(render, SIGNAL(renderFinished(QImage)), SLOT(renderFinished(QImage)));
     render->setInputData(data, m_iconLabel->size());
     render->start();
 }
 
-void MusicWebDJRadioQueryItemWidget::renderFinished(const QPixmap &data)
+void MusicWebDJRadioQueryItemWidget::renderFinished(const QImage &data)
 {
-    m_iconLabel->setPixmap(data);
+    m_iconLabel->setPixmap(QPixmap::fromImage(data));
     m_playButton->raise();
 }
 

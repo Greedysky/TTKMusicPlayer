@@ -1,7 +1,7 @@
 #include "musicimagerenderer.h"
 #include "musicimageutils.h"
 
-#include <QPixmap>
+#include <QImage>
 
 MusicImageRenderer::MusicImageRenderer(QObject *parent)
     : MusicAbstractThread(parent)
@@ -24,18 +24,18 @@ void MusicImageRenderer::run()
 {
     MusicAbstractThread::run();
 
-    QPixmap pix;
-    pix.loadFromData(m_buffer);
-    if(!pix.isNull() || m_size.isValid())
+    QImage image;
+    image.loadFromData(m_buffer);
+    if(!image.isNull() || m_size.isValid())
     {
-        QPixmap cv(":/image/lb_album_cover");
+        QImage cv(":/image/lb_album_cover");
         cv = cv.scaled(m_size);
-        pix = pix.scaled(m_size);
-        MusicUtils::Image::fusionPixmap(pix, cv, QPoint(0, 0));
+        image = image.scaled(m_size);
+        MusicUtils::Image::fusionPixmap(image, cv, QPoint(0, 0));
     }
 
     if(m_running)
     {
-        Q_EMIT renderFinished(pix);
+        Q_EMIT renderFinished(image);
     }
 }
