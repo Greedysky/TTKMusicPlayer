@@ -522,7 +522,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>505</y>
+      <y>495</y>
       <width>61</width>
       <height>23</height>
      </rect>
@@ -538,7 +538,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>505</y>
+      <y>495</y>
       <width>61</width>
       <height>23</height>
      </rect>
@@ -550,14 +550,12 @@
      <string>保存</string>
     </property>
    </widget>
-   <zorder>editButton</zorder>
-   <zorder>saveButton</zorder>
   </widget>
   <widget class="MusicClickedLabel" name="advanceLabel">
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>535</y>
+     <y>530</y>
      <width>45</width>
      <height>20</height>
     </rect>

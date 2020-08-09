@@ -84,9 +84,9 @@ void MusicFileInformationWidget::musicAdvanceClicked()
         setFixedHeight(420 + ADVANCE_OFFSET);
         m_ui->background->setFixedHeight(412 + ADVANCE_OFFSET);
         m_ui->backgroundMask->setFixedHeight(387 + ADVANCE_OFFSET);
-        m_ui->advanceLabel->move(29, 385 + ADVANCE_OFFSET);
-        m_ui->editButton->move(310, 355 + ADVANCE_OFFSET);
-        m_ui->saveButton->move(390, 355 + ADVANCE_OFFSET);
+        m_ui->advanceLabel->move(29, 380 + ADVANCE_OFFSET);
+        m_ui->editButton->move(310, 345 + ADVANCE_OFFSET);
+        m_ui->saveButton->move(390, 345 + ADVANCE_OFFSET);
         m_ui->pixmapLabel->setVisible(true);
         m_ui->label_17->setVisible(true);
         m_ui->decoderLabel->setVisible(true);
@@ -112,9 +112,9 @@ void MusicFileInformationWidget::musicAdvanceClicked()
         setFixedHeight(420);
         m_ui->background->setFixedHeight(412);
         m_ui->backgroundMask->setFixedHeight(387);
-        m_ui->advanceLabel->move(29, 385);
-        m_ui->editButton->move(310, 355);
-        m_ui->saveButton->move(390, 355);
+        m_ui->advanceLabel->move(29, 380);
+        m_ui->editButton->move(310, 345);
+        m_ui->saveButton->move(390, 345);
         m_ui->pixmapLabel->setVisible(false);
         m_ui->label_17->setVisible(false);
         m_ui->decoderLabel->setVisible(false);

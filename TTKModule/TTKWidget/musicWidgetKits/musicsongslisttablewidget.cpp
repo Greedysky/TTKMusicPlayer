@@ -699,7 +699,7 @@ void MusicSongsListTableWidget::wheelEvent(QWheelEvent *event)
 
 void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicAbstractSongsListTableWidget::contextMenuEvent(event);
+    Q_UNUSED(event);
     QMenu rightClickMenu(this);
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
 
