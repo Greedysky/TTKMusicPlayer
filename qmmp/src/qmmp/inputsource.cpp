@@ -1,40 +1,20 @@
-/***************************************************************************
- *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QFile>
 #include <QDir>
+#include <algorithm>
 #include "qmmpplugincache_p.h"
 #include "qmmp.h"
 #include "fileinputsource_p.h"
 #include "emptyinputsource_p.h"
 #include "inputsource.h"
 
-InputSource::InputSource(const QString &source, QObject *parent) : QObject(parent)
+InputSource::InputSource(const QString &source, QObject *parent)
+    : QObject(parent),
+      m_path(source)
 {
-    m_path = source;
-    m_offset = -1;
-    m_hasMetaData = false;
-    m_hasStreamInfo = false;
+
 }
 
-bool InputSource::isWaiting()
+bool InputSource::isWaiting() const
 {
     return false;
 }
@@ -53,6 +33,7 @@ qint64 InputSource::offset() const
 {
     return m_offset;
 }
+
 void InputSource::setOffset(qint64 offset)
 {
     m_offset = offset;
@@ -170,12 +151,9 @@ QList<InputSourceFactory *> InputSource::enabledFactories()
 QString InputSource::file(const InputSourceFactory *factory)
 {
     loadPlugins();
-    for(const QmmpPluginCache *item : qAsConst(*m_cache))
-    {
-        if(item->shortName() == factory->properties().shortName)
-            return item->file();
-    }
-    return QString();
+    auto it = std::find_if(m_cache->constBegin(), m_cache->constEnd(),
+                           [factory](QmmpPluginCache *item) { return item->shortName() == factory->properties().shortName; } );
+    return it == m_cache->constEnd() ? QString() : (*it)->file();
 }
 
 QStringList InputSource::protocols()

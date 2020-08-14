@@ -26,7 +26,7 @@ class AudioFile;
 class FFTPlan;
 struct spek_pipeline;
 
-enum window_function {
+enum WindowFunction {
     WINDOW_HANN,
     WINDOW_HAMMING,
     WINDOW_BLACKMAN_HARRIS,
@@ -41,7 +41,7 @@ struct spek_pipeline * spek_pipeline_open(
     std::unique_ptr<FFTPlan> fft,
     int stream,
     int channel,
-    enum window_function window_function,
+    enum WindowFunction window_function,
     int samples,
     spek_pipeline_cb cb,
     void *cb_data

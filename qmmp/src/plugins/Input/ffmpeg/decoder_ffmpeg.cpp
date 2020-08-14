@@ -1,24 +1,4 @@
-/***************************************************************************
- *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
-#include <QtDebug>
+#include <QVariant>
 #include "replaygainreader.h"
 #include "decoder_ffmpeg.h"
 extern "C"{
@@ -30,17 +10,17 @@ extern "C"{
 
 static int ffmpeg_read(void *data, uint8_t *buf, int size)
 {
-    DecoderFFmpeg *d = (DecoderFFmpeg*)data;
+    DecoderFFmpeg *d = static_cast<DecoderFFmpeg*>(data);
 #if (LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(57,84,101))
     if(d->input()->atEnd())
         return AVERROR_EOF;
 #endif
-    return (int)d->input()->read((char*)buf, size);
+    return static_cast<int>(d->input()->read((char*)buf, size));
 }
 
 static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
 {
-    DecoderFFmpeg *d = (DecoderFFmpeg*)data;
+    DecoderFFmpeg *d = static_cast<DecoderFFmpeg*>(data);
     int64_t absolute_pos = 0;
     /*if(d->input()->isSequential())
         return -1;*/
@@ -67,10 +47,11 @@ static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
 
 
 DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
-        : Decoder(i)
+    : Decoder(i),
+      m_path(path),
+      m_pkt(av_packet_alloc())
 {
-    m_path = path;
-    m_pkt = av_packet_alloc();
+
 }
 
 DecoderFFmpeg::~DecoderFFmpeg()
@@ -282,7 +263,7 @@ bool DecoderFFmpeg::initialize()
     if(m_codecContext->bit_rate)
         m_bitrate = m_codecContext->bit_rate/1000;
     qDebug("DecoderFFmpeg: initialize succes");
-    qDebug() << "DecoderFFmpeg: total time =" << m_totalTime;
+    qDebug("DecoderFFmpeg: total time = %ld", m_totalTime);
 
     return true;
 }
@@ -410,9 +391,9 @@ void DecoderFFmpeg::fillBuffer()
 
         if((m_eof || send_error < 0) && recv_error < 0)
         {
-            char errbuf[AV_ERROR_MAX_STRING_SIZE] = { 0 };
             if(!m_eof)
             {
+                char errbuf[AV_ERROR_MAX_STRING_SIZE] = { 0 };
                 av_strerror(send_error, errbuf, sizeof(errbuf));
                 qWarning("DecoderFFmpeg: avcodec_send_packet error: %s", errbuf);
                 av_strerror(recv_error, errbuf, sizeof(errbuf));

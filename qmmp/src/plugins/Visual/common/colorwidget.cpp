@@ -23,9 +23,6 @@ ColorWidget::ColorWidget(QWidget *parent)
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    m_leftButtonPress = false;
-    m_singleColorMode = false;
-
     m_ui->topTitleCloseButton->setIcon(style()->standardPixmap(QStyle::SP_TitleBarCloseButton));
     m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle03);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));

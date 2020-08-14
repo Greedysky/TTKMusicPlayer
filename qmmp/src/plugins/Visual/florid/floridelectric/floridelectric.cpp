@@ -5,18 +5,9 @@
 
 #include <QPropertyAnimation>
 
-#define POINT_SIZE          8
-#define ANIMATION_SIZE      20
-#define ANIMATION_DURATION  10000
-
 ElectricPointLabel::ElectricPointLabel(QWidget *parent)
     : QWidget(parent)
 {
-    m_color = QColor(255, 255, 255, 0);
-    m_opacity = 1;
-    m_pos = QPoint(0, 0);
-    m_size = 5;
-
     m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
     m_posAnimation->setDuration(ANIMATION_DURATION);
     m_posAnimation->setEasingCurve(QEasingCurve::InOutSine);
@@ -98,10 +89,6 @@ void ElectricPointLabel::paintEvent(QPaintEvent *event)
 ElectricCircleLabel::ElectricCircleLabel(QWidget *parent)
     : QWidget(parent)
 {
-    m_color = QColor(255, 255, 255, 0);
-    m_opacity = 1;
-    m_size = POINT_SIZE;
-
     m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
     m_posAnimation->setDuration(ANIMATION_DURATION / 2);
     m_posAnimation->setEasingCurve(QEasingCurve::InOutSine);

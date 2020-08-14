@@ -25,12 +25,13 @@ class DumbMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(DumbMetaDataModel)
 public:
-    DumbMetaDataModel(const QString &path);
+    explicit DumbMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override;
 
 private:
     QString m_path;
+
 };
 
 #endif

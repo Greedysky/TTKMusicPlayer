@@ -15,8 +15,9 @@ TagReadAndWrite::TagReadAndWrite()
 }
 
 TagReadAndWrite::TagReadAndWrite(const QString &file)
+    : m_path(file)
 {
-    m_path = file;
+
 }
 
 TagReadAndWrite::~TagReadAndWrite()

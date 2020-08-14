@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QTextCodec>
 #include <QSettings>
 #include <QByteArray>
@@ -36,8 +16,8 @@
 #include <taglib/id3v2framefactory.h>
 #include "mpegmetadatamodel.h"
 
-MPEGMetaDataModel::MPEGMetaDataModel(bool using_rusxmms, const QString &path, bool readOnly) :
-    MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
+MPEGMetaDataModel::MPEGMetaDataModel(bool using_rusxmms, const QString &path, bool readOnly)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
     m_file = new TagLib::MPEG::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
@@ -152,24 +132,24 @@ void MPEGMetaDataModel::removeCover()
 }
 
 MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes tagType)
-    : TagModel()
+    : TagModel(),
+      m_using_rusxmms(using_rusxmms),
+      m_file(file),
+      m_tagType(tagType)
 {
-    m_tagType = tagType;
-    m_file = file;
-    m_using_rusxmms = using_rusxmms;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
     if(m_tagType == TagLib::MPEG::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
-        m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray ());
+        m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray());
         if(!m_codec)
             QTextCodec::codecForName ("ISO-8859-1");
     }
     else if(m_tagType == TagLib::MPEG::File::ID3v2)
     {
         m_tag = m_file->ID3v2Tag();
-        m_codec = QTextCodec::codecForName(settings.value("ID3v2_encoding", "UTF-8").toByteArray ());
+        m_codec = QTextCodec::codecForName(settings.value("ID3v2_encoding", "UTF-8").toByteArray());
         if(!m_codec)
             QTextCodec::codecForName ("UTF-8");
     }
@@ -186,7 +166,9 @@ MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file,
 }
 
 MpegFileTagModel::~MpegFileTagModel()
-{}
+{
+
+}
 
 QString MpegFileTagModel::name() const
 {

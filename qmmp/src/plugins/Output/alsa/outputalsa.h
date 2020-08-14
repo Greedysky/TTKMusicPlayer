@@ -52,19 +52,20 @@ private:
     long alsa_write(unsigned char *data, long size);
     void uninitialize();
 
-    bool m_inited;
+    bool m_inited = false;
     bool m_use_mmap;
     //alsa
-    snd_pcm_t *pcm_handle;
+    snd_pcm_t *pcm_handle = nullptr;
     char *pcm_name;
-    snd_pcm_uframes_t m_chunk_size;
+    snd_pcm_uframes_t m_chunk_size = 0;
     //prebuffer
-    uchar *m_prebuf;
-    qint64 m_prebuf_size;
-    qint64 m_prebuf_fill;
-    bool m_can_pause;
+    uchar *m_prebuf = nullptr;
+    qint64 m_prebuf_size = 0;
+    qint64 m_prebuf_fill = 0;
+    bool m_can_pause = false;
     //channel conversions
-    QHash <quint16, Qmmp::ChannelPosition> m_alsa_channels;
+    QHash<quint16, Qmmp::ChannelPosition> m_alsa_channels;
+
 };
 
 class VolumeALSA : public Volume
@@ -86,6 +87,7 @@ private:
     snd_mixer_elem_t* getMixerElem(snd_mixer_t *m_mixer, char *name, int index);
     snd_mixer_t *m_mixer = nullptr;
     snd_mixer_elem_t *pcm_element = nullptr;
+
 };
 
 #endif // OUTPUTALSA_H

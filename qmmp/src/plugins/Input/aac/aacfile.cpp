@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QIODevice>
 #include <QBuffer>
 #include <taglib/id3v2tag.h>
@@ -31,13 +11,8 @@
 static int adts_sample_rates[] = {96000,88200,64000,48000,44100,32000,24000,22050,16000,12000,11025,8000,7350,0,0,0};
 
 AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
+    : m_input(input)
 {
-    m_isValid = false;
-    m_duration = 0;
-    m_bitrate = 0;
-    m_samplerate = 0;
-    m_input = input;
-    m_offset = 0;
     char buf[AAC_BUFFER_SIZE];
     qint64 buf_at = input->peek((char *) buf, AAC_BUFFER_SIZE);
 
@@ -121,7 +96,7 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
                 (buf[6 + skip_size]<<3) |
                 (buf[7 + skip_size] & 0xE0);
 
-        if(!input->isSequential ())
+        if(!input->isSequential())
             m_duration = (qint64) (((float)input->size()*8000.f)/((float)m_bitrate) + 0.5f);
         else
             m_duration = 0;
@@ -131,7 +106,9 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
 }
 
 AACFile::~AACFile()
-{}
+{
+
+}
 
 qint64 AACFile::duration() const
 {
@@ -256,13 +233,14 @@ void AACFile::parseID3v2(const QByteArray &data)
     m_metaData.insert(Qmmp::TRACK, QString::number(taglib_tag.track()));
 }
 
-ID3v2Tag::ID3v2Tag(const QByteArray &array) : TagLib::ID3v2::Tag()
+ID3v2Tag::ID3v2Tag(const QByteArray &array)
+    : TagLib::ID3v2::Tag(),
+      m_buf(array)
 {
-    m_buf = array;
     read();
 }
 
-void ID3v2Tag::read ()
+void ID3v2Tag::read()
 {
     if(TagLib::ID3v2::Header::size() > (uint)m_buf.size())
         return;

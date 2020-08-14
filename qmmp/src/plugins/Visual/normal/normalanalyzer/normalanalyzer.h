@@ -62,13 +62,13 @@ private:
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;
     QTimer *m_starTimer;
-    double *m_peaks;
+    double *m_peaks = nullptr;
     double m_peaks_falloff, m_analyzer_falloff;
-    bool m_show_peaks, m_update;
-    int *m_x_scale;
+    bool m_show_peaks, m_update = false;
+    int *m_x_scale = nullptr;
 
     QList<QColor> m_colors;
-    QSize m_cell_size;
+    QSize m_cell_size = QSize(15, 6);
     QMenu *m_menu;
     QAction *m_peaksAction;
     QActionGroup *m_fpsGroup;

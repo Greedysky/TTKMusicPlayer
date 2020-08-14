@@ -27,43 +27,44 @@ public:
     void start(int channel, int samples) override;
     int read() override;
 
-    AudioError get_error() const override { return this->error; }
-    std::string get_codec_name() const override { return this->codec_name; }
-    int get_bit_rate() const override { return this->bit_rate; }
-    int get_sample_rate() const override { return this->sample_rate; }
-    int get_bits_per_sample() const override { return this->bits_per_sample; }
-    int get_streams() const override { return this->streams; }
-    int get_channels() const override { return this->channels; }
-    double get_duration() const override { return this->duration; }
-    const float *get_buffer() const override { return this->buffer; }
-    int64_t get_frames_per_interval() const override { return this->frames_per_interval; }
-    int64_t get_error_per_interval() const override { return this->error_per_interval; }
-    int64_t get_error_base() const override { return this->error_base; }
+    AudioError get_error() const override { return m_error; }
+    std::string get_codec_name() const override { return m_codec_name; }
+    int get_bit_rate() const override { return m_bit_rate; }
+    int get_sample_rate() const override { return m_sample_rate; }
+    int get_bits_per_sample() const override { return m_bits_per_sample; }
+    int get_streams() const override { return m_streams; }
+    int get_channels() const override { return m_channels; }
+    double get_duration() const override { return m_duration; }
+    const float *get_buffer() const override { return m_buffer; }
+    int64_t get_frames_per_interval() const override { return m_frames_per_interval; }
+    int64_t get_error_per_interval() const override { return m_error_per_interval; }
+    int64_t get_error_base() const override { return m_error_base; }
 
 private:
-    AudioError error;
-    AVFormatContext *format_context;
-    AVCodecContext *codec_context;
-    int audio_stream;
-    std::string codec_name;
-    int bit_rate;
-    int sample_rate;
-    int bits_per_sample;
-    int streams;
-    int channels;
-    double duration;
+    AudioError m_error;
+    AVFormatContext *m_format_context;
+    AVCodecContext *m_codec_context;
+    int m_audio_stream;
+    std::string m_codec_name;
+    int m_bit_rate;
+    int m_sample_rate;
+    int m_bits_per_sample;
+    int m_streams;
+    int m_channels;
+    double m_duration;
 
-    int channel;
+    int m_channel;
 
-    AVPacket packet;
-    int offset;
-    AVFrame *frame;
-    int buffer_len;
-    float *buffer;
+    AVPacket m_packet;
+    int m_offset = 0;
+    AVFrame *m_frame;
+    int m_buffer_len = 0;
+    float *m_buffer = nullptr;
     // TODO: these guys don't belong here, move them somewhere else when revamping the pipeline
-    int64_t frames_per_interval;
-    int64_t error_per_interval;
-    int64_t error_base;
+    int64_t m_frames_per_interval = 0;
+    int64_t m_error_per_interval = 0;
+    int64_t m_error_base = 0;
+
 };
 
 
@@ -200,106 +201,106 @@ std::unique_ptr<AudioFile> Audio::open(const std::string& file_name, int stream)
 AudioFileImpl::AudioFileImpl(
     AudioError error, AVFormatContext *format_context, AVCodecContext *codec_context,
     int audio_stream, const std::string& codec_name, int bit_rate, int sample_rate,
-    int bits_per_sample, int streams, int channels, double duration
-) :
-    error(error), format_context(format_context), codec_context(codec_context),
-    audio_stream(audio_stream), codec_name(codec_name), bit_rate(bit_rate),
-    sample_rate(sample_rate),
-    bits_per_sample(bits_per_sample), streams(streams), channels(channels), duration(duration)
+    int bits_per_sample, int streams, int channels, double duration)
+    : m_error(error),
+      m_format_context(format_context),
+      m_codec_context(codec_context),
+      m_audio_stream(audio_stream),
+      m_codec_name(codec_name),
+      m_bit_rate(bit_rate),
+      m_sample_rate(sample_rate),
+      m_bits_per_sample(bits_per_sample),
+      m_streams(streams),
+      m_channels(channels),
+      m_duration(duration)
 {
-    av_init_packet(&this->packet);
-    this->packet.data = nullptr;
-    this->packet.size = 0;
-    this->offset = 0;
-    this->frame = av_frame_alloc();
-    this->buffer_len = 0;
-    this->buffer = nullptr;
-    this->frames_per_interval = 0;
-    this->error_per_interval = 0;
-    this->error_base = 0;
+    av_init_packet(&m_packet);
+    m_packet.data = nullptr;
+    m_packet.size = 0;
+    m_frame = av_frame_alloc();
 }
 
 AudioFileImpl::~AudioFileImpl()
 {
-    if (this->buffer) {
-        av_freep(&this->buffer);
+    if (m_buffer) {
+        av_freep(&m_buffer);
     }
-    if (this->frame) {
-        av_frame_free(&this->frame);
+    if (m_frame) {
+        av_frame_free(&m_frame);
     }
-    if (this->packet.data) {
-        this->packet.data -= this->offset;
-        this->packet.size += this->offset;
-        this->offset = 0;
-        av_packet_unref(&this->packet);
+    if (m_packet.data) {
+        m_packet.data -= m_offset;
+        m_packet.size += m_offset;
+        m_offset = 0;
+        av_packet_unref(&m_packet);
     }
-    if (this->codec_context) {
-        avcodec_free_context(&codec_context);
+    if (m_codec_context) {
+        avcodec_free_context(&m_codec_context);
     }
-    if (this->format_context) {
-        avformat_close_input(&this->format_context);
+    if (m_format_context) {
+        avformat_close_input(&m_format_context);
     }
 }
 
 void AudioFileImpl::start(int channel, int samples)
 {
-    this->channel = channel;
-    if (channel < 0 || channel >= this->channels) {
+    m_channel = channel;
+    if (channel < 0 || channel >= m_channels) {
         assert(false);
-        this->error = AudioError::NO_CHANNELS;
+        m_error = AudioError::NO_CHANNELS;
     }
 
-    AVStream *stream = this->format_context->streams[this->audio_stream];
-    int64_t rate = this->sample_rate * (int64_t)stream->time_base.num;
-    int64_t duration = (int64_t)(this->duration * stream->time_base.den / stream->time_base.num);
-    this->error_base = samples * (int64_t)stream->time_base.den;
-    this->frames_per_interval = av_rescale_rnd(duration, rate, this->error_base, AV_ROUND_DOWN);
-    this->error_per_interval = (duration * rate) % this->error_base;
+    AVStream *stream = m_format_context->streams[m_audio_stream];
+    int64_t rate = m_sample_rate * (int64_t)stream->time_base.num;
+    int64_t duration = (int64_t)(m_duration * stream->time_base.den / stream->time_base.num);
+    m_error_base = samples * (int64_t)stream->time_base.den;
+    m_frames_per_interval = av_rescale_rnd(duration, rate, m_error_base, AV_ROUND_DOWN);
+    m_error_per_interval = (duration * rate) % m_error_base;
 }
 
 int AudioFileImpl::read()
 {
-    if (!!this->error) {
+    if (!!m_error) {
         return -1;
     }
 
     for (;;) {
-        while (this->packet.size > 0) {
-            av_frame_unref(this->frame);
+        while (m_packet.size > 0) {
+            av_frame_unref(m_frame);
             int got_frame = 0;
-            int len = avcodec_decode_audio4(this->codec_context, this->frame, &got_frame, &this->packet
+            int len = avcodec_decode_audio4(m_codec_context, m_frame, &got_frame, &m_packet
             );
             if (len < 0) {
                 // Error, skip the frame.
                 break;
             }
-            this->packet.data += len;
-            this->packet.size -= len;
-            this->offset += len;
+            m_packet.data += len;
+            m_packet.size -= len;
+            m_offset += len;
             if (!got_frame) {
                 // No data yet, get more frames.
                 continue;
             }
             // We have data, return it and come back for more later.
-            int samples = this->frame->nb_samples;
-            if (samples > this->buffer_len) {
-                this->buffer = static_cast<float*>(
-                    av_realloc(this->buffer, samples * sizeof(float))
+            int samples = m_frame->nb_samples;
+            if (samples > m_buffer_len) {
+                m_buffer = static_cast<float*>(
+                    av_realloc(m_buffer, samples * sizeof(float))
                 );
-                this->buffer_len = samples;
+                m_buffer_len = samples;
             }
 
-            AVSampleFormat format = static_cast<AVSampleFormat>(this->frame->format);
+            AVSampleFormat format = static_cast<AVSampleFormat>(m_frame->format);
             int is_planar = av_sample_fmt_is_planar(format);
             for (int sample = 0; sample < samples; ++sample) {
                 uint8_t *data;
                 int offset;
                 if (is_planar) {
-                    data = this->frame->data[this->channel];
+                    data = m_frame->data[m_channel];
                     offset = sample;
                 } else {
-                    data = this->frame->data[0];
-                    offset = sample * this->channels;
+                    data = m_frame->data[0];
+                    offset = sample * m_channels;
                 }
                 float value;
                 switch (format) {
@@ -325,23 +326,23 @@ int AudioFileImpl::read()
                     value = 0.0f;
                     break;
                 }
-                this->buffer[sample] = value;
+                m_buffer[sample] = value;
             }
             return samples;
         }
-        if (this->packet.data) {
-            this->packet.data -= this->offset;
-            this->packet.size += this->offset;
-            this->offset = 0;
-            av_packet_unref(&this->packet);
+        if (m_packet.data) {
+            m_packet.data -= m_offset;
+            m_packet.size += m_offset;
+            m_offset = 0;
+            av_packet_unref(&m_packet);
         }
 
         int res = 0;
-        while ((res = av_read_frame(this->format_context, &this->packet)) >= 0) {
-            if (this->packet.stream_index == this->audio_stream) {
+        while ((res = av_read_frame(m_format_context, &m_packet)) >= 0) {
+            if (m_packet.stream_index == m_audio_stream) {
                 break;
             }
-            av_packet_unref(&this->packet);
+            av_packet_unref(&m_packet);
         }
         if (res < 0) {
             // End of file or error.

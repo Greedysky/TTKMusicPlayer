@@ -1,8 +1,3 @@
-// Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>
-//
-// Use, modification and distribution is allowed without limitation,
-// warranty, or liability of any kind.
-//
 #include <QStringList>
 #include <QDir>
 #include <stdio.h>
@@ -16,9 +11,7 @@
 
 Output::Output()
 {
-    m_frequency = 0;
-    m_sample_size = 0;
-    m_format = Qmmp::PCM_UNKNOWN;
+
 }
 
 void Output::configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
@@ -60,10 +53,14 @@ int Output::sampleSize() const
 }
 
 void Output::suspend()
-{}
+{
+
+}
 
 void Output::resume()
-{}
+{
+
+}
 
 void Output::setTrackInfo(const TrackInfo &info)
 {
@@ -71,7 +68,9 @@ void Output::setTrackInfo(const TrackInfo &info)
 }
 
 Output::~Output()
-{}
+{
+
+}
 
 // static methods
 QList<QmmpPluginCache*> *Output::m_cache = nullptr;
@@ -95,18 +94,18 @@ void Output::loadPlugins()
     }
 }
 
-Output *Output::create ()
+Output *Output::create()
 {
     loadPlugins();
     Output *output = nullptr;
-    if(m_cache->isEmpty ())
+    if(m_cache->isEmpty())
     {
         qDebug("Output: unable to find output plugins");
         return output;
     }
     OutputFactory *fact = Output::currentFactory();
     if(fact)
-        output = fact->create ();
+        output = fact->create();
     return output;
 }
 

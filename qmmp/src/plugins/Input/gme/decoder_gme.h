@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,7 +32,7 @@ class GmeHelper;
 class DecoderGme : public Decoder
 {
 public:
-    DecoderGme(const QString &path);
+    explicit DecoderGme(const QString &path);
     virtual ~DecoderGme();
 
     // Standard Decoder API
@@ -44,9 +44,10 @@ public:
 
 private:
     GmeHelper m_helper;
-    Music_Emu *m_emu;
+    Music_Emu *m_emu = nullptr;
     qint64 m_totalTime;
     QString m_path;
+
 };
 
 #endif // DECODER_GME_H

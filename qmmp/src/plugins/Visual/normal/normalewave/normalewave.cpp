@@ -13,15 +13,13 @@
 NormalEWave::NormalEWave(QWidget *parent)
     : Visual(parent)
 {
-    m_x_scale = nullptr;
+    setWindowTitle(tr("Normal EWave Widget"));
+    setMinimumSize(2 * 300 - 30, 105);
 
     for(int i=0; i<50; ++i)
     {
         m_starPoints << new StarPoint();
     }
-
-    setWindowTitle(tr("Normal EWave Widget"));
-    setMinimumSize(2*300-30, 105);
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
@@ -30,9 +28,7 @@ NormalEWave::NormalEWave(QWidget *parent)
     m_starAction->setCheckable(true);
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
 
-    m_analyzer_falloff = 1.2;
     m_starTimer->setInterval(1000);
-    m_cell_size = QSize(6, 2);
 
     readSettings();
 }
@@ -182,8 +178,6 @@ void NormalEWave::process(float *left, float *right)
 
     short dest_l[256];
     short dest_r[256];
-    short yl, yr;
-    int j, k, magnitude_l, magnitude_r;
 
     calc_freq(dest_l, left);
     calc_freq(dest_r, right);
@@ -192,9 +186,11 @@ void NormalEWave::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; i++)
     {
-        j = m_cols * 2 - i - 1; //mirror index
-        yl = yr = 0;
-        magnitude_l = magnitude_r = 0;
+        int j = m_cols * 2 - i - 1; //mirror index
+        short yl = 0;
+        short yr = 0;
+        int magnitude_l = 0;
+        int magnitude_r = 0;
 
         if(m_x_scale[i] == m_x_scale[i + 1])
         {
@@ -202,7 +198,7 @@ void NormalEWave::process(float *left, float *right)
             yr = dest_r[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
             yr = qMax(dest_r[k], yr);
@@ -256,14 +252,13 @@ void NormalEWave::draw(QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setBrush(line);
 
-    int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
     QPolygon points;
     points << QPoint(0, height());
     for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = i * m_cell_size.width() + 1;
+        int x = i * m_cell_size.width() + 1;
         if(i >= m_cols)
         {
             x += rdx; //correct right part position

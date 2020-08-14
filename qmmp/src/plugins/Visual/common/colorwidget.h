@@ -26,14 +26,8 @@
  */
 typedef struct StarPoint
 {
-    QPoint m_pt;
-    int m_alpha;
-
-    StarPoint()
-    {
-        m_pt = QPoint(0, 0);
-        m_alpha = 255;
-    }
+    QPoint m_pt = QPoint(0, 0);
+    int m_alpha = 255;
 }StarPoint;
 
 
@@ -128,8 +122,9 @@ protected:
 
     Ui::ColorWidget *m_ui;
     QPoint m_pressAt;
-    bool m_leftButtonPress;
-    bool m_singleColorMode;
+    bool m_leftButtonPress = false;
+    bool m_singleColorMode = false;
+
 };
 
 #endif // ColorWidget_H

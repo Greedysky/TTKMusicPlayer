@@ -29,7 +29,7 @@ class SC68Helper;
 class DecoderSC68 : public Decoder
 {
 public:
-    DecoderSC68(const QString &path);
+    explicit DecoderSC68(const QString &path);
     virtual ~DecoderSC68();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     SC68Helper* m_sc68;
+
 };
 
 #endif // DECODER_SC68_H

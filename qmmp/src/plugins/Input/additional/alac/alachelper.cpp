@@ -1,40 +1,16 @@
-/* =================================================
- * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2020 Greedysky Studio
-
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
-
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
-
- * You should have received a copy of the GNU General Public License along
- * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
-
 #include <QFileInfo>
 #include "alachelper.h"
 
 int host_bigendian = 0;
 
 AlacHelper::AlacHelper(const QString &path)
+    : m_path(path)
 {
     {
         uint32_t integer = 0x000000aa;
         unsigned char *pointer = (unsigned char*)&integer;
         host_bigendian = (pointer[0] == 0xaa) ? 0 : 1;
     }
-
-    m_path = path;
-    m_bitrate = 0;
-    m_totalTime = 0;
-    m_file = nullptr;
-    m_alac = nullptr;
-    m_stream = nullptr;
 }
 
 AlacHelper::~AlacHelper()

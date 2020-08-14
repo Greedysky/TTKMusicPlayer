@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,7 +29,7 @@ class ModPlugMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(ModPlugMetaDataModel)
 public:
-    ModPlugMetaDataModel(const QString &path);
+    explicit ModPlugMetaDataModel(const QString &path);
     virtual ~ModPlugMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
@@ -37,9 +37,10 @@ public:
     static QString getTypeName(quint32 type);
 
 private:
-    CSoundFile* m_soundFile;
+    CSoundFile* m_soundFile = nullptr;
     QByteArray m_buffer;
     QString m_path;
+
 };
 
 #endif // MODPLUGMETADATAMODEL_H

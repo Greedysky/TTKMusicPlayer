@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QObject>
 #include <unistd.h>
 #include <stdio.h>
@@ -36,7 +16,7 @@ static unsigned int      ScheduledBlocks        = 0;
 static int               PlayedWaveHeadersCount = 0;          // free index
 static WAVEHDR*          PlayedWaveHeaders [MAX_WAVEBLOCKS];
 
-static void CALLBACK wave_callback (HWAVE hWave, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
+static void CALLBACK wave_callback(HWAVE hWave, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
 {
     Q_UNUSED(hWave);
     Q_UNUSED(dwInstance);
@@ -50,8 +30,7 @@ static void CALLBACK wave_callback (HWAVE hWave, UINT uMsg, DWORD dwInstance, DW
     }
 }
 
-static void
-free_memory (void)
+static void free_memory(void)
 {
     WAVEHDR*  wh;
     HGLOBAL   hg;
@@ -71,10 +50,10 @@ free_memory (void)
     GlobalFree   (hg);
 }
 
-OutputWaveOut::OutputWaveOut() : Output()
+OutputWaveOut::OutputWaveOut()
+    : Output()
 {
-    m_totalWritten = 0;
-    m_frameSize = 0;
+
 }
 
 OutputWaveOut::~OutputWaveOut()
@@ -86,7 +65,7 @@ bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat f
 {
     Q_UNUSED(format);
     m_totalWritten = 0;
-    if(!waveOutGetNumDevs ())
+    if(!waveOutGetNumDevs())
     {
         qWarning("OutputWaveOut: no audio device found");
         return false;
@@ -157,7 +136,7 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
 
 
     while (PlayedWaveHeadersCount > 0)                        // free used blocks ...
-        free_memory ();
+        free_memory();
 
     if(ScheduledBlocks >= sizeof(PlayedWaveHeaders)/sizeof(*PlayedWaveHeaders)) // wait for a free block ...
     {
@@ -224,7 +203,7 @@ void OutputWaveOut::resume()
 void OutputWaveOut::reset()
 {
    while (PlayedWaveHeadersCount > 0)                        // free used blocks ...
-      free_memory ();
+      free_memory();
    waveOutReset (dev);
    m_totalWritten = 0;
 }
@@ -238,7 +217,7 @@ void OutputWaveOut::uninitialize()
             Sleep (10);
 
         while (PlayedWaveHeadersCount > 0)         // free used blocks ...
-            free_memory ();
+            free_memory();
 
         waveOutReset (dev);      // reset the device
         waveOutClose (dev);      // close the device
@@ -252,10 +231,14 @@ void OutputWaveOut::uninitialize()
 
 /***** MIXER *****/
 VolumeWaveOut::VolumeWaveOut()
-{}
+{
+
+}
 
 VolumeWaveOut::~VolumeWaveOut()
-{}
+{
+
+}
 
 void VolumeWaveOut::setVolume(const VolumeSettings &vol)
 {

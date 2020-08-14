@@ -1,21 +1,3 @@
-/* =================================================
- * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2020 Greedysky Studio
-
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
-
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
-
- * You should have received a copy of the GNU General Public License along
- * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
-
 #include "florid.h"
 
 #include <soundcore.h>
@@ -28,8 +10,6 @@
 RoundAnimationLabel::RoundAnimationLabel(QWidget *parent)
     : QWidget(parent)
 {
-    m_rotateAngle = 0;
-
     m_timer.setInterval(100);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 }
@@ -100,10 +80,6 @@ Florid::Florid(QWidget *parent)
 {
     setMinimumSize(580, 320);
 
-    m_useImage = true;
-    m_renderLabel = false;
-    m_averageColor = QColor(255, 255, 255);
-    m_gradientOn = false;
     m_roundLabel = new RoundAnimationLabel(this);
 
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));

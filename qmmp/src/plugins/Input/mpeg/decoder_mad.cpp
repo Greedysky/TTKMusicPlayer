@@ -1,26 +1,3 @@
-/***************************************************************************
- *  Based on mq3 and madplay projects                                      *
- *                                                                         *
- * Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>             *
- * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
- * Copyright (C) 2009-2018 Ilya Kotov forkotov02@ya.ru                     *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <taglib/id3v2header.h>
 #include <taglib/tbytevector.h>
 #include <math.h>
@@ -33,20 +10,10 @@
 #define LAME_MAGIC (('L' << 24) | ('A' << 16) | ('M' << 8) | 'E')
 #define INPUT_BUFFER_SIZE (32*1024)
 
-DecoderMAD::DecoderMAD(QIODevice *i) : Decoder(i)
+DecoderMAD::DecoderMAD(QIODevice *i)
+    : Decoder(i)
 {
-    m_inited = false;
-    m_totalTime = 0;
-    m_channels = 0;
-    m_bitrate = 0;
-    m_freq = 0;
-    m_len = 0;
-    m_input_buf = nullptr;
-    m_input_bytes = 0;
-    m_skip_frames = 0;
-    m_eof = false;
-    m_skip_bytes = 0;
-    m_play_bytes = -1;
+
 }
 
 DecoderMAD::~DecoderMAD()
@@ -79,7 +46,7 @@ bool DecoderMAD::initialize()
     if(!m_input_buf)
         m_input_buf = new char[INPUT_BUFFER_SIZE];
 
-    if(input()->isSequential ()) //for streams only
+    if(input()->isSequential()) //for streams only
     {
         TagExtractor extractor(input());
         if(!extractor.id3v2tag().isEmpty())

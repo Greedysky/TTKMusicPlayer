@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QObject>
 #include <QRegExp>
 #include <QSettings>
@@ -41,9 +21,9 @@
 
 #include "decoder_cdaudio.h"
 
-QList <CDATrack> DecoderCDAudio::m_track_cache;
+QList<CDATrack> DecoderCDAudio::m_track_cache;
 
-static void log_handler (cdio_log_level_t level, const char *message)
+static void log_handler(cdio_log_level_t level, const char *message)
 {
     QString str = QString::fromLocal8Bit(message).trimmed();
     switch (level)
@@ -76,10 +56,12 @@ static void cddb_log_handler(cddb_log_level_t level, const char *message)
 }
 
 
-DecoderCDAudio::DecoderCDAudio(const QString &url) : Decoder()
+DecoderCDAudio::DecoderCDAudio(const QString &url)
+    : Decoder(),
+      m_url(url),
+      m_buffer(new char[CDDA_BUFFER_SIZE])
 {
-    m_url = url;
-    m_buffer = new char[CDDA_BUFFER_SIZE];
+
 }
 
 DecoderCDAudio::~DecoderCDAudio()
@@ -99,7 +81,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     int cd_speed = settings.value("cdaudio/speed", 0).toInt();
     bool use_cd_text = settings.value("cdaudio/cdtext", true).toBool();
-    QList <CDATrack> tracks;
+    QList<CDATrack> tracks;
     cdio_log_set_handler(log_handler); //setup cdio log handler
     CdIo_t *cdio = nullptr;
     QString device_path = device;
@@ -229,9 +211,8 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
     {
         qDebug("DecoderCDAudio: reading CDDB...");
         cddb_log_set_handler(cddb_log_handler);
-        cddb_conn_t *cddb_conn = cddb_new ();
+        cddb_conn_t *cddb_conn = cddb_new();
         cddb_disc_t *cddb_disc = nullptr;
-        cddb_track_t *cddb_track = nullptr;
         lba_t lba;
         if(!cddb_conn)
             qWarning ("DecoderCDAudio: unable to create cddb connection");
@@ -261,13 +242,13 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
             }
             settings.endGroup();
 
-            cddb_disc = cddb_disc_new ();
+            cddb_disc = cddb_disc_new();
             lba = cdio_get_track_lba (cdio, CDIO_CDROM_LEADOUT_TRACK);
             cddb_disc_set_length (cddb_disc, FRAMES_TO_SECONDS (lba));
 
             for(int i = first_track_number; i <= last_track_number; ++i)
             {
-                cddb_track = cddb_track_new ();
+                cddb_track_t *cddb_track = cddb_track_new();
                 cddb_track_set_frame_offset (cddb_track, cdio_get_track_lba (cdio, i));
                 cddb_disc_add_track (cddb_disc, cddb_track);
             }
@@ -325,7 +306,7 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
     return tracks;
 }
 
-void DecoderCDAudio::saveToCache(QList <CDATrack> tracks,  uint disc_id)
+void DecoderCDAudio::saveToCache(QList<CDATrack> tracks,  uint disc_id)
 {
     QDir dir(Qmmp::configDir());
     if(!dir.exists("cddbcache"))
@@ -347,7 +328,7 @@ void DecoderCDAudio::saveToCache(QList <CDATrack> tracks,  uint disc_id)
     }
 }
 
-bool DecoderCDAudio::readFromCache(QList <CDATrack> *tracks, uint disc_id)
+bool DecoderCDAudio::readFromCache(QList<CDATrack> *tracks, uint disc_id)
 {
     QString path = Qmmp::configDir();
     path += QString("/cddbcache/%1").arg(disc_id, 0, 16);
@@ -389,7 +370,7 @@ bool DecoderCDAudio::initialize()
     device_path.remove(QRegExp("#\\d+$"));
 
     track_number = qMax(track_number, 1);
-    QList <CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path); //generate track list
+    QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path); //generate track list
     if(tracks.isEmpty())
     {
         qWarning("DecoderCDAudio: initialize failed");

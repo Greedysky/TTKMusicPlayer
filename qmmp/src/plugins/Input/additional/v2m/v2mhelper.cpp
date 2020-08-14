@@ -99,10 +99,9 @@ int get_total_samples(V2MPlayer *player)
 
 
 V2MHelper::V2MHelper(const QString &path)
+    : m_path(path)
 {
-    m_path = path;
     m_info = (v2m_info_t*)calloc(sizeof(v2m_info_t), 1);
-    m_totalTime = 0;
 }
 
 V2MHelper::~V2MHelper()

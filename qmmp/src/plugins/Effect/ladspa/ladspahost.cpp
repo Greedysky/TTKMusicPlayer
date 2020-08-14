@@ -1,24 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2002-2003 Nick Lamb <njl195@zepler.org.uk>              *
- *   Copyright (C) 2005 Giacomo Lozito <city_hunter@users.sf.net>          *
- *   Copyright (C) 2009-2015 by Ilya Kotov <forkotov02@ya.ru>         *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QSettings>
 #include <QByteArray>
 #include <QDir>
@@ -27,6 +6,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <dlfcn.h>
+#include <algorithm>
 #include <qmmp/audioparameters.h>
 #include "ladspahost.h"
 
@@ -38,34 +18,25 @@ LADSPAHost *LADSPAHost::m_instance = nullptr;
 
 /* Based on xmms_ladspa */
 
-LADSPAHost::LADSPAHost(QObject *parent) : QObject(parent)
+LADSPAHost::LADSPAHost(QObject *parent)
+    : QObject(parent)
 {
-    m_chan = 2;
-    m_freq = 44100;
     m_instance = this;
     loadModules();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    int p = settings.value("LADSPA/plugins_number", 0).toInt();
-    for(int i = 0; i < p; ++i)
+    int pluginNumber = settings.value("LADSPA/plugin_number", 0).toInt();
+    for(int i = 0; i < pluginNumber; ++i)
     {
         QString section = QString("LADSPA_%1/").arg(i);
         settings.beginGroup(section);
 
         int id = settings.value("id").toInt();
-
-        LADSPAPlugin *plugin = nullptr;
-        for(LADSPAPlugin *p : plugins())
-        {
-            if(p->unique_id == id)
-            {
-                plugin = p;
-                break;
-            }
-        }
-        if(!plugin)
+        auto it = std::find_if(m_plugins.cbegin(), m_plugins.cend(), [id](LADSPAPlugin *p){ return p->unique_id = id; });
+        if(it == m_plugins.cend())
             continue;
 
+        LADSPAPlugin *plugin = *it;
         LADSPAEffect *effect = createEffect(plugin);
         for(LADSPAControl *c : qAsConst(effect->controls))
             c->value = settings.value(QString("port%1").arg(c->port), c->value).toFloat();
@@ -79,11 +50,11 @@ LADSPAHost::~LADSPAHost()
 {
     m_instance = nullptr;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    for(int i = 0; i < settings.value("LADSPA/plugins_number", 0).toInt(); ++i)
+    for(int i = 0; i < settings.value("LADSPA/plugin_number", 0).toInt(); ++i)
     {
         settings.remove(QString("LADSPA_%1/").arg(i));
     }
-    settings.setValue("LADSPA/plugins_number", m_effects.count());
+    settings.setValue("LADSPA/plugin_number", m_effects.count());
     for(int i = 0; i < m_effects.count(); ++i)
     {
         QString section = QString("LADSPA_%1/").arg(i);
@@ -161,7 +132,7 @@ void LADSPAHost::findModules(const QString &path)
 
     for(const QFileInfo &file : qAsConst(files))
     {
-        void *library = dlopen(qPrintable(file.absoluteFilePath ()), RTLD_LAZY);
+        void *library = dlopen(qPrintable(file.absoluteFilePath()), RTLD_LAZY);
         if(!library)
             continue;
 
@@ -389,12 +360,12 @@ void LADSPAHost::deactivateEffect(LADSPAEffect *e)
     e->handles.clear();
 }
 
-QList <LADSPAPlugin *> LADSPAHost::plugins()
+const QList<LADSPAPlugin *> &LADSPAHost::plugins() const
 {
     return m_plugins;
 }
 
-QList <LADSPAEffect *> LADSPAHost::effects()
+const QList<LADSPAEffect *> &LADSPAHost::effects() const
 {
     return m_effects;
 }

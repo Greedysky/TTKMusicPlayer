@@ -74,7 +74,6 @@ public:
     virtual void next() override;
 
 private:
-
     // helper functions
     void deinit();
     uint findID3v2(char *data, ulong size); //retuns ID3v2 tag size
@@ -91,6 +90,7 @@ private:
     char *m_buf = nullptr; //buffer for remainig data
     qint64 m_buf_size = 0;
     qint64 m_sz = 0; //sample size
+
 };
 
 #endif // __decoder_flac_h

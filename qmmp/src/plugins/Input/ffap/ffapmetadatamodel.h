@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -45,8 +45,9 @@ public:
 private:
     QString m_path;
     QList<TagModel* > m_tags;
-    TagLib::APE::File *m_file;
-    TagLib::FileStream *m_stream;
+    TagLib::APE::File *m_file = nullptr;
+    TagLib::FileStream *m_stream = nullptr;
+
 };
 
 class FFapFileTagModel : public TagModel
@@ -69,6 +70,7 @@ private:
     TagLib::APE::File *m_file;
     TagLib::Tag *m_tag;
     TagLib::APE::File::TagTypes m_tagType;
+
 };
 
 #endif // FFapMETADATAMODEL_H

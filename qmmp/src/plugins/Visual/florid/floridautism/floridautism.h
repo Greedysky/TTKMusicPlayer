@@ -40,9 +40,9 @@ protected slots:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
-    bool m_circleOn;
+    bool m_circleOn = false;
     QTimer *m_circleTimer;
-    int m_crValue;
+    int m_crValue = DISTANCE;
     QPoint m_pos;
     QColor m_color;
 
@@ -64,7 +64,7 @@ private:
 
     virtual void process(float *left, float *right) override;
 
-    int m_index;
+    int m_index = 0;
     QList<AutismLabel*> m_labels;
 
 };

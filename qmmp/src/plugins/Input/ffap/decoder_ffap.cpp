@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <stdio.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
@@ -26,13 +6,13 @@
 //callbacks
 size_t ffap_read_cb(void *ptr, size_t size, size_t nmemb, void *client_data)
 {
-    DecoderFFap *dffap = (DecoderFFap *) client_data;
+    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
     return dffap->input()->read((char *) ptr, size * nmemb);
 }
 
 int ffap_seek_cb(int64_t offset, int whence, void *client_data)
 {
-    DecoderFFap *dffap = (DecoderFFap *) client_data;
+    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
     bool ok = false;
     switch(whence)
     {
@@ -51,25 +31,23 @@ int ffap_seek_cb(int64_t offset, int whence, void *client_data)
 
 int64_t ffap_tell_cb(void *client_data)
 {
-    DecoderFFap *dffap = (DecoderFFap *) client_data;
+    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
     return dffap->input()->pos();
 }
 
 int64_t ffap_getlength_cb(void *client_data)
 {
-    DecoderFFap *dffap = (DecoderFFap *) client_data;
+    DecoderFFap *dffap = static_cast<DecoderFFap *>(client_data);
     return dffap->input()->size();
 }
 
 
 DecoderFFap::DecoderFFap(const QString &path, QIODevice *i)
-        : Decoder(i)
+    : Decoder(i),
+      m_path(path)
 {
-    //m_data = 0;
-    m_path = path;
     ffap_load();
 }
-
 
 DecoderFFap::~DecoderFFap()
 {
@@ -136,18 +114,3 @@ void DecoderFFap::deinit()
         ffap_free(m_ffap_decoder);
     m_ffap_decoder = nullptr;
 }
-
-
-
-/*uint DecoderFFap::findID3v2(char *data, ulong size) //retuns ID3v2 tag size
-{
-    if(size < 10)
-        return 0;
-    if(!memcmp(data, "ID3", 3))
-    {
-        TagLib::ByteVector byteVector(data, size);
-        TagLib::ID3v2::Header header(byteVector);
-        return header.completeTagSize();
-    }
-    return 0;
-}*/

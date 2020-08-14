@@ -5,16 +5,14 @@
 FloridSurround::FloridSurround(QWidget *parent)
     : Florid(parent)
 {
-    m_gradientOn = true;
-
     setWindowTitle(tr("Florid Surround Widget"));
+    m_gradientOn = true;
 }
 
 FloridSurround::~FloridSurround()
 {
 
 }
-
 
 void FloridSurround::paintEvent(QPaintEvent *e)
 {

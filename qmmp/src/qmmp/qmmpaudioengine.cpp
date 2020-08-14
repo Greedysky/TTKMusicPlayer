@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QMetaType>
 #include <QIODevice>
 #include <QFile>
@@ -39,19 +19,11 @@
 #define TRANSPORT_TIMEOUT 5000 //ms
 
 QmmpAudioEngine::QmmpAudioEngine(QObject *parent)
-        : AbstractEngine(parent), m_factory(nullptr), m_output(nullptr)
+    : AbstractEngine(parent)
 {
-    m_output_buf = nullptr;
-    m_output_size = 0;
-    m_bks = 0;
-    m_sample_size = 0;
-    m_decoder = nullptr;
-    m_output = nullptr;
-    m_replayGain = nullptr;
-    m_dithering = nullptr;
     m_converter = new AudioConverter;
-
     m_settings = QmmpSettings::instance();
+
     connect(m_settings,SIGNAL(replayGainSettingsChanged()), SLOT(updateReplayGainSettings()));
     connect(m_settings,SIGNAL(audioSettingsChanged()), SLOT(updateAudioSettings()));
     connect(m_settings, SIGNAL(eqSettingsChanged()), SLOT(updateEqSettings()));
@@ -86,14 +58,14 @@ void QmmpAudioEngine::clearDecoders()
 {
     if(m_decoder)
     {
-        m_inputs.take(m_decoder)->deleteLater ();
+        m_inputs.take(m_decoder)->deleteLater();
         delete m_decoder;
         m_decoder = nullptr;
     }
     while(!m_decoders.isEmpty())
     {
         Decoder *d = m_decoders.dequeue();
-        m_inputs.take(d)->deleteLater ();
+        m_inputs.take(d)->deleteLater();
         delete d;
     }
 }
@@ -228,7 +200,7 @@ void QmmpAudioEngine::seek(qint64 time)
         m_output->seek(time, true);
         if(isRunning())
         {
-            mutex()->lock ();
+            mutex()->lock();
             m_seekTime = time;
             mutex()->unlock();
         }
@@ -242,7 +214,7 @@ void QmmpAudioEngine::pause()
 
     if(m_output)
     {
-        m_output->recycler()->mutex()->lock ();
+        m_output->recycler()->mutex()->lock();
         m_output->recycler()->cond()->wakeAll();
         m_output->recycler()->mutex()->unlock();
     }
@@ -335,7 +307,7 @@ void QmmpAudioEngine::updateEqSettings()
 
 void QmmpAudioEngine::run()
 {
-    mutex()->lock ();
+    mutex()->lock();
     m_next = false;
     m_trackInfo.clear();
     qint64 len = 0;
@@ -343,7 +315,7 @@ void QmmpAudioEngine::run()
     QString nextURL;
     if(m_decoders.isEmpty())
     {
-         mutex()->unlock ();
+         mutex()->unlock();
          return;
     }
     m_decoder = m_decoders.dequeue();
@@ -356,15 +328,15 @@ void QmmpAudioEngine::run()
 
     while (!m_done && !m_finish)
     {
-        mutex()->lock ();
+        mutex()->lock();
         //seek
         if(m_seekTime >= 0)
         {
             m_decoder->seek(m_seekTime);
             m_seekTime = -1;
-            m_output->recycler()->mutex()->lock ();
+            m_output->recycler()->mutex()->lock();
             m_output->recycler()->clear();
-            m_output->recycler()->mutex()->unlock ();
+            m_output->recycler()->mutex()->unlock();
             m_output_at = 0;
         }
         //metadata
@@ -438,7 +410,7 @@ void QmmpAudioEngine::run()
             }
             else if(!m_decoders.isEmpty())
             {
-                m_inputs.take(m_decoder)->deleteLater ();
+                m_inputs.take(m_decoder)->deleteLater();
                 delete m_decoder;
                 m_decoder = m_decoders.dequeue();
                 //m_seekTime = m_inputs.value(m_decoder)->offset();
@@ -461,7 +433,7 @@ void QmmpAudioEngine::run()
                     finish();
                     //wake up waiting threads
                     mutex()->unlock();
-                    m_output->recycler()->mutex()->lock ();
+                    m_output->recycler()->mutex()->lock();
                     m_output->recycler()->cond()->wakeAll();
                     m_output->recycler()->mutex()->unlock();
 
@@ -485,14 +457,14 @@ void QmmpAudioEngine::run()
             if(m_output)
             {
                 flush(true);
-                m_output->recycler()->mutex()->lock ();
+                m_output->recycler()->mutex()->lock();
                 // end of stream
                 while (!m_output->recycler()->empty() && !m_user_stop)
                 {
                     m_output->recycler()->cond()->wakeOne();
                     mutex()->unlock();
                     m_output->recycler()->cond()->wait(m_output->recycler()->mutex());
-                    mutex()->lock ();
+                    mutex()->lock();
                 }
                 m_output->recycler()->mutex()->unlock();
             }
@@ -509,7 +481,7 @@ void QmmpAudioEngine::run()
         mutex()->unlock();
     }
     clearDecoders();
-    mutex()->lock ();
+    mutex()->lock();
     m_next = false;
     if(m_finish)
         finish();
@@ -539,19 +511,19 @@ void QmmpAudioEngine::flush(bool final)
 
     while ((!m_done && !m_finish) && m_output_at > min)
     {
-        m_output->recycler()->mutex()->lock ();
+        m_output->recycler()->mutex()->lock();
 
         while ((m_output->recycler()->full() || m_output->recycler()->blocked()) && (!m_done && !m_finish))
         {
             if(m_seekTime > 0)
             {
                 m_output_at = 0;
-                m_output->recycler()->mutex()->unlock ();
+                m_output->recycler()->mutex()->unlock();
                 return;
             }
             mutex()->unlock();
             m_output->recycler()->cond()->wait(m_output->recycler()->mutex());
-            mutex()->lock ();
+            mutex()->lock();
             m_done = m_user_stop.load();
         }
 
@@ -652,7 +624,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
     }
     m_replayGain = nullptr;
     m_dithering = nullptr;
-    QList <Effect *> tmp_effects = m_effects;
+    QList<Effect *> tmp_effects = m_effects;
     m_effects.clear();
 
     //replay gain

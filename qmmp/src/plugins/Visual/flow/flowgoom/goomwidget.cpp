@@ -13,12 +13,9 @@
 GoomWidget::GoomWidget(QWidget *parent)
     : Florid(parent)
 {
-    m_useImage = false;
-    m_update = false;
-    m_goom = nullptr;
-    m_fps = 25;
-
     setWindowTitle("Flow Goom Widget");
+
+    m_useImage = false;
     setMinimumSize(150,150);
 
     createMenu();

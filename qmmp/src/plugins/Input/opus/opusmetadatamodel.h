@@ -50,12 +50,13 @@ private:
     QList<TagModel* > m_tags;
     TagLib::Ogg::Opus::File *m_file;
     TagLib::FileStream *m_stream;
+
 };
 
 class VorbisCommentModel : public TagModel
 {
 public:
-    VorbisCommentModel(TagLib::Ogg::Opus::File *file);
+    explicit VorbisCommentModel(TagLib::Ogg::Opus::File *file);
     virtual ~VorbisCommentModel();
 
     virtual QString name() const override;
@@ -66,6 +67,7 @@ public:
 private:
     TagLib::Ogg::Opus::File *m_file;
     TagLib::Ogg::XiphComment *m_tag;
+
 };
 
 #endif // OPUSMETADATAMODEL_H

@@ -10,13 +10,8 @@
 WaveVoice::WaveVoice(QWidget *parent)
     : Visual(parent)
 {
-    m_palette = VisualPalette::PALETTE_DEFAULT;
-    m_x_scale = nullptr;
-    m_analyzer_falloff = 2.2;
-    m_pixPos = 0;
-
     setWindowTitle(tr("Wave Voice Widget"));
-    setMinimumSize(2*300-30, 105);
+    setMinimumSize(2 * 300 - 30, 105);
 }
 
 WaveVoice::~WaveVoice()

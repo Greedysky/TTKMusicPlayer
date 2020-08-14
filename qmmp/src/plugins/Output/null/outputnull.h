@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -40,7 +40,8 @@ public:
     virtual void reset() override;
 
 private:
-    qint64 m_bytes_per_second;
+    qint64 m_bytes_per_second = 0;
+
 };
 
 #endif // OutputNull_H

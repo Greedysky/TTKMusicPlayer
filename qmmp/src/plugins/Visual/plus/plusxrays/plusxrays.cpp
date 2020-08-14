@@ -13,7 +13,7 @@ PlusXRays::PlusXRays (QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle(tr("Plus XRays Widget"));
-    setMinimumSize(2*300-30, 105);
+    setMinimumSize(2 * 300 - 30, 105);
 
     m_gridAction = new QAction(tr("Grid"), this);
     m_gridAction->setCheckable(true);

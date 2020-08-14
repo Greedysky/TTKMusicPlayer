@@ -23,7 +23,7 @@ struct spek_pipeline
     std::unique_ptr<FFTPlan> fft;
     int stream;
     int channel;
-    enum window_function window_function;
+    enum WindowFunction window_function;
     int samples;
     spek_pipeline_cb cb;
     void *cb_data;
@@ -49,6 +49,7 @@ struct spek_pipeline
     bool has_worker_cond;
     bool worker_done;
     volatile bool quit;
+
 };
 
 // Forward declarations.
@@ -61,11 +62,10 @@ struct spek_pipeline * spek_pipeline_open(
     std::unique_ptr<FFTPlan> fft,
     int stream,
     int channel,
-    enum window_function window_function,
+    enum WindowFunction window_function,
     int samples,
     spek_pipeline_cb cb,
-    void *cb_data
-)
+    void *cb_data)
 {
     spek_pipeline *p = new spek_pipeline();
     p->file = std::move(file);
@@ -361,7 +361,7 @@ static void reader_sync(struct spek_pipeline *p, int pos)
     pthread_mutex_unlock(&p->worker_mutex);
 }
 
-static float get_window(enum window_function f, int i, float *coss, int n) {
+static float get_window(enum WindowFunction f, int i, float *coss, int n) {
     switch (f) {
     case WINDOW_HANN:
         return 0.5f * (1.0f - coss[i]);

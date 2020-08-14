@@ -55,7 +55,7 @@ public slots:
     void randomPreset();
 
 private:
-    projectM *m_projectM;
+    projectM *m_projectM = nullptr;
 
 };
 

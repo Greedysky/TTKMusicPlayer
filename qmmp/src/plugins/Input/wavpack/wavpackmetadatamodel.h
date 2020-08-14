@@ -39,14 +39,15 @@ public:
 
 private:
     WavpackContext *m_ctx;
-    QList <TagModel *> m_tags;
+    QList<TagModel *> m_tags;
     QString m_path;
+
 };
 
 class WavPackFileTagModel : public TagModel
 {
 public:
-    WavPackFileTagModel(WavpackContext *ctx);
+    explicit WavPackFileTagModel(WavpackContext *ctx);
     virtual ~WavPackFileTagModel();
 
     virtual QString name() const override;
@@ -56,7 +57,7 @@ public:
 
 private:
      WavpackContext *m_ctx;
-     QString m_path;
+
 };
 
 #endif // WAVPACKMETADATAMODEL_H

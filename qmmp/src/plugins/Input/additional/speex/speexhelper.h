@@ -87,7 +87,7 @@ typedef struct
 class SpeexHelper
 {
 public:
-    SpeexHelper(QIODevice *i);
+    explicit SpeexHelper(QIODevice *i);
     ~SpeexHelper();
 
     bool initialize();
@@ -177,18 +177,18 @@ private:
 
 private:
     QIODevice *m_reader;       // reader
-    speexstream_t **m_stream;       // stream info
-    int32_t m_streamcount;    // number of streams
-    int64_t m_offset;         // position in file
-    int64_t m_seektosample;
-    int32_t m_current_stream;
+    speexstream_t **m_stream = nullptr;       // stream info
+    int32_t m_streamcount = 0;    // number of streams
+    int64_t m_offset = 0;         // position in file
+    int64_t m_seektosample = -1;
+    int32_t m_current_stream = 0;
 
-    speexdecoder *m_decoder;       // Speex decoder
-    bool m_initialized;    // file init was successful
-    long m_bitrate;        // temporary bitrate on vbr files
+    speexdecoder *m_decoder = nullptr;       // Speex decoder
+    bool m_initialized = false;    // file init was successful
+    long m_bitrate = 0;        // temporary bitrate on vbr files
     char m_speex_last_error[512];
-    int32_t m_current_serial;
-    int m_position;
+    int32_t m_current_serial = -1;
+    int m_position = 0;
     QueueBuffer m_read_buffer;
 
 private:

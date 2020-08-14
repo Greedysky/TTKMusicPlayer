@@ -112,13 +112,15 @@ public:
     static EffectFactory *findFactory(const QString &shortName);
 
 private:
-    EffectFactory *m_factory;
-    quint32 m_freq;
-    int m_channels;
+    EffectFactory *m_factory = nullptr;
+    quint32 m_freq = 0;
+    int m_channels = 0;
     ChannelMap m_chan_map;
+
     static void loadPlugins();
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_enabledNames;
+
 };
 
 #endif

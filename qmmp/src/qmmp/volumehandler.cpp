@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QTimer>
 #include <QDir>
 #include <QSettings>
@@ -191,7 +171,7 @@ void VolumeHandler::checkVolume()
 
     v.left = qBound(0, v.left, 100);
     v.right = qBound(0, v.right, 100);
-    if(m_muted != muted || (m_prev_block && !signalsBlocked ()))
+    if(m_muted != muted || (m_prev_block && !signalsBlocked()))
     {
         m_muted = muted;
         emit mutedChanged(m_muted);
@@ -204,13 +184,13 @@ void VolumeHandler::checkVolume()
         emit volumeChanged(volume());
         emit balanceChanged(balance());
     }
-    else if(m_prev_block && !signalsBlocked ()) //signals have been unblocked
+    else if(m_prev_block && !signalsBlocked()) //signals have been unblocked
     {
         emit volumeChanged(v.left, v.right);
         emit volumeChanged(volume());
         emit balanceChanged(balance());
     }
-    m_prev_block = signalsBlocked ();
+    m_prev_block = signalsBlocked();
 }
 
 void VolumeHandler::reload()

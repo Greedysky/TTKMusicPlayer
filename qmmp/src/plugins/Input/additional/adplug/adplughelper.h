@@ -33,9 +33,15 @@ class AdplugHelper
 public:
     struct Frame
     {
-      Frame(size_t n, unsigned char *buf) : n(n), buf(buf) { }
-      size_t n;
-      unsigned char *buf;
+      Frame(size_t n, unsigned char *buf)
+          : m_n(n),
+            m_buf(buf)
+      {
+
+      }
+
+      size_t m_n;
+      unsigned char *m_buf;
     };
 
     explicit AdplugHelper(const std::string &);
@@ -70,6 +76,7 @@ private:
     std::unique_ptr<CPlayer> m_player;
     short m_buf[16384] = { 0 };
     size_t m_remaining = 0;
+
 };
 
 #endif

@@ -32,22 +32,21 @@ class CDATrack
 public:
     CDATrack()
     {
-        first_sector = 0;
-        last_sector = 0;
+
     }
 
     TrackInfo info;
-    lsn_t first_sector;
-    lsn_t last_sector;
+    lsn_t first_sector = 0;
+    lsn_t last_sector = 0;
 };
 
 class DecoderCDAudio : public Decoder
 {
 public:
-    DecoderCDAudio(const QString &url);
+    explicit DecoderCDAudio(const QString &url);
     virtual ~DecoderCDAudio();
 
-    static QList <CDATrack> generateTrackList(const QString &device, TrackInfo::Parts parts = TrackInfo::AllParts);
+    static QList<CDATrack> generateTrackList(const QString &device, TrackInfo::Parts parts = TrackInfo::AllParts);
     static qint64 calculateTrackLength(lsn_t startlsn, lsn_t endlsn);
     static void clearTrackCache();
 
@@ -60,8 +59,8 @@ public:
 
 private:
     //helper functions
-    static void saveToCache(QList <CDATrack> tracks,  uint disc_id);
-    static bool readFromCache(QList <CDATrack> *tracks, uint disc_id);
+    static void saveToCache(QList<CDATrack> tracks,  uint disc_id);
+    static bool readFromCache(QList<CDATrack> *tracks, uint disc_id);
     // libcdio variables
     lsn_t m_first_sector = -1;
     lsn_t m_last_sector = -1;
@@ -74,7 +73,8 @@ private:
     char *m_buffer;
     qint64 m_buffer_at = 0;
     //tracks cache
-    static QList <CDATrack> m_track_cache;
+    static QList<CDATrack> m_track_cache;
+
 };
 
 #endif // DECODER_CDAUIDO_H

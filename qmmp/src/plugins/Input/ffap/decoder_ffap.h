@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -43,9 +43,10 @@ public:
 private:
     // helper functions
     void deinit();
-    //uint findID3v2(char *data, ulong size); //retuns ID3v2 tag size
+
     FFap_decoder *m_ffap_decoder = nullptr;
     QString m_path;
+
 };
 
 #endif // DECODER_FFAP_H

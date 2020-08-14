@@ -31,7 +31,7 @@ class CueParser;
 class DecoderWavPack : public Decoder
 {
 public:
-    DecoderWavPack(const QString &);
+    explicit DecoderWavPack(const QString &);
     virtual ~DecoderWavPack();
 
     // Standard Decoder API
@@ -48,6 +48,7 @@ private:
     void deinit();
     qint64 wavpack_decode(unsigned char *data, qint64 size);
     ChannelMap findChannelMap(int channels);
+
     WavpackContext *m_context = nullptr;
     int32_t *m_output_buf = nullptr; // output buffer
     int m_chan = 0;
@@ -61,6 +62,7 @@ private:
     int m_track = 0;
     int m_bps = 0;
     qint64 m_frame_size = 0; //frame size
+
 };
 
 #endif // DECODER_WAVPACK_H

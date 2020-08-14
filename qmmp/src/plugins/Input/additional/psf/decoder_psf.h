@@ -29,7 +29,7 @@ class PSFHelper;
 class DecoderPSF : public Decoder
 {
 public:
-    DecoderPSF(const QString &path);
+    explicit DecoderPSF(const QString &path);
     virtual ~DecoderPSF();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     PSFHelper* m_psf;
+
 };
 
 #endif // DECODER_PSF_H

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -45,13 +45,14 @@ private:
     void updateScale();
 
     QMap<Qmmp::ReplayGainKey, double> m_info;
-    QmmpSettings::ReplayGainMode m_mode;
-    double m_scale;
-    double m_preamp;
-    double m_default_gain;
-    bool m_prevent_clipping;
-    bool m_disabled;
-    bool m_update;
+    QmmpSettings::ReplayGainMode m_mode = QmmpSettings::REPLAYGAIN_DISABLED;
+    double m_scale = 1.0;
+    double m_preamp = 0.0;
+    double m_default_gain = 0.0;
+    bool m_prevent_clipping = false;
+    bool m_disabled = true;
+    bool m_update = false;
+
 };
 
 #endif // REPLAYGAIN_H

@@ -60,10 +60,10 @@ private:
     void uninitialize();
     DWORD bytesToWrite();
 
-    IDirectSound8 *m_ds;
-    IDirectSoundBuffer *m_primaryBuffer;
-    IDirectSoundBuffer8 *m_dsBuffer;
-    DWORD m_dsBufferAt;
+    IDirectSound8 *m_ds = nullptr;
+    IDirectSoundBuffer *m_primaryBuffer = nullptr;
+    IDirectSoundBuffer8 *m_dsBuffer = nullptr;
+    DWORD m_dsBufferAt = 0;
 
     typedef struct
     {
@@ -72,9 +72,10 @@ private:
     } DSoundChannels;
 
     static DSoundChannels m_dsound_pos[10];
-    qint64 m_latency;
-    qint32 m_bytesPerSecond;
-    bool m_reset;
+    qint64 m_latency = 0;
+    qint32 m_bytesPerSecond = 0;
+    bool m_reset = false;
+
 };
 
 /**
@@ -92,6 +93,7 @@ public:
 
 private:
     VolumeSettings m_volume;
+
 };
 
 #endif // OUTPUTDIRECTSOUND_H

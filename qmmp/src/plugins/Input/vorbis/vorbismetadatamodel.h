@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -53,12 +53,13 @@ private:
     TagLib::Ogg::XiphComment *m_tag;
     QList<TagModel* > m_tags;
     TagLib::FileStream *m_stream;
+
 };
 
 class VorbisCommentModel : public TagModel
 {
 public:
-    VorbisCommentModel(VorbisMetaDataModel *model);
+    explicit VorbisCommentModel(VorbisMetaDataModel *model);
     virtual ~VorbisCommentModel();
 
     virtual QString name() const override;
@@ -68,6 +69,7 @@ public:
 
 private:
     VorbisMetaDataModel *m_model;
+
 };
 
 #endif // VORBISMETADATAMODEL_H

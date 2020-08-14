@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QObject>
 #include <QFile>
 #include <qmmp/buffer.h>
@@ -28,12 +8,12 @@
 
 sf_count_t sndfile_sf_vio_get_filelen(void *data)
 {
-    return ((QIODevice*) data)->size();
+    return static_cast<QIODevice*>(data)->size();
 }
 
 sf_count_t sndfile_sf_vio_seek(sf_count_t offset, int whence, void *data)
 {
-    QIODevice *input = (QIODevice *)data;
+    QIODevice *input = static_cast<QIODevice*>(data);
     if(input->isSequential())
         return -1;
 
@@ -58,7 +38,7 @@ sf_count_t sndfile_sf_vio_seek(sf_count_t offset, int whence, void *data)
 
 sf_count_t sndfile_sf_vio_read(void *ptr, sf_count_t count, void *data)
 {
-    return ((QIODevice*) data)->read((char *)ptr, count);
+    return static_cast<QIODevice*>(data)->read((char *)ptr, count);
 }
 
 sf_count_t sndfile_sf_vio_write(const void *, sf_count_t, void *)
@@ -68,17 +48,14 @@ sf_count_t sndfile_sf_vio_write(const void *, sf_count_t, void *)
 
 sf_count_t sndfile_sf_vio_tell(void *data)
 {
-    return ((QIODevice*) data)->pos();
+    return static_cast<QIODevice*>(data)->pos();
 }
 
 
-DecoderSndFile::DecoderSndFile(QIODevice *input) : Decoder(input)
+DecoderSndFile::DecoderSndFile(QIODevice *input)
+    : Decoder(input)
 {
-    //m_path = input;
-    m_bitrate = 0;
-    m_totalTime = 0;
-    m_sndfile = nullptr;
-    m_freq = 0;
+
 }
 
 DecoderSndFile::~DecoderSndFile()
@@ -113,7 +90,7 @@ bool DecoderSndFile::initialize()
     m_freq = snd_info.samplerate;
     int chan = snd_info.channels;
     m_totalTime = snd_info.frames * 1000 / m_freq;
-    m_bitrate =  input()->size () * 8.0 / m_totalTime + 0.5;
+    m_bitrate =  input()->size() * 8.0 / m_totalTime + 0.5;
 
     if((snd_info.format & SF_FORMAT_SUBMASK) == SF_FORMAT_FLOAT)
         sf_command (m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, nullptr, SF_TRUE);

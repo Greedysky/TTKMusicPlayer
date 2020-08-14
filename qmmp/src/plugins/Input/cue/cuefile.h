@@ -34,7 +34,7 @@
 class CueFile : public CueParser
 {
 public:
-    CueFile(const QString &path);
+    explicit CueFile(const QString &path);
     ~CueFile();
 
     QString dataFilePath(int track) const;
@@ -43,6 +43,7 @@ public:
 private:
     QStringList splitLine(const QString &line);
     QString getDirtyPath(const QString &cue_path, const QString &path);
+
     QMap<QString, QString> m_dataFiles; //name, full path
     bool m_dirty;
 

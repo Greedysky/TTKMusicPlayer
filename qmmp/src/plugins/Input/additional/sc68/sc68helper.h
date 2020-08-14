@@ -41,8 +41,8 @@ typedef struct {
 class SC68Helper
 {
 public:
-    SC68Helper(const QString &path);
-    virtual ~SC68Helper();
+    explicit SC68Helper(const QString &path);
+    ~SC68Helper();
 
     void close();
 
@@ -68,8 +68,9 @@ public:
 private:
     QString m_path;
     sc68_info_t *m_info;
-    qint64 m_totalTime;
+    qint64 m_totalTime = 0;
     QVariantMap m_meta;
+
 };
 
 #endif

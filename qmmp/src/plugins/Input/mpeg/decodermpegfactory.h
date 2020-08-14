@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,7 +38,8 @@ public:
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
 private:
-    bool m_using_rusxmms;
+    bool m_using_rusxmms = false;
+
 };
 
 #endif

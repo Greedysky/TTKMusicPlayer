@@ -29,7 +29,7 @@ class V2MHelper;
 class DecoderV2M : public Decoder
 {
 public:
-    DecoderV2M(const QString &path);
+    explicit DecoderV2M(const QString &path);
     virtual ~DecoderV2M();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     V2MHelper* m_v2m;
+
 };
 
 #endif // DECODER_V2M_H

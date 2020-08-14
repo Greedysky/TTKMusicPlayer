@@ -13,17 +13,13 @@
 NormalHistogram::NormalHistogram(QWidget *parent)
     : Visual(parent)
 {
-    m_x_scale = nullptr;
-    m_analyzer_falloff = 2.2;
-    m_cell_size = QSize(15, 6);
+    setWindowTitle(tr("Normal Histogram Widget"));
+    setMinimumSize(2 * 300 - 30, 105);
 
     for(int i=0; i<50; ++i)
     {
         m_starPoints << new StarPoint();
     }
-
-    setWindowTitle(tr("Normal Histogram Widget"));
-    setMinimumSize(2*300-30, 105);
 
     m_starTimer = new QTimer(this);
     connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));

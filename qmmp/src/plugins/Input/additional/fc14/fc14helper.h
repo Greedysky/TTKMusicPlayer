@@ -40,8 +40,8 @@ typedef struct {
 class FC14Helper
 {
 public:
-    FC14Helper(const QString &path);
-    virtual ~FC14Helper();
+    explicit FC14Helper(const QString &path);
+    ~FC14Helper();
 
     void close();
 
@@ -60,6 +60,7 @@ public:
 private:
     QString m_path;
     fc14_info_t *m_info;
+
 };
 
 #endif

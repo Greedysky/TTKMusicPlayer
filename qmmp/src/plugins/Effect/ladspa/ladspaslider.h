@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,11 +34,8 @@ class LADSPASlider : public QWidget
 {
     Q_OBJECT
 public:
-    LADSPASlider(double min,
-                 double max,
-                 double step,
-                 LADSPA_Data *value,
-                 QWidget *parent = nullptr);
+    LADSPASlider(double min, double max, double step,
+                 LADSPA_Data *value, QWidget *parent = nullptr);
 
 private slots:
     void setValue(double);
@@ -51,6 +48,7 @@ private:
    double m_min;
    double m_max;
    double m_step;
+
 };
 
 #endif // LADSPASLIDER_H

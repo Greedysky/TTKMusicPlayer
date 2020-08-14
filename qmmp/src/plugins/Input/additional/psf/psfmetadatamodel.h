@@ -26,7 +26,7 @@ class PSFMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(PSFMetaDataModel)
 public:
-    PSFMetaDataModel(const QString &path);
+    explicit PSFMetaDataModel(const QString &path);
     virtual ~PSFMetaDataModel();
 
     virtual QList<TagModel* > tags() const override;
@@ -35,12 +35,13 @@ public:
 private:
     QList<TagModel* > m_tags;
     PSFHelper* m_psf;
+
 };
 
 class PSFFileTagModel : public TagModel
 {
 public:
-    PSFFileTagModel(PSFHelper* psf);
+    explicit PSFFileTagModel(PSFHelper* psf);
     virtual ~PSFFileTagModel();
 
     virtual QString name() const override;
@@ -50,6 +51,7 @@ public:
 
 private:
     PSFHelper* m_psf;
+
 };
 
 #endif // PSFMETADATAMODEL_H

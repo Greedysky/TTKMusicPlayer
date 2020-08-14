@@ -53,7 +53,7 @@ public:
 private:
 #if defined Q_OS_WIN && defined __GNUC__
     FARPROC GetSymbolAddress(const char* name) const;
-    HINSTANCE m_instance;
+    HINSTANCE m_instance = nullptr;
 #endif
     void *m_decoder;
     void *m_reader;
@@ -71,6 +71,7 @@ private:
     static sInt64_t ofr_length(void* instance) { return VFS(instance)->size(); }
     static sInt64_t ofr_get_pos(void* instance) { return VFS(instance)->pos(); }
     static condition_t ofr_seek(void* instance, sInt64_t offset) { return VFS(instance)->seek(offset); }
+
 };
 
 #endif

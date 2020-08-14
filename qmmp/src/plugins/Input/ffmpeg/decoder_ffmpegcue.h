@@ -33,7 +33,7 @@ class CueParser;
 class DecoderFFmpegCue : public Decoder
 {
 public:
-    DecoderFFmpegCue(const QString &url);
+    explicit DecoderFFmpegCue(const QString &url);
     virtual ~DecoderFFmpegCue();
 
     // Standard Decoder API
@@ -58,6 +58,7 @@ private:
     qint64 m_bufSize = 0;
     qint64 m_frameSize = 0; //sample size
     QIODevice *m_input = nullptr;
+
 };
 
 #endif // DECODER_FFMPEGCUE_H

@@ -46,6 +46,7 @@ struct QMMP_EXPORT EngineProperties
     QStringList protocols;    /*!< Supported protocols. Should be empty if plugin uses stream input. */
     bool hasSettings = false; /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
 };
+
 /*! @brief Engine plugin interface.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -55,7 +56,10 @@ public:
     /*!
     * Object destructor.
     */
-    virtual ~EngineFactory() {}
+    virtual ~EngineFactory()
+    {
+
+    }
     /*!
      * Returns \b true if plugin supports \b source, otherwise returns \b false
      */

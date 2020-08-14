@@ -38,10 +38,10 @@ private:
     void draw(QPainter *p);
 
     QImage m_backgroundImage;
-    int m_pixPos;
-    int m_vis_data;
-    int *m_x_scale;
-    double m_analyzer_falloff;
+    int m_pixPos = 0;
+    int m_vis_data = 0;
+    int *m_x_scale = nullptr;
+    double m_analyzer_falloff = 2.2;
 
 };
 

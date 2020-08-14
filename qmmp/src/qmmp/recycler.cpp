@@ -1,23 +1,11 @@
-// Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>
-//
-// Use, modification and distribution is allowed without limitation,
-// warranty, or liability of any kind.
-//
-
 #include "recycler_p.h"
 #include "qmmpsettings.h"
 #include "audioparameters.h"
 #include "buffer.h"
 
-Recycler::Recycler ()
+Recycler::Recycler()
 {
-    m_add_index = 0;
-    m_done_index = 0;
-    m_current_count = 0;
-    m_buffer_count = 0;
-    m_blocked = nullptr;
-    m_block_samples = 0;
-    m_buffers = nullptr;
+
 }
 
 Recycler::~Recycler()

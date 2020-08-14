@@ -1,24 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
-#include <QIODevice>
 #include <QFile>
 #include <QApplication>
 #include <QSettings>
@@ -38,16 +17,15 @@
 SoundCore *SoundCore::m_instance = nullptr;
 
 SoundCore::SoundCore(QObject *parent)
-        : QObject(parent)
+    : QObject(parent)
 {
     if(m_instance)
         qFatal("SoundCore: only one instance is allowed");
     qRegisterMetaType<Qmmp::State>("Qmmp::State");
     m_instance = this;
-    m_engine = nullptr;
-    m_nextState = NO_ENGINE;
     m_handler = new StateHandler(this);
     m_volumeControl = new VolumeHandler(this);
+
     connect(m_handler, SIGNAL(elapsedChanged(qint64)), SIGNAL(elapsedChanged(qint64)));
     connect(m_handler, SIGNAL(bitrateChanged(int)), SIGNAL(bitrateChanged(int)));
     connect(m_handler, SIGNAL(audioParametersChanged(AudioParameters)), SIGNAL(audioParametersChanged(AudioParameters)));

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,7 +29,7 @@ extern "C"{
 class DecoderWildMidi : public Decoder
 {
 public:
-    DecoderWildMidi(const QString &path);
+    explicit DecoderWildMidi(const QString &path);
     virtual ~DecoderWildMidi();
 
     // Standard Decoder API
@@ -40,10 +40,11 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    void *midi_ptr;
-    qint64 m_totalTime;
-    quint32 m_sample_rate;
+    void *midi_ptr = nullptr;
+    qint64 m_totalTime = 0;
+    quint32 m_sample_rate = 0;
     QString m_path;
+
 };
 
 #endif // DECODER_WILDMIDI_H

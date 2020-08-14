@@ -56,7 +56,8 @@ public:
     void fromFloat(const float *in, const unsigned char *out, size_t samples);
 
 private:
-    Qmmp::AudioFormat m_format;
+    Qmmp::AudioFormat m_format = Qmmp::PCM_UNKNOWN;
+
 };
 
 #endif // AUDIOCONVERTER_H

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -48,8 +48,10 @@ private:
     // helper functions
     void status();
     void uninitialize();
-    qint64 m_totalWritten;
-    qint32 m_frameSize;
+
+    qint64 m_totalWritten = 0;
+    qint32 m_frameSize = 0;
+
 };
 
 class VolumeWaveOut : public Volume
@@ -62,6 +64,7 @@ public:
     virtual VolumeSettings volume() const override;
 
     bool isSupported() const;
+
 };
 
 

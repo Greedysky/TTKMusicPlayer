@@ -66,8 +66,8 @@ typedef struct {
 class DCAHelper
 {
 public:
-    DCAHelper(const QString &path);
-    virtual ~DCAHelper();
+    explicit DCAHelper(const QString &path);
+    ~DCAHelper();
 
     void close();
 
@@ -85,7 +85,8 @@ public:
 private:
     QString m_path;
     dca_info_t *m_info;
-    qint64 m_totalTime;
+    qint64 m_totalTime = 0;
+
 };
 
 #endif

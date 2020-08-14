@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,7 +35,7 @@ class ReplayGainner : public QObject, public QRunnable
 {
     Q_OBJECT
 public:
-    explicit ReplayGainner();
+    ReplayGainner();
     ~ReplayGainner();
 
     bool prepare(const QString &url);
@@ -59,14 +59,14 @@ private:
     void run() override;
     void deinit();
 
-    InputSource *m_source;
-    Decoder *m_decoder;
+    InputSource *m_source = nullptr;
+    Decoder *m_decoder = nullptr;
     QMutex m_mutex;
-    bool m_user_stop, m_is_running, m_is_pending, m_has_values;
+    bool m_user_stop = false, m_is_running = false, m_is_pending = false, m_has_values = false;
     QString m_url;
-    double m_gain;
-    double m_peak;
-    GainHandle_t *m_handle;
+    double m_gain = 0.0;
+    double m_peak = 0.0;
+    GainHandle_t *m_handle = nullptr;
 
 };
 

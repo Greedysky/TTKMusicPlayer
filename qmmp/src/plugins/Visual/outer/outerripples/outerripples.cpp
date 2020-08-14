@@ -10,11 +10,6 @@ OuterRipples::OuterRipples(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
-
-    m_x_scale = nullptr;
-    m_analyzer_falloff = 2.2;
-    m_cell_size = QSize(15, 6);
-
     setWindowTitle(tr("Outer Ripples Widget"));
 }
 

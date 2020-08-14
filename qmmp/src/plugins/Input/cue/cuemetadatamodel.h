@@ -28,7 +28,7 @@ class CueFile;
 class CUEMetaDataModel : public MetaDataModel
 {
 public:
-    CUEMetaDataModel(const QString &url);
+    explicit CUEMetaDataModel(const QString &url);
     virtual ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
@@ -37,6 +37,7 @@ public:
 private:
     CueFile *m_cueFile;
     QString m_path;
+
 };
 
 #endif // CUEMETADATAMODEL_H

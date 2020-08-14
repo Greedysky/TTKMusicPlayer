@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2017 by Ilya Kotov                                      *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <string.h>
 #include "visualbuffer_p.h"
 
@@ -32,6 +12,7 @@ static inline void stereo_from_multichannel(float *l,
         memcpy(r, s, cnt * sizeof(float));
         return;
     }
+
     while (cnt > 0)
     {
         l[0] = s[0];
@@ -45,9 +26,7 @@ static inline void stereo_from_multichannel(float *l,
 
 VisualBuffer::VisualBuffer()
 {
-    m_take_index = 0;
-    m_add_index = 0;
-    m_elapsed = 0;
+
 }
 
 void VisualBuffer::add(float *pcm, int samples, int channels, qint64 ts, qint64 delay)

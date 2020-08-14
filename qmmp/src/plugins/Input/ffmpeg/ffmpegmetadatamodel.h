@@ -26,13 +26,14 @@
 class FFmpegMetaDataModel : public MetaDataModel
 {
 public:
-    FFmpegMetaDataModel(const QString &path);
+    explicit FFmpegMetaDataModel(const QString &path);
     virtual ~FFmpegMetaDataModel();
 
     virtual QPixmap cover() const override;
 
 private:
     QPixmap m_pixmap;
+
 };
 
 #endif // FFMPEGMETADATAMODEL_H

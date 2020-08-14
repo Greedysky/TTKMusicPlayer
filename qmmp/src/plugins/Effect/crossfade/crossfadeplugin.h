@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -36,7 +36,6 @@ class CrossfadePlugin : public Effect
 {
 public:
     CrossfadePlugin();
-
     virtual ~CrossfadePlugin();
 
     virtual void applyEffect(Buffer *b) override;
@@ -53,11 +52,11 @@ private:
 
     void mix(float *cur_buf, float *prev_buf, uint samples, double volume);
 
-    float *m_buffer;
-    size_t m_buffer_at;
-    size_t m_buffer_size;
+    float *m_buffer = nullptr;
+    size_t m_buffer_at = 0;
+    size_t m_buffer_size = 0;
     qint64 m_overlap;
-    int m_state;
+    int m_state = WAITING;
     SoundCore *m_core;
     StateHandler *m_handler;
 

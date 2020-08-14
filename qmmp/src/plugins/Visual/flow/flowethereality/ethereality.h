@@ -48,6 +48,7 @@ private:
     QTimer *m_timer;
     QStringList m_word_list;
     QStringList m_word;
+
 };
 
 #endif

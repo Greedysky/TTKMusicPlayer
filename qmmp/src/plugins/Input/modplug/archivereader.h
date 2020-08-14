@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008 by Ilya Kotov                                      *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,7 +33,7 @@ class ArchiveReader : public QObject
 {
     Q_OBJECT
 public:
-    ArchiveReader(QObject *parent = nullptr);
+    explicit ArchiveReader(QObject *parent = nullptr);
     ~ArchiveReader();
 
     bool isSupported(const QString &path);

@@ -3,7 +3,7 @@
  *                                                                         *
  * Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>             *
  * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
- * Copyright (C) 2009-2018 Ilya Kotov forkotov02@ya.ru                     *
+ * Copyright (C) 2009-2020 Ilya Kotov forkotov02@ya.ru                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -31,7 +31,7 @@
 class DecoderMAD : public Decoder
 {
 public:
-    DecoderMAD(QIODevice *i);
+    explicit DecoderMAD(QIODevice *i);
     virtual ~DecoderMAD();
 
     // standard decoder API
@@ -61,36 +61,28 @@ private:
     bool findXingHeader(struct mad_bitptr, unsigned int bitlen);
     LameHeader *findLameHeader(struct mad_bitptr ptr, unsigned int bitlen);
     uint findID3v2(uchar *data, ulong size);
-    bool m_inited, m_eof;
-    qint64 m_totalTime;
-    int m_channels, m_skip_frames;
-    uint m_bitrate;
-    long m_freq, m_len;
+
+    bool m_inited = false, m_eof = false;
+    qint64 m_totalTime = 0;
+    int m_channels = 0, m_skip_frames = 0;
+    uint m_bitrate = 0;
+    long m_freq = 0, m_len = 0;
 
     // file input buffer
-    char *m_input_buf;
-    qint64 m_input_bytes;
+    char *m_input_buf = nullptr;
+    qint64 m_input_bytes = 0;
 
     // MAD decoder
 
     //xing header
     struct XingHeader
     {
-        int flags;
-        unsigned long frames;
-        unsigned long bytes;
-        unsigned char toc[100];
-        long scale;
-        LameHeader *lame;
-
-        XingHeader()
-        {
-            flags = 0;
-            frames = 0;
-            bytes = 0;
-            scale = 0;
-            lame = nullptr;
-        }
+        int flags = 0;
+        unsigned long frames = 0;
+        unsigned long bytes = 0;
+        unsigned char toc[100] = { 0 };
+        long scale = 0;
+        LameHeader *lame = nullptr;
     };
     XingHeader m_xing;
 
@@ -105,7 +97,7 @@ private:
     struct mad_stream m_stream;
     struct mad_frame m_frame;
     struct mad_synth m_synth;
-    qint64 m_skip_bytes, m_play_bytes;
+    qint64 m_skip_bytes = 0, m_play_bytes = -1;
 
 };
 

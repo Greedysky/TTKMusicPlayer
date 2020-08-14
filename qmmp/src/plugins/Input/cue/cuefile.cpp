@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QFile>
 #include <QDir>
 #include <QDirIterator>
@@ -31,7 +11,8 @@
 #endif
 #include "cuefile.h"
 
-CueFile::CueFile(const QString &path) : CueParser()
+CueFile::CueFile(const QString &path)
+    : CueParser()
 {
     QString filePath = path;
     if(path.contains("://"))
@@ -39,6 +20,7 @@ CueFile::CueFile(const QString &path) : CueParser()
         filePath.remove("cue://");
         filePath.remove(QRegExp("#\\d+$"));
     }
+
     QFile file(filePath);
     if(!file.open(QIODevice::ReadOnly))
     {
@@ -56,7 +38,7 @@ CueFile::CueFile(const QString &path) : CueParser()
     EncaAnalyser analyser = nullptr;
     if(settings.value("use_enca", false).toBool())
     {
-        analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray ().constData());
+        analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray().constData());
 
         if(analyser)
         {
@@ -74,7 +56,7 @@ CueFile::CueFile(const QString &path) : CueParser()
     }
 #endif
     if(!codec)
-        codec = QTextCodec::codecForName(settings.value("encoding","UTF-8").toByteArray ());
+        codec = QTextCodec::codecForName(settings.value("encoding","UTF-8").toByteArray());
     if(!codec)
         codec = QTextCodec::codecForName("UTF-8");
     settings.endGroup();
@@ -95,11 +77,11 @@ CueFile::CueFile(const QString &path) : CueParser()
         }
     }
 
-    for(const QString &path : m_dataFiles.values())
+    for(const QString &p : m_dataFiles.values())
     {
-        if(!QFile::exists(path))
+        if(!QFile::exists(p))
         {
-            qDebug("CueFile: unable to find file: %s", qPrintable(path));
+            qDebug("CueFile: unable to find file: %s", qPrintable(p));
             clear();
             return;
         }
@@ -107,7 +89,9 @@ CueFile::CueFile(const QString &path) : CueParser()
 }
 
 CueFile::~CueFile()
-{}
+{
+
+}
 
 QString CueFile::dataFilePath(int track) const
 {

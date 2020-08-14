@@ -29,7 +29,7 @@ class AyflyHelper;
 class DecoderAyfly : public Decoder
 {
 public:
-    DecoderAyfly(const QString &path);
+    explicit DecoderAyfly(const QString &path);
     virtual ~DecoderAyfly();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     AyflyHelper* m_ayfly;
+
 };
 
 #endif // DECODER_AYFLY_H

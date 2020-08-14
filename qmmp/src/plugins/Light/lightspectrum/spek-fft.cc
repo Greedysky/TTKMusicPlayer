@@ -16,7 +16,8 @@ public:
     void execute() override;
 
 private:
-    struct RDFTContext *cx;
+    struct RDFTContext *m_cx;
+
 };
 
 std::unique_ptr<FFTPlan> FFT::create(int nbits)
@@ -24,27 +25,29 @@ std::unique_ptr<FFTPlan> FFT::create(int nbits)
     return std::unique_ptr<FFTPlan>(new FFTPlanImpl(nbits));
 }
 
-FFTPlanImpl::FFTPlanImpl(int nbits) : FFTPlan(nbits), cx(av_rdft_init(nbits, DFT_R2C))
+FFTPlanImpl::FFTPlanImpl(int nbits)
+    : FFTPlan(nbits),
+      m_cx(av_rdft_init(nbits, DFT_R2C))
 {
 }
 
 FFTPlanImpl::~FFTPlanImpl()
 {
-    av_rdft_end(this->cx);
+    av_rdft_end(m_cx);
 }
 
 void FFTPlanImpl::execute()
 {
-    av_rdft_calc(this->cx, this->get_input());
+    av_rdft_calc(m_cx, get_input());
 
     // Calculate magnitudes.
-    int n = this->get_input_size();
+    int n = get_input_size();
     float n2 = n * n;
-    this->set_output(0, 10.0f * log10f(this->get_input(0) * this->get_input(0) / n2));
-    this->set_output(n / 2, 10.0f * log10f(this->get_input(1) * this->get_input(1) / n2));
+    set_output(0, 10.0f * log10f(get_input(0) * get_input(0) / n2));
+    set_output(n / 2, 10.0f * log10f(get_input(1) * get_input(1) / n2));
     for(int i = 1; i < n / 2; i++) {
-        float re = this->get_input(i * 2);
-        float im = this->get_input(i * 2 + 1);
-        this->set_output(i, 10.0f * log10f((re * re + im * im) / n2));
+        float re = get_input(i * 2);
+        float im = get_input(i * 2 + 1);
+        set_output(i, 10.0f * log10f((re * re + im * im) / n2));
     }
 }

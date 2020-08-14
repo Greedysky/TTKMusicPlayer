@@ -25,12 +25,13 @@ class OptimFROGMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(OptimFROGMetaDataModel)
 public:
-    OptimFROGMetaDataModel(const QString &path);
+    explicit OptimFROGMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override;
 
 private:
     QString m_path;
+
 };
 
 #endif

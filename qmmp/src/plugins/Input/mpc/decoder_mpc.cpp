@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QObject>
 #include <QIODevice>
 #include <qmmp/buffer.h>
@@ -27,44 +7,41 @@
 
 // mpc callbacks
 
-static mpc_int32_t mpc_callback_read (mpc_reader *reader, void *buffer, mpc_int32_t size)
+static mpc_int32_t mpc_callback_read(mpc_reader *reader, void *buffer, mpc_int32_t size)
 {
-    DecoderMPC *dmpc = (DecoderMPC *) reader->data;
+    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
     return dmpc->input()->read((char *)buffer, size);
 }
 
-static mpc_bool_t mpc_callback_seek (mpc_reader *reader, mpc_int32_t offset)
+static mpc_bool_t mpc_callback_seek(mpc_reader *reader, mpc_int32_t offset)
 {
-    DecoderMPC *dmpc = (DecoderMPC *) reader->data;
+    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
     return dmpc->input()->seek(offset);
 }
 
-static mpc_int32_t mpc_callback_tell (mpc_reader *reader)
+static mpc_int32_t mpc_callback_tell(mpc_reader *reader)
 {
-    DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-    return dmpc->input()->pos ();
+    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    return dmpc->input()->pos();
 }
 
-static mpc_bool_t  mpc_callback_canseek (mpc_reader *reader)
+static mpc_bool_t  mpc_callback_canseek(mpc_reader *reader)
 {
-    DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-    return !dmpc->input()->isSequential () ;
+    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
+    return !dmpc->input()->isSequential();
 }
 
-static mpc_int32_t mpc_callback_get_size (mpc_reader *reader)
+static mpc_int32_t mpc_callback_get_size(mpc_reader *reader)
 {
-    DecoderMPC *dmpc = (DecoderMPC *) reader->data;
+    DecoderMPC *dmpc = static_cast<DecoderMPC *>(reader->data);
     return dmpc->input()->size();
 }
 
 
 DecoderMPC::DecoderMPC(QIODevice *i)
-        : Decoder(i)
+    : Decoder(i)
 {
-    m_len = 0;
-    m_bitrate = 0;
-    m_totalTime = 0.0;
-    m_data = nullptr;
+
 }
 
 DecoderMPC::~DecoderMPC()

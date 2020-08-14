@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QFile>
 #include <stdint.h>
 #include <libmodplug/stdafx.h>
@@ -29,10 +9,10 @@
 
 #define MAX_MESSAGE_LENGTH 4000
 
-ModPlugMetaDataModel::ModPlugMetaDataModel(const QString &path) : MetaDataModel(true)
+ModPlugMetaDataModel::ModPlugMetaDataModel(const QString &path)
+    : MetaDataModel(true),
+      m_path(path)
 {
-    m_soundFile = nullptr;
-    m_path = path;
     ArchiveReader reader(nullptr);
     if(reader.isSupported(m_path))
     {
@@ -43,7 +23,7 @@ ModPlugMetaDataModel::ModPlugMetaDataModel(const QString &path) : MetaDataModel(
         QFile file(m_path);
         if(!file.open(QIODevice::ReadOnly))
         {
-            qWarning("DetailsDialog: error: %s", qPrintable(file.errorString ()));
+            qWarning("DetailsDialog: error: %s", qPrintable(file.errorString()));
             return;
         }
         m_buffer = file.readAll();
@@ -105,7 +85,7 @@ QList<MetaDataItem> ModPlugMetaDataModel::descriptions() const
     char message[MAX_MESSAGE_LENGTH];
     int length = m_soundFile->GetSongComments(message, MAX_MESSAGE_LENGTH, 80);
     if(length != 0)
-        desc << MetaDataItem(tr("Comment"), QString::fromUtf8(message).trimmed ());
+        desc << MetaDataItem(tr("Comment"), QString::fromUtf8(message).trimmed());
     return desc;
 }
 

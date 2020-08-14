@@ -1,26 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
-/* The code is based on MOC by Damian Pietras <daper@daper.net>
-   and libxmms-flac written by Josh Coalson. */
-
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
 #include <taglib/flacfile.h>
@@ -39,10 +16,10 @@
 
 #define BITRATE_CALC_TIME_MS 2000
 
-static size_t pack_pcm_signed (FLAC__byte *output,
-                               const FLAC__int32 * const input[],
-                               unsigned samples,
-                               unsigned channels, unsigned bps)
+static size_t pack_pcm_signed(FLAC__byte *output,
+                              const FLAC__int32 * const input[],
+                              unsigned samples,
+                              unsigned channels, unsigned bps)
 {
     unsigned channel = 0;
 
@@ -82,9 +59,9 @@ static size_t pack_pcm_signed (FLAC__byte *output,
      return samples * channels * bps / 8;
 }
 
-static int flac_decode (void *void_data, unsigned char *buf, int buf_len)
+static int flac_decode(void *client_data, unsigned char *buf, int buf_len)
 {
-    flac_data *data = (flac_data *) void_data;
+    flac_data *data = static_cast<flac_data *>(client_data);
     unsigned to_copy;
 
     if(!data->sample_buffer_fill)
@@ -113,12 +90,12 @@ static int flac_decode (void *void_data, unsigned char *buf, int buf_len)
 }
 
 
-static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecoder*,
+static FLAC__StreamDecoderReadStatus flac_callback_read(const FLAC__StreamDecoder*,
         FLAC__byte buffer[],
         size_t *bytes,
         void *client_data)
 {
-    flac_data *data = (flac_data *) client_data;
+    flac_data *data = static_cast<flac_data *>(client_data);
     qint64 res = data->input->read((char *)buffer, *bytes);
 
     if(res > 0)
@@ -137,12 +114,12 @@ static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecod
 
 }
 
-static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDecoder *d,
+static FLAC__StreamDecoderWriteStatus flac_callback_write(const FLAC__StreamDecoder *d,
         const FLAC__Frame *frame,
         const FLAC__int32* const buffer[],
         void *client_data)
 {
-    flac_data *data = (flac_data *) client_data;
+    flac_data *data = static_cast<flac_data *>(client_data);
     const unsigned wide_samples = frame->header.blocksize;
 
     if(data->abort)
@@ -171,7 +148,7 @@ static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDec
         }
     }
 
-    data->sample_buffer_fill = pack_pcm_signed (
+    data->sample_buffer_fill = pack_pcm_signed(
                                             data->sample_buffer,
                                             buffer, wide_samples,
                                             data->channels,
@@ -180,23 +157,23 @@ static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDec
     return FLAC__STREAM_DECODER_WRITE_STATUS_CONTINUE;
 }
 
-static FLAC__StreamDecoderTellStatus flac_callback_tell (const FLAC__StreamDecoder *,
+static FLAC__StreamDecoderTellStatus flac_callback_tell(const FLAC__StreamDecoder *,
         FLAC__uint64 *offset,
         void *client_data)
 {
-    flac_data *data = (flac_data *) client_data;
+    flac_data *data = static_cast<flac_data *>(client_data);
     if(data->input->isSequential())
         return FLAC__STREAM_DECODER_TELL_STATUS_UNSUPPORTED;
 
-    *offset = data->input->pos ();
+    *offset = data->input->pos();
     return FLAC__STREAM_DECODER_TELL_STATUS_OK;
 }
 
-static FLAC__StreamDecoderSeekStatus flac_callback_seek (const FLAC__StreamDecoder *,
+static FLAC__StreamDecoderSeekStatus flac_callback_seek(const FLAC__StreamDecoder *,
         FLAC__uint64 offset,
         void *client_data)
 {
-    flac_data *data = (flac_data *) client_data;
+    flac_data *data = static_cast<flac_data *>(client_data);
     if(data->input->isSequential())
         return FLAC__STREAM_DECODER_SEEK_STATUS_UNSUPPORTED;
 
@@ -205,11 +182,11 @@ static FLAC__StreamDecoderSeekStatus flac_callback_seek (const FLAC__StreamDecod
            : FLAC__STREAM_DECODER_SEEK_STATUS_ERROR;
 }
 
-static FLAC__StreamDecoderLengthStatus flac_callback_length (const FLAC__StreamDecoder *,
+static FLAC__StreamDecoderLengthStatus flac_callback_length(const FLAC__StreamDecoder *,
         FLAC__uint64 *stream_length,
         void *client_data)
 {
-    flac_data *data = (flac_data *) client_data;
+    flac_data *data = static_cast<flac_data *>(client_data);
     if(data->input->isSequential())
         return FLAC__STREAM_DECODER_LENGTH_STATUS_UNSUPPORTED;
 
@@ -217,12 +194,11 @@ static FLAC__StreamDecoderLengthStatus flac_callback_length (const FLAC__StreamD
     return FLAC__STREAM_DECODER_LENGTH_STATUS_OK;
 }
 
-static void flac_callback_metadata (const FLAC__StreamDecoder *,
-                                    const FLAC__StreamMetadata *metadata,
-                                    void *client_data)
+static void flac_callback_metadata(const FLAC__StreamDecoder *,
+                                   const FLAC__StreamMetadata *metadata,
+                                   void *client_data)
 {
-    flac_data *data = (flac_data *) client_data;
-
+    flac_data *data = static_cast<flac_data *>(client_data);
     if(metadata->type == FLAC__METADATA_TYPE_STREAMINFO)
     {
         qDebug ("DecoderFLAC: getting metadata info");
@@ -247,12 +223,12 @@ static void flac_callback_metadata (const FLAC__StreamDecoder *,
     }
 }
 
-static FLAC__bool flac_callback_eof (const FLAC__StreamDecoder *, void *)
+static FLAC__bool flac_callback_eof(const FLAC__StreamDecoder *, void *)
 {
     return false;
 }
 
-static void flac_callback_error (const FLAC__StreamDecoder *,
+static void flac_callback_error(const FLAC__StreamDecoder *,
                                  FLAC__StreamDecoderErrorStatus status,
                                  void *)
 {
@@ -261,14 +237,12 @@ static void flac_callback_error (const FLAC__StreamDecoder *,
 
 
 DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
-        : Decoder(i)
+    : Decoder(i),
+      m_path(path)
 {
-    m_path = path;
     m_data = new flac_data;
-    m_data->decoder = nullptr;
     m_data->input = i;
 }
-
 
 DecoderFLAC::~DecoderFLAC()
 {
@@ -354,7 +328,7 @@ bool DecoderFLAC::initialize()
     if(!m_data->decoder)
     {
         qDebug("DecoderFLAC: creating FLAC__StreamDecoder");
-        m_data->decoder = FLAC__stream_decoder_new ();
+        m_data->decoder = FLAC__stream_decoder_new();
     }
     char buf[500];
     //skip id3v2

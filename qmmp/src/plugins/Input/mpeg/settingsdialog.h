@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
@@ -28,10 +29,9 @@
 */
 class SettingsDialog : public QDialog
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    SettingsDialog(bool using_rusxmms, QWidget *parent = nullptr);
-
+    explicit SettingsDialog(bool using_rusxmms, QWidget *parent = nullptr);
     ~SettingsDialog();
 
     enum TagType {ID3v1 = 0, ID3v2, APE, Disabled};

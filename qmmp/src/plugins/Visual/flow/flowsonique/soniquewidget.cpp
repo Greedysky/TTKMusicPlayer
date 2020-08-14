@@ -96,13 +96,7 @@ SoniqueWidget::SoniqueWidget(QWidget *parent)
     setMinimumSize(580, 320);
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
-    m_sonique = nullptr;
-    m_visData= new VisData;
-    m_texture = nullptr;
-    m_visProc  = nullptr;
-    m_instance = nullptr;
-    m_currentIndex = -1;
-
+    m_visData = new VisData;
     m_kiss_cfg = kiss_fft_alloc(FFT_SIZE, 0, nullptr, nullptr);
     m_in_freq_data = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);
     m_out_freq_data = (kiss_fft_cpx*)malloc(sizeof(kiss_fft_cpx) * FFT_SIZE);

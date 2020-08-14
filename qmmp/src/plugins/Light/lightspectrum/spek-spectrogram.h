@@ -44,10 +44,10 @@ public:
     virtual void start() override;
     virtual void stop() override;
 
-    inline QImage *getPaintImage() { return &image; }
-    inline int getURange() const { return urange; }
-    inline int getLRange() const { return lrange; }
-    inline VisualPalette::Palette getPalette() const { return palette; }
+    inline QImage *getPaintImage() { return &m_image; }
+    inline int getURange() const { return m_urange; }
+    inline int getLRange() const { return m_lrange; }
+    inline VisualPalette::Palette getPalette() const { return m_palette; }
 
 private slots:
     void typeChanged(QAction *action);
@@ -61,25 +61,25 @@ private:
     void paint(QPainter *dc);
     void create_palette();
 
-    std::unique_ptr<Audio> audio;
-    std::unique_ptr<FFT> fft;
-    spek_pipeline *pipeline;
-    int streams;
-    int stream;
-    int channels;
-    int channel;
-    enum window_function window_function;
-    QString path;
-    QString desc;
-    double duration;
-    int sample_rate;
-    VisualPalette::Palette palette;
-    QImage palette_image;
-    QImage image;
-    int prev_width;
-    int fft_bits;
-    int urange;
-    int lrange;
+    std::unique_ptr<Audio> m_audio;
+    std::unique_ptr<FFT> m_fft;
+    spek_pipeline *m_pipeline = nullptr;
+    int m_streams = 0;
+    int m_stream = 0;
+    int m_channels = 0;
+    int m_channel = 0;
+    enum WindowFunction m_window_function = WINDOW_DEFAULT;
+    QString m_path;
+    QString m_desc;
+    double m_duration = 0.0;
+    int m_sample_rate = 0;
+    VisualPalette::Palette m_palette = VisualPalette::PALETTE_SPECTRUM;
+    QImage m_palette_image;
+    QImage m_image;
+    int m_prev_width = -1;
+    int m_fft_bits;
+    int m_urange;
+    int m_lrange;
 
 };
 

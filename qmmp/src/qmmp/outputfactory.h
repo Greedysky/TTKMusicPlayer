@@ -40,6 +40,7 @@ struct OutputProperties
     QString shortName;         /*!< Effect plugin short name for internal usage */
     bool hasSettings = false;  /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
 };
+
 /*! @brief %Output plugin interface (output factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -49,7 +50,10 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~OutputFactory() {}
+    virtual ~OutputFactory()
+    {
+
+    }
     /*!
      * Returns output plugin properties.
      */

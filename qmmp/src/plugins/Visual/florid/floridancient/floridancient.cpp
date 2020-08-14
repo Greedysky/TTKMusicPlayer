@@ -11,11 +11,6 @@
 AncientLabel::AncientLabel(QWidget *parent)
     : QWidget(parent)
 {
-    m_color = QColor(255, 255, 255);
-    m_opacity = 1;
-    m_pos = QPoint(0, 0);
-    m_size = 5;
-
     m_posAnimation = new QPropertyAnimation(this, QByteArray(), this);
     m_posAnimation->setDuration(ANIMATION_DURATION);
     m_posAnimation->setEasingCurve(QEasingCurve::InOutSine);
@@ -102,14 +97,9 @@ void AncientLabel::paintEvent(QPaintEvent *event)
 FloridAncient::FloridAncient(QWidget *parent)
     : Florid(parent)
 {
-    m_gradientOn = true;
-    m_x_scale = nullptr;
-
     setWindowTitle(tr("Florid Ancient Widget"));
 
-    m_analyzer_falloff = 1.2;
-    m_cell_size = QSize(6, 2);
-
+    m_gradientOn = true;
     for(int i=0; i<ANIMATION_SIZE; ++i)
     {
         AncientLabel *label = new AncientLabel(this);

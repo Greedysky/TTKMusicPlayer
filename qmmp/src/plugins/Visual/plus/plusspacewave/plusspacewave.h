@@ -38,10 +38,9 @@ private:
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    int *m_intern_ray_data, *m_x_scale;
-    double m_analyzer_falloff;
-
-    QSize m_cell_size;
+    int *m_intern_ray_data = nullptr, *m_x_scale = nullptr;
+    double m_analyzer_falloff = 1.2;
+    QSize m_cell_size = QSize(3, 2);
 
 };
 

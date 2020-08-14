@@ -1,21 +1,3 @@
-/* =================================================
- * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2020 Greedysky Studio
-
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
-
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
-
- * You should have received a copy of the GNU General Public License along
- * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
-
 #include "speexhelper.h"
 
 #define readint(buf, base) ( ((buf[base+3] << 24) & 0xff000000) | \
@@ -44,20 +26,11 @@ int speex_tagfield_lengths(const char *str, int len, int *itemlen, int *valuelen
     return 0;
 }
 
+
 SpeexHelper::SpeexHelper(QIODevice *i)
+    : m_reader(i)
 {
-    m_initialized = false;
-    m_stream  = nullptr;
-    m_streamcount = 0;
-    m_offset = 0;
-    m_decoder = nullptr;
-    m_bitrate = 0;
-    m_seektosample = -1;
-    m_current_stream = 0;
     m_speex_last_error[0] = '\0';
-    m_current_serial = -1;
-    m_position = 0;
-    m_reader = i;
 }
 
 SpeexHelper::~SpeexHelper()

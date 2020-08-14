@@ -173,27 +173,9 @@ public:
      * @param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).
      */
     static QStringList findPlugins(const QString &prefix);
-    /*!
-     * Returns system language if uiLanguageID() is 'auto'. Otherwise returns uiLanguageID().
-     */
-    static QString systemLanguageID();
-    /*!
-     * Returns state of the user interface language option. Code "auto" means autodetection.
-     */
-    static QString uiLanguageID();
-    /*!
-     * Sets user interface language.
-     * @param code Language code; code "auto" means autodetection.
-     */
-    static void setUiLanguageID(const QString &code);
-    /*!
-     * Returns a directory location where persistent application data can be stored.
-     */
-    static QString dataPath();
 
 private:
     static QString m_configDir;
-    static QString m_langID;
 
 };
 

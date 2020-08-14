@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008 by Ilya Kotov                                      *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,7 +30,7 @@ class SettingsDialog : public QDialog
 {
     Q_OBJECT
 public:
-    SettingsDialog(QWidget *parent = nullptr);
+    explicit SettingsDialog(QWidget *parent = nullptr);
     virtual ~SettingsDialog();
 
 public slots:
@@ -38,7 +38,7 @@ public slots:
     virtual void reject() override;
 
 private slots:
-    void on_intensitySlider_valueChanged (int value);
+    void on_intensitySlider_valueChanged(int value);
 
 private:
     Ui::SettingsDialog ui;

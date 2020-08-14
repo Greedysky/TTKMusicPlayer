@@ -509,7 +509,7 @@ ape_read_header (FFap_decoder *decoder)
     }
 
     if(ape->totalframes > UINT_MAX / sizeof(APEFrame)){
-        fprintf (stderr, "ape: Too many frames: %d\n", ape->totalframes);
+        fprintf (stderr, "ape: Too many frames: %u\n", ape->totalframes);
         return -1;
     }
     ape->frames       = malloc(ape->totalframes * sizeof(APEFrame));
@@ -1653,7 +1653,7 @@ static int
 ffap_seek_sample (FFap_decoder *decoder, int sample) {
     //ape_info_t *info = (ape_info_t*)_info;
     //sample += info->startsample;
-    trace ("ffap: seeking to %d/%d\n", sample, decoder->ape_ctx->totalsamples);
+    trace ("ffap: seeking to %d/%u\n", sample, decoder->ape_ctx->totalsamples);
     uint32_t newsample = sample;
     if(newsample > decoder->ape_ctx->totalsamples) {
         trace ("eof\n");
@@ -1666,7 +1666,7 @@ ffap_seek_sample (FFap_decoder *decoder, int sample) {
     }
     decoder->ape_ctx->currentframe = nframe;
     decoder->ape_ctx->samplestoskip = newsample - nframe * decoder->ape_ctx->blocksperframe;
-    trace ("ffap: seek to sample %d at blockstart\n", nframe * decoder->ape_ctx->blocksperframe);
+    trace ("ffap: seek to sample %u at blockstart\n", nframe * decoder->ape_ctx->blocksperframe);
     trace ("ffap: samples to skip: %d\n", decoder->ape_ctx->samplestoskip);
 
     // reset decoder
@@ -1819,7 +1819,7 @@ void ffap_load()
         scalarproduct_and_madd_int16 = EXTERN_ASMff_scalarproduct_and_madd_int16_neon;
 #elif HAVE_SSE2 && !ARCH_UNKNOWN
     trace ("ffap: was compiled with sse2 support\n");
-    int mm_flags = mm_support ();
+    int mm_flags = mm_support();
     if(mm_flags & FF_MM_SSE2) {
         trace ("ffap: sse2 support detected\n");
         scalarproduct_and_madd_int16 = ff_scalarproduct_and_madd_int16_sse2;

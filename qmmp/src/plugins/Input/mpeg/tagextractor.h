@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,7 +41,7 @@ class QByteArray;
 class TagExtractor
 {
 public:
-    TagExtractor(QIODevice *d);
+    explicit TagExtractor(QIODevice *d);
     ~TagExtractor();
 
     const QMap<Qmmp::MetaData, QString> id3v2tag();
@@ -56,13 +56,15 @@ class ID3v2Tag : public TagLib::ID3v2::Tag
 {
 public:
     ID3v2Tag(QByteArray *array, long offset);
+    ~ID3v2Tag();
 
 protected:
-    void read ();
+    void read();
 
 private:
     QBuffer *m_buf;
     long m_offset;
+
 };
 
 #endif

@@ -7,11 +7,10 @@
 #include "inlines.h"
 #include "outerrayswave.h"
 
-OuterRaysWave::OuterRaysWave (QWidget *parent)
+OuterRaysWave::OuterRaysWave(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
-
     setWindowTitle(tr("Outer RaysWave Widget"));
 }
 

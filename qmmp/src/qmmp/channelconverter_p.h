@@ -29,7 +29,7 @@
 class QMMP_EXPORT ChannelConverter : public Effect
 {
 public:
-    ChannelConverter(ChannelMap out_map);
+    explicit ChannelConverter(ChannelMap out_map);
     ~ChannelConverter();
 
     virtual void configure(quint32 srate, ChannelMap in_map) override;
@@ -41,6 +41,7 @@ private:
     float *m_tmp_buf = nullptr;
     size_t m_tmp_size  = 0;
     ChannelMap m_out_map, m_in_map;
+
 };
 
 #endif // CHANNELCONVERTER_P_H

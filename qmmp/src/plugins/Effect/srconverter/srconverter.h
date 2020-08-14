@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -40,12 +40,13 @@ public:
 private:
     void freeSRC();
 
-    SRC_STATE *m_src_state;
+    SRC_STATE *m_src_state = nullptr;
     SRC_DATA m_src_data;
     quint32 m_overSamplingFs;
-    int m_srcError;
+    int m_srcError = 0;
     int m_converter_type;
-    int m_sz; //sample size
+    int m_sz = 0; //sample size
+
 };
 
 #endif

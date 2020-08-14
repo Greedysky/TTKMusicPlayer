@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QSettings>
 #include <QApplication>
 #include <QStyle>
@@ -34,11 +14,12 @@
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QWidget *parent)
-        : QDialog(parent)
+    : QDialog(parent)
 {
     m_ui = new Ui::SettingsDialog;
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose, true);
+
     m_ui->loadButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowRight));
     m_ui->unloadButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowLeft));
     m_ui->configureButton->setIcon(QIcon::fromTheme("configure"));
@@ -51,7 +32,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     if(!LADSPAHost::instance())
         new LADSPAHost(qApp);
 
-    QList <LADSPAPlugin *> plugin_list = LADSPAHost::instance()->plugins();
+    QList<LADSPAPlugin *> plugin_list = LADSPAHost::instance()->plugins();
 
     for(int i = 0; i < plugin_list.size(); ++i)
     {
@@ -72,7 +53,7 @@ SettingsDialog::~SettingsDialog()
 void SettingsDialog::on_loadButton_clicked()
 {
     LADSPAHost *l = LADSPAHost::instance();
-    QModelIndex index = m_ui->pluginsTreeView->currentIndex ();
+    QModelIndex index = m_ui->pluginsTreeView->currentIndex();
     if(index.isValid())
     {
         l->load(l->plugins().at(index.row()));
@@ -83,7 +64,7 @@ void SettingsDialog::on_loadButton_clicked()
 void SettingsDialog::on_unloadButton_clicked()
 {
     LADSPAHost *l = LADSPAHost::instance();
-    QModelIndex index = m_ui->runningListWidget->currentIndex ();
+    QModelIndex index = m_ui->runningListWidget->currentIndex();
     if(index.isValid())
     {
         l->unload(l->effects().at(index.row()));
@@ -94,7 +75,7 @@ void SettingsDialog::on_unloadButton_clicked()
 void SettingsDialog::on_configureButton_clicked()
 {
     LADSPAHost *l = LADSPAHost::instance();
-    QModelIndex index = m_ui->runningListWidget->currentIndex ();
+    QModelIndex index = m_ui->runningListWidget->currentIndex();
     if(!index.isValid())
         return;
 
@@ -127,11 +108,13 @@ void SettingsDialog::on_configureButton_clicked()
             formLayout->addRow(c->name, label);
         }
     }
+
     if(effect->controls.isEmpty())
     {
-        QLabel *label = new QLabel(tr("This LADSPA plugin has no user controls"), dialog);
+        label = new QLabel(tr("This LADSPA plugin has no user controls"), dialog);
         formLayout->addRow(label);
     }
+
     dialog->setLayout(formLayout);
     dialog->setFixedSize(dialog->sizeHint());
     dialog->exec();

@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QObject>
 #include <QFile>
 #include <QRegExp>
@@ -29,20 +9,10 @@
 #include "decoder_ffapcue.h"
 
 DecoderFFapCUE::DecoderFFapCUE(const QString &url)
-    : Decoder()
+    : Decoder(),
+      m_url(url)
 {
-    m_decoder = nullptr;
-    m_parser = nullptr;
-    m_buf = nullptr;
-    m_duration = 0;
-    m_offset = 0;
-    m_trackSize = 0;
-    m_written = 0;
-    m_url = url;
-    m_track = 0;
-    m_buf_size = 0;
-    m_frameSize = 0;
-    m_input = nullptr;
+
 }
 
 DecoderFFapCUE::~DecoderFFapCUE()

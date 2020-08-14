@@ -1,8 +1,3 @@
-// Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>
-//
-// Use, modification and distribution is allowed without limitation,
-// warranty, or liability of any kind.
-//
 #include <QStringList>
 #include <QSettings>
 #include <QBuffer>
@@ -19,13 +14,16 @@ extern "C"
 }
 #include "decoder.h"
 
-Decoder::Decoder(QIODevice *input) : m_input(input)
+Decoder::Decoder(QIODevice *input)
+    : m_input(input)
 {
-    m_hasMetaData = false;
+
 }
 
 Decoder::~Decoder()
-{}
+{
+
+}
 
 void Decoder::setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &rg)
 {
@@ -52,7 +50,9 @@ void Decoder::configure(const AudioParameters &p)
 }
 
 void Decoder::next()
-{}
+{
+
+}
 
 const QString Decoder::nextURL() const
 {

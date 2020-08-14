@@ -44,10 +44,10 @@ protected slots:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
-    float m_opacity;
-    int m_size;
-    QPoint m_pos;
-    QColor m_color;
+    float m_opacity = 1;
+    int m_size = 5;
+    QPoint m_pos = QPoint(0, 0);
+    QColor m_color = QColor(255, 255, 255);
     QPropertyAnimation *m_posAnimation;
 
 };
@@ -74,10 +74,9 @@ private:
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    double m_analyzer_falloff;
-    int *m_x_scale;
-
-    QSize m_cell_size;
+    double m_analyzer_falloff = 1.2;
+    int *m_x_scale = nullptr;
+    QSize m_cell_size = QSize(6, 2);
     QList<AncientLabel*> m_labels;
 
 };

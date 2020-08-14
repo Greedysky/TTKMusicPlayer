@@ -38,8 +38,8 @@ private:
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);
 
-    double m_analyzer_falloff;
-    int *m_x_scale;
+    double m_analyzer_falloff = 1.2;
+    int *m_x_scale = nullptr;
 
 };
 

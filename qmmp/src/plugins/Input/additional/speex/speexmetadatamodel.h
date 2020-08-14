@@ -25,12 +25,13 @@ class SpeexMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(SpeexMetaDataModel)
 public:
-    SpeexMetaDataModel(const QString &path);
+    explicit SpeexMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override;
 
 private:
     QString m_path;
+
 };
 
 #endif

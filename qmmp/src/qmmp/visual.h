@@ -46,7 +46,7 @@ public:
     * @param parent Parent object.
     * @param f Widget flags.
     */
-    Visual(QWidget *parent, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit Visual(QWidget *parent, Qt::WindowFlags f = Qt::WindowFlags());
     /*!
      * Destructor.
      */
@@ -171,14 +171,14 @@ protected:
 
 protected:
     QTimer *m_timer;
-    bool m_running;
-    int m_rows, m_cols;
-    int *m_intern_vis_data;
+    bool m_running = false;
+    int m_rows = 0, m_cols = 0;
+    int *m_intern_vis_data = nullptr;
     QAction *m_screenAction;
 
 private:
     static QList<VisualFactory*> *m_factories;
-    static QHash <const VisualFactory*, QString> *m_files;
+    static QHash<const VisualFactory*, QString> *m_files;
     static void checkFactories();
     static QList<Visual*>  m_visuals;
     static QHash<VisualFactory*, Visual*> m_vis_map; //internal visualization
@@ -186,6 +186,7 @@ private:
     static QObject *m_receiver;
     static const char *m_member;
     static VisualBuffer m_buffer;
+
 };
 
 #endif

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2016 by Ilya Kotov                                      *
+ *   Copyright (C) 2016-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,12 +35,13 @@ extern "C"{
 class ReplayGainReader
 {
 public:
-    ReplayGainReader(AVFormatContext *ic);
-    QMap <Qmmp::ReplayGainKey, double> replayGainInfo() const;
+    explicit ReplayGainReader(AVFormatContext *ic);
+    QMap<Qmmp::ReplayGainKey, double> replayGainInfo() const;
 
 private:
     void setValue(Qmmp::ReplayGainKey key, QString value);
-    QMap <Qmmp::ReplayGainKey, double> m_values;
+    QMap<Qmmp::ReplayGainKey, double> m_values;
+
 };
 
 #endif // REPLAYGAINREADER_H

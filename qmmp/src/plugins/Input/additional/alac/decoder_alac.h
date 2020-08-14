@@ -26,7 +26,7 @@ class AlacHelper;
 class DecoderAlac : public Decoder
 {
 public:
-    DecoderAlac(const QString &path);
+    explicit DecoderAlac(const QString &path);
     virtual ~DecoderAlac();
 
     // Standard Decoder API

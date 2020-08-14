@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2016 by Ilya Kotov                                      *
+ *   Copyright (C) 2016-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -58,16 +58,16 @@ private:
     void status();
     void uninitialize();
 
-    IMMDeviceEnumerator *m_pEnumerator;
-    IMMDevice *m_pDevice;
-    IAudioClient *m_pAudioClient;
-    IAudioRenderClient *m_pRenderClient;
-    ISimpleAudioVolume *m_pSimpleAudioVolume;
+    IMMDeviceEnumerator *m_pEnumerator = nullptr;
+    IMMDevice *m_pDevice = nullptr;
+    IAudioClient *m_pAudioClient = nullptr;
+    IAudioRenderClient *m_pRenderClient = nullptr;
+    ISimpleAudioVolume *m_pSimpleAudioVolume = nullptr;
 
-    UINT32 m_bufferFrames;
-    int m_frameSize;
+    UINT32 m_bufferFrames = 0;
+    int m_frameSize = 0;
     QString m_id;
-    bool m_exclusive;
+    bool m_exclusive = false;
 
     typedef struct
     {
@@ -76,6 +76,7 @@ private:
     } DWASAPIChannels;
 
     static DWASAPIChannels m_wasapi_pos[10];
+
 };
 
 /**
@@ -93,6 +94,7 @@ public:
 
 private:
     VolumeSettings m_volume;
+
 };
 
 #endif // OUTPUTWASAPI_H

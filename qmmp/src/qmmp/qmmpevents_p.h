@@ -57,15 +57,16 @@ private:
 class QMMP_EXPORT StreamInfoChangedEvent : public QEvent
 {
 public:
-    StreamInfoChangedEvent(const QHash<QString, QString> &info);
+    explicit StreamInfoChangedEvent(const QHash<QString, QString> &info);
     virtual ~StreamInfoChangedEvent();
     /*!
      * Returns all stream information.
      */
-    QHash <QString, QString> streamInfo() const;
+    QHash<QString, QString> streamInfo() const;
 
 private:
     QHash<QString, QString> m_streamInfo;
+
 };
 
 /*! @internal
@@ -74,13 +75,14 @@ private:
 class QMMP_EXPORT TrackInfoEvent : public QEvent
 {
 public:
-    TrackInfoEvent(const TrackInfo &info);
+    explicit TrackInfoEvent(const TrackInfo &info);
     virtual ~TrackInfoEvent();
 
     const TrackInfo &trackInfo() const;
 
 private:
     TrackInfo m_info;
+
 };
 
 #endif // QMMPEVENTS_P_H

@@ -58,10 +58,9 @@ private:
     QColor m_starColor;
     QList<StarPoint*> m_starPoints;
     QTimer *m_starTimer;
-    int *m_x_scale;
-    double m_analyzer_falloff;
-
-    QSize m_cell_size;
+    int *m_x_scale = nullptr;
+    double m_analyzer_falloff = 2.2;
+    QSize m_cell_size = QSize(15, 6);
 
 };
 

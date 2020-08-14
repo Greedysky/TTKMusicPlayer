@@ -50,13 +50,12 @@ private:
 
     QPointF viewToItemPoint(const QPoint &pt);
 
-    QColor m_color;
-    qreal m_opacity;
-    double m_analyzer_falloff;
-    int *m_x_scale;
+    QColor m_color = QColor(0x0, 0xff, 0xff);
+    qreal m_opacity = 1.0;
+    double m_analyzer_falloff = 1.2;
+    int *m_x_scale = nullptr;
 
-    QSize m_cell_size;
-
+    QSize m_cell_size = QSize(6, 2);
     QGraphicsView *m_graphics_view;
     QGraphicsPolygonItem *m_graphics_item;
 

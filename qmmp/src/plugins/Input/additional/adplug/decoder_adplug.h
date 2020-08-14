@@ -43,6 +43,7 @@ private:
     unsigned long m_time = 0;
     unsigned long m_length = 0;
     double m_divisor = 0.0;
+
 };
 
 #endif

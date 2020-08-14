@@ -24,7 +24,6 @@
 #include <sidplayfp/SidDatabase.h>
 #include <qmmp/decoderfactory.h>
 
-
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
 */
@@ -44,6 +43,7 @@ public:
 
 private:
     SidDatabase m_db;
+
 };
 
 #endif

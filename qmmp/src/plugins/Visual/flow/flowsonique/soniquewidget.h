@@ -49,21 +49,22 @@ private:
     void closePreset();
     void generatePreset();
 
-    VisInfo *m_sonique;
+    VisInfo *m_sonique = nullptr;
     VisData *m_visData;
-    unsigned int *m_texture;
-    unsigned int *m_visProc;
+    unsigned int *m_texture = nullptr;
+    unsigned int *m_visProc = nullptr;
 #ifdef Q_OS_UNIX
-    void *m_instance;
+    void *m_instance = nullptr;
 #else
-    HINSTANCE m_instance;
+    HINSTANCE m_instance = nullptr;
 #endif
-    int m_currentIndex;
+    int m_currentIndex = -1;
     QStringList m_presetList;
 
     kiss_fft_cfg m_kiss_cfg;
     kiss_fft_cpx *m_in_freq_data;
     kiss_fft_cpx *m_out_freq_data;
+
 };
 
 #endif

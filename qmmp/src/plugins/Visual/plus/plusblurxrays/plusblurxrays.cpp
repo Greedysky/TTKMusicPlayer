@@ -13,12 +13,8 @@
 PlusBlurXRays::PlusBlurXRays(QWidget *parent)
     : Visual(parent)
 {
-    m_image_size = 0;
-    m_image = nullptr;
-    m_corner = nullptr;
-
     setWindowTitle(tr("Plus Blur XRays Widget"));
-    setMinimumSize(2*300-30, 105);
+    setMinimumSize(2 * 300 - 30, 105);
 
     readSettings();
 }

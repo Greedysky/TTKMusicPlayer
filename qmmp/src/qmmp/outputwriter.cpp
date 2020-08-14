@@ -1,24 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2012-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
-#include <QtDebug>
 #include <string.h>
 #include "statehandler.h"
 #include "visual.h"
@@ -32,10 +11,12 @@ extern "C" {
 #include "equ/iir.h"
 }
 
-OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
+OutputWriter::OutputWriter(QObject* parent)
+    : QThread (parent),
+      m_handler(StateHandler::instance()),
+      m_settings(QmmpSettings::instance())
 {
-    m_handler = StateHandler::instance();
-    m_settings = QmmpSettings::instance();
+
 }
 
 OutputWriter::~OutputWriter()
@@ -217,14 +198,14 @@ void OutputWriter::dispatch(const AudioParameters &p)
 
 void OutputWriter::run()
 {
-    m_mutex.lock ();
+    m_mutex.lock();
     if(!m_bytesPerMillisecond)
     {
         qWarning("OutputWriter: invalid audio parameters");
-        m_mutex.unlock ();
+        m_mutex.unlock();
         return;
     }
-    m_mutex.unlock ();
+    m_mutex.unlock();
 
     bool done = false;
     Buffer *b = nullptr;
@@ -239,7 +220,7 @@ void OutputWriter::run()
 
     while (!done)
     {
-        m_mutex.lock ();
+        m_mutex.lock();
         if(m_pause != m_paused)
         {
             m_paused = m_pause;
@@ -253,7 +234,7 @@ void OutputWriter::run()
             else
                 m_output->resume();
         }
-        recycler()->mutex()->lock ();
+        recycler()->mutex()->lock();
         done = m_user_stop || (m_finish && recycler()->empty());
 
         while (!done && (recycler()->empty() || m_pause))
@@ -261,7 +242,7 @@ void OutputWriter::run()
             recycler()->cond()->wakeOne();
             m_mutex.unlock();
             recycler()->cond()->wait(recycler()->mutex());
-            m_mutex.lock ();
+            m_mutex.lock();
             done = m_user_stop || m_finish;
         }
 
@@ -345,7 +326,7 @@ void OutputWriter::run()
         }
         m_mutex.lock();
         //force buffer change
-        recycler()->mutex()->lock ();
+        recycler()->mutex()->lock();
         recycler()->done();
         recycler()->mutex()->unlock();
         b = nullptr;
@@ -356,7 +337,7 @@ void OutputWriter::run()
     if(m_finish)
     {
         m_output->drain();
-        qDebug() << "OutputWriter: total written" << m_totalWritten;
+        //qDebug() << "OutputWriter: total written" << m_totalWritten;
     }
     dispatch(Qmmp::Stopped);
     stopVisualization();

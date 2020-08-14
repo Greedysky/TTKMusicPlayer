@@ -1,25 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 1999 by Johan Levin                                     *
- *                                                                         *
- *   Copyright (C) 2011-2015 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QSettings>
 #include <math.h>
 #include <stdlib.h>
@@ -27,15 +5,10 @@
 
 StereoPlugin *StereoPlugin::m_instance = nullptr;
 
-StereoPlugin::StereoPlugin() : Effect()
+StereoPlugin::StereoPlugin()
+    : Effect()
 {
     m_instance = this;
-    m_avg = 0;
-    m_ldiff = 0;
-    m_rdiff = 0;
-    m_tmp = 0;
-    m_mul = 2.0;
-    m_chan = 0;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_mul = settings.value("extra_stereo/intensity", 1.0).toDouble();
 }

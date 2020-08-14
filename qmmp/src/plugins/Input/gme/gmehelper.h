@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -40,9 +40,10 @@ public:
     int fadeLength();
 
 private:
-    Music_Emu *m_emu;
+    Music_Emu *m_emu = nullptr;
     QString m_path;
     int m_fade_length;
+
 };
 
 #endif // GMEHELPER_H

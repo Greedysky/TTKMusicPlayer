@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -42,10 +42,11 @@ public:
 
 private:
     static WildMidiHelper *m_instance;
-    bool m_inited;
+    bool m_inited = false;
     QMutex m_mutex;
-    QList <void *> m_ptrs;
-    quint32 m_sample_rate;
+    QList<void *> m_ptrs;
+    quint32 m_sample_rate = 0;
+
 };
 
 #endif // WILDMIDIHELPER_H

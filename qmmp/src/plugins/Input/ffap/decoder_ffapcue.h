@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,7 +33,7 @@ class CueParser;
 class DecoderFFapCUE : public Decoder
 {
 public:
-    DecoderFFapCUE(const QString &url);
+    explicit DecoderFFapCUE(const QString &url);
     virtual ~DecoderFFapCUE();
 
     // Standard Decoder API
@@ -58,6 +58,7 @@ private:
     qint64 m_buf_size = 0;
     qint64 m_frameSize = 0;
     QIODevice *m_input = nullptr;
+
 };
 
 #endif // DECODER_FFAPCUE_H

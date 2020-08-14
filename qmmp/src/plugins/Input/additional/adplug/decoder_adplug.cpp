@@ -1,21 +1,3 @@
-/* =================================================
- * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2020 Greedysky Studio
-
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
-
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
-
- * You should have received a copy of the GNU General Public License along
- * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
-
 #include "decoder_adplug.h"
 
 DecoderAdplug::DecoderAdplug(const QString &path)
@@ -69,13 +51,13 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
     if(m_buf_filled == 0)
     {
         AdplugHelper::Frame frame = m_adplug->read();
-        if(frame.n == 0)
+        if(frame.m_n == 0)
         {
             return copied;
         }
 
-        m_bufptr = frame.buf;
-        m_buf_filled += frame.n;
+        m_bufptr = frame.m_buf;
+        m_buf_filled += frame.m_n;
     }
 
     copied += copy(audio, max_size);

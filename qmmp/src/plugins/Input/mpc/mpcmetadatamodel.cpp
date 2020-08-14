@@ -1,30 +1,11 @@
-/***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QTextCodec>
 #include <taglib/tag.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/apetag.h>
 #include "mpcmetadatamodel.h"
 
-MPCMetaDataModel::MPCMetaDataModel(const QString &path, bool readOnly) : MetaDataModel(readOnly)
+MPCMetaDataModel::MPCMetaDataModel(const QString &path, bool readOnly)
+    : MetaDataModel(readOnly)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
     m_file = new TagLib::MPC::File(m_stream);
@@ -46,10 +27,10 @@ QList<TagModel* > MPCMetaDataModel::tags() const
 }
 
 MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType)
-    : TagModel()
+    : TagModel(),
+      m_file(file),
+      m_tagType(tagType)
 {
-    m_tagType = tagType;
-    m_file = file;
     if(m_tagType == TagLib::MPC::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
@@ -63,7 +44,9 @@ MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::Tag
 }
 
 MPCFileTagModel::~MPCFileTagModel()
-{}
+{
+
+}
 
 QString MPCFileTagModel::name() const
 {

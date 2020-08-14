@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QStringList>
 #include <QDateTime>
 #include <QFileInfo>
@@ -32,14 +12,6 @@
 
 QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 {
-    m_error = false;
-    m_instance = nullptr;
-    m_decoderFactory = nullptr;
-    m_outputFactory = nullptr;
-    m_engineFactory = nullptr;
-    m_effectFactory = nullptr;
-    m_inputSourceFactory = nullptr;
-    m_priority = 0;
     bool update = false;
     QFileInfo info(file);
     m_path = info.QFileInfo::canonicalFilePath();
@@ -191,7 +163,7 @@ QObject *QmmpPluginCache::instance()
     else
     {
         m_error = true;
-        qWarning("QmmpPluginCache: error: %s", qPrintable(loader.errorString ()));
+        qWarning("QmmpPluginCache: error: %s", qPrintable(loader.errorString()));
     }
     return m_instance;
 }

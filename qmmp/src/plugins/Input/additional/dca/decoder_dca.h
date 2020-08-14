@@ -29,7 +29,7 @@ class DCAHelper;
 class DecoderDCA : public Decoder
 {
 public:
-    DecoderDCA(const QString &path);
+    explicit DecoderDCA(const QString &path);
     virtual ~DecoderDCA();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     DCAHelper* m_dca;
+
 };
 
 #endif // DECODER_DCA_H

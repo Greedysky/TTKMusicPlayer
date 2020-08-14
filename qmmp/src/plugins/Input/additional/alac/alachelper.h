@@ -30,8 +30,8 @@ extern "C" {
 class AlacHelper
 {
 public:
-    AlacHelper(const QString &path);
-    virtual ~AlacHelper();
+    explicit AlacHelper(const QString &path);
+    ~AlacHelper();
 
     void close();
 
@@ -46,18 +46,18 @@ public:
     int read(unsigned char *data, int size);
 
 private:
-    FILE *m_file;
-    unsigned char m_buffer[4096 * 4];
-    unsigned char m_stream_buffer[4096 * 4 * 4];
+    FILE *m_file = nullptr;
+    unsigned char m_buffer[4096 * 4] = { 0 };
+    unsigned char m_stream_buffer[4096 * 4 * 4] = { 0 };
 
-    int m_decoded_frames;
-    int m_output_bytes;
-    alac_file *m_alac;
+    int m_decoded_frames = 0;
+    int m_output_bytes = 0;
+    alac_file *m_alac = nullptr;
     demux_res_t m_demux;
-    stream_t *m_stream;
+    stream_t *m_stream = nullptr;
 
-    int m_bitrate;
-    qint64 m_totalTime;
+    int m_bitrate = 0;
+    qint64 m_totalTime = 0;
     QString m_path;
 
 };

@@ -41,7 +41,7 @@ typedef struct {
 class PSFHelper
 {
 public:
-    PSFHelper(const QString &path);
+    explicit PSFHelper(const QString &path);
     virtual ~PSFHelper();
 
     void close();
@@ -67,6 +67,7 @@ private:
     QString m_path;
     psf_info_t *m_info;
     QVariantMap m_meta;
+
 };
 
 #endif

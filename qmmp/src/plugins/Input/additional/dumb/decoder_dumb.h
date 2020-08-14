@@ -29,7 +29,7 @@ class DumbHelper;
 class DecoderDumb : public Decoder
 {
 public:
-    DecoderDumb(const QString &path);
+    explicit DecoderDumb(const QString &path);
     virtual ~DecoderDumb();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     DumbHelper* m_dumb;
+
 };
 
 #endif // DECODER_DUMB_H

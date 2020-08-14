@@ -34,44 +34,50 @@ class FFTPlan;
 class FFT
 {
 public:
-    FFT() {}
+    FFT()
+    {
+
+    }
+
     std::unique_ptr<FFTPlan> create(int nbits);
+
 };
 
 class FFTPlan
 {
 public:
     FFTPlan(int nbits) :
-        input_size(1 << nbits), output_size((1 << (nbits - 1)) + 1),
-        output(output_size)
+        m_input_size(1 << nbits), m_output_size((1 << (nbits - 1)) + 1),
+        m_output(m_output_size)
     {
         // FFmpeg uses various assembly optimizations which expect
         // input data to be aligned by up to 32 bytes (e.g. AVX)
-        this->input = (float*) av_malloc(sizeof(float) * input_size);
+        m_input = (float*) av_malloc(sizeof(float) * m_input_size);
     }
 
     virtual ~FFTPlan()
     {
-        av_freep(&this->input);
+        av_freep(&m_input);
     }
 
-    int get_input_size() const { return this->input_size; }
-    int get_output_size() const { return this->output_size; }
-    float get_input(int i) const { return this->input[i]; }
-    void set_input(int i, float v) { this->input[i] = v; }
-    float get_output(int i) const { return this->output[i]; }
-    void set_output(int i, float v) { this->output[i] = v; }
+    int get_input_size() const { return m_input_size; }
+    int get_output_size() const { return m_output_size; }
+    float get_input(int i) const { return m_input[i]; }
+    void set_input(int i, float v) { m_input[i] = v; }
+    float get_output(int i) const { return m_output[i]; }
+    void set_output(int i, float v) { m_output[i] = v; }
 
     virtual void execute() = 0;
 
 protected:
-    float *get_input() { return this->input; }
+    float *get_input() { return m_input; }
 
 private:
-    int input_size;
-    int output_size;
-    float *input;
-    std::vector<float> output;
+    int m_input_size;
+    int m_output_size;
+    float *m_input;
+    std::vector<float> m_output;
+
 };
 
 #endif

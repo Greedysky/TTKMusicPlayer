@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -43,11 +43,11 @@ public:
 private:
     // helper functions
     ChannelMap findChannelMap(int channels);
-    OggOpusFile *m_opusfile;
-    qint64 m_totalTime;
-    int m_bitrate;
-    int m_chan;
-    QString m_url;
+    OggOpusFile *m_opusfile = nullptr;
+    qint64 m_totalTime = 0;
+    int m_bitrate = 0;
+    int m_chan = 0;
+
 };
 
 #endif // DECODER_OPUS_H

@@ -42,7 +42,7 @@ private:
     virtual void process(float *left, float *right) override;
     virtual void processPatch(bool state) override;
 
-    int m_pos_x, m_pos_y;
+    int m_pos_x = 0, m_pos_y = 0;
     QList<Ethereality*> m_etherealitys;
 
 };

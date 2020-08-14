@@ -42,7 +42,7 @@ class QBuffer;
 class AACFile
 {
 public:
-    AACFile(QIODevice *input, bool metaData = true, bool adts = true);
+    explicit AACFile(QIODevice *input, bool metaData = true, bool adts = true);
     ~AACFile();
 
     qint64 duration() const;
@@ -55,25 +55,27 @@ public:
 private:
     void parseADTS();
     void parseID3v2(const QByteArray &data);
-    qint64 m_duration;
-    quint32 m_bitrate;
-    int m_offset;
+    qint64 m_duration = 0;
+    quint32 m_bitrate = 0;
+    int m_offset = 0;
     QIODevice *m_input;
-    bool m_isValid;
-    quint32 m_samplerate;
+    bool m_isValid = false;
+    quint32 m_samplerate = 0;
     QMap<Qmmp::MetaData, QString> m_metaData;
+
 };
 
 class ID3v2Tag : public TagLib::ID3v2::Tag
 {
 public:
-    ID3v2Tag(const QByteArray &array);
+    explicit ID3v2Tag(const QByteArray &array);
 
 protected:
     void read();
 
 private:
     QByteArray m_buf;
+
 };
 
 #endif

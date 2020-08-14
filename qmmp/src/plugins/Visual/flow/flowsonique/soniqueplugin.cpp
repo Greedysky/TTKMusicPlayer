@@ -7,10 +7,9 @@
 SoniquePlugin::SoniquePlugin(QWidget *parent)
     : Florid(parent)
 {
-    m_useImage = false;
-
     setWindowTitle(tr("Flow Sonique Widget"));
 
+    m_useImage = false;
     m_soniqueWidget = new SoniqueWidget(this);
 
     QHBoxLayout *layout = new QHBoxLayout(this);

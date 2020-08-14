@@ -1,9 +1,22 @@
-
-// Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>
-//
-// Use, modification and distribution is allowed without limitation,
-// warranty, or liability of any kind.
-//
+/***************************************************************************
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
+ ***************************************************************************/
 
 #ifndef OUTPUT_H
 #define OUTPUT_H
@@ -139,12 +152,14 @@ protected:
     void configure(quint32 freq, ChannelMap map, Qmmp::AudioFormat format);
 
 private:
-    quint32 m_frequency;
+    quint32 m_frequency = 0;
     ChannelMap m_chan_map;
-    Qmmp::AudioFormat m_format;
-    int m_sample_size;
+    Qmmp::AudioFormat m_format = Qmmp::PCM_UNKNOWN;
+    int m_sample_size = 0;
+
     static void loadPlugins();
     static QList<QmmpPluginCache*> *m_cache;
+
 };
 
 

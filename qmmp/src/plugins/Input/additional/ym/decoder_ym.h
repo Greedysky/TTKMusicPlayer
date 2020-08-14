@@ -25,7 +25,7 @@
 class DecoderYm : public Decoder
 {
 public:
-    DecoderYm(const QString &path);
+    explicit DecoderYm(const QString &path);
     virtual ~DecoderYm();
 
     // Standard Decoder API
@@ -38,10 +38,10 @@ public:
 private:
     void deinit();
 
-    CYmMusic *m_music;
-    int m_bitrate;
-    quint32 m_freq;
-    qint64 m_totalTime;
+    CYmMusic *m_music = nullptr;
+    int m_bitrate = 0;
+    quint32 m_freq = 0;
+    qint64 m_totalTime = 0;
     QString m_path;
 
 };

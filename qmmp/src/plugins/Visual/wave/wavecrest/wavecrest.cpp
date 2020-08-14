@@ -9,13 +9,8 @@
 WaveCrest::WaveCrest(QWidget *parent)
     : Visual(parent)
 {
-    m_vis_data = 0;
-    m_x_scale = nullptr;
-    m_analyzer_falloff = 2.2;
-    m_pixPos = 0;
-
     setWindowTitle(tr("Wave Crest Widget"));
-    setMinimumSize(2*300-30, 105);
+    setMinimumSize(2 * 300 - 30, 105);
 }
 
 WaveCrest::~WaveCrest()

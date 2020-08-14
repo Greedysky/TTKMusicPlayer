@@ -40,6 +40,7 @@ private:
     QList<TagModel* > m_tags;
     TagLib::MPC::File *m_file;
     TagLib::FileStream *m_stream;
+
 };
 
 class MPCFileTagModel : public TagModel
@@ -62,6 +63,7 @@ private:
     TagLib::MPC::File *m_file;
     TagLib::Tag *m_tag;
     TagLib::MPC::File::TagTypes m_tagType;
+
 };
 
 #endif // MPCMETADATAMODEL_H

@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QtGlobal>
 #include <QBuffer>
 #include <taglib/tag.h>
@@ -30,12 +10,12 @@
 
 VorbisMetaDataModel::VorbisMetaDataModel(const QString &path, bool readOnly)
 #ifdef HAS_PICTURE_LIST
-    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
 #else
-    : MetaDataModel(readOnly)
+    : MetaDataModel(readOnly),
 #endif
+      m_path(path)
 {
-    m_path = path;
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
     m_file = new TagLib::Ogg::Vorbis::File(m_stream);
     m_tag = m_file->tag();
@@ -134,13 +114,17 @@ void VorbisMetaDataModel::removeCover()
 }
 #endif
 
-VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model) : TagModel(TagModel::Save)
+VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model)
+    : TagModel(TagModel::Save),
+      m_model(model)
 {
-    m_model = model;
+
 }
 
 VorbisCommentModel::~VorbisCommentModel()
-{}
+{
+
+}
 
 QString VorbisCommentModel::name() const
 {

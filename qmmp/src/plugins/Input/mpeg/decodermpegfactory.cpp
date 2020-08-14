@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QSettings>
 #include <QFile>
 #include <QTextCodec>
@@ -47,8 +27,6 @@
 
 DecoderMPEGFactory::DecoderMPEGFactory()
 {
-    //detecting rusxmms patch
-    m_using_rusxmms = false;
     char str[] = { char(0xF2), char(0xE5), char(0xF1), char(0xF2), '\0'};
     QTextCodec *codec = QTextCodec::codecForName ("windows-1251");
     TagLib::String tstr(str);
@@ -240,7 +218,7 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                 tag = fileRef.ID3v1Tag();
                 break;
             case SettingsDialog::ID3v2:
-                codecName = settings.value("ID3v2_encoding","UTF-8").toByteArray ();
+                codecName = settings.value("ID3v2_encoding","UTF-8").toByteArray();
                 tag = fileRef.ID3v2Tag();
                 break;
             case SettingsDialog::APE:

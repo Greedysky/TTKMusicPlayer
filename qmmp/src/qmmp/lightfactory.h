@@ -31,11 +31,18 @@ public:
     /*!
      * Constructor.
      */
-    explicit Light(QWidget *parent = nullptr) : QWidget(parent) {}
+    explicit Light(QWidget *parent = nullptr)
+        : QWidget(parent)
+    {
+
+    }
     /*!
      * Destructor.
      */
-    virtual ~Light() {}
+    virtual ~Light()
+    {
+
+    }
      /*!
      * Open Light file path.
      * Subclass should reimplement this function.
@@ -73,7 +80,10 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~LightFactory() {}
+    virtual ~LightFactory()
+    {
+
+    }
      /*!
      * Returns Light plugin properties.
      */

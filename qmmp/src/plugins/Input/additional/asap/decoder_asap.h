@@ -29,7 +29,7 @@ class AsapHelper;
 class DecoderAsap : public Decoder
 {
 public:
-    DecoderAsap(const QString &path);
+    explicit DecoderAsap(const QString &path);
     virtual ~DecoderAsap();
 
     // Standard Decoder API
@@ -41,6 +41,7 @@ public:
 
 private:
     AsapHelper* m_asap;
+
 };
 
 #endif // DECODER_ASAP_H

@@ -5,13 +5,8 @@
 FloridReverb::FloridReverb(QWidget *parent)
     : Florid(parent)
 {
-    m_gradientOn = true;
-    m_x_scale = nullptr;
-
     setWindowTitle(tr("Florid Reverb Widget"));
-
-    m_analyzer_falloff = 1.2;
-    m_cell_size = QSize(6, 2);
+    m_gradientOn = true;
 }
 
 FloridReverb::~FloridReverb()

@@ -8,9 +8,6 @@
 AutismLabel::AutismLabel(QWidget *parent)
     : QWidget(parent)
 {
-    m_circleOn = false;
-    m_crValue = DISTANCE;
-
     m_circleTimer = new QTimer(this);
     m_circleTimer->setInterval(QMMP_VISUAL_INTERVAL * 1.5);
     connect(m_circleTimer, SIGNAL(timeout()), SLOT(updateRender()));
@@ -65,8 +62,6 @@ void AutismLabel::paintEvent(QPaintEvent *event)
 FloridAutism::FloridAutism(QWidget *parent)
     : Florid(parent)
 {
-    m_index = 0;
-
     setWindowTitle(tr("Florid Autism Widget"));
 
     for(int i=0; i<ANIMATION_SIZE; ++i)

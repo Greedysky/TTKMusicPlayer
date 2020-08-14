@@ -1,37 +1,15 @@
-/***************************************************************************
- *   Copyright (C) 2018-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QRegExp>
 #include "trackinfo.h"
 
 TrackInfo::TrackInfo()
 {
-    m_duration = 0;
-    m_parts = Parts();
+
 }
 
 TrackInfo::TrackInfo(const QString &path)
+    : m_path(path)
 {
-    m_path = path;
-    m_duration = 0;
-    m_parts = Parts();
+
 }
 
 TrackInfo::TrackInfo(const TrackInfo &other)
@@ -40,7 +18,9 @@ TrackInfo::TrackInfo(const TrackInfo &other)
 }
 
 TrackInfo::~TrackInfo()
-{}
+{
+
+}
 
 TrackInfo &TrackInfo::operator=(const TrackInfo &info)
 {
@@ -56,7 +36,7 @@ bool TrackInfo::operator==(const TrackInfo &info) const
 {
     return m_duration == info.duration() &&
             m_path == info.path() &&
-            m_metaData == info.metaData () &&
+            m_metaData == info.metaData() &&
             m_properties == info.properties() &&
             m_replayGainInfo == info.replayGainInfo() &&
             m_parts == info.parts();
@@ -67,7 +47,7 @@ bool TrackInfo::operator!=(const TrackInfo &info) const
     return !operator==(info);
 }
 
-qint64 TrackInfo::duration () const
+qint64 TrackInfo::duration() const
 {
     return m_duration;
 }

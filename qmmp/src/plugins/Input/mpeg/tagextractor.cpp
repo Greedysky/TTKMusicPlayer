@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QIODevice>
 #include <QSettings>
 #include <QByteArray>
@@ -30,12 +10,14 @@
 #include "tagextractor.h"
 
 TagExtractor::TagExtractor(QIODevice *d)
+    : m_d(d)
 {
-    m_d = d;
+
 }
 
 TagExtractor::~TagExtractor()
 {
+
 }
 
 const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
@@ -56,7 +38,7 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
-    QByteArray name = settings.value("ID3v2_encoding","UTF-8").toByteArray ();
+    QByteArray name = settings.value("ID3v2_encoding","UTF-8").toByteArray();
     bool utf = false;
     QTextCodec *codec = nullptr;
     if(name.contains("UTF"))
@@ -99,15 +81,21 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
     return m_tag;
 }
 
-ID3v2Tag::ID3v2Tag(QByteArray *array, long offset) : TagLib::ID3v2::Tag()
+ID3v2Tag::ID3v2Tag(QByteArray *array, long offset)
+    : TagLib::ID3v2::Tag(),
+      m_offset(offset)
 {
     m_buf = new QBuffer(array);
     m_buf->open(QIODevice::ReadOnly);
-    m_offset = offset;
     read();
 }
 
-void ID3v2Tag::read ()
+ID3v2Tag::~ID3v2Tag()
+{
+    delete m_buf;
+}
+
+void ID3v2Tag::read()
 {
     m_buf->seek(m_offset);
     uint to_read = TagLib::ID3v2::Header::size();

@@ -11,11 +11,8 @@
 WaveVolume::WaveVolume(QWidget *parent)
     : Visual(parent)
 {
-    m_x_scale = nullptr;
-    m_analyzer_falloff = 1.2;
-
     setWindowTitle(tr("Wave Volume Widget"));
-    setMinimumSize(2*300-30, 105);
+    setMinimumSize(2 * 300 - 30, 105);
 }
 
 WaveVolume::~WaveVolume()
@@ -71,16 +68,16 @@ void WaveVolume::process(float *left, float *right)
 
     short dest_l[256];
     short dest_r[256];
-    short yl, yr;
-    int k, magnitude_l, magnitude_r;
 
     calc_freq(dest_l, left);
     calc_freq(dest_r, right);
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    yl = yr = 0;
-    magnitude_l = magnitude_r = 0;
+    short yl = 0;
+    short yr = 0;
+    int magnitude_l = 0;
+    int magnitude_r = 0;
 
     if(m_x_scale[0] == m_x_scale[1])
     {
@@ -88,7 +85,7 @@ void WaveVolume::process(float *left, float *right)
         yr = dest_r[0];
     }
 
-    for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
+    for(int k = m_x_scale[0]; k < m_x_scale[1]; k++)
     {
         yl = qMax(dest_l[k], yl);
         yr = qMax(dest_r[k], yr);

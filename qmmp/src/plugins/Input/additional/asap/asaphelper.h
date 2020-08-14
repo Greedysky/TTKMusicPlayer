@@ -40,8 +40,8 @@ typedef struct {
 class AsapHelper
 {
 public:
-    AsapHelper(const QString &path);
-    virtual ~AsapHelper();
+    explicit AsapHelper(const QString &path);
+    ~AsapHelper();
 
     void close();
 
@@ -65,6 +65,7 @@ private:
     QString m_path;
     asap_info_t *m_info;
     QVariantMap m_meta;
+
 };
 
 #endif

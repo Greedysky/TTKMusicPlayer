@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2018-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2018-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,16 +31,15 @@ class MonoPlugin : public Effect
 {
 public:
     MonoPlugin();
-
     virtual ~MonoPlugin();
 
     virtual void applyEffect(Buffer *b) override;
     virtual void configure(quint32 freq, ChannelMap map) override;
 
 private:
-    int m_chan;
+    int m_chan = 0;
+    double m_avg = 0;
     QMutex m_mutex;
-    double m_avg;
 
 };
 

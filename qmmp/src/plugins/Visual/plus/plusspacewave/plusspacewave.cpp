@@ -10,13 +10,8 @@
 PlusSpaceWave::PlusSpaceWave(QWidget *parent)
     : Visual(parent)
 {
-    m_intern_ray_data = nullptr;
-    m_x_scale = nullptr;
-    m_analyzer_falloff = 1.2;
-    m_cell_size = QSize(3, 2);
-
     setWindowTitle(tr("Plus SpaceWave Widget"));
-    setMinimumSize(2*300-30, 105);
+    setMinimumSize(2 * 300 - 30, 105);
 }
 
 PlusSpaceWave::~PlusSpaceWave()

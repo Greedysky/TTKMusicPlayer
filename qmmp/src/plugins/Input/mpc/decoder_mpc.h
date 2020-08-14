@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 
 struct mpc_data
 {
-    mpc_demux *demuxer;
+    mpc_demux *demuxer = nullptr;
     mpc_reader reader;
     mpc_streaminfo info;
 };
@@ -34,7 +34,7 @@ struct mpc_data
 class DecoderMPC : public Decoder
 {
 public:
-    DecoderMPC(QIODevice *i);
+    explicit DecoderMPC(QIODevice *i);
     virtual ~DecoderMPC();
 
     struct mpc_data *data()
@@ -50,11 +50,11 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
+    struct mpc_data *m_data = nullptr;
+    long m_len = 0;
+    int m_bitrate = 0;
+    qint64 m_totalTime = 0;
 
-    struct mpc_data *m_data;
-    long m_len;
-    int m_bitrate;
-    qint64 m_totalTime;
 };
 
 #endif // __decoder_mpc_h

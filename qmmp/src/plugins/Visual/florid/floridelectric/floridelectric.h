@@ -23,6 +23,10 @@
 
 class QPropertyAnimation;
 
+#define POINT_SIZE          8
+#define ANIMATION_SIZE      20
+#define ANIMATION_DURATION  10000
+
 /*!
  * @author Greedysky <greedysky@163.com>
  */
@@ -44,10 +48,10 @@ protected slots:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
-    float m_opacity;
-    int m_size;
-    QPoint m_pos;
-    QColor m_color;
+    float m_opacity = 1;
+    int m_size = 5;
+    QPoint m_pos = QPoint(0, 0);
+    QColor m_color = QColor(255, 255, 255, 0);
     QPropertyAnimation *m_posAnimation;
 
 };
@@ -74,9 +78,9 @@ protected slots:
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
-    float m_opacity;
-    int m_size;
-    QColor m_color;
+    float m_opacity = 1;
+    int m_size = POINT_SIZE;
+    QColor m_color = QColor(255, 255, 255, 0);
     QPropertyAnimation *m_posAnimation;
 
 };

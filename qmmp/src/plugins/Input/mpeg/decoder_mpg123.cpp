@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <taglib/id3v2header.h>
 #include <taglib/tbytevector.h>
 #include <qmmp/buffer.h>
@@ -27,15 +7,15 @@
 #include "tagextractor.h"
 #include "decoder_mpg123.h"
 
-ssize_t mpg123_read_cb (void *src, void *buf, size_t size)
+ssize_t mpg123_read_cb(void *src, void *buf, size_t size)
 {
-    DecoderMPG123 *d = (DecoderMPG123 *) src;
+    DecoderMPG123 *d = static_cast<DecoderMPG123 *>(src);
     return d->input()->read((char *)buf, size);
 }
 
 off_t mpg123_seek_cb(void *src, off_t offset, int whence)
 {
-    DecoderMPG123 *d = (DecoderMPG123 *) src;
+    DecoderMPG123 *d = static_cast<DecoderMPG123 *>(src);
     if(d->input()->isSequential())
             return -1;
 
@@ -60,14 +40,10 @@ off_t mpg123_seek_cb(void *src, off_t offset, int whence)
         return d->input()->pos();
 }
 
-DecoderMPG123::DecoderMPG123(QIODevice *i) : Decoder(i)
+DecoderMPG123::DecoderMPG123(QIODevice *i)
+    : Decoder(i)
 {
-    m_totalTime = 0;
-    m_rate = 0;
-    m_frame_info.bitrate = 0;
-    m_mpg123_encoding = MPG123_ENC_SIGNED_16;
-    m_handle = nullptr;
-    m_errors = 0;
+
 }
 
 DecoderMPG123::~DecoderMPG123()
@@ -79,7 +55,7 @@ DecoderMPG123::~DecoderMPG123()
 bool DecoderMPG123::initialize()
 {
     m_errors = 0;
-    if(input()->isSequential ()) //for streams only
+    if(input()->isSequential()) //for streams only
     {
         TagExtractor extractor(input());
         if(!extractor.id3v2tag().isEmpty())

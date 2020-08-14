@@ -31,6 +31,7 @@ typedef enum palette {
 }Palette;
 
 QMMP_EXPORT uint32_t renderPalette(Palette palette, double level);
+
 }
 
 #endif

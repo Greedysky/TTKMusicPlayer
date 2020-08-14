@@ -34,7 +34,7 @@
 class SIDHelper
 {
 public:
-    SIDHelper(SidDatabase *db);
+    explicit SIDHelper(SidDatabase *db);
     ~SIDHelper();
 
     SidTune *load(const QString &url);
@@ -42,8 +42,9 @@ public:
 
 private:
     QString m_path;
-    SidTune *m_tune;
+    SidTune *m_tune = nullptr;
     SidDatabase *m_db;
+
 };
 
 #endif // SIDHELPER_H

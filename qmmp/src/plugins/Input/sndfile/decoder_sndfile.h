@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,7 @@
 class DecoderSndFile : public Decoder
 {
 public:
-    DecoderSndFile(QIODevice *input);
+    explicit DecoderSndFile(QIODevice *input);
     virtual ~DecoderSndFile();
 
     // Standard Decoder API
@@ -45,11 +45,12 @@ private:
     // helper functions
     void deinit();
 
-    SNDFILE *m_sndfile;
-    int m_bitrate;
-    quint32 m_freq;
-    qint64 m_totalTime;
+    SNDFILE *m_sndfile = nullptr;
+    int m_bitrate = 0;
+    quint32 m_freq = 0;
+    qint64 m_totalTime = 0;
     SF_VIRTUAL_IO m_vio;
+
 };
 
 #endif // DECODER_SNDFILE_H

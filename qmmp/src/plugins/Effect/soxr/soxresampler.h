@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2016 by Ilya Kotov                                      *
+ *   Copyright (C) 2016-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,10 +41,10 @@ private:
     void freeSoXR();
 
     quint32 m_overSamplingFs;
-    float *m_out;
-    size_t m_out_samples;
+    float *m_out = nullptr;
+    size_t m_out_samples = 0;
     soxr_quality_spec_t m_quality;
-    soxr_t m_soxr;
+    soxr_t m_soxr = nullptr;
 
 };
 

@@ -22,16 +22,8 @@ OuterBlurWave::OuterBlurWave(QWidget *parent)
     : Visual(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
-
-    m_color = QColor(0x0, 0xff, 0xff);
-    m_opacity = 1.0;
-    m_x_scale = nullptr;
-
     setWindowTitle(tr("Outer BlurWave Widget"));
-    setMinimumWidth(2*300-30);
-
-    m_analyzer_falloff = 1.2;
-    m_cell_size = QSize(6, 2);
+    setMinimumWidth(2 * 300 - 30);
 
     m_graphics_view = new QGraphicsView(this);
     m_graphics_view->setStyleSheet("background: transparent; border:0px");
@@ -127,8 +119,6 @@ void OuterBlurWave::process(float *left, float *right)
 
     short dest_l[256];
     short dest_r[256];
-    short yl, yr;
-    int j, k, magnitude_l, magnitude_r;
 
     calc_freq(dest_l, left);
     calc_freq(dest_r, right);
@@ -137,9 +127,11 @@ void OuterBlurWave::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; i++)
     {
-        j = m_cols + i; //mirror index
-        yl = yr = 0;
-        magnitude_l = magnitude_r = 0;
+        int j = m_cols * 2 - i - 1; //mirror index
+        short yl = 0;
+        short yr = 0;
+        int magnitude_l = 0;
+        int magnitude_r = 0;
 
         if(m_x_scale[i] == m_x_scale[i + 1])
         {
@@ -147,7 +139,7 @@ void OuterBlurWave::process(float *left, float *right)
             yr = dest_r[i];
         }
 
-        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(int k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
             yr = qMax(dest_r[k], yr);
@@ -185,14 +177,13 @@ void OuterBlurWave::draw(QPainter *p)
         return;
     }
 
-    int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
     QPolygonF points;
     points << viewToItemPoint(QPoint(0, height() + HEIGHT_OFFSET));
     for(int i = 0; i < m_cols * 2; ++i)
     {
-        x = i * m_cell_size.width() + 1;
+        int x = i * m_cell_size.width() + 1;
         if(i == m_cols)
         {
             continue;
@@ -214,7 +205,6 @@ void OuterBlurWave::draw(QPainter *p)
     points << viewToItemPoint(QPoint(width(), height() + HEIGHT_OFFSET));
 
     m_graphics_view->setGeometry(0, 0, width(), height() + HEIGHT_OFFSET);
-
     m_graphics_item->setBrush(m_color);
     m_graphics_item->setPen(m_color);
     m_graphics_item->setOpacity(m_opacity);

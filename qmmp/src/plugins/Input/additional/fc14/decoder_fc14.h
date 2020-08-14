@@ -26,7 +26,7 @@ class FC14Helper;
 class DecoderFC14 : public Decoder
 {
 public:
-    DecoderFC14(const QString &path);
+    explicit DecoderFC14(const QString &path);
     virtual ~DecoderFC14();
 
     // Standard Decoder API
@@ -38,6 +38,7 @@ public:
 
 private:
     FC14Helper* m_fc14;
+
 };
 
 #endif

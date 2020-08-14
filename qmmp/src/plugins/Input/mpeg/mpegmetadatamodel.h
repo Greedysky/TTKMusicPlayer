@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -44,6 +44,7 @@ private:
     QList<TagModel* > m_tags;
     TagLib::MPEG::File *m_file;
     TagLib::FileStream *m_stream;
+
 };
 
 class MpegFileTagModel : public TagModel
@@ -67,6 +68,7 @@ private:
     TagLib::MPEG::File *m_file;
     TagLib::Tag *m_tag;
     TagLib::MPEG::File::TagTypes m_tagType;
+
 };
 
 #endif // MPEGMETADATAMODEL_H

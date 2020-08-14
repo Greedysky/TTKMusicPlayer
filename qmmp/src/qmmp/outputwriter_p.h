@@ -84,6 +84,9 @@ public:
      * Returns sample size in bytes.
      */
     int sampleSize() const;
+    /*!
+     * Update eq settings.
+     */
     void updateEqSettings();
 
 private:
@@ -121,6 +124,7 @@ private:
     ChannelConverter *m_channel_converter = nullptr;
     unsigned char *m_output_buf = nullptr;
     size_t m_output_size = 0; //samples
+
 };
 
 #endif // OUTPUTWRITER_P_H

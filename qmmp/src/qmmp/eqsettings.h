@@ -47,7 +47,7 @@ public:
      * Constructs an empty equalizer settings (0 dB, disabled)
      * @param bands - Number of bands (supported: 10, 15, 25, 31)
      */
-    EqSettings(Bands bands = EQ_BANDS_10);
+    explicit EqSettings(Bands bands = EQ_BANDS_10);
     /*!
      * Returns \b true if equalizer is enabled, otherwise returns \b false.
      */
@@ -105,6 +105,7 @@ private:
     bool m_is_enabled = false;
     int m_bands;
     bool m_two_passes = false;
+
 };
 
 #endif // EQSETTINGS_H

@@ -31,16 +31,15 @@ class MonoToStereoPlugin : public Effect
 {
 public:
     MonoToStereoPlugin();
-
     virtual ~MonoToStereoPlugin();
 
     virtual void applyEffect(Buffer *b) override;
     virtual void configure(quint32 freq, ChannelMap map) override;
 
 private:
-    bool m_enabled;
-    float *m_tmp;
-    size_t m_size; //in samples
+    bool m_enabled = false;
+    float *m_tmp = nullptr;
+    size_t m_size = 0; //in samples
 
 };
 

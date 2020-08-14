@@ -27,7 +27,7 @@ class AdplugMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(AdplugMetaDataModel)
 public:
-    AdplugMetaDataModel(const QString &path);
+    explicit AdplugMetaDataModel(const QString &path);
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QList<MetaDataItem> descriptions() const override;
@@ -38,6 +38,7 @@ private:
 
     QList<MetaDataItem> m_ap;
     QList<MetaDataItem> m_desc;
+
 };
 
 #endif

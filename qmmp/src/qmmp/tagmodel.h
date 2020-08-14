@@ -46,7 +46,7 @@ public:
      * Constructor.
      * @param f Capabilities.
      */
-    TagModel(ModelCaps f = DefaultCaps);
+    explicit TagModel(ModelCaps f = DefaultCaps);
     /*!
      * Destructor.
      */
@@ -98,6 +98,7 @@ public:
 
 private:
     ModelCaps m_f;
+
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TagModel::ModelCaps)

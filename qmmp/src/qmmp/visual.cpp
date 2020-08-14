@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QAction>
 #include <QTimer>
 #include <QCloseEvent>
@@ -36,11 +16,6 @@ Visual::Visual(QWidget *parent, Qt::WindowFlags f)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, false);
-
-    m_running = false;
-    m_rows = 0;
-    m_cols = 0;
-    m_intern_vis_data = nullptr;
 
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
@@ -75,7 +50,7 @@ void Visual::hideEvent(QHideEvent *)
 void Visual::closeEvent(QCloseEvent *event)
 {
     m_visuals.removeAll(this);
-    if(event->spontaneous () && m_vis_map.key(this))
+    if(event->spontaneous() && m_vis_map.key(this))
     {
         VisualFactory *factory = m_vis_map.key(this);
         m_vis_map.remove(factory);
@@ -128,7 +103,7 @@ void Visual::clear()
 
 //static members
 QList<VisualFactory*> *Visual::m_factories = nullptr;
-QHash <const VisualFactory*, QString> *Visual::m_files = nullptr;
+QHash<const VisualFactory*, QString> *Visual::m_files = nullptr;
 QList<Visual*> Visual::m_visuals;
 QHash<VisualFactory*, Visual*> Visual::m_vis_map;
 QWidget *Visual::m_parentWidget = nullptr;
@@ -292,7 +267,7 @@ void Visual::checkFactories()
     if(!m_factories)
     {
         m_factories = new QList<VisualFactory *>;
-        m_files = new QHash <const VisualFactory*, QString>;
+        m_files = new QHash<const VisualFactory*, QString>;
 
         for(const QString &filePath : Qmmp::findPlugins("Visual"))
         {
@@ -301,7 +276,7 @@ void Visual::checkFactories()
             if(loader.isLoaded())
                 qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
             else
-                qWarning("Visual: %s", qPrintable(loader.errorString ()));
+                qWarning("Visual: %s", qPrintable(loader.errorString()));
 
             VisualFactory *factory = nullptr;
             if(plugin)

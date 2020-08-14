@@ -41,7 +41,7 @@ const char **dumb_exts();
 class DumbHelper
 {
 public:
-    DumbHelper(const QString &url);
+    explicit DumbHelper(const QString &url);
     ~DumbHelper();
 
     void close();
@@ -61,7 +61,8 @@ public:
 private:
     QString m_path;
     dumb_info_t* m_info;
-    qint64 m_totalTime;
+    qint64 m_totalTime = 0;
+
 };
 
 #endif // DUMBHELPER_H

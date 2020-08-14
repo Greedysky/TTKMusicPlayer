@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2015-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2015-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,7 +27,7 @@
 class DecoderXmp : public Decoder
 {
 public:
-    DecoderXmp(const QString &path);
+    explicit DecoderXmp(const QString &path);
     virtual ~DecoderXmp();
 
     static DecoderXmp *instance();
@@ -44,12 +44,13 @@ private:
     //helper function
     void deinit();
 
-    xmp_context m_ctx;
-    qint64 m_totalTime;
+    xmp_context m_ctx = nullptr;
+    qint64 m_totalTime = 0;
     QString m_path;
-    quint32 m_srate;
+    quint32 m_srate = 44100;
 
     static DecoderXmp *m_instance;
+
 };
 
 #endif // DECODER_XMP_H

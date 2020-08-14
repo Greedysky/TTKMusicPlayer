@@ -26,7 +26,7 @@ class AsapMetaDataModel : public MetaDataModel
 {
     Q_DECLARE_TR_FUNCTIONS(AsapMetaDataModel)
 public:
-    AsapMetaDataModel(const QString &path);
+    explicit AsapMetaDataModel(const QString &path);
     virtual ~AsapMetaDataModel();
 
     virtual QList<TagModel* > tags() const override;
@@ -35,12 +35,13 @@ public:
 private:
     QList<TagModel* > m_tags;
     AsapHelper* m_asap;
+
 };
 
 class AsapFileTagModel : public TagModel
 {
 public:
-    AsapFileTagModel(AsapHelper* asap);
+    explicit AsapFileTagModel(AsapHelper* asap);
     virtual ~AsapFileTagModel();
 
     virtual QString name() const override;
@@ -50,6 +51,7 @@ public:
 
 private:
     AsapHelper* m_asap;
+
 };
 
 #endif

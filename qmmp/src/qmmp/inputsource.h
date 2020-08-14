@@ -44,12 +44,12 @@ public:
      * @param path Input source path or url.
      * @param parent Parent object.
      */
-    InputSource(const QString &path, QObject *parent = nullptr);
+    explicit InputSource(const QString &path, QObject *parent = nullptr);
     /*!
      * Returns QIODevice-based object for I/O operations.
      * Subclass shoud reimplement this function.
      */
-    virtual QIODevice *ioDevice() = 0;
+    virtual QIODevice *ioDevice() const = 0;
     /*!
      * Prepares input data source for usage.
      * Subclass shoud reimplement this function.
@@ -58,13 +58,13 @@ public:
     /*!
      * Returns \b true if transport is ready for usage; otherwise returns \b false.
      */
-    virtual bool isReady() = 0;
+    virtual bool isReady() const = 0;
     /*!
      * Returns \b true if the transport is waiting more data; otherwise returns \b false.
      * Reader should wait until this function returns \b false.
      * Default implementation allways returns \b false.
      */
-    virtual bool isWaiting();
+    virtual bool isWaiting() const;
     /*!
      * Returns content type of the input stream. Default implementation returns empty string.
      */
@@ -186,14 +186,16 @@ signals:
 
 private:
     QString m_path;
-    qint64 m_offset;
+    qint64 m_offset = -1;
     QMap<Qmmp::MetaData, QString> m_metaData;
     QMap<Qmmp::TrackProperty, QString> m_properties;
     QHash<QString, QString> m_streamInfo;
-    bool m_hasMetaData, m_hasStreamInfo;
+    bool m_hasMetaData = false, m_hasStreamInfo = false;
+
     static void loadPlugins();
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_disabledNames;
+
 };
 
 #endif // INPUTSOURCE_H

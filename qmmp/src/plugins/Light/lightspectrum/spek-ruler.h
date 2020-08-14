@@ -49,17 +49,18 @@ public:
 protected:
     void draw_tick(QPainter &dc, int tick);
 
-    int x;
-    int y;
-    Position pos;
-    QString sample_label;
-    int *factors;
-    int min_units;
-    int max_units;
-    double spacing;
-    double scale;
-    double offset;
-    formatter_cb formatter;
+    int m_x;
+    int m_y;
+    Position m_pos;
+    QString m_sample_label;
+    int *m_factors;
+    int m_min_units;
+    int m_max_units;
+    double m_spacing;
+    double m_scale;
+    double m_offset;
+    formatter_cb m_formatter;
+
 };
 
 #endif

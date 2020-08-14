@@ -10,8 +10,6 @@ ProjectMWidget::ProjectMWidget(QWidget *parent)
 #endif
 {
     setMinimumSize(580, 320);
-
-    m_projectM = nullptr;
 }
 
 ProjectMWidget::~ProjectMWidget()

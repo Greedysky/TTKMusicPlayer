@@ -28,7 +28,7 @@ class SpeexHelper;
 class DecoderSpeex : public Decoder
 {
 public:
-    DecoderSpeex(QIODevice *i);
+    explicit DecoderSpeex(QIODevice *i);
     virtual ~DecoderSpeex();
 
     // Standard Decoder API
@@ -40,6 +40,7 @@ public:
 
 private:
     SpeexHelper* m_speex;
+
 };
 
 #endif // DECODER_SPEEX_H

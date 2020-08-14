@@ -56,6 +56,7 @@ private:
     mutable QMutex m_mutex;
     QList<int> m_data;
     AudioParameters m_ap;
+
 };
 
 /*!
@@ -93,6 +94,7 @@ private:
     qint64 m_elapsed = 0;
     qint64 m_duration = 0;
     QPixmap m_pixmap;
+
 };
 
 #endif

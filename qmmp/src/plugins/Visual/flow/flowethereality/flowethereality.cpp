@@ -6,12 +6,10 @@
 FlowEthereality::FlowEthereality(QWidget *parent)
     : Florid(parent)
 {
-    m_useImage = false;
-    m_pos_x = 0;
-    m_pos_y = 0;
-
-    qsrand(QDateTime::currentMSecsSinceEpoch());
     setWindowTitle(tr("Flow Ethereality Widget"));
+
+    m_useImage = false;
+    qsrand(QDateTime::currentMSecsSinceEpoch());
 
     for(int i = 0; i < 50; i++)
     {

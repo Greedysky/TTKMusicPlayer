@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,7 +30,7 @@ class CueFile;
 class DecoderCUE : public Decoder
 {
 public:
-    DecoderCUE(const QString &url);
+    explicit DecoderCUE(const QString &url);
     virtual ~DecoderCUE();
 
     // Standard Decoder API
@@ -43,18 +43,19 @@ public:
     virtual void next() override;
 
 private:
-    Decoder *m_decoder;
-    qint64 m_length;
-    qint64 m_offset;
-    qint64 length_in_bytes;
-    qint64 m_totalBytes;
+    Decoder *m_decoder = nullptr;
+    qint64 m_length = 0;
+    qint64 m_offset = 0;
+    qint64 length_in_bytes = 0;
+    qint64 m_totalBytes = 0;
     QString m_path;
-    CueFile *m_cueFile;
-    int m_track;
-    char *m_buf; //buffer for remainig data
-    qint64 m_buf_size;
-    qint64 m_sz; //sample size
-    QIODevice *m_input;
+    CueFile *m_cueFile = nullptr;
+    int m_track = 0;
+    char *m_buf = nullptr; //buffer for remainig data
+    qint64 m_buf_size = 0;
+    qint64 m_sz = 0; //sample size
+    QIODevice *m_input = nullptr;
+
 };
 
 #endif // DECODER_CUE_H

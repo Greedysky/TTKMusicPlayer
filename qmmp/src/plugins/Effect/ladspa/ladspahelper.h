@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,6 +34,7 @@ public:
 
     virtual void applyEffect(Buffer *b) override;
     virtual void configure(quint32 freq, ChannelMap map) override;
+
 };
 
 #endif // LADSPAHELPER_H

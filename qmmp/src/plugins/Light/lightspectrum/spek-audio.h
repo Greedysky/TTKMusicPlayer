@@ -36,6 +36,7 @@ public:
     ~Audio();
 
     std::unique_ptr<AudioFile> open(const std::string& file_name, int stream);
+
 };
 
 /*!
@@ -44,7 +45,10 @@ public:
 class AudioFile
 {
 public:
-    virtual ~AudioFile() {}
+    virtual ~AudioFile()
+    {
+
+    }
 
     virtual void start(int channel, int samples) = 0;
     virtual int read() = 0;
@@ -61,6 +65,7 @@ public:
     virtual int64_t get_frames_per_interval() const = 0;
     virtual int64_t get_error_per_interval() const = 0;
     virtual int64_t get_error_base() const = 0;
+
 };
 
 enum class AudioError

@@ -1,23 +1,3 @@
-/***************************************************************************
- *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
- *   forkotov02@ya.ru                                                      *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
 #include <QSettings>
 #include <cdio/version.h>
 #include <cddb/version.h>
@@ -63,7 +43,7 @@ QList<TrackInfo*> DecoderCDAudioFactory::createPlayList(const QString &path, Tra
 
     QString device_path = path;
     device_path.remove("cdda://");
-    QList <CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
+    QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
     for(const CDATrack &t : qAsConst(tracks))
     {
         list << new TrackInfo(t.info);

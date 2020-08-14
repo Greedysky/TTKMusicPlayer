@@ -43,11 +43,11 @@ private:
     void draw(QPainter *p);
     void initialize();
 
-    VisualPalette::Palette m_palette;
+    VisualPalette::Palette m_palette= VisualPalette::PALETTE_DEFAULT;
     QImage m_backgroundImage;
-    int m_pixPos;
-    int *m_x_scale;
-    double m_analyzer_falloff;
+    int m_pixPos = 0;
+    int *m_x_scale = nullptr;
+    double m_analyzer_falloff = 2.2;
 
 };
 

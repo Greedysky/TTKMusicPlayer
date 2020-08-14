@@ -36,6 +36,7 @@ class DecoderOptimFROG : public Decoder
 
 private:
     std::unique_ptr<OptimFROGHelper> m_frog;
+
 };
 
 #endif

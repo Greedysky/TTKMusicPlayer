@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010 by Ilya Kotov                                      *
+ *   Copyright (C) 2010-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,13 +33,14 @@ class LADSPAButton : public QCheckBox
 {
     Q_OBJECT
 public:
-    LADSPAButton(LADSPA_Data *value, QWidget *parent = nullptr);
+    explicit LADSPAButton(LADSPA_Data *value, QWidget *parent = nullptr);
 
 private slots:
     void enable(bool yes);
 
 private:
     LADSPA_Data *m_value;
+
 };
 
 #endif // LADSPABUTTON_H

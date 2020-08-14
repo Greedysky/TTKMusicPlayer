@@ -34,36 +34,26 @@ static int bits_to_bands(int bits);
 
 LightSpectrum::LightSpectrum(QWidget *parent) :
     Light(parent),
-    audio(new Audio()), // TODO: refactor
-    fft(new FFT()),
-    pipeline(nullptr),
-    streams(0),
-    stream(0),
-    channels(0),
-    channel(0),
-    window_function(WINDOW_DEFAULT),
-    duration(0.0),
-    sample_rate(0),
-    palette(VisualPalette::PALETTE_SPECTRUM),
-    prev_width(-1),
-    fft_bits(FFT_BITS),
-    urange(URANGE),
-    lrange(LRANGE)
+    m_audio(new Audio()), // TODO: refactor
+    m_fft(new FFT()),
+    m_fft_bits(FFT_BITS),
+    m_urange(URANGE),
+    m_lrange(LRANGE)
 {
-    this->create_palette();
+    create_palette();
     connect(SoundCore::instance(), SIGNAL(trackInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
 LightSpectrum::~LightSpectrum()
 {
-    this->stop();
+    stop();
 }
 
 void LightSpectrum::open(const QString &path)
 {
-    this->path = path;
-    this->stream = 0;
-    this->channel = 0;
+    m_path = path;
+    m_stream = 0;
+    m_channel = 0;
     start();
 }
 
@@ -117,24 +107,24 @@ void LightSpectrum::paint(QPainter *dc)
 
     // Initialise.
     dc->setBrush(Qt::black);
-    dc->drawRect(this->rect());
+    dc->drawRect(rect());
     dc->setPen(Qt::white);
 
     // Border around the spectrogram.
     dc->drawRect(LPAD - 1, TPAD - 1, w - LPAD - RPAD + 2, h - TPAD - BPAD + 2);
 
-    if(this->image.width() > 1 && this->image.height() > 1 &&
+    if(m_image.width() > 1 && m_image.height() > 1 &&
         w - LPAD - RPAD > 0 && h - TPAD - BPAD > 0) {
         // Draw the spectrogram.
-        dc->drawImage(LPAD, TPAD, this->image.scaled(w - LPAD - RPAD, h - TPAD - BPAD));
+        dc->drawImage(LPAD, TPAD, m_image.scaled(w - LPAD - RPAD, h - TPAD - BPAD));
         // File name.
         dc->drawText(
             LPAD,
             TPAD - 2 * GAP,
-            trim(this->path, w - LPAD - RPAD, false)
+            trim(m_path, w - LPAD - RPAD, false)
         );
 
-        if(this->duration) {
+        if(m_duration) {
             // Time ruler.
             int time_factors[] = {1, 2, 5, 10, 20, 30, 1*60, 2*60, 5*60, 10*60, 20*60, 30*60, 0};
             SpekRuler time_ruler(
@@ -145,18 +135,18 @@ void LightSpectrum::paint(QPainter *dc)
                 "00:00",
                 time_factors,
                 0,
-                (int)this->duration,
+                (int)m_duration,
                 1.5,
-                (w - LPAD - RPAD) / this->duration,
+                (w - LPAD - RPAD) / m_duration,
                 0.0,
                 time_formatter
                 );
             time_ruler.draw(*dc);
         }
 
-        if(this->sample_rate) {
+        if(m_sample_rate) {
             // Frequency ruler.
-            int freq = this->sample_rate / 2;
+            int freq = m_sample_rate / 2;
             int freq_factors[] = {1000, 2000, 5000, 10000, 20000, 0};
             SpekRuler freq_ruler(
                 LPAD,
@@ -178,7 +168,7 @@ void LightSpectrum::paint(QPainter *dc)
 
     // The palette.
     if(h - TPAD - BPAD > 0) {
-        dc->drawImage(w - RPAD + GAP, TPAD, this->palette_image.scaled(RULER, h - TPAD - BPAD + 1));
+        dc->drawImage(w - RPAD + GAP, TPAD, m_palette_image.scaled(RULER, h - TPAD - BPAD + 1));
 
         int density_factors[] = {1, 2, 5, 10, 20, 50, 0};
         SpekRuler density_ruler(
@@ -188,10 +178,10 @@ void LightSpectrum::paint(QPainter *dc)
             // TRANSLATORS: keep "-00" unchanged, it's used to calc the text width
             "-00 dB",
             density_factors,
-            -this->urange,
-            -this->lrange,
+            -m_urange,
+            -m_lrange,
             3.0,
-            (h - TPAD - BPAD) / (double)(this->lrange - this->urange),
+            (h - TPAD - BPAD) / (double)(m_lrange - m_urange),
             h - TPAD - BPAD,
             density_formatter
         );
@@ -219,41 +209,41 @@ static void pipeline_cb(int bands, int sample, float *values, void *cb_data)
 
 void LightSpectrum::start()
 {
-    if(this->path.isEmpty()) {
+    if(m_path.isEmpty()) {
         return;
     }
 
-    this->stop();
+    stop();
     // The number of samples is the number of pixels available for the image.
     // The number of bands is fixed, FFT results are very different for
     // different values but we need some consistency.
     int samples = width() - LPAD - RPAD;
     if(samples > 0) {
-        this->image = QImage(samples, bits_to_bands(this->fft_bits), QImage::Format_RGB32);
-        this->pipeline = spek_pipeline_open(
-            this->audio->open(std::string(this->path.toUtf8().data()), this->stream),
-            this->fft->create(this->fft_bits),
-            this->stream,
-            this->channel,
-            this->window_function,
+        m_image = QImage(samples, bits_to_bands(m_fft_bits), QImage::Format_RGB32);
+        m_pipeline = spek_pipeline_open(
+            m_audio->open(std::string(m_path.toUtf8().data()), m_stream),
+            m_fft->create(m_fft_bits),
+            m_stream,
+            m_channel,
+            m_window_function,
             samples,
             pipeline_cb,
             this
         );
-        spek_pipeline_start(this->pipeline);
+        spek_pipeline_start(m_pipeline);
 //        // TODO: extract conversion into a utility function.
-        this->streams = spek_pipeline_streams(this->pipeline);
-        this->channels = spek_pipeline_channels(this->pipeline);
-        this->duration = spek_pipeline_duration(this->pipeline);
-        this->sample_rate = spek_pipeline_sample_rate(this->pipeline);
+        m_streams = spek_pipeline_streams(m_pipeline);
+        m_channels = spek_pipeline_channels(m_pipeline);
+        m_duration = spek_pipeline_duration(m_pipeline);
+        m_sample_rate = spek_pipeline_sample_rate(m_pipeline);
     }
 }
 
 void LightSpectrum::stop()
 {
-    if(this->pipeline) {
-        spek_pipeline_close(this->pipeline);
-        this->pipeline = nullptr;
+    if(m_pipeline) {
+        spek_pipeline_close(m_pipeline);
+        m_pipeline = nullptr;
     }
 }
 
@@ -261,10 +251,10 @@ void LightSpectrum::typeChanged(QAction *action)
 {
     switch(action->data().toInt())
     {
-        case 10: palette = VisualPalette::PALETTE_SPECTRUM; break;
-        case 20: palette = VisualPalette::PALETTE_SPECTROGRAM; break;
-        case 30: palette = VisualPalette::PALETTE_SOX; break;
-        case 40: palette = VisualPalette::PALETTE_MONO; break;
+        case 10: m_palette = VisualPalette::PALETTE_SPECTRUM; break;
+        case 20: m_palette = VisualPalette::PALETTE_SPECTROGRAM; break;
+        case 30: m_palette = VisualPalette::PALETTE_SOX; break;
+        case 40: m_palette = VisualPalette::PALETTE_MONO; break;
         default: break;
     }
     create_palette();
@@ -278,13 +268,13 @@ void LightSpectrum::mediaUrlChanged()
 
 void LightSpectrum::create_palette()
 {
-    this->palette_image = QImage(RULER, bits_to_bands(this->fft_bits), QImage::Format_RGB32);
-    for(int y = 0; y < bits_to_bands(this->fft_bits); y++) {
-        uint32_t color = VisualPalette::renderPalette(this->palette, y / (double)bits_to_bands(this->fft_bits));
+    m_palette_image = QImage(RULER, bits_to_bands(m_fft_bits), QImage::Format_RGB32);
+    for(int y = 0; y < bits_to_bands(m_fft_bits); y++) {
+        uint32_t color = VisualPalette::renderPalette(m_palette, y / (double)bits_to_bands(m_fft_bits));
         for(int j =0; j < RULER; ++j) {
-            this->palette_image.setPixel(
+            m_palette_image.setPixel(
                 j,
-                bits_to_bands(this->fft_bits) - y - 1,
+                bits_to_bands(m_fft_bits) - y - 1,
                 color
             );
         }

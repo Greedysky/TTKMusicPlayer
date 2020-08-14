@@ -46,6 +46,7 @@ struct QMMP_EXPORT DecoderProperties
     bool noInput = false;     /*!< Should be \b true if plugin has own input, otherwise \b false */
     int priority = 0;         /*!< Decoder priority. Decoders with lowest value will be used first */
 };
+
 /*! @brief Input plugin interface (decoder factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -55,7 +56,10 @@ public:
     /*!
     * Object destructor.
     */
-    virtual ~DecoderFactory() {}
+    virtual ~DecoderFactory()
+    {
+
+    }
     /*!
      * Returns \b true if plugin can decode data provided by \b d, otherwise returns \b false
      */

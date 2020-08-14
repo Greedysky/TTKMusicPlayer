@@ -9,10 +9,6 @@ MountainWidget::MountainWidget(QWidget *parent)
 {
     setMinimumSize(580, 320);
 
-    m_pos = 0;
-    m_angle = 25;
-    m_angleSpeed = 0.05f;
-
     memset(m_bars, 0, sizeof(m_bars));
 }
 

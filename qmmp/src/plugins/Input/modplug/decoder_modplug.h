@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2009 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,7 +28,7 @@ class CSoundFile;
 class DecoderModPlug : public Decoder
 {
 public:
-    DecoderModPlug(const QString &path);
+    explicit DecoderModPlug(const QString &path);
     virtual ~DecoderModPlug();
 
     void readSettings();
@@ -45,17 +45,18 @@ private:
     //helper function
     void deinit();
 
-    CSoundFile *m_soundFile;
+    CSoundFile *m_soundFile = nullptr;
 
     int m_bps; //bits per sample
     QByteArray m_input_buf; //input buffer
-    quint32 m_freq;
-    int m_chan, m_sampleSize, m_bitrate;
-    qint64 m_totalTime;
-    double m_preampFactor;
-    bool m_usePreamp;
+    quint32 m_freq = 0;
+    int m_chan = 0, m_sampleSize = 0, m_bitrate = 0;
+    qint64 m_totalTime = 0;
+    double m_preampFactor = 0.0f;
+    bool m_usePreamp = false;
     QString m_path;
     static DecoderModPlug* m_instance;
+
 };
 
 #endif // DECODER_MODPLUG_H

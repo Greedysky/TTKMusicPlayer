@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,7 +32,7 @@ struct aac_data
 class DecoderAAC : public Decoder
 {
 public:
-    DecoderAAC(QIODevice *);
+    explicit DecoderAAC(QIODevice *);
     virtual ~DecoderAAC();
 
     struct aac_data *data()
@@ -48,14 +48,15 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    struct aac_data *m_data;
-    char* m_input_buf;
-    void* m_sample_buf;
-    int m_sample_buf_at;
-    qint64 m_sample_buf_size;
-    int m_bitrate;
-    ulong  m_input_at;
-    qint64 m_totalTime;
+    struct aac_data *m_data = nullptr;
+    char* m_input_buf = nullptr;
+    void* m_sample_buf = nullptr;
+    int m_sample_buf_at = 0;
+    qint64 m_sample_buf_size = 0;
+    int m_bitrate = 0;
+    ulong  m_input_at = 0;
+    qint64 m_totalTime = 0;
+
 };
 
 

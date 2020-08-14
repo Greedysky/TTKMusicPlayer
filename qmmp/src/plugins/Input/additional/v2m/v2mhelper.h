@@ -38,8 +38,8 @@ typedef struct {
 class V2MHelper
 {
 public:
-    V2MHelper(const QString &path);
-    virtual ~V2MHelper();
+    explicit V2MHelper(const QString &path);
+    ~V2MHelper();
 
     void close();
 
@@ -57,7 +57,8 @@ public:
 private:
     QString m_path;
     v2m_info_t *m_info;
-    qint64 m_totalTime;
+    qint64 m_totalTime = 0;
+
 };
 
 #endif
