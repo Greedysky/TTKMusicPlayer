@@ -18,19 +18,17 @@ OutputALSA::OutputALSA()
     QString dev_name = settings.value("ALSA/device","default").toString();
     m_use_mmap = settings.value("ALSA/use_mmap", false).toBool();
     pcm_name = strdup(dev_name.toLatin1().data());
-    m_alsa_channels = {
-        { SND_CHMAP_NA, Qmmp::CHAN_NULL },
-        { SND_CHMAP_MONO, Qmmp::CHAN_FRONT_CENTER },
-        { SND_CHMAP_FL, Qmmp::CHAN_FRONT_LEFT },
-        { SND_CHMAP_FR, Qmmp::CHAN_FRONT_RIGHT },
-        { SND_CHMAP_RL, Qmmp::CHAN_REAR_LEFT },
-        { SND_CHMAP_RR, Qmmp::CHAN_REAR_RIGHT },
-        { SND_CHMAP_FC, Qmmp::CHAN_FRONT_CENTER },
-        { SND_CHMAP_LFE, Qmmp::CHAN_LFE },
-        { SND_CHMAP_SL, Qmmp::CHAN_SIDE_LEFT },
-        { SND_CHMAP_SR, Qmmp::CHAN_SIDE_RIGHT },
-        { SND_CHMAP_RC, Qmmp::CHAN_REAR_CENTER }
-    };
+    m_alsa_channels[SND_CHMAP_NA]   = Qmmp::CHAN_NULL;
+    m_alsa_channels[SND_CHMAP_MONO] = Qmmp::CHAN_FRONT_CENTER;
+    m_alsa_channels[SND_CHMAP_FL]   = Qmmp::CHAN_FRONT_LEFT;
+    m_alsa_channels[SND_CHMAP_FR]   = Qmmp::CHAN_FRONT_RIGHT;
+    m_alsa_channels[SND_CHMAP_RL]   = Qmmp::CHAN_REAR_LEFT;
+    m_alsa_channels[SND_CHMAP_RR]   = Qmmp::CHAN_REAR_RIGHT;
+    m_alsa_channels[SND_CHMAP_FC]   = Qmmp::CHAN_FRONT_CENTER;
+    m_alsa_channels[SND_CHMAP_LFE]  = Qmmp::CHAN_LFE;
+    m_alsa_channels[SND_CHMAP_SL]   = Qmmp::CHAN_SIDE_LEFT;
+    m_alsa_channels[SND_CHMAP_SR]   = Qmmp::CHAN_SIDE_RIGHT;
+    m_alsa_channels[SND_CHMAP_RC]   = Qmmp::CHAN_REAR_CENTER;
 }
 
 OutputALSA::~OutputALSA()

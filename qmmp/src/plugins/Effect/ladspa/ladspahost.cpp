@@ -32,8 +32,8 @@ LADSPAHost::LADSPAHost(QObject *parent)
         settings.beginGroup(section);
 
         int id = settings.value("id").toInt();
-        auto it = std::find_if(m_plugins.cbegin(), m_plugins.cend(), [id](LADSPAPlugin *p){ return p->unique_id = id; });
-        if(it == m_plugins.cend())
+        auto it = std::find_if(m_plugins.constBegin(), m_plugins.constEnd(), [id](LADSPAPlugin *p){ return p->unique_id = id; });
+        if(it == m_plugins.constEnd())
             continue;
 
         LADSPAPlugin *plugin = *it;
