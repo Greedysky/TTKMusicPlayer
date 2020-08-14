@@ -2,7 +2,7 @@
  *  Based on madplay project                                               *
  *                                                                         *
  * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
- * Copyright (C) 2016 Ilya Kotov forkotov02@ya.ru                          *
+ * Copyright (C) 2016-2020 Ilya Kotov forkotov02@ya.ru                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -40,7 +40,7 @@ public:
 
 private:
     void clearHistory();
-    int m_chan;
+    int m_chan = 2;
 
     typedef struct
     {
@@ -50,11 +50,12 @@ private:
     } AudioDither;
 
     AudioDither m_dither[9];
-    float m_lsb;
-    bool m_required, m_enabled;
+    float m_lsb = 0.0f;
+    bool m_required= false, m_enabled;
 
     quint32 prng(quint32 state);
     float audioLinearDither(float sample, AudioDither *dither);
+
 };
 
 #endif // DITHERING_P_H

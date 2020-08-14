@@ -78,6 +78,7 @@ public:
      * Returns translation file path without locale code and extension
      */
     virtual QString translation() const = 0;
+
 };
 
 Q_DECLARE_INTERFACE(InputSourceFactory, "InputSourceFactory/1.0")

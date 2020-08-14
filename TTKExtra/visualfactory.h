@@ -38,6 +38,7 @@ struct QMMP_EXPORT VisualProperties
     QString shortName;         /*!< Effect plugin short name for internal usage */
     bool hasSettings = false;  /*!< Should be \b true if plugin has settings dialog, and \b false otherwise */
 };
+
 /*! @brief %Visual plugin interface (visual factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -47,7 +48,10 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~VisualFactory() {}
+    virtual ~VisualFactory()
+    {
+
+    }
      /*!
      * Returns visual plugin properties.
      */

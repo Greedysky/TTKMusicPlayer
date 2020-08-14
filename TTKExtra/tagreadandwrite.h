@@ -53,7 +53,7 @@ public:
     };
 
     TagReadAndWrite();
-    TagReadAndWrite(const QString &file);
+    explicit TagReadAndWrite(const QString &file);
     ~TagReadAndWrite();
 
     bool readFile();

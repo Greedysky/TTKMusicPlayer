@@ -43,7 +43,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    AbstractEngine(QObject *parent = nullptr);
+    explicit AbstractEngine(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
@@ -128,6 +128,7 @@ private:
     static void loadPlugins();
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_disabledNames;
+
 };
 
 

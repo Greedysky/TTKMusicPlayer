@@ -30,7 +30,6 @@
 #include <QFlags>
 #include "tagmodel.h"
 
-
 /*! @brief Container of extra file/track property.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
@@ -72,6 +71,7 @@ public:
 private:
     QString m_name, m_suffix;
     QVariant m_value;
+
 };
 
 /*! @brief The MetaDataModel is the base interface class of metadata access.
@@ -94,7 +94,7 @@ public:
      * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @param hints Details dialog settings.
      */
-    MetaDataModel(bool readOnly, DialogHints hints = DialogHints());
+    explicit MetaDataModel(bool readOnly, DialogHints hints = DialogHints());
     /*!
      * Destructor.
      */
@@ -157,6 +157,7 @@ protected:
 private:
     bool m_readOnly;
     DialogHints m_dialogHints;
+
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(MetaDataModel::DialogHints)

@@ -50,7 +50,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    SoundCore(QObject *parent = nullptr);
+    explicit SoundCore(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
@@ -267,15 +267,17 @@ private:
         ANOTHER_ENGINE,
         INVALID_SOURCE
     };
-    QHash <QString, QString> m_streamInfo;
+
+    QHash<QString, QString> m_streamInfo;
     TrackInfo m_info;
     QString m_path;
     static SoundCore* m_instance;
     StateHandler *m_handler;
     VolumeHandler *m_volumeControl;
-    AbstractEngine *m_engine;
+    AbstractEngine *m_engine = nullptr;
     QQueue<InputSource *> m_sources;
-    int m_nextState;
+    int m_nextState = NO_ENGINE;
+
 };
 
 #endif

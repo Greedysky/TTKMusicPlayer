@@ -49,7 +49,7 @@ class QMMP_EXPORT QmmpAudioEngine : public AbstractEngine
 {
     Q_OBJECT
 public:
-    QmmpAudioEngine(QObject *parent);
+    explicit QmmpAudioEngine(QObject *parent);
     virtual ~QmmpAudioEngine();
 
     virtual bool play() override;
@@ -79,28 +79,29 @@ private:
     OutputWriter *createOutput();
     void prepareEffects(Decoder *d);
 
-    DecoderFactory *m_factory;
+    DecoderFactory *m_factory = nullptr;
     QList<Effect*> m_effects;
     QList<Effect*> m_blockedEffects;
-    OutputWriter *m_output;
+    OutputWriter *m_output = nullptr;
 
     std::atomic_bool m_done, m_finish, m_user_stop;
-    uint m_bks, m_sample_size;
+    uint m_bks = 0, m_sample_size = 0;
     qint64 m_seekTime;
-    quint64 m_output_at, m_output_size;
+    quint64 m_output_at, m_output_size = 0;
     int m_bitrate;
-    unsigned char *m_output_buf;
-    Decoder *m_decoder;
+    unsigned char *m_output_buf = nullptr;
+    Decoder *m_decoder = nullptr;
     QQueue <Decoder*> m_decoders;
-    QHash <Decoder*, InputSource*> m_inputs;
+    QHash<Decoder*, InputSource*> m_inputs;
     AudioParameters m_ap;
     bool m_next;
     QSharedPointer<TrackInfo> m_trackInfo;
     static QmmpAudioEngine *m_instance;
-    ReplayGain *m_replayGain;
+    ReplayGain *m_replayGain = nullptr;
     QmmpSettings *m_settings;
     AudioConverter *m_converter;
-    Dithering *m_dithering;
+    Dithering *m_dithering = nullptr;
+
 };
 
 #endif // QMMPAUDIOENGINE_P_H

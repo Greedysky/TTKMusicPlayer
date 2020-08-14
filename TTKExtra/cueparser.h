@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef CUEPARSER_H
 #define CUEPARSER_H
 
@@ -33,7 +34,7 @@ class QMMP_EXPORT CueParser
 {
 public:
     CueParser();
-    CueParser(const QByteArray &data, const QByteArray &codecName = QByteArray());
+    explicit CueParser(const QByteArray &data, const QByteArray &codecName = QByteArray());
     ~CueParser();
 	
     void loadData(const QByteArray &data, const QByteArray &codecName = QByteArray());
@@ -71,6 +72,7 @@ private:
     QStringList m_files;
     QStringList splitLine(const QString &line);
     qint64 getLength(const QString &str);
+
 };
 
 #endif // CUEPARSER_H

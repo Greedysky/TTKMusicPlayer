@@ -65,7 +65,8 @@ protected:
 protected:
     QPixmap m_pixmap;
     QTimer m_timer;
-    int m_rotateAngle;
+    int m_rotateAngle = 0;
+
 };
 
 
@@ -126,9 +127,9 @@ protected:
 
 protected:
     QImage m_image;
-    bool m_useImage, m_renderLabel;
-    QColor m_averageColor;
-    bool m_gradientOn;
+    bool m_useImage = true, m_renderLabel = false;
+    QColor m_averageColor = QColor(255, 255, 255);
+    bool m_gradientOn = false;
     RoundAnimationLabel *m_roundLabel;
 
 };

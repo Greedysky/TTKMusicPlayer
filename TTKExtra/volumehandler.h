@@ -43,7 +43,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    VolumeHandler(QObject *parent = nullptr);
+    explicit VolumeHandler(QObject *parent = nullptr);
     /*!
      * Destructor.
      */

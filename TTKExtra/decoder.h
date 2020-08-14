@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -43,7 +43,7 @@ public:
      * Object contsructor.
      * @param input QIODevice-based input source.
      */
-    Decoder(QIODevice *input = nullptr);
+    explicit Decoder(QIODevice *input = nullptr);
     /*!
      * Destructor.
      */
@@ -213,12 +213,14 @@ private:
     static void loadPlugins();
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_disabledNames;
+
     AudioParameters m_parameters;
     QMap<Qmmp::TrackProperty, QString> m_properties;
     QIODevice *m_input;
-    bool m_hasMetaData;
+    bool m_hasMetaData = false;
     QMap<Qmmp::MetaData, QString> m_metaData;
-    QMap <Qmmp::ReplayGainKey, double> m_rg; //replay gain information
+    QMap<Qmmp::ReplayGainKey, double> m_rg; //replay gain information
+
 };
 
 #endif // DECODER_H

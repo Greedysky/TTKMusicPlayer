@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef TRACKINFO_H
 #define TRACKINFO_H
 
@@ -38,7 +39,7 @@ public:
     /*!
      * Constructs a new empty TrackInfo that with file \b path (local path or URL).
      */
-    TrackInfo(const QString &path);
+    explicit TrackInfo(const QString &path);
     /*!
      * Constructs a new TrackInfo that is a copy of the given \b other
      */
@@ -74,7 +75,7 @@ public:
     /*!
      * Returnds file duration in milliseconds.
      */
-    qint64 duration () const;
+    qint64 duration() const;
     /*!
      * Returns \b true if stream/file has no infomation and empry path, otherwise returns \b false.
      */
@@ -172,9 +173,10 @@ private:
     QMap<Qmmp::MetaData, QString> m_metaData;
     QMap<Qmmp::TrackProperty, QString> m_properties;
     QMap<Qmmp::ReplayGainKey, double> m_replayGainInfo;
-    Parts m_parts;
+    Parts m_parts = Parts();
     QString m_path;
-    qint64 m_duration;
+    qint64 m_duration = 0;
+
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TrackInfo::Parts)

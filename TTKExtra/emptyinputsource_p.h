@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,14 +30,15 @@ class QMMP_EXPORT EmptyInputSource : public InputSource
 {
     Q_OBJECT
 public:
-    EmptyInputSource(const QString &path, QObject *parent = nullptr);
+    explicit EmptyInputSource(const QString &path, QObject *parent = nullptr);
 
-    virtual QIODevice *ioDevice() override;
+    virtual QIODevice *ioDevice() const override;
     virtual bool initialize() override;
-    virtual bool isReady() override;
+    virtual bool isReady() const override;
 
 private:
-    bool m_ok;
+    bool m_ok = false;
+
 };
 
 #endif // EMPTYINPUTSOURCE_P_H

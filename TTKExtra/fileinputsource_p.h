@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2020 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,14 +32,15 @@ class QMMP_EXPORT FileInputSource : public InputSource
 {
     Q_OBJECT
 public:
-    FileInputSource(const QString &path, QObject *parent = nullptr);
+    explicit FileInputSource(const QString &path, QObject *parent = nullptr);
 
-    virtual QIODevice *ioDevice() override;
+    virtual QIODevice *ioDevice() const override;
     virtual bool initialize() override;
-    virtual bool isReady() override;
+    virtual bool isReady() const override;
 
 private:
     QFile *m_file;
+
 };
 
 #endif // FILEINPUTSOURCE_P_H

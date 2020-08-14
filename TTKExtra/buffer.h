@@ -38,10 +38,10 @@ public:
      * Constructs an empty buffer object.
      * @param sz Size in samples;
      */
-    Buffer(size_t sz)
+    explicit Buffer(size_t sz)
+        : size(sz)
     {
         data = new float[sz];
-        size = sz;
     }
     /*!
      * Destructor.
@@ -60,6 +60,7 @@ public:
     size_t size = 0;                     /*!< Buffer size in samples. */
     unsigned int rate = 0;               /*!< Buffer bitrate. */
     QSharedPointer<TrackInfo> trackInfo; /*!< Attached track information. */
+
 };
 
 #endif // BUFFER_H

@@ -65,7 +65,10 @@ public:
     /*!
      * Destructor.
      */
-    virtual ~Volume(){}
+    virtual ~Volume()
+    {
+
+    }
     /*!
      * Setups volume levels.
      * Subclass should reimplement this fucntion.
@@ -98,6 +101,7 @@ signals:
 
 private:
     bool m_mutedInternal = false;
+
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Volume::VolumeFlags)
