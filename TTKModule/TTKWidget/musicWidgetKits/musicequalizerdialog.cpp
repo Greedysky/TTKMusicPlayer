@@ -86,7 +86,6 @@ void MusicEqualizerDialog::initialize()
         MusicClickedSlider *slider = sliders[i];
         slider->setRange(-15, 15);
         slider->setStyleSheet(MusicUIObject::MQSSSliderStyle04);
-
         clickedGroup->mapped(slider);
     }
 

@@ -36,6 +36,12 @@ public:
     explicit MusicClickedSlider(QWidget *parent = nullptr);
     explicit MusicClickedSlider(Qt::Orientation orientation, QWidget *parent = nullptr);
 
+Q_SIGNALS:
+    /*!
+     * Click the label emit.
+     */
+    void clicked();
+
 protected:
     /*!
      * Override the widget event.

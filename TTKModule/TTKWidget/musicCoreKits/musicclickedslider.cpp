@@ -87,6 +87,8 @@ void MusicClickedSlider::mouseMoveEvent(QMouseEvent *event)
                 m_value = minimum();
             }
         }
+
+        Q_EMIT clicked();
     }
 }
 
