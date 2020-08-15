@@ -87,6 +87,11 @@ void GoomWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
+void GoomWidget::contextMenuEvent(QContextMenuEvent *e)
+{
+    Q_UNUSED(e);
+}
+
 void GoomWidget::process(float *left, float *right)
 {
     if(m_image.size() != size() || !m_goom)
@@ -122,7 +127,6 @@ void GoomWidget::createMenu()
     m_menu = new QMenu(this);
     connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
 
-    m_menu->addAction(m_screenAction);
     m_menu->addSeparator();
 
     QMenu *refreshRate = m_menu->addMenu(tr("Refresh Rate"));

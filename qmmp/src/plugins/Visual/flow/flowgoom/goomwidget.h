@@ -48,6 +48,7 @@ private:
     virtual void showEvent(QShowEvent *) override;
     virtual void paintEvent(QPaintEvent *) override;
     virtual void mousePressEvent(QMouseEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     virtual void process(float *left, float *right) override;
 
