@@ -125,6 +125,7 @@ protected:
     MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
 
     static MusicLeftAreaWidget *m_instance;
+
 };
 
 #endif // MUSICLEFTAREAWIDGET_H

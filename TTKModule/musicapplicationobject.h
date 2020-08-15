@@ -175,6 +175,7 @@ protected:
     MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 
     static MusicApplicationObject *m_instance;
+
 };
 
 #endif // MUSICAPPLICATIONOBJECT_H

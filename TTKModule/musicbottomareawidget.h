@@ -148,6 +148,7 @@ protected:
     MusicRippleSpecturmObject *m_musicRippleObject;
 
     static MusicBottomAreaWidget *m_instance;
+
 };
 
 #endif // MUSICBOTTOMAREAWIDGET_H

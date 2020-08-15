@@ -340,6 +340,7 @@ private:
     MusicApplicationObject *m_applicationObject;
 
     static MusicApplication *m_instance;
+
 };
 
 #endif // MUSICAPPLICATION_H

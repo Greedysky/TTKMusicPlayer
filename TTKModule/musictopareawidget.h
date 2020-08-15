@@ -244,6 +244,7 @@ protected:
     QTimer m_pictureCarouselTimer;
 
     static MusicTopAreaWidget *m_instance;
+
 };
 
 #endif // MUSICTOPAREAWIDGET_H

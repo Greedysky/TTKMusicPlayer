@@ -317,6 +317,7 @@ protected:
     MusicDownloadStatusObject *m_downloadStatusObject;
 
     static MusicRightAreaWidget *m_instance;
+
 };
 
 #endif // MUSICRIGHTAREAWIDGET_H
