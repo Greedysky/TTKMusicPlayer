@@ -77,7 +77,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     foreach(const MusicSpectrum &type, m_types)
     {
-        MusicUtils::QMMP::enabledVisualPlugin(type.m_name, false);
+        MusicUtils::QMMP::enabledVisualPlugin(type.m_module, false);
     }
     delete m_ui;
 }
@@ -111,13 +111,13 @@ void MusicSpectrumWidget::tabIndexChanged(int index)
 
 void MusicSpectrumWidget::spectrumNormalTypeChanged(bool &state, const QString &name)
 {
-    createSpectrumWidget(state, name, m_ui->spectrumNormalAreaLayout);
+    createSpectrumWidget(MusicSpectrum::Normal, state, name, m_ui->spectrumNormalAreaLayout);
     adjustWidgetLayout(m_ui->spectrumNormalAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::spectrumPlusTypeChanged(bool &state, const QString &name)
 {
-    createSpectrumWidget(state, name, m_ui->spectrumPlusAreaLayout);
+    createSpectrumWidget(MusicSpectrum::Plus, state, name, m_ui->spectrumPlusAreaLayout);
     adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
@@ -125,23 +125,23 @@ void MusicSpectrumWidget::spectrumWaveTypeChanged(bool &state, const QString &na
 {
     if(name == "lightenvelope")
     {
-        createLightWidget(state, name, m_ui->spectrumWaveAreaLayout);
+        createLightWidget(MusicSpectrum::Light, state, name, m_ui->spectrumWaveAreaLayout);
     }
     else
     {
-        createSpectrumWidget(state, name, m_ui->spectrumWaveAreaLayout);
+        createSpectrumWidget(MusicSpectrum::Wave, state, name, m_ui->spectrumWaveAreaLayout);
     }
     adjustWidgetLayout(m_ui->spectrumWaveAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::spectrumFlowTypeChanged(bool &state, const QString &name)
 {
-    createFlowWidget(state, name, m_ui->spectrumFlowAreaLayout);
+    createFlowWidget(MusicSpectrum::Flow, state, name, m_ui->spectrumFlowAreaLayout);
 }
 
 void MusicSpectrumWidget::spectrumFloridTypeChanged(bool &state, const QString &name)
 {
-    createFloridWidget(state, name, m_ui->spectrumFloridAreaLayout);
+    createFloridWidget(MusicSpectrum::Florid, state, name, m_ui->spectrumFloridAreaLayout);
 }
 
 void MusicSpectrumWidget::show()
@@ -153,7 +153,7 @@ void MusicSpectrumWidget::show()
 void MusicSpectrumWidget::localFileButtonClicked()
 {
     bool state = true;
-    createLightWidget(state, "lightspectrum", m_ui->spectrumLightAreaLayout);
+    createLightWidget(MusicSpectrum::Light, state, "lightspectrum", m_ui->spectrumLightAreaLayout);
 }
 
 void MusicSpectrumWidget::openFileButtonClicked()
@@ -166,7 +166,7 @@ void MusicSpectrumWidget::openFileButtonClicked()
     {
         const QString &path = dialog.selectedFiles().last();
         bool state = true;
-        createLightWidget(state, "lightspectrum", m_ui->spectrumLightAreaLayout, path);
+        createLightWidget(MusicSpectrum::Light, state, "lightspectrum", m_ui->spectrumLightAreaLayout, path);
     }
 }
 
@@ -187,14 +187,45 @@ void MusicSpectrumWidget::fullscreenByUser(QWidget *widget, bool state)
     {
         if(m_spectrumLayout)
         {
+#ifdef Q_OS_WIN
             widget->showNormal();
             widget->setWindowFlags(Qt::Window);
             m_spectrumLayout->addWidget(widget);
+#else
+            MusicSpectrum type;
+            for(int i=0; i<m_types.count(); ++i)
+            {
+                if(m_types[i].m_object == widget)
+                {
+                    type = m_types.takeAt(i);
+                    break;
+                }
+            }
+
+            if(type.m_module.isEmpty())
+            {
+                return;
+            }
+
+            MusicUtils::QMMP::enabledVisualPlugin(type.m_module, false);
+
+            bool state = true;
+            switch(type.m_type)
+            {
+                case MusicSpectrum::Normal: createSpectrumWidget(MusicSpectrum::Normal, state, type.m_module, m_spectrumLayout); break;
+                case MusicSpectrum::Plus: createSpectrumWidget(MusicSpectrum::Plus, state, type.m_module, m_spectrumLayout); break;
+                case MusicSpectrum::Wave: createSpectrumWidget(MusicSpectrum::Wave, state, type.m_module, m_spectrumLayout); break;
+                case MusicSpectrum::Flow: createFlowWidget(MusicSpectrum::Flow, state, type.m_module, m_spectrumLayout); break;
+                case MusicSpectrum::Florid: createFloridWidget(MusicSpectrum::Florid, state, type.m_module, m_spectrumLayout); break;
+                case MusicSpectrum::Light: createLightWidget(MusicSpectrum::Light, state, type.m_module, m_spectrumLayout); break;
+                default: break;
+            }
+#endif
         }
     }
 }
 
-void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name, QLayout *layout)
+void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout)
 {
     if(state)
     {
@@ -210,13 +241,15 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
 
         if(!vs->isEmpty())
         {
-            MusicSpectrum sp;
-            sp.m_name = name;
-            sp.m_obj = vs->last();
-            layout->addWidget(sp.m_obj);
-            m_types << sp;
-            sp.m_obj->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-            connect(sp.m_obj, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
+            MusicSpectrum type;
+            type.m_module = name;
+            type.m_object = vs->last();
+            type.m_type = spectrum;
+            layout->addWidget(type.m_object);
+            m_types << type;
+            type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+
+            connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
         }
         else
         {
@@ -229,30 +262,30 @@ void MusicSpectrumWidget::createSpectrumWidget(bool &state, const QString &name,
         const int index = findSpectrumWidget(name);
         if(index != -1)
         {
-            MusicSpectrum t = m_types.takeAt(index);
-            layout->removeWidget(t.m_obj);
+            MusicSpectrum type = m_types.takeAt(index);
+            layout->removeWidget(type.m_object);
             MusicUtils::QMMP::enabledVisualPlugin(name, false);
         }
     }
 }
 
-void MusicSpectrumWidget::createFlowWidget(bool &state, const QString &name, QLayout *layout)
+void MusicSpectrumWidget::createFlowWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout)
 {
-    createModuleWidget(state, name, layout, m_lastFlowName);
+    createModuleWidget(spectrum, state, name, layout, m_lastFlowName);
 }
 
-void MusicSpectrumWidget::createFloridWidget(bool &state, const QString &name, QLayout *layout)
+void MusicSpectrumWidget::createFloridWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout)
 {
-    createModuleWidget(state, name, layout, m_lastFloridName);
+    createModuleWidget(spectrum, state, name, layout, m_lastFloridName);
 }
 
-void MusicSpectrumWidget::createModuleWidget(bool &state, const QString &name, QLayout *layout, QString &module)
+void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, QString &module)
 {
     const int index = findSpectrumWidget(module);
     if(index != -1)
     {
-        MusicSpectrum t = m_types.takeAt(index);
-        layout->removeWidget(t.m_obj);
+        MusicSpectrum type = m_types.takeAt(index);
+        layout->removeWidget(type.m_object);
         MusicUtils::QMMP::enabledVisualPlugin(module, false);
     }
 
@@ -275,17 +308,17 @@ void MusicSpectrumWidget::createModuleWidget(bool &state, const QString &name, Q
     if(!vs->isEmpty())
     {
         module = name;
-        MusicSpectrum sp;
-        sp.m_name = name;
-        sp.m_obj = vs->last();
+        MusicSpectrum type;
+        type.m_module = name;
+        type.m_object = vs->last();
+        type.m_type = spectrum;
+        layout->addWidget(type.m_object);
+        m_types << type;
+        type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-        layout->addWidget(sp.m_obj);
-        m_types << sp;
-        sp.m_obj->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-
-        TTKStatic_cast(Florid*, sp.m_obj)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
-        connect(sp.m_obj, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
-        connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), sp.m_obj, SLOT(setPixmap(QPixmap)));
+        TTKStatic_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+        connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
+        connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
     }
     else
     {
@@ -294,7 +327,7 @@ void MusicSpectrumWidget::createModuleWidget(bool &state, const QString &name, Q
     }
 }
 
-void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QLayout *layout, const QString &url)
+void MusicSpectrumWidget::createLightWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, const QString &url)
 {
     if(state)
     {
@@ -307,16 +340,17 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
             if(obj && (factory = TTKObject_cast(LightFactory*, obj)))
             {
                 Light *lightWidget = factory->create(this);
-                MusicSpectrum sp;
-                sp.m_name = name;
-                sp.m_obj = lightWidget;
-                m_types << sp;
+                MusicSpectrum type;
+                type.m_module = name;
+                type.m_object = lightWidget;
+                type.m_type = spectrum;
+                m_types << type;
                 layout->addWidget(lightWidget);
             }
         }
 
         const int index = findSpectrumWidget(name);
-        Light *light = TTKStatic_cast(Light*, m_types[index].m_obj);
+        Light *light = TTKStatic_cast(Light*, m_types[index].m_object);
         light->open(url.isEmpty() ? SoundCore::instance()->path() : url);
     }
     else
@@ -325,8 +359,8 @@ void MusicSpectrumWidget::createLightWidget(bool &state, const QString &name, QL
         if(index != -1)
         {
             MusicSpectrum t = m_types.takeAt(index);
-            layout->removeWidget(t.m_obj);
-            delete t.m_obj;
+            layout->removeWidget(t.m_object);
+            delete t.m_object;
         }
     }
 }
@@ -356,7 +390,7 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
 
     for(int i=0; i<m_types.count(); ++i)
     {
-        if(m_types[i].m_name.contains(name))
+        if(m_types[i].m_module.contains(name))
         {
             return i;
         }
