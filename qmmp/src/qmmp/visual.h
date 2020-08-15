@@ -180,7 +180,7 @@ private:
     static QList<VisualFactory*> *m_factories;
     static QHash<const VisualFactory*, QString> *m_files;
     static void checkFactories();
-    static QList<Visual*>  m_visuals;
+    static QList<Visual*> m_visuals;
     static QHash<VisualFactory*, Visual*> m_vis_map; //internal visualization
     static QWidget *m_parentWidget;
     static QObject *m_receiver;

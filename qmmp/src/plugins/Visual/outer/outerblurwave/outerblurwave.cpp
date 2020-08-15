@@ -127,7 +127,7 @@ void OuterBlurWave::process(float *left, float *right)
 
     for(int i = 0; i < m_cols; i++)
     {
-        int j = m_cols * 2 - i - 1; //mirror index
+        int j = m_cols + i; //mirror index
         short yl = 0;
         short yr = 0;
         int magnitude_l = 0;
