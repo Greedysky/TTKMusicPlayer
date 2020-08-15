@@ -94,9 +94,9 @@ typedef struct _VisInfo
 	BOOL	(*Render)( unsigned int *Video, int width, int height, int pitch, VisData* pVD);
 										// Called for each frame. Pitch is in pixels and can be negative.
 										// Render like this:
-										// for (y = 0; y < height; y++)
+										// for(y = 0; y < height; y++)
 										// {
-										//    for (x = 0; x < width; x++)
+										//    for(x = 0; x < width; x++)
 										//       Video[x] = <pixel value>;
 										//	  Video += pitch;
 										// }

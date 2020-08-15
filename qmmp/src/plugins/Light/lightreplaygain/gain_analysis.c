@@ -104,7 +104,7 @@ static void
 filterYule (const Float_t* input, Float_t* output, size_t nSamples, const Float_t* kernel)
 {
 
-    while (nSamples--) {
+    while(nSamples--) {
        *output =  1e-10  /* 1e-10 is a hack to avoid slowdown because of denormals */
          + input [0]  * kernel[0]
          - output[-1] * kernel[1]
@@ -136,7 +136,7 @@ static void
 filterButter (const Float_t* input, Float_t* output, size_t nSamples, const Float_t* kernel)
 {
 
-    while (nSamples--) {
+    while(nSamples--) {
         *output =
            input [0]  * kernel[0]
          - output[-1] * kernel[1]
@@ -160,7 +160,7 @@ int ResetSampleFrequency (GainHandle_t *handle, long samplefreq)
         handle->linprebuf[i] = handle->lstepbuf[i] = handle->loutbuf[i] = 0;
         handle->rinprebuf[i] = handle->rstepbuf[i] = handle->routbuf[i] = 0.;
     }
-    switch ((int)(samplefreq))
+    switch((int)(samplefreq))
     {
     case 96000: handle->freqindex = 0; break;
     case 88200: handle->freqindex = 1; break;
@@ -228,7 +228,7 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
     cursamplepos = 0;
     batchsamples = (long)num_samples;
 
-    switch ( num_channels) {
+    switch( num_channels) {
     case  1: right_samples = left_samples;
     case  2: break;
     default: return GAIN_ANALYSIS_ERROR;
@@ -245,7 +245,7 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
         memcpy (handle->rinprebuf + MAX_ORDER, right_samples, MAX_ORDER   * sizeof(Float_t) );
     }
 
-    while (batchsamples > 0)
+    while(batchsamples > 0)
     {
         cursamples = batchsamples > handle->sampleWindow - handle->totsamp ?
                     handle->sampleWindow - handle->totsamp : batchsamples;
@@ -274,12 +274,12 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
         curright = handle->rout + handle->totsamp;
 
         i = cursamples % 16;
-        while (i--)
+        while(i--)
         {   handle->lsum += fsqr(*curleft++);
             handle->rsum += fsqr(*curright++);
         }
         i = cursamples / 16;
-        while (i--)
+        while(i--)
         {
             handle->lsum += fsqr(curleft[0])
                     + fsqr(curleft[1])

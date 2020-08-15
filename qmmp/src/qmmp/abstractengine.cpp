@@ -35,7 +35,7 @@ void AbstractEngine::loadPlugins()
         return;
 
     m_cache = new QList<QmmpPluginCache*>;
-    QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     for(const QString &filePath : Qmmp::findPlugins("Engines"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
@@ -137,7 +137,7 @@ void AbstractEngine::setEnabled(EngineFactory *factory, bool enable)
         m_disabledNames.append(factory->properties().shortName);
 
     m_disabledNames.removeDuplicates();
-    QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("Engine/disabled_plugins", m_disabledNames);
 }
 

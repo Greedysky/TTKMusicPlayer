@@ -198,7 +198,7 @@ fft_output(const float *re, const float *im, float *output)
     unsigned int i, j;
 #endif
 
-    while (outputptr <= endptr) {
+    while(outputptr <= endptr) {
         *outputptr = (*realptr * *realptr) + (*imagptr * *imagptr);
         outputptr++;
         realptr++;

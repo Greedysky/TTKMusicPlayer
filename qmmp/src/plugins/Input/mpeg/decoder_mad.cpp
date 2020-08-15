@@ -64,7 +64,7 @@ bool DecoderMAD::initialize()
     }
     mad_stream_buffer(&m_stream, (unsigned char *) m_input_buf, m_input_bytes);
     m_stream.error = MAD_ERROR_BUFLEN;
-    mad_frame_mute (&m_frame);
+    mad_frame_mute(&m_frame);
     m_stream.next_frame = nullptr;
     m_stream.sync = 0;
     ChannelMap map;
@@ -124,7 +124,7 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 
         if(!m_xing.frames)
         {
-            qDebug("DecoderMAD: invalid xing header (zero number of frames)");
+            qDebug("DecoderMAD: invalid xing header(zero number of frames)");
             return false;
         }
     }
@@ -139,7 +139,7 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 
         if(!m_xing.bytes)
         {
-            qDebug("DecoderMAD: invalid xing header (zero number of bytes)");
+            qDebug("DecoderMAD: invalid xing header(zero number of bytes)");
             return false;
         }
     }
@@ -173,13 +173,13 @@ DecoderMAD::LameHeader* DecoderMAD::findLameHeader(mad_bitptr ptr, unsigned int 
     if(bitlen < 272)
         return nullptr;
 
-    if(mad_bit_read (&ptr, 32) != LAME_MAGIC)
+    if(mad_bit_read(&ptr, 32) != LAME_MAGIC)
         return nullptr;
 
     LameHeader header;
-    mad_bit_skip (&ptr, 40); //version
+    mad_bit_skip(&ptr, 40); //version
 
-    header.revision = mad_bit_read (&ptr, 4);
+    header.revision = mad_bit_read(&ptr, 4);
     if(header.revision == 15)
         return nullptr;
 
@@ -187,11 +187,11 @@ DecoderMAD::LameHeader* DecoderMAD::findLameHeader(mad_bitptr ptr, unsigned int 
     header.peak = mad_bit_read(&ptr, 32) << 5; //Peak amplitude
     mad_bit_skip(&ptr, 32); //Replay Gain
     mad_bit_skip(&ptr, 16); //Encoding flags, ATH Type, bitrate
-    header.start_delay = mad_bit_read (&ptr, 12); //Start delay
-    header.end_padding = mad_bit_read (&ptr, 12); //End padding
-    mad_bit_skip (&ptr, 8); //Misc
-    header.gain = mad_bit_read (&ptr, 8); //MP3 Gain
-    mad_bit_skip (&ptr, 64); //Preset and surroud info, MusicLength, Music CRC
+    header.start_delay = mad_bit_read(&ptr, 12); //Start delay
+    header.end_padding = mad_bit_read(&ptr, 12); //End padding
+    mad_bit_skip(&ptr, 8); //Misc
+    header.gain = mad_bit_read(&ptr, 8); //MP3 Gain
+    mad_bit_skip(&ptr, 64); //Preset and surroud info, MusicLength, Music CRC
     return new LameHeader(header);
 }
 
@@ -203,7 +203,7 @@ bool DecoderMAD::findHeader()
     bool is_vbr = false;
     mad_timer_t duration = mad_timer_zero;
     struct mad_header header;
-    mad_header_init (&header);
+    mad_header_init(&header);
     uint id3v2Size = 0;
 
     forever
@@ -216,7 +216,7 @@ bool DecoderMAD::findHeader()
             if(m_stream.next_frame)
             {
                 remaining = m_stream.bufend - m_stream.next_frame;
-                memmove (m_input_buf, m_stream.next_frame, remaining);
+                memmove(m_input_buf, m_stream.next_frame, remaining);
             }
 
             m_input_bytes = input()->read(m_input_buf + remaining, INPUT_BUFFER_SIZE - remaining);
@@ -233,7 +233,7 @@ bool DecoderMAD::findHeader()
             if(m_stream.error == MAD_ERROR_LOSTSYNC)
             {
                 uint tagSize = findID3v2((uchar *)m_stream.this_frame,
-                                         (ulong) (m_stream.bufend - m_stream.this_frame));
+                                         (ulong)(m_stream.bufend - m_stream.this_frame));
                 if(tagSize > 0)
                 {
                     mad_stream_skip(&m_stream, tagSize);
@@ -245,7 +245,7 @@ bool DecoderMAD::findHeader()
                 continue;
             else
             {
-                qDebug ("DecoderMAD: Can't decode header: %s", mad_stream_errorstr(&m_stream));
+                qDebug("DecoderMAD: Can't decode header: %s", mad_stream_errorstr(&m_stream));
                 break;
             }
         }
@@ -289,7 +289,7 @@ bool DecoderMAD::findHeader()
         {
             if(m_bitrate && header.bitrate != m_bitrate)
             {
-                qDebug ("DecoderMAD: VBR detected");
+                qDebug("DecoderMAD: VBR detected");
                 is_vbr = true;
             }
             else
@@ -297,10 +297,10 @@ bool DecoderMAD::findHeader()
         }
         else if(!is_vbr)
         {
-            qDebug ("DecoderMAD: Fixed rate detected");
+            qDebug("DecoderMAD: Fixed rate detected");
             break;
         }
-        mad_timer_add (&duration, header.duration);
+        mad_timer_add(&duration, header.duration);
     }
 
     if(!result)
@@ -314,12 +314,12 @@ bool DecoderMAD::findHeader()
     }
     else if(has_xing)
     {
-        mad_timer_multiply (&header.duration, count);
+        mad_timer_multiply(&header.duration, count);
         duration = header.duration;
     }
 
     m_totalTime = mad_timer_count(duration, MAD_UNITS_MILLISECONDS);
-    qDebug ("DecoderMAD: Total time: %ld", long(m_totalTime));
+    qDebug("DecoderMAD: Total time: %ld", long(m_totalTime));
     m_freq = header.samplerate;
     m_channels = MAD_NCHANNELS(&header);
     m_bitrate = header.bitrate / 1000;
@@ -466,7 +466,7 @@ bool DecoderMAD::decodeFrame()
             {
                 //skip ID3v2 tag
                 uint tagSize = findID3v2((uchar *)m_stream.this_frame,
-                                         (ulong) (m_stream.bufend - m_stream.this_frame));
+                                         (ulong)(m_stream.bufend - m_stream.this_frame));
                 if(tagSize > 0)
                 {
                     mad_stream_skip(&m_stream, tagSize);
@@ -515,7 +515,7 @@ qint64 DecoderMAD::madOutputFloat(float *data, qint64 samples)
         samples_per_channel = samples / channels;
     }
 
-    while (samples_per_channel--)
+    while(samples_per_channel--)
     {
         *data_it++ = mad_f_todouble(*left++);
         output_samples++;

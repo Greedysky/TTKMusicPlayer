@@ -19,7 +19,7 @@ DecoderAAC::~DecoderAAC()
     if(data())
     {
         if(data()->handle)
-            NeAACDecClose (data()->handle);
+            NeAACDecClose(data()->handle);
         delete data();
         m_data = nullptr;
     }
@@ -85,7 +85,7 @@ bool DecoderAAC::initialize()
     unsigned long freq = 0;
     unsigned char chan = 0;
 #endif
-    int res = NeAACDecInit (data()->handle, (unsigned char*) m_input_buf, m_input_at, &freq, &chan);
+    int res = NeAACDecInit(data()->handle, (unsigned char*) m_input_buf, m_input_at, &freq, &chan);
 
     if(res < 0)
     {
@@ -171,6 +171,6 @@ int DecoderAAC::bitrate() const
 void DecoderAAC::seek(qint64 pos)
 {
     input()->seek(pos * input()->size() / m_totalTime);
-    NeAACDecPostSeekReset (data()->handle, 0);
+    NeAACDecPostSeekReset(data()->handle, 0);
     m_input_at = 0;
 }

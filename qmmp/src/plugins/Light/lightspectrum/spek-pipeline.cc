@@ -208,7 +208,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
         items.push_back(std::string(QString("W:%1").arg(pipeline->nfft).toUtf8().data()));
 
         std::string window_function_name;
-        switch (pipeline->window_function) {
+        switch(pipeline->window_function) {
         case WINDOW_HANN:
             window_function_name = std::string("Hann");
             break;
@@ -235,7 +235,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
     }
 
     QString error;
-    switch (pipeline->file->get_error()) {
+    switch(pipeline->file->get_error()) {
     case AudioError::CANNOT_OPEN_FILE:
         error = "Cannot open input file";
         break;
@@ -316,11 +316,11 @@ static void * reader_func(void *pp)
 
     int pos = 0, prev_pos = 0;
     int len;
-    while ((len = p->file->read()) > 0) {
+    while((len = p->file->read()) > 0) {
         if(p->quit) break;
 
         const float *buffer = p->file->get_buffer();
-        while (len-- > 0) {
+        while(len-- > 0) {
             p->input[pos] = *buffer++;
             pos = (pos + 1) % p->input_size;
 
@@ -349,7 +349,7 @@ static void * reader_func(void *pp)
 static void reader_sync(struct spek_pipeline *p, int pos)
 {
     pthread_mutex_lock(&p->reader_mutex);
-    while (!p->worker_done) {
+    while(!p->worker_done) {
         pthread_cond_wait(&p->reader_cond, &p->reader_mutex);
     }
     p->worker_done = false;
@@ -362,7 +362,7 @@ static void reader_sync(struct spek_pipeline *p, int pos)
 }
 
 static float get_window(enum WindowFunction f, int i, float *coss, int n) {
-    switch (f) {
+    switch(f) {
     case WINDOW_HANN:
         return 0.5f * (1.0f - coss[i]);
     case WINDOW_HAMMING:
@@ -388,14 +388,14 @@ static void * worker_func(void *pp)
 
     memset(p->output, 0, sizeof(float) * p->fft->get_output_size());
 
-    while (true) {
+    while(true) {
         pthread_mutex_lock(&p->reader_mutex);
         p->worker_done = true;
         pthread_cond_signal(&p->reader_cond);
         pthread_mutex_unlock(&p->reader_mutex);
 
         pthread_mutex_lock(&p->worker_mutex);
-        while (tail == p->input_pos) {
+        while(tail == p->input_pos) {
             pthread_cond_wait(&p->worker_cond, &p->worker_mutex);
         }
         tail = p->input_pos;
@@ -405,7 +405,7 @@ static void * worker_func(void *pp)
             return nullptr;
         }
 
-        while (true) {
+        while(true) {
             head = (head + 1) % p->input_size;
             if(head == tail) {
                 head = prev_head;

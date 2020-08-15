@@ -202,7 +202,7 @@ int AudioParameters::validBitsPerSample(Qmmp::AudioFormat format)
 
 Qmmp::AudioFormat AudioParameters::findAudioFormat(int bits, ByteOrder byteOrder)
 {
-    switch (bits)
+    switch(bits)
     {
     case 8:
         return Qmmp::PCM_U8;

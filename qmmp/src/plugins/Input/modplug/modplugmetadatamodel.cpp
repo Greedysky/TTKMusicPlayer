@@ -91,7 +91,7 @@ QList<MetaDataItem> ModPlugMetaDataModel::descriptions() const
 
 QString ModPlugMetaDataModel::getTypeName(quint32 type)
 {
-    switch (type) {
+    switch(type) {
     case MOD_TYPE_MOD:
         return "ProTracker";
     case MOD_TYPE_S3M:

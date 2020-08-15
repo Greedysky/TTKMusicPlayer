@@ -26,7 +26,7 @@ QList<CDATrack> DecoderCDAudio::m_track_cache;
 static void log_handler(cdio_log_level_t level, const char *message)
 {
     QString str = QString::fromLocal8Bit(message).trimmed();
-    switch (level)
+    switch(level)
     {
     case CDIO_LOG_DEBUG:
         qDebug("DecoderCDAudio: cdio message: %s (level=debug)", qPrintable(str));
@@ -42,7 +42,7 @@ static void log_handler(cdio_log_level_t level, const char *message)
 static void cddb_log_handler(cddb_log_level_t level, const char *message)
 {
     QString str = QString::fromLocal8Bit(message).trimmed();
-    switch (level)
+    switch(level)
     {
     case CDDB_LOG_DEBUG:
         qDebug("DecoderCDAudio: cddb message: %s (level=debug)", qPrintable(str));
@@ -215,68 +215,68 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
         cddb_disc_t *cddb_disc = nullptr;
         lba_t lba;
         if(!cddb_conn)
-            qWarning ("DecoderCDAudio: unable to create cddb connection");
+            qWarning("DecoderCDAudio: unable to create cddb connection");
         else
         {
-            cddb_cache_disable (cddb_conn); //disable libcddb cache, use own cache implementation instead
+            cddb_cache_disable(cddb_conn); //disable libcddb cache, use own cache implementation instead
             settings.beginGroup("cdaudio");
-            cddb_set_server_name (cddb_conn, settings.value("cddb_server", "gnudb.org").toByteArray().constData());
-            cddb_set_server_port (cddb_conn, settings.value("cddb_port", 8880).toInt());
+            cddb_set_server_name(cddb_conn, settings.value("cddb_server", "gnudb.org").toByteArray().constData());
+            cddb_set_server_port(cddb_conn, settings.value("cddb_port", 8880).toInt());
 
             if(settings.value("cddb_http", false).toBool())
             {
-                cddb_http_enable (cddb_conn);
-                cddb_set_http_path_query (cddb_conn, settings.value("cddb_path").toByteArray().constData());
+                cddb_http_enable(cddb_conn);
+                cddb_set_http_path_query(cddb_conn, settings.value("cddb_path").toByteArray().constData());
                 if(QmmpSettings::instance()->isProxyEnabled() && QmmpSettings::instance()->proxyType() == QmmpSettings::HTTP_PROXY)
                 {
                     QUrl proxy = QmmpSettings::instance()->proxy();
-                    cddb_http_proxy_enable (cddb_conn);
-                    cddb_set_http_proxy_server_name (cddb_conn, proxy.host().toLatin1().constData());
-                    cddb_set_http_proxy_server_port (cddb_conn, proxy.port());
+                    cddb_http_proxy_enable(cddb_conn);
+                    cddb_set_http_proxy_server_name(cddb_conn, proxy.host().toLatin1().constData());
+                    cddb_set_http_proxy_server_port(cddb_conn, proxy.port());
                     if(QmmpSettings::instance()->useProxyAuth())
                     {
-                        cddb_set_http_proxy_username (cddb_conn, proxy.userName().toLatin1().constData());
-                        cddb_set_http_proxy_password (cddb_conn, proxy.password().toLatin1().constData());
+                        cddb_set_http_proxy_username(cddb_conn, proxy.userName().toLatin1().constData());
+                        cddb_set_http_proxy_password(cddb_conn, proxy.password().toLatin1().constData());
                     }
                 }
             }
             settings.endGroup();
 
             cddb_disc = cddb_disc_new();
-            lba = cdio_get_track_lba (cdio, CDIO_CDROM_LEADOUT_TRACK);
-            cddb_disc_set_length (cddb_disc, FRAMES_TO_SECONDS (lba));
+            lba = cdio_get_track_lba(cdio, CDIO_CDROM_LEADOUT_TRACK);
+            cddb_disc_set_length(cddb_disc, FRAMES_TO_SECONDS(lba));
 
             for(int i = first_track_number; i <= last_track_number; ++i)
             {
                 cddb_track_t *cddb_track = cddb_track_new();
-                cddb_track_set_frame_offset (cddb_track, cdio_get_track_lba (cdio, i));
-                cddb_disc_add_track (cddb_disc, cddb_track);
+                cddb_track_set_frame_offset(cddb_track, cdio_get_track_lba(cdio, i));
+                cddb_disc_add_track(cddb_disc, cddb_track);
             }
 
-            cddb_disc_calc_discid (cddb_disc);
-            uint id = cddb_disc_get_discid (cddb_disc);
-            qDebug ("DecoderCDAudio: disc id = %x", id);
+            cddb_disc_calc_discid(cddb_disc);
+            uint id = cddb_disc_get_discid(cddb_disc);
+            qDebug("DecoderCDAudio: disc id = %x", id);
 
 
             if(readFromCache(&tracks, id))
                 qDebug("DecoderCDAudio: using local cddb cache");
             else
             {
-                int matches = cddb_query (cddb_conn, cddb_disc);
+                int matches = cddb_query(cddb_conn, cddb_disc);
                 if(matches == -1)
                 {
-                    qWarning ("DecoderCDAudio: unable to query the CDDB server, error: %s",
-                              cddb_error_str (cddb_errno(cddb_conn)));
+                    qWarning("DecoderCDAudio: unable to query the CDDB server, error: %s",
+                              cddb_error_str(cddb_errno(cddb_conn)));
                 }
                 else if(matches == 0)
                 {
-                    qDebug ("DecoderCDAudio: no CDDB info found");
+                    qDebug("DecoderCDAudio: no CDDB info found");
                 }
                 else if(cddb_read(cddb_conn, cddb_disc))
                 {
                     for(int i = first_track_number; i <= last_track_number; ++i)
                     {
-                        cddb_track_t *cddb_track = cddb_disc_get_track (cddb_disc, i - 1);
+                        cddb_track_t *cddb_track = cddb_disc_get_track(cddb_disc, i - 1);
                         int t = i - first_track_number;
                         tracks[t].info.setValue(Qmmp::ARTIST, QString::fromUtf8(cddb_track_get_artist(cddb_track)));
                         tracks[t].info.setValue(Qmmp::TITLE, QString::fromUtf8(cddb_track_get_title(cddb_track)));
@@ -288,16 +288,16 @@ QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackIn
                 }
                 else
                 {
-                    qWarning ("DecoderCDAudio: unable to read the CDDB info: %s",
-                              cddb_error_str (cddb_errno(cddb_conn)));
+                    qWarning("DecoderCDAudio: unable to read the CDDB info: %s",
+                              cddb_error_str(cddb_errno(cddb_conn)));
                 }
             }
         }
         if(cddb_disc)
-            cddb_disc_destroy (cddb_disc);
+            cddb_disc_destroy(cddb_disc);
 
         if(cddb_conn)
-            cddb_destroy (cddb_conn);
+            cddb_destroy(cddb_conn);
     }
 
     cdio_destroy(cdio);

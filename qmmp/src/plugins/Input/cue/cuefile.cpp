@@ -110,7 +110,7 @@ QStringList CueFile::splitLine(const QString &line)
     QString buf = line.trimmed();
     if(buf.isEmpty())
         return list;
-    while (!buf.isEmpty())
+    while(!buf.isEmpty())
     {
         //qDebug(qPrintable(buf));
         if(buf.startsWith('"'))
@@ -122,16 +122,16 @@ QStringList CueFile::splitLine(const QString &line)
                 qWarning("CUEParser: unable to parse line: %s",qPrintable(line));
                 return list;
             }
-            list << buf.mid (1, end - 1);
-            buf.remove (0, end+1);
+            list << buf.mid(1, end - 1);
+            buf.remove(0, end+1);
         }
         else
         {
             int end = buf.indexOf(' ', 0);
             if(end < 0)
                 end = buf.size();
-            list << buf.mid (0, end);
-            buf.remove (0, end);
+            list << buf.mid(0, end);
+            buf.remove(0, end);
         }
         buf = buf.trimmed();
     }
@@ -145,7 +145,7 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
 
     QStringList candidates;
     QDirIterator it(QFileInfo(path).dir().path(), QDir::Files);
-    while (it.hasNext())
+    while(it.hasNext())
     {
         it.next();
 

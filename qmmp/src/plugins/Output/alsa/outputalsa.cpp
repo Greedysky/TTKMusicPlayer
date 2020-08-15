@@ -34,7 +34,7 @@ OutputALSA::OutputALSA()
 OutputALSA::~OutputALSA()
 {
     uninitialize();
-    free (pcm_name);
+    free(pcm_name);
 }
 
 bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
@@ -46,7 +46,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
 
     if(snd_pcm_open(&pcm_handle, pcm_name, SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK) < 0)
     {
-        qWarning ("OutputALSA: Error opening PCM device %s", pcm_name);
+        qWarning("OutputALSA: Error opening PCM device %s", pcm_name);
         return false;
     }
 
@@ -91,7 +91,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
         }
     }
     snd_pcm_format_t alsa_format = SND_PCM_FORMAT_UNKNOWN;
-    switch (format)
+    switch(format)
     {
     case Qmmp::PCM_S8:
         alsa_format = SND_PCM_FORMAT_S8;
@@ -226,7 +226,7 @@ qint64 OutputALSA::latency()
 void OutputALSA::drain()
 {
     snd_pcm_uframes_t l = snd_pcm_bytes_to_frames(pcm_handle, m_prebuf_fill);
-    while (l > 0)
+    while(l > 0)
     {
         long m = alsa_write(m_prebuf, l);
         if(m >= 0)
@@ -275,7 +275,7 @@ qint64 OutputALSA::writeAudio(unsigned char *data, qint64 maxSize)
 
     snd_pcm_uframes_t l = snd_pcm_bytes_to_frames(pcm_handle, m_prebuf_fill);
 
-    while (l >= m_chunk_size)
+    while(l >= m_chunk_size)
     {
         snd_pcm_wait(pcm_handle, 10);
         long m;
@@ -321,10 +321,10 @@ long OutputALSA::alsa_write(unsigned char *data, long size)
     }
     else if(m == -EPIPE)
     {
-        qDebug ("OutputALSA: buffer underrun!");
+        qDebug("OutputALSA: buffer underrun!");
         if((m = snd_pcm_prepare(pcm_handle)) < 0)
         {
-            qDebug ("OutputALSA: Can't recover after underrun: %s",
+            qDebug("OutputALSA: Can't recover after underrun: %s",
                     snd_strerror(m));
             /* TODO: reopen the device */
             return -1;
@@ -334,16 +334,16 @@ long OutputALSA::alsa_write(unsigned char *data, long size)
 #ifdef ESTRPIPE
     else if(m == -ESTRPIPE)
     {
-        qDebug ("OutputALSA: Suspend, trying to resume");
-        while ((m = snd_pcm_resume(pcm_handle))
+        qDebug("OutputALSA: Suspend, trying to resume");
+        while((m = snd_pcm_resume(pcm_handle))
                 == -EAGAIN)
             sleep (1);
         if(m < 0)
         {
-            qDebug ("OutputALSA: Failed, restarting");
+            qDebug("OutputALSA: Failed, restarting");
             if((m = snd_pcm_prepare(pcm_handle)) < 0)
             {
-                qDebug ("OutputALSA: Failed to restart device: %s.",
+                qDebug("OutputALSA: Failed to restart device: %s.",
                         snd_strerror(m));
                 return -1;
             }
@@ -351,7 +351,7 @@ long OutputALSA::alsa_write(unsigned char *data, long size)
         return 0;
     }
 #endif
-    qDebug ("OutputALSA: error: %s", snd_strerror(m));
+    qDebug("OutputALSA: error: %s", snd_strerror(m));
     return snd_pcm_prepare (pcm_handle);
 }
 
@@ -475,7 +475,7 @@ void VolumeALSA::parseMixerName(char *str, char **name, int *index)
 {
     char *end;
 
-    while (isspace(*str))
+    while(isspace(*str))
         str++;
 
     if((end = strchr(str, ',')) != nullptr)

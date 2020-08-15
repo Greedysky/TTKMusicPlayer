@@ -157,7 +157,7 @@ void AACFile::parseADTS()
     {
         if(buf[i] == 0xff && (buf[i+1]&0xf6) == 0xf0)
         {
-            memmove (buf, buf + i, buf_at - i);
+            memmove(buf, buf + i, buf_at - i);
             buf_at -= i;
             break;
         }

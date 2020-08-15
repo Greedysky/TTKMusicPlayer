@@ -628,15 +628,15 @@ static void
 ape_free_ctx (APEContext *ape_ctx) {
     int i;
     if(ape_ctx->packet_data) {
-        free (ape_ctx->packet_data);
+        free(ape_ctx->packet_data);
         ape_ctx->packet_data = NULL;
     }
     if(ape_ctx->frames) {
-        free (ape_ctx->frames);
+        free(ape_ctx->frames);
         ape_ctx->frames = NULL;
     }
     if(ape_ctx->seektable) {
-        free (ape_ctx->seektable);
+        free(ape_ctx->seektable);
         ape_ctx->seektable = NULL;
     }
     for(i = 0; i < APE_FILTER_LEVELS; i++) {
@@ -644,7 +644,7 @@ ape_free_ctx (APEContext *ape_ctx) {
 #if defined(_WIN32) && ! defined(_MSC_VER)
             __mingw_aligned_free(ape_ctx->filterbuf[i]);
 #else
-            free (ape_ctx->filterbuf[i]);
+            free(ape_ctx->filterbuf[i]);
 #endif
             ape_ctx->filterbuf[i] = NULL;
         }
@@ -652,10 +652,10 @@ ape_free_ctx (APEContext *ape_ctx) {
     free(ape_ctx);
 }
 
-void ffap_free (FFap_decoder *decoder)
+void ffap_free(FFap_decoder *decoder)
 {
     ape_free_ctx (decoder->ape_ctx);
-    free (decoder);
+    free(decoder);
 }
 
 int ffap_init(FFap_decoder *decoder)
@@ -749,7 +749,7 @@ static inline void range_start_decoding(APEContext * ctx)
 /** Perform normalization */
 static inline void range_dec_normalize(APEContext * ctx)
 {
-    while (ctx->rc.range <= BOTTOM_VALUE) {
+    while(ctx->rc.range <= BOTTOM_VALUE) {
         ctx->rc.buffer <<= 8;
         if(ctx->ptr < ctx->data_end)
             ctx->rc.buffer += *ctx->ptr;
@@ -928,7 +928,7 @@ static inline int ape_decode_value(APEContext * ctx, APERice *rice)
 
             /* Count the number of bits in pivot */
             nbits = 17; /* We know there must be at least 17 bits */
-            while ((pivot >> nbits) > 0) { nbits++; }
+            while((pivot >> nbits) > 0) { nbits++; }
 
             /* base_lo is the low (nbits-16) bits of base
                base_hi is the high 16 bits of base
@@ -988,7 +988,7 @@ static void entropy_decode(APEContext * ctx, int blockstodecode, int stereo)
         memset(decoded0, 0, blockstodecode * sizeof(int32_t));
         memset(decoded1, 0, blockstodecode * sizeof(int32_t));
     } else {
-        while (likely (blockstodecode--)) {
+        while(likely (blockstodecode--)) {
             *decoded0++ = ape_decode_value(ctx, &ctx->riceY);
             if(stereo)
                 *decoded1++ = ape_decode_value(ctx, &ctx->riceX);
@@ -1120,7 +1120,7 @@ static void predictor_decode_stereo(APEContext * ctx, int count)
     int32_t *decoded0 = ctx->decoded0;
     int32_t *decoded1 = ctx->decoded1;
 
-    while (count--) {
+    while(count--) {
         /* Predictor Y */
         predictionA = predictor_update_filter(p, *decoded0, 0, YDELAYA, YDELAYB, YADAPTCOEFFSA, YADAPTCOEFFSB);
         predictionB = predictor_update_filter(p, *decoded1, 1, XDELAYA, XDELAYB, XADAPTCOEFFSA, XADAPTCOEFFSB);
@@ -1146,7 +1146,7 @@ static void predictor_decode_mono(APEContext * ctx, int count)
 
     currentA = p->lastA[0];
 
-    while (count--) {
+    while(count--) {
         A = *decoded0;
 
         p->buf[YDELAYA] = currentA;
@@ -1259,7 +1259,7 @@ typedef struct { uint64_t a, b; } xmm_reg;
 static int32_t scalarproduct_and_madd_int16_c(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul)
 {
     int res = 0;
-    while (order--) {
+    while(order--) {
         res   += *v1 * *v2++;
         *v1++ += mul * *v3++;
     }
@@ -1299,7 +1299,7 @@ static inline void do_apply_filter(int version, APEFilter *f, int32_t *data, int
     int res;
     int absres;
 
-    while (count--) {
+    while(count--) {
         res = scalarproduct_and_madd_int16(f->coeffs, f->delay - order, f->adaptcoeffs - order, order, APESIGN(*data));
         res = (res + (1 << (fracbits - 1))) >> fracbits;
         res += *data;
@@ -1403,7 +1403,7 @@ static void ape_unpack_mono(APEContext * ctx, int count)
 
     /* Pseudo-stereo - just copy left channel to right channel */
     if(ctx->channels == 2) {
-        while (count--) {
+        while(count--) {
             left = *decoded0;
             *(decoded1++) = *(decoded0++) = left;
         }
@@ -1429,7 +1429,7 @@ static void ape_unpack_stereo(APEContext * ctx, int count)
     predictor_decode_stereo(ctx, count);
 
     /* Decorrelate and scale to output depth */
-    while (count--) {
+    while(count--) {
         left = *decoded1 - (*decoded0 / 2);
         right = left + *decoded0;
 
@@ -1612,7 +1612,7 @@ int ffap_read(FFap_decoder *decoder, unsigned char *buffer, int size)
         }
     }*/
     int inits = size;
-    while (size > 0) {
+    while(size > 0) {
         if(decoder->ape_ctx->remaining > 0) {
             int sz = min (size, decoder->ape_ctx->remaining);
             memcpy (buffer, decoder->ape_ctx->buffer, sz);

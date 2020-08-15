@@ -161,7 +161,7 @@ bool DumbHelper::initialize()
     dumb_register_stdfiles();
     const char *uri = m_path.toLocal8Bit().constData();
     const char *ext = uri + strlen(uri) - 1;
-    while (*ext != '.' && ext > uri)
+    while(*ext != '.' && ext > uri)
     {
         ext--;
     }
@@ -289,7 +289,7 @@ QVariantMap DumbHelper::readMetaTags()
     for(int i = 0; i < itsd->n_instruments; i++)
     {
         char key[100];
-        snprintf(key, sizeof (key), "INST%03d", i);
+        snprintf(key, sizeof(key), "INST%03d", i);
         data.insert(key, convstr((char *)&itsd->instrument[i].name, sizeof(itsd->instrument[i].name), temp, sizeof(temp)));
     }
 

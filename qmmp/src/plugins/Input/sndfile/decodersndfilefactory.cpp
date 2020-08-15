@@ -57,7 +57,7 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
             input->seek(0);
         }
 
-        switch (subformat)
+        switch(subformat)
         {
         case WAVE_FORMAT_PCM:
         case WAVE_FORMAT_ADPCM:

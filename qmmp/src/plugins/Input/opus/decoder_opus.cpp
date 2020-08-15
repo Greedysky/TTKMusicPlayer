@@ -17,7 +17,7 @@ static int opusseek(void *src, opus_int64 offset, int whence)
     if(d->input()->isSequential())
         return -1;
     long start = 0;
-    switch (whence)
+    switch(whence)
     {
     case SEEK_END:
         start = d->input()->size();
@@ -137,7 +137,7 @@ qint64 DecoderOpus::read(unsigned char *data, qint64 maxSize)
 ChannelMap DecoderOpus::findChannelMap(int channels)
 {
     ChannelMap map;
-    switch (channels)
+    switch(channels)
     {
     case 1:
         map << Qmmp::CHAN_FRONT_LEFT;

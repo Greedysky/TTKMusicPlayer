@@ -326,7 +326,7 @@ void QmmpAudioEngine::run()
     StateHandler::instance()->dispatch(m_decoder->totalTime());
     StateHandler::instance()->dispatch(Qmmp::Playing);
 
-    while (!m_done && !m_finish)
+    while(!m_done && !m_finish)
     {
         mutex()->lock();
         //seek
@@ -459,7 +459,7 @@ void QmmpAudioEngine::run()
                 flush(true);
                 m_output->recycler()->mutex()->lock();
                 // end of stream
-                while (!m_output->recycler()->empty() && !m_user_stop)
+                while(!m_output->recycler()->empty() && !m_user_stop)
                 {
                     m_output->recycler()->cond()->wakeOne();
                     mutex()->unlock();
@@ -509,11 +509,11 @@ void QmmpAudioEngine::flush(bool final)
 {
     ulong min = final ? 0 : m_bks;
 
-    while ((!m_done && !m_finish) && m_output_at > min)
+    while((!m_done && !m_finish) && m_output_at > min)
     {
         m_output->recycler()->mutex()->lock();
 
-        while ((m_output->recycler()->full() || m_output->recycler()->blocked()) && (!m_done && !m_finish))
+        while((m_output->recycler()->full() || m_output->recycler()->blocked()) && (!m_done && !m_finish))
         {
             if(m_seekTime > 0)
             {

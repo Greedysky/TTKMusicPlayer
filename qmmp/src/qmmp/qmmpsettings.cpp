@@ -14,7 +14,7 @@ QmmpSettings::QmmpSettings(QObject *parent)
         qFatal("QmmpSettings: only one instance is allowed");
     m_instance = this;
 
-    QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     //replaygain settings
     settings.beginGroup("ReplayGain");
     m_rg_mode = (ReplayGainMode) settings.value("mode", REPLAYGAIN_DISABLED).toInt();
@@ -182,7 +182,7 @@ void QmmpSettings::setEqSettings(const EqSettings &settings)
 void QmmpSettings::readEqSettings(EqSettings::Bands bands)
 {
     m_eq_settings = EqSettings(bands);
-    QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup(QString("Equalizer_%1").arg(bands));
     for(int i = 0; i < bands; ++i)
         m_eq_settings.setGain(i, settings.value("band_"+ QString("%1").arg(i), 0).toDouble());
@@ -228,7 +228,7 @@ bool QmmpSettings::averageBitrate() const
 void QmmpSettings::sync()
 {
     qDebug("%s", Q_FUNC_INFO);
-    QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     //replaygain settings
     settings.beginGroup("ReplayGain");
     settings.setValue("mode", m_rg_mode);

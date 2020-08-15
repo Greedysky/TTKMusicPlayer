@@ -20,7 +20,7 @@ off_t mpg123_seek_cb(void *src, off_t offset, int whence)
             return -1;
 
         long start = 0;
-        switch (whence)
+        switch(whence)
         {
         case SEEK_END:
             start = d->input()->size();
@@ -76,7 +76,7 @@ bool DecoderMPG123::initialize()
         return false;
     }
 
-    mpg123_param (m_handle, MPG123_ADD_FLAGS, MPG123_SEEKBUFFER | MPG123_FUZZY, 0);
+    mpg123_param(m_handle, MPG123_ADD_FLAGS, MPG123_SEEKBUFFER | MPG123_FUZZY, 0);
 
     if((err = mpg123_replace_reader_handle(m_handle, mpg123_read_cb, mpg123_seek_cb, nullptr)) != MPG123_OK)
     {

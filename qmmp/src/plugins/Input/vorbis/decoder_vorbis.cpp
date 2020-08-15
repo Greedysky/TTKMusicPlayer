@@ -24,7 +24,7 @@ static int oggseek(void *src, ogg_int64_t offset, int whence)
         return -1;
 
     long start = 0;
-    switch (whence)
+    switch(whence)
     {
     case SEEK_END:
         start = dogg->input()->size();
@@ -147,53 +147,53 @@ void DecoderVorbis::updateTags()
     vorbis_comment *comments;
 
     QMap<Qmmp::MetaData, QString> metaData;
-    comments = ov_comment (&oggfile, -1);
+    comments = ov_comment(&oggfile, -1);
     for(i = 0; i < comments->comments; i++)
     {
         if(!strncasecmp(comments->user_comments[i], "title=",
-                         strlen ("title=")))
+                         strlen("title=")))
             metaData.insert(Qmmp::TITLE, QString::fromUtf8(comments->user_comments[i]
-                            + strlen ("title=")));
+                            + strlen("title=")));
         else if(!strncasecmp(comments->user_comments[i],
-                              "artist=", strlen ("artist=")))
+                              "artist=", strlen("artist=")))
             metaData.insert(Qmmp::ARTIST,
                             QString::fromUtf8(comments->user_comments[i]
-                                              + strlen ("artist=")));
+                                              + strlen("artist=")));
         else if(!strncasecmp(comments->user_comments[i],
-                              "album=", strlen ("album=")))
+                              "album=", strlen("album=")))
             metaData.insert(Qmmp::ALBUM,
                             QString::fromUtf8(comments->user_comments[i]
-                                              + strlen ("album=")));
+                                              + strlen("album=")));
         else if(!strncasecmp(comments->user_comments[i],
-                              "comment=", strlen ("comment=")))
+                              "comment=", strlen("comment=")))
             metaData.insert(Qmmp::COMMENT,
                             QString::fromUtf8(comments->user_comments[i]
-                                              + strlen ("comment=")));
+                                              + strlen("comment=")));
         else if(!strncasecmp(comments->user_comments[i],
-                              "genre=", strlen ("genre=")))
-            metaData.insert(Qmmp::GENRE, QString::fromUtf8 (comments->user_comments[i]
-                            + strlen ("genre=")));
+                              "genre=", strlen("genre=")))
+            metaData.insert(Qmmp::GENRE, QString::fromUtf8(comments->user_comments[i]
+                            + strlen("genre=")));
         else if(!strncasecmp(comments->user_comments[i],
                               "tracknumber=",
-                              strlen ("tracknumber=")))
+                              strlen("tracknumber=")))
             metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i]
-                            + strlen ("tracknumber="))));
+                            + strlen("tracknumber="))));
         else if(!strncasecmp(comments->user_comments[i],
-                              "track=", strlen ("track=")))
+                              "track=", strlen("track=")))
             metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i]
-                            + strlen ("track="))));
+                            + strlen("track="))));
         else if(!strncasecmp(comments->user_comments[i],
-                              "date=", strlen ("date=")))
+                              "date=", strlen("date=")))
             metaData.insert(Qmmp::YEAR, QString::number(atoi(comments->user_comments[i]
-                            + strlen ("date="))));
+                            + strlen("date="))));
         else if(!strncasecmp(comments->user_comments[i],
-                              "composer=", strlen ("composer=")))
-            metaData.insert(Qmmp::COMPOSER, QString::fromUtf8 (comments->user_comments[i]
-                            + strlen ("composer=")));
+                              "composer=", strlen("composer=")))
+            metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(comments->user_comments[i]
+                            + strlen("composer=")));
         else if(!strncasecmp(comments->user_comments[i],
-                              "discnumber=", strlen ("discnumber=")))
+                              "discnumber=", strlen("discnumber=")))
             metaData.insert(Qmmp::DISCNUMBER, QString::number(atoi(comments->user_comments[i]
-                            + strlen ("discnumber="))));
+                            + strlen("discnumber="))));
     }
     addMetaData(metaData);
 }
@@ -202,7 +202,7 @@ void DecoderVorbis::updateTags()
 ChannelMap DecoderVorbis::findChannelMap(int channels)
 {
     ChannelMap map;
-    switch (channels)
+    switch(channels)
     {
     case 1:
         map << Qmmp::CHAN_FRONT_LEFT;
@@ -272,7 +272,7 @@ qint64 DecoderVorbis::read(unsigned char *data, qint64 maxSize)
     len = -1;
     float **pcm = nullptr;
     int section = 0;
-    while (len < 0)
+    while(len < 0)
         len = ov_read_float(&oggfile, &pcm, maxSize/sizeof(float), &section);
 
     if(len == 0)

@@ -130,7 +130,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
         return;
 
     QString name = factory->properties().shortName;
-    QSettings settings ( Qmmp::configFile(), QSettings::IniFormat );
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList visList = settings.value("Visualization/enabled_plugins").toStringList();
 
     if(enable)
@@ -143,7 +143,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
             if(m_receiver && m_member)
                 connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
             visual->setWindowFlags(Qt::Window);
-            m_vis_map.insert (factory, visual);
+            m_vis_map.insert(factory, visual);
             Qmmp::State st = StateHandler::instance()->state();
             if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
                 visual->start();
@@ -158,7 +158,7 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
         {
             m_visuals.removeAll(m_vis_map.value(factory));
             m_vis_map.value(factory)->close();
-            m_vis_map.remove (factory);
+            m_vis_map.remove(factory);
         }
     }
     settings.setValue("Visualization/enabled_plugins", visList);
@@ -168,7 +168,7 @@ bool Visual::isEnabled(const VisualFactory *factory)
 {
     checkFactories();
     QString name = factory->properties().shortName;
-    QSettings settings ( Qmmp::configFile(), QSettings::IniFormat );
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList visList = settings.value("Visualization/enabled_plugins").toStringList();
     return visList.contains(name);
 }
@@ -195,7 +195,7 @@ void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
     m_member = member;
     m_parentWidget = parent;
 
-    QSettings settings ( Qmmp::configFile(), QSettings::IniFormat );
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("Visualization/enabled_plugins", QStringList());
 }
 

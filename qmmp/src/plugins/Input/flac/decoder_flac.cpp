@@ -31,7 +31,7 @@ static size_t pack_pcm_signed(FLAC__byte *output,
      {
          for(channel = 0; channel < channels; channel++)
          {
-             switch (bps)
+             switch(bps)
              {
              case 8:
                  *data8 = input[channel][sample] & 0xff;
@@ -81,8 +81,8 @@ static int flac_decode(void *client_data, unsigned char *buf, int buf_len)
     }
 
     to_copy = qMin((unsigned)buf_len, data->sample_buffer_fill);
-    memcpy (buf, data->sample_buffer, to_copy);
-    memmove (data->sample_buffer,
+    memcpy(buf, data->sample_buffer, to_copy);
+    memmove(data->sample_buffer,
              data->sample_buffer + to_copy,
              data->sample_buffer_fill - to_copy);
     data->sample_buffer_fill -= to_copy;
@@ -201,7 +201,7 @@ static void flac_callback_metadata(const FLAC__StreamDecoder *,
     flac_data *data = static_cast<flac_data *>(client_data);
     if(metadata->type == FLAC__METADATA_TYPE_STREAMINFO)
     {
-        qDebug ("DecoderFLAC: getting metadata info");
+        qDebug("DecoderFLAC: getting metadata info");
 
         data->total_samples =
             (unsigned)(metadata->data.stream_info.total_samples
@@ -505,13 +505,13 @@ qint64 DecoderFLAC::read(unsigned char *buf, qint64 size)
         memmove(m_buf, buf + len2, m_buf_size);
         return len2;
     }
-    return flac_decode (m_data, buf, size);
+    return flac_decode(m_data, buf, size);
 }
 
 void DecoderFLAC::deinit()
 {
     if(m_data->decoder)
-        FLAC__stream_decoder_finish (m_data->decoder);
+        FLAC__stream_decoder_finish(m_data->decoder);
 
     if(!input() && m_data->input) //delete internal input only
     {
@@ -565,7 +565,7 @@ uint DecoderFLAC::findID3v2(char *data, ulong size) //retuns ID3v2 tag size
 ChannelMap DecoderFLAC::findChannelMap(int channels)
 {
     ChannelMap map;
-    switch (channels)
+    switch(channels)
     {
     case 1:
         map << Qmmp::CHAN_FRONT_LEFT;

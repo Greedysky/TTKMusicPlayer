@@ -197,7 +197,7 @@ bool DecoderFFmpeg::initialize()
 
     avcodec_parameters_to_context(m_codecContext, m_formatContext->streams[m_audioIndex]->codecpar);
 
-    if (m_codecContext->channels == 1)
+    if(m_codecContext->channels == 1)
     {
         m_codecContext->request_channel_layout = AV_CH_LAYOUT_MONO;
         m_channels = m_codecContext->channels;
@@ -212,13 +212,13 @@ bool DecoderFFmpeg::initialize()
 
     AVCodec *codec = avcodec_find_decoder(m_codecContext->codec_id);
 
-    if (!codec)
+    if(!codec)
     {
         qWarning("DecoderFFmpeg: unsupported codec for output stream");
         return false;
     }
 
-    if (avcodec_open2(m_codecContext, codec, nullptr) < 0)
+    if(avcodec_open2(m_codecContext, codec, nullptr) < 0)
     {
         qWarning("DecoderFFmpeg: error while opening codec for output stream");
         return false;
@@ -322,7 +322,7 @@ qint64 DecoderFFmpeg::read(unsigned char *audio, qint64 maxSize)
 void DecoderFFmpeg::seek(qint64 pos)
 {
     int64_t timestamp = int64_t(pos) * AV_TIME_BASE / 1000;
-    if (m_formatContext->start_time != (qint64)AV_NOPTS_VALUE)
+    if(m_formatContext->start_time != (qint64)AV_NOPTS_VALUE)
         timestamp += m_formatContext->start_time;
     m_seekTime = timestamp;
     av_seek_frame(m_formatContext, -1, timestamp, AVSEEK_FLAG_BACKWARD);

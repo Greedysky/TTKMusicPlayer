@@ -39,7 +39,7 @@ MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::Tag
     else
     {
         m_tag = m_file->APETag();
-        m_codec = QTextCodec::codecForName ("UTF-8");
+        m_codec = QTextCodec::codecForName("UTF-8");
     }
 }
 

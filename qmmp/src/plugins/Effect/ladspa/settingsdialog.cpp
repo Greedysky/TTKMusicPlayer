@@ -40,8 +40,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         m_model->setData(m_model->index(i, 0), (uint) plugin_list[i]->unique_id);
         m_model->setData(m_model->index(i, 1), plugin_list[i]->name);
     }
-    m_ui->pluginsTreeView->resizeColumnToContents (0);
-    m_ui->pluginsTreeView->resizeColumnToContents (1);
+    m_ui->pluginsTreeView->resizeColumnToContents(0);
+    m_ui->pluginsTreeView->resizeColumnToContents(1);
     updateRunningPlugins();
 }
 
@@ -89,7 +89,7 @@ void SettingsDialog::on_configureButton_clicked()
 
     for(LADSPAControl *c : qAsConst(effect->controls))
     {
-        switch ((int) c->type)
+        switch((int) c->type)
         {
         case LADSPAControl::BUTTON:
             button = new LADSPAButton(&c->value, dialog);

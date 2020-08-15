@@ -125,7 +125,7 @@ void LADSPAHost::loadModules()
 
 void LADSPAHost::findModules(const QString &path)
 {
-    QDir dir (path);
+    QDir dir(path);
     dir.setFilter(QDir::Files | QDir::Hidden);
     dir.setSorting(QDir::Name);
     const QFileInfoList files = dir.entryInfoList((QStringList() << "*.so"));
@@ -176,7 +176,7 @@ void LADSPAHost::unloadModules()
     }
     qDeleteAll(m_plugins);
     m_plugins.clear();
-    while (!m_modules.isEmpty())
+    while(!m_modules.isEmpty())
         dlclose(m_modules.takeFirst());
 }
 

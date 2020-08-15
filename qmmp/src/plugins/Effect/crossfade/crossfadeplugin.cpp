@@ -20,7 +20,7 @@ CrossfadePlugin::~CrossfadePlugin()
 
 void CrossfadePlugin::applyEffect(Buffer *b)
 {
-    switch (m_state)
+    switch(m_state)
     {
     case WAITING:
         if((m_core->duration() > m_overlap + 2000)

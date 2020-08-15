@@ -14,7 +14,7 @@ OutputNull::~OutputNull()
 
 bool OutputNull::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
-    switch (format)
+    switch(format)
     {
     case Qmmp::PCM_S8:
         m_bytes_per_second = freq * map.count();

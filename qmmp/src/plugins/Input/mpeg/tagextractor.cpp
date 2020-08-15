@@ -43,7 +43,7 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
     QTextCodec *codec = nullptr;
     if(name.contains("UTF"))
     {
-        codec = QTextCodec::codecForName ("UTF-8");
+        codec = QTextCodec::codecForName("UTF-8");
         utf = true;
     }
     else
@@ -51,7 +51,7 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
     settings.endGroup();
 
     if(!codec)
-        codec = QTextCodec::codecForName ("UTF-8");
+        codec = QTextCodec::codecForName("UTF-8");
 
     m_tag.insert(Qmmp::ALBUM,
                  codec->toUnicode(album.toCString(utf)).trimmed());

@@ -86,10 +86,10 @@ QPixmap FLACMetaDataModel::cover() const
     //embedded cover
      QPixmap cover;
      FLAC__StreamMetadata *metadata;
-     FLAC__metadata_get_picture (qPrintable(m_path),
-                                 &metadata,
-                                 FLAC__STREAM_METADATA_PICTURE_TYPE_FRONT_COVER,
-                                 0,0, -1,-1,-1,-1);
+     FLAC__metadata_get_picture(qPrintable(m_path),
+                                &metadata,
+                                FLAC__STREAM_METADATA_PICTURE_TYPE_FRONT_COVER,
+                                0,0, -1,-1,-1,-1);
      if(metadata)
      {
          FLAC__StreamMetadata_Picture *pict = &metadata->data.picture;

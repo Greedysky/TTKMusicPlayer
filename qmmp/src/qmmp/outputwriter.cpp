@@ -218,7 +218,7 @@ void OutputWriter::run()
     dispatch(m_output->audioParameters());
     startVisualization();
 
-    while (!done)
+    while(!done)
     {
         m_mutex.lock();
         if(m_pause != m_paused)
@@ -237,7 +237,7 @@ void OutputWriter::run()
         recycler()->mutex()->lock();
         done = m_user_stop || (m_finish && recycler()->empty());
 
-        while (!done && (recycler()->empty() || m_pause))
+        while(!done && (recycler()->empty() || m_pause))
         {
             recycler()->cond()->wakeOne();
             m_mutex.unlock();
@@ -300,7 +300,7 @@ void OutputWriter::run()
             }
             output_at = b->samples * m_output->sampleSize();
 
-            while (l < output_at && !m_pause && !m_paused)
+            while(l < output_at && !m_pause && !m_paused)
             {
                 m_mutex.lock();
                 if(m_skip)

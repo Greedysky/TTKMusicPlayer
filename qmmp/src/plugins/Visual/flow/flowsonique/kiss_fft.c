@@ -38,7 +38,7 @@ static void kf_bfly2(
         C_ADDTO( *Fout ,  t );
         ++Fout2;
         ++Fout;
-    }while (--m);
+    }while(--m);
 }
 
 static void kf_bfly4(
@@ -156,7 +156,7 @@ static void kf_bfly5(
     Fout4=Fout0+4*m;
 
     tw=st->twiddles;
-    for ( u=0; u<m; ++u ) {
+    for( u=0; u<m; ++u ) {
         C_FIXDIV( *Fout0,5); C_FIXDIV( *Fout1,5); C_FIXDIV( *Fout2,5); C_FIXDIV( *Fout3,5); C_FIXDIV( *Fout4,5);
         scratch[0] = *Fout0;
 
@@ -210,21 +210,21 @@ static void kf_bfly_generic(
 
     kiss_fft_cpx * scratch = (kiss_fft_cpx*)KISS_FFT_TMP_ALLOC(sizeof(kiss_fft_cpx)*p);
 
-    for ( u=0; u<m; ++u ) {
+    for( u=0; u<m; ++u ) {
         k=u;
-        for ( q1=0 ; q1<p ; ++q1 ) {
+        for( q1=0 ; q1<p ; ++q1 ) {
             scratch[q1] = Fout[ k  ];
             C_FIXDIV(scratch[q1],p);
             k += m;
         }
 
         k=u;
-        for ( q1=0 ; q1<p ; ++q1 ) {
+        for( q1=0 ; q1<p ; ++q1 ) {
             int twidx=0;
             Fout[ k ] = scratch[0];
-            for (q=1;q<p;++q ) {
+            for(q=1;q<p;++q ) {
                 twidx += fstride * k;
-                if (twidx>=Norig) twidx-=Norig;
+                if(twidx>=Norig) twidx-=Norig;
                 C_MUL(t,scratch[q] , twiddles[twidx] );
                 C_ADDTO( Fout[ k ] ,t);
             }
@@ -252,17 +252,17 @@ void kf_work(
 #ifdef _OPENMP
     // use openmp extensions at the 
     // top-level (not recursive)
-    if (fstride==1 && p<=5)
+    if(fstride==1 && p<=5)
     {
         int k;
 
         // execute the p different work units in different threads
 #       pragma omp parallel for
-        for (k=0;k<p;++k) 
+        for(k=0;k<p;++k)
             kf_work( Fout +k*m, f+ fstride*in_stride*k,fstride*p,in_stride,factors,st);
         // all threads have joined by this point
 
-        switch (p) {
+        switch(p) {
             case 2: kf_bfly2(Fout,fstride,st,m); break;
             case 3: kf_bfly3(Fout,fstride,st,m); break; 
             case 4: kf_bfly4(Fout,fstride,st,m); break;
@@ -273,7 +273,7 @@ void kf_work(
     }
 #endif
 
-    if (m==1) {
+    if(m==1) {
         do{
             *Fout = *f;
             f += fstride*in_stride;
@@ -292,7 +292,7 @@ void kf_work(
     Fout=Fout_beg;
 
     // recombine the p smaller DFTs 
-    switch (p) {
+    switch(p) {
         case 2: kf_bfly2(Fout,fstride,st,m); break;
         case 3: kf_bfly3(Fout,fstride,st,m); break; 
         case 4: kf_bfly4(Fout,fstride,st,m); break;
@@ -314,19 +314,19 @@ void kf_factor(int n,int * facbuf)
 
     /*factor out powers of 4, powers of 2, then any remaining primes */
     do {
-        while (n % p) {
-            switch (p) {
+        while(n % p) {
+            switch(p) {
                 case 4: p = 2; break;
                 case 2: p = 3; break;
                 default: p += 2; break;
             }
-            if (p > floor_sqrt)
+            if(p > floor_sqrt)
                 p = n;          /* no more factors, skip to end */
         }
         n /= p;
         *facbuf++ = p;
         *facbuf++ = n;
-    } while (n > 1);
+    } while(n > 1);
 }
 
 /*
@@ -342,22 +342,22 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
     size_t memneeded = sizeof(struct kiss_fft_state)
         + sizeof(kiss_fft_cpx)*(nfft-1); /* twiddle factors*/
 
-    if ( lenmem==NULL ) {
+    if( lenmem==NULL ) {
         st = ( kiss_fft_cfg)KISS_FFT_MALLOC( memneeded );
     }else{
-        if (mem != NULL && *lenmem >= memneeded)
+        if(mem != NULL && *lenmem >= memneeded)
             st = (kiss_fft_cfg)mem;
         *lenmem = memneeded;
     }
-    if (st) {
+    if(st) {
         int i;
         st->nfft=nfft;
         st->inverse = inverse_fft;
 
-        for (i=0;i<nfft;++i) {
+        for(i=0;i<nfft;++i) {
             const double pi=3.141592653589793238462643383279502884197169399375105820974944;
             double phase = -2*pi*i / nfft;
-            if (st->inverse)
+            if(st->inverse)
                 phase *= -1;
             kf_cexp(st->twiddles+i, phase );
         }
@@ -370,7 +370,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
 
 void kiss_fft_stride(kiss_fft_cfg st,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,int in_stride)
 {
-    if (fin == fout) {
+    if(fin == fout) {
         //NOTE: this is not really an in-place FFT algorithm.
         //It just performs an out-of-place FFT into a temp buffer
         kiss_fft_cpx * tmpbuf = (kiss_fft_cpx*)KISS_FFT_TMP_ALLOC( sizeof(kiss_fft_cpx)*st->nfft);
@@ -397,10 +397,10 @@ int kiss_fft_next_fast_size(int n)
 {
     while(1) {
         int m=n;
-        while ( (m%2) == 0 ) m/=2;
-        while ( (m%3) == 0 ) m/=3;
-        while ( (m%5) == 0 ) m/=5;
-        if (m<=1)
+        while( (m%2) == 0 ) m/=2;
+        while( (m%3) == 0 ) m/=3;
+        while( (m%5) == 0 ) m/=5;
+        if(m<=1)
             break; /* n is completely factorable by twos, threes, and fives */
         n++;
     }

@@ -28,7 +28,7 @@
 DecoderMPEGFactory::DecoderMPEGFactory()
 {
     char str[] = { char(0xF2), char(0xE5), char(0xF1), char(0xF2), '\0'};
-    QTextCodec *codec = QTextCodec::codecForName ("windows-1251");
+    QTextCodec *codec = QTextCodec::codecForName("windows-1251");
     TagLib::String tstr(str);
     if(codec->toUnicode(str) == QString::fromUtf8(tstr.toCString(true)))
     {
@@ -94,19 +94,19 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
         struct mad_frame frame;
         int dec_res;
 
-        mad_stream_init (&stream);
-        mad_header_init (&header);
+        mad_stream_init(&stream);
+        mad_header_init(&header);
         mad_frame_init(&frame);
-        mad_stream_buffer (&stream, (unsigned char *) buf, dataSize);
+        mad_stream_buffer(&stream, (unsigned char *) buf, dataSize);
         stream.error = MAD_ERROR_NONE;
 
-        while ((dec_res = mad_header_decode(&header, &stream)) == -1
+        while((dec_res = mad_header_decode(&header, &stream)) == -1
                && MAD_RECOVERABLE(stream.error))
             ;
 
         if(dec_res == 0)
         {
-            while ((dec_res = mad_frame_decode(&frame, &stream)) == -1
+            while((dec_res = mad_frame_decode(&frame, &stream)) == -1
                    && MAD_RECOVERABLE(stream.error))
                 ;
         }
@@ -211,7 +211,7 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
             TagLib::Tag *tag = nullptr;
             QByteArray codecName;
 
-            switch ((uint) tag_array[i])
+            switch((uint) tag_array[i])
             {
             case SettingsDialog::ID3v1:
                 codecName = settings.value("ID3v1_encoding","ISO-8859-1").toByteArray();

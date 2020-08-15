@@ -48,7 +48,7 @@ QList<TrackInfo*> DecoderWildMidiFactory::createPlayList(const QString &path, Tr
 
     if((parts & TrackInfo::Properties) && helper->initialize() && helper->sampleRate())
     {
-        void *midi_ptr = WildMidi_Open (path.toLocal8Bit().constData());
+        void *midi_ptr = WildMidi_Open(path.toLocal8Bit().constData());
         if(midi_ptr)
         {
             WildMidiHelper::instance()->addPtr(midi_ptr);

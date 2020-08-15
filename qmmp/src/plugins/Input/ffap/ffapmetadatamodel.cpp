@@ -72,7 +72,7 @@ FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::T
     else
     {
         m_tag = m_file->APETag();
-        m_codec = QTextCodec::codecForName ("UTF-8");
+        m_codec = QTextCodec::codecForName("UTF-8");
     }
 }
 

@@ -80,11 +80,11 @@ bool DecoderMPC::initialize()
     m_data->reader.get_size = mpc_callback_get_size;
     m_data->reader.data = this;
 
-    m_data->demuxer = mpc_demux_init (&m_data->reader);
+    m_data->demuxer = mpc_demux_init(&m_data->reader);
 
     if(!m_data->demuxer)
         return false;
-    mpc_demux_get_info (m_data->demuxer, &m_data->info);
+    mpc_demux_get_info(m_data->demuxer, &m_data->info);
 
     int chan = data()->info.channels;
     configure(data()->info.sample_freq, chan, Qmmp::PCM_FLOAT);
@@ -117,9 +117,9 @@ qint64 DecoderMPC::read(unsigned char *audio, qint64 maxSize)
     MPC_SAMPLE_FORMAT buffer[MPC_DECODER_BUFFER_LENGTH];
     frame.buffer = (MPC_SAMPLE_FORMAT *) &buffer;
     m_len = 0;
-    while (!m_len)
+    while(!m_len)
     {
-        err = mpc_demux_decode (m_data->demuxer, &frame);
+        err = mpc_demux_decode(m_data->demuxer, &frame);
         if(err != MPC_STATUS_OK || frame.bits == -1)
         {
             m_len = 0;

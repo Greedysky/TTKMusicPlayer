@@ -90,7 +90,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
 
     if(parts & TrackInfo::MetaData)
     {
-        int cue_len = WavpackGetTagItem (ctx, "cuesheet", nullptr, 0);
+        int cue_len = WavpackGetTagItem(ctx, "cuesheet", nullptr, 0);
         if(cue_len > 0)
         {
             char value[cue_len + 1];
@@ -109,30 +109,30 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
         else
         {
             char value[200] = { 0 };
-            WavpackGetTagItem (ctx, "Album", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Album", value, sizeof(value));
             info->setValue(Qmmp::ALBUM, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Artist", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Artist", value, sizeof(value));
             info->setValue(Qmmp::ARTIST, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Album Artist", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Album Artist", value, sizeof(value));
             info->setValue(Qmmp::ALBUMARTIST, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Comment", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Comment", value, sizeof(value));
             info->setValue(Qmmp::COMMENT, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Genre", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Genre", value, sizeof(value));
             info->setValue(Qmmp::GENRE, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Title", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Title", value, sizeof(value));
             info->setValue(Qmmp::TITLE, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Composer", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Composer", value, sizeof(value));
             info->setValue(Qmmp::COMPOSER, QString::fromUtf8(value));
-            WavpackGetTagItem (ctx, "Year", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Year", value, sizeof(value));
             info->setValue(Qmmp::YEAR, QString::fromUtf8(value).toInt());
-            WavpackGetTagItem (ctx, "Track", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Track", value, sizeof(value));
             info->setValue(Qmmp::TRACK, QString::fromUtf8(value).toInt());
-            WavpackGetTagItem (ctx, "Disc", value, sizeof(value));
+            WavpackGetTagItem(ctx, "Disc", value, sizeof(value));
             info->setValue(Qmmp::DISCNUMBER, QString::fromUtf8(value).toInt());
         }
     }
 
-    WavpackCloseFile (ctx);
+    WavpackCloseFile(ctx);
     return QList<TrackInfo*>() << info;
 }
 

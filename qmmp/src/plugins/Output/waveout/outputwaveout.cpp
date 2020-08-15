@@ -80,7 +80,7 @@ bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat f
     fmt.nBlockAlign     = fmt.nChannels * fmt.wBitsPerSample/8;
     fmt.nAvgBytesPerSec = fmt.nSamplesPerSec * fmt.nChannels * fmt.wBitsPerSample/8;
 
-    switch (waveOutOpen (&dev, deviceID, &fmt, (DWORD)wave_callback, 0, CALLBACK_FUNCTION))
+    switch(waveOutOpen (&dev, deviceID, &fmt, (DWORD)wave_callback, 0, CALLBACK_FUNCTION))
     {
     case MMSYSERR_ALLOCATED:
         qWarning("OutputWaveOut: Device is already open.");
@@ -135,7 +135,7 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
     len = qMin(len, (qint64)1024);
 
 
-    while (PlayedWaveHeadersCount > 0)                        // free used blocks ...
+    while(PlayedWaveHeadersCount > 0)                        // free used blocks ...
         free_memory();
 
     if(ScheduledBlocks >= sizeof(PlayedWaveHeaders)/sizeof(*PlayedWaveHeaders)) // wait for a free block ...
@@ -184,9 +184,9 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
 
 void OutputWaveOut::drain()
 {
-    while (ScheduledBlocks > 0)
+    while(ScheduledBlocks > 0)
         Sleep(10);
-    while (PlayedWaveHeadersCount > 0)                        // free used blocks ...
+    while(PlayedWaveHeadersCount > 0)                        // free used blocks ...
         free_memory();
 }
 
@@ -202,7 +202,7 @@ void OutputWaveOut::resume()
 
 void OutputWaveOut::reset()
 {
-   while (PlayedWaveHeadersCount > 0)                        // free used blocks ...
+   while(PlayedWaveHeadersCount > 0)                        // free used blocks ...
       free_memory();
    waveOutReset (dev);
    m_totalWritten = 0;
@@ -213,10 +213,10 @@ void OutputWaveOut::uninitialize()
     if(dev)
     {
         waveOutReset(dev); // reset the device
-        while (ScheduledBlocks > 0)
+        while(ScheduledBlocks > 0)
             Sleep (10);
 
-        while (PlayedWaveHeadersCount > 0)         // free used blocks ...
+        while(PlayedWaveHeadersCount > 0)         // free used blocks ...
             free_memory();
 
         waveOutReset (dev);      // reset the device

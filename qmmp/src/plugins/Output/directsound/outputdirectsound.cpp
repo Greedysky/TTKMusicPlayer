@@ -234,7 +234,7 @@ void OutputDirectSound::drain()
     {
         m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, nullptr);
     }
-    while (dsCurrentPlayCursor <= m_dsBufferAt)
+    while(dsCurrentPlayCursor <= m_dsBufferAt)
     {
         m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, nullptr);
     }

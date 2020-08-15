@@ -301,12 +301,12 @@ TagLib::String ReplayGainWidget::peakToString(double value)
 
 TagLib::StringList ReplayGainWidget::gainToStringList(double value)
 {
-   return TagLib::StringList (gainToString(value));
+   return TagLib::StringList(gainToString(value));
 }
 
 TagLib::StringList ReplayGainWidget::peakToStringList(double value)
 {
-    return TagLib::StringList (peakToString(value));
+    return TagLib::StringList(peakToString(value));
 }
 
 void ReplayGainWidget::writeAPETag(TagLib::APE::Tag *tag, ReplayGainInfoItem *item)

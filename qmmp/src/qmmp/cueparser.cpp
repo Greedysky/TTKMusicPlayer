@@ -32,7 +32,7 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
 
     textStream.setCodec(codec ? codec : QTextCodec::codecForName("UTF-8"));
 
-    while (!textStream.atEnd())
+    while(!textStream.atEnd())
     {
         QString line = textStream.readLine().trimmed();
         QStringList words = splitLine(line);
@@ -268,7 +268,7 @@ QStringList CueParser::splitLine(const QString &line)
     QString buf = line.trimmed();
     if(buf.isEmpty())
         return list;
-    while (!buf.isEmpty())
+    while(!buf.isEmpty())
     {
         //qDebug(qPrintable(buf));
         if(buf.startsWith('"'))

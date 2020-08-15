@@ -21,7 +21,7 @@ void Dithering::setFormats(Qmmp::AudioFormat in, Qmmp::AudioFormat out)
     m_required = false;
     if(AudioParameters::sampleSize(in) > AudioParameters::sampleSize(out))
     {
-        switch (out)
+        switch(out)
         {
         case Qmmp::PCM_S8:
         case Qmmp::PCM_U8:

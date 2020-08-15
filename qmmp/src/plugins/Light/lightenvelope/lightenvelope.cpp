@@ -137,7 +137,7 @@ void LightEnvelopeScanner::run()
     float *rms = new float[m_ap.channels()]{ 0 };
     int counter = 0;
     int channels = m_ap.channels();
-    while (!m_user_stop)
+    while(!m_user_stop)
     {
         m_mutex.unlock();
         qint64 len = m_decoder->read(tmp, sizeof(tmp));

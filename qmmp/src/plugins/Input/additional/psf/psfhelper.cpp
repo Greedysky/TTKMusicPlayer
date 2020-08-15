@@ -242,29 +242,29 @@ QVariantMap PSFHelper::readMetaTags()
         {
             psfplug_add_meta(m_meta, "title", info.info[i]);
         }
-        else if (!strncasecmp(info.title[i], "Game: ", 6))
+        else if(!strncasecmp(info.title[i], "Game: ", 6))
         {
             psfplug_add_meta(m_meta, "album", info.info[i]);
         }
-        else if (!strncasecmp(info.title[i], "Artist: ", 8))
+        else if(!strncasecmp(info.title[i], "Artist: ", 8))
         {
             psfplug_add_meta(m_meta, "artist", info.info[i]);
         }
-        else if (!strncasecmp(info.title[i], "Copyright: ", 11))
+        else if(!strncasecmp(info.title[i], "Copyright: ", 11))
         {
             psfplug_add_meta(m_meta, "copyright", info.info[i]);
         }
-        else if (!strncasecmp(info.title[i], "Year: ", 6))
+        else if(!strncasecmp(info.title[i], "Year: ", 6))
         {
             psfplug_add_meta(m_meta, "year", info.info[i]);
         }
-        else if (!strncasecmp(info.title[i], "Fade: ", 6))
+        else if(!strncasecmp(info.title[i], "Fade: ", 6))
         {
             psfplug_add_meta(m_meta, "fade", info.info[i]);
         }
         else
         {
-            char *colon = strchr (info.title[i], ':');
+            char *colon = strchr(info.title[i], ':');
             char name[colon - info.title[i] + 1];
             memcpy(name, info.title[i], colon - info.title[i]);
             name[colon - info.title[i]] = 0;

@@ -18,7 +18,7 @@ sf_count_t sndfile_sf_vio_seek(sf_count_t offset, int whence, void *data)
         return -1;
 
     qint64 start = 0;
-    switch (whence)
+    switch(whence)
     {
     case SEEK_END:
         start = input->size();
@@ -69,7 +69,7 @@ bool DecoderSndFile::initialize()
     m_totalTime = 0;
     SF_INFO snd_info;
 
-    memset (&snd_info, 0, sizeof(snd_info));
+    memset(&snd_info, 0, sizeof(snd_info));
     snd_info.format = 0;
 
     //setup callbacks
@@ -93,7 +93,7 @@ bool DecoderSndFile::initialize()
     m_bitrate =  input()->size() * 8.0 / m_totalTime + 0.5;
 
     if((snd_info.format & SF_FORMAT_SUBMASK) == SF_FORMAT_FLOAT)
-        sf_command (m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, nullptr, SF_TRUE);
+        sf_command(m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, nullptr, SF_TRUE);
 
     configure(m_freq, chan, Qmmp::PCM_S16LE);
     qDebug("DecoderSndFile: detected format: %08X", snd_info.format);

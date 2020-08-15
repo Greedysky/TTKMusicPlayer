@@ -39,7 +39,7 @@ const ChannelMap ChannelMap::remaped() const
          if(contains(m_internal_map[i]))
              map.append(m_internal_map[i]);
     }
-    while (map.count() < count())
+    while(map.count() < count())
     {
         map.append(Qmmp::CHAN_NULL);
     }
@@ -72,7 +72,7 @@ void ChannelMap::generateMap(int channels)
 {
     int mask = 0;
 
-    switch (channels)
+    switch(channels)
     {
     case 1:
         mask = Qmmp::CHAN_FRONT_LEFT;

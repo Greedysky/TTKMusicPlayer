@@ -17,7 +17,7 @@ LADSPASlider::LADSPASlider(double min, double max, double step,
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(m_slider);
     layout->addWidget(m_spinBox);
-    layout->setContentsMargins (0, 0, 0, 0);
+    layout->setContentsMargins(0, 0, 0, 0);
     setLayout(layout);
 
     m_spinBox->setRange(min, max);

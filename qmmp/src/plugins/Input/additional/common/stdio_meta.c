@@ -268,7 +268,7 @@ int cp1252_to_utf8(const uint8_t *in, int inlen, uint8_t *out, int outlen)
     while(inlen > 0 && outlen-len > 2)
     {
         uint8_t c=*in;
-        switch (c)
+        switch(c)
         {
         case 192 ... 255:
             *out++ = 195;

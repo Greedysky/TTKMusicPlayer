@@ -43,7 +43,7 @@ QList<MetaDataItem> MPEGMetaDataModel::extraProperties() const
         return ep;
     }
 
-    switch (ap->channelMode())
+    switch(ap->channelMode())
     {
     case TagLib::MPEG::Header::Stereo:
         ep << MetaDataItem(tr("Mode"), "Stereo");
@@ -144,23 +144,23 @@ MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file,
         m_tag = m_file->ID3v1Tag();
         m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray());
         if(!m_codec)
-            QTextCodec::codecForName ("ISO-8859-1");
+            QTextCodec::codecForName("ISO-8859-1");
     }
     else if(m_tagType == TagLib::MPEG::File::ID3v2)
     {
         m_tag = m_file->ID3v2Tag();
         m_codec = QTextCodec::codecForName(settings.value("ID3v2_encoding", "UTF-8").toByteArray());
         if(!m_codec)
-            QTextCodec::codecForName ("UTF-8");
+            QTextCodec::codecForName("UTF-8");
     }
     else
     {
         m_tag = m_file->APETag();
-        m_codec = QTextCodec::codecForName ("UTF-8");
+        m_codec = QTextCodec::codecForName("UTF-8");
     }
     if(m_using_rusxmms)
     {
-        m_codec = QTextCodec::codecForName ("UTF-8");
+        m_codec = QTextCodec::codecForName("UTF-8");
     }
     settings.endGroup();
 }
@@ -203,7 +203,7 @@ QString MpegFileTagModel::value(Qmmp::MetaData key) const
     {
         bool utf = codec->name().contains("UTF");
         if(utf)
-            codec = QTextCodec::codecForName ("UTF-8");
+            codec = QTextCodec::codecForName("UTF-8");
 
         TagLib::String str;
         switch((int) key)
@@ -287,7 +287,7 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
             else if(m_codec->name().contains("UTF-16BE"))
                 type = TagLib::String::UTF16BE;
 
-            m_codec = QTextCodec::codecForName ("UTF-8");
+            m_codec = QTextCodec::codecForName("UTF-8");
             TagLib::ID3v2::FrameFactory *factory = TagLib::ID3v2::FrameFactory::instance();
             factory->setDefaultTextEncoding(type);
             m_file->setID3v2FrameFactory(factory);

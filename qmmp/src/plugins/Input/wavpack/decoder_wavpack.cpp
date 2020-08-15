@@ -38,17 +38,17 @@ bool DecoderWavPack::initialize()
         p.remove("wvpack://");
         p.remove(QRegExp("#\\d+$"));
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-        m_context = WavpackOpenFileInput (p.toUtf8().constData(),
-                                          err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+        m_context = WavpackOpenFileInput(p.toUtf8().constData(),
+                                         err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
-        m_context = WavpackOpenFileInput (p.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
+        m_context = WavpackOpenFileInput(p.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
         if(!m_context)
         {
             qWarning("DecoderWavPack: error: %s", err);
             return false;
         }
-        int cue_len = WavpackGetTagItem (m_context, "cuesheet", nullptr, 0);
+        int cue_len = WavpackGetTagItem(m_context, "cuesheet", nullptr, 0);
         if(cue_len > 0)
         {
             char *value = (char*)malloc (cue_len * 2 + 1);
@@ -70,10 +70,10 @@ bool DecoderWavPack::initialize()
     }
     else
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-        m_context = WavpackOpenFileInput (m_path.toUtf8().constData(),
-                                          err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+        m_context = WavpackOpenFileInput(m_path.toUtf8().constData(),
+                                         err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
-        m_context = WavpackOpenFileInput (m_path.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
+        m_context = WavpackOpenFileInput(m_path.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
 
     if(!m_context)
@@ -83,8 +83,8 @@ bool DecoderWavPack::initialize()
     }
 
     m_chan = WavpackGetNumChannels(m_context);
-    uint32_t freq = WavpackGetSampleRate (m_context);
-    m_bps = WavpackGetBitsPerSample (m_context);
+    uint32_t freq = WavpackGetSampleRate(m_context);
+    m_bps = WavpackGetBitsPerSample(m_context);
 
     ChannelMap chmap = findChannelMap(m_chan);
     if(chmap.isEmpty())
@@ -152,7 +152,7 @@ void DecoderWavPack::deinit()
 {
     m_chan = 0;
     if(m_context)
-        WavpackCloseFile (m_context);
+        WavpackCloseFile(m_context);
     m_context = nullptr;
     if(m_parser)
         delete m_parser;
@@ -166,7 +166,7 @@ void DecoderWavPack::seek(qint64 time)
                    audioParameters().sampleSize() * time/1000;
     if(m_parser)
         time += m_offset;
-    WavpackSeekSample (m_context, time * audioParameters().sampleRate() / 1000);
+    WavpackSeekSample(m_context, time * audioParameters().sampleRate() / 1000);
 }
 
 qint64 DecoderWavPack::read(unsigned char *data, qint64 size)
@@ -212,13 +212,13 @@ void DecoderWavPack::next()
 qint64 DecoderWavPack::wavpack_decode(unsigned char *data, qint64 size)
 {
     ulong len = qMin(QMMP_BLOCK_FRAMES, (int)size / m_chan / 4);
-    len = WavpackUnpackSamples (m_context, m_output_buf, len);
+    len = WavpackUnpackSamples(m_context, m_output_buf, len);
     //convert 32 to 16
     qint8 *data8 = (qint8 *)data;
     qint16 *data16 = (qint16 *)data;
     qint32 *data32 = (qint32 *)data;
     uint i = 0;
-    switch (m_bps)
+    switch(m_bps)
     {
     case 8:
         for(i = 0;  i < len * m_chan; ++i)
@@ -246,7 +246,7 @@ qint64 DecoderWavPack::wavpack_decode(unsigned char *data, qint64 size)
 ChannelMap DecoderWavPack::findChannelMap(int channels)
 {
     ChannelMap map;
-    switch (channels)
+    switch(channels)
     {
     case 1:
         map << Qmmp::CHAN_FRONT_LEFT;

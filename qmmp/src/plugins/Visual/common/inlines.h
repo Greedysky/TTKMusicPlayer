@@ -48,7 +48,7 @@ static inline void stereo_from_multichannel(float *l,
         return;
     }
 
-    while (cnt > 0)
+    while(cnt > 0)
     {
         l[0] = s[0];
         r[0] = s[1];
@@ -71,7 +71,7 @@ static inline void mono_from_multichannel(float *l,
         return;
     }
 
-    while (cnt > 0)
+    while(cnt > 0)
     {
         l[0] = s[0];
         s += chan;
