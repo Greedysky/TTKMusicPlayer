@@ -60,6 +60,8 @@ void GoomWidget::writeSettings()
     QAction *act = m_fpsGroup->checkedAction();
     settings.setValue("refresh_rate", act ? act->data().toInt() : 25);
     settings.endGroup();
+
+    readSettings();
 }
 
 void GoomWidget::hideEvent(QHideEvent *e)

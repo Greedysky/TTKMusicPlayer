@@ -151,6 +151,8 @@ void NormalAnalyzer::writeSettings()
     settings.setValue("show_star", m_starAction->isChecked());
     settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
     settings.endGroup();
+
+    readSettings();
 }
 
 void NormalAnalyzer::changeColor()
