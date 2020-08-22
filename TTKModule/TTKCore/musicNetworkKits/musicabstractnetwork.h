@@ -114,8 +114,8 @@ public Q_SLOTS:
 protected:
     QVariantMap m_rawData;
     QVariantMap m_headerData;
-    MusicObject::NetworkCode m_stateCode;
     volatile bool m_interrupt;
+    volatile MusicObject::NetworkCode m_stateCode;
     QNetworkReply *m_reply;
     QNetworkAccessManager *m_manager;
 

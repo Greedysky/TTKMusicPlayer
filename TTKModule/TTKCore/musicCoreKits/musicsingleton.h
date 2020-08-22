@@ -41,9 +41,15 @@ private:
     /*!
      * Object contsructor.
      */
-    MusicSingleton(){}   
+    MusicSingleton()
+    {
 
-    ~MusicSingleton(){}
+    }
+
+    ~MusicSingleton()
+    {
+
+    }
 
     static QMutex m_mutex;
     static QScopedPointer<T> m_instance;
