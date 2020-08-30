@@ -108,8 +108,23 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
         return false;
 
     quint32 xing_magic = mad_bit_read(&ptr, 32);
+    bitlen -= 32;
+
     if(xing_magic != XING_MAGIC && xing_magic != XING_MAGIC2)
-        return false;
+    {
+        /*
+         * Due to an unfortunate historical accident, a Xing VBR tag may be
+         * misplaced in a stream with CRC protection. We check for this by
+         * assuming the tag began two octets prior and the high bits of the
+         * following flags field are always zero.
+         */
+
+        if(xing_magic != ((quint64(XING_MAGIC) << 16) & 0xffffffffL) && xing_magic != ((quint64(XING_MAGIC2) << 16) & 0xffffffffL))
+            return false;
+
+        mad_bit_skip(&ptr, 16);
+        bitlen += 16;
+    }
 
     m_xing.flags = mad_bit_read(&ptr, 32);
     bitlen -= 64;
