@@ -22,7 +22,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-#define _SIGN                        "OGlVTjJWOEdlMkkzSkZIeg=="
+#define _SIGN                             "OGlVTjJWOEdlMkkzSkZIeg=="
 
 ///cookie url
 const QString KW_UA_URL                 = "QTllV1FYb3p4ZmZVNDArOW1uSGQrUGp2clowek55RmxrV2kzK3djN2dpb3J4YUlCbHpHSU9FNkJMREtSWDdVdWlVeVRHTnpTQUZ5TjE2RDlLb3lIeFNsMWVHMXBkWEsxSVpIRU85Ui8wVzhEbm80dUdQdHUxc0EzL1VhRHh5WmtxWlpJR1BqR3kzYkMycXVhQWljSmE3K1B3ZFd5dEdWMlE1UGhtWjBzOXJDcVRsN0lrL0d4V2ExdFJjQWtxMy9IbUN4ZkZ1NWhsY0ZqY3ZGcg==";

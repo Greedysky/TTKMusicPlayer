@@ -21,11 +21,10 @@
 
 #include "musicglobaldefine.h"
 
-#define ALG_DOWNLOAD_KEY    "5024FRSDF40"
-#define ALG_URL_KEY         "GREEDYSKY"
-#define ALG_PLUS_KEY        ";DF;45622e"
-#define ALG_LOW_KEY         "123asd"
-#define ALG_UA_KEY          "ua11.25.17"
+#define ALG_ARC_KEY    "5024FRSDF40"
+#define ALG_URL_KEY    "GREEDYSKY"
+#define ALG_UNIMP_KEY  "123asd"
+#define ALG_UA_KEY     "ua11.25.17"
 
 /*! @brief The namespace of the utils algorithm.
  * @author Greedysky <greedysky@163.com>

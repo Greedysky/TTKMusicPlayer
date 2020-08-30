@@ -438,7 +438,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
     const MusicObject::MusicSongAttribute &musicSongAttr = musicSongInfo.m_songAttrs.first();
 
     const QString &musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-    const QString &musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
+    const QString &musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_ARC_KEY, true);
     const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
 
     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(musicSongAttr.m_url, downloadName, MusicObject::DownloadMusic, this);

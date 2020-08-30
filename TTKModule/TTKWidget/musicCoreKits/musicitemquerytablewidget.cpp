@@ -345,7 +345,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
     if(!attrs.isEmpty())
     {
         const MusicObject::MusicSongAttribute &attr = attrs.first();
-        const QString &musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
+        const QString &musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_ARC_KEY, true);
         const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
         MusicSemaphoreLoop loop(this);

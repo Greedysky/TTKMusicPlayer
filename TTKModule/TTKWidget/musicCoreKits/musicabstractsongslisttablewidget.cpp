@@ -90,7 +90,7 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
     }
 
     const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(getCurrentSongName(), ALG_DOWNLOAD_KEY, true))
+    if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(getCurrentSongName(), ALG_ARC_KEY, true))
     {
         //cache song should not allow open url
         return;
