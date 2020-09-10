@@ -106,7 +106,8 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 {
     if(bitlen < 64)
         return false;
-
+        
+    struct mad_bitptr start = ptr;
     quint32 xing_magic = mad_bit_read(&ptr, 32);
     bitlen -= 32;
 
@@ -122,12 +123,13 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
         if(xing_magic != ((quint64(XING_MAGIC) << 16) & 0xffffffffL) && xing_magic != ((quint64(XING_MAGIC2) << 16) & 0xffffffffL))
             return false;
 
+        ptr = start;
         mad_bit_skip(&ptr, 16);
         bitlen += 16;
     }
 
     m_xing.flags = mad_bit_read(&ptr, 32);
-    bitlen -= 64;
+    bitlen -= 32;
 
     if(m_xing.flags & XING_FRAMES)
     {
