@@ -7,8 +7,8 @@
 IDI_ICON1                ICON     DISCARDABLE     "../TTKResource/lb_app_logo.ico"
 
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION 2,13,1,0
-    PRODUCTVERSION 2,13,1,0
+    FILEVERSION 2,13,2,0
+    PRODUCTVERSION 2,13,2,0
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -27,10 +27,10 @@ BEGIN
             BEGIN
                 VALUE "CompanyName", "Greedysky Studio, Ltd."
                 VALUE "FileDescription", "TTKConfig"
-                VALUE "FileVersion", "2.13.1.0"
+                VALUE "FileVersion", "2.13.2.0"
                 VALUE "LegalCopyright", "Copyright By Greedysky Studio(C)2020"
                 VALUE "ProductName", "TTKConfig"
-                VALUE "ProductVersion", "2.13.1.0"
+                VALUE "ProductVersion", "2.13.2.0"
             END
     END
     BLOCK "VarFileInfo"

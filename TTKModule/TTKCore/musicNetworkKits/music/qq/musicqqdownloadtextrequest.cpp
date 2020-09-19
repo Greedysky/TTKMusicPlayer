@@ -67,7 +67,7 @@ void MusicQQDownLoadTextRequest::downLoadFinished()
                 lrcData = value["lyric"].toByteArray();
                 for(int i=0; i<255; ++i)
                 {
-                    lrcData.replace(QString("&#%1;").arg(i), QString(QChar(i)).toUtf8());
+                    lrcData.replace(QString("&#%1;").arg(i).toUtf8(), QString(QChar(i)).toUtf8());
                 }
             }
             QTextStream outstream(m_file);

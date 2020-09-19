@@ -434,7 +434,7 @@ void MusicLrcAnalysis::revertLrcTime(qint64 pos)
 void MusicLrcAnalysis::saveLrcTimeChanged()
 {
     TTKIntStringMapIterator it(m_lrcContainer);
-    QByteArray data;
+    QString data;
     data.append(QString("[by: %1]\n[offset:0]\n").arg(APP_NAME));
     while(it.hasNext())
     {

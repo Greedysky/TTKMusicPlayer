@@ -52,7 +52,7 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
         const QVariant &data = parser.parse(bytes.replace("lrclist", "'lrclist'").replace("'", "\""), &ok);
         if(ok)
         {
-            QByteArray lrcData;
+            QString lrcData;
             QVariantMap value = data.toMap();
             if(value.contains("lrclist"))
             {

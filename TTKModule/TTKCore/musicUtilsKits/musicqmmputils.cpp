@@ -39,7 +39,7 @@ void MusicUtils::QMMP::updateMidConfigFile()
         if(file.open(QFile::WriteOnly))
         {
             data.remove(0, data.indexOf("\r\n"));
-            data.insert(0, QString("dir %1freepats/").arg(MAKE_CONFIG_DIR_FULL));
+            data.insert(0, QString("dir %1freepats/").arg(MAKE_CONFIG_DIR_FULL).toUtf8());
             file.write(data);
         }
     }
