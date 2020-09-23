@@ -106,7 +106,7 @@ Q_SIGNALS:
     /*!
      * Set list background skin transparent emit.
      */
-    void setTransparent(int index);
+    void backgroundTransparentChanged(int index);
     /*!
      * Search current music song from net.
      */

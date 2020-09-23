@@ -112,10 +112,10 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
     m_soundKMicroWidget->show();
 }
 
-void MusicLeftAreaWidget::setTransparent(int index)
+void MusicLeftAreaWidget::backgroundTransparentChanged(int index)
 {
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, index);
-    m_ui->centerLeftWidget->setTransparent(index);
+    m_ui->centerLeftWidget->backgroundTransparent(index);
 }
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()

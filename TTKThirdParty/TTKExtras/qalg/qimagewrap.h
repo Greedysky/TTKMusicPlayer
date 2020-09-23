@@ -40,6 +40,39 @@ public:
 };
 
 
+class QCubeWavePrivate;
+/*! @brief The class of the cube wave wrapper.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_EXTRAS_EXPORT QCubeWave
+{
+public:
+    QCubeWave(int width, int height);
+
+    /*!
+     * Item count.
+     */
+    int count() const;
+    /*!
+     * Item data rect by index.
+     */
+    QRect data(int index) const;
+    /*!
+     * Check item data valid by index.
+     */
+    bool isValid(int index, int value) const;
+
+    /*!
+     * Init item data.
+     */
+    void input(int value);
+
+private:
+    TTK_DECLARE_PRIVATE(QCubeWave)
+
+};
+
+
 class QWaterWavePrivate;
 /*! @brief The class of the water wave wrapper.
  * @author Greedysky <greedysky@163.com>
@@ -49,9 +82,18 @@ class MUSIC_EXTRAS_EXPORT QWaterWave
 public:
     QWaterWave(const QImage &image, int radius);
 
+    /*!
+     * Get render data.
+     */
     int* data();
+    /*!
+     * Render data.
+     */
     void render();
 
+    /*!
+     * Init data.
+     */
     void input(int x, int y);
 
 private:

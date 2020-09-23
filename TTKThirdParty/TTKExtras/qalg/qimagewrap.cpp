@@ -110,6 +110,77 @@ void QGaussBlur::render(int* pix, int width, int height, int radius)
 
 
 ////////////////////////////////////////////////////////////////////////
+class QCubeWavePrivate : public TTKPrivate<QCubeWave>
+{
+public:
+    QCubeWavePrivate();
+
+    void init(int width, int height);
+
+    int m_row;
+    int m_column;
+    QList<int> m_data;
+};
+
+QCubeWavePrivate::QCubeWavePrivate()
+{
+    m_row = 0;
+    m_column = 0;
+}
+
+void QCubeWavePrivate::init(int width, int height)
+{
+    m_column = ceil(width * 1.0 / 100);
+    m_row = ceil(height * 1.0  / 100);
+}
+
+
+QCubeWave::QCubeWave(int width, int height)
+{
+    TTK_INIT_PRIVATE;
+    TTK_D(QCubeWave);
+    d->init(width, height);
+}
+
+int QCubeWave::count() const
+{
+    TTK_D(QCubeWave);
+    return d->m_column * d->m_row;
+}
+
+void QCubeWave::input(int value)
+{
+    TTK_D(QCubeWave);
+    d->m_data.push_back(value);
+}
+
+QRect QCubeWave::data(int index) const
+{
+    TTK_D(QCubeWave);
+    if(d->m_row == 0)
+    {
+        return QRect(0, 0, 100, 100);
+    }
+
+    const int row = index / d->m_row;
+    const int column = index % d->m_row;
+
+    return QRect(row * 100, column * 100, 100, 100);
+}
+
+bool QCubeWave::isValid(int index, int value) const
+{
+    TTK_D(QCubeWave);
+    if(index < 0 || index > d->m_data.count())
+    {
+        return false;
+    }
+
+    return d->m_data[index] > value;
+}
+
+
+////////////////////////////////////////////////////////////////////////
 class QWaterWavePrivate : public TTKPrivate<QWaterWave>
 {
 public:
@@ -144,7 +215,6 @@ private:
     int m_sourceRadius;
     int m_sourceDepth;
 };
-
 
 QWaterWavePrivate::QWaterWavePrivate()
 {

@@ -13,6 +13,8 @@ MusicTransitionAnimationLabel::MusicTransitionAnimationLabel(QWidget *parent)
     m_isAnimating = false;
     m_currentValue = 0;
     m_noAnimationSet = false;
+
+    m_cubeWave = nullptr;
     m_waterWave = nullptr;
 
     m_animation = new QPropertyAnimation(this, QByteArray());
@@ -63,7 +65,7 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     {
         case FadeEffect: m_animation->setDuration(200); break;
         case BlindsEffect: m_animation->setDuration(500); break;
-        case CubeEffect: m_animation->setDuration(200); break;
+        case CubeEffect: m_animation->setDuration(500); break;
         case WaterEffect: m_animation->setDuration(1000); break;
         case LeftToRightEffect: m_animation->setDuration(150); break;
         case TopToBottomEffect: m_animation->setDuration(150); break;
@@ -78,7 +80,16 @@ void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
     m_currentPixmap = pix;
     m_isAnimating = true;
 
-    if(m_type == WaterEffect)
+    if(m_type == CubeEffect)
+    {
+        delete m_cubeWave;
+        m_cubeWave = new QImageWrap::QCubeWave(width(), height());
+        for(int size = 0; size < m_cubeWave->count(); ++size)
+        {
+            m_cubeWave->input(MusicTime::random(100));
+        }
+    }
+    else if(m_type == WaterEffect)
     {
         delete m_waterWave;
         m_waterWave = new QImageWrap::QWaterWave(m_currentPixmap.toImage(), height() / 6);
@@ -146,23 +157,22 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
                 painter.drawPixmap(rect(), m_previousPixmap);
                 QPixmap pix(size());
                 pix.fill(Qt::transparent);
-                const int s = 100;
-                for(int i=0; i<=width() / s; i+=2)
+                for(int size = 0; size < m_cubeWave->count(); ++size)
                 {
-                    for(int j=0; j<=height() / s; ++j)
+                    QPainter paint(&pix);
+                    const QRect rect(m_cubeWave->data(size));
+                    if(m_cubeWave->isValid(size, m_currentValue))
                     {
-                        const int index = (j % 2 == 0) ? i : (i + 1);
-                        QPainter paint(&pix);
-                        const QRect rect(index * s, j * s, s, s);
-                        paint.fillRect(rect, QColor(0xFF, 0xFF, 0xFF, 2.55 * m_currentValue));
-                        paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
-                        paint.drawPixmap(rect, m_currentPixmap.copy(rect));
-                        paint.end();
+                        paint.fillRect(rect, QColor(0xFF, 0xFF, 0xFF, 255 - 2.55 * m_currentValue));
                     }
+                    paint.setCompositionMode(QPainter::CompositionMode_SourceOut);
+                    paint.drawPixmap(rect, m_currentPixmap.copy(rect));
+                    paint.end();
                 }
+
                 m_rendererPixmap = pix;
                 break;
-            }    
+            }
             case WaterEffect:
             {
                 m_waterWave->render();

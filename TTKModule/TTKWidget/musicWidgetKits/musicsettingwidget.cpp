@@ -1125,13 +1125,13 @@ void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
     if(key == Interior)
     {
         label = m_ui->showLabel;
-        label->setTransparent(2.55*value);
+        label->setTransparent(2.55 * value);
         label->setLinearGradient(m_ui->playedPushButton->getColors(), m_ui->noPlayedPushButton->getColors());
     }
     else
     {
         label = m_ui->DshowLabel;
-        label->setTransparent(2.55*value);
+        label->setTransparent(2.55 * value);
         label->setLinearGradient(m_ui->DplayedPushButton->getColors(), m_ui->DnoPlayedPushButton->getColors());
     }
     label->update();

@@ -81,7 +81,7 @@ public Q_SLOTS:
     /*!
      * Set list background skin transparent.
      */
-    void setTransparent(int index);
+    void backgroundTransparentChanged(int index);
     /*!
      * To download music data from net to load.
      */

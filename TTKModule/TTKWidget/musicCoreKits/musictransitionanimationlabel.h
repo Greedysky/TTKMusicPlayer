@@ -24,6 +24,7 @@
 
 class QPropertyAnimation;
 namespace QImageWrap {
+class QCubeWave;
 class QWaterWave;
 }
 
@@ -100,6 +101,7 @@ protected:
     QPixmap m_rendererPixmap;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
+    QImageWrap::QCubeWave *m_cubeWave;
     QImageWrap::QWaterWave *m_waterWave;
 
 };
