@@ -26,7 +26,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 namespace QImageWrap {
-/*! @brief The class of the gauss blur wrapper.
+/*! @brief The class of the gauss blur.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_EXTRAS_EXPORT QGaussBlur
@@ -40,32 +40,47 @@ public:
 };
 
 
-class QCubeWavePrivate;
-/*! @brief The class of the cube wave wrapper.
+/*! @brief The class of the sharpe image.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QCubeWave
+class MUSIC_EXTRAS_EXPORT QSharpeImage
 {
 public:
-    QCubeWave(int width, int height);
-
-    /*!
-     * Item count.
-     */
-    int count() const;
-    /*!
-     * Item data rect by index.
-     */
-    QRect data(int index) const;
-    /*!
-     * Check item data valid by index.
-     */
-    bool isValid(int index, int value) const;
+    QSharpeImage();
+    virtual ~QSharpeImage();
 
     /*!
      * Init item data.
      */
-    void input(int value);
+    virtual void input(const QRect &rectangle);
+    /*!
+     * Render data.
+     */
+    virtual QPixmap render(const QPixmap &pixmap, int value) = 0;
+
+protected:
+    QRect m_rectangle;
+
+};
+
+
+class QCubeWavePrivate;
+/*! @brief The class of the cube wave.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_EXTRAS_EXPORT QCubeWave : public QSharpeImage
+{
+public:
+    QCubeWave();
+
+    /*!
+     * Init item data.
+     */
+    virtual void input(const QRect &rectangle) override;
+    /*!
+     * Render data.
+     */
+    virtual QPixmap render(const QPixmap &pixmap, int value) override;
 
 private:
     TTK_DECLARE_PRIVATE(QCubeWave)
@@ -74,27 +89,22 @@ private:
 
 
 class QWaterWavePrivate;
-/*! @brief The class of the water wave wrapper.
+/*! @brief The class of the water wave.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QWaterWave
+class MUSIC_EXTRAS_EXPORT QWaterWave : public QSharpeImage
 {
 public:
     QWaterWave(const QImage &image, int radius);
 
     /*!
-     * Get render data.
+     * Init item data.
      */
-    int* data();
+    virtual void input(const QRect &rectangle) override;
     /*!
      * Render data.
      */
-    void render();
-
-    /*!
-     * Init data.
-     */
-    void input(int x, int y);
+    virtual QPixmap render(const QPixmap &pixmap, int value) override;
 
 private:
     TTK_DECLARE_PRIVATE(QWaterWave)

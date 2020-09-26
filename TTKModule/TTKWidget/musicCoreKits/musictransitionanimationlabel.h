@@ -24,8 +24,7 @@
 
 class QPropertyAnimation;
 namespace QImageWrap {
-class QCubeWave;
-class QWaterWave;
+class QSharpeImage;
 }
 
 /*! @brief The class of the label transition animation.
@@ -101,8 +100,9 @@ protected:
     QPixmap m_rendererPixmap;
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
-    QImageWrap::QCubeWave *m_cubeWave;
-    QImageWrap::QWaterWave *m_waterWave;
+
+    QImageWrap::QSharpeImage *m_cubeWave;
+    QImageWrap::QSharpeImage *m_waterWave;
 
 };
 

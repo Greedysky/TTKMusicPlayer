@@ -106,6 +106,7 @@ set(MUSIC_HEADERS
     qalg/aes_locl.h
     qalg/base64.h
     qalg/cbc128.h
+    qalg/random.h
     qalg/qdeswrap.h
     qalg/qaeswrap.h
     qalg/qimagewrap.h
@@ -160,6 +161,7 @@ set(MUSIC_SOURCES
     qalg/aes_ecb.cpp
     qalg/base64.cpp
     qalg/cbc128.cpp
+    qalg/random.cpp
     qalg/qdeswrap.cpp
     qalg/qaeswrap.cpp
     qalg/qimagewrap.cpp

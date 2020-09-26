@@ -24,6 +24,7 @@ SOURCES += \
     $$PWD/aes_core.cpp \
     $$PWD/cbc128.cpp \
     $$PWD/base64.cpp \
+    $$PWD/random.cpp \
     $$PWD/qaeswrap.cpp \
     $$PWD/qdeswrap.cpp \
     $$PWD/qimagewrap.cpp
@@ -33,6 +34,7 @@ HEADERS += \
     $$PWD/aes_locl.h \
     $$PWD/cbc128.h \
     $$PWD/base64.h \
+    $$PWD/random.h \
     $$PWD/qaeswrap.h \
     $$PWD/qdeswrap.h \
     $$PWD/qimagewrap.h

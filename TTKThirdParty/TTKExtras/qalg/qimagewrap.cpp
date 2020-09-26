@@ -1,6 +1,8 @@
 #include "qimagewrap.h"
+#include "random.h"
 
 #include <qmath.h>
+#include <QPainter>
 
 namespace QImageWrap {
 void QGaussBlur::render(int* pix, int width, int height, int radius)
@@ -110,12 +112,33 @@ void QGaussBlur::render(int* pix, int width, int height, int radius)
 
 
 ////////////////////////////////////////////////////////////////////////
+QSharpeImage::QSharpeImage()
+    : m_rectangle()
+{
+
+}
+
+QSharpeImage::~QSharpeImage()
+{
+
+}
+
+void QSharpeImage::input(const QRect &rectangle)
+{
+    m_rectangle = rectangle;
+}
+
+
+////////////////////////////////////////////////////////////////////////
 class QCubeWavePrivate : public TTKPrivate<QCubeWave>
 {
 public:
     QCubeWavePrivate();
 
     void init(int width, int height);
+
+    int count() const;
+    bool isValid(int index, int value) const;
 
     int m_row;
     int m_column;
@@ -126,57 +149,80 @@ QCubeWavePrivate::QCubeWavePrivate()
 {
     m_row = 0;
     m_column = 0;
+
+    Random::initRandom();
 }
 
 void QCubeWavePrivate::init(int width, int height)
 {
-    m_column = ceil(width * 1.0 / 100);
-    m_row = ceil(height * 1.0  / 100);
+    m_column = ceil(width * 1.0 / 8);
+    m_row = ceil(height * 1.0  / 8);
 }
 
-
-QCubeWave::QCubeWave(int width, int height)
+bool QCubeWavePrivate::isValid(int index, int value) const
 {
-    TTK_INIT_PRIVATE;
-    TTK_D(QCubeWave);
-    d->init(width, height);
-}
-
-int QCubeWave::count() const
-{
-    TTK_D(QCubeWave);
-    return d->m_column * d->m_row;
-}
-
-void QCubeWave::input(int value)
-{
-    TTK_D(QCubeWave);
-    d->m_data.push_back(value);
-}
-
-QRect QCubeWave::data(int index) const
-{
-    TTK_D(QCubeWave);
-    if(d->m_row == 0)
-    {
-        return QRect(0, 0, 100, 100);
-    }
-
-    const int row = index / d->m_row;
-    const int column = index % d->m_row;
-
-    return QRect(row * 100, column * 100, 100, 100);
-}
-
-bool QCubeWave::isValid(int index, int value) const
-{
-    TTK_D(QCubeWave);
-    if(index < 0 || index > d->m_data.count())
+    if(index < 0 || index > m_data.count())
     {
         return false;
     }
 
-    return d->m_data[index] > value;
+    return m_data[index] > value;
+}
+
+int QCubeWavePrivate::count()  const
+{
+    return 8 * 8;
+}
+
+
+QCubeWave::QCubeWave()
+    : QSharpeImage()
+{
+    TTK_INIT_PRIVATE;
+}
+
+void QCubeWave::input(const QRect &rectangle)
+{
+    QSharpeImage::input(rectangle);
+
+    TTK_D(QCubeWave);
+    d->init(rectangle.width(), rectangle.height());
+    for(int index = 0; index < d->count(); ++index)
+    {
+        d->m_data.push_back(Random::random(100));
+    }
+}
+
+QPixmap QCubeWave::render(const QPixmap &pixmap, int value)
+{
+    TTK_D(QCubeWave);
+    QPixmap pix(m_rectangle.size());
+
+    pix.fill(Qt::transparent);
+    for(int index = 0; index < d->count(); ++index)
+    {
+        QPainter paint(&pix);
+
+        const int row = index / 8;
+        const int column = index % 8;
+
+        QRect rect(QRect(row * d->m_column, column * d->m_row, d->m_column, d->m_row));
+        if(rect.y() + rect.height() > pixmap.height())
+        {
+            rect.setHeight(pixmap.height() - rect.y());
+        }
+
+        if(d->isValid(index, value))
+        {
+            paint.fillRect(rect, QColor(0xFF, 0xFF, 0xFF, 255 - 2.55 * value));
+        }
+
+        paint.setCompositionMode(QPainter::CompositionMode_SourceOut);
+        paint.drawPixmap(rect, pixmap.copy(rect));
+        paint.end();
+    }
+
+    return pix;
 }
 
 
@@ -380,22 +426,34 @@ QWaterWave::QWaterWave(const QImage &image, int radius)
     d->init(image, radius);
 }
 
-int* QWaterWave::data()
+void QWaterWave::input(const QRect &rectangle)
 {
+    QSharpeImage::input(rectangle);
+
     TTK_D(QWaterWave);
-    return d->data();
+    d->setWaveSourcePosition(rectangle.width() / 2, rectangle.height() / 2);
 }
 
-void QWaterWave::render()
+QPixmap QWaterWave::render(const QPixmap &pixmap, int value)
 {
     TTK_D(QWaterWave);
     d->render();
-}
+    QImage image = pixmap.toImage();
+#if TTK_QT_VERSION_CHECK(5,10,0)
+    memcpy(image.bits(), (const uchar*)d->data(), image.sizeInBytes());
+#else
+    memcpy(image.bits(), (const uchar*)d->data(), image.byteCount());
+#endif
 
-void QWaterWave::input(int x, int y)
-{
-    TTK_D(QWaterWave);
-    d->setWaveSourcePosition(x, y);
+    QPixmap pix(m_rectangle.size());
+    pix.fill(Qt::transparent);
+    QPainter paint(&pix);
+    paint.fillRect(m_rectangle, QColor(0xFF, 0xFF, 0xFF, qMin(2.55 * 2 * value, 255.0)));
+    paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    paint.drawPixmap(m_rectangle, QPixmap::fromImage(image));
+    paint.end();
+
+    return pix;
 }
 
 
