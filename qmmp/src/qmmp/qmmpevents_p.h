@@ -62,7 +62,7 @@ public:
     /*!
      * Returns all stream information.
      */
-    QHash<QString, QString> streamInfo() const;
+    const QHash<QString, QString> &streamInfo() const;
 
 private:
     QHash<QString, QString> m_streamInfo;

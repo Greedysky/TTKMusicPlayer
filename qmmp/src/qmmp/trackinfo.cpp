@@ -57,7 +57,7 @@ bool TrackInfo::isEmpty() const
     return m_metaData.isEmpty() && m_properties.isEmpty() && m_replayGainInfo.isEmpty() && m_path.isEmpty();
 }
 
-const QString TrackInfo::path() const
+const QString &TrackInfo::path() const
 {
     return m_path;
 }

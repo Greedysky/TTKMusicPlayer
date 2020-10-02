@@ -111,7 +111,7 @@ public:
      * If \b include is \b true, this function returns include cover file name filters,
      * otherwise returns exclude filters.
      */
-    QStringList coverNameFilters(bool include = true) const;
+    const QStringList &coverNameFilters(bool include = true) const;
     /*!
      * Returns a depth of recursive cover file search.
      */

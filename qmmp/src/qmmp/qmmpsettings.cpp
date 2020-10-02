@@ -30,7 +30,7 @@ QmmpSettings::QmmpSettings(QObject *parent)
     m_average_bitrate = settings.value("Output/average_bitrate", false).toBool();
     //cover settings
     settings.beginGroup("Cover");
-    m_cover_inc = settings.value("include", (QStringList() << "*.jpg" << "*.png")).toStringList();
+    m_cover_inc = settings.value("include", (QStringList() << "*.jpg" << "*.png" << "*.webp")).toStringList();
     m_cover_exclude = settings.value("exclude", (QStringList() << "*back*")).toStringList();
     m_cover_depth = settings.value("depth", 0).toInt();
     m_cover_use_files = settings.value("use_files", true).toBool();
@@ -111,7 +111,7 @@ void QmmpSettings::setAudioSettings(bool soft_volume, Qmmp::AudioFormat format, 
     emit audioSettingsChanged();
 }
 
-QStringList QmmpSettings::coverNameFilters(bool include) const
+const QStringList &QmmpSettings::coverNameFilters(bool include) const
 {
     return include ? m_cover_inc : m_cover_exclude;
 }

@@ -35,7 +35,7 @@ StreamInfoChangedEvent::~StreamInfoChangedEvent()
 
 }
 
-QHash<QString, QString>StreamInfoChangedEvent::streamInfo() const
+const QHash<QString, QString> &StreamInfoChangedEvent::streamInfo() const
 {
     return m_streamInfo;
 }
