@@ -46,7 +46,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     m_qualityChoiceWidget = new MusicQualityChoicePopWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
-    m_ui->songsContainer->setLength(320, MusicAnimationStackedWidget::LeftToRight);
+    m_ui->songsContainer->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::LeftToRight);
 
     connect(ui->musicKey, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicStatePlay()));
     connect(ui->musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));

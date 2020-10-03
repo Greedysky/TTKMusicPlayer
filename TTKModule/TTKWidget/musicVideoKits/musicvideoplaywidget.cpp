@@ -11,7 +11,7 @@
 
 #include <QParallelAnimationGroup>
 
-#define WINDOW_HEIGHT   533
+#define WINDOW_HEIGHT   508
 #define WINDOW_WIDTH    678
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)

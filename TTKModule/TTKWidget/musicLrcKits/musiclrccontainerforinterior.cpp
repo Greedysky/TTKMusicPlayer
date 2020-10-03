@@ -192,13 +192,13 @@ void MusicLrcContainerForInterior::resizeWindow()
 
     if(m_lrcDisplayAll)
     {
-        width += 320;
+        width += LEFT_SIDE_WIDTH_MIN;
     }
 
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
-        width += (m_lrcDisplayAll ? 0 : 320);
-        height += 320 / 2;
+        width += (m_lrcDisplayAll ? 0 : LEFT_SIDE_WIDTH_MIN);
+        height += LEFT_SIDE_WIDTH_MIN / 2;
     }
 
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
@@ -680,7 +680,7 @@ void MusicLrcContainerForInterior::showNoLrcCurrentInfo()
 {
     const int w = MusicUtils::Widget::fontTextWidth(m_noLrcCurrentInfo->font(), m_noLrcCurrentInfo->text());
     const int h = MusicUtils::Widget::fontTextHeight(m_noLrcCurrentInfo->font());
-    const int offset = height() / m_lrcAnalysis->getLineMax()*(m_lrcAnalysis->getMiddle() + 1) - 40;
+    const int offset = height() / m_lrcAnalysis->getLineMax() * (m_lrcAnalysis->getMiddle() + 1) - 20;
 
     m_noLrcCurrentInfo->setGeometry((width() - w) / 2, offset, w, h);
     m_noLrcCurrentInfo->show();

@@ -204,7 +204,8 @@
 
 //
 #define WINDOW_WIDTH_MIN        1000
-#define WINDOW_HEIGHT_MIN       690
+#define WINDOW_HEIGHT_MIN       665
+#define LEFT_SIDE_WIDTH_MIN     320
 #define CONCISE_WIDTH_MIN       322
 //
 #define COVER_URL_NULL          "null"

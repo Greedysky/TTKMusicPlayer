@@ -188,7 +188,7 @@ MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
     : MusicSongsToolBoxTopWidget(-1, QString(), parent)
 {
     move(0, 0);
-    setFixedWidth(320);
+    setFixedWidth(LEFT_SIDE_WIDTH_MIN);
     m_isBlockMoveExpand = true;
 
     hide();

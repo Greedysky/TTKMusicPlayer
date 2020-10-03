@@ -415,13 +415,13 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case SearchWidget: //insert search display widget
             {
-                QString searchedQString = m_ui->musicSongSearchEdit->text().trimmed();
-                        searchedQString = searchedQString.isEmpty() ? m_ui->musicSongSearchEdit->placeholderText() : searchedQString;
+                QString searchedString = m_ui->musicSongSearchEdit->text().trimmed();
+                        searchedString = searchedString.isEmpty() ? m_ui->musicSongSearchEdit->placeholderText() : searchedString;
                 //The string searched wouldn't allow to be none
-                if(!searchedQString.isEmpty() && searchedQString != tr("please input search text"))
+                if(!searchedString.isEmpty() && searchedString != tr("please input search text"))
                 {
-                    m_ui->musicSongSearchEdit->setText(searchedQString);
-                    m_ui->songSearchWidget->startSearchQuery(searchedQString);
+                    m_ui->musicSongSearchEdit->setText(searchedString);
+                    m_ui->songSearchWidget->startSearchQuery(searchedString);
                 }
                 else
                 {
@@ -820,7 +820,7 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     const int height = m_musicLrcForInterior->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
-    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 300 : -320, height / 2));
+    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? LEFT_SIDE_WIDTH_MIN - 20 : -LEFT_SIDE_WIDTH_MIN, height / 2));
     lrcDisplayAllAnimation->setEndValue(QPoint(0, height / 2));
     lrcDisplayAllAnimation->start();
 

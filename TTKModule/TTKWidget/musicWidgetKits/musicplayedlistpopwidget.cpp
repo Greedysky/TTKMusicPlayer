@@ -194,7 +194,7 @@ void MusicPlayedListPopWidget::setCurrentIndex(int toolIndex, const MusicSong &s
 void MusicPlayedListPopWidget::resizeWindow()
 {
 //    int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-//    m_containWidget->setFixedSize(320, 500 + h - WINDOW_HEIGHT_MIN);
+//    m_containWidget->setFixedSize(LEFT_SIDE_WIDTH_MIN, 500 + h - WINDOW_HEIGHT_MIN);
 }
 
 void MusicPlayedListPopWidget::popupMenu()
@@ -283,7 +283,7 @@ void MusicPlayedListPopWidget::initWidget()
 
     setLayout(layout);
 
-    m_containWidget->setFixedSize(320, 400);
+    m_containWidget->setFixedSize(LEFT_SIDE_WIDTH_MIN, 400);
     QVBoxLayout *containLayout = new QVBoxLayout(m_containWidget);
     containLayout->setContentsMargins(0, 0, 0, 0);
     containLayout->setSpacing(0);

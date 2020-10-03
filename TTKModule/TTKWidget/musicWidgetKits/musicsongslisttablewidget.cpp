@@ -285,7 +285,7 @@ bool MusicSongsListTableWidget::createUploadFileWidget()
 {
     if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST && m_parentToolIndex != MUSIC_RECENT_LIST)
     {
-        setFixedSize(320, 100);
+        setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr)
         {
             m_openFileWidget = new MusicOpenFileWidget(this);

@@ -8,10 +8,10 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     : QDialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint);
-    resize(320, 35);
+    resize(LEFT_SIDE_WIDTH_MIN, 35);
 
     QPalette Pal(palette());
-    Pal.setColor(QPalette::Background, QColor(255, 255, 255));
+    Pal.setColor(QPalette::Background, QColor(255, 255, 225));
     setAutoFillBackground(true);
     setPalette(Pal);
 

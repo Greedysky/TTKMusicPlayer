@@ -20,7 +20,7 @@ MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     m_deviceInfo = new MusicDeviceInfoObject;
 
     m_stackedWidget = new MusicAnimationStackedWidget(this);
-    m_stackedWidget->setLength(320, MusicAnimationStackedWidget::LeftToRight);
+    m_stackedWidget->setLength(LEFT_SIDE_WIDTH_MIN, MusicAnimationStackedWidget::LeftToRight);
     vBox->addWidget(m_stackedWidget);
     setLayout(vBox);
 
