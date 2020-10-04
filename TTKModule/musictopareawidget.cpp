@@ -189,7 +189,7 @@ void MusicTopAreaWidget::musicUserContextLogin()
 
 void MusicTopAreaWidget::musicBackgroundTransparentChanged(int index)
 {
-    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
+    if(!isEnableBackground())
     {
         return;
     }
@@ -204,7 +204,7 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(int index)
 
 void MusicTopAreaWidget::musicBackgroundTransparentChanged(const QString &fileName)
 {
-    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
+    if(!isEnableBackground())
     {
         return;
     }
@@ -244,7 +244,7 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 
 void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileName)
 {
-    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
+    if(!isEnableBackground())
     {
         return;
     }
@@ -273,7 +273,7 @@ void MusicTopAreaWidget::musicBackgroundAnimationChanged(bool state)
 
 void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
 {
-    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinterior->artistBackgroundIsShow())
+    if(!isEnableBackground() && m_ui->musiclrccontainerforinterior->artistBackgroundIsShow())
     {
         musicBackgroundChanged();
         setBackgroundAnimation(true);
@@ -292,7 +292,11 @@ void MusicTopAreaWidget::musicBackgroundThemeChangedByResize()
     drawWindowBackgroundRectString();
     ///
     musicBackgroundAnimationChanged(false);
-    setBackgroundAnimation(true);
+
+    if(!isEnableBackground())
+    {
+        setBackgroundAnimation(true);
+    }
 }
 
 void MusicTopAreaWidget::musicPlaylistTransparent(int index)
@@ -423,6 +427,11 @@ void MusicTopAreaWidget::musicStackedToolsWidgetChanged()
     M_SINGLE_MANAGER_WIDGET_CLASS(MusicToolSetsWidget);
 }
 
+bool MusicTopAreaWidget::isEnableBackground()
+{
+    return m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1;
+}
+
 void MusicTopAreaWidget::createRemoteWidget()
 {
     if(!m_musicRemoteWidget)
@@ -468,7 +477,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString()
 {
-    const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, m_backgroundAlpha);
+    const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, 100 - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());

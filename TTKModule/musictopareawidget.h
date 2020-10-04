@@ -212,6 +212,10 @@ public Q_SLOTS:
 
 protected:
     /*!
+     * Check background draw enable.
+     */
+    bool isEnableBackground();
+    /*!
      * Create remote widget.
      */
     void createRemoteWidget();

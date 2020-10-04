@@ -94,7 +94,6 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
     delete m_dailyBackgroundList;
 }
 
-
 QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {
     QString path = USER_THEME_DIR_FULL + name + TTS_FILE;
@@ -147,9 +146,9 @@ void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, 
     setListTransToolText(listAlpha);
 
     const bool state = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
-    m_ui->skinTransparentButton->setValue(state ? alpha : 100);
+    m_ui->skinTransparentButton->setValue(state ? alpha : 0);
     m_ui->skinTransparentButton->setEnabled(state);
-    setSkinTransToolText(state ? alpha : 100);
+    setSkinTransToolText(state ? alpha : 0);
     m_ui->skinTransparentLabelBox->setChecked(state);
 }
 
@@ -289,8 +288,8 @@ void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, state);
     if(!state)
     {
-        m_ui->skinTransparentButton->setValue(100);
-        MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(100);
+        m_ui->skinTransparentButton->setValue(0);
+        MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(0);
     }
 }
 

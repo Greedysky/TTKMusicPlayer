@@ -37,9 +37,9 @@
     </rippleSetting>
     <backgroundSetting>
         <backgroundTheme value="theme-7"/>
-        <backgroundTransparent value="100"/>
-        <backgroundListTransparent value="33"/>
-        <backgroundTransparentEnable value="1"/>
+        <backgroundTransparent value="0"/>
+        <backgroundListTransparent value="67"/>
+        <backgroundTransparentEnable value="0"/>
     </backgroundSetting>
     <hotkeySetting>
         <hotkeyEnable value="0"/>
