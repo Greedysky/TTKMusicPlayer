@@ -212,10 +212,6 @@ protected:
      */
     void backgroundTransparentChanged(int value);
     /*!
-     * Set list background skin bright enable.
-     */
-    void backgroundBrightEnable(bool enable);
-    /*!
      * Check background draw enable.
      */
     bool isEnableBackground();

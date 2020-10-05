@@ -432,25 +432,6 @@ void MusicTopAreaWidget::backgroundTransparentChanged(int value)
     m_ui->centerLeftWidget->backgroundTransparent(value);
 }
 
-//void MusicTopAreaWidget::backgroundBrightChanged(int value)
-//{
-//    if(value > 60)
-//    {
-//        const int average = MusicUtils::Image::grayScaleAverage(m_backgroundImage, LEFT_SIDE_WIDTH_MIN, m_backgroundImage.height());
-//        TTK_LOGGER_INFO(average);
-//        backgroundBrightEnable(average < 100);
-//    }
-//    else
-//    {
-//        backgroundBrightEnable(false);
-//    }
-//}
-
-void MusicTopAreaWidget::backgroundBrightEnable(bool enable)
-{
-    TTK_LOGGER_INFO(enable);
-}
-
 bool MusicTopAreaWidget::isEnableBackground()
 {
     return m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1;
@@ -510,18 +491,17 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     MusicApplication::instance()->setWindowOpacity(v);
 
     const QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
-    const QImage image(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding));
 
-    QPixmap after(size);
-    after.fill(Qt::transparent);
-    QPainter paint(&after);
-    paint.drawPixmap(0, 0, QPixmap::fromImage(image));
+    QPixmap pixmap(size);
+    pixmap.fill(Qt::transparent);
+    QPainter paint(&pixmap);
+    paint.drawPixmap(0, 0, QPixmap::fromImage(m_backgroundImage.scaled(size, Qt::KeepAspectRatioByExpanding)));
     paint.end();
 
     backgroundTransparentChanged(m_backgroundListAlpha);
-    Q_EMIT backgroundPixmapChanged(after);
+    Q_EMIT backgroundPixmapChanged(pixmap);
 
-    m_ui->background->setPixmap(after);
+    m_ui->background->setPixmap(pixmap);
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)

@@ -58,11 +58,11 @@ public:
      * Rename item artist label name.
      */
     void setItemRename();
+
     /*!
      * Get rename item artist label state.
      */
-    bool getItemRenameState() { return m_renameLine != nullptr; }
-
+    inline bool getItemRenameState() { return m_renameLine != nullptr; }
     /*!
      * Set current play index.
      */

@@ -39,13 +39,13 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_songNameLabel = new MusicSplitItemClickedLabel(this);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle15);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01);
     m_songNameLabel->setGeometry(85, 5, 200, 25);
 
     m_timeLabel = new QLabel(this);
     m_timeLabel->setFixedSize(100, 20);
     m_timeLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_timeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle15);
+    m_timeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle01);
     m_timeLabel->setGeometry(85, 37, 100, 20);
 
     m_downloadButton = new QPushButton(this);
