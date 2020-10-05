@@ -79,10 +79,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Set list background skin transparent.
-     */
-    void backgroundTransparentChanged(int index);
-    /*!
      * To download music data from net to load.
      */
     void musicDownloadSongToLocal();

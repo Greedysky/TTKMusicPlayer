@@ -192,7 +192,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program 
 
     QFrame *line = new QFrame(this);
     line->setFrameShape(QFrame::HLine);
-    line->setStyleSheet("color:red");
+    line->setStyleSheet(MusicUIObject::MQSSColorStyle05);
     layout->addWidget(line);
 
     m_tableWidget = new MusicWebDJRadioProgramTableWidget(this);
@@ -368,7 +368,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     //
     QFrame *line = new QFrame(w);
     line->setFrameShape(QFrame::HLine);
-    line->setStyleSheet("color:red");
+    line->setStyleSheet(MusicUIObject::MQSSColorStyle05);
     layout->addWidget(line);
     //
     m_categoryWidget = new MusicWebDJRadioCategoryWidget(this);

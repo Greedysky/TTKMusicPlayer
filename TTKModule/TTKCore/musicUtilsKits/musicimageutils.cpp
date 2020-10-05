@@ -6,31 +6,31 @@
 #include <QBuffer>
 #include <QPainter>
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, int ratioX, int ratioY)
+QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, int ratioX, int ratioY)
 {
-    return pixmapToRound(src, QRect(QPoint(0, 0), src.size()), ratioX, ratioY);
+    return pixmapToRound(input, QRect(QPoint(0, 0), input.size()), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
+QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QSize &size, int ratioX, int ratioY)
 {
-    return pixmapToRound(src, QRect(QPoint(0, 0), size), ratioX, ratioY);
+    return pixmapToRound(input, QRect(QPoint(0, 0), size), ratioX, ratioY);
 }
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY)
+QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QRect &rect, int ratioX, int ratioY)
 {
-    if(src.isNull())
+    if(input.isNull())
     {
         return QPixmap();
     }
 
-    QPixmap image = src.scaled(rect.size());
+    QPixmap image = input.scaled(rect.size());
     image.setMask(getBitmapMask(rect, ratioX, ratioY));
     return image;
 }
 
-QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size)
+QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QPixmap &mask, const QSize &size)
 {
-    if(src.isNull() || mask.isNull())
+    if(input.isNull() || mask.isNull())
     {
         return QPixmap();
     }
@@ -39,7 +39,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &src, const QPixmap &mask
     QPainter painter(&image);
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawPixmap(0, 0, src.scaled(size));
+    painter.drawPixmap(0, 0, input.scaled(size));
 
     return image;
 }
@@ -55,9 +55,9 @@ QBitmap MusicUtils::Image::getBitmapMask(const QRect &rect, int ratioX, int rati
     return mask;
 }
 
-QByteArray MusicUtils::Image::getPixmapData(const QPixmap &pix)
+QByteArray MusicUtils::Image::getPixmapData(const QPixmap &input)
 {
-    if(pix.isNull())
+    if(input.isNull())
     {
         return QByteArray();
     }
@@ -66,7 +66,7 @@ QByteArray MusicUtils::Image::getPixmapData(const QPixmap &pix)
     QBuffer buffer(&data);
     if(buffer.open(QIODevice::WriteOnly))
     {
-        pix.save(&buffer, JPG_FILE_PREFIX);
+        input.save(&buffer, JPG_FILE_PREFIX);
     }
     buffer.close();
     return data;
@@ -96,9 +96,9 @@ void MusicUtils::Image::fusionPixmap(QImage &back, const QImage &front, const QP
     painter.drawImage(pt.x(), pt.y(), front);
 }
 
-QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &src, int radius)
+QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &input, int radius)
 {
-    QImage pix = src.toImage();
+    QImage pix = input.toImage();
     for(int w=0; w<pix.width(); w++)
     {
         for(int h=0; h<pix.height(); h++)
@@ -112,17 +112,30 @@ QPixmap MusicUtils::Image::grayScalePixmap(const QPixmap &src, int radius)
     return QPixmap::fromImage(pix);
 }
 
-QImage MusicUtils::Image::gaussPixmap(const QImage &image, int radius)
+int MusicUtils::Image::grayScaleAverage(const QImage &input, int width, int height)
 {
-    QImage img = image.copy();
+    int average = 0;
+    for(int w=0; w<width; w++)
+    {
+        for(int h=0; h<height; h++)
+        {
+            average += qBound(0, qGray(input.pixel(w, h)), 255);
+        }
+    }
+    return average / (width * height);
+}
+
+QImage MusicUtils::Image::gaussPixmap(const QImage &input, int radius)
+{
+    QImage img = input.copy();
     MusicUtils::Image::gaussPixmap(img, radius);
     return img;
 }
 
-void MusicUtils::Image::gaussPixmap(QImage &image, int radius)
+void MusicUtils::Image::gaussPixmap(QImage &input, int radius)
 {
     QImageWrap::QGaussBlur wrap;
-    wrap.render((int*)image.bits(), image.width(), image.height(), radius);
+    wrap.render((int*)input.bits(), input.width(), input.height(), radius);
 }
 
 int MusicUtils::Image::reRenderAlpha(int alpha, int value)

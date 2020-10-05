@@ -58,7 +58,7 @@ public:
     /*!
      * Set background skin and alpha and list alpha parameter.
      */
-    void setBackgroundParams(const QString &skin, int alpha, int list);
+    void setBackgroundParams(const QString &path, int skin, int list);
     /*!
      * Get background skin name.
      */
@@ -104,10 +104,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Set list background skin transparent emit.
-     */
-    void backgroundTransparentChanged(int index);
-    /*!
      * Search current music song from net.
      */
     void musicSearchButtonClicked();
@@ -134,9 +130,9 @@ public Q_SLOTS:
      */
     void musicBackgroundTransparentChanged();
     /*!
-     * Current background transparent changed by index.
+     * Current background transparent changed by value.
      */
-    void musicBackgroundTransparentChanged(int index);
+    void musicBackgroundTransparentChanged(int value);
     /*!
      * Current background transparent changed by string.
      */
@@ -212,6 +208,14 @@ public Q_SLOTS:
 
 protected:
     /*!
+     * Set list background skin transparent changed.
+     */
+    void backgroundTransparentChanged(int value);
+    /*!
+     * Set list background skin bright enable.
+     */
+    void backgroundBrightEnable(bool enable);
+    /*!
      * Check background draw enable.
      */
     bool isEnableBackground();
@@ -244,7 +248,7 @@ protected:
     QImage m_backgroundImage;
     int m_lastRemoteBeforeWallpaper;
     QString m_backgroundImagePath;
-    int m_backgroundAlpha, m_backgroundAListlpha;
+    int m_backgroundAlpha, m_backgroundListAlpha;
     QTimer m_pictureCarouselTimer;
 
     static MusicTopAreaWidget *m_instance;

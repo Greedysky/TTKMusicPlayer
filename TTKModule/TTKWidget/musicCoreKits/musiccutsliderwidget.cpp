@@ -175,7 +175,7 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     painter.setBrush(QBrush(QColor(150, 150, 150)));
     painter.drawRect(0, lineStartHeight, m_position, PAINT_SLIDER_HEIGHT);
 
-    painter.setBrush(QBrush(QColor(MusicUIObject::MQSSColorStyle12_S)));
+    painter.setBrush(QBrush(QColor(MusicUIObject::MQSSColor01)));
     const int leftX = m_leftControl->geometry().x();
     const int rightX = m_rightControl->geometry().x();
     painter.drawRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH / 2 : rightX + PAINT_BUTTON_WIDTH / 2, lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT);

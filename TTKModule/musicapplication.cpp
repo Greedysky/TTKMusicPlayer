@@ -62,7 +62,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget->setupUi(m_ui);
     m_topAreaWidget->musicBackgroundAnimationChanged(false);
 
-    connect(m_topAreaWidget, SIGNAL(backgroundTransparentChanged(int)), m_leftAreaWidget, SLOT(backgroundTransparentChanged(int)));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBackgroundTransparentChanged()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundThemeDownload()), m_topAreaWidget, SLOT(musicBackgroundThemeDownloadFinished()));
 

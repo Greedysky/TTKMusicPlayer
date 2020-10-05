@@ -137,18 +137,18 @@ void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
     m_myBackgroundList->updateLastedItem();
 }
 
-void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, int alpha, int listAlpha)
+void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, int skin, int list)
 {
     m_backgroundList->setCurrentItemName(theme);
     m_myBackgroundList->setCurrentItemName(theme);
     //Set the the slider bar value as what the alpha is
-    m_ui->listTransparentButton->setValue(listAlpha);
-    setListTransToolText(listAlpha);
+    m_ui->listTransparentButton->setValue(list);
+    setListTransToolText(list);
 
     const bool state = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
-    m_ui->skinTransparentButton->setValue(state ? alpha : 0);
+    m_ui->skinTransparentButton->setValue(state ? skin : 0);
     m_ui->skinTransparentButton->setEnabled(state);
-    setSkinTransToolText(state ? alpha : 0);
+    setSkinTransToolText(state ? skin : 0);
     m_ui->skinTransparentLabelBox->setChecked(state);
 }
 

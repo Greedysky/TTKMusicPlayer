@@ -41,7 +41,7 @@ public:
     /*!
      * Set background transparent.
      */
-    void backgroundTransparent(int alpha);
+    void backgroundTransparent(int value);
 
 protected:
     /*!
