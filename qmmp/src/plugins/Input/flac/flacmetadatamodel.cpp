@@ -140,6 +140,7 @@ void FLACMetaDataModel::removeCover()
                 save = true;
             }
         }
+
         if(save)
         {
             m_file->save();

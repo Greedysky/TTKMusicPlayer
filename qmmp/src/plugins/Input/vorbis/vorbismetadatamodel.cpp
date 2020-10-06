@@ -106,6 +106,7 @@ void VorbisMetaDataModel::removeCover()
                 save = true;
             }
         }
+
         if(save)
         {
             m_file->save();

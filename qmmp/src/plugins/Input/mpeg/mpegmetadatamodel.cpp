@@ -391,14 +391,7 @@ void MpegFileTagModel::remove()
 void MpegFileTagModel::save()
 {
     if(m_tag)
-    {
-        if(m_tagType == TagLib::MPEG::File::ID3v2)
-        {
-            m_file->save(m_tagType, false, 3);
-        }
-        else
-            m_file->save(m_tagType, false);
-    }
+        m_file->save(m_tagType, false);
     else
         m_file->strip(m_tagType);
 }

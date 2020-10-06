@@ -119,6 +119,7 @@ void OpusMetaDataModel::removeCover()
                 save = true;
             }
         }
+
         if(save)
         {
             m_file->save();
