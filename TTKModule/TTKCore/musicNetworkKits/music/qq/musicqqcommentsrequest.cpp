@@ -89,7 +89,7 @@ void MusicQQSongCommentsRequest::downLoadFinished()
                     MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["praisenum"].toInt());
-                    comment.m_updateTime = QString::number(value["time"].toLongLong()*1000);
+                    comment.m_updateTime = QString::number(value["time"].toLongLong() * 1000);
                     comment.m_description = value["rootcommentcontent"].toString();
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
@@ -182,7 +182,7 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
                     MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["praisenum"].toInt());
-                    comment.m_updateTime = QString::number(value["time"].toLongLong()*1000);
+                    comment.m_updateTime = QString::number(value["time"].toLongLong() * 1000);
                     comment.m_description = value["rootcommentcontent"].toString();
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();

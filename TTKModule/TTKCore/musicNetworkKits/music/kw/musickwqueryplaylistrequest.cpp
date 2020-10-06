@@ -105,7 +105,7 @@ void MusicKWQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
             item.m_name = value["title"].toString();
             item.m_playCount = QString::number(value["playnum"].toULongLong());
             item.m_description = value["info"].toString();
-            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString(MUSIC_YEAR_FORMAT);
+            item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
             item.m_nickName = value["uname"].toString();
         }
     }
@@ -192,7 +192,7 @@ void MusicKWQueryPlaylistRequest::getDetailsFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist"].toString());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     musicInfo.m_songId = value["id"].toString();
                     musicInfo.m_artistId = value["artistid"].toString();
@@ -256,7 +256,7 @@ void MusicKWQueryPlaylistRequest::getMorePlaylistDetailsFinished()
                 item.m_name = value["title"].toString();
                 item.m_playCount = QString::number(value["playnum"].toULongLong());
                 item.m_description = value["info"].toString();
-                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString(MUSIC_YEAR_FORMAT);
+                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
                 item.m_nickName = value["uname"].toString();
                 Q_EMIT createPlaylistItem(item);
             }

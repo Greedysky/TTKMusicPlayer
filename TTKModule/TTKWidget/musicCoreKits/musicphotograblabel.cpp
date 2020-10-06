@@ -45,12 +45,12 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
 
     if(img.width() > img.height())
     {
-        m_ratio = img.width()*1.0f/width();
+        m_ratio = img.width() * 1.0f / width();
         m_imgRect = QRect(0, 0, img.width() / m_ratio, img.height() / m_ratio);
     }
     else
     {
-        m_ratio = img.height()*1.0f/height();
+        m_ratio = img.height() * 1.0f / height();
         m_imgRect = QRect(0, 0, img.width() / m_ratio, img.height() / m_ratio);
     }
     m_imgRect.setX((width() - m_imgRect.width()) / 2);
@@ -64,7 +64,7 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
 QPixmap MusicPhotoGrabLabel::pixmap()
 {
     QPixmap img(m_path);
-    return img.copy(QRect((m_grabItem->geometry().topLeft() - m_imgRect.topLeft())*m_ratio, m_grabItem->geometry().size()*m_ratio));
+    return img.copy(QRect((m_grabItem->geometry().topLeft() - m_imgRect.topLeft()) * m_ratio, m_grabItem->geometry().size() * m_ratio));
 }
 
 void MusicPhotoGrabLabel::rectChanged()

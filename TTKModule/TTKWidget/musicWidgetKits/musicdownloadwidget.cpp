@@ -355,12 +355,12 @@ void MusicDownloadWidget::resizeWindow()
     m_ui->loadingLabel->run(false);
 
     int delta = m_ui->viewArea->rowCount();
-        delta = ((delta == 0) ? 0 : (delta - 1)*ITEM_ROW_HEIGHT_S) - 2*ITEM_ROW_HEIGHT_S;
+        delta = ((delta == 0) ? 0 : (delta - 1) * ITEM_ROW_HEIGHT_S) - 2 * ITEM_ROW_HEIGHT_S;
 
     setFixedHeightWidget(this, delta);
     setFixedHeightWidget(m_ui->backgroundMask, delta);
     setFixedHeightWidget(m_ui->background, delta);
-    setFixedHeightWidget(m_ui->viewArea, delta + 2*ITEM_ROW_HEIGHT_S);
+    setFixedHeightWidget(m_ui->viewArea, delta + 2 * ITEM_ROW_HEIGHT_S);
 
     setMoveWidget(m_ui->label2, delta);
     setMoveWidget(m_ui->downloadPathEdit, delta);

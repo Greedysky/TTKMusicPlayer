@@ -84,7 +84,7 @@ QString MusicTime::toString(const QString &format) const
 qint64 MusicTime::getTimestamp(Type type) const
 {
     qint64 delta = (type == All_Sec) ? MT_S : MT_S2MS;
-           delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec)*delta;
+           delta = (m_day * MT_D2S + m_hour * MT_H2S + m_min * MT_M2S + m_sec) * delta;
     return (type == All_Sec) ? delta : (delta + m_msec);
 }
 

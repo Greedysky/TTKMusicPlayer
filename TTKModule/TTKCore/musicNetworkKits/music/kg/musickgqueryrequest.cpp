@@ -108,7 +108,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singername"].toString());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     musicInfo.m_songId = value["hash"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
@@ -177,12 +177,12 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 musicInfo.m_songId = value["hash"].toString();
                 musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singername"].toString());
                 musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
-                musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
                 musicInfo.m_artistId = QString::number(value["singerid"].toULongLong());
                 musicInfo.m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
                 musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
                                                         .arg(musicInfo.m_songName).arg(musicInfo.m_songId)
-                                                        .arg(value["duration"].toInt()*1000);
+                                                        .arg(value["duration"].toInt() * 1000);
                 const QVariantList &albumArray = value["album"].toList();
                 foreach(const QVariant &albumValue, albumArray)
                 {

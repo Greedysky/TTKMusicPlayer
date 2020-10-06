@@ -81,7 +81,7 @@ void MusicBDQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
                     }
                     else
                     {
-                        attr.m_duration = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
+                        attr.m_duration = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt() * 1000);
                         attr.m_size = MusicUtils::Number::size2Label(value["file_size"].toInt());
                         attr.m_format = value["file_extension"].toString();
                         attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitrate);
@@ -191,7 +191,7 @@ void MusicBDQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
                     attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                     attr.m_format = value["format"].toString();
                     attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["rate"].toInt());
-                    attr.m_duration = MusicTime::msecTime2LabelJustified(value["time"].toInt()*1000);
+                    attr.m_duration = MusicTime::msecTime2LabelJustified(value["time"].toInt() * 1000);
                     info->m_songAttrs.append(attr);
                 }
             }

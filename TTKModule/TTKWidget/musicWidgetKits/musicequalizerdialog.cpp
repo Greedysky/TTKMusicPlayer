@@ -251,7 +251,7 @@ void MusicEqualizerDialog::eqChoiceIndexChanged(int index)
     m_eqChoiceSelected = true;
     if(index > 0)
     {
-        index = (index - 1)*10;
+        index = (index - 1) * 10;
         m_ui->verticalSlider1->setValue(m_equalizeValue[index + 0]);
         m_ui->verticalSlider2->setValue(m_equalizeValue[index + 1]);
         m_ui->verticalSlider3->setValue(m_equalizeValue[index + 2]);

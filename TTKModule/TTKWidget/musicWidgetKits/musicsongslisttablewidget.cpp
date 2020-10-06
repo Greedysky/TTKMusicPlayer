@@ -485,7 +485,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     {
         const int index = deleteList[i];
         removeRow(index);           //Delete the current row
-        progress.setValue(deleteList.count()*2 - i);
+        progress.setValue(deleteList.count() * 2 - i);
     }
 
     //just fix table widget size hint

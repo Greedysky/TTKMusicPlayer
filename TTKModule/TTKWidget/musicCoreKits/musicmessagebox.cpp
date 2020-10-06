@@ -28,11 +28,6 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    QFont f = font();
-    f.setFamily("Times New Roman");
-    setFont(f);
-    m_ui->textLabel->setFont(f);
-
     QButtonGroup *groupButton = new QButtonGroup(this);
     groupButton->addButton(m_ui->topTitleCloseButton, 0);
     groupButton->addButton(m_ui->confirmButton, 1);

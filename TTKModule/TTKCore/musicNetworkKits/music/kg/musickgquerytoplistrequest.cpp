@@ -74,7 +74,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                 info.m_description = topInfo["intro"].toString();
 
                 value = value["songs"].toMap();
-                info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong()*1000).toString(MUSIC_YEAR_FORMAT);
+                info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
 
                 Q_EMIT createToplistInfoItem(info);
                 //
@@ -89,7 +89,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     const QVariantMap &value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["filename"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     if(musicInfo.m_songName.contains("-"))
                     {

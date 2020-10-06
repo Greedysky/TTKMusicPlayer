@@ -698,10 +698,10 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(m_resizeLabels.count() == 5)
     {
-        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 270);
-        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 255);
-        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 90);
-        m_resizeLabels[3]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0 + 150);
+        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 270);
+        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 255);
+        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 90);
+        m_resizeLabels[3]->setFixedWidth((width - WINDOW_WIDTH_MIN) * 0 + 150);
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;

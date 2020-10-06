@@ -133,7 +133,6 @@ MusicLrcManager::MusicLrcManager(QWidget *parent)
     m_linearGradient.setStart(0, 0);
     m_maskLinearGradient.setStart(0, 0);
 
-    m_font.setFamily("Times New Roman");
     m_font.setBold(true);
 
     m_lrcMaskWidth = 0;

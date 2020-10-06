@@ -126,7 +126,7 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInf
             info->m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
             info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
                                                     .arg(value["songname"].toString()).arg(info->m_songId)
-                                                    .arg(value["duration"].toInt()*1000);
+                                                    .arg(value["duration"].toInt() * 1000);
         }
     }
 }

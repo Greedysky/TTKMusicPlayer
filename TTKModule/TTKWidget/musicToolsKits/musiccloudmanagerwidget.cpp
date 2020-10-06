@@ -320,7 +320,7 @@ void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 by
 {
     if(bytesTotal != 0)
     {
-        const int value = TTKStatic_cast(int, (bytesSent*1.0/bytesTotal)*100);
+        const int value = TTKStatic_cast(int, (bytesSent*1.0/bytesTotal) * 100);
         const int row = FindUploadItemRow(time);
         if(row != -1)
         {

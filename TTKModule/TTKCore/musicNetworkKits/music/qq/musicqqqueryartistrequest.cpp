@@ -144,7 +144,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                         musicInfo.m_artistId = name["mid"].toString();
                     }
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                     m_rawData["songID"] = value["songid"].toString();
                     musicInfo.m_songId = value["songmid"].toString();

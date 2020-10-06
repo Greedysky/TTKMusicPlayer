@@ -58,7 +58,7 @@ void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_struct.m_windowPos = pos();
-        if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1)*2, height() - (DISTANCE + 1)*2).contains(event->pos()))
+        if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1) * 2, height() - (DISTANCE + 1) * 2).contains(event->pos()))
         {
             m_struct.m_mousePos = event->globalPos();
             m_struct.m_mouseLeftPress = true;

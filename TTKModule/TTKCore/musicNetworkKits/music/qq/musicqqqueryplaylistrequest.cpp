@@ -120,7 +120,7 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
                 item.m_name = value["dissname"].toString();
                 item.m_playCount = QString::number(value["listennum"].toULongLong());
                 item.m_description = value["desc"].toString();
-                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString(MUSIC_YEAR_FORMAT);
+                item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong() * 1000).toString(MUSIC_YEAR_FORMAT);
                 item.m_nickName = value["nickname"].toString();
 
                 const QVariantList &tags = value["tags"].toList();
@@ -254,7 +254,7 @@ void MusicQQQueryPlaylistRequest::getDetailsFinished()
                             musicInfo.m_artistId = name["mid"].toString();
                         }
                         musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
-                        musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);
+                        musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                         m_rawData["songID"] = value["songid"].toString();
                         musicInfo.m_songId = value["songmid"].toString();

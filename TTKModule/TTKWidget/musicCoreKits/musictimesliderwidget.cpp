@@ -67,8 +67,8 @@ void MusicTimeSliderWidget::sliderMovedAt(int pos) const
     const int max = m_slider->maximum();
     if(max > 0)
     {
-        const float delta = m_slider->width()*(-0.015/800) + 0.0275;
-        m_label->move(ceil(qint64(pos)*m_slider->width()*(1.0 - delta)/max) - 1, 5);
+        const float delta = m_slider->width() * (-0.015 / 800) + 0.0275;
+        m_label->move(ceil(qint64(pos) * m_slider->width() * (1.0 - delta) / max) - 1, 5);
     }
 }
 

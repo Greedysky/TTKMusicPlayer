@@ -122,7 +122,7 @@ void MusicQQQueryMovieRequest::downLoadFinished()
                         musicInfo.m_artistId = name["mid"].toString();
                     }
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                     musicInfo.m_songId = value["vid"].toString();
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -279,7 +279,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 {
                     info->m_singerName = "Default";
                     info->m_songName = vlValue["ti"].toString();
-                    info->m_timeLength = MusicTime::msecTime2LabelJustified(TTKStatic_cast(int, vlValue["td"].toString().toFloat())*1000);
+                    info->m_timeLength = MusicTime::msecTime2LabelJustified(TTKStatic_cast(int, vlValue["td"].toString().toFloat()) * 1000);
                 }
 
                 vlValue = vlValue["ul"].toMap();
@@ -302,7 +302,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 attr.m_size = MusicUtils::Number::size2Label(flValue["fs"].toInt());
                 attr.m_format = "mp4";
 
-                int bitRate = flValue["br"].toInt()*10;
+                int bitRate = flValue["br"].toInt() * 10;
                 if(bitRate <= 375)
                     attr.m_bitrate = MB_250;
                 else if(bitRate > 375 && bitRate <= 625)

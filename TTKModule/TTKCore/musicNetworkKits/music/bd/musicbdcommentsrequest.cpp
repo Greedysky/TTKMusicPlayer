@@ -101,7 +101,7 @@ void MusicBDSongCommentsRequest::downLoadFinished()
                     MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["zan_num"].toLongLong());
-                    comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);
+                    comment.m_updateTime = QString::number(value["ctime"].toLongLong() * 1000);
                     comment.m_description = value["comment"].toString();
 
                     const QVariantMap &user = value["author"].toMap();
@@ -206,7 +206,7 @@ void MusicBDPlaylistCommentsRequest::downLoadFinished()
                     MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount= QString::number(value["zan_num"].toLongLong());
-                    comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);
+                    comment.m_updateTime = QString::number(value["ctime"].toLongLong() * 1000);
                     comment.m_description = value["comment"].toString();
 
                     const QVariantMap &user = value["author"].toMap();

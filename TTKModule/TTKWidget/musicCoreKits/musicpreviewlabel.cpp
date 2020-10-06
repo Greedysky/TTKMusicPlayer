@@ -14,7 +14,7 @@ void MusicColorPreviewLabel::setColors(const QList<QColor> &colors)
     QLinearGradient linearGradient;
     for(int i=0; i<colors.count(); ++i)
     {
-        linearGradient.setColorAt((i+1)*1.0/colors.count(), colors[i]);
+        linearGradient.setColorAt((i + 1) * 1.0 / colors.count(), colors[i]);
     }
 
     m_gradientColors = colors;
@@ -80,13 +80,13 @@ void MusicPreviewLabel::setLinearGradient(const QList<QColor> &front, const QLis
     {
         QColor rgb = back[i];
         rgb.setAlpha(m_transparent);
-        linearGradient.setColorAt((i+1)*1.0/back.count(), rgb);
+        linearGradient.setColorAt((i + 1) * 1.0 / back.count(), rgb);
     }
     for(int i=0; i<front.count(); ++i)
     {
         QColor rgb = front[i];
         rgb.setAlpha(m_transparent);
-        maskLinearGradient.setColorAt((i+1)*1.0/front.count(), rgb);
+        maskLinearGradient.setColorAt((i + 1) * 1.0 / front.count(), rgb);
     }
     m_linearGradient = linearGradient;
     m_maskLinearGradient = maskLinearGradient;

@@ -252,7 +252,7 @@ void MusicKWQueryInterface::readFromMusicSongPic(MusicObject::MusicSongInformati
 
             if(info->m_timeLength.isEmpty())
             {
-                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
             }
         }
     }
