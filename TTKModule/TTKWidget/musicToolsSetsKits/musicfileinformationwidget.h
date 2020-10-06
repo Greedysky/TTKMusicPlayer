@@ -50,23 +50,31 @@ public Q_SLOTS:
     /*!
      * Open the music at local path.
      */
-    void musicOpenFileDir();
+    void openFileDir();
     /*!
      * Open the selected user pixmap.
      */
-    void musicOpenImageFileDir();
+    void openImageFileDir();
     /*!
      * Music advance clicked.
      */
-    void musicAdvanceClicked();
+    void advanceClicked();
+    /*!
+     * Delete album picture.
+     */
+    void deleteAlbumPicture();
+    /*!
+     * Save album picture.
+     */
+    void saveAlbumPicture();
     /*!
      * Music modify tag start.
      */
-    void musicEditTag();
+    void editTag();
     /*!
      * Music modify tag save.
      */
-    void musicSaveTag();
+    void saveTag();
     /*!
      * Override exec function.
      */
@@ -79,8 +87,10 @@ protected:
     void setEditLineEnabled(bool enable);
 
     Ui::MusicFileInformationWidget *m_ui;
+
     QString m_path, m_imagePath;
     bool m_advanceOn;
+    bool m_deleteOn;
 
 };
 

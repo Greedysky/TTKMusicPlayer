@@ -336,6 +336,10 @@ bool MusicSongTag::saveOtherTaglib()
             {
                 model->setCover(pix);
             }
+            else
+            {
+                model->removeCover();
+            }
         }
         delete model;
         loader.unload();

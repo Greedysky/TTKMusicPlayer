@@ -6,6 +6,7 @@
 #include "musicsongtag.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
+#include "musicmessagebox.h"
 
 #define ADVANCE_OFFSET  150
 
@@ -24,30 +25,37 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 
     setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     setEditLineEnabled(false);
-    m_advanceOn = false;
-    musicAdvanceClicked();
 
-    QPixmap pix;
-    pix.load(":/image/lb_defaultArt");
+    m_advanceOn = false;
+    m_deleteOn = false;
+    advanceClicked();
+
+    QPixmap pix(":/image/lb_defaultArt");
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
 
     m_ui->editButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->deletePixButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->savePixButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->saveButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->viewButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->openPixButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
 
 #ifdef Q_OS_UNIX
     m_ui->editButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->deletePixButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->savePixButton->setFocusPolicy(Qt::NoFocus);
     m_ui->saveButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openPixButton->setFocusPolicy(Qt::NoFocus);
     m_ui->viewButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->editButton, SIGNAL(clicked()), SLOT(musicEditTag()));
-    connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(musicSaveTag()));
-    connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(musicOpenFileDir()));
-    connect(m_ui->advanceLabel, SIGNAL(clicked()), SLOT(musicAdvanceClicked()));
-    connect(m_ui->openPixButton, SIGNAL(clicked()), SLOT(musicOpenImageFileDir()));
+    connect(m_ui->editButton, SIGNAL(clicked()), SLOT(editTag()));
+    connect(m_ui->deletePixButton, SIGNAL(clicked()), SLOT(deleteAlbumPicture()));
+    connect(m_ui->savePixButton, SIGNAL(clicked()), SLOT(saveAlbumPicture()));
+    connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(saveTag()));
+    connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(openFileDir()));
+    connect(m_ui->advanceLabel, SIGNAL(clicked()), SLOT(advanceClicked()));
+    connect(m_ui->openPixButton, SIGNAL(clicked()), SLOT(openImageFileDir()));
 }
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
@@ -55,7 +63,7 @@ MusicFileInformationWidget::~MusicFileInformationWidget()
     delete m_ui;
 }
 
-void MusicFileInformationWidget::musicOpenFileDir()
+void MusicFileInformationWidget::openFileDir()
 {
     if(!MusicUtils::Url::openUrl(QFileInfo(m_path).absoluteFilePath()))
     {
@@ -63,7 +71,7 @@ void MusicFileInformationWidget::musicOpenFileDir()
     }
 }
 
-void MusicFileInformationWidget::musicOpenImageFileDir()
+void MusicFileInformationWidget::openImageFileDir()
 {
     m_imagePath = MusicUtils::File::getOpenFileDialog(this);
     if(m_imagePath.isEmpty())
@@ -77,7 +85,7 @@ void MusicFileInformationWidget::musicOpenImageFileDir()
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
 }
 
-void MusicFileInformationWidget::musicAdvanceClicked()
+void MusicFileInformationWidget::advanceClicked()
 {
     if(m_advanceOn)
     {
@@ -124,13 +132,47 @@ void MusicFileInformationWidget::musicAdvanceClicked()
     setBackgroundPixmap(m_ui->background, size());
 }
 
-void MusicFileInformationWidget::musicEditTag()
+void MusicFileInformationWidget::deleteAlbumPicture()
+{
+    QPixmap pix(":/image/lb_defaultArt");
+    m_ui->pixmapSizeLabel->setText("-");
+    m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
+    m_deleteOn = true;
+}
+
+void MusicFileInformationWidget::saveAlbumPicture()
+{
+    QPixmap pix;
+    MusicSongTag tag;
+    if(tag.read(m_path))
+    {
+        pix = tag.getCover();
+    }
+
+    if(!pix.isNull())
+    {
+        const QString &filename = MusicUtils::File::getSaveFileDialog(this);
+        if(!filename.isEmpty())
+        {
+            pix.save(filename);
+        }
+    }
+}
+
+void MusicFileInformationWidget::editTag()
 {
     setEditLineEnabled(!m_ui->fileAlbumEdit->isEnabled());
 }
 
-void MusicFileInformationWidget::musicSaveTag()
+void MusicFileInformationWidget::saveTag()
 {
+    MusicMessageBox message;
+    message.setText(tr("Are you sure to save?"));
+    if(!message.exec())
+    {
+       return;
+    }
+
     MusicSongTag tag;
     if(!tag.read(m_path))
     {
@@ -167,7 +209,11 @@ void MusicFileInformationWidget::musicSaveTag()
         tag.setYear(value);
     }
 
-    if(!m_imagePath.isEmpty())
+    if(m_deleteOn)
+    {
+        tag.setCover(QPixmap());
+    }
+    else if(!m_imagePath.isEmpty())
     {
         tag.setCover(QPixmap(m_imagePath));
     }
@@ -188,6 +234,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     MusicSongTag tag;
     const bool state = tag.read(m_path = name);
     const QFileInfo fin(name);
+
     QString check;
     m_ui->filePathEdit->setText((check = name).isEmpty() ? "-" : check);
     m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? "-" : check);
@@ -217,6 +264,8 @@ void MusicFileInformationWidget::setEditLineEnabled(bool enable)
     m_ui->fileYearEdit->setEnabled(enable);
 
     m_ui->saveButton->setEnabled(enable);
+    m_ui->deletePixButton->setEnabled(enable);
+
     m_ui->openPixButton->setEnabled(enable);
 }
 

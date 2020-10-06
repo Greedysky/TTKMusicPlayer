@@ -262,199 +262,199 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="1032"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="1031"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="784"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="783"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="776"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="775"/>
         <source>logout</source>
         <translation>Logout</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="1032"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="1031"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation>TTKMusicPlayer Will Run In The Background</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="776"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="775"/>
         <source>login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="588"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="587"/>
         <source>Save List File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="779"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="778"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="812"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="811"/>
         <source>RemoteControl</source>
         <translation>Remote Control</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="816"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="815"/>
         <source>SimpleStyleRemote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="817"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="816"/>
         <source>ComplexStyleRemote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="821"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="820"/>
         <source>Equalizer</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="822"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="821"/>
         <source>SoundEffect</source>
         <translation>Sound Effect</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="823"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="822"/>
         <source>TimingSettings</source>
         <translation>Timing Settings</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="824"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="823"/>
         <source>MusicSpectrum</source>
         <translation>Music Spectrum</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="831"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="830"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="835"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="834"/>
         <source>Full Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="836"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="835"/>
         <source>Custom</source>
         <translation type="unfinished">Custom</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="844"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="843"/>
         <source>New Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="848"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="847"/>
         <source>musicAbout</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="850"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="849"/>
         <source>Bug Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="851"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="850"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="854"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="853"/>
         <source>quit</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="791"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="790"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="792"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="791"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="758"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="757"/>
         <source>add music to lovest list done!</source>
         <translation>Add Music To Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="758"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="757"/>
         <source>remove music to lovest list done!</source>
         <translation>Remove Music From Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="789"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="788"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="790"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="789"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="793"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="792"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="846"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="845"/>
         <source>Setting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="531"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="781"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="530"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="780"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="532"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="782"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="531"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="781"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="814"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="813"/>
         <source>SquareRemote</source>
         <translation>Square Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="815"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="814"/>
         <source>RectangleRemote</source>
         <translation>Rectangle Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="818"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="817"/>
         <source>RippleRemote</source>
         <translation>Ripple Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="819"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="818"/>
         <source>DeleteRemote</source>
         <translation>Close Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="827"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="826"/>
         <source>windowTop</source>
         <translation>WindowTop</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="829"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="828"/>
         <source>resetWindow</source>
         <translation>Reset Window</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="534"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="533"/>
         <source>dragAnddrop</source>
         <translation>Files Drag Drop Supported</translation>
     </message>
@@ -1619,14 +1619,24 @@
         <translation>Others</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="598"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="596"/>
         <source>解码器:</source>
         <translation>Decode:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="666"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="664"/>
         <source>音质:</source>
         <translation>Quality:</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="696"/>
+        <source>删除图片</source>
+        <translation>Delete</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="712"/>
+        <source>导出图片</source>
+        <translation>SaveAs</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="534"/>
@@ -1639,38 +1649,43 @@
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="569"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="567"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;高级&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Advance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="614"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="612"/>
         <source>选择图片</source>
         <translation>Choose</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="627"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="625"/>
         <source>图片大小:</source>
         <translation>ImageSize:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="640"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="653"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="638"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicfileinformationwidget.ui" line="651"/>
         <source>-</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="22"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="23"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="62"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="70"/>
         <source>The origin one does not exist!</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="177"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="170"/>
+        <source>Are you sure to save?</source>
+        <translation>Are You Sure To Save?</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicfileinformationwidget.cpp" line="223"/>
         <source>Save Successfully!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6716,7 +6731,7 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="370"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="404"/>
         <source>Spectrum Init Error!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8070,26 +8085,26 @@ Copyright© 2015-2020 Greedysky All Rights Reserved
         <translation>Add To TTKMusicPlayer PlayList</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="151"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="175"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="144"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="168"/>
         <source>ss</source>
         <translation>SS</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="155"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="179"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="148"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="172"/>
         <source>mm</source>
         <translation>MM</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="159"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="183"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="152"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="176"/>
         <source>hh</source>
         <translation>HH</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="163"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="187"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="156"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="180"/>
         <source>day</source>
         <translation>DAY</translation>
     </message>
