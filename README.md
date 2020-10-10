@@ -27,3 +27,82 @@ The TTKMusicplayer plugin for run
   * |__MTheme
   * |__MPlugins
   * |__plugins
+
+## Plugin module
+### Output
+ * alsa
+ * directsound
+ * null
+ * wasapi
+ * waveout
+### Effect
+ * bs2b
+ * crossfade
+ * ladspa
+ * mono
+ * monotostereo
+ * soxr
+ * srconverter
+ * stereo
+### Light
+ * lightenvelope
+ * lightreplaygain
+ * lightspectrum
+### Visual
+ * floridancient
+ * floridautism
+ * floridbass
+ * floridelectric
+ * floridreverb
+ * floridsurround
+ * flowethereality
+ * flowgoom
+ * flowmountain
+ * flowprojectm
+ * flowsonique
+ * normalanalyzer
+ * normalewave
+ * normalflowwave
+ * normalhistogram
+ * normalline
+ * outerblurwave
+ * outerrayswave
+ * outerripples
+ * plusblurxrays
+ * plusfoldwave
+ * plusspacewave
+ * plusxrays
+ * wavecrest
+ * wavevoice
+ * wavevolume
+### Input
+ * aac
+ * cdaudio
+ * cue
+ * ffap
+ * ffmpeg
+ * flac
+ * gme
+ * modplug
+ * mpc
+ * mpeg
+ * opus
+ * sid
+ * sndfile
+ * vorbis
+ * wavpack
+ * wildmidi
+ * xmp
+ * adplug
+ * alac
+ * asap
+ * ayfly
+ * dca
+ * fc14
+ * dumb
+ * optimfrog
+ * psf
+ * sc68
+ * speex
+ * v2m
+ * ym

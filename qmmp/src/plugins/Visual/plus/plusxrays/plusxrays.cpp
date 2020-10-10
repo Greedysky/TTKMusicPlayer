@@ -9,7 +9,7 @@
 #include "plusxrays.h"
 #include "colorwidget.h"
 
-PlusXRays::PlusXRays (QWidget *parent)
+PlusXRays::PlusXRays(QWidget *parent)
     : Visual(parent)
 {
     setWindowTitle(tr("Plus XRays Widget"));
