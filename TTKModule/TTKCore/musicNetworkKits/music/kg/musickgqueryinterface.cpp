@@ -16,8 +16,8 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         return;
     }
 
-    const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloud").arg(hash).toUtf8()).toHex().toLower();
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(QString(encodedData)).arg(hash);
+    const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloudv2").arg(hash).toUtf8()).toHex().toLower();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_DETAIL_URL, false).arg(hash).arg(QString(encodedData));
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

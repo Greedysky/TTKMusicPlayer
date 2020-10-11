@@ -80,7 +80,7 @@ void MusicBDQueryRequest::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -160,7 +160,7 @@ void MusicBDQueryRequest::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();
 
         QJson::Parser parser;
         bool ok;

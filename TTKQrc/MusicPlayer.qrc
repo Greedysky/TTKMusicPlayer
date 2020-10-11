@@ -342,7 +342,6 @@
         <file alias="lrc_back_clicked">../TTKResource/funcTools/lrc_back_clicked.png</file>
     </qresource>
     <qresource prefix="/server">
-        <file alias="lb_baidu">../TTKResource/server/lb_server_baidu.png</file>
         <file alias="lb_kugou">../TTKResource/server/lb_server_kugou.png</file>
         <file alias="lb_kuwo">../TTKResource/server/lb_server_kuwo.png</file>
         <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>

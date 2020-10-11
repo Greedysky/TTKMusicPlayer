@@ -85,6 +85,15 @@ TTK_DECLARE_LISTS(MusicResultsItem)
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
 
+enum DownloadQueryServer
+{
+    WYQueryServer,
+    QQQueryServer,
+    XMQueryServer,
+    KWQueryServer,
+    KGQueryServer
+};
+
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -113,6 +122,7 @@ public:
      * Subclass should implement this function.
      */
     virtual void startToSearch(QueryType type, const QString &text) = 0;
+
     /*!
      * Start to search single data from id.
      * Subclass should implement this function.

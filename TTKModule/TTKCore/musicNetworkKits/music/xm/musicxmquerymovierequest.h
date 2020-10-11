@@ -44,6 +44,7 @@ public:
      * Start to search data from name and type bt paging.
      */
     virtual void startToPage(int offset) override;
+
     /*!
      * Start to search data by given id.
      */

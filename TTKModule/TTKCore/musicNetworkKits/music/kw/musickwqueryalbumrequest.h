@@ -40,6 +40,7 @@ public:
      * Start to Search data from name and type.
      */
     virtual void startToSearch(const QString &album) override;
+
     /*!
      * Start to search data by given id.
      */

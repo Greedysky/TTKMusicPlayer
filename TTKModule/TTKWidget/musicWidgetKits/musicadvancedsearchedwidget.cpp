@@ -1,4 +1,5 @@
 #include "musicadvancedsearchedwidget.h"
+#include "musicabstractqueryrequest.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
@@ -179,9 +180,9 @@ QWidget *MusicAdvancedSearchedWidget::createSearchPairWidget(MusicLocalSongSearc
 
 void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 {
-    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt())
+    switch(TTKStatic_cast(DownloadQueryServer, M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt()))
     {
-        case 0:
+        case WYQueryServer:
             {
                 m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg("28830412"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg("964486"));
@@ -190,7 +191,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487"));
                 break;
             }
-        case 1:
+        case QQQueryServer:
             {
                 m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg("003fOZMP0ep9Fh"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
@@ -199,7 +200,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MOVIE_SHARE, ALG_UNIMP_KEY, false).arg("b0013k1imsl"));
                 break;
             }
-        case 2:
+        case XMQueryServer:
             {
                 m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_SG_SHARE, ALG_UNIMP_KEY, false).arg("1770851302"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_AR_SHARE, ALG_UNIMP_KEY, false).arg("2110200690"));
@@ -208,16 +209,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_MV_SHARE, ALG_UNIMP_KEY, false).arg("K6KGcx"));
                 break;
             }
-        case 3:
-            {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_SG_SHARE, ALG_UNIMP_KEY, false).arg("589759196"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AR_SHARE, ALG_UNIMP_KEY, false).arg("2517"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AL_SHARE, ALG_UNIMP_KEY, false).arg("611662508"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_PL_SHARE, ALG_UNIMP_KEY, false).arg("557963176"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_MV_SHARE, ALG_UNIMP_KEY, false).arg("611661931"));
-                break;
-            }
-        case 4:
+        case KWQueryServer:
             {
                 m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_UNIMP_KEY, false).arg("23983067"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
@@ -226,11 +218,11 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MOVIE_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
                 break;
             }
-        case 5:
+        case KGQueryServer:
             {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("0624926cfbdf905ae97d4ef6e01fea95"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("1169"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("2179324"));
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("39503213"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg("155318"));
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
                 break;
@@ -242,33 +234,27 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString &url)
 {
     QString key;
-    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt())
+    switch(TTKStatic_cast(DownloadQueryServer, M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt()))
     {
-        case 0:
+        case WYQueryServer:
             {
                 QRegExp regx("id=(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
-        case 1:
+        case QQQueryServer:
             {
                 QRegExp regx("/(\\w+).html");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
-        case 2:
+        case XMQueryServer:
             {
                 QRegExp regx(type == 4 ? "/mv/(\\w+)$" : "/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
-        case 3:
-            {
-                QRegExp regx("/(\\d+)");
-                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
-                break;
-            }
-        case 4:
+        case KWQueryServer:
             {
                 QRegExp regx;
                 if(type == 1)
@@ -286,7 +272,7 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
-        case 5:
+        case KGQueryServer:
             {
                 QRegExp regx;
                 if(type == 0)

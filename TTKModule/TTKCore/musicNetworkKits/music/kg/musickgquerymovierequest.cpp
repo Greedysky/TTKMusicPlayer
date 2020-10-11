@@ -90,7 +90,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -154,7 +154,7 @@ void MusicKGQueryMovieRequest::pageDownLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;

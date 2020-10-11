@@ -163,7 +163,7 @@ void MusicKWQueryAlbumRequest::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        QByteArray bytes = reply->readAll();
 
         QJson::Parser parser;
         bool ok;

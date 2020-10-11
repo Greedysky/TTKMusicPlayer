@@ -26,7 +26,7 @@ void MusicXMQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-    makeTokenQueryUrl(&request, false,
+    makeTokenQueryUrl(&request, true,
                       MusicUtils::Algorithm::mdII(XM_SONG_SEARCH_DATA_URL, false).arg(text).arg(1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_SONG_SEARCH_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -93,7 +93,7 @@ void MusicXMQueryMovieRequest::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -158,7 +158,7 @@ void MusicXMQueryMovieRequest::pageDownLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
