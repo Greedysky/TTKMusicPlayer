@@ -22,9 +22,6 @@
 #include "musicitemsearchtablewidget.h"
 #include "musicabstractqueryrequest.h"
 
-#define AUDITION_PLAY TTKStatic_cast(int, Qt::yellow)
-#define AUDITION_STOP TTKStatic_cast(int, Qt::transparent)
-
 /*! @brief The class of the data download item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -86,18 +83,6 @@ public:
     virtual void musicDownloadLocal(int row) override;
 
     /*!
-     * Stop current audtion.
-     */
-    void auditionStop();
-    /*!
-     * Start play audition to music by row.
-     */
-    void auditionToMusic(int row);
-    /*!
-     * Stop play audition to music by row.
-     */
-    void auditionToMusicStop(int row);
-    /*!
      * Set search data quality.
      */
     void setSearchQuality(const QString &quality);
@@ -106,12 +91,6 @@ public:
      * Resize window bound by widget resize called.
      */
     void resizeWindow();
-
-Q_SIGNALS:
-    /*!
-     * Check current audtion is playing or not.
-     */
-    void auditionIsPlaying(bool play);
 
 public Q_SLOTS:
     /*!
@@ -146,10 +125,6 @@ public Q_SLOTS:
      * Open music song download widget.
      */
     void musicSongDownload(int row);
-    /*!
-     * Media aution play error.
-     */
-    void mediaAutionPlayError(int code);
 
 protected:
     /*!
@@ -163,8 +138,6 @@ protected:
     void addSearchMusicToPlaylist(int row);
 
     bool m_queryAllRecords;
-    int m_previousAuditionRow;
-    MusicCoreMPlayer *m_mediaPlayer;
     MusicDownloadData m_downloadData;
 
 };
@@ -206,20 +179,12 @@ public:
      * Resize window bound by widget resize called.
      */
     void resizeWindow();
-    /*!
-     * Stop current audtion.
-     */
-    void auditionStop();
 
 public Q_SLOTS:
     /*!
      * Set diff button clicked by index.
      */
     void buttonClicked(int index);
-    /*!
-     * Check current audtion is playing or not.
-     */
-    void auditionIsPlaying(bool play);
 
 protected:
     /*!
