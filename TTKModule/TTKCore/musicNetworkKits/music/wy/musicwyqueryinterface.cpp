@@ -21,10 +21,9 @@ void MusicWYQueryInterface::makeTokenQueryRequest(QNetworkRequest *request)
 
     QString cookie = M_SETTING_PTR->value(MusicSettingManager::NetworkCookie).toString();
     cookie = cookie.isEmpty() ? MusicUtils::Algorithm::mdII(WY_COOKIE_URL, false) : cookie;
-    request->setRawHeader("Cookie", QString("MUSIC_U=%1; appver=2.0.3.131777; __remember_me=true; _ntes_nuid=%2; _ntes_nnid=%3; JSESSIONID-WYYY=%4; _iuqxldmzr_=32").arg(cookie)
-                                            .arg(MusicUtils::Algorithm::mdII(WY_NUID_URL, ALG_UA_KEY, false))
-                                            .arg(MusicUtils::Algorithm::mdII(WY_NNID_URL, ALG_UA_KEY, false))
-                                            .arg(WY_WYYY_URL).toUtf8());
+    request->setRawHeader("Cookie", QString("MUSIC_U=%1; NMTID=%2; ").arg(cookie)
+                                            .arg(MusicUtils::Algorithm::mdII(WY_NMTID_URL, ALG_UA_KEY, false))
+                                            .toUtf8());
     MusicObject::setSslConfiguration(request);
 }
 

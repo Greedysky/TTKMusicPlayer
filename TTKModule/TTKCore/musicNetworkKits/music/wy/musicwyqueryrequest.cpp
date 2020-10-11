@@ -90,7 +90,7 @@ void MusicWYQueryRequest::downLoadFinished()
     {
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok); 
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

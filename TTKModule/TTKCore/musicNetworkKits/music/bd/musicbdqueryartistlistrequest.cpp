@@ -37,7 +37,7 @@ void MusicBDQueryArtistListRequest::startToPage(int offset)
             initial = "%E5%85%B6%E4%BB%96";
         }
     }
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset*m_pageSize).arg(initial);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset * m_pageSize).arg(initial);
     m_pageTotal = 0;
     m_interrupt = true;
 

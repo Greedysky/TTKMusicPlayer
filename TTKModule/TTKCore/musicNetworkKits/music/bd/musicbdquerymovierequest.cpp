@@ -45,7 +45,7 @@ void MusicBDQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_MOVIE_URL, false).arg(m_searchText).arg(offset*m_pageSize);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_MOVIE_URL, false).arg(m_searchText).arg(offset * m_pageSize);
     m_pageTotal = 0;
     m_pageSize = 20;
     m_interrupt = true;
