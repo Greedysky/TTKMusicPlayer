@@ -49,19 +49,21 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
         QByteArray bytes = m_reply->readAll();
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes.replace("lrclist", "'lrclist'").replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
+
         if(ok)
         {
             QString lrcData;
             QVariantMap value = data.toMap();
-            if(value.contains("lrclist"))
+            if(value.contains("data"))
             {
+                value = value["data"].toMap();
                 const QVariantList &datas = value["lrclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     value = var.toMap();
-                    lrcData.append(MusicTime(value["timeId"].toInt(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))
-                           .append(value["text"].toByteArray()).append("\n");
+                    lrcData.append(MusicTime(value["time"].toString().toDouble(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))
+                           .append(value["lineLyric"].toByteArray()).append("\n");
                 }
             }
 

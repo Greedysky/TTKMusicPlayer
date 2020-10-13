@@ -186,6 +186,7 @@ void MusicKWQueryRequest::downLoadFinished()
                         readFromMusicSongPic(&musicInfo);
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+
                         ///music normal songs urls
                         readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;

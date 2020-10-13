@@ -237,14 +237,15 @@ void MusicKWQueryInterface::readFromMusicSongPic(MusicObject::MusicSongInformati
 
     QJson::Parser parser;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll().replace("lrclist", "'lrclist'").replace("'", "\""), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value.contains("songinfo"))
+        if(value.contains("data"))
         {
+            value = value["data"].toMap();
             value = value["songinfo"].toMap();
-            info->m_smallPicUrl = value["artpic"].toString();
+            info->m_smallPicUrl = value["pic"].toString();
             if(!info->m_smallPicUrl.contains(TTK_HTTP) && !info->m_smallPicUrl.contains(COVER_URL_NULL))
             {
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;

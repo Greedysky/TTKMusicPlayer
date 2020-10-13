@@ -35,6 +35,7 @@ void MusicQQQueryRequest::startToPage(int offset)
     deleteAll();
 
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize);
+
     m_interrupt = true;
     m_pageTotal = 0;
     m_pageIndex = offset;
