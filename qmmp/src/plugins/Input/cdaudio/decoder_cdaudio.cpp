@@ -1,5 +1,3 @@
-#include <QObject>
-#include <QRegExp>
 #include <QSettings>
 #include <QDir>
 #include <cdio/cdio.h>
@@ -367,7 +365,11 @@ bool DecoderCDAudio::initialize()
     int track_number = m_url.section("#", -1).toInt();
     QString device_path = m_url;
     device_path.remove("cdda://");
+#ifdef QMMP_GREATER_NEW
+    device_path.remove(QRegularExpression("#\\d+$"));
+#else
     device_path.remove(QRegExp("#\\d+$"));
+#endif
 
     track_number = qMax(track_number, 1);
     QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path); //generate track list

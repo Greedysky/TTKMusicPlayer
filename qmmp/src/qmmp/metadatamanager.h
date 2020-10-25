@@ -28,9 +28,6 @@
 #include <QMutex>
 #include "trackinfo.h"
 #include "metadatamodel.h"
-#ifdef QMMP_GREATER_NEW
-#include <QRegularExpression>
-#endif
 
 class DecoderFactory;
 class EngineFactory;

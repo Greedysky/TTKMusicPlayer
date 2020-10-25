@@ -25,6 +25,11 @@
 #include <QString>
 #include <QVariant>
 #include "qmmp.h"
+#ifdef QMMP_GREATER_NEW
+#include <QRegularExpression>
+#else
+#include <QRegExp>
+#endif
 
 /*! @brief The TrackInfo class stores metadata and other information about track.
  * @author Ilya Kotov <forkotov02@ya.ru>

@@ -50,7 +50,11 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
     if(path.contains("://")) //is it cue track?
     {
         filePath.remove("flac://");
+#ifdef QMMP_GREATER_NEW
+        filePath.remove(QRegularExpression("#\\d+$"));
+#else
         filePath.remove(QRegExp("#\\d+$"));
+#endif
         track = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }

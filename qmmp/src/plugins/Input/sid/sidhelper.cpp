@@ -1,4 +1,3 @@
-#include <QRegExp>
 #include <sidplayfp/SidDatabase.h>
 #include "sidhelper.h"
 
@@ -27,7 +26,11 @@ SidTune *SIDHelper::load(const QString &url)
     if(url.contains("://"))
     {
         path.remove("sid://");
+#ifdef QMMP_GREATER_NEW
+        path.remove(QRegularExpression("#\\d+$"));
+#else
         path.remove(QRegExp("#\\d+$"));
+#endif
         track = url.section("#", -1).toInt();
     }
     m_tune = new SidTune(qPrintable(path));

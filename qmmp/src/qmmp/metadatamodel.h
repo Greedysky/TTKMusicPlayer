@@ -29,6 +29,9 @@
 #include <QVariant>
 #include <QFlags>
 #include "tagmodel.h"
+#ifdef QMMP_GREATER_NEW
+#include <QRegularExpression>
+#endif
 
 /*! @brief Container of extra file/track property.
  * @author Ilya Kotov <forkotov02@ya.ru>

@@ -1,4 +1,3 @@
-#include <QRegExp>
 #include <taglib/apefile.h>
 #include <taglib/apetag.h>
 #include <taglib/tfilestream.h>
@@ -42,7 +41,11 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
     if(path.contains("://"))
     {
         filePath.remove("ape://");
+#ifdef QMMP_GREATER_NEW
+        filePath.remove(QRegularExpression("#\\d+$"));
+#else
         filePath.remove(QRegExp("#\\d+$"));
+#endif
         track = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }

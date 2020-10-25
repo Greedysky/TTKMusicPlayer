@@ -1,5 +1,4 @@
 #include <QTextCodec>
-#include <QRegExp>
 #include <taglib/tag.h>
 #include <taglib/id3v1tag.h>
 #include <taglib/apetag.h>
@@ -13,7 +12,11 @@ FFapMetaDataModel::FFapMetaDataModel(const QString &path, bool readOnly)
     {
         QString p = path;
         p.remove("ape://");
+#ifdef QMMP_GREATER_NEW
+        p.remove(QRegularExpression("#\\d+$"));
+#else
         p.remove(QRegExp("#\\d+$"));
+#endif
         m_path = p;
         m_stream = new TagLib::FileStream(QStringToFileName(p), true);
         m_file = new TagLib::APE::File(m_stream);

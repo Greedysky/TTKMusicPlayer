@@ -18,7 +18,11 @@ CueFile::CueFile(const QString &path)
     if(path.contains("://"))
     {
         filePath.remove("cue://");
+#ifdef QMMP_GREATER_NEW
+        filePath.remove(QRegularExpression("#\\d+$"));
+#else
         filePath.remove(QRegExp("#\\d+$"));
+#endif
     }
 
     QFile file(filePath);
