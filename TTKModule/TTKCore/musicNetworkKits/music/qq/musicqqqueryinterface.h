@@ -86,7 +86,7 @@ public:
     /*!
      * Get music key.
      */
-    QString getMusicKey(const QString &file, const QString &mid = 0);
+    QString getMusicPath(const QString &file, const QString &mid);
 
 };
 

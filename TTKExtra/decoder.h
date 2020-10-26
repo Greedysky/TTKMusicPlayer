@@ -28,6 +28,7 @@
 #include "qmmp.h"
 #include "audioparameters.h"
 #include "channelmap.h"
+#include "regularwrapper.h"
 
 class QmmpPluginCache;
 class DecoderFactory;

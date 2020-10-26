@@ -28,9 +28,6 @@
 #include <QMutex>
 #include "trackinfo.h"
 #include "metadatamodel.h"
-#ifdef QMMP_GREATER_NEW
-#include <QRegularExpression>
-#endif
 
 class DecoderFactory;
 class EngineFactory;
@@ -75,11 +72,7 @@ public:
     /*!
      * Returns a list of supported regular expressions for URL.
      */
-#ifdef QMMP_GREATER_NEW
-    QList<QRegularExpression> regExps() const;
-#else
-    QList<QRegExp> regExps() const;
-#endif
+    QList<RegularWrapper> regExps() const;
     /*!
      * Returns \b true if \b file is supported and exists, otherwise returns \b false
      */
@@ -113,16 +106,6 @@ public:
      * Prepares object for usage by another thread to avoid warnings about parent from the different thread
      */
     void prepareForAnotherThread();
-#ifdef QMMP_GREATER_NEW
-    /*!
-     * Returns \b true if the one regular expression in the list \b regExps matched against the \b path or \b false otherwise.
-     */
-    static bool hasMatch(const QList<QRegularExpression> &regExps, const QString &path);
-#endif
-    /*!
-     * Returns \b true if the one regular expression in the list \b regExps matched against the \b path or \b false otherwise.
-     */
-    static bool hasMatch(const QList<QRegExp> &regExps, const QString &path);
     /*!
      * Returns a pointer to the MetaDataManager instance.
      */

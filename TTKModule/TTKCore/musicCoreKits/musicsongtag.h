@@ -21,7 +21,7 @@
 
 #include <QVariant>
 
-#include "tagreadandwrite.h"
+#include "tagwrapper.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the music song tag.
@@ -170,7 +170,7 @@ protected:
     /*!
      * Find legal data string.
      */
-    QString findLegalDataString(TagReadAndWrite::MusicTag type) const;
+    QString findLegalDataString(TagWrapper::TagType type) const;
     /*!
      * Find current pluin store path.
      */
@@ -185,7 +185,7 @@ protected:
     bool saveOtherTaglib();
 
     QString m_filePath;
-    QMap<TagReadAndWrite::MusicTag, QVariant> m_parameters;
+    QMap<TagWrapper::TagType, QVariant> m_parameters;
 
 };
 

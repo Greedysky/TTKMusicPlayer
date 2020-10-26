@@ -10,7 +10,7 @@
 #include <QPluginLoader>
 #include <QFileInfo>
 ///qmmp incldue
-#include "tagreadandwrite.h"
+#include "tagwrapper.h"
 #include "decoderfactory.h"
 #include "metadatamodel.h"
 #include "decoder.h"
@@ -66,32 +66,32 @@ QString MusicSongTag::getFilePath() const
 
 QString MusicSongTag::getArtist() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_ARTIST);
+    return findLegalDataString(TagWrapper::TAG_ARTIST);
 }
 
 QString MusicSongTag::getTitle() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_TITLE);
+    return findLegalDataString(TagWrapper::TAG_TITLE);
 }
 
 QString MusicSongTag::getAlbum() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_ALBUM);
+    return findLegalDataString(TagWrapper::TAG_ALBUM);
 }
 
 QString MusicSongTag::getComment() const
 {
-    return m_parameters[TagReadAndWrite::TAG_COMMENT].toString();
+    return m_parameters[TagWrapper::TAG_COMMENT].toString();
 }
 
 QString MusicSongTag::getYear() const
 {
-    return m_parameters[TagReadAndWrite::TAG_YEAR].toString();
+    return m_parameters[TagWrapper::TAG_YEAR].toString();
 }
 
 QString MusicSongTag::getTrackNum() const
 {
-    const QString &v = m_parameters[TagReadAndWrite::TAG_TRACK].toString();
+    const QString &v = m_parameters[TagWrapper::TAG_TRACK].toString();
     bool ok = true;
     if(v.toInt(&ok) > 0)
     {
@@ -102,62 +102,62 @@ QString MusicSongTag::getTrackNum() const
 
 QString MusicSongTag::getGenre() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_GENRE);
+    return findLegalDataString(TagWrapper::TAG_GENRE);
 }
 
 QString MusicSongTag::getAlbumArtist() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_ALBUMARTIST);
+    return findLegalDataString(TagWrapper::TAG_ALBUMARTIST);
 }
 
 QString MusicSongTag::getComposer() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_COMPOSER);
+    return findLegalDataString(TagWrapper::TAG_COMPOSER);
 }
 
 QString MusicSongTag::getChannel() const
 {
-    return m_parameters[TagReadAndWrite::TAG_CHANNEL].toString();
+    return m_parameters[TagWrapper::TAG_CHANNEL].toString();
 }
 
 QString MusicSongTag::getURL() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_URL);
+    return findLegalDataString(TagWrapper::TAG_URL);
 }
 
 void MusicSongTag::setArtist(const QString &artist)
 {
-    m_parameters[TagReadAndWrite::TAG_ARTIST] = artist;
+    m_parameters[TagWrapper::TAG_ARTIST] = artist;
 }
 
 void MusicSongTag::setTitle(const QString &title)
 {
-    m_parameters[TagReadAndWrite::TAG_TITLE] = title;
+    m_parameters[TagWrapper::TAG_TITLE] = title;
 }
 
 void MusicSongTag::setAlbum(const QString &album)
 {
-    m_parameters[TagReadAndWrite::TAG_ALBUM] = album;
+    m_parameters[TagWrapper::TAG_ALBUM] = album;
 }
 
 void MusicSongTag::setComment(const QString &comment)
 {
-    m_parameters[TagReadAndWrite::TAG_COMMENT] = comment;
+    m_parameters[TagWrapper::TAG_COMMENT] = comment;
 }
 
 void MusicSongTag::setYear(const QString &year)
 {
-    m_parameters[TagReadAndWrite::TAG_YEAR] = year;
+    m_parameters[TagWrapper::TAG_YEAR] = year;
 }
 
 void MusicSongTag::setTrackNum(const QString &track)
 {
-    m_parameters[TagReadAndWrite::TAG_TRACK] = track;
+    m_parameters[TagWrapper::TAG_TRACK] = track;
 }
 
 void MusicSongTag::setGenre(const QString &genre)
 {
-    m_parameters[TagReadAndWrite::TAG_GENRE] = genre;
+    m_parameters[TagWrapper::TAG_GENRE] = genre;
 }
 
 void MusicSongTag::setCover(const QPixmap &pix)
@@ -168,7 +168,7 @@ void MusicSongTag::setCover(const QPixmap &pix)
     {
         p = p.scaled(500, 500, Qt::KeepAspectRatio);
     }
-    m_parameters[TagReadAndWrite::TAG_COVER] = p;
+    m_parameters[TagWrapper::TAG_COVER] = p;
 #else
     Q_UNUSED(data);
 #endif
@@ -188,7 +188,7 @@ void MusicSongTag::setCover(const QByteArray &data)
 QPixmap MusicSongTag::getCover() const
 {
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
-    return m_parameters[TagReadAndWrite::TAG_COVER].value<QPixmap>();
+    return m_parameters[TagWrapper::TAG_COVER].value<QPixmap>();
 #else
     return QPixmap();
 #endif
@@ -196,30 +196,30 @@ QPixmap MusicSongTag::getCover() const
 
 QString MusicSongTag::getSampleRate() const
 {
-    return m_parameters[TagReadAndWrite::TAG_SAMPLERATE].toString();
+    return m_parameters[TagWrapper::TAG_SAMPLERATE].toString();
 }
 
 QString MusicSongTag::getFormat() const
 {
-    return m_parameters[TagReadAndWrite::TAG_FORMAT].toString();
+    return m_parameters[TagWrapper::TAG_FORMAT].toString();
 }
 
 QString MusicSongTag::getMode() const
 {
-    return m_parameters[TagReadAndWrite::TAG_MODE].toString();
+    return m_parameters[TagWrapper::TAG_MODE].toString();
 }
 
 QString MusicSongTag::getBitrate() const
 {
-    return m_parameters[TagReadAndWrite::TAG_BITRATE].toString() + " kbps";
+    return m_parameters[TagWrapper::TAG_BITRATE].toString() + " kbps";
 }
 
 QString MusicSongTag::getLengthString() const
 {
-    return MusicTime::msecTime2LabelJustified(m_parameters[TagReadAndWrite::TAG_LENGTH].toULongLong());
+    return MusicTime::msecTime2LabelJustified(m_parameters[TagWrapper::TAG_LENGTH].toULongLong());
 }
 
-QString MusicSongTag::findLegalDataString(TagReadAndWrite::MusicTag type) const
+QString MusicSongTag::findLegalDataString(TagWrapper::TagType type) const
 {
     const QString &v = m_parameters[type].toString();
     return MusicUtils::String::illegalCharactersReplaced(v);
@@ -254,7 +254,7 @@ bool MusicSongTag::readOtherTaglib()
         MetaDataModel *model = factory->createMetaDataModel(m_filePath, true);
         if(model)
         {
-            m_parameters.insert(TagReadAndWrite::TAG_COVER, model->cover());
+            m_parameters.insert(TagWrapper::TAG_COVER, model->cover());
             delete model;
         }
 
@@ -262,34 +262,34 @@ bool MusicSongTag::readOtherTaglib()
         if(!infos.isEmpty())
         {
             TrackInfo *info = infos.first();
-            m_parameters[TagReadAndWrite::TAG_SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
-            m_parameters[TagReadAndWrite::TAG_BITRATE] = info->value(Qmmp::BITRATE);
-            m_parameters[TagReadAndWrite::TAG_CHANNEL] = info->value(Qmmp::CHANNELS);
+            m_parameters[TagWrapper::TAG_SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
+            m_parameters[TagWrapper::TAG_BITRATE] = info->value(Qmmp::BITRATE);
+            m_parameters[TagWrapper::TAG_CHANNEL] = info->value(Qmmp::CHANNELS);
 
-            m_parameters[TagReadAndWrite::TAG_TITLE] = info->value(Qmmp::TITLE);
-            m_parameters[TagReadAndWrite::TAG_ARTIST] = info->value(Qmmp::ARTIST);
-            m_parameters[TagReadAndWrite::TAG_ALBUM] = info->value(Qmmp::ALBUM);
-            m_parameters[TagReadAndWrite::TAG_YEAR] = info->value(Qmmp::YEAR);
-            m_parameters[TagReadAndWrite::TAG_COMMENT] = info->value(Qmmp::COMMENT);
-            m_parameters[TagReadAndWrite::TAG_TRACK] = info->value(Qmmp::TRACK);
-            m_parameters[TagReadAndWrite::TAG_GENRE] = info->value(Qmmp::GENRE);
+            m_parameters[TagWrapper::TAG_TITLE] = info->value(Qmmp::TITLE);
+            m_parameters[TagWrapper::TAG_ARTIST] = info->value(Qmmp::ARTIST);
+            m_parameters[TagWrapper::TAG_ALBUM] = info->value(Qmmp::ALBUM);
+            m_parameters[TagWrapper::TAG_YEAR] = info->value(Qmmp::YEAR);
+            m_parameters[TagWrapper::TAG_COMMENT] = info->value(Qmmp::COMMENT);
+            m_parameters[TagWrapper::TAG_TRACK] = info->value(Qmmp::TRACK);
+            m_parameters[TagWrapper::TAG_GENRE] = info->value(Qmmp::GENRE);
 
             length = info->duration();
             if(length != 0)
             {
-                m_parameters.insert(TagReadAndWrite::TAG_LENGTH, QString::number(length));
+                m_parameters.insert(TagWrapper::TAG_LENGTH, QString::number(length));
             }
         }
 
         if(length == 0)
         {
-            TagReadAndWrite tag;
+            TagWrapper tag;
             if(tag.readFile(m_filePath))
             {
-                const QMap<TagReadAndWrite::MusicTag, QString> &data = tag.getMusicTags();
-                length = data[TagReadAndWrite::TAG_LENGTH].toLongLong();
+                const QMap<TagWrapper::TagType, QString> &data = tag.getMusicTags();
+                length = data[TagWrapper::TAG_LENGTH].toLongLong();
             }
-            m_parameters[TagReadAndWrite::TAG_LENGTH] = QString::number(length);
+            m_parameters[TagWrapper::TAG_LENGTH] = QString::number(length);
         }
 
         loader.unload();

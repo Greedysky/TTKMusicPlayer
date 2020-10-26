@@ -16,23 +16,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef TAGREADANDWRITE_H
-#define TAGREADANDWRITE_H
+#ifndef TAGWRAPPER_H
+#define TAGWRAPPER_H
 
 #include <QMap>
 #include <QString>
 #include "qmmp_export.h"
 
-/*! @brief The class of the file tag read and write.
+/*! @brief The class of the file tag wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT TagReadAndWrite
+class QMMP_EXPORT TagWrapper
 {
 public:
-    enum MusicTag
+    enum TagType
     {
         TAG_UNKNOWN = -1,
-        TAG_TITLE = 0,   /*!< Title */
+        TAG_TITLE,       /*!< Title */
         TAG_ARTIST,      /*!< Artist  */
         TAG_ALBUMARTIST, /*!< Album artist  */
         TAG_ALBUM,       /*!< Album */
@@ -52,20 +52,20 @@ public:
         TAG_COVER,       /*!< Cover */
     };
 
-    TagReadAndWrite();
-    explicit TagReadAndWrite(const QString &file);
-    ~TagReadAndWrite();
+    TagWrapper();
+    explicit TagWrapper(const QString &file);
+    ~TagWrapper();
 
     bool readFile();
     bool readFile(const QString &path);
 
-    bool writeMusicTag(MusicTag tag, const QString &value, int id3v2Version);
-    inline QMap<MusicTag, QString> getMusicTags() const { return m_parameters; }
+    bool writeMusicTag(TagType tag, const QString &value, int id3v2Version);
+    inline QMap<TagType, QString> getMusicTags() const { return m_parameters; }
 
 protected:
     QString m_path;
-    QMap<MusicTag, QString> m_parameters;
+    QMap<TagType, QString> m_parameters;
 
 };
 
-#endif // TAGREADANDWRITE_H
+#endif // TAGWRAPPER_H

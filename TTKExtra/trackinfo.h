@@ -25,6 +25,7 @@
 #include <QString>
 #include <QVariant>
 #include "qmmp.h"
+#include "regularwrapper.h"
 
 /*! @brief The TrackInfo class stores metadata and other information about track.
  * @author Ilya Kotov <forkotov02@ya.ru>
@@ -83,7 +84,7 @@ public:
     /*!
      * Returns file path or stream URL.
      */
-    const QString path() const;
+    const QString &path() const;
     /*!
      * Returns the metdata string associated with the given \b key.
      */
