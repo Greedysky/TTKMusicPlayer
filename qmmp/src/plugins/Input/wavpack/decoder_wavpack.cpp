@@ -35,11 +35,7 @@ bool DecoderWavPack::initialize()
     {
         QString p = m_path;
         p.remove("wvpack://");
-#ifdef QMMP_GREATER_NEW
-        p.remove(QRegularExpression("#\\d+$"));
-#else
-        p.remove(QRegExp("#\\d+$"));
-#endif
+        p.remove(RegularWrapper("#\\d+$"));
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
         m_context = WavpackOpenFileInput(p.toUtf8().constData(),
                                          err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);

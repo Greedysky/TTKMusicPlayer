@@ -25,11 +25,7 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
     if(url.contains("://"))
     {
         path.remove("gme://");
-#ifdef QMMP_GREATER_NEW
-        path.remove(QRegularExpression("#\\d+$"));
-#else
-        path.remove(QRegExp("#\\d+$"));
-#endif
+        path.remove(RegularWrapper("#\\d+$"));
     }
     const char *err = nullptr;
     gme_type_t file_type;

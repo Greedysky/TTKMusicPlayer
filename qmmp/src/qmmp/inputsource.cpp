@@ -172,11 +172,10 @@ QStringList InputSource::protocols()
     return protocolsList;
 }
 
-#ifdef QMMP_GREATER_NEW
-QList<QRegularExpression> InputSource::regExps()
+QList<RegularWrapper> InputSource::regExps()
 {
     loadPlugins();
-    QList<QRegularExpression> regExpList;
+    QList<RegularWrapper> regExpList;
 
     for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
@@ -187,22 +186,6 @@ QList<QRegularExpression> InputSource::regExps()
     }
     return regExpList;
 }
-#else
-QList<QRegExp> InputSource::regExps()
-{
-    loadPlugins();
-    QList<QRegExp> regExpList;
-
-    for(QmmpPluginCache *item : qAsConst(*m_cache))
-    {
-        if(m_disabledNames.contains(item->shortName()))
-            continue;
-        if(item->inputSourceFactory())
-            regExpList << item->inputSourceFactory()->properties().regExps;
-    }
-    return regExpList;
-}
-#endif
 
 InputSourceFactory *InputSource::findByUrl(const QString &url)
 {
@@ -213,19 +196,11 @@ InputSourceFactory *InputSource::findByUrl(const QString &url)
             continue;
 
         InputSourceFactory *factory = item->inputSourceFactory();
-#ifdef QMMP_GREATER_NEW
-        for(const QRegularExpression &r : factory->properties().regExps)
+        for(const RegularWrapper &r : factory->properties().regExps)
         {
-            if(r.match(url).hasMatch())
+            if(r.hasMatch(url))
                 return factory;
         }
-#else
-        for(const QRegExp &r : factory->properties().regExps)
-        {
-            if(url.indexOf(r) != -1)
-                return factory;
-        }
-#endif
     }
 
     for(QmmpPluginCache *item : qAsConst(*m_cache))

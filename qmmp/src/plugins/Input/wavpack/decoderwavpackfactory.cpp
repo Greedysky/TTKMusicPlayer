@@ -38,11 +38,7 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
     if(path.contains("://")) //is it cue track?
     {
         filePath.remove("wvpack://");
-#ifdef QMMP_GREATER_NEW
-        filePath.remove(QRegularExpression("#\\d+$"));
-#else
-        filePath.remove(QRegExp("#\\d+$"));
-#endif
+        filePath.remove(RegularWrapper("#\\d+$"));
         track = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
     }

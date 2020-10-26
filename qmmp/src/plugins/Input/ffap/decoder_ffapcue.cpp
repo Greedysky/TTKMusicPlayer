@@ -38,11 +38,7 @@ bool DecoderFFapCUE::initialize()
         return false;
     }
     filePath.remove("ape://");
-#ifdef QMMP_GREATER_NEW
-    filePath.remove(QRegularExpression("#\\d+$"));
-#else
-    filePath.remove(QRegExp("#\\d+$"));
-#endif
+    filePath.remove(RegularWrapper("#\\d+$"));
     m_track = m_url.section("#", -1).toInt();
 
     TagLib::FileStream stream(QStringToFileName(filePath), true);

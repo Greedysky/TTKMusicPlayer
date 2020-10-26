@@ -267,11 +267,7 @@ bool DecoderFLAC::initialize()
         {
             QString p = m_path;
             p.remove("flac://");
-#ifdef QMMP_GREATER_NEW
-            p.remove(QRegularExpression("#\\d+$"));
-#else
-            p.remove(QRegExp("#\\d+$"));
-#endif
+            p.remove(RegularWrapper("#\\d+$"));
             TagLib::FileStream stream(QStringToFileName(p), true);
             TagLib::FLAC::File fileRef(&stream, TagLib::ID3v2::FrameFactory::instance());
             //looking for cuesheet comment

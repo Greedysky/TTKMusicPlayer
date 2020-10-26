@@ -133,11 +133,7 @@ void TrackInfo::setValue(Qmmp::ReplayGainKey key, double value)
 void TrackInfo::setValue(Qmmp::ReplayGainKey key, const QString &value)
 {
     QString str = value;
-#ifdef QMMP_GREATER_NEW
-    str.remove(QRegularExpression("[\\sA-Za-z]"));
-#else
-    str.remove(QRegExp("[\\sA-Za-z]"));
-#endif
+    str.remove(RegularWrapper("[\\sA-Za-z]"));
     str = str.trimmed();
     bool ok = false;
     double v = str.toDouble(&ok);

@@ -26,11 +26,7 @@ SidTune *SIDHelper::load(const QString &url)
     if(url.contains("://"))
     {
         path.remove("sid://");
-#ifdef QMMP_GREATER_NEW
-        path.remove(QRegularExpression("#\\d+$"));
-#else
-        path.remove(QRegExp("#\\d+$"));
-#endif
+        path.remove(RegularWrapper("#\\d+$"));
         track = url.section("#", -1).toInt();
     }
     m_tune = new SidTune(qPrintable(path));

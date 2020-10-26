@@ -14,11 +14,7 @@ FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path)
     if(path.startsWith("ffmpeg://"))
     {
         filePath.remove("ffmpeg://");
-#ifdef QMMP_GREATER_NEW
-        filePath.remove(QRegularExpression("#\\d+$"));
-#else
-        filePath.remove(QRegExp("#\\d+$"));
-#endif
+        filePath.remove(RegularWrapper("#\\d+$"));
     }
 
 #ifdef Q_OS_WIN

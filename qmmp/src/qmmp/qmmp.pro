@@ -43,11 +43,12 @@ HEADERS += \
     dithering_p.h \
     visualbuffer_p.h \
     lightfactory.h \
-    tagreadandwrite.h \
+    tagwrapper.h \
     florid.h \
     qmmp_export.h \
     trackinfo.h \
-    cueparser.h
+    cueparser.h \
+    regularwrapper.h
 
 SOURCES += recycler.cpp \
     decoder.cpp \
@@ -83,10 +84,11 @@ SOURCES += recycler.cpp \
     volume.cpp \
     dithering.cpp \
     visualbuffer.cpp \
-    tagreadandwrite.cpp \
+    tagwrapper.cpp \
     florid.cpp \
     trackinfo.cpp \
-    cueparser.cpp
+    cueparser.cpp \
+    regularwrapper.cpp
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 

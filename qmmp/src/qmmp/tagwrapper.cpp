@@ -1,4 +1,4 @@
-#include "tagreadandwrite.h"
+#include "tagwrapper.h"
 
 #include <taglib/fileref.h>
 #include <taglib/tpropertymap.h>
@@ -9,28 +9,28 @@
 #define DECODE_STRING(value) TagLib::String(value.toUtf8().data(), TagLib::String::UTF8)
 #define ENCODE_STRING(value) QString::fromUtf8(value.toCString(true))
 
-TagReadAndWrite::TagReadAndWrite()
+TagWrapper::TagWrapper()
 {
 
 }
 
-TagReadAndWrite::TagReadAndWrite(const QString &file)
+TagWrapper::TagWrapper(const QString &file)
     : m_path(file)
 {
 
 }
 
-TagReadAndWrite::~TagReadAndWrite()
+TagWrapper::~TagWrapper()
 {
 
 }
 
-bool TagReadAndWrite::readFile()
+bool TagWrapper::readFile()
 {
     return readFile(m_path);
 }
 
-bool TagReadAndWrite::readFile(const QString &path)
+bool TagWrapper::readFile(const QString &path)
 {
     if(path.isEmpty())
     {
@@ -85,7 +85,7 @@ bool TagReadAndWrite::readFile(const QString &path)
     return true;
 }
 
-bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value, int id3v2Version)
+bool TagWrapper::writeMusicTag(TagType tag, const QString &value, int id3v2Version)
 {
     if(m_path.isEmpty())
     {

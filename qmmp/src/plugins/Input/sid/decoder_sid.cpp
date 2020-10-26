@@ -31,11 +31,7 @@ bool DecoderSID::initialize()
     m_read_bytes = 0;
     QString path = m_url;
     path.remove("sid://");
-#ifdef QMMP_GREATER_NEW
-    path.remove(QRegularExpression("#\\d+$"));
-#else
-    path.remove(QRegExp("#\\d+$"));
-#endif
+    path.remove(RegularWrapper("#\\d+$"));
     int track = m_url.section("#", -1).toInt();
 
     m_tune.load(qPrintable(path));

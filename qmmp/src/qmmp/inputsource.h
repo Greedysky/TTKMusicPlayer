@@ -153,11 +153,7 @@ public:
     /*!
      * Returns a list of supported regular expressions for URL.
      */
-#ifdef QMMP_GREATER_NEW
-    static QList<QRegularExpression> regExps();
-#else
-    static QList<QRegExp> regExps();
-#endif
+    static QList<RegularWrapper> regExps();
     /*!
      * Returns InputSourceFactory pointer which supports URL \b url or \b nullptr if \b URL is not supported.
      */

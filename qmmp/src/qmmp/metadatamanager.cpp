@@ -158,11 +158,7 @@ QStringList MetaDataManager::protocols() const
     return p;
 }
 
-#ifdef QMMP_GREATER_NEW
-QList<QRegularExpression> MetaDataManager::regExps() const
-#else
-QList<QRegExp> MetaDataManager::regExps() const
-#endif
+QList<RegularWrapper> MetaDataManager::regExps() const
 {
     return InputSource::regExps();
 }
@@ -302,28 +298,6 @@ void MetaDataManager::clearCoverCache()
 void MetaDataManager::prepareForAnotherThread()
 {
     protocols(); //this hack should load all required plugins
-}
-
-#ifdef QMMP_GREATER_NEW
-bool MetaDataManager::hasMatch(const QList<QRegularExpression> &regExps, const QString &path)
-{
-    for(const QRegularExpression &re : qAsConst(regExps))
-    {
-        if(re.match(path).hasMatch())
-            return true;
-    }
-    return false;
-}
-#endif
-
-bool MetaDataManager::hasMatch(const QList<QRegExp> &regExps, const QString &path)
-{
-    for(const QRegExp &re : qAsConst(regExps))
-    {
-        if(re.exactMatch(path))
-            return true;
-    }
-    return false;
 }
 
 MetaDataManager *MetaDataManager::instance()

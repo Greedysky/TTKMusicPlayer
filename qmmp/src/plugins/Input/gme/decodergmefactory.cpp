@@ -35,11 +35,8 @@ QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackIn
     {
         QString filePath = path;
         filePath.remove("gme://");
-#ifdef QMMP_GREATER_NEW
-        filePath.remove(QRegularExpression("#\\d+$"));
-#else
-        filePath.remove(QRegExp("#\\d+$"));
-#endif
+        filePath.remove(RegularWrapper("#\\d+$"));
+
         int track = path.section("#", -1).toInt();
         QList<TrackInfo*> list = createPlayList(filePath, parts, ignoredFiles);
         if(list.isEmpty() || track <= 0 || track > list.count())

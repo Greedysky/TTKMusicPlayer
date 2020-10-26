@@ -28,9 +28,7 @@
 #include "qmmp.h"
 #include "audioparameters.h"
 #include "channelmap.h"
-#ifdef QMMP_GREATER_NEW
-#include <QRegularExpression>
-#endif
+#include "regularwrapper.h"
 
 class QmmpPluginCache;
 class DecoderFactory;
