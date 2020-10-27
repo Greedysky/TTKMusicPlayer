@@ -21,42 +21,42 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_update = new QPushButton(tr(" Update"), this);
     m_search = new QPushButton(tr(" Search"), this);
     m_more = new QPushButton(tr(" More"), this);
-    m_wallp = new QPushButton(tr(" Wallp"), this);
+    m_wallpaper = new QPushButton(tr(" Wallp"), this);
     m_photo = new QPushButton(tr(" Photo"), this);
 
 #ifdef Q_OS_UNIX
     m_update->setFocusPolicy(Qt::NoFocus);
     m_search->setFocusPolicy(Qt::NoFocus);
     m_more->setFocusPolicy(Qt::NoFocus);
-    m_wallp->setFocusPolicy(Qt::NoFocus);
+    m_wallpaper->setFocusPolicy(Qt::NoFocus);
     m_photo->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_update->setGeometry(15, 10, 80, 20);
     m_search->setGeometry(15, 50, 80, 20);
     m_more->setGeometry(15, 90, 80, 20);
-    m_wallp->setGeometry(15, 130, 80, 20);
+    m_wallpaper->setGeometry(15, 130, 80, 20);
     m_photo->setGeometry(15, 170, 80, 20);
 
     m_update->setStyleSheet(MusicUIObject::MQSSInteriorFloatUpdate + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
     m_search->setStyleSheet(MusicUIObject::MQSSInteriorFloatSearch + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
     m_more->setStyleSheet(MusicUIObject::MQSSInteriorFloatMore + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
-    m_wallp->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
+    m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
     m_photo->setStyleSheet(MusicUIObject::MQSSInteriorFloatPhoto + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
 
     m_update->setCursor(QCursor(Qt::PointingHandCursor));
     m_search->setCursor(QCursor(Qt::PointingHandCursor));
     m_more->setCursor(QCursor(Qt::PointingHandCursor));
-    m_wallp->setCursor(QCursor(Qt::PointingHandCursor));
+    m_wallpaper->setCursor(QCursor(Qt::PointingHandCursor));
     m_photo->setCursor(QCursor(Qt::PointingHandCursor));
 
 #ifdef Q_OS_UNIX
-    m_wallp->setEnabled(false);
+    m_wallpaper->setEnabled(false);
 #endif
 
     connect(m_update, SIGNAL(clicked()), parent, SIGNAL(currentLrcUpdated()));
     connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
-    connect(m_wallp, SIGNAL(clicked()), SLOT(musicContainerForWallpaperClicked()));
+    connect(m_wallpaper, SIGNAL(clicked()), SLOT(musicContainerForWallpaperClicked()));
     connect(m_photo, SIGNAL(clicked()), m_floatPhotoWidget, SLOT(show()));
     connect(m_floatSettingWidget, SIGNAL(widgetClose()), SLOT(closeFloatSettingWidget()));
     connect(m_more, SIGNAL(clicked()), SLOT(showFloatSettingWidget()));
@@ -67,7 +67,7 @@ MusicLrcFloatWidget::~MusicLrcFloatWidget()
     delete m_more;
     delete m_update;
     delete m_search;
-    delete m_wallp;
+    delete m_wallpaper;
     delete m_photo;
     delete m_floatPhotoWidget;
     delete m_floatSettingWidget;
@@ -99,13 +99,13 @@ void MusicLrcFloatWidget::closeFloatSettingWidget()
 
 void MusicLrcFloatWidget::musicContainerForWallpaperClicked()
 {
-    if(m_wallp->styleSheet().contains(MusicUIObject::MQSSInteriorFloatWallpaper))
+    if(m_wallpaper->styleSheet().contains(MusicUIObject::MQSSInteriorFloatWallpaper))
     {
-        m_wallp->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaperOn + MusicUIObject::MQSSPushButtonStyle14 + MusicUIObject::MQSSPushButtonStyle01);
+        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaperOn + MusicUIObject::MQSSPushButtonStyle14 + MusicUIObject::MQSSPushButtonStyle01);
     }
     else
     {
-        m_wallp->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
+        m_wallpaper->setStyleSheet(MusicUIObject::MQSSInteriorFloatWallpaper + MusicUIObject::MQSSPushButtonStyle09 + MusicUIObject::MQSSPushButtonStyle01);
     }
 
     if(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen())

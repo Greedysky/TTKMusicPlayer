@@ -61,7 +61,7 @@ public Q_SLOTS:
 
 protected:
     QPushButton *m_more, *m_update, *m_search;
-    QPushButton *m_wallp, *m_photo;
+    QPushButton *m_wallpaper, *m_photo;
     MusicLrcFloatPhotoWidget *m_floatPhotoWidget;
     MusicLrcFloatSettingWidget *m_floatSettingWidget;
 
