@@ -166,7 +166,7 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
     int dot = cue_path.lastIndexOf('.');
     if(dot != -1)
     {
-        QRegExp r(QRegExp::escape(cue_path.left(dot)) + "\\.[^\\.]+$");
+        RegularWrapper r(RegularWrapper::escape(cue_path.left(dot)) + "\\.[^\\.]+$");
 
         int index = candidates.indexOf(r);
         int rindex = candidates.lastIndexOf(r);
@@ -177,7 +177,7 @@ QString CueFile::getDirtyPath(const QString &cue_path, const QString &path)
     dot = path.lastIndexOf('.');
     if(dot != -1)
     {
-        QRegExp r(QRegExp::escape(path.left(dot)) + "\\.[^\\.]+$");
+        RegularWrapper r(RegularWrapper::escape(path.left(dot)) + "\\.[^\\.]+$");
 
         int index = candidates.indexOf(r);
         int rindex = candidates.lastIndexOf(r);

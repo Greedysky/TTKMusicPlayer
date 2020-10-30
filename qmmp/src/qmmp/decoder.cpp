@@ -288,15 +288,8 @@ QList<DecoderFactory *> Decoder::findByFileExtension(const QString &path)
         if(!(fact = item->decoderFactory()))
             continue;
 
-        for(const QString &filter : fact->properties().filters)
-        {
-            QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
-            if(regexp.exactMatch(path))
-            {
-                filtered.append(fact);
-                break;
-            }
-        }
+        if(QDir::match(fact->properties().filters, path.section(QChar('/'), -1)))
+            filtered.append(fact);
     }
 
     return filtered;

@@ -36,12 +36,16 @@ public:
     explicit RegularWrapper(const QString &pattern);
     ~RegularWrapper();
 
-    bool hasMatch(const QString &str) const;
+    bool hasMatch(const QString &str);
+    QString value(int index) const;
+
+    static QString escape(const QString &str);
 
 #ifdef QMMP_GREATER_NEW
     operator QRegularExpression () const;
 private:
     QRegularExpression m_regular;
+    QRegularExpressionMatch m_match;
 #else
     operator QRegExp () const;
 private:

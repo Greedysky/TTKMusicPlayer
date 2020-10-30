@@ -196,7 +196,7 @@ InputSourceFactory *InputSource::findByUrl(const QString &url)
             continue;
 
         InputSourceFactory *factory = item->inputSourceFactory();
-        for(const RegularWrapper &r : factory->properties().regExps)
+        for(RegularWrapper &r : factory->properties().regExps)
         {
             if(r.hasMatch(url))
                 return factory;

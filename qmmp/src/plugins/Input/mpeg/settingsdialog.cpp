@@ -2,6 +2,7 @@
 #include <QSettings>
 #include <QFile>
 #include <qmmp/qmmp.h>
+#include <qmmp/regularwrapper.h>
 #include "settingsdialog.h"
 
 SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
@@ -75,7 +76,7 @@ void SettingsDialog::accept()
 void SettingsDialog::findCodecs()
 {
     QMap<QString, QTextCodec *> codecMap;
-    QRegExp iso8859RegExp("ISO[- ]8859-([0-9]+).*");
+    RegularWrapper iso8859RegExp("ISO[- ]8859-([0-9]+).*");
 
     for(int mib : QTextCodec::availableMibs())
     {
@@ -92,9 +93,9 @@ void SettingsDialog::findCodecs()
         {
             rank = 2;
         }
-        else if(iso8859RegExp.exactMatch(sortKey))
+        else if(iso8859RegExp.hasMatch(sortKey))
         {
-            if(iso8859RegExp.cap(1).size() == 1)
+            if(iso8859RegExp.value(1).size() == 1)
                 rank = 3;
             else
                 rank = 4;

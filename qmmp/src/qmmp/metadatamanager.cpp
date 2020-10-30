@@ -237,14 +237,8 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     const auto fileListCopy = file_list; //avoid container modification
     for(const QFileInfo &i : qAsConst(fileListCopy))
     {
-        for(const QString &pattern : m_settings->coverNameFilters(false))
-        {
-            if(QRegExp (pattern, Qt::CaseInsensitive, QRegExp::Wildcard).exactMatch(i.fileName()))
-            {
-                file_list.removeAll(i);
-                break;
-            }
-        }
+        if(QDir::match(m_settings->coverNameFilters(false), i.fileName()))
+            file_list.removeAll(i);
 
         if(QImageReader::imageFormat(i.fileName()).isEmpty()) //remove unsupported image formats
             file_list.removeAll(i.fileName());
