@@ -88,7 +88,7 @@ float Dithering::audioLinearDither(float sample, AudioDither *dither)
 
     /* dither */
     random = prng(dither->random);
-    output += (float)(random - dither->random) / 0xffffffffL * m_lsb;
+    output += (float)(random - dither->random) * (1.0 / 0xffffffffL) * m_lsb;
     dither->random = random;
 
     /* clip */

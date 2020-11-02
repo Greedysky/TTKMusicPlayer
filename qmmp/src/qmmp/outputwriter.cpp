@@ -109,9 +109,14 @@ Recycler *OutputWriter::recycler()
     return &m_recycler;
 }
 
-AudioParameters OutputWriter::audioParameters() const
+const AudioParameters &OutputWriter::inputAudioParameters() const
 {
-    return AudioParameters(m_frequency, m_chan_map, Qmmp::PCM_FLOAT);
+    return m_in_params;
+}
+
+AudioParameters OutputWriter::outputAudioParameters() const
+{
+    return AudioParameters(m_frequency, m_chan_map, m_format);
 }
 
 int OutputWriter::sampleSize() const

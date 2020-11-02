@@ -59,12 +59,12 @@ const QString Decoder::nextURL() const
     return QString();
 }
 
-AudioParameters Decoder::audioParameters() const
+const AudioParameters &Decoder::audioParameters() const
 {
     return m_parameters;
 }
 
-QMap<Qmmp::ReplayGainKey, double> Decoder::replayGainInfo() const
+const QMap<Qmmp::ReplayGainKey, double> &Decoder::replayGainInfo() const
 {
     return m_rg;
 }

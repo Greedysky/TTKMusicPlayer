@@ -79,6 +79,7 @@ bool QmmpAudioEngine::play()
     prepareEffects(m_decoders.head());
     if(!(m_output = createOutput()))
         return false;
+    m_dithering->setFormats(m_decoders.head()->audioParameters().format(), m_output->outputAudioParameters().format());
 #ifdef Q_OS_WIN
     start(QThread::HighPriority);
 #else
@@ -417,7 +418,7 @@ void QmmpAudioEngine::run()
                 flush(true);
                 //use current output if possible
                 prepareEffects(m_decoder);
-                if(m_ap == m_output->audioParameters())
+                if(m_ap == m_output->inputAudioParameters())
                 {
                     StateHandler::instance()->sendFinished();
                     StateHandler::instance()->dispatch(Qmmp::Stopped); //fake stop/start cycle
@@ -440,6 +441,8 @@ void QmmpAudioEngine::run()
                     m_output->wait();
                     delete m_output;
                     m_output = createOutput();
+                    m_dithering->setFormats(m_decoders.head()->audioParameters().format(),
+                                            m_output->outputAudioParameters().format());
                     if(m_output)
                     {
                         m_output->start();
@@ -685,8 +688,6 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
         m_effects << effect;
         tmp_effects.removeAll(effect);
     }
-
-    m_dithering->setFormats(d->audioParameters().format(), m_ap.format());
 }
 
 //static members

@@ -91,11 +91,11 @@ public:
     /*!
      * Returns detected audio parameters.
      */
-    AudioParameters audioParameters() const;
+    const AudioParameters &audioParameters() const;
     /*!
      * Returns ReplayGain information.
      */
-    QMap<Qmmp::ReplayGainKey, double> replayGainInfo() const;
+    const QMap<Qmmp::ReplayGainKey, double> &replayGainInfo() const;
     /*!
      * Sets ReplayGain information. Use this function before playback.
      * @param rg ReplayGain information

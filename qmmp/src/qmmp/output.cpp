@@ -37,7 +37,7 @@ int Output::channels() const
     return m_chan_map.count();
 }
 
-const ChannelMap Output::channelMap() const
+const ChannelMap &Output::channelMap() const
 {
     return m_chan_map;
 }
