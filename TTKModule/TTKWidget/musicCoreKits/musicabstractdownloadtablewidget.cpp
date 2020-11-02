@@ -43,7 +43,7 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongs &son
     {
         MusicSong *song = &((*m_musicSongs)[i]);
         createItem(i, *song);
-        M_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPair(song->getMusicAddTimeStr().toULongLong(), this, m_type));
+        M_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->getMusicAddTimeStr().toULongLong(), this, m_type));
     }
 }
 

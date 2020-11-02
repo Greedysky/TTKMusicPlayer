@@ -25,41 +25,41 @@
 /*! @brief The class of the download manager pair.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPair
+typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPairData
 {
     qint64 m_time;
     QObject *m_object;
     MusicObject::RecordType m_type;
 
-    MusicDownLoadPair()
+    MusicDownLoadPairData()
     {
         m_time = -1;
         m_object = nullptr;
         m_type = MusicObject::RecordNormalDownload;
     }
 
-    MusicDownLoadPair(qint64 t) : MusicDownLoadPair()
+    MusicDownLoadPairData(qint64 t) : MusicDownLoadPairData()
     {
         m_time = t;
     }
 
-    MusicDownLoadPair(qint64 t, QObject *object, MusicObject::RecordType type)
+    MusicDownLoadPairData(qint64 t, QObject *object, MusicObject::RecordType type)
     {
         m_time = t;
         m_object = object;
         m_type = type;
     }
 
-    bool operator< (const MusicDownLoadPair &other) const
+    bool operator< (const MusicDownLoadPairData &other) const
     {
         return m_time < other.m_time;
     }
 
-    bool operator== (const MusicDownLoadPair &other) const
+    bool operator== (const MusicDownLoadPairData &other) const
     {
         return m_time == other.m_time;
     }
-}MusicDownLoadPair;
+}MusicDownLoadPairData;
 
 /*! @brief The class to produce the download manager.
  * @author Greedysky <greedysky@163.com>
@@ -81,15 +81,15 @@ public:
     /*!
      * Set music data network connection object.
      */
-    void connectMusicDownload(const MusicDownLoadPair &pair);
+    void connectMusicDownload(const MusicDownLoadPairData &pair);
     /*!
      * Reset music data network connection object.
      */
-    void reconnectMusicDownload(const MusicDownLoadPair &pair);
+    void reconnectMusicDownload(const MusicDownLoadPairData &pair);
     /*!
      * Remove music data network connection object.
      */
-    void removeMusicDownload(const MusicDownLoadPair &pair);
+    void removeMusicDownload(const MusicDownLoadPairData &pair);
 
 private Q_SLOTS:
     /*!
@@ -99,7 +99,7 @@ private Q_SLOTS:
 
 protected:
     QList<QObject*> m_queueList;
-    QList<MusicDownLoadPair> m_pairList;
+    QList<MusicDownLoadPairData> m_pairList;
 
     DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 

@@ -72,7 +72,7 @@ void MusicFMRadioChannelRequest::downLoadFinished()
                 for(int i=0; i<channels.count(); ++i)
                 {
                     value = channels[i].toMap();
-                    MusicFMRadioChannelInfo channel;
+                    MusicFMRadioChannelData channel;
                     channel.m_id = value["id"].toString();
                     channel.m_name = value["name"].toString();
                     channel.m_coverUrl = value["cover"].toString();

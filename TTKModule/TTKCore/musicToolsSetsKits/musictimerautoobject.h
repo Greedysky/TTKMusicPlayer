@@ -28,22 +28,22 @@
 /*! @brief The class of the time check object.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOLSET_EXPORT MusicTimeObject
+typedef struct MUSIC_TOOLSET_EXPORT MusicTimeData
 {
     int m_index;
     int m_hour;
     int m_minute;
     bool m_state;
 
-    MusicTimeObject()
+    MusicTimeData()
     {
         m_index = -1;
         m_hour = -1;
         m_minute = -1;
         m_state = false;
     }
-}MusicTimeObject;
-TTK_DECLARE_LISTS(MusicTimeObject)
+}MusicTimeData;
+TTK_DECLARE_LISTS(MusicTimeData)
 
 
 /*! @brief The class of the time auto run.
@@ -79,7 +79,7 @@ protected:
     void setShutdown();
 
     QTimer m_timer;
-    MusicTimeObjects m_timeObjects;
+    MusicTimeDatas m_timeDatas;
 
 };
 

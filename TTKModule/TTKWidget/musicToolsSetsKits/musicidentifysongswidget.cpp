@@ -257,7 +257,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentify songIdentify(m_detectedThread->getIdentifySongs().first());
+    const MusicSongIdentifyData songIdentify(m_detectedThread->getIdentifySongs().first());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle05);

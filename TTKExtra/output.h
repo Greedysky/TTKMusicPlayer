@@ -110,7 +110,7 @@ public:
     /*!
      * Returns required channel map.
      */
-    const ChannelMap channelMap() const;
+    const ChannelMap &channelMap() const;
     /*!
      * Returns selected audio format.
      */

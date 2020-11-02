@@ -185,17 +185,17 @@ class MusicAbstractSongsListTableWidget;
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicSort
+typedef struct MUSIC_CORE_EXPORT MusicSongSort
 {
     int m_index;
     Qt::SortOrder m_sortType;
 
-    MusicSort()
+    MusicSongSort()
     {
         m_index = -1;
         m_sortType = Qt::AscendingOrder;
     }
-}MusicSort;
+}MusicSongSort;
 
 /*! @brief The class of the music song item.
  * @author Greedysky <greedysky@163.com>
@@ -204,7 +204,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
 {
     int m_itemIndex;
     QString m_itemName;
-    MusicSort m_sort;
+    MusicSongSort m_sort;
     MusicSongs m_songs;
     MusicAbstractSongsListTableWidget *m_itemObject;
 

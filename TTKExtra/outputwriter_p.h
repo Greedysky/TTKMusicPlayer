@@ -77,9 +77,13 @@ public:
      */
     Recycler *recycler();
     /*!
-     * Returns selected audio parameters.
+     * Returns selected audio parameters, i.e. passed by \b initialize function.
      */
-    AudioParameters audioParameters() const;
+    const AudioParameters &inputAudioParameters() const;
+    /*!
+     * Returns output audio parameters, i.e. accepted by output device.
+     */
+    AudioParameters outputAudioParameters() const;
     /*!
      * Returns sample size in bytes.
      */

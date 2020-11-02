@@ -67,7 +67,7 @@ public:
     /*!
      * Set music sort.
      */
-    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort; }
+    inline void setMusicSongSort(MusicSongSort *sort) { m_musicSort = sort; }
     /*!
      * Update item time label time.
      */
@@ -214,7 +214,7 @@ protected:
     bool m_renameActived, m_deleteItemWithFile;
     QTableWidgetItem *m_renameItem;
     MusicRenameLineEditDelegate *m_renameLineEditDelegate;
-    MusicSort *m_musicSort;
+    MusicSongSort *m_musicSort;
 
 };
 

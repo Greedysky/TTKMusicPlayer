@@ -246,9 +246,9 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     initialize();
 }
 
-void MusicSongsToolBoxWidgetItem::setMusicSort(MusicSort *sort)
+void MusicSongsToolBoxWidgetItem::setMusicSongSort(MusicSongSort *sort)
 {
-    TTKStatic_cast(MusicSongsToolBoxTopWidget*, m_topWidget)->setMusicSort(sort);
+    TTKStatic_cast(MusicSongsToolBoxTopWidget*, m_topWidget)->setMusicSongSort(sort);
 }
 
 
@@ -259,7 +259,7 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
 
 }
 
-void MusicSongsToolBoxWidget::setMusicSort(QWidget *item, MusicSort *sort)
+void MusicSongsToolBoxWidget::setMusicSongSort(QWidget *item, MusicSongSort *sort)
 {
     for(int i=0; i<m_itemList.count(); ++i)
     {
@@ -268,7 +268,7 @@ void MusicSongsToolBoxWidget::setMusicSort(QWidget *item, MusicSort *sort)
         {
             if(it->item(j) == item)
             {
-                TTKStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setMusicSort(sort);
+                TTKStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setMusicSongSort(sort);
                 return;
             }
         }

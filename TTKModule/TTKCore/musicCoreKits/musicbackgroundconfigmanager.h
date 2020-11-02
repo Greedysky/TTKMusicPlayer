@@ -45,7 +45,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 TTK_DECLARE_LISTS(MusicSkinConfigItem)
 
 
-/*! @brief The class of the skin backgroud image item.
+/*! @brief The class of the skin backgroud image.
  * @author Greedysky <greedysky@163.com>
  */
 typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage

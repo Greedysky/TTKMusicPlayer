@@ -901,6 +901,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     {
         (*songs)[i].setMusicSort(sort);
     }
+
     if(m_songItems[id].m_sort.m_sortType == Qt::DescendingOrder)
     {
         std::sort(songs->begin(), songs->end());
@@ -936,7 +937,7 @@ void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
     {
         MusicSongItem *songItem = &m_songItems[m_currentIndex];
         m_listMaskWidget->setItemIndex(songItem->m_itemIndex);
-        m_listMaskWidget->setMusicSort(&songItem->m_sort);
+        m_listMaskWidget->setMusicSongSort(&songItem->m_sort);
         m_listMaskWidget->setTitle(QString("%1[%2]").arg(songItem->m_itemName).arg(songItem->m_songs.count()));
         m_listMaskWidget->setItemExpand(true);
         m_listMaskWidget->raise();
@@ -989,12 +990,12 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 {
     MusicSongsListTableWidget *w = new MusicSongsListTableWidget(-1, this);
     w->setMovedScrollBar(m_scrollArea->verticalScrollBar());
-    w->setMusicSort(&item->m_sort);
+    w->setMusicSongSort(&item->m_sort);
 
     item->m_itemObject = w;
     item->m_itemIndex = m_itemIndexRaise;
     addItem(w, item->m_itemName);
-    setMusicSort(w, &item->m_sort);
+    setMusicSongSort(w, &item->m_sort);
     w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
     connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));

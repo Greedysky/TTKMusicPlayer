@@ -101,7 +101,7 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
         return;
     }
 
-    const MusicFMRadioChannelInfos &channels = m_getChannelThread->getMusicChannel();
+    const MusicFMRadioChannelDatas &channels = m_getChannelThread->getMusicChannel();
     if(m_musicRadio == nullptr)
     {
         m_musicRadio = new MusicWebFMRadioPlayWidget(this);
@@ -116,8 +116,8 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
 
 void MusicWebFMRadioWidget::addListWidgetItem()
 {
-    const MusicFMRadioChannelInfos &channels = m_getChannelThread->getMusicChannel();
-    foreach(const MusicFMRadioChannelInfo &channel, channels)
+    const MusicFMRadioChannelDatas &channels = m_getChannelThread->getMusicChannel();
+    foreach(const MusicFMRadioChannelData &channel, channels)
     {
         const int index = rowCount();
         setRowCount(index + 1);
