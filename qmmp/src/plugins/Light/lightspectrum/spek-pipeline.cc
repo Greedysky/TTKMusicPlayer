@@ -10,7 +10,7 @@
 #include "spek-fft.h"
 #include "spek-pipeline.h"
 
-#include <QObject>
+#include <qmmp/qmmp.h>
 
 enum
 {
@@ -227,7 +227,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
     }
 
     std::string desc;
-    for(const auto& item : items) {
+    for(const auto& item : qAsConst(items)) {
         if(!desc.empty()) {
             desc.append(", ");
         }

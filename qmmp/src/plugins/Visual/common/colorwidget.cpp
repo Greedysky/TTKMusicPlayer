@@ -92,10 +92,10 @@ QList<QColor> ColorWidget::readColorConfig(const QString &value)
     }
 
     QList<QColor> colors;
-    QStringList rgbs = value.split(';', QString::SkipEmptyParts);
-    foreach(const QString &rgb, rgbs)
+    const QStringList &rgbs = value.split(';', QString::SkipEmptyParts);
+    for(const QString &rgb : rgbs)
     {
-        QStringList var = rgb.split(',');
+        const QStringList &var = rgb.split(',');
         if(var.count() != 3)
         {
             continue;
@@ -108,7 +108,7 @@ QList<QColor> ColorWidget::readColorConfig(const QString &value)
 QString ColorWidget::writeColorConfig(const QList<QColor> &colors)
 {
     QString value;
-    foreach(const QColor &rgb, colors)
+    for(const QColor &rgb : colors)
     {
         value.append(writeSingleColorConfig(rgb) + ";");
     }
@@ -131,7 +131,7 @@ void ColorWidget::setSingleColorMode(bool mode)
 
 void ColorWidget::setColors(const QList<QColor> &colors)
 {
-    foreach(const QColor &color, colors)
+    for(const QColor &color : colors)
     {
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
         it->setBackgroundColor(color);

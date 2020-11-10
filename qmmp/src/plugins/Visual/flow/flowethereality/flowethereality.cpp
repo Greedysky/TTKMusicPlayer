@@ -76,7 +76,7 @@ void FlowEthereality::process(float *left, float *)
     }
 
     max = (max <= 3) ? 10 : max / 3;
-    foreach(Ethereality *ethereality, m_etherealitys)
+    for(Ethereality *ethereality : qAsConst(m_etherealitys))
     {
         if(ethereality->isRunning())
         {
@@ -103,14 +103,14 @@ void FlowEthereality::processPatch(bool state)
 
     if(state)
     {
-        foreach(Ethereality *ethereality, m_etherealitys)
+        for(Ethereality *ethereality : qAsConst(m_etherealitys))
         {
             ethereality->start();
         }
     }
     else
     {
-        foreach(Ethereality *ethereality, m_etherealitys)
+        for(Ethereality *ethereality : qAsConst(m_etherealitys))
         {
             ethereality->stop();
         }

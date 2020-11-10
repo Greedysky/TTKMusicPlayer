@@ -55,7 +55,7 @@ bool AlacHelper::initialize()
     unsigned long output_time = 0;
     unsigned int index = 0;
     unsigned int accum = 0;
-    for( unsigned int i = 0; i < m_demux.num_sample_byte_sizes; i++)
+    for(unsigned int i = 0; i < m_demux.num_sample_byte_sizes; i++)
     {
         unsigned int thissample_duration;
         while((m_demux.time_to_sample[index].sample_count + accum) <= i)

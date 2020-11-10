@@ -59,7 +59,7 @@ void NormalHistogram::stop()
 
 void NormalHistogram::starTimeout()
 {
-    foreach(StarPoint *point, m_starPoints)
+    for(StarPoint *point : qAsConst(m_starPoints))
     {
         point->m_alpha = rand() % 255;
         point->m_pt = QPoint(rand() % width(), rand() % height());
@@ -217,7 +217,7 @@ void NormalHistogram::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
-        foreach(StarPoint *point, m_starPoints)
+        for(StarPoint *point : qAsConst(m_starPoints))
         {
             m_starColor.setAlpha(point->m_alpha);
             p->setPen(QPen(m_starColor, 3));

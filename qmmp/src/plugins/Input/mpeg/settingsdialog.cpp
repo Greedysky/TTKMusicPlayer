@@ -78,7 +78,7 @@ void SettingsDialog::findCodecs()
     QMap<QString, QTextCodec *> codecMap;
     RegularWrapper iso8859RegExp("ISO[- ]8859-([0-9]+).*");
 
-    for(int mib : QTextCodec::availableMibs())
+    for(const int mib : QTextCodec::availableMibs())
     {
         QTextCodec *codec = QTextCodec::codecForMib(mib);
 

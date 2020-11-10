@@ -42,7 +42,7 @@ void GoomWidget::readSettings()
     if(!m_update)
     {
         m_update = true;
-        foreach(QAction *act, m_fpsGroup->actions())
+        for(QAction *act : m_fpsGroup->actions())
         {
             if(m_fps == act->data().toInt())
             {
@@ -137,7 +137,7 @@ void GoomWidget::createMenu()
     m_fpsGroup->addAction(tr("60 fps"))->setData(60);
     m_fpsGroup->addAction(tr("50 fps"))->setData(50);
     m_fpsGroup->addAction(tr("25 fps"))->setData(25);
-    foreach(QAction *act, m_fpsGroup->actions())
+    for(QAction *act : m_fpsGroup->actions())
     {
         act->setCheckable(true);
         refreshRate->addAction(act);

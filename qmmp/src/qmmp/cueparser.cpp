@@ -109,7 +109,7 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
 QList<TrackInfo*> CueParser::createPlayList() const
 {
     QList<TrackInfo*> out;
-    for(const CUETrack *track : m_tracks)
+    for(const CUETrack *track : qAsConst(m_tracks))
         out << new TrackInfo(track->info);
     return out;
 }
@@ -227,7 +227,7 @@ void CueParser::setDuration(qint64 duration)
 
 void CueParser::setProperties(const QString &file, const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    for(CUETrack *track : m_tracks)
+    for(CUETrack *track : qAsConst(m_tracks))
     {
         if(track->file == file)
             track->info.setValues(properties);
@@ -236,7 +236,7 @@ void CueParser::setProperties(const QString &file, const QMap<Qmmp::TrackPropert
 
 void CueParser::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
 {
-    for(CUETrack *track : m_tracks)
+    for(CUETrack *track : qAsConst(m_tracks))
         track->info.setValues(properties);
 }
 

@@ -80,7 +80,7 @@ QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, 
     if(recursively)
     {
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-        foreach(const QFileInfo &file, folderList)
+        for(const QFileInfo &file : folderList)
         {
             fileList.append(getFileListByDir(file.absoluteFilePath(), filter, recursively));
         }
@@ -248,7 +248,7 @@ void SoniqueWidget::initialize()
 {
     const QString &dir = Qmmp::pluginPath() + "/../MPlugins/config/sonique";
     const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp", true));
-    foreach(const QFileInfo &info, folderList)
+    for(const QFileInfo &info : folderList)
     {
         m_presetList << info.absoluteFilePath();
     }

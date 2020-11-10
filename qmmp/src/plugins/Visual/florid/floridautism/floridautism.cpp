@@ -86,7 +86,7 @@ void FloridAutism::paintEvent(QPaintEvent *e)
 void FloridAutism::resizeEvent(QResizeEvent *e)
 {
     Florid::resizeEvent(e);
-    foreach(AutismLabel *label, m_labels)
+    for(AutismLabel *label : qAsConst(m_labels))
     {
         label->setGeometry(0, 0, width(), height());
     }

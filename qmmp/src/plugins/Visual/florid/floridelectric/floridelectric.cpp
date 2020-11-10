@@ -176,12 +176,12 @@ ElectricLabel::~ElectricLabel()
 
 void ElectricLabel::start()
 {
-    foreach(ElectricPointLabel *label, m_pointLabels)
+    for(ElectricPointLabel *label : qAsConst(m_pointLabels))
     {
         label->start();
     }
 
-    foreach(ElectricCircleLabel *label, m_circleLabels)
+    for(ElectricCircleLabel *label : qAsConst(m_circleLabels))
     {
         label->start();
     }
@@ -189,12 +189,12 @@ void ElectricLabel::start()
 
 void ElectricLabel::setColor(const QColor &color)
 {
-    foreach(ElectricPointLabel *label, m_pointLabels)
+    for(ElectricPointLabel *label : qAsConst(m_pointLabels))
     {
         label->setColor(color);
     }
 
-    foreach(ElectricCircleLabel *label, m_circleLabels)
+    for(ElectricCircleLabel *label : qAsConst(m_circleLabels))
     {
         label->setColor(color);
     }
@@ -202,12 +202,12 @@ void ElectricLabel::setColor(const QColor &color)
 
 void ElectricLabel::resizeWindow(const QRect &rect)
 {
-    foreach(ElectricPointLabel *label, m_pointLabels)
+    for(ElectricPointLabel *label : qAsConst(m_pointLabels))
     {
         label->setGeometry(rect);
     }
 
-    foreach(ElectricCircleLabel *label, m_circleLabels)
+    for(ElectricCircleLabel *label : qAsConst(m_circleLabels))
     {
         label->setGeometry(rect);
     }

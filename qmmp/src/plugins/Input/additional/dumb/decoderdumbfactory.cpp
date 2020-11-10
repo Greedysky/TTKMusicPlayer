@@ -14,7 +14,7 @@ DecoderProperties DecoderDumbFactory::properties() const
     properties.name = tr("Dumb Plugin");
 
     const char **exts = dumb_exts();
-    for(const char *q = *exts; q != nullptr; )
+    for(const char *q = *exts; q != nullptr;)
     {
         properties.filters << QString("*.") + q;
         q = *(++exts);

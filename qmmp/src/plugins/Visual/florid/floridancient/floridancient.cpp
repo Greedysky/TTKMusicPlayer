@@ -139,7 +139,7 @@ void FloridAncient::paintEvent(QPaintEvent *e)
 void FloridAncient::resizeEvent(QResizeEvent *e)
 {
     Florid::resizeEvent(e);
-    foreach(AncientLabel *label, m_labels)
+    for(AncientLabel *label : m_labels)
     {
         label->setGeometry(0, 0, width(), height());
     }

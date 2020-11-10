@@ -43,7 +43,7 @@ QList<TrackInfo*> DecoderCDAudioFactory::createPlayList(const QString &path, Tra
 
     QString device_path = path;
     device_path.remove("cdda://");
-    QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
+    const QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
     for(const CDATrack &t : qAsConst(tracks))
     {
         list << new TrackInfo(t.info);

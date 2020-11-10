@@ -129,6 +129,6 @@ void SettingsDialog::accept()
 void SettingsDialog::updateRunningPlugins()
 {
     m_ui->runningListWidget->clear();
-    for(LADSPAEffect *e : LADSPAHost::instance()->effects())
+    for(LADSPAEffect *e : qAsConst(LADSPAHost::instance()->effects()))
         m_ui->runningListWidget->addItem(e->plugin->desc->Name);
 }
