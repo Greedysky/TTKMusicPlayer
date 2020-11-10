@@ -410,7 +410,7 @@ void MusicArtistQueryWidget::queryAllFinished()
     else
     {
         bool hasItem = false;
-        foreach(const MusicObject::MusicSongInformation &info, musicSongInfos)
+        for(const MusicObject::MusicSongInformation &info : qAsConst(musicSongInfos))
         {
             if(m_songNameFull.contains(info.m_songName))
             {

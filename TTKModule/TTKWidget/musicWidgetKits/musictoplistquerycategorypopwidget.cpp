@@ -81,7 +81,7 @@ void MusicToplistQueryCategoryPopWidget::setCategory(const QString &server, QObj
     scrollArea->setWidget(containWidget);
     layout->addWidget(scrollArea);
 
-    foreach(const MusicResultsCategory &category, categorys)
+    for(const MusicResultsCategory &category : qAsConst(categorys))
     {
         MusicToplistQueryCategoryItem *item = new MusicToplistQueryCategoryItem(this);
         connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));

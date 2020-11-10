@@ -123,7 +123,7 @@ void MusicDownloadBackgroundBingRequest::downLoadFinished(const QByteArray &byte
             MusicSkinRemoteGroup group;
             group.m_group = MUSIC_DAILY_DIR;
             const QVariantList &datas = value["images"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {

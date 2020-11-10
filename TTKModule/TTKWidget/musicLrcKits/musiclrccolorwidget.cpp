@@ -53,7 +53,7 @@ MusicLrcColorWidget::~MusicLrcColorWidget()
 
 void MusicLrcColorWidget::setColors(const QList<QColor> &colors)
 {
-    foreach(const QColor &color, colors)
+    for(const QColor &color : qAsConst(colors))
     {
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
 #if TTK_QT_VERSION_CHECK(5,13,0)

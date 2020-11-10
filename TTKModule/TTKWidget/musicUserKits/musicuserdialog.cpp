@@ -49,7 +49,7 @@ MusicUserDialog::~MusicUserDialog()
 
 bool MusicUserDialog::checkToAutoLogin()
 {
-    foreach(const MusicUserRecord &record, m_records)
+    for(const MusicUserRecord &record  : qAsConst(m_records))
     {
         if(record.m_autoFlag)
         {

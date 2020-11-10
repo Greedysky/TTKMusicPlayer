@@ -59,7 +59,7 @@ void MusicBDQueryArtistRequest::downLoadFinished()
                 bool artistFlag = false;
                 //
                 const QVariantList &datas = value["songlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

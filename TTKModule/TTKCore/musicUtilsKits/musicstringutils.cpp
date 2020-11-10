@@ -163,8 +163,7 @@ QStringList MusicUtils::String::illegalCharacters()
 bool MusicUtils::String::illegalCharactersCheck(const QString &value)
 {
     const QStringList acs(illegalCharacters());
-
-    foreach(const QString &ac, acs)
+    for(const QString &ac : qAsConst(acs))
     {
         if(value.contains(ac))
         {
@@ -180,7 +179,7 @@ QString MusicUtils::String::illegalCharactersReplaced(const QString &value)
     const QStringList acs(illegalCharacters());
     QString s(value);
 
-    foreach(const QString &ac, acs)
+    for(const QString &ac : qAsConst(acs))
     {
         if(s.contains(ac))
         {
@@ -199,7 +198,7 @@ QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
 #else
     const QStringList &rgbs = value.split(";", QString::SkipEmptyParts);
 #endif
-    foreach(const QString &rgb, rgbs)
+    for(const QString &rgb : qAsConst(rgbs))
     {
         const QStringList &var = rgb.split(",");
         if(var.count() != 3)
@@ -219,7 +218,7 @@ QString MusicUtils::String::writeColorConfig(const QColor &color)
 QString MusicUtils::String::writeColorConfig(const QList<QColor> &colors)
 {
     QString value;
-    foreach(const QColor &rgb, colors)
+    for(const QColor &rgb : qAsConst(colors))
     {
         value.append(writeColorConfig(rgb) + ";");
     }

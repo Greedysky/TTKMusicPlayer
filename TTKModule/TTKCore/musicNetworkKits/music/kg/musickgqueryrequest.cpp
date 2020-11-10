@@ -97,7 +97,7 @@ void MusicKGQueryRequest::downLoadFinished()
                 value = value["data"].toMap();
                 m_pageTotal = value["total"].toInt();
                 const QVariantList &datas = value["info"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -184,7 +184,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                                                         .arg(musicInfo.m_songName).arg(musicInfo.m_songId)
                                                         .arg(value["duration"].toInt() * 1000);
                 const QVariantList &albumArray = value["album"].toList();
-                foreach(const QVariant &albumValue, albumArray)
+                for(const QVariant &albumValue : qAsConst(albumArray))
                 {
                     if(albumValue.isNull())
                     {

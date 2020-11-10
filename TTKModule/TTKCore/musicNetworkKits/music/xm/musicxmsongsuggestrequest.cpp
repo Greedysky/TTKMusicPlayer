@@ -58,7 +58,7 @@ void MusicXMSongSuggestRequest::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
                 const QVariantList &datas = value["objectList"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

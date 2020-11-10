@@ -238,7 +238,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
         const QString &songName = MusicUtils::String::songName(filename);
 
         MusicObject::MusicSongInformation musicSongInfo;
-        foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
+        for(const MusicObject::MusicSongInformation &var : qAsConst(musicSongInfos))
         {
             if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
             {
@@ -272,7 +272,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
     std::sort(attributes.begin(), attributes.end());
     //to find out the min bitrate
 
-    foreach(const MusicObject::MusicSongAttribute &attr, attributes)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attributes))
     {
         if(attr.m_bitrate < MB_128)         ///st
         {
@@ -323,7 +323,7 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
     std::sort(attributes.begin(), attributes.end());
     //to find out the min bitrate
 
-    foreach(const MusicObject::MusicSongAttribute &attr, attributes)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attributes))
     {
         if(attr.m_bitrate <= MB_250)       ///st
         {
@@ -446,7 +446,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->getCurrentItemRole();
     const MusicObject::MusicSongAttributes &musicAttrs = musicSongInfo.m_songAttrs;
-    foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
+    for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
     {
         if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
         {
@@ -524,7 +524,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
 {
     const MusicDownloadTableItemRole &role = m_ui->viewArea->getCurrentItemRole();
     const MusicObject::MusicSongAttributes &musicAttrs = musicSongInfo.m_songAttrs;
-    foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
+    for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
     {
         if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
         {

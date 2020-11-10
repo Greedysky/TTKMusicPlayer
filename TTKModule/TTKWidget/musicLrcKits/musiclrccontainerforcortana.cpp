@@ -21,7 +21,7 @@ MusicLrcContainerForCortana::MusicLrcContainerForCortana(QWidget *parent)
 
     m_musicLrcContainer << new MusicLrcManagerHorizontalDesktop(this)
                         << new MusicLrcManagerHorizontalDesktop(this);
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->setSelfGeometry(m_geometry.x(), m_geometry.y());
     }
@@ -59,7 +59,7 @@ void MusicLrcContainerForCortana::startTimerClock()
 
 void MusicLrcContainerForCortana::stopLrcMask()
 {
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->stopLrcMask();
     }
@@ -68,7 +68,7 @@ void MusicLrcContainerForCortana::stopLrcMask()
 void MusicLrcContainerForCortana::applySettingParameter()
 {
     MusicLrcContainer::applySettingParameter();
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->setLrcFontSize(10);
     }

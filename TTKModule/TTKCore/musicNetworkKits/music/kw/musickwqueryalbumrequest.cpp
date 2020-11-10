@@ -92,7 +92,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                                      value["pub"].toString();
                 //
                 const QVariantList &datas = value["musiclist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -174,7 +174,7 @@ void MusicKWQueryAlbumRequest::singleDownLoadFinished()
             if(value.contains("albumlist"))
             {
                 const QVariantList &datas = value["albumlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

@@ -163,7 +163,7 @@ void MusicPluginWidget::loadPluginsInfo()
     QTreeWidgetItem *item = nullptr;
     item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Decoders"));
     item->setFirstColumnSpanned(true);
-    foreach(DecoderFactory *factory, Decoder::factories())
+    for(DecoderFactory *factory : Decoder::factories())
     {
         new MusicPluginItem(item, factory,  Decoder::file(factory));
     }
@@ -172,7 +172,7 @@ void MusicPluginWidget::loadPluginsInfo()
 
     item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Effects"));
     item->setFirstColumnSpanned(true);
-    foreach(EffectFactory *factory, Effect::factories())
+    for(EffectFactory *factory : Effect::factories())
     {
         new MusicPluginItem(item, factory, Effect::file(factory));
     }
@@ -181,7 +181,7 @@ void MusicPluginWidget::loadPluginsInfo()
 
     item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Visualization"));
     item->setFirstColumnSpanned(true);
-    foreach(VisualFactory *factory, Visual::factories())
+    for(VisualFactory *factory : Visual::factories())
     {
         new MusicPluginItem(item, factory, Visual::file(factory));
     }
@@ -190,7 +190,7 @@ void MusicPluginWidget::loadPluginsInfo()
 
     item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Output"));
     item->setFirstColumnSpanned(true);
-    foreach(OutputFactory *factory, Output::factories())
+    for(OutputFactory *factory : Output::factories())
     {
         new MusicPluginItem(item, factory, Output::file(factory));
     }

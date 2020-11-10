@@ -66,7 +66,7 @@ void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
                 value = value["data"].toMap();
                 value = value["song"].toMap();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -107,7 +107,7 @@ void MusicQQDownloadBackgroundRequest::downLoadUrlFinished()
             pos = regx.indexIn(text, pos);
         }
 
-        foreach(const QString &url, datas)
+        for(const QString &url : qAsConst(datas))
         {
             if(m_counter < 5)
             {

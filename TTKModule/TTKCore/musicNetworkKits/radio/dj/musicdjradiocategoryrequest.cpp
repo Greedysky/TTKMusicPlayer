@@ -48,7 +48,7 @@ void MusicDJRadioCategoryRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("categories"))
             {
                 const QVariantList &datas = value["categories"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

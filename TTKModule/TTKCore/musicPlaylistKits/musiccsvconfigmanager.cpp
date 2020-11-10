@@ -23,7 +23,7 @@ bool MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
         return false;
     }
 
-    foreach(const QString &line, data)
+    for(const QString &line : qAsConst(data))
     {
         const QStringList &songInfo = line.split(",");
         if(songInfo.count() > 2)
@@ -53,7 +53,7 @@ bool MusicCSVConfigManager::writePlaylistData(const MusicSongItems &items, const
 
     const MusicSongItem &item = items.first();
     QStringList data;
-    foreach(const MusicSong &song, item.m_songs)
+    for(const MusicSong &song : qAsConst(item.m_songs))
     {
         data << song.getMusicName() + "," + song.getMusicPlayTime() + "," + song.getMusicPath();
     }

@@ -32,14 +32,14 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     {
         getAllText[0].clear();
         const int perTime = MusicApplication::instance()->duration() / getAllText.count();
-        foreach(const QString &oneLine, getAllText)
+        for(const QString &oneLine : qAsConst(getAllText))
         {
             m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
         }
     }
     else
     {
-        foreach(const QString &oneLine, getAllText)
+        for(const QString &oneLine : qAsConst(getAllText))
         {
             matchLrcLine(oneLine);
         }
@@ -138,7 +138,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
     const QString &getAllText = QString(krc.getDecodeString());
     //The lyrics by line into the lyrics list
-    foreach(const QString &oneLine, getAllText.split(MusicUtils::String::newlines()))
+    for(const QString &oneLine : getAllText.split(MusicUtils::String::newlines()))
     {
         matchLrcLine(oneLine);
     }
@@ -504,7 +504,7 @@ bool MusicLrcAnalysis::findText(qint64 current, qint64 total, QString &pre, QStr
     qint64 previous = 0;
     qint64 later = 0;
     //Keys () method returns a list of lrcContainer
-    foreach(const qint64 value, m_lrcContainer.keys())
+    for(const qint64 value : m_lrcContainer.keys())
     {
         if(current >= value)
         {
@@ -575,7 +575,7 @@ QStringList MusicLrcAnalysis::getAllLrcList() const
 QString MusicLrcAnalysis::getAllLrcString() const
 {
     QString clipString;
-    foreach(const QString &s, m_lrcContainer.values())
+    for(const QString &s : m_lrcContainer.values())
     {
         clipString.append(s + "\n");
     }
@@ -592,7 +592,7 @@ void MusicLrcAnalysis::getTranslatedLrc()
     }
 
     QString data;
-    foreach(const qint64 &key, m_lrcContainer.keys())
+    for(const qint64 &key : m_lrcContainer.keys())
     {
         data.append(QString("[%1.000]").arg(MusicTime::msecTime2LabelJustified(key)) + m_lrcContainer.value(key));
 #ifdef Q_OS_UNIX

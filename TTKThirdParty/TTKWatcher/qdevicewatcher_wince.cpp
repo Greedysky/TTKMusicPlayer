@@ -99,7 +99,7 @@ void QDeviceWatcherPrivate::run()
 					event = new QDeviceChangeEvent(QDeviceChangeEvent::Remove, dev);
 				}
 				if (event != 0 && !event_receivers.isEmpty()) {
-					foreach(QObject* obj, event_receivers) {
+                    for(QObject* obj : qAsConst(event_receivers)) {
 						QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 					}
 				}

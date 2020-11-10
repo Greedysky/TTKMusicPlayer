@@ -99,7 +99,7 @@ void MusicQQQueryRequest::downLoadFinished()
                 value = value["song"].toMap();
                 m_pageTotal = value["totalnum"].toInt();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -108,7 +108,7 @@ void MusicQQQueryRequest::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {
@@ -186,7 +186,7 @@ void MusicQQQueryRequest::singleDownLoadFinished()
             if(value.contains("data") && value["code"].toInt() == 0)
             {
                 const QVariantList &datas = value["data"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -195,7 +195,7 @@ void MusicQQQueryRequest::singleDownLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {

@@ -89,7 +89,7 @@ void MusicBarrageWidget::stop()
 void MusicBarrageWidget::setSize(const QSize &size)
 {
     m_parentSize = size;
-    foreach(MusicBarrageAnimation *anima, m_animations)
+    for(MusicBarrageAnimation *anima : qAsConst(m_animations))
     {
         anima->setSize(size);
     }
@@ -136,7 +136,7 @@ void MusicBarrageWidget::deleteItems()
 void MusicBarrageWidget::createLabel()
 {
     MusicTime::initRandom();
-    foreach(const MusicBarrageRecord &record, m_barrageRecords)
+    for(const MusicBarrageRecord &record : qAsConst(m_barrageRecords))
     {
         createLabel(record);
     }
@@ -159,7 +159,7 @@ QLabel *MusicBarrageWidget::createLabel(const MusicBarrageRecord &record)
 
 void MusicBarrageWidget::createAnimation()
 {
-    foreach(QLabel *label, m_labels)
+    for(QLabel *label : qAsConst(m_labels))
     {
         createAnimation(label);
     }

@@ -121,7 +121,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         }
         else
         {
-            foreach(const QFileInfo &file, MusicUtils::File::getFileListByDir(url, MusicFormats::supportFormatsFilterString(), true))
+            for(const QFileInfo &file : MusicUtils::File::getFileListByDir(url, MusicFormats::supportFormatsFilterString(), true))
             {
                 TTK_LOGGER_INFO("Add play url path: " << file.absoluteFilePath());
                 m_musicPlaylist->appendMedia(0, file.absoluteFilePath());
@@ -158,9 +158,9 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
             }
             manager.readPlaylistData(items);
 
-            foreach(const MusicSongItem &item, items)
+            for(const MusicSongItem &item : qAsConst(items))
             {
-                foreach(const MusicSong &song, item.m_songs)
+                for(const MusicSong &song : qAsConst(item.m_songs))
                 {
                     TTK_LOGGER_INFO("Add play url path: " << song.getMusicPath());
                     m_musicPlaylist->appendMedia(0, song.getMusicPath());

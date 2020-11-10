@@ -103,7 +103,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
             {
                 value = value["result"].toMap();
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -157,7 +157,7 @@ void MusicWYQueryMovieRequest::pageDownLoadFinished()
                 if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                 const QVariantList &datas = value["mvs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -240,7 +240,7 @@ void MusicWYQueryMovieRequest::startMVListQuery(qint64 id)
             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();
-            foreach(const QString &key, value.keys())
+            for(const QString &key : value.keys())
             {
                 int bitRate = key.toInt();
                 MusicObject::MusicSongAttribute attr;

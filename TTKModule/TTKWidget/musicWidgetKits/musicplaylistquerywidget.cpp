@@ -203,7 +203,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
         m_categoryButton->setCategory(m_downloadRequest->getQueryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);
-        foreach(const QString &data, QStringList() << tr("Recommend") << tr("Top") << tr("Hot") << tr("New"))
+        for(const QString &data : QStringList() << tr("Recommend") << tr("Top") << tr("Hot") << tr("New"))
         {
             QLabel *l = new QLabel(data, containTopWidget);
             l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));

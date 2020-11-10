@@ -76,7 +76,7 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ToolItem(":/tools/lb_detect", tr("detect"))
           << ToolItem(":/tools/lb_screen_saver", tr("saver"));
 
-    foreach(const ToolItem &pair, pairs)
+    for(const ToolItem &pair : qAsConst(pairs))
     {
         QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
 #if TTK_QT_VERSION_CHECK(5,13,0)

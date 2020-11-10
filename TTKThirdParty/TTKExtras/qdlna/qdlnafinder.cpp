@@ -53,7 +53,7 @@ void QDlnaFinderPrivate::removeClients()
 
 bool QDlnaFinderPrivate::findClient(const QString &server)
 {
-    foreach(QDlnaClient *client, m_clients)
+    for(QDlnaClient *client : qAsConst(m_clients))
     {
         if(client->server() == server)
         {
@@ -100,7 +100,7 @@ QStringList QDlnaFinder::clientNames() const
 {
     TTK_D(QDlnaFinder);
     QStringList names;
-    foreach(QDlnaClient *client, d->m_clients)
+    for(QDlnaClient *client : qAsConst(d->m_clients))
     {
         names.push_back(client->serverName());
     }

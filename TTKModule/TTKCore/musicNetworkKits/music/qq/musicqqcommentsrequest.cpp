@@ -77,7 +77,7 @@ void MusicQQSongCommentsRequest::downLoadFinished()
                 m_pageTotal = value["commenttotal"].toInt();
 
                 const QVariantList &comments = value["comment"].toList();
-                foreach(const QVariant &comm, comments)
+                for(const QVariant &comm : qAsConst(comments))
                 {
                     if(comm.isNull())
                     {
@@ -170,7 +170,7 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
                 m_pageTotal = value["commenttotal"].toInt();
 
                 const QVariantList &comments = value["comment"].toList();
-                foreach(const QVariant &comm, comments)
+                for(const QVariant &comm : qAsConst(comments))
                 {
                     if(comm.isNull())
                     {

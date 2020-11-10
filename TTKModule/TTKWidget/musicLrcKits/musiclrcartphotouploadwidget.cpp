@@ -93,7 +93,7 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
         return;
     }
 
-    foreach(const QFileInfo &f, dir.entryInfoList())
+    for(const QFileInfo &f : dir.entryInfoList())
     {
         if(f.fileName().contains(name))
         {

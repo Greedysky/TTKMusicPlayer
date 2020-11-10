@@ -84,7 +84,7 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
         return;
     }
 
-    foreach(const int row, list)
+    for(const int row : qAsConst(list))
     {
         m_ui->tableWidget->musicDownloadLocal(row);
     }

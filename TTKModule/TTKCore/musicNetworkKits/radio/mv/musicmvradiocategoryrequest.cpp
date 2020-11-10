@@ -28,7 +28,7 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
         if(ok)
         {
             const QVariantList &datas = data.toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(m_interrupt) return;
 
@@ -41,7 +41,7 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
                 if(value["classId"].toString() == m_searchText)
                 {
                     const QVariantList &fmList = value["fm_list"].toList();
-                    foreach(const QVariant &var, fmList)
+                    for(const QVariant &var : qAsConst(fmList))
                     {
                         if(m_interrupt) return;
 

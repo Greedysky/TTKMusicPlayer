@@ -182,7 +182,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
     connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
-    foreach(MusicLrcFloatPhotoItem *item, m_planes)
+    for(MusicLrcFloatPhotoItem *item : qAsConst(m_planes))
     {
         connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
@@ -229,7 +229,7 @@ void MusicLrcFloatPhotoWidget::close()
 void MusicLrcFloatPhotoWidget::confirmButtonClicked()
 {
     QStringList list;
-    foreach(int i, m_selectNum)
+    for(int i : qAsConst(m_selectNum))
     {
        list << m_artPath[i];
     }
@@ -336,7 +336,7 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
     }
     else
     {
-        foreach(MusicLrcFloatPhotoItem *item, m_planes)
+        for(MusicLrcFloatPhotoItem *item : qAsConst(m_planes))
         {
             item->setBoxChecked(false);
         }

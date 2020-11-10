@@ -59,7 +59,7 @@ void MusicKWDiscoverListRequest::downLoadFinished()
                 where = (where > 0) ? MusicTime::random(where) : 0;
 
                 int counter = 0;
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

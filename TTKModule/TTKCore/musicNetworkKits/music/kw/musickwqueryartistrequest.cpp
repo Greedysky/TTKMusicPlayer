@@ -60,7 +60,7 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                 bool artistFlag = false;
                 //
                 const QVariantList &datas = value["abslist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

@@ -102,7 +102,7 @@ void MusicQQQueryMovieRequest::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["song"].toMap();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -111,7 +111,7 @@ void MusicQQQueryMovieRequest::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {
@@ -176,7 +176,7 @@ void MusicQQQueryMovieRequest::pageDownLoadFinished()
                 value = value["data"].toMap();
                 m_pageTotal = value["total"].toInt();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -290,7 +290,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
 
             QVariantMap flValue = value["fl"].toMap();
             const QVariantList &mvLists = flValue["fi"].toList();
-            foreach(const QVariant &var, mvLists)
+            for(const QVariant &var : qAsConst(mvLists))
             {
                 if(var.isNull())
                 {

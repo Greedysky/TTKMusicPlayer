@@ -63,7 +63,7 @@ void MusicBDQueryLearnRequest::downLoadFinished()
             {
                 value = value["result"].toMap();
                 const QVariantList &datas = value["items"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -191,7 +191,7 @@ void MusicBDQueryLearnRequest::readFromMusicLrcAttribute(MusicObject::MusicSongI
         {
             value = value["data"].toMap();
             const QVariantList &datas = value["songList"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {

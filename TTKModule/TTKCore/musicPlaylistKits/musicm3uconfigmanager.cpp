@@ -23,7 +23,7 @@ bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
     int length = 0;
     bool valid = false;
 
-    foreach(QString str, data)
+    for(QString str : qAsConst(data))
     {
         str = str.trimmed();
         if(str.startsWith("#EXTM3U") || str.isEmpty())
@@ -67,7 +67,7 @@ bool MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const
     const MusicSongItem &item = items.first();
     QStringList data;
     data << QString("#EXTM3U");
-    foreach(const MusicSong &song, item.m_songs)
+    for(const MusicSong &song : qAsConst(item.m_songs))
     {
         data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.getMusicPlayTime()) / MT_S2MS)
                                                  .arg(song.getMusicArtistFront())

@@ -65,7 +65,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                 const QString &singerName = MusicUtils::String::illegalCharactersReplaced(artistObject["name"].toString());
 
                 const QVariantList &datas = value["hotSongs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -86,7 +86,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {
@@ -181,7 +181,7 @@ void MusicWYQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
             }
 
             const QVariantList &array = value["introduction"].toList();
-            foreach(const QVariant &var, array)
+            for(const QVariant &var : qAsConst(array))
             {
                 if(var.isNull())
                 {

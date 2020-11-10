@@ -30,7 +30,7 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
         {
             QVariantMap dataMap = data.toMap();
             const QVariantList &datas = dataMap["array"].toList();
-            foreach(const QVariant &value, datas)
+            for(const QVariant &value : qAsConst(datas))
             {
                 dataMap = value.toMap();
                 if(m_counter < 5 && !dataMap.isEmpty())

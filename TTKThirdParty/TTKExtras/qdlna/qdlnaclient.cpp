@@ -45,7 +45,7 @@ QDlnaClientPrivate::~QDlnaClientPrivate()
 void QDlnaClientPrivate::initData(const QString &data)
 {
     const QStringList& list = data.split("\r\n");
-    foreach(QString str, list)
+    for(QString str : qAsConst(list))
     {
         QStringList data_list;
         if(str.contains("LOCATION:"))
@@ -91,7 +91,7 @@ bool QDlnaClientPrivate::connectServer()
         return false;
     }
     //
-    foreach(const QString &name, FRIENS_NAMES)
+    for(const QString &name : qAsConst(FRIENS_NAMES))
     {
         m_friendlyName = m_xml->readTagNameValue(name);
         if(!m_friendlyName.isEmpty())
@@ -104,7 +104,7 @@ bool QDlnaClientPrivate::connectServer()
         return false;
     }
     //
-    foreach(const QString &name, AVT_NAMES)
+    for(const QString &name : qAsConst(AVT_NAMES))
     {
         QDlnaService server = m_xml->readServiceTag(name, "server");
         if(!server.isEmpty())
@@ -114,7 +114,7 @@ bool QDlnaClientPrivate::connectServer()
         }
     }
     //
-    foreach(const QString &name, AVT_NAMES)
+    for(const QString &name : qAsConst(AVT_NAMES))
     {
         QDlnaService server = m_xml->readServiceTag(name, "service");
         if(!server.isEmpty())

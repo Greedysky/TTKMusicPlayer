@@ -108,7 +108,7 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
         if(value["code"].toInt() == 0 && value.contains("cdlist"))
         {
             const QVariantList &datas = value["cdlist"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {
@@ -125,7 +125,7 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
                 const QVariantList &tags = value["tags"].toList();
                 QString tagsString;
-                foreach(const QVariant &tag, tags)
+                for(const QVariant &tag : qAsConst(tags))
                 {
                     if(tag.isNull())
                     {
@@ -168,7 +168,7 @@ void MusicQQQueryPlaylistRequest::downLoadFinished()
                 value = value["data"].toMap();
                 m_pageTotal = value["sum"].toLongLong();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -225,7 +225,7 @@ void MusicQQQueryPlaylistRequest::getDetailsFinished()
             if(value["code"].toInt() == 0 && value.contains("cdlist"))
             {
                 const QVariantList &datas = value["cdlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -234,7 +234,7 @@ void MusicQQQueryPlaylistRequest::getDetailsFinished()
 
                     value = var.toMap();
                     const QVariantList &songLists = value["songlist"].toList();
-                    foreach(const QVariant &var, songLists)
+                    for(const QVariant &var : qAsConst(songLists))
                     {
                         if(var.isNull())
                         {
@@ -243,7 +243,7 @@ void MusicQQQueryPlaylistRequest::getDetailsFinished()
 
                         value = var.toMap();
                         MusicObject::MusicSongInformation musicInfo;
-                        foreach(const QVariant &var, value["singer"].toList())
+                        for(const QVariant &var : value["singer"].toList())
                         {
                             if(var.isNull())
                             {
@@ -334,7 +334,7 @@ void MusicQQQueryPlaylistRequest::getMoreDetails(MusicResultsItem *item)
         if(value["code"].toInt() == 0 && value.contains("cdlist"))
         {
             const QVariantList &datas = value["cdlist"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {
@@ -344,7 +344,7 @@ void MusicQQQueryPlaylistRequest::getMoreDetails(MusicResultsItem *item)
                 value = var.toMap();
                 const QVariantList &tags = value["tags"].toList();
                 QString tagsString;
-                foreach(const QVariant &tag, tags)
+                for(const QVariant &tag : qAsConst(tags))
                 {
                     if(tag.isNull())
                     {

@@ -81,7 +81,7 @@ static inline bool killProcess(LPCWSTR processName)
 void killProcessByName(const QStringList &origin)
 {
     QStringList list(getProcessLists());
-    foreach(const QString &process, origin)
+    for(const QString &process : qAsConst(origin))
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
@@ -109,7 +109,7 @@ static inline QList<PID_INFO> getProcessLists()
         if(!data.isEmpty())
         {
             QStringList sp = data.split("\n");
-            foreach(QString var, sp)
+            for(QString var : qAsConst(sp))
             {
                 QStringList line = var.split(";");
                 if(line.count() == 2)
@@ -135,9 +135,9 @@ static inline bool killProcess(int pid)
 void killProcessByName(const QStringList &origin)
 {
     QList<PID_INFO>  list(getProcessLists());
-    foreach(const PID_INFO &info, list)
+    for(const PID_INFO &info : qAsConst(list))
     {
-        foreach(const QString &process, origin)
+        for(const QString &process : qAsConst(origin))
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {

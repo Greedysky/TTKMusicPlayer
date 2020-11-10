@@ -87,7 +87,7 @@ void MusicQQQueryArtistListRequest::downLoadFinished()
                 value = value["data"].toMap();
                 m_pageTotal = value["total"].toLongLong();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

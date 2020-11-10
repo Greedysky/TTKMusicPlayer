@@ -49,7 +49,7 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
                               << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
                               << MusicXmlAttribute("count", item.m_songs.count()) << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
                               << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
-        foreach(const MusicSong &song, item.m_songs)
+        for(const MusicSong &song : qAsConst(item.m_songs))
         {
             writeDomElementMutilText(pathDom, "value", MusicXmlAttributes()
                                      << MusicXmlAttribute("name", song.getMusicName())

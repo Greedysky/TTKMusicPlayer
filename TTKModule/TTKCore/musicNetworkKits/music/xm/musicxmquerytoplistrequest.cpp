@@ -80,7 +80,7 @@ void MusicXMQueryToplistRequest::downLoadFinished()
                 Q_EMIT createToplistInfoItem(info);
                 //
                 const QVariantList &datas = value["items"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

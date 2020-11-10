@@ -341,7 +341,7 @@ void MusicLrcContainerForInterior::showLrcPosterWidget()
 void MusicLrcContainerForInterior::getTranslatedLrcFinished(const QString &data)
 {
     QString text;
-    foreach(const QString &var, data.split("\r"))
+    for(const QString &var : data.split("\r"))
     {
         text += var.trimmed() + "\r\n";
     }

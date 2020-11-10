@@ -84,7 +84,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
     MusicObject::MusicSongAttributes data;
     Q_EMIT getMusicMediaInfo(data);
 
-    foreach(const MusicObject::MusicSongAttribute &attr, data)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
     {
         if(attr.m_bitrate == bitrate)
         {
@@ -99,7 +99,7 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
     MusicObject::MusicSongAttributes data;
     Q_EMIT getMusicMediaInfo(data);
 
-    foreach(const MusicObject::MusicSongAttribute &attr, data)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
     {
         const QString &aurl = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         if(aurl == url)
@@ -115,7 +115,7 @@ bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
     MusicObject::MusicSongAttributes data;
     Q_EMIT getMusicMediaInfo(data);
 
-    foreach(const MusicObject::MusicSongAttribute &attr, data)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
     {
         if(attr.m_bitrate == bitrate)
         {

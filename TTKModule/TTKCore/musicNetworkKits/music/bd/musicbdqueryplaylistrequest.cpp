@@ -139,7 +139,7 @@ void MusicBDQueryPlaylistRequest::downLoadFinished()
             {
                 m_pageTotal = value["total"].toLongLong();
                 const QVariantList &datas = value["content"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -191,7 +191,7 @@ void MusicBDQueryPlaylistRequest::getDetailsFinished()
             if(value["error_code"].toInt() == 22000 && value.contains("content"))
             {
                 const QVariantList &datas = value["content"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

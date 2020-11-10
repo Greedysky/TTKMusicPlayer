@@ -253,7 +253,7 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
     clearAllItems();
 
     QFileInfoList names;
-    foreach(const int index, searchResult)
+    for(const int index : qAsConst(searchResult))
     {
         names.append(m_fileNames[index]);
     }
@@ -290,7 +290,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
     {
         MusicInfoData arts;
         MusicSongTag tag;
-        foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
+        for(const QFileInfo &info : m_ui->songlistsTable->getFiles())
         {
             if(!m_runTypeChanged)
             {
@@ -335,7 +335,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     {
         MusicInfoData albums;
         MusicSongTag tag;
-        foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
+        for(const QFileInfo &info : m_ui->songlistsTable->getFiles())
         {
             if(!m_runTypeChanged)
             {
@@ -403,7 +403,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
     QStringList names;
     names << tr("Overall");
     const QFileInfoList &drives = QDir::drives();
-    foreach(const QFileInfo &driver, drives)
+    for(const QFileInfo &driver : qAsConst(drives))
     {
        names << driver.absoluteDir().absolutePath();
     }
@@ -413,7 +413,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
 void MusicLocalSongsManagerWidget::itemsSelected()
 {
     TTKIntSet auditionRow; //if selected multi rows
-    foreach(QTableWidgetItem *item, m_ui->songlistsTable->selectedItems())
+    for(QTableWidgetItem *item : m_ui->songlistsTable->selectedItems())
     {
         if(!m_searchfileListCache.isEmpty())
         {
@@ -432,7 +432,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     std::sort(auditionList.begin(), auditionList.end());
 
     QStringList names;
-    foreach(const int index, auditionList)
+    for(const int index : qAsConst(auditionList))
     {
         names << m_fileNames[index].absoluteFilePath();
     }
@@ -452,7 +452,7 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
     {
         QStringList names;
         const QFileInfoList &drives = QDir::drives();
-        foreach(const QFileInfo &driver, drives)
+        for(const QFileInfo &driver : qAsConst(drives))
         {
            names << driver.absoluteDir().absolutePath();
         }

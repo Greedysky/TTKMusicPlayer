@@ -87,7 +87,7 @@ void MusicBDQueryAlbumRequest::downLoadFinished()
                                      albumInfo["publishtime"].toString();
                 //
                 const QVariantList &datas = value["songlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -165,7 +165,7 @@ void MusicBDQueryAlbumRequest::singleDownLoadFinished()
             if(value.contains("albumlist"))
             {
                 const QVariantList &datas = value["albumlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

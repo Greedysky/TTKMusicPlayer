@@ -160,7 +160,7 @@ MusicBackgroundListWidget::~MusicBackgroundListWidget()
 
 void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         if(item->getFileName() == name)
         {
@@ -173,7 +173,7 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
 
 void MusicBackgroundListWidget::clearSelectState()
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         item->setSelect(false);
     }
@@ -213,7 +213,7 @@ void MusicBackgroundListWidget::createItem(const QString &icon, bool state)
 
 void MusicBackgroundListWidget::updateItem(const MusicBackgroundImage &image, const QString &path)
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         if(item->getFileName().isEmpty())
         {
@@ -228,7 +228,7 @@ void MusicBackgroundListWidget::updateItem(const MusicBackgroundImage &image, co
 
 bool MusicBackgroundListWidget::contains(const QString &name) const
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         if(item->getFileName() == name)
         {
@@ -241,7 +241,7 @@ bool MusicBackgroundListWidget::contains(const QString &name) const
 
 bool MusicBackgroundListWidget::contains(const MusicBackgroundImage &image) const
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         if(item->contains(image.m_item))
         {
@@ -267,7 +267,7 @@ int MusicBackgroundListWidget::find(MusicBackgroundListItem *item) const
 
 MusicBackgroundListItem* MusicBackgroundListWidget::find(const QString &name) const
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         if(item->getFileName() == name)
         {
@@ -280,7 +280,7 @@ MusicBackgroundListItem* MusicBackgroundListWidget::find(const QString &name) co
 
 MusicBackgroundListItem* MusicBackgroundListWidget::find(const MusicBackgroundImage &image) const
 {
-    foreach(MusicBackgroundListItem *item, m_items)
+    for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
         if(item->contains(image.m_item))
         {

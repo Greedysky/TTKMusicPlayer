@@ -18,7 +18,7 @@ void MusicConnectTransferThread::run()
 {
     MusicAbstractThread::run();
 
-    foreach(const QString &path, m_path)
+    for(const QString &path : qAsConst(m_path))
     {
         if(m_running && !m_target.isEmpty())
         {

@@ -216,7 +216,7 @@ bool MusicUserModel::updateRecordData(const MusicUserUIDItem &uid, const TTKVari
     }
 
     const QStringList &keys = data.keys();
-    foreach(const QString &key, keys)
+    for(const QString &key : qAsConst(keys))
     {
         const QString &var = data[key].toString();
         if(!var.isEmpty())

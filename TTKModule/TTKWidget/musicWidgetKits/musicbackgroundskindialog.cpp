@@ -352,7 +352,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
 {
     const QStringList files(QDir(dir).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
     TTKIntList data;
-    foreach(const QString &path, files)
+    for(const QString &path : qAsConst(files))
     {
         QString fileName = QFileInfo(path).baseName();
                 fileName = fileName.split("-").last();
@@ -360,7 +360,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
     }
     std::sort(data.begin(), data.end(), std::less<int>());
 
-    foreach(const int index, data)
+    for(const int index : qAsConst(data))
     {
         const QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TTS_FILE));
         item->createItem(info.baseName(), info.filePath(), state);
@@ -382,7 +382,7 @@ int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
 {
     const QList<QFileInfo> files(QDir(USER_THEME_DIR_FULL).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
     TTKIntList data;
-    foreach(const QFileInfo &info, files)
+    for(const QFileInfo &info : qAsConst(files))
     {
         QString fileName = info.baseName();
                 fileName = fileName.split("-").last();

@@ -89,7 +89,7 @@ void MusicBDSongCommentsRequest::downLoadFinished()
                 m_pageTotal = value["commentlist_last_nums"].toLongLong();
 
                 const QVariantList &comments = value["commentlist_last"].toList();
-                foreach(const QVariant &comm, comments)
+                for(const QVariant &comm : qAsConst(comments))
                 {
                     if(comm.isNull())
                     {
@@ -194,7 +194,7 @@ void MusicBDPlaylistCommentsRequest::downLoadFinished()
                 m_pageTotal = value["commentlist_last_nums"].toLongLong();
 
                 const QVariantList &comments = value["commentlist_last"].toList();
-                foreach(const QVariant &comm, comments)
+                for(const QVariant &comm : qAsConst(comments))
                 {
                     if(comm.isNull())
                     {

@@ -141,7 +141,7 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("djRadios"))
             {
                 const QVariantList &datas = value["djRadios"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -193,7 +193,7 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                 bool categoryFlag = false;
                 //
                 const QVariantList &datas = value["programs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

@@ -82,7 +82,7 @@ void MusicWebMVRadioQueryCategoryPopWidget::setCategory(const QString &server, Q
     scrollArea->setWidget(containWidget);
     layout->addWidget(scrollArea);
 
-    foreach(const MusicResultsCategory &category, categorys)
+    for(const MusicResultsCategory &category : qAsConst(categorys))
     {
         MusicWebMVRadioQueryCategoryItem *item = new MusicWebMVRadioQueryCategoryItem(this);
         connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));

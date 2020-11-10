@@ -94,7 +94,7 @@ void MusicBDQueryRequest::downLoadFinished()
                 value = value["song_info"].toMap();
                 m_pageTotal = value["total"].toInt();
                 const QVariantList &datas = value["song_list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

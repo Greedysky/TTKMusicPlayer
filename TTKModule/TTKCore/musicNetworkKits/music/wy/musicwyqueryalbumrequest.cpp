@@ -92,7 +92,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                                      QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                 //
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -112,7 +112,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {
@@ -181,7 +181,7 @@ void MusicWYQueryAlbumRequest::singleDownLoadFinished()
             if(value.contains("hotAlbums") && value["code"].toInt() == 200)
             {
                 const QVariantList &datas = value["hotAlbums"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

@@ -32,7 +32,7 @@ void MusicUserConfigManager::writeUserData(const MusicUserRecords &records)
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
 
-    foreach(const MusicUserRecord &record, records)
+    for(const MusicUserRecord &record : qAsConst(records))
     {
         writeDomElementMutilText(musicPlayer, "userName", MusicXmlAttributes() <<
                                  MusicXmlAttribute("name", record.m_uid) <<

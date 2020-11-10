@@ -32,7 +32,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
         if(ok)
         {
             bool contains = false;
-            foreach(const QVariant &var, data.toList())
+            for(const QVariant &var : data.toList())
             {
                 if(m_interrupt) return;
 
@@ -45,7 +45,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                 MusicResultsItem item;
                 item.m_nickName = value["className"].toString();
 
-                foreach(const QVariant &var, value["fm_list"].toList())
+                for(const QVariant &var : value["fm_list"].toList())
                 {
                     if(m_interrupt) return;
 
@@ -64,7 +64,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
                         Q_EMIT createCategoryItem(item);
 
-                        foreach(const QVariant &var, value["mvs"].toList())
+                        for(const QVariant &var : value["mvs"].toList())
                         {
                             if(m_interrupt) return;
 

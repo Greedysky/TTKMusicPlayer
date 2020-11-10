@@ -105,7 +105,7 @@ void MusicXMQueryRequest::downLoadFinished()
                 m_pageTotal = pagingVO["count"].toInt();
 
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

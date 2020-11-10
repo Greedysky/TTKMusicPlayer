@@ -452,7 +452,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         return;
     }
 
-    foreach(int row, list)
+    for(int row : qAsConst(list))
     {
         if(index == 0 || index == 1)
         {
@@ -469,7 +469,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         }
 
         MusicObject::MusicSongInformations selectedItems, musicSongInfos(d->getMusicSongInfos());
-        foreach(int index, list)
+        for(int index : qAsConst(list))
         {
             if(index < 0 || index >= musicSongInfos.count())
             {

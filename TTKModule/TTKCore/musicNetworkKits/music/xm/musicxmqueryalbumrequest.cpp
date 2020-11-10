@@ -93,7 +93,7 @@ void MusicXMQueryAlbumRequest::downLoadFinished()
                                      QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                 //
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -172,7 +172,7 @@ void MusicXMQueryAlbumRequest::singleDownLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
                 const QVariantList &datas = value["albums"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

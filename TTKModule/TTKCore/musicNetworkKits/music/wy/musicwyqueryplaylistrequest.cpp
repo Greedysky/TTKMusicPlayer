@@ -116,7 +116,7 @@ void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
             const QVariantList &tags = value["tags"].toList();
             item.m_tags.clear();
-            foreach(const QVariant &var, tags)
+            for(const QVariant &var : qAsConst(tags))
             {
                 if(var.isNull())
                 {
@@ -158,7 +158,7 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
             {
                 m_pageTotal = value["total"].toLongLong();
                 const QVariantList &datas = value["playlists"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -178,7 +178,7 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
 
                     const QVariantList &tags = value["tags"].toList();
                     item.m_tags.clear();
-                    foreach(const QVariant &var, tags)
+                    for(const QVariant &var : qAsConst(tags))
                     {
                         if(var.isNull())
                         {
@@ -223,7 +223,7 @@ void MusicWYQueryPlaylistRequest::getDetailsFinished()
             {
                 value = value["playlist"].toMap();
                 const QVariantList &datas = value["tracks"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -243,7 +243,7 @@ void MusicWYQueryPlaylistRequest::getDetailsFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {

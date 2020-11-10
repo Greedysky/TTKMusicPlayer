@@ -139,7 +139,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
             {
                 m_tags = value["ninfo"].toMap()["name"].toString();
                 const QVariantList &datas = value["child"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 
@@ -181,7 +181,7 @@ void MusicKWQueryPlaylistRequest::getDetailsFinished()
             if(!value.isEmpty() && value.contains("musiclist"))
             {
                 const QVariantList &datas = value["musiclist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

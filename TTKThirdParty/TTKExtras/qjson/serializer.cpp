@@ -69,7 +69,7 @@ class Serializer::SerializerPrivate : public TTKPrivate<Serializer>
 
 QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, const QByteArray &sep ) {
   QByteArray res;
-  Q_FOREACH( const QByteArray &i, list ) {
+  for( const QByteArray &i : qAsConst(list) ) {
     if ( !res.isEmpty() )
       res += sep;
     res += i;
@@ -79,7 +79,7 @@ QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, c
 
 QByteArray Serializer::SerializerPrivate::join( const QList<QByteArray>& list, char sep ) {
   QByteArray res;
-  Q_FOREACH( const QByteArray &i, list ) {
+  for( const QByteArray &i : qAsConst(list) ) {
     if ( !res.isEmpty() )
       res += sep;
     res += i;
@@ -97,7 +97,7 @@ QByteArray Serializer::SerializerPrivate::serialize( const QVariant &v, bool *ok
   } else if (( type == QVariant::List ) || ( type == QVariant::StringList )) { // an array or a stringlist?
     const QVariantList list = v.toList();
     QList<QByteArray> values;
-    Q_FOREACH( const QVariant &var, list )
+    for( const QVariant &var : qAsConst(list) )
     {
       QByteArray serializedValue;
 

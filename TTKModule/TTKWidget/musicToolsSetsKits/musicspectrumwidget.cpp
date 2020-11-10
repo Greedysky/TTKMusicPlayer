@@ -75,7 +75,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
     M_SINGLE_MANAGER_PTR->removeObject(getClassName());
-    foreach(const MusicSpectrum &type, m_types)
+    for(const MusicSpectrum &type : qAsConst(m_types))
     {
         MusicUtils::QMMP::enabledVisualPlugin(type.m_module, false);
     }

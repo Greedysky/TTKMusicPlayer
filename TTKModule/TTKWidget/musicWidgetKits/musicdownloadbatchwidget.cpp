@@ -53,7 +53,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
     std::sort(attrs.begin(), attrs.end());
 
-    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
     {
         if(attr.m_bitrate == MB_32)         ///st
         {
@@ -304,7 +304,7 @@ void MusicDownloadBatchTableWidget::createItem(const MusicObject::MusicSongInfor
 
 void MusicDownloadBatchTableWidget::startToDownload(MusicAbstractQueryRequest::QueryType type)
 {
-    foreach(MusicDownloadBatchTableItem *item, m_items)
+    for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
     {
         item->startToDownload(type);
     }
@@ -338,7 +338,7 @@ void MusicDownloadBatchTableWidget::currentQualityChanged(int index)
         default: break;
     }
 
-    foreach(MusicDownloadBatchTableItem *item, m_items)
+    for(MusicDownloadBatchTableItem *item : qAsConst(m_items))
     {
         ///Remove first null item object
         item->setCurrentQuality(bitRate);
@@ -391,7 +391,7 @@ void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformati
 {
     m_queryType = type;
 
-    foreach(const MusicObject::MusicSongInformation &info, infos)
+    for(const MusicObject::MusicSongInformation &info : qAsConst(infos))
     {
         m_ui->tableWidget->createItem(info);
     }

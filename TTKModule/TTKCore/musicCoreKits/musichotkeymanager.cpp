@@ -107,7 +107,7 @@ bool MusicHotKeyManager::enabled(int index)
 
 void MusicHotKeyManager::enabledAll(bool enable)
 {
-    foreach(QGlobalShortcut *key, m_hotkeys)
+    for(QGlobalShortcut *key : qAsConst(m_hotkeys))
     {
         key->setEnabled(enable);
     }
@@ -152,7 +152,7 @@ QStringList MusicHotKeyManager::getDefaultKeys() const
 QStringList MusicHotKeyManager::getKeys() const
 {
     QStringList keys;
-    foreach(QGlobalShortcut *key, m_hotkeys)
+    for(QGlobalShortcut *key : qAsConst(m_hotkeys))
     {
         keys << key->shortcut().toString();
     }

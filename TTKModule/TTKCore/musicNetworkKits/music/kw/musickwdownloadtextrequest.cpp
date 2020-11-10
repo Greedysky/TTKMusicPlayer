@@ -59,7 +59,7 @@ void MusicKWDownLoadTextRequest::downLoadFinished()
             {
                 value = value["data"].toMap();
                 const QVariantList &datas = value["lrclist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
                     lrcData.append(MusicTime(value["time"].toString().toDouble(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))

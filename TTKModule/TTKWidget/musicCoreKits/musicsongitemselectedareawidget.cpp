@@ -177,7 +177,7 @@ MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
     Q_EMIT getMusicLists(songs);
 
     MusicSongs selectedSongs;
-    foreach(const MusicSongItem &item, songs)
+    for(const MusicSongItem &item : qAsConst(songs))
     {
         if(m_selected)
         {

@@ -57,7 +57,7 @@ void MusicQQArtistSimilarRequest::downLoadFinished()
             {
                 value = value["singers"].toMap();
                 const QVariantList &datas = value["items"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

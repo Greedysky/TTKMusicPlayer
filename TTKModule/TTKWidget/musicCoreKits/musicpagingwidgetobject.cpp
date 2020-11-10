@@ -41,7 +41,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
 
-    foreach(MusicClickedLabel *w, m_pagingItems)
+    for(MusicClickedLabel *w : qAsConst(m_pagingItems))
     {
         QFont font(w->font());
         font.setPixelSize(14);
@@ -99,7 +99,7 @@ void MusicPagingWidgetObject::reset(int total)
         return;
     }
 
-    foreach(MusicClickedLabel *label, m_pagingItems)
+    for(MusicClickedLabel *label : qAsConst(m_pagingItems))
     {
         label->hide();
     }

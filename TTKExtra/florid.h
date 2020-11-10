@@ -20,6 +20,7 @@
 #define FLORID_H
 
 #include <QTimer>
+#include "qmmp.h"
 #include "visual.h"
 
 #define DISTANCE    100

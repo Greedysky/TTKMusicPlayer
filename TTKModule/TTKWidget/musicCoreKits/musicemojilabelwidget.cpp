@@ -92,7 +92,7 @@ MusicEMOJILabelWidget::~MusicEMOJILabelWidget()
 void MusicEMOJILabelWidget::buttonClicked(int index)
 {
     m_currentPage = index;
-    foreach(QToolButton *button, m_buttonItems)
+    for(QToolButton *button : qAsConst(m_buttonItems))
     {
         button->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSBorderStyle01);
     }

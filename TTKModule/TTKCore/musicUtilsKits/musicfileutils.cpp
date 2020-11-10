@@ -9,9 +9,9 @@ quint64 MusicUtils::File::dirSize(const QString &dirName)
     if(QFileInfo(dirName).isDir())
     {
         QDir dir(dirName);
-        const QFileInfoList &list = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden |
-                                                      QDir::NoSymLinks | QDir::NoDotAndDotDot);
-        foreach(const QFileInfo &fileInfo, list)
+        const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden |
+                                                          QDir::NoSymLinks | QDir::NoDotAndDotDot);
+        for(const QFileInfo &fileInfo : qAsConst(fileList))
         {
             if(fileInfo.isDir())
             {
@@ -34,7 +34,7 @@ void MusicUtils::File::checkCacheSize(quint64 cacheSize, bool disabled, const QS
         if(size > cacheSize)
         {
             const QFileInfoList &fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-            foreach(const QFileInfo &fileInfo, fileList)
+            for(const QFileInfo &fileInfo : qAsConst(fileList))
             {
                 size -= fileInfo.size();
                 QFile::remove(fileInfo.absoluteFilePath());
@@ -64,7 +64,7 @@ QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, const QSt
     if(recursively)
     {
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-        foreach(const QFileInfo &fileInfo, folderList)
+        for(const QFileInfo &fileInfo : qAsConst(folderList))
         {
             fileList.append(getFileListByDir(fileInfo.absoluteFilePath(), filter, recursively));
         }

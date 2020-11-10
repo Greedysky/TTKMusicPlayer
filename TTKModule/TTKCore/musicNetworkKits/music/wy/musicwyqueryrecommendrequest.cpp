@@ -58,7 +58,7 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("recommend"))
             {
                 const QVariantList &datas = value["recommend"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -78,7 +78,7 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["artists"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {

@@ -86,7 +86,7 @@ void MusicKGQueryArtistListRequest::downLoadFinished()
             {
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 
@@ -99,7 +99,7 @@ void MusicKGQueryArtistListRequest::downLoadFinished()
 
                     if(m_rawData["initial"].toString() == QUrl(value["title"].toString()).toEncoded())
                     {
-                        foreach(const QVariant &sg, value["singer"].toList())
+                        for(const QVariant &sg : value["singer"].toList())
                         {
                             if(m_interrupt) return;
 

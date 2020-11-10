@@ -173,7 +173,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     m_playedListWidget->setPlayRowIndex(row);
     m_playedListWidget->selectPlayedRow();
 
-    foreach(const MusicPlayItem &item, m_playlist->laterListConst())
+    for(const MusicPlayItem &item : m_playlist->laterListConst())
     {
         m_playedListWidget->setPlayLaterState(item.m_toolIndex);
     }

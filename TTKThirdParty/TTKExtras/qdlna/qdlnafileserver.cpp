@@ -55,7 +55,7 @@ void QDlnaFileServer::setPrefixPath(const QString &path)
 QString QDlnaFileServer::getLocalAddress(const QString &prefix) const
 {
     const QString &value = prefix.left(prefix.lastIndexOf("."));
-    foreach(const QHostAddress &address, QNetworkInterface::allAddresses())
+    for(const QHostAddress &address : QNetworkInterface::allAddresses())
     {
       if(address.toString().contains(value))
       {

@@ -139,7 +139,7 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
         const QString &songName = MusicUtils::String::songName(filename);
 
         MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
-        foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
+        for(const MusicObject::MusicSongInformation &var : qAsConst(musicSongInfos))
         {
             if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
             {

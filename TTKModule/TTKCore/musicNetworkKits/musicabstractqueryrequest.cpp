@@ -42,7 +42,7 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
 
 QString MusicAbstractQueryRequest::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
 {
-    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
     {
         if(!attr.m_duration.isEmpty())
         {

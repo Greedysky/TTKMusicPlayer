@@ -29,7 +29,7 @@ void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcCo
 
 void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
 {
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->setLinearGradientColor(color);
     }
@@ -108,7 +108,7 @@ void MusicLrcContainer::showLrcMakedWidget()
 void MusicLrcContainer::linkLrcStateChanged()
 {
     m_linkLocalLrc = !m_linkLocalLrc;
-    foreach(MusicLrcManager *w, m_musicLrcContainer)
+    for(MusicLrcManager *w : qAsConst(m_musicLrcContainer))
     {
         w->setVisible(m_linkLocalLrc);
     }
@@ -127,7 +127,7 @@ void MusicLrcContainer::clearAllMusicLRCManager()
 
 void MusicLrcContainer::applySettingParameter(const QString &t)
 {
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->setFontFamily(M_SETTING_PTR->value(t + "LrcFamily").toInt());
         manager->setFontType(M_SETTING_PTR->value(t + "LrcType").toInt());

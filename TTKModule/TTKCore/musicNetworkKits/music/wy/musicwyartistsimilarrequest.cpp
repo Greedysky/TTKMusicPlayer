@@ -55,7 +55,7 @@ void MusicWYArtistSimilarRequest::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("artists"))
             {
                 const QVariantList &datas = value["artists"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

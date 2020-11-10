@@ -57,7 +57,7 @@ void MusicBDQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
             value = value["songurl"].toMap();
             const QVariantList &datas = value["url"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {
@@ -95,7 +95,7 @@ void MusicBDQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
 void MusicBDQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &format, const QString &quality, bool all)
 {
-    foreach(const QString &f, format.split(","))
+    for(const QString &f : format.split(","))
     {
         if(all)
         {
@@ -169,7 +169,7 @@ void MusicBDQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
         {
             value = value["data"].toMap();
             const QVariantList &datas = value["songList"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {
@@ -230,7 +230,7 @@ void MusicBDQueryInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfo
         {
             value = value["data"].toMap();
             const QVariantList &datas = value["songList"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {

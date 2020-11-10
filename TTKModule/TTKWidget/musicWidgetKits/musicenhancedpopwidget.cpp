@@ -138,7 +138,8 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     {
         M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, 0);
     }
-    foreach(EffectFactory *factory, Effect::factories())
+
+    for(EffectFactory *factory : Effect::factories())
     {
         Effect::setEnabled(factory, false);
     }

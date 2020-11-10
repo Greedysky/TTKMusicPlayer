@@ -120,8 +120,8 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 						events.append(new QDeviceChangeEvent(action, drive));
 				}
 				if (!events.isEmpty() && !watcher->event_receivers.isEmpty()) {
-					foreach(QObject* obj, watcher->event_receivers) {
-						foreach(QDeviceChangeEvent* event, events) {
+                    for(QObject* obj : qAsConst(watcher->event_receivers)) {
+                        for(QDeviceChangeEvent* event : qAsConst(events)) {
 							QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 						}
 					}

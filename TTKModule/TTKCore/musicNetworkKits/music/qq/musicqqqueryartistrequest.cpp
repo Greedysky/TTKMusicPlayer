@@ -123,7 +123,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                 //
                 value = value["data"].toMap();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -133,7 +133,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                     value = var.toMap();
                     value = value["musicData"].toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {

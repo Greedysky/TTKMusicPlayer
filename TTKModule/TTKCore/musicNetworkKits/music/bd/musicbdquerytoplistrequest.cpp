@@ -77,7 +77,7 @@ void MusicBDQueryToplistRequest::downLoadFinished()
                 Q_EMIT createToplistInfoItem(info);
                 //
                 const QVariantList &datas = value["song_list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

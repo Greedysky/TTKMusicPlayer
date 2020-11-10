@@ -159,9 +159,11 @@ void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs,
         {
             delete m_musicSongs;
         }
+
         m_listHasSearched = true;
         m_musicSongs = new MusicSongs;
-        foreach(int index, fileIndexs)
+
+        for(int index : qAsConst(fileIndexs))
         {
             m_musicSongs->append((*songs)[index]);
         }

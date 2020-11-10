@@ -99,7 +99,7 @@ void MusicWYQueryRequest::downLoadFinished()
                 value = value["result"].toMap();
                 m_pageTotal = value["songCount"].toInt();
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -119,7 +119,7 @@ void MusicWYQueryRequest::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {
@@ -185,7 +185,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
             if(value.contains("songs") && value["code"].toInt() == 200)
             {
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -205,7 +205,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {

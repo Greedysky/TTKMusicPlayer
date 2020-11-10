@@ -201,7 +201,7 @@ void MusicApplication::musicImportSongsPath(const QStringList &items)
     QStringList files(items);
     const QStringList &sfx = MusicFormats::supportFormatsString();
 
-    foreach(const QString &path, items)
+    for(const QString &path : qAsConst(items))
     {
         const QString &suffix = QFileInfo(path).suffix().toLower();
         if(sfx.contains(suffix))
@@ -555,7 +555,7 @@ void MusicApplication::musicImportSongsOnlyDir()
     if(dialog.exec())
     {
         QStringList fileList;
-        foreach(const QFileInfo &info, MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
+        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if(MusicFormats::supportFormatsString().contains(info.suffix().toLower()))
             {
@@ -883,7 +883,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
     {
         const MusicPlayItem &item = m_musicPlaylist->currentItem();
         TTKIntList index;
-        foreach(const QString &p, path)
+        for(const QString &p : qAsConst(path))
         {
             int idx = -1;
             do
@@ -945,7 +945,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
     }
     else
     {
-        foreach(const QString &p, path)
+        for(const QString &p : qAsConst(path))
         {
             m_ui->musicPlayedList->remove(toolIndex, p);
         }
@@ -1056,7 +1056,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
     const QMimeData *data = event->mimeData();
     QStringList fileList;
 
-    foreach(const QUrl &url, data->urls())
+    for(const QUrl &url : data->urls())
     {
         fileList << url.toLocalFile();
     }

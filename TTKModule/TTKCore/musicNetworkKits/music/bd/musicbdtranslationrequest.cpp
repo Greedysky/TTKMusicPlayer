@@ -67,7 +67,7 @@ void MusicBDTranslationRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             value = value["trans_result"].toMap();
             const QVariantList &datas = value["data"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 value = var.toMap();
                 if(value.isEmpty() || value["dst"].toString().isEmpty())

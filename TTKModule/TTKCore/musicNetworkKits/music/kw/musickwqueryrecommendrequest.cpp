@@ -54,7 +54,7 @@ void MusicKWQueryRecommendRequest::downLoadFinished()
             if(!value.isEmpty() && value.contains("musiclist"))
             {
                 const QVariantList &datas = value["musiclist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

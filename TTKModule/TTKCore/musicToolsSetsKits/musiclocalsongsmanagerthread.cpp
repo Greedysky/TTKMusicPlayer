@@ -23,7 +23,7 @@ void MusicLocalSongsManagerThread::run()
     MusicAbstractThread::run();
 
     QFileInfoList list;
-    foreach(const QString &path, m_path)
+    for(const QString &path : qAsConst(m_path))
     {
         if(m_running)
         {

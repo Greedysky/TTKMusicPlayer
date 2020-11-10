@@ -56,7 +56,7 @@ void QHttpResponsePrivate::writeHeaders()
         return;
     }
 
-    foreach(const QString & name, m_headers.keys())
+    for(const QString & name : m_headers.keys())
     {
         QString value = m_headers[name];
         if(name.compare("connection", Qt::CaseInsensitive) == 0)

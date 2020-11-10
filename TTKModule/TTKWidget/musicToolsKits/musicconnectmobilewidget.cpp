@@ -242,12 +242,12 @@ void MusicConnectMobileWidget::deviceTypeChanged(QAction *action)
 
 void MusicConnectMobileWidget::updateDeviceInfo()
 {
-    foreach(QAction *action, m_popMenu.actions())
+    for(QAction *action : m_popMenu.actions())
     {
         m_popMenu.removeAction(action);
     }
 
-    foreach(const MusicDeviceInfoItem &item, m_deviceInfo->getRemovableDrive())
+    for(const MusicDeviceInfoItem &item : m_deviceInfo->getRemovableDrive())
     {
         m_popMenu.addAction(item.m_name + "(" + item.m_path + ")")->setData(QVariant::fromValue<MusicDeviceInfoItem>(item));
     }

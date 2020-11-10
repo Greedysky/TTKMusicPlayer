@@ -729,7 +729,7 @@ void MusicLrcPosterItemWidget::drawTheme15(QPainter *painter)
 void MusicLrcPosterItemWidget::drawTheme16(QPainter *painter)
 {
     QStringList splData;
-    foreach(QString var, m_data)
+    for(QString var : qAsConst(m_data))
     {
         QString afVar;
         var.replace(" ", " / ");

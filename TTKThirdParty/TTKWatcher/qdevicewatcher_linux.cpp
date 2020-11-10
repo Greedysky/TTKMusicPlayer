@@ -238,7 +238,7 @@ void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
 	zDebug("%s %s", qPrintable(action_str), qPrintable(dev));
 
 	if (event != 0 && !event_receivers.isEmpty()) {
-		foreach(QObject* obj, event_receivers) {
+        for(QObject* obj : qAsConst(event_receivers)) {
 			QCoreApplication::postEvent(obj, event, Qt::HighEventPriority);
 		}
 	}

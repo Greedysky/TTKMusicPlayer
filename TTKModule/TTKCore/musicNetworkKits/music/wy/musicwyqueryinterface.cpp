@@ -212,7 +212,7 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         if(value["code"].toInt() == 200 && value.contains("data"))
         {
             const QVariantList &datas = value["data"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {

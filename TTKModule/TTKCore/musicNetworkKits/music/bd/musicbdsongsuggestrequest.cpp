@@ -56,7 +56,7 @@ void MusicBDSongSuggestRequest::downLoadFinished()
             {
                 value = value["data"].toMap();
                 const QVariantList &datas = value["song"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

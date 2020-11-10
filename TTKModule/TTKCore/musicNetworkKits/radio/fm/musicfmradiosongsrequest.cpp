@@ -60,7 +60,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 return;
             }
 
-            foreach(const QVariant &var, songLists)
+            for(const QVariant &var : qAsConst(songLists))
             {
                 value = var.toMap();
                 if(value.isEmpty() || value["url"].toString().isEmpty())

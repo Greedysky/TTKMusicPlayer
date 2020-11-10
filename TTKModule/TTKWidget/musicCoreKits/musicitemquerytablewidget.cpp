@@ -100,7 +100,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
     }
 
     MusicObject::MusicSongInformations selectedItems;
-    foreach(int index, list)
+    for(int index : list)
     {
         if(index < 0 || index >= musicSongInfos.count())
         {

@@ -48,7 +48,7 @@ bool MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
                                                        << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
                                                        << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
 
-        foreach(const MusicSong &song, items[i].m_songs)
+        for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
             QDomElement trackDom = writeDomElementMutil(trackListDom, "track", MusicXmlAttributes()
                                                         << MusicXmlAttribute("name", song.getMusicName())

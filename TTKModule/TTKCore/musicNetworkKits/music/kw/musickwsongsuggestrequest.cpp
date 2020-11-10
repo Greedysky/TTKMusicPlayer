@@ -55,7 +55,7 @@ void MusicKWSongSuggestRequest::downLoadFinished()
             if(value.contains("abslist"))
             {
                 const QVariantList &datas = value["abslist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 

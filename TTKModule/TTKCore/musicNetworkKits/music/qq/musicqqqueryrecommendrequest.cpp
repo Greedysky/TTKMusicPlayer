@@ -59,7 +59,7 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                 value = value["new_song"].toMap();
                 value = value["data"].toMap();
                 const QVariantList &datas = value["song_list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -68,7 +68,7 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {

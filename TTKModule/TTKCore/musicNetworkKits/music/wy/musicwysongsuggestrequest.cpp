@@ -57,7 +57,7 @@ void MusicWYSongSuggestRequest::downLoadFinished()
             {
                 value = value["result"].toMap();
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 
@@ -70,7 +70,7 @@ void MusicWYSongSuggestRequest::downLoadFinished()
                     MusicResultsItem item;
                     item.m_name = value["name"].toString();
                     const QVariantList &artistsArray = value["artists"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {

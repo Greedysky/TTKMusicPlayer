@@ -157,7 +157,7 @@ void MusicKWQueryRequest::downLoadFinished()
             {
                 m_pageTotal = value["TOTAL"].toInt();
                 const QVariantList &datas = value["abslist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

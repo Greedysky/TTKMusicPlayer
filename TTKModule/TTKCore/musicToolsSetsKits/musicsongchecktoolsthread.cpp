@@ -23,7 +23,7 @@ void MusicSongCheckToolsRenameThread::run()
         {
             m_datas.clear();
             MusicSongTag tag;
-            foreach(const MusicSong &song, *m_songItems)
+            for(const MusicSong &song : qAsConst(*m_songItems))
             {
                 if(!m_running)
                 {
@@ -46,7 +46,7 @@ void MusicSongCheckToolsRenameThread::run()
         }
         else
         {
-            foreach(const int index, m_itemIDs)
+            for(const int index : qAsConst(m_itemIDs))
             {
                 if(!m_running)
                 {
@@ -86,7 +86,7 @@ void MusicSongCheckToolsDuplicateThread::run()
         {
             m_datas.clear();
             MusicSongTag tag;
-            foreach(const MusicSong &song, *m_songItems)
+            for(const MusicSong &song : qAsConst(*m_songItems))
             {
                 if(!m_run)
                 {
@@ -104,7 +104,7 @@ void MusicSongCheckToolsDuplicateThread::run()
         }
         else
         {
-            foreach(const int index, m_itemIDs)
+            for(const int index : qAsConst(m_itemIDs))
             {
                 if(!m_run)
                 {
@@ -141,7 +141,7 @@ void MusicSongCheckToolsQualityThread::run()
     if(m_songItems && !m_songItems->isEmpty())
     {
         MusicSongTag tag;
-        foreach(const MusicSong &song, *m_songItems)
+        for(const MusicSong &song : qAsConst(*m_songItems))
         {
             if(!m_running)
             {

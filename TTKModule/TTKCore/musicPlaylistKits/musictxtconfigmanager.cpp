@@ -23,7 +23,7 @@ bool MusicTXTConfigManager::readPlaylistData(MusicSongItems &items)
         return false;
     }
 
-    foreach(const QString &line, data)
+    for(const QString &line : qAsConst(data))
     {
         int index = line.indexOf(":");
         if(index != -1)

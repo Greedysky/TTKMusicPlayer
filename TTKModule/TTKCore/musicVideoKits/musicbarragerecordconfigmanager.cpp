@@ -31,7 +31,7 @@ void MusicBarrageRecordConfigManager::writeBarrageData(const MusicBarrageRecords
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "barrageRecord");
 
-    foreach(const MusicBarrageRecord &record, records)
+    for(const MusicBarrageRecord &record : qAsConst(records))
     {
         writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("color", record.m_color)
                                  << MusicXmlAttribute("size", record.m_size), record.m_value);

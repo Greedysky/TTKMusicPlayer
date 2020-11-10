@@ -76,7 +76,7 @@ void MusicQQQueryToplistRequest::downLoadFinished()
                 Q_EMIT createToplistInfoItem(info);
                 //
                 const QVariantList &datas = value["songlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -86,7 +86,7 @@ void MusicQQQueryToplistRequest::downLoadFinished()
                     value = var.toMap();
                     value = value["data"].toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {

@@ -59,7 +59,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     m_inputComboBox->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
     m_inputComboBox->setItemDelegate(new QStyledItemDelegate(m_inputComboBox));
     m_inputComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioInput))
+    for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioInput))
     {
         m_inputComboBox->addItem(info.deviceName());
     }
@@ -80,7 +80,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     m_outputComboBox->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
     m_outputComboBox->setItemDelegate(new QStyledItemDelegate(m_outputComboBox));
     m_outputComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
+    for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_outputComboBox->addItem(info.deviceName());
     }

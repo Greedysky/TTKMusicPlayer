@@ -175,7 +175,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
 void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantList &format, const QString &quality, bool all)
 {
-    foreach(const QVariant &var, format)
+    for(const QVariant &var : qAsConst(format))
     {
         const QString &fs = var.toString();
         if(all)

@@ -57,7 +57,7 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
 
 void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSongItems& items)
 {
-    foreach(const QString &path, paths)
+    for(const QString &path : qAsConst(paths))
     {
         const QFileInfo info(path);
         const QString & suffix = info.suffix().toLower();

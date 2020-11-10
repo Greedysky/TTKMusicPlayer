@@ -55,7 +55,7 @@ void MusicKGSongSuggestRequest::downLoadFinished()
             if(value["error_code"].toInt() == 0 && value.contains("data"))
             {
                 const QVariantList &datas = value["data"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(m_interrupt) return;
 
@@ -67,7 +67,7 @@ void MusicKGSongSuggestRequest::downLoadFinished()
                     value = var.toMap();
                     if(value["LableName"].toString().isEmpty())
                     {
-                        foreach(const QVariant &var, value["RecordDatas"].toList())
+                        for(const QVariant &var : value["RecordDatas"].toList())
                         {
                             if(m_interrupt) return;
 

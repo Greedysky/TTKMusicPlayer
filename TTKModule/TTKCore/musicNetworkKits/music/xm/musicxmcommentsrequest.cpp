@@ -83,7 +83,7 @@ void MusicXMSongCommentsRequest::downLoadFinished()
                 m_pageTotal = paging["count"].toLongLong();
 
                 const QVariantList &comments = value["commentVOList"].toList();
-                foreach(const QVariant &comm, comments)
+                for(const QVariant &comm : qAsConst(comments))
                 {
                     if(comm.isNull())
                     {
@@ -188,7 +188,7 @@ void MusicXMPlaylistCommentsRequest::downLoadFinished()
                 m_pageTotal = paging["count"].toLongLong();
 
                 const QVariantList &comments = value["commentVOList"].toList();
-                foreach(const QVariant &comm, comments)
+                for(const QVariant &comm : qAsConst(comments))
                 {
                     if(comm.isNull())
                     {

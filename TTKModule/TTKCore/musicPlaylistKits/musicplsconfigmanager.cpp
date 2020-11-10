@@ -34,7 +34,7 @@ bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
     int number = 0;
     bool error = false;
 
-    foreach(QString line, data)
+    for(QString line : qAsConst(data))
     {
         if(fileRegExp.indexIn(line) > -1)
         {
@@ -86,7 +86,7 @@ bool MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const
     data << QString("[playlist]");
 
     int count = 1;
-    foreach(const MusicSong &song, item.m_songs)
+    for(const MusicSong &song : qAsConst(item.m_songs))
     {
         data << QString("File%1=%2").arg(count).arg(song.getMusicPath());
         data << QString("Title%1=%2").arg(count).arg(song.getMusicName());

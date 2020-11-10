@@ -30,7 +30,7 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchR
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "searchRecord");
 
-    foreach(const MusicSearchRecord &record, records)
+    for(const MusicSearchRecord &record : qAsConst(records))
     {
         writeDomElementText(download, "value", MusicXmlAttribute("name", record.m_name), record.m_time);
     }

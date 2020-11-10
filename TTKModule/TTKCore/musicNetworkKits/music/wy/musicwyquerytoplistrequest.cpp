@@ -78,7 +78,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                 Q_EMIT createToplistInfoItem(info);
                 //
                 const QVariantList &datas = value["tracks"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -98,7 +98,7 @@ void MusicWYQueryToplistRequest::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
+                    for(const QVariant &artistValue : qAsConst(artistsArray))
                     {
                         if(artistValue.isNull())
                         {

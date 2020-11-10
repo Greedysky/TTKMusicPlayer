@@ -202,7 +202,7 @@ void MusicReplayGainWidget::addFileButtonClicked()
     {
         setControlEnabled(false);
         const int orcount = m_paths.count();
-        foreach(const QString &path, dialog.selectedFiles())
+        for(const QString &path : dialog.selectedFiles())
         {
             if(!m_paths.contains(path))
             {
@@ -229,7 +229,7 @@ void MusicReplayGainWidget::addFilesButtonClicked()
     if(dialog.exec())
     {
         setControlEnabled(false);
-        foreach(const QFileInfo &info, MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
+        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if(QString(MP3_FILE_PREFIX).contains(info.suffix().toLower()) && !m_paths.contains(info.absoluteFilePath()))
             {
@@ -360,7 +360,7 @@ void MusicReplayGainWidget::applyOutput()
 void MusicReplayGainWidget::confirmDataChanged()
 {
     const MusicSongs songs(m_ui->selectedAreaWidget->getSelectedSongItems());
-    foreach(const MusicSong &song, songs)
+    for(const MusicSong &song : qAsConst(songs))
     {
         if(m_replayGainWidget)
         {

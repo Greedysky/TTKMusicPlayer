@@ -103,13 +103,13 @@ void MusicIdentifySongsRequest::downLoadFinished()
             {
                 value = value["metadata"].toMap();
                 const QVariantList &list = value["music"].toList();
-                foreach(const QVariant &var, list)
+                for(const QVariant &var : qAsConst(list))
                 {
                     value = var.toMap();
 
                     MusicSongIdentifyData song;
                     song.m_songName = value["title"].toString();
-                    foreach(const QVariant &artists, value["artists"].toList())
+                    for(const QVariant &artists : value["artists"].toList())
                     {
                         value = artists.toMap();
                         song.m_singerName = value["name"].toString();

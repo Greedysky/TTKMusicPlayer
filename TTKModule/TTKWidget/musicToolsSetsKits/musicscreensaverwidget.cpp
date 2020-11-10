@@ -171,7 +171,7 @@ void MusicScreenSaverListWidget::createItem(QObject *object, const QString &path
 
 void MusicScreenSaverListWidget::resizeWindow()
 {
-    foreach(MusicScreenSaverListItem *item , m_items)
+    for(MusicScreenSaverListItem *item : qAsConst(m_items))
     {
         m_gridLayout->removeWidget(item);
     }
@@ -300,7 +300,7 @@ QVector<bool> MusicScreenSaverWidget::parseSettingParameter()
 
     const QString &value = M_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
     const QStringList items(value.split(";"));
-    foreach(const QString &item, items)
+    for(const QString &item : qAsConst(items))
     {
         const QStringList itemStatus(item.split(","));
         if(itemStatus.count() == 2)

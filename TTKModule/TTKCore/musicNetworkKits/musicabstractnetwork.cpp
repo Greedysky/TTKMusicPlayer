@@ -47,7 +47,7 @@ void MusicAbstractNetwork::sslErrors(QNetworkReply* reply, const QList<QSslError
 void MusicAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSslError> &errors)
 {
     QString errorString;
-    foreach(const QSslError &error, errors)
+    for(const QSslError &error : qAsConst(errors))
     {
         if(!errorString.isEmpty())
         {

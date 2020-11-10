@@ -116,7 +116,7 @@ void MusicWebDJRadioCategoryWidget::resizeWindow()
 
 void MusicWebDJRadioCategoryWidget::createCategoryItems()
 {
-    foreach(const MusicResultsItem &item, m_categoryThread->getSearchedItems())
+    for(const MusicResultsItem &item : m_categoryThread->getSearchedItems())
     {
         MusicWebDJRadioCategoryItemWidget *label = new MusicWebDJRadioCategoryItemWidget(this);
         connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SIGNAL(currentCategoryClicked(MusicResultsItem)));

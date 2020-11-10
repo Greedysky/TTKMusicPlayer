@@ -104,7 +104,7 @@ void MusicBDQueryMovieRequest::downLoadFinished()
                 value = value["result"].toMap();
                 value = value["song_info"].toMap();
                 const QVariantList &datas = value["song_list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -352,7 +352,7 @@ void MusicBDQueryMovieRequest::readFromMusicMVAttributeIQY(MusicObject::MusicSon
     }
 
     QString vid, tvid;
-    foreach(QString ty, var.split("&"))
+    for(QString ty : var.split("&"))
     {
         if(ty.contains("vid="))
         {
@@ -424,7 +424,7 @@ void MusicBDQueryMovieRequest::readFromMusicMVAttributeIQY(MusicObject::MusicSon
             }
 
             datas = datas.first().toMap()["vs"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {

@@ -31,7 +31,7 @@ void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &recor
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "download");
 
-    foreach(const MusicSong &record, records)
+    for(const MusicSong &record : qAsConst(records))
     {
         writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("name", record.getMusicName())
                                                  << MusicXmlAttribute("size", record.getMusicSizeStr())

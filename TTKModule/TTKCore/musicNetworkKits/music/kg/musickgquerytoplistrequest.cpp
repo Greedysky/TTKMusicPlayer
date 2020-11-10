@@ -79,7 +79,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                 Q_EMIT createToplistInfoItem(info);
                 //
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

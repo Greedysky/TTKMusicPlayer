@@ -90,7 +90,7 @@ void MusicSongDlnaTransferWidget::startToScan()
 void MusicSongDlnaTransferWidget::scanFinished()
 {
     bool init = false;
-    foreach(const QString &name, m_dlnaFinder->clientNames())
+    for(const QString &name : m_dlnaFinder->clientNames())
     {
         if(!name.isEmpty())
         {

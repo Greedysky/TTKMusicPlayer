@@ -40,7 +40,7 @@ void MusicLrcContainerForDesktop::startTimerClock()
 
 void MusicLrcContainerForDesktop::stopLrcMask()
 {
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->stopLrcMask();
     }
@@ -49,7 +49,7 @@ void MusicLrcContainerForDesktop::stopLrcMask()
 void MusicLrcContainerForDesktop::applySettingParameter()
 {
     MusicLrcContainer::applySettingParameter();
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
@@ -184,7 +184,7 @@ void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const
 {
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->setSelfGeometry(m_geometry.x(), m_geometry.y());
     }
@@ -331,7 +331,7 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     setSelfGeometry();
 
     const int size = resize ? ++m_currentLrcFontSize : --m_currentLrcFontSize;
-    foreach(MusicLrcManager *manager, m_musicLrcContainer)
+    for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
         manager->setLrcFontSize(size);
     }

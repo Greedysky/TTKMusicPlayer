@@ -120,7 +120,7 @@ void MusicXMQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
             const QVariantList &tags = value["tags"].toList();
             item.m_tags.clear();
-            foreach(const QVariant &var, tags)
+            for(const QVariant &var : qAsConst(tags))
             {
                 if(var.isNull())
                 {
@@ -162,7 +162,7 @@ void MusicXMQueryPlaylistRequest::downLoadFinished()
                 m_pageTotal = value["total"].toLongLong();
 
                 const QVariantList &datas = value["collects"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -183,7 +183,7 @@ void MusicXMQueryPlaylistRequest::downLoadFinished()
 
                     const QVariantList &tags = value["tags"].toList();
                     item.m_tags.clear();
-                    foreach(const QVariant &var, tags)
+                    for(const QVariant &var : qAsConst(tags))
                     {
                         if(var.isNull())
                         {
@@ -227,7 +227,7 @@ void MusicXMQueryPlaylistRequest::getDetailsFinished()
                 value = value["data"].toMap();
                 value = value["collectDetail"].toMap();
                 const QVariantList &datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

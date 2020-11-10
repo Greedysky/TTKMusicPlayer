@@ -183,7 +183,7 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
     {
         m_ui->iconLabel->start();
         m_ui->startButton->setText(tr("stopTest"));
-        foreach(MusicNetworkConnectionItem *item, m_connectionItems)
+        for(MusicNetworkConnectionItem *item : qAsConst(m_connectionItems))
         {
             item->start();
         }
@@ -192,7 +192,7 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
     {
         m_ui->iconLabel->stop();
         m_ui->startButton->setText(tr("startTest"));
-        foreach(MusicNetworkConnectionItem *item, m_connectionItems)
+        for(MusicNetworkConnectionItem *item : qAsConst(m_connectionItems))
         {
             item->stop();
         }

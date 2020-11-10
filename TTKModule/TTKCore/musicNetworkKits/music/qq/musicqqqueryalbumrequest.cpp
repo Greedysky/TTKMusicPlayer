@@ -85,7 +85,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                                      value["aDate"].toString();
                 //
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -94,7 +94,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    foreach(const QVariant &var, value["singer"].toList())
+                    for(const QVariant &var : value["singer"].toList())
                     {
                         if(var.isNull())
                         {
@@ -177,7 +177,7 @@ void MusicQQQueryAlbumRequest::singleDownLoadFinished()
             {
                 value = value["data"].toMap();
                 const QVariantList &datas = value["list"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

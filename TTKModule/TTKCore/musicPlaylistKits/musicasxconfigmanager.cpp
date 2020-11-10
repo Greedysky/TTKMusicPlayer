@@ -60,7 +60,7 @@ bool MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
 
         writeDomText(musicPlayerDom, "Title", item.m_itemName);
 
-        foreach(const MusicSong &song, items[i].m_songs)
+        for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
             QDomElement trackDom = writeDomNode(musicPlayerDom, "Entry");
 

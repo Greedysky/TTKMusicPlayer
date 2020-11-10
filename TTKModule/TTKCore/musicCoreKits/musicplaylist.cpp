@@ -96,7 +96,7 @@ void MusicPlaylist::addMedia(int toolIndex, const QStringList &items)
 {
     m_mediaList.clear();
     m_laterMediaList.clear();
-    foreach(const QString &path, items)
+    for(const QString &path : qAsConst(items))
     {
         m_mediaList << MusicPlayItem(toolIndex, path);
     }
@@ -122,7 +122,7 @@ void MusicPlaylist::appendMedia(int toolIndex, const QString &content)
 
 void MusicPlaylist::appendMedia(int toolIndex, const QStringList &items)
 {
-    foreach(const QString &path, items)
+    for(const QString &path : qAsConst(items))
     {
         m_mediaList << MusicPlayItem(toolIndex, path);
     }

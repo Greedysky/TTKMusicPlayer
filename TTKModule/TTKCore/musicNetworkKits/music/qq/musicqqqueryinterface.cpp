@@ -217,7 +217,7 @@ QString MusicQQQueryInterface::getMusicPath(const QString &file, const QString &
             value = value["req_0"].toMap();
             value = value["data"].toMap();
             const QVariantList &datas = value["midurlinfo"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 value = var.toMap();
                 if(value.contains("purl"))

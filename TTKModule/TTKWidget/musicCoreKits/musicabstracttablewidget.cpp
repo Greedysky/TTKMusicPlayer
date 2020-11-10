@@ -56,7 +56,7 @@ void MusicAbstractTableWidget::clear()
 TTKIntList MusicAbstractTableWidget::getMultiSelectedIndexs() const
 {
     TTKIntSet rows;
-    foreach(const QModelIndex& index, selectedIndexes())
+    for(const QModelIndex& index : selectedIndexes())
     {
         rows.insert(index.row());
     }

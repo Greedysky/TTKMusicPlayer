@@ -109,7 +109,7 @@ void MusicKGQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
             item.m_nickName = value["nickname"].toString();
 
             const QVariantList &tags = value["tags"].toList();
-            foreach(const QVariant &var, tags)
+            for(const QVariant &var : qAsConst(tags))
             {
                 if(var.isNull())
                 {
@@ -152,7 +152,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
                 m_pageTotal = value["total"].toLongLong();
 
                 const QVariantList &datas = value["info"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -205,7 +205,7 @@ void MusicKGQueryPlaylistRequest::getDetailsFinished()
             {
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {

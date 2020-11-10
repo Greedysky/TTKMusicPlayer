@@ -48,7 +48,7 @@ void MusicSplitItemClickedLabel::mouseMoveEvent(QMouseEvent *event)
     const QStringList data(text().split(" - "));
     int offset = 0;
 
-    foreach(const QString &var, data)
+    for(const QString &var : qAsConst(data))
     {
         const int fs = MusicUtils::Widget::fontTextWidth(font(), var.trimmed());
         if(offset <= event->pos().x() && event->pos().x() <= offset + fs)

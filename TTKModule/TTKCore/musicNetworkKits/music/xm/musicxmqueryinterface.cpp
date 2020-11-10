@@ -31,7 +31,7 @@ bool MusicXMQueryInterface::makeTokenQueryCookies(QString &tk, QString &tke)
     }
 
     const QList<QNetworkCookie> &cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
-    for(const QNetworkCookie &cookie : cookies)
+    for(const QNetworkCookie &cookie : qAsConst(cookies))
     {
         if(cookie.name() == "_m_h5_tk")
         {
@@ -102,7 +102,7 @@ void MusicXMQueryInterface::readFromMusicSongLrc(MusicObject::MusicSongInformati
             value = value["data"].toMap();
             value = value["data"].toMap();
             const QVariantList &datas = value["lyrics"].toList();
-            foreach(const QVariant &var, datas)
+            for(const QVariant &var : qAsConst(datas))
             {
                 if(var.isNull())
                 {
@@ -142,7 +142,7 @@ void MusicXMQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
 void MusicXMQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariant &key, const QString &quality, bool all)
 {
-    foreach(const QVariant &song, key.toList())
+    for(const QVariant &song : key.toList())
     {
         const QVariantMap &data = song.toMap();
         const int bitrate = MusicUtils::Number::transfromBitrateToNormal(data["quality"].toString());

@@ -104,7 +104,7 @@ void MusicKWQueryMovieRequest::downLoadFinished()
             if(value.contains("abslist"))
             {
                 const QVariantList &datas = value["abslist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -168,7 +168,7 @@ void MusicKWQueryMovieRequest::pageDownLoadFinished()
             if(value.contains("mvlist"))
             {
                 const QVariantList &datas = value["mvlist"].toList();
-                foreach(const QVariant &var, datas)
+                for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
                     {
@@ -236,7 +236,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
         return;
     }
 
-    foreach(const QString &v, format.split("|"))
+    for(const QString &v : format.split("|"))
     {
         if(v.contains("MP4L"))
         {

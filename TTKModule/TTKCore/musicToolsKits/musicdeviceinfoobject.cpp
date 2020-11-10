@@ -104,7 +104,7 @@ MusicDeviceInfoItems MusicDeviceInfoObject::getRemovableDrive()
     m_items.clear();
 #ifdef Q_OS_WIN
     const QFileInfoList &drives = QDir::drives();
-    foreach(const QFileInfo &drive, drives)
+    for(const QFileInfo &drive : qAsConst(drives))
     {
         const QString &path = drive.absoluteDir().absolutePath();
         const int type = GetDriveTypeW(path.toStdWString().c_str());

@@ -117,7 +117,7 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
 void MusicWebFMRadioWidget::addListWidgetItem()
 {
     const MusicFMRadioChannelDatas &channels = m_getChannelThread->getMusicChannel();
-    foreach(const MusicFMRadioChannelData &channel, channels)
+    for(const MusicFMRadioChannelData &channel : qAsConst(channels))
     {
         const int index = rowCount();
         setRowCount(index + 1);

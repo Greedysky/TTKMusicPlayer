@@ -62,7 +62,7 @@ bool MusicXmlNodeHelper::hasNext()
 
 QString MusicXmlNodeHelper::nodeName(const QString &name) const
 {
-    foreach(const QString &value, m_nodeNames)
+    for(const QString &value : qAsConst(m_nodeNames))
     {
         if(value.toLower() == name.toLower())
         {
@@ -255,7 +255,7 @@ QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttr
 QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttributes &attrs)
 {
     QDomElement domElement = m_document->createElement(node);
-    foreach(const MusicXmlAttribute &attr, attrs)
+    for(const MusicXmlAttribute &attr : qAsConst(attrs))
     {
         writeAttribute(domElement, attr);
     }

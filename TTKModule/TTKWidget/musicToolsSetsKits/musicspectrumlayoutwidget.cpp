@@ -68,7 +68,7 @@ void MusicSpectrumLayoutWidget::labelClicked(int index)
 {
     if(m_exclusive)
     {
-        foreach(MusicSpectrumLayoutItem *item, m_items)
+        for(MusicSpectrumLayoutItem *item : qAsConst(m_items))
         {
             item->setCheck(false);
         }
