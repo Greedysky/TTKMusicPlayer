@@ -119,7 +119,7 @@ protected:
     /*!
      * Process current patch visual data by state.
      */
-    virtual void processPatch(bool state);
+    virtual void processPatch(bool state) override;
 
     virtual void hideEvent(QHideEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
