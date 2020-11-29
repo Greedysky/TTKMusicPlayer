@@ -95,7 +95,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->background->setMouseTracking(true);
     m_ui->centerWidget->installEventFilter(this);
 
-    readXMLConfigFromText();
+    readSystemConfigFromFile();
 
     QTimer::singleShot(MT_MS, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
@@ -302,7 +302,7 @@ MusicObject::PlayMode MusicApplication::getPlayMode() const
 void MusicApplication::quitWindowClose()
 {
     //Write configuration files
-    writeXMLConfigToText();
+    writeSystemConfigToFile();
     m_quitWindowClose = true;
     m_applicationObject->windowCloseAnimation();
 }
@@ -1116,7 +1116,7 @@ void MusicApplication::setMusicPlayIndex()
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(m_currentMusicSongTreeIndex);
 }
 
-void MusicApplication::readXMLConfigFromText()
+void MusicApplication::readSystemConfigFromFile()
 {
     int value = DEFAULT_LEVEL_LOWER;
 
@@ -1264,7 +1264,7 @@ void MusicApplication::readXMLConfigFromText()
     m_applicationObject->applySettingParameter();
 }
 
-void MusicApplication::writeXMLConfigToText()
+void MusicApplication::writeSystemConfigToFile()
 {
     MusicConfigManager xml;
     m_applicationObject->sideAnimationReset();

@@ -317,13 +317,13 @@ protected:
      */
     void setMusicPlayIndex();
     /*!
-     * Read XML config from text.
+     * Read system config from file.
      */
-    void readXMLConfigFromText();
+    void readSystemConfigFromFile();
     /*!
-     * Write XML config to text.
+     * Write system config to file.
      */
-    void writeXMLConfigToText();
+    void writeSystemConfigToFile();
 
 private:
     Ui::MusicApplication *m_ui;
