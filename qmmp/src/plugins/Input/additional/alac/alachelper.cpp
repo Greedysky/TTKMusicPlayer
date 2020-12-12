@@ -28,7 +28,7 @@ void AlacHelper::close()
     if(m_stream)
         stream_destroy(m_stream);
     if(m_alac)
-        alac_destroy(m_alac);
+        alac_file_free(m_alac);
 }
 
 bool AlacHelper::initialize()
@@ -117,7 +117,7 @@ int AlacHelper::read(unsigned char *data, int size)
         }
 
         stream_read(m_stream, m_demux.sample_byte_size[m_decoded_frames], m_stream_buffer);
-        decode_frame(m_alac, m_stream_buffer, m_buffer, &m_output_bytes);
+        decode_frame(m_alac, m_stream_buffer, current_size, m_buffer, &m_output_bytes);
         m_decoded_frames = 0;
 
         if(current_size > m_output_bytes - m_decoded_frames)

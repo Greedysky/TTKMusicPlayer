@@ -239,18 +239,7 @@ int DumbHelper::read(unsigned char *buf, int size)
 {
     const int samplesize = (bitsPerSample() >> 3) * channels();
     const int length = size / samplesize;
-
-    DUMB_IT_SIGRENDERER *itsr = duh_get_it_sigrenderer(m_info->renderer);
-    if(m_info->can_loop)
-    {
-        dumb_it_set_loop_callback(itsr, &dumb_it_callback_loop_forever, nullptr);
-    }
-    else
-    {
-        dumb_it_set_loop_callback(itsr, &dumb_it_callback_terminate, nullptr);
-    }
-
-    long ret = duh_render(m_info->renderer, bitsPerSample(), 0, 1, 65536.f / samplerate(), length, buf);
+    const long ret = duh_render(m_info->renderer, bitsPerSample(), 0, 1, 65536.f / samplerate(), length, buf);
     m_info->readpos += ret / (float)samplerate();
 
     return ret * samplesize;

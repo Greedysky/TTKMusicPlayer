@@ -28,7 +28,6 @@ extern "C" {
 typedef struct {
     DUH *duh;
     DUH_SIGRENDERER *renderer;
-    int can_loop;
     int bitrate;
     float readpos;
 } dumb_info_t;
