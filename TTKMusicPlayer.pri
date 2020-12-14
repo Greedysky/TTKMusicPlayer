@@ -45,7 +45,7 @@ win32{
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_MINOR_VERSION, 1):QT  += winextras
         msvc{
-            LIBS += -L$$DESTDIR -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
+            LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
             CONFIG +=c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
@@ -56,7 +56,7 @@ win32{
 
         gcc{
             QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
-            LIBS += -L$$DESTDIR -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+            LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
         }
     }
 
@@ -64,7 +64,7 @@ win32{
         QT  += multimedia
         gcc{
             QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
-            LIBS += -L$$DESTDIR -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+            LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
         }
     }
 }
@@ -77,7 +77,7 @@ unix:!mac{
     }
 
     QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
-    LIBS += -L$$DESTDIR -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
+    LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 }
 
 DEFINES += TTK_LIBRARY QMMP_LIBRARY

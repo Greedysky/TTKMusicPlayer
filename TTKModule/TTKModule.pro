@@ -26,13 +26,13 @@ CONFIG += plugin lib
 ##qmmp lib check
 include($$PWD/../TTKExtra/qmmp.pri)
 win32:{
-    QMMP_DEPANDS = $$DESTDIR/qmmp1.dll
+    QMMP_DEPANDS = $$DESTDIR/TTKqmmp.dll
     QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
 }
 unix:!mac{
-    QMMP_DEPANDS = $$DESTDIR/libqmmp.so
+    QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.so
 }
-!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
+!exists($$QMMP_DEPANDS): error("Could not find ttk qmmp library, please download and put it to output dir")
 
 
 TARGET = TTKCore
