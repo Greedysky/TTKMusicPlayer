@@ -84,7 +84,7 @@ TTKMusicPlayer的一些特性
  * AdLib Sound File(*.adl *.hsc *.ksm *.lds)
  * Apple Lossless Audio File(*.alac)
  * Another Slight Atari File(*.sap *.cm3 *.cmc *.cmr *.cms *.dmc *.dlt *.mpd *.mpt *.rmt *.tm2 *.tm8 *.tmc *.fc)
- * DTS Coherent Acoustics File(*.wav *.dts *.cpt)
+ * DTS Coherent Acoustics File(*.dts *.cpt)
  * Dynamic Universal File(*.mod *.mdz *.stk *.m15 *.fst *.oct *.nt *.s3m *.s3z *.stm *.stz *.it *.itz *.xm *.xmz *ptm *.ptz *mtm *.mtz *669 *psm *umx *am *.j2b *dsm *amf *okt *.okta *mo3)
  * Future Composer File(*.fc *.fc13 *.fc14 *.smod)
  * OptimFrog File(*.ofr *.ofs)
