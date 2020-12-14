@@ -5,8 +5,7 @@ EXTRA_PREFIX = $$PWD/../../../extra/gcc
 QMAKE_LIBDIR += $$OUT_PWD/../../../../bin/$$TTKMusicPlayer
 PLUGINS_PREFIX = $$OUT_PWD/../../../../bin/$$TTKMusicPlayer/plugins
 
-unix:LIBS += -lqmmp
-win32:LIBS += -lqmmp1
+LIBS += -lTTKqmmp
 
 INCLUDEPATH += $$PWD/../
 

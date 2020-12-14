@@ -92,11 +92,9 @@ SOURCES += recycler.cpp \
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 
-TARGET = $${TARGET}
-CONFIG += shared warn_on qt thread
+TARGET = TTK$${TARGET}
+CONFIG += shared warn_on plugin lib qt thread
 TEMPLATE = lib
-
-VERSION = $$QMMP_VERSION
 
 INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include
 
@@ -106,10 +104,4 @@ win32:{
 
 unix {
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
-    CONFIG += create_pc create_prl no_install_prl
-    QMAKE_PKGCONFIG_NAME = qmmp
-    QMAKE_PKGCONFIG_DESCRIPTION = qmmp core library
-    equals(QT_MAJOR_VERSION, 4): QMAKE_PKGCONFIG_REQUIRES = QtCore QtGui
-    equals(QT_MAJOR_VERSION, 5): QMAKE_PKGCONFIG_REQUIRES = Qt5Core Qt5Gui Qt5Widgets
-    QMAKE_PKGCONFIG_DESTDIR = pkgconfig
 }

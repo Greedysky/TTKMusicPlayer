@@ -7,8 +7,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = app
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 
-unix:LIBS += -L$$DESTDIR -lqmmp
-win32:LIBS += -L$$DESTDIR -lqmmp1
+LIBS += -L$$DESTDIR -lTTKqmmp
 
 win32:msvc:{
     HEADERS += ../../src/qmmp/volume.h \
