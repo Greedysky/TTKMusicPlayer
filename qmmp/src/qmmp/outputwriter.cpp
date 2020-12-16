@@ -329,13 +329,11 @@ void OutputWriter::run()
             if(m < 0)
                 break;
         }
-        m_mutex.lock();
         //force buffer change
         recycler()->mutex()->lock();
         recycler()->done();
         recycler()->mutex()->unlock();
         b = nullptr;
-        m_mutex.unlock();
     }
     m_mutex.lock();
     //write remaining data
