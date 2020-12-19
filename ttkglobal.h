@@ -41,6 +41,14 @@
 #  define TTK_NO_WINEXTRAS
 #endif
 
+#ifndef qPrintable
+#define qPrintable(s) QString(s).toLocal8Bit().constData()
+#endif
+
+#ifndef qUtf8Printable
+#define qUtf8Printable(s) QString(s).toUtf8().constData()
+#endif
+
 #if !TTK_QT_VERSION_CHECK(5,7,0)
 #define TTK_AS_CONST
 // this adds const to non-const objects (like std::as_const)

@@ -39,6 +39,14 @@
 #define QStringToFileName(s) s.toLocal8Bit().constData()
 #endif
 
+#ifndef qPrintable
+#define qPrintable(s) QString(s).toLocal8Bit().constData()
+#endif
+
+#ifndef qUtf8Printable
+#define qUtf8Printable(s) QString(s).toUtf8().constData()
+#endif
+
 #ifndef TTK_AS_CONST
 #if (QT_VERSION < QT_VERSION_CHECK(5,7,0))
 // this adds const to non-const objects (like std::as_const)

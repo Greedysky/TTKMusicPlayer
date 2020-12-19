@@ -23,7 +23,7 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
     item.m_itemName = QFileInfo(m_fileName).baseName();
 
     FILE *fp = nullptr;
-    if((fp = fopen(MusicUtils::Codec::toLocal8Bit(m_fileName), "rb")) == nullptr)
+    if((fp = fopen(qPrintable(m_fileName), "rb")) == nullptr)
     {
         return false;
     }

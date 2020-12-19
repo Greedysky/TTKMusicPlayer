@@ -90,12 +90,12 @@ int MusicAudioRecorderObject::addWavHeader(const char *filename)
 
     FILE *fpInput = nullptr;
     FILE *fpOutput = nullptr;
-    if((fpInput = fopen(MusicUtils::Codec::toLocal8Bit(m_mpOutputFile->fileName()), "rb")) == nullptr)
+    if((fpInput = fopen(qPrintable(m_mpOutputFile->fileName()), "rb")) == nullptr)
     {
         return OPEN_FILE_ERROR;
     }
 
-    if((fpOutput = fopen(MusicUtils::Codec::toLocal8Bit(filename), "wb+")) == nullptr)
+    if((fpOutput = fopen(qPrintable(filename), "wb+")) == nullptr)
     {
         return SAVE_FILE_ERROR;
     }

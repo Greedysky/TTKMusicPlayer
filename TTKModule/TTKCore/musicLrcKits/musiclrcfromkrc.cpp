@@ -33,7 +33,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     struct stat st;
     size_t dstsize;
 
-    if((fp = fopen(MusicUtils::Codec::toLocal8Bit(input), "rb")) == nullptr)
+    if((fp = fopen(qPrintable(input), "rb")) == nullptr)
     {
         TTK_LOGGER_ERROR("open file error");
         return false;

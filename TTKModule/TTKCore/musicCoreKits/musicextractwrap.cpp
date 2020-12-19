@@ -15,7 +15,7 @@
 
 bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &input)
 {
-    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
     {
         return false;
@@ -88,7 +88,7 @@ bool MusicExtractWrap::outputBinary(const QString &input, const QString &output)
 
 bool MusicExtractWrap::outputBinary(const QString &input, const QString &output, QStringList &path)
 {
-    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
     {
         return false;
@@ -158,7 +158,7 @@ bool MusicExtractWrap::outputBinary(const QString &input, const QString &output,
 
 bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &input)
 {
-    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
     {
         return false;
@@ -243,7 +243,7 @@ bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &in
 
 bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &output)
 {
-    const zipFile &zFile = zipOpen64(output.toLocal8Bit().constData(), 0);
+    const zipFile &zFile = zipOpen64(qPrintable(output), 0);
     if(!zFile)
     {
         return false;
@@ -255,7 +255,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &out
     zip_fileinfo fileInfo;
     memset(&fileInfo, 0, sizeof(fileInfo));
 
-    zipOpenNewFileInZip(zFile, (nPrefix + SKN_FILE).toLocal8Bit().constData(), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
+    zipOpenNewFileInZip(zFile, qPrintable(nPrefix + SKN_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     QByteArray data = MusicUtils::Image::getPixmapData(image->m_pix);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
@@ -264,7 +264,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &out
     manager.writeSkinData(image->m_item, MUSIC_IMAGE_FILE);
     data = manager.toByteArray();
 
-    zipOpenNewFileInZip(zFile, (nPrefix + XML_FILE).toLocal8Bit().constData(), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
+    zipOpenNewFileInZip(zFile, qPrintable(nPrefix + XML_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
     QFile::remove(MUSIC_IMAGE_FILE);
@@ -276,7 +276,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &out
 
 bool MusicExtractWrap::outputData(QByteArray &data, const QString &input)
 {
-    const unzFile &zFile = unzOpen64(input.toLocal8Bit().constData());
+    const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
     {
         return false;
@@ -333,7 +333,7 @@ bool MusicExtractWrap::outputData(QByteArray &data, const QString &input)
 
 bool MusicExtractWrap::inputData(const QByteArray &data, const QString &output)
 {
-    const zipFile &zFile = zipOpen64(output.toLocal8Bit().constData(), 0);
+    const zipFile &zFile = zipOpen64(qPrintable(output), 0);
     if(!zFile)
     {
         return false;
@@ -345,7 +345,7 @@ bool MusicExtractWrap::inputData(const QByteArray &data, const QString &output)
     zip_fileinfo fileInfo;
     memset(&fileInfo, 0, sizeof(fileInfo));
 
-    zipOpenNewFileInZip(zFile, nPrefix.toLocal8Bit().constData(), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
+    zipOpenNewFileInZip(zFile, qPrintable(nPrefix), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
 

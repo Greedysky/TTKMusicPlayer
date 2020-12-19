@@ -44,15 +44,6 @@ namespace MusicUtils
          * Set local codec by format.
          */
         MUSIC_UTILS_EXPORT void setLocalCodec(const char *format = "utf-8");
-        /*!
-         * Trasform string to local 8bit char.
-         */
-        MUSIC_UTILS_EXPORT const char *toLocal8Bit(const QString &str);
-        /*!
-         * Trasform string to utf8 char.
-         */
-        MUSIC_UTILS_EXPORT const char *toUtf8(const QString &str);
-
     }
 }
 

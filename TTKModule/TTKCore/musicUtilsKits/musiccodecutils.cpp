@@ -30,13 +30,3 @@ void MusicUtils::Codec::setLocalCodec(const char *format)
     QTextCodec::setCodecForTr(codec);
 #endif
 }
-
-const char* MusicUtils::Codec::toLocal8Bit(const QString &str)
-{
-    return str.toLocal8Bit().constData();
-}
-
-const char* MusicUtils::Codec::toUtf8(const QString &str)
-{
-    return str.toUtf8().constData();
-}
