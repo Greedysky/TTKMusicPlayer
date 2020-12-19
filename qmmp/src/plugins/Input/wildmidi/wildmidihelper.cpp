@@ -30,6 +30,9 @@ bool WildMidiHelper::initialize()
         return true;
     }
 
+    //shutdown first
+    WildMidi_Shutdown();
+
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");
     unsigned short int mixer_options = 0;
@@ -69,8 +72,12 @@ void WildMidiHelper::readSettings()
         m_mutex.unlock();
         return;
     }
+
     if(m_inited)
+    {
         WildMidi_Shutdown();
+    }
+
     m_inited = false;
     m_mutex.unlock();
     initialize();
