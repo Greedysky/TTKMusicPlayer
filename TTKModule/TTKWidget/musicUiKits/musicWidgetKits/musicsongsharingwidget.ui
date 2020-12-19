@@ -169,27 +169,10 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
       <normaloff>:/usermanager/lb_qq</normaloff>:/usermanager/lb_qq</iconset>
     </property>
    </widget>
-   <widget class="QRadioButton" name="renrenButton">
-    <property name="geometry">
-     <rect>
-      <x>185</x>
-      <y>173</y>
-      <width>41</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
-      <normaloff>:/usermanager/lb_renren</normaloff>:/usermanager/lb_renren</iconset>
-    </property>
-   </widget>
    <widget class="QRadioButton" name="qqspaceButton">
     <property name="geometry">
      <rect>
-      <x>235</x>
+      <x>275</x>
       <y>173</y>
       <width>41</width>
       <height>16</height>
@@ -201,23 +184,6 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
     <property name="icon">
      <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
       <normaloff>:/usermanager/lb_qq_space</normaloff>:/usermanager/lb_qq_space</iconset>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="qqblogButton">
-    <property name="geometry">
-     <rect>
-      <x>285</x>
-      <y>173</y>
-      <width>41</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
-      <normaloff>:/usermanager/lb_qqblog</normaloff>:/usermanager/lb_qqblog</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="shareButton">
@@ -261,7 +227,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
    <widget class="QRadioButton" name="sinaButton">
     <property name="geometry">
      <rect>
-      <x>335</x>
+      <x>205</x>
       <y>173</y>
       <width>41</width>
       <height>16</height>
@@ -289,7 +255,7 @@ QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked);
    <widget class="QRadioButton" name="weixingButton">
     <property name="geometry">
      <rect>
-      <x>385</x>
+      <x>345</x>
       <y>173</y>
       <width>41</width>
       <height>16</height>

@@ -702,11 +702,9 @@
     </qresource>
     <qresource prefix="/usermanager">
         <file alias="lb_qq">../TTKResource/usermanager/lb_qq.png</file>
-        <file alias="lb_renren">../TTKResource/usermanager/lb_renren.png</file>
         <file alias="lb_weixing">../TTKResource/usermanager/lb_weixing.png</file>
         <file alias="lb_xinlang">../TTKResource/usermanager/lb_xinlang.png</file>
         <file alias="lb_qq_space">../TTKResource/usermanager/lb_qq_space.png</file>
-        <file alias="lb_qqblog">../TTKResource/usermanager/lb_qqblog.png</file>
         <file alias="lb_top_arrow">../TTKResource/usermanager/lb_top_arrow.png</file>
         <file alias="btn_down_arrow">../TTKResource/usermanager/btn_down_arrow.png</file>
         <file alias="btn_up_arrow">../TTKResource/usermanager/btn_up_arrow.png</file>

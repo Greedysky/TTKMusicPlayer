@@ -19,6 +19,17 @@
 #browser type defined
 Browser = 0
 
+equals(QT_MAJOR_VERSION, 4){
+    DEFINES += MUSIC_WEBKIT
+    win32{
+        CONFIG += qaxcontainer
+        Browser = 1
+    }
+    else{
+        QT += webkit webkitwidgets
+        Browser = 2
+    }
+}
 equals(QT_MAJOR_VERSION, 5){
     win32{
         QT += axcontainer
@@ -42,17 +53,6 @@ equals(QT_MAJOR_VERSION, 5){
                 Browser = 3
             }
         }
-    }
-}
-else{
-    DEFINES += MUSIC_WEBKIT
-    win32{
-        CONFIG += qaxcontainer
-        Browser = 1
-    }
-    else{
-        QT += webkit webkitwidgets
-        Browser = 2
     }
 }
 
