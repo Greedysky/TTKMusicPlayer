@@ -36,7 +36,7 @@ bool AlacHelper::initialize()
     m_totalTime = 0;
     m_bitrate = 0;
 
-    m_file = fopen(m_path.toLocal8Bit().constData(), "rb");
+    m_file = fopen(qPrintable(m_path), "rb");
     if(m_file == nullptr)
     {
         return false;

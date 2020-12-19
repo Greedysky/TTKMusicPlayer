@@ -77,7 +77,7 @@ void SC68Helper::close()
 
 bool SC68Helper::initialize()
 {
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;
@@ -93,7 +93,7 @@ bool SC68Helper::initialize()
     }
 
     // Load an sc68 file.
-    int res = sc68_load_uri(m_info->sc68, m_path.toLocal8Bit().constData());
+    int res = sc68_load_uri(m_info->sc68, qPrintable(m_path));
     if(res)
     {
         return false;

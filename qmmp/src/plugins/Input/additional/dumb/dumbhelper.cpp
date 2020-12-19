@@ -149,7 +149,7 @@ void DumbHelper::close()
 
 bool DumbHelper::initialize()
 {
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;
@@ -159,7 +159,7 @@ bool DumbHelper::initialize()
     stdio_close(file);
 
     dumb_register_stdfiles();
-    const char *uri = m_path.toLocal8Bit().constData();
+    const char *uri = qPrintable(m_path);
     const char *ext = uri + strlen(uri) - 1;
     while(*ext != '.' && ext > uri)
     {

@@ -17,11 +17,9 @@ WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
     if(!readOnly)
         flags |= OPEN_EDIT_TAGS;
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-    m_ctx = WavpackOpenFileInput(m_path.toUtf8().constData(),
-                                 err, flags | OPEN_FILE_UTF8, 0);
+    m_ctx = WavpackOpenFileInput(qUtf8Printable(m_path), err, flags | OPEN_FILE_UTF8, 0);
 #else
-    m_ctx = WavpackOpenFileInput(m_path.toLocal8Bit().constData(), err,
-                                 flags, 0);
+    m_ctx = WavpackOpenFileInput(qPrintable(m_path), err, flags, 0);
 #endif
     if(!m_ctx)
     {

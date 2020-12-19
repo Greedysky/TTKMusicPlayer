@@ -26,7 +26,7 @@ void FC14Helper::close()
 bool FC14Helper::initialize()
 {
     m_info->fc = fc14dec_new();
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;

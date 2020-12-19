@@ -53,9 +53,9 @@ void ProjectMWidget::initializeGL()
         settings.textureSize = 1024;
         settings.windowWidth = 512;
         settings.windowHeight = 512;
-        settings.presetURL = QString(Qmmp::pluginPath() + "/../MPlugins/config/presets").toLocal8Bit().constData();
-        settings.titleFontURL = QString(Qmmp::pluginPath() + "/../MPlugins/config/fonts/Vera.ttf").toLocal8Bit().constData();
-        settings.menuFontURL = QString(Qmmp::pluginPath() + "/../MPlugins/config/fonts/VeraMono.ttf").toLocal8Bit().constData();
+        settings.presetURL = qPrintable(Qmmp::pluginPath() + "/../MPlugins/config/presets");
+        settings.titleFontURL = qPrintable(Qmmp::pluginPath() + "/../MPlugins/config/fonts/Vera.ttf");
+        settings.menuFontURL = qPrintable(Qmmp::pluginPath() + "/../MPlugins/config/fonts/VeraMono.ttf");
         settings.smoothPresetDuration = 5;
         settings.presetDuration = 30;
         settings.beatSensitivity = 1.0;

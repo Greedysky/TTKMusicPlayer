@@ -9,7 +9,7 @@ DecoderAdplug::DecoderAdplug(const QString &path)
 
 bool DecoderAdplug::initialize()
 {
-    m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(m_path.toUtf8().constData()));
+    m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(qUtf8Printable(m_path)));
     if(!m_adplug->initialize())
     {
         return false;

@@ -28,7 +28,7 @@ bool DecoderWildMidi::initialize()
         return false;
     }
     WildMidiHelper::instance()->readSettings();
-    midi_ptr = WildMidi_Open(m_path.toLocal8Bit().constData());
+    midi_ptr = WildMidi_Open(qPrintable(m_path));
 
     if(!midi_ptr)
     {

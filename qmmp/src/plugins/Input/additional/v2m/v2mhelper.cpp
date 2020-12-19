@@ -129,7 +129,7 @@ void V2MHelper::close()
 
 bool V2MHelper::initialize()
 {
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;
@@ -138,7 +138,7 @@ bool V2MHelper::initialize()
     const int64_t size = stdio_length(file);
     stdio_close(file);
 
-    if(load_and_convert(m_path.toLocal8Bit().constData(), &m_info->tune, &m_info->len) < 0)
+    if(load_and_convert(qPrintable(m_path), &m_info->tune, &m_info->len) < 0)
     {
         return false;
     }

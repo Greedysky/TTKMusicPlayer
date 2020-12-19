@@ -41,9 +41,9 @@ bool DecoderFFmpegCue::initialize()
 
     AVFormatContext *in = nullptr;
 #ifdef Q_OS_WIN
-    if(avformat_open_input(&in, filePath.toUtf8().constData(), nullptr, nullptr) < 0)
+    if(avformat_open_input(&in, qUtf8Printable(filePath), nullptr, nullptr) < 0)
 #else
-    if(avformat_open_input(&in, filePath.toLocal8Bit().constData(), nullptr, nullptr) < 0)
+    if(avformat_open_input(&in, qPrintable(filePath), nullptr, nullptr) < 0)
 #endif
     {
         qDebug("DecoderFFmpegCue: unable to open file");

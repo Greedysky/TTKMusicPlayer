@@ -4,7 +4,7 @@
 AdplugMetaDataModel::AdplugMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
-    AdplugHelper helper(path.toUtf8().constData());
+    AdplugHelper helper(qUtf8Printable(path));
     if(helper.initialize())
     {
         fill_in_extra_properties(&helper);

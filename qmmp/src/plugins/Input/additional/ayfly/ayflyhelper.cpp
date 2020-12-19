@@ -25,7 +25,7 @@ void AyflyHelper::close()
 
 bool AyflyHelper::initialize()
 {
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;
@@ -53,7 +53,7 @@ bool AyflyHelper::initialize()
     }
     free(module);
 
-    m_info->ay = ay_initsong(m_path.toLocal8Bit().constData(), samplerate());
+    m_info->ay = ay_initsong(qPrintable(m_path), samplerate());
     if(!m_info->ay)
     {
         return false;

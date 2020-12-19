@@ -33,7 +33,7 @@ bool WildMidiHelper::initialize()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");
     unsigned short int mixer_options = 0;
-    QString conf_path = configFiles().isEmpty() ? QString() : configFiles().first();
+    QString conf_path = configFile();
     conf_path = settings.value("conf_path", conf_path).toString();
     if(conf_path.isEmpty() || !QFile::exists(conf_path))
     {
@@ -51,10 +51,11 @@ bool WildMidiHelper::initialize()
     m_sample_rate = sample_rate;
     if(WildMidi_Init(qPrintable(conf_path), sample_rate, mixer_options) < 0)
     {
-        qWarning("WildMidiHelper: unable to initialize WildMidi library");
+        qWarning("WildMidiHelper: unable to initialize WildMidi library, %s", WildMidi_GetError());
         m_mutex.unlock();
         return false;
     }
+
     m_inited = true;
     m_mutex.unlock();
     return true;
@@ -89,16 +90,10 @@ void WildMidiHelper::removePtr(void *t)
     m_mutex.unlock();
 }
 
-QStringList WildMidiHelper::configFiles() const
+QString WildMidiHelper::configFile() const
 {
-    const QStringList paths = { Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg" };
-    QStringList filtered;
-    for(const QString &path : qAsConst(paths))
-    {
-        if(QFile::exists(path))
-            filtered << path;
-    }
-    return filtered;
+    const QString path = Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg";
+    return QFile::exists(path) ? path : QString();
 }
 
 quint32 WildMidiHelper::sampleRate()

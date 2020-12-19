@@ -87,7 +87,7 @@ bool DecoderFFmpeg::initialize()
     AVProbeData pd;
     memset(&pd, 0, sizeof(pd));
     uint8_t buf[PROBE_BUFFER_SIZE + AVPROBE_PADDING_SIZE];
-    pd.filename = m_path.toLocal8Bit().constData();
+    pd.filename = qPrintable(m_path);
     pd.buf_size = input()->peek((char*)buf, sizeof(buf) - AVPROBE_PADDING_SIZE);
     pd.buf = buf;
     if(pd.buf_size < PROBE_BUFFER_SIZE)

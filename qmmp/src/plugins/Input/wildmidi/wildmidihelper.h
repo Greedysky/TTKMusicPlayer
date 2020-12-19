@@ -37,7 +37,7 @@ public:
     quint32 sampleRate();
     void addPtr(void *);
     void removePtr(void *);
-    QStringList configFiles() const;
+    QString configFile() const;
     static WildMidiHelper *instance();
 
 private:

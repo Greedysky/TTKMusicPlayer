@@ -39,7 +39,7 @@ bool TagWrapper::readFile(const QString &path)
 
     m_path = path;
 
-    TagLib::FileRef tagFile(path.toLocal8Bit().constData());
+    TagLib::FileRef tagFile(qPrintable(path));
     if(tagFile.isNull())
     {
         return false;
@@ -92,7 +92,7 @@ bool TagWrapper::writeMusicTag(TagType tag, const QString &value, int id3v2Versi
         return false;
     }
 
-    TagLib::MPEG::File file(m_path.toLocal8Bit().constData());
+    TagLib::MPEG::File file(qPrintable(m_path));
     if(!file.isValid())
     {
         return false;

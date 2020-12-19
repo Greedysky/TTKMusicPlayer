@@ -28,7 +28,7 @@ bool AsapHelper::initialize()
     m_info->asap = ASAP_New();
     ASAP_DetectSilence(m_info->asap, 5);
 
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;
@@ -49,7 +49,7 @@ bool AsapHelper::initialize()
     stdio_read(module, size, 1, file);
     stdio_close(file);
 
-    if(!ASAP_Load(m_info->asap, m_path.toLocal8Bit().constData(), module, size))
+    if(!ASAP_Load(m_info->asap, qPrintable(m_path), module, size))
     {
         free(module);
         return false;

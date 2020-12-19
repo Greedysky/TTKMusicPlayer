@@ -277,7 +277,7 @@ void SoniqueWidget::generatePreset()
 {
     closePreset();
 
-    const char *module_path = m_presetList[m_currentIndex].toLocal8Bit().constData();
+    const char *module_path = qPrintable(m_presetList[m_currentIndex]);
 #ifdef Q_OS_UNIX
     m_instance = dlopen(module_path, RTLD_LAZY);
 #else

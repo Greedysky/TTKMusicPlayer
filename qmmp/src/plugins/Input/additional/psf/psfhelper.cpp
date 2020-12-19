@@ -58,7 +58,7 @@ void PSFHelper::close()
 
 bool PSFHelper::initialize()
 {
-    FILE *file = stdio_open(m_path.toLocal8Bit().constData());
+    FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
         return false;
@@ -85,7 +85,7 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_info->decoder = ao_start(m_info->type, m_path.toLocal8Bit().constData(), (uint8 *)m_info->filebuffer, m_info->filesize);
+    m_info->decoder = ao_start(m_info->type, qPrintable(m_path), (uint8 *)m_info->filebuffer, m_info->filesize);
     if(!m_info->decoder)
     {
         return false;

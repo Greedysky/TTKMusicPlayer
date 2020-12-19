@@ -27,7 +27,7 @@ bool DecoderYm::initialize()
     }
 
     ymMusicInfo_t info;
-    if(m_music->load(m_path.toLocal8Bit().constData()))
+    if(m_music->load(qPrintable(m_path)))
     {
         m_music->getMusicInfo(&info);
         m_music->setLoopMode(YMFALSE);

@@ -37,10 +37,9 @@ bool DecoderWavPack::initialize()
         p.remove("wvpack://");
         p.remove(RegularWrapper("#\\d+$"));
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-        m_context = WavpackOpenFileInput(p.toUtf8().constData(),
-                                         err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+        m_context = WavpackOpenFileInput(qUtf8Printable(p), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
-        m_context = WavpackOpenFileInput(p.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
+        m_context = WavpackOpenFileInput(qPrintable(p), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
         if(!m_context)
         {
@@ -69,10 +68,9 @@ bool DecoderWavPack::initialize()
     }
     else
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
-        m_context = WavpackOpenFileInput(m_path.toUtf8().constData(),
-                                         err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+        m_context = WavpackOpenFileInput(qUtf8Printable(m_path), err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
 #else
-        m_context = WavpackOpenFileInput(m_path.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
+        m_context = WavpackOpenFileInput(qPrintable(m_path), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
 
     if(!m_context)

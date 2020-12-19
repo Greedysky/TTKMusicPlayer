@@ -35,7 +35,7 @@ QList<TrackInfo*> DecoderAlacFactory::createPlayList(const QString &path, TrackI
         return QList<TrackInfo*>() << info;
     }
 
-    AlacHelper helper(path.toUtf8().constData());
+    AlacHelper helper(qUtf8Printable(path));
     if(!helper.initialize())
     {
         delete info;

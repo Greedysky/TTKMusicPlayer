@@ -34,7 +34,7 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
     }
 
     CYmMusic *music = new CYmMusic;
-    if(!music->load(path.toLocal8Bit().constData()))
+    if(!music->load(qPrintable(path)))
     {
         delete info;
         return QList<TrackInfo*>();

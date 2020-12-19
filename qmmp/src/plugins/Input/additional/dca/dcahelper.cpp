@@ -313,7 +313,7 @@ void DCAHelper::close()
 
 bool DCAHelper::initialize()
 {
-    m_info->file = stdio_open(m_path.toLocal8Bit().constData());
+    m_info->file = stdio_open(qPrintable(m_path));
     if(!m_info->file)
     {
         return false;
