@@ -16,8 +16,7 @@ WildMidiHelper::WildMidiHelper(QObject *parent)
 
 WildMidiHelper::~WildMidiHelper()
 {
-    if(m_inited)
-        WildMidi_Shutdown();
+    WildMidi_Shutdown();
     m_instance = nullptr;
 }
 
@@ -30,7 +29,6 @@ bool WildMidiHelper::initialize()
         return true;
     }
 
-    //shutdown first
     WildMidi_Shutdown();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -71,11 +69,6 @@ void WildMidiHelper::readSettings()
     {
         m_mutex.unlock();
         return;
-    }
-
-    if(m_inited)
-    {
-        WildMidi_Shutdown();
     }
 
     m_inited = false;
