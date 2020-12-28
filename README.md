@@ -156,7 +156,7 @@ Screenshots
 Copyright
 -------
  * This file is part of the TTK Music Player project.
- * Copyright (c) 2015 - 2020 Greedysky Studio.
+ * Copyright (c) 2015 - 2021 Greedysky Studio.
  * Mail: greedysky@163.com.
  
 How To Contribute
