@@ -122,7 +122,7 @@ MusicPlaylistQueryWidget::MusicPlaylistQueryWidget(QWidget *parent)
     layout()->addWidget(m_container);
     m_container->addWidget(m_mainWindow);
 
-    m_firstInit = false;
+    m_initialized = false;
     m_categoryChanged = false;
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
@@ -180,7 +180,7 @@ void MusicPlaylistQueryWidget::resizeWindow()
 
 void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
 {
-    if(!m_firstInit)
+    if(!m_initialized)
     {
         delete m_statusLabel;
         m_statusLabel = nullptr;
@@ -194,7 +194,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
         scrollArea->setWidget(m_mainWindow);
         m_container->addWidget(scrollArea);
 
-        m_firstInit = true;
+        m_initialized = true;
         QHBoxLayout *mainlayout = TTKStatic_cast(QHBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);

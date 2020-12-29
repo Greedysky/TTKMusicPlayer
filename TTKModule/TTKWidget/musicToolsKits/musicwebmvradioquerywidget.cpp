@@ -103,7 +103,7 @@ MusicWebMVRadioQueryWidget::MusicWebMVRadioQueryWidget(QWidget *parent)
     layout()->addWidget(m_container);
     m_container->addWidget(m_mainWindow);
 
-    m_firstInit = false;
+    m_initialized = false;
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
@@ -155,7 +155,7 @@ void MusicWebMVRadioQueryWidget::resizeWindow()
 
 void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultsItem &item)
 {
-    if(!m_firstInit)
+    if(!m_initialized)
     {
         delete m_statusLabel;
         m_statusLabel = nullptr;
@@ -169,7 +169,7 @@ void MusicWebMVRadioQueryWidget::createCategoryItem(const MusicResultsItem &item
         scrollArea->setWidget(m_mainWindow);
         m_container->addWidget(scrollArea);
 
-        m_firstInit = true;
+        m_initialized = true;
         QHBoxLayout *mainlayout = TTKStatic_cast(QHBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);

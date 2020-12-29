@@ -60,7 +60,7 @@ protected:
      */
     virtual void wheelEvent(QWheelEvent *event) override;
 
-    bool m_firstInit;
+    bool m_initialized;
     int m_previousValue, m_deltaValue;
     QScrollBar *m_scrollBar;
     QTimer *m_animationTimer;
@@ -105,7 +105,7 @@ protected:
      */
     virtual void wheelEvent(QWheelEvent *event) override;
 
-    bool m_firstInit;
+    bool m_initialized;
     int m_previousValue, m_deltaValue;
     QScrollBar *m_scrollBar;
     QTimer *m_animationTimer;

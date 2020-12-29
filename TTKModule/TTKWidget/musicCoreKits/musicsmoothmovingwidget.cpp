@@ -10,7 +10,7 @@ MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
 {
     m_deltaValue = 0;
     m_previousValue = 0;
-    m_firstInit = true;
+    m_initialized = true;
     m_slowAnimation = nullptr;
     m_scrollBar = nullptr;
     m_animationTimer = new QTimer(this);
@@ -44,7 +44,7 @@ void MusicSmoothMovingTableWidget::timeToAnimation()
         return;
     }
 
-    m_firstInit = true;
+    m_initialized = true;
     m_animationTimer->stop();
 
     const float delta = ITEM_ROW_HEIGHT_M;
@@ -71,11 +71,11 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 
     m_animationTimer->stop();
     m_slowAnimation->stop();
-    if(m_firstInit)
+    if(m_initialized)
     {
         m_deltaValue = 0;
         m_previousValue = m_scrollBar->value();
-        m_firstInit = false;
+        m_initialized = false;
     }
 #if TTK_QT_VERSION_CHECK(5,15,0)
     m_deltaValue += event->angleDelta().y();
@@ -92,7 +92,7 @@ MusicSmoothMovingScrollArea::MusicSmoothMovingScrollArea(QWidget *parent)
 {
     m_deltaValue = 0;
     m_previousValue = 0;
-    m_firstInit = true;
+    m_initialized = true;
     m_slowAnimation = nullptr;
     m_scrollBar = nullptr;
     m_animationTimer = new QTimer(this);
@@ -130,7 +130,7 @@ void MusicSmoothMovingScrollArea::timeToAnimation()
         return;
     }
 
-    m_firstInit = true;
+    m_initialized = true;
     m_animationTimer->stop();
 
     const float delta = ITEM_ROW_HEIGHT_M;
@@ -157,11 +157,11 @@ void MusicSmoothMovingScrollArea::wheelEvent(QWheelEvent *event)
 
     m_animationTimer->stop();
     m_slowAnimation->stop();
-    if(m_firstInit)
+    if(m_initialized)
     {
         m_deltaValue = 0;
         m_previousValue = m_scrollBar->value();
-        m_firstInit = false;
+        m_initialized = false;
     }
 #if TTK_QT_VERSION_CHECK(5,15,0)
     m_deltaValue += event->angleDelta().y();

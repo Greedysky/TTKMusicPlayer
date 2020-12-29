@@ -114,7 +114,7 @@ public Q_SLOTS:
 
 protected:
     QGridLayout *m_gridLayout;
-    bool m_firstInit;
+    bool m_initialized;
     MusicPagingWidgetObject *m_pagingWidgetObject;
 
 };

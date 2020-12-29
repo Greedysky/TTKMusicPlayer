@@ -96,7 +96,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
     delete m_statusLabel;
     m_statusLabel = nullptr;
     m_pagingWidgetObject = nullptr;
-    m_firstInit = false;
+    m_initialized = false;
 
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
@@ -145,9 +145,9 @@ void MusicArtistMvsQueryWidget::resizeWindow()
 
 void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item)
 {
-    if(!m_firstInit)
+    if(!m_initialized)
     {
-        m_firstInit = true;
+        m_initialized = true;
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 

@@ -94,7 +94,7 @@ MusicWebDJRadioQueryWidget::MusicWebDJRadioQueryWidget(QWidget *parent)
     layout()->addWidget(m_container);
     m_container->addWidget(m_mainWindow);
 
-    m_firstInit = false;
+    m_initialized = false;
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_pagingWidgetObject = nullptr;
@@ -148,7 +148,7 @@ void MusicWebDJRadioQueryWidget::resizeWindow()
 
 void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
 {
-    if(!m_firstInit)
+    if(!m_initialized)
     {
         delete m_statusLabel;
         m_statusLabel = nullptr;
@@ -162,7 +162,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
         scrollArea->setWidget(m_mainWindow);
         m_container->addWidget(scrollArea);
 
-        m_firstInit = true;
+        m_initialized = true;
         QHBoxLayout *mainlayout = TTKStatic_cast(QHBoxLayout*, m_mainWindow->layout());
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
@@ -227,7 +227,7 @@ void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultsItem &ite
 
 void MusicWebDJRadioQueryWidget::backToMainMenuClicked()
 {
-    if(!m_firstInit)
+    if(!m_initialized)
     {
         Q_EMIT backToMainMenu();
         return;

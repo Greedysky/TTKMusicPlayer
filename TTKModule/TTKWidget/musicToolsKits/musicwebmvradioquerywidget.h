@@ -128,7 +128,7 @@ public Q_SLOTS:
     void categoryChanged(const MusicResultsCategoryItem &category);
 
 protected:
-    bool m_firstInit;
+    bool m_initialized;
     QGridLayout *m_gridLayout;
     MusicWebMVRadioInfoWidget *m_infoWidget;
     MusicWebMVRadioQueryCategoryPopWidget *m_categoryButton;

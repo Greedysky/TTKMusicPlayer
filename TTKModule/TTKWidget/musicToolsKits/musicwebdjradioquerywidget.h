@@ -128,7 +128,7 @@ public Q_SLOTS:
     void buttonClicked(int index);
 
 protected:
-    bool m_firstInit;
+    bool m_initialized;
     QGridLayout *m_gridLayout;
     MusicPagingWidgetObject *m_pagingWidgetObject;
     MusicWebDJRadioInfoWidget *m_infoWidget;
