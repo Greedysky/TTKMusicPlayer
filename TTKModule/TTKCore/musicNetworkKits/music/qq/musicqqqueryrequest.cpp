@@ -132,9 +132,7 @@ void MusicQQQueryRequest::downLoadFinished()
                     if(!m_querySimplify)
                     {
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                        musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
-                                                  .arg(musicInfo.m_albumId.right(2).left(1))
-                                                  .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                        musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumname"].toString());
 
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -216,9 +214,7 @@ void MusicQQQueryRequest::singleDownLoadFinished()
                     musicInfo.m_albumId = albumMap["mid"].toString();
 
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
-                                              .arg(musicInfo.m_albumId.right(2).left(1))
-                                              .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
 
                     musicInfo.m_year = value["time_public"].toString();
                     musicInfo.m_discNumber = value["cdIdx"].toString();

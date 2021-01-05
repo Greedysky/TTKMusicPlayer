@@ -37,9 +37,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 
 #ifdef Q_OS_UNIX
     m_ui->qqButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->renrenButton->setFocusPolicy(Qt::NoFocus);
     m_ui->qqspaceButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->qqblogButton->setFocusPolicy(Qt::NoFocus);
     m_ui->sinaButton->setFocusPolicy(Qt::NoFocus);
     m_ui->weixingButton->setFocusPolicy(Qt::NoFocus);
     m_ui->shareButton->setFocusPolicy(Qt::NoFocus);

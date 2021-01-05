@@ -111,9 +111,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_songId = value["songmid"].toString();
                     musicInfo.m_albumId = value["albummid"].toString();
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
-                                              .arg(musicInfo.m_albumId.right(2).left(1))
-                                              .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                    musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumname"].toString());
 
                     musicInfo.m_year = QString();
@@ -190,9 +188,7 @@ void MusicQQQueryAlbumRequest::singleDownLoadFinished()
 
                     MusicResultsItem info;
                     info.m_id = value["albumMID"].toString();
-                    info.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
-                                      .arg(info.m_id.right(2).left(1))
-                                      .arg(info.m_id.right(1)).arg(info.m_id);
+                    info.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(info.m_id);
                     info.m_name = value["albumName"].toString();
                     info.m_updateTime = value["pubTime"].toString().replace("-", ".");
                     Q_EMIT createAlbumInfoItem(info);
