@@ -85,7 +85,7 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
 	data.resize(UEVENT_BUFFER_SIZE*2);
 	data.fill(0);
 	size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE*2);
-        qDebug("read fro socket %d bytes", (int)len);
+        qDebug("read fro socket %d bytes", len);
 	data.resize(len);
 	//socket_notifier->setEnabled(true); //for win
 #elif CONFIG_TCPSOCKET
