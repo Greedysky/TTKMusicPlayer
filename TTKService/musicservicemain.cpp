@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
 
     MusicApplication w;
     w.show();
-    //
 
     if(argc == 4)
     {
