@@ -239,14 +239,17 @@ void MusicPlatformManager::setFileLink(const QString &src, const QString &des, c
             {
                 psl->SetPath(src.toStdWString().c_str());
             }
+
             if(!ico.isEmpty())
             {
                 psl->SetIconLocation(ico.toStdWString().c_str(), 0);
             }
+
             if(!args.isEmpty())
             {
                 psl->SetArguments(args.toStdWString().c_str());
             }
+
             if(!description.isEmpty())
             {
                 psl->SetDescription(description.toStdWString().c_str());
@@ -262,24 +265,11 @@ void MusicPlatformManager::setFileLink(const QString &src, const QString &des, c
         }
     }
 #else
-    QFile file(":/ext/desktop");
-    if(file.open(QFile::ReadOnly))
-    {
-        QByteArray data(file.readAll());
-        file.close();
-
-        data.append(QString("Icon=%1\n").arg(ico));
-        data.append(QString("Exec=%1\n").arg(ico + src));
-        data.append(QString("Path=%1\n").arg(args));
-
-        file.setFileName(des + "/" + description + ".desktop");
-        if(file.open(QFile::WriteOnly))
-        {
-            file.write(data);
-            file.close();
-            QProcess::execute("chmod", QStringList() << "+x" << file.fileName());
-        }
-    }
+    Q_UNUSED(src);
+    Q_UNUSED(des);
+    Q_UNUSED(ico);
+    Q_UNUSED(args);
+    Q_UNUSED(description);
 #endif
 }
 

@@ -55,33 +55,33 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 {
 	if (message == WM_DEVICECHANGE) {
 		DEV_BROADCAST_HDR *lpdb = (DEV_BROADCAST_HDR *)lParam;
-		zDebug("Device type address: %#x", lpdb);
+        qDebug("Device type address: %#x", lpdb);
 		if (lpdb) {
 			if (lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME) {
-				zDebug("DBT_DEVTYP_VOLUME");
+                qDebug("DBT_DEVTYP_VOLUME");
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_PORT) {
-				zDebug("DBT_DEVTYP_PORT");
+                qDebug("DBT_DEVTYP_PORT");
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_DEVICEINTERFACE) {
-				zDebug("DBT_DEVTYP_DEVICEINTERFACE");
+                qDebug("DBT_DEVTYP_DEVICEINTERFACE");
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_OEM) {
-				zDebug("DBT_DEVTYP_OEM");
+                qDebug("DBT_DEVTYP_OEM");
 			} else {
-				zDebug("Unknow device type");
+                qDebug("Unknow device type");
 			}
 		}
 
 		switch (wParam) {
 		case DBT_DEVNODES_CHANGED:
-			zDebug("DBT_DEVNODES_CHANGED message received, no extended info.");
+            qDebug("DBT_DEVNODES_CHANGED message received, no extended info.");
 			break;
 		case DBT_QUERYCHANGECONFIG:
-			zDebug("DBT_QUERYCHANGECONFIG message received, no extended info.");
+            qDebug("DBT_QUERYCHANGECONFIG message received, no extended info.");
 			break;
 		case DBT_CONFIGCHANGED:
-			zDebug("DBT_CONFIGCHANGED message received, no extended info.");
+            qDebug("DBT_CONFIGCHANGED message received, no extended info.");
 			break;
 		case DBT_CONFIGCHANGECANCELED:
-			zDebug("DBT_CONFIGCHANGECANCELED message received, no extended info.");
+            qDebug("DBT_CONFIGCHANGECANCELED message received, no extended info.");
 			break;
 
 		case DBT_DEVICEARRIVAL:
@@ -110,11 +110,11 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 				}
 				foreach (const QString &drive, drives) {
 					if (db_volume->dbcv_flags & DBTF_MEDIA)
-                        zDebug("Drive %c: Media has been removed.", drive.at(0).toLatin1());
+                        qDebug("Drive %c: Media has been removed.", drive.at(0).toLatin1());
 					else if (db_volume->dbcv_flags & DBTF_NET)
-                        zDebug("Drive %c: Network share has been removed.", drive.at(0).toLatin1());
+                        qDebug("Drive %c: Network share has been removed.", drive.at(0).toLatin1());
 					else
-                        zDebug("Drive %c: Device has been removed.", drive.at(0).toLatin1());
+                        qDebug("Drive %c: Device has been removed.", drive.at(0).toLatin1());
 					watcher->emitDeviceAction(drive, action_str);
 					if (!watcher->event_receivers.isEmpty())
 						events.append(new QDeviceChangeEvent(action, drive));
@@ -127,24 +127,24 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 					}
 				}
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_PORT) {
-                zDebug("DBT_DEVTYP_PORT");
+                qDebug("DBT_DEVTYP_PORT");
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_DEVICEINTERFACE) {
 				//RegisterDeviceNotification()
-				zDebug("DBT_DEVTYP_DEVICEINTERFACE");
+                qDebug("DBT_DEVTYP_DEVICEINTERFACE");
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_OEM) {
-                zDebug("DBT_DEVTYP_OEM");
+                qDebug("DBT_DEVTYP_OEM");
 			} else if (lpdb->dbch_devicetype == DBT_DEVTYP_HANDLE) {
-                zDebug("DBT_DEVTYP_HANDLE");
+                qDebug("DBT_DEVTYP_HANDLE");
 			}
 			break;
 		case DBT_DEVICETYPESPECIFIC:
-			zDebug("DBT_DEVICETYPESPECIFIC message received, may contain an extended info.");
+            qDebug("DBT_DEVICETYPESPECIFIC message received, may contain an extended info.");
 			break;
 		case DBT_CUSTOMEVENT:
-			zDebug("DBT_CUSTOMEVENT message received, contains an extended info.");
+            qDebug("DBT_CUSTOMEVENT message received, contains an extended info.");
 			break;
 		case DBT_USERDEFINED:
-			zDebug("WM_DEVICECHANGE user defined message received, can not handle.");
+            qDebug("WM_DEVICECHANGE user defined message received, can not handle.");
 			break;
 		default:
 			qWarning("WM_DEVICECHANGE message received, unhandled value %d.", wParam);
@@ -199,7 +199,7 @@ static inline HWND dw_create_internal_window(const void* userData)
 		//http://msdn.microsoft.com/en-us/library/windows/desktop/aa363431(v=vs.85).aspx
 		hDevNotify = RegisterDeviceNotification(hwnd, &NotificationFilter, DEVICE_NOTIFY_WINDOW_HANDLE);
 		if (!hDevNotify) {
-			zDebug("");
+            qDebug("");
 		}
 	}
 #else

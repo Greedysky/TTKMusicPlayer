@@ -78,14 +78,14 @@ bool QDeviceWatcherPrivate::stop()
 
 
 void QDeviceWatcherPrivate::parseDeviceInfo()
-{//zDebug("%s active", qPrintable(QTime::currentTime().toString()));
+{
 	QByteArray data;
 #if CONFIG_SOCKETNOTIFIER
 	//socket_notifier->setEnabled(false); //for win
 	data.resize(UEVENT_BUFFER_SIZE*2);
 	data.fill(0);
 	size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE*2);
-	zDebug("read fro socket %d bytes", len);
+        qDebug("read fro socket %d bytes", (int)len);
 	data.resize(len);
 	//socket_notifier->setEnabled(true); //for win
 #elif CONFIG_TCPSOCKET
@@ -115,7 +115,7 @@ void QDeviceWatcherPrivate::run()
 		data.resize(UEVENT_BUFFER_SIZE*2);
 		data.fill(0);
 		size_t len = recv(netlink_socket, data.data(), data.size(), 0);
-		zDebug("read fro socket %d bytes", len);
+                qDebug("read fro socket %d bytes", len);
 		data.resize(len);
 		data = data.replace(0, '\n').trimmed();
 		if (buffer.isOpen())
@@ -207,7 +207,7 @@ bool QDeviceWatcherPrivate::initialize()
 
 void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
 {
-	zDebug("%s", line.constData());
+        qDebug("%s", line.constData());
 #define USE_REGEXP 0
 #if USE_REGEXP
 	QRegExp rx("(\\w+)(?:@/.*/block/.*/)(\\w+)\\W*");
@@ -235,7 +235,7 @@ void QDeviceWatcherPrivate::parseLine(const QByteArray &line)
 		event = new QDeviceChangeEvent(QDeviceChangeEvent::Change, dev);
 	}
 
-	zDebug("%s %s", qPrintable(action_str), qPrintable(dev));
+        qDebug("%s %s", qPrintable(action_str), qPrintable(dev));
 
 	if (event != 0 && !event_receivers.isEmpty()) {
         for(QObject* obj : qAsConst(event_receivers)) {

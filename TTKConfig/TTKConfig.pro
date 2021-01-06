@@ -19,7 +19,7 @@
 QT       += core
 
 include($$PWD/../TTKVersion.pri)
-CONFIG += warn_off plugin lib
+CONFIG += plugin lib
 
 DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 TARGET = TTKConfig
