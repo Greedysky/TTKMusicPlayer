@@ -212,20 +212,36 @@ QString MusicQQQueryInterface::getMusicPath(const QString &file, const QString &
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value.contains("code") && value["code"].toInt() == 0 && value.contains("req_0"))
+        if(value.contains("code") && value["code"].toInt() == 0)
         {
-            value = value["req_0"].toMap();
-            value = value["data"].toMap();
-            const QVariantList &datas = value["midurlinfo"].toList();
-            for(const QVariant &var : qAsConst(datas))
+            QString url;
+            if(value.contains("req_0"))
             {
-                value = var.toMap();
-                if(value.contains("purl"))
+                QVariantMap req_0 = value["req_0"].toMap();
+                req_0 = req_0["data"].toMap();
+                const QVariantList &datas = req_0["midurlinfo"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    const QString &purl = value["purl"].toString();
-                    return purl.isEmpty() ? purl : MusicUtils::Algorithm::mdII(QQ_SONG_PREFIX_URL, false) + purl;
+                    req_0 = var.toMap();
+                    if(req_0.contains("purl"))
+                    {
+                        url = req_0["purl"].toString();
+                        break;
+                    }
                 }
             }
+
+            if(value.contains("req") && file.startsWith("M500"))
+            {
+                QVariantMap req = value["req"].toMap();
+                req = req["data"].toMap();
+                if(req.contains("keepalivefile"))
+                {
+                    url = req["keepalivefile"].toString();
+                }
+            }
+
+            return url.isEmpty() ? url : MusicUtils::Algorithm::mdII(QQ_SONG_PREFIX_URL, false) + url;
         }
     }
 
