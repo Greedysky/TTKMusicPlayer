@@ -26,7 +26,6 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(musicUrl);
-//    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -44,7 +43,7 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     if(!data.isEmpty() && !data.contains("res not found"))
     {
         const QString text(data);
-        QRegExp regx(".*url=(.*).*");
+        QRegExp regx(".*url=(.*)\r\nsig=");
 
         if(text.indexOf(regx) != -1)
         {
