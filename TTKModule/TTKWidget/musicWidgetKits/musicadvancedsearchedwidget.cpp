@@ -197,7 +197,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg("003fk65m1ZaCG2"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg("889413740"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MOVIE_SHARE, ALG_UNIMP_KEY, false).arg("b0013k1imsl"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MOVIE_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
                 break;
             }
         case XMQueryServer:
@@ -222,7 +222,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             {
                 m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("39503213"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("41169925"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg("155318"));
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
                 break;
