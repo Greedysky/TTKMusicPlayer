@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <QFile>
 #include <QTextCodec>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>

@@ -23,6 +23,8 @@
 
 #include <qmmp/decoderfactory.h>
 
+struct AVFormatContext;
+
 class DecoderFFmpegFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
@@ -37,6 +39,8 @@ public:
     virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *) override;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
 
+private:
+    QList<TrackInfo *> createPlayListFromChapters(AVFormatContext *in, TrackInfo *info, int trackNumber);
 };
 
 #endif

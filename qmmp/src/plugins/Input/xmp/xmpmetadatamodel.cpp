@@ -1,4 +1,3 @@
-#include <QFile>
 #include "xmpmetadatamodel.h"
 
 XmpMetaDataModel::XmpMetaDataModel(const QString &path)

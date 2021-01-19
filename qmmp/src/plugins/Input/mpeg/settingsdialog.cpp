@@ -1,6 +1,5 @@
 #include <QTextCodec>
 #include <QSettings>
-#include <QFile>
 #include <qmmp/qmmp.h>
 #include <qmmp/regularwrapper.h>
 #include "settingsdialog.h"

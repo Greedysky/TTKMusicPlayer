@@ -1,9 +1,5 @@
-#include <QFile>
-#include <QDir>
 #include <QDirIterator>
 #include <QSettings>
-#include <QTextStream>
-#include <QTextCodec>
 #include <qmmp/decoder.h>
 #include <qmmp/metadatamanager.h>
 #ifdef WITH_ENCA

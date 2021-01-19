@@ -1,4 +1,3 @@
-#include <QFile>
 #include <taglib/apefile.h>
 #include <taglib/apetag.h>
 #include <taglib/tfilestream.h>

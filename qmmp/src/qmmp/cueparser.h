@@ -40,8 +40,7 @@ public:
     void loadData(const QByteArray &data, const QByteArray &codecName = QByteArray());
     void loadData(const QByteArray &data, QTextCodec *codec);
 	
-    QList<TrackInfo*> createPlayList() const;
-    QList<TrackInfo*> createPlayList(int track) const;
+    QList<TrackInfo *> createPlayList(int track = -1) const;
 	
     const QStringList &files() const;
     qint64 offset(int track) const;

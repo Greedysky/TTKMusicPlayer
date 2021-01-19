@@ -1,5 +1,3 @@
-#include <QObject>
-#include <QFile>
 #include <qmmp/cueparser.h>
 #include "decoder_ffmpeg.h"
 #include "decoder_ffmpegcue.h"
@@ -63,6 +61,8 @@ bool DecoderFFmpegCue::initialize()
     m_parser->setDuration(in->duration * 1000 / AV_TIME_BASE);
     m_parser->setUrl("ffmpeg", filePath);
 
+    avformat_close_input(&in);
+
     if(m_track > m_parser->count() || m_parser->isEmpty())
     {
         qWarning("DecoderFFmpegCue: invalid cuesheet");
@@ -71,11 +71,9 @@ bool DecoderFFmpegCue::initialize()
     m_input = new QFile(filePath);
     if(!m_input->open(QIODevice::ReadOnly))
     {
-        qWarning("DecoderFFmpegCue:: %s", qPrintable(m_input->errorString()));
+        qWarning("DecoderFFmpegCue: unable to open file; error: %s", qPrintable(m_input->errorString()));
         return false;
     }
-    QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
-    addMetaData(metaData); //send metadata
 
     m_duration = m_parser->duration(m_track);
     m_offset = m_parser->offset(m_track);

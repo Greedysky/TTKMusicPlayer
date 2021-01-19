@@ -142,7 +142,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
                 delete oggFlacFile;
 
             delete info;
-            return (track > 0) ? parser.createPlayList(track) : parser.createPlayList();
+            return parser.createPlayList(track);
         }
 
         info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));

@@ -90,7 +90,7 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
             parser.setProperties(info->properties());
             parser.setUrl("ape", filePath);
             delete info;
-            return (track > 0) ? parser.createPlayList(track) : parser.createPlayList();
+            return parser.createPlayList(track);
         }
 
         info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));

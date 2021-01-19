@@ -4,12 +4,14 @@ HEADERS += decoderffmpegfactory.h \
            decoder_ffmpeg.h \
            ffmpegmetadatamodel.h \
            decoder_ffmpegcue.h \
+           decoder_ffmpegm4b.h \
            replaygainreader.h
     
 SOURCES += decoderffmpegfactory.cpp \
            decoder_ffmpeg.cpp \
            ffmpegmetadatamodel.cpp \
            decoder_ffmpegcue.cpp \
+           decoder_ffmpegm4b.cpp \
            replaygainreader.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input

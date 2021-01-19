@@ -1,5 +1,4 @@
 #include <QSettings>
-#include <QFile>
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/SidTuneInfo.h>
 #include "decoder_sid.h"

@@ -18,23 +18,22 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef DECODER_FFMPEGCUE_H
-#define DECODER_FFMPEGCUE_H
+#ifndef DECODER_FFMPEGM4B_H
+#define DECODER_FFMPEGM4B_H
 
 #include <qmmp/decoder.h>
 
-class Output;
+class TrackInfo;
 class QIDevice;
-class CueParser;
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class DecoderFFmpegCue : public Decoder
+class DecoderFFmpegM4b : public Decoder
 {
 public:
-    explicit DecoderFFmpegCue(const QString &url);
-    virtual ~DecoderFFmpegCue();
+    explicit DecoderFFmpegM4b(DecoderFactory *factory, const QString &url);
+    virtual ~DecoderFFmpegM4b();
 
     // Standard Decoder API
     virtual bool initialize() override;
@@ -47,9 +46,8 @@ public:
 
 private:
     Decoder *m_decoder = nullptr;
-    CueParser *m_parser = nullptr;
     char *m_buf = nullptr; //buffer for remainig data
-    int m_track = 0;
+    int m_track = 0, m_count = 0;
     qint64 m_duration = 0;
     qint64 m_offset = 0;
     qint64 m_trackSize = 0;
@@ -58,7 +56,17 @@ private:
     qint64 m_bufSize = 0;
     qint64 m_frameSize = 0; //sample size
     QIODevice *m_input = nullptr;
+    DecoderFactory *m_factory;
 
+    struct ChapterInfo
+    {
+        TrackInfo *info;
+        qint64 offset;
+        qint64 duration;
+        QString url;
+    };
+
+    QList<ChapterInfo> m_chapters;
 };
 
-#endif // DECODER_FFMPEGCUE_H
+#endif // DECODER_FFMPEGM4B_H

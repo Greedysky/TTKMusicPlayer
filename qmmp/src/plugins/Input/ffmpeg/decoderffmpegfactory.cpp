@@ -10,6 +10,7 @@ extern "C"{
 #include "ffmpegmetadatamodel.h"
 #include "decoder_ffmpeg.h"
 #include "decoder_ffmpegcue.h"
+#include "decoder_ffmpegm4b.h"
 #include "decoderffmpegfactory.h"
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
@@ -69,9 +70,12 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.dsf", "*.dsdiff"
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.dsf", "*.dsdiff"
     };
     filters = settings.value("FFMPEG/filters", filters).toStringList();
+
+    if(filters.contains("*.m4a") && !filters.contains("*.m4b"))
+        filters << "*.m4b";
 
     if(!avcodec_find_decoder(AV_CODEC_ID_WMAV1))
         filters.removeAll("*.wma");
@@ -84,7 +88,10 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     if(!avcodec_find_decoder(AV_CODEC_ID_MP3))
         filters.removeAll("*.mp3");
     if(!avcodec_find_decoder(AV_CODEC_ID_AAC) && !avcodec_find_decoder(AV_CODEC_ID_ALAC))
+    {
         filters.removeAll("*.m4a");
+        filters.removeAll("*.m4b");
+    }
     if(!avcodec_find_decoder(AV_CODEC_ID_RA_288))
         filters.removeAll("*.ra");
     if(!avcodec_find_decoder(AV_CODEC_ID_SHORTEN))
@@ -129,9 +136,10 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/dts";
     if(filters.contains("*.mka"))
         properties.contentTypes << "audio/true-hd" << "audio/x-matroska";
+
     properties.shortName = "ffmpeg";
     properties.hasSettings = true;
-    properties.protocols << "ffmpeg";
+    properties.protocols << "ffmpeg" << "m4b";
     properties.priority = 10;
     return properties;
 }
@@ -140,24 +148,27 @@ Decoder *DecoderFFmpegFactory::create(const QString &path, QIODevice *input)
 {
     if(path.startsWith("ffmpeg://"))
         return new DecoderFFmpegCue(path);
+    else if(path.startsWith("m4b://"))
+        return new DecoderFFmpegM4b(this, path);
     else
         return new DecoderFFmpeg(path, input);
 }
 
 QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    int cueTrack = -1; //cue track
+    int trackNumber = -1; //cue/m4b track
     QString filePath = path;
 
     if(path.contains("://")) //is it cue track?
     {
         filePath.remove("ffmpeg://");
+        filePath.remove("m4b://");
         filePath.remove(RegularWrapper("#\\d+$"));
-        cueTrack = path.section("#", -1).toInt();
-        parts = TrackInfo::AllParts; //extract all metadata for single cue track
+        trackNumber = path.section("#", -1).toInt();
+        parts = TrackInfo::AllParts; //extract all metadata for single  cue/m4b track
     }
 
-     TrackInfo *info = new TrackInfo(filePath);
+    TrackInfo *info = new TrackInfo(filePath);
 
     if(parts == TrackInfo::Parts())
         return QList<TrackInfo*>() << info;
@@ -212,7 +223,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
             avformat_close_input(&in);
             delete info;
-            return (cueTrack > 0) ? parser.createPlayList(cueTrack) : parser.createPlayList();
+            return parser.createPlayList(trackNumber);
         }
 
         AVDictionaryEntry *album = av_dict_get(in->metadata,"album",nullptr,0);
@@ -259,6 +270,14 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
             info->setValue(Qmmp::YEAR, year->value);
         if(track)
             info->setValue(Qmmp::TRACK, track->value);
+
+        if(in->nb_chapters > 1 && filePath.endsWith(".m4b", Qt::CaseInsensitive))
+        {
+            QList<TrackInfo *> tracks = createPlayListFromChapters(in, info, trackNumber);
+            avformat_close_input(&in);
+            delete info;
+            return tracks;
+        }
     }
 
     avformat_close_input(&in);
@@ -269,6 +288,31 @@ MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bo
 {
     Q_UNUSED(readOnly);
     return new FFmpegMetaDataModel(path);
+}
+
+QList<TrackInfo *> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
+{
+    QList<TrackInfo *> tracks;
+    for(unsigned int i = 0; i < in->nb_chapters; ++i)
+    {
+        if((trackNumber > 0) && (int(i + 1) != trackNumber))
+            continue;
+
+        AVChapter *chapter = in->chapters[i];
+        TrackInfo *info = new TrackInfo(QString("m4b://%1#%2").arg(extraInfo->path()).arg(i + 1));
+        info->setDuration((chapter->end - chapter->start) * av_q2d(chapter->time_base) * 1000);
+        info->setValues(extraInfo->properties());
+        info->setValues(extraInfo->metaData());
+        info->setValue(Qmmp::TRACK, i + 1);
+
+        AVDictionaryEntry *title = av_dict_get(chapter->metadata,"title", nullptr, 0);
+        if(title)
+            info->setValue(Qmmp::TITLE, QString::fromUtf8(title->value).trimmed());
+
+        tracks << info;
+    }
+
+    return tracks;
 }
 
 #ifndef QMMP_GREATER_NEW

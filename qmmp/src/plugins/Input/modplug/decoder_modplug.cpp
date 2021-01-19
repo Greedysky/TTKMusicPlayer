@@ -1,15 +1,10 @@
-#include <QObject>
-#include <QIODevice>
 #include <QFile>
-#include <QDir>
 #include <QSettings>
-#include <math.h>
 #include <libmodplug/stdafx.h>
 #include <libmodplug/it_defs.h>
 #include <libmodplug/sndfile.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <stdint.h>
 #include "archivereader.h"
 #include "decoder_modplug.h"
 

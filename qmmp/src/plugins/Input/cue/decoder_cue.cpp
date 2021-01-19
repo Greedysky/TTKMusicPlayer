@@ -1,5 +1,3 @@
-#include <QFile>
-#include <QStringList>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
 #include <qmmp/decoderfactory.h>

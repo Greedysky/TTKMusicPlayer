@@ -1,5 +1,4 @@
 #include <QFile>
-#include <stdint.h>
 #include <libmodplug/stdafx.h>
 #include <libmodplug/it_defs.h>
 #include <libmodplug/sndfile.h>

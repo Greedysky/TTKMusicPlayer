@@ -6,11 +6,7 @@
 #include <taglib/id3v2header.h>
 #include <taglib/tfilestream.h>
 #include <taglib/id3v2framefactory.h>
-#include <QObject>
-#include <QFile>
-#include <QIODevice>
 #include <FLAC/all.h>
-#include <stdint.h>
 #include <qmmp/cueparser.h>
 #include "decoder_flac.h"
 

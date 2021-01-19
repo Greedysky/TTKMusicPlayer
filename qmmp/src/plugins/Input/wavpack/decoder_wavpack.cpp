@@ -1,11 +1,5 @@
-#include <QObject>
-#include <QIODevice>
-#include <QFile>
-#include <math.h>
-#include <stdint.h>
 #include <qmmp/cueparser.h>
 #include <qmmp/buffer.h>
-#include <stdlib.h>
 #include "decoder_wavpack.h"
 
 // Decoder class
