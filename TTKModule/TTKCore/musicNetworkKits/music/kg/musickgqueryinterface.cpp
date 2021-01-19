@@ -87,7 +87,7 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicKGQueryInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info)
+void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {

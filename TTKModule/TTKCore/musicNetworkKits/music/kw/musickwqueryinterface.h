@@ -92,7 +92,7 @@ public:
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void readFromMusicSongPic(MusicObject::MusicSongInformation *info);
+    void readFromMusicSongPicture(MusicObject::MusicSongInformation *info);
 
 };
 

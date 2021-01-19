@@ -119,7 +119,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     musicInfo.m_trackNumber = "0";
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-                    readFromMusicSongLrcAndPic(&musicInfo);
+                    readFromMusicSongLrcAndPicture(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
                     if(!m_querySimplify)

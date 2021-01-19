@@ -86,7 +86,7 @@ void MusicKGQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumInfo.m_nickName);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
 
-                    readFromMusicSongLrcAndPic(&musicInfo);
+                    readFromMusicSongLrcAndPicture(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;

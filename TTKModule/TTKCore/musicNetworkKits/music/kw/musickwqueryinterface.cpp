@@ -208,7 +208,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongPic(MusicObject::MusicSongInformation *info)
+void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty())
     {

@@ -77,7 +77,7 @@ void MusicKWQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_trackNumber = "0";
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-                    readFromMusicSongPic(&musicInfo);
+                    readFromMusicSongPicture(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     ///music normal songs urls
