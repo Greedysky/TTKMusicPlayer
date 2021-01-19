@@ -196,7 +196,7 @@ if(UNIX)
 endif()
 
 find_library(QMMP_LIBRARY
-  NAMES qmmp1
+  NAMES TTKqmmp
   PATHS ${LIBRARY_OUTPUT_PATH}
 )
 

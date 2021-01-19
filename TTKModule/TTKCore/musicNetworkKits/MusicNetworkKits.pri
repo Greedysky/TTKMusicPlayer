@@ -100,19 +100,7 @@ HEADERS  += \
     $$PWD/music/kw/musickwsongsuggestrequest.h \
     $$PWD/music/kw/musickwartistsimilarrequest.h \
     $$PWD/music/bd/musicbdqueryinterface.h \
-    $$PWD/music/bd/musicbdqueryrequest.h \
-    $$PWD/music/bd/musicbdqueryalbumrequest.h \
-    $$PWD/music/bd/musicbdqueryartistrequest.h \
-    $$PWD/music/bd/musicbdqueryplaylistrequest.h \
     $$PWD/music/bd/musicbdquerylearnrequest.h \
-    $$PWD/music/bd/musicbdquerytoplistrequest.h \
-    $$PWD/music/bd/musicbdquerymovierequest.h \
-    $$PWD/music/bd/musicbdqueryrecommendrequest.h \
-    $$PWD/music/bd/musicbdqueryartistlistrequest.h \
-    $$PWD/music/bd/musicbddiscoverlistrequest.h \
-    $$PWD/music/bd/musicbdcommentsrequest.h \
-    $$PWD/music/bd/musicbdsongsuggestrequest.h \
-    $$PWD/music/bd/musicbdartistsimilarrequest.h \
     $$PWD/music/bd/musicbdtranslationrequest.h \
     $$PWD/music/qq/musicqqqueryinterface.h \
     $$PWD/music/qq/musicqqqueryrequest.h \
@@ -232,20 +220,7 @@ SOURCES += \
     $$PWD/music/kw/musickwcommentsrequest.cpp \
     $$PWD/music/kw/musickwsongsuggestrequest.cpp \
     $$PWD/music/kw/musickwartistsimilarrequest.cpp \
-    $$PWD/music/bd/musicbdqueryinterface.cpp \
-    $$PWD/music/bd/musicbdqueryrequest.cpp \
-    $$PWD/music/bd/musicbdqueryalbumrequest.cpp \
-    $$PWD/music/bd/musicbdqueryartistrequest.cpp \
-    $$PWD/music/bd/musicbdqueryplaylistrequest.cpp \
     $$PWD/music/bd/musicbdquerylearnrequest.cpp \
-    $$PWD/music/bd/musicbdquerytoplistrequest.cpp \
-    $$PWD/music/bd/musicbdquerymovierequest.cpp \
-    $$PWD/music/bd/musicbdqueryrecommendrequest.cpp \
-    $$PWD/music/bd/musicbdqueryartistlistrequest.cpp \
-    $$PWD/music/bd/musicbddiscoverlistrequest.cpp \
-    $$PWD/music/bd/musicbdcommentsrequest.cpp \
-    $$PWD/music/bd/musicbdsongsuggestrequest.cpp \
-    $$PWD/music/bd/musicbdartistsimilarrequest.cpp \
     $$PWD/music/bd/musicbdtranslationrequest.cpp \
     $$PWD/music/qq/musicqqqueryinterface.cpp \
     $$PWD/music/qq/musicqqqueryrequest.cpp \

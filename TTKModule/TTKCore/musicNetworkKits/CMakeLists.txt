@@ -72,19 +72,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwartistsimilarrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryalbumrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryartistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryplaylistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerytoplistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerymovierequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryrecommendrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryartistlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbddiscoverlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdcommentsrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdsongsuggestrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdartistsimilarrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/qq/musicqqqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/qq/musicqqqueryrequest.h
@@ -204,20 +192,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwcommentsrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwsongsuggestrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kw/musickwartistsimilarrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryinterface.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryalbumrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryartistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryplaylistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerylearnrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerytoplistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdquerymovierequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryrecommendrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdqueryartistlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbddiscoverlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdcommentsrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdsongsuggestrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdartistsimilarrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/bd/musicbdtranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/qq/musicqqqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/qq/musicqqqueryrequest.cpp
