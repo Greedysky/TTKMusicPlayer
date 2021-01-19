@@ -169,4 +169,29 @@
             <value key="307" value="虾米分享榜"/>
         </tag>
     </XiaMi>
+    <MiGu>
+        <tag value="咪咕尖叫榜">
+            <value key="jianjiao_newsong" value="尖叫新歌榜"/>
+            <value key="jianjiao_hotsong" value="尖叫热歌榜"/>
+            <value key="jianjiao_original" value="尖叫原创榜"/>
+        </tag>
+        <tag value="咪咕特色榜">
+            <value key="migumusic" value="音乐榜"/>
+            <value key="movies" value="影视榜"/>
+            <value key="mainland" value="内地榜"/>
+            <value key="hktw" value="港台榜"/>
+            <value key="eur_usa" value="欧美榜"/>
+            <value key="jpn_kor" value="日韩榜"/>
+            <value key="coloring" value="彩铃榜"/>
+            <value key="ktv" value="KTV榜"/>
+            <value key="network" value="网络榜"/>
+        </tag>
+        <tag value="全球权威榜">
+            <value key="itunes" value="美国iTunes榜"/>
+            <value key="billboard" value="美国billboard榜"/>
+            <value key="hito" value="Hito中文榜"/>
+            <value key="mnet" value="韩国Melon榜"/>
+            <value key="uk" value="英国UK榜"/>
+        </tag>
+    </MiGu>
 <TTKMusicPlayer>
