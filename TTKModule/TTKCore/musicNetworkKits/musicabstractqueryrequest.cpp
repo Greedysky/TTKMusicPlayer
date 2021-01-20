@@ -40,44 +40,6 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
         return QString();
 }
 
-QString MusicAbstractQueryRequest::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
-{
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
-    {
-        if(!attr.m_duration.isEmpty())
-        {
-            return attr.m_duration;
-        }
-    }
-
-    return QString("-");
-}
-
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
-{
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return false;
-    if(attr->m_size.isEmpty() || attr->m_size == "-")
-    {
-        attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
-    }
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return false;
-
-    return true;
-}
-
-bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttributes *attrs)
-{
-    for(int i=0; i<attrs->count(); ++i)
-    {
-        if(!findUrlFileSize(&(*attrs)[i]))
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
 {
     qint64 size = -1;
@@ -108,4 +70,42 @@ qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
     reply->deleteLater();
 
     return size;
+}
+
+QString MusicAbstractQueryRequest::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
+{
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
+    {
+        if(!attr.m_duration.isEmpty())
+        {
+            return attr.m_duration;
+        }
+    }
+
+    return QString(STRING_NULL);
+}
+
+bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
+{
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return false;
+    if(attr->m_size.isEmpty() || attr->m_size == STRING_NULL)
+    {
+        attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
+    }
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return false;
+
+    return true;
+}
+
+bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttributes *attrs)
+{
+    for(int i=0; i<attrs->count(); ++i)
+    {
+        if(!findUrlFileSize(&(*attrs)[i]))
+        {
+            return false;
+        }
+    }
+
+    return true;
 }

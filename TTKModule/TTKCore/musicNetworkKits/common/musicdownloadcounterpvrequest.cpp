@@ -16,7 +16,7 @@ void MusicDownloadCounterPVRequest::startToDownload()
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(QURTY_URL, false)));
+    request.setUrl(MusicUtils::Algorithm::mdII(QURTY_URL, false));
     request.setRawHeader("Host", MusicUtils::Algorithm::mdII(HOST_URL, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     request.setRawHeader("Cookie", MusicUtils::Algorithm::mdII(COOKIE_URL, false).toUtf8());

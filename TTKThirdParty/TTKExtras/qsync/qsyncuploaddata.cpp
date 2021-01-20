@@ -42,7 +42,7 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
     d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
-    request.setUrl(QUrl("http://" + host + url));
+    request.setUrl("http://" + host + url);
 
     TTKStringMapterator it(headers);
     while(it.hasNext())

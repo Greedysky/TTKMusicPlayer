@@ -568,16 +568,16 @@ void MusicArtistQueryWidget::createLabels()
     artistFont.setPixelSize(20);
     artistLabel->setFont(artistFont);
     artistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    artistLabel->setText("-");
+    artistLabel->setText(STRING_NULL);
     QLabel *nickNameLabel = new QLabel(topLineWidget);
     nickNameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    nickNameLabel->setText("-");
+    nickNameLabel->setText(STRING_NULL);
     QLabel *countryLabel = new QLabel(topLineWidget);
     countryLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    countryLabel->setText("-");
+    countryLabel->setText(STRING_NULL);
     QLabel *birthLabel = new QLabel(topLineWidget);
     birthLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    birthLabel->setText("-");
+    birthLabel->setText(STRING_NULL);
 
     topLineLayout->addWidget(artistLabel);
     topLineLayout->addWidget(nickNameLabel);

@@ -151,9 +151,9 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
         ///download lrc
         M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadBigPicRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }
     else
     {

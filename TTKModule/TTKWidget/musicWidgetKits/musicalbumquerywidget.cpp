@@ -153,7 +153,7 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
         {
             if(lists[i].isEmpty())
             {
-                lists[i] = "-";
+                lists[i] = STRING_NULL;
             }
         }
 
@@ -222,19 +222,19 @@ void MusicAlbumQueryWidget::createLabels()
     albumFont.setPixelSize(20);
     albumLabel->setFont(albumFont);
     albumLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    albumLabel->setText("-");
+    albumLabel->setText(STRING_NULL);
     QLabel *singerLabel = new QLabel(topLineWidget);
     singerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    singerLabel->setText("-");
+    singerLabel->setText(STRING_NULL);
     QLabel *languageLabel = new QLabel(topLineWidget);
     languageLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    languageLabel->setText("-");
+    languageLabel->setText(STRING_NULL);
     QLabel *companyLabel = new QLabel(topLineWidget);
     companyLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    companyLabel->setText("-");
+    companyLabel->setText(STRING_NULL);
     QLabel *yearLabel = new QLabel(topLineWidget);
     yearLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    yearLabel->setText("-");
+    yearLabel->setText(STRING_NULL);
 
     topLineLayout->addWidget(albumLabel);
     topLineLayout->addWidget(singerLabel);

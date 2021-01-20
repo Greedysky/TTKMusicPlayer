@@ -28,10 +28,8 @@ void MusicQQDownloadBackgroundRequest::startToDownload()
     TTK_LOGGER_INFO(QString("%1 startToDownload").arg(getClassName()));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50);
-
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -52,12 +50,9 @@ void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
     QString songId;
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -126,10 +121,8 @@ void MusicQQDownloadBackgroundRequest::downLoadUrl(const QString &id)
     TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(getClassName()).arg(id));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id);
-
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 

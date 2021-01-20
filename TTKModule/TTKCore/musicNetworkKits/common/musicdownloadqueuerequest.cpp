@@ -107,7 +107,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
     }
 
     m_speedTimer.start();
-    m_request->setUrl(QUrl(url));
+    m_request->setUrl(url);
     m_reply = m_manager->get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(readyRead()), SLOT(readyReadSlot()));

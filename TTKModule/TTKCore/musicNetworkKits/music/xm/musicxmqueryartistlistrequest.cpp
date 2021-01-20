@@ -30,11 +30,11 @@ void MusicXMQueryArtistListRequest::startToPage(int offset)
             catId = "class=1&type=1";
         }
     }
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_ARTIST_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize);
+
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(XM_ARTIST_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
@@ -66,11 +66,9 @@ void MusicXMQueryArtistListRequest::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

@@ -6,12 +6,14 @@
 #include "musickgqueryrequest.h"
 #include "musickwqueryrequest.h"
 #include "musicqqqueryrequest.h"
+#include "musicmgqueryrequest.h"
 //
 #include "musicwyquerymovierequest.h"
 #include "musicxmquerymovierequest.h"
 #include "musickgquerymovierequest.h"
 #include "musickwquerymovierequest.h"
 #include "musicqqquerymovierequest.h"
+#include "musicmgquerymovierequest.h"
 //
 #include "musicwyqueryalbumrequest.h"
 #include "musicxmqueryalbumrequest.h"
@@ -36,6 +38,7 @@
 #include "musicxmquerytoplistrequest.h"
 #include "musickgquerytoplistrequest.h"
 #include "musickwquerytoplistrequest.h"
+#include "musicmgquerytoplistrequest.h"
 //
 #include "musicwyqueryplaylistrequest.h"
 #include "musicqqqueryplaylistrequest.h"
@@ -48,6 +51,7 @@
 #include "musicxmqueryrecommendrequest.h"
 #include "musickgqueryrecommendrequest.h"
 #include "musickwqueryrecommendrequest.h"
+#include "musicmgqueryrecommendrequest.h"
 //
 #include "musicwycommentsrequest.h"
 #include "musicxmcommentsrequest.h"
@@ -60,12 +64,14 @@
 #include "musicqqdiscoverlistrequest.h"
 #include "musickgdiscoverlistrequest.h"
 #include "musickwdiscoverlistrequest.h"
+#include "musicmgdiscoverlistrequest.h"
 //
 #include "musicwysongsuggestrequest.h"
 #include "musicxmsongsuggestrequest.h"
 #include "musicqqsongsuggestrequest.h"
 #include "musickgsongsuggestrequest.h"
 #include "musickwsongsuggestrequest.h"
+#include "musicmgsongsuggestrequest.h"
 //
 #include "musicwyartistsimilarrequest.h"
 #include "musicxmartistsimilarrequest.h"
@@ -83,6 +89,7 @@
 #include "musicxmdownloadtextrequest.h"
 #include "musickwdownloadtextrequest.h"
 #include "musicqqdownloadtextrequest.h"
+#include "musicmgdownloadtextrequest.h"
 //
 #include "musickwdownloadbackgroundrequest.h"
 #include "musicqqdownloadbackgroundrequest.h"
@@ -99,6 +106,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getQueryRequest(QObject *p
         case XMQueryServer:  request = new MusicXMQueryRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryRequest(parent); break;
         default: request = new MusicWYQueryRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryrequest server: %1").arg(request->getQueryServer()));
@@ -116,6 +124,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getMovieRequest(QObject *p
         case XMQueryServer:  request = new MusicXMQueryMovieRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryMovieRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryMovieRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryMovieRequest(parent); break;
         default: request = new MusicWYQueryMovieRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryMovieRequest server: %1").arg(request->getQueryServer()));
@@ -184,6 +193,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getToplistRequest(QObject 
         case XMQueryServer:  request = new MusicXMQueryToplistRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryToplistRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryToplistRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryToplistRequest(parent); break;
         default: request = new MusicWYQueryToplistRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryToplistRequest server: %1").arg(request->getQueryServer()));
@@ -218,6 +228,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getRecommendRequest(QObjec
         case XMQueryServer:  request = new MusicXMQueryRecommendRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryRecommendRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryRecommendRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryRecommendRequest(parent); break;
         default: request = new MusicWYQueryRecommendRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->getQueryServer()));
@@ -256,6 +267,7 @@ MusicSongSuggestRequest *MusicDownLoadQueryFactory::getSuggestRequest(QObject *p
         case XMQueryServer:  request = new MusicXMSongSuggestRequest(parent); break;
         case KWQueryServer:  request = new MusicKWSongSuggestRequest(parent); break;
         case KGQueryServer:  request = new MusicKGSongSuggestRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGSongSuggestRequest(parent); break;
         default: request = new MusicWYSongSuggestRequest(parent);
     }
     return request;
@@ -304,6 +316,7 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::getDiscoverListRequest(QObj
         case XMQueryServer:  request = new MusicXMDiscoverListRequest(parent); break;
         case KWQueryServer:  request = new MusicKWDiscoverListRequest(parent); break;
         case KGQueryServer:  request = new MusicKGDiscoverListRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGDiscoverListRequest(parent); break;
         default: request = new MusicWYDiscoverListRequest(parent);
     }
     return request;
@@ -325,9 +338,7 @@ MusicTranslationRequest *MusicDownLoadQueryFactory::getTranslationRequest(QObjec
     return request;
 }
 
-MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadSmallPicRequest(const QString &url, const QString &save,
-                                                                                    MusicObject::DownloadType type,
-                                                                                    QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
 {
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
@@ -337,13 +348,12 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadSmallPicRequ
         case XMQueryServer: return (new MusicDownloadDataRequest(url, save, type, parent));
         case KWQueryServer: return (new MusicDownloadDataRequest(url, save, type, parent));
         case KGQueryServer: return (new MusicDownloadDataRequest(url, save, type, parent));
+        default: break;
     }
     return (new MusicDownloadDataRequest(url, save, type, parent));
 }
 
-MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(const QString &url, const QString &save,
-                                                                               MusicObject::DownloadType type,
-                                                                               QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
 {
     const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
@@ -353,12 +363,13 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(c
         case XMQueryServer: return (new MusicXMDownLoadTextRequest(url, save, type, parent));
         case KWQueryServer: return (new MusicKWDownLoadTextRequest(url, save, type, parent));
         case KGQueryServer: return (new MusicDownLoadTextRequest(url, save, type, parent));
+        case MGQueryServer: return (new MusicMGDownLoadTextRequest(url, save, type, parent));
+        default: break;
     }
     return (new MusicDownLoadTextRequest(url, save, type, parent));
 }
 
-MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::getDownloadBigPicRequest(const QString &name, const QString &save,
-                                                                                    QObject *parent)
+MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent)
 {
     const bool index = M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool();
     if(index)

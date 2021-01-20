@@ -152,7 +152,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(QStringList &filelist)
         }
 
         const bool state = tag.read(path);
-        const QString &time = state ? tag.getLengthString() : "-";
+        const QString &time = state ? tag.getLengthString() : STRING_NULL;
         QString name;
         if(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && state && !tag.getTitle().isEmpty() && !tag.getArtist().isEmpty())
         {

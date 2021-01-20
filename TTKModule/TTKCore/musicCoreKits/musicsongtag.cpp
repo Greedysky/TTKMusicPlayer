@@ -95,9 +95,9 @@ QString MusicSongTag::getTrackNum() const
     bool ok = true;
     if(v.toInt(&ok) > 0)
     {
-        return !ok ? "-" : v;
+        return !ok ? STRING_NULL : v;
     }
-    return "-";
+    return STRING_NULL;
 }
 
 QString MusicSongTag::getGenre() const

@@ -36,11 +36,11 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
 
     MusicSearchedItem()
     {
-        m_songName = "-";
-        m_singerName = "-";
-        m_albumName = "-";
-        m_time = "-";
-        m_type = "-";
+        m_songName = STRING_NULL;
+        m_singerName = STRING_NULL;
+        m_albumName = STRING_NULL;
+        m_time = STRING_NULL;
+        m_type = STRING_NULL;
     }
 }MusicSearchedItem;
 TTK_DECLARE_LISTS(MusicSearchedItem)
@@ -61,19 +61,19 @@ typedef struct MUSIC_NETWORK_EXPORT MusicResultsItem
 
     MusicResultsItem()
     {
-        m_id = "-";
-        m_name = "-";
-        m_nickName = "-";
-        m_coverUrl = "-";
-        m_playCount = "-";
-        m_description = "-";
-        m_updateTime = "-";
-        m_tags = "-";
+        m_id = STRING_NULL;
+        m_name = STRING_NULL;
+        m_nickName = STRING_NULL;
+        m_coverUrl = STRING_NULL;
+        m_playCount = STRING_NULL;
+        m_description = STRING_NULL;
+        m_updateTime = STRING_NULL;
+        m_tags = STRING_NULL;
     }
 
     bool isEmpty() const
     {
-        return m_name == "-" || m_nickName == "-" || m_coverUrl == "-" || m_description == "-";
+        return m_name == STRING_NULL || m_nickName == STRING_NULL || m_coverUrl == STRING_NULL || m_description == STRING_NULL;
     }
 }MusicResultsItem;
 TTK_DECLARE_LISTS(MusicResultsItem)
@@ -84,6 +84,7 @@ TTK_DECLARE_LISTS(MusicResultsItem)
 #define QUERY_BD_INTERFACE      "BaiDu"
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
+#define QUERY_MG_INTERFACE      "MiGu"
 
 enum DownloadQueryServer
 {
@@ -91,7 +92,8 @@ enum DownloadQueryServer
     QQQueryServer,
     XMQueryServer,
     KWQueryServer,
-    KGQueryServer
+    KGQueryServer,
+    MGQueryServer
 };
 
 /*! @brief The class to abstract query download data from net.
@@ -186,6 +188,12 @@ public:
      */
     QString mapQueryServerString() const;
 
+public:
+    /*!
+     * Get download file size.
+     */
+    static qint64 getUrlFileSize(const QString &url);
+
 Q_SIGNALS:
     /*!
      * Clear all items before the new query start.
@@ -209,10 +217,6 @@ protected:
      * Find download file size.
      */
     bool findUrlFileSize(MusicObject::MusicSongAttributes *attrs);
-    /*!
-     * Get download file size.
-     */
-    qint64 getUrlFileSize(const QString &url);
 
     MusicObject::MusicSongInformations m_musicSongInfos;
     QString m_searchText, m_searchQuality;

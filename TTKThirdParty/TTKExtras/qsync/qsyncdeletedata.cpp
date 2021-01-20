@@ -23,7 +23,7 @@ void QSyncDeleteData::deleteDataOperator(const QString &bucket, const QString &f
     d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
-    request.setUrl(QUrl("http://" + host + url));
+    request.setUrl("http://" + host + url);
 
     TTKStringMapterator it(headers);
     while(it.hasNext())

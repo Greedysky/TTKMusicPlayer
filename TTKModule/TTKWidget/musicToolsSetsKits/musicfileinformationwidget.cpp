@@ -109,7 +109,7 @@ void MusicFileInformationWidget::advanceClicked()
         QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
         if(pix.isNull())
         {
-            text = "-";
+            text = STRING_NULL;
             pix.load(":/image/lb_defaultArt");
         }
         m_ui->pixmapSizeLabel->setText(text);
@@ -135,7 +135,7 @@ void MusicFileInformationWidget::advanceClicked()
 void MusicFileInformationWidget::deleteAlbumPicture()
 {
     QPixmap pix(":/image/lb_defaultArt");
-    m_ui->pixmapSizeLabel->setText("-");
+    m_ui->pixmapSizeLabel->setText(STRING_NULL);
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
     m_deleteOn = true;
 }
@@ -180,31 +180,31 @@ void MusicFileInformationWidget::saveTag()
     }
 
     QString value = m_ui->fileAlbumEdit->text().trimmed();
-    if(value != "-")
+    if(value != STRING_NULL)
     {
         tag.setAlbum(value);
     }
 
     value = m_ui->fileArtistEdit->text().trimmed();
-    if(value != "-")
+    if(value != STRING_NULL)
     {
         tag.setArtist(value);
     }
 
     value = m_ui->fileGenreEdit->text().trimmed();
-    if(value != "-")
+    if(value != STRING_NULL)
     {
         tag.setGenre(value);
     }
 
     value = m_ui->fileTitleEdit->text().trimmed();
-    if(value != "-")
+    if(value != STRING_NULL)
     {
         tag.setTitle(value);
     }
 
     value = m_ui->fileYearEdit->text().trimmed();
-    if(value != "-")
+    if(value != STRING_NULL)
     {
         tag.setYear(value);
     }
@@ -236,22 +236,22 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     const QFileInfo fin(name);
 
     QString check;
-    m_ui->filePathEdit->setText((check = name).isEmpty() ? "-" : check);
-    m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? "-" : check);
-    m_ui->fileSizeEdit->setText((check = MusicUtils::Number::size2Label(fin.size())).isEmpty() ? "-" : check);
+    m_ui->filePathEdit->setText((check = name).isEmpty() ? STRING_NULL : check);
+    m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? STRING_NULL : check);
+    m_ui->fileSizeEdit->setText((check = MusicUtils::Number::size2Label(fin.size())).isEmpty() ? STRING_NULL : check);
 
-    m_ui->fileAlbumEdit->setText(state ? ((check = tag.getAlbum()).isEmpty() ? "-" : check) : "-");
-    m_ui->fileArtistEdit->setText(state ? ((check = tag.getArtist()).isEmpty() ? "-" : check) : "-");
-    m_ui->fileGenreEdit->setText(state ? ((check = tag.getGenre()).isEmpty() ? "-" : check) : "-");
-    m_ui->fileTitleEdit->setText(state ? ((check = tag.getTitle()).isEmpty() ? "-" : check) : "-");
-    m_ui->fileYearEdit->setText(state ? ((check = tag.getYear()).isEmpty() ? "-" : check) : "-");
-    m_ui->fileTimeEdit->setText(state ? ((check = tag.getLengthString()).isEmpty() ? "-" : check) : "-");
+    m_ui->fileAlbumEdit->setText(state ? ((check = tag.getAlbum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileArtistEdit->setText(state ? ((check = tag.getArtist()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileGenreEdit->setText(state ? ((check = tag.getGenre()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileTitleEdit->setText(state ? ((check = tag.getTitle()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileYearEdit->setText(state ? ((check = tag.getYear()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileTimeEdit->setText(state ? ((check = tag.getLengthString()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
 
-    m_ui->BitrateEdit->setText(state ? ((check = (tag.getBitrate())).isEmpty() ? "-" : check) : "-");
-    m_ui->ChannelEdit->setText(state ? ((check = tag.getChannel()).isEmpty() ? "-" : check) : "-");
-    m_ui->SamplingRateEdit->setText(state ? ((check = tag.getSampleRate()).isEmpty() ? "-" : check) : "-");
-    m_ui->TrackNumEdit->setText(state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-");
-    m_ui->decoderLabel->setText(state ? ((check = tag.getDecoder()).isEmpty() ? "-" : check.toUpper()) : "-");
+    m_ui->BitrateEdit->setText(state ? ((check = (tag.getBitrate())).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->ChannelEdit->setText(state ? ((check = tag.getChannel()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->SamplingRateEdit->setText(state ? ((check = tag.getSampleRate()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->TrackNumEdit->setText(state ? ((check = tag.getTrackNum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->decoderLabel->setText(state ? ((check = tag.getDecoder()).isEmpty() ? STRING_NULL : check.toUpper()) : STRING_NULL);
     m_ui->qualityEdit->setText(MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())));
 }
 

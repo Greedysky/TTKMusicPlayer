@@ -25,7 +25,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             MusicObject::MusicSongAttribute attr;
             attr.m_bitrate = MB_128;
             attr.m_format = MP3_FILE_PREFIX;
-            attr.m_size = "-";
+            attr.m_size = STRING_NULL;
             attr.m_url = QString("%1%2/resource/%3").arg(TTK_HTTP).arg(mp3Url).arg(v);
             info->m_songAttrs.append(attr);
         }
@@ -36,7 +36,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             MusicObject::MusicSongAttribute attr;
             attr.m_bitrate = MB_96;
             attr.m_format = WMA_FILE_PREFIX;
-            attr.m_size = "-";
+            attr.m_size = STRING_NULL;
             attr.m_url = QString("http://%1/resource/%2").arg(mp3Url).arg(v);
             info->m_songAttrs.append(attr);
         }
@@ -51,7 +51,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
             MusicObject::MusicSongAttribute attr;
             attr.m_bitrate = MB_32;
             attr.m_format = AAC_FILE_PREFIX;
-            attr.m_size = "-";
+            attr.m_size = STRING_NULL;
             attr.m_url = QString("http://%1/resource/%2").arg(aacUrl).arg(v);
             info->m_songAttrs.append(attr);
         }
@@ -94,13 +94,12 @@ void MusicKWQueryRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_searchText).arg(offset).arg(m_pageSize);
     m_interrupt = true;
     m_pageTotal = 0;
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_searchText).arg(offset).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -118,11 +117,10 @@ void MusicKWQueryRequest::startToSingleSearch(const QString &text)
 
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(text));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -149,7 +147,6 @@ void MusicKWQueryRequest::downLoadFinished()
         QJson::Parser parser;
         bool ok;
         const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
-
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -180,12 +177,12 @@ void MusicKWQueryRequest::downLoadFinished()
 
                     if(!m_querySimplify)
                     {
-                        musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
-
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                         readFromMusicSongPicture(&musicInfo);
                         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+
+                        musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
 
                         ///music normal songs urls
                         readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);

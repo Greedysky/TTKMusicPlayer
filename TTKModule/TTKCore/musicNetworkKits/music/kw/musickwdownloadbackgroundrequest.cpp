@@ -20,11 +20,10 @@ void MusicKWDownloadBackgroundRequest::startToDownload()
 
 void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
 {
-    QJson::Parser parser;
-    bool ok;
-
     if(bytes != "NO_PIC")
     {
+        QJson::Parser parser;
+        bool ok;
         const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {

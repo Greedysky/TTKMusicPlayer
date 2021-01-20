@@ -190,10 +190,10 @@ void MusicWebMVRadioInfoWidget::createLabels()
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
     nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    nameLabel->setText("-");
+    nameLabel->setText(STRING_NULL);
     QLabel *typeLabel = new QLabel(topLineWidget);
     typeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    typeLabel->setText("-");
+    typeLabel->setText(STRING_NULL);
 
     topLineLayout->addWidget(nameLabel);
     topLineLayout->addStretch(1);

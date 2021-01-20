@@ -248,10 +248,9 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
     if(!attrs.isEmpty())
     {
         const MusicObject::MusicSongAttribute &attr = attrs.first();
-        const QString &url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-        data.m_url = url;
+        data.m_url = attr.m_url;
         data.m_id = musicSongInfo.m_songId;
         data.m_server = m_downLoadManager->getQueryServer();
         Q_EMIT mediaUrlNameChanged(data);

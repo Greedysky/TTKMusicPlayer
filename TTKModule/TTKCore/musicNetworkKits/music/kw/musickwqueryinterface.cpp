@@ -21,11 +21,10 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     QDesWrap des;
     const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter));
 
     QNetworkAccessManager manager;
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -51,7 +50,7 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
             attr.m_url = regx.cap(1);
             attr.m_bitrate = bitrate;
             attr.m_format = suffix;
-            attr.m_size = "-";
+            attr.m_size = STRING_NULL;
             if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
             {
                 return;
@@ -69,7 +68,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = "-";
+        attr.m_size = STRING_NULL;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -78,7 +77,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = "-";
+        attr.m_size = STRING_NULL;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -87,7 +86,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = "-";
+        attr.m_size = STRING_NULL;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -108,7 +107,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = "-";
+        attr.m_size = STRING_NULL;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -117,7 +116,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = "-";
+        attr.m_size = STRING_NULL;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -126,7 +125,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = "-";
+        attr.m_size = STRING_NULL;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -215,10 +214,8 @@ void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInfor
         return;
     }
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
-
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 

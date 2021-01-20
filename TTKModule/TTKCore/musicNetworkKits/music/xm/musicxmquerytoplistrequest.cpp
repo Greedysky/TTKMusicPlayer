@@ -58,11 +58,9 @@ void MusicXMQueryToplistRequest::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -74,7 +72,7 @@ void MusicXMQueryToplistRequest::downLoadFinished()
                 MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["logo"].toString();
-                info.m_playCount = "-";
+                info.m_playCount = STRING_NULL;
                 info.m_description = value["description"].toString();
                 info.m_updateTime = value["time"].toString();
                 Q_EMIT createToplistInfoItem(info);

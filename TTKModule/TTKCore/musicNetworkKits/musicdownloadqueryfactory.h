@@ -102,20 +102,15 @@ public:
     /*!
      * Get download small picture object by type.
      */
-    MusicAbstractDownLoadRequest *getDownloadSmallPicRequest(const QString &url, const QString &save,
-                                                             MusicObject::DownloadType type,
-                                                             QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *getDownloadSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
     /*!
      * Get download lrc object by type.
      */
-    MusicAbstractDownLoadRequest *getDownloadLrcRequest(const QString &url, const QString &save,
-                                                        MusicObject::DownloadType type,
-                                                        QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *getDownloadLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
     /*!
      * Get download big picture object by type.
      */
-    MusicDownloadBackgroundRequest *getDownloadBigPicRequest(const QString &name, const QString &save,
-                                                             QObject *parent = nullptr);
+    MusicDownloadBackgroundRequest *getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

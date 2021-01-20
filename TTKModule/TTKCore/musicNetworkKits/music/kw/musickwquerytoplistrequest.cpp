@@ -29,11 +29,10 @@ void MusicKWQueryToplistRequest::startToSearch(const QString &toplist)
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_TOPLIST_URL, false).arg(toplist);
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_TOPLIST_URL, false).arg(toplist));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -58,11 +57,9 @@ void MusicKWQueryToplistRequest::downLoadFinished()
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -71,7 +68,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                 MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["pic"].toString();
-                info.m_playCount = "-";
+                info.m_playCount = STRING_NULL;
                 info.m_description = value["info"].toString();
                 info.m_updateTime = value["pub"].toString();
                 Q_EMIT createToplistInfoItem(info);

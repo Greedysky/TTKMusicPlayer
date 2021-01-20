@@ -17,7 +17,7 @@ bool MusicXMQueryInterface::makeTokenQueryCookies(QString &tk, QString &tke)
     QNetworkAccessManager manager;
     QNetworkRequest request;
 
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false).arg(APP_KEY)));
+    request.setUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false).arg(APP_KEY));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
 
     QNetworkReply *reply = manager.get(request);
@@ -65,7 +65,7 @@ void MusicXMQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, bool mod
     const QString encode = QString("%1&%2&%3&%4").arg(token).arg(time).arg(appkey).arg(data);
     const QString sign = MusicUtils::Algorithm::md5(encode.toUtf8()).toHex();
 
-    request->setUrl(QUrl(MusicUtils::Algorithm::mdII(mode ? XM_ACS_BASE_URL : XM_BASE_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
+    request->setUrl(MusicUtils::Algorithm::mdII(mode ? XM_ACS_BASE_URL : XM_BASE_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tke).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(request);
@@ -89,11 +89,9 @@ void MusicXMQueryInterface::readFromMusicSongLrc(MusicObject::MusicSongInformati
         return;
     }
 
-    const QByteArray &bytes = reply->readAll();
-
     QJson::Parser parser;
     bool ok;
-    const QVariant &data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

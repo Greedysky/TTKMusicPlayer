@@ -208,6 +208,7 @@
 #define LEFT_SIDE_WIDTH_MIN     320
 #define CONCISE_WIDTH_MIN       322
 //
+#define STRING_NULL             "-"
 #define COVER_URL_NULL          "null"
 //
 
@@ -223,7 +224,6 @@ namespace MusicObject
     typedef struct MusicSongAttribute
     {
         int m_bitrate;
-        bool m_multiPart;
         QString m_format;
         QString m_url;
         QString m_size;
@@ -232,7 +232,6 @@ namespace MusicObject
         MusicSongAttribute()
         {
             m_bitrate = -1;
-            m_multiPart = false;
         }
 
         bool operator< (const MusicSongAttribute &other) const

@@ -34,7 +34,7 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
     parameter = aes.encryptCBC(parameter, "a44e542eaac91dce", "0102030405060708");
     MusicUtils::Url::urlEncode(parameter);
 
-    request->setUrl(QUrl(query));
+    request->setUrl(query);
     makeTokenQueryRequest(request);
 
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
@@ -42,10 +42,8 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
 
 void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bitrate)
 {
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate*1000).arg(info->m_songId);
-
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate*1000).arg(info->m_songId));
     makeTokenQueryRequest(&request);
 
     QNetworkAccessManager manager;
@@ -63,7 +61,6 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     QJson::Parser parser;
     bool ok;
     const QVariant &data = parser.parse(reply->readAll(), &ok);
-
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -121,14 +118,14 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
 void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
-    int maxBr = MB_999;
+    int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
     if(!privilege.isEmpty())
     {
         const QString &brStr = privilege["maxbr"].toString();
         if(brStr == "999000")
         {
-            maxBr = MB_999;
+            maxBr = MB_1000;
         }
         else if(brStr == "320000" || brStr == "192000" || brStr == "190000")
         {
@@ -146,12 +143,12 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
     if(all)
     {
-        if(maxBr == MB_999 || maxBr == MB_320)
+        if(maxBr == MB_1000 || maxBr == MB_320)
         {
             readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128, MP3_FILE_PREFIX);
             readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192, MP3_FILE_PREFIX);
             readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320, MP3_FILE_PREFIX);
-            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_999, FLC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLC_FILE_PREFIX);
         }
         else if(maxBr == MB_192)
         {
@@ -177,9 +174,9 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         {
             readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320, MP3_FILE_PREFIX);
         }
-        else if(quality == QObject::tr("CD") && maxBr >= MB_999)
+        else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_999, FLC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLC_FILE_PREFIX);
         }
     }
 }
@@ -260,14 +257,14 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
 void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
-    int maxBr = MB_999;
+    int maxBr = MB_1000;
     const QVariantMap &privilege = key["privilege"].toMap();
     if(!privilege.isEmpty())
     {
         const QString &brStr = privilege["maxbr"].toString();
         if(brStr == "999000")
         {
-            maxBr = MB_999;
+            maxBr = MB_1000;
         }
         else if(brStr == "320000" || brStr == "192000" || brStr == "190000")
         {
@@ -285,12 +282,12 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
     if(all)
     {
-        if(maxBr == MB_999 || maxBr == MB_320)
+        if(maxBr == MB_1000 || maxBr == MB_320)
         {
             readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128, MP3_FILE_PREFIX);
             readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192, MP3_FILE_PREFIX);
             readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320, MP3_FILE_PREFIX);
-            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_999, FLC_FILE_PREFIX);
+            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLC_FILE_PREFIX);
         }
         else if(maxBr == MB_192)
         {
@@ -316,9 +313,9 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         {
             readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320, MP3_FILE_PREFIX);
         }
-        else if(quality == QObject::tr("CD") && maxBr >= MB_999)
+        else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_999, FLC_FILE_PREFIX);
+            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLC_FILE_PREFIX);
         }
     }
 }

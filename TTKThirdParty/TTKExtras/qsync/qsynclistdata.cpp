@@ -26,7 +26,7 @@ void QSyncListData::listDataOperator(const QString &bucket)
     d->insertAuthorization(method, headers, resource);
 
     QNetworkRequest request;
-    request.setUrl(QUrl("http://" + host + url));
+    request.setUrl("http://" + host + url);
 
     TTKStringMapterator it(headers);
     while(it.hasNext())

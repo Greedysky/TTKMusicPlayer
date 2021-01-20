@@ -359,10 +359,10 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     download->startToDownload();
 
-    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
+    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                                     MusicObject::DownloadSmallBackground, this)->startToDownload();
     ///download big picture
-    M_DOWNLOAD_QUERY_PTR->getDownloadBigPicRequest(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
+    M_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
 
     m_downloadData.clear();
     m_downloadData.m_songName = musicEnSong;

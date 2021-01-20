@@ -159,15 +159,15 @@ void MusicWebDJRadioInfoWidget::createLabels()
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
     nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    nameLabel->setText("-");
+    nameLabel->setText(STRING_NULL);
     QLabel *singerLabel = new QLabel(topLineWidget);
     singerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    singerLabel->setText("-");
+    singerLabel->setText(STRING_NULL);
     QLabel *playCountLabel = new QLabel(topLineWidget);
     playCountLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     QLabel *updateTimeLabel = new QLabel(topLineWidget);
     updateTimeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    updateTimeLabel->setText("-");
+    updateTimeLabel->setText(STRING_NULL);
 
     topLineLayout->addWidget(nameLabel);
     topLineLayout->addWidget(singerLabel);

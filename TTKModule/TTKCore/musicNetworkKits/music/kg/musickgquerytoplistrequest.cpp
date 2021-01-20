@@ -28,11 +28,10 @@ void MusicKGQueryToplistRequest::startToSearch(const QString &toplist)
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     deleteAll();
 
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_TOPLIST_URL, false).arg(toplist);
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_URL, false).arg(toplist));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -56,11 +55,9 @@ void MusicKGQueryToplistRequest::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -70,7 +67,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                 MusicResultsItem info;
                 info.m_name = topInfo["rankname"].toString();
                 info.m_coverUrl = topInfo["imgurl"].toString().replace("{size}", "400");
-                info.m_playCount = "-";
+                info.m_playCount = STRING_NULL;
                 info.m_description = topInfo["intro"].toString();
 
                 value = value["songs"].toMap();
@@ -91,9 +88,9 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["filename"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    if(musicInfo.m_songName.contains("-"))
+                    if(musicInfo.m_songName.contains(STRING_NULL))
                     {
-                        const QStringList &ll = musicInfo.m_songName.split("-");
+                        const QStringList &ll = musicInfo.m_songName.split(STRING_NULL);
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
                         musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
                     }

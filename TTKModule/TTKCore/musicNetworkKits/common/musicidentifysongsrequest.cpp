@@ -80,7 +80,7 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
     content.append(endBoundary.toUtf8());
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false)));
+    request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));
     request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
     MusicObject::setSslConfiguration(&request);
 
