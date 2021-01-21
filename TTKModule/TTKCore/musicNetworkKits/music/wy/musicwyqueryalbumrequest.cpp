@@ -59,18 +59,12 @@ void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
 
 void MusicWYQueryAlbumRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -166,7 +160,7 @@ void MusicWYQueryAlbumRequest::singleDownLoadFinished()
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

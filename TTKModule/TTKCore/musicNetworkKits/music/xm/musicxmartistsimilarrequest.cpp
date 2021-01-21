@@ -33,16 +33,10 @@ void MusicXMArtistSimilarRequest::startToSearch(const QString &text)
 
 void MusicXMArtistSimilarRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

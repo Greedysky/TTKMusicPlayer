@@ -33,7 +33,7 @@ void MusicQQQueryPlaylistRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -120,7 +120,7 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
                 item.m_nickName = value["nickname"].toString();
 
                 const QVariantList &tags = value["tags"].toList();
-                QString tagsString;
+                QString tagsString = STRING_NULL;
                 for(const QVariant &tag : qAsConst(tags))
                 {
                     if(tag.isNull())
@@ -138,18 +138,12 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicQQQueryPlaylistRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -160,7 +154,7 @@ void MusicQQQueryPlaylistRequest::downLoadFinished()
             if(value["code"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                m_pageTotal = value["sum"].toLongLong();
+                m_totalSize = value["sum"].toLongLong();
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -206,7 +200,7 @@ void MusicQQQueryPlaylistRequest::getDetailsFinished()
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(reply && m_manager && reply->error() == QNetworkReply::NoError)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

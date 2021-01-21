@@ -94,28 +94,6 @@
             <value key="22163" value="中国TOP排行榜"/>
         </tag>
     </KuGou>
-    <BaiDu>
-        <tag value="主打榜单">
-            <value key="1" value="新歌榜"/>
-            <value key="2" value="热歌榜"/>
-        </tag>
-        <tag value="分类榜单">
-            <value key="20" value="华语金曲榜"/>
-            <value key="21" value="欧美金曲榜"/>
-            <value key="24" value="影视金曲榜"/>
-            <value key="23" value="情歌对唱榜"/>
-            <value key="25" value="网络歌曲榜"/>
-            <value key="22" value="经典老歌榜"/>
-            <value key="11" value="摇滚榜"/>
-        </tag>
-        <tag value="媒体榜单">
-            <value key="6" value="KTV热歌榜"/>
-            <value key="8" value="Billboard"/>
-            <value key="18" value="Hito中文榜"/>
-            <value key="7" value="叱咤歌曲榜"/>
-            <value key="9" value="雪碧音碰音榜"/>
-        </tag>
-    </BaiDu>
     <KuWo>
         <tag value="分类榜">
             <value key="16" value="酷我热歌榜"/>

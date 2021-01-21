@@ -42,14 +42,9 @@ void MusicQQDownLoadTextRequest::startToDownload()
 
 void MusicQQDownLoadTextRequest::downLoadFinished()
 {
-    if(!m_reply || !m_file)
-    {
-        deleteAll();
-        return;
-    }
     m_speedTimer.stop();
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
         bytes.replace("MusicJsonCallback(", "");

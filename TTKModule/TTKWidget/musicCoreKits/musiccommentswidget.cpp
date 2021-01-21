@@ -301,7 +301,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     TTKStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPagingWidget();
 
-    initLabel(name, m_downloadRequest->getPageTotal());
+    initLabel(name, m_downloadRequest->getTotalSize());
 }
 
 void MusicCommentsWidget::createSearchedItem(const MusicResultsItem &comments)
@@ -323,8 +323,8 @@ void MusicCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
 
-    const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, total);
+    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    m_pagingWidgetObject->paging(index, pageTotal);
     m_downloadRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 
@@ -380,7 +380,7 @@ void MusicCommentsWidget::createPagingWidget()
     m_pagingWidgetObject = new MusicPagingWidgetObject(this);
     connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-    QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, total);
+    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, pageTotal);
     m_messageComments->layout()->addWidget(w);
 }

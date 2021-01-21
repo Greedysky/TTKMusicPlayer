@@ -11,6 +11,7 @@ MusicKWSongCommentsRequest::MusicKWSongCommentsRequest(QObject *parent)
 void MusicKWSongCommentsRequest::startToSearch(const QString &name)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+
     MusicSemaphoreLoop loop;
     MusicKWQueryRequest *d = new MusicKWQueryRequest(this);
     d->setQueryAllRecords(false);
@@ -37,7 +38,7 @@ void MusicKWSongCommentsRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -52,16 +53,10 @@ void MusicKWSongCommentsRequest::startToPage(int offset)
 
 void MusicKWSongCommentsRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -71,7 +66,7 @@ void MusicKWSongCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                m_pageTotal = value["total"].toInt();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &comments = value["rows"].toList();
                 for(const QVariant &comm : qAsConst(comments))
@@ -128,7 +123,7 @@ void MusicKWPlaylistCommentsRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -143,16 +138,10 @@ void MusicKWPlaylistCommentsRequest::startToPage(int offset)
 
 void MusicKWPlaylistCommentsRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -162,7 +151,7 @@ void MusicKWPlaylistCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                m_pageTotal = value["total"].toInt();
+                m_totalSize = value["total"].toInt();
 
                 const QVariantList &comments = value["rows"].toList();
                 for(const QVariant &comm : qAsConst(comments))

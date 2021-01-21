@@ -32,7 +32,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -115,20 +115,14 @@ void MusicDJRadioProgramCategoryRequest::getProgramInfo(MusicResultsItem &item)
 
 void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        m_pageTotal = m_pageSize;
+        m_totalSize = m_pageSize;
 
         QJson::Parser parser;
         bool ok;

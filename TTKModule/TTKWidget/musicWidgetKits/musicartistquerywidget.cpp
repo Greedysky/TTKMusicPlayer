@@ -151,8 +151,8 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-        m_mainWindow->layout()->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));
+        const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+        m_mainWindow->layout()->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, pageTotal));
     }
 
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
@@ -178,8 +178,8 @@ void MusicArtistMvsQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, total);
+    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    m_pagingWidgetObject->paging(index, pageTotal);
     m_downloadRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 

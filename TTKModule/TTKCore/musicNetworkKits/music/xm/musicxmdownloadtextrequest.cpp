@@ -41,14 +41,9 @@ void MusicXMDownLoadTextRequest::startToDownload()
 
 void MusicXMDownLoadTextRequest::downLoadFinished()
 {
-    if(!m_reply || !m_file)
-    {
-        deleteAll();
-        return;
-    }
     m_speedTimer.stop();
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
         const QByteArray &bytes = m_reply->readAll();
         if(!bytes.isEmpty())

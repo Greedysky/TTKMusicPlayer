@@ -31,7 +31,7 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -123,18 +123,12 @@ void MusicKGQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicKGQueryPlaylistRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -145,7 +139,7 @@ void MusicKGQueryPlaylistRequest::downLoadFinished()
             if(value["errcode"].toInt() == 0)
             {
                 value = value["data"].toMap();
-                m_pageTotal = value["total"].toLongLong();
+                m_totalSize = value["total"].toLongLong();
 
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -187,11 +181,11 @@ void MusicKGQueryPlaylistRequest::getDetailsFinished()
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = parser.parse(reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

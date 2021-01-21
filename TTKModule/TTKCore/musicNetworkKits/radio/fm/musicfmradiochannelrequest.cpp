@@ -41,13 +41,7 @@ void MusicFMRadioChannelRequest::startToDownload(const QString &id)
 
 void MusicFMRadioChannelRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         m_channels.clear();
 

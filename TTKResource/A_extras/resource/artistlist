@@ -76,23 +76,6 @@
             <value key="type=4nsextype=0" value="其他"/>
         </tag>
     </KuGou>
-    <BaiDu>
-        <tag value="华语">
-            <value key="area=1nsex=1" value="华语男歌手"/>
-            <value key="area=1nsex=2" value="华语女歌手"/>
-            <value key="area=1nsex=3" value="华语组合歌手"/>
-        </tag>
-        <tag value="欧美">
-            <value key="area=3nsex=1" value="欧美男歌手"/>
-            <value key="area=3nsex=2" value="欧美女歌手"/>
-            <value key="area=3nsex=3" value="欧美组合"/>
-        </tag>
-        <tag value="日韩">
-            <value key="area=4nsex=1" value="日韩男歌手"/>
-            <value key="area=4nsex=2" value="日韩女歌手"/>
-            <value key="area=4nsex=3" value="日韩组合"/>
-        </tag>
-    </BaiDu>
     <KuWo>
         <tag value="华语">
             <value key="1" value="华语男歌手"/>

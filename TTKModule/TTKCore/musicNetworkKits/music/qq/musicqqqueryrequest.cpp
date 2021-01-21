@@ -3,8 +3,8 @@
 MusicQQQueryRequest::MusicQQQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_queryServer = QUERY_QQ_INTERFACE;
     m_pageSize = 30;
+    m_queryServer = QUERY_QQ_INTERFACE;
 }
 
 void MusicQQQueryRequest::startToSearch(QueryType type, const QString &text)
@@ -35,7 +35,7 @@ void MusicQQQueryRequest::startToPage(int offset)
     deleteAll();
 
     m_interrupt = true;
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_pageIndex = offset;
 
     QNetworkRequest request;
@@ -71,16 +71,10 @@ void MusicQQQueryRequest::startToSingleSearch(const QString &text)
 
 void MusicQQQueryRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -92,7 +86,7 @@ void MusicQQQueryRequest::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["song"].toMap();
-                m_pageTotal = value["totalnum"].toInt();
+                m_totalSize = value["totalnum"].toInt();
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -166,7 +160,7 @@ void MusicQQQueryRequest::singleDownLoadFinished()
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

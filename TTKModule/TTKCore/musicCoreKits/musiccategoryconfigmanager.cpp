@@ -13,6 +13,7 @@ bool MusicCategoryConfigManager::readConfig(Type type)
     {
         case Playlist: v = ":/data/playlist"; break;
         case Toplist: v = ":/data/toplist"; break;
+        case ToplistResource: v = ":/data/toplist.res"; break;
         case ArtistList: v = ":/data/artistlist"; break;
         case MovieList: v = ":/data/movielist"; break;
         default: break;
@@ -38,8 +39,8 @@ void MusicCategoryConfigManager::readCategoryData(MusicResultsCategorys &records
             {
                 MusicResultsCategoryItem item;
                 const QDomNode &typeNode = typeNodes.at(k);
-                item.m_name = typeNode.toElement().attribute("value");
-                item.m_id = typeNode.toElement().attribute("key");
+                item.m_key = typeNode.toElement().attribute("key");
+                item.m_value = typeNode.toElement().attribute("value");
                 category.m_items.append(item);
             }
             records.append(category);

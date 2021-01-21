@@ -6,8 +6,8 @@
 MusicKGQueryMovieRequest::MusicKGQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_queryServer = QUERY_KG_INTERFACE;
     m_pageSize = 30;
+    m_queryServer = QUERY_KG_INTERFACE;
 }
 
 void MusicKGQueryMovieRequest::startToSearch(QueryType type, const QString &text)
@@ -44,7 +44,7 @@ void MusicKGQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_pageSize = 20;
     m_interrupt = true;
 
@@ -75,18 +75,12 @@ void MusicKGQueryMovieRequest::startToSingleSearch(const QString &text)
 
 void MusicKGQueryMovieRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -139,16 +133,10 @@ void MusicKGQueryMovieRequest::downLoadFinished()
 
 void MusicKGQueryMovieRequest::pageDownLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -159,7 +147,7 @@ void MusicKGQueryMovieRequest::pageDownLoadFinished()
             if(value.contains("data") && value["errcode"].toInt() == 0)
             {
                 value = value["data"].toMap();
-                m_pageTotal = value["total"].toInt();
+                m_totalSize = value["total"].toInt();
                 const QVariantList &datas = value["info"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {

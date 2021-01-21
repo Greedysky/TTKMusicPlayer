@@ -29,16 +29,10 @@ void MusicDJRadioProgramRequest::startToDownload(MusicObject::Program type)
 
 void MusicDJRadioProgramRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
     m_items.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

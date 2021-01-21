@@ -45,6 +45,7 @@
 #include "musicxmqueryplaylistrequest.h"
 #include "musickgqueryplaylistrequest.h"
 #include "musickwqueryplaylistrequest.h"
+#include "musicmgqueryplaylistrequest.h"
 //
 #include "musicwyqueryrecommendrequest.h"
 #include "musicqqqueryrecommendrequest.h"
@@ -58,6 +59,7 @@
 #include "musickgcommentsrequest.h"
 #include "musickwcommentsrequest.h"
 #include "musicqqcommentsrequest.h"
+#include "musicmgcommentsrequest.h"
 //
 #include "musicwydiscoverlistrequest.h"
 #include "musicxmdiscoverlistrequest.h"
@@ -211,6 +213,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getPlaylistRequest(QObject
         case XMQueryServer:  request = new MusicXMQueryPlaylistRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryPlaylistRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryPlaylistRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryPlaylistRequest(parent); break;
         default: request = new MusicWYQueryPlaylistRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryPlaylistRequest server: %1").arg(request->getQueryServer()));
@@ -284,6 +287,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::getSongCommentRequest(QObject *
         case XMQueryServer:  request = new MusicXMSongCommentsRequest(parent); break;
         case KWQueryServer:  request = new MusicKWSongCommentsRequest(parent); break;
         case KGQueryServer:  request = new MusicKGSongCommentsRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGSongCommentsRequest(parent); break;
         default: request = new MusicWYSongCommentsRequest(parent);
     }
     return request;
@@ -300,6 +304,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::getPlaylistCommentRequest(QObje
         case XMQueryServer:  request = new MusicXMPlaylistCommentsRequest(parent); break;
         case KWQueryServer:  request = new MusicKWPlaylistCommentsRequest(parent); break;
         case KGQueryServer:  request = new MusicKGPlaylistCommentsRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGPlaylistCommentsRequest(parent); break;
         default: request = new MusicWYPlaylistCommentsRequest(parent);
     }
     return request;

@@ -85,5 +85,6 @@ void MusicBDTranslationRequest::downLoadFinished()
         TTK_LOGGER_ERROR("Translation source data error");
         Q_EMIT downLoadDataChanged(QString());
     }
+
     deleteAll();
 }

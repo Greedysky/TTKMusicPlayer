@@ -8,8 +8,8 @@
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_queryServer = QUERY_KW_INTERFACE;
     m_pageSize = 40;
+    m_queryServer = QUERY_KW_INTERFACE;
 }
 
 void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text)
@@ -46,7 +46,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_pageSize = 20;
     m_interrupt = true;
 
@@ -77,24 +77,16 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
 
 void MusicKWQueryMovieRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(m_reply->readAll().replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -142,26 +134,18 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 
 void MusicKWQueryMovieRequest::pageDownLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(m_reply->readAll().replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
-            m_pageTotal = value["total"].toString().toLongLong();
+            m_totalSize = value["total"].toString().toLongLong();
             if(value.contains("mvlist"))
             {
                 const QVariantList &datas = value["mvlist"].toList();

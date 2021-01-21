@@ -122,8 +122,8 @@ void MusicItemSearchTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        const int total = ceil(m_downLoadManager->getPageTotal() * 1.0 / m_downLoadManager->getPageSize());
-        const bool more = (total > m_downLoadManager->getPageIndex() + 1);
+        const int pageTotal = ceil(m_downLoadManager->getTotalSize() * 1.0 / m_downLoadManager->getPageSize());
+        const bool more = (pageTotal > m_downLoadManager->getPageIndex() + 1);
         it->setData(MUSIC_TEXTS_ROLE, more ? tr("More Data") : tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }

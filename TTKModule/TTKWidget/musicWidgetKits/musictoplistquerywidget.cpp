@@ -220,11 +220,11 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
 {
     if(m_categoryButton)
     {
-        m_categoryButton->setText(category.m_name);
+        m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
         m_songButton->setText(tr("songItems"));
         m_downloadRequest->setQueryAllRecords(true);
-        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_id);
+        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
     }
 }

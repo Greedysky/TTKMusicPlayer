@@ -3,8 +3,8 @@
 MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_queryServer = QUERY_WY_INTERFACE;
     m_pageSize = 40;
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicWYQueryRequest::startToSearch(QueryType type, const QString &text)
@@ -35,7 +35,7 @@ void MusicWYQueryRequest::startToPage(int offset)
     deleteAll();
 
     m_interrupt = true;
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_pageIndex = offset;
 
     QNetworkRequest request;
@@ -77,16 +77,10 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &text)
 
 void MusicWYQueryRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -97,7 +91,7 @@ void MusicWYQueryRequest::downLoadFinished()
             if(value.contains("code") && value["code"].toInt() == 200)
             {
                 value = value["result"].toMap();
-                m_pageTotal = value["songCount"].toInt();
+                m_totalSize = value["songCount"].toInt();
                 const QVariantList &datas = value["songs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -172,7 +166,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

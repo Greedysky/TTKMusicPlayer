@@ -38,14 +38,9 @@ void MusicWYDownLoadTextRequest::startToDownload()
 
 void MusicWYDownLoadTextRequest::downLoadFinished()
 {
-    if(!m_reply || !m_file)
-    {
-        deleteAll();
-        return;
-    }
     m_speedTimer.stop();
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

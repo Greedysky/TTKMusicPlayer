@@ -36,13 +36,7 @@ void MusicFMRadioSongsRequest::startToDownload(const QString &id)
 
 void MusicFMRadioSongsRequest::downLoadFinished()
 {
-    if(!m_reply)
-    {
-        deleteAll();
-        return;
-    }
-
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;

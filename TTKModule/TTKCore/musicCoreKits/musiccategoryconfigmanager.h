@@ -26,18 +26,18 @@
  */
 typedef struct MUSIC_CORE_EXPORT MusicResultsCategoryItem
 {
-    QString m_id;
-    QString m_name;
+    QString m_key;
+    QString m_value;
 
     MusicResultsCategoryItem()
     {
 
     }
 
-    MusicResultsCategoryItem(const QString &id, const QString &name)
+    MusicResultsCategoryItem(const QString &key, const QString &value)
     {
-        m_id = id;
-        m_name = name;
+        m_key = key;
+        m_value = value;
     }
 }MusicResultsCategoryItem;
 TTK_DECLARE_LISTS(MusicResultsCategoryItem)
@@ -64,10 +64,11 @@ class MUSIC_CORE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
 public:
     enum Type
     {
-        Playlist,       /*!< Playlist Category*/
-        Toplist,        /*!< Toplist Category*/
-        ArtistList,     /*!< ArtistList Category*/
-        MovieList,      /*!< MovieList Category*/
+        Playlist,        /*!< Playlist Category*/
+        Toplist,         /*!< Toplist Category*/
+        ToplistResource, /*!< Toplist resource Category*/
+        ArtistList,      /*!< ArtistList Category*/
+        MovieList,       /*!< MovieList Category*/
     };
     /*!
      * Object contsructor.

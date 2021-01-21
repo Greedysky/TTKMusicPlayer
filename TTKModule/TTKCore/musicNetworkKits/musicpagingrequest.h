@@ -50,16 +50,16 @@ public:
      */
     inline int getPageSize() const { return m_pageSize; }
     /*!
-     * Return the page total number.
+     * Return the total number.
      */
-    inline int getPageTotal() const { return m_pageTotal; }
+    inline int getTotalSize() const { return m_totalSize; }
     /*!
      * Return the page index number.
      */
     inline int getPageIndex() const { return m_pageIndex; }
 
 protected:
-    int m_pageSize, m_pageTotal, m_pageIndex;
+    int m_pageSize, m_totalSize, m_pageIndex;
 
 };
 

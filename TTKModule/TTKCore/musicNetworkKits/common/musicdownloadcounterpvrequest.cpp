@@ -56,5 +56,6 @@ void MusicDownloadCounterPVRequest::downLoadFinished()
         TTK_LOGGER_ERROR("Counter PV data error");
         Q_EMIT downLoadDataChanged(QString());
     }
+
     deleteAll();
 }

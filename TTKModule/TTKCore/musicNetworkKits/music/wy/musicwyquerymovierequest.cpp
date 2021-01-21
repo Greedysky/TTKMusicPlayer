@@ -5,8 +5,8 @@
 MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
 {
-    m_queryServer = QUERY_WY_INTERFACE;
     m_pageSize = 40;
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text)
@@ -46,7 +46,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_pageSize = 20;
     m_interrupt = true;
 
@@ -80,18 +80,12 @@ void MusicWYQueryMovieRequest::startToSingleSearch(const QString &text)
 
 void MusicWYQueryMovieRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -131,16 +125,10 @@ void MusicWYQueryMovieRequest::downLoadFinished()
 
 void MusicWYQueryMovieRequest::pageDownLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -280,7 +268,7 @@ void MusicWYQueryMovieRequest::getArtistMvsCount(qint64 id)
         return;
     }
 
-    m_pageTotal = DEFAULT_LEVEL_HIGHER;
+    m_totalSize = DEFAULT_LEVEL_HIGHER;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
@@ -309,7 +297,7 @@ void MusicWYQueryMovieRequest::getArtistMvsCount(qint64 id)
         const QVariantMap &value = data.toMap();
         if(value["code"].toInt() == 200 && value.contains("mvs"))
         {
-            m_pageTotal = value["mvs"].toList().count();
+            m_totalSize = value["mvs"].toList().count();
         }
     }
 }

@@ -140,5 +140,6 @@ void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &data)
             m_accessSecret = value["secret"].toString();
         }
     }
+
     Q_EMIT getKeyFinished();
 }

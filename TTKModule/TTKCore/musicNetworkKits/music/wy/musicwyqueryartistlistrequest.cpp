@@ -4,7 +4,7 @@ MusicWYQueryArtistListRequest::MusicWYQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
     m_pageSize = DEFAULT_LEVEL_HIGHER;
-    m_pageTotal = DEFAULT_LEVEL_HIGHER;
+    m_totalSize = DEFAULT_LEVEL_HIGHER;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -63,18 +63,12 @@ void MusicWYQueryArtistListRequest::startToSearch(const QString &artistlist)
 
 void MusicWYQueryArtistListRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -103,6 +97,7 @@ void MusicWYQueryArtistListRequest::downLoadFinished()
             }
         }
     }
+
 //    Q_EMIT downLoadDataChanged(QString());
     deleteAll();
 }

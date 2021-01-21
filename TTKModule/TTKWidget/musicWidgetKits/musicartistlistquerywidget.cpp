@@ -161,16 +161,16 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-        mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));
+        const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+        mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, pageTotal));
         mainlayout->addStretch(1);
     }
 
     if(m_categoryChanged && m_pagingWidgetObject)
     {
         m_categoryChanged = false;
-        const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-        m_pagingWidgetObject->reset(total);
+        const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+        m_pagingWidgetObject->reset(pageTotal);
     }
 
     MusicArtistListQueryItemWidget *label = new MusicArtistListQueryItemWidget(this);
@@ -191,10 +191,10 @@ void MusicArtistListQueryWidget::categoryChanged(const MusicResultsCategoryItem 
 {
     if(m_categoryButton)
     {
-        m_categoryId = category.m_id;
+        m_categoryId = category.m_key;
         m_songNameFull.clear();
 
-        m_categoryButton->setText(category.m_name);
+        m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
         numberButtonClicked(-1);
@@ -210,8 +210,8 @@ void MusicArtistListQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int total = ceil(m_downloadRequest->getPageTotal() * 1.0 / m_downloadRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, total);
+    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    m_pagingWidgetObject->paging(index, pageTotal);
     m_downloadRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 

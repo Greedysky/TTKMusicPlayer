@@ -63,8 +63,8 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
 MusicKWQueryRequest::MusicKWQueryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_queryServer = QUERY_KW_INTERFACE;
     m_pageSize = 40;
+    m_queryServer = QUERY_KW_INTERFACE;
 }
 
 void MusicKWQueryRequest::startToSearch(QueryType type, const QString &text)
@@ -95,7 +95,7 @@ void MusicKWQueryRequest::startToPage(int offset)
     deleteAll();
 
     m_interrupt = true;
-    m_pageTotal = 0;
+    m_totalSize = 0;
     m_pageIndex = offset;
 
     QNetworkRequest request;
@@ -131,28 +131,20 @@ void MusicKWQueryRequest::startToSingleSearch(const QString &text)
 
 void MusicKWQueryRequest::downLoadFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     m_interrupt = false;
 
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
-
         QJson::Parser parser;
         bool ok;
-        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(m_reply->readAll().replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("abslist"))
             {
-                m_pageTotal = value["TOTAL"].toInt();
+                m_totalSize = value["TOTAL"].toInt();
                 const QVariantList &datas = value["abslist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
@@ -222,7 +214,7 @@ void MusicKWQueryRequest::singleDownLoadFinished()
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    if(reply && reply->error() == QNetworkReply::NoError)
     {
         QByteArray data = reply->readAll();
         data.insert(0, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n");

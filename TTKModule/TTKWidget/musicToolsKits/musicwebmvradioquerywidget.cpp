@@ -226,7 +226,7 @@ void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem 
     if(m_categoryButton)
     {
         m_songNameFull.clear();
-        m_categoryButton->setText(category.m_name);
+        m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
         while(!m_resizeWidgets.isEmpty())
@@ -235,6 +235,6 @@ void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem 
             m_gridLayout->removeWidget(w);
             delete w;
         }
-        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_id);
+        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
     }
 }

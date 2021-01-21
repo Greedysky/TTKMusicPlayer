@@ -40,15 +40,10 @@ void MusicQQDownloadBackgroundRequest::startToDownload()
 
 void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(getClassName()));
     QString songId;
-    if(m_reply->error() == QNetworkReply::NoError)
+
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
@@ -81,14 +76,8 @@ void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
 
 void MusicQQDownloadBackgroundRequest::downLoadUrlFinished()
 {
-    if(!m_reply || !m_manager)
-    {
-        deleteAll();
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 downLoadUrlFinished").arg(getClassName()));
-    if(m_reply->error() == QNetworkReply::NoError)
+    if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QStringList datas;
         const QString text(m_reply->readAll());
