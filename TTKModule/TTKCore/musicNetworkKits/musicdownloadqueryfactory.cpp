@@ -26,6 +26,7 @@
 #include "musickgqueryartistrequest.h"
 #include "musickwqueryartistrequest.h"
 #include "musicqqqueryartistrequest.h"
+#include "musicmgqueryartistrequest.h"
 //
 #include "musicwyqueryartistlistrequest.h"
 #include "musicxmqueryartistlistrequest.h"
@@ -161,6 +162,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistRequest(QObject *
         case XMQueryServer:  request = new MusicXMQueryArtistRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryArtistRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryArtistRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryArtistRequest(parent); break;
         default: request = new MusicWYQueryArtistRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryArtistRequest server: %1").arg(request->getQueryServer()));

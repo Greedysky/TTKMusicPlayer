@@ -197,7 +197,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg("003fk65m1ZaCG2"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg("889413740"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MOVIE_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
                 break;
             }
         case XMQueryServer:
@@ -215,7 +215,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_UNIMP_KEY, false).arg("2698608"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_UNIMP_KEY, false).arg("236350390"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MOVIE_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
                 break;
             }
         case KGQueryServer:
@@ -229,11 +229,11 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             }
         case MGQueryServer:
             {
-                m_songEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/song/%1").arg("69535600809"));
-                m_artistEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/artist/%1").arg("112"));
-                m_albumEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/album/%1").arg("1136534807"));
-                m_playlistEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/playlist/%1").arg("179730639"));
-                m_movieEdit->setPlaceholderText(QString("http://music.migu.cn/v3/video/mv/%1").arg("699119Y9AS9"));
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_SG_SHARE, ALG_UNIMP_KEY, false).arg("69535600809"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_AR_SHARE, ALG_UNIMP_KEY, false).arg("112"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_AL_SHARE, ALG_UNIMP_KEY, false).arg("1136534807"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_PL_SHARE, ALG_UNIMP_KEY, false).arg("179730639"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_MV_SHARE, ALG_UNIMP_KEY, false).arg("699119Y9AS9"));
                 break;
             }
         default: break;

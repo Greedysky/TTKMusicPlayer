@@ -128,6 +128,8 @@ HEADERS  += \
     $$PWD/music/mg/musicmgquerytoplistrequest.h \
     $$PWD/music/mg/musicmgqueryplaylistrequest.h \
     $$PWD/music/mg/musicmgcommentsrequest.h \
+    $$PWD/music/mg/musicmgqueryartistrequest.h \
+    $$PWD/music/mg/musicmgqueryalbumrequest.h \
     $$PWD/radio/fm/musicfmradiochannelrequest.h \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.h \
     $$PWD/radio/fm/musicfmradiosongsrequest.h \
@@ -258,6 +260,8 @@ SOURCES += \
     $$PWD/music/mg/musicmgquerytoplistrequest.cpp \
     $$PWD/music/mg/musicmgqueryplaylistrequest.cpp \
     $$PWD/music/mg/musicmgcommentsrequest.cpp \
+    $$PWD/music/mg/musicmgqueryartistrequest.cpp \
+    $$PWD/music/mg/musicmgqueryalbumrequest.cpp \
     $$PWD/radio/fm/musicfmradiochannelrequest.cpp \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.cpp \
     $$PWD/radio/fm/musicfmradiosongsrequest.cpp \
