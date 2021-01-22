@@ -30,10 +30,9 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_searchText));
@@ -52,14 +51,15 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(category));
-    m_interrupt = true;
+
+    deleteAll();
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(category));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
@@ -77,11 +77,11 @@ void MusicDJRadioProgramCategoryRequest::getProgramInfo(MusicResultsItem &item)
     TTK_LOGGER_INFO(QString("%1 getProgramInfo %2").arg(getClassName()).arg(item.m_id));
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -116,9 +116,10 @@ void MusicDJRadioProgramCategoryRequest::getProgramInfo(MusicResultsItem &item)
 void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -141,16 +142,15 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicResultsItem info;
                     info.m_id = QString::number(value["id"].toInt());
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
                     info.m_coverUrl = value["picUrl"].toString();
                     info.m_name = value["name"].toString();
                     value = value["dj"].toMap();
                     info.m_nickName = value["nickname"].toString();
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
-
                     Q_EMIT createProgramItem(info);
                 }
             }
@@ -163,13 +163,13 @@ void MusicDJRadioProgramCategoryRequest::downLoadFinished()
 
 void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
 {
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
-
     TTK_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -180,7 +180,7 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("programs"))
             {
-                bool categoryFlag = false;
+                bool categoryFound = false;
                 //
                 const QVariantList &datas = value["programs"].toList();
                 for(const QVariant &var : qAsConst(datas))
@@ -191,6 +191,8 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
@@ -203,13 +205,13 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
                     musicInfo.m_songId = QString::number(mainSongObject["id"].toInt());
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo, mainSongObject, m_searchQuality, true);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     //
-                    if(!categoryFlag)
+                    if(!categoryFound)
                     {
-                        categoryFlag = true;
+                        categoryFound = true;
                         MusicResultsItem info;
                         info.m_name = musicInfo.m_songName;
                         info.m_nickName = musicInfo.m_singerName;
@@ -223,7 +225,7 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                     {
                         continue;
                     }
-
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

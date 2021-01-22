@@ -15,10 +15,9 @@ void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
-    deleteAll();
 
+    deleteAll();
     m_searchText = id;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_RECOMMEND_URL, false));
@@ -33,9 +32,10 @@ void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
 void MusicQQQueryRecommendRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -58,6 +58,8 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     for(const QVariant &var : value["singer"].toList())
                     {
@@ -65,6 +67,7 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                         {
                             continue;
                         }
+
                         const QVariantMap &name = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
@@ -85,15 +88,15 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_discNumber = value["index_cd"].toString();
                     musicInfo.m_trackNumber = value["index_album"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
-
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

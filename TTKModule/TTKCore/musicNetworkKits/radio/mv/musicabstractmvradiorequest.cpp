@@ -13,7 +13,6 @@ void MusicAbstractMVRadioRequest::startToSearch(QueryType type, const QString &t
 
     deleteAll();
     m_searchText = text.isEmpty() ? "1" : text;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(MV_CATEGORY_URL, false));

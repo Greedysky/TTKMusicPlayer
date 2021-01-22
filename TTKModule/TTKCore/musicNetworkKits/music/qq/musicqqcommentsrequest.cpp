@@ -36,10 +36,9 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
@@ -54,7 +53,8 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
 void MusicQQSongCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -68,18 +68,18 @@ void MusicQQSongCommentsRequest::downLoadFinished()
             {
                 m_totalSize = value["commenttotal"].toInt();
 
-                const QVariantList &comments = value["comment"].toList();
-                for(const QVariant &comm : qAsConst(comments))
+                const QVariantList &datas = value["comment"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    if(comm.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
-                    if(m_interrupt) return;
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    value = comm.toMap();
                     comment.m_playCount = QString::number(value["praisenum"].toInt());
                     comment.m_updateTime = QString::number(value["time"].toLongLong() * 1000);
                     comment.m_description = value["rootcommentcontent"].toString();
@@ -120,10 +120,9 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
@@ -138,7 +137,8 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
 void MusicQQPlaylistCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -152,18 +152,18 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
             {
                 m_totalSize = value["commenttotal"].toInt();
 
-                const QVariantList &comments = value["comment"].toList();
-                for(const QVariant &comm : qAsConst(comments))
+                const QVariantList &datas = value["comment"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    if(comm.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
-                    if(m_interrupt) return;
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    value = comm.toMap();
                     comment.m_playCount = QString::number(value["praisenum"].toInt());
                     comment.m_updateTime = QString::number(value["time"].toLongLong() * 1000);
                     comment.m_description = value["rootcommentcontent"].toString();

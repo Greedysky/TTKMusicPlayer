@@ -36,17 +36,16 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toInt()),
                       MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -57,7 +56,8 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 void MusicWYSongCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -70,18 +70,18 @@ void MusicWYSongCommentsRequest::downLoadFinished()
             if(value["code"].toLongLong() == 200)
             {
                 m_totalSize = value["total"].toLongLong();
-                const QVariantList &comments = value["comments"].toList();
-                for(const QVariant &comm : qAsConst(comments))
+                const QVariantList &datas = value["comments"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    if(comm.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
-                    if(m_interrupt) return;
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    value = comm.toMap();
                     const QVariantMap &user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["avatarUrl"].toString();
@@ -89,7 +89,6 @@ void MusicWYSongCommentsRequest::downLoadFinished()
                     comment.m_playCount = QString::number(value["likedCount"].toLongLong());
                     comment.m_updateTime = QString::number(value["time"].toLongLong());
                     comment.m_description = value["content"].toString();
-
                     Q_EMIT createSearchedItem(comment);
                 }
             }
@@ -124,17 +123,16 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toLongLong()),
                       MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["songID"].toLongLong()).arg(m_pageSize).arg(m_pageSize*offset));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -145,7 +143,8 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 void MusicWYPlaylistCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -158,18 +157,18 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
             if(value["code"].toLongLong() == 200)
             {
                 m_totalSize = value["total"].toLongLong();
-                const QVariantList &comments = value["comments"].toList();
-                for(const QVariant &comm : qAsConst(comments))
+                const QVariantList &datas = value["comments"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    if(comm.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
-                    if(m_interrupt) return;
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    value = comm.toMap();
                     const QVariantMap &user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["avatarUrl"].toString();
@@ -177,7 +176,6 @@ void MusicWYPlaylistCommentsRequest::downLoadFinished()
                     comment.m_playCount = QString::number(value["likedCount"].toLongLong());
                     comment.m_updateTime = QString::number(value["time"].toLongLong());
                     comment.m_description = value["content"].toString();
-
                     Q_EMIT createSearchedItem(comment);
                 }
             }

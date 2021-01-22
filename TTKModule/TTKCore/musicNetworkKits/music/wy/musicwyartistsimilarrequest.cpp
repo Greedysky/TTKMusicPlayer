@@ -14,16 +14,15 @@ void MusicWYArtistSimilarRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+
     deleteAll();
 
-    m_interrupt = true;
-
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_SIMILAR_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_SIMILAR_DATA_URL, false).arg(text));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -34,7 +33,8 @@ void MusicWYArtistSimilarRequest::startToSearch(const QString &text)
 void MusicWYArtistSimilarRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -49,14 +49,14 @@ void MusicWYArtistSimilarRequest::downLoadFinished()
                 const QVariantList &datas = value["artists"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicResultsItem info;
                     info.m_id = QString::number(value["id"].toULongLong());
                     info.m_coverUrl = value["picUrl"].toString();

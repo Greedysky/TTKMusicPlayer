@@ -14,17 +14,16 @@ void MusicWYQueryRecommendRequest::startToSearch(const QString &id)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
-    deleteAll();
 
+    deleteAll();
     m_searchText = id;
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_RECOMMEND_URL, false),
                       QString("{}"));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -35,9 +34,10 @@ void MusicWYQueryRecommendRequest::startToSearch(const QString &id)
 void MusicWYQueryRecommendRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -58,6 +58,8 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
@@ -76,6 +78,7 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                         {
                             continue;
                         }
+
                         const QVariantMap &artistMap = artistValue.toMap();
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artistMap["name"].toString());
@@ -85,15 +88,15 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_discNumber = value["disc"].toString();
                     musicInfo.m_trackNumber = value["no"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
-
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

@@ -36,17 +36,16 @@ void MusicXMSongCommentsRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_COMMENT_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -57,7 +56,8 @@ void MusicXMSongCommentsRequest::startToPage(int offset)
 void MusicXMSongCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -75,30 +75,23 @@ void MusicXMSongCommentsRequest::downLoadFinished()
                 const QVariantMap &paging = value["pagingVO"].toMap();
                 m_totalSize = paging["count"].toLongLong();
 
-                const QVariantList &comments = value["commentVOList"].toList();
-                for(const QVariant &comm : qAsConst(comments))
+                const QVariantList &datas = value["commentVOList"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    if(comm.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
-                    if(m_interrupt) return;
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
                     comment.m_coverUrl = value["avatar"].toString();
-
-                    if(comment.m_coverUrl.contains(TTK_HTTPS))
-                    {
-                        comment.m_coverUrl.replace(TTK_HTTPS, TTK_HTTP);
-                    }
-
                     comment.m_playCount = QString::number(value["likes"].toLongLong());
                     comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
                     comment.m_description = value["message"].toString();
-
                     Q_EMIT createSearchedItem(comment);
                 }
             }
@@ -133,17 +126,16 @@ void MusicXMPlaylistCommentsRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_COMMENT_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -154,7 +146,8 @@ void MusicXMPlaylistCommentsRequest::startToPage(int offset)
 void MusicXMPlaylistCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -172,30 +165,23 @@ void MusicXMPlaylistCommentsRequest::downLoadFinished()
                 const QVariantMap &paging = value["pagingVO"].toMap();
                 m_totalSize = paging["count"].toLongLong();
 
-                const QVariantList &comments = value["commentVOList"].toList();
-                for(const QVariant &comm : qAsConst(comments))
+                const QVariantList &datas = value["commentVOList"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
-                    if(comm.isNull())
+                    if(var.isNull())
                     {
                         continue;
                     }
 
-                    if(m_interrupt) return;
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
                     comment.m_coverUrl = value["avatar"].toString();
-
-                    if(comment.m_coverUrl.contains(TTK_HTTPS))
-                    {
-                        comment.m_coverUrl.replace(TTK_HTTPS, TTK_HTTP);
-                    }
-
                     comment.m_playCount = QString::number(value["likes"].toLongLong());
                     comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
                     comment.m_description = value["message"].toString();
-
                     Q_EMIT createSearchedItem(comment);
                 }
             }

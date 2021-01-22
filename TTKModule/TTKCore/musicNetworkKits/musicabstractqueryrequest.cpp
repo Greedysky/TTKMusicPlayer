@@ -87,12 +87,12 @@ QString MusicAbstractQueryRequest::findTimeStringByAttrs(const MusicObject::Musi
 
 bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
 {
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return false;
+    TTK_NETWORK_QUERY_CHECK(false);
     if(attr->m_size.isEmpty() || attr->m_size == STRING_NULL)
     {
         attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
     }
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return false;
+    TTK_NETWORK_QUERY_CHECK(false);
 
     return true;
 }

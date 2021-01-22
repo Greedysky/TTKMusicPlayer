@@ -15,10 +15,9 @@ void MusicKWDiscoverListRequest::startToSearch()
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    deleteAll();
 
+    deleteAll();
     m_toplistInfo.clear();
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_TOPLIST_URL, false).arg(16));
@@ -33,7 +32,8 @@ void MusicKWDiscoverListRequest::startToSearch()
 void MusicKWDiscoverListRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -52,15 +52,16 @@ void MusicKWDiscoverListRequest::downLoadFinished()
                 int counter = 0;
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if((where != counter++) || var.isNull())
                     {
                         continue;
                     }
 
-                    const QVariantMap &value = var.toMap();
+                    value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     m_toplistInfo = QString("%1 - %2").arg(value["artist"].toString()).arg(value["name"].toString());
+                    break;
                 }
             }
         }

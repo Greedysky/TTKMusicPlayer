@@ -227,6 +227,15 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
                 break;
             }
+        case MGQueryServer:
+            {
+                m_songEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/song/%1").arg("69535600809"));
+                m_artistEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/artist/%1").arg("112"));
+                m_albumEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/album/%1").arg("1136534807"));
+                m_playlistEdit->setPlaceholderText(QString("http://music.migu.cn/v3/music/playlist/%1").arg("179730639"));
+                m_movieEdit->setPlaceholderText(QString("http://music.migu.cn/v3/video/mv/%1").arg("699119Y9AS9"));
+                break;
+            }
         default: break;
     }
 }
@@ -286,6 +295,32 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
                 else
                 {
                     regx.setPattern("/(\\d+)");
+                }
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+                break;
+            }
+        case MGQueryServer:
+            {
+                QRegExp regx;
+                if(type == 0)
+                {
+                    regx.setPattern("/song/(\\w+)");
+                }
+                else if(type == 1)
+                {
+                    regx.setPattern("/artist/(\\w+)");
+                }
+                else if(type == 2)
+                {
+                    regx.setPattern("/album/(\\w+)");
+                }
+                else if(type == 3)
+                {
+                    regx.setPattern("/playlist/(\\w+)");
+                }
+                else if(type == 4)
+                {
+                    regx.setPattern("/mv/(\\w+)");
                 }
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;

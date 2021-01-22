@@ -95,7 +95,7 @@ void MusicUserManagerDialog::musicUserLogoff()
     }
     if(index != -1)
     {
-        records[index].m_autoFlag = false;  //auto login flag
+        records[index].m_auto = false;  //auto login flag
     }
     xml.writeUserData(records);
 

@@ -8,7 +8,7 @@ MusicMVRadioCategoryRequest::MusicMVRadioCategoryRequest(QObject *parent)
 
 void MusicMVRadioCategoryRequest::downLoadFinished()
 {
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -24,32 +24,31 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
             const QVariantList &datas = data.toList();
             for(const QVariant &var : qAsConst(datas))
             {
-                if(m_interrupt) return;
-
                 if(var.isNull())
                 {
                     continue;
                 }
 
                 QVariantMap value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
                 if(value["classId"].toString() == m_searchText)
                 {
-                    const QVariantList &fmList = value["fm_list"].toList();
-                    for(const QVariant &var : qAsConst(fmList))
+                    const QVariantList &fms = value["fm_list"].toList();
+                    for(const QVariant &var : qAsConst(fms))
                     {
-                        if(m_interrupt) return;
-
                         if(var.isNull())
                         {
                             continue;
                         }
 
                         value = var.toMap();
+                        TTK_NETWORK_QUERY_CHECK();
+
                         MusicResultsItem item;
                         item.m_name = value["fmName"].toString();
                         item.m_id = value["fmId"].toString();
                         item.m_coverUrl = value["imgUrlMv"].toString();
-
                         Q_EMIT createCategoryItem(item);
                     }
                 }

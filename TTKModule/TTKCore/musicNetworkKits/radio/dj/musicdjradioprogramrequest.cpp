@@ -11,15 +11,14 @@ MusicDJRadioProgramRequest::MusicDJRadioProgramRequest(QObject *parent)
 void MusicDJRadioProgramRequest::startToDownload(MusicObject::Program type)
 {
     deleteAll();
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request, type == MusicObject::Recommed ?
                       MusicUtils::Algorithm::mdII(DJ_RECOMMEND_URL, false):
                       MusicUtils::Algorithm::mdII(DJ_HOT_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_HOT_DATA_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -30,7 +29,7 @@ void MusicDJRadioProgramRequest::startToDownload(MusicObject::Program type)
 void MusicDJRadioProgramRequest::downLoadFinished()
 {
     m_items.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -45,14 +44,14 @@ void MusicDJRadioProgramRequest::downLoadFinished()
                 const QVariantList &datas = value["djRadios"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicResultsItem item;
                     item.m_name = value["name"].toString();
                     item.m_id = value["id"].toString();
@@ -61,7 +60,6 @@ void MusicDJRadioProgramRequest::downLoadFinished()
                     item.m_nickName = value["categoryId"].toString();
                     item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                     item.m_playCount = value["subCount"].toString();
-
                     Q_EMIT createProgramItem(item);
                     m_items << item;
                 }

@@ -14,9 +14,9 @@ void MusicQQQueryAlbumRequest::startToSearch(const QString &album)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
+    m_searchText = album;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ALBUM_URL, false).arg(album));
@@ -37,7 +37,7 @@ void MusicQQQueryAlbumRequest::startToSingleSearch(const QString &artist)
 
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
 
-    m_interrupt = true;
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_ALBUM_URL, false).arg(artist));
@@ -52,9 +52,10 @@ void MusicQQQueryAlbumRequest::startToSingleSearch(const QString &artist)
 void MusicQQQueryAlbumRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -66,9 +67,10 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                bool albumFlag = false;
-                value = value["data"].toMap();
+                bool albumFound = false;
+                //
                 MusicResultsItem info;
+                value = value["data"].toMap();
                 info.m_description = TTK_STR_SPLITER +
                                      value["lan"].toString() + TTK_STR_SPLITER +
                                      value["company_new"].toMap()["name"].toString() + TTK_STR_SPLITER +
@@ -83,6 +85,8 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     for(const QVariant &var : value["singer"].toList())
                     {
@@ -108,18 +112,18 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_discNumber = value["cdIdx"].toString();
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
                     //
-                    if(!albumFlag)
+                    if(!albumFound)
                     {
-                        albumFlag = true;
+                        albumFound = true;
                         info.m_name = musicInfo.m_singerName;
                         info.m_id = musicInfo.m_albumId;
                         info.m_description = musicInfo.m_albumName + info.m_description;
@@ -146,11 +150,11 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
 
 void MusicQQQueryAlbumRequest::singleDownLoadFinished()
 {
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
-
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
-    m_interrupt = false;
 
+    setNetworkAbort(false);
+
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -171,8 +175,7 @@ void MusicQQQueryAlbumRequest::singleDownLoadFinished()
                     }
 
                     value = var.toMap();
-
-                    if(m_interrupt) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem info;
                     info.m_id = value["albumMID"].toString();

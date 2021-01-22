@@ -15,17 +15,16 @@ void MusicXMQueryArtistRequest::startToSearch(const QString &artist)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
-    deleteAll();
 
+    deleteAll();
     m_searchText = artist;
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_ARTIST_DATA_URL, false).arg(artist).arg(1).arg(30),
                       MusicUtils::Algorithm::mdII(XM_ARTIST_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -36,9 +35,10 @@ void MusicXMQueryArtistRequest::startToSearch(const QString &artist)
 void MusicXMQueryArtistRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -50,7 +50,7 @@ void MusicXMQueryArtistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                bool artistFlag = false;
+                bool artistFound = false;
                 //
                 value = value["data"].toMap();
                 value = value["data"].toMap();
@@ -63,6 +63,8 @@ void MusicXMQueryArtistRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singers"].toString());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
@@ -79,22 +81,22 @@ void MusicXMQueryArtistRequest::downLoadFinished()
                     musicInfo.m_discNumber = "0";
                     musicInfo.m_trackNumber = value["track"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
                     //
-                    if(!artistFlag)
+                    if(!artistFound)
                     {
-                        artistFlag = true;
+                        artistFound = true;
                         MusicResultsItem info;
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                        TTK_NETWORK_QUERY_CHECK();
                         getDownLoadIntro(&info);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                        TTK_NETWORK_QUERY_CHECK();
                         info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
@@ -126,11 +128,11 @@ void MusicXMQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
     }
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, true,
                       MusicUtils::Algorithm::mdII(XM_ARTIST_INFO_DATA_URL, false).arg(m_searchText),
                       MusicUtils::Algorithm::mdII(XM_ARTIST_INFO_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;

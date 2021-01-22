@@ -15,9 +15,8 @@ void MusicQQArtistSimilarRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_SIMILAR_URL, false).arg(text));
@@ -32,7 +31,8 @@ void MusicQQArtistSimilarRequest::startToSearch(const QString &text)
 void MusicQQArtistSimilarRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -52,14 +52,14 @@ void MusicQQArtistSimilarRequest::downLoadFinished()
                 const QVariantList &datas = value["items"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicResultsItem info;
                     info.m_id = value["mid"].toString();
                     info.m_coverUrl = value["pic"].toString();

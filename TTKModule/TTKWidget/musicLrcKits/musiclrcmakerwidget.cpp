@@ -677,25 +677,27 @@ void MusicLrcMakerWidget::createThirdWidget()
 
 bool MusicLrcMakerWidget::checkInputValid()
 {
-    bool errorFlag = false;
+    bool error = false;
     QString msg;
     if(m_ui->artNameEdit->text().isEmpty())
     {
-        errorFlag = true;
+        error = true;
         msg = tr("Art name is empty!");
     }
+
     if(m_ui->songNameEdit->text().isEmpty())
     {
-        errorFlag = true;
+        error = true;
         msg = tr("song name is empty!");
     }
+
     if(m_ui->lrcTextEdit->toPlainText().isEmpty())
     {
-        errorFlag = true;
+        error = true;
         msg = tr("lrc text is empty!");
     }
 
-    if(errorFlag)
+    if(error)
     {
         MusicToastLabel::popup(msg);
         return false;

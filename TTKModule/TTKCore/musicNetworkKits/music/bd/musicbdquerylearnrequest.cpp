@@ -19,11 +19,10 @@ void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text
         return;
     }
 
-    Q_UNUSED(type);
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
 
-    m_interrupt = true;
+    Q_UNUSED(type);
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_LEARN_URL, false).arg(text).arg(1).arg(30));
@@ -38,9 +37,10 @@ void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text
 void MusicBDQueryLearnRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -62,6 +62,8 @@ void MusicBDQueryLearnRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist_name"].toString());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["song_title"].toString());
@@ -72,17 +74,17 @@ void MusicBDQueryLearnRequest::downLoadFinished()
                     musicInfo.m_discNumber = "1";
                     musicInfo.m_trackNumber = value["album_no"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicLrcAttribute(&musicInfo);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
-
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
@@ -139,8 +141,9 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
             attr.m_bitrate = MB_128;
             attr.m_url = value["merge_link"].toString();
             attr.m_format = MP3_FILE_PREFIX;
+            //
             if(!findUrlFileSize(&attr)) return;
-
+            //
             info->m_songAttrs.append(attr);
         }
     }
@@ -187,6 +190,8 @@ void MusicBDQueryLearnRequest::readFromMusicLrcAttribute(MusicObject::MusicSongI
                 }
 
                 value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
                 info->m_lrcUrl = value["lrcLink"].toString();
             }
         }

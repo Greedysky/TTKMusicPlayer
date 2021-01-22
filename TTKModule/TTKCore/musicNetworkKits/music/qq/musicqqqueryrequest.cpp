@@ -15,6 +15,7 @@ void MusicQQQueryRequest::startToSearch(QueryType type, const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+
     m_currentType = type;
     m_searchText = text.trimmed();
 
@@ -32,9 +33,8 @@ void MusicQQQueryRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
     m_totalSize = 0;
     m_pageIndex = offset;
 
@@ -57,7 +57,7 @@ void MusicQQQueryRequest::startToSingleSearch(const QString &text)
 
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
-    m_interrupt = true;
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_INFO_URL, false).arg(text));
@@ -72,7 +72,8 @@ void MusicQQQueryRequest::startToSingleSearch(const QString &text)
 void MusicQQQueryRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -96,6 +97,8 @@ void MusicQQQueryRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     for(const QVariant &var : value["singer"].toList())
                     {
@@ -124,15 +127,15 @@ void MusicQQQueryRequest::downLoadFinished()
                         musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumname"].toString());
 
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                        TTK_NETWORK_QUERY_CHECK();
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                        TTK_NETWORK_QUERY_CHECK();
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;
                         }
-
+                        //
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
@@ -153,13 +156,13 @@ void MusicQQQueryRequest::downLoadFinished()
 
 void MusicQQQueryRequest::singleDownLoadFinished()
 {
-    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
-
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
+    QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -179,6 +182,8 @@ void MusicQQQueryRequest::singleDownLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     for(const QVariant &var : value["singer"].toList())
                     {
@@ -207,9 +212,9 @@ void MusicQQQueryRequest::singleDownLoadFinished()
                     musicInfo.m_discNumber = value["cdIdx"].toString();
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(!musicInfo.m_songAttrs.isEmpty())
                     {
@@ -220,7 +225,6 @@ void MusicQQQueryRequest::singleDownLoadFinished()
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
-
                         m_musicSongInfos << musicInfo;
                     }
                 }

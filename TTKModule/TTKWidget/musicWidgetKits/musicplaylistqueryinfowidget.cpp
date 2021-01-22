@@ -107,7 +107,6 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
         download->startToDownload(item.m_coverUrl);
     }
 
-    //
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);

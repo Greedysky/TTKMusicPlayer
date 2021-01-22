@@ -20,11 +20,10 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
 
+    deleteAll();
     m_searchText = text.trimmed();
     m_currentType = type;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize));
@@ -44,11 +43,10 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     m_totalSize = 0;
     m_pageSize = 20;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset));
@@ -69,8 +67,8 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
 
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
+    deleteAll();
     m_searchText = text.trimmed();
-    m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
@@ -78,9 +76,10 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
 void MusicKWQueryMovieRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -101,21 +100,23 @@ void MusicKWQueryMovieRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["ARTIST"].toString());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["SONGNAME"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
 
                     musicInfo.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicMVAttribute(&musicInfo, value["FORMATS"].toString());
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                       continue;
                     }
-
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
@@ -135,7 +136,8 @@ void MusicKWQueryMovieRequest::downLoadFinished()
 void MusicKWQueryMovieRequest::pageDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -157,8 +159,7 @@ void MusicKWQueryMovieRequest::pageDownLoadFinished()
                     }
 
                     value = var.toMap();
-
-                    if(m_interrupt) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem info;
                     info.m_id = value["musicid"].toString();
@@ -185,15 +186,15 @@ void MusicKWQueryMovieRequest::singleDownLoadFinished()
 
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_QUERY_CHECK();
     readFromMusicMVInfo(&musicInfo);
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_QUERY_CHECK();
     readFromMusicMVAttribute(&musicInfo, QString("MP4UL|MP4L|MP4HV|MP4"));
-    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_QUERY_CHECK();
 
     if(!musicInfo.m_songAttrs.isEmpty())
     {
@@ -281,8 +282,9 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
             {
                 return;
             }
-
+            //
             if(!findUrlFileSize(&attr)) return;
+            //
             info->m_songAttrs.append(attr);
         }
     }

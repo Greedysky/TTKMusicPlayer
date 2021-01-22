@@ -44,8 +44,8 @@ void MusicFMRadioSongsRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            const QVariantList &songLists = value["song"].toList();
-            if(songLists.isEmpty())
+            const QVariantList &datas = value["song"].toList();
+            if(datas.isEmpty())
             {
                 TTK_LOGGER_ERROR("The fm radio song is empty");
                 deleteAll();
@@ -53,7 +53,7 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 return;
             }
 
-            for(const QVariant &var : qAsConst(songLists))
+            for(const QVariant &var : qAsConst(datas))
             {
                 value = var.toMap();
                 if(value.isEmpty() || value["url"].toString().isEmpty())

@@ -78,10 +78,9 @@ void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
-    deleteAll();
 
+    deleteAll();
     m_searchText = artist;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_URL, false).arg(artist).arg(0).arg(50));
@@ -96,9 +95,10 @@ void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
 void MusicQQQueryArtistRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -110,7 +110,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
-                bool artistFlag = false;
+                bool artistFound = false;
                 //
                 value = value["data"].toMap();
                 const QVariantList &datas = value["list"].toList();
@@ -122,6 +122,8 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     value = value["musicData"].toMap();
                     MusicObject::MusicSongInformation musicInfo;
                     for(const QVariant &var : value["singer"].toList())
@@ -130,6 +132,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                         {
                             continue;
                         }
+
                         const QVariantMap &name = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
@@ -149,22 +152,22 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                     musicInfo.m_discNumber = value["cdIdx"].toString();
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
                     //
-                    if(!artistFlag)
+                    if(!artistFound)
                     {
-                        artistFlag = true;
+                        artistFound = true;
                         MusicResultsItem info;
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                        TTK_NETWORK_QUERY_CHECK();
                         getDownLoadIntro(&info);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                        TTK_NETWORK_QUERY_CHECK();
                         info.m_id = musicInfo.m_artistId;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;

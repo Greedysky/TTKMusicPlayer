@@ -16,6 +16,7 @@ void MusicBDTranslationRequest::startToDownload(const QString &data)
 void MusicBDTranslationRequest::startToDownload(TranslationType from, TranslationType to, const QString &data)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+
     deleteAll();
 
     QNetworkRequest request;
@@ -54,6 +55,8 @@ QString MusicBDTranslationRequest::mapTypeFromEnumToString(TranslationType type)
 
 void MusicBDTranslationRequest::downLoadFinished()
 {
+    setNetworkAbort(false);
+
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -66,11 +69,19 @@ void MusicBDTranslationRequest::downLoadFinished()
             const QVariantList &datas = value["data"].toList();
             for(const QVariant &var : qAsConst(datas))
             {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
                 value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
                 if(value.isEmpty() || value["dst"].toString().isEmpty())
                 {
                     continue;
                 }
+
                 Q_EMIT downLoadDataChanged(value["dst"].toString());
                 break;
             }

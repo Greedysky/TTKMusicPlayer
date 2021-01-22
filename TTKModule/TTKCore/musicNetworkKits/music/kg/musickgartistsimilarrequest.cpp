@@ -15,9 +15,8 @@ void MusicKGArtistSimilarRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_SIMILAR_URL, false).arg(text));
@@ -32,7 +31,8 @@ void MusicKGArtistSimilarRequest::startToSearch(const QString &text)
 void MusicKGArtistSimilarRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -43,7 +43,7 @@ void MusicKGArtistSimilarRequest::downLoadFinished()
         int pos = html.indexOf(regx);
         while(pos != -1)
         {
-            if(m_interrupt) return;
+            TTK_NETWORK_QUERY_CHECK();
 
             MusicResultsItem info;
             QRegExp idrx("/(\\d+)");

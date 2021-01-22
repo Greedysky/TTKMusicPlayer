@@ -29,14 +29,14 @@ typedef struct MUSIC_USER_EXPORT MusicUserRecord
     QString m_uid;
     QString m_password;
     int m_server;
-    bool m_rememberFlag;
-    bool m_autoFlag;
+    bool m_remember;
+    bool m_auto;
 
     MusicUserRecord()
     {
         m_server = 0;
-        m_rememberFlag = false;
-        m_autoFlag = false;
+        m_remember = false;
+        m_auto = false;
     }
 }MusicUserRecord;
 TTK_DECLARE_LISTS(MusicUserRecord)

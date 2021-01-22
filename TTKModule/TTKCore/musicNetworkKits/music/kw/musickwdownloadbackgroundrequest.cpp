@@ -29,9 +29,9 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
         {
             QVariantMap dataMap = data.toMap();
             const QVariantList &datas = dataMap["array"].toList();
-            for(const QVariant &value : qAsConst(datas))
+            for(const QVariant &var : qAsConst(datas))
             {
-                dataMap = value.toMap();
+                dataMap = var.toMap();
                 if(m_counter < 5 && !dataMap.isEmpty())
                 {
                     const QString &url = dataMap.values().first().toString();

@@ -25,6 +25,8 @@ void MusicPagingRequest::deleteAll()
         m_reply->deleteLater();
         m_reply = nullptr;
     }
+
+    setNetworkAbort(true);
 }
 
 void MusicPagingRequest::startToPage(int offset)

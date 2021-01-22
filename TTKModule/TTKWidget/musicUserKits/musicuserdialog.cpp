@@ -51,7 +51,7 @@ bool MusicUserDialog::checkToAutoLogin()
 {
     for(const MusicUserRecord &record  : qAsConst(m_records))
     {
-        if(record.m_autoFlag)
+        if(record.m_auto)
         {
             m_userUID = MusicUserUIDItem(record.m_uid, record.m_server);
             MusicUtils::Widget::setComboBoxText(m_ui->userComboBox, record.m_uid);
@@ -377,8 +377,8 @@ void MusicUserDialog::readFromUserSettings()
     const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
-        m_ui->automaticLogin->setChecked(m_records[index].m_autoFlag);
-        m_ui->rememberPwd->setChecked(m_records[index].m_rememberFlag);
+        m_ui->automaticLogin->setChecked(m_records[index].m_auto);
+        m_ui->rememberPwd->setChecked(m_records[index].m_remember);
         m_ui->passwLineEdit->setText(m_records[index].m_password);
     }
 }
@@ -396,15 +396,15 @@ void MusicUserDialog::writeToUserSettings()
     {
         for(int i=0; i<m_records.count(); ++i)
         {
-            m_records[i].m_autoFlag = false;
+            m_records[i].m_auto = false;
         }
     }
 
     const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
-        m_records[index].m_autoFlag = m_ui->automaticLogin->isChecked();
-        m_records[index].m_rememberFlag = m_ui->rememberPwd->isChecked();
+        m_records[index].m_auto = m_ui->automaticLogin->isChecked();
+        m_records[index].m_remember = m_ui->rememberPwd->isChecked();
         m_records[index].m_password = m_ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userUID) : QString();
     }
     else
@@ -412,8 +412,8 @@ void MusicUserDialog::writeToUserSettings()
         MusicUserRecord record;
         record.m_uid = m_userUID.m_uid;
         record.m_server = m_userUID.m_server;
-        record.m_autoFlag = m_ui->automaticLogin->isChecked();
-        record.m_rememberFlag = m_ui->rememberPwd->isChecked();
+        record.m_auto = m_ui->automaticLogin->isChecked();
+        record.m_remember = m_ui->rememberPwd->isChecked();
         record.m_password = m_ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userUID) : QString();
         m_records << record;
     }

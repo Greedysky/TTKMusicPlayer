@@ -9,14 +9,13 @@ MusicDJRadioCategoryRequest::MusicDJRadioCategoryRequest(QObject *parent)
 void MusicDJRadioCategoryRequest::startToDownload()
 {
     deleteAll();
-    m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_CATEGORY_URL, false),
                       QString("{}"));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -27,7 +26,7 @@ void MusicDJRadioCategoryRequest::startToDownload()
 void MusicDJRadioCategoryRequest::downLoadFinished()
 {
     m_items.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -42,14 +41,14 @@ void MusicDJRadioCategoryRequest::downLoadFinished()
                 const QVariantList &datas = value["categories"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicResultsItem item;
                     item.m_name = value["name"].toString();
                     item.m_id = value["id"].toString();

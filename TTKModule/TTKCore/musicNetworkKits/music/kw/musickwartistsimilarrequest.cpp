@@ -16,9 +16,8 @@ void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_SIMILAR_URL, false).arg(getArtistNameById(text)));
@@ -33,7 +32,8 @@ void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
 void MusicKWArtistSimilarRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -44,10 +44,13 @@ void MusicKWArtistSimilarRequest::downLoadFinished()
         int pos = html.indexOf(regx);
         while(pos != -1)
         {
-            if(m_interrupt) return;
+            TTK_NETWORK_QUERY_CHECK();
 
             MusicResultsItem info;
+            TTK_NETWORK_QUERY_CHECK();
             info.m_id = getArtistIdName(regx.cap(2));
+            TTK_NETWORK_QUERY_CHECK();
+
             info.m_coverUrl = regx.cap(1);
             info.m_name = regx.cap(2);
             info.m_updateTime.clear();

@@ -15,17 +15,16 @@ void MusicXMDiscoverListRequest::startToSearch()
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    m_toplistInfo.clear();
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
+    m_toplistInfo.clear();
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_TOPLIST_DATA_URL, false).arg(103),
                       MusicUtils::Algorithm::mdII(XM_TOPLIST_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -36,7 +35,8 @@ void MusicXMDiscoverListRequest::startToSearch()
 void MusicXMDiscoverListRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    m_interrupt = false;
+
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -58,14 +58,14 @@ void MusicXMDiscoverListRequest::downLoadFinished()
                 int counter = 0;
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if((where != counter++) || var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     m_toplistInfo = QString("%1 - %2").arg(value["artistName"].toString()).arg(value["songName"].toString());
                     break;
                 }

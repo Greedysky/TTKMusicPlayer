@@ -12,7 +12,7 @@ MusicMVRadioProgramRequest::MusicMVRadioProgramRequest(QObject *parent)
 
 void MusicMVRadioProgramRequest::downLoadFinished()
 {
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -28,27 +28,27 @@ void MusicMVRadioProgramRequest::downLoadFinished()
             bool contains = false;
             for(const QVariant &var : data.toList())
             {
-                if(m_interrupt) return;
-
                 if(var.isNull())
                 {
                     continue;
                 }
 
                 QVariantMap value = var.toMap();
+                TTK_NETWORK_QUERY_CHECK();
+
                 MusicResultsItem item;
                 item.m_nickName = value["className"].toString();
 
                 for(const QVariant &var : value["fm_list"].toList())
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     if(!contains && value["fmId"].toString() == m_searchText)
                     {
                         contains = true;
@@ -60,14 +60,14 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
                         for(const QVariant &var : value["mvs"].toList())
                         {
-                            if(m_interrupt) return;
-
                             if(var.isNull())
                             {
                                 continue;
                             }
 
                             value = var.toMap();
+                            TTK_NETWORK_QUERY_CHECK();
+
                             MusicObject::MusicSongInformation musicInfo;
                             musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                             musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
@@ -83,15 +83,15 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["time"].toInt());
 
                             musicInfo.m_songId = value["mvhash"].toString();
-                            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                            TTK_NETWORK_QUERY_CHECK();
                             readFromMusicMVAttribute(&musicInfo);
-                            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                            TTK_NETWORK_QUERY_CHECK();
 
                             if(musicInfo.m_songAttrs.isEmpty())
                             {
                                 continue;
                             }
-
+                            //
                             MusicSearchedItem item;
                             item.m_songName = musicInfo.m_songName;
                             item.m_singerName = musicInfo.m_singerName;

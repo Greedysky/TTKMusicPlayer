@@ -15,8 +15,8 @@ void MusicQQQueryArtistListRequest::startToPage(int offset)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
-    deleteAll();
 
+    deleteAll();
     QString catId = "cn_man_", initial = "all";
     const QStringList &dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
@@ -38,9 +38,7 @@ void MusicQQQueryArtistListRequest::startToPage(int offset)
         }
     }
     catId += initial;
-
     m_totalSize = 0;
-    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset + 1));
@@ -61,9 +59,10 @@ void MusicQQQueryArtistListRequest::startToSearch(const QString &artistlist)
 void MusicQQQueryArtistListRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -80,14 +79,13 @@ void MusicQQQueryArtistListRequest::downLoadFinished()
                 const QVariantList &datas = value["list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem info;
                     info.m_id = value["Fsinger_mid"].toString();

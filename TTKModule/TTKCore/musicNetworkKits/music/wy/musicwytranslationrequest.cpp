@@ -11,8 +11,9 @@ MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
 
 void MusicWYTranslationRequest::startToDownload(const QString &data)
 {
-    Q_UNUSED(data);
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+
+    Q_UNUSED(data);
     deleteAll();
 
     MusicSemaphoreLoop loop;

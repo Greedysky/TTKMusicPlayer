@@ -26,16 +26,15 @@ void MusicXMQueryToplistRequest::startToSearch(const QString &toplist)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+
     deleteAll();
 
-    m_interrupt = true;
-
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
                       MusicUtils::Algorithm::mdII(XM_TOPLIST_DATA_URL, false).arg(toplist),
                       MusicUtils::Algorithm::mdII(XM_TOPLIST_URL, false));
-    if(!m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+    TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -46,9 +45,10 @@ void MusicXMQueryToplistRequest::startToSearch(const QString &toplist)
 void MusicXMQueryToplistRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -63,6 +63,7 @@ void MusicXMQueryToplistRequest::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
                 value = value["billboard"].toMap();
+
                 MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["logo"].toString();
@@ -80,6 +81,8 @@ void MusicXMQueryToplistRequest::downLoadFinished()
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singers"].toString());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
@@ -96,15 +99,15 @@ void MusicXMQueryToplistRequest::downLoadFinished()
                     musicInfo.m_discNumber = "0";
                     musicInfo.m_trackNumber = value["track"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return;
+                    TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
-
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

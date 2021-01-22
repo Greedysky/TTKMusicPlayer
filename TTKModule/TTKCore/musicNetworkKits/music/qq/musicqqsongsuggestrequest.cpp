@@ -15,9 +15,8 @@ void MusicQQSongSuggestRequest::startToSearch(const QString &text)
     }
 
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
 
-    m_interrupt = true;
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SUGGEST_URL, false).arg(text));
@@ -32,8 +31,9 @@ void MusicQQSongSuggestRequest::startToSearch(const QString &text)
 void MusicQQSongSuggestRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+
     m_items.clear();
-    m_interrupt = false;
+    setNetworkAbort(false);
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -50,14 +50,14 @@ void MusicQQSongSuggestRequest::downLoadFinished()
                 const QVariantList &datas = value["itemlist"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
-                    if(m_interrupt) return;
-
                     if(var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
                     MusicResultsItem item;
                     item.m_name = value["name"].toString();
                     item.m_nickName = value["singer"].toString();

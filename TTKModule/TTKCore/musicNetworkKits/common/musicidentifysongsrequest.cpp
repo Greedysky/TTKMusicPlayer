@@ -102,8 +102,8 @@ void MusicIdentifySongsRequest::downLoadFinished()
             if(value.contains("metadata"))
             {
                 value = value["metadata"].toMap();
-                const QVariantList &list = value["music"].toList();
-                for(const QVariant &var : qAsConst(list))
+                const QVariantList &datas = value["music"].toList();
+                for(const QVariant &var : qAsConst(datas))
                 {
                     value = var.toMap();
 
