@@ -39,7 +39,7 @@ public:
     /*!
      * Set network query input.
      */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query);
+    virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
     /*!
      * Start search query by text.
      */

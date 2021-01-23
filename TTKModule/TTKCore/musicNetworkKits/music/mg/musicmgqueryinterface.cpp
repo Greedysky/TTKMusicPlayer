@@ -20,12 +20,13 @@ void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         case MB_128: qulity = "PQ"; break;
         case MB_192: qulity = "Z3D"; break;
         case MB_320: qulity = "HQ"; break;
-        case MB_1000: qulity = "SQ"; break;
+        case MB_750: qulity = "SQ"; break;
+        case MB_1000: qulity = "ZQ"; break;
         default: break;
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MG_SONG_PATH, false).arg(info->m_songId).arg(qulity));
+    request.setUrl(MusicUtils::Algorithm::mdII(MG_SONG_PATH_URL, false).arg(info->m_songId).arg(qulity));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL, ALG_UA_KEY, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
     request.setRawHeader("uid", "1234");
@@ -53,7 +54,6 @@ void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         if(value.contains("code") && value["code"].toString() == "000000")
         {
             value = value["data"].toMap();
-
             MusicObject::MusicSongAttribute attr;
             attr.m_url = value["url"].toString();
             if(attr.m_url.isEmpty())
@@ -102,70 +102,15 @@ void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &key, const QString &quality, bool all)
 {
-    if(all)
-    {
-        readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
-        readFromMusicSongAttribute(info, key["hasHQqq"].toInt() == 1, MB_320, MP3_FILE_PREFIX); //HQ
-        readFromMusicSongAttribute(info, key["has3Dqq"].toInt() == 1, MB_192, MP3_FILE_PREFIX); //3D
-        readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_1000, FLC_FILE_PREFIX); //SQ
-    }
-    else
-    {
-        if(quality == QObject::tr("SD"))
-        {
-            readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
-        }
-        else if(quality == QObject::tr("HQ"))
-        {
-            readFromMusicSongAttribute(info, key["has3Dqq"].toInt() == 1, MB_192, MP3_FILE_PREFIX); //3D
-        }
-        else if(quality == QObject::tr("SQ"))
-        {
-            readFromMusicSongAttribute(info, key["hasHQqq"].toInt() == 1, MB_320, MP3_FILE_PREFIX); //HQ
-        }
-        else if(quality == QObject::tr("CD"))
-        {
-            readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_1000, FLC_FILE_PREFIX); //SQ
-        }
-    }
-}
-
-void MusicMGQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
-{
-    if(all)
-    {
-        readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
-        readFromMusicSongAttribute(info, !key["hq"].isNull(), MB_320, MP3_FILE_PREFIX); //HQ
-        readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_1000, FLC_FILE_PREFIX); //SQ
-    }
-    else
-    {
-        if(quality == QObject::tr("SD"))
-        {
-            readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
-        }
-        else if(quality == QObject::tr("SQ"))
-        {
-            readFromMusicSongAttribute(info, !key["hq"].isNull(), MB_320, MP3_FILE_PREFIX); //HQ
-        }
-        else if(quality == QObject::tr("CD"))
-        {
-            readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_1000, FLC_FILE_PREFIX); //SQ
-        }
-    }
-}
-
-void MusicMGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSongInformation *info)
-{
-    if(info->m_songId.isEmpty())
+    if(key.isEmpty())
     {
         return;
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MG_SONG_INFO_URL, false).arg(info->m_songId));
+    request.setUrl(MusicUtils::Algorithm::mdII(MG_SONG_INFO_URL, false).arg(key));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL, ALG_UA_KEY, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
@@ -191,8 +136,71 @@ void MusicMGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSon
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            info->m_smallPicUrl = value["picS"].toString();
-            info->m_lrcUrl = MusicUtils::Algorithm::mdII(MG_SONG_LRC_URL, false).arg(info->m_songId);
+            readFromMusicSongAttribute(info, value, quality, all);
+        }
+    }
+}
+
+void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+{
+    if(all)
+    {
+        readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
+        readFromMusicSongAttribute(info, key["has3Dqq"].toInt() == 1, MB_192, MP3_FILE_PREFIX); //3D
+        readFromMusicSongAttribute(info, key["hasHQqq"].toInt() == 1, MB_320, MP3_FILE_PREFIX); //HQ
+        readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_750, FLC_FILE_PREFIX); //SQ
+        readFromMusicSongAttribute(info, key["has24Bitqq"].toInt() == 1, MB_1000, FLC_FILE_PREFIX); //ZQ
+    }
+    else
+    {
+        if(quality == QObject::tr("SD"))
+        {
+            readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
+        }
+        else if(quality == QObject::tr("HQ"))
+        {
+            readFromMusicSongAttribute(info, key["has3Dqq"].toInt() == 1, MB_192, MP3_FILE_PREFIX); //3D
+        }
+        else if(quality == QObject::tr("SQ"))
+        {
+            readFromMusicSongAttribute(info, key["hasHQqq"].toInt() == 1, MB_320, MP3_FILE_PREFIX); //HQ
+        }
+        else if(quality == QObject::tr("CD"))
+        {
+            readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_750, FLC_FILE_PREFIX); //SQ
+            readFromMusicSongAttribute(info, key["has24Bitqq"].toInt() == 1, MB_1000, FLC_FILE_PREFIX); //ZQ
+        }
+    }
+}
+
+void MusicMGQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
+{
+    if(all)
+    {
+        readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
+        readFromMusicSongAttribute(info, !key["d3"].isNull(), MB_192, MP3_FILE_PREFIX); //3D
+        readFromMusicSongAttribute(info, !key["hq"].isNull(), MB_320, MP3_FILE_PREFIX); //HQ
+        readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_750, FLC_FILE_PREFIX); //SQ
+        readFromMusicSongAttribute(info, !key["bit24"].isNull(), MB_1000, FLC_FILE_PREFIX); //ZQ
+    }
+    else
+    {
+        if(quality == QObject::tr("SD"))
+        {
+            readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
+        }
+        else if(quality == QObject::tr("HQ"))
+        {
+            readFromMusicSongAttribute(info, !key["d3"].isNull(), MB_192, MP3_FILE_PREFIX); //3D
+        }
+        else if(quality == QObject::tr("SQ"))
+        {
+            readFromMusicSongAttribute(info, !key["hq"].isNull(), MB_320, MP3_FILE_PREFIX); //HQ
+        }
+        else if(quality == QObject::tr("CD"))
+        {
+            readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_750, FLC_FILE_PREFIX); //SQ
+            readFromMusicSongAttribute(info, !key["bit24"].isNull(), MB_1000, FLC_FILE_PREFIX); //ZQ
         }
     }
 }

@@ -35,7 +35,10 @@ void MusicMGQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
 void MusicMGQueryMovieRequest::startToPage(int offset)
 {
+    Q_UNUSED(offset);
 
+    Q_EMIT downLoadDataChanged(QString());
+    deleteAll();
 }
 
 void MusicMGQueryMovieRequest::startToSingleSearch(const QString &text)
@@ -102,46 +105,7 @@ void MusicMGQueryMovieRequest::downLoadFinished()
 
 void MusicMGQueryMovieRequest::pageDownLoadFinished()
 {
-//    TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
 
-//    setNetworkAbort(false);
-
-//    if(m_reply && m_reply->error() == QNetworkReply::NoError)
-//    {
-//        QJson::Parser parser;
-//        bool ok;
-//        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
-//        if(ok)
-//        {
-//            QVariantMap value = data.toMap();
-//            if(value.contains("data") && value["errcode"].toInt() == 0)
-//            {
-//                value = value["data"].toMap();
-//                m_totalSize = value["total"].toInt();
-//                const QVariantList &datas = value["info"].toList();
-//                for(const QVariant &var : qAsConst(datas))
-//                {
-//                    if(var.isNull())
-//                    {
-//                        continue;
-//                    }
-
-//                    value = var.toMap();
-//                    TTK_NETWORK_QUERY_CHECK();
-
-//                    MusicResultsItem info;
-//                    info.m_id = value["hash"].toString();
-//                    info.m_coverUrl = value["imgurl"].toString();
-//                    info.m_name = value["filename"].toString();
-//                    info.m_updateTime.clear();
-//                    Q_EMIT createMovieInfoItem(info);
-//                }
-//            }
-//        }
-//    }
-
-//    Q_EMIT downLoadDataChanged(QString());
-//    deleteAll();
 }
 
 void MusicMGQueryMovieRequest::singleDownLoadFinished()

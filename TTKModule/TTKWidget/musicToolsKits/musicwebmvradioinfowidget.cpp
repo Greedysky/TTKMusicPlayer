@@ -100,11 +100,11 @@ void MusicWebMVRadioInfoWidget::resizeWindow()
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
         width = width - WINDOW_WIDTH_MIN + 390;
 
-        QLabel *label = m_resizeWidgets[0];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));
+        TTKResizeWidget *data = &m_resizeWidgets[0];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
-        label = m_resizeWidgets[1];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));
+        data = &m_resizeWidgets[1];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 }
 
@@ -128,13 +128,13 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
             download->startToDownload(item.m_coverUrl);
         }
 
-        QLabel *label = m_resizeWidgets[0];
-        label->setToolTip(item.m_name);
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 390));
+        TTKResizeWidget *data = &m_resizeWidgets[0];
+        data->m_label->setToolTip(item.m_name);
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
 
-        label = m_resizeWidgets[1];
-        label->setToolTip(tr("Type: %1").arg(item.m_nickName));
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 390));
+        data = &m_resizeWidgets[1];
+        data->m_label->setToolTip(tr("Type: %1").arg(item.m_nickName));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
     }
 }
 
@@ -232,7 +232,8 @@ void MusicWebMVRadioInfoWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets << nameLabel << typeLabel;
+    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
+    m_resizeWidgets.push_back({typeLabel, typeLabel->font()});
 }
 
 void MusicWebMVRadioInfoWidget::initThirdWidget()

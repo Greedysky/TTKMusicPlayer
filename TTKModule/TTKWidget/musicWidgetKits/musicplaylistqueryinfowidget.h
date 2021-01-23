@@ -45,7 +45,7 @@ public:
     /*!
      * Resize window bound by widget resize called.
      */
-    virtual void resizeWindow();
+    virtual void resizeWindow() override;
 
     /*!
      * Set current id to search founds.

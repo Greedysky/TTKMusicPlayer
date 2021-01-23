@@ -1,5 +1,5 @@
-#ifndef MUSICMGQUERYALBUMREQUEST_H
-#define MUSICMGQUERYALBUMREQUEST_H
+#ifndef MUSICMGQUERYARTISTLISTREQUEST_H
+#define MUSICMGQUERYARTISTLISTREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,49 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicmgqueryinterface.h"
-#include "musicqueryalbumrequest.h"
+#include "musicqueryartistlistrequest.h"
 
-/*! @brief The class to migu query album download data from net.
+/*! @brief The class to migu query artist list download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryAlbumRequest : public MusicQueryAlbumRequest,
-                                                      private MusicMGQueryInterface
+class MUSIC_NETWORK_EXPORT MusicMGQueryArtistListRequest : public MusicQueryArtistListRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicMGQueryAlbumRequest)
+    TTK_DECLARE_MODULE(MusicMGQueryArtistListRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMGQueryAlbumRequest(QObject *parent = nullptr);
+    explicit MusicMGQueryArtistListRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to Search data from name and type.
+     * Start to search data from name and type bt paging.
      */
-    virtual void startToSearch(const QString &album) override;
-
+    virtual void startToPage(int offset) override;
     /*!
-     * Start to search data by given id.
+     * Start to Search data.
      */
-    virtual void startToSingleSearch(const QString &artist) override;
+    virtual void startToSearch(const QString &artistlist) override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
-    /*!
-     * Download single data from net finished.
-     */
-    void singleDownLoadFinished();
-
-protected:
-    /*!
-     * Get Download introduction data from net.
-     */
-    void getDownLoadIntro(MusicResultsItem *item);
 
 };
 
-#endif // MUSICMGQUERYALBUMREQUEST_H
+#endif // MUSICMGQUERYARTISTLISTREQUEST_H

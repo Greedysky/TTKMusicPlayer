@@ -60,17 +60,17 @@ void MusicWebDJRadioInfoWidget::resizeWindow()
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN + 390;
 
-        QLabel *label = m_resizeWidgets[0];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));
+        TTKResizeWidget *data = &m_resizeWidgets[0];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
-        label = m_resizeWidgets[1];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));
+        data = &m_resizeWidgets[1];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
-        label = m_resizeWidgets[2];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));
+        data = &m_resizeWidgets[2];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
 
-        label = m_resizeWidgets[3];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));
+        data = &m_resizeWidgets[3];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, width));
     }
 }
 
@@ -94,21 +94,21 @@ void MusicWebDJRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
             download->startToDownload(item.m_coverUrl);
         }
 
-        QLabel *label = m_resizeWidgets[0];
-        label->setToolTip(item.m_name);
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 390));
+        TTKResizeWidget *data = &m_resizeWidgets[0];
+        data->m_label->setToolTip(item.m_name);
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
 
-        label = m_resizeWidgets[1];
-        label->setToolTip(tr("Singer: %1").arg(item.m_nickName));
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 390));
+        data = &m_resizeWidgets[1];
+        data->m_label->setToolTip(tr("Singer: %1").arg(item.m_nickName));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
 
-        label = m_resizeWidgets[2];
-        label->setToolTip(tr("PlayCount: %1").arg(item.m_playCount));
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 390));
+        data = &m_resizeWidgets[2];
+        data->m_label->setToolTip(tr("PlayCount: %1").arg(item.m_playCount));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
 
-        label = m_resizeWidgets[3];
-        label->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 390));
+        data = &m_resizeWidgets[3];
+        data->m_label->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 390));
     }
 }
 
@@ -207,5 +207,8 @@ void MusicWebDJRadioInfoWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets << nameLabel << singerLabel << playCountLabel << updateTimeLabel;
+    m_resizeWidgets.push_back({nameLabel, nameLabel->font()});
+    m_resizeWidgets.push_back({singerLabel, singerLabel->font()});
+    m_resizeWidgets.push_back({playCountLabel, playCountLabel->font()});
+    m_resizeWidgets.push_back({updateTimeLabel, updateTimeLabel->font()});
 }

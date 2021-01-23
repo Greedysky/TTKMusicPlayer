@@ -28,7 +28,10 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
 
 MusicAbstractItemQueryWidget::~MusicAbstractItemQueryWidget()
 {
-    qDeleteAll(m_resizeWidgets);
+    while(!m_resizeWidgets.isEmpty())
+    {
+        delete m_resizeWidgets.takeLast().m_label;
+    }
     delete m_iconLabel;
     delete m_statusLabel;
     delete m_infoLabel;

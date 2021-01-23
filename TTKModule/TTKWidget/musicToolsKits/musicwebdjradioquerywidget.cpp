@@ -135,13 +135,13 @@ void MusicWebDJRadioQueryWidget::resizeWindow()
     {
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->removeWidget(m_resizeWidgets[i]);
+            m_gridLayout->removeWidget(m_resizeWidgets[i].m_label);
         }
 
         const int lineNumber = width() / LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
-            m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
+            m_gridLayout->addWidget(m_resizeWidgets[i].m_label, i/lineNumber, i%lineNumber, Qt::AlignCenter);
         }
     }
 }
@@ -211,7 +211,8 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
 
     int lineNumber = width() / LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count() / lineNumber, m_resizeWidgets.count() % lineNumber, Qt::AlignCenter);
-    m_resizeWidgets << label;
+
+    m_resizeWidgets.push_back({label, label->font()});
 }
 
 void MusicWebDJRadioQueryWidget::currentRadioClicked(const MusicResultsItem &item)
@@ -239,7 +240,7 @@ void MusicWebDJRadioQueryWidget::buttonClicked(int index)
 {
     while(!m_resizeWidgets.isEmpty())
     {
-        QWidget *w = m_resizeWidgets.takeLast();
+        QWidget *w = m_resizeWidgets.takeLast().m_label;
         m_gridLayout->removeWidget(w);
         delete w;
     }

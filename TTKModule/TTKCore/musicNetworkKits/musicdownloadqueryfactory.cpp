@@ -20,6 +20,7 @@
 #include "musickgqueryalbumrequest.h"
 #include "musickwqueryalbumrequest.h"
 #include "musicqqqueryalbumrequest.h"
+#include "musicmgqueryalbumrequest.h"
 //
 #include "musicwyqueryartistrequest.h"
 #include "musicxmqueryartistrequest.h"
@@ -33,6 +34,7 @@
 #include "musickgqueryartistlistrequest.h"
 #include "musickwqueryartistlistrequest.h"
 #include "musicqqqueryartistlistrequest.h"
+#include "musicmgqueryartistlistrequest.h"
 //
 #include "musicwyquerytoplistrequest.h"
 #include "musicqqquerytoplistrequest.h"
@@ -81,6 +83,7 @@
 #include "musicqqartistsimilarrequest.h"
 #include "musickgartistsimilarrequest.h"
 #include "musickwartistsimilarrequest.h"
+#include "musicmgartistsimilarrequest.h"
 //
 #include "musicbdtranslationrequest.h"
 #include "musicwytranslationrequest.h"
@@ -145,6 +148,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getAlbumRequest(QObject *p
         case XMQueryServer:  request = new MusicXMQueryAlbumRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryAlbumRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryAlbumRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryAlbumRequest(parent); break;
         default: request = new MusicWYQueryAlbumRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryAlbumRequest server: %1").arg(request->getQueryServer()));
@@ -180,6 +184,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistListRequest(QObje
         case XMQueryServer:  request = new MusicXMQueryArtistListRequest(parent); break;
         case KWQueryServer:  request = new MusicKWQueryArtistListRequest(parent); break;
         case KGQueryServer:  request = new MusicKGQueryArtistListRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGQueryArtistListRequest(parent); break;
         default: request = new MusicWYQueryArtistListRequest(parent);
     }
     TTK_LOGGER_INFO(QString("MusicQueryArtistListRequest server: %1").arg(request->getQueryServer()));
@@ -256,6 +261,7 @@ MusicSimilarRequest *MusicDownLoadQueryFactory::getSimilarArtistRequest(QObject 
         case XMQueryServer:  request = new MusicXMArtistSimilarRequest(parent); break;
         case KWQueryServer:  request = new MusicKWArtistSimilarRequest(parent); break;
         case KGQueryServer:  request = new MusicKGArtistSimilarRequest(parent); break;
+        case MGQueryServer:  request = new MusicMGArtistSimilarRequest(parent); break;
         default: request = new MusicWYArtistSimilarRequest(parent);
     }
     return request;
@@ -336,10 +342,6 @@ MusicTranslationRequest *MusicDownLoadQueryFactory::getTranslationRequest(QObjec
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYTranslationRequest(parent); break;
-        case QQQueryServer:  request = new MusicBDTranslationRequest(parent); break;
-        case XMQueryServer:  request = new MusicBDTranslationRequest(parent); break;
-        case KWQueryServer:  request = new MusicBDTranslationRequest(parent); break;
-        case KGQueryServer:  request = new MusicBDTranslationRequest(parent); break;
         default: request = new MusicBDTranslationRequest(parent);
     }
     return request;

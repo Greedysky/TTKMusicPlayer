@@ -113,9 +113,14 @@ protected:
     MusicResultsItem m_currentPlaylistItem;
     MusicItemQueryTableWidget *m_queryTableWidget;
     MusicAbstractQueryRequest *m_downloadRequest;
-    QList<QLabel*> m_resizeWidgets;
     MusicSongSharingWidget::Type m_shareType;
 
+    struct TTKResizeWidget
+    {
+        QLabel *m_label;
+        QFont m_font;
+    };
+    QList<TTKResizeWidget> m_resizeWidgets;
 };
 
 #endif // MusicAbstractItemQueryWidget_H

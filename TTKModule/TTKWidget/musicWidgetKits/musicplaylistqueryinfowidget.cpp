@@ -21,7 +21,6 @@ MusicPlaylistQueryInfoWidget::MusicPlaylistQueryInfoWidget(QWidget *parent)
 
     initFirstWidget();
     initSecondWidget();
-//    initThirdWidget();
 }
 
 MusicPlaylistQueryInfoWidget::~MusicPlaylistQueryInfoWidget()
@@ -37,17 +36,17 @@ void MusicPlaylistQueryInfoWidget::resizeWindow()
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN;
 
-        QLabel *label = m_resizeWidgets[0];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+        TTKResizeWidget *data = &m_resizeWidgets[0];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 200 + width));
 
-        label = m_resizeWidgets[1];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+        data = &m_resizeWidgets[1];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180 + width));
 
-        label = m_resizeWidgets[2];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+        data = &m_resizeWidgets[2];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 210 + width));
 
-        label = m_resizeWidgets[3];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+        data = &m_resizeWidgets[3];
+        data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 160 + width));
     }
 }
 
@@ -116,19 +115,15 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     playlistLabel->setFont(playlistFont);
     playlistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
     playlistLabel->setToolTip(item.m_name);
-    playlistLabel->setText(MusicUtils::Widget::elidedText(playlistFont, playlistLabel->toolTip(), Qt::ElideRight, 220));
     QLabel *creatorLabel = new QLabel(topLineWidget);
     creatorLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     creatorLabel->setToolTip(tr("Creator: %1").arg(item.m_nickName));
-    creatorLabel->setText(MusicUtils::Widget::elidedText(creatorLabel->font(), creatorLabel->toolTip(), Qt::ElideRight, 220));
     QLabel *tagsLabel = new QLabel(topLineWidget);
     tagsLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     tagsLabel->setToolTip(tr("Tags: %1").arg(item.m_tags));
-    tagsLabel->setText(MusicUtils::Widget::elidedText(tagsLabel->font(), tagsLabel->toolTip(), Qt::ElideRight, 220));
     QLabel *updateLabel = new QLabel(topLineWidget);
     updateLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     updateLabel->setToolTip(tr("Update: %1").arg(item.m_updateTime));
-    updateLabel->setText(MusicUtils::Widget::elidedText(updateLabel->font(), updateLabel->toolTip(), Qt::ElideRight, 220));
 
     topLineLayout->addWidget(playlistLabel);
     topLineLayout->addWidget(creatorLabel);
@@ -244,7 +239,12 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidgets << playlistLabel << creatorLabel << tagsLabel << updateLabel;
+    m_resizeWidgets.push_back({playlistLabel, playlistLabel->font()});
+    m_resizeWidgets.push_back({creatorLabel, creatorLabel->font()});
+    m_resizeWidgets.push_back({tagsLabel, tagsLabel->font()});
+    m_resizeWidgets.push_back({updateLabel, updateLabel->font()});
+
+    resizeWindow();
 }
 
 void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *query)

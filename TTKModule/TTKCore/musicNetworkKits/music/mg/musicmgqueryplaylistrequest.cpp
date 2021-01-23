@@ -119,6 +119,7 @@ void MusicMGQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
                 item.m_playCount = QString::number(value["playCount"].toLongLong());
                 item.m_description = value["summary"].toString();
                 item.m_updateTime = value["updateTime"].toString();
+                item.m_nickName = STRING_NULL;
 
                 item.m_tags.clear();
                 const QVariantList &tags = value["tagLists"].toList();
@@ -243,7 +244,7 @@ void MusicMGQueryPlaylistRequest::getDetailsFinished()
                     musicInfo.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, musicInfo.m_songId, m_searchQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

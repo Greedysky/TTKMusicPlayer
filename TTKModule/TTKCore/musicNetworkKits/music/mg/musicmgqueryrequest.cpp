@@ -60,7 +60,7 @@ void MusicMGQueryRequest::startToSingleSearch(const QString &text)
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MG_SONG_SEARCH_URL, false).arg(text));
+    request.setUrl(MusicUtils::Algorithm::mdII(MG_SONG_DETAIL_URL, false).arg(text));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL, ALG_UA_KEY, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
@@ -84,6 +84,7 @@ void MusicMGQueryRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
+            TTK_LOGGER_INFO(value);
             if(value.contains("musics"))
             {
                 m_totalSize = value["pgt"].toInt() * m_pageSize;
