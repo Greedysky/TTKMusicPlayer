@@ -94,7 +94,7 @@ include_directories(
 )
 
 set(MUSIC_CONFIG_DIR "${MUSIC_DIR}/TTKConfig")
-set(MUSIC_QRC_DIR "${MUSIC_DIR}/TTKQrc")
+set(MUSIC_UI_DIR "${MUSIC_DIR}/TTKUi")
 set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
 set(MUSIC_TTKSERVICE_DIR "${MUSIC_DIR}/TTKService")
 
@@ -195,7 +195,7 @@ if(UNIX)
   execute_process(COMMAND ${MUSIC_SCRIPT_DIR}/resource.sh ${MUSIC_RESOURCE_DIR} ${EXECUTABLE_OUTPUT_PATH})
 endif()
 
-find_library(QMMP_LIBRARY
+find_library(TTK_QMMP_LIBRARY
   NAMES TTKqmmp
   PATHS ${LIBRARY_OUTPUT_PATH}
 )
@@ -212,7 +212,7 @@ if(NOT (TTK_QT_VERSION VERSION_GREATER "4"))
 endif()
 
 add_subdirectory(TTKConfig)
-add_subdirectory(TTKQrc)
+add_subdirectory(TTKUi)
 add_subdirectory(TTKThirdParty)
 add_subdirectory(TTKModule)
 add_subdirectory(TTKService)

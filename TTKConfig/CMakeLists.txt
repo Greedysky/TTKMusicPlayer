@@ -23,7 +23,7 @@ set(MUSIC_SOURCES
   )
 
 SET(MUSIC_QRC
-    ${MUSIC_QRC_DIR}/MusicApp.qrc
+    ${MUSIC_UI_DIR}/MusicApp.qrc
 )
 
 if(WIN32)

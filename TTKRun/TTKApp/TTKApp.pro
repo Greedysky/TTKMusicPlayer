@@ -63,7 +63,7 @@ HEADERS += \
     ttkrunapplication.h \
 
 RESOURCES += \
-    $$PWD/../../TTKQrc/MusicApp.qrc
+    $$PWD/../../TTKUi/MusicApp.qrc
 
 win32{
     RC_FILE = TTKApp.rc

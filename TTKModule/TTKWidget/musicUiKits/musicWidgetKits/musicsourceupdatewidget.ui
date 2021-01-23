@@ -86,7 +86,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_upgradeMain</pixmap>
+     <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_upgradeMain</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -134,7 +134,7 @@
        </rect>
       </property>
       <property name="pixmap">
-       <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/toolSets/lb_upgrade</pixmap>
+       <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_upgrade</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -314,7 +314,7 @@ QProgressBar::chunk {
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../../TTKQrc/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
  </resources>
  <connections/>
 </ui>

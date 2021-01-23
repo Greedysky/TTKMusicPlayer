@@ -12,15 +12,15 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 SET(MUSIC_QRC
-    ${MUSIC_QRC_DIR}/MusicPlayer.qrc
-    ${MUSIC_QRC_DIR}/MusicThirdParty.qrc
+    ${MUSIC_UI_DIR}/MusicPlayer.qrc
+    ${MUSIC_UI_DIR}/MusicThirdParty.qrc
 )
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
   if(WIN32)
-    list(APPEND MUSIC_RCC_SRCS TTKQrc.rc)
+    list(APPEND MUSIC_RCC_SRCS TTKUi.rc)
   endif()
   
   if(TTK_BUILD_SHARED)
@@ -33,7 +33,7 @@ else()
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
   if(WIN32)
-    list(APPEND MUSIC_RCC_SRCS TTKQrc.rc)
+    list(APPEND MUSIC_RCC_SRCS TTKUi.rc)
   endif()
   
   if(TTK_BUILD_SHARED)

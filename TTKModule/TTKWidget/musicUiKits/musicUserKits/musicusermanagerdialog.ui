@@ -99,7 +99,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/usermanager/lb_top_arrow</pixmap>
+    <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/usermanager/lb_top_arrow</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="mainLabel">
@@ -311,7 +311,7 @@ QPushButton::menu-indicator{image:None;}</string>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../../TTKQrc/MusicPlayer.qrc"/>
+  <include location="../../../../TTKUi/MusicPlayer.qrc"/>
  </resources>
  <connections/>
 </ui>

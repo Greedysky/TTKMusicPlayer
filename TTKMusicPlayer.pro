@@ -19,7 +19,7 @@
 include($$PWD/TTKVersion.pri)
 
 TEMPLATE = subdirs
-SUBDIRS = TTKConfig TTKQrc TTKThirdParty TTKModule TTKService TTKRun
+SUBDIRS = TTKConfig TTKUi TTKThirdParty TTKModule TTKService TTKRun
 
 TRANSLATIONS += TTKLanguage/cn.ts \
                 TTKLanguage/tc.ts \
