@@ -441,7 +441,7 @@ void QmmpAudioEngine::run()
                     m_output->wait();
                     delete m_output;
                     m_output = createOutput();
-                    m_dithering->setFormats(m_decoders.head()->audioParameters().format(),
+                    m_dithering->setFormats(m_decoder->audioParameters().format(),
                                             m_output->outputAudioParameters().format());
                     if(m_output)
                     {
