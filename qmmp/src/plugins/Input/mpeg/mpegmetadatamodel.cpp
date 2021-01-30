@@ -119,7 +119,7 @@ void MPEGMetaDataModel::setCover(const QPixmap &pix)
     frame->setDescription("TTK");
     frame->setPicture(TagLib::ByteVector(data.constData(), data.size()));
     tag->addFrame(frame);
-    m_file->save(TagLib::MPEG::File::ID3v2);
+    m_file->save(TagLib::MPEG::File::ID3v2, true, 3);
 }
 
 void MPEGMetaDataModel::removeCover()
@@ -127,7 +127,7 @@ void MPEGMetaDataModel::removeCover()
     if(m_file->ID3v2Tag())
     {
         m_file->ID3v2Tag()->removeFrames("APIC");
-        m_file->save(TagLib::MPEG::File::ID3v2);
+        m_file->save(TagLib::MPEG::File::ID3v2, true, 3);
     }
 }
 
@@ -396,7 +396,11 @@ void MpegFileTagModel::remove()
 void MpegFileTagModel::save()
 {
     if(m_tag)
-        m_file->save(m_tagType, false);
+#if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 11))
+        m_file->save(m_tagType, false, 3);
+#else
+        m_file->save(m_tagType, TagLib::File::StripNone, TagLib::ID3v2::Version::v3, TagLib::File::DoNotDuplicate);
+#endif
     else
         m_file->strip(m_tagType);
 }
