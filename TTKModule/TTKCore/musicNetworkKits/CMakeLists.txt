@@ -6,7 +6,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkoperator.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloaddatarequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtextrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloaddatatagrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtagdatarequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadsourcerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadqueuerequest.h
@@ -141,7 +141,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/common/musicnetworkoperator.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloaddatarequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtextrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloaddatatagrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtagdatarequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadsourcerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadqueuerequest.cpp

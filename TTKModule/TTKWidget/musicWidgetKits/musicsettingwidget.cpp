@@ -322,6 +322,11 @@ void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
     m_ui->item_S16->setHotKeyEnabled(state);
 }
 
+void MusicSettingWidget::downloadCachedClean()
+{
+
+}
+
 void MusicSettingWidget::downloadGroupCached(int index)
 {
     m_ui->downloadSpinBox->setEnabled(index);
@@ -820,8 +825,10 @@ void MusicSettingWidget::initDownloadWidget()
 
     m_ui->downloadDirButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->downloadLrcDirButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
+    m_ui->downloadCacheCleanButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->downloadDirButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadLrcDirButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->downloadCacheCleanButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadCacheAutoRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     m_ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     m_ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
@@ -829,6 +836,7 @@ void MusicSettingWidget::initDownloadWidget()
 #ifdef Q_OS_UNIX
     m_ui->downloadDirButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadLrcDirButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->downloadCacheCleanButton->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheAutoRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadCacheManRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->downloadFullRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -862,6 +870,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_migu"), tr("miguMusic"));
 
+    connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadGroupCached(int)));
     //
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->downloadCacheAutoRadioBox, 0);

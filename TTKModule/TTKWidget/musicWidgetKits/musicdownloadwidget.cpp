@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
-#include "musicdownloaddatatagrequest.h"
+#include "musicdownloadtagdatarequest.h"
 #include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicstringutils.h"
@@ -484,7 +484,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
                 }
             }
             //
-            MusicDownloadDataTagRequest *downSong = new MusicDownloadDataTagRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+            MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
             downSong->setRecordType(MusicObject::RecordNormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 

@@ -35,7 +35,7 @@ HEADERS  += \
     $$PWD/common/musicnetworkoperator.h \
     $$PWD/common/musicdownloaddatarequest.h \
     $$PWD/common/musicdownloadtextrequest.h \
-    $$PWD/common/musicdownloaddatatagrequest.h \
+    $$PWD/common/musicdownloadtagdatarequest.h \
     $$PWD/common/musicdownloadsourcerequest.h \
     $$PWD/common/musicdownloadbackgroundrequest.h \
     $$PWD/common/musicdownloadqueuerequest.h \
@@ -170,7 +170,7 @@ SOURCES += \
     $$PWD/common/musicnetworkoperator.cpp \
     $$PWD/common/musicdownloaddatarequest.cpp \
     $$PWD/common/musicdownloadtextrequest.cpp \
-    $$PWD/common/musicdownloaddatatagrequest.cpp \
+    $$PWD/common/musicdownloadtagdatarequest.cpp \
     $$PWD/common/musicdownloadsourcerequest.cpp \
     $$PWD/common/musicdownloadbackgroundrequest.cpp \
     $$PWD/common/musicdownloadqueuerequest.cpp \

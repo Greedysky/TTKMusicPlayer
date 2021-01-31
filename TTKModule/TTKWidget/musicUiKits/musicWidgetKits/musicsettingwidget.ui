@@ -812,7 +812,7 @@ font-weight:bold;</string>
       <rect>
        <x>115</x>
        <y>145</y>
-       <width>101</width>
+       <width>85</width>
        <height>22</height>
       </rect>
      </property>
@@ -840,7 +840,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="downloadCacheSizeLabel">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>205</x>
        <y>148</y>
        <width>21</width>
        <height>16</height>
@@ -954,6 +954,19 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>速度控制</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downloadCacheCleanButton">
+     <property name="geometry">
+      <rect>
+       <x>235</x>
+       <y>145</y>
+       <width>60</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>清除缓存</string>
      </property>
     </widget>
    </widget>

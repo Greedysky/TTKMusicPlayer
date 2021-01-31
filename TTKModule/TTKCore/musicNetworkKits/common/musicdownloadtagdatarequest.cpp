@@ -1,22 +1,22 @@
-#include "musicdownloaddatatagrequest.h"
+#include "musicdownloadtagdatarequest.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicsemaphoreloop.h"
 #include "musicsettingmanager.h"
 
 #include <QImage>
 
-MusicDownloadDataTagRequest::MusicDownloadDataTagRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
+MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDownloadDataRequest(url, save, type, parent)
 {
     m_needUpdate = false;
 }
 
-void MusicDownloadDataTagRequest::setSongTag(const MusicSongTag &tag)
+void MusicDownloadTagDataRequest::setSongTag(const MusicSongTag &tag)
 {
     m_musicTag = tag;
 }
 
-void MusicDownloadDataTagRequest::startToDownload()
+void MusicDownloadTagDataRequest::startToDownload()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
@@ -39,7 +39,7 @@ void MusicDownloadDataTagRequest::startToDownload()
     }
 }
 
-void MusicDownloadDataTagRequest::downLoadFinished()
+void MusicDownloadTagDataRequest::downLoadFinished()
 {
     bool save = (m_file != nullptr);
     MusicDownloadDataRequest::downLoadFinished();
@@ -63,7 +63,7 @@ void MusicDownloadDataTagRequest::downLoadFinished()
     TTK_LOGGER_INFO("data download has finished");
 }
 
-void MusicDownloadDataTagRequest::downLoadFinished(const QByteArray &data)
+void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
 {
     MusicSongTag tag;
     if(tag.read(m_savePath))
@@ -76,6 +76,7 @@ void MusicDownloadDataTagRequest::downLoadFinished(const QByteArray &data)
             tag.setTrackNum(m_musicTag.getTrackNum());
             tag.setYear(m_musicTag.getYear());
         }
+
         if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
         {
             tag.setCover(data);

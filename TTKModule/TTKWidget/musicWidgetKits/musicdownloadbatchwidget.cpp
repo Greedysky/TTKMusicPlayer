@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
-#include "musicdownloaddatatagrequest.h"
+#include "musicdownloadtagdatarequest.h"
 
 #include <QTimer>
 #include <QScrollBar>
@@ -201,7 +201,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
         }
     }
     //
-    MusicDownloadDataTagRequest *downSong = new MusicDownloadDataTagRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+    MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
     downSong->setRecordType(MusicObject::RecordNormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 

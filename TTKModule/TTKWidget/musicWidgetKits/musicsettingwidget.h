@@ -134,6 +134,10 @@ public Q_SLOTS:
     void globalHotkeyBoxChanged(bool state);
 
     /*!
+     * Set clean download cache.
+     */
+    void downloadCachedClean();
+    /*!
      * Set enable or disable download cache.
      */
     void downloadGroupCached(int index);
