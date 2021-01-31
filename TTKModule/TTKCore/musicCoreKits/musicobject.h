@@ -119,7 +119,7 @@
 #define THEME_DIR               "MTheme/"
 //
 #define ART_DIR                 "MArt/"
-#define BACKGROUND_DIR          "MArt/background/"
+#define BACKGROUND_DIR          "MBackground/"
 #define CACHE_DIR               "MCached/"
 #define SCREEN_DIR              "MScreen/"
 //

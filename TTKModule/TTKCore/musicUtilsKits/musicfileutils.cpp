@@ -73,7 +73,7 @@ QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, const QSt
     return fileList;
 }
 
-bool MusicUtils::File::removeRecursively(const QString &dir)
+bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
 {
     QDir dr(dir);
     if(!dr.exists())
@@ -116,7 +116,7 @@ bool MusicUtils::File::removeRecursively(const QString &dir)
         }
     }
 
-    if(success)
+    if(success && self)
     {
         success = dr.rmdir(dr.absolutePath());
     }

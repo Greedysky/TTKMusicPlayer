@@ -48,7 +48,7 @@ namespace MusicUtils
         /*!
          * Dir remove recursively.
          */
-        MUSIC_UTILS_EXPORT bool removeRecursively(const QString &dir);
+        MUSIC_UTILS_EXPORT bool removeRecursively(const QString &dir, bool self = true);
 
         /*!
          * Get open file dialog.
