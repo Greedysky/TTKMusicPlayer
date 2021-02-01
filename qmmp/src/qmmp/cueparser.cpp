@@ -28,8 +28,8 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
 
     QString artist, album, genre, date, comment, file;
     double album_peak = 0.0, album_gain = 0.0;
-    QTextStream textStream(data);
 
+    QTextStream textStream(data);
     textStream.setCodec(codec ? codec : QTextCodec::codecForName("UTF-8"));
 
     while(!textStream.atEnd())
@@ -102,6 +102,7 @@ void CueParser::loadData(const QByteArray &data, QTextCodec *codec)
                 m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
         }
     }
+
     if(m_tracks.isEmpty())
         qWarning("CueParser: invalid cue data");
 }
@@ -157,7 +158,7 @@ QString CueParser::file(int track) const
     if(track < 1 || track > m_tracks.count())
     {
         qWarning("CueParser: invalid track number: %d", track);
-        return 0;
+        return QString();
     }
     return m_tracks.at(track - 1)->file;
 }

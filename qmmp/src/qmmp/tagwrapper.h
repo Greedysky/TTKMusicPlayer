@@ -29,7 +29,7 @@
 class QMMP_EXPORT TagWrapper
 {
 public:
-    enum TagType
+    enum Type
     {
         TAG_UNKNOWN = -1,
         TAG_TITLE,       /*!< Title */
@@ -59,12 +59,12 @@ public:
     bool readFile();
     bool readFile(const QString &path);
 
-    bool writeMusicTag(TagType tag, const QString &value, int id3v2Version);
-    inline QMap<TagType, QString> getMusicTags() const { return m_parameters; }
+    bool writeMusicTag(Type tag, const QString &value, int id3v2Version);
+    inline QMap<Type, QString> getMusicTags() const { return m_parameters; }
 
 protected:
     QString m_path;
-    QMap<TagType, QString> m_parameters;
+    QMap<Type, QString> m_parameters;
 
 };
 

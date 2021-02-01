@@ -1,11 +1,13 @@
 #include <QDirIterator>
 #include <QSettings>
 #include <qmmp/decoder.h>
+#include <qmmp/charchecker.h>
 #include <qmmp/metadatamanager.h>
 #ifdef WITH_ENCA
 #include <enca.h>
 #endif
 #include "cuefile.h"
+#include <QDebug>
 
 CueFile::CueFile(const QString &path)
     : CueParser()
@@ -52,13 +54,23 @@ CueFile::CueFile(const QString &path)
     }
 #endif
     if(!codec)
+        switch(CharChecker().check(QString(data)))
+        {
+        case CharChecker::ASCII: codec = QTextCodec::codecForName("ASCII"); break;
+        case CharChecker::GB18030: codec = QTextCodec::codecForName("GB18030"); break;
+        case CharChecker::GBK: codec = QTextCodec::codecForName("GBK"); break;
+        case CharChecker::UTF8: codec = QTextCodec::codecForName("UTF-8"); break;
+        default: break;
+        }
+    if(!codec)
         codec = QTextCodec::codecForName(settings.value("encoding","UTF-8").toByteArray());
     if(!codec)
         codec = QTextCodec::codecForName("UTF-8");
     settings.endGroup();
-    //qDebug("CUEParser: using %s encoding", codec->name().constData());
+
     loadData(data, codec);
     setUrl("cue", filePath);
+
     for(const QString &dataFileName : files())
     {
         QString dataFilePath = getDirtyPath(filePath, QFileInfo(filePath).dir().filePath(dataFileName));

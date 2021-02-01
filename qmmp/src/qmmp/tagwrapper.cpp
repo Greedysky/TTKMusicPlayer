@@ -85,7 +85,7 @@ bool TagWrapper::readFile(const QString &path)
     return true;
 }
 
-bool TagWrapper::writeMusicTag(TagType tag, const QString &value, int id3v2Version)
+bool TagWrapper::writeMusicTag(Type tag, const QString &value, int id3v2Version)
 {
     if(m_path.isEmpty())
     {
