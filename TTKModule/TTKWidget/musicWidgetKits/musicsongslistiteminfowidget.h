@@ -45,7 +45,7 @@ public:
     /*!
      * Set music song information.
      */
-    void setMusicSongInformation(const MusicSong &info);
+    void setMusicSongInformation(const MusicSong &song);
 
 protected:
     /*!

@@ -11,9 +11,9 @@ MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, con
     m_needUpdate = false;
 }
 
-void MusicDownloadTagDataRequest::setSongTag(const MusicSongTag &tag)
+void MusicDownloadTagDataRequest::setSongInfo(const MusicSongInfo &info)
 {
-    m_musicTag = tag;
+    m_musicInfo = info;
 }
 
 void MusicDownloadTagDataRequest::startToDownload()
@@ -54,7 +54,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
         MusicSemaphoreLoop loop;
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(m_musicTag.getComment());
+        download->startToDownload(m_musicInfo.getComment());
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
         loop.exec();
     }
@@ -65,23 +65,23 @@ void MusicDownloadTagDataRequest::downLoadFinished()
 
 void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
 {
-    MusicSongTag tag;
-    if(tag.read(m_savePath))
+    MusicSongInfo info;
+    if(info.read(m_savePath))
     {
         if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool())
         {
-            tag.setTitle(m_musicTag.getTitle());
-            tag.setArtist(m_musicTag.getArtist());
-            tag.setAlbum(m_musicTag.getAlbum());
-            tag.setTrackNum(m_musicTag.getTrackNum());
-            tag.setYear(m_musicTag.getYear());
+            info.setTitle(m_musicInfo.getTitle());
+            info.setArtist(m_musicInfo.getArtist());
+            info.setAlbum(m_musicInfo.getAlbum());
+            info.setTrackNum(m_musicInfo.getTrackNum());
+            info.setYear(m_musicInfo.getYear());
         }
 
         if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
         {
-            tag.setCover(data);
+            info.setCover(data);
         }
-        tag.save();
+        info.save();
         TTK_LOGGER_INFO("write tag has finished");
     }
 

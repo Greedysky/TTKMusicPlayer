@@ -5,7 +5,7 @@
 #include "musicnumberutils.h"
 #include "musicwidgetutils.h"
 #include "musicsettingmanager.h"
-#include "musicsongtag.h"
+#include "musicsonginfo.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -39,21 +39,21 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
     return false;
 }
 
-void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info)
+void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song)
 {
-    const QString &musicArtist = info.getMusicArtistFront();
-    m_ui->songNameValue->setText(info.getMusicName().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), info.getMusicName(), Qt::ElideRight, m_ui->songNameValue->width()));
+    const QString &musicArtist = song.getMusicArtistFront();
+    m_ui->songNameValue->setText(song.getMusicName().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, m_ui->songNameValue->width()));
     m_ui->artlistValue->setText(musicArtist.isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
-    m_ui->sizeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(MusicUtils::Number::sizeByte2MByte(info.getMusicSize())).left(4) + "M", Qt::ElideRight, m_ui->sizeValue->width()));
-    m_ui->typeValue->setText(info.getMusicType().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), info.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()));
-    m_ui->timeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(info.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()));
+    m_ui->sizeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(MusicUtils::Number::sizeByte2MByte(song.getMusicSize())).left(4) + "M", Qt::ElideRight, m_ui->sizeValue->width()));
+    m_ui->typeValue->setText(song.getMusicType().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), song.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()));
+    m_ui->timeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(song.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()));
 
     if(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
-        MusicSongTag tag;
-        if(tag.read(info.getMusicPath()))
+        MusicSongInfo info;
+        if(info.read(song.getMusicPath()))
         {
-            QPixmap pix = tag.getCover();
+            QPixmap pix = info.getCover();
             if(!pix.isNull())
             {
                 m_ui->artPicture->setPixmap(pix.scaled(60, 60));
@@ -62,7 +62,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info
         }
     }
 
-    if(!showArtistPicture(musicArtist) && !showArtistPicture(info.getMusicArtistBack()))
+    if(!showArtistPicture(musicArtist) && !showArtistPicture(song.getMusicArtistBack()))
     {
         m_ui->artPicture->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }

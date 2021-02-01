@@ -18,7 +18,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicsingleton.h
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
-    ${MUSIC_CORE_DIR}/musicsongtag.h
+    ${MUSIC_CORE_DIR}/musicsonginfo.h
     ${MUSIC_CORE_DIR}/musiccryptographichash.h
     ${MUSIC_CORE_DIR}/musicsemaphoreloop.h
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.h
@@ -45,7 +45,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicsingleton.cpp
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
-    ${MUSIC_CORE_DIR}/musicsongtag.cpp
+    ${MUSIC_CORE_DIR}/musicsonginfo.cpp
     ${MUSIC_CORE_DIR}/musiccryptographichash.cpp
     ${MUSIC_CORE_DIR}/musicsemaphoreloop.cpp
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.cpp

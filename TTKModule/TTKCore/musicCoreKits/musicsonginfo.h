@@ -1,5 +1,5 @@
-#ifndef MUSICSONGTAG_H
-#define MUSICSONGTAG_H
+#ifndef MUSICSONGINFO_H
+#define MUSICSONGINFO_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -24,21 +24,21 @@
 #include "tagwrapper.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the music song tag.
+/*! @brief The class of the music song info.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSongTag
+class MUSIC_CORE_EXPORT MusicSongInfo
 {
-    TTK_DECLARE_MODULE(MusicSongTag)
+    TTK_DECLARE_MODULE(MusicSongInfo)
 public:
     /*!
      * Object contsructor.
      */
-    MusicSongTag();
+    MusicSongInfo();
     /*!
      * Object contsructor.
      */
-    explicit MusicSongTag(const QString &file);
+    explicit MusicSongInfo(const QString &file);
 
     /*!
      * Read music file to anaylsis.
@@ -170,7 +170,7 @@ protected:
     /*!
      * Find legal data string.
      */
-    QString findLegalDataString(TagWrapper::TagType type) const;
+    QString findLegalDataString(TagWrapper::Type type) const;
     /*!
      * Find current pluin store path.
      */
@@ -178,15 +178,15 @@ protected:
     /*!
      * Read other taglib not by plugin.
      */
-    bool readOtherTaglib();
+    bool readInformation();
     /*!
      * Save other taglib not by plugin.
      */
-    bool saveOtherTaglib();
+    bool saveInformation();
 
     QString m_filePath;
-    QMap<TagWrapper::TagType, QVariant> m_parameters;
+    QMap<TagWrapper::Type, QVariant> m_parameters;
 
 };
 
-#endif // MUSICSONGTAG_H
+#endif // MUSICSONGINFO_H

@@ -5,7 +5,7 @@
 #include "musicsongssummariziedwidget.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
-#include "musicsongtag.h"
+#include "musicsonginfo.h"
 #include "musicsinglemanager.h"
 
 #ifdef TTK_GREATER_NEW
@@ -289,17 +289,17 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
     QtConcurrent::run([&]
     {
         MusicInfoData arts;
-        MusicSongTag tag;
-        for(const QFileInfo &info : m_ui->songlistsTable->getFiles())
+        MusicSongInfo info;
+        for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
         {
             if(!m_runTypeChanged)
             {
                 break;
             }
 
-            if(tag.read(info.absoluteFilePath()))
+            if(info.read(file.absoluteFilePath()))
             {
-                QString artString = tag.getArtist().trimmed();
+                QString artString = info.getArtist().trimmed();
                 if(artString.isEmpty())
                 {
                     artString = "Various Artists";
@@ -307,11 +307,11 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
 
                 if(!arts.contains(artString))
                 {
-                    arts.insert(artString, QFileInfoList() << info);
+                    arts.insert(artString, QFileInfoList() << file);
                 }
                 else
                 {
-                    arts.insert(artString, arts[artString] << info);
+                    arts.insert(artString, arts[artString] << file);
                 }
             }
         }
@@ -334,17 +334,17 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     QtConcurrent::run([&]
     {
         MusicInfoData albums;
-        MusicSongTag tag;
-        for(const QFileInfo &info : m_ui->songlistsTable->getFiles())
+        MusicSongInfo info;
+        for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
         {
             if(!m_runTypeChanged)
             {
                 break;
             }
 
-            if(tag.read(info.absoluteFilePath()))
+            if(info.read(file.absoluteFilePath()))
             {
-                QString albumString = tag.getAlbum().trimmed();
+                QString albumString = info.getAlbum().trimmed();
                 if(albumString.isEmpty())
                 {
                     albumString = "Various Album";
@@ -352,11 +352,11 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
 
                 if(!albums.contains(albumString))
                 {
-                    albums.insert(albumString, QFileInfoList() << info);
+                    albums.insert(albumString, QFileInfoList() << file);
                 }
                 else
                 {
-                    albums.insert(albumString, albums[albumString] << info);
+                    albums.insert(albumString, albums[albumString] << file);
                 }
             }
         }

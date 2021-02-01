@@ -488,14 +488,14 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             downSong->setRecordType(MusicObject::RecordNormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
-            MusicSongTag tag;
-            tag.setComment(musicSongInfo.m_smallPicUrl);
-            tag.setTitle(musicSongInfo.m_songName);
-            tag.setArtist(musicSongInfo.m_singerName);
-            tag.setAlbum(musicSongInfo.m_albumName);
-            tag.setTrackNum(musicSongInfo.m_trackNumber);
-            tag.setYear(musicSongInfo.m_year);
-            downSong->setSongTag(tag);
+            MusicSongInfo info;
+            info.setComment(musicSongInfo.m_smallPicUrl);
+            info.setTitle(musicSongInfo.m_songName);
+            info.setArtist(musicSongInfo.m_singerName);
+            info.setAlbum(musicSongInfo.m_albumName);
+            info.setTrackNum(musicSongInfo.m_trackNumber);
+            info.setYear(musicSongInfo.m_year);
+            downSong->setSongInfo(info);
             downSong->startToDownload();
             break;
         }
