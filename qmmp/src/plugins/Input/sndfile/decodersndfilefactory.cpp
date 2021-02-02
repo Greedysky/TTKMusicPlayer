@@ -151,7 +151,8 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
 
     if(parts & TrackInfo::Properties)
     {
-        info->setValue(Qmmp::BITRATE, QFileInfo(path).size() * 8000.0 / info->duration() + 0.5);
+        info->setDuration(int(snd_info.frames * 1000 / snd_info.samplerate));
+        info->setValue(Qmmp::BITRATE, static_cast<int>(QFileInfo(path).size() * 8.0 / info->duration() + 0.5));
         info->setValue(Qmmp::SAMPLERATE, snd_info.samplerate);
         info->setValue(Qmmp::CHANNELS, snd_info.channels);
         switch(snd_info.format & SF_FORMAT_SUBMASK)
@@ -179,7 +180,6 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
         format_info.format = (snd_info.format & SF_FORMAT_TYPEMASK);
         sf_command(nullptr, SFC_GET_FORMAT_INFO, &format_info, sizeof(format_info));
         info->setValue(Qmmp::FORMAT_NAME, QString::fromLatin1(format_info.name));
-        info->setDuration(int(snd_info.frames * 1000 / snd_info.samplerate));
     }
 
     sf_close(sndfile);

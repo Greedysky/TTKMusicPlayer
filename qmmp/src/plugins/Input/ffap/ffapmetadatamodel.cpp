@@ -61,8 +61,8 @@ QString FFapMetaDataModel::coverPath() const
 
 FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes tagType)
     : TagModel(),
-      m_tagType(tagType),
-      m_file(file)
+      m_file(file),
+      m_tagType(tagType)
 {
     if(m_tagType == TagLib::APE::File::ID3v1)
     {
