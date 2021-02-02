@@ -169,12 +169,13 @@ QString MusicSongMeta::getSampleRate()
 
 QString MusicSongMeta::getBitrate()
 {
-    return getSongMeta()->m_metaData[TagWrapper::TAG_BITRATE] + " kbps";
+    const QString &bitrate = getSongMeta()->m_metaData[TagWrapper::TAG_BITRATE];
+    return bitrate.isEmpty() ? STRING_NULL : bitrate + " kbps";
 }
 
 QString MusicSongMeta::getLengthString()
 {
-    return MusicTime::msecTime2LabelJustified(getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH].toULongLong());
+    return getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH];
 }
 
 MusicSongMeta::MusicMeta *MusicSongMeta::getSongMeta()
@@ -249,7 +250,7 @@ bool MusicSongMeta::readInformation()
             length = info->duration();
             if(length != 0)
             {
-                meta.m_metaData[TagWrapper::TAG_LENGTH] = QString::number(length);
+                meta.m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
             }
             m_songMetas << meta;
         }
@@ -257,13 +258,13 @@ bool MusicSongMeta::readInformation()
 
         if(length == 0 && !m_songMetas.isEmpty())
         {
-            TagWrapper tag;
-            if(tag.readFile(m_filePath))
+            TagWrapper wrapper;
+            if(wrapper.readFile(m_filePath))
             {
-                const QMap<TagWrapper::Type, QString> &data = tag.getMusicTags();
+                const QMap<TagWrapper::Type, QString> &data = wrapper.getMusicTags();
                 length = data[TagWrapper::TAG_LENGTH].toLongLong();
             }
-            getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH] = QString::number(length);
+            getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
         }
 
         loader.unload();

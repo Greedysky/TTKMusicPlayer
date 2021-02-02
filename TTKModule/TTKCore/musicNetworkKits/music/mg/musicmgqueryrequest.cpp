@@ -84,7 +84,6 @@ void MusicMGQueryRequest::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            TTK_LOGGER_INFO(value);
             if(value.contains("musics"))
             {
                 m_totalSize = value["pgt"].toInt() * m_pageSize;
