@@ -1,5 +1,5 @@
-#ifndef MUSICSONGINFO_H
-#define MUSICSONGINFO_H
+#ifndef MUSICSONGMETA_H
+#define MUSICSONGMETA_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,31 +19,30 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QVariant>
-
+#include <QPixmap>
 #include "tagwrapper.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the music song info.
+/*! @brief The class of the music song meta.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSongInfo
+class MUSIC_CORE_EXPORT MusicSongMeta
 {
-    TTK_DECLARE_MODULE(MusicSongInfo)
+    TTK_DECLARE_MODULE(MusicSongMeta)
 public:
-    /*!
-     * Object contsructor.
-     */
-    MusicSongInfo();
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicSongInfo(const QString &file);
+    struct MusicMeta
+    {
+        QPixmap m_cover;
+        QString m_filePath;
+        QMap<TagWrapper::Type, QString> m_metaData;
+    };
+    TTK_DECLARE_LISTS(MusicMeta)
 
     /*!
-     * Read music file to anaylsis.
+     * Object contsructor.
      */
-    bool read();
+    MusicSongMeta();
+
     /*!
      * Read music file to anaylsis.
      */
@@ -64,47 +63,36 @@ public:
     /*!
      * Get artist name.
      */
-    QString getArtist() const;
+    QString getArtist();
     /*!
      * Get song title.
      */
-    QString getTitle() const;
+    QString getTitle();
     /*!
      * Get song album.
      */
-    QString getAlbum() const;
+    QString getAlbum();
     /*!
      * Get song comment.
      */
-    QString getComment() const;
+    QString getComment();
     /*!
      * Get song year.
      */
-    QString getYear() const;
+    QString getYear();
     /*!
      * Get song track number.
      */
-    QString getTrackNum() const;
+    QString getTrackNum();
     /*!
      * Get song genre.
      */
-    QString getGenre() const;
-    /*!
-     * Get song album artist.
-     */
-    QString getAlbumArtist() const;
-    /*!
-     * Get song composer.
-     */
-    QString getComposer() const;
+    QString getGenre();
     /*!
      * Get song channel.
      */
-    QString getChannel() const;
-    /*!
-     * Get song file path.
-     */
-    QString getURL() const;
+    QString getChannel();
+
     /*!
      * Set artist name.
      */
@@ -141,36 +129,39 @@ public:
      * Set song image cover artist.
      */
     void setCover(const QByteArray &data);
+
     /*!
      * Get song image cover artist.
      */
-    QPixmap getCover() const;
+    QPixmap getCover();
     /*!
      * Get song sample rate.
      */
-    QString getSampleRate() const;
-    /*!
-     * Get song format.
-     */
-    QString getFormat() const;
-    /*!
-     * Get song mode.
-     */
-    QString getMode() const;
+    QString getSampleRate();
     /*!
      * Get song bitrate.
      */
-    QString getBitrate() const;
+    QString getBitrate();
     /*!
      * Get song time length.
      */
-    QString getLengthString() const;
+    QString getLengthString();
+
+public:
+    /*!
+     * Get music song meta list.
+     */
+    inline const MusicMetas &getSongMetas() const { return m_songMetas; }
 
 protected:
     /*!
+     * Get music song meta pointer.
+     */
+    MusicMeta *getSongMeta();
+    /*!
      * Find legal data string.
      */
-    QString findLegalDataString(TagWrapper::Type type) const;
+    QString findLegalDataString(TagWrapper::Type type);
     /*!
      * Find current pluin store path.
      */
@@ -185,8 +176,8 @@ protected:
     bool saveInformation();
 
     QString m_filePath;
-    QMap<TagWrapper::Type, QVariant> m_parameters;
+    MusicMetas m_songMetas;
 
 };
 
-#endif // MUSICSONGINFO_H
+#endif // MUSICSONGMETA_H

@@ -5,7 +5,7 @@
 #include "musicnumberutils.h"
 #include "musicwidgetutils.h"
 #include "musicsettingmanager.h"
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -50,10 +50,10 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song
 
     if(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
-        MusicSongInfo info;
-        if(info.read(song.getMusicPath()))
+        MusicSongMeta meta;
+        if(meta.read(song.getMusicPath()))
         {
-            QPixmap pix = info.getCover();
+            QPixmap pix = meta.getCover();
             if(!pix.isNull())
             {
                 m_ui->artPicture->setPixmap(pix.scaled(60, 60));

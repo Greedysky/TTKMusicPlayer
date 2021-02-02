@@ -4,7 +4,7 @@
 #include "musiccoremplayer.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 #include "musicfileutils.h"
 #include "musicwidgetutils.h"
 #include "musictime.h"
@@ -97,13 +97,13 @@ void MusicSongRingtoneMaker::initInputPath()
     }
 
     m_inputFilePath = path;
-    MusicSongInfo info;
-    if(info.read(m_inputFilePath))
+    MusicSongMeta meta;
+    if(meta.read(m_inputFilePath))
     {
         QString name = QFileInfo(m_inputFilePath).fileName();
         m_ui->songLabelValue->setToolTip(name);
         name = MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 220);
-        m_ui->songLabelValue->setText(tr("SongName: %1 (%2, %3, %4)").arg(name).arg(info.getLengthString()).arg(info.getSampleRate()).arg(info.getBitrate()));
+        m_ui->songLabelValue->setText(tr("SongName: %1 (%2, %3, %4)").arg(name).arg(meta.getLengthString()).arg(meta.getSampleRate()).arg(meta.getBitrate()));
     }
     else
     {

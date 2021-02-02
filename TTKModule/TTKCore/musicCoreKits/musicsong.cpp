@@ -1,10 +1,10 @@
 #include "musicsong.h"
 #include "musicstringutils.h"
 #include "musicnumberutils.h"
-
-#include <QFileInfo>
-#include <QDateTime>
-#include <QStringList>
+#include "musicsongmeta.h"
+#include "musicformats.h"
+#include "musicextractwrap.h"
+#include "musicsettingmanager.h"
 
 MusicSong::MusicSong()
     : m_musicName(QString()), m_musicPath(QString())
@@ -102,4 +102,68 @@ bool MusicSong::operator> (const MusicSong &other) const
         default: break;
     }
     return false;
+}
+
+
+MusicSongs MusicObject::generateMusicSong(const QString &path)
+{
+    MusicSongs songs;
+    const QStringList &support = MusicFormats::supportFormatsString();
+    const QString &suffix = QFileInfo(path).suffix().toLower();
+
+    if(!support.contains(suffix))
+    {
+        return songs;
+    }
+
+    if(suffix == ZIP_FILE_PREFIX)
+    {
+        QStringList outputs;
+        if(!MusicExtractWrap::outputBinary(path, M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
+        {
+            TTK_LOGGER_ERROR("Extract zip input error");
+        }
+
+        for(const QString &path : qAsConst(outputs))
+        {
+            songs << generateMusicSong(path);
+        }
+    }
+    else if(suffix == CUE_FILE_PREFIX)
+    {
+        MusicSongMeta meta;
+        if(!meta.read(path))
+        {
+            return songs;
+        }
+
+        for(const MusicSongMeta::MusicMeta &info : qAsConst(meta.getSongMetas()))
+        {
+            const QString &time = info.m_metaData[TagWrapper::TAG_LENGTH];
+            const QString &title = info.m_metaData[TagWrapper::TAG_TITLE];
+            const QString &artist = info.m_metaData[TagWrapper::TAG_ARTIST];
+
+            QString name;
+            if(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && !title.isEmpty() && !artist.isEmpty())
+            {
+                name = artist + " - " + title;
+            }
+            songs << MusicSong(info.m_filePath, 0, time, name);
+        }
+
+        return songs;
+    }
+
+    MusicSongMeta meta;
+    const bool state = meta.read(path);
+    const QString &time = state ? meta.getLengthString() : STRING_NULL;
+
+    QString name;
+    if(state && M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && !meta.getTitle().isEmpty() && !meta.getArtist().isEmpty())
+    {
+        name = meta.getArtist() + " - " + meta.getTitle();
+    }
+    songs << MusicSong(path, 0, time, name);
+
+    return songs;
 }

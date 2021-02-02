@@ -11,9 +11,9 @@ MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, con
     m_needUpdate = false;
 }
 
-void MusicDownloadTagDataRequest::setSongInfo(const MusicSongInfo &info)
+void MusicDownloadTagDataRequest::setSongMeta(const MusicSongMeta &meta)
 {
-    m_musicInfo = info;
+    m_musicMeta = meta;
 }
 
 void MusicDownloadTagDataRequest::startToDownload()
@@ -54,7 +54,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
         MusicSemaphoreLoop loop;
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(m_musicInfo.getComment());
+        download->startToDownload(m_musicMeta.getComment());
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
         loop.exec();
     }
@@ -65,23 +65,23 @@ void MusicDownloadTagDataRequest::downLoadFinished()
 
 void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
 {
-    MusicSongInfo info;
-    if(info.read(m_savePath))
+    MusicSongMeta meta;
+    if(meta.read(m_savePath))
     {
         if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool())
         {
-            info.setTitle(m_musicInfo.getTitle());
-            info.setArtist(m_musicInfo.getArtist());
-            info.setAlbum(m_musicInfo.getAlbum());
-            info.setTrackNum(m_musicInfo.getTrackNum());
-            info.setYear(m_musicInfo.getYear());
+            meta.setTitle(m_musicMeta.getTitle());
+            meta.setArtist(m_musicMeta.getArtist());
+            meta.setAlbum(m_musicMeta.getAlbum());
+            meta.setTrackNum(m_musicMeta.getTrackNum());
+            meta.setYear(m_musicMeta.getYear());
         }
 
         if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
         {
-            info.setCover(data);
+            meta.setCover(data);
         }
-        info.save();
+        meta.save();
         TTK_LOGGER_INFO("write tag has finished");
     }
 

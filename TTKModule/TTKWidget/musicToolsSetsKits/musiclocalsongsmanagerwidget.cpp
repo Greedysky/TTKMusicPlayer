@@ -5,7 +5,7 @@
 #include "musicsongssummariziedwidget.h"
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 #include "musicsinglemanager.h"
 
 #ifdef TTK_GREATER_NEW
@@ -289,7 +289,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
     QtConcurrent::run([&]
     {
         MusicInfoData arts;
-        MusicSongInfo info;
+        MusicSongMeta meta;
         for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
         {
             if(!m_runTypeChanged)
@@ -297,9 +297,9 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
                 break;
             }
 
-            if(info.read(file.absoluteFilePath()))
+            if(meta.read(file.absoluteFilePath()))
             {
-                QString artString = info.getArtist().trimmed();
+                QString artString = meta.getArtist().trimmed();
                 if(artString.isEmpty())
                 {
                     artString = "Various Artists";
@@ -334,7 +334,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     QtConcurrent::run([&]
     {
         MusicInfoData albums;
-        MusicSongInfo info;
+        MusicSongMeta meta;
         for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
         {
             if(!m_runTypeChanged)
@@ -342,9 +342,9 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
                 break;
             }
 
-            if(info.read(file.absoluteFilePath()))
+            if(meta.read(file.absoluteFilePath()))
             {
-                QString albumString = info.getAlbum().trimmed();
+                QString albumString = meta.getAlbum().trimmed();
                 if(albumString.isEmpty())
                 {
                     albumString = "Various Album";

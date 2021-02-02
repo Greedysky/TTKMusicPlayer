@@ -1,5 +1,5 @@
 #include "musicsongslistplaywidget.h"
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
@@ -141,21 +141,21 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
 
 void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path, QString &time)
 {
-    MusicSongInfo info;
-    const bool state = info.read(path);
+    MusicSongMeta meta;
+    const bool state = meta.read(path);
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
 
     if(state)
     {
-        time = info.getLengthString();
+        time = meta.getLengthString();
         m_totalTimeLabel = "/" + time;
     }
     m_timeLabel->setText(MUSIC_TIME_INIT + m_totalTimeLabel);
 
     if(state && M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
-        QPixmap pix = info.getCover();
+        QPixmap pix = meta.getCover();
         if(pix.isNull())
         {
             m_noCover = true;

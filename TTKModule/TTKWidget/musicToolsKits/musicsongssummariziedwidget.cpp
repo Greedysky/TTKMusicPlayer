@@ -6,7 +6,7 @@
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 #include "musicprogresswidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongchecktoolswidget.h"
@@ -126,7 +126,7 @@ void MusicSongsSummariziedWidget::appendMusicLists(const MusicSongItems &names)
     }
 }
 
-void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &filelist)
+void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &files)
 {
     if(!searchFileListEmpty() && m_musicSongSearchWidget)
     {
@@ -136,27 +136,19 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
     MusicProgressWidget progress;
     progress.show();
     progress.setTitle(tr("Import File Mode"));
-    progress.setRange(0, filelist.count());
+    progress.setRange(0, files.count());
 
-    MusicSongInfo info;
     MusicSongItem *item = &m_songItems[m_currentImportIndex];
-    int i=0;
 
-    for(const QString &path : qAsConst(filelist))
+    int i = 0;
+    for(const QString &path : qAsConst(files))
     {
         if(item->m_songs.contains(MusicSong(path)))
         {
             continue;
         }
 
-        const bool state = info.read(path);
-        const QString &time = state ? info.getLengthString() : STRING_NULL;
-        QString name;
-        if(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && state && !info.getTitle().isEmpty() && !info.getArtist().isEmpty())
-        {
-            name = info.getArtist() + " - "+ info.getTitle();
-        }
-        item->m_songs << MusicSong(path, 0, time, name);
+        item->m_songs << MusicObject::generateMusicSong(path);
         progress.setValue(++i);
     }
     item->m_itemObject->updateSongsFileName(item->m_songs);

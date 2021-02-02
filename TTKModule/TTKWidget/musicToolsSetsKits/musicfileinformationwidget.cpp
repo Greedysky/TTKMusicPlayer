@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicurlutils.h"
 #include "musicnumberutils.h"
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
@@ -100,10 +100,10 @@ void MusicFileInformationWidget::advanceClicked()
         m_ui->decoderLabel->setVisible(true);
 
         QPixmap pix;
-        MusicSongInfo info;
-        if(info.read(m_path))
+        MusicSongMeta meta;
+        if(meta.read(m_path))
         {
-            pix = info.getCover();
+            pix = meta.getCover();
         }
 
         QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
@@ -143,10 +143,10 @@ void MusicFileInformationWidget::deleteAlbumPicture()
 void MusicFileInformationWidget::saveAlbumPicture()
 {
     QPixmap pix;
-    MusicSongInfo info;
-    if(info.read(m_path))
+    MusicSongMeta meta;
+    if(meta.read(m_path))
     {
-        pix = info.getCover();
+        pix = meta.getCover();
     }
 
     if(!pix.isNull())
@@ -173,8 +173,8 @@ void MusicFileInformationWidget::saveTag()
        return;
     }
 
-    MusicSongInfo info;
-    if(!info.read(m_path))
+    MusicSongMeta meta;
+    if(!meta.read(m_path))
     {
         return;
     }
@@ -182,43 +182,43 @@ void MusicFileInformationWidget::saveTag()
     QString value = m_ui->fileAlbumEdit->text().trimmed();
     if(value != STRING_NULL)
     {
-        info.setAlbum(value);
+        meta.setAlbum(value);
     }
 
     value = m_ui->fileArtistEdit->text().trimmed();
     if(value != STRING_NULL)
     {
-        info.setArtist(value);
+        meta.setArtist(value);
     }
 
     value = m_ui->fileGenreEdit->text().trimmed();
     if(value != STRING_NULL)
     {
-        info.setGenre(value);
+        meta.setGenre(value);
     }
 
     value = m_ui->fileTitleEdit->text().trimmed();
     if(value != STRING_NULL)
     {
-        info.setTitle(value);
+        meta.setTitle(value);
     }
 
     value = m_ui->fileYearEdit->text().trimmed();
     if(value != STRING_NULL)
     {
-        info.setYear(value);
+        meta.setYear(value);
     }
 
     if(m_deleteOn)
     {
-        info.setCover(QPixmap());
+        meta.setCover(QPixmap());
     }
     else if(!m_imagePath.isEmpty())
     {
-        info.setCover(QPixmap(m_imagePath));
+        meta.setCover(QPixmap(m_imagePath));
     }
 
-    info.save();
+    meta.save();
 
     MusicToastLabel::popup(tr("Save Successfully!"));
 }
@@ -231,8 +231,8 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     }
     //cache song should not allow open url
 
-    MusicSongInfo info;
-    const bool state = info.read(m_path = name);
+    MusicSongMeta meta;
+    const bool state = meta.read(m_path = name);
     const QFileInfo fin(name);
 
     QString check;
@@ -240,18 +240,18 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? STRING_NULL : check);
     m_ui->fileSizeEdit->setText((check = MusicUtils::Number::size2Label(fin.size())).isEmpty() ? STRING_NULL : check);
 
-    m_ui->fileAlbumEdit->setText(state ? ((check = info.getAlbum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->fileArtistEdit->setText(state ? ((check = info.getArtist()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->fileGenreEdit->setText(state ? ((check = info.getGenre()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->fileTitleEdit->setText(state ? ((check = info.getTitle()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->fileYearEdit->setText(state ? ((check = info.getYear()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->fileTimeEdit->setText(state ? ((check = info.getLengthString()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileAlbumEdit->setText(state ? ((check = meta.getAlbum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileArtistEdit->setText(state ? ((check = meta.getArtist()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileGenreEdit->setText(state ? ((check = meta.getGenre()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileTitleEdit->setText(state ? ((check = meta.getTitle()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileYearEdit->setText(state ? ((check = meta.getYear()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->fileTimeEdit->setText(state ? ((check = meta.getLengthString()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
 
-    m_ui->BitrateEdit->setText(state ? ((check = (info.getBitrate())).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->ChannelEdit->setText(state ? ((check = info.getChannel()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->SamplingRateEdit->setText(state ? ((check = info.getSampleRate()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->TrackNumEdit->setText(state ? ((check = info.getTrackNum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
-    m_ui->decoderLabel->setText(state ? ((check = info.getDecoder()).isEmpty() ? STRING_NULL : check.toUpper()) : STRING_NULL);
+    m_ui->BitrateEdit->setText(state ? ((check = (meta.getBitrate())).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->ChannelEdit->setText(state ? ((check = meta.getChannel()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->SamplingRateEdit->setText(state ? ((check = meta.getSampleRate()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->TrackNumEdit->setText(state ? ((check = meta.getTrackNum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
+    m_ui->decoderLabel->setText(state ? ((check = meta.getDecoder()).isEmpty() ? STRING_NULL : check.toUpper()) : STRING_NULL);
     m_ui->qualityEdit->setText(MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())));
 }
 

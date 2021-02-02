@@ -35,7 +35,7 @@ HEADERS  += \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
-    $$PWD/musicsonginfo.h \
+    $$PWD/musicsongmeta.h \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
     $$PWD/musicsemaphoreloop.h \
@@ -62,7 +62,7 @@ SOURCES += \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsingleton.cpp \
     $$PWD/musicsong.cpp \
-    $$PWD/musicsonginfo.cpp \
+    $$PWD/musicsongmeta.cpp \
     $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
     $$PWD/musicsemaphoreloop.cpp \

@@ -179,7 +179,7 @@ protected:
 };
 TTK_DECLARE_LISTS(MusicSong)
 
-//
+
 class MusicAbstractSongsListTableWidget;
 
 /*! @brief The class of the music song sort tag.
@@ -196,6 +196,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSongSort
         m_sortType = Qt::AscendingOrder;
     }
 }MusicSongSort;
+
 
 /*! @brief The class of the music song item.
  * @author Greedysky <greedysky@163.com>
@@ -220,5 +221,15 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
     }
 }MusicSongItem;
 TTK_DECLARE_LISTS(MusicSongItem)
+
+
+namespace MusicObject
+{
+    /*!
+     * Generate music song plyalist.
+     */
+    MUSIC_CORE_EXPORT MusicSongs generateMusicSong(const QString &path);
+
+}
 
 #endif // MUSICSONG_H

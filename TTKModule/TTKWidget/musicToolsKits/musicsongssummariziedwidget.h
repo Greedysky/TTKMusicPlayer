@@ -60,7 +60,7 @@ public:
     /*!
      * Input imported music datas into container.
      */
-    void importMusicSongsByPath(const QStringList &filelist);
+    void importMusicSongsByPath(const QStringList &files);
     /*!
      * Get music songs file name by index.
      */

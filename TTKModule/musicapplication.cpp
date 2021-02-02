@@ -23,7 +23,6 @@
 #include "musictinyuiobject.h"
 #include "musicdispatchmanager.h"
 #include "musictkplconfigmanager.h"
-#include "musicextractwrap.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -198,35 +197,7 @@ void MusicApplication::musicImportSongsPath(const QStringList &items)
         return;
     }
 
-    QStringList files(items);
-    const QStringList &sfx = MusicFormats::supportFormatsString();
-
-    for(const QString &path : qAsConst(items))
-    {
-        const QString &suffix = QFileInfo(path).suffix().toLower();
-        if(sfx.contains(suffix))
-        {
-            if(suffix == ZIP_FILE_PREFIX)
-            {
-                files.removeOne(path);
-                QStringList outputs;
-                if(!MusicExtractWrap::outputBinary(path, M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
-                {
-                    TTK_LOGGER_ERROR("Extract zip input error");
-                }
-                musicImportSongsPath(outputs);
-            }
-        }
-        else
-        {
-            files.removeOne(path);
-        }
-    }
-
-    if(!files.isEmpty())
-    {
-        m_musicSongTreeWidget->importMusicSongsByPath(files);
-    }
+    m_musicSongTreeWidget->importMusicSongsByPath(items);
 }
 
 QString MusicApplication::musicDownloadContains(bool &contains) const
@@ -562,6 +533,7 @@ void MusicApplication::musicImportSongsOnlyDir()
                fileList << info.absoluteFilePath();
             }
         }
+
         musicImportSongsPath(fileList);
     }
 }
@@ -1060,6 +1032,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
     {
         fileList << url.toLocalFile();
     }
+
     musicImportSongsPath(fileList);
 }
 

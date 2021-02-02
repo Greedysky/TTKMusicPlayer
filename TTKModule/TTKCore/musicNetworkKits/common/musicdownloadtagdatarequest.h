@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsonginfo.h"
+#include "musicsongmeta.h"
 #include "musicdownloaddatarequest.h"
 
 /*! @brief The class of downloading the type of data by custom tags.
@@ -38,7 +38,7 @@ public:
     /*!
      * Set custom tags.
      */
-    void setSongInfo(const MusicSongInfo &info);
+    void setSongMeta(const MusicSongMeta &info);
     /*!
      * Start to download data.
      */
@@ -61,7 +61,7 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &data);
 
 protected:
-    MusicSongInfo m_musicInfo;
+    MusicSongMeta m_musicMeta;
 
 };
 
