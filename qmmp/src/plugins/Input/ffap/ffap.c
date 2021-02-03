@@ -606,10 +606,10 @@ static int ape_read_packet(FFap_decoder *decoder)
     int bitrate = -1;
     if(nblocks != 0 && ape->frames[ape->currentframe].size != 0) {
         float sec = (float)nblocks / ape->samplerate;
-        bitrate = ape->frames[ape->currentframe].size / sec * 8;
+        bitrate = ape->frames[ape->currentframe].size / sec * 8 + 0.5;
     }
     if(bitrate > 0) {
-        decoder->bitrate = bitrate/1000;
+        decoder->bitrate = bitrate / 1000;
     }
 
     int sz = PACKET_BUFFER_SIZE-8;

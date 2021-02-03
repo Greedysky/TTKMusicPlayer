@@ -7,7 +7,6 @@
 #include <enca.h>
 #endif
 #include "cuefile.h"
-#include <QDebug>
 
 CueFile::CueFile(const QString &path)
     : CueParser()

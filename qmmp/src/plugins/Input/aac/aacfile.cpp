@@ -120,7 +120,7 @@ quint32 AACFile::bitrate() const
     return m_bitrate;
 }
 
-quint32 AACFile::samplerate() const
+quint32 AACFile::sampleRate() const
 {
     return m_samplerate;
 }

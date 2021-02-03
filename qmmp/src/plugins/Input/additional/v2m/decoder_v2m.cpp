@@ -19,7 +19,7 @@ bool DecoderV2M::initialize()
         return false;
     }
 
-    int rate = m_v2m->samplerate();
+    int rate = m_v2m->sampleRate();
     int channels = m_v2m->channels();
     if(rate == 0 || channels == 0)
     {

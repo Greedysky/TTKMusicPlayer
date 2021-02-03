@@ -19,7 +19,7 @@ bool DecoderDCA::initialize()
         return false;
     }
 
-    int rate = m_dca->samplerate();
+    int rate = m_dca->sampleRate();
     int channels = m_dca->channels();
     if(rate == 0 || channels == 0)
     {

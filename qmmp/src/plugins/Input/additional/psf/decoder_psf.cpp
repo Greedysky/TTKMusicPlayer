@@ -19,7 +19,7 @@ bool DecoderPSF::initialize()
         return false;
     }
 
-    int rate = m_psf->samplerate();
+    int rate = m_psf->sampleRate();
     int channels = m_psf->channels();
     if(rate == 0 || channels == 0)
     {

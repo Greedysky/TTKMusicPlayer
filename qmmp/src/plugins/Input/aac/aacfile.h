@@ -47,7 +47,7 @@ public:
 
     qint64 duration() const;
     quint32 bitrate() const;
-    quint32 samplerate() const;
+    quint32 sampleRate() const;
     int offset() const;
     bool isValid() const;
     const QMap<Qmmp::MetaData, QString> &metaData();

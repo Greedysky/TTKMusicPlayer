@@ -44,10 +44,10 @@ QList<TrackInfo*> DecoderDCAFactory::createPlayList(const QString &path, TrackIn
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());
-        info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
+        info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setValue(Qmmp::FORMAT_NAME, "dca");
+        info->setValue(Qmmp::FORMAT_NAME, "DTS");
         info->setDuration(helper.totalTime());
     }
 

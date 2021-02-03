@@ -19,7 +19,7 @@ bool DecoderAsap::initialize()
         return false;
     }
 
-    int rate = m_asap->samplerate();
+    int rate = m_asap->sampleRate();
     int channels = m_asap->channels();
     if(rate == 0 || channels == 0)
     {

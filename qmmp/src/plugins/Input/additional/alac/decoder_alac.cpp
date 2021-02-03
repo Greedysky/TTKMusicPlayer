@@ -20,7 +20,7 @@ bool DecoderAlac::initialize()
         return false;
     }
 
-    configure(m_alac->samplerate(), 2, Qmmp::PCM_S16LE);
+    configure(m_alac->sampleRate(), 2, Qmmp::PCM_S16LE);
 
     qDebug("ALACHelper: initialize success");
     return true;

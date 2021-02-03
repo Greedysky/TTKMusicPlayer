@@ -19,7 +19,7 @@ bool DecoderSC68::initialize()
         return false;
     }
 
-    int rate = m_sc68->samplerate();
+    int rate = m_sc68->sampleRate();
     int channels = m_sc68->channels();
     if(rate == 0 || channels == 0)
     {

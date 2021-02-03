@@ -147,8 +147,8 @@ bool V2MHelper::initialize()
     m_info->player->Init();
     m_info->player->Open(m_info->tune);
 
-    m_totalTime = get_total_samples(m_info->player) / samplerate();
-    m_info->bitrate = size * 8.0 / m_totalTime;
+    m_totalTime = get_total_samples(m_info->player) / sampleRate();
+    m_info->bitrate = size * 8.0 / m_totalTime + 0.5;
     m_info->readpos = 0;
 
     m_info->player->Play();
@@ -162,7 +162,7 @@ int V2MHelper::totalTime() const
 
 void V2MHelper::seek(qint64 time)
 {
-    const int sample = time * samplerate();
+    const int sample = time * sampleRate();
     if(sample >= m_info->totalsamples)
     {
         return; // seek beyond eof
@@ -186,7 +186,7 @@ void V2MHelper::seek(qint64 time)
         m_info->player->Render(buffer, samples);
         m_info->currsample += samples;
     }
-    m_info->readpos = sample / (float)samplerate();
+    m_info->readpos = sample / (float)sampleRate();
 }
 
 int V2MHelper::bitrate() const
@@ -194,7 +194,7 @@ int V2MHelper::bitrate() const
     return m_info->bitrate;
 }
 
-int V2MHelper::samplerate() const
+int V2MHelper::sampleRate() const
 {
     return 44100;
 }
@@ -220,7 +220,7 @@ int V2MHelper::read(unsigned char *buf, int size)
     }
 
     m_info->player->Render((float*)buf, samples);
-    m_info->readpos += samples / (float)samplerate();
+    m_info->readpos += samples / (float)sampleRate();
     m_info->currsample += samples;
 
     return size;

@@ -236,6 +236,7 @@ DecoderFactory *Decoder::findByMime(const QString& type)
 {
     if(type.isEmpty())
         return nullptr;
+
     loadPlugins();
     for(QmmpPluginCache *item : qAsConst(*m_cache))
     {

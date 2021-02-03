@@ -180,7 +180,7 @@ bool DumbHelper::initialize()
 
     m_info->readpos = 0;
     m_totalTime = duh_get_length(m_info->duh) / 65536.0f * 1000;
-    m_info->bitrate = size * 8.0 / m_totalTime;
+    m_info->bitrate = size * 8.0 / m_totalTime + 0.5;
 
     if(cdumb_startrenderer(m_info) < 0)
     {
@@ -210,8 +210,8 @@ void DumbHelper::seek(qint64 time)
         skiptime -= m_info->readpos;
     }
 
-    int pos = skiptime * samplerate();
-    duh_sigrenderer_generate_samples(m_info->renderer, 0, 65536.0f / samplerate(), pos, nullptr);
+    int pos = skiptime * sampleRate();
+    duh_sigrenderer_generate_samples(m_info->renderer, 0, 65536.0f / sampleRate(), pos, nullptr);
     m_info->readpos = time;
 }
 
@@ -220,7 +220,7 @@ int DumbHelper::bitrate() const
     return m_info->bitrate;
 }
 
-int DumbHelper::samplerate() const
+int DumbHelper::sampleRate() const
 {
     return conf_samplerate;
 }
@@ -239,8 +239,8 @@ int DumbHelper::read(unsigned char *buf, int size)
 {
     const int samplesize = (bitsPerSample() >> 3) * channels();
     const int length = size / samplesize;
-    const long ret = duh_render(m_info->renderer, bitsPerSample(), 0, 1, 65536.f / samplerate(), length, buf);
-    m_info->readpos += ret / (float)samplerate();
+    const long ret = duh_render(m_info->renderer, bitsPerSample(), 0, 1, 65536.f / sampleRate(), length, buf);
+    m_info->readpos += ret / (float)sampleRate();
 
     return ret * samplesize;
 }

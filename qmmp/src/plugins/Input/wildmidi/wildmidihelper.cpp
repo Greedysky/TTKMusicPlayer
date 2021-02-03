@@ -49,7 +49,7 @@ bool WildMidiHelper::initialize()
         mixer_options |= WM_MO_REVERB;
     settings.endGroup();
 
-    m_sample_rate = sample_rate;
+    m_sampleRate = sample_rate;
     if(WildMidi_Init(qPrintable(conf_path), sample_rate, mixer_options) < 0)
     {
         qWarning("WildMidiHelper: unable to initialize WildMidi library, %s", WildMidi_GetError());
@@ -76,6 +76,12 @@ void WildMidiHelper::readSettings()
     initialize();
 }
 
+QString WildMidiHelper::configFile() const
+{
+    const QString path = Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg";
+    return QFile::exists(path) ? path : QString();
+}
+
 void WildMidiHelper::addPtr(void *t)
 {
     m_mutex.lock();
@@ -90,18 +96,27 @@ void WildMidiHelper::removePtr(void *t)
     m_mutex.unlock();
 }
 
-QString WildMidiHelper::configFile() const
-{
-    const QString path = Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg";
-    return QFile::exists(path) ? path : QString();
-}
-
-quint32 WildMidiHelper::sampleRate()
-{
-    return m_sample_rate;
-}
-
 WildMidiHelper *WildMidiHelper::instance()
 {
     return m_instance;
+}
+
+int WildMidiHelper::bitrate() const
+{
+    return 8;
+}
+
+int WildMidiHelper::sampleRate() const
+{
+    return m_sampleRate;
+}
+
+int WildMidiHelper::channels() const
+{
+    return 2;
+}
+
+int WildMidiHelper::bitsPerSample() const
+{
+    return 16;
 }

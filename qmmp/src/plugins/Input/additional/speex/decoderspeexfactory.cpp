@@ -50,7 +50,7 @@ QList<TrackInfo*> DecoderSpeexFactory::createPlayList(const QString &path, Track
             info->setValue(Qmmp::BITRATE, helper.get_bitrate());
             info->setValue(Qmmp::SAMPLERATE, helper.stream_get_samplerate());
             info->setValue(Qmmp::CHANNELS, helper.stream_get_channels());
-            info->setValue(Qmmp::FORMAT_NAME, "speex");
+            info->setValue(Qmmp::FORMAT_NAME, "Speex");
             info->setDuration(helper.get_duration());
         }
     }

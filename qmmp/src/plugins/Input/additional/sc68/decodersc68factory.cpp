@@ -56,10 +56,10 @@ QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackI
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());
-        info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
+        info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setValue(Qmmp::FORMAT_NAME, "sc68");
+        info->setValue(Qmmp::FORMAT_NAME, "SC68");
         info->setDuration(helper.totalTime());
     }
 

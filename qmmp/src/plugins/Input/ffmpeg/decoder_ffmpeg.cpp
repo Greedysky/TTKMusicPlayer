@@ -259,9 +259,9 @@ bool DecoderFFmpeg::initialize()
     configure(m_codecContext->sample_rate, m_channels, format);
 
     if(m_formatContext->bit_rate)
-        m_bitrate = m_formatContext->bit_rate/1000;
+        m_bitrate = m_formatContext->bit_rate / 1000;
     if(m_codecContext->bit_rate)
-        m_bitrate = m_codecContext->bit_rate/1000;
+        m_bitrate = m_codecContext->bit_rate / 1000;
     qDebug("DecoderFFmpeg: initialize succes");
     qDebug("DecoderFFmpeg: total time = %ld", m_totalTime);
 

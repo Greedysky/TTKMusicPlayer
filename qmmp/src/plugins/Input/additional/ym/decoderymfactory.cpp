@@ -57,7 +57,7 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
     if(parts & TrackInfo::Properties)
     {
         info->setDuration(musicInfo.musicTimeInMs);
-        info->setValue(Qmmp::FORMAT_NAME, "ym");
+        info->setValue(Qmmp::FORMAT_NAME, "YM");
     }
 
     delete music;

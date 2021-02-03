@@ -69,7 +69,7 @@ bool FC14Helper::initialize()
     m_info->channels = 2;
     m_info->sample_rate = 44100;
     m_info->bits_per_sample = 16;
-    m_info->bitrate = size * 8.0 / m_info->length;
+    m_info->bitrate = size * 8.0 / m_info->length + 0.5;
 
     return true;
 }
@@ -89,7 +89,7 @@ int FC14Helper::bitrate() const
     return m_info->bitrate;
 }
 
-int FC14Helper::samplerate() const
+int FC14Helper::sampleRate() const
 {
     return m_info->sample_rate;
 }

@@ -75,7 +75,7 @@ bool AlacHelper::initialize()
     m_totalTime= (output_time / m_demux.sample_rate) * 1000;
     m_output_bytes = 4096 * 4;
     m_decoded_frames = 0;
-    m_bitrate = (QFileInfo(m_path).size() * 8.0) / m_totalTime;
+    m_bitrate = (QFileInfo(m_path).size() * 8.0) / m_totalTime + 0.5;
 
     return true;
 }
@@ -95,7 +95,7 @@ int AlacHelper::bitrate() const
     return m_bitrate;
 }
 
-int AlacHelper::samplerate() const
+int AlacHelper::sampleRate() const
 {
     return m_demux.sample_rate;
 }

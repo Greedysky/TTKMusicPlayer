@@ -132,7 +132,7 @@ int PSFHelper::totalTime() const
 
 void PSFHelper::seek(qint64 time)
 {
-    const int sample = time * samplerate();
+    const int sample = time * sampleRate();
     if(sample > m_info->currentsample)
     {
         m_info->samples_to_skip = sample - m_info->currentsample;
@@ -145,7 +145,7 @@ void PSFHelper::seek(qint64 time)
     }
 
     m_info->currentsample = sample;
-    m_info->readpos = (float)sample / samplerate();
+    m_info->readpos = (float)sample / sampleRate();
 }
 
 int PSFHelper::bitrate() const
@@ -153,7 +153,7 @@ int PSFHelper::bitrate() const
     return m_info->filesize * 8.0 / totalTime();
 }
 
-int PSFHelper::samplerate() const
+int PSFHelper::sampleRate() const
 {
     return 44100;
 }
@@ -170,7 +170,7 @@ int PSFHelper::bitsPerSample() const
 
 int PSFHelper::read(unsigned char *buf, int size)
 {
-    if(m_info->currentsample >= m_info->duration * samplerate())
+    if(m_info->currentsample >= m_info->duration * sampleRate())
     {
         return 0;
     }
@@ -212,7 +212,7 @@ int PSFHelper::read(unsigned char *buf, int size)
     }
 
     m_info->currentsample += (initsize - size) / (channels() * bitsPerSample() / 8);
-    m_info->readpos = (float)m_info->currentsample / samplerate();
+    m_info->readpos = (float)m_info->currentsample / sampleRate();
     return initsize - size;
 }
 

@@ -19,7 +19,7 @@ bool DecoderDumb::initialize()
         return false;
     }
 
-    int rate = m_dumb->samplerate();
+    int rate = m_dumb->sampleRate();
     int channels = m_dumb->channels();
     if(rate == 0 || channels == 0)
     {

@@ -19,7 +19,7 @@ bool DecoderFC14::initialize()
         return false;
     }
 
-    int rate = m_fc14->samplerate();
+    int rate = m_fc14->sampleRate();
     int channels = m_fc14->channels();
     if(rate == 0 || channels == 0)
     {

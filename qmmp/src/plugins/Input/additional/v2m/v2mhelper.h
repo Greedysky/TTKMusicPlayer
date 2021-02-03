@@ -48,7 +48,7 @@ public:
     void seek(qint64 time);
 
     int bitrate() const;
-    int samplerate() const;
+    int sampleRate() const;
     int channels() const;
     int bitsPerSample() const;
 

@@ -44,10 +44,10 @@ QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackI
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());
-        info->setValue(Qmmp::SAMPLERATE, helper.samplerate());
+        info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setValue(Qmmp::FORMAT_NAME, "fc14");
+        info->setValue(Qmmp::FORMAT_NAME, "FC14");
         info->setDuration(helper.totalTime());
     }
 

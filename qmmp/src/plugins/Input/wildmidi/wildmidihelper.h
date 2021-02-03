@@ -34,18 +34,23 @@ public:
 
     bool initialize();
     void readSettings();
-    quint32 sampleRate();
+    QString configFile() const;
+
     void addPtr(void *);
     void removePtr(void *);
-    QString configFile() const;
     static WildMidiHelper *instance();
+
+    int bitrate() const;
+    int sampleRate() const;
+    int channels() const;
+    int bitsPerSample() const;
 
 private:
     static WildMidiHelper *m_instance;
     bool m_inited = false;
     QMutex m_mutex;
     QList<void *> m_ptrs;
-    quint32 m_sample_rate = 0;
+    int m_sampleRate = 0;
 
 };
 

@@ -422,7 +422,7 @@ int DCAHelper::totalTime() const
 
 void DCAHelper::seek(qint64 time)
 {
-    int sample = time * samplerate();
+    int sample = time * sampleRate();
     // calculate file offset from framesize / framesamples
     sample += m_info->startsample;
     int64_t nframe = sample / m_info->frame_length;
@@ -433,7 +433,7 @@ void DCAHelper::seek(qint64 time)
     m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
 
     m_info->currentsample = sample;
-    m_info->readpos = (float)(sample - m_info->startsample) / samplerate();
+    m_info->readpos = (float)(sample - m_info->startsample) / sampleRate();
 }
 
 int DCAHelper::bitrate() const
@@ -441,7 +441,7 @@ int DCAHelper::bitrate() const
     return m_info->bitrate;
 }
 
-int DCAHelper::samplerate() const
+int DCAHelper::sampleRate() const
 {
     return m_info->sample_rate;
 }

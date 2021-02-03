@@ -46,14 +46,14 @@ bool AyflyHelper::initialize()
     stdio_read(module, size, 1, file);
     stdio_close(file);
 
-    if(!ay_initsongindirect(module, samplerate(), size))
+    if(!ay_initsongindirect(module, sampleRate(), size))
     {
         free(module);
         return false;
     }
     free(module);
 
-    m_info->ay = ay_initsong(qPrintable(m_path), samplerate());
+    m_info->ay = ay_initsong(qPrintable(m_path), sampleRate());
     if(!m_info->ay)
     {
         return false;
@@ -83,7 +83,7 @@ int AyflyHelper::bitrate() const
     return m_info->rate;
 }
 
-int AyflyHelper::samplerate() const
+int AyflyHelper::sampleRate() const
 {
     return 44100;
 }

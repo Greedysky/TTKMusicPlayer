@@ -38,10 +38,10 @@ bool DecoderWildMidi::initialize()
     WildMidiHelper::instance()->addPtr(midi_ptr);
 
 
-    m_sample_rate = WildMidiHelper::instance()->sampleRate();
+    m_sampleRate = WildMidiHelper::instance()->sampleRate();
     _WM_Info *wm_info = WildMidi_GetInfo(midi_ptr);
     m_totalTime = (qint64)wm_info->approx_total_samples * 1000 / WildMidiHelper::instance()->sampleRate();
-    configure(m_sample_rate, 2, Qmmp::PCM_S16LE);
+    configure(m_sampleRate, 2, Qmmp::PCM_S16LE);
     qDebug("DecoderWildMidi: initialize succes");
     return true;
 }
@@ -53,13 +53,13 @@ qint64 DecoderWildMidi::totalTime() const
 
 void DecoderWildMidi::seek(qint64 pos)
 {
-    ulong sample = (ulong)m_sample_rate * pos / 1000;
+    ulong sample = (ulong)m_sampleRate * pos / 1000;
     WildMidi_FastSeek(midi_ptr, &sample);
 }
 
 int DecoderWildMidi::bitrate() const
 {
-    return 8;
+    return WildMidiHelper::instance()->bitrate();
 }
 
 qint64 DecoderWildMidi::read(unsigned char *data, qint64 size)

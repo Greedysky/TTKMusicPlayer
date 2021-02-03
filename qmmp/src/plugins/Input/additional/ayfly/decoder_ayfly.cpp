@@ -19,7 +19,7 @@ bool DecoderAyfly::initialize()
         return false;
     }
 
-    int rate = m_ayfly->samplerate();
+    int rate = m_ayfly->sampleRate();
     int channels = m_ayfly->channels();
     if(rate == 0 || channels == 0)
     {
