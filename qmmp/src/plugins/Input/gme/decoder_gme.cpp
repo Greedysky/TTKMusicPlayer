@@ -28,6 +28,10 @@ bool DecoderGme::initialize()
         m_emu = nullptr;
         return false;
     }
+
+    if(track == 0)
+        track = count;
+
     gme_start_track(m_emu, track - 1);
     gme_info_t *track_info;
     if(!gme_track_info(m_emu, &track_info, track - 1))
@@ -35,6 +39,10 @@ bool DecoderGme::initialize()
         if(track_info->length <= 0)
             track_info->length = track_info->intro_length + track_info->loop_length * 2;
     }
+
+    if(!track_info)
+        return false;
+
     if(track_info->length <= 0)
         track_info->length = (long) (2.5 * 60 * 1000);
 
@@ -50,8 +58,10 @@ bool DecoderGme::initialize()
     metadata.insert(Qmmp::ARTIST, track_info->author);
     metadata.insert(Qmmp::COMMENT, track_info->comment);
     metadata.insert(Qmmp::TRACK, QString("%1").arg(track));
+
     addMetaData(metadata);
     m_totalTime = track_info->length;
+
     gme_free_info(track_info);
     configure(44100, 2);
     qDebug("DecoderGme: initialize succes");
