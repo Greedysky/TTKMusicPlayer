@@ -6,29 +6,59 @@
 #include "musicwidgetutils.h"
 #include "musicstringutils.h"
 
-#include <QStringList>
-#include <QPluginLoader>
-#include <QFileInfo>
 ///qmmp incldue
 #include "decoderfactory.h"
 #include "metadatamodel.h"
 #include "decoder.h"
 
+
+struct MusicMeta
+{
+    QPixmap m_cover;
+    QString m_fileUrl;
+    QMap<TagWrapper::Type, QString> m_metaData;
+};
+
+
 MusicSongMeta::MusicSongMeta()
+    : m_offset(-1)
 {
 
 }
 
+MusicSongMeta::~MusicSongMeta()
+{
+    clearSongMeta();
+}
+
 bool MusicSongMeta::read(const QString &file)
 {
-    const QFile f(file);
+    bool cue = false;
+    QString path(file);
+    if(path.startsWith("cue://"))
+    {
+        path = path.section("://", -1);
+        if(path.contains("#"))
+        {
+            path = path.section("#", 0, 0);
+            cue = true;
+        }
+    }
+
+    const QFile f(path);
     if(!f.exists() || f.size() <= 0)
     {
         return false;
     }
 
-    m_filePath = file;
-    return readInformation();
+    m_filePath = path;
+    const bool status = readInformation();
+    if(status && cue)
+    {
+        setSongMetaIndex(file.section("#", -1).toInt() - 1);
+    }
+
+    return status;
 }
 
 bool MusicSongMeta::save()
@@ -38,13 +68,32 @@ bool MusicSongMeta::save()
 
 QString MusicSongMeta::getDecoder() const
 {
-    const QString &v = findPluginPath();
-    return QFileInfo(v).baseName();
+    const QString &suffix = QFileInfo(m_filePath).suffix().toLower();
+    const TTKStringListMap formats(MusicFormats::supportFormatsStringMap());
+    for(const QString &key : formats.keys())
+    {
+        if(formats.value(key).contains(suffix))
+        {
+            return QFileInfo(MusicUtils::QMMP::pluginPath("Input", key)).baseName();
+        }
+    }
+
+    return QString();
 }
 
 QString MusicSongMeta::getFilePath() const
 {
     return m_filePath;
+}
+
+QString MusicSongMeta::getFileBasePath()
+{
+    return getSongMeta()->m_fileUrl;
+}
+
+QString MusicSongMeta::getFileRelatedPath()
+{
+    return getSongMeta()->m_metaData[TagWrapper::TAG_URL];
 }
 
 QString MusicSongMeta::getArtist()
@@ -178,13 +227,36 @@ QString MusicSongMeta::getLengthString()
     return getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH];
 }
 
-MusicSongMeta::MusicMeta *MusicSongMeta::getSongMeta()
+void MusicSongMeta::setSongMetaIndex(int index)
+{
+    if(index < 0 || index >= m_songMetas.size())
+    {
+        return;
+    }
+
+    m_offset = index;
+}
+
+int MusicSongMeta::getSongMetaSize() const
+{
+    return m_songMetas.size();
+}
+
+void MusicSongMeta::clearSongMeta()
+{
+    qDeleteAll(m_songMetas);
+    m_offset = -1;
+}
+
+MusicMeta *MusicSongMeta::getSongMeta()
 {
     if(m_songMetas.isEmpty())
     {
-        m_songMetas << MusicMeta();
+        m_songMetas << new MusicMeta;
+        m_offset = 0;
     }
-    return &m_songMetas[0];
+
+    return m_songMetas[m_offset];
 }
 
 QString MusicSongMeta::findLegalDataString(TagWrapper::Type type)
@@ -193,32 +265,12 @@ QString MusicSongMeta::findLegalDataString(TagWrapper::Type type)
     return MusicUtils::String::illegalCharactersReplaced(v);
 }
 
-QString MusicSongMeta::findPluginPath() const
-{
-    const QString &suffix = QFileInfo(m_filePath).suffix().toLower();
-
-    const TTKStringListMap formats(MusicFormats::supportFormatsStringMap());
-    for(const QString &key : formats.keys())
-    {
-        if(formats.value(key).contains(suffix))
-        {
-            return MusicUtils::QMMP::pluginPath("Input", key);
-        }
-    }
-
-    return QString();
-}
-
 bool MusicSongMeta::readInformation()
 {
-    QPluginLoader loader;
-    loader.setFileName(findPluginPath());
+    clearSongMeta();
+    DecoderFactory *factory = Decoder::findByFilePath(m_filePath);
 
-    const QObject *obj = loader.instance();
-    DecoderFactory *factory = nullptr;
-    m_songMetas.clear();
-
-    if(obj && (factory = TTKObject_cast(DecoderFactory*, obj)))
+    if(factory)
     {
         QPixmap cover;
         MetaDataModel *model = factory->createMetaDataModel(m_filePath, true);
@@ -229,30 +281,35 @@ bool MusicSongMeta::readInformation()
         }
 
         qint64 length = 0;
-        const QList<TrackInfo*> infos(factory->createPlayList(m_filePath, TrackInfo::AllParts, nullptr));
+        QStringList files;
+        const QList<TrackInfo*> infos(factory->createPlayList(m_filePath, TrackInfo::AllParts, &files));
+
         for(TrackInfo *info : qAsConst(infos))
         {
-            MusicMeta meta;
-            meta.m_filePath = info->path();
+            MusicMeta *meta = new MusicMeta;
+            meta->m_fileUrl = info->path();
+            meta->m_metaData[TagWrapper::TAG_URL] = files.isEmpty() ? meta->m_fileUrl : files.first();
 
-            meta.m_metaData[TagWrapper::TAG_SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
-            meta.m_metaData[TagWrapper::TAG_BITRATE] = info->value(Qmmp::BITRATE);
-            meta.m_metaData[TagWrapper::TAG_CHANNEL] = info->value(Qmmp::CHANNELS);
+            meta->m_metaData[TagWrapper::TAG_SAMPLERATE] = info->value(Qmmp::SAMPLERATE);
+            meta->m_metaData[TagWrapper::TAG_BITRATE] = info->value(Qmmp::BITRATE);
+            meta->m_metaData[TagWrapper::TAG_CHANNEL] = info->value(Qmmp::CHANNELS);
 
-            meta.m_metaData[TagWrapper::TAG_TITLE] = info->value(Qmmp::TITLE);
-            meta.m_metaData[TagWrapper::TAG_ARTIST] = info->value(Qmmp::ARTIST);
-            meta.m_metaData[TagWrapper::TAG_ALBUM] = info->value(Qmmp::ALBUM);
-            meta.m_metaData[TagWrapper::TAG_YEAR] = info->value(Qmmp::YEAR);
-            meta.m_metaData[TagWrapper::TAG_COMMENT] = info->value(Qmmp::COMMENT);
-            meta.m_metaData[TagWrapper::TAG_TRACK] = info->value(Qmmp::TRACK);
-            meta.m_metaData[TagWrapper::TAG_GENRE] = info->value(Qmmp::GENRE);
+            meta->m_metaData[TagWrapper::TAG_TITLE] = info->value(Qmmp::TITLE);
+            meta->m_metaData[TagWrapper::TAG_ARTIST] = info->value(Qmmp::ARTIST);
+            meta->m_metaData[TagWrapper::TAG_ALBUM] = info->value(Qmmp::ALBUM);
+            meta->m_metaData[TagWrapper::TAG_YEAR] = info->value(Qmmp::YEAR);
+            meta->m_metaData[TagWrapper::TAG_COMMENT] = info->value(Qmmp::COMMENT);
+            meta->m_metaData[TagWrapper::TAG_TRACK] = info->value(Qmmp::TRACK);
+            meta->m_metaData[TagWrapper::TAG_GENRE] = info->value(Qmmp::GENRE);
 
             length = info->duration();
             if(length != 0)
             {
-                meta.m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
+                meta->m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
             }
+
             m_songMetas << meta;
+            m_offset = 0;
         }
         qDeleteAll(infos);
 
@@ -266,8 +323,6 @@ bool MusicSongMeta::readInformation()
             }
             getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
         }
-
-        loader.unload();
     }
 
     return !m_songMetas.isEmpty();
@@ -275,13 +330,9 @@ bool MusicSongMeta::readInformation()
 
 bool MusicSongMeta::saveInformation()
 {
-    QPluginLoader loader;
-    loader.setFileName(findPluginPath());
+    DecoderFactory *factory = Decoder::findByFilePath(m_filePath);
 
-    const QObject *obj = loader.instance();
-    DecoderFactory *factory = nullptr;
-
-    if(obj && (factory = TTKObject_cast(DecoderFactory*, obj)))
+    if(factory)
     {
         MetaDataModel *model = factory->createMetaDataModel(m_filePath, false);
         if(model)
@@ -315,7 +366,6 @@ bool MusicSongMeta::saveInformation()
             }
         }
         delete model;
-        loader.unload();
         return true;
     }
 

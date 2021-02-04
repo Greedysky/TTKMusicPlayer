@@ -105,7 +105,7 @@ bool MusicSong::operator> (const MusicSong &other) const
 }
 
 
-MusicSongs MusicObject::generateMusicSong(const QString &path)
+MusicSongs MusicObject::generateMusicSongList(const QString &path)
 {
     MusicSongs songs;
     const QStringList &support = MusicFormats::supportFormatsString();
@@ -126,7 +126,7 @@ MusicSongs MusicObject::generateMusicSong(const QString &path)
 
         for(const QString &path : qAsConst(outputs))
         {
-            songs << generateMusicSong(path);
+            songs << generateMusicSongList(path);
         }
     }
     else if(suffix == CUE_FILE_PREFIX)
@@ -137,18 +137,25 @@ MusicSongs MusicObject::generateMusicSong(const QString &path)
             return songs;
         }
 
-        for(const MusicSongMeta::MusicMeta &info : qAsConst(meta.getSongMetas()))
+        const int size = meta.getSongMetaSize();
+        for(int i=0; i<size; ++i)
         {
-            const QString &time = info.m_metaData[TagWrapper::TAG_LENGTH];
-            const QString &title = info.m_metaData[TagWrapper::TAG_TITLE];
-            const QString &artist = info.m_metaData[TagWrapper::TAG_ARTIST];
+            meta.setSongMetaIndex(i);
+            const QString &time = meta.getLengthString();
+            const QString &title = meta.getTitle();
+            const QString &artist = meta.getArtist();
 
             QString name;
             if(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && !title.isEmpty() && !artist.isEmpty())
             {
                 name = artist + " - " + title;
             }
-            songs << MusicSong(info.m_filePath, 0, time, name);
+
+            const QFileInfo fin(meta.getFileRelatedPath());
+            MusicSong song(meta.getFileBasePath(), 0, time, name);
+            song.setMusicType(fin.suffix());
+            song.setMusicSize(fin.size());
+            songs << song;
         }
 
         return songs;

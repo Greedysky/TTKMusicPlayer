@@ -228,7 +228,7 @@ namespace MusicObject
     /*!
      * Generate music song plyalist.
      */
-    MUSIC_CORE_EXPORT MusicSongs generateMusicSong(const QString &path);
+    MUSIC_CORE_EXPORT MusicSongs generateMusicSongList(const QString &path);
 
 }
 

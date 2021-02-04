@@ -148,7 +148,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
             continue;
         }
 
-        item->m_songs << MusicObject::generateMusicSong(path);
+        item->m_songs << MusicObject::generateMusicSongList(path);
         progress.setValue(++i);
     }
     item->m_itemObject->updateSongsFileName(item->m_songs);

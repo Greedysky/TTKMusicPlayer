@@ -233,10 +233,10 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
 
     MusicSongMeta meta;
     const bool state = meta.read(m_path = name);
-    const QFileInfo fin(name);
+    const QFileInfo fin(meta.getFileRelatedPath());
 
     QString check;
-    m_ui->filePathEdit->setText((check = name).isEmpty() ? STRING_NULL : check);
+    m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? STRING_NULL : check);
     m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? STRING_NULL : check);
     m_ui->fileSizeEdit->setText((check = MusicUtils::Number::size2Label(fin.size())).isEmpty() ? STRING_NULL : check);
 

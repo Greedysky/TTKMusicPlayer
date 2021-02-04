@@ -19,9 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QPixmap>
 #include "tagwrapper.h"
 #include "musicglobaldefine.h"
+
+class MusicMeta;
 
 /*! @brief The class of the music song meta.
  * @author Greedysky <greedysky@163.com>
@@ -30,18 +31,12 @@ class MUSIC_CORE_EXPORT MusicSongMeta
 {
     TTK_DECLARE_MODULE(MusicSongMeta)
 public:
-    struct MusicMeta
-    {
-        QPixmap m_cover;
-        QString m_filePath;
-        QMap<TagWrapper::Type, QString> m_metaData;
-    };
-    TTK_DECLARE_LISTS(MusicMeta)
-
     /*!
      * Object contsructor.
      */
     MusicSongMeta();
+
+    ~MusicSongMeta();
 
     /*!
      * Read music file to anaylsis.
@@ -60,6 +55,15 @@ public:
      * Read music file path.
      */
     QString getFilePath() const;
+    /*!
+     * Get file url.
+     */
+    QString getFileBasePath();
+    /*!
+     * Get file related path.
+     */
+    QString getFileRelatedPath();
+
     /*!
      * Get artist name.
      */
@@ -121,6 +125,8 @@ public:
      * Set song genre.
      */
     void setGenre(const QString &genre);
+
+public:
     /*!
      * Set song image cover artist.
      */
@@ -129,7 +135,6 @@ public:
      * Set song image cover artist.
      */
     void setCover(const QByteArray &data);
-
     /*!
      * Get song image cover artist.
      */
@@ -149,11 +154,19 @@ public:
 
 public:
     /*!
-     * Get music song meta list.
+     * Set music song meta index offset.
      */
-    inline const MusicMetas &getSongMetas() const { return m_songMetas; }
+    void setSongMetaIndex(int index);
+    /*!
+     * Get music song meta size.
+     */
+    int getSongMetaSize() const;
 
 protected:
+    /*!
+     * Clear music song meta.
+     */
+    void clearSongMeta();
     /*!
      * Get music song meta pointer.
      */
@@ -163,10 +176,6 @@ protected:
      */
     QString findLegalDataString(TagWrapper::Type type);
     /*!
-     * Find current pluin store path.
-     */
-    QString findPluginPath() const;
-    /*!
      * Read other taglib not by plugin.
      */
     bool readInformation();
@@ -175,8 +184,9 @@ protected:
      */
     bool saveInformation();
 
+    int m_offset;
     QString m_filePath;
-    MusicMetas m_songMetas;
+    QList<MusicMeta*> m_songMetas;
 
 };
 
