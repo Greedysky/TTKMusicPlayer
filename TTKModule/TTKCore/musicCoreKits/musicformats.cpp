@@ -11,6 +11,7 @@ QStringList MusicFormats::supportFormatsString()
                         << "mp1" << "mp2" << "mp3"
                         << "ay" << "gms" << "gym" << "hes" << "kss" << "nsf" << "nsfe" << "sap" << "spc" << "vgm" << "vgz)"
                         << "flac" << "oga"
+                        << "ape"
                         << "aac"
                         << "mid"
                         << "sid" << "mus" << "str" << "prg" << "P00"
@@ -19,12 +20,11 @@ QStringList MusicFormats::supportFormatsString()
                         << "adl" << "hsc" << "ksm" << "lds"
                         << "alac"
                         << "sap" << "cm3" << "cmc" << "cmr" << "cms" << "dmc" << "dlt" << "mpd" << "mpt" << "rmt" << "tm2" << "tm8" << "tmc" << "fc"
-                        << "vtx" << "asc" << "sqt" << "*psg" << "stc" << "stp" << "pt1" << "pt2" << "pt3" << "psc" << "ay" << "ym"
+                        << "vtx" << "asc" << "sqt" << "psg" << "stc" << "stp" << "pt1" << "pt2" << "pt3" << "psc" << "ay" << "ym"
                         << "dts" << "cpt"
-                        << "mod" << "mdz" << "stk" << "m15" << "fst" << "oct" << "nt" << "s3m" << "s3z" << "stm" << "stz" << "it" << "itz" << "xm" << "xmz" << "*ptm" << "ptz" << "*mtm" << "mtz" << "*669" << "*psm" << "*umx" << "*am" << "j2b" << "*dsm" << "*amf" << "*okt" << "okta" << "*mo3"
                         << "fc" << "fc13" << "fc14" << "smod"
                         << "ofr" << "ofs"
-                        << "psf" << "psf" << "spu" << "ssf" << "qsf" << "dsf" << "minipsf" << "minipsf2" << "minissf" << "miniqsf" << "minidsf"
+                        << "psf" << "psf2" << "spu" << "ssf" << "qsf" << "dsf" << "minipsf" << "minipsf2" << "minissf" << "miniqsf" << "minidsf"
                         << "sndh" << "snd" << "sc68"
                         << "spx"
                         << "v2m"
@@ -44,6 +44,7 @@ TTKStringListMap MusicFormats::supportFormatsStringMap()
     formats.insert("mpeg", QStringList() << "mp1" << "mp2" << "mp3");
     formats.insert("gme", QStringList() << "ay" << "gms" << "gym" << "hes" << "kss" << "nsf" << "nsfe" << "sap" << "spc" << "vgm" << "vgz)");
     formats.insert("flac", QStringList() << "flac" << "oga");
+    formats.insert("ffap", QStringList() << "ape");
     formats.insert("aac", QStringList() << "aac");
     formats.insert("wildmidi", QStringList() << "mid");
     formats.insert("sid", QStringList() << "sid" << "mus" << "str" << "prg" << "P00");
@@ -52,12 +53,11 @@ TTKStringListMap MusicFormats::supportFormatsStringMap()
     formats.insert("adplug", QStringList() << "adl" << "hsc" << "ksm" << "lds");
     formats.insert("alac", QStringList() << "alac");
     formats.insert("asap", QStringList() << "sap" << "cm3" << "cmc" << "cmr" << "cms" << "dmc" << "dlt" << "mpd" << "mpt" << "rmt" << "tm2" << "tm8" << "tmc" << "fc");
-    formats.insert("ayfly", QStringList() << "vtx" << "asc" << "sqt" << "*psg" << "stc" << "stp" << "pt1" << "pt2" << "pt3" << "psc" << "ay" << "ym");
+    formats.insert("ayfly", QStringList() << "vtx" << "asc" << "sqt" << "psg" << "stc" << "stp" << "pt1" << "pt2" << "pt3" << "psc" << "ay" << "ym");
     formats.insert("dca", QStringList() << "dts" << "cpt");
-    formats.insert("dumb", QStringList() << "mod" << "mdz" << "stk" << "m15" << "fst" << "oct" << "nt" << "s3m" << "s3z" << "stm" << "stz" << "it" << "itz" << "xm" << "xmz" << "*ptm" << "ptz" << "*mtm" << "mtz" << "*669" << "*psm" << "*umx" << "*am" << "j2b" << "*dsm" << "*amf" << "*okt" << "okta" << "*mo3");
     formats.insert("fc14", QStringList() << "fc" << "fc13" << "fc14" << "smod");
     formats.insert("optimfrog", QStringList() << "ofr" << "ofs");
-    formats.insert("psf", QStringList() << "psf" << "psf" << "spu" << "ssf" << "qsf" << "dsf" << "minipsf" << "minipsf2" << "minissf" << "miniqsf" << "minidsf");
+    formats.insert("psf", QStringList() << "psf" << "psf2" << "spu" << "ssf" << "qsf" << "dsf" << "minipsf" << "minipsf2" << "minissf" << "miniqsf" << "minidsf");
     formats.insert("sc68", QStringList() << "sndh" << "snd" << "sc68");
     formats.insert("speex", QStringList() << "spx");
     formats.insert("v2m", QStringList() << "v2m");
@@ -77,6 +77,7 @@ QStringList MusicFormats::supportFormatsFilterString()
                         << "*.mp1" << "*.mp2" << "*.mp3"
                         << "*.ay" << "*.gms" << "*.gym" << "*.hes" << "*.kss" << "*.nsf" << "*.nsfe" << "*.sap" << "*.spc" << "*.vgm" << "*.vgz)"
                         << "*.flac" << "*.oga"
+                        << "*.ape"
                         << "*.aac"
                         << "*.mid"
                         << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00"
@@ -87,10 +88,9 @@ QStringList MusicFormats::supportFormatsFilterString()
                         << "*.sap" << "*.cm3" << "*.cmc" << "*.cmr" << "*.cms" << "*.dmc" << "*.dlt" << "*.mpd" << "*.mpt" << "*.rmt" << "*.tm2" << "*.tm8" << "*.tmc" << "*.fc"
                         << "*.vtx" << "*.asc" << "*.sqt" << "*.*psg" << "*.stc" << "*.stp" << "*.pt1" << "*.pt2" << "*.pt3" << "*.psc" << "*.ay" << "*.ym"
                         << "*.dts" << "*.cpt"
-                        << "*.mod" << "*.mdz" << "*.stk" << "*.m15" << "*.fst" << "*.oct" << "*.nt" << "*.s3m" << "*.s3z" << "*.stm" << "*.stz" << "*.it" << "*.itz" << "*.xm" << "*.xmz" << "*.*ptm" << "*.ptz" << "*.*mtm" << "*.mtz" << "*.*669" << "*.*psm" << "*.*umx" << "*.*am" << "*.j2b" << "*.*dsm" << "*.*amf" << "*.*okt" << "*.okta" << "*.*mo3"
                         << "*.fc" << "*.fc13" << "*.fc14" << "*.smod"
                         << "*.ofr" << "*.ofs"
-                        << "*.psf" << "*.psf" << "*.spu" << "*.ssf" << "*.qsf" << "*.dsf" << "*.minipsf" << "*.minipsf2" << "*.minissf" << "*.miniqsf" << "*.minidsf"
+                        << "*.psf" << "*.psf2" << "*.spu" << "*.ssf" << "*.qsf" << "*.dsf" << "*.minipsf" << "*.minipsf2" << "*.minissf" << "*.miniqsf" << "*.minidsf"
                         << "*.sndh" << "*.snd" << "*.sc68"
                         << "*.spx"
                         << "*.v2m"
@@ -121,7 +121,6 @@ QStringList MusicFormats::supportFormatsFilterDialogString()
                         << "Another Slight Atari File(*.sap *.cm3 *.cmc *.cmr *.cms *.dmc *.dlt *.mpd *.mpt *.rmt *.tm2 *.tm8 *.tmc *.fc)"
                         << "AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.psc *.ay *.ym)"
                         << "DTS Coherent Acoustics File(*.dts *.cpt)"
-                        << "Dynamic Universal File(*.mod *.mdz *.stk *.m15 *.fst *.oct *.nt *.s3m *.s3z *.stm *.stz *.it *.itz *.xm *.xmz *ptm *.ptz *mtm *.mtz *669 *psm *umx *am *.j2b *dsm *amf *okt *.okta *mo3)"
                         << "Future Composer File(*.fc *.fc13 *.fc14 *.smod)"
                         << "OptimFrog File(*.ofr *.ofs)"
                         << "Audio Overload File(*.psf *.psf2 *.spu *.ssf *.qsf *.dsf *.minipsf *.minipsf2 *.minissf *.miniqsf *.minidsf)"

@@ -40,7 +40,7 @@
  *
  *  CUE File(*.cue)
  *
- *  MPEG File(*.mp1 *.mp2 *.mp3 *.wav)
+ *  MPEG File(*.mp1 *.mp2 *.mp3)
  *
  *  Game Audio File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
  *
@@ -59,8 +59,6 @@
  *  Another Slight Atari File(*.sap *.cm3 *.cmc *.cmr *.cms *.dmc *.dlt *.mpd *.mpt *.rmt *.tm2 *.tm8 *.tmc *.fc)
  *
  *  DTS Coherent Acoustics File(*.dts *.cpt)
- *
- *  Dynamic Universal File(*.mod *.mdz *.stk *.m15 *.fst *.oct *.nt *.s3m *.s3z *.stm *.stz *.it *.itz *.xm *.xmz *ptm *.ptz *mtm *.mtz *669 *psm *umx *am *.j2b *dsm *amf *okt *.okta *mo3)
  *
  *  Future Composer File(*.fc *.fc13 *.fc14 *.smod)
  *
