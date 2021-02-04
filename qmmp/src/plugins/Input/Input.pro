@@ -19,10 +19,6 @@ contains(CONFIG, FFAP_PLUGIN){
     SUBDIRS += ffap
 }
 
-contains(CONFIG, XMP_PLUGIN){
-    SUBDIRS += xmp
-}
-
 contains(CONFIG, FFMPEG_PLUGIN){
     SUBDIRS += ffmpeg
 }
