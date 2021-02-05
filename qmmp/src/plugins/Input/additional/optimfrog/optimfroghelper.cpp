@@ -103,7 +103,9 @@ bool OptimFROGHelper::initialize()
 #endif
     for(uInt32_t i = 0; i < ofr_tags.keyCount; i++)
     {
-        m_tags.insert(std::pair<std::string, std::string>(ofr_tags.keys[i], ofr_tags.values[i]));
+        std::string key(ofr_tags.keys[i]);
+        std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+        m_tags.insert(std::pair<std::string, std::string>(key, ofr_tags.values[i]));
     }
 #if defined Q_OS_WIN && defined __GNUC__
     ((OFROG_freeTags)GetSymbolAddress("OptimFROG_freeTags"))(&ofr_tags);

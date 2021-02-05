@@ -95,7 +95,7 @@ SOURCES += recycler.cpp \
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 
 TARGET = TTK$${TARGET}
-CONFIG += shared warn_on plugin lib qt thread
+CONFIG += shared warn_off plugin lib qt thread
 TEMPLATE = lib
 
 INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include

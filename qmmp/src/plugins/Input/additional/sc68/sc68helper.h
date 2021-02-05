@@ -32,7 +32,6 @@ typedef struct {
     int bitrate;
     int currentsample;
     int totalsamples;
-    float readpos;
 } sc68_info_t;
 
 /*!

@@ -65,14 +65,11 @@ SC68Helper::~SC68Helper()
 
 void SC68Helper::close()
 {
-    if(m_info) 
+    if(m_info->sc68)
     {
-        if(m_info->sc68)
-        {
-            sc68_destroy(m_info->sc68);
-        }
-        free(m_info);
+        sc68_destroy(m_info->sc68);
     }
+    free(m_info);
 }
 
 bool SC68Helper::initialize()
@@ -86,13 +83,13 @@ bool SC68Helper::initialize()
     const int64_t size = stdio_length(file);
     stdio_close(file);
 
+    sc68_init(nullptr);
     m_info->sc68 = sc68_create(nullptr);
     if(!m_info->sc68)
     {
         return false;
     }
 
-    // Load an sc68 file.
     int res = sc68_load_uri(m_info->sc68, qPrintable(m_path));
     if(res)
     {
@@ -108,7 +105,8 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    m_info->loop = info.trk.time_ms == 0;
+    m_info->loop = (info.trk.time_ms == 0);
+
     if(info.trk.time_ms > 0)
     {
         m_info->totalsamples = (uint64_t)info.trk.time_ms * sampleRate() / 1000;
@@ -118,9 +116,8 @@ bool SC68Helper::initialize()
         m_info->totalsamples = 2 * 60 * sampleRate();
     }
 
-    m_totalTime = m_info->totalsamples / sampleRate();
+    m_totalTime = m_info->totalsamples / sampleRate() * 1000;
     m_info->bitrate = size * 8.0 / m_totalTime + 0.5;
-    m_info->readpos = 0;
 
     sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
 
@@ -134,7 +131,7 @@ int SC68Helper::totalTime() const
 
 void SC68Helper::seek(qint64 time)
 {
-    const int sample = time * sampleRate();
+    const int sample = time * sampleRate() / 1000;
     if(sample < m_info->currentsample)
     {
         sc68_stop(m_info->sc68);
@@ -146,15 +143,14 @@ void SC68Helper::seek(qint64 time)
     while(m_info->currentsample < sample)
     {
         int sz = (int)(sample - m_info->currentsample);
-        sz = MIN(sz, sizeof(buffer)>>2);
-        int res = sc68_process(m_info->sc68, buffer, &sz);
-        if(res & SC68_END)
+        sz = MIN(sz, sizeof(buffer) >> 2);
+
+        if(sc68_process(m_info->sc68, buffer, &sz) & SC68_END)
         {
             break;
         }
         m_info->currentsample += sz;
     }
-    m_info->readpos = (float)m_info->currentsample / sampleRate();
 }
 
 int SC68Helper::bitrate() const
@@ -189,22 +185,21 @@ int SC68Helper::read(unsigned char *buf, int size)
 
     while(size > 0)
     {
-        int n = size>>2;
-        int res = sc68_process(m_info->sc68, buf, &n);
-        if(res & SC68_END)
+        int n = size >> 2;
+        if(sc68_process(m_info->sc68, buf, &n) & SC68_END)
         {
             break;
         }
-        size -= n<<2;
+        size -= n << 2;
     }
+
     return initsize - size;
 }
 
 QVariantMap SC68Helper::readMetaTags()
 {
     sc68_music_info_t info;
-    int err = sc68_music_info(m_info->sc68, &info, 0, 0);
-    if(err < 0)
+    if(sc68_music_info(m_info->sc68, &info, 0, 0) < 0)
     {
         return m_meta;
     }
@@ -213,8 +208,7 @@ QVariantMap SC68Helper::readMetaTags()
     {
         sc68_music_info_t ti;
         memset(&ti, 0, sizeof(ti));
-        err = sc68_music_info(m_info->sc68, &ti, tr + 1, 0);
-        if(err < 0)
+        if(sc68_music_info(m_info->sc68, &ti, tr + 1, 0) < 0)
         {
             continue;
         }

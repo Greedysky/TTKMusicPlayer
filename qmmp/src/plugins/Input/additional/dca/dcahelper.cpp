@@ -162,6 +162,7 @@ int dts_open_wav(FILE *fp, wavfmt_t *fmt, int64_t *totalsamples)
     {
         return -1;
     }
+
     datasize = u32_LE(datasize);
     *totalsamples = datasize / ((fmt->wBitsPerSample >> 3) * fmt->nChannels);
 
@@ -333,7 +334,7 @@ bool DCAHelper::initialize()
         m_info->bits_per_sample = fmt.wBitsPerSample;
         m_info->channels = fmt.nChannels;
         m_info->sample_rate = fmt.nSamplesPerSec;
-        m_totalTime = (float)totalsamples / fmt.nSamplesPerSec;
+        m_totalTime = (float)totalsamples / fmt.nSamplesPerSec * 1000;
     }
 
     m_info->gain = 1;
@@ -359,7 +360,7 @@ bool DCAHelper::initialize()
     switch(flags)
     {
     case DCA_MONO:
-        qDebug("dts: mono\n");
+        qDebug("dts: mono");
         m_info->channels = 1;
         break;
     case DCA_CHANNEL:
@@ -367,38 +368,38 @@ bool DCAHelper::initialize()
     case DCA_DOLBY:
     case DCA_STEREO_SUMDIFF:
     case DCA_STEREO_TOTAL:
-        qDebug("dts: stereo\n");
+        qDebug("dts: stereo");
         m_info->channels = 2;
         break;
     case DCA_3F:
     case DCA_2F1R:
-        qDebug("dts: 3F or 2F1R\n");
+        qDebug("dts: 3F or 2F1R");
         m_info->channels = 3;
         break;
     case DCA_2F2R:
     case DCA_3F1R:
-        qDebug("dts: 2F2R or 3F1R\n");
+        qDebug("dts: 2F2R or 3F1R");
         m_info->channels = 4;
         break;
     case DCA_3F2R:
-        qDebug("dts: 3F2R\n");
+        qDebug("dts: 3F2R");
         m_info->channels = 5;
         break;
     case DCA_4F2R:
-        qDebug("dts: 4F2R\n");
+        qDebug("dts: 4F2R");
         m_info->channels = 6;
         break;
     }
 
     if(m_info->flags & DCA_LFE)
     {
-        qDebug("dts: LFE\n");
+        qDebug("dts: LFE");
         m_info->channels++;
     }
 
     if(!m_info->channels)
     {
-        qDebug("dts: invalid numchannels\n");
+        qDebug("dts: invalid numchannels");
         return false;
     }
 
@@ -406,7 +407,7 @@ bool DCAHelper::initialize()
     if(m_totalTime <= 0)
     {
         totalsamples = stdio_length(m_info->file) / len * m_info->frame_length;
-        m_totalTime = (float)totalsamples / m_info->sample_rate;
+        m_totalTime = (float)totalsamples / m_info->sample_rate * 1000;
     }
 
     m_info->startsample = 0;
@@ -422,7 +423,7 @@ int DCAHelper::totalTime() const
 
 void DCAHelper::seek(qint64 time)
 {
-    int sample = time * sampleRate();
+    int sample = time * sampleRate() / 1000;
     // calculate file offset from framesize / framesamples
     sample += m_info->startsample;
     int64_t nframe = sample / m_info->frame_length;
@@ -433,7 +434,6 @@ void DCAHelper::seek(qint64 time)
     m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
 
     m_info->currentsample = sample;
-    m_info->readpos = (float)(sample - m_info->startsample) / sampleRate();
 }
 
 int DCAHelper::bitrate() const

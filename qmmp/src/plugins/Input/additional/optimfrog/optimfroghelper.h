@@ -48,7 +48,7 @@ public:
     double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
 
     bool hasTags() const { return !m_tags.empty(); }
-    QString getTag(const char* tag) const { return QString::fromStdString(m_tags.at(tag)); }
+    QString getTag(const char* tag) { return QString::fromStdString(m_tags[tag]); }
 
 private:
 #if defined Q_OS_WIN && defined __GNUC__

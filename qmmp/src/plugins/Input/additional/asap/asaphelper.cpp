@@ -25,9 +25,6 @@ void AsapHelper::close()
 
 bool AsapHelper::initialize()
 {
-    m_info->asap = ASAP_New();
-    ASAP_DetectSilence(m_info->asap, 5);
-
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
@@ -37,17 +34,22 @@ bool AsapHelper::initialize()
     int size = stdio_length(file);
     if(size <= 0 || size > 256 * 1024)
     {
+        stdio_close(file);
         return false;
     }
 
     unsigned char *module = (unsigned char *)malloc(size);
     if(!module)
     {
+        stdio_close(file);
         return false;
     }
 
     stdio_read(module, size, 1, file);
     stdio_close(file);
+
+    m_info->asap = ASAP_New();
+    ASAP_DetectSilence(m_info->asap, 5);
 
     if(!ASAP_Load(m_info->asap, qPrintable(m_path), module, size))
     {
@@ -111,6 +113,11 @@ int AsapHelper::bitsPerSample() const
 
 int AsapHelper::read(unsigned char *buf, int size)
 {
+    if(ASAP_GetPosition(m_info->asap) >= totalTime())
+    {
+        return 0;
+    }
+
     return ASAP_Generate(m_info->asap, buf, size, ASAPSampleFormat_S16_L_E);
 }
 

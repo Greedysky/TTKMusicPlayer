@@ -6,9 +6,6 @@
 #include <taglib/mpegfile.h>
 #include <taglib/attachedpictureframe.h>
 
-#define DECODE_STRING(value) TagLib::String(value.toUtf8().data(), TagLib::String::UTF8)
-#define ENCODE_STRING(value) QString::fromUtf8(value.toCString(true))
-
 TagWrapper::TagWrapper()
 {
 
@@ -48,24 +45,24 @@ bool TagWrapper::readFile(const QString &path)
     if(tagFile.tag())
     {
         TagLib::Tag *tag = tagFile.tag();
-        m_parameters[TAG_TITLE] = ENCODE_STRING(tag->title());
-        m_parameters[TAG_ARTIST] = ENCODE_STRING(tag->artist());
-        m_parameters[TAG_ALBUM] = ENCODE_STRING(tag->album());
+        m_parameters[TAG_TITLE] = TStringToQString(tag->title());
+        m_parameters[TAG_ARTIST] = TStringToQString(tag->artist());
+        m_parameters[TAG_ALBUM] = TStringToQString(tag->album());
         m_parameters[TAG_YEAR] = QString::number(tag->year());
-        m_parameters[TAG_COMMENT] =ENCODE_STRING(tag->comment());
+        m_parameters[TAG_COMMENT] =TStringToQString(tag->comment());
         m_parameters[TAG_TRACK] = QString::number(tag->track());
-        m_parameters[TAG_GENRE] = ENCODE_STRING(tag->genre());
+        m_parameters[TAG_GENRE] = TStringToQString(tag->genre());
 
         TagLib::PropertyMap properties = tagFile.file()->properties();
         for(TagLib::PropertyMap::ConstIterator i = properties.begin(); i != properties.end(); ++i)
         {
             if(i->first == "ENCODER")
             {
-                m_parameters[TAG_MODE] = ENCODE_STRING((*i->second.begin()));
+                m_parameters[TAG_MODE] = TStringToQString((*i->second.begin()));
             }
             if(i->first == "COMPATIBLE_BRANDS")
             {
-                m_parameters[TAG_FORMAT] = ENCODE_STRING((*i->second.begin()));
+                m_parameters[TAG_FORMAT] = TStringToQString((*i->second.begin()));
             }
         }
     }
@@ -107,30 +104,34 @@ bool TagWrapper::writeMusicTag(Type tag, const QString &value, int id3v2Version)
     switch(tag)
     {
         case TAG_TITLE:
-            tags->setTitle(DECODE_STRING(value));
+            tags->setTitle(QStringToTString(value));
             break;
         case TAG_ARTIST:
-            tags->setArtist(DECODE_STRING(value));
+            tags->setArtist(QStringToTString(value));
             break;
         case TAG_ALBUM:
-            tags->setAlbum(DECODE_STRING(value));
+            tags->setAlbum(QStringToTString(value));
             break;
         case TAG_YEAR:
             tags->setYear(value.toInt());
             break;
         case TAG_COMMENT:
-            tags->setComment(DECODE_STRING(value));
+            tags->setComment(QStringToTString(value));
             break;
         case TAG_TRACK:
             tags->setTrack(value.toInt());
             break;
         case TAG_GENRE:
-            tags->setGenre(DECODE_STRING(value));
+            tags->setGenre(QStringToTString(value));
             break;
         default: break;
     }
 
+#if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 11))
     if(file.save(TagLib::MPEG::File::AllTags, true, id3v2Version))
+#else
+    if(file.save(TagLib::MPEG::File::AllTags, TagLib::File::StripOthers, static_cast<TagLib::ID3v2::Version>(id3v2Version)))
+#endif
     {
         m_parameters[tag] = value;
         return true;

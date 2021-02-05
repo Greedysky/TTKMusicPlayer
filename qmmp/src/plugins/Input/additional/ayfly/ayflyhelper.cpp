@@ -34,12 +34,14 @@ bool AyflyHelper::initialize()
     int size = stdio_length(file);
     if(size <= 0)
     {
+        stdio_close(file);
         return false;
     }
 
     unsigned char *module = (unsigned char *)malloc(size);
     if(!module)
     {
+        stdio_close(file);
         return false;
     }
 

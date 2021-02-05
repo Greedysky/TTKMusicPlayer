@@ -57,7 +57,6 @@ typedef struct {
     int endsample;
     int currentsample;
     int samples_to_skip;
-    float readpos;
 } dca_info_t;
 
 /*!

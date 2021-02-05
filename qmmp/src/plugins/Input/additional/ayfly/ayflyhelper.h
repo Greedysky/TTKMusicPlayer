@@ -60,7 +60,6 @@ public:
 private:
     QString m_path;
     ay_info_t *m_info;
-    qint64 m_totalTime = 0;
     QVariantMap m_meta;
 
 };

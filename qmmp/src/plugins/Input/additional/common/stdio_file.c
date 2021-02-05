@@ -26,7 +26,6 @@ FILE *stdio_open(const char *fname)
 void stdio_close(FILE *stream)
 {
     fclose(stream);
-    free(stream);
 }
 
 size_t stdio_read(void *ptr, size_t size, size_t nmemb, FILE *stream)

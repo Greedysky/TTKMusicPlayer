@@ -38,7 +38,7 @@ bool DecoderSpeex::initialize()
 
 qint64 DecoderSpeex::totalTime() const
 {
-    return m_speex->get_samples();
+    return m_speex->get_duration();
 }
 
 int DecoderSpeex::bitrate() const

@@ -72,21 +72,25 @@ bool SpeexHelper::initialize()
 {
     if(!is_speex())
     {
+        qDebug("Input file is not a speex file");
         return false;
     }
 
     if(!init_decoder())
     {
+        qDebug("Speex decode init error");
         return false;
     }
 
     if(!initfile())
     {
+        qDebug("Speex file init error");
         return false;
     }
 
     if(get_streams() != 1)
     {
+        qDebug("Speex get file streams error");
         return false;
     }
 
@@ -95,35 +99,38 @@ bool SpeexHelper::initialize()
 
 int SpeexHelper::read(unsigned char *buf, int size)
 {
-    uint16_t* out = (uint16_t*)buf;
+    signed short *out = (signed short*)buf;
 
     int total_read = 0;
-    while(size > 0)
+    while (size > 0)
     {
-      // If the buffer is empty, decode a little from the speex file.
-      if(m_read_buffer.getSize() == 0)
-      {
-        float decode_buffer[2000];  // Size defined by speexfile API.
-        int speex_read = decode(decode_buffer);
-        if(speex_read == 0)
+        // If the buffer is empty, decode a little from the speex file.
+        if (m_read_buffer.getSize() == 0)
         {
-          break;
+            float decode_buffer[2000];  // Size defined by speexfile API.
+            int speex_read = decode(decode_buffer);
+            if (speex_read == 0)
+            {
+                break;
+            }
+
+            m_read_buffer.write(decode_buffer, speex_read * sizeof(float));
         }
-        m_read_buffer.write(decode_buffer, speex_read * sizeof(float));
-      }
 
-      float read_buffer[1024];
-      int should_read = std::min(size, 1024);
-      int actual_read = m_read_buffer.read(read_buffer, should_read * sizeof(float)) / sizeof(float);
+        const int BUFFER_SIZE = 1024;
+        float read_buffer[BUFFER_SIZE];
 
-      for(int i = 0; i < actual_read; ++i)
-      {
-        out[i] = uint16_t(read_buffer[i] * 32767);
-      }
+        int should_read = std::min(size, BUFFER_SIZE);
+        int actual_read = m_read_buffer.read(read_buffer, should_read * sizeof(float)) / sizeof(float);
 
-      size -= actual_read;
-      total_read += actual_read;
-      out += actual_read;
+        for (int i = 0; i < actual_read; ++i)
+        {
+            out[i] = (signed short)(read_buffer[i] * 32767);
+        }
+
+        size -= actual_read;
+        total_read += actual_read;
+        out += actual_read;
     }
     m_position += total_read;
     return total_read;
@@ -236,13 +243,12 @@ int64_t SpeexHelper::get_samples()
 double SpeexHelper::get_duration()
 {
     double dur = 0;
-
     for(int32_t i = 0; i < m_streamcount; i++)
     {
         dur += stream_get_duration(i);
     }
 
-    return dur;
+    return dur * 1000;
 }
 
 double SpeexHelper::get_bitrate()
@@ -569,28 +575,28 @@ bool SpeexHelper::initfile()
                     {
                         m_stream = (speexstream_t **)stream_b;
                         strcpy(m_speex_last_error, "Memory allocation failed");
-                        return -1;
+                        return false;
                     }
 
                     m_stream[m_streamcount] = (speexstream_t *)calloc(1, sizeof(speexstream_t));
                     if(!m_stream[m_streamcount])
                     {
                         strcpy(m_speex_last_error, "Memory allocation failed");
-                        return -1;
+                        return false;
                     }
 
                     m_stream[m_streamcount]->seekinfo = (speexseekinfo_t **)calloc(1, sizeof(speexseekinfo_t*));
                     if(!m_stream[m_streamcount]->seekinfo)
                     {
                         strcpy(m_speex_last_error, "Memory allocation failed");
-                        return -1;
+                        return false;
                     }
 
                     m_stream[m_streamcount]->header = speex_packet_to_header((char *)op.packet, op.bytes);
                     if(!m_stream[m_streamcount]->header)
                     {
                         strcpy(m_speex_last_error, "Cannot read header");
-                        return -1;
+                        return false;
                     }
 
                     m_stream[m_streamcount]->tags = nullptr;
@@ -631,14 +637,14 @@ bool SpeexHelper::initfile()
                     {
                         m_stream[spos]->seekinfo = (speexseekinfo_t **)seekinfo_b;
                         strcpy(m_speex_last_error, "Memory allocation failed");
-                        return -1;
+                        return false;
                     }
 
                     m_stream[spos]->seekinfo[m_stream[spos]->sicount] = (speexseekinfo_t*)malloc(sizeof(speexseekinfo_t));
                     if(!m_stream[spos]->seekinfo[m_stream[spos]->sicount])
                     {
                         strcpy(m_speex_last_error, "Memory allocation failed");
-                        return -1;
+                        return false;
                     }
 
                     m_stream[spos]->seekinfo[m_stream[spos]->sicount]->offset = m_offset;
@@ -662,13 +668,13 @@ bool SpeexHelper::initfile()
     if(m_streamcount == 0)
     {
         strcpy(m_speex_last_error, "Not a Speex stream");
-        return -1;
+        return false;
     }
 
     m_reader->seek(0);
     m_offset = 0;
 
-    return 0;
+    return true;
 }
 
 bool SpeexHelper::init_decoder()

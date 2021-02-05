@@ -25,7 +25,6 @@ void FC14Helper::close()
 
 bool FC14Helper::initialize()
 {
-    m_info->fc = fc14dec_new();
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
@@ -35,18 +34,21 @@ bool FC14Helper::initialize()
     int size = stdio_length(file);
     if(size <= 0 || size > 256 * 1024)
     {
+        stdio_close(file);
         return false;
     }
 
     unsigned char *module = (unsigned char *)malloc(size);
     if(!module)
     {
+        stdio_close(file);
         return false;
     }
 
     stdio_read(module, size, 1, file);
     stdio_close(file);
 
+    m_info->fc = fc14dec_new();
     if(!fc14dec_detect(m_info->fc, module, size))
     {
         free(module);

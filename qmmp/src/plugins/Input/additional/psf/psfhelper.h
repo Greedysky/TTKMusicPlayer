@@ -32,7 +32,6 @@ typedef struct {
 
     int currentsample;
     int samples_to_skip;
-    float readpos;
 } psf_info_t;
 
 /*!
