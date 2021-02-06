@@ -39,7 +39,7 @@ bool OptimFROGHelper::initialize()
 {
 #if defined Q_OS_WIN && defined __GNUC__
     m_instance = LoadLibraryA("libOptimFROG.dll");
-    if(m_instance == nullptr)
+    if(!m_instance)
     {
         return false;
     }
@@ -57,9 +57,8 @@ bool OptimFROGHelper::initialize()
         ofr_get_pos,
         ofr_seek,
     };
-    OptimFROG_Tags ofr_tags;
 
-    if(m_decoder == nullptr)
+    if(!m_decoder)
     {
         return false;
     }
@@ -85,16 +84,16 @@ bool OptimFROGHelper::initialize()
     {
         m_info.bitspersample = 16;
     }
+
+#if defined Q_OS_LINUX
     if(strncmp(m_info.sampleType, "SINT", 4) != 0 && strncmp(m_info.sampleType, "UINT", 4) != 0)
     {
-#if defined Q_OS_WIN && defined __GNUC__
-        ((OFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
-#else
         OptimFROG_destroyInstance(m_decoder);
-#endif
         return false;
     }
+#endif
 
+    OptimFROG_Tags ofr_tags;
     m_signed = m_info.sampleType[0] == 'S';
 #if defined Q_OS_WIN && defined __GNUC__
     ((OFROG_getTags)GetSymbolAddress("OptimFROG_getTags"))(m_decoder, &ofr_tags);
@@ -152,6 +151,15 @@ void OptimFROGHelper::seek(int pos)
     {
         OptimFROG_seekTime(m_decoder, pos);
     }
+#endif
+}
+
+int OptimFROGHelper::length() const
+{
+#if defined Q_OS_WIN && defined __GNUC__
+    return (static_cast<QIODevice*>(m_reader)->size() * 8.0) / m_info.bitrate;
+#else
+    return m_info.length_ms;
 #endif
 }
 

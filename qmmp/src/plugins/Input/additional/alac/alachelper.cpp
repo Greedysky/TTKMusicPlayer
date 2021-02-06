@@ -37,7 +37,7 @@ bool AlacHelper::initialize()
     m_bitrate = 0;
 
     m_file = fopen(qPrintable(m_path), "rb");
-    if(m_file == nullptr)
+    if(!m_file)
     {
         return false;
     }

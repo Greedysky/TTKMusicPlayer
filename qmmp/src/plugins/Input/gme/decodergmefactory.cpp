@@ -49,6 +49,11 @@ QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackIn
         qDeleteAll(list);
         return QList<TrackInfo*>() << info;
     }
+    else
+    {
+        if(ignoredFiles)
+            ignoredFiles->push_back(path);
+    }
 
     Music_Emu *emu = helper.load(path);
     if(!emu)

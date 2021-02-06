@@ -85,6 +85,9 @@ QList<TrackInfo*> DecoderAdplugFactory::createPlayList(const QString &path, Trac
 
     if(parts & TrackInfo::Properties)
     {
+        info->setValue(Qmmp::BITRATE, helper.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, helper.rate());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::FORMAT_NAME, QString::fromStdString(helper.format()));
         info->setDuration(helper.length());

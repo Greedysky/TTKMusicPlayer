@@ -42,9 +42,9 @@ public:
     int rate() const { return m_info.samplerate; }
     int channels() const { return m_info.channels; }
     int depth() const { return m_info.bitspersample; }
-    int length() const { return m_info.length_ms; }
     int bitrate() const { return m_info.bitrate; }
     int version() const { return m_info.version; }
+    int length() const;
     double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
 
     bool hasTags() const { return !m_tags.empty(); }

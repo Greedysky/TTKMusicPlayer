@@ -53,9 +53,10 @@ public:
 
     bool initialize();
 
-    int rate() { return 44100; }
-    int depth() { return 16; }
-    int channels() { return 1; }
+    int bitrate();
+    int rate() const { return 44100; }
+    int depth() const { return 16; }
+    int channels() const { return 1; }
 
     unsigned long length() { return m_player->songlength(); }
     void seek(unsigned long pos) { m_player->seek(pos); }
@@ -72,6 +73,7 @@ public:
     std::vector<std::string> instruments();
 
 private:
+    std::string m_filePath;
     std::unique_ptr<Copl> m_opl;
     std::unique_ptr<CPlayer> m_player;
     short m_buf[16384] = { 0 };

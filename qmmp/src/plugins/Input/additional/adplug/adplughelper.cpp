@@ -1,7 +1,10 @@
 #include "adplughelper.h"
 
+#include <QFileInfo>
+
 AdplugHelper::AdplugHelper(const std::string &filename)
-    : m_opl(new CEmuopl(rate(), true, false)),
+    : m_filePath(filename),
+      m_opl(new CEmuopl(rate(), true, false)),
       m_player(CAdPlug::factory(filename.c_str(), m_opl.get()))
 {
 
@@ -38,6 +41,11 @@ AdplugHelper::Frame AdplugHelper::read()
 bool AdplugHelper::initialize()
 {
     return m_player.get();
+}
+
+int AdplugHelper::bitrate()
+{
+    return (QFileInfo(m_filePath.c_str()).size() * 8.0) / length() + 0.5;
 }
 
 std::vector<std::string> AdplugHelper::instruments()

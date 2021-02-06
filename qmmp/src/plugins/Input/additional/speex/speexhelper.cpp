@@ -679,7 +679,7 @@ bool SpeexHelper::initfile()
 
 bool SpeexHelper::init_decoder()
 {
-    if(m_decoder != nullptr)
+    if(m_decoder)
     {
         return false;
     }
@@ -888,7 +888,7 @@ int SpeexHelper::readMetaTags(char *tagdata, long size)
 
     m_stream[m_streamcount - 1]->tagcount = 0;
     m_stream[m_streamcount - 1]->tags = (speextags**)malloc(sizeof(speextags *));
-    if(m_stream[m_streamcount - 1]->tags == nullptr)
+    if(!m_stream[m_streamcount - 1]->tags)
     {
         strcpy(m_speex_last_error, "Memory allocation failed");
         return -1;
@@ -936,7 +936,7 @@ int SpeexHelper::readMetaTags(char *tagdata, long size)
     if(nb_fields > 0)
     {
         m_stream[m_streamcount - 1]->tags = (speextags **)realloc(m_stream[m_streamcount - 1]->tags, (nb_fields + 1) * sizeof(speextags *));
-        if(m_stream[m_streamcount - 1]->tags == nullptr)
+        if(!m_stream[m_streamcount - 1]->tags)
         {
             strcpy(m_speex_last_error, "Memory allocation failed");
             return -1;
@@ -957,7 +957,7 @@ int SpeexHelper::readMetaTags(char *tagdata, long size)
             c += 4;
 
             m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount] = (speextags *)calloc(1, sizeof(speextags));
-            if(m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount] == nullptr)
+            if(!m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount])
             {
                 strcpy(m_speex_last_error, "Memory allocation failed");
                 return -1;
@@ -977,7 +977,7 @@ int SpeexHelper::readMetaTags(char *tagdata, long size)
             if(item)
             {
                 m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount]->item = (char *)malloc(ilen + 1);
-                if(m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount]->item == nullptr)
+                if(!m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount]->item)
                 {
                     strcpy(m_speex_last_error, "Memory allocation failed");
                     return -1;
@@ -993,7 +993,7 @@ int SpeexHelper::readMetaTags(char *tagdata, long size)
             if(value)
             {
                 m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount]->value = (char *)malloc(vlen + 1);
-                if(m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount]->value == nullptr)
+                if(!m_stream[m_streamcount - 1]->tags[m_stream[m_streamcount - 1]->tagcount]->value)
                 {
                     strcpy(m_speex_last_error, "Memory allocation failed");
                     return -1;

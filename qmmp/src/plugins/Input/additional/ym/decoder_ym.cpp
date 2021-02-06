@@ -20,7 +20,7 @@ bool DecoderYm::initialize()
     m_bitrate = 0;
 
     m_music = new CYmMusic;
-    if(m_music == nullptr)
+    if(!m_music)
     {
         qWarning("DecoderYm: failed to create CYmMusic");
         return false;
