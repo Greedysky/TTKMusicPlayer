@@ -29,7 +29,7 @@ QStringList MusicFormats::supportFormatsString()
                         << "spx"
                         << "v2m"
                         << "ym"
-                        << ZIP_FILE_PREFIX;
+                        << "zip";
 }
 
 TTKStringListMap MusicFormats::supportFormatsStringMap()
@@ -62,7 +62,7 @@ TTKStringListMap MusicFormats::supportFormatsStringMap()
     formats.insert("speex", QStringList() << "spx");
     formats.insert("v2m", QStringList() << "v2m");
     formats.insert("ym", QStringList() << "ym");
-    formats.insert("zip", QStringList() << ZIP_FILE_PREFIX);
+    formats.insert("zip", QStringList() << "zip");
     return formats;
 }
 

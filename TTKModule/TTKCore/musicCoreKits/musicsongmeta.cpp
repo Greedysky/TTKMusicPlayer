@@ -35,7 +35,7 @@ bool MusicSongMeta::read(const QString &file)
 {
     bool cue = false;
     QString path(file);
-    if(path.startsWith("cue://"))
+    if(path.startsWith(MUSIC_CUE_FILE "://") || path.startsWith(MUSIC_GME_FILE "://"))
     {
         path = path.section("://", -1);
         if(path.contains("#"))

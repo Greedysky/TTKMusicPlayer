@@ -21,6 +21,10 @@
 
 #include <QObject>
 
+#define MUSIC_CUE_FILE              "cue"
+#define MUSIC_GME_FILE              "gme"
+#define MUSIC_ZIP_FILE              "zip"
+
 #define MUSIC_AUTHOR_NAME           "Greedysky"
 #define MUSIC_DAILY_DIR             "Bing"
 #define MUSIC_TIME_INIT             "00:00"
