@@ -205,14 +205,15 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     downSong->setRecordType(MusicObject::RecordNormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 
-    MusicSongMeta *meta = downSong->getSongMeta();
-    meta->setComment(m_songInfo.m_smallPicUrl);
-    meta->setTitle(m_songInfo.m_songName);
-    meta->setArtist(m_songInfo.m_singerName);
-    meta->setAlbum(m_songInfo.m_albumName);
-    meta->setTrackNum(m_songInfo.m_trackNumber);
-    meta->setYear(m_songInfo.m_year);
+    MusicSongMeta meta;
+    meta.setComment(m_songInfo.m_smallPicUrl);
+    meta.setTitle(m_songInfo.m_songName);
+    meta.setArtist(m_songInfo.m_singerName);
+    meta.setAlbum(m_songInfo.m_albumName);
+    meta.setTrackNum(m_songInfo.m_trackNumber);
+    meta.setYear(m_songInfo.m_year);
 
+    downSong->setSongMeta(meta);
     downSong->startToDownload();
 }
 

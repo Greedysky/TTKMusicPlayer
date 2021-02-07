@@ -227,6 +227,66 @@ QString MusicSongMeta::getLengthString()
     return getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH];
 }
 
+MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
+{
+    if(this == &other)
+    {
+        return;
+    }
+
+    m_offset = other.m_offset;
+    m_filePath = other.m_filePath;
+    for(const MusicMeta *meta : m_songMetas)
+    {
+        m_songMetas << new MusicMeta(*meta);
+    }
+}
+
+MusicSongMeta::MusicSongMeta(MusicSongMeta &&other)
+{
+    if(this == &other)
+    {
+        return;
+    }
+
+    m_offset = other.m_offset;
+    m_filePath = other.m_filePath;
+    m_songMetas = other.m_songMetas;
+    other.m_songMetas.clear();
+}
+
+MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
+{
+    if(this == &other)
+    {
+        return *this;
+    }
+
+    m_offset = other.m_offset;
+    m_filePath = other.m_filePath;
+    for(const MusicMeta *meta : m_songMetas)
+    {
+        m_songMetas << new MusicMeta(*meta);
+    }
+
+    return *this;
+}
+
+MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
+{
+    if(this == &other)
+    {
+        return *this;
+    }
+
+    m_offset = other.m_offset;
+    m_filePath = other.m_filePath;
+    m_songMetas = other.m_songMetas;
+    other.m_songMetas.clear();
+
+    return *this;
+}
+
 void MusicSongMeta::setSongMetaIndex(int index)
 {
     if(index < 0 || index >= m_songMetas.size())

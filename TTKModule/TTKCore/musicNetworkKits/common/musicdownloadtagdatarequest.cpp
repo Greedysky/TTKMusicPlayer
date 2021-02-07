@@ -11,9 +11,9 @@ MusicDownloadTagDataRequest::MusicDownloadTagDataRequest(const QString &url, con
     m_needUpdate = false;
 }
 
-MusicSongMeta *MusicDownloadTagDataRequest::getSongMeta()
+void MusicDownloadTagDataRequest::setSongMeta(MusicSongMeta &meta)
 {
-    return &m_musicMeta;
+    m_musicMeta = std::move(meta);
 }
 
 void MusicDownloadTagDataRequest::startToDownload()

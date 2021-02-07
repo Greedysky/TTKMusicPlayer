@@ -153,6 +153,13 @@ public:
     QString getLengthString();
 
 public:
+    MusicSongMeta(const MusicSongMeta &other);
+    MusicSongMeta(MusicSongMeta &&other);
+
+    MusicSongMeta& operator= (const MusicSongMeta &other);
+    MusicSongMeta& operator= (MusicSongMeta &&other);
+
+public:
     /*!
      * Set music song meta index offset.
      */

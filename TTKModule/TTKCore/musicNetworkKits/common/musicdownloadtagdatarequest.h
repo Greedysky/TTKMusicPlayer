@@ -38,7 +38,7 @@ public:
     /*!
      * Set custom tags.
      */
-    MusicSongMeta *getSongMeta();
+    void setSongMeta(MusicSongMeta &meta);
     /*!
      * Start to download data.
      */
