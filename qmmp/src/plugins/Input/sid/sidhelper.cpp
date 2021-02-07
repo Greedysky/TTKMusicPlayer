@@ -58,9 +58,20 @@ QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::COMMENT, tune_info->commentString(0));
             info->setValue(Qmmp::TRACK, i);
         }
-        int length = m_db->length(md5, i);
-        if(length > -1)
-            info->setDuration(length * 1000);
+
+        if(parts & TrackInfo::Properties)
+        {
+            info->setValue(Qmmp::BITRATE, 8);
+            info->setValue(Qmmp::SAMPLERATE, 44100);
+            info->setValue(Qmmp::CHANNELS, 2);
+            info->setValue(Qmmp::FORMAT_NAME, "SID");
+
+            const int length = m_db->length(md5, i);
+            if(length > -1)
+            {
+                info->setDuration(length * 1000);
+            }
+        }
 
         info->setPath("sid://" + m_path + QString("#%1").arg(i));
         list << info;

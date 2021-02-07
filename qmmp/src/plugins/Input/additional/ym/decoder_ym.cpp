@@ -1,5 +1,6 @@
-#include <QFileInfo>
 #include "decoder_ym.h"
+
+#include <QFileInfo>
 
 DecoderYm::DecoderYm(const QString &path)
     : Decoder(),

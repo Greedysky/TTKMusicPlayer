@@ -70,8 +70,8 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
         info->setValue(Qmmp::SAMPLERATE, WavpackGetSampleRate(ctx));
         info->setValue(Qmmp::CHANNELS, WavpackGetNumChannels(ctx));
         info->setValue(Qmmp::BITS_PER_SAMPLE, WavpackGetBitsPerSample(ctx));
-        info->setValue(Qmmp::FORMAT_NAME, "WavPack");
         info->setValue(Qmmp::FILE_SIZE, QFileInfo(filePath).size()); //adds file size for cue tracks
+        info->setValue(Qmmp::FORMAT_NAME, "WavPack");
         info->setDuration((qint64)WavpackGetNumSamples(ctx) * 1000 / WavpackGetSampleRate(ctx));
     }
 

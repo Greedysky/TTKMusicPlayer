@@ -65,18 +65,22 @@ QList<TrackInfo*> DecoderModPlugFactory::createPlayList(const QString &path, Tra
     {
         CSoundFile *soundFile = new CSoundFile();
         soundFile->Create((uchar*) buffer.data(), buffer.size() + 1);
+
         TrackInfo *info = new TrackInfo(path);
-        info->setDuration((qint64)soundFile->GetSongTime() * 1000);
 
         if(parts & TrackInfo::MetaData)
         {
-            info->setValue(Qmmp::TITLE, useFileName ? path.section('/',-1) :
-                                                      QString::fromUtf8(soundFile->GetTitle()));
+            info->setValue(Qmmp::TITLE, useFileName ? path.section('/',-1) :  QString::fromUtf8(soundFile->GetTitle()));
         }
 
         if(parts & TrackInfo::Properties)
         {
+            info->setValue(Qmmp::BITRATE, soundFile->GetNumChannels());
+            info->setValue(Qmmp::SAMPLERATE, 44100);
+            info->setValue(Qmmp::CHANNELS, 2);
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
             info->setValue(Qmmp::FORMAT_NAME, ModPlugMetaDataModel::getTypeName(soundFile->GetType()));
+            info->setDuration((qint64)soundFile->GetSongTime() * 1000);
         }
 
         list << info;

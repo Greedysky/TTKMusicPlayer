@@ -58,7 +58,6 @@ QList<TrackInfo*> DecoderWildMidiFactory::createPlayList(const QString &path, Tr
             info->setValue(Qmmp::CHANNELS, helper->channels());
             info->setValue(Qmmp::BITS_PER_SAMPLE, helper->bitsPerSample());
             info->setValue(Qmmp::FORMAT_NAME, "WildMidi");
-
             info->setDuration((qint64)wm_info->approx_total_samples * 1000 / helper->sampleRate());
 
             WildMidi_Close(midi_ptr);

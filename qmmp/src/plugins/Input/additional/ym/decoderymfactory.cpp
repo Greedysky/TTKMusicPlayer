@@ -1,6 +1,8 @@
 #include "decoderymfactory.h"
 #include "decoder_ym.h"
 
+#include <QFileInfo>
+
 bool DecoderYmFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -56,8 +58,11 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
 
     if(parts & TrackInfo::Properties)
     {
-        info->setDuration(musicInfo.musicTimeInMs);
+        info->setValue(Qmmp::BITRATE, (QFileInfo(path).size() * 8.0) / musicInfo.musicTimeInMs + 0.5);
+        info->setValue(Qmmp::SAMPLERATE, 44100);
+        info->setValue(Qmmp::CHANNELS, 2);
         info->setValue(Qmmp::FORMAT_NAME, "YM");
+        info->setDuration(musicInfo.musicTimeInMs);
     }
 
     delete music;
