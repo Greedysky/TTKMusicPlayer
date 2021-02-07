@@ -26,7 +26,7 @@ bool DecoderV2M::initialize()
         return false;
     }
 
-    configure(rate, channels, Qmmp::PCM_S16LE);
+    configure(rate, channels, Qmmp::PCM_FLOAT);
 
     return true;
 }

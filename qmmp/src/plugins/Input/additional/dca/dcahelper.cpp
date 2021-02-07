@@ -349,7 +349,7 @@ bool DCAHelper::initialize()
 
     // prebuffer 1st piece, and get decoded samplerate and nchannels
     size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
-    int len = dca_decode_data(m_info, m_info->inbuf, rd, 1);
+    const int len = dca_decode_data(m_info, m_info->inbuf, rd, 1);
     if(!len)
     {
         return false;

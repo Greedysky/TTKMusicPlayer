@@ -19,7 +19,6 @@
 #include "v2mhelper.h"
 #include "v2mconv.h"
 #include "sounddef.h"
-#include "libv2.h"
 
 extern "C" {
 #include "stdio_file.h"
@@ -147,8 +146,8 @@ bool V2MHelper::initialize()
     m_info->player->Init();
     m_info->player->Open(m_info->tune);
 
-    m_totalTime = size * 8.0 / bitrate();
-    m_info->totalsamples = sampleRate() * m_totalTime / 1000;
+    m_totalTime = m_info->player->Length() * 1000;
+    m_info->bitrate = size * 8.0 / m_totalTime + 0.5;
 
     m_info->player->Play();
 
@@ -162,34 +161,12 @@ int V2MHelper::totalTime() const
 
 void V2MHelper::seek(qint64 time)
 {
-    const int sample = time * sampleRate() / 1000;
-    if(sample >= m_info->totalsamples)
-    {
-        return; // seek beyond eof
-    }
-
-    if(sample < m_info->currsample)
-    {
-        m_info->player->Play();
-        m_info->currsample = 0;
-    }
-
-    float buffer[2048 * channels()];
-    while(m_info->currsample < sample)
-    {
-        int samples = sample - m_info->currsample;
-        if(samples > 2048)
-        {
-            samples = 2048;
-        }
-        m_info->player->Render(buffer, samples);
-        m_info->currsample += samples;
-    }
+    m_info->player->Play(time);
 }
 
 int V2MHelper::bitrate() const
 {
-    return 8;
+    return m_info->bitrate;
 }
 
 int V2MHelper::sampleRate() const
@@ -209,16 +186,15 @@ int V2MHelper::bitsPerSample() const
 
 int V2MHelper::read(unsigned char *buf, int size)
 {
-    const int samplesize = (bitsPerSample() >> 3) * channels();
-    const int samples = size / samplesize;
-
-    if(m_info->currsample > m_info->totalsamples)
+    if(!m_info->player->IsPlaying())
     {
         return 0;
     }
 
+    const int samplesize = (bitsPerSample() >> 3) * channels();
+    const int samples = size / samplesize;
+
     m_info->player->Render((float*)buf, samples);
-    m_info->currsample += samples;
 
     return size;
 }
