@@ -61,6 +61,8 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.tak") && formats.contains("tak"))
         return true;
+    else if(filters.contains("*.spx") && formats.contains("spx"))
+        return true;
     else if(formats.contains("matroska") && avcodec_find_decoder(AV_CODEC_ID_OPUS) && input->isSequential()) //audio from YouTube
         return true;
     return false;
@@ -70,7 +72,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.dsf", "*.dsdiff"
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.spx", "*.dsf", "*.dsdiff"
     };
     filters = settings.value("FFMPEG/filters", filters).toStringList();
 
@@ -106,6 +108,8 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.vqf");
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
         filters.removeAll("*.tak");
+    if(!avcodec_find_decoder(AV_CODEC_ID_TRUESPEECH))
+        filters.removeAll("*.spx");
     if(!avcodec_find_decoder(AV_CODEC_ID_DSD_LSBF))
     {
         filters.removeAll("*.dsf");
@@ -136,6 +140,8 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/dts";
     if(filters.contains("*.mka"))
         properties.contentTypes << "audio/true-hd" << "audio/x-matroska";
+    if(filters.contains("*.spx"))
+        properties.contentTypes << "audio/speech";
 
     properties.shortName = "ffmpeg";
     properties.hasSettings = true;

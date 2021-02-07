@@ -336,7 +336,6 @@ bool DecoderMAD::findHeader()
     }
 
     m_totalTime = mad_timer_count(duration, MAD_UNITS_MILLISECONDS);
-    qDebug("DecoderMAD: Total time: %ld", long(m_totalTime));
     m_freq = header.samplerate;
     m_channels = MAD_NCHANNELS(&header);
     m_bitrate = header.bitrate / 1000;

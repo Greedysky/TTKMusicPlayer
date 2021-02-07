@@ -10,7 +10,3 @@ contains(CONFIG, ADPLUG_PLUGIN){
 contains(CONFIG, OPTIMFROG_PLUGIN){
     SUBDIRS += optimfrog
 }
-
-contains(CONFIG, SPEEX_PLUGIN){
-    SUBDIRS += speex
-}
