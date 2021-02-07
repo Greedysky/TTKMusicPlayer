@@ -1,5 +1,10 @@
 #include "ayflyhelper.h"
 
+bool endCallback(void *)
+{
+    return true;
+}
+
 AyflyHelper::AyflyHelper(const QString &path)
     : m_path(path)
 {
@@ -62,7 +67,8 @@ bool AyflyHelper::initialize()
     }
 
     m_info->length = ay_getsonglength(m_info->ay) / 50 * 1000;
-    m_info->rate = size * 8.0 / m_info->length;
+    m_info->rate = size * 8.0 / m_info->length + 0.5;
+    ay_setelapsedcallback(m_info->ay, endCallback, nullptr);
 
     m_meta.insert("title", ay_getsongname(m_info->ay));
     m_meta.insert("artist", ay_getsongauthor(m_info->ay));
