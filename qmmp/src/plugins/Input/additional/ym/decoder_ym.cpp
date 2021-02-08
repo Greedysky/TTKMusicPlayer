@@ -35,7 +35,7 @@ bool DecoderYm::initialize()
 
         m_totalTime = info.musicTimeInMs;
         m_freq = 44100;
-        m_bitrate = (QFileInfo(m_path).size() * 8.0) / m_totalTime + 0.5;
+        m_bitrate = (QFileInfo(m_path).size() * 8.0) / m_totalTime + 1.0f;
     }
     else
     {

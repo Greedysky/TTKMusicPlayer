@@ -121,7 +121,7 @@ bool SC68Helper::initialize()
     }
 
     m_totalTime = m_info->totalsamples / sampleRate() * 1000;
-    m_info->bitrate = size * 8.0 / m_totalTime + 0.5;
+    m_info->bitrate = size * 8.0 / m_totalTime + 1.0f;
 
     sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
 

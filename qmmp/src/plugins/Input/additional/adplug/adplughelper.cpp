@@ -45,7 +45,7 @@ bool AdplugHelper::initialize()
 
 int AdplugHelper::bitrate()
 {
-    return (QFileInfo(m_filePath.c_str()).size() * 8.0) / length() + 0.5;
+    return (QFileInfo(m_filePath.c_str()).size() * 8.0) / length() + 1.0f;
 }
 
 std::vector<std::string> AdplugHelper::instruments()

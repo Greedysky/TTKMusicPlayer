@@ -441,7 +441,7 @@ void DCAHelper::seek(qint64 time)
 
 int DCAHelper::bitrate() const
 {
-    return m_info->bitrate;
+    return m_info->bitrate / 1000;
 }
 
 int DCAHelper::sampleRate() const

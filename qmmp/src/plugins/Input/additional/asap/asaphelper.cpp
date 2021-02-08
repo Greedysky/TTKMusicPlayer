@@ -81,7 +81,7 @@ bool AsapHelper::initialize()
     m_info->channels = ASAPInfo_GetChannels(info);
     m_info->sample_rate = ASAP_SAMPLE_RATE;
     m_info->bits_per_sample = 32;
-    m_info->bitrate = size * 8.0 / m_info->length + 0.5;
+    m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
 
     return true;
 }

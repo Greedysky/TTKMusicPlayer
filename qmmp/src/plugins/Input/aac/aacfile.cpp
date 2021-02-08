@@ -97,10 +97,10 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
                 (buf[7 + skip_size] & 0xE0);
 
         if(!input->isSequential())
-            m_duration = (qint64) (((float)input->size()*8000.f)/((float)m_bitrate) + 0.5f);
+            m_duration = (qint64) (((float)input->size()*8000.f)/((float)m_bitrate) + 1.0f);
         else
             m_duration = 0;
-        m_bitrate = (int)((float)m_bitrate/1000.0f + 0.5f);
+        m_bitrate = (int)((float)m_bitrate/1000.0f + 1.0f);
         m_isValid = true;
     }
 }
@@ -202,7 +202,7 @@ void AACFile::parseADTS()
         bytes_per_frame = (float)t_framelength/(float)(frames*1000);
     else
         bytes_per_frame = 0;
-    m_bitrate = (quint32)(8. * bytes_per_frame * frames_per_sec + 0.5);
+    m_bitrate = (quint32)(8. * bytes_per_frame * frames_per_sec + 1.0f);
 
     if(frames_per_sec != 0)
         m_duration = frames * 1000 / frames_per_sec;

@@ -210,7 +210,7 @@ static void flac_callback_metadata(const FLAC__StreamDecoder *,
 
         if(metadata->data.stream_info.total_samples > 0 && data->length > 0)
         {
-            data->bitrate = data->input->size() * 8 /  data->length + 0.5;
+            data->bitrate = data->input->size() * 8 /  data->length + 1.0f;
         }
         else
         {

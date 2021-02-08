@@ -76,7 +76,7 @@ bool FC14Helper::initialize()
     m_info->channels = 2;
     m_info->sample_rate = 44100;
     m_info->bits_per_sample = 16;
-    m_info->bitrate = size * 8.0 / m_info->length + 0.5;
+    m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
 
     return true;
 }

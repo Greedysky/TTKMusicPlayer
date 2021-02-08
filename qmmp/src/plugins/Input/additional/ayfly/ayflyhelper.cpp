@@ -72,7 +72,7 @@ bool AyflyHelper::initialize()
     }
 
     m_info->length = ay_getsonglength(m_info->ay) / 50 * 1000;
-    m_info->rate = size * 8.0 / m_info->length + 0.5;
+    m_info->rate = size * 8.0 / m_info->length + 1.0f;
     ay_setelapsedcallback(m_info->ay, endCallback, nullptr);
 
     m_meta.insert("title", ay_getsongname(m_info->ay));

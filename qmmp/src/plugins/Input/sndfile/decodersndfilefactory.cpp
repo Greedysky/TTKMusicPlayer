@@ -152,7 +152,7 @@ QList<TrackInfo*> DecoderSndFileFactory::createPlayList(const QString &path, Tra
     if(parts & TrackInfo::Properties)
     {
         info->setDuration(int(snd_info.frames * 1000 / snd_info.samplerate));
-        info->setValue(Qmmp::BITRATE, static_cast<int>(QFileInfo(path).size() * 8.0 / info->duration() + 0.5));
+        info->setValue(Qmmp::BITRATE, static_cast<int>(QFileInfo(path).size() * 8.0 / info->duration() + 1.0f));
         info->setValue(Qmmp::SAMPLERATE, snd_info.samplerate);
         info->setValue(Qmmp::CHANNELS, snd_info.channels);
         switch(snd_info.format & SF_FORMAT_SUBMASK)

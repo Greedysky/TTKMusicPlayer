@@ -149,7 +149,7 @@ bool V2MHelper::initialize()
     m_info->player->Open(m_info->tune);
 
     m_totalTime = m_info->player->Length() * 1000;
-    m_info->bitrate = size * 8.0 / m_totalTime + 0.5;
+    m_info->bitrate = size * 8.0 / m_totalTime + 1.0f;
 
     m_info->player->Play();
 

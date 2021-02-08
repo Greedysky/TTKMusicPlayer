@@ -58,7 +58,7 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
 
     if(parts & TrackInfo::Properties)
     {
-        info->setValue(Qmmp::BITRATE, (QFileInfo(path).size() * 8.0) / musicInfo.musicTimeInMs + 0.5);
+        info->setValue(Qmmp::BITRATE, (QFileInfo(path).size() * 8.0) / musicInfo.musicTimeInMs + 1.0f);
         info->setValue(Qmmp::SAMPLERATE, 44100);
         info->setValue(Qmmp::CHANNELS, 2);
         info->setValue(Qmmp::FORMAT_NAME, "YM");
