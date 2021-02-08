@@ -12,12 +12,12 @@ DecoderProperties DecoderPSFFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("PSF Plugin");
-    properties.filters << "*.psf" << "*.psf2";
+    properties.filters << "*.psf";
     properties.filters << "*.spu";
     properties.filters << "*.ssf";
     properties.filters << "*.qsf";
     properties.filters << "*.dsf";
-    properties.filters << "*.minipsf" << "*.minipsf2" << "*.minissf" << "*.miniqsf" << "*.minidsf";
+    properties.filters << "*.minipsf" << "*.minissf" << "*.miniqsf" << "*.minidsf";
     properties.description = tr("Audio Overload Files");
     properties.shortName = "psf";
     properties.noInput = true;

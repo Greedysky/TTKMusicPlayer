@@ -40,7 +40,10 @@ bool DecoderSID::initialize()
         qWarning("DecoderSID: unable to load tune, error: %s", m_tune.statusString());
         return false;
     }
+
     int count = m_tune.getInfo()->songs();
+    if(track == 0)
+        track = count;
 
     if(track > count || track < 1)
     {
@@ -68,15 +71,13 @@ bool DecoderSID::initialize()
     //read settings
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("SID");
-    if(settings.value("use_hvsc", false).toBool())
-    {
-        char md5[SidTune::MD5_LENGTH+1];
-        m_tune.createMD5(md5);
-        m_length = m_db->length(md5, track);
-    }
+
+    char md5[SidTune::MD5_LENGTH+1];
+    m_tune.createMD5(md5);
+    m_length = m_db->length(md5, track) * 1000;
 
     if(m_length <= 0)
-        m_length = settings.value("song_length", 180).toInt();
+        m_length = settings.value("song_length", 180 * 1000).toInt();
 
     qDebug("DecoderSID: song length: %d", m_length);
 
@@ -115,15 +116,15 @@ bool DecoderSID::initialize()
     }
 
     configure(44100, 2);
-    m_length_in_bytes = audioParameters().sampleRate() *
-            audioParameters().frameSize() * m_length;
+    m_length_in_bytes = audioParameters().sampleRate() * audioParameters().frameSize() * m_length;
+
     qDebug("DecoderSID: initialize succes");
     return true;
 }
 
 qint64 DecoderSID::totalTime() const
 {
-    return 0;
+    return m_length;
 }
 
 void DecoderSID::seek(qint64 pos)

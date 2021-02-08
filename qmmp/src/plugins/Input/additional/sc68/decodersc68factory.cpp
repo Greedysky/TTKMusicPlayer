@@ -12,7 +12,7 @@ DecoderProperties DecoderSC68Factory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("SC68 Plugin");
-    properties.filters << "*.sndh" << "*.snd" << "*.sc68";
+    properties.filters << "*.sc68";
     properties.description = tr("Atari ST(E) And Amiga Audio Files");
     properties.shortName = "sc68";
     properties.noInput = true;

@@ -15,7 +15,7 @@ DecoderProperties DecoderAsapFactory::properties() const
     properties.filters << "*.sap";
     properties.filters << "*.cm3" << "*.cmc" << "*.cmr" << "*.cms";
     properties.filters << "*.dmc" << "*.dlt";
-    properties.filters << "*.mpd" << "*.mpt" << "*.rmt" << "*.tm2" << "*.tm8" << "*.tmc" << "*.fc";
+    properties.filters << "*.mpd" << "*.mpt" << "*.rmt" << "*.tm2" << "*.tm8" << "*.tmc";
     properties.description = tr("Another Slight Atari Player Files");
     properties.shortName = "asap";
     properties.noInput = true;

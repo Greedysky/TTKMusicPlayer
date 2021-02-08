@@ -21,7 +21,7 @@ bool DecoderGme::initialize()
         return false;
 
     int count = gme_track_count(m_emu);
-    if(track > count + 1 || track < 0)
+    if(track > count || track < 0)
     {
         qWarning("DecoderGme: track number is out of range");
         gme_delete(m_emu);
@@ -44,7 +44,7 @@ bool DecoderGme::initialize()
         return false;
 
     if(track_info->length <= 0)
-        track_info->length = (long) (2.5 * 60 * 1000);
+        track_info->length = (long) (2.5 * 60 * 1000); //track_info->play_length;
 
     if(m_helper.fadeLength())
     {
@@ -52,6 +52,7 @@ bool DecoderGme::initialize()
             track_info->length += m_helper.fadeLength();
         gme_set_fade(m_emu, track_info->length - m_helper.fadeLength());
     }
+
     QMap<Qmmp::MetaData, QString> metadata;
     metadata.insert(Qmmp::ALBUM, track_info->game);
     metadata.insert(Qmmp::TITLE, track_info->song);
@@ -64,6 +65,7 @@ bool DecoderGme::initialize()
 
     gme_free_info(track_info);
     configure(44100, 2);
+
     qDebug("DecoderGme: initialize succes");
     return true;
 }
@@ -87,9 +89,11 @@ qint64 DecoderGme::read(unsigned char *data, qint64 size)
 {
     if(gme_track_ended(m_emu))
         return 0;
+
     if(m_totalTime && gme_tell(m_emu) > m_totalTime)
         return 0;
-    if(gme_play(m_emu, size/2, (short*)data))
+
+    if(gme_play(m_emu, size / 2, (short*)data))
     {
         return 0;
     }
