@@ -317,6 +317,7 @@ bool DCAHelper::initialize()
     m_info->file = stdio_open(qPrintable(m_path));
     if(!m_info->file)
     {
+        qWarning("DCAHelper: open file failed");
         return false;
     }
 
@@ -344,6 +345,7 @@ bool DCAHelper::initialize()
 
     if(!m_info->state)
     {
+        qWarning("DCAHelper: dts_open_wav get state error");
         return false;
     }
 
@@ -352,6 +354,7 @@ bool DCAHelper::initialize()
     const int len = dca_decode_data(m_info, m_info->inbuf, rd, 1);
     if(!len)
     {
+        qWarning("DCAHelper: dca_decode_data error");
         return false;
     }
     m_info->frame_byte_size = len;
@@ -360,7 +363,7 @@ bool DCAHelper::initialize()
     switch(flags)
     {
     case DCA_MONO:
-        qDebug("dts: mono");
+        qDebug("DCAHelper: mono");
         m_info->channels = 1;
         break;
     case DCA_CHANNEL:
@@ -368,38 +371,38 @@ bool DCAHelper::initialize()
     case DCA_DOLBY:
     case DCA_STEREO_SUMDIFF:
     case DCA_STEREO_TOTAL:
-        qDebug("dts: stereo");
+        qDebug("DCAHelper: stereo");
         m_info->channels = 2;
         break;
     case DCA_3F:
     case DCA_2F1R:
-        qDebug("dts: 3F or 2F1R");
+        qDebug("DCAHelper: 3F or 2F1R");
         m_info->channels = 3;
         break;
     case DCA_2F2R:
     case DCA_3F1R:
-        qDebug("dts: 2F2R or 3F1R");
+        qDebug("DCAHelper: 2F2R or 3F1R");
         m_info->channels = 4;
         break;
     case DCA_3F2R:
-        qDebug("dts: 3F2R");
+        qDebug("DCAHelper: 3F2R");
         m_info->channels = 5;
         break;
     case DCA_4F2R:
-        qDebug("dts: 4F2R");
+        qDebug("DCAHelper: 4F2R");
         m_info->channels = 6;
         break;
     }
 
     if(m_info->flags & DCA_LFE)
     {
-        qDebug("dts: LFE");
+        qDebug("DCAHelper: LFE");
         m_info->channels++;
     }
 
     if(!m_info->channels)
     {
-        qDebug("dts: invalid numchannels");
+        qWarning("DCAHelper: dts invalid numchannels");
         return false;
     }
 

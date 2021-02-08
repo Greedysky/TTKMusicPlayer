@@ -28,12 +28,14 @@ bool AsapHelper::initialize()
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
+        qWarning("AsapHelper: open file failed");
         return false;
     }
 
     int size = stdio_length(file);
     if(size <= 0 || size > 256 * 1024)
     {
+        qWarning("AsapHelper: file size invalid");
         stdio_close(file);
         return false;
     }
@@ -41,6 +43,7 @@ bool AsapHelper::initialize()
     unsigned char *module = (unsigned char *)malloc(size);
     if(!module)
     {
+        qWarning("AsapHelper: file data read error");
         stdio_close(file);
         return false;
     }
@@ -53,6 +56,7 @@ bool AsapHelper::initialize()
 
     if(!ASAP_Load(m_info->asap, qPrintable(m_path), module, size))
     {
+        qWarning("AsapHelper: ASAP_Load error");
         free(module);
         return false;
     }
@@ -65,6 +69,7 @@ bool AsapHelper::initialize()
     // char filename[128]; cibool loops[32]; char title[128]; };
     if(!ASAP_PlaySong(m_info->asap, ASAPInfo_GetDefaultSong(info), 360000))
     {
+        qWarning("AsapHelper: ASAP_PlaySong error");
         return false;
     }
 

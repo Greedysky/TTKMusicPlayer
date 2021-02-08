@@ -62,6 +62,7 @@ bool PSFHelper::initialize()
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
+        qWarning("PSFHelper: open file failed");
         return false;
     }
 
@@ -69,12 +70,14 @@ bool PSFHelper::initialize()
     m_info->filebuffer = (char *)malloc(m_info->filesize);
     if(!m_info->filebuffer)
     {
+        qWarning("PSFHelper: file size invalid");
         stdio_close(file);
         return false;
     }
 
     if(stdio_read(m_info->filebuffer, 1, m_info->filesize, file) != m_info->filesize)
     {
+        qWarning("PSFHelper: file data read error");
         stdio_close(file);
         return false;
     }
@@ -83,12 +86,14 @@ bool PSFHelper::initialize()
     m_info->type = ao_identify(m_info->filebuffer);
     if(m_info->type < 0)
     {
+        qWarning("PSFHelper: ao_identify error");
         return false;
     }
 
     m_info->decoder = ao_start(m_info->type, qPrintable(m_path), (uint8 *)m_info->filebuffer, m_info->filesize);
     if(!m_info->decoder)
     {
+        qWarning("PSFHelper: ao_start error");
         return false;
     }
 
@@ -103,6 +108,7 @@ bool PSFHelper::initialize()
     m_info->duration = 120;
     if(!have_info)
     {
+        qDebug("PSFHelper: ao has no display info");
         return true;
     }
 

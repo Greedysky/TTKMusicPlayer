@@ -77,6 +77,7 @@ bool SC68Helper::initialize()
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
+        qWarning("SC68Helper: open file failed");
         return false;
     }
 
@@ -87,12 +88,14 @@ bool SC68Helper::initialize()
     m_info->sc68 = sc68_create(nullptr);
     if(!m_info->sc68)
     {
+        qWarning("SC68Helper: sc68_create error");
         return false;
     }
 
     int res = sc68_load_uri(m_info->sc68, qPrintable(m_path));
     if(res)
     {
+        qWarning("SC68Helper: sc68_load_uri error");
         return false;
     }
 
@@ -102,6 +105,7 @@ bool SC68Helper::initialize()
     res = sc68_music_info(m_info->sc68, &info, m_info->trk + 1, 0);
     if(res < 0)
     {
+        qWarning("SC68Helper: sc68_music_info error");
         return false;
     }
 

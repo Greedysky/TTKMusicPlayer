@@ -16,6 +16,7 @@ bool DecoderAyfly::initialize()
 {
     if(!m_ayfly->initialize())
     {
+        qWarning("DecoderAyfly: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderAyfly::initialize()
     int channels = m_ayfly->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderAyfly: rate or channel invalid");
         return false;
     }
 

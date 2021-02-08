@@ -16,6 +16,7 @@ bool DecoderDCA::initialize()
 {
     if(!m_dca->initialize())
     {
+        qWarning("DecoderDCA: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderDCA::initialize()
     int channels = m_dca->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderDCA: rate or channel invalid");
         return false;
     }
 

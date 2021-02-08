@@ -26,6 +26,7 @@ OptimFROGHelper::~OptimFROGHelper()
     {
         return;
     }
+
 #if defined Q_OS_WIN && defined __GNUC__
     ((OFROG_close)GetSymbolAddress("OptimFROG_close"))(m_decoder);
     ((OFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
@@ -41,6 +42,7 @@ bool OptimFROGHelper::initialize()
     m_instance = LoadLibraryA("libOptimFROG.dll");
     if(!m_instance)
     {
+        qWarning("OptimFROGHelper: load plugin failed");
         return false;
     }
     m_decoder = ((OFROG_createInstance)GetSymbolAddress("OptimFROG_createInstance"))();
@@ -60,12 +62,14 @@ bool OptimFROGHelper::initialize()
 
     if(!m_decoder)
     {
+        qWarning("OptimFROGHelper: OptimFROG_createInstance failed");
         return false;
     }
 
 #if defined Q_OS_WIN && defined __GNUC__
     if(!((OFROG_openExt)GetSymbolAddress("OptimFROG_openExt"))(m_decoder, &rint, m_reader, C_TRUE))
     {
+        qWarning("OptimFROGHelper: OptimFROG_openExt failed");
         ((OFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
         return false;
     }
@@ -73,6 +77,7 @@ bool OptimFROGHelper::initialize()
 #else
     if(!OptimFROG_openExt(m_decoder, &rint, m_reader, C_TRUE))
     {
+        qWarning("OptimFROGHelper: OptimFROG_openExt failed");
         OptimFROG_destroyInstance(m_decoder);
         return false;
     }
@@ -88,6 +93,7 @@ bool OptimFROGHelper::initialize()
 #if defined Q_OS_LINUX
     if(strncmp(m_info.sampleType, "SINT", 4) != 0 && strncmp(m_info.sampleType, "UINT", 4) != 0)
     {
+        qWarning("OptimFROGHelper: sampleType failed");
         OptimFROG_destroyInstance(m_decoder);
         return false;
     }

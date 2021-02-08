@@ -28,12 +28,14 @@ bool FC14Helper::initialize()
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
+        qWarning("FC14Helper: open file failed");
         return false;
     }
 
     int size = stdio_length(file);
     if(size <= 0 || size > 256 * 1024)
     {
+        qWarning("FC14Helper: file size invalid");
         stdio_close(file);
         return false;
     }
@@ -41,6 +43,7 @@ bool FC14Helper::initialize()
     unsigned char *module = (unsigned char *)malloc(size);
     if(!module)
     {
+        qWarning("FC14Helper: file data read error");
         stdio_close(file);
         return false;
     }
@@ -51,12 +54,14 @@ bool FC14Helper::initialize()
     m_info->fc = fc14dec_new();
     if(!fc14dec_detect(m_info->fc, module, size))
     {
+        qWarning("FC14Helper: fc14dec_detect error");
         free(module);
         return false;
     }
 
     if(!fc14dec_init(m_info->fc, module, size))
     {
+        qWarning("FC14Helper: fc14dec_init error");
         free(module);
         return false;
     }

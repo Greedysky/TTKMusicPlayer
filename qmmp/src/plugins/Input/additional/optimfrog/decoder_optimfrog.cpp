@@ -15,6 +15,7 @@ bool DecoderOptimFROG::initialize()
     m_frog = std::unique_ptr<OptimFROGHelper>(new OptimFROGHelper(input()));
     if(!m_frog->initialize())
     {
+        qWarning("DecoderOptimFROG: initialize failed");
         return false;
     }
 

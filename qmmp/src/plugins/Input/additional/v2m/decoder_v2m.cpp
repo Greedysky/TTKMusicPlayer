@@ -16,6 +16,7 @@ bool DecoderV2M::initialize()
 {
     if(!m_v2m->initialize())
     {
+        qWarning("DecoderV2M: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderV2M::initialize()
     int channels = m_v2m->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderV2M: rate or channel invalid");
         return false;
     }
 

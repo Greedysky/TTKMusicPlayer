@@ -16,6 +16,7 @@ bool DecoderSC68::initialize()
 {
     if(!m_sc68->initialize())
     {
+        qWarning("DecoderSC68: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderSC68::initialize()
     int channels = m_sc68->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderSC68: rate or channel invalid");
         return false;
     }
 

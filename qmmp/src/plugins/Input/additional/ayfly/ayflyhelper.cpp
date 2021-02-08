@@ -33,12 +33,14 @@ bool AyflyHelper::initialize()
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
+        qWarning("AyflyHelper: open file failed");
         return false;
     }
 
     int size = stdio_length(file);
     if(size <= 0)
     {
+        qWarning("AyflyHelper: file size invalid");
         stdio_close(file);
         return false;
     }
@@ -46,6 +48,7 @@ bool AyflyHelper::initialize()
     unsigned char *module = (unsigned char *)malloc(size);
     if(!module)
     {
+        qWarning("AyflyHelper: file data read error");
         stdio_close(file);
         return false;
     }
@@ -55,6 +58,7 @@ bool AyflyHelper::initialize()
 
     if(!ay_initsongindirect(module, sampleRate(), size))
     {
+        qWarning("AyflyHelper: ay_initsongindirect error");
         free(module);
         return false;
     }
@@ -63,6 +67,7 @@ bool AyflyHelper::initialize()
     m_info->ay = ay_initsong(qPrintable(m_path), sampleRate());
     if(!m_info->ay)
     {
+        qWarning("AyflyHelper: ay_initsong error");
         return false;
     }
 

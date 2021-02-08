@@ -12,6 +12,7 @@ bool DecoderAdplug::initialize()
     m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(qUtf8Printable(m_path)));
     if(!m_adplug->initialize())
     {
+        qWarning("DecoderAdplug: initialize failed");
         return false;
     }
     configure(m_adplug->rate(), m_adplug->channels(), Qmmp::PCM_S16LE);

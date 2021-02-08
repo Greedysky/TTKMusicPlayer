@@ -115,7 +115,7 @@ bool DecoderSID::initialize()
         return false;
     }
 
-    configure(44100, 2);
+    configure(44100, 2, Qmmp::PCM_S16LE);
     m_length_in_bytes = audioParameters().sampleRate() * audioParameters().frameSize() * m_length;
 
     qDebug("DecoderSID: initialize succes");

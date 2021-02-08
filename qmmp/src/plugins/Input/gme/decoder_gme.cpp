@@ -64,7 +64,7 @@ bool DecoderGme::initialize()
     m_totalTime = track_info->length;
 
     gme_free_info(track_info);
-    configure(44100, 2);
+    configure(44100, 2, Qmmp::PCM_S16LE);
 
     qDebug("DecoderGme: initialize succes");
     return true;

@@ -16,6 +16,7 @@ bool DecoderAsap::initialize()
 {
     if(!m_asap->initialize())
     {
+        qWarning("DecoderAsap: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderAsap::initialize()
     int channels = m_asap->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderAsap: rate or channel invalid");
         return false;
     }
 

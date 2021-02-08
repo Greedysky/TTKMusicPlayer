@@ -16,6 +16,7 @@ bool DecoderPSF::initialize()
 {
     if(!m_psf->initialize())
     {
+        qWarning("DecoderPSF: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderPSF::initialize()
     int channels = m_psf->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderPSF: rate or channel invalid");
         return false;
     }
 

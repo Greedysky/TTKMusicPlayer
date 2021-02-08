@@ -131,6 +131,7 @@ bool V2MHelper::initialize()
     FILE *file = stdio_open(qPrintable(m_path));
     if(!file)
     {
+        qWarning("V2MHelper: open file failed");
         return false;
     }
 
@@ -139,6 +140,7 @@ bool V2MHelper::initialize()
 
     if(load_and_convert(qPrintable(m_path), &m_info->tune, &m_info->len) < 0)
     {
+        qWarning("V2MHelper: load_and_convert error");
         return false;
     }
 

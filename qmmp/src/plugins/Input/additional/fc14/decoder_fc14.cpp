@@ -16,6 +16,7 @@ bool DecoderFC14::initialize()
 {
     if(!m_fc14->initialize())
     {
+        qWarning("DecoderFC14: initialize failed");
         return false;
     }
 
@@ -23,6 +24,7 @@ bool DecoderFC14::initialize()
     int channels = m_fc14->channels();
     if(rate == 0 || channels == 0)
     {
+        qWarning("DecoderFC14: rate or channel invalid");
         return false;
     }
 
