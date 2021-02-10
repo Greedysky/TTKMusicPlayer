@@ -2,28 +2,30 @@
 #include "cuefile.h"
 #include "cuemetadatamodel.h"
 
-CUEMetaDataModel::CUEMetaDataModel(const QString &url)
-    : MetaDataModel(true)
+CUEMetaDataModel::CUEMetaDataModel(bool readOnly, const QString &url)
+    : MetaDataModel(readOnly, IsCueEditable)
 {
-    m_cueFile = new CueFile(url);
-    if(m_cueFile->count() == 0)
+    CueFile file(url);
+    if(file.isEmpty())
     {
         qWarning("CUEMetaDataModel: invalid cue file");
         return;
     }
-    int track = url.section("#", -1).toInt();
-    m_path = m_cueFile->dataFilePath(track);
+
+    const int track = url.section("#", -1).toInt();
+    m_dataFilePath = file.dataFilePath(track);
+    m_cueFilePath = file.cueFilePath();
 }
 
 CUEMetaDataModel::~CUEMetaDataModel()
 {
-    delete m_cueFile;
+
 }
 
 QList<MetaDataItem> CUEMetaDataModel::extraProperties() const
 {
     QList<MetaDataItem> ep;
-    MetaDataModel *model = MetaDataManager::instance()->createMetaDataModel(m_path, true);
+    MetaDataModel *model = MetaDataManager::instance()->createMetaDataModel(m_dataFilePath, true);
     if(model)
     {
         ep = model->extraProperties();
@@ -34,5 +36,24 @@ QList<MetaDataItem> CUEMetaDataModel::extraProperties() const
 
 QString CUEMetaDataModel::coverPath() const
 {
-    return MetaDataManager::instance()->findCoverFile(m_path);
+    return MetaDataManager::instance()->findCoverFile(m_dataFilePath);
+}
+
+QString CUEMetaDataModel::cue() const
+{
+    QFile file(m_cueFilePath);
+    file.open(QIODevice::ReadOnly);
+    return QString::fromUtf8(file.readAll().constData());
+}
+
+void CUEMetaDataModel::setCue(const QString &content)
+{
+    QFile file(m_cueFilePath);
+    file.open(QIODevice::WriteOnly);
+    file.write(content.toUtf8());
+}
+
+void CUEMetaDataModel::removeCue()
+{
+    QFile::remove(m_cueFilePath);
 }

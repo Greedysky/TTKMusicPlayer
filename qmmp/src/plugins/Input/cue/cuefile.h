@@ -37,6 +37,7 @@ public:
     explicit CueFile(const QString &path);
     ~CueFile();
 
+    QString cueFilePath() const;
     QString dataFilePath(int track) const;
     QStringList dataFilePaths() const;
 
@@ -46,6 +47,7 @@ private:
 
     QMap<QString, QString> m_dataFiles; //name, full path
     bool m_dirty;
+    QString m_filePath;
 
 };
 

@@ -160,8 +160,9 @@ Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(path);
     Decoder *d = nullptr;
-#if defined(WITH_MAD) && defined(WITH_MPG123)
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    bool crc = settings.value("MPEG/enable_crc", false).toBool();
+#if defined(WITH_MAD) && defined(WITH_MPG123)
     if(settings.value("MPEG/decoder", "mad").toString() == "mpg123")
     {
         qDebug("DecoderMPEGFactory: using mpg123 decoder");
@@ -170,10 +171,10 @@ Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
     else
     {
         qDebug("DecoderMPEGFactory: using MAD decoder");
-        d = new DecoderMAD(input);
+        d = new DecoderMAD(crc, input);
     }
 #elif defined(WITH_MAD)
-    d = new DecoderMAD(input);
+    d = new DecoderMAD(crc, input);
 #elif defined(WITH_MPG123)
     d = new DecoderMPG123(input);
 #endif

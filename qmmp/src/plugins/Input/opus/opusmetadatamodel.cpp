@@ -7,11 +7,7 @@
 #include "opusmetadatamodel.h"
 
 OpusMetaDataModel::OpusMetaDataModel(const QString &path, bool readOnly)
-#ifdef HAS_PICTURE_LIST
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
-#else
-    : MetaDataModel(readOnly),
-#endif
       m_path(path)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
@@ -53,7 +49,6 @@ QPixmap OpusMetaDataModel::cover() const
     if(!tag || tag->isEmpty())
         return QPixmap();
 
-#ifdef HAS_PICTURE_LIST
     TagLib::List<TagLib::FLAC::Picture *> list = tag->pictureList();
     for(uint i = 0; i < list.size(); ++i)
     {
@@ -64,25 +59,9 @@ QPixmap OpusMetaDataModel::cover() const
             return cover;
         }
     }
-#else
-    TagLib::StringList list = tag->fieldListMap()["METADATA_BLOCK_PICTURE"];
-    if(list.isEmpty())
-        return QPixmap();
-    for(uint i = 0; i < list.size(); ++i)
-    {
-        TagLib::FLAC::Picture pict;
-        TagLib::String value = list[i];
-        QByteArray block = QByteArray::fromBase64(TStringToQString(value).toLatin1());
-        pict.parse(TagLib::ByteVector(block.constData(), block.size()));
-        QPixmap cover;
-        cover.loadFromData(QByteArray(pict.data().data(), pict.data().size())); //read binary picture data
-        return cover;
-    }
-#endif
     return QPixmap();
 }
 
-#ifdef HAS_PICTURE_LIST
 void OpusMetaDataModel::setCover(const QPixmap &pix)
 {
     removeCover();
@@ -126,7 +105,6 @@ void OpusMetaDataModel::removeCover()
         }
     }
 }
-#endif
 
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::Opus::File *file)
     : TagModel(TagModel::Save),

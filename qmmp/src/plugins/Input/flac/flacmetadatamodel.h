@@ -27,10 +27,6 @@
 #include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
 
-#if(TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
-#define HAS_PICTURE_LIST
-#endif
-
 class FLACMetaDataModel : public MetaDataModel
 {
 public:
@@ -40,10 +36,11 @@ public:
     virtual QList<TagModel* > tags() const override;
     virtual QPixmap cover() const override;
     virtual QString coverPath() const override;
-#ifdef HAS_PICTURE_LIST
     virtual void setCover(const QPixmap &pix) override;
     virtual void removeCover() override;
-#endif
+    virtual QString cue() const override;
+    virtual void setCue(const QString &content) override;
+    virtual void removeCue() override;
 
 private:
     QString m_path;

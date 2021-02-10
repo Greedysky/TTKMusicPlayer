@@ -28,15 +28,17 @@ class CueFile;
 class CUEMetaDataModel : public MetaDataModel
 {
 public:
-    explicit CUEMetaDataModel(const QString &url);
+    explicit CUEMetaDataModel(bool readOnly, const QString &url);
     virtual ~CUEMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
     virtual QString coverPath() const override;
+    virtual QString cue() const override;
+    virtual void setCue(const QString &content) override;
+    virtual void removeCue() override;
 
 private:
-    CueFile *m_cueFile;
-    QString m_path;
+    QString m_dataFilePath, m_cueFilePath;
 
 };
 

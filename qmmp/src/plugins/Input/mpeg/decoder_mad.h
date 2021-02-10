@@ -31,7 +31,7 @@
 class DecoderMAD : public Decoder
 {
 public:
-    explicit DecoderMAD(QIODevice *i);
+    explicit DecoderMAD(bool crc, QIODevice *i);
     virtual ~DecoderMAD();
 
     // standard decoder API
@@ -52,27 +52,6 @@ private:
         unsigned short end_padding;
         qint8 gain;
     };
-    // helper functions
-    bool decodeFrame();
-    qint64 madOutputFloat(float *data, qint64 samples);
-    bool fillBuffer();
-    void deinit();
-    bool findHeader();
-    bool findXingHeader(struct mad_bitptr, unsigned int bitlen);
-    LameHeader *findLameHeader(struct mad_bitptr ptr, unsigned int bitlen);
-    uint findID3v2(uchar *data, ulong size);
-
-    bool m_inited = false, m_eof = false;
-    qint64 m_totalTime = 0;
-    int m_channels = 0, m_skip_frames = 0;
-    uint m_bitrate = 0;
-    long m_freq = 0, m_len = 0;
-
-    // file input buffer
-    char *m_input_buf = nullptr;
-    qint64 m_input_bytes = 0;
-
-    // MAD decoder
 
     //xing header
     struct XingHeader
@@ -94,10 +73,32 @@ private:
         XING_SCALE  = 0x0008
     };
 
+    // helper functions
+    bool decodeFrame();
+    qint64 madOutputFloat(float *data, qint64 samples);
+    bool fillBuffer();
+    void deinit();
+    bool findHeader();
+    bool findXingHeader(struct mad_bitptr, unsigned int bitlen);
+    LameHeader *findLameHeader(struct mad_bitptr ptr, unsigned int bitlen);
+    uint findID3v2(uchar *data, ulong size);
+
+    bool m_inited = false, m_eof = false;
+    qint64 m_totalTime = 0;
+    int m_channels = 0, m_skip_frames = 0;
+    uint m_bitrate = 0;
+    long m_freq = 0, m_len = 0;
+
+    // file input buffer
+    char *m_input_buf = nullptr;
+    qint64 m_input_bytes = 0;
+
+    // MAD decoder
     struct mad_stream m_stream;
     struct mad_frame m_frame;
     struct mad_synth m_synth;
     qint64 m_skip_bytes = 0, m_play_bytes = -1;
+    bool m_crc;
 
 };
 

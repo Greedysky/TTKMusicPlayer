@@ -10,11 +10,7 @@
 #include "vorbismetadatamodel.h"
 
 VorbisMetaDataModel::VorbisMetaDataModel(const QString &path, bool readOnly)
-#ifdef HAS_PICTURE_LIST
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
-#else
-    : MetaDataModel(readOnly),
-#endif
       m_path(path)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
@@ -42,7 +38,6 @@ QPixmap VorbisMetaDataModel::cover() const
     if(!m_tag || m_tag->isEmpty())
         return QPixmap();
 
-#ifdef HAS_PICTURE_LIST
     TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList();
     for(uint i = 0; i < list.size(); ++i)
     {
@@ -53,26 +48,10 @@ QPixmap VorbisMetaDataModel::cover() const
             return cover;
         }
     }
-#else
-    TagLib::StringList list = m_tag->fieldListMap()["METADATA_BLOCK_PICTURE"];
-    if(list.isEmpty())
-        return QPixmap();
-    for(uint i = 0; i < list.size(); ++i)
-    {
-        TagLib::FLAC::Picture pict;
-        TagLib::String value = list[i];
-        QByteArray block = QByteArray::fromBase64(TStringToQString(value).toLatin1());
-        pict.parse(TagLib::ByteVector(block.constData(), block.size()));
-        QPixmap cover;
-        cover.loadFromData(QByteArray(pict.data().data(), pict.data().size())); //read binary picture data
-        return cover;
-    }
-#endif
 
     return QPixmap();
 }
 
-#ifdef HAS_PICTURE_LIST
 void VorbisMetaDataModel::setCover(const QPixmap &pix)
 {
     removeCover();
@@ -114,7 +93,6 @@ void VorbisMetaDataModel::removeCover()
         }
     }
 }
-#endif
 
 VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model)
     : TagModel(TagModel::Save),
@@ -223,11 +201,4 @@ void VorbisCommentModel::save()
 {
     if(m_model->m_tag)
         m_model->m_file->save();
-
-#if((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 10))
-    //taglib bug workarround
-    delete m_model->m_file;
-    m_model->m_file = new TagLib::Ogg::Vorbis::File(QStringToFileName(m_model->m_path));
-    m_model->m_tag = m_model->m_file->tag();
-#endif
 }

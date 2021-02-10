@@ -65,11 +65,7 @@ DecoderFFmpeg::~DecoderFFmpeg()
     av_packet_free(&m_pkt);
 
     if(m_stream)
-#if (LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(57, 80, 100)) //ffmpeg-3.4
         avio_context_free(&m_stream);
-#else
-        av_free(m_stream);
-#endif
 
     if(m_frame)
         av_frame_free(&m_frame);

@@ -85,6 +85,21 @@ QString MetaDataModel::coverPath() const
     return QString();
 }
 
+QString MetaDataModel::cue() const
+{
+    return QString();
+}
+
+void MetaDataModel::setCue(const QString &content)
+{
+    Q_UNUSED(content);
+}
+
+void MetaDataModel::removeCue()
+{
+
+}
+
 bool MetaDataModel::isReadOnly() const
 {
     return m_readOnly;

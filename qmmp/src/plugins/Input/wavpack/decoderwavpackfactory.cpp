@@ -106,6 +106,12 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
             delete info;
             return parser.createPlayList(track);
         }
+        else if(track > 0)
+        {
+            WavpackCloseFile(ctx);
+            delete info;
+            return QList<TrackInfo *>();
+        }
         else
         {
             char value[200] = { 0 };

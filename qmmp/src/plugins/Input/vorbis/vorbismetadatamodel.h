@@ -26,10 +26,6 @@
 #include <taglib/xiphcomment.h>
 #include <taglib/tfilestream.h>
 
-#if(TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
-#define HAS_PICTURE_LIST
-#endif
-
 class VorbisCommentModel;
 
 class VorbisMetaDataModel : public MetaDataModel
@@ -42,10 +38,8 @@ public:
 
     virtual QList<TagModel* > tags() const override;
     virtual QPixmap cover() const override;
-#ifdef HAS_PICTURE_LIST
     virtual void setCover(const QPixmap &pix) override;
     virtual void removeCover() override;
-#endif
 
 private:
     QString m_path;

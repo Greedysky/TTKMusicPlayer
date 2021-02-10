@@ -5,18 +5,11 @@
 #include <taglib/tmap.h>
 #include <taglib/id3v2framefactory.h>
 #include <taglib/flacpicture.h>
-#ifndef HAS_PICTURE_LIST
-#include <FLAC/all.h>
-#endif
 #include <qmmp/metadatamanager.h>
 #include "flacmetadatamodel.h"
 
 FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
-#ifdef HAS_PICTURE_LIST
-    : MetaDataModel(true, MetaDataModel::IsCoverEditable),
-#else
-    : MetaDataModel(true),
-#endif
+    : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable),
       m_path(path)
 {
     if(path.startsWith("flac://"))
@@ -31,6 +24,7 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
         TagLib::FLAC::File *f = new TagLib::FLAC::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
         m_tag = f->xiphComment();
         m_file = f;
+        setDialogHints(dialogHints() | MetaDataModel::IsCueEditable);
     }
     else if(m_path.endsWith(".oga", Qt::CaseInsensitive))
     {
@@ -40,9 +34,11 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
         m_file = f;
     }
 
+    if(m_file)
+        setReadOnly(m_file->readOnly());
+
     if(m_file && m_file->isValid() && !path.startsWith("flac://"))
     {
-        setReadOnly(readOnly);
         m_tags << new VorbisCommentModel(m_tag, m_file);
     }
 }
@@ -67,7 +63,6 @@ QList<TagModel* > FLACMetaDataModel::tags() const
 
 QPixmap FLACMetaDataModel::cover() const
 {
-#ifdef HAS_PICTURE_LIST
     if(!m_tag || m_tag->isEmpty())
         return QPixmap();
 
@@ -82,22 +77,6 @@ QPixmap FLACMetaDataModel::cover() const
         }
     }
     return QPixmap();
-#else
-    //embedded cover
-     QPixmap cover;
-     FLAC__StreamMetadata *metadata;
-     FLAC__metadata_get_picture(qPrintable(m_path),
-                                &metadata,
-                                FLAC__STREAM_METADATA_PICTURE_TYPE_FRONT_COVER,
-                                0,0, -1,-1,-1,-1);
-     if(metadata)
-     {
-         FLAC__StreamMetadata_Picture *pict = &metadata->data.picture;
-         cover.loadFromData(QByteArray((char *)pict->data, (int) pict->data_length));
-         FLAC__metadata_object_delete(metadata);
-     }
-     return cover;
-#endif
 }
 
 QString FLACMetaDataModel::coverPath() const
@@ -105,7 +84,6 @@ QString FLACMetaDataModel::coverPath() const
     return MetaDataManager::instance()->findCoverFile(m_path);
 }
 
-#ifdef HAS_PICTURE_LIST
 void FLACMetaDataModel::setCover(const QPixmap &pix)
 {
     removeCover();
@@ -147,7 +125,30 @@ void FLACMetaDataModel::removeCover()
         }
     }
 }
-#endif
+
+QString FLACMetaDataModel::cue() const
+{
+    if (m_tag->fieldListMap().contains("CUESHEET"))
+    {
+        return QString::fromUtf8(m_tag->fieldListMap()["CUESHEET"].toString().toCString(true));
+    }
+
+    return QString();
+}
+
+void FLACMetaDataModel::setCue(const QString &content)
+{
+    m_tag->removeFields("CUESHEET");
+    m_tag->addField("CUESHEET", QStringToTString(content), true);
+    m_file->save();
+}
+
+void FLACMetaDataModel::removeCue()
+{
+    m_tag->removeFields("CUESHEET");
+    m_file->save();
+}
+
 
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file)
     : TagModel(TagModel::Save),
