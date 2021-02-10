@@ -189,7 +189,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
         return;
     }
 
-    const QByteArray dataIn(fileIn.readAll());
+    const QByteArray data(fileIn.readAll());
     fileIn.close();
 
     QFile fileOut(QString("%1%2%3").arg(MusicUtils::String::lrcPrefix()).arg(m_currentName).arg(LRC_FILE));
@@ -201,7 +201,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
         return;
     }
 
-    fileOut.write(dataIn);
+    fileOut.write(data);
     fileOut.flush();
     fileOut.close();
 

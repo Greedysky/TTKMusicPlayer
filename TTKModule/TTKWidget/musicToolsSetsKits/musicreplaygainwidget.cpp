@@ -341,7 +341,7 @@ void MusicReplayGainWidget::applyOutput()
 {
     while(m_process->canReadLine())
     {
-        QByteArray data = m_process->readLine();
+        const QByteArray &data = m_process->readLine();
         if(data.contains("Applying gain change"))
         {
             m_ui->progressBar->setValue(40);

@@ -38,7 +38,7 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
         return;
     }
 
-    QByteArray data = reply->readAll();
+    const QByteArray &data = reply->readAll();
     if(!data.isEmpty() && !data.contains("res not found"))
     {
         const QString text(data);
