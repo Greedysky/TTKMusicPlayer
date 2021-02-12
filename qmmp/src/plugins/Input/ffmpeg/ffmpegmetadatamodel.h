@@ -22,17 +22,51 @@
 #define FFMPEGMETADATAMODEL_H
 
 #include <qmmp/metadatamodel.h>
+#include <taglib/apefile.h>
+#include <taglib/apetag.h>
+#include <taglib/tfilestream.h>
 
 class FFmpegMetaDataModel : public MetaDataModel
 {
 public:
-    explicit FFmpegMetaDataModel(const QString &path);
+    explicit FFmpegMetaDataModel(const QString &path, bool readOnly);
     virtual ~FFmpegMetaDataModel();
 
+    virtual QList<TagModel *> tags() const override;
     virtual QPixmap cover() const override;
+    virtual QString coverPath() const override;
+    virtual QString cue() const override;
+    virtual void setCue(const QString &content) override;
+    virtual void removeCue() override;
 
 private:
     QPixmap m_pixmap;
+    QList<TagModel* > m_tags;
+    TagLib::APE::Tag *m_tag;
+    TagLib::APE::File *m_file = nullptr;
+    TagLib::FileStream *m_stream = nullptr;
+    QString m_path;
+
+};
+
+class ApeTagModel : public TagModel
+{
+public:
+    explicit ApeTagModel(TagLib::APE::File *file);
+    virtual ~ApeTagModel();
+
+    virtual QString name() const override;
+    virtual QList<Qmmp::MetaData> keys() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual bool exists() const override;
+    virtual void create() override;
+    virtual void remove() override;
+    virtual void save() override;
+
+private:
+    TagLib::APE::File *m_file;
+    bool m_strip = false;
 
 };
 

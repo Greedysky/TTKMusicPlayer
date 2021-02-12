@@ -227,6 +227,12 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
             delete info;
             return parser.createPlayList(trackNumber);
         }
+        else if(trackNumber > 0 && path.startsWith("ffmpeg://")) //invalid track
+        {
+            avformat_close_input(&in);
+            delete info;
+            return QList<TrackInfo*>();
+        }
 
         AVDictionaryEntry *album = av_dict_get(in->metadata,"album",nullptr,0);
         AVDictionaryEntry *album_artist = av_dict_get(in->metadata,"album_artist",nullptr,0);
@@ -280,6 +286,12 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
             delete info;
             return tracks;
         }
+        else if(trackNumber > 0 && path.startsWith("m4b://")) //invalid chapter
+        {
+            avformat_close_input(&in);
+            delete info;
+            return QList<TrackInfo*>();
+        }
     }
 
     avformat_close_input(&in);
@@ -288,8 +300,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
 MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(readOnly);
-    return new FFmpegMetaDataModel(path);
+    return new FFmpegMetaDataModel(path, readOnly);
 }
 
 QList<TrackInfo *> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)

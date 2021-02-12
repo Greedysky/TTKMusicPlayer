@@ -59,7 +59,7 @@ DecoderFFmpeg::~DecoderFFmpeg()
     m_bitrate = 0;
     if(m_codecContext)
         avcodec_free_context(&m_codecContext);
-    if (m_formatContext)
+    if(m_formatContext)
         avformat_free_context(m_formatContext);
 
     av_packet_free(&m_pkt);

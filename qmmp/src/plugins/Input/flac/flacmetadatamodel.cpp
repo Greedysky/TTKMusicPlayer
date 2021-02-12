@@ -128,7 +128,7 @@ void FLACMetaDataModel::removeCover()
 
 QString FLACMetaDataModel::cue() const
 {
-    if (m_tag->fieldListMap().contains("CUESHEET"))
+    if(m_tag->fieldListMap().contains("CUESHEET"))
     {
         return QString::fromUtf8(m_tag->fieldListMap()["CUESHEET"].toString().toCString(true));
     }
