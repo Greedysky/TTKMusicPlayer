@@ -373,15 +373,20 @@ bool MusicSongMeta::readInformation()
         }
         qDeleteAll(infos);
 
-        if(length == 0 && !m_songMetas.isEmpty())
+        if(!m_songMetas.isEmpty())
         {
-            TagWrapper wrapper;
-            if(wrapper.readFile(m_filePath))
+            getSongMeta()->m_cover = cover;
+
+            if(length == 0)
             {
-                const QMap<TagWrapper::Type, QString> &data = wrapper.getMusicTags();
-                length = data[TagWrapper::TAG_LENGTH].toLongLong();
+                TagWrapper wrapper;
+                if(wrapper.readFile(m_filePath))
+                {
+                    const QMap<TagWrapper::Type, QString> &data = wrapper.getMusicTags();
+                    length = data[TagWrapper::TAG_LENGTH].toLongLong();
+                }
+                getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
             }
-            getSongMeta()->m_metaData[TagWrapper::TAG_LENGTH] = MusicTime::msecTime2LabelJustified(length);
         }
     }
 
@@ -425,6 +430,7 @@ bool MusicSongMeta::saveInformation()
                 model->removeCover();
             }
         }
+
         delete model;
         return true;
     }
