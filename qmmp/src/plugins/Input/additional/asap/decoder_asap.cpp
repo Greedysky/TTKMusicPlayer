@@ -20,8 +20,8 @@ bool DecoderAsap::initialize()
         return false;
     }
 
-    int rate = m_asap->sampleRate();
-    int channels = m_asap->channels();
+    const int rate = m_asap->sampleRate();
+    const int channels = m_asap->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderAsap: rate or channel invalid");

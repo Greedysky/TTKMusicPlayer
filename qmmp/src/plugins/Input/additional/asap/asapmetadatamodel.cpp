@@ -10,7 +10,9 @@ AsapMetaDataModel::AsapMetaDataModel(const QString &path)
 AsapMetaDataModel::~AsapMetaDataModel()
 {
     while(!m_tags.isEmpty())
+    {
         delete m_tags.takeFirst();
+    }
     delete m_asap;
 }
 

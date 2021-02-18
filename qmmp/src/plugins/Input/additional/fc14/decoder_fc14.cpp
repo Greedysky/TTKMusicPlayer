@@ -20,8 +20,8 @@ bool DecoderFC14::initialize()
         return false;
     }
 
-    int rate = m_fc14->sampleRate();
-    int channels = m_fc14->channels();
+    const int rate = m_fc14->sampleRate();
+    const int channels = m_fc14->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderFC14: rate or channel invalid");

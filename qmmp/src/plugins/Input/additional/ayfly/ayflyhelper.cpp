@@ -37,7 +37,7 @@ bool AyflyHelper::initialize()
         return false;
     }
 
-    int size = stdio_length(file);
+    const int64_t size = stdio_length(file);
     if(size <= 0)
     {
         qWarning("AyflyHelper: file size invalid");

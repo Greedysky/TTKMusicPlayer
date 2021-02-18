@@ -32,7 +32,7 @@ bool AsapHelper::initialize()
         return false;
     }
 
-    int size = stdio_length(file);
+    const int64_t size = stdio_length(file);
     if(size <= 0 || size > 256 * 1024)
     {
         qWarning("AsapHelper: file size invalid");

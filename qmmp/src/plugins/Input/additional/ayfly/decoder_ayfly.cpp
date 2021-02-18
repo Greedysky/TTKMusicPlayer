@@ -20,8 +20,8 @@ bool DecoderAyfly::initialize()
         return false;
     }
 
-    int rate = m_ayfly->sampleRate();
-    int channels = m_ayfly->channels();
+    const int rate = m_ayfly->sampleRate();
+    const int channels = m_ayfly->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderAyfly: rate or channel invalid");

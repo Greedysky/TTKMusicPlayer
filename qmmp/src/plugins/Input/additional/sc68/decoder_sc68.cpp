@@ -20,8 +20,8 @@ bool DecoderSC68::initialize()
         return false;
     }
 
-    int rate = m_sc68->sampleRate();
-    int channels = m_sc68->channels();
+    const int rate = m_sc68->sampleRate();
+    const int channels = m_sc68->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderSC68: rate or channel invalid");
