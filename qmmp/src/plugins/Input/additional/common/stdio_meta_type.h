@@ -21,9 +21,10 @@
 
 enum stdio_meta_type
 {
-    stdio_apev2,
-    stdio_id3v2,
-    stdio_id3v1
+    meta_all,
+    meta_apev2,
+    meta_id3v2,
+    meta_id3v1
 };
 
 #endif //STDIO_META_TYPE_H

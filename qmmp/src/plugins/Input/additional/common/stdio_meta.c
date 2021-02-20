@@ -357,7 +357,7 @@ int utf8_to_cp1252(const uint8_t *in, int inlen, uint8_t *out, int outlen)
             int i;
             for(i = 0; cp1252_charset[i]; i++)
             {
-                if(strlen (cp1252_charset[i]) == idx && !memcmp (in, cp1252_charset[i], idx))
+                if(strlen(cp1252_charset[i]) == idx && !memcmp(in, cp1252_charset[i], idx))
                 {
                     *out++ = i + 0x80;
                     outlen--;
@@ -1230,13 +1230,13 @@ int stdio_apev2_add_frame(metaInfo_t *it, apev2_tag_t *tag_store, apev2_frame_t 
             {
                 if(frame_mapping[m + MAP_APEV2] && !strcasecmp(key, frame_mapping[m + MAP_APEV2]))
                 {
-                    if(!strcmp(frame_mapping[m+MAP_DDB], "track"))
+                    if(!strcmp(frame_mapping[m + MAP_DDB], "track"))
                     {
                         stdio_add_track_meta(it, value);
                     }
                     else
                     {
-                        stdio_append_meta(it, frame_mapping[m+MAP_DDB], value);
+                        stdio_append_meta(it, frame_mapping[m + MAP_DDB], value);
                     }
                     break;
                 }
@@ -1326,7 +1326,7 @@ int stdio_load_comm_frame(int version_major, metaInfo_t *it, uint8_t *readptr, i
     // skip utf8 BOM (can be produced by iconv FEFF/FFFE)
     int l = strlen(comment);
     uint8_t bom[] = { 0xEF, 0xBB, 0xBF };
-    if(l >= 3 && !memcmp (comment, bom, 3))
+    if(l >= 3 && !memcmp(comment, bom, 3))
     {
         stdio_append_meta(it, "comment", comment+3);
     }
@@ -1468,7 +1468,7 @@ int stdio_id3v2_load_txx(int version_major, metaInfo_t *it, uint8_t *readptr, in
         // skip utf8 BOM (can be produced by iconv FEFF/FFFE)
         int l = strlen(val);
         uint8_t bom[] = { 0xEF, 0xBB, 0xBF };
-        if(l >= 3 && !memcmp (val, bom, 3))
+        if(l >= 3 && !memcmp(val, bom, 3))
         {
             val += 3;
         }
@@ -1613,7 +1613,7 @@ const char *stdio_find_meta_raw(metaInfo_t *it, const char *key)
     metaInfo_t *m = it;
     while(m)
     {
-        if(!strcasecmp(key, m->key))
+        if(m->key && !strcasecmp(key, m->key))
         {
             return m->value;
         }
@@ -1630,26 +1630,14 @@ void stdio_add_meta(metaInfo_t *it, const char *key, const char *value)
     }
 
     // check if it's already set
-    metaInfo_t *normaltail = NULL;
-    metaInfo_t *propstart = NULL;
     metaInfo_t *tail = NULL;
     metaInfo_t *m = it;
     while(m)
     {
-        if(!strcasecmp(key, m->key))
+        if(m->key && !strcasecmp(key, m->key))
         {
             // duplicate key
             return;
-        }
-        // find end of normal metadata
-        if(!normaltail && (!m->next || m->key[0] == ':' || m->key[0] == '_' || m->key[0] == '!'))
-        {
-            normaltail = tail;
-            propstart = m;
-            if(key[0] != ':' && key[0] != '_' && key[0] != '!')
-            {
-                break;
-            }
         }
         // find end of properties
         tail = m;
@@ -1661,29 +1649,7 @@ void stdio_add_meta(metaInfo_t *it, const char *key, const char *value)
     m->key = metacache_add_string(key);
     m->value = metacache_add_string(value);
 
-    if(key[0] == ':' || key[0] == '_' || key[0] == '!')
-    {
-        if(tail)
-        {
-            tail->next = m;
-        }
-        else
-        {
-            it = m;
-        }
-    }
-    else
-    {
-        m->next = propstart;
-        if(normaltail)
-        {
-            normaltail->next = m;
-        }
-        else
-        {
-            it = m;
-        }
-    }
+    tail->next = m;
 }
 
 void stdio_append_meta(metaInfo_t *it, const char *key, const char *value)
@@ -1719,7 +1685,7 @@ void stdio_append_meta(metaInfo_t *it, const char *key, const char *value)
                 len = strlen(str);
             }
 
-            if(len == newlen && !memcmp (str, value, len))
+            if(len == newlen && !memcmp(str, value, len))
             {
                 return;
             }
@@ -1739,7 +1705,7 @@ void stdio_replace_meta(metaInfo_t *it, const char *key, const char *value)
     metaInfo_t *m = it;
     while(m)
     {
-        if(!strcasecmp(key, m->key))
+        if(m->key && !strcasecmp(key, m->key))
         {
             break;
         }
@@ -2164,7 +2130,7 @@ int stdio_id3v2_read(metaInfo_t *it, id3v2_tag_t *tag_store, FILE *fp)
                                 }
                                 else
                                 {
-                                    stdio_append_meta(it, frame_mapping[f+MAP_DDB], text);
+                                    stdio_append_meta(it, frame_mapping[f + MAP_DDB], text);
                                 }
                             }
 
@@ -2310,7 +2276,7 @@ int stdio_id3v2_read(metaInfo_t *it, id3v2_tag_t *tag_store, FILE *fp)
                                 }
                                 else
                                 {
-                                    stdio_append_meta(it, frame_mapping[f+MAP_DDB], text);
+                                    stdio_append_meta(it, frame_mapping[f + MAP_DDB], text);
                                 }
                                 free(text);
                             }
@@ -2389,7 +2355,7 @@ int stdio_id3v1_read_init(metaInfo_t *it, char *buffer, const char **charset)
 
     if(it)
     {
-        if(memcmp (buffer, "TAG", 3))
+        if(memcmp(buffer, "TAG", 3))
         {
             return -1; // no tag
         }
