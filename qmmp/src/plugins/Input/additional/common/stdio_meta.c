@@ -1649,6 +1649,11 @@ void stdio_add_meta(metaInfo_t *it, const char *key, const char *value)
     m->key = metacache_add_string(key);
     m->value = metacache_add_string(value);
 
+    if(!tail)
+    {
+        free(m);
+        return;
+    }
     tail->next = m;
 }
 
