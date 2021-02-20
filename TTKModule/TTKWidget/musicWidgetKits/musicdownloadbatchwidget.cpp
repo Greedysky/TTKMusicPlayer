@@ -55,22 +55,17 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
     {
-        if(attr.m_bitrate == MB_32)         ///st
-        {
-            m_qulity->addItem(tr("ST"), QVariant::fromValue<MusicObject::MusicSongAttribute>(attr));
-            m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-        }
-        else if(attr.m_bitrate == MB_128)   ///sd
+        if(attr.m_bitrate == MB_128)       ///sd
         {
             m_qulity->addItem(tr("SD"), QVariant::fromValue<MusicObject::MusicSongAttribute>(attr));
             m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
         }
-        else if(attr.m_bitrate == MB_192)   ///hd
+        else if(attr.m_bitrate == MB_192)  ///hd
         {
             m_qulity->addItem(tr("HQ"), QVariant::fromValue<MusicObject::MusicSongAttribute>(attr));
             m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
         }
-        else if(attr.m_bitrate == MB_320)   ///sq
+        else if(attr.m_bitrate == MB_320)  ///sq
         {
             m_qulity->addItem(tr("SQ"), QVariant::fromValue<MusicObject::MusicSongAttribute>(attr));
             m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
@@ -139,19 +134,15 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
     }
 
     const MusicObject::MusicSongAttribute &attr = m_qulity->itemData(index).value<MusicObject::MusicSongAttribute>();
-    if(attr.m_bitrate == MB_32)         ///st
+    if(attr.m_bitrate == MB_128)       ///sd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
     }
-    else if(attr.m_bitrate == MB_128)   ///sd
+    else if(attr.m_bitrate == MB_192)  ///hd
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
     }
-    else if(attr.m_bitrate == MB_192)   ///hd
-    {
-        m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
-    }
-    else if(attr.m_bitrate == MB_320)   ///sq
+    else if(attr.m_bitrate == MB_320)  ///sq
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
     }
@@ -359,7 +350,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_ui->qualityBox->setItemDelegate(new QStyledItemDelegate(m_ui->qualityBox));
     m_ui->qualityBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
     m_ui->qualityBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    m_ui->qualityBox->addItems(QStringList() << tr("Null") << tr("ST") << tr("SD") << tr("HQ") << tr("SQ") << tr("CD"));
+    m_ui->qualityBox->addItems(QStringList() << tr("Null") << tr("SD") << tr("HQ") << tr("SQ") << tr("CD"));
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 
     m_ui->qualityBox->setCurrentIndex(0);

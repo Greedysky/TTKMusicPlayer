@@ -272,11 +272,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(attributes))
     {
-        if(attr.m_bitrate < MB_128)         ///st
-        {
-            m_ui->viewArea->createItem(attr, tr("ST"), QString(":/quality/lb_st_quality"));
-        }
-        else if(attr.m_bitrate == MB_128)   ///sd
+        if(attr.m_bitrate == MB_128)        ///sd
         {
             m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
@@ -288,7 +284,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
         {
             m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
-        else if(attr.m_bitrate > MB_320)   ///cd
+        else if(attr.m_bitrate > MB_320)    ///cd
         {
             m_ui->viewArea->createItem(attr, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
@@ -323,11 +319,7 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(attributes))
     {
-        if(attr.m_bitrate <= MB_250)       ///st
-        {
-            m_ui->viewArea->createItem(attr, tr("ST"), QString(":/quality/lb_st_quality"));
-        }
-        else if(attr.m_bitrate == MB_500)  ///sd
+        if(attr.m_bitrate == MB_500)  ///sd
         {
             m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }

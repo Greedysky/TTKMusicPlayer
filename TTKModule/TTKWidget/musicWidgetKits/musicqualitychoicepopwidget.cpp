@@ -23,7 +23,7 @@ MusicQualityChoiceTableWidget::MusicQualityChoiceTableWidget(QWidget *parent)
     MusicCheckBoxDelegate *delegate = new MusicCheckBoxDelegate(this);
     delegate->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle02);
     setItemDelegateForColumn(2, delegate);
-    m_previousClickRow = 1;
+    m_previousClickRow = 0;
 
     createItems();
 }
@@ -35,9 +35,9 @@ MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
 
 void MusicQualityChoiceTableWidget::createItems()
 {
-    setRowCount(5);
+    setRowCount(4);
 
-    QTableWidgetItem *item = new QTableWidgetItem(tr("ST"));
+    QTableWidgetItem *item = new QTableWidgetItem(tr("SD"));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(PREVIOUS_COLOR);
 #else
@@ -46,7 +46,7 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(0, 0, item);
 
-                      item = new QTableWidgetItem(tr("SD"));
+                      item = new QTableWidgetItem(tr("HQ"));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(PREVIOUS_COLOR);
 #else
@@ -55,7 +55,7 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(1, 0, item);
 
-                      item = new QTableWidgetItem(tr("HQ"));
+                      item = new QTableWidgetItem(tr("SQ"));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(PREVIOUS_COLOR);
 #else
@@ -64,7 +64,7 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(2, 0, item);
 
-                      item = new QTableWidgetItem(tr("SQ"));
+                      item = new QTableWidgetItem(tr("CD"));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(PREVIOUS_COLOR);
 #else
@@ -73,41 +73,28 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(3, 0, item);
 
-                      item = new QTableWidgetItem(tr("CD"));
-#if TTK_QT_VERSION_CHECK(5,13,0)
-    item->setForeground(PREVIOUS_COLOR);
-#else
-    item->setTextColor(PREVIOUS_COLOR);
-#endif
-    item->setTextAlignment(Qt::AlignCenter);
-    setItem(4, 0, item);
-
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/lb_st_quality"));
+    item->setIcon(QIcon(":/quality/lb_sd_quality"));
     setItem(0, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/lb_sd_quality"));
+    item->setIcon(QIcon(":/quality/lb_hd_quality"));
     setItem(1, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/lb_hd_quality"));
+    item->setIcon(QIcon(":/quality/lb_sq_quality"));
     setItem(2, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/lb_sq_quality"));
+    item->setIcon(QIcon(":/quality/lb_cd_quality"));
     setItem(3, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/quality/lb_cd_quality"));
-    setItem(4, 1, item);
-
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Checked);
     setItem(0, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, Qt::Checked);
+    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(1, 2, item);
 
                       item = new QTableWidgetItem;
@@ -117,10 +104,6 @@ void MusicQualityChoiceTableWidget::createItems()
                       item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
     setItem(3, 2, item);
-
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
-    setItem(4, 2, item);
 }
 
 void MusicQualityChoiceTableWidget::itemCellEntered(int row, int column)
@@ -184,7 +167,7 @@ void MusicQualityChoicePopWidget::initWidget()
     MusicQualityChoiceTableWidget *table = new MusicQualityChoiceTableWidget(m_containWidget);
     connect(table, SIGNAL(cellClicked(int ,int)), SLOT(itemCellClicked(int)));
     layout->addWidget(table);
-    m_containWidget->setFixedSize(110, 150);
+    m_containWidget->setFixedSize(110, 120);
 
     m_containWidget->setLayout(layout);
 }
@@ -199,30 +182,24 @@ void MusicQualityChoicePopWidget::itemCellClicked(int row)
         case 0:
             {
                 style = "QToolButton{ margin-left:-0px; }";
-                m_currentQuality = tr("ST");
+                m_currentQuality = tr("SD");
                 break;
             }
         case 1:
             {
                 style = "QToolButton{ margin-left:-48px; }";
-                m_currentQuality = tr("SD");
+                m_currentQuality = tr("HQ");
                 break;
             }
         case 2:
             {
                 style = "QToolButton{ margin-left:-96px; }";
-                m_currentQuality = tr("HQ");
+                m_currentQuality = tr("SQ");
                 break;
             }
         case 3:
             {
                 style = "QToolButton{ margin-left:-144px; }";
-                m_currentQuality = tr("SQ");
-                break;
-            }
-        case 4:
-            {
-                style = "QToolButton{ margin-left:-192px; }";
                 m_currentQuality = tr("CD");
                 break;
             }

@@ -22,7 +22,6 @@
         <file alias="lb_playlist_cover">../TTKResource/lb_playlist_cover.png</file>
     </qresource>
     <qresource prefix="/quality">
-        <file alias="lb_st_quality">../TTKResource/quality/lb_st_quality.png</file>
         <file alias="lb_sd_quality">../TTKResource/quality/lb_sd_quality.png</file>
         <file alias="lb_hd_quality">../TTKResource/quality/lb_hd_quality.png</file>
         <file alias="lb_sq_quality">../TTKResource/quality/lb_sq_quality.png</file>

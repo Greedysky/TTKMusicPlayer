@@ -151,11 +151,7 @@ void MusicXMQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         }
         else
         {
-            if(quality == QObject::tr("ST") && bitrate == MB_32)
-            {
-                readFromMusicSongAttribute(info, data, MB_32);
-            }
-            else if(quality == QObject::tr("SD") && bitrate == MB_128)
+            if(quality == QObject::tr("SD") && bitrate == MB_128)
             {
                 readFromMusicSongAttribute(info, data, MB_128);
             }
