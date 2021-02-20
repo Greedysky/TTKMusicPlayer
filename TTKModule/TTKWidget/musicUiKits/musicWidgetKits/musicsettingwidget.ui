@@ -677,7 +677,7 @@ font-weight:bold;</string>
       <rect>
        <x>365</x>
        <y>47</y>
-       <width>60</width>
+       <width>65</width>
        <height>21</height>
       </rect>
      </property>
@@ -703,7 +703,7 @@ font-weight:bold;</string>
       <rect>
        <x>365</x>
        <y>77</y>
-       <width>60</width>
+       <width>65</width>
        <height>21</height>
       </rect>
      </property>
@@ -960,9 +960,9 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>235</x>
-       <y>145</y>
-       <width>60</width>
-       <height>21</height>
+       <y>144</y>
+       <width>65</width>
+       <height>23</height>
       </rect>
      </property>
      <property name="text">
@@ -1993,7 +1993,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>240</y>
-       <width>80</width>
+       <width>85</width>
        <height>25</height>
       </rect>
      </property>
@@ -2006,7 +2006,7 @@ font-weight:bold;</string>
       <rect>
        <x>130</x>
        <y>240</y>
-       <width>80</width>
+       <width>85</width>
        <height>25</height>
       </rect>
      </property>
