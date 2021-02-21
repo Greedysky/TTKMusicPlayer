@@ -58,6 +58,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 
 void MusicLrcSearchTableWidget::itemCellEntered(int row, int column)
 {
+    MusicItemSearchTableWidget::itemCellEntered(row, column);
     if(column == 6)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
@@ -66,8 +67,6 @@ void MusicLrcSearchTableWidget::itemCellEntered(int row, int column)
     {
         unsetCursor();
     }
-
-    MusicItemSearchTableWidget::itemCellEntered(row, column);
 }
 
 void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)

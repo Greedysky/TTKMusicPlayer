@@ -12,9 +12,6 @@ MusicVideoSearchTableWidget::MusicVideoSearchTableWidget(QWidget *parent)
     setColumnCount(9);
     resizeWindow(0);
 
-    viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle02);
-
-    m_defaultBkColor = Qt::black;
     m_singleRadioMode = false;
 
     MusicTime::initRandom();
@@ -132,16 +129,6 @@ void MusicVideoSearchTableWidget::itemCellEntered(int row, int column)
     else
     {
        unsetCursor();
-    }
-
-    QTableWidgetItem *it = item(row, 0);
-    if(it)
-    {
-#if TTK_QT_VERSION_CHECK(5,13,0)
-        it->setBackground(m_defaultBkColor);
-#else
-        it->setBackgroundColor(m_defaultBkColor);
-#endif
     }
 }
 

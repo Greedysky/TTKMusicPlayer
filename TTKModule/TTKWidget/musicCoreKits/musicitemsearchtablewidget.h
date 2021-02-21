@@ -111,7 +111,7 @@ public:
     /*!
      * Start search query by text.
      */
-    virtual void startSearchQuery(const QString &text);
+    virtual void startSearchQuery(const QString &text) override;
 
 public Q_SLOTS:
     /*!
