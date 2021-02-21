@@ -25,5 +25,5 @@ void MusicGlobalHotKeyEdit::setHotKeyEnabled(bool state)
 
 void MusicGlobalHotKeyEdit::keyPressEvent(QKeyEvent *event)
 {
-    setText(M_HOTKEY_PTR->toString(event->key(), event->modifiers()));
+    setText(G_HOTKEY_PTR->toString(event->key(), event->modifiers()));
 }

@@ -106,7 +106,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
     connect(m_downloadRequest, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
 }
 
@@ -199,7 +199,7 @@ MusicArtistSimilarQueryWidget::MusicArtistSimilarQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getSimilarArtistRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getSimilarArtistRequest(this);
     connect(m_downloadRequest, SIGNAL(createSimilarItem(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
 }
 
@@ -268,7 +268,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getAlbumRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getAlbumRequest(this);
     connect(m_downloadRequest, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
 }
 
@@ -356,7 +356,7 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
@@ -378,7 +378,7 @@ void MusicArtistQueryWidget::setSongName(const QString &name)
 void MusicArtistQueryWidget::setSongNameById(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
-    MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getArtistRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->getArtistRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startSearchQuery(id);
     connect(d, SIGNAL(createArtistInfoItem(MusicResultsItem)), SLOT(createArtistInfoItem(MusicResultsItem)));
@@ -389,7 +389,7 @@ void MusicArtistQueryWidget::resizeWindow()
     m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];

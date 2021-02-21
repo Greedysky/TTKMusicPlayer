@@ -93,7 +93,7 @@ protected:
 
 };
 
-#define M_DISPATCH_PTR GetMusicDispatchManager()
+#define G_DISPATCH_PTR GetMusicDispatchManager()
 MUSIC_CORE_EXPORT MusicDispatchManager* GetMusicDispatchManager();
 
 #endif // MUSICDISPATCHMANAGER_H

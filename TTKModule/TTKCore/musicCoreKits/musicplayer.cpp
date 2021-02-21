@@ -22,7 +22,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     setEnabledEffect(false);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicPlayer::~MusicPlayer()
@@ -197,10 +197,10 @@ void MusicPlayer::setEnabledEffect(bool enable)
 void MusicPlayer::setEqInformation()
 {
     ///Read the equalizer parameters from a configuration file
-    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         setEnabledEffect(true);
-        const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
+        const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
         if(eqValue.count() == 11)
         {
             TTKIntList hz;

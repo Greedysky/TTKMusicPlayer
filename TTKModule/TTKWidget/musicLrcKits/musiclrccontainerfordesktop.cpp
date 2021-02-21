@@ -51,14 +51,14 @@ void MusicLrcContainerForDesktop::applySettingParameter()
     MusicLrcContainer::applySettingParameter();
     for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
-        m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
+        m_currentLrcFontSize = G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
-    m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt() == 1;
-    m_singleLineType = !(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineType).toInt() == 1);
+    m_windowLocked = G_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt() == 1;
+    m_singleLineType = !(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineType).toInt() == 1);
     setSingleLineTypeChanged();
 
-    const QPoint &point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
+    const QPoint &point = G_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
     if(!point.isNull())
     {
         move(point);
@@ -110,7 +110,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        m_toolBarWidget->hide();
        setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     }
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcLocked,  m_windowLocked ? 1 : 0);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcLocked,  m_windowLocked ? 1 : 0);
     MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
 }
 
@@ -143,7 +143,7 @@ void MusicLrcContainerForDesktop::toolStyleChanged()
 void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
 {
     m_singleLineType = !m_singleLineType;
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineType, m_singleLineType);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineType, m_singleLineType);
 
     if(m_singleLineType)
     {
@@ -175,7 +175,7 @@ void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
     menu.addSeparator();
     menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
 
-    const int index = M_SETTING_PTR->value("DLrcColor").toInt() - LRC_COLOR_OFFSET;
+    const int index = G_SETTING_PTR->value("DLrcColor").toInt() - LRC_COLOR_OFFSET;
     if(index > -1 && index < group->actions().count())
     {
         group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
@@ -342,7 +342,7 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     }
 
     resizeLrcSizeArea();
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_currentLrcFontSize);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_currentLrcFontSize);
 }
 
 void MusicLrcContainerForDesktop::mousePressEvent(QMouseEvent *event)
@@ -361,7 +361,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
         setCursor(Qt::CrossCursor);
         move(event->globalPos() - m_offset);
-        M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QWidget::pos());
+        G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QWidget::pos());
     }
 }
 
@@ -426,7 +426,7 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     : MusicLrcContainerForDesktop(parent)
 {
     m_verticalWindow = false;
-    const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     m_widgetWidth = windowSize.width() - 300;
     m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);
@@ -505,7 +505,7 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     : MusicLrcContainerForDesktop(parent)
 {
     m_verticalWindow = true;
-    const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     m_widgetWidth = windowSize.height() - 150;
     m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);

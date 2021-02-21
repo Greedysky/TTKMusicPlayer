@@ -26,7 +26,7 @@ MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
 
 void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
         Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
@@ -49,7 +49,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     ///download lrc
-    MusicAbstractDownLoadRequest *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfos[row].m_lrcUrl,
+    MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfos[row].m_lrcUrl,
                                      MusicUtils::String::lrcPrefix() + m_downLoadManager->getSearchedText() + LRC_FILE,
                                      MusicObject::DownloadLrc, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));

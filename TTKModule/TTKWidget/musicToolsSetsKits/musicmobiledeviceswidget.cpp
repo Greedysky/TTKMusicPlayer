@@ -10,7 +10,7 @@ MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
 
-    const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 266 - 15, windowSize.height() - 85 - 55, 266, 85);
     setPixmap(QPixmap(":/toolSets/lb_mobile_devices"));
 
@@ -33,9 +33,9 @@ MusicMobileDevicesWidget::~MusicMobileDevicesWidget()
 void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();
-    M_SINGLE_MANAGER_WIDGET_NEW(MusicLocalSongsManagerWidget);
+    SINGLE_MANAGER_WIDGET_NEW(MusicLocalSongsManagerWidget);
 #ifdef Q_OS_WIN
-    w->findExtraDevicePath(M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
+    w->findExtraDevicePath(G_SETTING_PTR->value(MusicSettingManager::ExtraDevicePath).toString());
 #endif
     w->show();
 }

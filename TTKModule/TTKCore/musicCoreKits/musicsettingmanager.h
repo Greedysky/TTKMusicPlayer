@@ -225,7 +225,7 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicSettingManager)
 };
 
-#define M_SETTING_PTR GetMusicSettingManager()
+#define G_SETTING_PTR GetMusicSettingManager()
 MUSIC_CORE_EXPORT MusicSettingManager* GetMusicSettingManager();
 
 #endif // MUSICSETTINGMANAGER

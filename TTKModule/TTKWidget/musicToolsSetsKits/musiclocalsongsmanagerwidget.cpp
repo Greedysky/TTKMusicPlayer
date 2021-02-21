@@ -103,15 +103,15 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_thread = new MusicLocalSongsManagerThread(this);
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)), SLOT(setSongNamePath(QFileInfoList)));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
     m_runTypeChanged = false;
-    M_CONNECTION_PTR->removeValue(getClassName());
-    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     clearAllItems();
     m_thread->stopAndQuitThread();
     delete m_thread;

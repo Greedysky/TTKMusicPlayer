@@ -24,70 +24,70 @@
 #include "musicwidgetutils.h"
 
 /////////////////////////////////////////////////////////////////////////
-#define M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                         \
-    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                    \
+#define SINGLE_MANAGER_WIDGET_NEW2(name, parent)                           \
+    MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
     if(!manager->contains(#name))                                          \
     {                                                                      \
         manager->createObject(#name, new name(parent));                    \
     }                                                                      \
     name *w = TTKStatic_cast(name*, manager->object(#name));
 
-#define M_SINGLE_MANAGER_WIDGET_NEW(name)                                  \
-    M_SINGLE_MANAGER_WIDGET_NEW2(name, MusicApplication::instance())
+#define SINGLE_MANAGER_WIDGET_NEW(name)                                    \
+    SINGLE_MANAGER_WIDGET_NEW2(name, MusicApplication::instance())
 
-#define M_SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                       \
+#define SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                         \
 {                                                                          \
-    M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                             \
+    SINGLE_MANAGER_WIDGET_NEW2(name, parent)                               \
     const QRect &r = MusicUtils::Widget::windowScreenGeometry();           \
     w->move((r.width() - w->width()) / 2, (r.height() - w->height()) / 2); \
     w->raise();                                                            \
     w->show();                                                             \
 }
 
-#define M_SINGLE_MANAGER_WIDGET_CLASS(name)                                \
-    M_SINGLE_MANAGER_WIDGET_CLASS2(name, MusicApplication::instance())
+#define SINGLE_MANAGER_WIDGET_CLASS(name)                                  \
+    SINGLE_MANAGER_WIDGET_CLASS2(name, MusicApplication::instance())
 /////////////////////////////////////////////////////////////////////////
-#define M_SINGLE_MANAGER_DIALOG_NEW2(name, parent)                         \
-    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                    \
+#define SINGLE_MANAGER_DIALOG_NEW2(name, parent)                           \
+    MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
     if(!manager->contains(#name))                                          \
     {                                                                      \
         manager->createObject(#name, new name(parent));                    \
     }                                                                      \
     name *w = TTKStatic_cast(name*, manager->object(#name));
 
-#define M_SINGLE_MANAGER_DIALOG_NEW(name)                                  \
-    M_SINGLE_MANAGER_DIALOG_NEW2(name, MusicApplication::instance())
+#define SINGLE_MANAGER_DIALOG_NEW(name)                                    \
+    SINGLE_MANAGER_DIALOG_NEW2(name, MusicApplication::instance())
 
-#define M_SINGLE_MANAGER_DIALOG_CLASS2(name, parent)                       \
+#define SINGLE_MANAGER_DIALOG_CLASS2(name, parent)                         \
 {                                                                          \
-    M_SINGLE_MANAGER_DIALOG_NEW2(name, parent)                             \
+    SINGLE_MANAGER_DIALOG_NEW2(name, parent)                               \
     const QRect &r = MusicUtils::Widget::windowScreenGeometry();           \
     w->move((r.width() - w->width()) / 2, (r.height() - w->height()) / 2); \
     w->exec();                                                             \
 }
 
-#define M_SINGLE_MANAGER_DIALOG_CLASS(name)                                \
-    M_SINGLE_MANAGER_DIALOG_CLASS2(name, MusicApplication::instance())
+#define SINGLE_MANAGER_DIALOG_CLASS(name)                                  \
+    SINGLE_MANAGER_DIALOG_CLASS2(name, MusicApplication::instance())
 /////////////////////////////////////////////////////////////////////////
-#define M_SINGLE_MANAGER_CORE_NEW2(name, parent)                           \
-    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                    \
+#define SINGLE_MANAGER_CORE_NEW2(name, parent)                             \
+    MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
     if(!manager->contains(#name))                                          \
     {                                                                      \
         manager->createObject(#name, new name(parent));                    \
     }                                                                      \
     name *w = TTKStatic_cast(name*, manager->object(#name));
 
-#define M_SINGLE_MANAGER_CORE_NEW(name)                                    \
-    M_SINGLE_MANAGER_CORE_NEW2(name, nullptr)
+#define SINGLE_MANAGER_CORE_NEW(name)                                      \
+    SINGLE_MANAGER_CORE_NEW2(name, nullptr)
 
-#define M_SINGLE_MANAGER_CORE_CLASS2(name, parent)                         \
+#define SINGLE_MANAGER_CORE_CLASS2(name, parent)                           \
 {                                                                          \
-    M_SINGLE_MANAGER_CORE_NEW2(name, parent)                               \
+    SINGLE_MANAGER_CORE_NEW2(name, parent)                                 \
     w->start();                                                            \
 }
 
-#define M_SINGLE_MANAGER_CORE_CLASS(name)                                  \
-    M_SINGLE_MANAGER_CORE_CLASS2(name, nullptr)
+#define SINGLE_MANAGER_CORE_CLASS(name)                                    \
+    SINGLE_MANAGER_CORE_CLASS2(name, nullptr)
 /////////////////////////////////////////////////////////////////////////
 
 
@@ -127,7 +127,7 @@ protected:
 
 };
 
-#define M_SINGLE_MANAGER_PTR GetMusicSingleManager()
+#define G_SINGLE_MANAGER_PTR GetMusicSingleManager()
 MUSIC_CORE_EXPORT MusicSingleManager* GetMusicSingleManager();
 
 #endif // MUSICSINGLEMANAGER_H

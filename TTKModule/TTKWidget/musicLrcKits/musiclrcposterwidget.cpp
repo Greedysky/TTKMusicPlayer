@@ -23,11 +23,11 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
 {
     m_type = Type_01;
 
-    m_pixmap.load(M_BACKGROUND_PTR->getArtistPhotoPathNoIndex());
+    m_pixmap.load(G_BACKGROUND_PTR->getArtistPhotoPathNoIndex());
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;
-        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl());
+        MusicExtractWrap::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
         m_pixmap = image.m_pix;
     }
 }

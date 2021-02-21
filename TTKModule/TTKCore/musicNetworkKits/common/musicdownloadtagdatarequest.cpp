@@ -68,7 +68,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
     MusicSongMeta meta;
     if(meta.read(m_savePath))
     {
-        if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool())
         {
             meta.setTitle(m_musicMeta.getTitle());
             meta.setArtist(m_musicMeta.getArtist());
@@ -77,7 +77,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
             meta.setYear(m_musicMeta.getYear());
         }
 
-        if(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
         {
             meta.setCover(data);
         }

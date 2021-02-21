@@ -12,7 +12,7 @@
 MusicNetworkThread::MusicNetworkThread()
     : QObject(nullptr), m_networkState(true)
 {
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
     connect(&m_timer, SIGNAL(timeout()), SLOT(networkStateChanged()));
 }
 
@@ -29,14 +29,14 @@ void MusicNetworkThread::start()
 
 void MusicNetworkThread::setBlockNetWork(int block)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::CloseNetWork, block);
+    G_SETTING_PTR->setValue(MusicSettingManager::CloseNetWork, block);
 }
 
 void MusicNetworkThread::networkStateChanged()
 {
     QtConcurrent::run([&]
     {
-        const bool block = M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toBool();
+        const bool block = G_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toBool();
         const QHostInfo &info = QHostInfo::fromName(NETWORK_REQUEST_ADDRESS);
         m_networkState = !info.addresses().isEmpty();
         m_networkState = block ? false : m_networkState;

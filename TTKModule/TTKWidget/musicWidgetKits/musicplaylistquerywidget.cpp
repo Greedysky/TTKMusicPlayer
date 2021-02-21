@@ -128,7 +128,7 @@ MusicPlaylistQueryWidget::MusicPlaylistQueryWidget(QWidget *parent)
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
     m_pagingWidgetObject = nullptr;
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getPlaylistRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getPlaylistRequest(this);
     connect(m_downloadRequest, SIGNAL(createPlaylistItem(MusicResultsItem)), SLOT(createPlaylistItem(MusicResultsItem)));
 }
 
@@ -259,7 +259,7 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultsItem &it
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistQueryInfoWidget(this);
-    MusicQueryPlaylistRequest *d = TTKStatic_cast(MusicQueryPlaylistRequest*, M_DOWNLOAD_QUERY_PTR->getPlaylistRequest(this));
+    MusicQueryPlaylistRequest *d = TTKStatic_cast(MusicQueryPlaylistRequest*, G_DOWNLOAD_QUERY_PTR->getPlaylistRequest(this));
     MusicResultsItem it(item);
     if(it.isEmpty())
     {

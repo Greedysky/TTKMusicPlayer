@@ -29,8 +29,8 @@ Q_DECLARE_METATYPE(MusicCloudDataItem)
 MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicCloudUploadTableWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicCloudUploadTableWidget::getClassName());
 
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -65,7 +65,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     delete m_syncListData;
     delete m_syncDeleteData;
     delete m_syncUploadData;
@@ -92,7 +92,7 @@ bool MusicCloudManagerTableWidget::getKey()
 
 void MusicCloudManagerTableWidget::resizeWindow()
 {
-    const int w = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int w = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (w - WINDOW_WIDTH_MIN) + 360);
 
@@ -679,7 +679,7 @@ MusicCloudManagerWidget::~MusicCloudManagerWidget()
 void MusicCloudManagerWidget::resizeWindow()
 {
     m_managerTableWidget->resizeWindow();
-    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(!m_resizeLabels.isEmpty())
     {
         m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) + 540);

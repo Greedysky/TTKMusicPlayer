@@ -104,7 +104,7 @@
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getQueryRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryRequest(parent); break;
@@ -122,7 +122,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getQueryRequest(QObject *p
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getMovieRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryMovieRequest(parent); break;
@@ -140,7 +140,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getMovieRequest(QObject *p
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getAlbumRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryAlbumRequest(parent); break;
@@ -158,7 +158,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getAlbumRequest(QObject *p
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryArtistRequest(parent); break;
@@ -176,7 +176,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistRequest(QObject *
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistListRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryArtistListRequest(parent); break;
@@ -194,7 +194,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getArtistListRequest(QObje
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getToplistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryToplistRequest(parent); break;
@@ -212,7 +212,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getToplistRequest(QObject 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getPlaylistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryPlaylistRequest(parent); break;
@@ -230,7 +230,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getPlaylistRequest(QObject
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getRecommendRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYQueryRecommendRequest(parent); break;
@@ -253,7 +253,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getSimilarSongRequest(QObj
 MusicSimilarRequest *MusicDownLoadQueryFactory::getSimilarArtistRequest(QObject *parent)
 {
     MusicSimilarRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYArtistSimilarRequest(parent); break;
@@ -270,7 +270,7 @@ MusicSimilarRequest *MusicDownLoadQueryFactory::getSimilarArtistRequest(QObject 
 MusicSongSuggestRequest *MusicDownLoadQueryFactory::getSuggestRequest(QObject *parent)
 {
     MusicSongSuggestRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYSongSuggestRequest(parent); break;
@@ -287,7 +287,7 @@ MusicSongSuggestRequest *MusicDownLoadQueryFactory::getSuggestRequest(QObject *p
 MusicCommentsRequest *MusicDownLoadQueryFactory::getSongCommentRequest(QObject *parent)
 {
     MusicCommentsRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYSongCommentsRequest(parent); break;
@@ -304,7 +304,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::getSongCommentRequest(QObject *
 MusicCommentsRequest *MusicDownLoadQueryFactory::getPlaylistCommentRequest(QObject *parent)
 {
     MusicCommentsRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYPlaylistCommentsRequest(parent); break;
@@ -321,7 +321,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::getPlaylistCommentRequest(QObje
 MusicDiscoverListRequest *MusicDownLoadQueryFactory::getDiscoverListRequest(QObject *parent)
 {
     MusicDiscoverListRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYDiscoverListRequest(parent); break;
@@ -338,7 +338,7 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::getDiscoverListRequest(QObj
 MusicTranslationRequest *MusicDownLoadQueryFactory::getTranslationRequest(QObject *parent)
 {
     MusicTranslationRequest *request = nullptr;
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer:  request = new MusicWYTranslationRequest(parent); break;
@@ -349,7 +349,7 @@ MusicTranslationRequest *MusicDownLoadQueryFactory::getTranslationRequest(QObjec
 
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
 {
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer: return (new MusicDownloadDataRequest(url, save, type, parent));
@@ -364,7 +364,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadSmallPicture
 
 MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
 {
-    const int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
     {
         case WYQueryServer: return (new MusicWYDownLoadTextRequest(url, save, type, parent));
@@ -380,7 +380,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(c
 
 MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent)
 {
-    const bool index = M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool();
+    const bool index = G_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool();
     if(index)
     {
         return (new MusicQQDownloadBackgroundRequest(name, save, parent));

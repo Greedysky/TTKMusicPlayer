@@ -11,7 +11,7 @@ Q_DECLARE_METATYPE(MusicCloudDataItem)
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
 
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
@@ -32,7 +32,7 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
 
 MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
 }
 
 void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &record)
@@ -74,7 +74,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
 
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
@@ -93,7 +93,7 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
 
 MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
 }
 
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)

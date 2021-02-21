@@ -25,22 +25,22 @@ void MusicRunTimeManager::run() const
 #endif
 
     //detect the current network state
-    M_NETWORK_PTR->start();
+    G_NETWORK_PTR->start();
 
     MusicConfigManager xml;
     xml.readConfig();
     xml.readSysConfigData();
 
     MusicUtils::File::checkCacheSize(
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimit).toInt(),
-                M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
-    M_NETWORK_PTR->setBlockNetWork(
-                M_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
+                G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
+                G_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimit).toInt(),
+                G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
+    G_NETWORK_PTR->setBlockNetWork(
+                G_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
 }
 
 QString MusicRunTimeManager::translator() const
 {
-    const int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
     return MusicUtils::Core::getLanguageName(index);
 }

@@ -96,7 +96,7 @@ void MusicLrcContainerForInterior::stopLrcMask()
 void MusicLrcContainerForInterior::applySettingParameter()
 {
     MusicLrcContainer::applySettingParameter();
-    const int size = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+    const int size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     if(m_lrcSizeProperty == -1)
     {
         m_lrcSizeProperty = size;
@@ -173,7 +173,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
         m_musicLrcContainer[i]->setY(35 + size);
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
     }
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSize, size);
+    G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, size);
 
     resizeWindow();
     setItemStyleSheet();
@@ -182,13 +182,13 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
 
 int MusicLrcContainerForInterior::getLrcSize() const
 {
-    return M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+    return G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
 }
 
 void MusicLrcContainerForInterior::resizeWindow()
 {
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
 
     if(m_lrcDisplayAll)
     {
@@ -416,7 +416,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     group->addAction(changeLrcSize.addAction(tr("middle")))->setData(2);
     group->addAction(changeLrcSize.addAction(tr("big")))->setData(3);
     group->addAction(changeLrcSize.addAction(tr("bigger")))->setData(4);
-    int index = -1, size = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+    int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     switch(size)
     {
         case 14: index = 0; break;
@@ -458,7 +458,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
     menu.addAction(tr("artbgupload"), this, SLOT(showArtistBackgroundUploadedWidget()));
-    menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!M_BACKGROUND_PTR->isEmpty());
+    menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
     const QString &fileName = m_lrcAnalysis->getCurrentFileName();
@@ -569,7 +569,7 @@ void MusicLrcContainerForInterior::mouseMoveEvent(QMouseEvent *event)
                 index = m_lrcAnalysis->count() - m_lrcAnalysis->getMiddle() + 2;
             }
 
-            int value = M_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
+            int value = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
             value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value)) / 2;
 
             m_lrcAnalysis->setCurrentIndex(index);
@@ -629,7 +629,7 @@ void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)
     menu.addSeparator();
     menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
 
-    const int index = M_SETTING_PTR->value("LrcColor").toInt();
+    const int index = G_SETTING_PTR->value("LrcColor").toInt();
     if(index > -1 && index < group->actions().count())
     {
         group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
@@ -810,21 +810,21 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
     MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
     w->setFontSize(size);
 
-    int value = M_SETTING_PTR->value("LrcColorTrans").toInt() - transparent;
+    int value = G_SETTING_PTR->value("LrcColorTrans").toInt() - transparent;
     value = (value < 0) ? 0 : value;
     value = (value > 100) ? 100 : value;
     w->setFontTransparent(value);
     w->setTransparent(value);
 
-    if(M_SETTING_PTR->value("LrcColor").toInt() != -1)
+    if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value("LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

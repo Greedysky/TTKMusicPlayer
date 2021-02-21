@@ -87,7 +87,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
 
 void MusicDownloadBatchTableItem::startToDownload(MusicAbstractQueryRequest::QueryType type)
 {
-    if(!M_NETWORK_PTR->isOnline() || m_qulity->currentIndex() < 0)
+    if(!G_NETWORK_PTR->isOnline() || m_qulity->currentIndex() < 0)
     {
         return;
     }
@@ -156,7 +156,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
 {
     const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    const QString &downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString();
+    const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
     //
     MusicSongs records;

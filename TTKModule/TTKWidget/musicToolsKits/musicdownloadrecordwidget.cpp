@@ -6,7 +6,7 @@
 MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
 
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
@@ -25,7 +25,7 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 
 MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
 }
 
 void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &record)

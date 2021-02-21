@@ -43,7 +43,7 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     painter.drawText(m_intervalCount, begin, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
     int offsetValue = m_lrcMaskWidth;
-    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
     }
@@ -87,7 +87,7 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     painter.drawText(m_intervalCount, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
     int offsetValue = m_lrcMaskWidth;
-    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVMode).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
     }

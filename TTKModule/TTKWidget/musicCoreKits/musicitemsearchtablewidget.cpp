@@ -53,7 +53,7 @@ MusicItemSearchTableWidget::~MusicItemSearchTableWidget()
 void MusicItemSearchTableWidget::startSearchQuery(const QString &text)
 {
     Q_UNUSED(text);
-    MusicAbstractQueryRequest *d = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
 }

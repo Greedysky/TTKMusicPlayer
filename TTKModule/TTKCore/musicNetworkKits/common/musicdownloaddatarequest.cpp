@@ -59,7 +59,7 @@ void MusicDownloadDataRequest::startRequest(const QUrl &url)
     if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)
     {
         m_createItemTime = MusicTime::timestamp();
-        M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createItemTime, this, m_recordType));
+        G_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPairData(m_createItemTime, this, m_recordType));
         Q_EMIT createDownloadItem(m_savePath, m_createItemTime);
     }
 }

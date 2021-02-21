@@ -48,7 +48,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song
     m_ui->typeValue->setText(song.getMusicType().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), song.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()));
     m_ui->timeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(song.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()));
 
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
         MusicSongMeta meta;
         if(meta.read(song.getMusicPath()))

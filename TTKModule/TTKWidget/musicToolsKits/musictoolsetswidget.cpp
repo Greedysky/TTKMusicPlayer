@@ -43,7 +43,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     clearAllItems();
     delete m_ui;
 }
@@ -97,7 +97,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicLocalSongsManagerWidget);
+                SINGLE_MANAGER_WIDGET_CLASS(MusicLocalSongsManagerWidget);
                 break;
             }
         case 1:
@@ -121,22 +121,22 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 4:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
+                SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
                 break;
             }
         case 5:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
+                SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
                 break;
             }
         case 6:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicReplayGainWidget);
+                SINGLE_MANAGER_WIDGET_CLASS(MusicReplayGainWidget);
                 break;
             }
         case 7:
             {
-                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSongDlnaTransferWidget);
+                SINGLE_MANAGER_WIDGET_CLASS(MusicSongDlnaTransferWidget);
                 break;
             }
         case 8:

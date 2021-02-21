@@ -33,7 +33,7 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
 
     m_queryAllRecords = true;
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
 MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
@@ -43,7 +43,7 @@ MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
 
 void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
         Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
@@ -81,7 +81,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
         Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
@@ -125,7 +125,7 @@ void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
 
 void MusicSongSearchTableWidget::resizeWindow()
 {
-    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)/3.0 + 273);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)/3.0 + 105);
@@ -334,7 +334,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 {
-    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -359,10 +359,10 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     download->startToDownload();
 
-    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
+    G_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                                     MusicObject::DownloadSmallBackground, this)->startToDownload();
     ///download big picture
-    M_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
+    G_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
 
     m_downloadData.clear();
     m_downloadData.m_songName = musicEnSong;
@@ -588,7 +588,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(m_resizeLabels.count() == 5)
     {
         m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN) / 3.0 + 270);

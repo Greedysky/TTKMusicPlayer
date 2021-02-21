@@ -585,7 +585,7 @@ QString MusicLrcAnalysis::getAllLrcString() const
 void MusicLrcAnalysis::getTranslatedLrc()
 {
     delete m_translationThread;
-    m_translationThread = M_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
+    m_translationThread = G_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
     if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
     {
         connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(getTranslatedLrcFinished(QString)));

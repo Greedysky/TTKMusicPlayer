@@ -119,7 +119,7 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
 
 MusicReplayGainWidget::~MusicReplayGainWidget()
 {
-    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_process;
     delete m_ui;
 }

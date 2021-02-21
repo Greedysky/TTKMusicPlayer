@@ -127,7 +127,7 @@ void MusicSongsListPlayWidget::updateTimeLabel(const QString &current, const QSt
 
 void MusicSongsListPlayWidget::updateCurrentArtist()
 {
-    if(!m_noCover && M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
+    if(!m_noCover && G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
         return;
     }
@@ -153,7 +153,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     }
     m_timeLabel->setText(MUSIC_TIME_INIT + m_totalTimeLabel);
 
-    if(state && M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
+    if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
         QPixmap pix = meta.getCover();
         if(pix.isNull())

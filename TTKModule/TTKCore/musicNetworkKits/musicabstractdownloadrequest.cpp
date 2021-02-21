@@ -23,7 +23,7 @@ MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, c
     }
     m_file = new QFile(m_savePath, this);
 
-    M_DOWNLOAD_MANAGER_PTR->connectNetworkMultiValue(this);
+    G_DOWNLOAD_MANAGER_PTR->connectNetworkMultiValue(this);
 
     m_speedTimer.setInterval(MT_S2MS);
     connect(&m_speedTimer, SIGNAL(timeout()), SLOT(updateDownloadSpeed()));
@@ -35,7 +35,7 @@ MusicAbstractDownLoadRequest::~MusicAbstractDownLoadRequest()
     {
         m_speedTimer.stop();
     }
-    M_DOWNLOAD_MANAGER_PTR->removeNetworkMultiValue(this);
+    G_DOWNLOAD_MANAGER_PTR->removeNetworkMultiValue(this);
 }
 
 void MusicAbstractDownLoadRequest::deleteAll()
@@ -75,9 +75,9 @@ void MusicAbstractDownLoadRequest::updateDownloadSpeed()
 {
     int delta = m_currentReceived - m_hasReceived;
     ///limit speed
-    if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimit).toInt() == 0)
+    if(G_SETTING_PTR->value(MusicSettingManager::DownloadLimit).toInt() == 0)
     {
-        const int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimit).toInt();
+        const int limitValue = G_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimit).toInt();
         if(limitValue != 0 && delta > limitValue * MH_KB)
         {
             MusicUtils::Core::sleep(MT_S2MS - limitValue * MH_KB * MT_S2MS / delta);

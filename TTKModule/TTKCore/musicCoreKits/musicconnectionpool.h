@@ -87,7 +87,7 @@ protected:
 
 };
 
-#define M_CONNECTION_PTR GetMusicConnectionPool()
+#define G_CONNECTION_PTR GetMusicConnectionPool()
 MUSIC_CORE_EXPORT MusicConnectionPool* GetMusicConnectionPool();
 
 #endif // MUSICCONNECTIONPOOL_H

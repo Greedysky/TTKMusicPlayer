@@ -74,7 +74,7 @@ void MusicDownloadQueueRequest::addImageQueue(const MusicDownloadQueueDatas &dat
 
 void MusicDownloadQueueRequest::startOrderImageQueue()
 {
-    if(!m_imageQueue.isEmpty() && M_NETWORK_PTR->isOnline())
+    if(!m_imageQueue.isEmpty() && G_NETWORK_PTR->isOnline())
     {
         if(QFile::exists(m_imageQueue.first().m_savePath))
         {

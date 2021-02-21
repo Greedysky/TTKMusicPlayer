@@ -28,14 +28,14 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
 
     m_labelDelegate = new MusicLabelDelegate(this);
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
     delete m_labelDelegate;
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 
@@ -47,7 +47,7 @@ void MusicItemQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
 
 void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())
+    if(!G_NETWORK_PTR->isOnline())
     {
         clearAllItems();
         Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
@@ -117,7 +117,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
 
 void MusicItemQueryTableWidget::resizeWindow()
 {
-    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) * 0.5 + 342);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN) * 0.5 + 110);
@@ -333,7 +333,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
 
 bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play)
 {
-    if(!M_NETWORK_PTR->isOnline())
+    if(!G_NETWORK_PTR->isOnline())
     {
         return false;
     }

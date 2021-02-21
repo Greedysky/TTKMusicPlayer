@@ -105,7 +105,7 @@ protected:
 
 };
 
-#define M_DOWNLOAD_MANAGER_PTR GetMusicDownLoadManager()
+#define G_DOWNLOAD_MANAGER_PTR GetMusicDownLoadManager()
 MUSIC_NETWORK_EXPORT MusicDownLoadManager* GetMusicDownLoadManager();
 
 #endif // MUSICDOWNLOADMANAGER_H

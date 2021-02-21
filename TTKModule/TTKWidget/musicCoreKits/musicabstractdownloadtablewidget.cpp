@@ -11,15 +11,15 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
 {
     m_delegate = new MusicProgressBarDelegate(this);
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
 }
 
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     MusicDownloadRecordConfigManager xml(m_type, this);
     xml.writeDownloadData(*m_musicSongs);
     clear();
@@ -43,7 +43,7 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongs &son
     {
         MusicSong *song = &((*m_musicSongs)[i]);
         createItem(i, *song);
-        M_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->getMusicAddTimeStr().toULongLong(), this, m_type));
+        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->getMusicAddTimeStr().toULongLong(), this, m_type));
     }
 }
 

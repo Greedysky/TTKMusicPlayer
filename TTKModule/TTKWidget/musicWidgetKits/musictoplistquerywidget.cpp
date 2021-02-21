@@ -35,7 +35,7 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
 
     m_queryTableWidget = new MusicToplistQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getToplistRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getToplistRequest(this);
     m_queryTableWidget->setQueryInput(m_downloadRequest);
 
     connect(m_downloadRequest, SIGNAL(createToplistInfoItem(MusicResultsItem)), SLOT(createToplistInfoItem(MusicResultsItem)));
@@ -67,7 +67,7 @@ void MusicToplistQueryWidget::resizeWindow()
 
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN;
 
         TTKResizeWidget *data = &m_resizeWidgets[0];

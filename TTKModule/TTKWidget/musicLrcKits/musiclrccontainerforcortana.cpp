@@ -73,7 +73,7 @@ void MusicLrcContainerForCortana::applySettingParameter()
         manager->setLrcFontSize(10);
     }
 
-    const QPoint &point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
+    const QPoint &point = G_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
     if(!point.isNull())
     {
         move(point);

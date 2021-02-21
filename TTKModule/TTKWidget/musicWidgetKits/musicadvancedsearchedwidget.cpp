@@ -112,7 +112,7 @@ MusicAdvancedSearchedWidget::~MusicAdvancedSearchedWidget()
 
 void MusicAdvancedSearchedWidget::searchButtonClicked()
 {
-    const int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
+    const int server = G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt();
     if(server > 5 || server < 0)
     {
         MusicToastLabel::popup(tr("Current server not support search!"));
@@ -180,7 +180,7 @@ QWidget *MusicAdvancedSearchedWidget::createSearchPairWidget(MusicLocalSongSearc
 
 void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 {
-    switch(TTKStatic_cast(DownloadQueryServer, M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt()))
+    switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt()))
     {
         case WYQueryServer:
             {
@@ -243,7 +243,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString &url)
 {
     QString key;
-    switch(TTKStatic_cast(DownloadQueryServer, M_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt()))
+    switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServer).toInt()))
     {
         case WYQueryServer:
             {

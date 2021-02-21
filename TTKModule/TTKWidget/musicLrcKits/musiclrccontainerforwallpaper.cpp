@@ -57,7 +57,7 @@ void MusicLrcContainerForWallpaper::stopLrcMask()
 
 void MusicLrcContainerForWallpaper::applySettingParameter()
 {
-    const int width = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
+    const int width = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
         MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[i]);
@@ -119,7 +119,7 @@ void MusicLrcContainerForWallpaper::start(bool immediate)
 {
     if(m_wallThread)
     {
-        m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtistPhotoPathList());
+        m_wallThread->setImagePath(G_BACKGROUND_PTR->getArtistPhotoPathList());
 
         if(!m_wallThread->isRunning())
         {
@@ -140,7 +140,7 @@ void MusicLrcContainerForWallpaper::changeCurrentLrcColor()
 
 void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)
 {
-    const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     m_background->setFixedSize(windowSize);
     m_background->setPixmap(pix.scaled(windowSize));
 }
@@ -173,15 +173,15 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
     w->setFontTransparent(value);
     w->setTransparent(value);
 
-    if(M_SETTING_PTR->value("LrcColor").toInt() != -1)
+    if(G_SETTING_PTR->value("LrcColor").toInt() != -1)
     {
-        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColor").toInt());
+        const MusicLrcColor::LrcColorType index = TTKStatic_cast(MusicLrcColor::LrcColorType, G_SETTING_PTR->value("LrcColor").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

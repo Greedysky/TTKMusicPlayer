@@ -107,7 +107,7 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 };
 
-#define M_HOTKEY_PTR GetMusicHotKeyManager()
+#define G_HOTKEY_PTR GetMusicHotKeyManager()
 MUSIC_CORE_EXPORT MusicHotKeyManager* GetMusicHotKeyManager();
 
 #endif // MUSICHOTKEYMANAGER_H

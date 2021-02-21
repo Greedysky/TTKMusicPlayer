@@ -24,12 +24,12 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(bool transparent, QWidget *pare
     m_showShadow = true;
     m_background = nullptr;
 
-    M_BACKGROUND_PTR->addObserver(this);
+    G_BACKGROUND_PTR->addObserver(this);
 }
 
 MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
 {
-    M_BACKGROUND_PTR->removeObserver(this);
+    G_BACKGROUND_PTR->removeObserver(this);
 }
 
 void MusicAbstractMoveWidget::backgroundChanged()
@@ -96,13 +96,13 @@ void MusicAbstractMoveWidget::setBackgroundPixmap(const QSize &size)
 {
     QLabel *label = TTKStatic_cast(QLabel*, m_background);
     MusicBackgroundImage image;
-    if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl()))
+    if(MusicExtractWrap::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl()))
     {
         label->setPixmap(image.m_pix.scaled(size));
     }
     else
     {
-        label->setPixmap(QPixmap(M_BACKGROUND_PTR->getBackgroundUrl()).scaled(size));
+        label->setPixmap(QPixmap(G_BACKGROUND_PTR->getBackgroundUrl()).scaled(size));
     }
 }
 

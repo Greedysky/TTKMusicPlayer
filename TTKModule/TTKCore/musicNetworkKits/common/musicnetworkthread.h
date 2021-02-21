@@ -77,7 +77,7 @@ private:
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 };
 
-#define M_NETWORK_PTR GetMusicNetworkThread()
+#define G_NETWORK_PTR GetMusicNetworkThread()
 MUSIC_NETWORK_EXPORT MusicNetworkThread* GetMusicNetworkThread();
 
 #endif // MUSICNETWORKTHREAD_H

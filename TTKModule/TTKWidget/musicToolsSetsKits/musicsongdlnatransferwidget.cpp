@@ -71,13 +71,13 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     connect(m_ui->refreshButton, SIGNAL(clicked()), SLOT(startToScan()));
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     delete m_dlnaFinder;
     delete m_ui;
 }

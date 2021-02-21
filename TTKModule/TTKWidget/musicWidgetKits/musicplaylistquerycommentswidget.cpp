@@ -11,6 +11,6 @@ void MusicPlaylistQueryCommentsWidget::initWidget(bool isPain)
 {
     MusicCommentsWidget::initWidget(isPain);
 
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getPlaylistCommentRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getPlaylistCommentRequest(this);
     connect(m_downloadRequest, SIGNAL(createSearchedItem(MusicResultsItem)), SLOT(createSearchedItem(MusicResultsItem)));
 }

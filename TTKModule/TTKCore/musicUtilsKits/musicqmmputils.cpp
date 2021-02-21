@@ -100,7 +100,7 @@ void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterBlurWave");
 
-    QString colors = M_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
+    QString colors = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
     settings.setValue("colors", colors.remove(";"));
     const double opacity = 1.0;
     settings.setValue("opacity", opacity);

@@ -146,7 +146,7 @@ bool MusicRightAreaWidget::getInteriorLrcVisible() const
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
 {
-    return (M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
+    return (G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool());
 }
 
 void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const
@@ -326,9 +326,9 @@ void MusicRightAreaWidget::applySettingParameter() const
     }
 
     //
-    bool config = M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
+    bool config = G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
     m_musicLrcForInterior->setVisible(config);
-         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
+         config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_musicLrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
     //
@@ -567,7 +567,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
@@ -673,10 +673,10 @@ void MusicRightAreaWidget::musicSingleSearchedFound(const QString &id)
 void MusicRightAreaWidget::musicLoadSongIndexWidget()
 {
     ///To prevent concise state changed while function musicWindowConciseChanged first called
-    const bool pre = M_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool();
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, false);
+    const bool pre = G_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool();
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, false);
     musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, pre);
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, pre);
 }
 
 void MusicRightAreaWidget::deleteStackedFuncWidget()
@@ -690,7 +690,7 @@ void MusicRightAreaWidget::setDestopLrcVisible(bool visible) const
     m_ui->musicDesktopLrc->setChecked(visible);
     m_musicLrcForDesktop->setVisible(visible);
     m_musicLrcForDesktop->initCurrentLrc();
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, visible);
+    G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, visible);
 }
 
 void MusicRightAreaWidget::setWindowLockedChanged()
@@ -700,8 +700,8 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool type = m_musicLrcForDesktop ? m_musicLrcForDesktop->getWindowType() : TTKStatic_cast(bool, M_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
+    const bool type = m_musicLrcForDesktop ? m_musicLrcForDesktop->getWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
     MusicLrcContainerForDesktop *deskLrc = m_musicLrcForDesktop;
     if(type)
@@ -728,7 +728,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeDesktopLrcWidget()));
 
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowType, type);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowType, type);
     deskLrc->deleteLater();
 }
 
@@ -856,19 +856,19 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
 
 void MusicRightAreaWidget::musicChangeDownloadFulllyWidget()
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, true);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, true);
 }
 
 void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, false);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, false);
     m_settingWidget->changeDownloadWidget();
     showSettingWidget();
 }
 
 void MusicRightAreaWidget::musicFunctionParameterInit(MusicFunction func)
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }

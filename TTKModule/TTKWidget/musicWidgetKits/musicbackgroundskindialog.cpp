@@ -98,7 +98,7 @@ QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {
     QString path = USER_THEME_DIR_FULL + name + TTS_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(name, path);
-    M_BACKGROUND_PTR->setBackgroundUrl(path);
+    G_BACKGROUND_PTR->setBackgroundUrl(path);
 
     MusicBackgroundImage image;
     return MusicExtractWrap::outputSkin(&image, path) ? image.m_pix : QPixmap();
@@ -145,7 +145,7 @@ void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, 
     m_ui->listTransparentButton->setValue(list);
     setListTransToolText(list);
 
-    const bool state = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
+    const bool state = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnable).toBool();
     m_ui->skinTransparentButton->setValue(state ? skin : 0);
     m_ui->skinTransparentButton->setEnabled(state);
     setSkinTransToolText(state ? skin : 0);
@@ -278,14 +278,14 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
     {
         MusicTopAreaWidget::instance()->musicBackgroundSkinCustumChanged(QFileInfo(path).baseName());
     }
-    M_BACKGROUND_PTR->setBackgroundUrl(path);
-    Q_EMIT M_BACKGROUND_PTR->backgroundHasChanged();
+    G_BACKGROUND_PTR->setBackgroundUrl(path);
+    Q_EMIT G_BACKGROUND_PTR->backgroundHasChanged();
 }
 
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
 {
     m_ui->skinTransparentButton->setEnabled(state);
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, state);
+    G_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnable, state);
     if(!state)
     {
         m_ui->skinTransparentButton->setValue(0);
@@ -309,8 +309,8 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     QString s(name);
     QString path = USER_THEME_DIR_FULL + s + TTS_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
-    M_BACKGROUND_PTR->setBackgroundUrl(path);
-    Q_EMIT M_BACKGROUND_PTR->backgroundHasChanged();
+    G_BACKGROUND_PTR->setBackgroundUrl(path);
+    Q_EMIT G_BACKGROUND_PTR->backgroundHasChanged();
 }
 
 void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidget *item, const QString &name)

@@ -32,7 +32,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 
     m_pictureCarouselTimer.setInterval(10 * MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
-    connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
+    connect(G_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
 
     m_backgroundListAlpha = 60;
     m_lastRemoteBeforeWallpaper = -1;
@@ -212,7 +212,7 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(const QString &fileNa
 
 void MusicTopAreaWidget::musicSetAsArtistBackground()
 {
-    QString path = M_BACKGROUND_PTR->getArtistPhotoPathNoIndex();
+    QString path = G_BACKGROUND_PTR->getArtistPhotoPathNoIndex();
     if(!path.isEmpty())
     {
         path = MusicBackgroundSkinDialog::cpoyArtistFileToLocal(path);
@@ -252,10 +252,10 @@ void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileNam
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    const QString &artistPath = M_BACKGROUND_PTR->getArtistPhotoPath();
+    const QString &artistPath = G_BACKGROUND_PTR->getArtistPhotoPath();
     if(!artistPath.isEmpty())
     {
-        M_BACKGROUND_PTR->indexIncrease();
+        G_BACKGROUND_PTR->indexIncrease();
         drawWindowBackgroundRectString(artistPath);
     }
     else
@@ -423,12 +423,12 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
 
 void MusicTopAreaWidget::musicStackedToolsWidgetChanged()
 {
-    M_SINGLE_MANAGER_WIDGET_CLASS(MusicToolSetsWidget);
+    SINGLE_MANAGER_WIDGET_CLASS(MusicToolSetsWidget);
 }
 
 void MusicTopAreaWidget::backgroundTransparentChanged(int value)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, value);
+    G_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparent, value);
     m_ui->centerLeftWidget->backgroundTransparent(value);
 }
 
@@ -490,7 +490,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
     const float v = MusicUtils::Image::reRenderValue<float>(1, 0.35, 100 - m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
-    const QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
+    const QSize size(G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
 
     QPixmap pixmap(size);
     pixmap.fill(Qt::transparent);

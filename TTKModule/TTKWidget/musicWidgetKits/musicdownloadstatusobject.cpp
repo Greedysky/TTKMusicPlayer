@@ -18,11 +18,11 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
     m_parentWidget = TTKStatic_cast(MusicApplication*, parent);
     m_downloadRequest = nullptr;
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(getClassName(), this);
 #ifndef MUSIC_MOBILE
-    M_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
+    G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
 #endif
-    M_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
+    G_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
 MusicDownloadStatusObject::~MusicDownloadStatusObject()
@@ -69,7 +69,7 @@ void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
 
 void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
 {
-    M_NETWORK_PTR->setNetWorkState(state);
+    G_NETWORK_PTR->setNetWorkState(state);
     if(m_previousState != state)
     {
 #ifndef MUSIC_MOBILE
@@ -84,12 +84,12 @@ void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusObject::checkSettingParameterValue() const
 {
-    return M_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
+    return G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool() || G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
 }
 
 void MusicDownloadStatusObject::checkLrcValid()
 {
-    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -115,7 +115,7 @@ void MusicDownloadStatusObject::checkLrcValid()
            m_downloadRequest = nullptr;
        }
        ///Start the request query
-       m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+       m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
        showDownLoadInfoFor(MusicObject::DW_Buffing);
@@ -124,7 +124,7 @@ void MusicDownloadStatusObject::checkLrcValid()
 
 void MusicDownloadStatusObject::currentLrcDataDownload()
 {
-    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -149,11 +149,11 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
         }
 
         ///download lrc
-        M_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }
     else
     {

@@ -144,7 +144,7 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 };
 
-#define M_BACKGROUND_PTR GetMusicBackgroundManager()
+#define G_BACKGROUND_PTR GetMusicBackgroundManager()
 MUSIC_CORE_EXPORT MusicBackgroundManager* GetMusicBackgroundManager();
 
 #endif // MUSICBACKGROUNDMANAGER_H

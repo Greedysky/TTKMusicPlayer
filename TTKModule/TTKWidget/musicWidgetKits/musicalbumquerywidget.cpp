@@ -37,7 +37,7 @@ MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Album;
     m_queryTableWidget = new MusicAlbumQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_downloadRequest = M_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
     connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
@@ -51,7 +51,7 @@ void MusicAlbumQueryWidget::setSongName(const QString &name)
 
 void MusicAlbumQueryWidget::setSongNameById(const QString &id)
 {
-    MusicAbstractQueryRequest *v = M_DOWNLOAD_QUERY_PTR->getAlbumRequest(this);
+    MusicAbstractQueryRequest *v = G_DOWNLOAD_QUERY_PTR->getAlbumRequest(this);
     m_queryTableWidget->setQueryInput(v);
     m_queryTableWidget->startSearchQuery(id);
     connect(v, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createAlbumInfoItem(MusicResultsItem)));
@@ -62,7 +62,7 @@ void MusicAlbumQueryWidget::resizeWindow()
     m_queryTableWidget->resizeWindow();
     if(!m_resizeWidgets.isEmpty())
     {
-        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
             width = width - WINDOW_WIDTH_MIN;
 
         TTKResizeWidget *data = &m_resizeWidgets[1];

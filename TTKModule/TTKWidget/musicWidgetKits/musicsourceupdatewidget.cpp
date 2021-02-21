@@ -26,7 +26,7 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
     blockMoveOption(true);
 
-    const QSize &windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setGeometry(windowSize.width() - 240, windowSize.height() - 150, 220, 100);
 
     QVBoxLayout *vlayout = new QVBoxLayout(m_container);

@@ -51,14 +51,14 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     initEqualizeValue();
     readEqInformation();
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSoundEffectsWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSoundEffectsWidget::getClassName());
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     writeEqInformation();
     delete m_ui;
 }
@@ -110,15 +110,15 @@ void MusicEqualizerDialog::initialize()
 
 void MusicEqualizerDialog::readEqInformation()
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
         m_ui->showEqButton->click();
     }
 
-    const QStringList &eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
+    const QStringList &eqValue = G_SETTING_PTR->value(MusicSettingManager::EqualizerValue).toString().split(",");
     if(eqValue.count() == 11)
     {
-        if(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt() == 0)
+        if(G_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt() == 0)
         {
             m_ui->verticalSlider1->setValue(eqValue[1].toInt());
             m_ui->verticalSlider2->setValue(eqValue[2].toInt());
@@ -134,7 +134,7 @@ void MusicEqualizerDialog::readEqInformation()
         }
         else
         {
-           m_ui->eqChoice->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt());
+           m_ui->eqChoice->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::EqualizerIndex).toInt());
         }
     }
     else
@@ -145,9 +145,9 @@ void MusicEqualizerDialog::readEqInformation()
 
 void MusicEqualizerDialog::writeEqInformation() const
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, m_eable ? 1 : 0);
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndex, m_ui->eqChoice->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValue,
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, m_eable ? 1 : 0);
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndex, m_ui->eqChoice->currentIndex());
+    G_SETTING_PTR->setValue(MusicSettingManager::EqualizerValue,
           QString("%1,%2,%3,%4,%5,%6,%7,%8,%9,%10,%11").arg(
           m_ui->bwVerticalSlider->value()).arg(m_ui->verticalSlider1->value()).arg(
           m_ui->verticalSlider2->value()).arg(m_ui->verticalSlider3->value()).arg(

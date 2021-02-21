@@ -117,7 +117,7 @@ protected:
 
 };
 
-#define M_DOWNLOAD_QUERY_PTR GetMusicDownLoadQueryFactory()
+#define G_DOWNLOAD_QUERY_PTR GetMusicDownLoadQueryFactory()
 MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory* GetMusicDownLoadQueryFactory();
 
 #endif // MUSICDOWNLOADQUERYFACTORY_H

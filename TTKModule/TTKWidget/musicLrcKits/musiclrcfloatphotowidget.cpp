@@ -187,7 +187,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
         connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBackground(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     }
-    connect(M_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
+    connect(G_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
 }
 
@@ -233,7 +233,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list << m_artPath[i];
     }
-    M_BACKGROUND_PTR->setArtistPhotoPathList(list);
+    G_BACKGROUND_PTR->setArtistPhotoPathList(list);
     close();
 }
 
@@ -276,7 +276,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     }
 
     m_selectNum.clear();
-    m_artPath = M_BACKGROUND_PTR->getArtistPhotoPathList();
+    m_artPath = G_BACKGROUND_PTR->getArtistPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;
@@ -300,7 +300,7 @@ void MusicLrcFloatPhotoWidget::photoNext()
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBackground(int index)
 {
-    M_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * PHOTO_PERLINE + index);
+    G_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * PHOTO_PERLINE + index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)

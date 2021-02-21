@@ -28,42 +28,42 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_musicPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
 
-    M_HOTKEY_PTR->addHotKey("Ctrl+B");
-    M_HOTKEY_PTR->addHotKey("Ctrl+Left");
-    M_HOTKEY_PTR->addHotKey("Ctrl+Right");
-    M_HOTKEY_PTR->addHotKey("Ctrl+Up");
-    M_HOTKEY_PTR->addHotKey("Ctrl+Down");
-    M_HOTKEY_PTR->addHotKey("Ctrl+1");
-    M_HOTKEY_PTR->addHotKey("Ctrl+2");
-    M_HOTKEY_PTR->addHotKey("Ctrl+3");
-    M_HOTKEY_PTR->addHotKey("Ctrl+4");
-    M_HOTKEY_PTR->addHotKey("Ctrl+5");
-    M_HOTKEY_PTR->addHotKey("Alt+1");
-    M_HOTKEY_PTR->addHotKey("Alt+2");
-    M_HOTKEY_PTR->addHotKey("Alt+3");
-    M_HOTKEY_PTR->addHotKey("Alt+4");
-    M_HOTKEY_PTR->addHotKey("Alt+5");
-    M_HOTKEY_PTR->addHotKey("Ctrl+Q");
+    G_HOTKEY_PTR->addHotKey("Ctrl+B");
+    G_HOTKEY_PTR->addHotKey("Ctrl+Left");
+    G_HOTKEY_PTR->addHotKey("Ctrl+Right");
+    G_HOTKEY_PTR->addHotKey("Ctrl+Up");
+    G_HOTKEY_PTR->addHotKey("Ctrl+Down");
+    G_HOTKEY_PTR->addHotKey("Ctrl+1");
+    G_HOTKEY_PTR->addHotKey("Ctrl+2");
+    G_HOTKEY_PTR->addHotKey("Ctrl+3");
+    G_HOTKEY_PTR->addHotKey("Ctrl+4");
+    G_HOTKEY_PTR->addHotKey("Ctrl+5");
+    G_HOTKEY_PTR->addHotKey("Alt+1");
+    G_HOTKEY_PTR->addHotKey("Alt+2");
+    G_HOTKEY_PTR->addHotKey("Alt+3");
+    G_HOTKEY_PTR->addHotKey("Alt+4");
+    G_HOTKEY_PTR->addHotKey("Alt+5");
+    G_HOTKEY_PTR->addHotKey("Ctrl+Q");
 
-    connect(M_HOTKEY_PTR->getHotKey(0), SIGNAL(activated()), SLOT(musicStatePlay()));
-    connect(M_HOTKEY_PTR->getHotKey(1), SIGNAL(activated()), SLOT(musicPlayPrevious()));
-    connect(M_HOTKEY_PTR->getHotKey(2), SIGNAL(activated()), SLOT(musicPlayNext()));
-    connect(M_HOTKEY_PTR->getHotKey(3), SIGNAL(activated()), SLOT(musicActionVolumePlus()));
-    connect(M_HOTKEY_PTR->getHotKey(4), SIGNAL(activated()), SLOT(musicActionVolumeSub()));
+    connect(G_HOTKEY_PTR->getHotKey(0), SIGNAL(activated()), SLOT(musicStatePlay()));
+    connect(G_HOTKEY_PTR->getHotKey(1), SIGNAL(activated()), SLOT(musicPlayPrevious()));
+    connect(G_HOTKEY_PTR->getHotKey(2), SIGNAL(activated()), SLOT(musicPlayNext()));
+    connect(G_HOTKEY_PTR->getHotKey(3), SIGNAL(activated()), SLOT(musicActionVolumePlus()));
+    connect(G_HOTKEY_PTR->getHotKey(4), SIGNAL(activated()), SLOT(musicActionVolumeSub()));
 
-    connect(M_HOTKEY_PTR->getHotKey(5), SIGNAL(activated()), SLOT(musicPlayOrder()));
-    connect(M_HOTKEY_PTR->getHotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
-    connect(M_HOTKEY_PTR->getHotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
-    connect(M_HOTKEY_PTR->getHotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
-    connect(M_HOTKEY_PTR->getHotKey(9), SIGNAL(activated()), SLOT(musicPlayItemOnce()));
+    connect(G_HOTKEY_PTR->getHotKey(5), SIGNAL(activated()), SLOT(musicPlayOrder()));
+    connect(G_HOTKEY_PTR->getHotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
+    connect(G_HOTKEY_PTR->getHotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
+    connect(G_HOTKEY_PTR->getHotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
+    connect(G_HOTKEY_PTR->getHotKey(9), SIGNAL(activated()), SLOT(musicPlayItemOnce()));
 
-    connect(M_HOTKEY_PTR->getHotKey(10), SIGNAL(activated()), SLOT(musicEnhancedOff()));
-    connect(M_HOTKEY_PTR->getHotKey(11), SIGNAL(activated()), SLOT(musicEnhanced3D()));
-    connect(M_HOTKEY_PTR->getHotKey(12), SIGNAL(activated()), SLOT(musicEnhancedNICAM()));
-    connect(M_HOTKEY_PTR->getHotKey(13), SIGNAL(activated()), SLOT(musicEnhancedSubwoofer()));
-    connect(M_HOTKEY_PTR->getHotKey(14), SIGNAL(activated()), SLOT(musicEnhancedVocal()));
+    connect(G_HOTKEY_PTR->getHotKey(10), SIGNAL(activated()), SLOT(musicEnhancedOff()));
+    connect(G_HOTKEY_PTR->getHotKey(11), SIGNAL(activated()), SLOT(musicEnhanced3D()));
+    connect(G_HOTKEY_PTR->getHotKey(12), SIGNAL(activated()), SLOT(musicEnhancedNICAM()));
+    connect(G_HOTKEY_PTR->getHotKey(13), SIGNAL(activated()), SLOT(musicEnhancedSubwoofer()));
+    connect(G_HOTKEY_PTR->getHotKey(14), SIGNAL(activated()), SLOT(musicEnhancedVocal()));
 
-    connect(M_HOTKEY_PTR->getHotKey(15), SIGNAL(activated()), qApp, SLOT(quit()));
+    connect(G_HOTKEY_PTR->getHotKey(15), SIGNAL(activated()), qApp, SLOT(quit()));
 
 }
 

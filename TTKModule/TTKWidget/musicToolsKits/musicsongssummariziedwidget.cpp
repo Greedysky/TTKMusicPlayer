@@ -38,8 +38,8 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     m_musicSongSearchWidget = nullptr;
     m_lrcBatchDownloadWidget = nullptr;
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
 }
 
 MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
@@ -49,7 +49,7 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
     delete m_listFunctionWidget;
     delete m_musicSongSearchWidget;
     delete m_lrcBatchDownloadWidget;
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
 
@@ -571,7 +571,7 @@ void MusicSongsSummariziedWidget::musicLrcBatchDownload()
 
 void MusicSongsSummariziedWidget::setCurrentIndex()
 {
-    const QStringList &keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
+    const QStringList &keyList = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     if(keyList.count() != 3)
     {
         return;

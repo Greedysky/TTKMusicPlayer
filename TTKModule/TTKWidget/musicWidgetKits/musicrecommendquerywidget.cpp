@@ -45,7 +45,7 @@ MusicRecommendQueryWidget::MusicRecommendQueryWidget(QWidget *parent)
 void MusicRecommendQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_queryTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getRecommendRequest(this));
+    m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->getRecommendRequest(this));
     m_queryTableWidget->startSearchQuery(MusicUtils::String::songName(name));
 
     createLabels();

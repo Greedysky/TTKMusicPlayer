@@ -56,13 +56,13 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(getClassName());
     delete m_buttonGroup;
     delete m_ui;
     delete m_transferThread;
