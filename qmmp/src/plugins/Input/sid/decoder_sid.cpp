@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QFileInfo>
 #include <sidplayfp/sidplayfp.h>
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/sidbuilder.h>
@@ -77,7 +78,7 @@ bool DecoderSID::initialize()
     m_length = m_db->length(md5, track) * 1000;
 
     if(m_length <= 0)
-        m_length = settings.value("song_length", 180 * 1000).toInt();
+        m_length = QFileInfo(path).size() * 8.0 / bitrate();
 
     qDebug("DecoderSID: song length: %d", m_length);
 

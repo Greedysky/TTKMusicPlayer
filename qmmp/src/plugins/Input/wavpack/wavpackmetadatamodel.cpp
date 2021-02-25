@@ -28,6 +28,7 @@ WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
         setReadOnly(true);
         return;
     }
+
     if(!path.contains("://"))
         m_tags << new WavPackFileTagModel(m_ctx);
 }

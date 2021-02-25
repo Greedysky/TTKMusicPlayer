@@ -21,8 +21,6 @@
 #ifndef SIDHELPER_H
 #define SIDHELPER_H
 
-#include <QString>
-#include <QList>
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/SidTuneInfo.h>
 #include <sidplayfp/SidDatabase.h>

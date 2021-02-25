@@ -1,4 +1,5 @@
 #include <sidplayfp/SidDatabase.h>
+#include <QFileInfo>
 #include "sidhelper.h"
 
 SIDHelper::SIDHelper(SidDatabase *db)
@@ -66,11 +67,12 @@ QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::CHANNELS, 2);
             info->setValue(Qmmp::FORMAT_NAME, "SID");
 
-            const int length = m_db->length(md5, i);
-            if(length > -1)
+            int length = m_db->length(md5, i) * 1000;
+            if(length <= 0)
             {
-                info->setDuration(length * 1000);
+                length = QFileInfo(m_path).size() * 8.0 / 8;
             }
+            info->setDuration(length);
         }
 
         info->setPath("sid://" + m_path + QString("#%1").arg(i));
