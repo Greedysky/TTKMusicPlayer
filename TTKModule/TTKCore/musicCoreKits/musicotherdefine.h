@@ -22,7 +22,13 @@
 #include <QObject>
 
 #define MUSIC_CUE_FILE              "cue"
+#define MUSIC_APE_FILE              "ape"
+#define MUSIC_FFMPEG_FILE           "ffmpeg"
+#define MUSIC_M4B_FILE              "m4b"
+#define MUSIC_FLAC_FILE             "flac"
 #define MUSIC_GME_FILE              "gme"
+#define MUSIC_SID_FILE              "sid"
+#define MUSIC_WVPACK_FILE           "wvpack"
 #define MUSIC_ZIP_FILE              "zip"
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"

@@ -161,6 +161,16 @@ public:
 
 public:
     /*!
+     * Check song track is valid or not.
+     */
+    static bool SongTrackValid(const QString &file);
+    /*!
+     * Check song track contains type.
+     */
+    static bool SongTrackTpyeContains(const QString &file);
+
+public:
+    /*!
      * Set music song meta index offset.
      */
     void setSongMetaIndex(int index);
