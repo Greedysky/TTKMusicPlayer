@@ -30,8 +30,6 @@ Decoder *DecoderWavPackFactory::create(const QString &path, QIODevice *input)
 
 QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    Q_UNUSED(ignoredFiles);
-
     int track = -1; //cue track
     QString filePath = path;
 
@@ -41,6 +39,11 @@ QList<TrackInfo*> DecoderWavPackFactory::createPlayList(const QString &path, Tra
         filePath.remove(RegularWrapper("#\\d+$"));
         track = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
+    }
+    else
+    {
+        if(ignoredFiles)
+            ignoredFiles->push_back(path);
     }
 
     TrackInfo *info = new TrackInfo(filePath);

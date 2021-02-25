@@ -12,41 +12,30 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #include "kiss_fft_guts.h"
 /* The guts header contains all the multiplication and addition macros that are defined for
  fixed or floating point complex numbers.  It also delares the kf_ internal functions.
  */
 
-static void kf_bfly2(
-        kiss_fft_cpx * Fout,
-        const size_t fstride,
-        const kiss_fft_cfg st,
-        int m
-        )
+static void kf_bfly2(kiss_fft_cpx * fout, const size_t fstride, const kiss_fft_cfg st, int m)
 {
-    kiss_fft_cpx * Fout2;
+    kiss_fft_cpx * fout2;
     kiss_fft_cpx * tw1 = st->twiddles;
     kiss_fft_cpx t;
-    Fout2 = Fout + m;
+    fout2 = fout + m;
     do{
-        C_FIXDIV(*Fout,2); C_FIXDIV(*Fout2,2);
+        C_FIXDIV(*fout,2); C_FIXDIV(*fout2,2);
 
-        C_MUL (t,  *Fout2 , *tw1);
+        C_MUL (t,  *fout2 , *tw1);
         tw1 += fstride;
-        C_SUB( *Fout2 ,  *Fout , t );
-        C_ADDTO( *Fout ,  t );
-        ++Fout2;
-        ++Fout;
+        C_SUB( *fout2 ,  *fout , t );
+        C_ADDTO( *fout ,  t );
+        ++fout2;
+        ++fout;
     }while(--m);
 }
 
-static void kf_bfly4(
-        kiss_fft_cpx * Fout,
-        const size_t fstride,
-        const kiss_fft_cfg st,
-        const size_t m
-        )
+static void kf_bfly4(kiss_fft_cpx * fout, const size_t fstride, const kiss_fft_cfg st, const size_t m)
 {
     kiss_fft_cpx *tw1,*tw2,*tw3;
     kiss_fft_cpx scratch[6];
@@ -54,47 +43,41 @@ static void kf_bfly4(
     const size_t m2=2*m;
     const size_t m3=3*m;
 
-
     tw3 = tw2 = tw1 = st->twiddles;
 
     do {
-        C_FIXDIV(*Fout,4); C_FIXDIV(Fout[m],4); C_FIXDIV(Fout[m2],4); C_FIXDIV(Fout[m3],4);
+        C_FIXDIV(*fout,4); C_FIXDIV(fout[m],4); C_FIXDIV(fout[m2],4); C_FIXDIV(fout[m3],4);
 
-        C_MUL(scratch[0],Fout[m] , *tw1 );
-        C_MUL(scratch[1],Fout[m2] , *tw2 );
-        C_MUL(scratch[2],Fout[m3] , *tw3 );
+        C_MUL(scratch[0],fout[m] , *tw1 );
+        C_MUL(scratch[1],fout[m2] , *tw2 );
+        C_MUL(scratch[2],fout[m3] , *tw3 );
 
-        C_SUB( scratch[5] , *Fout, scratch[1] );
-        C_ADDTO(*Fout, scratch[1]);
+        C_SUB( scratch[5] , *fout, scratch[1] );
+        C_ADDTO(*fout, scratch[1]);
         C_ADD( scratch[3] , scratch[0] , scratch[2] );
         C_SUB( scratch[4] , scratch[0] , scratch[2] );
-        C_SUB( Fout[m2], *Fout, scratch[3] );
+        C_SUB( fout[m2], *fout, scratch[3] );
         tw1 += fstride;
         tw2 += fstride*2;
         tw3 += fstride*3;
-        C_ADDTO( *Fout , scratch[3] );
+        C_ADDTO( *fout , scratch[3] );
 
         if(st->inverse) {
-            Fout[m].r = scratch[5].r - scratch[4].i;
-            Fout[m].i = scratch[5].i + scratch[4].r;
-            Fout[m3].r = scratch[5].r + scratch[4].i;
-            Fout[m3].i = scratch[5].i - scratch[4].r;
+            fout[m].r = scratch[5].r - scratch[4].i;
+            fout[m].i = scratch[5].i + scratch[4].r;
+            fout[m3].r = scratch[5].r + scratch[4].i;
+            fout[m3].i = scratch[5].i - scratch[4].r;
         }else{
-            Fout[m].r = scratch[5].r + scratch[4].i;
-            Fout[m].i = scratch[5].i - scratch[4].r;
-            Fout[m3].r = scratch[5].r - scratch[4].i;
-            Fout[m3].i = scratch[5].i + scratch[4].r;
+            fout[m].r = scratch[5].r + scratch[4].i;
+            fout[m].i = scratch[5].i - scratch[4].r;
+            fout[m3].r = scratch[5].r - scratch[4].i;
+            fout[m3].i = scratch[5].i + scratch[4].r;
         }
-        ++Fout;
+        ++fout;
     }while(--k);
 }
 
-static void kf_bfly3(
-         kiss_fft_cpx * Fout,
-         const size_t fstride,
-         const kiss_fft_cfg st,
-         size_t m
-         )
+static void kf_bfly3(kiss_fft_cpx * fout, const size_t fstride, const kiss_fft_cfg st, size_t m)
 {
      size_t k=m;
      const size_t m2 = 2*m;
@@ -106,41 +89,36 @@ static void kf_bfly3(
      tw1=tw2=st->twiddles;
 
      do{
-         C_FIXDIV(*Fout,3); C_FIXDIV(Fout[m],3); C_FIXDIV(Fout[m2],3);
+         C_FIXDIV(*fout,3); C_FIXDIV(fout[m],3); C_FIXDIV(fout[m2],3);
 
-         C_MUL(scratch[1],Fout[m] , *tw1);
-         C_MUL(scratch[2],Fout[m2] , *tw2);
+         C_MUL(scratch[1],fout[m] , *tw1);
+         C_MUL(scratch[2],fout[m2] , *tw2);
 
          C_ADD(scratch[3],scratch[1],scratch[2]);
          C_SUB(scratch[0],scratch[1],scratch[2]);
          tw1 += fstride;
          tw2 += fstride*2;
 
-         Fout[m].r = Fout->r - HALF_OF(scratch[3].r);
-         Fout[m].i = Fout->i - HALF_OF(scratch[3].i);
+         fout[m].r = fout->r - HALF_OF(scratch[3].r);
+         fout[m].i = fout->i - HALF_OF(scratch[3].i);
 
          C_MULBYSCALAR( scratch[0] , epi3.i );
 
-         C_ADDTO(*Fout,scratch[3]);
+         C_ADDTO(*fout,scratch[3]);
 
-         Fout[m2].r = Fout[m].r + scratch[0].i;
-         Fout[m2].i = Fout[m].i - scratch[0].r;
+         fout[m2].r = fout[m].r + scratch[0].i;
+         fout[m2].i = fout[m].i - scratch[0].r;
 
-         Fout[m].r -= scratch[0].i;
-         Fout[m].i += scratch[0].r;
+         fout[m].r -= scratch[0].i;
+         fout[m].i += scratch[0].r;
 
-         ++Fout;
+         ++fout;
      }while(--k);
 }
 
-static void kf_bfly5(
-        kiss_fft_cpx * Fout,
-        const size_t fstride,
-        const kiss_fft_cfg st,
-        int m
-        )
+static void kf_bfly5(kiss_fft_cpx * fout, const size_t fstride, const kiss_fft_cfg st, int m)
 {
-    kiss_fft_cpx *Fout0,*Fout1,*Fout2,*Fout3,*Fout4;
+    kiss_fft_cpx *fout0,*fout1,*fout2,*fout3,*fout4;
     int u;
     kiss_fft_cpx scratch[13];
     kiss_fft_cpx * twiddles = st->twiddles;
@@ -149,29 +127,29 @@ static void kf_bfly5(
     ya = twiddles[fstride*m];
     yb = twiddles[fstride*2*m];
 
-    Fout0=Fout;
-    Fout1=Fout0+m;
-    Fout2=Fout0+2*m;
-    Fout3=Fout0+3*m;
-    Fout4=Fout0+4*m;
+    fout0=fout;
+    fout1=fout0+m;
+    fout2=fout0+2*m;
+    fout3=fout0+3*m;
+    fout4=fout0+4*m;
 
     tw=st->twiddles;
     for( u=0; u<m; ++u ) {
-        C_FIXDIV( *Fout0,5); C_FIXDIV( *Fout1,5); C_FIXDIV( *Fout2,5); C_FIXDIV( *Fout3,5); C_FIXDIV( *Fout4,5);
-        scratch[0] = *Fout0;
+        C_FIXDIV( *fout0,5); C_FIXDIV( *fout1,5); C_FIXDIV( *fout2,5); C_FIXDIV( *fout3,5); C_FIXDIV( *fout4,5);
+        scratch[0] = *fout0;
 
-        C_MUL(scratch[1] ,*Fout1, tw[u*fstride]);
-        C_MUL(scratch[2] ,*Fout2, tw[2*u*fstride]);
-        C_MUL(scratch[3] ,*Fout3, tw[3*u*fstride]);
-        C_MUL(scratch[4] ,*Fout4, tw[4*u*fstride]);
+        C_MUL(scratch[1] ,*fout1, tw[u*fstride]);
+        C_MUL(scratch[2] ,*fout2, tw[2*u*fstride]);
+        C_MUL(scratch[3] ,*fout3, tw[3*u*fstride]);
+        C_MUL(scratch[4] ,*fout4, tw[4*u*fstride]);
 
         C_ADD( scratch[7],scratch[1],scratch[4]);
         C_SUB( scratch[10],scratch[1],scratch[4]);
         C_ADD( scratch[8],scratch[2],scratch[3]);
         C_SUB( scratch[9],scratch[2],scratch[3]);
 
-        Fout0->r += scratch[7].r + scratch[8].r;
-        Fout0->i += scratch[7].i + scratch[8].i;
+        fout0->r += scratch[7].r + scratch[8].r;
+        fout0->i += scratch[7].i + scratch[8].i;
 
         scratch[5].r = scratch[0].r + S_MUL(scratch[7].r,ya.r) + S_MUL(scratch[8].r,yb.r);
         scratch[5].i = scratch[0].i + S_MUL(scratch[7].i,ya.r) + S_MUL(scratch[8].i,yb.r);
@@ -179,29 +157,23 @@ static void kf_bfly5(
         scratch[6].r =  S_MUL(scratch[10].i,ya.i) + S_MUL(scratch[9].i,yb.i);
         scratch[6].i = -S_MUL(scratch[10].r,ya.i) - S_MUL(scratch[9].r,yb.i);
 
-        C_SUB(*Fout1,scratch[5],scratch[6]);
-        C_ADD(*Fout4,scratch[5],scratch[6]);
+        C_SUB(*fout1,scratch[5],scratch[6]);
+        C_ADD(*fout4,scratch[5],scratch[6]);
 
         scratch[11].r = scratch[0].r + S_MUL(scratch[7].r,yb.r) + S_MUL(scratch[8].r,ya.r);
         scratch[11].i = scratch[0].i + S_MUL(scratch[7].i,yb.r) + S_MUL(scratch[8].i,ya.r);
         scratch[12].r = - S_MUL(scratch[10].i,yb.i) + S_MUL(scratch[9].i,ya.i);
         scratch[12].i = S_MUL(scratch[10].r,yb.i) - S_MUL(scratch[9].r,ya.i);
 
-        C_ADD(*Fout2,scratch[11],scratch[12]);
-        C_SUB(*Fout3,scratch[11],scratch[12]);
+        C_ADD(*fout2,scratch[11],scratch[12]);
+        C_SUB(*fout3,scratch[11],scratch[12]);
 
-        ++Fout0;++Fout1;++Fout2;++Fout3;++Fout4;
+        ++fout0;++fout1;++fout2;++fout3;++fout4;
     }
 }
 
 /* perform the butterfly for one stage of a mixed radix FFT */
-static void kf_bfly_generic(
-        kiss_fft_cpx * Fout,
-        const size_t fstride,
-        const kiss_fft_cfg st,
-        int m,
-        int p
-        )
+static void kf_bfly_generic(kiss_fft_cpx * fout, const size_t fstride, const kiss_fft_cfg st, int m, int p)
 {
     int u,k,q1,q;
     kiss_fft_cpx * twiddles = st->twiddles;
@@ -213,7 +185,7 @@ static void kf_bfly_generic(
     for( u=0; u<m; ++u ) {
         k=u;
         for( q1=0 ; q1<p ; ++q1 ) {
-            scratch[q1] = Fout[ k  ];
+            scratch[q1] = fout[ k  ];
             C_FIXDIV(scratch[q1],p);
             k += m;
         }
@@ -221,12 +193,12 @@ static void kf_bfly_generic(
         k=u;
         for( q1=0 ; q1<p ; ++q1 ) {
             int twidx=0;
-            Fout[ k ] = scratch[0];
+            fout[ k ] = scratch[0];
             for(q=1;q<p;++q ) {
                 twidx += fstride * k;
                 if(twidx>=Norig) twidx-=Norig;
                 C_MUL(t,scratch[q] , twiddles[twidx] );
-                C_ADDTO( Fout[ k ] ,t);
+                C_ADDTO( fout[ k ] ,t);
             }
             k += m;
         }
@@ -234,20 +206,12 @@ static void kf_bfly_generic(
     KISS_FFT_TMP_FREE(scratch);
 }
 
-static
-void kf_work(
-        kiss_fft_cpx * Fout,
-        const kiss_fft_cpx * f,
-        const size_t fstride,
-        int in_stride,
-        int * factors,
-        const kiss_fft_cfg st
-        )
+static void kf_work(kiss_fft_cpx * fout, const kiss_fft_cpx * f, const size_t fstride, int in_stride, int * factors, const kiss_fft_cfg st)
 {
-    kiss_fft_cpx * Fout_beg=Fout;
+    kiss_fft_cpx * fout_beg=fout;
     const int p=*factors++; /* the radix  */
     const int m=*factors++; /* stage's fft length/p */
-    const kiss_fft_cpx * Fout_end = Fout + p*m;
+    const kiss_fft_cpx * fout_end = fout + p*m;
 
 #ifdef _OPENMP
     // use openmp extensions at the 
@@ -259,15 +223,15 @@ void kf_work(
         // execute the p different work units in different threads
 #       pragma omp parallel for
         for(k=0;k<p;++k)
-            kf_work( Fout +k*m, f+ fstride*in_stride*k,fstride*p,in_stride,factors,st);
+            kf_work( fout +k*m, f+ fstride*in_stride*k,fstride*p,in_stride,factors,st);
         // all threads have joined by this point
 
         switch(p) {
-            case 2: kf_bfly2(Fout,fstride,st,m); break;
-            case 3: kf_bfly3(Fout,fstride,st,m); break; 
-            case 4: kf_bfly4(Fout,fstride,st,m); break;
-            case 5: kf_bfly5(Fout,fstride,st,m); break; 
-            default: kf_bfly_generic(Fout,fstride,st,m,p); break;
+            case 2: kf_bfly2(fout,fstride,st,m); break;
+            case 3: kf_bfly3(fout,fstride,st,m); break;
+            case 4: kf_bfly4(fout,fstride,st,m); break;
+            case 5: kf_bfly5(fout,fstride,st,m); break;
+            default: kf_bfly_generic(fout,fstride,st,m,p); break;
         }
         return;
     }
@@ -275,29 +239,29 @@ void kf_work(
 
     if(m==1) {
         do{
-            *Fout = *f;
+            *fout = *f;
             f += fstride*in_stride;
-        }while(++Fout != Fout_end );
+        }while(++fout != fout_end );
     }else{
         do{
             // recursive call:
             // DFT of size m*p performed by doing
             // p instances of smaller DFTs of size m, 
             // each one takes a decimated version of the input
-            kf_work( Fout , f, fstride*p, in_stride, factors,st);
+            kf_work( fout , f, fstride*p, in_stride, factors,st);
             f += fstride*in_stride;
-        }while( (Fout += m) != Fout_end );
+        }while( (fout += m) != fout_end );
     }
 
-    Fout=Fout_beg;
+    fout=fout_beg;
 
     // recombine the p smaller DFTs 
     switch(p) {
-        case 2: kf_bfly2(Fout,fstride,st,m); break;
-        case 3: kf_bfly3(Fout,fstride,st,m); break; 
-        case 4: kf_bfly4(Fout,fstride,st,m); break;
-        case 5: kf_bfly5(Fout,fstride,st,m); break; 
-        default: kf_bfly_generic(Fout,fstride,st,m,p); break;
+        case 2: kf_bfly2(fout,fstride,st,m); break;
+        case 3: kf_bfly3(fout,fstride,st,m); break;
+        case 4: kf_bfly4(fout,fstride,st,m); break;
+        case 5: kf_bfly5(fout,fstride,st,m); break;
+        default: kf_bfly_generic(fout,fstride,st,m,p); break;
     }
 }
 
@@ -305,8 +269,7 @@ void kf_work(
     where 
     p[i] * m[i] = m[i-1]
     m0 = n                  */
-static 
-void kf_factor(int n,int * facbuf)
+static void kf_factor(int n,int * facbuf)
 {
     int p=4;
     double floor_sqrt;
@@ -336,7 +299,7 @@ void kf_factor(int n,int * facbuf)
  * The return value is a contiguous block of memory, allocated with malloc.  As such,
  * It can be freed with free(), rather than a kiss_fft-specific function.
  * */
-kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem )
+kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem)
 {
     kiss_fft_cfg st=NULL;
     size_t memneeded = sizeof(struct kiss_fft_state)
@@ -368,7 +331,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
 }
 
 
-void kiss_fft_stride(kiss_fft_cfg st,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,int in_stride)
+void kiss_fft_stride(kiss_fft_cfg st,const kiss_fft_cpx *fin,kiss_fft_cpx *fout, int in_stride)
 {
     if(fin == fout) {
         //NOTE: this is not really an in-place FFT algorithm.

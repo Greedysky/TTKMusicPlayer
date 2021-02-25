@@ -42,8 +42,6 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *input)
 
 QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    Q_UNUSED(ignoredFiles);
-
     int track = -1; //cue track
     QString filePath = path;
 
@@ -53,6 +51,11 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
         filePath.remove(RegularWrapper("#\\d+$"));
         track = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
+    }
+    else
+    {
+        if(ignoredFiles)
+            ignoredFiles->push_back(path);
     }
 
     TrackInfo *info = new TrackInfo(filePath);

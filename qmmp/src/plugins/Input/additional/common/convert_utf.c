@@ -64,7 +64,7 @@ static const UTF32 halfMask = 0x3FFUL;
 #define UNI_SUR_LOW_START   (UTF32)0xDC00
 #define UNI_SUR_LOW_END     (UTF32)0xDFFF
 #define false      0
-#define true        1
+#define true       1
 
 /* --------------------------------------------------------------------- */
 
@@ -91,8 +91,7 @@ static const char trailingBytesForUTF8[256] = {
  * This table contains as many values as there might be trailing bytes
  * in a UTF-8 sequence.
  */
-static const UTF32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL, 
-                     0x03C82080UL, 0xFA082080UL, 0x82082080UL };
+static const UTF32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL, 0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 
 /*
  * Once the bits are split out into bytes of UTF-8, this is a mask OR-ed
@@ -116,9 +115,8 @@ static const UTF8 firstByteMark[7] = { 0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC 
 
 /* --------------------------------------------------------------------- */
 
-ConversionResult ConvertUTF32toUTF16(
-        const UTF32** sourceStart, const UTF32* sourceEnd, 
-        UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags) {
+ConversionResult ConvertUTF32toUTF16(const UTF32** sourceStart, const UTF32* sourceEnd, UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags)
+{
     ConversionResult result = conversionOK;
     const UTF32* source = *sourceStart;
     UTF16* target = *targetStart;
@@ -165,9 +163,8 @@ ConversionResult ConvertUTF32toUTF16(
 
 /* --------------------------------------------------------------------- */
 
-ConversionResult ConvertUTF16toUTF32 (
-        const UTF16** sourceStart, const UTF16* sourceEnd, 
-        UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags) {
+ConversionResult ConvertUTF16toUTF32(const UTF16** sourceStart, const UTF16* sourceEnd, UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags)
+{
     ConversionResult result = conversionOK;
     const UTF16* source = *sourceStart;
     UTF32* target = *targetStart;
@@ -219,9 +216,9 @@ if(result == sourceIllegal) {
 #endif
     return result;
 }
-ConversionResult ConvertUTF16toUTF8 (
-        const UTF16** sourceStart, const UTF16* sourceEnd, 
-        UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags) {
+
+ConversionResult ConvertUTF16toUTF8(const UTF16** sourceStart, const UTF16* sourceEnd, UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags)
+{
     ConversionResult result = conversionOK;
     const UTF16* source = *sourceStart;
     UTF8* target = *targetStart;
@@ -289,9 +286,8 @@ ConversionResult ConvertUTF16toUTF8 (
 
 /* --------------------------------------------------------------------- */
 
-ConversionResult ConvertUTF32toUTF8 (
-        const UTF32** sourceStart, const UTF32* sourceEnd, 
-        UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags) {
+ConversionResult ConvertUTF32toUTF8(const UTF32** sourceStart, const UTF32* sourceEnd, UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags)
+{
     ConversionResult result = conversionOK;
     const UTF32* source = *sourceStart;
     UTF8* target = *targetStart;
@@ -353,7 +349,8 @@ ConversionResult ConvertUTF32toUTF8 (
  * definition of UTF-8 goes up to 4-byte sequences.
  */
 
-static Boolean isLegalUTF8(const UTF8 *source, int length) {
+static Boolean isLegalUTF8(const UTF8 *source, int length)
+{
     UTF8 a;
     const UTF8 *srcptr = source+length;
     switch(length) {
@@ -384,7 +381,8 @@ static Boolean isLegalUTF8(const UTF8 *source, int length) {
  * Exported function to return whether a UTF-8 sequence is legal or not.
  * This is not used here; it's just exported.
  */
-Boolean isLegalUTF8Sequence(const UTF8 *source, const UTF8 *sourceEnd) {
+Boolean isLegalUTF8Sequence(const UTF8 *source, const UTF8 *sourceEnd)
+{
     int length = trailingBytesForUTF8[*source]+1;
     if(length > sourceEnd - source) {
         return false;
@@ -398,7 +396,8 @@ Boolean isLegalUTF8Sequence(const UTF8 *source, const UTF8 *sourceEnd) {
  * Exported function to return the total number of bytes in a codepoint
  * represented in UTF-8, given the value of the first byte.
  */
-unsigned getNumBytesForUTF8(UTF8 first) {
+unsigned getNumBytesForUTF8(UTF8 first)
+{
   return trailingBytesForUTF8[first] + 1;
 }
 
@@ -424,7 +423,8 @@ int getUTF8StringLength(const UTF8* utf8)
  * Exported function to return whether a UTF-8 string is legal or not.
  * This is not used here; it's just exported.
  */
-Boolean isLegalUTF8String(const UTF8 **source, const UTF8 *sourceEnd) {
+Boolean isLegalUTF8String(const UTF8 **source, const UTF8 *sourceEnd)
+{
     while(*source != sourceEnd) {
         int length = trailingBytesForUTF8[**source] + 1;
         if(length > sourceEnd - *source || !isLegalUTF8(*source, length))
@@ -436,9 +436,8 @@ Boolean isLegalUTF8String(const UTF8 **source, const UTF8 *sourceEnd) {
 
 /* --------------------------------------------------------------------- */
 
-ConversionResult ConvertUTF8toUTF16 (
-        const UTF8** sourceStart, const UTF8* sourceEnd, 
-        UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags) {
+ConversionResult ConvertUTF8toUTF16(const UTF8** sourceStart, const UTF8* sourceEnd, UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags)
+{
     ConversionResult result = conversionOK;
     const UTF8* source = *sourceStart;
     UTF16* target = *targetStart;
@@ -509,9 +508,8 @@ ConversionResult ConvertUTF8toUTF16 (
 
 /* --------------------------------------------------------------------- */
 
-ConversionResult ConvertUTF8toUTF32 (
-        const UTF8** sourceStart, const UTF8* sourceEnd, 
-        UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags) {
+ConversionResult ConvertUTF8toUTF32(const UTF8** sourceStart, const UTF8* sourceEnd, UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags)
+{
     ConversionResult result = conversionOK;
     const UTF8* source = *sourceStart;
     UTF32* target = *targetStart;

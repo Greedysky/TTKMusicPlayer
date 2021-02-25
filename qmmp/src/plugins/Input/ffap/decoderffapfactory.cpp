@@ -33,7 +33,7 @@ Decoder *DecoderFFapFactory::create(const QString &path, QIODevice *input)
         return new DecoderFFap(path, input);
 }
 
-QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
     int track = -1; //cue track
     QString filePath = path;
@@ -44,6 +44,11 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
         filePath.remove(RegularWrapper("#\\d+$"));
         track = path.section("#", -1).toInt();
         parts = TrackInfo::AllParts; //extract all metadata for single cue track
+    }
+    else
+    {
+        if(ignoredFiles)
+            ignoredFiles->push_back(path);
     }
 
     TrackInfo *info = new TrackInfo(filePath);
