@@ -8,8 +8,8 @@ IDI_ICON1                ICON     DISCARDABLE     "../TTKResource/lb_app_logo.ic
 IDI_ICON2                ICON     DISCARDABLE     "../TTKResource/fileIcon/fileIcon.ico"
 
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION 2,13,4,0
-    PRODUCTVERSION 2,13,4,0
+    FILEVERSION 2,14,0,0
+    PRODUCTVERSION 2,14,0,0
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -28,12 +28,12 @@ BEGIN
             BEGIN
                 VALUE "CompanyName", "Greedysky Studio, Ltd."
                 VALUE "FileDescription", "天天酷音"
-                VALUE "FileVersion", "2.13.4.0"
+                VALUE "FileVersion", "2.14.0.0"
                 VALUE "InternalName", "天天酷音.exe"
                 VALUE "LegalCopyright", "Copyright By Greedysky Studio(C)2021"
                 VALUE "OriginalFilename", "天天酷音.exe"
                 VALUE "ProductName", "天天酷音"
-                VALUE "ProductVersion", "2.13.4.0"
+                VALUE "ProductVersion", "2.14.0.0"
             END
     END
     BLOCK "VarFileInfo"
