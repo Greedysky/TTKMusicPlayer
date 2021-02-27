@@ -33,7 +33,7 @@ DEFINES += QMMP_LIBRARY
 
 #Version
 
-TTKMusicPlayer = 2.13.4.0
+TTKMusicPlayer = 2.14.0.0
 QMMP_VERSION = 1.4.4
 CONFIG += USE_STATIC_LIBRARY
 
