@@ -568,10 +568,6 @@ namespace MusicUIObject
             QProgressBar{ border:none; background:rgb(210, 225, 240); text-align:center; } \
             QProgressBar::chunk{ background:rgb(60, 140, 220); }";
 
-    const QString MQSSProgressBar02 = " \
-            QProgressBar{ border:2px solid grey; border-radius: 5px; } \
-            QProgressBar::chunk{ background-color: #05B8CC; }";
-
 
 ///ItemView
     const QString MQSSItemView01 = " \

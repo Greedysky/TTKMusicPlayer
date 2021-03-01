@@ -367,7 +367,7 @@ void MusicConfigManager::writeSysConfigData()
 
     //
     writeDomElement(otherSettingDom, "otherBackgroundLossless", MusicXmlAttribute("value", otherBackgroundLossless));
-    writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherCheckUpdate));
+    writeDomElement(otherSettingDom, "otherCheckUpdate", MusicXmlAttribute("value", otherCheckUpdate));
     writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearch));
     writeDomElement(otherSettingDom, "otherUseAlbumCover", MusicXmlAttribute("value", otherUseAlbumCover));
     writeDomElement(otherSettingDom, "otherUseInfo", MusicXmlAttribute("value", otherUseInfo));

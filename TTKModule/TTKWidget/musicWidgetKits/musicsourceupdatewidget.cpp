@@ -108,14 +108,16 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+
+    m_ui->downProgressBar->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     m_ui->upgradeButton->setEnabled(false);
 #ifdef Q_OS_UNIX
     m_ui->upgradeButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_ui->upgradeFailedLabel, SIGNAL(clicked()), SLOT(upgradeFailedClicked()));
     connect(m_ui->upgradeButton, SIGNAL(clicked()), SLOT(upgradeButtonClicked()));
+    connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 }
 
 MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
@@ -146,11 +148,6 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 #endif
 }
 
-void MusicSourceUpdateWidget::upgradeFailedClicked()
-{
-    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(CSDN_URL, false), false);
-}
-
 void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
 {
     const QVariantMap &value = data.toMap();
@@ -163,14 +160,16 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
         text.append("\r\n");
         text.append(value["data"].toString());
         m_ui->upgradeButton->setEnabled(true);
-        m_ui->titleLable_F->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
+        m_ui->titleLable->move(50, 0);
+        m_ui->titleLable->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     }
     else
     {
         text.append(tr("Current version is updated!"));
-        m_ui->titleLable_F->setAlignment(Qt::AlignCenter);
+        m_ui->titleLable->move(0, 0);
+        m_ui->titleLable->setAlignment(Qt::AlignCenter);
     }
-    m_ui->titleLable_F->setText(text);
+    m_ui->titleLable->setText(text);
 }
 
 void MusicSourceUpdateWidget::downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft)
@@ -183,7 +182,6 @@ void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QStri
 {
     m_ui->fileSizeLabel->setText(tr("FileSize: %1").arg(total));
     m_ui->downProgressBar->setValue(percent);
-    m_ui->downProgressBarAL->setValue(percent);
 }
 
 void MusicSourceUpdateWidget::downloadProgressFinished()
@@ -201,8 +199,6 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
 
 int MusicSourceUpdateWidget::exec()
 {
-    setBackgroundPixmap(m_ui->background, size());
-
     start();
 
     return MusicAbstractMoveDialog::exec();

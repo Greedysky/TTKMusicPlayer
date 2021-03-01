@@ -22,7 +22,6 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstractmovewidget.h"
 
-#define CSDN_URL        "S1Nqc1N0ZmI3c3pHeWE2Z1BhMTE4WlFVMjNBVG5qRjZkZ0tVRmV2L0VJeVF0bUlTOGE1Zmp3Z0xpZWRpM25lOA=="
 #define REPORT_URL      "V0pTNkY2K1pRdVdzVDBrWFZGWnJiWHhVcHNTd2xlSE1FZUlQbytlN0tDK3ZUSVRqQ1ViZTFxQlpCVkR4akVhSk44cnMrVDhzWU5jPQ=="
 
 namespace Ui {
@@ -91,10 +90,6 @@ public Q_SLOTS:
      * Upgrade button clicked.
      */
     void upgradeButtonClicked();
-    /*!
-     * Upgrade failed clicked.
-     */
-    void upgradeFailedClicked();
     /*!
      * Download data from kuwo net finished.
      */

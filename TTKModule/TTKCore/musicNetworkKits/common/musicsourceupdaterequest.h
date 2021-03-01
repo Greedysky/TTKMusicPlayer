@@ -46,13 +46,13 @@ public:
      */
     QString getVersion() const;
     /*!
-     * Is lasted version.
-     */
-    bool isLastedVersion() const;
-    /*!
      * Get lasted version description.
      */
     QString getVersionDescription() const;
+    /*!
+     * Is lasted version.
+     */
+    bool isLastedVersion() const;
 
 Q_SIGNALS:
     /*!

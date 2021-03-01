@@ -169,16 +169,6 @@ QLabel{background:transparent;}</string>
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QProgressBar {
-    border: 2px solid grey;
-    border-radius: 5px;
-}
-
-QProgressBar::chunk {
-    background-color: #05B8CC;
-}</string>
-      </property>
       <property name="value">
        <number>0</number>
       </property>
@@ -194,16 +184,6 @@ QProgressBar::chunk {
         <width>520</width>
         <height>20</height>
        </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QProgressBar {
-    border: 2px solid grey;
-    border-radius: 5px;
-}
-
-QProgressBar::chunk {
-    background-color: #05B8CC;
-}</string>
       </property>
       <property name="value">
        <number>0</number>

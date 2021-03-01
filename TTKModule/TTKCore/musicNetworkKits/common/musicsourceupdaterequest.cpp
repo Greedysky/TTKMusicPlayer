@@ -24,22 +24,22 @@ QString MusicSourceUpdateRequest::getVersion() const
     return m_rawData["version"].toString();
 }
 
+QString MusicSourceUpdateRequest::getVersionDescription() const
+{
+    return m_rawData["data"].toString();
+}
+
 bool MusicSourceUpdateRequest::isLastedVersion() const
 {
-    const QString &v = getVersion();
-    if(v.isEmpty())
+    const QString &version = getVersion();
+    if(version.isEmpty())
     {
         return true;
     }
     else
     {
-        return v == TTKMUSIC_VERSION_STR;
+        return TTKMUSIC_VERSION_STR == version;
     }
-}
-
-QString MusicSourceUpdateRequest::getVersionDescription() const
-{
-    return m_rawData["data"].toString();
 }
 
 void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &data)

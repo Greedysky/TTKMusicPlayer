@@ -99,6 +99,9 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     m_ui->volumeLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->volumeLineEdit->setValidator(new QRegExpValidator(QRegExp("-?[0-9]+$"), this));
 
+    m_ui->progressBar->setStyleSheet(MusicUIObject::MQSSProgressBar01);
+    m_ui->progressBarAll->setStyleSheet(MusicUIObject::MQSSProgressBar01);
+
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     m_replayGainWidget = nullptr;
