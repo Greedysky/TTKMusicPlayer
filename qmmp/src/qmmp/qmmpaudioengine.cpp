@@ -333,11 +333,11 @@ void QmmpAudioEngine::run()
         //seek
         if(m_seekTime >= 0)
         {
-            m_decoder->seek(m_seekTime);
-            m_seekTime = -1;
             m_output->recycler()->mutex()->lock();
             m_output->recycler()->clear();
             m_output->recycler()->mutex()->unlock();
+            m_decoder->seek(m_seekTime);
+            m_seekTime = -1;
             m_output_at = 0;
         }
         //metadata
