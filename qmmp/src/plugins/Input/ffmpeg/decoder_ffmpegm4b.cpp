@@ -131,7 +131,7 @@ qint64 DecoderFFmpegM4b::totalTime() const
 void DecoderFFmpegM4b::seek(qint64 pos)
 {
     m_decoder->seek(m_offset + pos);
-    m_written = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * pos/1000;
+    m_written = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * pos / 1000;
 }
 
 qint64 DecoderFFmpegM4b::read(unsigned char *data, qint64 size)
@@ -198,7 +198,7 @@ void DecoderFFmpegM4b::next()
         m_track++;
         m_duration = m_chapters[m_track - 1].duration;
         m_offset = m_chapters[m_track - 1].offset;
-        m_trackSize = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * m_duration/1000;
+        m_trackSize = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * m_duration / 1000;
 
         addMetaData(m_chapters[m_track - 1].info->metaData());
         setReplayGainInfo(m_decoder->replayGainInfo());

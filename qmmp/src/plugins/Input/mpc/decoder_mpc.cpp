@@ -138,5 +138,5 @@ qint64 DecoderMPC::read(unsigned char *audio, qint64 maxSize)
 
 void DecoderMPC::seek(qint64 pos)
 {
-    mpc_demux_seek_second(data()->demuxer, (double)pos/1000);
+    mpc_demux_seek_second(data()->demuxer, (double)pos / 1000);
 }

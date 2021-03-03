@@ -1,7 +1,6 @@
 #include <QDirIterator>
 #include <QSettings>
 #include <qmmp/decoder.h>
-#include <qmmp/charchecker.h>
 #include <qmmp/metadatamanager.h>
 #ifdef WITH_ENCA
 #include <enca.h>
@@ -33,37 +32,24 @@ CueFile::CueFile(const QString &path)
     m_dirty = settings.value("dirty_cue", false).toBool();
     QTextCodec *codec = nullptr;
 #ifdef WITH_ENCA
-    EncaAnalyser analyser = nullptr;
     if(settings.value("use_enca", false).toBool())
     {
-        analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray().constData());
-
+        EncaAnalyser analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray().constData());
         if(analyser)
         {
             enca_set_threshold(analyser, 1.38);
             EncaEncoding encoding = enca_analyse(analyser, (uchar *)data.constData(), data.size());
-            file.reset();
             if(encoding.charset != ENCA_CS_UNKNOWN)
             {
-                codec = QTextCodec::codecForName(enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));
-                //qDebug("CUEParser: detected charset: %s",
-                  //     enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));
+                codec = QTextCodec::codecForName(enca_charset_name(encoding.charset, ENCA_NAME_STYLE_ENCA));
+                //qDebug("CUEParser: detected charset: %s", enca_charset_name(encoding.charset,ENCA_NAME_STYLE_ENCA));
             }
             enca_analyser_free(analyser);
         }
     }
 #endif
     if(!codec)
-        switch(CharChecker().check(QString(data)))
-        {
-        case CharChecker::ASCII: codec = QTextCodec::codecForName("ASCII"); break;
-        case CharChecker::GB18030: codec = QTextCodec::codecForName("GB18030"); break;
-        case CharChecker::GBK: codec = QTextCodec::codecForName("GBK"); break;
-        case CharChecker::UTF8: codec = QTextCodec::codecForName("UTF-8"); break;
-        default: break;
-        }
-    if(!codec)
-        codec = QTextCodec::codecForName(settings.value("encoding","UTF-8").toByteArray());
+        codec = QTextCodec::codecForName(settings.value("encoding", "UTF-8").toByteArray());
     if(!codec)
         codec = QTextCodec::codecForName("UTF-8");
     settings.endGroup();

@@ -71,7 +71,7 @@ bool DecoderCUE::initialize()
     configure(m_decoder->audioParameters());
     setReplayGainInfo(m_cueFile->info(m_track)->replayGainInfo());
     length_in_bytes = audioParameters().sampleRate() *
-                      audioParameters().frameSize() * m_length/1000;
+                      audioParameters().frameSize() * m_length / 1000;
     m_totalBytes = 0;
 
     m_sz = audioParameters().frameSize();
@@ -89,7 +89,7 @@ void DecoderCUE::seek(qint64 pos)
 {
      m_decoder->seek(m_offset + pos);
      m_totalBytes = audioParameters().sampleRate() *
-                    audioParameters().frameSize() * pos/1000;
+                    audioParameters().frameSize() * pos / 1000;
 }
 
 qint64 DecoderCUE::read(unsigned char *data, qint64 size)
@@ -157,7 +157,7 @@ void DecoderCUE::next()
         m_length = m_cueFile->duration(m_track);
         m_offset = m_cueFile->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
-                          audioParameters().frameSize() * m_length/1000;
+                          audioParameters().frameSize() * m_length / 1000;
         addMetaData(m_cueFile->info(m_track)->metaData());
         setReplayGainInfo(m_cueFile->info(m_track)->replayGainInfo());
         m_totalBytes = 0;

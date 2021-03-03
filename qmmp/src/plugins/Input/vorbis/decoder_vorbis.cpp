@@ -264,7 +264,7 @@ ChannelMap DecoderVorbis::findChannelMap(int channels)
 
 void DecoderVorbis::seek(qint64 time)
 {
-    ov_time_seek(&oggfile, (double) time/1000);
+    ov_time_seek(&oggfile, (double) time / 1000);
 }
 
 qint64 DecoderVorbis::read(unsigned char *data, qint64 maxSize)

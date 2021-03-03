@@ -126,5 +126,5 @@ qint64 DecoderSndFile::read(unsigned char *audio, qint64 maxSize)
 
 void DecoderSndFile::seek(qint64 pos)
 {
-    sf_seek(m_sndfile, m_freq * pos/1000, SEEK_SET);
+    sf_seek(m_sndfile, m_freq * pos / 1000, SEEK_SET);
 }

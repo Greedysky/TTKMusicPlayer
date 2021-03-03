@@ -97,10 +97,10 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
                 (buf[7 + skip_size] & 0xE0);
 
         if(!input->isSequential())
-            m_duration = (qint64) (((float)input->size()*8000.f)/((float)m_bitrate) + 1.0f);
+            m_duration = (qint64) (((float)input->size() * 8000.f) / ((float)m_bitrate) + 1.0f);
         else
             m_duration = 0;
-        m_bitrate = (int)((float)m_bitrate/1000.0f + 1.0f);
+        m_bitrate = (int)((float)m_bitrate / 1000.0f + 1.0f);
         m_isValid = true;
     }
 }

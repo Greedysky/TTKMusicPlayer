@@ -109,7 +109,7 @@ void DecoderFFmpegCue::seek(qint64 pos)
     m_decoder->seek(m_offset + pos);
     m_written = audioParameters().sampleRate() *
             audioParameters().channels() *
-            audioParameters().sampleSize() * pos/1000;
+            audioParameters().sampleSize() * pos / 1000;
 }
 
 qint64 DecoderFFmpegCue::read(unsigned char *data, qint64 size)
@@ -178,7 +178,7 @@ void DecoderFFmpegCue::next()
         m_offset = m_parser->offset(m_track);
         m_trackSize = audioParameters().sampleRate() *
                 audioParameters().channels() *
-                audioParameters().sampleSize() * m_duration/1000;
+                audioParameters().sampleSize() * m_duration / 1000;
         addMetaData(m_parser->info(m_track)->metaData());
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         m_written = 0;

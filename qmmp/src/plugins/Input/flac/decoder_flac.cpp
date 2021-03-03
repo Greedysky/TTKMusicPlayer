@@ -421,7 +421,7 @@ bool DecoderFLAC::initialize()
         m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
-                          audioParameters().frameSize() * m_length/1000;
+                          audioParameters().frameSize() * m_length / 1000;
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         seek(0);
     }
@@ -448,7 +448,7 @@ void DecoderFLAC::seek(qint64 time)
 {
     m_totalBytes = audioParameters().sampleRate() *
                    audioParameters().channels() *
-                   audioParameters().sampleSize() * time/1000;
+                   audioParameters().sampleSize() * time / 1000;
     if(m_parser)
         time += m_offset;
     FLAC__uint64 target_sample = FLAC__uint64(time * m_data->total_samples / m_data->length);
@@ -537,7 +537,7 @@ void DecoderFLAC::next()
         m_length = m_parser->duration(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().channels() *
-                          audioParameters().sampleSize() * m_length/1000;
+                          audioParameters().sampleSize() * m_length / 1000;
         addMetaData(m_parser->info(m_track)->metaData());
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         m_totalBytes = 0;

@@ -115,7 +115,7 @@ bool DecoderWavPack::initialize()
         m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         m_length_in_bytes = audioParameters().sampleRate() *
-                          audioParameters().frameSize() * m_length/1000;
+                          audioParameters().frameSize() * m_length / 1000;
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         seek(0);
     }
@@ -128,7 +128,7 @@ bool DecoderWavPack::initialize()
 int DecoderWavPack::bitrate() const
 {
     if(m_context)
-        return int(WavpackGetInstantBitrate(m_context)/1000);
+        return int(WavpackGetInstantBitrate(m_context) / 1000);
     return 0;
 }
 
@@ -154,7 +154,7 @@ void DecoderWavPack::seek(qint64 time)
 {
     m_totalBytes = audioParameters().sampleRate() *
                    audioParameters().channels() *
-                   audioParameters().sampleSize() * time/1000;
+                   audioParameters().sampleSize() * time / 1000;
     if(m_parser)
         time += m_offset;
     WavpackSeekSample(m_context, time * audioParameters().sampleRate() / 1000);
@@ -193,7 +193,7 @@ void DecoderWavPack::next()
         m_length = m_parser->duration(m_track);
         m_length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().channels() *
-                          audioParameters().sampleSize() * m_length/1000;
+                          audioParameters().sampleSize() * m_length / 1000;
         addMetaData(m_parser->info(m_track)->metaData());
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         m_totalBytes = 0;
