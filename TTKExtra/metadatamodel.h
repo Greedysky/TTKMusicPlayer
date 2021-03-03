@@ -87,7 +87,8 @@ public:
     enum DialogHint
     {
         IsCoverEditable = 0x1,      /*!< Enable cover editor. */
-        CompletePropertyList = 0x2  /*!< Show properties from \b extraProperties() only (ignore other sources) */
+        CompletePropertyList = 0x2, /*!< Show properties from \b extraProperties() only (ignore other sources) */
+        IsCueEditable = 0x4
     };
     Q_DECLARE_FLAGS(DialogHints, DialogHint)
     /*!
@@ -136,7 +137,19 @@ public:
      */
     virtual QString coverPath() const;
     /*!
-     * Returns \b true if file is opened in read only mode. Otherwise returns \b false.
+     * Returns path to cover pixmap.
+     */
+    virtual QString cue() const;
+    /*!
+     * Returns data to cue.
+     */
+    virtual void setCue(const QString &content);
+    /*!
+     * Sets cue data.
+     */
+    virtual void removeCue();
+    /*!
+     * Remove cue data.
      */
     bool isReadOnly() const;
     /*!

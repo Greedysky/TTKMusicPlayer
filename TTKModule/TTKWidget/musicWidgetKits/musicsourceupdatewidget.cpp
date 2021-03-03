@@ -156,7 +156,7 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
     QString text;
     if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, m_newVersionStr))
     {
-        text.append(m_newVersionStr);
+        text.append("v" + m_newVersionStr);
         text.append("\r\n");
         text.append(value["data"].toString());
         m_ui->upgradeButton->setEnabled(true);

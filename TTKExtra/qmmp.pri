@@ -48,5 +48,4 @@ HEADERS += \
     $$PWD/regularwrapper.h \
     $$PWD/lightfactory.h \
     $$PWD/florid.h \
-    $$PWD/charchecker.h \
     $$PWD/qmmp_export.h 
