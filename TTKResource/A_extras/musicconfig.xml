@@ -83,7 +83,7 @@
         <enhancedLADSPA value="0"/>
         <enhancedSOX value="0"/>
         <enhancedSRC value="0"/>
-        <enhancedMonoStereo value="0"/>
+        <enhancedMonoToStereo value="0"/>
         <enhancedMono value="0"/>
     </equalizerSetting>
     <timeSetting>

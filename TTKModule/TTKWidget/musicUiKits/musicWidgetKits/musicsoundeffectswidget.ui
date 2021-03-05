@@ -179,7 +179,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="MonoStereoWidget" native="true">
+   <widget class="MusicSoundEffectsItemWidget" name="MonoToStereoWidget" native="true">
     <property name="geometry">
      <rect>
       <x>190</x>

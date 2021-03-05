@@ -154,8 +154,8 @@ void MusicConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("enhancedSOX").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC,
                      readXmlAttributeByTagNameValue("enhancedSRC").toInt());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoStereo,
-                     readXmlAttributeByTagNameValue("enhancedMonoStereo").toInt());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoToStereo,
+                     readXmlAttributeByTagNameValue("enhancedMonoToStereo").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono,
                      readXmlAttributeByTagNameValue("enhancedMono").toInt());
 
@@ -297,7 +297,7 @@ void MusicConfigManager::writeSysConfigData()
     const int enhancedLADSPA = G_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt();
     const int enhancedSOX = G_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt();
     const int enhancedSRC = G_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt();
-    const int enhancedMonoStereo = G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt();
+    const int enhancedMonoToStereo = G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt();
     const int enhancedMono = G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt();
 
     //
@@ -432,7 +432,7 @@ void MusicConfigManager::writeSysConfigData()
     writeDomElement(equalizerSettingDom, "enhancedLADSPA", MusicXmlAttribute("value", enhancedLADSPA));
     writeDomElement(equalizerSettingDom, "enhancedSOX", MusicXmlAttribute("value", enhancedSOX));
     writeDomElement(equalizerSettingDom, "enhancedSRC", MusicXmlAttribute("value", enhancedSRC));
-    writeDomElement(equalizerSettingDom, "enhancedMonoStereo", MusicXmlAttribute("value", enhancedMonoStereo));
+    writeDomElement(equalizerSettingDom, "enhancedMonoToStereo", MusicXmlAttribute("value", enhancedMonoToStereo));
     writeDomElement(equalizerSettingDom, "enhancedMono", MusicXmlAttribute("value", enhancedMono));
 
     //

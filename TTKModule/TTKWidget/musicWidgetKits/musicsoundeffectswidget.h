@@ -42,7 +42,7 @@ public:
         LADSPA,       /*!< sound LADSPA effect*/
         Soxr,         /*!< sound SoX Resampler effect*/
         SrcConverter, /*!< sound srconverter effect*/
-        MonoStereo,   /*!< sound mono stereo effect*/
+        MonoToStereo, /*!< sound mono to stereo effect*/
         Mono          /*!< sound mono effect*/
     };
 

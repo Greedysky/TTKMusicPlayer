@@ -412,9 +412,9 @@ void MusicApplicationObject::musicEffectChanged()
         MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::SrcConverter, true);
     }
 
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt() == 1)
+    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt() == 1)
     {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::MonoStereo, true);
+        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::MonoToStereo, true);
     }
 
     if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt() == 1)

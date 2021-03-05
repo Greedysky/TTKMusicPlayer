@@ -140,7 +140,7 @@ QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
         case LADSPA:       plugin = "ladspa"; break;
         case Soxr:         plugin = "soxr"; break;
         case SrcConverter: plugin = "srconverter"; break;
-        case MonoStereo:   plugin = "monotostereo"; break;
+        case MonoToStereo: plugin = "monotostereo"; break;
         case Mono:         plugin = "mono"; break;
         default:           plugin = "unknow"; break;
     }
@@ -193,8 +193,8 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->SRCWidget->setText("SrcConverter");
     m_ui->SRCWidget->setType(MusicSoundEffectsItemWidget::SrcConverter);
 
-    m_ui->MonoStereoWidget->setText("MonoStereo");
-    m_ui->MonoStereoWidget->setType(MusicSoundEffectsItemWidget::MonoStereo);
+    m_ui->MonoToStereoWidget->setText("MonoToStereo");
+    m_ui->MonoToStereoWidget->setType(MusicSoundEffectsItemWidget::MonoToStereo);
 
     m_ui->MonoWidget->setText("Mono");
     m_ui->MonoWidget->setType(MusicSoundEffectsItemWidget::Mono);
@@ -261,7 +261,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->StereoWidget->setPluginEnabled(true);
         m_ui->SOXWidget->setPluginEnabled(true);
         m_ui->SRCWidget->setPluginEnabled(true);
-        m_ui->MonoStereoWidget->setPluginEnabled(true);
+        m_ui->MonoToStereoWidget->setPluginEnabled(true);
         m_ui->MonoWidget->setPluginEnabled(true);
 #ifdef Q_OS_UNIX
         m_ui->LADSPAWidget->setPluginEnabled(true);
@@ -274,7 +274,7 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
         m_ui->StereoWidget->setPluginEnabled(false);
         m_ui->SOXWidget->setPluginEnabled(false);
         m_ui->SRCWidget->setPluginEnabled(false);
-        m_ui->MonoStereoWidget->setPluginEnabled(false);
+        m_ui->MonoToStereoWidget->setPluginEnabled(false);
         m_ui->MonoWidget->setPluginEnabled(false);
 #ifdef Q_OS_UNIX
         m_ui->LADSPAWidget->setPluginEnabled(false);
@@ -295,7 +295,7 @@ void MusicSoundEffectsWidget::readSoundEffect()
     m_ui->StereoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt());
     m_ui->SOXWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
     m_ui->SRCWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
-    m_ui->MonoStereoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoStereo).toInt());
+    m_ui->MonoToStereoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt());
     m_ui->MonoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt());
 #ifdef Q_OS_UNIX
     m_ui->LADSPAWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
@@ -309,7 +309,7 @@ void MusicSoundEffectsWidget::writeSoundEffect()
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereo, m_ui->StereoWidget->pluginEnabled());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_ui->SOXWidget->pluginEnabled());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_ui->SRCWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoStereo, m_ui->MonoStereoWidget->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoToStereo, m_ui->MonoToStereoWidget->pluginEnabled());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono, m_ui->MonoWidget->pluginEnabled());
 #ifdef Q_OS_UNIX
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_ui->LADSPAWidget->pluginEnabled());
