@@ -16,9 +16,6 @@
 #ifdef WITH_MAD
 #include "decoder_mad.h"
 #endif
-#ifdef WITH_MPG123
-#include "decoder_mpg123.h"
-#endif
 #include "decodermpegfactory.h"
 #include "settingsdialog.h"
 
@@ -75,73 +72,31 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
     if(dataSize <= 0)
         return false;
 
-    QString decoderName;
-#if defined(WITH_MAD) && defined(WITH_MPG123)
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    decoderName = settings.value("MPEG/decoder", "mad").toString();
-#elif defined(WITH_MAD)
-    decoderName = "mad";
-#elif defined(WITH_MPG123)
-    decoderName = "mpg123";
-#endif
+    struct mad_stream stream;
+    struct mad_header header;
+    struct mad_frame frame;
+    int dec_res;
 
-#ifdef WITH_MAD
-    if(decoderName != "mpg123")
+    mad_stream_init(&stream);
+    mad_header_init(&header);
+    mad_frame_init(&frame);
+    mad_stream_buffer(&stream, (unsigned char *) buf, dataSize);
+    stream.error = MAD_ERROR_NONE;
+
+    while((dec_res = mad_header_decode(&header, &stream)) == -1
+           && MAD_RECOVERABLE(stream.error))
+        ;
+
+    if(dec_res == 0)
     {
-        struct mad_stream stream;
-        struct mad_header header;
-        struct mad_frame frame;
-        int dec_res;
-
-        mad_stream_init(&stream);
-        mad_header_init(&header);
-        mad_frame_init(&frame);
-        mad_stream_buffer(&stream, (unsigned char *) buf, dataSize);
-        stream.error = MAD_ERROR_NONE;
-
-        while((dec_res = mad_header_decode(&header, &stream)) == -1
+        while((dec_res = mad_frame_decode(&frame, &stream)) == -1
                && MAD_RECOVERABLE(stream.error))
             ;
-
-        if(dec_res == 0)
-        {
-            while((dec_res = mad_frame_decode(&frame, &stream)) == -1
-                   && MAD_RECOVERABLE(stream.error))
-                ;
-        }
-
-        mad_stream_finish(&stream);
-        mad_frame_finish(&frame);
-        return dec_res == 0;
     }
-#endif
 
-#ifdef WITH_MPG123
-    if(decoderName == "mpg123")
-    {
-        mpg123_init();
-        mpg123_handle *handle = mpg123_new(nullptr, nullptr);
-        if(!handle)
-            return false;
-        if(mpg123_open_feed(handle) != MPG123_OK)
-        {
-            mpg123_delete(handle);
-            return false;
-        }
-        if(mpg123_format(handle, 44100, MPG123_STEREO, MPG123_ENC_SIGNED_16) != MPG123_OK)
-        {
-            mpg123_close(handle);
-            mpg123_delete(handle);
-            return false;
-        }
-        size_t out_size = 0;
-        int ret = mpg123_decode(handle, (unsigned char*) buf, dataSize, nullptr, 0, &out_size);
-        mpg123_close(handle);
-        mpg123_delete(handle);
-        return ret == MPG123_DONE || ret == MPG123_NEW_FORMAT;
-    }
-#endif
-    return false;
+    mad_stream_finish(&stream);
+    mad_frame_finish(&frame);
+    return dec_res == 0;
 }
 
 DecoderProperties DecoderMPEGFactory::properties() const
@@ -159,26 +114,9 @@ DecoderProperties DecoderMPEGFactory::properties() const
 Decoder *DecoderMPEGFactory::create(const QString &path, QIODevice *input)
 {
     Q_UNUSED(path);
-    Decoder *d = nullptr;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     bool crc = settings.value("MPEG/enable_crc", false).toBool();
-#if defined(WITH_MAD) && defined(WITH_MPG123)
-    if(settings.value("MPEG/decoder", "mad").toString() == "mpg123")
-    {
-        qDebug("DecoderMPEGFactory: using mpg123 decoder");
-        d = new DecoderMPG123(input);
-    }
-    else
-    {
-        qDebug("DecoderMPEGFactory: using MAD decoder");
-        d = new DecoderMAD(crc, input);
-    }
-#elif defined(WITH_MAD)
-    d = new DecoderMAD(crc, input);
-#elif defined(WITH_MPG123)
-    d = new DecoderMPG123(input);
-#endif
-    return d;
+    return new DecoderMAD(crc, input);
 }
 
 QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
@@ -361,6 +299,12 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
 MetaDataModel* DecoderMPEGFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
    return new MPEGMetaDataModel(m_using_rusxmms, path, readOnly);
+}
+
+void DecoderMPEGFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(m_using_rusxmms, parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

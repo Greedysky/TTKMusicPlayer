@@ -102,6 +102,11 @@ MetaDataModel *DecoderAdplugFactory::createMetaDataModel(const QString &path, bo
     return new AdplugMetaDataModel(path);
 }
 
+void DecoderAdplugFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(adplug, DecoderAdplugFactory)

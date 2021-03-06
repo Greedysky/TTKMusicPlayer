@@ -86,6 +86,11 @@ MetaDataModel *DecoderOptimFROGFactory::createMetaDataModel(const QString &path,
     return new OptimFROGMetaDataModel(path);
 }
 
+void DecoderOptimFROGFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(optimfrog, DecoderOptimFROGFactory)

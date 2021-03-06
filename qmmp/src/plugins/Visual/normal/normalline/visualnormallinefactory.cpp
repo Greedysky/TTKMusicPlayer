@@ -6,7 +6,6 @@ VisualProperties VisualNormalLineFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Normal Line Plugin");
     properties.shortName = "normalline";
-    properties.hasSettings = true;
     return properties;
 }
 

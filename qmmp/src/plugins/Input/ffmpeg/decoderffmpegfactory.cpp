@@ -144,7 +144,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/speech";
 
     properties.shortName = "ffmpeg";
-    properties.hasSettings = true;
     properties.protocols << "ffmpeg" << "m4b";
     properties.priority = 10;
     return properties;
@@ -303,11 +302,6 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
     return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
-{
-    return new FFmpegMetaDataModel(path, readOnly);
-}
-
 QList<TrackInfo *> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
 {
     QList<TrackInfo *> tracks;
@@ -331,6 +325,16 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatCont
     }
 
     return tracks;
+}
+
+MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bool readOnly)
+{
+    return new FFmpegMetaDataModel(path, readOnly);
+}
+
+void DecoderFFmpegFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
 }
 
 #ifndef QMMP_GREATER_NEW

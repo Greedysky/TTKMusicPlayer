@@ -4,6 +4,7 @@
 #include "decoder_sid.h"
 #include "sidhelper.h"
 #include "decodersidfactory.h"
+#include "settingsdialog.h"
 
 DecoderSIDFactory::DecoderSIDFactory()
 {
@@ -84,6 +85,12 @@ MetaDataModel* DecoderSIDFactory::createMetaDataModel(const QString &path, bool 
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
+}
+
+void DecoderSIDFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(&m_db, parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

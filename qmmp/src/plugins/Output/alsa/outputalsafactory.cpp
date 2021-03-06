@@ -1,5 +1,6 @@
 #include "outputalsa.h"
 #include "outputalsafactory.h"
+#include "settingsdialog.h"
 
 OutputProperties OutputALSAFactory::properties() const
 {
@@ -18,6 +19,12 @@ Output* OutputALSAFactory::create()
 Volume *OutputALSAFactory::createVolume()
 {
     return new VolumeALSA();
+}
+
+void OutputALSAFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

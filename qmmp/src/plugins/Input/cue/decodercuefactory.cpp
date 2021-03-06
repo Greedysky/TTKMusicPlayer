@@ -2,6 +2,7 @@
 #include "cuemetadatamodel.h"
 #include "cuefile.h"
 #include "decodercuefactory.h"
+#include "settingsdialog.h"
 
 bool DecoderCUEFactory::canDecode(QIODevice *) const
 {
@@ -47,6 +48,12 @@ QList<TrackInfo*> DecoderCUEFactory::createPlayList(const QString &path, TrackIn
 MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     return path.startsWith("cue://") ? new CUEMetaDataModel(readOnly, path) : nullptr;
+}
+
+void DecoderCUEFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

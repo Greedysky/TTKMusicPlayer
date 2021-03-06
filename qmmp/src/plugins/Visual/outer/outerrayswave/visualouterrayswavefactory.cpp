@@ -6,7 +6,6 @@ VisualProperties VisualOuterRaysWaveFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Outer RaysWave Plugin");
     properties.shortName = "outerrayswave";
-    properties.hasSettings = true;
     return properties;
 }
 

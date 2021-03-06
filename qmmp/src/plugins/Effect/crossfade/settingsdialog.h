@@ -37,7 +37,7 @@ public slots:
     virtual void accept() override;
 
 private:
-    Ui::SettingsDialog ui;
+    Ui::SettingsDialog m_ui;
 
 };
 

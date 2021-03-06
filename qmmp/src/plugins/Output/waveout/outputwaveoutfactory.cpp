@@ -5,7 +5,6 @@ OutputProperties OutputWaveOutFactory::properties() const
 {
     OutputProperties properties;
     properties.name = tr("WaveOut Plugin");
-    properties.hasSettings = false;
     properties.shortName = "waveout";
     return properties;
 }
@@ -25,6 +24,11 @@ Volume *OutputWaveOutFactory::createVolume()
         return nullptr;
     }
     return vol;
+}
+
+void OutputWaveOutFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
 }
 
 #ifndef QMMP_GREATER_NEW

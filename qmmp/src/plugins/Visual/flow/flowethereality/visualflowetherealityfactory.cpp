@@ -6,7 +6,6 @@ VisualProperties VisualFlowEtherealityFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Flow Ethereality Plugin");
     properties.shortName = "flowethereality";
-    properties.hasSettings = true;
     return properties;
 }
 

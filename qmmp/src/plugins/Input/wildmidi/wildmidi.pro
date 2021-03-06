@@ -2,11 +2,15 @@ include($$PWD/../../plugins.pri)
 
 HEADERS += decoderwildmidifactory.h \
            decoder_wildmidi.h \
-           wildmidihelper.h
+           wildmidihelper.h \
+           settingsdialog.h
     
 SOURCES += decoderwildmidifactory.cpp \
            decoder_wildmidi.cpp \
-           wildmidihelper.cpp
+           wildmidihelper.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

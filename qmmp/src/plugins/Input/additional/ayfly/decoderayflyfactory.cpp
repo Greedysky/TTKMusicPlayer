@@ -71,6 +71,11 @@ MetaDataModel* DecoderAyflyFactory::createMetaDataModel(const QString &path, boo
     return nullptr;
 }
 
+void DecoderAyflyFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(alfly, DecoderAyflyFactory)

@@ -72,6 +72,11 @@ MetaDataModel* DecoderAsapFactory::createMetaDataModel(const QString &path, bool
     return new AsapMetaDataModel(path);
 }
 
+void DecoderAsapFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(asap, DecoderAsapFactory)

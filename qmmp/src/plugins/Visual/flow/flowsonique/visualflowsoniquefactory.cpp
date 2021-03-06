@@ -6,7 +6,6 @@ VisualProperties VisualFlowSoniqueFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Flow Sonique Plugin");
     properties.shortName = "flowsonique";
-    properties.hasSettings = false;
     return properties;
 }
 

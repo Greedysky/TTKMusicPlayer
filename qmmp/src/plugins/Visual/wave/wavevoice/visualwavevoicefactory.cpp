@@ -6,7 +6,6 @@ VisualProperties VisualWaveVoiceFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Wave Voice Plugin");
     properties.shortName = "wavevoice";
-    properties.hasSettings = true;
     return properties;
 }
 

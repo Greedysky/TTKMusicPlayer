@@ -23,21 +23,11 @@ contains(CONFIG, WITH_MAD){
     DEFINES += WITH_MAD
 }
 
-unix:contains(CONFIG, WITH_MPG123){
-    HEADERS += decoder_mpg123.h
-    SOURCES += decoder_mpg123.cpp
-    DEFINES += WITH_MPG123
-}
-
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     contains(CONFIG, WITH_MAD):{
         LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
                 -L$$EXTRA_PREFIX/libmad/lib -lmad$$STATIC_LIBRARY_SUFFIX
-    }
-    contains(CONFIG, WITH_MPG123):{
-        LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
-                -L$$EXTRA_PREFIX/libmad/lib -lmpg123$$STATIC_LIBRARY_SUFFIX
     }
 }
 

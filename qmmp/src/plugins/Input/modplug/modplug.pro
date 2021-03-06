@@ -3,12 +3,16 @@ include($$PWD/../../plugins.pri)
 HEADERS += decodermodplugfactory.h \
            decoder_modplug.h \
            archivereader.h \
-           modplugmetadatamodel.h
+           modplugmetadatamodel.h \
+           settingsdialog.h
     
 SOURCES += decodermodplugfactory.cpp \
            decoder_modplug.cpp \
            archivereader.cpp \
-           modplugmetadatamodel.cpp
+           modplugmetadatamodel.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

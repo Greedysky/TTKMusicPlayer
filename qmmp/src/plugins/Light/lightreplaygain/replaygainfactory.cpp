@@ -6,7 +6,6 @@ const LightProperties LightReplaygGainFactory::properties() const
     LightProperties properties;
     properties.name = tr("Light ReplayGain Plugin");
     properties.shortName = "lightreplaygain";
-    properties.hasSettings = false;
     return properties;
 }
 

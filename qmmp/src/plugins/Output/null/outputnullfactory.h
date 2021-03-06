@@ -38,6 +38,7 @@ public:
     virtual OutputProperties properties() const override;
     virtual Output* create() override;
     virtual Volume *createVolume() override;
+    virtual void showSettings(QWidget *parent) override;
 
 };
 

@@ -6,7 +6,6 @@ VisualProperties VisualNormalEWaveFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Normal EWave Plugin");
     properties.shortName = "normalewave";
-    properties.hasSettings = true;
     return properties;
 }
 

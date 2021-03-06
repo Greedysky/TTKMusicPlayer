@@ -73,6 +73,11 @@ MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &path, bool 
     return nullptr;
 }
 
+void DecoderAACFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(aac, DecoderAACFactory)

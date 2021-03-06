@@ -7,6 +7,7 @@
 #include "decoder_modplug.h"
 #include "archivereader.h"
 #include "decodermodplugfactory.h"
+#include "settingsdialog.h"
 
 bool DecoderModPlugFactory::canDecode(QIODevice *) const
 {
@@ -75,10 +76,17 @@ QList<TrackInfo*> DecoderModPlugFactory::createPlayList(const QString &path, Tra
 
         if(parts & TrackInfo::Properties)
         {
+            QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+            settings.beginGroup("SID");
+            const int sample_rate = settings.value("Frequency", 44100).toInt();
+            const int bps = settings.value("Bits", 16).toInt();
+            const int chan = settings.value("Channels", 2).toInt();
+            settings.endGroup();
+
             info->setValue(Qmmp::BITRATE, soundFile->GetNumChannels());
-            info->setValue(Qmmp::SAMPLERATE, 44100);
-            info->setValue(Qmmp::CHANNELS, 2);
-            info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
+            info->setValue(Qmmp::SAMPLERATE, sample_rate);
+            info->setValue(Qmmp::CHANNELS, chan);
+            info->setValue(Qmmp::BITS_PER_SAMPLE, bps);
             info->setValue(Qmmp::FORMAT_NAME, ModPlugMetaDataModel::getTypeName(soundFile->GetType()));
             info->setDuration((qint64)soundFile->GetSongTime() * 1000);
         }
@@ -95,6 +103,12 @@ MetaDataModel* DecoderModPlugFactory::createMetaDataModel(const QString &path, b
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return new ModPlugMetaDataModel(path);
+}
+
+void DecoderModPlugFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

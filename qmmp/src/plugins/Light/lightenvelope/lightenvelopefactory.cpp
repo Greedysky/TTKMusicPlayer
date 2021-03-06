@@ -6,7 +6,6 @@ const LightProperties LightEnvelopeFactory::properties() const
     LightProperties properties;
     properties.name = tr("Light Envelope Plugin");
     properties.shortName = "lightenvelope";
-    properties.hasSettings = false;
     return properties;
 }
 

@@ -33,11 +33,6 @@ Decoder *DecoderVorbisFactory::create(const QString &path, QIODevice *input)
     return new DecoderVorbis(input);
 }
 
-MetaDataModel* DecoderVorbisFactory::createMetaDataModel(const QString &path, bool readOnly)
-{
-    return new VorbisMetaDataModel(path, readOnly);
-}
-
 QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
@@ -96,6 +91,16 @@ QList<TrackInfo*> DecoderVorbisFactory::createPlayList(const QString &path, Trac
     }
 
     return QList<TrackInfo*>() << info;
+}
+
+MetaDataModel* DecoderVorbisFactory::createMetaDataModel(const QString &path, bool readOnly)
+{
+    return new VorbisMetaDataModel(path, readOnly);
+}
+
+void DecoderVorbisFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
 }
 
 #ifndef QMMP_GREATER_NEW

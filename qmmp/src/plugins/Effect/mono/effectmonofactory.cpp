@@ -6,7 +6,6 @@ const EffectProperties EffectMonoFactory::properties() const
     EffectProperties properties;
     properties.name = tr("Extra Mono Plugin");
     properties.shortName = "mono";
-    properties.hasSettings = false;
     return properties;
 }
 

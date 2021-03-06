@@ -1,6 +1,7 @@
 #include "wildmidihelper.h"
 #include "decoder_wildmidi.h"
 #include "decoderwildmidifactory.h"
+#include "settingsdialog.h"
 
 DecoderWildMidiFactory::DecoderWildMidiFactory()
 {
@@ -72,6 +73,12 @@ MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &path, 
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
+}
+
+void DecoderWildMidiFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

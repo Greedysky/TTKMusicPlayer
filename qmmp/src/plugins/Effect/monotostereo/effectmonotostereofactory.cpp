@@ -6,7 +6,6 @@ const EffectProperties EffectMonoToStereoFactory::properties() const
     EffectProperties properties;
     properties.name = tr("Mono to Stereo Converter Plugin");
     properties.shortName = "monotostereo";
-    properties.hasSettings = false;
     return properties;
 }
 

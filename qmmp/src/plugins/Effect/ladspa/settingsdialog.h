@@ -21,13 +21,9 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-#include <QDialog>
+#include "ui_settingsdialog.h"
 
 class QStandardItemModel;
-
-namespace Ui {
-class SettingsDialog;
-}
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
@@ -50,7 +46,7 @@ private slots:
 private:
     void updateRunningPlugins();
 
-    Ui::SettingsDialog *m_ui;
+    Ui::SettingsDialog m_ui;
     QStandardItemModel *m_model;
 
 };

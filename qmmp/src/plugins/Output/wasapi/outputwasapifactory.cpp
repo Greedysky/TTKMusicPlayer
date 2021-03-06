@@ -1,5 +1,6 @@
 #include "outputwasapi.h"
 #include "outputwasapifactory.h"
+#include "settingsdialog.h"
 
 OutputProperties OutputWASAPIFactory::properties() const
 {
@@ -18,6 +19,12 @@ Output* OutputWASAPIFactory::create()
 Volume *OutputWASAPIFactory::createVolume()
 {
     return new VolumeWASAPI;
+}
+
+void OutputWASAPIFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

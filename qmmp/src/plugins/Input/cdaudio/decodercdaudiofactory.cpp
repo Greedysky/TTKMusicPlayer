@@ -58,6 +58,11 @@ MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, b
     return nullptr;
 }
 
+void DecoderCDAudioFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(cdaudio, DecoderCDAudioFactory)

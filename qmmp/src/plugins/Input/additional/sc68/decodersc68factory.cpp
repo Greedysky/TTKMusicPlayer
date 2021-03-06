@@ -72,6 +72,11 @@ MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &path, bool
     return new SC68MetaDataModel(path);
 }
 
+void DecoderSC68Factory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(sc68, DecoderSC68Factory)

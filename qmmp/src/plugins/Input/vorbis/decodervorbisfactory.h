@@ -37,6 +37,7 @@ public:
     virtual Decoder *create(const QString &, QIODevice *input) override;
     virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
+    virtual void showSettings(QWidget *parent) override;
 
 };
 

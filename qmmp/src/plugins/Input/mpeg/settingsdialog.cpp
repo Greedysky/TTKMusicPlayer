@@ -11,31 +11,20 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 
     findCodecs();
-    for(const QTextCodec *codec : qAsConst(codecs))
+    for(const QTextCodec *codec : qAsConst(m_codecs))
     {
         m_ui.id3v1EncComboBox->addItem(codec->name());
         m_ui.id3v2EncComboBox->addItem(codec->name());
     }
+
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
 
-#if defined(WITH_MAD) && defined(WITH_MPG123)
-    QString decoderName = settings.value("decoder", "mad").toString();
-    m_ui.madRadioButton->setChecked(true);
-    m_ui.mpg123RadioButton->setChecked(decoderName == "mpg123");
-#elif defined(WITH_MAD)
-    m_ui.madRadioButton->setChecked(true);
-    m_ui.decoderGroupBox->setEnabled(false);
-#elif defined(WITH_MPG123)
-    m_ui.mpg123RadioButton->setChecked(true);
-    m_ui.decoderGroupBox->setEnabled(false);
-#endif
+    m_ui.enableCrcCheckBox->setChecked(settings.value("enable_crc", false).toBool());
 
-    int pos = m_ui.id3v1EncComboBox->findText
-        (settings.value("ID3v1_encoding","ISO-8859-1").toString());
+    int pos = m_ui.id3v1EncComboBox->findText(settings.value("ID3v1_encoding","ISO-8859-1").toString());
     m_ui.id3v1EncComboBox->setCurrentIndex(pos);
-    pos = m_ui.id3v2EncComboBox->findText
-        (settings.value("ID3v2_encoding","UTF-8").toString());
+    pos = m_ui.id3v2EncComboBox->findText(settings.value("ID3v2_encoding","UTF-8").toString());
     m_ui.id3v2EncComboBox->setCurrentIndex(pos);
 
     m_ui.firstTagComboBox->setCurrentIndex(settings.value("tag_1", ID3v2).toInt());
@@ -61,7 +50,7 @@ void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
-    settings.setValue("decoder", m_ui.mpg123RadioButton->isChecked() ? "mpg123" : "mad");
+    settings.setValue("enable_crc", m_ui.enableCrcCheckBox->isChecked());
     settings.setValue("ID3v1_encoding", m_ui.id3v1EncComboBox->currentText());
     settings.setValue("ID3v2_encoding", m_ui.id3v2EncComboBox->currentText());
     settings.setValue("tag_1", m_ui.firstTagComboBox->currentIndex());
@@ -107,5 +96,6 @@ void SettingsDialog::findCodecs()
 
         codecMap.insert(sortKey, codec);
     }
-    codecs = codecMap.values();
+
+    m_codecs = codecMap.values();
 }

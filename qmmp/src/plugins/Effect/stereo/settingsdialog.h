@@ -41,7 +41,7 @@ private slots:
     void on_intensitySlider_valueChanged(int value);
 
 private:
-    Ui::SettingsDialog ui;
+    Ui::SettingsDialog m_ui;
     double m_level;
 
 };

@@ -6,7 +6,6 @@ VisualProperties VisualFloridAncientFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Florid Ancient Plugin");
     properties.shortName = "floridancient";
-    properties.hasSettings = true;
     return properties;
 }
 

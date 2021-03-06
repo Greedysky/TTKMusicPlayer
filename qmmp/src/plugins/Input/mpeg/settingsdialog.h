@@ -21,7 +21,6 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-#include <QDialog>
 #include "ui_settingsdialog.h"
 
 /**
@@ -32,17 +31,18 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 public:
     explicit SettingsDialog(bool using_rusxmms, QWidget *parent = nullptr);
-    ~SettingsDialog();
+    virtual ~SettingsDialog();
 
     enum TagType {ID3v1 = 0, ID3v2, APE, Disabled};
 
 public slots:
-    void accept() override;
+    virtual void accept() override;
 
 private:
     void findCodecs();
+
     Ui::SettingsDialog m_ui;
-    QList<QTextCodec *> codecs;
+    QList<QTextCodec *> m_codecs;
 
 };
 

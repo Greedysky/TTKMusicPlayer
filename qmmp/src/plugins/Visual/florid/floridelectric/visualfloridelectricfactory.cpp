@@ -6,7 +6,6 @@ VisualProperties VisualFloridElectricFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Florid Electric Plugin");
     properties.shortName = "floridelectric";
-    properties.hasSettings = true;
     return properties;
 }
 

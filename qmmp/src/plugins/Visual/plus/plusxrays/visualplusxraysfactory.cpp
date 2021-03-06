@@ -6,7 +6,6 @@ VisualProperties VisualPlusXRaysFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Plus XRays Plugin");
     properties.shortName = "plusxrays";
-    properties.hasSettings = true;
     return properties;
 }
 

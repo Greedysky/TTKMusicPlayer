@@ -6,7 +6,6 @@ VisualProperties VisualPLusSpaceWaveFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Plus SpaceWave Plugin");
     properties.shortName = "plusspacewave";
-    properties.hasSettings = true;
     return properties;
 }
 

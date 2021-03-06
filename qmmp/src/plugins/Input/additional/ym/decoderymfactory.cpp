@@ -76,6 +76,11 @@ MetaDataModel* DecoderYmFactory::createMetaDataModel(const QString &path, bool r
     return nullptr;
 }
 
+void DecoderYmFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(ym, DecoderYmFactory)

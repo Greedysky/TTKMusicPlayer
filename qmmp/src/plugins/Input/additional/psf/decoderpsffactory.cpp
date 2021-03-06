@@ -75,6 +75,11 @@ MetaDataModel* DecoderPSFFactory::createMetaDataModel(const QString &path, bool 
     return new PSFMetaDataModel(path);
 }
 
+void DecoderPSFFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(psf, DecoderPSFFactory)

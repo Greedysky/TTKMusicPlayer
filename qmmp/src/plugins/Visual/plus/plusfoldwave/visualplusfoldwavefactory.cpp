@@ -6,7 +6,6 @@ VisualProperties VisualPlusFoldWaveFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Plus FoldWave Plugin");
     properties.shortName = "plusfoldwave";
-    properties.hasSettings = true;
     return properties;
 }
 

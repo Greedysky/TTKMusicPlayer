@@ -6,7 +6,6 @@ VisualProperties VisualFlowMountainFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Flow Mountain Plugin");
     properties.shortName = "flowmountain";
-    properties.hasSettings = false;
     return properties;
 }
 

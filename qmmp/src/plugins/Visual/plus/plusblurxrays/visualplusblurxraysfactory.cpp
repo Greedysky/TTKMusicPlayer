@@ -6,7 +6,6 @@ VisualProperties VisualPlusBlurXRaysFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Plus Blur XRays Plugin");
     properties.shortName = "plusblurxrays";
-    properties.hasSettings = true;
     return properties;
 }
 

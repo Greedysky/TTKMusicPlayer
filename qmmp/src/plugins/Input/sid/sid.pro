@@ -2,11 +2,15 @@ include($$PWD/../../plugins.pri)
 
 HEADERS += decodersidfactory.h \
            decoder_sid.h \
-           sidhelper.h
+           sidhelper.h \
+           settingsdialog.h
     
 SOURCES += decodersidfactory.cpp \
            decoder_sid.cpp \
-           sidhelper.cpp
+           sidhelper.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

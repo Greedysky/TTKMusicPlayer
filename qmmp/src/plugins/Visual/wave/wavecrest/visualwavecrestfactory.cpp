@@ -6,7 +6,6 @@ VisualProperties VisualWaveCrestFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Wave Crest Plugin");
     properties.shortName = "wavecrest";
-    properties.hasSettings = true;
     return properties;
 }
 

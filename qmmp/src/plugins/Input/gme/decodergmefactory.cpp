@@ -1,6 +1,7 @@
 #include "gmehelper.h"
 #include "decoder_gme.h"
 #include "decodergmefactory.h"
+#include "settingsdialog.h"
 
 bool DecoderGmeFactory::canDecode(QIODevice *) const
 {
@@ -69,6 +70,12 @@ MetaDataModel* DecoderGmeFactory::createMetaDataModel(const QString &path, bool 
     Q_UNUSED(path);
     Q_UNUSED(readOnly);
     return nullptr;
+}
+
+void DecoderGmeFactory::showSettings(QWidget *parent)
+{
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #ifndef QMMP_GREATER_NEW

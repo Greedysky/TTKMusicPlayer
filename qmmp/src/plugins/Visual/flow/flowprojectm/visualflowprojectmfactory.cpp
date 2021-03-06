@@ -6,7 +6,6 @@ VisualProperties VisualFlowProjectMFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Flow ProjectM Plugin");
     properties.shortName = "flowprojectm";
-    properties.hasSettings = false;
     return properties;
 }
 

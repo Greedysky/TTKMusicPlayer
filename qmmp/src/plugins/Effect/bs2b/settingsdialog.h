@@ -46,7 +46,7 @@ private slots:
     void on_jmButton_pressed();
 
 private:
-    Ui::SettingsDialog ui;
+    Ui::SettingsDialog m_ui;
     uint32_t m_level;
 
 };

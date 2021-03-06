@@ -1,10 +1,14 @@
 include($$PWD/../../plugins.pri)
 
 HEADERS += outputalsa.h \
-           outputalsafactory.h
+           outputalsafactory.h \
+           settingsdialog.h
 
 SOURCES += outputalsa.cpp \
-           outputalsafactory.cpp
+           outputalsafactory.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Output
 TARGET = $${TARGET}

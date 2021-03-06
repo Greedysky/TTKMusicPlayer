@@ -6,7 +6,6 @@ VisualProperties VisualFloridBassFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Florid Bass Plugin");
     properties.shortName = "floridbass";
-    properties.hasSettings = true;
     return properties;
 }
 

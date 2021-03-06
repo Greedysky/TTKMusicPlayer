@@ -61,6 +61,11 @@ MetaDataModel* DecoderFC14Factory::createMetaDataModel(const QString &path, bool
     return nullptr;
 }
 
+void DecoderFC14Factory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(fc14, DecoderFC14Factory)

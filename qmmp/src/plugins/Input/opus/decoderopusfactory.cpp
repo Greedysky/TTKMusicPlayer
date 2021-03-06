@@ -30,11 +30,6 @@ Decoder *DecoderOpusFactory::create(const QString &path, QIODevice *input)
     return new DecoderOpus(path, input);
 }
 
-MetaDataModel* DecoderOpusFactory::createMetaDataModel(const QString &path, bool readOnly)
-{
-    return new OpusMetaDataModel(path, readOnly);
-}
-
 QList<TrackInfo*> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
@@ -91,6 +86,16 @@ QList<TrackInfo*> DecoderOpusFactory::createPlayList(const QString &path, TrackI
     }
 
     return QList<TrackInfo*>() << info;
+}
+
+MetaDataModel* DecoderOpusFactory::createMetaDataModel(const QString &path, bool readOnly)
+{
+    return new OpusMetaDataModel(path, readOnly);
+}
+
+void DecoderOpusFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
 }
 
 #ifndef QMMP_GREATER_NEW

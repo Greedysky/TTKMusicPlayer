@@ -61,6 +61,11 @@ MetaDataModel* DecoderV2MFactory::createMetaDataModel(const QString &path, bool 
     return nullptr;
 }
 
+void DecoderV2MFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(v2m, DecoderV2MFactory)

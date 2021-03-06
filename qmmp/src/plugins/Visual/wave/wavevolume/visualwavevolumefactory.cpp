@@ -6,7 +6,6 @@ VisualProperties VisualWaveVolumeFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Wave Volume Plugin");
     properties.shortName = "wavevolume";
-    properties.hasSettings = true;
     return properties;
 }
 

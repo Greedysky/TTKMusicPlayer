@@ -193,6 +193,11 @@ MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString &path, b
     return nullptr;
 }
 
+void DecoderSndFileFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+}
+
 #ifndef QMMP_GREATER_NEW
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(sndfile, DecoderSndFileFactory)

@@ -6,7 +6,6 @@ VisualProperties VisualFloridReverbFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Florid Reverb Plugin");
     properties.shortName = "floridreverb";
-    properties.hasSettings = true;
     return properties;
 }
 

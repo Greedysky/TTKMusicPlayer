@@ -1,5 +1,6 @@
 #include <sidplayfp/SidDatabase.h>
 #include <QFileInfo>
+#include <QSettings>
 #include "sidhelper.h"
 
 SIDHelper::SIDHelper(SidDatabase *db)
@@ -62,8 +63,13 @@ QList<TrackInfo*> SIDHelper::createPlayList(TrackInfo::Parts parts)
 
         if(parts & TrackInfo::Properties)
         {
+            QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+            settings.beginGroup("SID");
+            const int sample_rate = settings.value("sample_rate", 44100).toInt();
+            settings.endGroup();
+
             info->setValue(Qmmp::BITRATE, 8);
-            info->setValue(Qmmp::SAMPLERATE, 44100);
+            info->setValue(Qmmp::SAMPLERATE, sample_rate);
             info->setValue(Qmmp::CHANNELS, 2);
             info->setValue(Qmmp::FORMAT_NAME, "SID");
 

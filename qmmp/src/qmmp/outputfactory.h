@@ -67,6 +67,11 @@ public:
      * Returns \b nullptr if volume control is not supported by plugin.
      */
     virtual Volume *createVolume() = 0;
+    /*!
+     * Shows settings dialog.
+     * @param parent Parent widget.
+     */
+    virtual void showSettings(QWidget *parent) = 0;
 
 };
 

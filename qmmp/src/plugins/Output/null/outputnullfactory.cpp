@@ -5,7 +5,6 @@ OutputProperties OutputNullFactory::properties() const
 {
     OutputProperties properties;
     properties.name = tr("Null Plugin");
-    properties.hasSettings = false;
     properties.shortName = "null";
     return properties;
 }
@@ -18,6 +17,11 @@ Output* OutputNullFactory::create()
 Volume *OutputNullFactory::createVolume()
 {
     return nullptr;
+}
+
+void OutputNullFactory::showSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
 }
 
 #ifndef QMMP_GREATER_NEW

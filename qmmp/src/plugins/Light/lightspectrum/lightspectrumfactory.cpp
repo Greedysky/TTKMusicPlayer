@@ -6,7 +6,6 @@ const LightProperties LightSpectrumFactory::properties() const
     LightProperties properties;
     properties.name = tr("Light Spectrum Plugin");
     properties.shortName = "lightspectrum";
-    properties.hasSettings = false;
     return properties;
 }
 

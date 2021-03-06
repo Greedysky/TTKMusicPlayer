@@ -6,7 +6,6 @@ VisualProperties VisualNormalAnalyzerFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Normal Analyzer Plugin");
     properties.shortName = "normalanalyzer";
-    properties.hasSettings = true;
     return properties;
 }
 

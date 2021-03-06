@@ -6,7 +6,6 @@ VisualProperties VisualFlowGoomFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Flow Goom Plugin");
     properties.shortName = "flowgoom";
-    properties.hasSettings = false;
     return properties;
 }
 

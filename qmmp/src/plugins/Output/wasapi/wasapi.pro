@@ -1,10 +1,14 @@
 include($$PWD/../../plugins.pri)
 
 HEADERS += outputwasapifactory.h \
-           outputwasapi.h
+           outputwasapi.h \
+           settingsdialog.h
 
 SOURCES += outputwasapifactory.cpp \
-           outputwasapi.cpp
+           outputwasapi.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Output
 TARGET = $${TARGET}

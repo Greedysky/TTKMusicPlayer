@@ -6,7 +6,6 @@ VisualProperties VisualOuterBlurWaveFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Outer BlurWave Plugin");
     properties.shortName = "outerblurwave";
-    properties.hasSettings = true;
     return properties;
 }
 

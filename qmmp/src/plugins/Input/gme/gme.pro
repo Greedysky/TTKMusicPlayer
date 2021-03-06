@@ -2,11 +2,15 @@ include($$PWD/../../plugins.pri)
 
 HEADERS += decodergmefactory.h \
            decoder_gme.h \
-           gmehelper.h
+           gmehelper.h \
+           settingsdialog.h
     
 SOURCES += decodergmefactory.cpp \
            decoder_gme.cpp \
-           gmehelper.cpp
+           gmehelper.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

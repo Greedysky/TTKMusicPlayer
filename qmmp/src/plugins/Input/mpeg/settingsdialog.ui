@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>380</width>
-    <height>391</height>
+    <width>270</width>
+    <height>335</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,22 +34,8 @@
      <property name="title">
       <string>Decoder</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QRadioButton" name="madRadioButton">
-        <property name="text">
-         <string>MAD</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="mpg123RadioButton">
-        <property name="text">
-         <string>MPG123</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="2" rowspan="2">
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -61,6 +47,16 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="enableCrcCheckBox">
+        <property name="text">
+         <string>Enable CRC checking</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -367,8 +363,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>168</x>
-     <y>351</y>
+     <x>174</x>
+     <y>413</y>
     </hint>
     <hint type="destinationlabel">
      <x>70</x>
@@ -383,8 +379,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>257</x>
-     <y>336</y>
+     <x>263</x>
+     <y>413</y>
     </hint>
     <hint type="destinationlabel">
      <x>302</x>

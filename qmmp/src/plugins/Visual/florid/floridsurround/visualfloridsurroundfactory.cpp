@@ -6,7 +6,6 @@ VisualProperties VisualFloridSurroundFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Florid Surround Plugin");
     properties.shortName = "floridsurround";
-    properties.hasSettings = true;
     return properties;
 }
 

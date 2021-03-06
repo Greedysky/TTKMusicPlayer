@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2021 by Ilya Kotov                                 *
+ *   Copyright (C) 2021 by Ilya Kotov                                      *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,38 +18,29 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef DECODER_MPG123_H
-#define DECODER_MPG123_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-class QIODevice;
+#include "ui_settingsdialog.h"
 
-#include <mpg123.h>
-#include <qmmp/decoder.h>
-#include "decodermpegfactory.h"
-
-class DecoderMPG123 : public Decoder
+/**
+	@author Ilya Kotov <forkotov02@ya.ru>
+*/
+class SettingsDialog : public QDialog
 {
+    Q_OBJECT
 public:
-    explicit DecoderMPG123(QIODevice *i);
-    virtual ~DecoderMPG123();
+    explicit SettingsDialog(QWidget *parent = nullptr);
+    virtual ~SettingsDialog();
 
-    // standard decoder API
-    virtual bool initialize() override;
-    virtual qint64 totalTime() const override;
-    virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
-    virtual void seek(qint64 time) override;
+private slots:
+    void writeSettings();
+    void setPreamp(int preamp);
+    void exec(QAbstractButton *button);
 
-private:
-    void cleanup(mpg123_handle *handle);
-    void setMPG123Format(int encoding);
-    mpg123_handle *m_handle = nullptr;
-    mpg123_frameinfo m_frame_info;
-    qint64 m_totalTime = 0;
-    long m_rate = 0;
-    int m_mpg123_encoding = MPG123_ENC_SIGNED_16;
-    int m_errors = 0;
+private: 
+     Ui::SettingsDialog m_ui;
 
 };
 
-#endif // DECODER_MPG123_H
+#endif
