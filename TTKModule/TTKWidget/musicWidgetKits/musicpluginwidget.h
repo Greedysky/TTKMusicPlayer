@@ -47,6 +47,10 @@ public Q_SLOTS:
      */
     void pluginItemChanged(QTreeWidgetItem *item, int column);
     /*!
+     * Plugin item setting button click.
+     */
+    void pluginButtonClicked();
+    /*!
      * Override exec function.
      */
     virtual int exec();

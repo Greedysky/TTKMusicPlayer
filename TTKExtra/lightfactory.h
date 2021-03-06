@@ -66,8 +66,8 @@ public:
  */
 struct QMMP_EXPORT LightProperties
 {
-    QString name;      /*!< Light plugin full name */
-    QString shortName; /*!< Light plugin short name for internal usage */
+    QString name;              /*!< Light plugin full name */
+    QString shortName;         /*!< Light plugin short name for internal usage */
     bool hasSettings = false;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 

@@ -55,6 +55,34 @@ public:
         OUTPUT
     };
 
+    bool hasSettings() const
+    {
+        switch(type())
+        {
+            case MusicPluginItem::DECODER:
+                return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
+            case MusicPluginItem::EFFECT: return false;
+            case MusicPluginItem::VISUAL: return false;
+            case MusicPluginItem::OUTPUT:
+                return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
+            default: return false;
+        }
+    }
+
+    void showSettingWidget() const
+    {
+        switch(type())
+        {
+            case MusicPluginItem::DECODER:
+                TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
+            case MusicPluginItem::EFFECT: break;
+            case MusicPluginItem::VISUAL: break;
+            case MusicPluginItem::OUTPUT:
+                TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
+            default: break;
+        }
+    }
+
     void setEnabled(bool enabled)
     {
         switch(type())
@@ -84,6 +112,7 @@ public:
 
 private:
     void *m_factory;
+
 };
 
 
@@ -117,12 +146,14 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(1, labelDelegate);
 
+    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSComboBoxStyle01);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     loadPluginsInfo();
 
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    connect(m_ui->settingButton, SIGNAL(clicked()), SLOT(pluginButtonClicked()));
     connect(m_ui->treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(pluginItemChanged(QTreeWidgetItem*,int)));
 }
 
@@ -147,6 +178,17 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
         const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECK_ROLE).toInt());
         item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
+    }
+
+    m_ui->settingButton->setEnabled(TTKDynamic_cast(MusicPluginItem*, item)->hasSettings());
+}
+
+void MusicPluginWidget::pluginButtonClicked()
+{
+    MusicPluginItem *item = TTKDynamic_cast(MusicPluginItem*, m_ui->treeWidget->currentItem());
+    if(item)
+    {
+        item->showSettingWidget();
     }
 }
 

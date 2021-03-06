@@ -90,6 +90,11 @@ public:
      * @return MetaDataModel pointer.
      */
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) = 0;
+    /*!
+     * Shows settings dialog.
+     * @param parent Parent widget.
+     */
+    virtual void showSettings(QWidget *parent) = 0;
 
 };
 

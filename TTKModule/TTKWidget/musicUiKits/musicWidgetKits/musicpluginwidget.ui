@@ -76,7 +76,7 @@
       <x>10</x>
       <y>15</y>
       <width>460</width>
-      <height>335</height>
+      <height>310</height>
      </rect>
     </property>
     <property name="alternatingRowColors">
@@ -98,6 +98,22 @@
       <string notr="true">2</string>
      </property>
     </column>
+   </widget>
+   <widget class="QPushButton" name="settingButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>75</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>参数设置</string>
+    </property>
    </widget>
   </widget>
   <zorder>background</zorder>
