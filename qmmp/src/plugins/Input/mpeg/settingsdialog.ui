@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>270</width>
-    <height>335</height>
+    <height>320</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>270</width>
+    <height>320</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>270</width>
+    <height>320</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MPEG Plugin Settings</string>

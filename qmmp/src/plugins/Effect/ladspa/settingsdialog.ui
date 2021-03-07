@@ -10,6 +10,18 @@
     <height>505</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>547</width>
+    <height>505</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>547</width>
+    <height>505</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>LADSPA Plugin Catalog</string>
   </property>

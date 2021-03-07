@@ -53,7 +53,7 @@ public:
      * \param out Output buffer.
      * \param samples Number of samples.
      */
-    void fromFloat(const float *in, const unsigned char *out, size_t samples);
+    void fromFloat(const float *in, unsigned char *out, size_t samples);
 
 private:
     Qmmp::AudioFormat m_format = Qmmp::PCM_UNKNOWN;

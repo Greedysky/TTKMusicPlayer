@@ -1,80 +1,93 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>SettingsDialog</class>
- <widget class="QDialog" name="SettingsDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>99</height>
+    <width>335</width>
+    <height>95</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="minimumSize">
+   <size>
+    <width>335</width>
+    <height>95</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>335</width>
+    <height>95</height>
+   </size>
+  </property>
+  <property name="windowTitle">
    <string>Sample Rate Converter Plugin Settings</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" >
-   <item row="0" column="0" >
-    <widget class="QLabel" name="label" >
-     <property name="text" >
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
       <string>Sample Rate (Hz):</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1" colspan="2" >
-    <widget class="QSpinBox" name="srSpinBox" >
-     <property name="maximum" >
+   <item row="0" column="1" colspan="2">
+    <widget class="QSpinBox" name="srSpinBox">
+     <property name="maximum">
       <number>96000</number>
      </property>
-     <property name="singleStep" >
+     <property name="singleStep">
       <number>100</number>
      </property>
-     <property name="value" >
+     <property name="value">
       <number>48000</number>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" >
-    <widget class="QLabel" name="label_2" >
-     <property name="text" >
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
       <string>Interpolation Engine:</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1" colspan="2" >
-    <widget class="QComboBox" name="engineComboBox" >
+   <item row="1" column="1" colspan="2">
+    <widget class="QComboBox" name="engineComboBox">
      <item>
-      <property name="text" >
+      <property name="text">
        <string>Best Sinc Interpolation</string>
       </property>
      </item>
      <item>
-      <property name="text" >
+      <property name="text">
        <string>Medium Sinc Interpolation</string>
       </property>
      </item>
      <item>
-      <property name="text" >
+      <property name="text">
        <string>Fastest Sinc Interpolation</string>
       </property>
      </item>
      <item>
-      <property name="text" >
+      <property name="text">
        <string>ZOH Interpolation</string>
       </property>
      </item>
      <item>
-      <property name="text" >
+      <property name="text">
        <string>Linear Interpolation</string>
       </property>
      </item>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2" >
+   <item row="2" column="0" colspan="2">
     <spacer>
-     <property name="orientation" >
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>228</width>
        <height>24</height>
@@ -82,15 +95,15 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="2" >
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+   <item row="2" column="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="standardButtons" >
+     <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
@@ -105,11 +118,11 @@
    <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>270</x>
      <y>76</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>91</x>
      <y>88</y>
     </hint>
@@ -121,11 +134,11 @@
    <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>326</x>
      <y>78</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>139</x>
      <y>60</y>
     </hint>

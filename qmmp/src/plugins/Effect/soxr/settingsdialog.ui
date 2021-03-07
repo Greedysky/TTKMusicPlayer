@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>360</width>
-    <height>111</height>
+    <width>340</width>
+    <height>95</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>340</width>
+    <height>95</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>340</width>
+    <height>95</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>SoX Resampler Plugin Settings</string>

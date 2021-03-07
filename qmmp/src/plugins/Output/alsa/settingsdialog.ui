@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>425</width>
-    <height>264</height>
+    <height>224</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>425</width>
+    <height>224</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>425</width>
+    <height>224</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>ALSA Plugin Settings</string>
