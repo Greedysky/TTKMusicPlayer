@@ -20,7 +20,13 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
     layout->setSpacing(0);
 
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::MQSSBackgroundStyle08);
+    m_textLabel->setObjectName("Background");
+    m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle08) +
+                               MusicUIObject::MQSSSpinBoxStyle01 +
+                               MusicUIObject::MQSSSliderStyle06 +
+                               MusicUIObject::MQSSCheckBoxStyle01 +
+                               MusicUIObject::MQSSComboBoxStyle01 +
+                               MusicUIObject::MQSSPushButtonStyle15);
 
     setText(tr("null"));
 
@@ -126,7 +132,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
     const QString plugin(transformQStringFromEnum(m_type));
-    MusicUtils::QMMP::showEffectSetting(plugin, this);
+    MusicUtils::QMMP::showEffectSetting(plugin, m_textLabel);
 }
 
 QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)

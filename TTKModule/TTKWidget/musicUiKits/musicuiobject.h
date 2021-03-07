@@ -232,7 +232,8 @@ namespace MusicUIObject
             QPushButton{ border-none; }";
 
     const QString MQSSPushButtonStyle03 = " \
-            QPushButton{ border-radius:3px; background-color:#158FE1; color:white; }";
+            QPushButton{ border-radius:3px; background-color:#158FE1; color:white; } \
+            QPushButton::disabled{ background-color:#BBBBBB; }";
 
     const QString MQSSPushButtonStyle04 = " \
             QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777; } \
@@ -275,6 +276,9 @@ namespace MusicUIObject
             QPushButton:hover{ color:#E6E317; } \
             QPushButton{ text-align:right; }";
 
+    const QString MQSSPushButtonStyle15 = " \
+            QPushButton{ background-color:#DDDDDD; color:#222222; }";
+
 
 ///RadioButton
     const QString MQSSRadioButtonStyle01 = " \
@@ -282,13 +286,6 @@ namespace MusicUIObject
             QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton_unchecked); } \
             QRadioButton::checked { color:rgb(230, 115, 0); } \
             QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked); } \
-            QRadioButton::disabled{ color:#BBBBBB; }";
-
-    const QString MQSSRadioButtonStyle02 = " \
-            QRadioButton{ background-color:transparent; } \
-            QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked); } \
-            QRadioButton::checked { color:rgb(230, 115, 0); } \
-            QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton2_checked); } \
             QRadioButton::disabled{ color:#BBBBBB; }";
 
 
@@ -319,6 +316,12 @@ namespace MusicUIObject
             QCheckBox::checked { color:rgb(255, 255, 255); } \
             QCheckBox::indicator:checked { image:url(:/control/btn_checkBox2_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
+
+
+///GroupBox
+    const QString MQSSGroupBoxStyle01 = " \
+            QGroupBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked); } \
+            QGroupBox::indicator:checked { image:url(:/control/btn_checkBox_checked); }";
 
 
 ///ScrollBar

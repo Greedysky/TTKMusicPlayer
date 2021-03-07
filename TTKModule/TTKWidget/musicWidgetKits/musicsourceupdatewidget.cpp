@@ -109,6 +109,7 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
+    m_ui->upgradeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->downProgressBar->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     m_ui->upgradeButton->setEnabled(false);
 #ifdef Q_OS_UNIX

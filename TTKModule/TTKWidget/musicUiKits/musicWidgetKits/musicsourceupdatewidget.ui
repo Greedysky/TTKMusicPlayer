@@ -77,7 +77,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton{border-radius:2px;background-color:#158FE1;color:white;font-size:13px;}</string>
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>立即升级</string>
@@ -96,7 +96,7 @@
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton{border-radius:2px;background-color:#FCFCFC;color:#888888;font-size:13px;}</string>
+      <string notr="true">QPushButton{border-radius:3px;background-color:#FCFCFC;color:#888888;font-size:13px;}</string>
      </property>
      <property name="text">
       <string>以后再说</string>

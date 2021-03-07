@@ -240,6 +240,7 @@ void MusicUserDialog::firstStatckWidget()
     m_ui->registerButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->forgotPwdButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->loginButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     connect(m_ui->registerButton, SIGNAL(clicked()), SLOT(registerUser()));
     connect(m_ui->forgotPwdButton, SIGNAL(clicked()), SLOT(userForgotPasswd()));
     connect(m_ui->loginButton, SIGNAL(clicked()), SLOT(checkUserLogin()));
@@ -423,9 +424,7 @@ void MusicUserDialog::windowRectChanged(int index, int height)
 {
     clearOriginData();
     m_ui->stackedWidget->setCurrentIndex(index);
-    m_ui->stackedWidget->setGeometry(QRect(4, 29, 381, height));
+    m_ui->stackedWidget->setFixedHeight(height);
 
-    QRect other = geometry();
-    other.setHeight(height + 33);
-    setGeometry(other);
+    setFixedHeight(height + 33);
 }

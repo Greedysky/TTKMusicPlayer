@@ -3860,37 +3860,42 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="101"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicpluginwidget.ui" line="118"/>
+        <source>参数设置</source>
+        <translation>參數設置</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="130"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="109"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="138"/>
         <source>Description</source>
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="109"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="138"/>
         <source>Name</source>
         <translation>文件名</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="164"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="214"/>
         <source>Decoders</source>
         <translation>解碼器</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="173"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="223"/>
         <source>Effects</source>
         <translation>音效</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="182"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="232"/>
         <source>Visualization</source>
         <translation>可視化</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="191"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicpluginwidget.cpp" line="241"/>
         <source>Output</source>
         <translation>輸出</translation>
     </message>
@@ -4102,57 +4107,57 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>MP3增益</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="240"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="220"/>
         <source>对象 &quot;标准化/最大化&quot; 音量:</source>
         <translation>對象 &quot;標準化/最大化&quot; 音量:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="253"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="233"/>
         <source>105</source>
         <translation>105</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="266"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="246"/>
         <source>db  (默认为 89db)</source>
         <translation>db  (默認為 89db)</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="280"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="260"/>
         <source>文件进度</source>
         <translation>文件進度</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="293"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="273"/>
         <source>全部进度</source>
         <translation>全部進度</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="319"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="299"/>
         <source>路径</source>
         <translation>路徑</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="332"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="312"/>
         <source>音轨音量</source>
         <translation>音軌音量</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="348"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="328"/>
         <source>音轨增益</source>
         <translation>音軌增益</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="364"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="344"/>
         <source>专辑增益</source>
         <translation>專輯增益</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="380"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="360"/>
         <source>专辑音量</source>
         <translation>專輯音量</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="424"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicreplaygainwidget.ui" line="404"/>
         <source>ReplayGain</source>
         <translation>回放增益</translation>
     </message>
@@ -4192,27 +4197,27 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>增強應用</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="143"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="146"/>
         <source>ReplayGain Init Error!</source>
         <translation>回放增益模塊初始化錯誤!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="254"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="257"/>
         <source>Please Select One Item First!</source>
         <translation>請選擇某壹條記錄！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="276"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="279"/>
         <source>Music gain list is empty!</source>
         <translation>輸入列表不能為空！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="299"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="302"/>
         <source>Music gain finished!</source>
         <translation>音樂增強完成！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="376"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicreplaygainwidget.cpp" line="379"/>
         <source>Lack of plugin file!</source>
         <translation>缺少相應的插件文件!</translation>
     </message>
@@ -6298,23 +6303,23 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSoundEffectsItemWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="25"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="31"/>
         <source>null</source>
         <translation>暫無</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="37"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="43"/>
         <source>Sets</source>
         <translation>預設</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="44"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="122"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="50"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="128"/>
         <source>On</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="114"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="120"/>
         <source>Off</source>
         <translation>關閉</translation>
     </message>
@@ -6348,34 +6353,34 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>調整</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="162"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="168"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="168"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="174"/>
         <source>OperatorAll</source>
         <translation>操作全部</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="168"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="174"/>
         <source>All On</source>
         <translation>全部啟用</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="168"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="174"/>
         <source>All Off</source>
         <translation>全部關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="225"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="238"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="231"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="244"/>
         <source>Off</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="229"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="238"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="235"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsoundeffectswidget.cpp" line="244"/>
         <source>On</source>
         <translation>開啟</translation>
     </message>
@@ -6500,59 +6505,43 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <name>MusicSourceUpdateWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="14"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="48"/>
         <source>软件升级精灵</source>
         <translation>軟件升級精靈</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="61"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="29"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="121"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="61"/>
         <source>天天酷音正在检测版本号...</source>
         <translation>天天酷音正在檢測版本號...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="159"/>
-        <source>更新</source>
-        <translation type="unfinished"></translation>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="83"/>
+        <source>立即升级</source>
+        <translation>立即升級</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="102"/>
+        <source>以后再说</source>
+        <translation>以後再說</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="175"/>
-        <source>&lt;font color=#0000FF&gt;&lt;u&gt;升级失败?&lt;/u&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="200"/>
-        <source>当前的文档</source>
-        <translation>當前的文檔</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="228"/>
         <source>文档大小: --</source>
         <translation>文檔大小: --</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="241"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="191"/>
         <source>传送速率: --</source>
         <translation>傳送速率: --</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="254"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="143"/>
         <source>估计剩余时间: --</source>
         <translation>估計剩余時間: --</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="268"/>
-        <source>全部的文档</source>
-        <translation>全部的文檔</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicsourceupdatewidget.ui" line="296"/>
-        <source>当前正在下载: 1/1</source>
-        <translation>當前正在下載: 1/1</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="110"/>
@@ -6560,12 +6549,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="145"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="148"/>
         <source>Current Platform Not Supported!</source>
         <translation>當前平台不支持，請手動更新!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="170"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="169"/>
         <source>Current version is updated!</source>
         <translation>當前版本已是最新!</translation>
     </message>
@@ -6585,7 +6574,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>文件大小: %1</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="194"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsourceupdatewidget.cpp" line="193"/>
         <source>Download Finish, Install Or Not</source>
         <translation>下載完成,是否選擇安裝?</translation>
     </message>
@@ -8638,6 +8627,284 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <message>
         <source>%1 dB</source>
         <translation>%1分貝</translation>
+    </message>
+     <message>
+        <source>CUE Plugin Settings</source>
+        <translation>CUE插件設置</translation>
+    </message>
+    <message>
+        <source>Common settings</source>
+        <translation>基本設置</translation>
+    </message>
+    <message>
+        <source>Load incorrect cue sheets if possible</source>
+        <translation>如可能載入不正確的cue單</translation>
+    </message>
+    <message>
+        <source>CUE encoding</source>
+        <translation>CUE編碼</translation>
+    </message>
+    <message>
+        <source>Automatic charset detection</source>
+        <translation>自動檢測字符集</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation>語言：</translation>
+    </message>
+    <message>
+        <source>Default encoding:</source>
+        <translation>默認編碼：</translation>
+    </message>
+    <message>
+        <source>GME Plugin Settings</source>
+        <translation>GME插件設置</translation>
+    </message>
+    <message>
+        <source>Fadeout length:</source>
+        <translation>淡出長度</translation>
+    </message>
+    <message>
+        <source>Enable fadeout</source>
+        <translation>開啟淡出功能</translation>
+    </message>
+    <message>
+        <source>ModPlug Plugin Settings</source>
+        <translation>ModPlug插件設置</translation>
+    </message>
+    <message>
+        <source>Quality</source>
+        <translation>品質</translation>
+    </message>
+    <message>
+        <source>Resolution</source>
+        <translation>分辨率</translation>
+    </message>
+    <message>
+        <source>16 bit</source>
+        <translation>16 位</translation>
+    </message>
+    <message>
+        <source>8 bit</source>
+        <translation>8 位</translation>
+    </message>
+    <message>
+        <source>Channels</source>
+        <translation>聲音通道</translation>
+    </message>
+    <message>
+        <source>Stereo</source>
+        <translation>立體聲</translation>
+    </message>
+    <message>
+        <source>Mono (downmix)</source>
+        <translation>單聲道</translation>
+    </message>
+    <message>
+        <source>Resampling</source>
+        <translation>重取樣</translation>
+    </message>
+    <message>
+        <source>Nearest (fastest)</source>
+        <translation>最近(最快)</translation>
+    </message>
+    <message>
+        <source>Linear (fast)</source>
+        <translation>直線(快)</translation>
+    </message>
+    <message>
+        <source>Spline (good quality)</source>
+        <translation>曲線（好品質）</translation>
+    </message>
+    <message>
+        <source>8-tap Fir (extremely high quality)</source>
+        <translation>8-Tap FIR (最高品質)</translation>
+    </message>
+    <message>
+        <source>Sampling Rate</source>
+        <translation>取樣率</translation>
+    </message>
+    <message>
+        <source>Effects</source>
+        <translation>特效</translation>
+    </message>
+    <message>
+        <source>Reverb</source>
+        <translation>余響</translation>
+    </message>
+    <message>
+        <source>Depth (%)</source>
+        <translation>深度 (%)</translation>
+    </message>
+    <message>
+        <source>Delay (ms)</source>
+        <translation>延遲 (ms)</translation>
+    </message>
+    <message>
+        <source>Bass Boost</source>
+        <translation>低音提升</translation>
+    </message>
+    <message>
+        <source>Amount (%)</source>
+        <translation>總計 (%)</translation>
+    </message>
+    <message>
+        <source>Range (Hz)</source>
+        <translation>範圍 (Hz)</translation>
+    </message>
+    <message>
+        <source>Surround</source>
+        <translation>環繞</translation>
+    </message>
+    <message>
+        <source>Preamp</source>
+        <translation>前置放大器</translation>
+    </message>
+    <message>
+        <source>Volume</source>
+        <translation>音量</translation>
+    </message>
+    <message>
+        <source>Note: Setting the preamp
+too high may cause clipping!</source>
+        <translation>註釋：設置前置放大器
+太高可能會產生削波現象！</translation>
+    </message>
+    <message>
+        <source>Misc</source>
+        <translation>雜項</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation>常規</translation>
+    </message>
+    <message>
+        <source>Use filename as song title</source>
+        <translation>使用文件名為曲目標題</translation>
+    </message>
+    <message>
+        <source>Noise reduction</source>
+        <translation>噪聲抑制</translation>
+    </message>
+    <message>
+        <source>Fast playlist info</source>
+        <translation>快速播放列表信息</translation>
+    </message>
+    <message>
+        <source>Play Amiga MOD</source>
+        <translation>播放 Amiga MOD</translation>
+    </message>
+    <message>
+        <source>Looping</source>
+        <translation>循環</translation>
+    </message>
+    <message>
+        <source>Don&apos;t loop</source>
+        <translation>不循環</translation>
+    </message>
+    <message>
+        <source>Loop</source>
+        <translation>循環</translation>
+    </message>
+    <message>
+        <source>time(s)</source>
+        <translation>(秒) 時間</translation>
+    </message>
+    <message>
+        <source>Loop forever</source>
+        <translation>永遠循環</translation>
+    </message>
+    <message>
+        <source>MPEG Plugin Settings</source>
+        <translation>MPEG插件設置</translation>
+    </message>
+    <message>
+        <source>Decoder</source>
+        <translation>解碼器</translation>
+    </message>
+    <message>
+        <source>Enable CRC checking</source>
+        <translation>開啟CRC檢測</translation>
+    </message>
+    <message>
+        <source>Tag Priority</source>
+        <translation>標簽優先</translation>
+    </message>
+    <message>
+        <source>First:</source>
+        <translation>第一：</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <source>Second:</source>
+        <translation>第二：</translation>
+    </message>
+    <message>
+        <source>Third:</source>
+        <translation>第三：</translation>
+    </message>
+    <message>
+        <source>Merge selected tag types</source>
+        <translation>合並選定的標記類型 </translation>
+    </message>
+    <message>
+        <source>Encodings</source>
+        <translation>編碼</translation>
+    </message>
+    <message>
+        <source>ID3v1 encoding:</source>
+        <translation>ID3v1 編碼：</translation>
+    </message>
+    <message>
+        <source>ID3v2 encoding:</source>
+        <translation>ID3v2 編碼：</translation>
+    </message>
+    <message>
+        <source>SID Plugin Settings</source>
+        <translation>SID插件設置</translation>
+    </message>
+    <message>
+        <source>Emulation:</source>
+        <translation>模擬：</translation>
+    </message>
+    <message>
+        <source>Resampling method:</source>
+        <translation>重取樣方式：</translation>
+    </message>
+    <message>
+        <source>Fast resampling</source>
+        <translation>快速重新取樣</translation>
+    </message>
+    <message>
+        <source>WildMidi Plugin Settings</source>
+        <translation>WildMidi插件設置</translation>
+    </message>
+    <message>
+        <source>Sample rate:</source>
+        <translation>取樣率：</translation>
+    </message>
+    <message>
+        <source>Enhanced resampling</source>
+        <translation>提高再取樣</translation>
+    </message>
+    <message>
+        <source>Reverberation</source>
+        <translation>混響效果</translation>
+    </message>
+    <message>
+        <source>WASAPI Plugin Settings</source>
+        <translation>WASAPI插件設置</translation>
+    </message>
+    <message>
+        <source>Device:</source>
+        <translation>設備：</translation>
+    </message>
+    <message>
+        <source>Exclusive mode</source>
+        <translation>獨占模式</translation>
     </message>
 </context>
 <context>

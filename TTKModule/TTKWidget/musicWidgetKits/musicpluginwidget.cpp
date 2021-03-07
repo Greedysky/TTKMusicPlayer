@@ -141,12 +141,20 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     checkDelegate->showTextMode(true);
     checkDelegate->setTreeModel(true);
     m_ui->treeWidget->setItemDelegateForColumn(0, checkDelegate);
+
     MusicLabelDelegate *labelDelegate = new MusicLabelDelegate(this);
     labelDelegate->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(1, labelDelegate);
 
-    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSComboBoxStyle01);
+    m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
+    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 +
+                                    MusicUIObject::MQSSSpinBoxStyle01 +
+                                    MusicUIObject::MQSSSliderStyle06 +
+                                    MusicUIObject::MQSSRadioButtonStyle01 +
+                                    MusicUIObject::MQSSCheckBoxStyle01 +
+                                    MusicUIObject::MQSSComboBoxStyle01 +
+                                    MusicUIObject::MQSSPushButtonStyle15);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 

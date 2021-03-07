@@ -105,11 +105,14 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>395</x>
       <y>330</y>
       <width>75</width>
-      <height>28</height>
+      <height>26</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
      <string>参数设置</string>
