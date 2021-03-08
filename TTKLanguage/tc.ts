@@ -8906,6 +8906,54 @@ too high may cause clipping!</source>
         <source>Exclusive mode</source>
         <translation>獨占模式</translation>
     </message>
+    <message>
+        <source>ALSA Plugin Settings</source>
+        <translation>ALSA 插件設定</translation>
+    </message>
+    <message>
+        <source>Device Settings</source>
+        <translation>裝置設定</translation>
+    </message>
+    <message>
+        <source>Audio device</source>
+        <translation>聲訊裝置</translation>
+    </message>
+    <message>
+        <source>Mixer</source>
+        <translation>混頻</translation>
+    </message>
+    <message>
+        <source>Mixer card:</source>
+        <translation>混頻卡：</translation>
+    </message>
+    <message>
+        <source>Mixer device:</source>
+        <translation>混頻裝置：</translation>
+    </message>
+    <message>
+        <source>Advanced Settings</source>
+        <translation>進階設定</translation>
+    </message>
+    <message>
+        <source>Soundcard</source>
+        <translation>音效卡</translation>
+    </message>
+    <message>
+        <source>Buffer time (ms):</source>
+        <translation>緩衝時間(ms)：</translation>
+    </message>
+    <message>
+        <source>Period time (ms):</source>
+        <translation>周期時間(ms)：</translation>
+    </message>
+    <message>
+        <source>Use mmap access</source>
+        <translation>使用內存對映</translation>
+    </message>
+    <message>
+        <source>Use snd_pcm_pause function</source>
+        <translation>使用 snd_pcm_pause 功能</translation>
+    </message>
 </context>
 <context>
     <name>SoniquePlugin</name>
