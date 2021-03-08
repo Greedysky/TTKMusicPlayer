@@ -10,6 +10,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+#ifndef Q_OS_LINUX
+    setMinimumHeight(110);
+    setMaximumHeight(110);
+#endif
+
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");
     m_ui.sampleRateComboBox->addItem(tr("44100 Hz"), 44100);

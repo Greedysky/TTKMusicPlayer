@@ -14,6 +14,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+#ifndef Q_OS_LINUX
+    setMinimumHeight(364);
+    setMaximumHeight(364);
+#endif
+
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ModPlug");
     //general

@@ -10,6 +10,11 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+#ifndef Q_OS_LINUX
+    setMinimumHeight(320);
+    setMaximumHeight(320);
+#endif
+
     findCodecs();
     for(const QTextCodec *codec : qAsConst(m_codecs))
     {

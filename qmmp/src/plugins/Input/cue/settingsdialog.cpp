@@ -13,6 +13,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+#ifndef Q_OS_LINUX
+    setMinimumHeight(205);
+    setMaximumHeight(205);
+#endif
+
     findCodecs();
     for(const QTextCodec *codec : qAsConst(m_codecs))
         m_ui.cueEncComboBox->addItem(codec->name());
