@@ -60,6 +60,9 @@
    </item>
    <item row="1" column="1">
     <widget class="QToolButton" name="loadButton">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="text">
       <string>&gt;</string>
      </property>
@@ -67,6 +70,9 @@
    </item>
    <item row="2" column="1">
     <widget class="QToolButton" name="unloadButton">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="text">
       <string>&lt;</string>
      </property>
@@ -102,6 +108,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="configureButton">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>Configure</string>
        </property>

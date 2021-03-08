@@ -62,6 +62,9 @@
       </item>
       <item row="1" column="0" colspan="2">
        <widget class="QCheckBox" name="enableCrcCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Enable CRC checking</string>
         </property>
@@ -247,6 +250,9 @@
       </item>
       <item row="3" column="0" colspan="4">
        <widget class="QCheckBox" name="mergeTagsCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Merge selected tag types</string>
         </property>

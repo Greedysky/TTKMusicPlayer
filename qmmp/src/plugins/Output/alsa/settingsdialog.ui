@@ -228,6 +228,9 @@
           </item>
           <item row="2" column="0" colspan="3">
            <widget class="QCheckBox" name="mmapCheckBox">
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="text">
              <string>Use mmap access</string>
             </property>
@@ -248,6 +251,9 @@
           </item>
           <item row="3" column="0" colspan="3">
            <widget class="QCheckBox" name="pauseCheckBox">
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="text">
              <string>Use snd_pcm_pause function</string>
             </property>

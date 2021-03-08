@@ -79,6 +79,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="defaultButton">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>Default</string>
        </property>
@@ -86,6 +89,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="cmButton">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>C.Moy</string>
        </property>
@@ -93,6 +99,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="jmButton">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>J. Meier</string>
        </property>
@@ -118,6 +127,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>

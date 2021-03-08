@@ -65,6 +65,9 @@
      </item>
      <item row="0" column="0" colspan="2">
       <widget class="QCheckBox" name="fadeoutCheckBox">
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="text">
         <string>Enable fadeout</string>
        </property>

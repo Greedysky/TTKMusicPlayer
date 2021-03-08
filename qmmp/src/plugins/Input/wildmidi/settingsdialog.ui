@@ -44,6 +44,9 @@
    </item>
    <item row="1" column="0" colspan="3">
     <widget class="QCheckBox" name="enhancedResamplingCheckBox">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="text">
       <string>Enhanced resampling</string>
      </property>
@@ -51,6 +54,9 @@
    </item>
    <item row="2" column="0" colspan="3">
     <widget class="QCheckBox" name="reverbCheckBox">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="text">
       <string>Reverberation</string>
      </property>

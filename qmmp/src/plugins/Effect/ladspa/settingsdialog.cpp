@@ -45,7 +45,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
 SettingsDialog::~SettingsDialog()
 {
-    delete m_ui;
+
 }
 
 void SettingsDialog::on_loadButton_clicked()

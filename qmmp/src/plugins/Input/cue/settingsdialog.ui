@@ -43,6 +43,9 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QCheckBox" name="dirtyCueCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Load incorrect cue sheets if possible</string>
         </property>
@@ -59,6 +62,9 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0" colspan="3">
        <widget class="QCheckBox" name="autoCharsetCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Automatic charset detection</string>
         </property>

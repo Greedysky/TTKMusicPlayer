@@ -9,34 +9,34 @@ extern "C"
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
-    ui.setupUi(this);
+    m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui.deviceComboBox->setEditable(true);
+    m_ui.deviceComboBox->setEditable(true);
 
     getCards();
     getSoftDevices();
-    connect(ui.deviceComboBox, SIGNAL(activated(int)),SLOT(setText(int)));
-    connect(ui.mixerCardComboBox, SIGNAL(activated(int)), SLOT(showMixerDevices(int)));
+    connect(m_ui.deviceComboBox, SIGNAL(activated(int)),SLOT(setText(int)));
+    connect(m_ui.mixerCardComboBox, SIGNAL(activated(int)), SLOT(showMixerDevices(int)));
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
-    ui.deviceComboBox->setEditText(settings.value("device","default").toString());
-    ui.bufferSpinBox->setValue(settings.value("buffer_time",500).toInt());
-    ui.periodSpinBox->setValue(settings.value("period_time",100).toInt());
+    m_ui.deviceComboBox->setEditText(settings.value("device","default").toString());
+    m_ui.bufferSpinBox->setValue(settings.value("buffer_time",500).toInt());
+    m_ui.periodSpinBox->setValue(settings.value("period_time",100).toInt());
 
     int d = m_cards.indexOf(settings.value("mixer_card","hw:0").toString());
     if(d >= 0)
-        ui.mixerCardComboBox->setCurrentIndex(d);
+        m_ui.mixerCardComboBox->setCurrentIndex(d);
 
-    showMixerDevices(ui.mixerCardComboBox->currentIndex());
-    d = ui.mixerDeviceComboBox->findText(settings.value("mixer_device",
+    showMixerDevices(m_ui.mixerCardComboBox->currentIndex());
+    d = m_ui.mixerDeviceComboBox->findText(settings.value("mixer_device",
                                          "PCM").toString());
 
     if(d >= 0)
-        ui.mixerDeviceComboBox->setCurrentIndex(d);
+        m_ui.mixerDeviceComboBox->setCurrentIndex(d);
 
-    ui.mmapCheckBox->setChecked(settings.value("use_mmap", false).toBool());
-    ui.pauseCheckBox->setChecked(settings.value("use_snd_pcm_pause", false).toBool());
+    m_ui.mmapCheckBox->setChecked(settings.value("use_mmap", false).toBool());
+    m_ui.pauseCheckBox->setChecked(settings.value("use_snd_pcm_pause", false).toBool());
     settings.endGroup();
 }
 
@@ -51,7 +51,7 @@ void SettingsDialog::getCards()
 
     m_devices.clear();
     m_devices << "default";
-    ui.deviceComboBox->addItem("Default PCM device(default)");
+    m_ui.deviceComboBox->addItem("Default PCM device(default)");
 
     if((err = snd_card_next(&card)) !=0)
         qWarning("SettingsDialog(ALSA): snd_next_card() failed: %s",
@@ -89,7 +89,7 @@ void SettingsDialog::getSoftDevices()
             m_devices << QString(device_name);
             QString str = QString("%1(%2)").arg(device_desc).arg(device_name);
             qDebug("%s", qPrintable(str));
-            ui.deviceComboBox->addItem(str);
+            m_ui.deviceComboBox->addItem(str);
             free(device_name);
             free(device_desc);
         }
@@ -124,7 +124,7 @@ void SettingsDialog::getCardDevices(int card)
                  snd_strerror(-err));
         card_name = strdup("Unknown soundcard");
     }
-    ui.mixerCardComboBox->addItem(QString(card_name));
+    m_ui.mixerCardComboBox->addItem(QString(card_name));
 
     snd_pcm_info_alloca(&pcm_info);
 
@@ -160,7 +160,7 @@ void SettingsDialog::getCardDevices(int card)
         str =  QString(card_name) + ": "+
                snd_pcm_info_get_name(pcm_info)+"("+device+")";
         qDebug("%s",qPrintable(str));
-        ui.deviceComboBox->addItem(str);
+        m_ui.deviceComboBox->addItem(str);
     }
 
     free(card_name);
@@ -169,7 +169,7 @@ void SettingsDialog::getCardDevices(int card)
 
 void SettingsDialog::getMixerDevices(QString card)
 {
-    ui.mixerDeviceComboBox->clear();
+    m_ui.mixerDeviceComboBox->clear();
     snd_mixer_t *mixer;
     snd_mixer_elem_t *current;
 
@@ -183,14 +183,14 @@ void SettingsDialog::getMixerDevices(QString card)
         const char *sname = snd_mixer_selem_get_name(current);
         if(snd_mixer_selem_is_active(current) &&
                 snd_mixer_selem_has_playback_volume(current))
-            ui.mixerDeviceComboBox->addItem(QString(sname));
+            m_ui.mixerDeviceComboBox->addItem(QString(sname));
         current = snd_mixer_elem_next(current);
     }
 }
 
 void SettingsDialog::setText(int n)
 {
-    ui.deviceComboBox->setEditText(m_devices.at(n));
+    m_ui.deviceComboBox->setEditText(m_devices.at(n));
 }
 
 void SettingsDialog::accept()
@@ -198,17 +198,17 @@ void SettingsDialog::accept()
     qDebug("SettingsDialog(ALSA):: writeSettings()");
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
-    settings.setValue("device", ui.deviceComboBox->currentText());
-    settings.setValue("buffer_time",ui.bufferSpinBox->value());
-    settings.setValue("period_time",ui.periodSpinBox->value());
-    if(ui.mixerCardComboBox->currentIndex() >= 0)
+    settings.setValue("device", m_ui.deviceComboBox->currentText());
+    settings.setValue("buffer_time",m_ui.bufferSpinBox->value());
+    settings.setValue("period_time",m_ui.periodSpinBox->value());
+    if(m_ui.mixerCardComboBox->currentIndex() >= 0)
     {
-        QString card = m_cards.at(ui.mixerCardComboBox->currentIndex());
+        QString card = m_cards.at(m_ui.mixerCardComboBox->currentIndex());
         settings.setValue("mixer_card", card);
     }
-    settings.setValue("mixer_device", ui.mixerDeviceComboBox->currentText());
-    settings.setValue("use_mmap", ui.mmapCheckBox->isChecked());
-    settings.setValue("use_snd_pcm_pause", ui.pauseCheckBox->isChecked());
+    settings.setValue("mixer_device", m_ui.mixerDeviceComboBox->currentText());
+    settings.setValue("use_mmap", m_ui.mmapCheckBox->isChecked());
+    settings.setValue("use_snd_pcm_pause", m_ui.pauseCheckBox->isChecked());
     settings.endGroup();
     QDialog::accept();
 }

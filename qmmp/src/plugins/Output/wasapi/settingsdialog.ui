@@ -76,6 +76,9 @@
    </item>
    <item row="1" column="0" colspan="3">
     <widget class="QCheckBox" name="exclusiveModeCheckBox">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="text">
       <string>Exclusive mode</string>
      </property>
