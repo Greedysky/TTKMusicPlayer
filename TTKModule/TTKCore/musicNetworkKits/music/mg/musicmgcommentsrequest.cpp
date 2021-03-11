@@ -20,10 +20,10 @@ void MusicMGSongCommentsRequest::startToSearch(const QString &name)
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
-    m_rawData["songID"].clear();
+    m_rawData["sid"].clear();
     if(!d->isEmpty())
     {
-        m_rawData["songID"] = d->getMusicSongInfos().first().m_songId;
+        m_rawData["sid"] = d->getMusicSongInfos().first().m_songId;
         startToPage(0);
     }
 }
@@ -41,7 +41,7 @@ void MusicMGSongCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MG_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(MG_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL, ALG_UA_KEY, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
@@ -115,7 +115,7 @@ void MusicMGPlaylistCommentsRequest::startToSearch(const QString &name)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
 
-    m_rawData["songID"] = name;
+    m_rawData["sid"] = name;
     startToPage(0);
 }
 
@@ -132,7 +132,7 @@ void MusicMGPlaylistCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MG_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(MG_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset + 1).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL, ALG_UA_KEY, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);

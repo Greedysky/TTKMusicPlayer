@@ -76,16 +76,10 @@ MusicWebFMRadioPlayWidget::~MusicWebFMRadioPlayWidget()
     delete m_ui;
 }
 
-void MusicWebFMRadioPlayWidget::closeEvent(QCloseEvent *event)
-{
-    delete m_mediaPlayer;
-    m_mediaPlayer = nullptr;
-    QWidget::closeEvent(event);
-}
-
-void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id)
+void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id, const QString &cookie)
 {
     m_currentID = id;
+    m_songsThread->setHeader("Cookie", cookie);
     m_songsThread->startToDownload(m_currentID);
 }
 
@@ -169,6 +163,13 @@ void MusicWebFMRadioPlayWidget::getSongInfoFinished()
 {
     m_isPlaying = true;
     startToPlay();
+}
+
+void MusicWebFMRadioPlayWidget::closeEvent(QCloseEvent *event)
+{
+    delete m_mediaPlayer;
+    m_mediaPlayer = nullptr;
+    QWidget::closeEvent(event);
 }
 
 void MusicWebFMRadioPlayWidget::createCoreModule()

@@ -600,8 +600,6 @@ void MusicLrcAnalysis::getTranslatedLrc()
 #endif
     }
 
-    QVariantMap dtMap;
-    dtMap["name"] = m_currentLrcFileName;
-    m_translationThread->setRawData(dtMap);
+    m_translationThread->setHeader("name", m_currentLrcFileName);
     m_translationThread->startToDownload(data);
 }

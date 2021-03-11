@@ -75,7 +75,7 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
-                    m_rawData["songID"] = value["id"].toString();
+                    m_rawData["sid"] = value["id"].toString();
                     musicInfo.m_songId = value["mid"].toString();
 
                     const QVariantMap &albumMap = value["album"].toMap();

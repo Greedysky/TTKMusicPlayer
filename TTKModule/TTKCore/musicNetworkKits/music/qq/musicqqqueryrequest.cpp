@@ -113,7 +113,7 @@ void MusicQQQueryRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
-                    m_rawData["songID"] = value["songid"].toString();
+                    m_rawData["sid"] = value["songid"].toString();
                     musicInfo.m_songId = value["songmid"].toString();
                     musicInfo.m_albumId = value["albummid"].toString();
 
@@ -198,7 +198,7 @@ void MusicQQQueryRequest::singleDownLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
-                    m_rawData["songID"] = QString::number(value["id"].toLongLong());
+                    m_rawData["sid"] = QString::number(value["id"].toLongLong());
                     musicInfo.m_songId = value["mid"].toString();
 
                     const QVariantMap &albumMap = value["album"].toMap();

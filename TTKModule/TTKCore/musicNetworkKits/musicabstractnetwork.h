@@ -61,20 +61,11 @@ public:
     /*!
      * Set the current raw data.
      */
-    inline void setRawData(const QVariantMap &data) { m_rawData = data; }
+    inline void setHeader(const QString &key, const QVariant &value) { m_rawData[key] = value; }
     /*!
      * Get the current raw data.
      */
-    inline const QVariantMap &getRawData() const { return m_rawData; }
-
-    /*!
-     * Set the current raw data.
-     */
-    inline void setHeader(const QString &key, const QVariant &value) { m_headerData[key] = value; }
-    /*!
-     * Get the current raw data.
-     */
-    inline const QVariant getHeader(const QString &key) const { return m_headerData[key]; }
+    inline const QVariant getHeader(const QString &key) const { return m_rawData[key]; }
 
 Q_SIGNALS:
     /*!
@@ -109,7 +100,6 @@ public Q_SLOTS:
 
 protected:
     QVariantMap m_rawData;
-    QVariantMap m_headerData;
     volatile bool m_interrupt;
     volatile MusicObject::NetworkCode m_stateCode;
     QNetworkReply *m_reply;

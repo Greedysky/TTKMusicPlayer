@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFMRadioChannelRequest(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
+    explicit MusicFMRadioChannelRequest(QObject *parent = nullptr);
 
     virtual ~MusicFMRadioChannelRequest();
 

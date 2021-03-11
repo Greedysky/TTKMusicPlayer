@@ -23,9 +23,10 @@
 #include "musicstringutils.h"
 #include "musicabstractnetwork.h"
 
-const QString FM_CHANNEL_URL  = "emFrU3NhdGU2YUJDeTZNdGQ0Snh2cmJBZ0lKdm5VNm5pb2tLNzNtTHRDcTVFVDV4RWRYN1pOcHlJa0l6VTVmbA==";
-const QString FM_SONG_URL     = "RXUydVV6M21qbDNWc3BVT29idUF6VXlBalBrRU55eTY4bkxhOEx0ZTUweFE1TDlwenJYYmRTdTZiZVF4OElUUmFxcVNWbEhWR0FxTUhjOEVrZmE5QTE0R1c2UUFsYVIvbEFpcFBET1FMb3RsZ24zK2VsTHV2dDkvb1lwM0w0RUZoK0RqZWJSTlJLYz0=";
-const QString FM_LRC_URL      = "TWNqdlhpeEtEVm1qbzN4TXNNZ2hYTU1TdGFLZ0I0bUNWQkZ1WlRHZ2UzWXAwdCtYNGk3bit3eW1tb1JCeGhBUTNEU2xTNEUzckVvPQ==";
+const QString FM_API_KEY      = "02646d3fb69a52ff072d47bf23cef8fd";
+const QString FM_CHANNEL_URL  = "OFZkR1h6cGZ2OFZpdERYUFhhcnF3VWRBWTZmblhPK0RxOUFzQ2hFMGI5YVhiS2xaZ3U3V3UyN0FyU2VLaHJqMXZDTUZ2N202ZWxjPQ==";
+const QString FM_SONG_URL     = "NVBxM3kzUVllaUtJU3Q3YUFrVm5JNU1CVXpvMTRGekpuZkxPanNMZVUrNHBYZEc4dmtNWFJhYmFtTEdsd2pnU3BnMG91c2VJdDdTZkpWaDZsYjVzam5vOXkwVzF0Z3RCcDBpVm5CQTljT3FIajNlQU95eW95a1hqS0MxVlY5Ui9kTDNvNDk5amZHZzIxbXVWMS9zRFZIL3lIeWs9";
+const QString FM_LRC_URL      = "M2FqVHV6Z29kcUpNNEcvcHo3NmM5Rkc3S0FBVnFzYnRsdVJKMnFQSmd0NGJNYW1QYmpLWXg2UkhicVlRUnRkNVBmMUdwSXY0OVQ4T2xMd0gvbUFCOHc9PQ==";
 
 /*! @brief The class of fm radio request base.
  * @author Greedysky <greedysky@163.com>
@@ -38,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractFMRadioRequest(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
+    explicit MusicAbstractFMRadioRequest(QObject *parent = nullptr);
 
     virtual ~MusicAbstractFMRadioRequest();
 
@@ -47,9 +48,6 @@ public:
      * Subclass should implement this function.
      */
     virtual void startToDownload(const QString &data) = 0;
-
-protected:
-    QNetworkCookieJar *m_cookJar;
 
 };
 

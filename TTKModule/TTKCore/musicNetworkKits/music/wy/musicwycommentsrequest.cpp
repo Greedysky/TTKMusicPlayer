@@ -20,10 +20,10 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &name)
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
-    m_rawData["songID"] = 0;
+    m_rawData["sid"] = 0;
     if(!d->isEmpty())
     {
-        m_rawData["songID"] = d->getMusicSongInfos().first().m_songId.toInt();
+        m_rawData["sid"] = d->getMusicSongInfos().first().m_songId.toInt();
         startToPage(0);
     }
 }
@@ -43,8 +43,8 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toInt()),
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset));
+                      MusicUtils::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
+                      MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize).arg(m_pageSize*offset));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
@@ -111,7 +111,7 @@ void MusicWYPlaylistCommentsRequest::startToSearch(const QString &name)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
 
-    m_rawData["songID"] = name;
+    m_rawData["sid"] = name;
     startToPage(0);
 }
 
@@ -130,8 +130,8 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toLongLong()),
-                      MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["songID"].toLongLong()).arg(m_pageSize).arg(m_pageSize*offset));
+                      MusicUtils::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
+                      MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize).arg(m_pageSize*offset));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
