@@ -29,7 +29,7 @@ void MusicMGQueryToplistRequest::startToSearch(const QString &toplist)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(toplist));
 
     deleteAll();
-    m_rawData["songID"] = toplist;
+    m_rawData["sid"] = toplist;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(MG_TOPLIST_URL, false).arg(toplist));
@@ -94,7 +94,7 @@ void MusicMGQueryToplistRequest::downLoadFinished()
                 {
                     for(const MusicResultsCategoryItem &item : qAsConst(category.m_items))
                     {
-                        if(item.m_key == m_rawData["songID"])
+                        if(item.m_key == m_rawData["sid"])
                         {
                             info.m_coverUrl = item.m_value;
                             break;

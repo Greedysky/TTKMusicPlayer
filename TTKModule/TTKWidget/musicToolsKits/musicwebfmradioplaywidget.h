@@ -22,7 +22,6 @@
 #include <QTimer>
 #include "musicabstractmovewidget.h"
 
-class QNetworkCookieJar;
 class MusicLrcAnalysis;
 class MusicCoreMPlayer;
 class MusicFMRadioSongsRequest;
@@ -49,7 +48,7 @@ public:
     /*!
      * Update radio song by given id.
      */
-    void updateRadioSong(const QString &id);
+    void updateRadioSong(const QString &id, const QString &cookie);
 
 public Q_SLOTS:
     /*!

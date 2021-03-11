@@ -111,7 +111,7 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
 
     if(!channels.isEmpty())
     {
-        m_musicRadio->updateRadioSong(channels[row].m_id);
+        m_musicRadio->updateRadioSong(channels[row].m_id, m_getChannelThread->getHeader("Cookie").toString());
     }
     m_musicRadio->show();
 }
@@ -153,9 +153,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != COVER_URL_NULL)
         {
-            QVariantMap map;
-            map["id"] = index;
-            download->setRawData(map);
+            download->setHeader("id", index);
             download->startToDownload(channel.m_coverUrl);
         }
     }
@@ -176,7 +174,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data)
         return;
     }
 
-    QTableWidgetItem *it = item(download->getRawData()["id"].toInt(), 1);
+    QTableWidgetItem *it = item(download->getHeader("id").toInt(), 1);
     if(it)
     {
         QPixmap pix;

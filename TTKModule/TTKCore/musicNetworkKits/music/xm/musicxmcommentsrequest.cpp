@@ -20,10 +20,10 @@ void MusicXMSongCommentsRequest::startToSearch(const QString &name)
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
-    m_rawData["songID"] = 0;
+    m_rawData["sid"] = 0;
     if(!d->isEmpty())
     {
-        m_rawData["songID"] = d->getMusicSongInfos().first().m_songId.toInt();
+        m_rawData["sid"] = d->getMusicSongInfos().first().m_songId.toInt();
         startToPage(0);
     }
 }
@@ -43,7 +43,7 @@ void MusicXMSongCommentsRequest::startToPage(int offset)
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
-                      MusicUtils::Algorithm::mdII(XM_COMMENT_SONG_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_COMMENT_URL, false));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
@@ -114,7 +114,7 @@ void MusicXMPlaylistCommentsRequest::startToSearch(const QString &name)
 {
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
 
-    m_rawData["songID"] = name;
+    m_rawData["sid"] = name;
     startToPage(0);
 }
 
@@ -133,7 +133,7 @@ void MusicXMPlaylistCommentsRequest::startToPage(int offset)
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
     makeTokenQueryUrl(&request, false,
-                      MusicUtils::Algorithm::mdII(XM_COMMENT_PLAYLIST_URL, false).arg(m_rawData["songID"].toInt()).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toInt()).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_COMMENT_URL, false));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);

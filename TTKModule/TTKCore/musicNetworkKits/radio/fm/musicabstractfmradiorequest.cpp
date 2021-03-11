@@ -1,9 +1,9 @@
 #include "musicabstractfmradiorequest.h"
 
-MusicAbstractFMRadioRequest::MusicAbstractFMRadioRequest(QObject *parent, QNetworkCookieJar *cookie)
+MusicAbstractFMRadioRequest::MusicAbstractFMRadioRequest(QObject *parent)
     : MusicAbstractNetwork(parent)
 {
-    m_cookJar = cookie;
+
 }
 
 MusicAbstractFMRadioRequest::~MusicAbstractFMRadioRequest()
