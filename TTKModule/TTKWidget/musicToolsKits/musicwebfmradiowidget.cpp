@@ -19,7 +19,9 @@
 #define ICON_SIZE       50
 
 MusicWebFMRadioWidget::MusicWebFMRadioWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent), m_musicRadio(nullptr), m_getChannelThread(nullptr)
+    : MusicAbstractTableWidget(parent),
+      m_musicRadio(nullptr),
+      m_getChannelThread(nullptr)
 {
     setIconSize(QSize(ICON_SIZE, ICON_SIZE));
     setColumnCount(4);

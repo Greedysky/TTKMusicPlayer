@@ -33,8 +33,10 @@
 
 
 MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
-    : MusicAbstractSongsListTableWidget(parent), m_openFileWidget(nullptr),
-      m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr)
+    : MusicAbstractSongsListTableWidget(parent),
+      m_openFileWidget(nullptr),
+      m_musicSongsInfoWidget(nullptr),
+      m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
     m_renameActived = false;

@@ -5,7 +5,11 @@
 #endif
 
 MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
-    : MusicAbstractNetwork(parent), m_index(0), m_counter(0), m_artName(name), m_savePath(save)
+    : MusicAbstractNetwork(parent),
+      m_index(0),
+      m_counter(0),
+      m_artName(name),
+      m_savePath(save)
 {
 
 }
