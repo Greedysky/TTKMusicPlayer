@@ -14,15 +14,11 @@ void MusicMGDownLoadTextRequest::startToDownload()
         if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
         {
             m_speedTimer.start();
-            m_manager = new QNetworkAccessManager(this);
 
             QNetworkRequest request;
             request.setUrl(m_url);
             request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
-#ifndef QT_NO_SSL
-            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
             MusicObject::setSslConfiguration(&request);
-#endif
 
             m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

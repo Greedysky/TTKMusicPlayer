@@ -20,15 +20,11 @@ void MusicFMRadioSongsRequest::startToDownload(const QString &id)
 {
     m_cachedID = id;
     m_songInfo = MusicObject::MusicSongInformation();
-    m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(FM_SONG_URL, false).arg(id).arg(FM_API_KEY));
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    MusicObject::setSslConfiguration(&request);
-#endif
     request.setRawHeader("Cookie", getHeader("Cookie").toByteArray());
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

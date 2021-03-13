@@ -8,10 +8,7 @@ const QString BIG_ART_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWx
 MusicQQDownloadBackgroundRequest::MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
     : MusicDownloadBackgroundRequest(name, save, parent)
 {
-    m_manager = new QNetworkAccessManager(this);
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-#endif
+
 }
 
 void MusicQQDownloadBackgroundRequest::deleteAll()

@@ -13,14 +13,11 @@ void MusicDownLoadTextRequest::startToDownload()
         if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
         {
             m_speedTimer.start();
-            m_manager = new QNetworkAccessManager(this);
 
             QNetworkRequest request;
             request.setUrl(m_url);
-#ifndef QT_NO_SSL
-            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
             MusicObject::setSslConfiguration(&request);
-#endif
+
             m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

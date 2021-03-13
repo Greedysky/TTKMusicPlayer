@@ -22,10 +22,6 @@ void MusicDownloadTagDataRequest::startToDownload()
     {
         if(m_file->open(QIODevice::WriteOnly))
         {
-            m_manager = new QNetworkAccessManager(this);
-#ifndef QT_NO_SSL
-            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-#endif
             startRequest(m_url);
             disconnect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
             connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));

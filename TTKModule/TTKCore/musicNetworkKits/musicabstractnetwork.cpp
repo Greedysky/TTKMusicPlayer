@@ -6,7 +6,10 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
     setNetworkAbort(false);
     m_stateCode = MusicObject::NetworkQuery;
     m_reply = nullptr;
-    m_manager = nullptr;
+    m_manager = new QNetworkAccessManager(this);
+#ifndef QT_NO_SSL
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+#endif
 }
 
 MusicAbstractNetwork::~MusicAbstractNetwork()

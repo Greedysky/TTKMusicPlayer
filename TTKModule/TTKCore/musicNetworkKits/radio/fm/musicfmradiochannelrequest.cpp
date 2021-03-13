@@ -20,14 +20,9 @@ MusicFMRadioChannelRequest::~MusicFMRadioChannelRequest()
 void MusicFMRadioChannelRequest::startToDownload(const QString &id)
 {
     Q_UNUSED(id);
-    m_manager = new QNetworkAccessManager(this);
-
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(FM_CHANNEL_URL, false).arg(FM_API_KEY));
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     MusicObject::setSslConfiguration(&request);
-#endif
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

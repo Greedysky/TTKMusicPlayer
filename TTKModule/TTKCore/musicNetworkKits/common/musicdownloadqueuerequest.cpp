@@ -11,17 +11,11 @@ MusicDownloadQueueRequest::MusicDownloadQueueRequest(MusicObject::DownloadType  
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::DownloadType  type, QObject *parent)
     : MusicAbstractDownLoadRequest(data.m_url, data.m_savePath, type, parent)
 {
-    m_request = nullptr;
     m_isDownload = false;
     m_isAbort = false;
 
-    m_manager = new QNetworkAccessManager(this);
-    m_request = new QNetworkRequest();
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    m_request = new QNetworkRequest;
     MusicObject::setSslConfiguration(m_request);
-#endif
-
 }
 
 MusicDownloadQueueRequest::MusicDownloadQueueRequest(const MusicDownloadQueueDatas &datas, MusicObject::DownloadType  type, QObject *parent)

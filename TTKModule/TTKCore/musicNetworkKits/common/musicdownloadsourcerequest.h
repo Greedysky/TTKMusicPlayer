@@ -46,16 +46,6 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
-    /*!
-     * Download reply error.
-     */
-    virtual void replyError(QNetworkReply::NetworkError error) override;
-#ifndef QT_NO_SSL
-    /*!
-     * Download ssl reply error.
-     */
-    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
-#endif
 
 };
 
