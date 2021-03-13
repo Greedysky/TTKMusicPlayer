@@ -80,7 +80,6 @@ TTK_DECLARE_LISTS(MusicResultsItem)
 
 #define QUERY_WY_INTERFACE      "WangYi"
 #define QUERY_QQ_INTERFACE      "QQ"
-#define QUERY_XM_INTERFACE      "XiaMi"
 #define QUERY_BD_INTERFACE      "BaiDu"
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
@@ -90,7 +89,6 @@ enum DownloadQueryServer
 {
     WYQueryServer,
     QQQueryServer,
-    XMQueryServer,
     KWQueryServer,
     KGQueryServer,
     MGQueryServer

@@ -26,7 +26,7 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_searchText).arg(m_pageSize).arg(0).toUtf8());
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_searchText).arg(1004).arg(m_pageSize).arg(0).toUtf8());
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
@@ -95,7 +95,9 @@ void MusicWYQueryMovieRequest::downLoadFinished()
             if(value.contains("code") && value["code"].toInt() == 200)
             {
                 value = value["result"].toMap();
-                const QVariantList &datas = value["songs"].toList();
+                m_totalSize = value["mvCount"].toInt();
+
+                const QVariantList &datas = value["mvs"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
@@ -106,7 +108,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    const qint64 mvid = value["mv"].toLongLong();
+                    const qint64 mvid = value["id"].toLongLong();
                     if(mvid == 0)
                     {
                         continue;

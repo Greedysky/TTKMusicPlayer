@@ -56,7 +56,6 @@ include_directories(
     ${MUSIC_CORE_NETWORK_DIR}/music/mg
     ${MUSIC_CORE_NETWORK_DIR}/music/qq
     ${MUSIC_CORE_NETWORK_DIR}/music/wy
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj
     ${MUSIC_CORE_NETWORK_DIR}/radio/mv
     ${MUSIC_CORE_NETWORK_DIR}/radio/fm

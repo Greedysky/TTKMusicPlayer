@@ -19,7 +19,6 @@
 INCLUDEPATH += $$PWD \
                $$PWD/common \
                $$PWD/music/wy \
-               $$PWD/music/xm \
                $$PWD/music/kg \
                $$PWD/music/kw \
                $$PWD/music/bd \
@@ -58,20 +57,6 @@ HEADERS  += \
     $$PWD/music/wy/musicwysongsuggestrequest.h \
     $$PWD/music/wy/musicwytranslationrequest.h \
     $$PWD/music/wy/musicwydiscoverlistrequest.h \
-    $$PWD/music/xm/musicxmqueryinterface.h \
-    $$PWD/music/xm/musicxmqueryrequest.h \
-    $$PWD/music/xm/musicxmqueryalbumrequest.h \
-    $$PWD/music/xm/musicxmqueryartistrequest.h \
-    $$PWD/music/xm/musicxmqueryplaylistrequest.h \
-    $$PWD/music/xm/musicxmquerytoplistrequest.h \
-    $$PWD/music/xm/musicxmquerymovierequest.h \
-    $$PWD/music/xm/musicxmqueryrecommendrequest.h \
-    $$PWD/music/xm/musicxmqueryartistlistrequest.h \
-    $$PWD/music/xm/musicxmdownloadtextrequest.h \
-    $$PWD/music/xm/musicxmdiscoverlistrequest.h \
-    $$PWD/music/xm/musicxmcommentsrequest.h \
-    $$PWD/music/xm/musicxmsongsuggestrequest.h \
-    $$PWD/music/xm/musicxmartistsimilarrequest.h \
     $$PWD/music/kg/musickgqueryinterface.h \
     $$PWD/music/kg/musickgqueryrequest.h \
     $$PWD/music/kg/musickgqueryalbumrequest.h \
@@ -193,20 +178,6 @@ SOURCES += \
     $$PWD/music/wy/musicwyartistsimilarrequest.cpp \
     $$PWD/music/wy/musicwytranslationrequest.cpp \
     $$PWD/music/wy/musicwydiscoverlistrequest.cpp \
-    $$PWD/music/xm/musicxmqueryinterface.cpp \
-    $$PWD/music/xm/musicxmqueryrequest.cpp \
-    $$PWD/music/xm/musicxmqueryalbumrequest.cpp \
-    $$PWD/music/xm/musicxmqueryartistrequest.cpp \
-    $$PWD/music/xm/musicxmqueryplaylistrequest.cpp \
-    $$PWD/music/xm/musicxmquerytoplistrequest.cpp \
-    $$PWD/music/xm/musicxmquerymovierequest.cpp \
-    $$PWD/music/xm/musicxmqueryrecommendrequest.cpp \
-    $$PWD/music/xm/musicxmqueryartistlistrequest.cpp \
-    $$PWD/music/xm/musicxmdownloadtextrequest.cpp \
-    $$PWD/music/xm/musicxmdiscoverlistrequest.cpp \
-    $$PWD/music/xm/musicxmcommentsrequest.cpp \
-    $$PWD/music/xm/musicxmsongsuggestrequest.cpp \
-    $$PWD/music/xm/musicxmartistsimilarrequest.cpp \
     $$PWD/music/kg/musickgqueryinterface.cpp \
     $$PWD/music/kg/musickgqueryrequest.cpp \
     $$PWD/music/kg/musickgqueryalbumrequest.cpp \

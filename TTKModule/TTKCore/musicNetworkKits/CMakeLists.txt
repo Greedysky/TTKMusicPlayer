@@ -29,20 +29,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwysongsuggestrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwytranslationrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydiscoverlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryinterface.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryalbumrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryartistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryplaylistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmquerytoplistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmquerymovierequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryrecommendrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryartistlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmdownloadtextrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmdiscoverlistrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmcommentsrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmsongsuggestrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmartistsimilarrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryalbumrequest.h
@@ -164,20 +150,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyartistsimilarrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwytranslationrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwydiscoverlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryinterface.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryalbumrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryartistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryplaylistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmquerytoplistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmquerymovierequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryrecommendrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmqueryartistlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmdownloadtextrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmdiscoverlistrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmcommentsrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmsongsuggestrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/music/xm/musicxmartistsimilarrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/kg/musickgqueryalbumrequest.cpp
