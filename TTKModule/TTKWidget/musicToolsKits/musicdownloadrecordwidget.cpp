@@ -46,7 +46,7 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, 100);
+    item->setData(MUSIC_PROGRESS_ROLE, 100);
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem(record.getMusicSizeStr());
@@ -56,7 +56,7 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     item->setTextColor(QColor(MusicUIObject::MQSSColor01));
 #endif
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIMES_ROLE, record.getMusicAddTimeStr());
+    item->setData(MUSIC_TIME_ROLE, record.getMusicAddTimeStr());
     setItem(index, 3, item);
 
     //just fix table widget size hint

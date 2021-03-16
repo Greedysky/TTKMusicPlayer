@@ -8,7 +8,6 @@ MusicFillItemTableWidget::MusicFillItemTableWidget(QWidget *parent)
     setStyleSheet(styleSheet() + MusicUIObject::MQSSTableWidgetStyle02);
 
     m_checkBoxDelegate = new MusicCheckBoxDelegate(this);
-    m_checkBoxDelegate->setFillBackground(true);
     setItemDelegateForColumn(0, m_checkBoxDelegate);
 }
 

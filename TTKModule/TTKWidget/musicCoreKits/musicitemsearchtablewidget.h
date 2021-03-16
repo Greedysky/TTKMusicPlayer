@@ -19,80 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMenu>
-#include <QActionGroup>
-#include "musicfillitemtablewidget.h"
-#include "musicabstractqueryrequest.h"
-
-class MusicGifLabelWidget;
-
-/*! @brief The class of the query table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQueryTableWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicQueryTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicQueryTableWidget();
-
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicAbstractQueryRequest *query);
-    /*!
-     * Get network query input.
-     */
-    MusicAbstractQueryRequest *getQueryInput();
-    /*!
-     * Start search query by text.
-     * Subclass should implement this function.
-     */
-    virtual void startSearchQuery(const QString &text) = 0;
-    /*!
-     * Data download to local file.
-     * Subclass should implement this function.
-     */
-    virtual void musicDownloadLocal(int row) = 0;
-
-Q_SIGNALS:
-    /*!
-     * Add current network music to download to local.
-     */
-    void musicSongToPlaylistChanged(const QString &name, const QString &time, const QString &format, bool play);
-    /*!
-     * Show download state type.
-     */
-    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
-    /*!
-     * Restart search query by name.
-     */
-    void restartSearchQuery(const QString &name);
-
-public Q_SLOTS:
-    /*!
-     * Clear All Items.
-     * Subclass should implement this function.
-     */
-    virtual void clearAllItems() = 0;
-    /*!
-     * Create searched items.
-     * Subclass should implement this function.
-     */
-    virtual void createSearchedItem(const MusicSearchedItem &songItem) = 0;
-
-protected:
-    MusicAbstractQueryRequest *m_downLoadManager;
-
-};
-
+#include "musicquerytablewidget.h"
 
 class MusicLabelDelegate;
+class MusicGifLabelWidget;
+
 /*! @brief The class of the search item table widget.
  * @author Greedysky <greedysky@163.com>
  */

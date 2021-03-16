@@ -170,9 +170,9 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
         QTableWidgetItem *it = item(row, 0);
         if(it)
         {
-            MusicCloudDataItem data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
+            MusicCloudDataItem data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
             data.m_state = MusicCloudDataItem::Successed;
-            it->setData(MUSIC_DATAS_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
+            it->setData(MUSIC_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
             m_totalFileSzie += data.m_dataItem.m_size;
         }
         Q_EMIT updataSizeLabel(m_totalFileSzie);
@@ -210,7 +210,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
         return;
     }
 
-    const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
+    const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
     removeRow(currentRow());
     m_syncDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
     m_totalFileSzie -= data.m_dataItem.m_size;
@@ -238,7 +238,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
             continue;
         }
 
-        const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
+        const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
         removeRow(index); //Delete the current row
         m_syncDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
 
@@ -261,7 +261,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
         return;
     }
 
-    const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
+    const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
     const QString &url = m_syncDownloadData->getDownloadUrl(MUSIC_BUCKET, data.m_dataItem.m_name);
 
     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
@@ -327,7 +327,7 @@ void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 by
             QTableWidgetItem *it = item(row, 2);
             if(it)
             {
-                it->setData(MUSIC_PROCS_ROLE, value);
+                it->setData(MUSIC_PROGRESS_ROLE, value);
             }
         }
     }
@@ -354,7 +354,7 @@ void MusicCloudManagerTableWidget::showFileInformationWidget()
     }
 
     MusicCloudFileInformationWidget w;
-    MusicCloudDataItem data(it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>());
+    MusicCloudDataItem data(it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>());
     w.setFileInformation(&data.m_dataItem);
     w.exec();
 }
@@ -469,7 +469,7 @@ void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
     QHeaderView *headerview = horizontalHeader();
 
     QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(MUSIC_DATAS_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
+    item->setData(MUSIC_DATA_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
     setItem(row, 0, item);
 
                       item = new QTableWidgetItem;
@@ -484,7 +484,7 @@ void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
     setItem(row, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, data.m_dataItem.m_hash.isEmpty() ? 0 : 100);
+    item->setData(MUSIC_PROGRESS_ROLE, data.m_dataItem.m_hash.isEmpty() ? 0 : 100);
     setItem(row, 2, item);
 
                       item = new QTableWidgetItem;
@@ -520,7 +520,7 @@ int MusicCloudManagerTableWidget::FindUploadItemRow(const QString &time) const
             continue;
         }
 
-        const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
+        const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
         if(data.m_id == time)
         {
             return i;
@@ -539,7 +539,7 @@ MusicCloudDataItem MusicCloudManagerTableWidget::FindWaitedItemRow() const
             continue;
         }
 
-        const MusicCloudDataItem &data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
+        const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
         if(data.m_state == MusicCloudDataItem::Waited)
         {
             return data;

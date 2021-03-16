@@ -28,6 +28,7 @@ HEADERS  += \
     $$PWD/musicabstractitemquerywidget.h \
     $$PWD/musicabstractsongslisttablewidget.h \
     $$PWD/musicfillitemtablewidget.h \
+    $$PWD/musicquerytablewidget.h \
     $$PWD/musicitemsearchtablewidget.h \
     $$PWD/musicitemquerytablewidget.h \
     $$PWD/musicsmoothmovingwidget.h \
@@ -76,6 +77,7 @@ SOURCES += \
     $$PWD/musicabstractitemquerywidget.cpp \
     $$PWD/musicabstractsongslisttablewidget.cpp \
     $$PWD/musicfillitemtablewidget.cpp \
+    $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicitemsearchtablewidget.cpp \
     $$PWD/musicitemquerytablewidget.cpp \
     $$PWD/musicsmoothmovingwidget.cpp \

@@ -41,7 +41,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItems *items)
         const MusicSongItem &song = (*items)[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
-        item->setData(MUSIC_DATAS_ROLE, song.m_itemIndex);
+        item->setData(MUSIC_DATA_ROLE, song.m_itemIndex);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -60,7 +60,7 @@ TTKIntList MusicSongItemSelectedTableWidget::getSelectedItems() const
         const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(MUSIC_CHECK_ROLE) == Qt::Checked)
         {
-            list << it->data(MUSIC_DATAS_ROLE).toInt();
+            list << it->data(MUSIC_DATA_ROLE).toInt();
         }
     }
     return list;

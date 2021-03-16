@@ -22,15 +22,12 @@
 #include <QItemDelegate>
 #include "musicglobaldefine.h"
 
-#define MUSIC_CHECK_ROLE Qt::UserRole + 1
-#define MUSIC_QUERY_ROLE Qt::UserRole + 2
-#define MUSIC_PROCS_ROLE Qt::UserRole + 3
-#define MUSIC_AUDIT_ROLE Qt::UserRole + 4
-#define MUSIC_TEXTS_ROLE Qt::UserRole + 5
-#define MUSIC_TIMES_ROLE Qt::UserRole + 6
-#define MUSIC_ENABL_ROLE Qt::UserRole + 7
-#define MUSIC_SHOWN_ROLE Qt::UserRole + 8
-#define MUSIC_DATAS_ROLE Qt::UserRole + 100
+#define MUSIC_CHECK_ROLE    Qt::UserRole + 1
+#define MUSIC_PROGRESS_ROLE Qt::UserRole + 2
+#define MUSIC_TEXT_ROLE     Qt::UserRole + 3
+#define MUSIC_TIME_ROLE     Qt::UserRole + 4
+#define MUSIC_ENABLE_ROLE   Qt::UserRole + 5
+#define MUSIC_DATA_ROLE     Qt::UserRole + 100
 
 class QLabel;
 class QCheckBox;
@@ -97,10 +94,6 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
-    /*!
-     * Set fill background.
-     */
-    void setFillBackground(bool fill);
     /*!
      * Show text mode.
      */

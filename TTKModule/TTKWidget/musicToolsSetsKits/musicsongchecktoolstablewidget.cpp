@@ -48,7 +48,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXTS_ROLE, tr("Delete"));
+        item->setData(MUSIC_TEXT_ROLE, tr("Delete"));
         setItem(i, 3, item);
     }
 }
@@ -157,12 +157,12 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXTS_ROLE, tr("Play"));
-        item->setData(MUSIC_DATAS_ROLE, song.m_song.getMusicPath());
+        item->setData(MUSIC_TEXT_ROLE, tr("Play"));
+        item->setData(MUSIC_DATA_ROLE, song.m_song.getMusicPath());
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXTS_ROLE, tr("Delete"));
+        item->setData(MUSIC_TEXT_ROLE, tr("Delete"));
         setItem(i, 6, item);
     }
 }
@@ -206,7 +206,7 @@ void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
     const QTableWidgetItem *it = item(currentRow(), 5);
     if(it)
     {
-        const QString &path = it->data(MUSIC_DATAS_ROLE).toString();
+        const QString &path = it->data(MUSIC_DATA_ROLE).toString();
         Q_EMIT addSongToPlay(QStringList(QFile::exists(path) ? path : QString()));
     }
 }
@@ -302,12 +302,12 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXTS_ROLE, tr("Play"));
-        item->setData(MUSIC_DATAS_ROLE, song.m_song.getMusicPath());
+        item->setData(MUSIC_TEXT_ROLE, tr("Play"));
+        item->setData(MUSIC_DATA_ROLE, song.m_song.getMusicPath());
         setItem(i, 6, item);
 
                 item = new QTableWidgetItem;
-        item->setData(MUSIC_TEXTS_ROLE, tr("Delete"));
+        item->setData(MUSIC_TEXT_ROLE, tr("Delete"));
         setItem(i, 7, item);
     }
 }
@@ -351,7 +351,7 @@ void MusicSongCheckToolsQualityTableWidget::musicPlay()
     const QTableWidgetItem *it = item(currentRow(), 6);
     if(it)
     {
-        const QString &path = it->data(MUSIC_DATAS_ROLE).toString();
+        const QString &path = it->data(MUSIC_DATA_ROLE).toString();
         Q_EMIT addSongToPlay(QStringList(QFile::exists(path) ? path : QString()));
     }
 }

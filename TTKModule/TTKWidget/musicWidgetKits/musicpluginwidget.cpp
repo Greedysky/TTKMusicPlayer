@@ -21,7 +21,7 @@ public:
     MusicPluginItem(QTreeWidgetItem *parent, DecoderFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, DECODER)
     {
-        initialize(Decoder::isEnabled(factory), true, factory->properties().name, path);
+        initialize(Decoder::isEnabled(factory), true, factory->properties().name, factory->properties().hasSettings, path);
         m_factory = factory;
     }
 
@@ -29,21 +29,21 @@ public:
         : QTreeWidgetItem(parent, EFFECT)
     {
 
-        initialize(Effect::isEnabled(factory), false, factory->properties().name, path);
+        initialize(Effect::isEnabled(factory), false, factory->properties().name, factory->properties().hasSettings, path);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, VisualFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, VISUAL)
     {
-        initialize(Visual::isEnabled(factory), false, factory->properties().name, path);
+        initialize(Visual::isEnabled(factory), false, factory->properties().name, factory->properties().hasSettings, path);
         m_factory = factory;
     }
 
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, OUTPUT)
     {
-        initialize(Output::currentFactory() == factory, true, factory->properties().name, path);
+        initialize(Output::currentFactory() == factory, true, factory->properties().name, factory->properties().hasSettings, path);
         m_factory = factory;
     }
 
@@ -102,12 +102,17 @@ public:
         }
     }
 
-    void initialize(bool state, bool enable, const QString &name, const QString &path)
+    void initialize(bool state, bool enable, const QString &name, bool setting, const QString &path)
     {
         setData(0, MUSIC_CHECK_ROLE, state ? Qt::Checked : Qt::Unchecked);
-        setData(0, MUSIC_ENABL_ROLE, enable);
-        setData(0, MUSIC_TEXTS_ROLE, name);
-        setData(1, MUSIC_TEXTS_ROLE, path.section('/', -1));
+        setData(0, MUSIC_ENABLE_ROLE, enable);
+        setData(1, MUSIC_TEXT_ROLE, name);
+        setData(2, MUSIC_TEXT_ROLE, path.section('/', -1));
+
+        if(setting)
+        {
+            setIcon(3, QIcon(":/usermanager/btn_setting"));
+        }
     }
 
 private:
@@ -131,11 +136,12 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 
 #ifdef TTK_GREATER_NEW
     m_ui->treeWidget->header()->setSectionsMovable(false);
+    m_ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Fixed);
 #else
     m_ui->treeWidget->header()->setMovable(false);
+    m_ui->treeWidget->header()->setResizeMode(0, QHeaderView::Fixed);
 #endif
-    m_ui->treeWidget->header()->setMinimumSectionSize(210);
-    m_ui->treeWidget->setHeaderLabels(QStringList() << tr("Description") << tr("Name"));
+    m_ui->treeWidget->setHeaderLabels(QStringList() << QString() << tr("Description") << tr("Name") << tr("Setting"));
 
     MusicCheckBoxDelegate *checkDelegate = new MusicCheckBoxDelegate(this);
     checkDelegate->showTextMode(true);
@@ -144,8 +150,16 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 
     MusicLabelDelegate *labelDelegate = new MusicLabelDelegate(this);
     labelDelegate->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSColorStyle14);
     m_ui->treeWidget->setItemDelegateForColumn(1, labelDelegate);
+
+    MusicLabelDelegate *labelDelegate2 = new MusicLabelDelegate(this);
+    labelDelegate2->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    labelDelegate2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSColorStyle14);
+    m_ui->treeWidget->setItemDelegateForColumn(2, labelDelegate2);
+
+    m_ui->treeWidget->setColumnWidth(0, 65);
+    m_ui->treeWidget->setColumnWidth(1, 210);
 
     m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 +
@@ -248,6 +262,4 @@ void MusicPluginWidget::loadPluginsInfo()
     item->setExpanded(true);
 
     m_ui->treeWidget->blockSignals(false);
-    m_ui->treeWidget->resizeColumnToContents(0);
-    m_ui->treeWidget->resizeColumnToContents(1);
 }

@@ -307,7 +307,7 @@ void MusicItemQueryTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
+        it->setData(MUSIC_TEXT_ROLE, tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
 
         setFixedHeight(rowHeight(0) * rowCount());
