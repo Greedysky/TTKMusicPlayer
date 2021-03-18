@@ -5,6 +5,7 @@
 #include <QPaintEvent>
 #include <QSettings>
 
+#include <math.h>
 #include <qmmp/buffer.h>
 #include <qmmp/decoder.h>
 #include <qmmp/soundcore.h>

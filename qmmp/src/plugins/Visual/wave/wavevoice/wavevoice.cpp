@@ -1,7 +1,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QMenu>
-#include <qmath.h>
+#include <math.h>
 #include <stdlib.h>
 
 #include "inlines.h"

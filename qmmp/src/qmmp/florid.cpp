@@ -1,7 +1,7 @@
 #include "florid.h"
 
 #include <soundcore.h>
-#include <qmath.h>
+#include <math.h>
 #include <QBitmap>
 #include <QPainter>
 #include <QMenu>

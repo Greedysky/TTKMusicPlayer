@@ -5,6 +5,7 @@
 #include <libmodplug/sndfile.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
+#include <math.h>
 #include "archivereader.h"
 #include "decoder_modplug.h"
 

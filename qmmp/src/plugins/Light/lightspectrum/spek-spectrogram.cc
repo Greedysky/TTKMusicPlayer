@@ -4,7 +4,7 @@
 #include "spek-spectrogram.h"
 #include <qmmp/soundcore.h>
 
-#include <cmath>
+#include <math.h>
 #include <QMenu>
 #include <QPainter>
 #include <QDateTime>

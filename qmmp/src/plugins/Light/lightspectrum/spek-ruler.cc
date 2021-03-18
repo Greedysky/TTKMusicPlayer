@@ -1,4 +1,4 @@
-#include <cmath>
+#include <math.h>
 
 #include "spek-ruler.h"
 #include <QFontMetrics>

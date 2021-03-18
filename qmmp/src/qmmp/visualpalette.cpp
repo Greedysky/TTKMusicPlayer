@@ -1,5 +1,5 @@
 #include "visualpalette.h"
-#include <qmath.h>
+#include <math.h>
 
 #include <QColor>
 #include <QVector>

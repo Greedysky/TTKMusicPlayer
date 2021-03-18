@@ -2,7 +2,7 @@
 #include "musicplaylist.h"
 #include "../qmmp/soundcore.h"
 
-#include <qmath.h>
+#include <math.h>
 
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
