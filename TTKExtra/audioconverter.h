@@ -24,7 +24,7 @@
 #include <stddef.h>
 #include "qmmp.h"
 
-/*! @brief The AbstractEngine class provides the internal audio converter
+/*! @brief The AbstractEngine class provides the internal audio converter.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class QMMP_EXPORT AudioConverter
@@ -53,7 +53,7 @@ public:
      * \param out Output buffer.
      * \param samples Number of samples.
      */
-    void fromFloat(const float *in, const unsigned char *out, size_t samples);
+    void fromFloat(const float *in, unsigned char *out, size_t samples);
 
 private:
     Qmmp::AudioFormat m_format = Qmmp::PCM_UNKNOWN;
