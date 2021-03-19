@@ -24,7 +24,7 @@
 #include <stddef.h>
 #include "qmmp.h"
 
-/*! @brief The AbstractEngine class provides the internal audio converter
+/*! @brief The AbstractEngine class provides the internal audio converter.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class QMMP_EXPORT AudioConverter

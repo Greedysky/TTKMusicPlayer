@@ -24,14 +24,29 @@
 #include <QList>
 #include "qmmp.h"
 
+/*! @brief This class represents audio channel mapping.
++ * @author Ilya Kotov <forkotov02@ya.ru>
++ */
 class QMMP_EXPORT ChannelMap : public QList<Qmmp::ChannelPosition>
 {
 public:
-    ChannelMap();
-    explicit ChannelMap(int channels);
+    /*!
+     * Constructs channel mapping with internal order.
+     * \param channels Number channels
+     */
+    explicit ChannelMap(int channels = 0);
 
+    /*!
+     * Returns a mask with used channels.
+     */
     int mask() const;
+    /*!
+     * Converts current channel order to internal.
+     */
     const ChannelMap remaped() const;
+    /*!
+     * Converts channel channel mapping to string representation (for debug purposes).
+     */
     const QString toString() const;
 
 private:
