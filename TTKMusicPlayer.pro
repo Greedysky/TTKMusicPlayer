@@ -48,18 +48,18 @@ else{
 ##update translation
 unix:{
     output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
-    !exists($$output):system(mkdir $$output)
+    !exists($$output):system(mkdir -p $$output)
 
-    system(find TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
-    system(find TTKLanguage -name *.qm | xargs rename -v -f 's/.qm/.ln/' *)
-    system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
+    system(find $$PWD/TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
+    system(find $$PWD/TTKLanguage -name *.qm | xargs rename -v -f 's/.qm/.ln/' *)
+    system(for F in $$PWD/TTKLanguage/*.ln ; do mv $F $$output ;done)
 }
 win32:{
     output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
     output = $$replace(output, /, \\)
     !exists($$output):system(md $$output)
 
-    system(for /r TTKLanguage %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
-    system(for /r TTKLanguage %i in (*.qm) do ren %i *.ln)
-    system(for /r TTKLanguage %i in (*.ln) do move /y %i $$output)
+    system(for /r $$PWD/TTKLanguage %i in (*.ts) do $$LRELEASE_EXECUTABLE %i)
+    system(for /r $$PWD/TTKLanguage %i in (*.qm) do ren %i *.ln)
+    system(for /r $$PWD/TTKLanguage %i in (*.ln) do move /y %i $$output)
 }
