@@ -114,7 +114,7 @@ public:
             setIcon(3, QIcon(":/usermanager/btn_setting"));
         }
 
-        const QColor &color = enable ? Qt::black : Qt::gray;
+        const QColor &color = enable ? (state ? "#E67300" : "#000000") : "#BBBBBB";
         setData(1, Qt::TextColorRole, color);
         setData(2, Qt::TextColorRole, color);
     }
@@ -152,15 +152,20 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     checkDelegate->setTreeModel(true);
     m_ui->treeWidget->setItemDelegateForColumn(0, checkDelegate);
 
-    MusicLabelDelegate *labelDelegate = new MusicLabelDelegate(this);
-    labelDelegate->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->treeWidget->setItemDelegateForColumn(1, labelDelegate);
+    MusicLabelDelegate *delegate_title = new MusicLabelDelegate(this);
+    delegate_title->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    delegate_title->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(1, delegate_title);
 
-    MusicLabelDelegate *labelDelegate2 = new MusicLabelDelegate(this);
-    labelDelegate2->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelDelegate2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
-    m_ui->treeWidget->setItemDelegateForColumn(2, labelDelegate2);
+    MusicLabelDelegate *delegate_name = new MusicLabelDelegate(this);
+    delegate_name->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    delegate_name->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(2, delegate_name);
+
+    MusicLabelDelegate *delegate_setting = new MusicLabelDelegate(this);
+    delegate_setting->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    delegate_setting->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
+    m_ui->treeWidget->setItemDelegateForColumn(3, delegate_setting);
 
     m_ui->treeWidget->setColumnWidth(0, 65);
     m_ui->treeWidget->setColumnWidth(1, 210);
@@ -196,15 +201,27 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
         if(item->type() == MusicPluginItem::OUTPUT)
         {
             QTreeWidgetItem *parent = item->parent();
+            if(!parent)
+            {
+                return;
+            }
+
             for(int i=0; i<parent->childCount(); ++i)
             {
-                parent->child(i)->setData(column, MUSIC_CHECK_ROLE, Qt::Unchecked);
+                QTreeWidgetItem *it = parent->child(i);
+                it->setData(column, MUSIC_CHECK_ROLE, Qt::Unchecked);
+                it->setData(1, Qt::TextColorRole, "#000000");
+                it->setData(2, Qt::TextColorRole, "#000000");
             }
         }
 
         const Qt::CheckState status = TTKStatic_cast(Qt::CheckState, item->data(column, MUSIC_CHECK_ROLE).toInt());
         item->setData(column, MUSIC_CHECK_ROLE, status == Qt::Checked ? Qt::Unchecked : Qt::Checked);
         TTKDynamic_cast(MusicPluginItem*, item)->setEnabled(status != Qt::Checked);
+
+        const QColor &color = (status != Qt::Checked) ? "#E67300" : "#000000";
+        item->setData(1, Qt::TextColorRole, color);
+        item->setData(2, Qt::TextColorRole, color);
     }
 
     m_ui->settingButton->setEnabled(TTKDynamic_cast(MusicPluginItem*, item)->hasSettings());

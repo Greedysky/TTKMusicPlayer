@@ -32,10 +32,10 @@ namespace MusicUIObject
 
 ///Color
     const QString MQSSColorStyle01 = " \
-            color:white;";
+            color:#FFFFFF;";
 
     const QString MQSSColorStyle02 = " \
-            color:rgb(230, 115, 0);";
+            color:#E67300;";
 
     const QString MQSSColorStyle03 = " \
             color:#888888;";
@@ -50,7 +50,7 @@ namespace MusicUIObject
             color:#F4F4F4;";
 
     const QString MQSSColorStyle07 = " \
-            color:rgb(160, 99, 11);";
+            color:#A0630B;";
 
     const QString MQSSColorStyle08 = " \
             color:#158FE1;";
@@ -68,7 +68,7 @@ namespace MusicUIObject
             color:#323232;";
 
     const QString MQSSColorStyle13 = " \
-            color:black;";
+            color:#000000;";
 
     const QString MQSSColorStyle14 = " \
             color:#CCCCCC;";
@@ -284,7 +284,7 @@ namespace MusicUIObject
     const QString MQSSRadioButtonStyle01 = " \
             QRadioButton{ background-color:transparent; } \
             QRadioButton::indicator::unchecked{ image:url(:/control/btn_radioButton_unchecked); } \
-            QRadioButton::checked { color:rgb(230, 115, 0); } \
+            QRadioButton::checked { color:#E67300; } \
             QRadioButton::indicator:checked { image:url(:/control/btn_radiobutton_checked); } \
             QRadioButton::disabled{ color:#BBBBBB; }";
 
@@ -293,14 +293,14 @@ namespace MusicUIObject
     const QString MQSSCheckBoxStyle01 = " \
             QCheckBox{ background-color:transparent; } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox_unchecked); } \
-            QCheckBox::checked{ color:rgb(230, 115, 0); } \
+            QCheckBox::checked{ color:#E67300; } \
             QCheckBox::indicator:checked { image:url(:/control/btn_checkBox_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
 
     const QString MQSSCheckBoxStyle02 = " \
             QCheckBox{ background-color:transparent; } \
             QCheckBox::indicator::unchecked{ image:url(:/control/btn_radioButton2_unchecked); } \
-            QCheckBox::checked { color:rgb(230, 115, 0); } \
+            QCheckBox::checked { color:#E67300; } \
             QCheckBox::indicator:checked { image:url(:/control/btn_radiobutton2_checked); } \
             QCheckBox::disabled{ color:#BBBBBB; }";
 
