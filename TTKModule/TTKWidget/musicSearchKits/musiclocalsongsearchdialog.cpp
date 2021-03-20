@@ -10,10 +10,10 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint);
     resize(LEFT_SIDE_WIDTH_MIN, 35);
 
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Background, QColor(255, 255, 225));
+    QPalette pal(palette());
+    pal.setColor(QPalette::Background, QColor(255, 255, 225));
     setAutoFillBackground(true);
-    setPalette(Pal);
+    setPalette(pal);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(10, 4, 10, 4);

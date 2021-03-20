@@ -113,6 +113,10 @@ public:
         {
             setIcon(3, QIcon(":/usermanager/btn_setting"));
         }
+
+        const QColor &color = enable ? Qt::black : Qt::gray;
+        setData(1, Qt::TextColorRole, color);
+        setData(2, Qt::TextColorRole, color);
     }
 
 private:
@@ -150,16 +154,17 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 
     MusicLabelDelegate *labelDelegate = new MusicLabelDelegate(this);
     labelDelegate->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSColorStyle14);
+    labelDelegate->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(1, labelDelegate);
 
     MusicLabelDelegate *labelDelegate2 = new MusicLabelDelegate(this);
     labelDelegate2->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    labelDelegate2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01 + MusicUIObject::MQSSColorStyle14);
+    labelDelegate2->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->treeWidget->setItemDelegateForColumn(2, labelDelegate2);
 
     m_ui->treeWidget->setColumnWidth(0, 65);
     m_ui->treeWidget->setColumnWidth(1, 210);
+    m_ui->treeWidget->setColumnWidth(2, 120);
 
     m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 +

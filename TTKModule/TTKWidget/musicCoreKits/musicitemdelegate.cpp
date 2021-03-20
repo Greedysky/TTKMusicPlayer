@@ -53,6 +53,7 @@ void MusicRadioButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIt
     m_radioButton->resize(minSize, minSize);
     m_radioButton->setChecked(TTKStatic_cast(Qt::CheckState, index.data(MUSIC_CHECK_ROLE).toInt()) == Qt::Checked);
     painter->translate((option.rect.width() - 16) / 2, 0); // top left
+
     m_radioButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
@@ -177,6 +178,7 @@ void MusicProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewIt
     m_progress->resize(option.rect.width() - 21, option.rect.height() - 21);
     m_progress->setValue(index.data(MUSIC_PROGRESS_ROLE).toInt());
     painter->translate(10, 10);
+
     m_progress->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
@@ -228,9 +230,18 @@ void MusicLabelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     }
 
     painter->save();
+    const QColor &color = index.data(Qt::TextColorRole).value<QColor>();
+    if(color.isValid())
+    {
+        QPalette pal(m_label->palette());
+        pal.setColor(QPalette::WindowText, color);
+        m_label->setPalette(pal);
+    }
+
     m_label->setText(index.data(MUSIC_TEXT_ROLE).toString());
     m_label->resize(option.rect.size());
     painter->translate(0, 0);
+
     m_label->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
@@ -284,6 +295,7 @@ void MusicPushButtonDelegate::paint(QPainter *painter, const QStyleOptionViewIte
     m_pushButton->setText(index.data(MUSIC_TEXT_ROLE).toString());
     m_pushButton->resize(option.rect.size() - QSize(10, 10));
     painter->translate(5, 5);
+
     m_pushButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }
