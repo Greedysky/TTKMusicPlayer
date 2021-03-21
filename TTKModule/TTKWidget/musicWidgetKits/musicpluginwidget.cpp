@@ -145,7 +145,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->header()->setMovable(false);
     m_ui->treeWidget->header()->setResizeMode(0, QHeaderView::Fixed);
 #endif
-    m_ui->treeWidget->setHeaderLabels(QStringList() << QString() << tr("Description") << tr("Name") << tr("Setting"));
+    m_ui->treeWidget->setHeaderLabels(QStringList() << QString() << tr("Description") << tr("Name") << QString());
 
     MusicCheckBoxDelegate *checkDelegate = new MusicCheckBoxDelegate(this);
     checkDelegate->showTextMode(true);
@@ -170,6 +170,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->setColumnWidth(0, 65);
     m_ui->treeWidget->setColumnWidth(1, 210);
     m_ui->treeWidget->setColumnWidth(2, 120);
+    m_ui->treeWidget->setColumnWidth(3, 70);
 
     m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 +
@@ -181,6 +182,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
                                     MusicUIObject::MQSSPushButtonStyle15);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    m_ui->treeWidget->setFocusPolicy(Qt::NoFocus);
 
     loadPluginsInfo();
 

@@ -6,7 +6,6 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setColumnCount(3);
     setRowCount(0);
-    setShowGrid(false);//Does not display the grid
 
     QHeaderView *headerview = horizontalHeader();
     headerview->setMinimumSectionSize(0);
@@ -25,7 +24,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     f.setBold(false);
     setFont(f);
 
-    //Set the color of selected row
+    setShowGrid(false);//Does not display the grid
     setFrameShape(QFrame::NoFrame);//Set No Border
     setEditTriggers(QTableWidget::NoEditTriggers);//No edit
     setSelectionBehavior(QTableWidget::SelectRows);
