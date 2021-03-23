@@ -123,7 +123,7 @@ protected:
     /*!
      * Create module widget.
      */
-    void createModuleWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, QString &module);
+    void createModuleWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, bool florid);
     /*!
      * Create light widget.
      */

@@ -271,27 +271,28 @@ void MusicSpectrumWidget::createSpectrumWidget(MusicSpectrum::SpectrumType spect
 
 void MusicSpectrumWidget::createFlowWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout)
 {
-    createModuleWidget(spectrum, state, name, layout, m_lastFlowName);
+    createModuleWidget(spectrum, state, name, layout, false);
 }
 
 void MusicSpectrumWidget::createFloridWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout)
 {
-    createModuleWidget(spectrum, state, name, layout, m_lastFloridName);
+    createModuleWidget(spectrum, state, name, layout, true);
 }
 
-void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, QString &module)
+void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectrum, bool &state, const QString &name, QLayout *layout, bool florid)
 {
-    const int index = findSpectrumWidget(module);
+    QString *module = florid ? &m_lastFloridName : &m_lastFlowName;
+    const int index = findSpectrumWidget(*module);
     if(index != -1)
     {
         MusicSpectrum type = m_types.takeAt(index);
         layout->removeWidget(type.m_object);
-        MusicUtils::QMMP::enabledVisualPlugin(module, false);
+        MusicUtils::QMMP::enabledVisualPlugin(*module, false);
     }
 
     if(!state)
     {
-        module.clear();
+        module->clear();
         return;
     }
 
@@ -307,7 +308,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
 
     if(!vs->isEmpty())
     {
-        module = name;
+        *module = name;
         MusicSpectrum type;
         type.m_module = name;
         type.m_object = vs->last();
@@ -316,9 +317,12 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
         m_types << type;
         type.m_object->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-        TTKStatic_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+        if(florid)
+        {
+            TTKStatic_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+            connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
+        }
         connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));
-        connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
     }
     else
     {
