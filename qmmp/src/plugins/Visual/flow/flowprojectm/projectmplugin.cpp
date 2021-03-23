@@ -4,12 +4,11 @@
 #include "projectmplugin.h"
 
 ProjectMPlugin::ProjectMPlugin(QWidget *parent)
-    : Florid(parent)
+    : Visual(parent)
 {
     setlocale(LC_NUMERIC, "C"); //fixes problem with non-english locales
     setWindowTitle(tr("Flow ProjectM Widget"));
 
-    m_useImage = false;
     m_projectMWidget = new ProjectMWidget(this);
 
     QHBoxLayout *layout = new QHBoxLayout(this);

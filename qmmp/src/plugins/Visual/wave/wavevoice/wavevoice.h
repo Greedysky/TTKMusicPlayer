@@ -36,8 +36,8 @@ private slots:
     void typeChanged(QAction *action);
 
 private:
-    virtual void paintEvent(QPaintEvent *) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);

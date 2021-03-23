@@ -57,22 +57,22 @@ void LightSpectrum::open(const QString &path)
     start();
 }
 
-void LightSpectrum::paintEvent(QPaintEvent *event)
+void LightSpectrum::paintEvent(QPaintEvent *e)
 {
-    Light::paintEvent(event);
+    Light::paintEvent(e);
     QPainter p(this);
     paint(&p);
 }
 
-void LightSpectrum::resizeEvent(QResizeEvent *event)
+void LightSpectrum::resizeEvent(QResizeEvent *e)
 {
-    Light::resizeEvent(event);
+    Light::resizeEvent(e);
     start();
 }
 
-void LightSpectrum::contextMenuEvent(QContextMenuEvent *event)
+void LightSpectrum::contextMenuEvent(QContextMenuEvent *e)
 {
-    Light::contextMenuEvent(event);
+    Light::contextMenuEvent(e);
     QMenu menu(this);
     QMenu typeMenu(tr("Type"), &menu);
     typeMenu.addAction(tr("Spectrum"))->setData(10);

@@ -69,9 +69,9 @@ void ElectricPointLabel::posValueChanged(const QVariant &value)
     update();
 }
 
-void ElectricPointLabel::paintEvent(QPaintEvent *event)
+void ElectricPointLabel::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(event);
+    QWidget::paintEvent(e);
     if(m_pos == QPoint(0, 0))
     {
         return;
@@ -133,9 +133,9 @@ void ElectricCircleLabel::sizeValueChanged(const QVariant &value)
     update();
 }
 
-void ElectricCircleLabel::paintEvent(QPaintEvent *event)
+void ElectricCircleLabel::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(event);
+    QWidget::paintEvent(e);
     if(m_size == POINT_SIZE)
     {
         return;

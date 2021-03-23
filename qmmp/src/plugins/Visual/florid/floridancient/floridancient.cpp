@@ -72,9 +72,9 @@ void AncientLabel::posValueChanged(const QVariant &value)
     update();
 }
 
-void AncientLabel::paintEvent(QPaintEvent *event)
+void AncientLabel::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(event);
+    QWidget::paintEvent(e);
     if(m_pos == QPoint(0, 0))
     {
         return;

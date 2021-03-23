@@ -41,8 +41,8 @@ public slots:
     void randomPreset();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
 private:
     void initialize();

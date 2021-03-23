@@ -50,9 +50,9 @@ void Ethereality::timeout()
     update();
 }
 
-void Ethereality::paintEvent(QPaintEvent *event)
+void Ethereality::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(event);
+    QWidget::paintEvent(e);
     QPainter painter(this);
 
     for(int i=0; i<m_word.count(); ++i)

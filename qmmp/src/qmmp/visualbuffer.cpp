@@ -36,25 +36,26 @@ void VisualBuffer::add(float *pcm, int samples, int channels, qint64 ts, qint64 
     VisualNode *b = &m_buffer[m_add_index];
     stereo_from_multichannel(b->data[0], b->data[1], pcm, qMin(512, samples / channels), channels);
     b->ts = ts;
-    delay = qBound(50LL, delay, 1000LL); //limit visualization delay
-    m_elapsed = qMax(0LL, ts - delay);
+    b->delay = qBound(50LL, delay, 1000LL); //limit visualization delay
+    m_elapsed = ts;
     m_time.restart();
 }
 
 VisualNode *VisualBuffer::take()
 {
     int steps = 0;
-    int t = m_elapsed + m_time.elapsed();
+    qint64 t = m_elapsed + m_time.elapsed();
     while(m_buffer[m_take_index].used ||
-          ((m_buffer[m_take_index].ts < t) && (steps++ < VISUAL_BUFFER_SIZE)))
+          ((m_buffer[m_take_index].ts + m_buffer[m_take_index].delay < t) && (steps++ < VISUAL_BUFFER_SIZE)))
     {
         m_take_index++;
         m_take_index %= VISUAL_BUFFER_SIZE;
     }
-    if(m_buffer[m_take_index].ts < t) //unable to find node
+
+    if(m_buffer[m_take_index].ts + m_buffer[m_take_index].delay < t) //unable to find node
         return nullptr;
 
-    if(m_buffer[m_take_index].ts > t + 100) //node is more than 100 ms in the future. So, ignore it.
+    if(m_buffer[m_take_index].ts + m_buffer[m_take_index].delay > t + 100) //node is more than 100 ms in the future. So, ignore it.
         return nullptr;
 
     return &m_buffer[m_take_index];
@@ -64,9 +65,11 @@ void VisualBuffer::clear()
 {
     m_take_index = 0;
     m_add_index = 0;
+    m_elapsed = 0;
     for(int i = 0; i < VISUAL_BUFFER_SIZE; ++i)
     {
         m_buffer[i].ts = 0;
+        m_buffer[i].delay = 0;
         m_buffer[i].used = false;
         memset(m_buffer[i].data[0], 0, 512 * sizeof(float));
         memset(m_buffer[i].data[1], 0, 512 * sizeof(float));

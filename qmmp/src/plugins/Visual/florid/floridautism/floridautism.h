@@ -38,7 +38,7 @@ protected slots:
     void updateRender();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     bool m_circleOn = false;
     QTimer *m_circleTimer;
@@ -59,7 +59,7 @@ public:
     virtual ~FloridAutism();
 
 private:
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
     virtual void process(float *left, float *right) override;

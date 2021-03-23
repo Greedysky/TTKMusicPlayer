@@ -209,9 +209,9 @@ void SoniqueWidget::previousPreset()
     generatePreset();
 }
 
-void SoniqueWidget::resizeEvent(QResizeEvent *event)
+void SoniqueWidget::resizeEvent(QResizeEvent *e)
 {
-    QWidget::resizeEvent(event);
+    QWidget::resizeEvent(e);
 
     if(!m_sonique)
     {
@@ -225,9 +225,9 @@ void SoniqueWidget::resizeEvent(QResizeEvent *event)
     m_texture = new unsigned int[width() * height()]{0};
 }
 
-void SoniqueWidget::paintEvent(QPaintEvent *event)
+void SoniqueWidget::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(event);
+    QWidget::paintEvent(e);
 
     QPainter painter(this);
     painter.drawImage(rect(), QImage((uchar*)m_texture, width(), height(), QImage::Format_RGB32));

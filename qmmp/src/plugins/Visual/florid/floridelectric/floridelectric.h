@@ -46,7 +46,7 @@ protected slots:
     void posValueChanged(const QVariant &value);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     float m_opacity = 1;
     int m_size = 5;
@@ -76,7 +76,7 @@ protected slots:
     void sizeValueChanged(const QVariant &value);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     float m_opacity = 1;
     int m_size = POINT_SIZE;
@@ -121,7 +121,7 @@ public slots:
     virtual void stop() override;
 
 private:
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
     virtual void process(float *left, float *right) override;

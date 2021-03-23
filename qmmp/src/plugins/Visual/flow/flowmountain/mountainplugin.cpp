@@ -6,11 +6,10 @@
 #include "inlines.h"
 
 MountainPlugin::MountainPlugin(QWidget *parent)
-    : Florid(parent)
+    : Visual(parent)
 {
     setWindowTitle(tr("Flow Mountain Widget"));
 
-    m_useImage = false;
     m_mountainWidget = new MountainWidget(this);
 
     QHBoxLayout *layout = new QHBoxLayout(this);

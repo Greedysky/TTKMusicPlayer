@@ -42,7 +42,7 @@ private slots:
     void readSettings();
 
 private:
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
     virtual void resizeEvent(QResizeEvent *e) override;
 
     virtual void process(float *left, float *right) override;

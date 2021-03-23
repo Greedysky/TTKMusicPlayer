@@ -5,11 +5,10 @@
 #include <QMenu>
 
 SoniquePlugin::SoniquePlugin(QWidget *parent)
-    : Florid(parent)
+    : Visual(parent)
 {
     setWindowTitle(tr("Flow Sonique Widget"));
 
-    m_useImage = false;
     m_soniqueWidget = new SoniqueWidget(this);
 
     QHBoxLayout *layout = new QHBoxLayout(this);

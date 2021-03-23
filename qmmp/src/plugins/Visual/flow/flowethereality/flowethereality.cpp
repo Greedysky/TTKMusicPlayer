@@ -1,14 +1,16 @@
 #include <QPainter>
+#include <QPaintEvent>
 #include "inlines.h"
 #include "flowethereality.h"
 #include "ethereality.h"
 
+#include <qmmp/qmmp.h>
+
 FlowEthereality::FlowEthereality(QWidget *parent)
-    : Florid(parent)
+    : Visual(parent)
 {
     setWindowTitle(tr("Flow Ethereality Widget"));
 
-    m_useImage = false;
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
     for(int i = 0; i < 50; i++)
@@ -34,6 +36,12 @@ void FlowEthereality::resizeEvent(QResizeEvent *)
         ethereality->resize(perWidth, height());
         ethereality->move(i * perWidth, 0);
     }
+}
+
+void FlowEthereality::paintEvent(QPaintEvent *e)
+{
+    QPainter painter(this);
+    painter.fillRect(e->rect(), Qt::black);
 }
 
 void FlowEthereality::process(float *left, float *)
@@ -99,7 +107,7 @@ void FlowEthereality::process(float *left, float *)
 
 void FlowEthereality::processPatch(bool state)
 {
-    Florid::processPatch(state);
+    Visual::processPatch(state);
 
     if(state)
     {

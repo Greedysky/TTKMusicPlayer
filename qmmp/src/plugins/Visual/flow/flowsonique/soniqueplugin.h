@@ -19,14 +19,14 @@
 #ifndef SONIQUEPLUGIN_H
 #define SONIQUEPLUGIN_H
 
-#include <qmmp/florid.h>
+#include <qmmp/visual.h>
 
 class SoniqueWidget;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class SoniquePlugin : public Florid
+class SoniquePlugin : public Visual
 {
     Q_OBJECT
 public:

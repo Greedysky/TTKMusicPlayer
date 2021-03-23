@@ -32,7 +32,7 @@ public:
     virtual ~PlusSpaceWave();
 
 private:
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
     virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     virtual void process(float *left, float *right) override;

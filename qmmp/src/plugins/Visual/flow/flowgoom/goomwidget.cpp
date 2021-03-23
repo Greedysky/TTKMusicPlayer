@@ -11,11 +11,10 @@
 #include "goomwidget.h"
 
 GoomWidget::GoomWidget(QWidget *parent)
-    : Florid(parent)
+    : Visual(parent)
 {
     setWindowTitle("Flow Goom Widget");
 
-    m_useImage = false;
     setMinimumSize(150,150);
 
     createMenu();
@@ -66,13 +65,13 @@ void GoomWidget::writeSettings()
 
 void GoomWidget::hideEvent(QHideEvent *e)
 {
-    Florid::hideEvent(e);
+    Visual::hideEvent(e);
     clearImage();
 }
 
 void GoomWidget::showEvent(QShowEvent *e)
 {
-    Florid::showEvent(e);
+    Visual::showEvent(e);
 }
 
 void GoomWidget::paintEvent(QPaintEvent *)

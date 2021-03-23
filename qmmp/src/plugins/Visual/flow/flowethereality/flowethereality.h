@@ -19,7 +19,7 @@
 #ifndef FLOWETHEREALITY_H
 #define FLOWETHEREALITY_H
 
-#include <qmmp/florid.h>
+#include <qmmp/visual.h>
 
 class QTimer;
 class QHideEvent;
@@ -29,7 +29,7 @@ class Ethereality;
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class FlowEthereality : public Florid
+class FlowEthereality : public Visual
 {
     Q_OBJECT
 public:
@@ -38,6 +38,7 @@ public:
 
 private:
     virtual void resizeEvent(QResizeEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     virtual void process(float *left, float *right) override;
     virtual void processPatch(bool state) override;

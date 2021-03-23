@@ -117,7 +117,8 @@ QString ColorWidget::writeColorConfig(const QList<QColor> &colors)
 
 void ColorWidget::setSingleColorMode(bool mode)
 {
-    if(m_singleColorMode = mode)
+    m_singleColorMode = mode;
+    if(mode)
     {
         m_ui->upButton->setEnabled(false);
         m_ui->downButton->setEnabled(false);

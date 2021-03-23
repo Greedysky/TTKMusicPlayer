@@ -128,7 +128,7 @@ protected:
 
 protected:
     QImage m_image;
-    bool m_useImage = true, m_renderLabel = false;
+    bool m_renderLabel = false;
     QColor m_averageColor = QColor(255, 255, 255);
     bool m_gradientOn = false;
     RoundAnimationLabel *m_roundLabel;

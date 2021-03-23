@@ -19,14 +19,14 @@
 #ifndef MOUNTAINPLUGIN_H
 #define MOUNTAINPLUGIN_H
 
-#include <qmmp/florid.h>
+#include <qmmp/visual.h>
 
 class MountainWidget;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class MountainPlugin : public Florid
+class MountainPlugin : public Visual
 {
     Q_OBJECT
 public:

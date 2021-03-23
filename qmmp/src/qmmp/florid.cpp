@@ -92,11 +92,6 @@ Florid::~Florid()
 
 void Florid::setPixmap(const QPixmap &pix)
 {
-    if(!m_useImage)
-    {
-        return;
-    }
-
     m_image = pix.toImage();
     update();
 }
@@ -157,11 +152,6 @@ void Florid::reRenderLabel()
 
 void Florid::processPatch(bool state)
 {
-    if(!m_useImage)
-    {
-        return;
-    }
-
     state ? m_roundLabel->start() : m_roundLabel->stop();
 }
 

@@ -44,9 +44,9 @@ void AutismLabel::updateRender()
     update();
 }
 
-void AutismLabel::paintEvent(QPaintEvent *event)
+void AutismLabel::paintEvent(QPaintEvent *e)
 {
-    QWidget::paintEvent(event);
+    QWidget::paintEvent(e);
     if(m_circleOn)
     {
         QPainter painter(this);

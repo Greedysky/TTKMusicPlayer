@@ -11,9 +11,6 @@ HEADERS += mountainplugin.h \
 SOURCES += mountainplugin.cpp \
            mountainwidget.cpp \
            visualflowmountainfactory.cpp
-
-INCLUDEPATH += $$EXTRA_PREFIX/libmountain/include
-
 win32:{
     LIBS += -lglu32 -lopengl32
 }

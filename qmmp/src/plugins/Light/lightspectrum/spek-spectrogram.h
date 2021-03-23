@@ -54,9 +54,9 @@ private slots:
     void mediaUrlChanged();
 
 private:
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void resizeEvent(QResizeEvent *e) override;
+    virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     void paint(QPainter *dc);
     void create_palette();

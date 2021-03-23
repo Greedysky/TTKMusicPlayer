@@ -32,7 +32,7 @@ public:
     virtual ~WaveCrest();
 
 private:
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     virtual void process(float *left, float *right) override;
     void draw(QPainter *p);

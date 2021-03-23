@@ -50,7 +50,7 @@ private slots:
 private:
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
     virtual void mousePressEvent(QMouseEvent *e) override;
 
     virtual void process(float *left, float *right) override;

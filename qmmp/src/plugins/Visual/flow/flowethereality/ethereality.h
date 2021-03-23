@@ -41,7 +41,7 @@ private slots:
     void timeout();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void paintEvent(QPaintEvent *e) override;
     void loadFile();
 
 private:

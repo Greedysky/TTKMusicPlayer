@@ -19,14 +19,14 @@
 #ifndef PROJECTMPLUGIN_H
 #define PROJECTMPLUGIN_H
 
-#include <qmmp/florid.h>
+#include <qmmp/visual.h>
 
 class ProjectMWidget;
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class ProjectMPlugin : public Florid
+class ProjectMPlugin : public Visual
 {
     Q_OBJECT
 public:
