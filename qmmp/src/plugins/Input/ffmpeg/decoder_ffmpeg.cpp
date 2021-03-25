@@ -24,7 +24,7 @@ static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
     int64_t absolute_pos = 0;
     /*if(d->input()->isSequential())
         return -1;*/
-    switch( whence )
+    switch(whence)
     {
     case AVSEEK_SIZE:
         return d->input()->size();

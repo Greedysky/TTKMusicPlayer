@@ -20,7 +20,7 @@ static int oggseek(void *src, ogg_int64_t offset, int whence)
 {
     DecoderVorbis *dogg = static_cast<DecoderVorbis *>(src);
 
-    if( dogg->input()->isSequential())
+    if(dogg->input()->isSequential())
         return -1;
 
     long start = 0;
@@ -150,50 +150,26 @@ void DecoderVorbis::updateTags()
     comments = ov_comment(&oggfile, -1);
     for(i = 0; i < comments->comments; i++)
     {
-        if(!strncasecmp(comments->user_comments[i], "title=",
-                         strlen("title=")))
-            metaData.insert(Qmmp::TITLE, QString::fromUtf8(comments->user_comments[i]
-                            + strlen("title=")));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "artist=", strlen("artist=")))
-            metaData.insert(Qmmp::ARTIST,
-                            QString::fromUtf8(comments->user_comments[i]
-                                              + strlen("artist=")));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "album=", strlen("album=")))
-            metaData.insert(Qmmp::ALBUM,
-                            QString::fromUtf8(comments->user_comments[i]
-                                              + strlen("album=")));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "comment=", strlen("comment=")))
-            metaData.insert(Qmmp::COMMENT,
-                            QString::fromUtf8(comments->user_comments[i]
-                                              + strlen("comment=")));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "genre=", strlen("genre=")))
-            metaData.insert(Qmmp::GENRE, QString::fromUtf8(comments->user_comments[i]
-                            + strlen("genre=")));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "tracknumber=",
-                              strlen("tracknumber=")))
-            metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i]
-                            + strlen("tracknumber="))));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "track=", strlen("track=")))
-            metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i]
-                            + strlen("track="))));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "date=", strlen("date=")))
-            metaData.insert(Qmmp::YEAR, QString::number(atoi(comments->user_comments[i]
-                            + strlen("date="))));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "composer=", strlen("composer=")))
-            metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(comments->user_comments[i]
-                            + strlen("composer=")));
-        else if(!strncasecmp(comments->user_comments[i],
-                              "discnumber=", strlen("discnumber=")))
-            metaData.insert(Qmmp::DISCNUMBER, QString::number(atoi(comments->user_comments[i]
-                            + strlen("discnumber="))));
+        if(!strncasecmp(comments->user_comments[i], "title=", strlen("title=")))
+            metaData.insert(Qmmp::TITLE, QString::fromUtf8(comments->user_comments[i] + strlen("title=")));
+        else if(!strncasecmp(comments->user_comments[i], "artist=", strlen("artist=")))
+            metaData.insert(Qmmp::ARTIST, QString::fromUtf8(comments->user_comments[i] + strlen("artist=")));
+        else if(!strncasecmp(comments->user_comments[i], "album=", strlen("album=")))
+            metaData.insert(Qmmp::ALBUM, QString::fromUtf8(comments->user_comments[i] + strlen("album=")));
+        else if(!strncasecmp(comments->user_comments[i], "comment=", strlen("comment=")))
+            metaData.insert(Qmmp::COMMENT, QString::fromUtf8(comments->user_comments[i] + strlen("comment=")));
+        else if(!strncasecmp(comments->user_comments[i], "genre=", strlen("genre=")))
+            metaData.insert(Qmmp::GENRE, QString::fromUtf8(comments->user_comments[i] + strlen("genre=")));
+        else if(!strncasecmp(comments->user_comments[i], "tracknumber=", strlen("tracknumber=")))
+            metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i] + strlen("tracknumber="))));
+        else if(!strncasecmp(comments->user_comments[i], "track=", strlen("track=")))
+            metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i] + strlen("track="))));
+        else if(!strncasecmp(comments->user_comments[i], "date=", strlen("date=")))
+            metaData.insert(Qmmp::YEAR, QString::number(atoi(comments->user_comments[i] + strlen("date="))));
+        else if(!strncasecmp(comments->user_comments[i], "composer=", strlen("composer=")))
+            metaData.insert(Qmmp::COMPOSER, QString::fromUtf8(comments->user_comments[i] + strlen("composer=")));
+        else if(!strncasecmp(comments->user_comments[i], "discnumber=", strlen("discnumber=")))
+            metaData.insert(Qmmp::DISCNUMBER, QString::number(atoi(comments->user_comments[i] + strlen("discnumber="))));
     }
     addMetaData(metaData);
 }

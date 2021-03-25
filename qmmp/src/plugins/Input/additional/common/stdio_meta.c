@@ -251,7 +251,7 @@ static int cp1251_to_utf8(const uint8_t *in, int inlen, uint8_t *out, int outlen
             *out++ = (c >> 6) | 0xc0;
             *out++ = (c & 0x3f) | 0x80;
         }
-        else if( c < 0x10000)
+        else if(c < 0x10000)
         {
             *out++ = (c >> 12) | 0xe0;
             *out++ = ((c >> 6) & 0x3f) | 0x80;

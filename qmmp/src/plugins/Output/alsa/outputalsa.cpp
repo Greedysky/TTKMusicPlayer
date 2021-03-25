@@ -15,7 +15,7 @@ OutputALSA::OutputALSA()
     : Output()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    QString dev_name = settings.value("ALSA/device","default").toString();
+    QString dev_name = settings.value("ALSA/device", "default").toString();
     m_use_mmap = settings.value("ALSA/use_mmap", false).toBool();
     pcm_name = strdup(dev_name.toLatin1().data());
     m_alsa_channels[SND_CHMAP_NA]   = Qmmp::CHAN_NULL;
@@ -58,8 +58,8 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     /* load settings from config */
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
-    uint buffer_time = settings.value("buffer_time",500).toUInt()*1000;
-    uint period_time = settings.value("period_time",100).toUInt()*1000;
+    uint buffer_time = settings.value("buffer_time", 500).toUInt()*1000;
+    uint period_time = settings.value("period_time", 100).toUInt()*1000;
     bool use_pause =  settings.value("use_snd_pcm_pause", false).toBool();
     settings.endGroup();
 
@@ -378,7 +378,7 @@ VolumeALSA::VolumeALSA()
     //alsa mixer
     m_mixer = nullptr;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    QString card = settings.value("ALSA/mixer_card","hw:0").toString();
+    QString card = settings.value("ALSA/mixer_card", "hw:0").toString();
     QString dev = settings.value("ALSA/mixer_device", "PCM").toString();
     setupMixer(card, dev);
 }

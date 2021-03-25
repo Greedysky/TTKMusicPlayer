@@ -222,13 +222,13 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
     long            cursamplepos;
     int             i;
 
-    if( num_samples == 0 )
+    if(num_samples == 0)
         return GAIN_ANALYSIS_OK;
 
     cursamplepos = 0;
     batchsamples = (long)num_samples;
 
-    switch( num_channels) {
+    switch(num_channels) {
     case  1: right_samples = left_samples;
     case  2: break;
     default: return GAIN_ANALYSIS_ERROR;
@@ -324,8 +324,8 @@ int AnalyzeSamples (GainHandle_t *handle, const Float_t* left_samples, const Flo
         {  // Get the Root Mean Square (RMS) for this set of samples
             double val  = STEPS_per_dB * 10. * log10((handle->lsum+handle->rsum) / handle->totsamp * 0.5 + 1.e-37);
             int    ival = (int) val;
-            if( ival <                     0 ) ival = 0;
-            if( ival >= (int)(sizeof(handle->A)/sizeof(*handle->A)) ) ival = sizeof(handle->A)/sizeof(*handle->A) - 1;
+            if(ival <                     0 ) ival = 0;
+            if(ival >= (int)(sizeof(handle->A)/sizeof(*handle->A)) ) ival = sizeof(handle->A)/sizeof(*handle->A) - 1;
             handle->A [ival]++;
             handle->lsum = handle->rsum = 0.;
             memmove (handle->loutbuf , handle->loutbuf  + handle->totsamp, MAX_ORDER * sizeof(Float_t) );

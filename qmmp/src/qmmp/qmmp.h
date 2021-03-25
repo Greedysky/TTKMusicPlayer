@@ -47,6 +47,8 @@
 #define qUtf8Printable(s) QString(s).toUtf8().constData()
 #endif
 
+#define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
+
 #ifndef TTK_AS_CONST
 #if (QT_VERSION < QT_VERSION_CHECK(5,7,0))
 // this adds const to non-const objects (like std::as_const)

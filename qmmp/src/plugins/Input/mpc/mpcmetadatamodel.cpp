@@ -26,12 +26,12 @@ QList<TagModel* > MPCMetaDataModel::tags() const
     return m_tags;
 }
 
-MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType)
+MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes type)
     : TagModel(),
       m_file(file),
-      m_tagType(tagType)
+      m_type(type)
 {
-    if(m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_type == TagLib::MPC::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
         m_codec = QTextCodec::codecForName("ISO-8859-1");
@@ -50,7 +50,7 @@ MPCFileTagModel::~MPCFileTagModel()
 
 QString MPCFileTagModel::name() const
 {
-    if(m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_type == TagLib::MPC::File::ID3v1)
         return "ID3v1";
     return "APE";
 }
@@ -59,7 +59,7 @@ QList<Qmmp::MetaData> MPCFileTagModel::keys() const
 {
     QList<Qmmp::MetaData> list = TagModel::keys();
     list.removeAll(Qmmp::DISCNUMBER);
-    if(m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_type == TagLib::MPC::File::ID3v1)
     {
         list.removeAll(Qmmp::COMPOSER);
         list.removeAll(Qmmp::ALBUMARTIST);
@@ -82,8 +82,7 @@ QString MPCFileTagModel::value(Qmmp::MetaData key) const
             str = m_tag->artist();
             break;
         case Qmmp::ALBUMARTIST:
-            if(m_tagType == TagLib::MPC::File::APE &&
-                    !m_file->APETag()->itemListMap()["ALBUMARTIST"].isEmpty())
+            if(m_type == TagLib::MPC::File::APE && !m_file->APETag()->itemListMap()["ALBUMARTIST"].isEmpty())
             {
                 str = m_file->APETag()->itemListMap()["ALBUMARTIST"].toString();
             }
@@ -98,8 +97,7 @@ QString MPCFileTagModel::value(Qmmp::MetaData key) const
             str = m_tag->genre();
             break;
         case Qmmp::COMPOSER:
-            if(m_tagType == TagLib::MPC::File::APE &&
-                    !m_file->APETag()->itemListMap()["COMPOSER"].isEmpty())
+            if(m_type == TagLib::MPC::File::APE && !m_file->APETag()->itemListMap()["COMPOSER"].isEmpty())
             {
                 str = m_file->APETag()->itemListMap()["COMPOSER"].toString();
             }
@@ -109,7 +107,7 @@ QString MPCFileTagModel::value(Qmmp::MetaData key) const
         case Qmmp::TRACK:
             return QString::number(m_tag->track());
         }
-        return m_codec->toUnicode(str.toCString(utf)).trimmed();
+        return CSTR_TO_QSTR(m_codec, str, utf);
     }
     return QString();
 }
@@ -120,12 +118,12 @@ void MPCFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         return;
     TagLib::String::Type type = TagLib::String::Latin1;
 
-    if(m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_type == TagLib::MPC::File::ID3v1)
     {
         if(m_codec->name().contains("UTF")) //utf is unsupported
             return;
     }
-    else if(m_tagType == TagLib::MPC::File::APE)
+    else if(m_type == TagLib::MPC::File::APE)
         type = TagLib::String::UTF8;
 
     TagLib::String str = TagLib::String(m_codec->fromUnicode(value).constData(), type);
@@ -164,7 +162,7 @@ void MPCFileTagModel::create()
 {
     if(m_tag)
         return;
-    if(m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_type == TagLib::MPC::File::ID3v1)
         m_tag = m_file->ID3v1Tag(true);
     else
         m_tag = m_file->APETag(true);
@@ -178,6 +176,6 @@ void MPCFileTagModel::remove()
 void MPCFileTagModel::save()
 {
     if(!m_tag)
-        m_file->strip(m_tagType);
+        m_file->strip(m_type);
     m_file->save();
 }

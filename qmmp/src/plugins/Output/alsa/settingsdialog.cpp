@@ -20,17 +20,16 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(m_ui.mixerCardComboBox, SIGNAL(activated(int)), SLOT(showMixerDevices(int)));
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
-    m_ui.deviceComboBox->setEditText(settings.value("device","default").toString());
-    m_ui.bufferSpinBox->setValue(settings.value("buffer_time",500).toInt());
-    m_ui.periodSpinBox->setValue(settings.value("period_time",100).toInt());
+    m_ui.deviceComboBox->setEditText(settings.value("device", "default").toString());
+    m_ui.bufferSpinBox->setValue(settings.value("buffer_time", 500).toInt());
+    m_ui.periodSpinBox->setValue(settings.value("period_time", 100).toInt());
 
     int d = m_cards.indexOf(settings.value("mixer_card","hw:0").toString());
     if(d >= 0)
         m_ui.mixerCardComboBox->setCurrentIndex(d);
 
     showMixerDevices(m_ui.mixerCardComboBox->currentIndex());
-    d = m_ui.mixerDeviceComboBox->findText(settings.value("mixer_device",
-                                         "PCM").toString());
+    d = m_ui.mixerDeviceComboBox->findText(settings.value("mixer_device", "PCM").toString());
 
     if(d >= 0)
         m_ui.mixerDeviceComboBox->setCurrentIndex(d);
@@ -199,8 +198,8 @@ void SettingsDialog::accept()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
     settings.setValue("device", m_ui.deviceComboBox->currentText());
-    settings.setValue("buffer_time",m_ui.bufferSpinBox->value());
-    settings.setValue("period_time",m_ui.periodSpinBox->value());
+    settings.setValue("buffer_time", m_ui.bufferSpinBox->value());
+    settings.setValue("period_time", m_ui.periodSpinBox->value());
     if(m_ui.mixerCardComboBox->currentIndex() >= 0)
     {
         QString card = m_cards.at(m_ui.mixerCardComboBox->currentIndex());

@@ -15,7 +15,7 @@ SRConverter::SRConverter()
     };
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_overSamplingFs = settings.value("SRC/sample_rate",48000).toInt();
+    m_overSamplingFs = settings.value("SRC/sample_rate", 48000).toInt();
     m_converter_type = converter_type_array[settings.value("SRC/engine", 0).toInt()];
 }
 

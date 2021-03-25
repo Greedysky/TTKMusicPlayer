@@ -9,7 +9,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose, true);
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    m_ui.overlapSpinBox->setValue(settings.value("Crossfade/overlap",6000).toInt());
+    m_ui.overlapSpinBox->setValue(settings.value("Crossfade/overlap", 6000).toInt());
 }
 
 SettingsDialog::~SettingsDialog()

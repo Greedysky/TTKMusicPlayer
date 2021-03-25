@@ -111,7 +111,7 @@ void MusicPlayer::play()
     m_timer.start(1000);
     ///Every second emits a signal change information
     emit positionChanged(0);
-    emit durationChanged( duration() );
+    emit durationChanged(duration());
 }
 
 void MusicPlayer::playNext()
@@ -163,7 +163,7 @@ void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
 
 void MusicPlayer::setTimeOut()
 {
-    emit positionChanged( position() );
+    emit positionChanged(position());
 
     Qmmp::State state = m_music->state();
     if(state != Qmmp::Playing && state != Qmmp::Paused)

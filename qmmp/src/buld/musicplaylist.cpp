@@ -78,7 +78,7 @@ void MusicPlaylist::appendMedia(const QStringList &items)
 
 bool MusicPlaylist::insertMedia(int index, const QString &content)
 {
-    if( index < 0 || index > m_mediaList.count())
+    if(index < 0 || index > m_mediaList.count())
     {
         return false;
     }
@@ -88,7 +88,7 @@ bool MusicPlaylist::insertMedia(int index, const QString &content)
 
 bool MusicPlaylist::insertMedia(int index, const QStringList &items)
 {
-    if( index < 0 || index > m_mediaList.count())
+    if(index < 0 || index > m_mediaList.count())
     {
         return false;
     }
@@ -101,7 +101,7 @@ bool MusicPlaylist::insertMedia(int index, const QStringList &items)
 
 bool MusicPlaylist::removeMedia(int pos)
 {
-    if( pos < 0 || pos >= m_mediaList.count())
+    if(pos < 0 || pos >= m_mediaList.count())
     {
         return false;
     }
@@ -112,7 +112,7 @@ bool MusicPlaylist::removeMedia(int pos)
 
 bool MusicPlaylist::removeMedia(int start, int end)
 {
-    if( start > end || (start < 0 || end >= m_mediaList.count()) )
+    if(start > end || (start < 0 || end >= m_mediaList.count()))
     {
         return false;
     }

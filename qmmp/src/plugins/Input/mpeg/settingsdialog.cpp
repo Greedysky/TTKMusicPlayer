@@ -27,9 +27,9 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
 
     m_ui.enableCrcCheckBox->setChecked(settings.value("enable_crc", false).toBool());
 
-    int pos = m_ui.id3v1EncComboBox->findText(settings.value("ID3v1_encoding","ISO-8859-1").toString());
+    int pos = m_ui.id3v1EncComboBox->findText(settings.value("ID3v1_encoding", "ISO-8859-1").toString());
     m_ui.id3v1EncComboBox->setCurrentIndex(pos);
-    pos = m_ui.id3v2EncComboBox->findText(settings.value("ID3v2_encoding","UTF-8").toString());
+    pos = m_ui.id3v2EncComboBox->findText(settings.value("ID3v2_encoding", "UTF-8").toString());
     m_ui.id3v2EncComboBox->setCurrentIndex(pos);
 
     m_ui.firstTagComboBox->setCurrentIndex(settings.value("tag_1", ID3v2).toInt());

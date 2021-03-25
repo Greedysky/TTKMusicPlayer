@@ -50,7 +50,7 @@ private:
 class MpegFileTagModel : public TagModel
 {
 public:
-    MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes tagType);
+    MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type);
     virtual ~MpegFileTagModel();
 
     virtual QString name() const override;
@@ -67,7 +67,7 @@ private:
     QTextCodec *m_codec;
     TagLib::MPEG::File *m_file;
     TagLib::Tag *m_tag;
-    TagLib::MPEG::File::TagTypes m_tagType;
+    TagLib::MPEG::File::TagTypes m_type;
 
 };
 

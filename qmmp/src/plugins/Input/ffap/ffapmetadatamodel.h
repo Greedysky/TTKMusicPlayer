@@ -53,7 +53,7 @@ private:
 class FFapFileTagModel : public TagModel
 {
 public:
-    FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes tagType);
+    FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes type);
     virtual ~FFapFileTagModel();
 
     virtual QString name() const override;
@@ -69,7 +69,7 @@ private:
     QTextCodec *m_codec;
     TagLib::APE::File *m_file;
     TagLib::Tag *m_tag;
-    TagLib::APE::File::TagTypes m_tagType;
+    TagLib::APE::File::TagTypes m_type;
 
 };
 

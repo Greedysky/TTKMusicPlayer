@@ -46,7 +46,7 @@ private:
 class MPCFileTagModel : public TagModel
 {
 public:
-    MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType);
+    MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes type);
     virtual ~MPCFileTagModel();
 
     virtual QString name() const override;
@@ -62,7 +62,7 @@ private:
     QTextCodec *m_codec;
     TagLib::MPC::File *m_file;
     TagLib::Tag *m_tag;
-    TagLib::MPC::File::TagTypes m_tagType;
+    TagLib::MPC::File::TagTypes m_type;
 
 };
 

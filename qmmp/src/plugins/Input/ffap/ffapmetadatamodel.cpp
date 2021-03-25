@@ -59,12 +59,12 @@ QString FFapMetaDataModel::coverPath() const
     return MetaDataManager::instance()->findCoverFile(m_path);
 }
 
-FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes tagType)
+FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes type)
     : TagModel(),
       m_file(file),
-      m_tagType(tagType)
+      m_type(type)
 {
-    if(m_tagType == TagLib::APE::File::ID3v1)
+    if(m_type == TagLib::APE::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
         m_codec = QTextCodec::codecForName("ISO-8859-1");
@@ -83,7 +83,7 @@ FFapFileTagModel::~FFapFileTagModel()
 
 QString FFapFileTagModel::name() const
 {
-    if(m_tagType == TagLib::APE::File::ID3v1)
+    if(m_type == TagLib::APE::File::ID3v1)
         return "ID3v1";
     return "APE";
 }
@@ -124,7 +124,7 @@ QString FFapFileTagModel::value(Qmmp::MetaData key) const
         case Qmmp::TRACK:
             return QString::number(m_tag->track());
         }
-        return m_codec->toUnicode(str.toCString(utf)).trimmed();
+        return CSTR_TO_QSTR(m_codec, str, utf);
     }
     return QString();
 }
@@ -135,12 +135,12 @@ void FFapFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         return;
     TagLib::String::Type type = TagLib::String::Latin1;
 
-    if(m_tagType == TagLib::APE::File::ID3v1)
+    if(m_type == TagLib::APE::File::ID3v1)
     {
         if(m_codec->name().contains("UTF")) //utf is unsupported
             return;
     }
-    else if(m_tagType == TagLib::APE::File::APE)
+    else if(m_type == TagLib::APE::File::APE)
         type = TagLib::String::UTF8;
 
     TagLib::String str = TagLib::String(m_codec->fromUnicode(value).constData(), type);
@@ -179,7 +179,7 @@ void FFapFileTagModel::create()
 {
     if(m_tag)
         return;
-    if(m_tagType == TagLib::APE::File::ID3v1)
+    if(m_type == TagLib::APE::File::ID3v1)
         m_tag = m_file->ID3v1Tag(true);
     else
         m_tag = m_file->APETag(true);
@@ -193,6 +193,6 @@ void FFapFileTagModel::remove()
 void FFapFileTagModel::save()
 {
     if(!m_tag)
-        m_file->strip(m_tagType);
+        m_file->strip(m_type);
     m_file->save();
 }

@@ -257,7 +257,7 @@ void QmmpSettings::sync()
     //equalizer settings
     settings.beginGroup(QString("Equalizer_%1").arg(m_eq_settings.bands()));
     for(int i = 0; i < m_eq_settings.bands(); ++i)
-        settings.setValue("band_"+ QString("%1").arg(i), m_eq_settings.gain(i));
+        settings.setValue("band_" + QString("%1").arg(i), m_eq_settings.gain(i));
     settings.setValue("preamp", m_eq_settings.preamp());
     settings.setValue("enabled", m_eq_settings.isEnabled());
     settings.endGroup();

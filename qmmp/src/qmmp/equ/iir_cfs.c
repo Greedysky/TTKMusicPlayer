@@ -218,7 +218,7 @@ void calc_coeffs()
       /* Find -3dB frequencies for the center freq */
       find_f1_and_f2(freqs[i], iir_bands[n].octave, &f1, &f2);
       /* Find Beta */
-      if( find_root(
+      if(find_root(
             BETA2(TETA(freqs[i]), TETA(f1)),
             BETA1(TETA(freqs[i]), TETA(f1)),
             BETA0(TETA(freqs[i]), TETA(f1)),

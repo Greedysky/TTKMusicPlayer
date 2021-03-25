@@ -12,14 +12,13 @@
 #include <taglib/id3v2header.h>
 #include <taglib/textidentificationframe.h>
 #include <taglib/id3v2framefactory.h>
+#include "tagextractor.h"
 #include "mpegmetadatamodel.h"
 #ifdef WITH_MAD
 #include "decoder_mad.h"
 #endif
 #include "decodermpegfactory.h"
 #include "settingsdialog.h"
-
-#define CSTR_TO_QSTR(str,utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
 DecoderMPEGFactory::DecoderMPEGFactory()
 {
@@ -30,6 +29,7 @@ DecoderMPEGFactory::DecoderMPEGFactory()
     {
         qDebug("DecoderMADFactory: found taglib with rusxmms patch");
         m_using_rusxmms = true;
+        TagExtractor::setForceUtf8(m_using_rusxmms);
     }
 }
 
@@ -152,11 +152,11 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
             switch((uint) tag_array[i])
             {
             case SettingsDialog::ID3v1:
-                codecName = settings.value("ID3v1_encoding","ISO-8859-1").toByteArray();
+                codecName = settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray();
                 tag = fileRef.ID3v1Tag();
                 break;
             case SettingsDialog::ID3v2:
-                codecName = settings.value("ID3v2_encoding","UTF-8").toByteArray();
+                codecName = settings.value("ID3v2_encoding", "UTF-8").toByteArray();
                 tag = fileRef.ID3v2Tag();
                 break;
             case SettingsDialog::APE:
@@ -180,11 +180,11 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                 bool utf = codec->name().contains("UTF");
 
                 QMap<Qmmp::MetaData, QString> tags;
-                tags.insert(Qmmp::ARTIST, CSTR_TO_QSTR(tag->artist(), utf));
-                tags.insert(Qmmp::ALBUM, CSTR_TO_QSTR(tag->album(), utf));
-                tags.insert(Qmmp::COMMENT, CSTR_TO_QSTR(tag->comment(), utf));
-                tags.insert(Qmmp::GENRE, CSTR_TO_QSTR(tag->genre(), utf));
-                tags.insert(Qmmp::TITLE, CSTR_TO_QSTR(tag->title(), utf));
+                tags.insert(Qmmp::ARTIST, CSTR_TO_QSTR(codec, tag->artist(), utf));
+                tags.insert(Qmmp::ALBUM, CSTR_TO_QSTR(codec, tag->album(), utf));
+                tags.insert(Qmmp::COMMENT, CSTR_TO_QSTR(codec, tag->comment(), utf));
+                tags.insert(Qmmp::GENRE, CSTR_TO_QSTR(codec, tag->genre(), utf));
+                tags.insert(Qmmp::TITLE, CSTR_TO_QSTR(codec, tag->title(), utf));
                 tags.insert(Qmmp::YEAR, QString::number(tag->year()));
                 tags.insert(Qmmp::TRACK, QString::number(tag->track()));
 
@@ -193,26 +193,26 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                     if(!fileRef.ID3v2Tag()->frameListMap()["TPE2"].isEmpty())
                     {
                         TagLib::String albumArtist = fileRef.ID3v2Tag()->frameListMap()["TPE2"].front()->toString();
-                        tags.insert(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(albumArtist, utf));
+                        tags.insert(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(codec, albumArtist, utf));
                     }
                     if(!fileRef.ID3v2Tag()->frameListMap()["TCOM"].isEmpty())
                     {
                         TagLib::String composer = fileRef.ID3v2Tag()->frameListMap()["TCOM"].front()->toString();
-                        tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(composer, utf));
+                        tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(codec, composer, utf));
                     }
                     if(!fileRef.ID3v2Tag()->frameListMap()["TPOS"].isEmpty())
                     {
                         TagLib::String disc = fileRef.ID3v2Tag()->frameListMap()["TPOS"].front()->toString();
-                        tags.insert(Qmmp::DISCNUMBER, CSTR_TO_QSTR(disc, utf));
+                        tags.insert(Qmmp::DISCNUMBER, CSTR_TO_QSTR(codec, disc, utf));
                     }
                 }
                 else if(tag == fileRef.APETag())
                 {
                     TagLib::APE::Item fld;
                     if(!(fld = fileRef.APETag()->itemListMap()["ALBUM ARTIST"]).isEmpty())
-                        tags.insert(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(fld.toString(), true));
+                        tags.insert(Qmmp::ALBUMARTIST, CSTR_TO_QSTR(codec, fld.toString(), true));
                     if(!(fld = fileRef.APETag()->itemListMap()["COMPOSER"]).isEmpty())
-                        tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(fld.toString(), true));
+                        tags.insert(Qmmp::COMPOSER, CSTR_TO_QSTR(codec, fld.toString(), true));
                 }
 
                 metaData << tags;
