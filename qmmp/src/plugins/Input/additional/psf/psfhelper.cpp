@@ -2,31 +2,8 @@
 
 extern "C" {
 #include "ao.h"
-#include "stdio_meta.h"
+#include "stdio_file.h"
 }
-
-void psfplug_add_meta(QVariantMap &data, const char *key, const char *value)
-{
-    char tmp[200];
-    // check utf8
-    if(stdio_iconv(value, strlen(value), tmp, sizeof(tmp), "utf-8", "utf-8") >= 0)
-    {
-        if(key)
-        {
-            data.insert(key, value);
-        }
-
-    }
-    // check shift-jis
-    if(stdio_iconv(value, strlen(value), tmp, sizeof(tmp), "SHIFT-JIS", "utf-8") >= 0)
-    {
-        if(key)
-        {
-            data.insert(key, value);
-        }
-    }
-}
-
 
 PSFHelper::PSFHelper(const QString &path)
     : m_path(path)
@@ -244,27 +221,27 @@ QVariantMap PSFHelper::readMetaTags()
     {
         if(!strncasecmp(info.title[i], "Name: ", 6) || !strncasecmp(info.title[i], "Song: ", 6))
         {
-            psfplug_add_meta(m_meta, "title", info.info[i]);
+            m_meta.insert("title", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Game: ", 6))
         {
-            psfplug_add_meta(m_meta, "album", info.info[i]);
+            m_meta.insert("album", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Artist: ", 8))
         {
-            psfplug_add_meta(m_meta, "artist", info.info[i]);
+            m_meta.insert("artist", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Copyright: ", 11))
         {
-            psfplug_add_meta(m_meta, "copyright", info.info[i]);
+            m_meta.insert("copyright", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Year: ", 6))
         {
-            psfplug_add_meta(m_meta, "year", info.info[i]);
+            m_meta.insert("year", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Fade: ", 6))
         {
-            psfplug_add_meta(m_meta, "fade", info.info[i]);
+            m_meta.insert("fade", info.info[i]);
         }
         else
         {
@@ -272,7 +249,7 @@ QVariantMap PSFHelper::readMetaTags()
             char name[colon - info.title[i] + 1];
             memcpy(name, info.title[i], colon - info.title[i]);
             name[colon - info.title[i]] = 0;
-            psfplug_add_meta(m_meta, name, info.info[i]);
+            m_meta.insert(name, info.info[i]);
         }
     }
 
