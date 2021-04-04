@@ -264,8 +264,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
     {
         return;
     }
-
-    m_analysis->saveLrcTimeChanged();
+    m_analysis->saveLrcData();
 
     MusicToastLabel::popup(tr("save file finished"));
 }
@@ -371,8 +370,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
 
 void MusicLrcMakerWidget::setCurrentThirdWidget()
 {
-    if(m_ui->stackedWidget->currentIndex() == 2 &&
-       m_plainText.count() > m_ui->makeTextEdit->textCursor().blockNumber())
+    if(m_ui->stackedWidget->currentIndex() == 2 && m_plainText.count() > m_ui->makeTextEdit->textCursor().blockNumber())
     {
         MusicToastLabel::popup(tr("Lyrics make has not been completed!"));
         return;

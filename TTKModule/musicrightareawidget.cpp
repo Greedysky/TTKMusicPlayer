@@ -188,12 +188,12 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         if(QFileInfo(path).suffix().toLower() == KRC_FILE_PREFIX)
         {
             TTK_LOGGER_INFO("Current in krc parser mode");
-            state = m_lrcAnalysis->transKrcFileToTime(path);
+            state = m_lrcAnalysis->readFromKrcFile(path);
         }
         else
         {
             TTK_LOGGER_INFO("Current in lrc parser mode");
-            state = m_lrcAnalysis->transLrcFileToTime(path);
+            state = m_lrcAnalysis->readFromLrcFile(path);
         }
 
         m_musicLrcForInterior->updateCurrentLrc(state);

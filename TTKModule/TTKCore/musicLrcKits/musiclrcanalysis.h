@@ -37,10 +37,8 @@ class MUSIC_LRC_EXPORT MusicLrcAnalysis : public QObject
 public:
     enum State
     {
-        Null,               /*!< no any operator*/
         OpenFileSuccess,    /*!< open file success*/
-        OpenFileFail,       /*!< open file failed*/
-        LrcEmpty            /*!< current lrc empty*/
+        OpenFileFail        /*!< open file failed*/
     };
 
     enum LrcFormat
@@ -90,13 +88,18 @@ public:
      */
     State setLrcData(const TTKIntStringMap &data);
     /*!
+     * Save lrc data to current lrc file.
+     */
+    void saveLrcData();
+
+    /*!
      * Analysis lrc file to map return the state.
      */
-    State transLrcFileToTime(const QString &lrcFileName);
+    State readFromLrcFile(const QString &fileName);
     /*!
      * Analysis krc file to map return the state.
      */
-    State transKrcFileToTime(const QString &krcFileName);
+    State readFromKrcFile(const QString &fileName);
 
     /*!
      * Set song speed by given time, return new time.
@@ -106,10 +109,6 @@ public:
      * Revert lrc time by pos, both + or - the same pos.
      */
     void revertLrcTime(qint64 pos);
-    /*!
-     * Save lrc time changed to current lrc file.
-     */
-    void saveLrcTimeChanged();
 
     /*!
      * Set current middle index.
@@ -140,6 +139,7 @@ public:
      * Check current container count.
      */
     int count() const;
+
     /*!
      * Get current lrc text by index.
      */

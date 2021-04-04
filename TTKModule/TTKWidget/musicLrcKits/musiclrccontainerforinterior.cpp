@@ -126,22 +126,17 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
+
     if(state == MusicLrcAnalysis::OpenFileFail)
     {
         m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("unFoundLrc"));
         showNoLrcCurrentInfo();
     }
-    if(state == MusicLrcAnalysis::LrcEmpty)
-    {
-        m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("lrcFileError"));
-        showNoLrcCurrentInfo();
-    }
     else
     {
         m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("noCurrentSongPlay"));
+        m_noLrcCurrentInfo->hide();
     }
-
-    m_noLrcCurrentInfo->hide(); ///hide error make lrc widget
 }
 
 QString MusicLrcContainerForInterior::text() const
@@ -272,7 +267,7 @@ void MusicLrcContainerForInterior::revertLrcTimeSpeed()
 
 void MusicLrcContainerForInterior::saveLrcTimeChanged()
 {
-    m_lrcAnalysis->saveLrcTimeChanged();
+    m_lrcAnalysis->saveLrcData();
 }
 
 void MusicLrcContainerForInterior::artistBackgroundChanged()

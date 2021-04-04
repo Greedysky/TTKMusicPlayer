@@ -34,7 +34,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         const int perTime = MusicApplication::instance()->duration() / getAllText.count();
         for(const QString &oneLine : qAsConst(getAllText))
         {
-            m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
+            m_lrcContainer.insert(perTime * m_lrcContainer.count(), oneLine);
         }
     }
     else
@@ -47,13 +47,14 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 
     if(m_lrcContainer.isEmpty())
     {
-        return LrcEmpty;
+        return OpenFileFail;
     }
 
     for(int i=0; i<getMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
+
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
         m_lrcContainer.insert(0, QString());
@@ -77,7 +78,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
 {
     if(data.isEmpty())
     {
-        return LrcEmpty;
+        return OpenFileFail;
     }
 
     m_lrcContainer = data;
@@ -88,6 +89,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
     {
         m_currentShowLrcContainer << QString();
     }
+
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
         m_lrcContainer.insert(0, QString());
@@ -99,6 +101,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         it.next();
         m_currentShowLrcContainer << it.value();
     }
+
     for(int i=0; i<getMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
@@ -107,9 +110,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
     return OpenFileSuccess;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcFileName)
+MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &fileName)
 {
-    QFile file(m_currentLrcFileName = lrcFileName);
+    QFile file(m_currentLrcFileName = fileName);
 
     if(!file.open(QIODevice::ReadOnly))
     {
@@ -122,16 +125,16 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     return state;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcFileName)
+MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &fileName)
 {
 #ifndef MUSIC_MOBILE
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
     m_currentLrcIndex = 0;
-    m_currentLrcFileName = krcFileName;
+    m_currentLrcFileName = fileName;
 
     MusicLrcFromKrc krc;
-    if(!krc.decode(krcFileName))
+    if(!krc.decode(fileName))
     {
         return OpenFileFail;
     }
@@ -146,13 +149,14 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
     //If the lrcContainer is empty
     if(m_lrcContainer.isEmpty())
     {
-        return LrcEmpty;
+        return OpenFileFail;
     }
 
     for(int i=0; i<getMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
+
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
        m_lrcContainer.insert(0, QString());
@@ -171,7 +175,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
     return OpenFileSuccess;
 #else
-    Q_UNUSED(krcFileName);
+    Q_UNUSED(fileName);
     return OpenFileFail;
 #endif
 }
@@ -270,7 +274,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
     temp.replace(regx, QString());
     int pos = regx.indexIn(oneLine, 0);
     while(pos != -1)
-    {   //That match
+    {
         const QString &cap = regx.cap(0);
         //Return zeroth expression matching the content
         //The time tag into the time value, in milliseconds
@@ -405,6 +409,7 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
     {
         m_currentLrcIndex = 0;
     }
+
 //    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
 //    {
 //        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
@@ -431,7 +436,7 @@ void MusicLrcAnalysis::revertLrcTime(qint64 pos)
     m_lrcContainer = copy;
 }
 
-void MusicLrcAnalysis::saveLrcTimeChanged()
+void MusicLrcAnalysis::saveLrcData()
 {
     TTKIntStringMapIterator it(m_lrcContainer);
     QString data;

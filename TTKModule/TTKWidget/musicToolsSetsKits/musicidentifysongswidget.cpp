@@ -366,7 +366,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
             d->startToDownload();
             loop.exec();
         }
-        m_analysis->transLrcFileToTime(name);
+        m_analysis->readFromLrcFile(name);
 
         if(!m_currentSong.m_songAttrs.isEmpty())
         {
