@@ -50,9 +50,9 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
     if(!G_NETWORK_PTR->isOnline())
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
+
     m_downLoadManager->setQueryAllRecords(true);
     m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
 }

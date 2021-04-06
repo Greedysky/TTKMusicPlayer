@@ -29,7 +29,6 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -47,7 +46,6 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -66,7 +64,6 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //

@@ -64,10 +64,6 @@ Q_SIGNALS:
      */
     void musicSongToPlaylistChanged(const QString &name, const QString &time, const QString &format, bool play);
     /*!
-     * Show download state type.
-     */
-    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
-    /*!
      * Restart search query by name.
      */
     void restartSearchQuery(const QString &name);

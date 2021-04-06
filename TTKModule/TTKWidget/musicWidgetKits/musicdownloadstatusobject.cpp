@@ -30,30 +30,6 @@ MusicDownloadStatusObject::~MusicDownloadStatusObject()
     delete m_downloadRequest;
 }
 
-void MusicDownloadStatusObject::showDownLoadInfoFor(MusicObject::DownLoadMode type)
-{
-    QString stringType;
-    switch(type)
-    {
-        case MusicObject::DW_DisConnection:
-            stringType = "disconnection";
-            break;
-        case MusicObject::DW_DownLoading:
-            stringType = "downloading";
-            break;
-        case MusicObject::DW_Buffing:
-            stringType = "buffing";
-            break;
-        case MusicObject::DW_Waiting:
-            break;
-            stringType = "waiting";
-        case MusicObject::DW_Null:
-            break;
-        default:
-            break;
-    }
-}
-
 void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
 {
     ///If the lyrics download finished immediately loaded to display
@@ -79,7 +55,6 @@ void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
 #endif
     }
     m_previousState = state;
-    showDownLoadInfoFor(state ? MusicObject::DW_Null : MusicObject::DW_DisConnection);
 }
 
 bool MusicDownloadStatusObject::checkSettingParameterValue() const
@@ -91,10 +66,10 @@ void MusicDownloadStatusObject::checkLrcValid()
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    else if(checkSettingParameterValue())
+
+    if(checkSettingParameterValue())
     {
         ///Check there is no opening lyrics display mode
        if(m_parentWidget->checkMusicListCurrentIndex())
@@ -118,7 +93,6 @@ void MusicDownloadStatusObject::checkLrcValid()
        m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
-       showDownLoadInfoFor(MusicObject::DW_Buffing);
     }
 }
 
@@ -126,7 +100,6 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
 

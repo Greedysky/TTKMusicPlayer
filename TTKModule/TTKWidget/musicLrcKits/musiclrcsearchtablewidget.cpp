@@ -29,7 +29,6 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
 

@@ -46,7 +46,6 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -84,7 +83,6 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
         clearAllItems();
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
     //
@@ -336,7 +334,6 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
-        Q_EMIT showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
 
@@ -345,7 +342,6 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
         MusicToastLabel::popup(tr("Please Select One Item First!"));
         return;
     }
-    Q_EMIT showDownLoadInfoFor(MusicObject::DW_DownLoading);
 
     const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];

@@ -282,15 +282,6 @@ namespace MusicObject
         PM_PlayOnce                    /*!< play just once*/
     };
 
-    enum DownLoadMode
-    {
-        DW_Null,                       /*!< network null*/
-        DW_DisConnection,              /*!< network disable*/
-        DW_DownLoading,                /*!< network download*/
-        DW_Buffing,                    /*!< network buffing*/
-        DW_Waiting                     /*!< network waiting*/
-    };
-
     enum FontStyleMode
     {
         FT_Bold =           0x00001,   /*!< font bold*/
