@@ -194,7 +194,7 @@ protected:
     QString m_currentLrcFileName;
     TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
-    MusicTranslationRequest *m_translationThread;
+    MusicTranslationRequest *m_networkRequest;
 
 };
 

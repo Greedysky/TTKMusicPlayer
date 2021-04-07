@@ -149,7 +149,7 @@ MusicCommentsWidget::MusicCommentsWidget(QWidget *parent)
     m_messageEdit = nullptr;
     m_pagingWidgetObject = nullptr;
     m_messageComments = nullptr;
-    m_downloadRequest = nullptr;
+    m_networkRequest = nullptr;
     m_pagingWidgetObject = nullptr;
 }
 
@@ -161,7 +161,7 @@ MusicCommentsWidget::~MusicCommentsWidget()
     delete m_messageEdit;
     delete m_pagingWidgetObject;
     delete m_messageComments;
-    delete m_downloadRequest;
+    delete m_networkRequest;
 }
 
 void MusicCommentsWidget::initWidget(bool isPain)
@@ -294,14 +294,14 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     MusicSemaphoreLoop loop;
-    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    m_downloadRequest->startToSearch(name);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    m_networkRequest->startToSearch(name);
     loop.exec();
 
     TTKStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPagingWidget();
 
-    initLabel(name, m_downloadRequest->getTotalSize());
+    initLabel(name, m_networkRequest->getTotalSize());
 }
 
 void MusicCommentsWidget::createSearchedItem(const MusicResultsItem &comments)
@@ -323,9 +323,9 @@ void MusicCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
 
-    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
     m_pagingWidgetObject->paging(index, pageTotal);
-    m_downloadRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_networkRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 void MusicCommentsWidget::createEMOJILabelWidget()
@@ -380,7 +380,7 @@ void MusicCommentsWidget::createPagingWidget()
     m_pagingWidgetObject = new MusicPagingWidgetObject(this);
     connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
     QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, pageTotal);
     m_messageComments->layout()->addWidget(w);
 }

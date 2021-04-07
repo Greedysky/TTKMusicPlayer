@@ -38,7 +38,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MovieQuery, text);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MovieQuery, text);
 }
 
 void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -55,8 +55,8 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
     //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
-    m_downLoadManager->setQueryType(MusicAbstractQueryRequest::MovieQuery);
-    m_downLoadManager->startToSingleSearch(text);
+    m_networkRequest->setQueryType(MusicAbstractQueryRequest::MovieQuery);
+    m_networkRequest->startToSingleSearch(text);
 }
 
 void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
@@ -227,7 +227,7 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    const MusicObject::MusicSongInformation &musicSongInfo = m_downLoadManager->getMusicSongInfos()[row];
+    const MusicObject::MusicSongInformation &musicSongInfo = m_networkRequest->getMusicSongInfos()[row];
     const MusicObject::MusicSongAttributes &attrs = musicSongInfo.m_songAttrs;
     if(!attrs.isEmpty())
     {
@@ -236,20 +236,20 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         data.m_url = attr.m_url;
         data.m_id = musicSongInfo.m_songId;
-        data.m_server = m_downLoadManager->getQueryServer();
+        data.m_server = m_networkRequest->getQueryServer();
         Q_EMIT mediaUrlNameChanged(data);
     }
 }
 
 void MusicVideoSearchTableWidget::getMusicMediaInfo(MusicObject::MusicSongAttributes &data)
 {
-    if(!m_downLoadManager)
+    if(!m_networkRequest)
     {
         return;
     }
 
     const int row = !m_singleRadioMode ? m_previousClickRow : 0;
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     data = (!musicSongInfos.isEmpty() && row != -1) ? musicSongInfos[row].m_songAttrs : MusicObject::MusicSongAttributes();
 }
 
@@ -279,7 +279,7 @@ void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoSearchTableWidget::downloadLocalMovie(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

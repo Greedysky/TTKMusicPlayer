@@ -45,7 +45,7 @@ void MusicItemSearchTableWidget::itemCellClicked(int row, int column)
             removeRow(row);
 
             m_loadingLabel->run(true);
-            m_downLoadManager->startToPage(m_downLoadManager->getPageIndex() + 1);
+            m_networkRequest->startToPage(m_networkRequest->getPageIndex() + 1);
         }
     }
 }
@@ -95,8 +95,8 @@ void MusicItemSearchTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        const int pageTotal = ceil(m_downLoadManager->getTotalSize() * 1.0 / m_downLoadManager->getPageSize());
-        const bool more = (pageTotal > m_downLoadManager->getPageIndex() + 1);
+        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+        const bool more = (pageTotal > m_networkRequest->getPageIndex() + 1);
         it->setData(MUSIC_TEXT_ROLE, more ? tr("More Data") : tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
@@ -104,7 +104,7 @@ void MusicItemSearchTableWidget::createFinishedItem()
 
 void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 {
-    if(!m_downLoadManager)
+    if(!m_networkRequest)
     {
         return;
     }
@@ -115,7 +115,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     menu.addSeparator();
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

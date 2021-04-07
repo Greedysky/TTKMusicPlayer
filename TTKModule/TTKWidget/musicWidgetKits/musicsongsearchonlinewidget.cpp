@@ -62,20 +62,20 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     records.insert(0, record);
     search.writeSearchData(records);
     //
-    if(!m_downLoadManager)
+    if(!m_networkRequest)
     {
         MusicItemSearchTableWidget::startSearchQuery(text);
     }
     else
     {
-        const QString &quality = m_downLoadManager->getSearchQuality();
+        const QString &quality = m_networkRequest->getSearchQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
-        m_downLoadManager->setSearchQuality(quality);
+        m_networkRequest->setSearchQuality(quality);
     }
     //
     m_loadingLabel->run(true);
-    m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
-    m_downLoadManager->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
+    m_networkRequest->setQueryAllRecords(m_queryAllRecords);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, text);
 }
 
 void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
@@ -86,25 +86,25 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
     //
-    if(!m_downLoadManager)
+    if(!m_networkRequest)
     {
         MusicItemSearchTableWidget::startSearchQuery(text);
     }
     else
     {
-        const QString &quality = m_downLoadManager->getSearchQuality();
+        const QString &quality = m_networkRequest->getSearchQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
-        m_downLoadManager->setSearchQuality(quality);
+        m_networkRequest->setSearchQuality(quality);
     }
     //
     m_loadingLabel->run(true);
-    m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
-    m_downLoadManager->startToSingleSearch(text);
+    m_networkRequest->setQueryAllRecords(m_queryAllRecords);
+    m_networkRequest->startToSingleSearch(text);
 }
 
 void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
     {
         return;
@@ -118,7 +118,7 @@ void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
 {
     MusicItemSearchTableWidget::startSearchQuery(QString());
-    m_downLoadManager->setSearchQuality(quality);
+    m_networkRequest->setSearchQuality(quality);
 }
 
 void MusicSongSearchTableWidget::resizeWindow()
@@ -260,12 +260,12 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 {
 //    MusicItemSearchTableWidget::actionGroupClick(action);
     const int row = currentRow();
-    if(!m_downLoadManager || row < 0 || (row >= rowCount() - 1))
+    if(!m_networkRequest || row < 0 || (row >= rowCount() - 1))
     {
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     const MusicObject::MusicSongInformation &info = musicSongInfos[row];
 
     switch(action->data().toInt())
@@ -297,7 +297,7 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MusicQuery);
     download->show();
@@ -343,7 +343,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];
     const MusicObject::MusicSongAttribute &musicSongAttr = musicSongInfo.m_songAttrs.first();
 

@@ -81,7 +81,7 @@ public Q_SLOTS:
     virtual void createSearchedItem(const MusicSearchedItem &songItem) = 0;
 
 protected:
-    MusicAbstractQueryRequest *m_downLoadManager;
+    MusicAbstractQueryRequest *m_networkRequest;
 
 };
 

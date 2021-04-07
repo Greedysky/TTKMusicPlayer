@@ -106,8 +106,8 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
-    connect(m_downloadRequest, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getMovieRequest(this);
+    connect(m_networkRequest, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
 }
 
 MusicArtistMvsQueryWidget::~MusicArtistMvsQueryWidget()
@@ -118,8 +118,8 @@ MusicArtistMvsQueryWidget::~MusicArtistMvsQueryWidget()
 void MusicArtistMvsQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    MusicQueryMovieRequest *v = TTKStatic_cast(MusicQueryMovieRequest*, m_downloadRequest);
-    v->startToSearch(m_songNameFull);
+    MusicQueryMovieRequest *d = TTKStatic_cast(MusicQueryMovieRequest*, m_networkRequest);
+    d->startToSearch(m_songNameFull);
 }
 
 void MusicArtistMvsQueryWidget::setSongNameById(const QString &id)
@@ -152,7 +152,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
         m_mainWindow->layout()->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, pageTotal));
     }
 
@@ -180,9 +180,9 @@ void MusicArtistMvsQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_downloadRequest->getTotalSize() * 1.0 / m_downloadRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
     m_pagingWidgetObject->paging(index, pageTotal);
-    m_downloadRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_networkRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 
@@ -199,8 +199,8 @@ MusicArtistSimilarQueryWidget::MusicArtistSimilarQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getSimilarArtistRequest(this);
-    connect(m_downloadRequest, SIGNAL(createSimilarItem(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getSimilarArtistRequest(this);
+    connect(m_networkRequest, SIGNAL(createSimilarItem(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
 }
 
 MusicArtistSimilarQueryWidget::~MusicArtistSimilarQueryWidget()
@@ -211,13 +211,13 @@ MusicArtistSimilarQueryWidget::~MusicArtistSimilarQueryWidget()
 void MusicArtistSimilarQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_downloadRequest->startToSearch(m_songNameFull);
+    m_networkRequest->startToSearch(m_songNameFull);
 }
 
 void MusicArtistSimilarQueryWidget::setSongNameById(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
-    m_downloadRequest->startToSearch(m_songNameFull);
+    m_networkRequest->startToSearch(m_songNameFull);
 }
 
 void MusicArtistSimilarQueryWidget::resizeWindow()
@@ -268,8 +268,8 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getAlbumRequest(this);
-    connect(m_downloadRequest, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getAlbumRequest(this);
+    connect(m_networkRequest, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
 }
 
 MusicArtistAlbumsQueryWidget::~MusicArtistAlbumsQueryWidget()
@@ -280,13 +280,13 @@ MusicArtistAlbumsQueryWidget::~MusicArtistAlbumsQueryWidget()
 void MusicArtistAlbumsQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_downloadRequest->startToSingleSearch(m_songNameFull);
+    m_networkRequest->startToSingleSearch(m_songNameFull);
 }
 
 void MusicArtistAlbumsQueryWidget::setSongNameById(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
-    m_downloadRequest->startToSingleSearch(m_songNameFull);
+    m_networkRequest->startToSingleSearch(m_songNameFull);
 }
 
 void MusicArtistAlbumsQueryWidget::resizeWindow()
@@ -341,7 +341,7 @@ void MusicArtistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query
     MusicItemQueryTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryArtistFinished()") != -1)
     {
-        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryArtistFinished()));
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryArtistFinished()));
     }
 }
 
@@ -356,8 +356,8 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
-    connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
 MusicArtistQueryWidget::~MusicArtistQueryWidget()
@@ -370,9 +370,9 @@ MusicArtistQueryWidget::~MusicArtistQueryWidget()
 void MusicArtistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_downloadRequest->setQueryAllRecords(false);
-    m_downloadRequest->setQuerySimplify(true);
-    m_downloadRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, MusicUtils::String::artistName(name));
+    m_networkRequest->setQueryAllRecords(false);
+    m_networkRequest->setQuerySimplify(true);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, MusicUtils::String::artistName(name));
 }
 
 void MusicArtistQueryWidget::setSongNameById(const QString &id)
@@ -423,7 +423,7 @@ void MusicArtistQueryWidget::resizeWindow()
 
 void MusicArtistQueryWidget::queryAllFinished()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_downloadRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));

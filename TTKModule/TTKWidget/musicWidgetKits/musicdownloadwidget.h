@@ -249,7 +249,7 @@ protected:
 
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
-    MusicAbstractQueryRequest *m_downloadRequest;
+    MusicAbstractQueryRequest *m_networkRequest;
     MusicAbstractQueryRequest::QueryType m_queryType;
     MusicObject::MusicSongInformation m_singleSongInfo;
 

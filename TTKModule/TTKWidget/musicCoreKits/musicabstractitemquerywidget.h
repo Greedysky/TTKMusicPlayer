@@ -112,7 +112,7 @@ protected:
     QStackedWidget *m_container;
     MusicResultsItem m_currentPlaylistItem;
     MusicItemQueryTableWidget *m_queryTableWidget;
-    MusicAbstractQueryRequest *m_downloadRequest;
+    MusicAbstractQueryRequest *m_networkRequest;
     MusicSongSharingWidget::Type m_shareType;
 
     struct TTKResizeWidget

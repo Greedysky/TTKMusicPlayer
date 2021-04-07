@@ -71,8 +71,8 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
 
     MusicLocalSongSearchPopWidget *m_popWidget;
-    MusicDiscoverListRequest *m_discoverThread;
-    MusicSongSuggestRequest *m_suggestThread;
+    MusicDiscoverListRequest *m_discoverRequest;
+    MusicSongSuggestRequest *m_suggestRequest;
 
 };
 

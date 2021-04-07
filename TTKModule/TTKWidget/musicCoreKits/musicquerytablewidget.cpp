@@ -3,23 +3,23 @@
 MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
-    m_downLoadManager = nullptr;
+    m_networkRequest = nullptr;
 }
 
 MusicQueryTableWidget::~MusicQueryTableWidget()
 {
-    delete m_downLoadManager;
+    delete m_networkRequest;
 }
 
 void MusicQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *query)
 {
-    delete m_downLoadManager;
-    m_downLoadManager = query;
-    connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
-    connect(m_downLoadManager, SIGNAL(createSearchedItem(MusicSearchedItem)), SLOT(createSearchedItem(MusicSearchedItem)));
+    delete m_networkRequest;
+    m_networkRequest = query;
+    connect(m_networkRequest, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
+    connect(m_networkRequest, SIGNAL(createSearchedItem(MusicSearchedItem)), SLOT(createSearchedItem(MusicSearchedItem)));
 }
 
 MusicAbstractQueryRequest *MusicQueryTableWidget::getQueryInput()
 {
-    return m_downLoadManager;
+    return m_networkRequest;
 }

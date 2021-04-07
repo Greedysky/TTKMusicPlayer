@@ -8,19 +8,19 @@ MusicLocalSongSearchInteriorEdit::MusicLocalSongSearchInteriorEdit(QWidget *pare
     : MusicLocalSongSearchEdit(parent)
 {
     m_popWidget = nullptr;
-    m_suggestThread = nullptr;
+    m_suggestRequest = nullptr;
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
 
-    m_discoverThread = G_DOWNLOAD_QUERY_PTR->getDiscoverListRequest(this);
-    connect(m_discoverThread, SIGNAL(downLoadDataChanged(QString)), SLOT(searchToplistInfoFinished(QString)));
-    m_discoverThread->startToSearch();
+    m_discoverRequest = G_DOWNLOAD_QUERY_PTR->getDiscoverListRequest(this);
+    connect(m_discoverRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(searchToplistInfoFinished(QString)));
+    m_discoverRequest->startToSearch();
 }
 
 MusicLocalSongSearchInteriorEdit::~MusicLocalSongSearchInteriorEdit()
 {
 //    delete m_popWidget;
-    delete m_discoverThread;
-    delete m_suggestThread;
+    delete m_discoverRequest;
+    delete m_suggestRequest;
 }
 
 void MusicLocalSongSearchInteriorEdit::initWidget(QWidget *parent)
@@ -34,10 +34,10 @@ void MusicLocalSongSearchInteriorEdit::initWidget(QWidget *parent)
 
 void MusicLocalSongSearchInteriorEdit::textChanged(const QString &text)
 {
-    delete m_suggestThread;
-    m_suggestThread = G_DOWNLOAD_QUERY_PTR->getSuggestRequest(this);
-    connect(m_suggestThread, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
-    m_suggestThread->startToSearch(text);
+    delete m_suggestRequest;
+    m_suggestRequest = G_DOWNLOAD_QUERY_PTR->getSuggestRequest(this);
+    connect(m_suggestRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
+    m_suggestRequest->startToSearch(text);
 
     popWidgetChanged(text);
 }
@@ -45,7 +45,7 @@ void MusicLocalSongSearchInteriorEdit::textChanged(const QString &text)
 void MusicLocalSongSearchInteriorEdit::suggestDataChanged()
 {
     QStringList names;
-    for(const MusicResultsItem &item : m_suggestThread->getSearchedItems())
+    for(const MusicResultsItem &item : m_suggestRequest->getSearchedItems())
     {
         QString value = item.m_name;
         if(!item.m_nickName.isEmpty() && item.m_nickName != STRING_NULL)

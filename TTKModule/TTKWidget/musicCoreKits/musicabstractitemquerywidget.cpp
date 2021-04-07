@@ -11,7 +11,7 @@ MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)
     m_infoLabel = nullptr;
     m_statusLabel = nullptr;
     m_queryTableWidget = nullptr;
-    m_downloadRequest = nullptr;
+    m_networkRequest = nullptr;
     m_container = new QStackedWidget(this);
     m_container->hide();
     m_shareType = MusicSongSharingWidget::Null;

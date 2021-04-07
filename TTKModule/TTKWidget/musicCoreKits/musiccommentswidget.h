@@ -124,7 +124,7 @@ protected:
     QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;
     QWidget *m_messageComments;
-    MusicCommentsRequest *m_downloadRequest;
+    MusicCommentsRequest *m_networkRequest;
     QList<MusicCommentsItem*> m_commentsItems;
     MusicPagingWidgetObject *m_pagingWidgetObject;
 

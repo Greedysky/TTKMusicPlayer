@@ -161,7 +161,7 @@ public Q_SLOTS:
 
 protected:
     QGridLayout *m_gridLayout;
-    MusicSimilarRequest *m_downloadRequest;
+    MusicSimilarRequest *m_networkRequest;
 
 };
 

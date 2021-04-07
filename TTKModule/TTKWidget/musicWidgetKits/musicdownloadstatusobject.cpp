@@ -16,7 +16,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 {
     m_previousState = true;
     m_parentWidget = TTKStatic_cast(MusicApplication*, parent);
-    m_downloadRequest = nullptr;
+    m_networkRequest = nullptr;
 
     G_CONNECTION_PTR->setValue(getClassName(), this);
 #ifndef MUSIC_MOBILE
@@ -27,7 +27,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 
 MusicDownloadStatusObject::~MusicDownloadStatusObject()
 {
-    delete m_downloadRequest;
+    delete m_networkRequest;
 }
 
 void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
@@ -84,15 +84,15 @@ void MusicDownloadStatusObject::checkLrcValid()
            return;
        }
 
-       if(m_downloadRequest)
+       if(m_networkRequest)
        {
-           delete m_downloadRequest;
-           m_downloadRequest = nullptr;
+           delete m_networkRequest;
+           m_networkRequest = nullptr;
        }
        ///Start the request query
-       m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
-       m_downloadRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
-       connect(m_downloadRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
+       m_networkRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+       m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
+       connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
     }
 }
 
@@ -103,7 +103,7 @@ void MusicDownloadStatusObject::currentLrcDataDownload()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_downloadRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         const QString &filename = m_parentWidget->getCurrentFileName();

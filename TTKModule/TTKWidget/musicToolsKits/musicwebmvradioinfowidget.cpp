@@ -24,7 +24,7 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     MusicItemQueryTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
-        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
     }
 }
 
@@ -36,7 +36,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
         case 5:
         case 6:
             {
-                const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+                const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
                 if(row < 0 || row >= musicSongInfos.count())
                 {
                     return;
@@ -54,7 +54,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 
 void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

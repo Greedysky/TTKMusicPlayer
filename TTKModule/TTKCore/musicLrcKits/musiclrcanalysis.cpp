@@ -13,12 +13,12 @@ MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
 {
     m_lineMax = 0;
     m_currentLrcIndex = 0;
-    m_translationThread = nullptr;
+    m_networkRequest = nullptr;
 }
 
 MusicLrcAnalysis::~MusicLrcAnalysis()
 {
-    delete m_translationThread;
+    delete m_networkRequest;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
@@ -589,11 +589,11 @@ QString MusicLrcAnalysis::getAllLrcString() const
 
 void MusicLrcAnalysis::getTranslatedLrc()
 {
-    delete m_translationThread;
-    m_translationThread = G_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
+    delete m_networkRequest;
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
     if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
     {
-        connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(getTranslatedLrcFinished(QString)));
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(getTranslatedLrcFinished(QString)));
     }
 
     QString data;
@@ -605,6 +605,6 @@ void MusicLrcAnalysis::getTranslatedLrc()
 #endif
     }
 
-    m_translationThread->setHeader("name", m_currentLrcFileName);
-    m_translationThread->startToDownload(data);
+    m_networkRequest->setHeader("name", m_currentLrcFileName);
+    m_networkRequest->startToDownload(data);
 }

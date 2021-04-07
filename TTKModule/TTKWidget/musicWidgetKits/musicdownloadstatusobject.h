@@ -66,7 +66,7 @@ public Q_SLOTS:
 protected:
     bool m_previousState;
     MusicApplication *m_parentWidget;
-    MusicAbstractQueryRequest *m_downloadRequest;
+    MusicAbstractQueryRequest *m_networkRequest;
 
 };
 

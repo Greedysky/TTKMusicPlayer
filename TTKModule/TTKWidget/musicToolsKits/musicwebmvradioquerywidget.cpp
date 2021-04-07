@@ -108,8 +108,8 @@ MusicWebMVRadioQueryWidget::MusicWebMVRadioQueryWidget(QWidget *parent)
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
 
-    m_downloadRequest = new MusicMVRadioCategoryRequest(this);
-    connect(m_downloadRequest, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryItem(MusicResultsItem)));
+    m_networkRequest = new MusicMVRadioCategoryRequest(this);
+    connect(m_networkRequest, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryItem(MusicResultsItem)));
 }
 
 MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
@@ -117,13 +117,13 @@ MusicWebMVRadioQueryWidget::~MusicWebMVRadioQueryWidget()
     delete m_infoWidget;
     delete m_gridLayout;
     delete m_categoryButton;
-    delete m_downloadRequest;
+    delete m_networkRequest;
 }
 
 void MusicWebMVRadioQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
 }
 
 void MusicWebMVRadioQueryWidget::setSongNameById(const QString &id)
@@ -236,6 +236,6 @@ void MusicWebMVRadioQueryWidget::categoryChanged(const MusicResultsCategoryItem 
             m_gridLayout->removeWidget(w);
             delete w;
         }
-        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
     }
 }

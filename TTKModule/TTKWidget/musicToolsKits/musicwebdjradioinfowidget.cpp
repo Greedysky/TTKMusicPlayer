@@ -21,7 +21,7 @@ void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     MusicItemQueryTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
-        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
     }
 }
 

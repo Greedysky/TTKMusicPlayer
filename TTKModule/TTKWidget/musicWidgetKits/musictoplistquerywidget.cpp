@@ -22,7 +22,7 @@ void MusicToplistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *quer
     MusicItemQueryTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
-        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
+        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
     }
 }
 
@@ -35,10 +35,11 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
 
     m_queryTableWidget = new MusicToplistQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_downloadRequest = G_DOWNLOAD_QUERY_PTR->getToplistRequest(this);
-    m_queryTableWidget->setQueryInput(m_downloadRequest);
 
-    connect(m_downloadRequest, SIGNAL(createToplistInfoItem(MusicResultsItem)), SLOT(createToplistInfoItem(MusicResultsItem)));
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getToplistRequest(this);
+    m_queryTableWidget->setQueryInput(m_networkRequest);
+
+    connect(m_networkRequest, SIGNAL(createToplistInfoItem(MusicResultsItem)), SLOT(createToplistInfoItem(MusicResultsItem)));
 }
 
 MusicToplistQueryWidget::~MusicToplistQueryWidget()
@@ -50,8 +51,8 @@ void MusicToplistQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
 
-    m_downloadRequest->setQueryAllRecords(true);
-    m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
+    m_networkRequest->setQueryAllRecords(true);
+    m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, QString());
 
     createLabels();
 }
@@ -117,7 +118,7 @@ void MusicToplistQueryWidget::createLabels()
     QWidget *categoryWidget = new QWidget(function);
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
     m_categoryButton = new MusicToplistQueryCategoryPopWidget(categoryWidget);
-    m_categoryButton->setCategory(m_downloadRequest->getQueryServer(), this);
+    m_categoryButton->setCategory(m_networkRequest->getQueryServer(), this);
     categoryWidgetLayout->addWidget(m_categoryButton);
     categoryWidgetLayout->addStretch(1);
     categoryWidget->setLayout(categoryWidgetLayout);
@@ -227,7 +228,7 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
         m_categoryButton->closeMenu();
 
         m_songButton->setText(tr("songItems"));
-        m_downloadRequest->setQueryAllRecords(true);
-        m_downloadRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
+        m_networkRequest->setQueryAllRecords(true);
+        m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
     }
 }
