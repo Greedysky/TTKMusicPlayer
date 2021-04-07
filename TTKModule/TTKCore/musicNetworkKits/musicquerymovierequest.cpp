@@ -8,6 +8,6 @@ MusicQueryMovieRequest::MusicQueryMovieRequest(QObject *parent)
 
 void MusicQueryMovieRequest::startToSearch(const QString &movie)
 {
-    m_searchText = movie;
+    m_queryText = movie;
     startToPage(0);
 }

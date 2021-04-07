@@ -49,7 +49,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
-                    if(!contains && value["fmId"].toString() == m_searchText)
+                    if(!contains && value["fmId"].toString() == m_queryText)
                     {
                         contains = true;
                         item.m_name = value["fmName"].toString();

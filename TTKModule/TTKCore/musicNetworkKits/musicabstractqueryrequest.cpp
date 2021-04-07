@@ -7,7 +7,7 @@ MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
 {
     m_queryAllRecords = false;
     m_querySimplify = false;
-    m_searchQuality = tr("SD");
+    m_queryQuality = tr("SD");
     m_queryServer = "Invalid";
 }
 

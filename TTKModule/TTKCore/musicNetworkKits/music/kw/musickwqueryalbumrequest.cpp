@@ -17,7 +17,7 @@ void MusicKWQueryAlbumRequest::startToSearch(const QString &album)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
-    m_searchText = album;
+    m_queryText = album;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ALBUM_URL, false).arg(album));
@@ -112,7 +112,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     readFromMusicSongPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

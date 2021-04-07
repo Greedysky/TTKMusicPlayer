@@ -82,7 +82,7 @@ void MusicMGQueryRecommendRequest::downLoadFinished()
 //                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
 
 //                    TTK_NETWORK_QUERY_CHECK();
-//                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+//                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
 //                    TTK_NETWORK_QUERY_CHECK();
 
 //                    if(musicInfo.m_songAttrs.isEmpty())

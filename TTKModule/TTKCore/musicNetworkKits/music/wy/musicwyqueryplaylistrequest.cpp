@@ -16,7 +16,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(QueryType type, const QString &p
     }
     else
     {
-        m_searchText = playlist.isEmpty() ? "all" : playlist;
+        m_queryText = playlist.isEmpty() ? "all" : playlist;
         startToPage(0);
     }
 }
@@ -37,7 +37,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset));
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryText).arg(m_pageSize).arg(m_pageSize*offset));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
@@ -254,7 +254,7 @@ void MusicWYQueryPlaylistRequest::getDetailsFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

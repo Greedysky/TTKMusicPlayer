@@ -148,7 +148,7 @@ void MusicMGQueryToplistRequest::downLoadFinished()
                     musicInfo.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

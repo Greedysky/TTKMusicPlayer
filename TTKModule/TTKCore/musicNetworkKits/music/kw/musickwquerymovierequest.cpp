@@ -22,7 +22,7 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
-    m_searchText = text.trimmed();
+    m_queryText = text.trimmed();
     m_currentType = type;
 
     QNetworkRequest request;
@@ -49,7 +49,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     m_pageSize = 20;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryText).arg(m_pageSize).arg(offset));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -68,7 +68,7 @@ void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
-    m_searchText = text.trimmed();
+    m_queryText = text.trimmed();
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
@@ -189,7 +189,7 @@ void MusicKWQueryMovieRequest::singleDownLoadFinished()
     setNetworkAbort(false);
 
     MusicObject::MusicSongInformation musicInfo;
-    musicInfo.m_songId = m_searchText;
+    musicInfo.m_songId = m_queryText;
     TTK_NETWORK_QUERY_CHECK();
     readFromMusicMVInfo(&musicInfo);
     TTK_NETWORK_QUERY_CHECK();

@@ -20,7 +20,7 @@ void MusicMGQueryAlbumRequest::startToSearch(const QString &album)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
-    m_searchText = album;
+    m_queryText = album;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(MG_ALBUM_URL, false).arg(album).arg(0).arg(50));
@@ -92,7 +92,7 @@ void MusicMGQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_trackNumber = "0";
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -148,7 +148,7 @@ void MusicMGQueryAlbumRequest::getDownLoadIntro(MusicResultsItem *item)
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(MG_ALBUM_INFO_URL, false).arg(m_searchText));
+    request.setUrl(MusicUtils::Algorithm::mdII(MG_ALBUM_INFO_URL, false).arg(m_queryText));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL, ALG_UA_KEY, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(MG_REFERER_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);

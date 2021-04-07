@@ -16,7 +16,7 @@ void MusicQQQueryAlbumRequest::startToSearch(const QString &album)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
-    m_searchText = album;
+    m_queryText = album;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ALBUM_URL, false).arg(album));
@@ -113,7 +113,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

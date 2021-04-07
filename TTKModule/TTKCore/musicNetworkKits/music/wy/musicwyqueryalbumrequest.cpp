@@ -18,7 +18,7 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
-    m_searchText = album;
+    m_queryText = album;
 
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
@@ -125,7 +125,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

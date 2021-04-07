@@ -68,9 +68,9 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     }
     else
     {
-        const QString &quality = m_networkRequest->getSearchQuality();
+        const QString &quality = m_networkRequest->getQueryQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
-        m_networkRequest->setSearchQuality(quality);
+        m_networkRequest->setQueryQuality(quality);
     }
     //
     m_loadingLabel->run(true);
@@ -92,9 +92,9 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     }
     else
     {
-        const QString &quality = m_networkRequest->getSearchQuality();
+        const QString &quality = m_networkRequest->getQueryQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
-        m_networkRequest->setSearchQuality(quality);
+        m_networkRequest->setQueryQuality(quality);
     }
     //
     m_loadingLabel->run(true);
@@ -118,7 +118,7 @@ void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
 {
     MusicItemSearchTableWidget::startSearchQuery(QString());
-    m_networkRequest->setSearchQuality(quality);
+    m_networkRequest->setQueryQuality(quality);
 }
 
 void MusicSongSearchTableWidget::resizeWindow()

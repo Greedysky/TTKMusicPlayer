@@ -17,7 +17,7 @@ void MusicKGQueryRequest::startToSearch(QueryType type, const QString &text)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     m_currentType = type;
-    m_searchText = text.trimmed();
+    m_queryText = text.trimmed();
 
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
@@ -39,7 +39,7 @@ void MusicKGQueryRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(m_queryText).arg(offset + 1).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -118,7 +118,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     if(!m_querySimplify)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                        readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
                         if(musicInfo.m_songAttrs.isEmpty())
@@ -192,7 +192,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 musicInfo.m_trackNumber = "0";
 
                 TTK_NETWORK_QUERY_CHECK();
-                readFromMusicSongAttribute(&musicInfo, value["extra"].toMap(), m_searchQuality, true);
+                readFromMusicSongAttribute(&musicInfo, value["extra"].toMap(), m_queryQuality, true);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!musicInfo.m_songAttrs.isEmpty())

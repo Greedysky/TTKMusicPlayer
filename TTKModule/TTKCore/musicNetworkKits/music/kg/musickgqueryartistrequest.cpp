@@ -17,7 +17,7 @@ void MusicKGQueryArtistRequest::startToSearch(const QString &artist)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
 
     deleteAll();
-    m_searchText = artist;
+    m_queryText = artist;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_URL, false).arg(artist).arg(0).arg(50));
@@ -87,7 +87,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
 
                     readFromMusicSongLrcAndPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -103,7 +103,7 @@ void MusicKGQueryArtistRequest::downLoadFinished()
                         getDownLoadIntro(&info);
                         TTK_NETWORK_QUERY_CHECK();
 
-                        info.m_id = m_searchText;
+                        info.m_id = m_queryText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         Q_EMIT createArtistInfoItem(info);
@@ -134,7 +134,7 @@ void MusicKGQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
     }
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_searchText));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_queryText));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 

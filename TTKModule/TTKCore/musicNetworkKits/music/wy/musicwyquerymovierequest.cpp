@@ -19,14 +19,14 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
-    m_searchText = text.trimmed();
+    m_queryText = text.trimmed();
     m_currentType = type;
 
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_searchText).arg(1004).arg(m_pageSize).arg(0).toUtf8());
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryText).arg(1004).arg(m_pageSize).arg(0).toUtf8());
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
@@ -52,7 +52,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_searchText).arg(m_pageSize*offset).arg(m_pageSize));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryText).arg(m_pageSize*offset).arg(m_pageSize));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
@@ -70,7 +70,7 @@ void MusicWYQueryMovieRequest::startToSingleSearch(const QString &text)
 
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
-    m_searchText = text.trimmed();
+    m_queryText = text.trimmed();
     deleteAll();
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
@@ -143,7 +143,7 @@ void MusicWYQueryMovieRequest::pageDownLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("mvs"))
             {
                 TTK_NETWORK_QUERY_CHECK();
-                getArtistMvsCount(m_searchText.toLongLong());
+                getArtistMvsCount(m_queryText.toLongLong());
                 TTK_NETWORK_QUERY_CHECK();
 
                 const QVariantList &datas = value["mvs"].toList();
@@ -180,7 +180,7 @@ void MusicWYQueryMovieRequest::singleDownLoadFinished()
     m_musicSongInfos.clear();
     setNetworkAbort(false);
 
-    const qint64 mvid = m_searchText.toLongLong();
+    const qint64 mvid = m_queryText.toLongLong();
     if(mvid != 0)
     {
         TTK_NETWORK_QUERY_CHECK();

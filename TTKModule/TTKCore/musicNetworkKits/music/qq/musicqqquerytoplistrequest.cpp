@@ -106,7 +106,7 @@ void MusicQQQueryToplistRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

@@ -22,7 +22,7 @@ void MusicMGQueryArtistListRequest::startToPage(int offset)
 
 void MusicMGQueryArtistListRequest::startToSearch(const QString &artistlist)
 {
-    m_searchText = artistlist;
+    m_queryText = artistlist;
     startToPage(0);
 }
 

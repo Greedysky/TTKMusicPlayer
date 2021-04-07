@@ -17,7 +17,7 @@ void MusicWYQueryRequest::startToSearch(QueryType type, const QString &text)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     m_currentType = type;
-    m_searchText = text.trimmed();
+    m_queryText = text.trimmed();
 
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
@@ -42,7 +42,7 @@ void MusicWYQueryRequest::startToPage(int offset)
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_searchText).arg(1).arg(m_pageSize).arg(offset*m_pageSize).toUtf8());
+                      MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryText).arg(1).arg(m_pageSize).arg(offset*m_pageSize).toUtf8());
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 
@@ -135,7 +135,7 @@ void MusicWYQueryRequest::downLoadFinished()
                     if(!m_querySimplify)
                     {
                         TTK_NETWORK_QUERY_CHECK();
-                        readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                        readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 
                         if(musicInfo.m_songAttrs.isEmpty())
@@ -220,7 +220,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, true);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, true);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(!musicInfo.m_songAttrs.isEmpty())

@@ -16,7 +16,7 @@ void MusicWYQueryRecommendRequest::startToSearch(const QString &id)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
 
     deleteAll();
-    m_searchText = id;
+    m_queryText = id;
 
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
@@ -89,7 +89,7 @@ void MusicWYQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractqueryrequest.h"
+#include "musicstringutils.h"
 
 class MusicApplication;
 
@@ -55,7 +55,6 @@ public Q_SLOTS:
     void currentLrcDataDownload();
     /*!
      * Show download state string type.
-     * This is a slot by MusicSongSearchOnlineWidget's emit
      */
     void showDownLoadInfoFinished(const QString &type);
     /*!
@@ -66,7 +65,6 @@ public Q_SLOTS:
 protected:
     bool m_previousState;
     MusicApplication *m_parentWidget;
-    MusicAbstractQueryRequest *m_networkRequest;
 
 };
 

@@ -17,7 +17,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
 
     deleteAll();
-    m_searchText = artist;
+    m_queryText = artist;
 
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
@@ -96,7 +96,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["no"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -111,7 +111,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         TTK_NETWORK_QUERY_CHECK();
                         getDownLoadIntro(&info);
                         TTK_NETWORK_QUERY_CHECK();
-                        info.m_id = m_searchText;
+                        info.m_id = m_queryText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_nickName = artistObject["trans"].toString();
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
@@ -146,7 +146,7 @@ void MusicWYQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_searchText));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryText));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 

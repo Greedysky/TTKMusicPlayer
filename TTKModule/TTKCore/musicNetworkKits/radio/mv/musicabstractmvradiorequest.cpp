@@ -4,7 +4,7 @@
 MusicAbstractMVRadioRequest::MusicAbstractMVRadioRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)
 {
-    m_searchText = "1";
+    m_queryText = "1";
 }
 
 void MusicAbstractMVRadioRequest::startToSearch(QueryType type, const QString &text)
@@ -12,7 +12,7 @@ void MusicAbstractMVRadioRequest::startToSearch(QueryType type, const QString &t
     Q_UNUSED(type);
 
     deleteAll();
-    m_searchText = text.isEmpty() ? "1" : text;
+    m_queryText = text.isEmpty() ? "1" : text;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(MV_CATEGORY_URL, false));

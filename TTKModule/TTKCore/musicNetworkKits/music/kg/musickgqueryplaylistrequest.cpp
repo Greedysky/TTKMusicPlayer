@@ -16,7 +16,7 @@ void MusicKGQueryPlaylistRequest::startToSearch(QueryType type, const QString &p
     }
     else
     {
-        m_searchText = playlist;
+        m_queryText = playlist;
         startToPage(0);
     }
 }
@@ -34,7 +34,7 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false).arg(m_queryText).arg(offset + 1).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -234,7 +234,7 @@ void MusicKGQueryPlaylistRequest::getDetailsFinished()
 
                     readFromMusicSongLrcAndPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

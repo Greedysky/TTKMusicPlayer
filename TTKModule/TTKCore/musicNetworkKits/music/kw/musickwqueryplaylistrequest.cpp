@@ -17,7 +17,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(QueryType type, const QString &p
     }
     else
     {
-        m_searchText = playlist.isEmpty() ? "167" : playlist;
+        m_queryText = playlist.isEmpty() ? "167" : playlist;
         startToPage(0);
     }
 }
@@ -35,7 +35,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_searchText).arg(offset).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_queryText).arg(offset).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -199,7 +199,7 @@ void MusicKWQueryPlaylistRequest::getDetailsFinished()
                     readFromMusicSongPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_queryQuality, m_queryAllRecords);
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

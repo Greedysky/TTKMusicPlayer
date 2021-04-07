@@ -17,7 +17,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QSt
     }
     else
     {
-        m_searchText = category;
+        m_queryText = category;
         startToPage(0);
     }
 }
@@ -35,7 +35,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_searchText));
+    request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryText));
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -206,7 +206,7 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                     musicInfo.m_songId = QString::number(mainSongObject["id"].toInt());
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttribute(&musicInfo, mainSongObject, m_searchQuality, true);
+                    readFromMusicSongAttribute(&musicInfo, mainSongObject, m_queryQuality, true);
                     TTK_NETWORK_QUERY_CHECK();
                     //
                     if(!categoryFound)

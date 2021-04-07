@@ -16,7 +16,6 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 {
     m_previousState = true;
     m_parentWidget = TTKStatic_cast(MusicApplication*, parent);
-    m_networkRequest = nullptr;
 
     G_CONNECTION_PTR->setValue(getClassName(), this);
 #ifndef MUSIC_MOBILE
@@ -27,7 +26,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 
 MusicDownloadStatusObject::~MusicDownloadStatusObject()
 {
-    delete m_networkRequest;
+
 }
 
 void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
@@ -84,29 +83,25 @@ void MusicDownloadStatusObject::checkLrcValid()
            return;
        }
 
-       if(m_networkRequest)
-       {
-           delete m_networkRequest;
-           m_networkRequest = nullptr;
-       }
        ///Start the request query
-       m_networkRequest = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
-       m_networkRequest->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
-       connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
+       MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+       d->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
+       connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
     }
 }
 
 void MusicDownloadStatusObject::currentLrcDataDownload()
 {
-    if(!G_NETWORK_PTR->isOnline())   //no network connection
+    MusicAbstractQueryRequest *d = TTKStatic_cast(MusicAbstractQueryRequest*, sender());
+    if(!G_NETWORK_PTR->isOnline() || !d)   //no network connection
     {
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &filename = m_parentWidget->getCurrentFileName();
+        const QString &filename = d->getQueryText();
         const int count = MusicUtils::String::stringSplit(filename).count();
         const QString &artistName = MusicUtils::String::artistName(filename);
         const QString &songName = MusicUtils::String::songName(filename);
