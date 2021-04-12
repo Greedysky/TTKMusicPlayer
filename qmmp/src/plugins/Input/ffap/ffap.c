@@ -1207,64 +1207,26 @@ static void init_filter(APEFilter *f, int16_t * buf, int order)
     do_init_filter(&f[1], buf + order * 3 + HISTORY_SIZE, order);
 }
 
-#ifdef HAVE_SSE2
-
-#if ARCH_X86_64
-#    define REG_a "rax"
-#    define REG_b "rbx"
-#    define REG_c "rcx"
-#    define REG_d "rdx"
-#    define REG_D "rdi"
-#    define REG_S "rsi"
-#    define PTR_SIZE "8"
-#    define REG_SP "rsp"
-#    define REG_BP "rbp"
-#    define REGBP   rbp
-#    define REGa    rax
-#    define REGb    rbx
-#    define REGc    rcx
-#    define REGd    rdx
-#    define REGSP   rsp
-typedef int64_t x86_reg;
-#elif ARCH_X86_32
-#    define REG_a "eax"
-#    define REG_b "ebx"
-#    define REG_c "ecx"
-#    define REG_d "edx"
-#    define REG_D "edi"
-#    define REG_S "esi"
-#    define PTR_SIZE "4"
-#    define REG_SP "esp"
-#    define REG_BP "ebp"
-#    define REGBP   ebp
-#    define REGa    eax
-#    define REGb    ebx
-#    define REGc    ecx
-#    define REGd    edx
-#    define REGSP   esp
-typedef int32_t x86_reg;
-#else
-#warning unknown arch, SIMD optimizations will be disabled
-#ifndef ARCH_UNKNOWN
-#define ARCH_UNKNOWN 1
-#endif
-typedef int x86_reg;
-#endif
-
-typedef struct { uint64_t a, b; } xmm_reg;
-#define DECLARE_ALIGNED(n,t,v)      t v __attribute__ ((aligned (n)))
-#define DECLARE_ALIGNED_16(t, v) DECLARE_ALIGNED(16, t, v)
-#endif
-
-static int32_t scalarproduct_and_madd_int16_c(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul)
-{
-    int res = 0;
-    while(order--) {
-        res   += *v1 * *v2++;
-        *v1++ += mul * *v3++;
-    }
-    return res;
+#define DECLARE_SCALARPRODUCT_AND_MADD(TYPE, TARGET) \
+__attribute__ ((target (TARGET), optimize("O3,unroll-loops"))) \
+static int32_t scalarproduct_and_madd_int16_##TYPE(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul) \
+{ \
+    int res = 0; \
+    while (order--) { \
+        res   += *v1 * *v2++; \
+        *v1++ += mul * *v3++; \
+    } \
+    return res; \
 }
+
+#if defined(__x86_64__) || defined(__i386__)
+DECLARE_SCALARPRODUCT_AND_MADD(sse2, "sse2")
+DECLARE_SCALARPRODUCT_AND_MADD(sse42, "sse4.2")
+DECLARE_SCALARPRODUCT_AND_MADD(avx, "avx")
+DECLARE_SCALARPRODUCT_AND_MADD(avx2, "avx2")
+#endif
+DECLARE_SCALARPRODUCT_AND_MADD(c, "default")
+
 
 static int32_t
 (*scalarproduct_and_madd_int16)(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul);
@@ -1700,136 +1662,33 @@ FFap_decoder *ffap_new(ffap_read_callback read_callback,
     return decoder;
 }
 
-#if HAVE_SSE2 && !ARCH_UNKNOWN
-
-int32_t ff_scalarproduct_and_madd_int16_sse2(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul);
-
-#define FF_MM_MMX      0x0001 ///< standard MMX
-#define FF_MM_3DNOW    0x0004 ///< AMD 3DNOW
-#define FF_MM_MMX2     0x0002 ///< SSE integer functions or AMD MMX ext
-#define FF_MM_SSE      0x0008 ///< SSE functions
-#define FF_MM_SSE2     0x0010 ///< PIV SSE2 functions
-#define FF_MM_3DNOWEXT 0x0020 ///< AMD 3DNowExt
-#define FF_MM_SSE3     0x0040 ///< Prescott SSE3 functions
-#define FF_MM_SSSE3    0x0080 ///< Conroe SSSE3 functions
-#define FF_MM_SSE4     0x0100 ///< Penryn SSE4.1 functions
-#define FF_MM_SSE42    0x0200 ///< Nehalem SSE4.2 functions
-#define FF_MM_IWMMXT   0x0100 ///< XScale IWMMXT
-#define FF_MM_ALTIVEC  0x0001 ///< standard AltiVec
-
-/* ebx saving is necessary for PIC. gcc seems unable to see it alone */
-#define cpuid(index,eax,ebx,ecx,edx)\
-    __asm__ volatile\
-        ("mov %%"REG_b", %%"REG_S"\n\t"\
-         "cpuid\n\t"\
-         "xchg %%"REG_b", %%"REG_S\
-         : "=a" (eax), "=S" (ebx),\
-           "=c" (ecx), "=d" (edx)\
-         : "0" (index));
-
-/* Function to test if multimedia instructions are supported...  */
-int mm_support(void)
-{
-    int rval = 0;
-    int eax, ebx, ecx, edx;
-    uint32_t max_std_level, max_ext_level, std_caps=0, ext_caps=0;
-
-#if ARCH_X86_32
-    x86_reg a, c;
-    __asm__ volatile (
-        /* See if CPUID instruction is supported ... */
-        /* ... Get copies of EFLAGS into eax and ecx */
-        "pushfl\n\t"
-        "pop %0\n\t"
-        "mov %0, %1\n\t"
-
-        /* ... Toggle the ID bit in one copy and store */
-        /*     to the EFLAGS reg */
-        "xor $0x200000, %0\n\t"
-        "push %0\n\t"
-        "popfl\n\t"
-
-        /* ... Get the (hopefully modified) EFLAGS */
-        "pushfl\n\t"
-        "pop %0\n\t"
-        : "=a" (a), "=c" (c)
-        :
-        : "cc"
-        );
-
-    if(a == c) {
-        trace ("ffap: cpuid is not supported\n");
-        return 0; /* CPUID not supported */
-    }
-#endif
-
-    cpuid(0, max_std_level, ebx, ecx, edx);
-
-    if(max_std_level >= 1){
-        cpuid(1, eax, ebx, ecx, std_caps);
-        if(std_caps & (1<<23))
-            rval |= FF_MM_MMX;
-        if(std_caps & (1<<25))
-            rval |= FF_MM_MMX2
-#ifdef HAVE_SSE2
-                  | FF_MM_SSE;
-        if(std_caps & (1<<26))
-            rval |= FF_MM_SSE2;
-        if(ecx & 1)
-            rval |= FF_MM_SSE3;
-        if(ecx & 0x00000200 )
-            rval |= FF_MM_SSSE3;
-        if(ecx & 0x00080000 )
-            rval |= FF_MM_SSE4;
-        if(ecx & 0x00100000 )
-            rval |= FF_MM_SSE42;
-#endif
-                  ;
-    }
-
-    cpuid(0x80000000, max_ext_level, ebx, ecx, edx);
-
-    if(max_ext_level >= 0x80000001){
-        cpuid(0x80000001, eax, ebx, ecx, ext_caps);
-        if(ext_caps & (1<<31))
-            rval |= FF_MM_3DNOW;
-        if(ext_caps & (1<<30))
-            rval |= FF_MM_3DNOWEXT;
-        if(ext_caps & (1<<23))
-            rval |= FF_MM_MMX;
-        if(ext_caps & (1<<22))
-            rval |= FF_MM_MMX2;
-    }
-
-    return rval;
-}
-#endif
-
-#if ARCH_ARM
-int32_t EXTERN_ASMff_scalarproduct_int16_neon(int16_t *v1, int16_t *v2, int len,
-                                    int shift);
-int32_t EXTERN_ASMff_scalarproduct_and_madd_int16_neon(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul);
-
-#endif
-
 void ffap_load()
 {
-    // detect sse2
-#if ARCH_ARM
-        scalarproduct_and_madd_int16 = EXTERN_ASMff_scalarproduct_and_madd_int16_neon;
-#elif HAVE_SSE2 && !ARCH_UNKNOWN
-    trace ("ffap: was compiled with sse2 support\n");
-    int mm_flags = mm_support();
-    if(mm_flags & FF_MM_SSE2) {
+#if defined(__x86_64__) || defined(__i386__)
+    if (__builtin_cpu_supports("avx2"))
+    {
+        scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_avx2;
+        trace ("ffap: avx2 support detected\n");
+    }
+    else if (__builtin_cpu_supports("avx"))
+    {
+        scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_avx;
+        trace ("ffap: avx support detected\n");
+    }
+    else if (__builtin_cpu_supports("sse4.2"))
+    {
+        scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_sse42;
+        trace ("ffap: sse4.2 support detected\n");
+    }
+    else if (__builtin_cpu_supports("sse2"))
+    {
+        scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_sse2;
         trace ("ffap: sse2 support detected\n");
-        scalarproduct_and_madd_int16 = ff_scalarproduct_and_madd_int16_sse2;
     }
-    else {
-        trace ("ffap: sse2 is not supported by CPU\n");
-        scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_c;
-    }
-#else
-    trace ("ffap: sse2 support was not compiled in\n");
-    scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_c;
+    else
 #endif
+    {
+        scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_c;
+        trace ("ffap: SIMD support is not detected\n");
+    }
 }
