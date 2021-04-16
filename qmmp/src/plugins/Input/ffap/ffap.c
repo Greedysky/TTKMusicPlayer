@@ -1207,6 +1207,10 @@ static void init_filter(APEFilter *f, int16_t * buf, int order)
     do_init_filter(&f[1], buf + order * 3 + HISTORY_SIZE, order);
 }
 
+#ifdef __clang__
+#define optimize(x)
+#endif
+
 #define DECLARE_SCALARPRODUCT_AND_MADD(TYPE, TARGET) \
 __attribute__ ((target (TARGET), optimize("O3,unroll-loops"))) \
 static int32_t scalarproduct_and_madd_int16_##TYPE(int16_t *v1, const int16_t *v2, const int16_t *v3, int order, int mul) \
