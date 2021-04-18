@@ -16,8 +16,6 @@ The TTKMusicplayer plugin for run
   * |musicdown.ttk
   * |musiccloud.ttk
 * |__Downloads
-  * |__MArt
-  * |__MCached
   * |__MLrc
   * |__Movie
   * |__MUpdate
@@ -92,17 +90,13 @@ The TTKMusicplayer plugin for run
  * vorbis
  * wavpack
  * wildmidi
- * xmp
  * adplug
- * alac
  * asap
  * ayfly
  * dca
  * fc14
- * dumb
  * optimfrog
  * psf
  * sc68
- * speex
  * v2m
  * ym

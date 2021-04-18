@@ -86,20 +86,20 @@ private:
 
     std::atomic_bool m_done, m_finish, m_user_stop;
     uint m_bks = 0, m_sample_size = 0;
-    qint64 m_seekTime;
-    quint64 m_output_at, m_output_size = 0;
-    int m_bitrate;
+    qint64 m_seekTime = -1;
+    quint64 m_output_at = 0, m_output_size = 0;
+    int m_bitrate = 0;
     unsigned char *m_output_buf = nullptr;
     Decoder *m_decoder = nullptr;
     QQueue <Decoder*> m_decoders;
     QHash<Decoder*, InputSource*> m_inputs;
     AudioParameters m_ap;
-    bool m_next;
+    bool m_next = false;
     QSharedPointer<TrackInfo> m_trackInfo;
     static QmmpAudioEngine *m_instance;
     ReplayGain *m_replayGain = nullptr;
-    QmmpSettings *m_settings;
-    AudioConverter *m_converter;
+    QmmpSettings *m_settings = nullptr;
+    AudioConverter *m_converter = nullptr;
     Dithering *m_dithering = nullptr;
 
 };

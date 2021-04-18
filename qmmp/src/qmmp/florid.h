@@ -131,7 +131,7 @@ protected:
     bool m_renderLabel = false;
     QColor m_averageColor = QColor(255, 255, 255);
     bool m_gradientOn = false;
-    RoundAnimationLabel *m_roundLabel;
+    RoundAnimationLabel *m_roundLabel = nullptr;
 
 };
 

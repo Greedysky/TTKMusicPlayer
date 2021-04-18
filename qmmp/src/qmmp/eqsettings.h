@@ -103,7 +103,7 @@ private:
     double m_gains[31] = { 0 };
     double m_preamp = 0;
     bool m_is_enabled = false;
-    int m_bands;
+    int m_bands = 0;
     bool m_two_passes = false;
 
 };

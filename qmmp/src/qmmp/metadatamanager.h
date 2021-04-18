@@ -126,7 +126,7 @@ private:
     QFileInfoList findCoverFiles(QDir dir, int depth) const;
     CoverCacheItem *createCoverCacheItem(const QString &url) const;
     mutable QList<CoverCacheItem *> m_cover_cache;
-    QmmpSettings *m_settings;
+    QmmpSettings *m_settings = nullptr;
     mutable QMutex m_mutex;
 
     static MetaDataManager* m_instance;

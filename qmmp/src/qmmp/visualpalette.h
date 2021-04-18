@@ -28,7 +28,7 @@ typedef enum palette {
     PALETTE_SOX,
     PALETTE_MONO,
     PALETTE_DEFAULT = PALETTE_SPECTROGRAM,
-}Palette;
+} Palette;
 
 QMMP_EXPORT uint32_t renderPalette(Palette palette, double level);
 
