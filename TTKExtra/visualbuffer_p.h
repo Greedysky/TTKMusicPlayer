@@ -31,7 +31,7 @@
 class QMMP_EXPORT VisualNode
 {
 public:
-    float data[2][512];
+    float data[2][512] = {{ 0 }};
     bool used = false;
     qint64 ts = 0;
     qint64 delay = 0;

@@ -145,7 +145,7 @@ private:
     QMutex m_mutex;
     double m_scaleLeft = 0, m_scaleRight = 0;
     Volume *m_volume = nullptr;
-    QTimer *m_timer;
+    QTimer *m_timer = nullptr;
     static VolumeHandler *m_instance;
 
 };

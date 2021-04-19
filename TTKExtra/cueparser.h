@@ -150,6 +150,7 @@ private:
 	
     QList<CUETrack *> m_tracks;
     QStringList m_files;
+
     QStringList splitLine(const QString &line);
     qint64 getLength(const QString &str);
 

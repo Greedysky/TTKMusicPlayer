@@ -170,11 +170,11 @@ protected:
     void clear();
 
 protected:
-    QTimer *m_timer;
+    QTimer *m_timer = nullptr;
     bool m_running = false;
     int m_rows = 0, m_cols = 0;
     int *m_intern_vis_data = nullptr;
-    QAction *m_screenAction;
+    QAction *m_screenAction = nullptr;
 
 private:
     static QList<VisualFactory*> *m_factories;

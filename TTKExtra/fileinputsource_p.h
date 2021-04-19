@@ -39,7 +39,7 @@ public:
     virtual bool isReady() const override;
 
 private:
-    QFile *m_file;
+    QFile *m_file = nullptr;
 
 };
 

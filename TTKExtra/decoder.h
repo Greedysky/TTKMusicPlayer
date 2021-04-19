@@ -217,7 +217,7 @@ private:
 
     AudioParameters m_parameters;
     QMap<Qmmp::TrackProperty, QString> m_properties;
-    QIODevice *m_input;
+    QIODevice *m_input = nullptr;
     bool m_hasMetaData = false;
     QMap<Qmmp::MetaData, QString> m_metaData;
     QMap<Qmmp::ReplayGainKey, double> m_rg; //replay gain information

@@ -121,7 +121,7 @@ private:
     bool m_useEq = false;
     bool m_abr = false;
     qint64 m_totalWritten = 0, m_currentMilliseconds = -1;
-    QmmpSettings *m_settings;
+    QmmpSettings *m_settings = nullptr;
     Output *m_output = nullptr;
     AudioParameters m_in_params;
     AudioConverter *m_format_converter = nullptr;

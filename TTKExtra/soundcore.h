@@ -272,8 +272,8 @@ private:
     TrackInfo m_info;
     QString m_path;
     static SoundCore* m_instance;
-    StateHandler *m_handler;
-    VolumeHandler *m_volumeControl;
+    StateHandler *m_handler = nullptr;
+    VolumeHandler *m_volumeControl = nullptr;
     AbstractEngine *m_engine = nullptr;
     QQueue<InputSource *> m_sources;
     int m_nextState = NO_ENGINE;
