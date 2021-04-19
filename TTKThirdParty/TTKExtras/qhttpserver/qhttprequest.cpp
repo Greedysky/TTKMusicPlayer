@@ -31,7 +31,7 @@ QHttpRequestPrivate::QHttpRequestPrivate()
 QHttpRequest::QHttpRequest(QHttpConnection *connection, QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QHttpRequest);
     TTK_D(QHttpRequest);
     d->m_connection = connection;
 }

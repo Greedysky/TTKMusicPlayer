@@ -127,7 +127,7 @@ void QHttpConnectionPrivate::write(const QByteArray &data)
 QHttpConnection::QHttpConnection(QTcpSocket *socket, QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QHttpConnection);
     TTK_D(QHttpConnection);
     d->m_socket = socket;
     d->m_parent = this;

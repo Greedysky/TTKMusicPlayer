@@ -35,7 +35,7 @@ QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
 QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent)
     : QWidget(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QRCodeQWidget);
     TTK_D(QRCodeQWidget);
     if(text.isEmpty())
     {

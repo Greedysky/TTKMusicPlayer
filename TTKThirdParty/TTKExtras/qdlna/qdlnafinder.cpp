@@ -68,7 +68,7 @@ bool QDlnaFinderPrivate::findClient(const QString &server)
 QDlnaFinder::QDlnaFinder(QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QDlnaFinder);
     TTK_D(QDlnaFinder);
     connect(d->m_udpSock, SIGNAL(readyRead()), SLOT(readResponse()));
 }

@@ -16,10 +16,8 @@ public:
 
 
 QSyncUploadData::QSyncUploadData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QSyncDataInterface(networkManager, parent)
+    : QSyncDataInterface(TTK_CREATE_PRIVATE(QSyncUploadData), networkManager, parent)
 {
-    TTK_INIT_PUBLIC(QSyncUploadData);
-    TTK_INIT_PRIVATE;
     TTK_D(QSyncUploadData);
     d->m_manager = networkManager;
 }

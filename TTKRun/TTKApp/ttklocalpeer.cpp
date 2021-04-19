@@ -58,7 +58,7 @@ TTKLocalPeerPrivate::~TTKLocalPeerPrivate()
 TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(TTKLocalPeer);
     TTK_D(TTKLocalPeer);
 
     QString prefix = d->m_id = appId;

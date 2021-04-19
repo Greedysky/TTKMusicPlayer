@@ -140,7 +140,7 @@ bool QDlnaClientPrivate::connectServer()
 
 QDlnaClient::QDlnaClient(const QString &data)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QDlnaClient);
     TTK_D(QDlnaClient);
     d->initData(data);
 }

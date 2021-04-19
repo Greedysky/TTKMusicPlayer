@@ -29,7 +29,7 @@ TTKRunObjectPrivate::~TTKRunObjectPrivate()
 TTKRunObject::TTKRunObject(QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(TTKRunObject);
     TTK_D(TTKRunObject);
 
     d->m_process = new QProcess(this);

@@ -195,7 +195,7 @@ void QHttpResponsePrivate::setHeader(const QString &field, const QString &value)
 QHttpResponse::QHttpResponse(QHttpConnection *connection)
     : QObject(0)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QHttpResponse);
     TTK_D(QHttpResponse);
     d->m_connection = connection;
     connect(connection, SIGNAL(allBytesWritten()), this, SIGNAL(allBytesWritten()));

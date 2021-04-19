@@ -26,7 +26,7 @@ QDlnaXmlPrivate::~QDlnaXmlPrivate()
 
 QDlnaXml::QDlnaXml()
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QDlnaXml);
 }
 
 bool QDlnaXml::fromString(const QString &data)

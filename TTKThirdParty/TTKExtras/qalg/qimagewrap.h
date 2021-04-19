@@ -40,6 +40,7 @@ public:
 };
 
 
+class QSharpeImagePrivate;
 /*! @brief The class of the sharpe image.
  * @author Greedysky <greedysky@163.com>
  */
@@ -59,12 +60,14 @@ public:
     virtual QPixmap render(const QPixmap &pixmap, int value) = 0;
 
 protected:
-    QRect m_rectangle;
+    QSharpeImage(QSharpeImagePrivate &pvt);
+
+protected:
+    TTK_DECLARE_PRIVATE(QSharpeImage)
 
 };
 
 
-class QCubeWavePrivate;
 /*! @brief The class of the cube wave.
  * @author Greedysky <greedysky@163.com>
  */
@@ -82,13 +85,9 @@ public:
      */
     virtual QPixmap render(const QPixmap &pixmap, int value) override;
 
-private:
-    TTK_DECLARE_PRIVATE(QCubeWave)
-
 };
 
 
-class QWaterWavePrivate;
 /*! @brief The class of the water wave.
  * @author Greedysky <greedysky@163.com>
  */
@@ -105,9 +104,6 @@ public:
      * Render data.
      */
     virtual QPixmap render(const QPixmap &pixmap, int value) override;
-
-private:
-    TTK_DECLARE_PRIVATE(QWaterWave)
 
 };
 }

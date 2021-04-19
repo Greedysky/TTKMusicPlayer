@@ -338,7 +338,7 @@ char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
 
 QDesWrap::QDesWrap()
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QDesWrap);
 }
 
 QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)

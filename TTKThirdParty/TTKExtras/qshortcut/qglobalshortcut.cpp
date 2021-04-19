@@ -83,13 +83,12 @@ void QGlobalShortcutPrivate::activateShortcut(quint32 nativeKey, quint32 nativeM
 QGlobalShortcut::QGlobalShortcut(QObject* parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QGlobalShortcut);
 }
 
 QGlobalShortcut::QGlobalShortcut(const QKeySequence& shortcut, QObject* parent)
-    : QObject(parent)
+    : QGlobalShortcut(parent)
 {
-    TTK_INIT_PRIVATE;
     setShortcut(shortcut);
 }
 

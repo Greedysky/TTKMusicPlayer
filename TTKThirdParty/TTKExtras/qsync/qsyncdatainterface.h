@@ -60,6 +60,12 @@ protected:
     QString pathDecode(const QString &data) const;
 
 protected:
+    /*!
+     * Object contsructor.
+     */
+    QSyncDataInterface(QSyncDataInterfacePrivate &pvt, QNetworkAccessManager *networkManager, QObject *parent = nullptr);
+
+protected:
     TTK_DECLARE_PRIVATE(QSyncDataInterface)
 
 };

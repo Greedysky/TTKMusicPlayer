@@ -40,7 +40,7 @@ SerializerRunnable::SerializerRunnable(QObject* parent)
     : QObject(parent),
       QRunnable()
 {
-  TTK_INIT_PRIVATE;
+  TTK_INIT_PRIVATE(SerializerRunnable);
   qRegisterMetaType<QVariant>("QVariant");
 }
 

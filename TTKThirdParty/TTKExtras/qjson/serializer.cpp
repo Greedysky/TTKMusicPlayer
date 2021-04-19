@@ -391,7 +391,7 @@ QByteArray Serializer::SerializerPrivate::escapeString( const QString& str )
 
 Serializer::Serializer()
 {
-  TTK_INIT_PRIVATE;
+  TTK_INIT_PRIVATE(Serializer);
 }
 
 void Serializer::serialize( const QVariant &v, QIODevice* io, bool* ok)

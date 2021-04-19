@@ -63,7 +63,7 @@ void ParserPrivate::reset()
 
 Parser::Parser()
 {
-  TTK_INIT_PRIVATE;
+  TTK_INIT_PRIVATE(Parser);
 }
 
 QVariant Parser::parse (QIODevice* io, bool* ok)

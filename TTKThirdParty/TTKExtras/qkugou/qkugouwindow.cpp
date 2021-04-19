@@ -52,7 +52,7 @@ QKugouWindowPrivate::~QKugouWindowPrivate()
 QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
     : QWidget(parent)
 {
-    TTK_INIT_PRIVATE;
+    TTK_INIT_PRIVATE(QKugouWindow);
 
 #ifdef Q_OS_UNIX
  #ifdef MUSIC_WEBKIT

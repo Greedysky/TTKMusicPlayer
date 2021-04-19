@@ -20,6 +20,8 @@
  ================================================= */
 
 
+#define TTK_CREATE_PRIVATE(Class) (*new Class##Private)
+
 #define TTK_DECLARE_PRIVATE(Class) \
     friend class Class##Private; \
     TTKPrivateInterface<Class, Class##Private> ttk_d;
@@ -27,11 +29,13 @@
 #define TTK_DECLARE_PUBLIC(Class) \
     friend class Class;
 
-#define TTK_INIT_PRIVATE \
+#define TTK_INIT_PRIVATE(Class) \
+    ttk_d.setPrivate(new Class##Private); \
     ttk_d.setPublic(this);
 
-#define TTK_INIT_PUBLIC(Class) \
-    ttk_d.setPrivate(new Class##Private);
+#define TTK_INIT_PRIVATE_D(PVT) \
+    ttk_d.setPrivate(&PVT); \
+    ttk_d.setPublic(this);
 
 #define TTK_D(Class) Class##Private *const d = static_cast<Class##Private *>(ttk_d())
 #define TTK_Q(Class) Class *const q = static_cast<Class *>(ttk_q())
@@ -45,6 +49,7 @@ class TTKPrivate
 public:
     TTKPrivate() { ttk_q_ptr = nullptr; }
     virtual ~TTKPrivate() { }
+
     inline void setPublic(PUB* pub) { ttk_q_ptr = pub; }
 
 protected:
@@ -63,7 +68,8 @@ class TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
 public:
-    TTKPrivateInterface() { pvt_ptr = new PVT; }
+    TTKPrivateInterface(PVT* pvt) : pvt_ptr(pvt) { }
+    TTKPrivateInterface() : pvt_ptr(nullptr) { }
     ~TTKPrivateInterface() { delete pvt_ptr; }
 
     inline void setPrivate(PVT* pvt) { delete pvt_ptr; pvt_ptr = pvt; }

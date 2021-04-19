@@ -18,10 +18,8 @@ public:
 
 
 QSyncDownloadData::QSyncDownloadData(QNetworkAccessManager *networkManager, QObject *parent)
-    : QSyncDataInterface(networkManager, parent)
+    : QSyncDataInterface(TTK_CREATE_PRIVATE(QSyncDownloadData), networkManager, parent)
 {
-    TTK_INIT_PUBLIC(QSyncDownloadData);
-    TTK_INIT_PRIVATE;
     TTK_D(QSyncDownloadData);
     d->m_manager = networkManager;
 }
