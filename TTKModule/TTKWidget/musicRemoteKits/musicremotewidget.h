@@ -123,9 +123,9 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
-     * Adjust the widget postion.
+     * Adjust the widget position.
      */
-    void adjustPostion(QWidget *w);
+    void adjustPosition(QWidget *w);
 
     QPushButton *m_showMainWindowButton, *m_preSongButton;
     QPushButton *m_nextSongButton, *m_playButton;

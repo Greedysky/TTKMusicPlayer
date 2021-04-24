@@ -29,7 +29,6 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
-
     setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));

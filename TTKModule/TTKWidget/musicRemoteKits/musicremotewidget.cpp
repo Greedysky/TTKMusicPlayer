@@ -199,7 +199,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
-void MusicRemoteWidget::adjustPostion(QWidget *w)
+void MusicRemoteWidget::adjustPosition(QWidget *w)
 {
     const QSize &windowSize = G_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     w->move(windowSize.width() - w->width() - 150, w->height() + 70);

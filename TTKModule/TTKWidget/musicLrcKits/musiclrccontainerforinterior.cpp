@@ -421,6 +421,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
         case 72: index = 4; break;
         default: break;
     }
+
     if(index > -1 && index < group->actions().count())
     {
         group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
@@ -438,7 +439,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast2s")))->setData(2);
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast5s")))->setData(3);
     connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
-
+    MusicUtils::Widget::adjustMenuPosition(&changeLrcTimeFast);
     //
     QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow0.5s")))->setData(4);
@@ -446,7 +447,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow2s")))->setData(6);
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow5s")))->setData(7);
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
-
+    MusicUtils::Widget::adjustMenuPosition(&changeLrcTimeSlow);
     //
     QAction *artAction = menu.addAction(tr("artbgoff"), this, SLOT(artistBackgroundChanged()));
     m_showArtistBackground ? artAction->setText(tr("artbgoff")) : artAction->setText(tr("artbgon"));
@@ -462,13 +463,16 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     changeLrcLinkMenu.addAction(tr("localLink"), this, SLOT(showLocalLinkWidget()));
     QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
+    MusicUtils::Widget::adjustMenuPosition(&changeLrcLinkMenu);
     menu.addMenu(&changeLrcLinkMenu);
+
     menu.addAction(tr("copyToClip"), this, SLOT(lrcCopyClipboard()))->setEnabled(fileCheck);
     menu.addAction(tr("showLrcFile"), this, SLOT(lrcOpenFileDir()))->setEnabled(fileCheck);
 
     menu.addSeparator();
     menu.addAction(tr("customSetting"), this, SLOT(currentLrcCustom()));
 
+    MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 

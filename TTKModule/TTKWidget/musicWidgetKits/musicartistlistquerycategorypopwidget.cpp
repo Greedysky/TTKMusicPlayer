@@ -116,5 +116,4 @@ void MusicArtistListQueryCategoryPopWidget::initWidget()
     m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
 
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);
-
 }

@@ -1076,6 +1076,7 @@ void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)
 void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicSongsToolBoxWidget::contextMenuEvent(event);
+
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
@@ -1083,5 +1084,7 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("musicTest"), this, SLOT(musicSongsCheckTestTools()));
     menu.addAction(tr("lrcBatch"), this, SLOT(musicLrcBatchDownload()));
     menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > ITEM_MIN_COUNT);
+
+    MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }

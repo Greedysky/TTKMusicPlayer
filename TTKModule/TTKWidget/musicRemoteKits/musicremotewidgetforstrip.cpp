@@ -7,7 +7,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 320, 80);
-    adjustPostion(this);
+    adjustPosition(this);
     setAttribute(Qt::WA_DeleteOnClose, false);
 
     QHBoxLayout *hbox = new QHBoxLayout(this);

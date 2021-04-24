@@ -4,6 +4,7 @@
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
 #include "musicuserrecordwidget.h"
+#include "musicwidgetutils.h"
 
 MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
      : QDialog(parent),
@@ -70,6 +71,7 @@ void MusicUserManagerDialog::createButtonPopMenu()
     m_popMenu.addAction(tr("Spacing"));
     m_popMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     m_ui->musicSettingButton->setMenu(&m_popMenu);
+    MusicUtils::Widget::adjustMenuPosition(&m_popMenu);
 }
 
 void MusicUserManagerDialog::musicUserLogoff()

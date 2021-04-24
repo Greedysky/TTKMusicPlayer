@@ -77,8 +77,8 @@ void MusicLocalSongsTableWidget::itemCellClicked(int row, int column)
 void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractSongsListTableWidget::contextMenuEvent(event);
-    QMenu rightClickMenu(this);
 
+    QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));

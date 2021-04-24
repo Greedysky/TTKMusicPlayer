@@ -104,7 +104,7 @@ void MusicCloudManagerTableWidget::resizeWindow()
 
     if(m_openFileWidget)
     {
-        m_openFileWidget->adjustRect(width(), height());
+        m_openFileWidget->adjustWidgetRect(width(), height());
     }
 }
 
@@ -362,9 +362,7 @@ void MusicCloudManagerTableWidget::showFileInformationWidget()
 void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
-//    MusicAbstractTableWidget::contextMenuEvent(event);
     QMenu menu(this);
-
     QMenu uploadMenu(tr("upload"), &menu);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
@@ -372,8 +370,10 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     {
         uploadMenu.addAction(tr("cancelUpload"), this, SLOT(cancelUploadFilesToServer()));
     }
+
     uploadMenu.addAction(tr("uploadFile"), this, SLOT(uploadFilesToServer()));
     uploadMenu.addAction(tr("uploadFiles"), this, SLOT(uploadFileDirToServer()));
+    MusicUtils::Widget::adjustMenuPosition(&uploadMenu);
 
     menu.addMenu(&uploadMenu);
     menu.addAction(tr("deleteFile"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
@@ -384,6 +384,7 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addSeparator();
     menu.addAction(tr("musicInfo..."), this, SLOT(showFileInformationWidget()));
 
+    MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
@@ -431,7 +432,7 @@ void MusicCloudManagerTableWidget::createUploadFileWidget()
         m_openFileWidget = new MusicOpenFileWidget(this);
         connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFilesToServer()));
         connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFileDirToServer()));
-        m_openFileWidget->adjustRect(width(), height());
+        m_openFileWidget->adjustWidgetRect(width(), height());
     }
     m_openFileWidget->raise();
     m_openFileWidget->show();

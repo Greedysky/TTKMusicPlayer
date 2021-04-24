@@ -32,7 +32,7 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     resize(150, 50);
 }
 
-void MusicOpenFileWidget::adjustRect(int w, int h)
+void MusicOpenFileWidget::adjustWidgetRect(int w, int h)
 {
     const int x = (w - width() - 60) / 2;
     const int y = (h - height()) / 2;

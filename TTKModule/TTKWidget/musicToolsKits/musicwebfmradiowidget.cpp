@@ -224,6 +224,7 @@ void MusicWebFMRadioWidget::sendToDesktopLink()
 void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractTableWidget::contextMenuEvent(event);
+
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 

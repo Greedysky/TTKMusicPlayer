@@ -11,7 +11,7 @@ MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 320, 100);
-    adjustPostion(this);
+    adjustPosition(this);
 
     QHBoxLayout *hbox = new QHBoxLayout(this);
     hbox->setContentsMargins(0, 0, 0, 0);

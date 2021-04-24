@@ -111,7 +111,6 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
 
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("musicDownload")))->setData(0);
-
     menu.addSeparator();
 
     const int row = currentRow();

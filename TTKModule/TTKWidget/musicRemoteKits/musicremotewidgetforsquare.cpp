@@ -4,7 +4,7 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 100, 100);
-    adjustPostion(this);
+    adjustPosition(this);
 
     QGridLayout* grid = new QGridLayout(this);
     for(int i=0; i<3; i++)

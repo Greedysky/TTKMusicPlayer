@@ -196,7 +196,6 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu rightClickMenu(this);
-
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const bool empty = !m_musicSongs->isEmpty();
@@ -211,6 +210,5 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(tr("reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
     rightClickMenu.addAction(tr("reuploadAll"), this, SLOT(reuploadFiles()))->setEnabled(empty);
     rightClickMenu.addSeparator();
-
     rightClickMenu.exec(QCursor::pos());
 }

@@ -7,6 +7,7 @@
 #include "musicimageutils.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
+#include "musicwidgetutils.h"
 
 #include <QPainter>
 
@@ -105,6 +106,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addMenu(&musicAddNewFiles)->setEnabled(disable);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
+    MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
     menu.addAction(tr("playLater"), this, SLOT(addToPlayLater()));
     menu.addAction(tr("addToPlaylist"), this, SLOT(addToPlayedList()));
@@ -116,7 +118,9 @@ void MusicSongsToolBoxTopWidget::showMenu()
     musicSortFiles.addAction(tr("sortByAddTime"))->setData(3);
     musicSortFiles.addAction(tr("sortByPlayTime"))->setData(4);
     musicSortFiles.addAction(tr("sortByPlayCount"))->setData(5);
+    MusicUtils::Widget::adjustMenuPosition(&musicSortFiles);
     connect(&musicSortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
+
     if(m_musicSort)
     {
         const QList<QAction*> actions(musicSortFiles.actions());

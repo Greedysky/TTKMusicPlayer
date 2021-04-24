@@ -76,7 +76,7 @@ public:
      */
     qint64 duration() const;
     /*!
-     * Get current player postion.
+     * Get current player position.
      */
     qint64 position() const;
     /*!

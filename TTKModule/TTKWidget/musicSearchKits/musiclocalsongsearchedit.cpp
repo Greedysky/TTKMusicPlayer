@@ -1,4 +1,5 @@
 #include "musiclocalsongsearchedit.h"
+#include "musicwidgetutils.h"
 #include "musicuiobject.h"
 
 #include <QKeyEvent>
@@ -30,6 +31,7 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
     deleteM->setEnabled(state);
     selectM->setEnabled(!text().trimmed().isEmpty());
 
+    MusicUtils::Widget::adjustMenuPosition(&rightClickMenu);
     rightClickMenu.exec(QCursor::pos());
 }
 

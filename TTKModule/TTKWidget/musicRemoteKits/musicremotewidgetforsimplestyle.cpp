@@ -6,7 +6,7 @@ MusicRemoteWidgetForSimpleStyle::MusicRemoteWidgetForSimpleStyle(QWidget *parent
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 300, 40);
-    adjustPostion(this);
+    adjustPosition(this);
 
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(5, 5, 5, 2);

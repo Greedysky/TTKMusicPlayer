@@ -6,7 +6,7 @@ MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 230, 70);
-    adjustPostion(this);
+    adjustPosition(this);
 
     QVBoxLayout *vbox = new QVBoxLayout(this);
     vbox->setContentsMargins(5, 5, 5, 2);

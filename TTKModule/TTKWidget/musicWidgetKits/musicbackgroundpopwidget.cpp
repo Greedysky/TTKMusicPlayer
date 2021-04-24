@@ -37,7 +37,6 @@ void MusicBackgroundPopWidget::sliderReleased()
 void MusicBackgroundPopWidget::initWidget()
 {
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-
     m_containWidget->setFixedSize(60, 160);
 
     QBoxLayout *hbox = new QHBoxLayout(m_containWidget);

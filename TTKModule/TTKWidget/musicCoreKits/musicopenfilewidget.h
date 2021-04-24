@@ -38,7 +38,7 @@ public:
     /*!
      * Adjust the widget rect in the parent widget.
      */
-    void adjustRect(int w, int h);
+    void adjustWidgetRect(int w, int h);
 
 Q_SIGNALS:
     /*!

@@ -167,8 +167,8 @@ void MusicQualityChoicePopWidget::initWidget()
     MusicQualityChoiceTableWidget *table = new MusicQualityChoiceTableWidget(m_containWidget);
     connect(table, SIGNAL(cellClicked(int ,int)), SLOT(itemCellClicked(int)));
     layout->addWidget(table);
-    m_containWidget->setFixedSize(110, 120);
 
+    m_containWidget->setFixedSize(110, 120);
     m_containWidget->setLayout(layout);
 }
 

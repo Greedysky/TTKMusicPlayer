@@ -502,6 +502,8 @@ void MusicApplication::musicImportSongs()
     menu.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
     menu.addSeparator();
     menu.addAction(tr("dragAnddrop"))->setEnabled(false);
+
+    MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
 }
 
@@ -751,6 +753,7 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.addMenu(&musicAddNewFiles);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
+    MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
@@ -788,6 +791,7 @@ void MusicApplication::musicCreateRightMenu()
     musicRemoteControl.addAction(tr("ComplexStyleRemote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
     musicRemoteControl.addAction(tr("RippleRemote"), m_topAreaWidget, SLOT(musicRippleRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
+    MusicUtils::Widget::adjustMenuPosition(&musicRemoteControl);
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("SoundEffect"), m_applicationObject, SLOT(musicSetSoundEffect()));

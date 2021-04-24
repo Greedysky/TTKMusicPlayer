@@ -5,7 +5,7 @@ MusicRemoteWidgetForComplexStyle::MusicRemoteWidgetForComplexStyle(QWidget *pare
     : MusicRemoteWidget(parent)
 {
     setGeometry(200, 200, 320, 110);
-    adjustPostion(this);
+    adjustPosition(this);
 
     m_iconLabel = new QLabel(this);
     m_songName = new QLabel(this);

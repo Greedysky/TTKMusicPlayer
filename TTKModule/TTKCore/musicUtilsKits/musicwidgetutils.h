@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+class QMenu;
 class QPainter;
 class QComboBox;
 
@@ -61,6 +62,10 @@ namespace MusicUtils
          * Get window screen geometry.
          */
         MUSIC_UTILS_EXPORT QRect windowScreenGeometry(int index = 0);
+        /*!
+         * Adjust the menu position.
+         */
+        MUSIC_UTILS_EXPORT void adjustMenuPosition(QMenu *menu);
 
         /*!
          * Set widget transparent.

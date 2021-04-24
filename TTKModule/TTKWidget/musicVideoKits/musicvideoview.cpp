@@ -3,6 +3,7 @@
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
 #include "musicuiobject.h"
+#include "musicwidgetutils.h"
 
 #include <QMouseEvent>
 
@@ -66,9 +67,10 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 
     bool playing;
     Q_EMIT mediaIsPlaying(playing);
-
     menu.addAction(tr("videoPlay"), parent(), SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
+    MusicUtils::Widget::adjustMenuPosition(&menu);
+
     menu.exec(QCursor::pos());
 }
 
@@ -120,6 +122,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
     mediaIsPlaying(playing);
     menu.addAction(tr("videoPlay"), this, SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), this, SLOT(stop()));
+    MusicUtils::Widget::adjustMenuPosition(&menu);
 
     menu.exec(QCursor::pos());
 }
