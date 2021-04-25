@@ -126,7 +126,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 5, item);
     }
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 }
 
 void MusicSongsListTableWidget::clearAllItems()
@@ -178,7 +178,7 @@ void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs,
     }
     else
     {
-        setFixedHeight(allRowsHeight());
+        setFixedHeight(totalHeight());
     }
 }
 
@@ -218,7 +218,7 @@ void MusicSongsListTableWidget::selectRow(int index)
     m_playRowIndex = index;
 
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 }
 
 void MusicSongsListTableWidget::updateTimeLabel(const QString &current, const QString &total) const
@@ -282,7 +282,7 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
     m_musicSongsPlayWidget = nullptr;
 
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 }
 
 bool MusicSongsListTableWidget::createUploadFileWidget()
@@ -493,7 +493,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     }
 
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 
     Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
 }

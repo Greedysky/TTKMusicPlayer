@@ -38,7 +38,7 @@ void MusicAbstractSongsListTableWidget::selectRow(int index)
     MusicSmoothMovingTableWidget::selectRow(index);
 }
 
-int MusicAbstractSongsListTableWidget::allRowsHeight() const
+int MusicAbstractSongsListTableWidget::totalHeight() const
 {
     int height = 0;
     for(int i=0; i<rowCount(); ++i)
@@ -154,7 +154,7 @@ void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
     QVariantMap data;
     data["songName"] = getCurrentSongName();
 
-    MusicSongSharingWidget shareWidget(this);
+    MusicSongSharingWidget shareWidget;
     shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }
@@ -166,7 +166,7 @@ void MusicAbstractSongsListTableWidget::musicSongDownload()
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    MusicDownloadWidget *download = new MusicDownloadWidget;
     download->setSongName(getCurrentSongName(), MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
@@ -201,7 +201,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
     QVariantMap data;
     data["songName"] = getSongName(m_playRowIndex);
 
-    MusicSongSharingWidget shareWidget(this);
+    MusicSongSharingWidget shareWidget;
     shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }

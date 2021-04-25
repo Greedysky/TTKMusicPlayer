@@ -24,7 +24,7 @@ MusicPlaylistQueryItemWidget::MusicPlaylistQueryItemWidget(QWidget *parent)
     m_topListenButton->setGeometry(0, 0, WIDTH_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
     m_topListenButton->setText(" - ");
-    m_topListenButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle04 + MusicUIObject::MQSSColorStyle01);
+    m_topListenButton->setStyleSheet(MusicUIObject::MQSSBorderStyle01 + MusicUIObject::MQSSBackgroundStyle04 + MusicUIObject::MQSSColorStyle01);
 
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);

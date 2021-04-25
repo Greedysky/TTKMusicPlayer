@@ -54,7 +54,7 @@ public:
     /*!
      * Get all rows height.
      */
-    int allRowsHeight() const;
+    int totalHeight() const;
     /*!
      * Set parent tool index.
      */

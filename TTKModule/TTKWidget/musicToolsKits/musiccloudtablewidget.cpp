@@ -67,7 +67,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicSong &recor
     setItem(index, 3, item);
 
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 }
 
 
@@ -189,7 +189,7 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
     setItem(index, 2, item);
 
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 }
 
 void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)

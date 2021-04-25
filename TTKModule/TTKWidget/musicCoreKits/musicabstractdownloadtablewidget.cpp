@@ -76,7 +76,7 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
         m_musicSongs->removeAt(index);
     }
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
     Q_EMIT updateItemTitle(m_parentToolIndex);
 }
 

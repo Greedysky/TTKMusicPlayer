@@ -60,7 +60,7 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     setItem(index, 3, item);
 
     //just fix table widget size hint
-    setFixedHeight(allRowsHeight());
+    setFixedHeight(totalHeight());
 }
 
 

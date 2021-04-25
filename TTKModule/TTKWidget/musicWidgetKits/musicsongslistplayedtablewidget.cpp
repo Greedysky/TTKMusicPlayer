@@ -100,7 +100,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
         setItem(i, 4, item);
     }
 
-    setFixedHeight(qMax(365, allRowsHeight()));
+    setFixedHeight(qMax(365, totalHeight()));
 }
 
 void MusicSongsListPlayedTableWidget::clearAllItems()
@@ -145,7 +145,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     setCellWidget(index, 0, m_musicSongsPlayWidget);
     m_playRowIndex = index;
 
-    setFixedHeight(qMax(365, allRowsHeight()));
+    setFixedHeight(qMax(365, totalHeight()));
 
     if(m_scrollBar)
     {
@@ -201,7 +201,7 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 
-    setFixedHeight(qMax(365, allRowsHeight()));
+    setFixedHeight(qMax(365, totalHeight()));
 }
 
 void MusicSongsListPlayedTableWidget::itemCellEntered(int row, int column)
@@ -298,7 +298,7 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
     removeRow(index);
     m_musicSongs->removeAt(index);
 
-    setFixedHeight(qMax(365, allRowsHeight()));
+    setFixedHeight(qMax(365, totalHeight()));
 
     Q_EMIT setDeleteItemAt(index);
 }
