@@ -289,9 +289,17 @@ void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
     const int before = m_currentPlayToolIndex;
     m_currentPlayToolIndex = index;
 
-    if(before >= 0 && !m_songItems[before].m_songs.isEmpty())
+    if(before >= 0)
     {
-        TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[before].m_itemObject)->replacePlayWidgetRow();
+        MusicSongsListTableWidget *w = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[before].m_itemObject);
+        if(w && !m_songItems[before].m_songs.isEmpty())
+        {
+            w->replacePlayWidgetRow();
+            if(m_songItems[before].m_songs.count() == 1)
+            {
+                w->setPlayRowIndex(-1);
+            }
+        }
     }
 }
 
@@ -300,7 +308,7 @@ void MusicSongsSummariziedWidget::playLocation(int index)
     if(searchFileListEmpty())
     {
         selectRow(index);
-        resizeScrollIndex(index*30);
+        resizeScrollIndex(index * 30);
     }
 }
 
@@ -696,14 +704,14 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
         return;
     }
 
-    const int cIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
-    MusicSongItem *item = &m_songItems[cIndex];
+    const int currentIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
+    MusicSongItem *item = &m_songItems[currentIndex];
     QStringList deleteFiles;
     for(int i=index.count()-1; i>=0; --i)
     {
         const MusicSong &song = item->m_songs.takeAt(index[i]);
         deleteFiles << song.getMusicPath();
-        if(cIndex != m_currentPlayToolIndex && cIndex == MUSIC_LOVEST_LIST)
+        if(currentIndex != m_currentPlayToolIndex && currentIndex == MUSIC_LOVEST_LIST)
         {
             const int playIndex = m_songItems[m_currentPlayToolIndex].m_itemObject->getPlayRowIndex();
             const MusicSongs &songs = m_songItems[m_currentPlayToolIndex].m_songs;
@@ -715,18 +723,19 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
                 }
             }
         }
+
         if(fileRemove)
         {
             QFile::remove(song.getMusicPath());
         }
     }
 
-    MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, cIndex == m_currentPlayToolIndex, cIndex);
+    MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, currentIndex == m_currentPlayToolIndex, currentIndex);
 
     setItemTitle(item);
 
     //create upload file widget if current items is all been deleted
-    TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject)->createUploadFileWidget();
+    TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject)->createUploadFileModule();
 }
 
 void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int play, MusicSongs &songs)

@@ -70,7 +70,6 @@ public:
     void dispatch(int type, const QList<QVariant> &args);
     void dispatch(int type, void *funcs);
 
-
 private Q_SLOTS:
     /*!
      * Active functions.

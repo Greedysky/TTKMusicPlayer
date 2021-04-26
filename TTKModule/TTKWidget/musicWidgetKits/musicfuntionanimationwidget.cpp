@@ -126,8 +126,8 @@ void MusicBaseAnimationWidget::switchToSelectedItemStyle(int index)
     m_isAnimation = true;
     m_preIndex = m_curIndex;
     m_curIndex = index;
-    m_animation->setStartValue(m_preIndex*m_perWidth);
-    m_animation->setEndValue(index*m_perWidth);
+    m_animation->setStartValue(m_preIndex * m_perWidth);
+    m_animation->setEndValue(index * m_perWidth);
     m_animation->start();
 
     Q_EMIT buttonClicked(index);

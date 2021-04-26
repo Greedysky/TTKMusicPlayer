@@ -127,7 +127,7 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
             m_songLists.removeAt(index);
             m_playedListWidget->removeRow(index);
         }
-    }while(index != -1);
+    } while(index != -1);
     m_playedListWidget->setPlayRowIndex(-1);
 
     updateSongsFileName();
@@ -189,12 +189,6 @@ void MusicPlayedListPopWidget::setCurrentIndex(int toolIndex, const MusicSong &s
 {
     m_playlist->setCurrentIndex(toolIndex, song.getMusicPath());
     setCurrentIndex();
-}
-
-void MusicPlayedListPopWidget::resizeWindow()
-{
-//    int h = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-//    m_containWidget->setFixedSize(LEFT_SIDE_WIDTH_MIN, 500 + h - WINDOW_HEIGHT_MIN);
 }
 
 void MusicPlayedListPopWidget::popupMenu()

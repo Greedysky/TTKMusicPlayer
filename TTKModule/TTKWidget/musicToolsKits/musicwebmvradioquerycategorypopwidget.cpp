@@ -36,7 +36,7 @@ void MusicWebMVRadioQueryCategoryItem::setCategory(const MusicResultsCategory &c
         l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MQSSColorStyle08));
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
 
-        itemlayout->addWidget(l, i/ITEM_MAX_COLUMN, i%ITEM_MAX_COLUMN, Qt::AlignLeft);
+        itemlayout->addWidget(l, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);
         clickedGroup->mapped(l);
     }
     item->setLayout(itemlayout);

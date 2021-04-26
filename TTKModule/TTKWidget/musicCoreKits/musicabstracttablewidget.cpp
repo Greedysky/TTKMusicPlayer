@@ -52,7 +52,7 @@ void MusicAbstractTableWidget::clear()
     setRowCount(0);
 }
 
-TTKIntList MusicAbstractTableWidget::getMultiSelectedIndexs() const
+TTKIntList MusicAbstractTableWidget::getMultiSelectedIndex() const
 {
     TTKIntSet rows;
     for(const QModelIndex& index : selectedIndexes())

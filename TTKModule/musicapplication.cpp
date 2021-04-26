@@ -357,6 +357,7 @@ void MusicApplication::showCurrentSong(int index)
         positionChanged(0);
         m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
+
     m_ui->musicPlayedList->setCurrentIndex();
     m_musicSongTreeWidget->setRecentMusicSongs(index);
     m_musicSongTreeWidget->setMusicPlayCount(index);
@@ -869,7 +870,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
                 {
                     index << idx;
                 }
-            }while(idx != -1);
+            } while(idx != -1);
         }
 
         if(index.isEmpty())
@@ -900,6 +901,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
         {
             oldIndex -= index.count();
         }
+
         if(oldIndex == m_musicPlaylist->mediaCount()) ///Play index error correction
         {
             --oldIndex;
@@ -986,7 +988,6 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
         m_topAreaWidget->musicBackgroundThemeChangedByResize();
         m_rightAreaWidget->resizeWindow();
         m_bottomAreaWidget->resizeWindow();
-        m_ui->musicPlayedList->resizeWindow();
         MusicAbstractMoveResizeWidget::resizeEvent(event);
     }
     else

@@ -11,7 +11,7 @@
 MusicAbstractSongsListTableWidget::MusicAbstractSongsListTableWidget(QWidget *parent)
     : MusicSmoothMovingTableWidget(parent)
 {
-    m_playRowIndex = 0;
+    m_playRowIndex = -1;
     m_parentToolIndex = -1;
     m_musicSongs = nullptr;
     m_hasParentToolIndex = true;
@@ -255,5 +255,10 @@ QString MusicAbstractSongsListTableWidget::getCurrentSongName() const
 
 QString MusicAbstractSongsListTableWidget::getSongName(int index) const
 {
+    if(rowCount() == 0 || index < 0)
+    {
+        return QString();
+    }
+
     return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName().trimmed() : QString();
 }

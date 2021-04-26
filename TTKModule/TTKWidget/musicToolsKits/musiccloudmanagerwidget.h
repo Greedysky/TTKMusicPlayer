@@ -152,9 +152,9 @@ protected:
      */
     void uploadFilesToServer(const QStringList &paths);
     /*!
-     * Create upload file widget.
+     * Create upload file module.
      */
-    void createUploadFileWidget();
+    void createUploadFileModule();
     /*!
      * Start to upload files to server.
      */

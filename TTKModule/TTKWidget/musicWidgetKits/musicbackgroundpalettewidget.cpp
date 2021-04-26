@@ -138,16 +138,14 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
         for(int j=0; j<COLOR_COL; ++j)
         {
             MusicBackgroundPalette *label = new MusicBackgroundPalette(this);
-            QColor color = colors[i*COLOR_COL + j];
+            QColor color = colors[i * COLOR_COL + j];
             label->setPixmap(color);
             label->setToolTip(color.name());
             layout->addWidget(label, i, j);
             m_widgets << label;
 
-            connect(label, SIGNAL(currentColorToFileChanged(QColor)),
-                           SLOT(currentColorToFile(QColor)));
-            connect(label, SIGNAL(currentColorToMemoryChanged(QString)),
-                           SLOT(currentColorToMemory(QString)));
+            connect(label, SIGNAL(currentColorToFileChanged(QColor)), SLOT(currentColorToFile(QColor)));
+            connect(label, SIGNAL(currentColorToMemoryChanged(QString)), SLOT(currentColorToMemory(QString)));
         }
     m_ui->mutliWidget->setLayout(layout);
 

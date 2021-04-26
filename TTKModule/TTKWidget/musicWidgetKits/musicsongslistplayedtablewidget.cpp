@@ -149,7 +149,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
 
     if(m_scrollBar)
     {
-        m_scrollBar->setSliderPosition(index*30);
+        m_scrollBar->setSliderPosition(index * 30);
     }
 }
 

@@ -128,7 +128,7 @@ void QDlnaFinder::readResponse()
         {
             --tryTimes;
             client->connect();
-        }while(!client->isConnected() && tryTimes > 0);
+        } while(!client->isConnected() && tryTimes > 0);
 
         d->m_clients.push_back(client);
         Q_EMIT finished();

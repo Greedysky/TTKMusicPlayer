@@ -85,7 +85,7 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
 
 void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
 {
-    if(createUploadFileWidget())
+    if(createUploadFileModule())
     {
         return;
     }
@@ -131,6 +131,11 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
 
 void MusicSongsListTableWidget::clearAllItems()
 {
+    if(m_playRowIndex < 0)
+    {
+        return;
+    }
+
     //Remove play widget
     setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
     removeCellWidget(m_playRowIndex, 0);
@@ -138,7 +143,7 @@ void MusicSongsListTableWidget::clearAllItems()
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 
-    m_playRowIndex = 0;
+    m_playRowIndex = -1;
     //Remove all the original item
     MusicAbstractSongsListTableWidget::clear();
     setColumnCount(6);
@@ -241,7 +246,7 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {
-        m_playRowIndex = 0;
+        return;
     }
 
     const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
@@ -285,7 +290,7 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
     setFixedHeight(totalHeight());
 }
 
-bool MusicSongsListTableWidget::createUploadFileWidget()
+bool MusicSongsListTableWidget::createUploadFileModule()
 {
     if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST && m_parentToolIndex != MUSIC_RECENT_LIST)
     {
@@ -461,7 +466,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
         return;
     }
 
-    TTKIntList deleteList(getMultiSelectedIndexs());
+    TTKIntList deleteList(getMultiSelectedIndex());
     if(deleteList.isEmpty())
     {
         return;
@@ -474,9 +479,9 @@ void MusicSongsListTableWidget::setDeleteItemAt()
 
     for(int i=0; i<deleteList.count(); ++i)
     {
-        if(i%3 == 0)
+        if(i % 3 == 0)
         {
-            progress.setValue(i/3);
+            progress.setValue(i / 3);
         }
     }
 
@@ -620,6 +625,10 @@ void MusicSongsListTableWidget::musicAddToPlayedList()
 
 void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
 {
+    if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
+    {
+        return;
+    }
     (*m_musicSongs)[m_playRowIndex].setMusicName(name);
 }
 

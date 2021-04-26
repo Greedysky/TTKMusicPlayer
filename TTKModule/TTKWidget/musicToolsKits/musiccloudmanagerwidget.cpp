@@ -137,7 +137,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItems &item
     if(count == 0)
     {
         Q_EMIT updateLabelMessage(tr("List Is Empty!"));
-        createUploadFileWidget();
+        createUploadFileModule();
         return;
     }
 
@@ -216,7 +216,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
     m_totalFileSzie -= data.m_dataItem.m_size;
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 
-    createUploadFileWidget();
+    createUploadFileModule();
 }
 
 void MusicCloudManagerTableWidget::deleteFilesToServer()
@@ -227,7 +227,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    const TTKIntList deleteList(getMultiSelectedIndexs());
+    const TTKIntList deleteList(getMultiSelectedIndex());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
@@ -308,7 +308,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
         }
     }
 
-    createUploadFileWidget();
+    createUploadFileModule();
 }
 
 void MusicCloudManagerTableWidget::reuploadFilesToServer(const QStringList &items)
@@ -420,7 +420,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
     }
 }
 
-void MusicCloudManagerTableWidget::createUploadFileWidget()
+void MusicCloudManagerTableWidget::createUploadFileModule()
 {
     if(rowCount() != 0)
     {

@@ -42,7 +42,7 @@ void MusicPhotoModLabel::paintEvent(QPaintEvent *event)
     {
         for(int j=0; j<=ceil(height() / PIX_HEIGHT); ++j)
         {
-            painter.drawPixmap(i*PIX_WIDTH, j*PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, pix);
+            painter.drawPixmap(i * PIX_WIDTH, j * PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, pix);
         }
     }
 

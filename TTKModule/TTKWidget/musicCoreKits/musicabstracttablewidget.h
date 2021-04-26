@@ -54,7 +54,7 @@ public:
     /*!
      * Get multi selected index set.
      */
-    TTKIntList getMultiSelectedIndexs() const;
+    TTKIntList getMultiSelectedIndex() const;
 
 public Q_SLOTS:
     /*!

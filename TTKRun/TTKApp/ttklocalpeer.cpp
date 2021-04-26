@@ -222,7 +222,7 @@ void TTKLocalPeer::receiveConnection()
         got = ds.readRawData(uMsgBuf, remaining);
         remaining -= got;
         uMsgBuf += got;
-    }while(remaining && got >= 0 && socket->waitForReadyRead(2000));
+    } while(remaining && got >= 0 && socket->waitForReadyRead(2000));
 
     if(got < 0)
     {

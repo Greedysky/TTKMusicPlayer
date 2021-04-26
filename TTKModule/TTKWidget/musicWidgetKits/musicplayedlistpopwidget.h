@@ -130,10 +130,6 @@ public:
      * Set current select played music index.
      */
     void setCurrentIndex(int toolIndex, const MusicSong &song);
-    /*!
-     * Resize window bound by widget resize called.
-     */
-    void resizeWindow();
 
 public Q_SLOTS:
     /*!

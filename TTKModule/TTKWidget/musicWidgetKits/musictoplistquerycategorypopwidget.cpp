@@ -37,7 +37,7 @@ void MusicToplistQueryCategoryItem::setCategory(const MusicResultsCategory &cate
         l->setFixedSize(200, ITEM_LABEL_WIDTH);
 
         clickedGroup->mapped(l);
-        itemlayout->addWidget(l, i/ITEM_MAX_COLUMN, i%ITEM_MAX_COLUMN, Qt::AlignLeft);
+        itemlayout->addWidget(l, i / ITEM_MAX_COLUMN, i % ITEM_MAX_COLUMN, Qt::AlignLeft);
     }
     item->setLayout(itemlayout);
 

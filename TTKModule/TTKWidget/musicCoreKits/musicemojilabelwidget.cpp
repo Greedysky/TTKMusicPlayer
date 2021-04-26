@@ -102,8 +102,8 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
     {
         for(int j=0; j<7; ++j)
         {
-            const int in = i*7 + j;
-            m_labelItems[in]->setPixmap(QPixmap(QString(":/emoji/%1").arg(21*index + in + 1)));
+            const int in = i * 7 + j;
+            m_labelItems[in]->setPixmap(QPixmap(QString(":/emoji/%1").arg(21 * index + in + 1)));
         }
     }
 }

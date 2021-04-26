@@ -332,7 +332,7 @@ QString MusicWYQueryInterface::encryptedId(const QString &string)
     int length = array1.length();
     for(int i=0; i<array2.length(); ++i)
     {
-        array2[i] = array2[i]^array1[i%length];
+        array2[i] = array2[i]^array1[i % length];
     }
 
     QByteArray encodedData = MusicUtils::Algorithm::md5(array2);
