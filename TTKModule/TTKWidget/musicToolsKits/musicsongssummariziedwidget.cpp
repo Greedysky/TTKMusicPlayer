@@ -294,7 +294,7 @@ void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
         MusicSongsListTableWidget *w = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[before].m_itemObject);
         if(w && !m_songItems[before].m_songs.isEmpty())
         {
-            w->replacePlayWidgetRow();
+            w->adjustPlayWidgetRow();
             if(m_songItems[before].m_songs.count() == 1)
             {
                 w->setPlayRowIndex(-1);

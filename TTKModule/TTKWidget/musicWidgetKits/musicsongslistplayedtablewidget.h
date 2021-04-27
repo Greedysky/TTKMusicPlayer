@@ -46,6 +46,7 @@ public:
      * Set play later state.
      */
     void setPlayLaterState(int row);
+
     /*!
      * Update songs file names in table.
      */
@@ -64,9 +65,9 @@ public:
      */
     void selectPlayedRow();
     /*!
-     * Replace current play widget row.
+     * Adjust current play widget row.
      */
-    void replacePlayWidgetRow();
+    void adjustPlayWidgetRow();
 
 Q_SIGNALS:
     /*!

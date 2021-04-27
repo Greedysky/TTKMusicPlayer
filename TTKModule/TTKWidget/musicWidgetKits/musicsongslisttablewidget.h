@@ -73,9 +73,9 @@ public:
      */
     void updateCurrentArtist();
     /*!
-     * Replace current play widget row.
+     * Adjust current play widget row.
      */
-    void replacePlayWidgetRow();
+    void adjustPlayWidgetRow();
     /*!
      * Create upload file module.
      */

@@ -195,7 +195,7 @@ void MusicSongsListTableWidget::selectRow(int index)
     }
     MusicAbstractSongsListTableWidget::selectRow(index);
 
-    replacePlayWidgetRow();
+    adjustPlayWidgetRow();
     for(int i=0; i<columnCount(); ++i)
     {
         delete takeItem(index, i);
@@ -242,7 +242,7 @@ void MusicSongsListTableWidget::updateCurrentArtist()
     }
 }
 
-void MusicSongsListTableWidget::replacePlayWidgetRow()
+void MusicSongsListTableWidget::adjustPlayWidgetRow()
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {
@@ -487,7 +487,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
 
     if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
     {
-        replacePlayWidgetRow();
+        adjustPlayWidgetRow();
     }
 
     for(int i=deleteList.count() - 1; i>=0; --i)

@@ -93,10 +93,6 @@ public:
     /*!
      * Get all music media path.
      */
-    MusicPlayItems mediaListConst() const;
-    /*!
-     * Get all music media path.
-     */
     MusicPlayItems *mediaList();
     /*!
      * Get current medias count.
@@ -150,19 +146,6 @@ public:
     void appendMedia(const MusicPlayItems &items);
 
     /*!
-     * Get later music media path.
-     */
-    MusicPlayItems laterListConst() const;
-    /*!
-     * Insert music media by index and content.
-     */
-    void insertLaterMedia(int toolIndex, const QString &content);
-    /*!
-     * Remove music all media.
-     */
-    void laterListClear();
-
-    /*!
      * Remove music media from current medias by index pos.
      */
     bool removeMedia(int pos);
@@ -170,6 +153,19 @@ public:
      * Remove music media from current medias by index pos.
      */
     int removeMedia(int toolIndex, const QString &content);
+
+    /*!
+     * Get queue music media path.
+     */
+    MusicPlayItems *queueMediaList();
+    /*!
+     * Insert music media by index and content.
+     */
+    void insertQueueMedia(int toolIndex, const QString &content);
+    /*!
+     * Remove music all media.
+     */
+    void removeQueueList();
 
 Q_SIGNALS:
     /*!
@@ -194,7 +190,7 @@ public Q_SLOTS:
 protected:
     int m_currentIndex;
     MusicPlayItems m_mediaList;
-    MusicPlayItems m_laterMediaList;
+    MusicPlayItems m_queueMediaList;
     MusicObject::PlayMode m_playbackMode;
 
 };

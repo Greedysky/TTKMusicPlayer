@@ -130,7 +130,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     }
     MusicAbstractSongsListTableWidget::selectRow(index);
 
-    replacePlayWidgetRow();
+    adjustPlayWidgetRow();
     for(int i=0; i<columnCount(); ++i)
     {
         delete takeItem(index, i);
@@ -158,7 +158,7 @@ void MusicSongsListPlayedTableWidget::selectPlayedRow()
     selectRow(m_playRowIndex);
 }
 
-void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
+void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
 {
     if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
     {
@@ -288,7 +288,7 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
         return;
     }
 
-    replacePlayWidgetRow();
+    adjustPlayWidgetRow();
 
     if(index < m_playRowIndex)
     {

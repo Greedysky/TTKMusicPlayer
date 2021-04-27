@@ -105,7 +105,7 @@ void MusicPlayedListPopWidget::remove(int index)
         return;
     }
 
-    m_playedListWidget->replacePlayWidgetRow();
+    m_playedListWidget->adjustPlayWidgetRow();
     m_playedListWidget->removeRow(index);
     m_playedListWidget->setPlayRowIndex(-1);
 
@@ -118,7 +118,7 @@ void MusicPlayedListPopWidget::remove(int index)
 void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
 {
     int index = -1;
-    m_playedListWidget->replacePlayWidgetRow();
+    m_playedListWidget->adjustPlayWidgetRow();
     do
     {
         index = m_playlist->removeMedia(toolIndex, path);
@@ -165,7 +165,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     }
 
     (index != m_songLists.count()) ? m_songLists.insert(index, song) : m_songLists.append(song);
-    m_playlist->insertLaterMedia(toolIndex, song.getMusicPath());
+    m_playlist->insertQueueMedia(toolIndex, song.getMusicPath());
 
     const int row = m_playedListWidget->getPlayRowIndex();
     m_playedListWidget->clearAllItems();
@@ -173,7 +173,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     m_playedListWidget->setPlayRowIndex(row);
     m_playedListWidget->selectPlayedRow();
 
-    for(const MusicPlayItem &item : m_playlist->laterListConst())
+    for(const MusicPlayItem &item : qAsConst(*m_playlist->queueMediaList()))
     {
         m_playedListWidget->setPlayLaterState(item.m_toolIndex);
     }
@@ -241,7 +241,7 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
         return;
     }
 
-    m_playedListWidget->replacePlayWidgetRow();
+    m_playedListWidget->adjustPlayWidgetRow();
     const int count = m_playedListWidget->rowCount();
     for(int i=0; i<count; ++i)
     {
@@ -253,7 +253,7 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
 
 void MusicPlayedListPopWidget::cellDoubleClicked(int row, int)
 {
-    m_playlist->laterListClear();
+    m_playlist->removeQueueList();
     m_playedListWidget->clearPlayLaterState();
     MusicApplication::instance()->musicPlayedIndex(row);
 }
