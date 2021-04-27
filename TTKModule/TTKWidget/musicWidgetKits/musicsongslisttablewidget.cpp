@@ -286,6 +286,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 
+    m_playRowIndex = -1;
     //just fix table widget size hint
     setFixedHeight(totalHeight());
 }
@@ -628,6 +629,7 @@ void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
     {
         return;
     }
+
     (*m_musicSongs)[m_playRowIndex].setMusicName(name);
 }
 

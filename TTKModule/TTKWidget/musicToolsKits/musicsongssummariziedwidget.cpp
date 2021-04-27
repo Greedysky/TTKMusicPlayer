@@ -1,4 +1,4 @@
-#include "musicsongssummariziedwidget.h"
+﻿#include "musicsongssummariziedwidget.h"
 #include "musicsongslistfunctionwidget.h"
 #include "musicsongslisttablewidget.h"
 #include "musiclocalsongsearchdialog.h"
@@ -295,10 +295,6 @@ void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
         if(w && !m_songItems[before].m_songs.isEmpty())
         {
             w->adjustPlayWidgetRow();
-            if(m_songItems[before].m_songs.count() == 1)
-            {
-                w->setPlayRowIndex(-1);
-            }
         }
     }
 }
@@ -324,6 +320,7 @@ void MusicSongsSummariziedWidget::selectRow(int index)
     {
         m_musicSongSearchWidget->close();
     }
+
     m_songItems[m_currentPlayToolIndex].m_itemObject->selectRow(index);
 }
 

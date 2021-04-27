@@ -24,7 +24,6 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(3, 25);
     headerview->resizeSection(4, 45);
 
-    m_playRowIndex = -1;
     m_hasParentToolIndex = false;
     m_musicSongsPlayWidget = nullptr;
 
@@ -201,6 +200,8 @@ void MusicSongsListPlayedTableWidget::adjustPlayWidgetRow()
     delete m_musicSongsPlayWidget;
     m_musicSongsPlayWidget = nullptr;
 
+    //m_playRowIndex = -1;
+    //just fix table widget size hint
     setFixedHeight(qMax(365, totalHeight()));
 }
 
