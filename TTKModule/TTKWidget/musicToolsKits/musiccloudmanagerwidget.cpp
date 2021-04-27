@@ -239,7 +239,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
         }
 
         const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
-        removeRow(index); //Delete the current row
+        removeRow(index);
         m_syncDeleteData->deleteDataOperator(MUSIC_BUCKET, data.m_dataItem.m_name);
 
         m_totalFileSzie -= data.m_dataItem.m_size;

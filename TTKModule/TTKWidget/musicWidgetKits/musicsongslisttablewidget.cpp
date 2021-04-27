@@ -466,7 +466,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
         return;
     }
 
-    TTKIntList deleteList(getMultiSelectedIndex());
+    const TTKIntList deleteList(getMultiSelectedIndex());
     if(deleteList.isEmpty())
     {
         return;
@@ -493,13 +493,12 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
         const int index = deleteList[i];
-        removeRow(index);           //Delete the current row
+        removeRow(index);
         progress.setValue(deleteList.count() * 2 - i);
     }
 
     //just fix table widget size hint
     setFixedHeight(totalHeight());
-
     Q_EMIT deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 

@@ -12,7 +12,7 @@
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)
 {
-    setSelectionMode(QAbstractItemView::SingleSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     setColumnCount(5);
@@ -37,7 +37,7 @@ MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
     delete m_musicSongsPlayWidget;
 }
 
-void MusicSongsListPlayedTableWidget::clearPlayLaterState()
+void MusicSongsListPlayedTableWidget::clearPlayQueueState()
 {
     for(int i=0; i<rowCount(); ++i)
     {
@@ -49,7 +49,7 @@ void MusicSongsListPlayedTableWidget::clearPlayLaterState()
     }
 }
 
-void MusicSongsListPlayedTableWidget::setPlayLaterState(int row)
+void MusicSongsListPlayedTableWidget::setPlayQueueState(int row)
 {
     if(row < 0 || row >= rowCount())
     {
@@ -282,25 +282,27 @@ void MusicSongsListPlayedTableWidget::itemCellClicked(int row, int column)
 
 void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 {
-    const int index = currentRow();
-    if(rowCount() == 0 || index < 0)
+    const TTKIntList deleteList(getMultiSelectedIndex());
+    if(deleteList.isEmpty())
     {
         return;
     }
 
-    adjustPlayWidgetRow();
-
-    if(index < m_playRowIndex)
+    if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
     {
-        --m_playRowIndex;
+        adjustPlayWidgetRow();
     }
 
-    removeRow(index);
-    m_musicSongs->removeAt(index);
+    for(int i=deleteList.count() - 1; i>=0; --i)
+    {
+        const int index = deleteList[i];
+        removeRow(index);
+        m_musicSongs->removeAt(index);
+    }
 
+    //just fix table widget size hint
     setFixedHeight(qMax(365, totalHeight()));
-
-    Q_EMIT setDeleteItemAt(index);
+    Q_EMIT deleteItemAt(deleteList);
 }
 
 void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)

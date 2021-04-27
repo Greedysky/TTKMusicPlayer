@@ -68,11 +68,15 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
     }
 
     const TTKIntList deleteList(getMultiSelectedIndex());
+    if(deleteList.isEmpty())
+    {
+        return;
+    }
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
         const int index = deleteList[i];
-        removeRow(index); //Delete the current row
+        removeRow(index);
         m_musicSongs->removeAt(index);
     }
     //just fix table widget size hint

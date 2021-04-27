@@ -528,7 +528,7 @@ void MusicSongsSummariziedWidget::addToPlayLater(int index)
 
     const MusicSongItem *item = &m_songItems[id];
     const MusicSongs *songs = &item->m_songs;
-    for(int i=songs->count()-1; i>=0; --i)
+    for(int i=songs->count() - 1; i>=0; --i)
     {
         MusicPlayedListPopWidget::instance()->insert(item->m_itemIndex, (*songs)[i]);
     }
@@ -707,7 +707,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
     const int currentIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
     MusicSongItem *item = &m_songItems[currentIndex];
     QStringList deleteFiles;
-    for(int i=index.count()-1; i>=0; --i)
+    for(int i=index.count() - 1; i>=0; --i)
     {
         const MusicSong &song = item->m_songs.takeAt(index[i]);
         deleteFiles << song.getMusicPath();
