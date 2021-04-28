@@ -4,7 +4,7 @@
 #include "musicurlutils.h"
 #include "musiccoreutils.h"
 
-#include "qalg/qaeswrap.h"
+#include "qalgorithm/qaeswrap.h"
 
 MusicBDQueryLearnRequest::MusicBDQueryLearnRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)

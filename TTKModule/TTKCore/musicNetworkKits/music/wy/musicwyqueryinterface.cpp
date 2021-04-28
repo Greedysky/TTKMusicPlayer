@@ -6,7 +6,7 @@
 #include "musicsettingmanager.h"
 #include "musicabstractnetwork.h"
 
-#include "qalg/qaeswrap.h"
+#include "qalgorithm/qaeswrap.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>

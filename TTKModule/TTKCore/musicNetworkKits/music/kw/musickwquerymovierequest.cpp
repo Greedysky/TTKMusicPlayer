@@ -3,7 +3,7 @@
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 
-#include "qalg/qdeswrap.h"
+#include "qalgorithm/qdeswrap.h"
 
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)

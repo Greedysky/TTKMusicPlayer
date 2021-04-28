@@ -1,15 +1,15 @@
 #include "base64.h"
 
-const std::string base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const TTKString base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 bool isBase64(unsigned char c)
 {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
-std::string Base64::base64Encode(const unsigned char *bytes, unsigned int length)
+TTKString Base64::base64Encode(const unsigned char *bytes, unsigned int length)
 {
-    std::string ret;
+    TTKString ret;
     int i = 0, j = 0;
     unsigned char char_array_3[3], char_array_4[4];
 
@@ -57,12 +57,12 @@ std::string Base64::base64Encode(const unsigned char *bytes, unsigned int length
     return ret;
 }
 
-std::string Base64::base64Decode(const std::string &bytes)
+TTKString Base64::base64Decode(const TTKString &bytes)
 {
     int length = bytes.size();
     int i = 0, j = 0, in = 0;
     unsigned char char_array_4[4], char_array_3[3];
-    std::string ret;
+    TTKString ret;
 
     while(length-- && (bytes[in] != '=') && isBase64(bytes[in]))
     {

@@ -102,14 +102,14 @@ endif()
 
 set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
-    qalg/aes.h
-    qalg/aes_locl.h
-    qalg/base64.h
-    qalg/cbc128.h
-    qalg/random.h
-    qalg/qdeswrap.h
-    qalg/qaeswrap.h
-    qalg/qimagewrap.h
+    qalgorithm/aes.h
+    qalgorithm/aes_locl.h
+    qalgorithm/base64.h
+    qalgorithm/cbc128.h
+    qalgorithm/qrandom.h
+    qalgorithm/qdeswrap.h
+    qalgorithm/qaeswrap.h
+    qalgorithm/qimagewrap.h
     qdlna/qdlnaclient.h
     qdlna/qdlnafinder.h
     qdlna/qdlnahelper.h
@@ -156,15 +156,15 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
-    qalg/aes_cbc.cpp
-    qalg/aes_core.cpp
-    qalg/aes_ecb.cpp
-    qalg/base64.cpp
-    qalg/cbc128.cpp
-    qalg/random.cpp
-    qalg/qdeswrap.cpp
-    qalg/qaeswrap.cpp
-    qalg/qimagewrap.cpp
+    qalgorithm/aes_cbc.cpp
+    qalgorithm/aes_core.cpp
+    qalgorithm/aes_ecb.cpp
+    qalgorithm/base64.cpp
+    qalgorithm/cbc128.cpp
+    qalgorithm/qrandom.cpp
+    qalgorithm/qdeswrap.cpp
+    qalgorithm/qaeswrap.cpp
+    qalgorithm/qimagewrap.cpp
     qdlna/qdlnaclient.cpp
     qdlna/qdlnafinder.cpp
     qdlna/qdlnahelper.cpp

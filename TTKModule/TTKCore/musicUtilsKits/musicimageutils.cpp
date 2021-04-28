@@ -1,6 +1,6 @@
 #include "musicimageutils.h"
 #include "musicobject.h"
-#include "qalg/qimagewrap.h"
+#include "qalgorithm/qimagewrap.h"
 
 #include <QBitmap>
 #include <QBuffer>
@@ -134,7 +134,7 @@ QImage MusicUtils::Image::gaussPixmap(const QImage &input, int radius)
 
 void MusicUtils::Image::gaussPixmap(QImage &input, int radius)
 {
-    QImageWrap::QGaussBlur wrap;
+    QImageWrap::GaussBlur wrap;
     wrap.render((int*)input.bits(), input.width(), input.height(), radius);
 }
 

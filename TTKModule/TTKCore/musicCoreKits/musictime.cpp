@@ -1,6 +1,5 @@
 #include "musictime.h"
-
-#include "qalg/random.h"
+#include "qalgorithm/qrandom.h"
 
 #include <QDateTime>
 
@@ -96,12 +95,12 @@ qint64 MusicTime::timestamp(bool ms)
 
 void MusicTime::initRandom()
 {
-    Random::initRandom();
+    QRandom::initRandom();
 }
 
 int MusicTime::random(int value)
 {
-    return Random::random(value);
+    return QRandom::random(value);
 }
 
 qint64 MusicTime::labelJustified2MsecTime(const QString &time)

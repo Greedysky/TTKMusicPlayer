@@ -1,6 +1,6 @@
 #include "musiccryptographichash.h"
 #/// alg import
-#include "qalg/base64.h"
+#include "qalgorithm/base64.h"
 
 #define XXTEA_MX (z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (k[p & 3 ^ e] ^ z)
 #define XXTEA_DELTA 0x9E3779B9

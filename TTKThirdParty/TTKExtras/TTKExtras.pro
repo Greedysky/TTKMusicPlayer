@@ -39,7 +39,7 @@ INCLUDEPATH += $$PWD
 
 include($$PWD/../TTKExtrasDefine.pri)
 
-include($$PWD/qalg/QAlg.pri)
+include($$PWD/qalgorithm/QAlgorithm.pri)
 include($$PWD/qdlna/QDlna.pri)
 include($$PWD/qhttpserver/QHttpServer.pri)
 include($$PWD/qsync/QSync.pri)

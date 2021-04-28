@@ -29,7 +29,7 @@ namespace QImageWrap {
 /*! @brief The class of the gauss blur.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QGaussBlur
+class MUSIC_EXTRAS_EXPORT GaussBlur
 {
 public:
     /*!
@@ -40,15 +40,15 @@ public:
 };
 
 
-class QSharpeImagePrivate;
+class SharpeImagePrivate;
 /*! @brief The class of the sharpe image.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QSharpeImage
+class MUSIC_EXTRAS_EXPORT SharpeImage
 {
 public:
-    QSharpeImage();
-    virtual ~QSharpeImage();
+    SharpeImage();
+    virtual ~SharpeImage();
 
     /*!
      * Init item data.
@@ -60,10 +60,10 @@ public:
     virtual QPixmap render(const QPixmap &pixmap, int value) = 0;
 
 protected:
-    QSharpeImage(QSharpeImagePrivate &pvt);
+    SharpeImage(SharpeImagePrivate &pvt);
 
 protected:
-    TTK_DECLARE_PRIVATE(QSharpeImage)
+    TTK_DECLARE_PRIVATE(SharpeImage)
 
 };
 
@@ -71,10 +71,10 @@ protected:
 /*! @brief The class of the cube wave.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QCubeWave : public QSharpeImage
+class MUSIC_EXTRAS_EXPORT CubeWave : public SharpeImage
 {
 public:
-    QCubeWave();
+    CubeWave();
 
     /*!
      * Init item data.
@@ -91,10 +91,10 @@ public:
 /*! @brief The class of the water wave.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QWaterWave : public QSharpeImage
+class MUSIC_EXTRAS_EXPORT WaterWave : public SharpeImage
 {
 public:
-    QWaterWave(const QImage &image, int radius);
+    WaterWave(const QImage &image, int radius);
 
     /*!
      * Init item data.

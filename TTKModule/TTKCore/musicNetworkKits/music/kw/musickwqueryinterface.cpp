@@ -4,7 +4,7 @@
 #include "musicalgorithmutils.h"
 #include "musicabstractnetwork.h"
 
-#include "qalg/qdeswrap.h"
+#include "qalgorithm/qdeswrap.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
