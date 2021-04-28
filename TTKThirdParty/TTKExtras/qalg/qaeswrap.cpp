@@ -27,6 +27,7 @@ QByteArray QAesWrap::encryptECB(const QByteArray &in, const QByteArray &key)
 
     if(AES_set_encrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
+        delete[] encStr;
         return QByteArray();
     }
 
@@ -68,6 +69,7 @@ QByteArray QAesWrap::encryptCBC(const QByteArray &in, const QByteArray &key, con
 
     if(AES_set_encrypt_key((const unsigned char *)key.data(), 128, &aes) < 0)
     {
+        delete[] encStr;
         return QByteArray();
     }
 
