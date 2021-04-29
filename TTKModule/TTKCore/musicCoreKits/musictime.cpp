@@ -1,5 +1,5 @@
 #include "musictime.h"
-#include "qalgorithm/qrandom.h"
+#include "qalgorithm/random.h"
 
 #include <QDateTime>
 

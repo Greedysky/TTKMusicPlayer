@@ -1,5 +1,5 @@
 #include "qimagewrap.h"
-#include "qrandom.h"
+#include "random.h"
 
 #include <qmath.h>
 #include <QPainter>
