@@ -37,7 +37,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryText).arg(m_pageSize).arg(m_pageSize*offset));
+                      MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryText).arg(m_pageSize).arg(m_pageSize * offset));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 

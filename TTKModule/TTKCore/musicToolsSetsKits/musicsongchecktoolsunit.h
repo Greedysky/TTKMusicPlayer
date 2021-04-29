@@ -38,12 +38,12 @@ TTK_DECLARE_LISTS(MusicSongCheckToolsRename)
 typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicate
 {
     MusicSong m_song;
-    QString m_bitRate;
+    QString m_bitrate;
 
-    MusicSongCheckToolsDuplicate(const MusicSong &song, const QString &bitRate)
+    MusicSongCheckToolsDuplicate(const MusicSong &song, const QString &bitrate)
     {
         m_song = song;
-        m_bitRate = bitRate;
+        m_bitrate = bitrate;
     }
 }MusicSongCheckToolsDuplicate;
 TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
@@ -55,12 +55,12 @@ TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
 typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;
-    QString m_bitRate;
+    QString m_bitrate;
 
-    MusicSongCheckToolsQuality(const MusicSong &song, const QString &bitRate)
+    MusicSongCheckToolsQuality(const MusicSong &song, const QString &bitrate)
     {
         m_song = song;
-        m_bitRate = bitRate;
+        m_bitrate = bitrate;
     }
 }MusicSongCheckToolsQuality;
 TTK_DECLARE_LISTS(MusicSongCheckToolsQuality)

@@ -43,8 +43,8 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         const QVariantMap &value = data.toMap();
         if(!value.isEmpty() && !value.contains("error"))
         {
-            const int bitRate = value["bitRate"].toInt();
-            if(bitRate == 0)
+            const int bitrate = value["bitRate"].toInt();
+            if(bitrate == 0)
             {
                 return;
             }
@@ -53,7 +53,7 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             attr.m_url = value["url"].toString();
             attr.m_size = MusicUtils::Number::size2Label(value["fileSize"].toInt());
             attr.m_format = value["extName"].toString();
-            attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitRate / 1000);
+            attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitrate / 1000);
             info->m_songAttrs.append(attr);
         }
     }

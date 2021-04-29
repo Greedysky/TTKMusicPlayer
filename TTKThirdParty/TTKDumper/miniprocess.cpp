@@ -105,13 +105,13 @@ static inline QList<PID_INFO> getProcessLists()
     process.start("/bin/bash", QStringList() << "-c" << "ps -xu | awk '{print $2\";\"$11}'");
     if(process.waitForFinished())
     {
-        QString data(process.readAll());
+        const QString data(process.readAll());
         if(!data.isEmpty())
         {
-            QStringList sp = data.split("\n");
-            for(QString var : qAsConst(sp))
+            const QStringList &sp = data.split("\n");
+            for(const QString &var : qAsConst(sp))
             {
-                QStringList line = var.split(";");
+                const QStringList &line = var.split(";");
                 if(line.count() == 2)
                 {
                     PID_INFO info;

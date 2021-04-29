@@ -1,5 +1,5 @@
-#ifndef RANDOM_H
-#define RANDOM_H
+#ifndef QRANDOM_H
+#define QRANDOM_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -36,4 +36,4 @@ namespace QRandom
     MUSIC_EXTRAS_EXPORT int random(int value);
 }
 
-#endif //BASE64_H
+#endif //QRANDOM_H

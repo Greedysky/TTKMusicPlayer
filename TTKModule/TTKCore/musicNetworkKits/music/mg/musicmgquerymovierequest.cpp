@@ -92,7 +92,7 @@ void MusicMGQueryMovieRequest::downLoadFinished()
 
                     const QString &mvid = value["mvCopyrightId"].toString();
                     TTK_NETWORK_QUERY_CHECK();
-                    startMVListQuery(mvid);
+                    queryMovieList(mvid);
                     TTK_NETWORK_QUERY_CHECK();
                 }
             }
@@ -119,7 +119,7 @@ void MusicMGQueryMovieRequest::singleDownLoadFinished()
     if(!m_queryText.isEmpty())
     {
         TTK_NETWORK_QUERY_CHECK();
-        startMVListQuery(m_queryText);
+        queryMovieList(m_queryText);
         TTK_NETWORK_QUERY_CHECK();
     }
 
@@ -127,7 +127,7 @@ void MusicMGQueryMovieRequest::singleDownLoadFinished()
     deleteAll();
 }
 
-void MusicMGQueryMovieRequest::startMVListQuery(const QString &id)
+void MusicMGQueryMovieRequest::queryMovieList(const QString &id)
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(MG_MOVIE_URL, false).arg(id));

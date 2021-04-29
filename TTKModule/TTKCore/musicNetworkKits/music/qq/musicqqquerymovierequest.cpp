@@ -46,7 +46,7 @@ void MusicQQQueryMovieRequest::startToPage(int offset)
     m_pageSize = 20;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_MOVIE_URL, false).arg(m_queryText).arg(offset * m_pageSize).arg(m_pageSize));
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_MOVIE_URL, false).arg(m_queryText).arg(m_pageSize * offset).arg(m_pageSize));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
@@ -285,24 +285,24 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 attr.m_size = MusicUtils::Number::size2Label(flValue["fs"].toInt());
                 attr.m_format = "mp4";
 
-                int bitRate = flValue["br"].toInt() * 10;
-                if(bitRate <= 375)
+                int bitrate = flValue["br"].toInt() * 10;
+                if(bitrate <= 375)
                     attr.m_bitrate = MB_250;
-                else if(bitRate > 375 && bitRate <= 625)
+                else if(bitrate > 375 && bitrate <= 625)
                     attr.m_bitrate = MB_500;
-                else if(bitRate > 625 && bitRate <= 875)
+                else if(bitrate > 625 && bitrate <= 875)
                     attr.m_bitrate = MB_750;
-                else if(bitRate > 875)
+                else if(bitrate > 875)
                     attr.m_bitrate = MB_1000;
 
-                bitRate = flValue["id"].toULongLong();
+                bitrate = flValue["id"].toULongLong();
                 TTK_NETWORK_QUERY_CHECK();
-                const QString &key = getMovieKey(bitRate, info->m_songId);
+                const QString &key = getMovieKey(bitrate, info->m_songId);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!key.isEmpty())
                 {
-                    const QString &fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitRate - 10000);
+                    const QString &fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitrate - 10000);
                     attr.m_url = QString("%1%2?vkey=%3").arg(urlPrefix).arg(fn).arg(key);
                     info->m_songAttrs.append(attr);
                 }

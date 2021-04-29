@@ -66,7 +66,7 @@ private:
     /*!
      * Start to search mv list by id.
      */
-    void startMVListQuery(const QString &id);
+    void queryMovieList(const QString &id);
 };
 
 #endif // MUSICMGQUERYMOVIEREQUEST_H

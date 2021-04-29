@@ -152,7 +152,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_bitRate);
+        item->setText(song.m_bitrate);
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 4, item);
 
@@ -284,14 +284,14 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         setItem(i, 3, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_bitRate);
+        item->setText(song.m_bitrate);
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
         QString bitrate;
         QColor color;
-        MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitRate), bitrate, color);
+        MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitrate), bitrate, color);
         item->setText(bitrate);
         item->setTextAlignment(Qt::AlignCenter);
 #if TTK_QT_VERSION_CHECK(5,13,0)
