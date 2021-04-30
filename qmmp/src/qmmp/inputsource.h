@@ -70,6 +70,11 @@ public:
      */
     virtual QString contentType() const;
     /*!
+     * Stops long operation (reading, seeking) from another thead, if necessary. Default implementation
+     * does nothing.
+     */
+    virtual void stop();
+    /*!
      * Returns input source path or url.
      */
     const QString path() const;

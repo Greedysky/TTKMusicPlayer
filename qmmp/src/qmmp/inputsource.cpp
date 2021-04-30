@@ -24,6 +24,11 @@ QString InputSource::contentType() const
     return QString();
 }
 
+void InputSource::stop()
+{
+
+}
+
 const QString InputSource::path() const
 {
     return m_path;
