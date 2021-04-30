@@ -52,11 +52,16 @@
 #if !TTK_QT_VERSION_CHECK(5,7,0)
 #define TTK_AS_CONST
 // this adds const to non-const objects (like std::as_const)
+#ifndef Q_CC_MSVC
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
 // prevent rvalue arguments:
 template <typename T>
 void qAsConst(const T &&) = delete;
+#else
+template <typename T>
+Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
+#endif
 #endif
 
 //
