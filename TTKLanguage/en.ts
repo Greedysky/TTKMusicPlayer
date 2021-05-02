@@ -9,37 +9,37 @@
         <translation>Are You Sure To Delete?</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="136"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="140"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="137"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="141"/>
         <source>downloadMore...</source>
         <translation>Download More...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="143"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="147"/>
         <source>musicInfo...</source>
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="144"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="148"/>
         <source>openFileDir</source>
         <translation>Open File Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="145"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="149"/>
         <source>ablum</source>
         <translation>Ablum</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="148"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="152"/>
         <source>delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="149"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractdownloadtablewidget.cpp" line="153"/>
         <source>deleteAll</source>
         <translation>Delete All</translation>
     </message>
@@ -138,12 +138,12 @@
         <translation>Cloud</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractsongslisttablewidget.cpp" line="226"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractsongslisttablewidget.cpp" line="227"/>
         <source>similar</source>
         <translation>Similar</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractsongslisttablewidget.cpp" line="227"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicabstractsongslisttablewidget.cpp" line="228"/>
         <source>songShare</source>
         <translation>Share</translation>
     </message>
@@ -262,199 +262,199 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="1003"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="1008"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="755"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="759"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="747"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="750"/>
         <source>logout</source>
         <translation>Logout</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="1003"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="1008"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation>TTKMusicPlayer Will Run In The Background</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="747"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="750"/>
         <source>login</source>
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="559"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="562"/>
         <source>Save List File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="750"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="753"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="783"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="787"/>
         <source>RemoteControl</source>
         <translation>Remote Control</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="787"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="791"/>
         <source>SimpleStyleRemote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="788"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="792"/>
         <source>ComplexStyleRemote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="792"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="797"/>
         <source>Equalizer</source>
         <translation>Equalizer</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="793"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="798"/>
         <source>SoundEffect</source>
         <translation>Sound Effect</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="794"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="799"/>
         <source>TimingSettings</source>
         <translation>Timing Settings</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="795"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="800"/>
         <source>MusicSpectrum</source>
         <translation>Music Spectrum</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="802"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="807"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="806"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="811"/>
         <source>Full Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="807"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="812"/>
         <source>Custom</source>
         <translation type="unfinished">Custom</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="815"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="820"/>
         <source>New Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="819"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="824"/>
         <source>musicAbout</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="821"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="826"/>
         <source>Bug Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="822"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="827"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="825"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="830"/>
         <source>quit</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="762"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="766"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="763"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="767"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="729"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="732"/>
         <source>add music to lovest list done!</source>
         <translation>Add Music To Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="729"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="732"/>
         <source>remove music to lovest list done!</source>
         <translation>Remove Music From Lovest List Done!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="760"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="764"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="761"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="765"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="764"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="768"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="817"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="822"/>
         <source>Setting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="501"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="752"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="502"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="755"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="502"/>
-        <location filename="../TTKModule/musicapplication.cpp" line="753"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="503"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="756"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="785"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="789"/>
         <source>SquareRemote</source>
         <translation>Square Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="786"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="790"/>
         <source>RectangleRemote</source>
         <translation>Rectangle Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="789"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="793"/>
         <source>RippleRemote</source>
         <translation>Ripple Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="790"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="794"/>
         <source>DeleteRemote</source>
         <translation>Close Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="798"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="803"/>
         <source>windowTop</source>
         <translation>WindowTop</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="800"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="805"/>
         <source>resetWindow</source>
         <translation>Reset Window</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplication.cpp" line="504"/>
+        <location filename="../TTKModule/musicapplication.cpp" line="505"/>
         <source>dragAnddrop</source>
         <translation>Files Drag Drop Supported</translation>
     </message>
@@ -603,7 +603,7 @@
         <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundpalettewidget.cpp" line="157"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundpalettewidget.cpp" line="155"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
@@ -745,22 +745,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="368"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="366"/>
         <source>upload</source>
         <translation>Upload</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="373"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="371"/>
         <source>cancelUpload</source>
         <translation>Cancel File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="375"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="374"/>
         <source>uploadFile</source>
         <translation>Upload File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="376"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="375"/>
         <source>uploadFiles</source>
         <translation>Upload Files</translation>
     </message>
@@ -790,7 +790,7 @@
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="443"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="444"/>
         <source>Files Is Uploading!</source>
         <translation>Files Uploading...</translation>
     </message>
@@ -798,47 +798,47 @@
 <context>
     <name>MusicCloudManagerWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="574"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="575"/>
         <source>Personal Cloud</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="580"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="581"/>
         <source>Sharing Of Cloud Disk Songs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="584"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="585"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="606"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="607"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="611"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="612"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="616"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="617"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="643"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="644"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="649"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="650"/>
         <source>FileSize</source>
         <translation type="unfinished">FileSize   </translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="654"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudmanagerwidget.cpp" line="655"/>
         <source>UploadTime</source>
         <translation type="unfinished"></translation>
     </message>
@@ -865,32 +865,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="203"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="202"/>
         <source>musicInfo...</source>
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="204"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="203"/>
         <source>openFileDir</source>
         <translation>Open File Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="207"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="206"/>
         <source>delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="208"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="207"/>
         <source>deleteAll</source>
         <translation>Delete All</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="211"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="210"/>
         <source>reupload</source>
         <translation>Reupload</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="212"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musiccloudtablewidget.cpp" line="211"/>
         <source>reuploadAll</source>
         <translation>Reupload All</translation>
     </message>
@@ -1197,18 +1197,18 @@
 <context>
     <name>MusicDownloadStatusObject</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="77"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="52"/>
         <source>The Internet Seems To Be A Problem, Let&apos;s Listen To The Local Music.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="77"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="78"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="52"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="53"/>
         <source>TTKMusicPlayer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="78"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="53"/>
         <source>Network Connection Has Been Restored.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1825,13 +1825,13 @@
         <translation>Download</translation>
     </message>
     <message>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemsearchtablewidget.cpp" line="124"/>
         <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemsearchtablewidget.cpp" line="125"/>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemsearchtablewidget.cpp" line="126"/>
         <source>search &apos;%1&apos;</source>
         <translation>Search &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemsearchtablewidget.cpp" line="127"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicitemsearchtablewidget.cpp" line="126"/>
         <source>search &apos;%1 - %2&apos;</source>
         <translation>Search &apos;%1 - %2&apos;</translation>
     </message>
@@ -1887,32 +1887,32 @@
 <context>
     <name>MusicLocalSongSearchEdit</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="10"/>
+        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="11"/>
         <source>please input search text</source>
         <translation>Please Input Search Text</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="20"/>
+        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="21"/>
         <source>Shear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="21"/>
+        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="22"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="22"/>
+        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="23"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="23"/>
+        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="24"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="25"/>
+        <location filename="../TTKModule/TTKWidget/musicSearchKits/musiclocalsongsearchedit.cpp" line="26"/>
         <source>SelectAll</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2319,13 +2319,13 @@
     <message>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="66"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="137"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="895"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="899"/>
         <source>noCurrentSongPlay</source>
         <translation>No Song Is PLaying now! </translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="132"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="890"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="894"/>
         <source>unFoundLrc</source>
         <translation>No Lrc Data Found</translation>
     </message>
@@ -2366,7 +2366,7 @@
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="391"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="668"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="672"/>
         <source>makeLrc</source>
         <translation>Make Lrc</translation>
     </message>
@@ -2426,191 +2426,191 @@
         <translation>Bigger</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="431"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="625"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="432"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="629"/>
         <source>custom</source>
         <translation>Custom</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="436"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="437"/>
         <source>lrcTimeFast0.5s</source>
         <translation>0.5S Faster</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="437"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="438"/>
         <source>lrcTimeFast1s</source>
         <translation>1S Faster</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="438"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="439"/>
         <source>lrcTimeFast2s</source>
         <translation>2S Faster</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="439"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="440"/>
         <source>lrcTimeFast5s</source>
         <translation>5S Faster</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="444"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="445"/>
         <source>lrcTimeSlow0.5s</source>
         <translation>0.5S Slower</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="445"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="446"/>
         <source>lrcTimeSlow1s</source>
         <translation>1S Slower</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="446"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="447"/>
         <source>lrcTimeSlow2s</source>
         <translation>2S Slower</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="447"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="448"/>
         <source>lrcTimeSlow5s</source>
         <translation>5S Slower</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="451"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="452"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="453"/>
         <source>artbgoff</source>
         <translation>Art Off</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="452"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="453"/>
         <source>artbgon</source>
         <translation>Art ON</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="453"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="454"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="455"/>
         <source>lrcoff</source>
         <translation>Lrc Off</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="454"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="455"/>
         <source>lrcon</source>
         <translation>Lrc On</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="455"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="456"/>
         <source>artbgupload</source>
         <translation>Art Bg Upload</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="456"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="457"/>
         <source>artbgsetting</source>
         <translation>Set As Bg</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="462"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="463"/>
         <source>localLink</source>
         <translation>Local Link</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="463"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="464"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="465"/>
         <source>localLinkOff</source>
         <translation>Link Off</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="464"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="465"/>
         <source>localLinkOn</source>
         <translation>Link On</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="466"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="469"/>
         <source>copyToClip</source>
         <translation>Copy To Clip</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="467"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="470"/>
         <source>showLrcFile</source>
         <translation>Show Lrc File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="470"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="473"/>
         <source>customSetting</source>
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="614"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="618"/>
         <source>IYellow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="615"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="619"/>
         <source>IBlue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="616"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="620"/>
         <source>IGray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="617"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="621"/>
         <source>IPink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="618"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="622"/>
         <source>IGreen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="619"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="623"/>
         <source>IRed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="620"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="624"/>
         <source>IPurple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="621"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="625"/>
         <source>IOrange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="622"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="626"/>
         <source>IIndigo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="648"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="652"/>
         <source>after%1s</source>
         <translation>After %1s</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="652"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="656"/>
         <source>before%1s</source>
         <translation>Before %1s</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="656"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="660"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="727"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="731"/>
         <source>Translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="728"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="732"/>
         <source>MV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="729"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="733"/>
         <source>KMicro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="730"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforinterior.cpp" line="734"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3015,11 +3015,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcmakerwidget.ui" line="387"/>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicLrcKits/musiclrcmakerwidget.ui" line="885"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="297"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="296"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="305"/>
         <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="306"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="307"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="556"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="644"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="554"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="642"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3088,55 +3088,55 @@ p, li { white-space: pre-wrap; }
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="276"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="275"/>
         <source>Are you sure you want to remake lyrics?</source>
         <translation>Are You Sure You Want To Remake Lyrics?</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="287"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="286"/>
         <source>Go back and lyrics will be lost!</source>
         <translation>Go Back And Lyrics Will Be Lost!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="297"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="307"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="556"/>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="644"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="296"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="306"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="554"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="642"/>
         <source>Stop</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="377"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="375"/>
         <source>Lyrics make has not been completed!</source>
         <translation>Lyrics Make Has Not Been Completed!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="646"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="644"/>
         <source>Before 1s</source>
         <translation>1S Slower</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="647"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="645"/>
         <source>After 1s</source>
         <translation>1S Faster</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="685"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="683"/>
         <source>Art name is empty!</source>
         <translation>Art Name Is Empty!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="691"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="689"/>
         <source>song name is empty!</source>
         <translation>Song Name is Empty!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="697"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="695"/>
         <source>lrc text is empty!</source>
         <translation>Lrc Text Is Empty!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="270"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcmakerwidget.cpp" line="269"/>
         <source>save file finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3269,7 +3269,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcSearchTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcsearchtablewidget.cpp" line="46"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcsearchtablewidget.cpp" line="45"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3636,22 +3636,22 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <name>MusicPlayedListPopWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="49"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="329"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="346"/>
         <source>playedList</source>
         <translation>Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="334"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="351"/>
         <source>shareList</source>
         <translation>Share Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="340"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="357"/>
         <source>clearList</source>
         <translation>Clear Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="352"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="369"/>
         <source>closeList</source>
         <translation>Close Play List</translation>
     </message>
@@ -5534,52 +5534,52 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="508"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="504"/>
         <source>&amp;nbsp;find no result</source>
         <translation>&amp;nbsp;Find No Result</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="559"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="555"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="565"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="561"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="571"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="567"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="577"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="573"/>
         <source>Operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="601"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="597"/>
         <source>&amp;nbsp;find &lt;font color=#158FE1&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;Find &lt;font color=#158FE1&gt; %1 &lt;/font&gt; Results</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="512"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="508"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="520"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="516"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="526"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="522"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="451"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="447"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5591,12 +5591,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSongSearchTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="345"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="342"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="319"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="317"/>
         <source>musicPlay</source>
         <translation type="unfinished">Audition</translation>
     </message>
@@ -5605,12 +5605,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation type="vanished">Add To List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="320"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="318"/>
         <source>downloadMore...</source>
         <translation>Download More...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="328"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="326"/>
         <source>search &apos;%1&apos;</source>
         <translation>Search &apos;%1&apos;</translation>
     </message>
@@ -5761,17 +5761,17 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>Cloud</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaywidget.cpp" line="225"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaywidget.cpp" line="226"/>
         <source>similar</source>
         <translation>Similar</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaywidget.cpp" line="226"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaywidget.cpp" line="227"/>
         <source>songShare</source>
         <translation>Share</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaywidget.cpp" line="227"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplaywidget.cpp" line="228"/>
         <source>KMicro</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5779,32 +5779,32 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSongsListPlayedTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="312"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="314"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="313"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="315"/>
         <source>downloadMore...</source>
         <translation>Download More...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="319"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="321"/>
         <source>musicInfo...</source>
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="320"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="322"/>
         <source>openFileDir</source>
         <translation>Open File Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="321"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="323"/>
         <source>ablum</source>
         <translation>Ablum</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="324"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedtablewidget.cpp" line="326"/>
         <source>delete</source>
         <translation>Delete</translation>
     </message>
@@ -5837,12 +5837,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>Cloud</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedwidget.cpp" line="97"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedwidget.cpp" line="98"/>
         <source>similar</source>
         <translation>Similar</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedwidget.cpp" line="98"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslistplayedwidget.cpp" line="99"/>
         <source>songShare</source>
         <translation>Share</translation>
     </message>
@@ -5850,173 +5850,173 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSongsListTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="457"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="463"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="472"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="478"/>
         <source>Delete File Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="708"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="725"/>
         <source>playbackMode</source>
         <translation>Play Back Mode</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="711"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="719"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="712"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="720"/>
         <source>playLater</source>
         <translation>Play Later</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="713"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="721"/>
         <source>addToPlaylist</source>
         <translation>Add To Playlist</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="714"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="722"/>
         <source>downloadMore...</source>
         <translation>Download More...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="719"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="728"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="720"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="729"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="721"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="730"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="722"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="731"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="723"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="732"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="741"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="751"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="744"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="754"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="745"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="755"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="747"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="758"/>
         <source>sort</source>
         <translation>Sort</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="748"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="759"/>
         <source>sortByFileName</source>
         <translation>Sort By FileName</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="749"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="760"/>
         <source>sortBySinger</source>
         <translation>Sort By Singer</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="750"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="761"/>
         <source>sortByFileSize</source>
         <translation>Sort By File Size</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="751"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="762"/>
         <source>sortByAddTime</source>
         <translation>Sort By Add Time</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="752"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="763"/>
         <source>sortByPlayTime</source>
         <translation>Sort By Play Time</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="753"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="764"/>
         <source>sortByPlayCount</source>
         <translation>Sort By Play Count</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="766"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="779"/>
         <source>foundMV</source>
         <translation>Found MV</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="771"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="784"/>
         <source>musicTool</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="772"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="785"/>
         <source>bell</source>
         <translation>Bell</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="773"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="786"/>
         <source>transform</source>
         <translation>Transform</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="776"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="790"/>
         <source>musicInfo...</source>
         <translation>Song Info...</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="777"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="791"/>
         <source>openFileDir</source>
         <translation>Open File Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="778"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="792"/>
         <source>ablum</source>
         <translation>Ablum</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="783"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="797"/>
         <source>changSongName</source>
         <translation>Rename</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="784"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="798"/>
         <source>delete</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="785"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="799"/>
         <source>deleteWithFile</source>
         <translation>Delete(With File)</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="786"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="800"/>
         <source>deleteAll</source>
         <translation>Delete All</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="882"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="884"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="896"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="898"/>
         <source>search &apos;%1&apos;</source>
         <translation>Search &apos;%1&apos;</translation>
     </message>
@@ -6054,38 +6054,38 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="335"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="340"/>
         <source>defaultItem</source>
         <translation>Default Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="350"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="383"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="355"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="388"/>
         <source>Are you sure to delete?</source>
         <translation>Are You Sure To Delete?</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1081"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1088"/>
         <source>addNewItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1082"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1089"/>
         <source>importItem</source>
         <translation>Import Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1083"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1090"/>
         <source>musicTest</source>
         <translation>Music Test</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1084"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1091"/>
         <source>lrcBatch</source>
         <translation>Lrc Batch Download</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1085"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongssummariziedwidget.cpp" line="1092"/>
         <source>deleteAllItem</source>
         <translation>Delete All Items</translation>
     </message>
@@ -6093,107 +6093,107 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSongsToolBoxTopWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="20"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="21"/>
         <source>enhanceLossless</source>
         <translation>Enhance Lossless</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="26"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="27"/>
         <source>shareList</source>
         <translation>Share Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="32"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="33"/>
         <source>listMenu</source>
         <translation>List Menu</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="100"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="101"/>
         <source>addNewItem</source>
         <translation>Create New Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="103"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="104"/>
         <source>addNewFiles</source>
         <translation>Add New File</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="106"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="107"/>
         <source>openOnlyFiles</source>
         <translation>Add local Files</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="107"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="108"/>
         <source>openOnlyDir</source>
         <translation>Add local Dir</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="109"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="111"/>
         <source>playLater</source>
         <translation>Play Later</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="110"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="112"/>
         <source>addToPlaylist</source>
         <translation>Add To Playlist</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="112"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="114"/>
         <source>sort</source>
         <translation>Sort</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="113"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="115"/>
         <source>sortByFileName</source>
         <translation>Sort By FileName</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="114"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="116"/>
         <source>sortBySinger</source>
         <translation>Sort By Singer</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="115"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="117"/>
         <source>sortByFileSize</source>
         <translation>Sort By File Size</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="116"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="118"/>
         <source>sortByAddTime</source>
         <translation>Sort By Add Time</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="117"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="119"/>
         <source>sortByPlayTime</source>
         <translation>Sort By Play Time</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="118"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="120"/>
         <source>sortByPlayCount</source>
         <translation>Sort By Play Count</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="131"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="135"/>
         <source>collectAll</source>
         <translation>Collect All</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="132"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="136"/>
         <source>exportList</source>
         <translation>Export List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="136"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="140"/>
         <source>deleteAll</source>
         <translation>Delete All</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="137"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="141"/>
         <source>deleteItem</source>
         <translation>Delete Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="138"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="142"/>
         <source>changItemName</source>
         <translation>Rename</translation>
     </message>
@@ -6294,8 +6294,8 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSoundKMicroSearchTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="65"/>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="167"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="64"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="166"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6303,22 +6303,22 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicSoundKMicroSearchWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="203"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="202"/>
         <source> Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="222"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="221"/>
         <source>MV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="224"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="223"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="285"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="284"/>
         <source>Search Not Supported!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6679,12 +6679,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="38"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="37"/>
         <source>Close</source>
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="408"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicspectrumwidget.cpp" line="407"/>
         <source>Spectrum Init Error!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7005,28 +7005,28 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicToplistQueryWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="114"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="115"/>
         <source>&lt;font color=#158FE1&gt; Rank &lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="166"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="229"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="167"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="230"/>
         <source>songItems</source>
         <translation>SongItems</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="202"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="203"/>
         <source>PlayCount: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="206"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="207"/>
         <source>UpdateTime: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="210"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musictoplistquerywidget.cpp" line="211"/>
         <source>Description: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7345,17 +7345,17 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>Open Vip&gt;&gt;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicusermanagerdialog.cpp" line="68"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicusermanagerdialog.cpp" line="69"/>
         <source>Modifies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicusermanagerdialog.cpp" line="69"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicusermanagerdialog.cpp" line="70"/>
         <source>Switches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicusermanagerdialog.cpp" line="70"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicusermanagerdialog.cpp" line="71"/>
         <source>Spacing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7703,7 +7703,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicVideoSearchTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideosearchtablewidget.cpp" line="87"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideosearchtablewidget.cpp" line="84"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7711,22 +7711,22 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicVideoView</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="121"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="123"/>
         <source>videoPlay</source>
         <translation>VideoPlay</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="121"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="123"/>
         <source>videoPause</source>
         <translation>VideoPause</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="122"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="124"/>
         <source>videoStop</source>
         <translation>VideoStop</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="194"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="197"/>
         <source>Audio Play Time out!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7872,17 +7872,17 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebfmradiowidget.cpp" line="230"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebfmradiowidget.cpp" line="231"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebfmradiowidget.cpp" line="232"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebfmradiowidget.cpp" line="233"/>
         <source>songToMobile</source>
         <translation>Song To Mobile</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebfmradiowidget.cpp" line="233"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebfmradiowidget.cpp" line="234"/>
         <source>sendToDesktop</source>
         <translation>Send To Desktop Link</translation>
     </message>
@@ -8038,26 +8038,26 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>Add To TTKMusicPlayer PlayList</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="144"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="168"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="143"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="167"/>
         <source>ss</source>
         <translation>SS</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="148"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="172"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="147"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="171"/>
         <source>mm</source>
         <translation>MM</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="152"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="176"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="151"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="175"/>
         <source>hh</source>
         <translation>HH</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="156"/>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="180"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="155"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musictime.cpp" line="179"/>
         <source>day</source>
         <translation>DAY</translation>
     </message>
