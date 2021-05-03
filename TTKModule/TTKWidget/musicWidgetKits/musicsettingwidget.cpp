@@ -7,7 +7,7 @@
 #include "musicnetworkconnectiontestwidget.h"
 #include "musictoastlabel.h"
 #include "musichotkeymanager.h"
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
@@ -1028,8 +1028,8 @@ void MusicSettingWidget::initSoundEffectWidget()
     m_ui->equalizerPluginsButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->equalizerButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicSetEqualizer()));
-    connect(m_ui->equalizerPluginsButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicSetSoundEffect()));
+    connect(m_ui->equalizerButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicSetEqualizer()));
+    connect(m_ui->equalizerPluginsButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicSetSoundEffect()));
     connect(m_ui->fadeInAndOutCheckBox, SIGNAL(clicked(bool)), SLOT(musicFadeInAndOutClicked(bool)));
 }
 

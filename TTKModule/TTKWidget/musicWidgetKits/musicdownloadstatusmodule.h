@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADSTATUSOBJECT_H
-#define MUSICDOWNLOADSTATUSOBJECT_H
+#ifndef MusicDownloadStatusModule_H
+#define MusicDownloadStatusModule_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -26,17 +26,17 @@ class MusicApplication;
 /*! @brief The class of the show download state object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadStatusObject : public QObject
+class MUSIC_WIDGET_EXPORT MusicDownloadStatusModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadStatusObject)
+    TTK_DECLARE_MODULE(MusicDownloadStatusModule)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadStatusObject(QObject *parent);
+    explicit MusicDownloadStatusModule(QObject *parent);
 
-    ~MusicDownloadStatusObject();
+    ~MusicDownloadStatusModule();
 
     /*!
      * Check the current song already has lrc or not,
@@ -68,4 +68,4 @@ protected:
 
 };
 
-#endif // MUSICDOWNLOADSTATUSOBJECT_H
+#endif // MusicDownloadStatusModule_H

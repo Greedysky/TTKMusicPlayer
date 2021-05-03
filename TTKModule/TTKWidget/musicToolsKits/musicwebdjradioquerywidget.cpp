@@ -1,7 +1,7 @@
 #include "musicwebdjradioquerywidget.h"
 #include "musicdjradioprogramcategoryrequest.h"
 #include "musictinyuiobject.h"
-#include "musicpagingwidgetobject.h"
+#include "musicpagingwidgetmodule.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadsourcerequest.h"
@@ -191,7 +191,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
         mainlayout->addWidget(line);
         mainlayout->addWidget(containWidget);
 
-        m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
+        m_pagingWidgetObject = new MusicPagingWidgetModule(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());

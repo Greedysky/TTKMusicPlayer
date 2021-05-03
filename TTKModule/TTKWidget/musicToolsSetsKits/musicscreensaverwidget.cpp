@@ -1,5 +1,5 @@
 #include "musicscreensaverwidget.h"
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
@@ -324,7 +324,7 @@ void MusicScreenSaverWidget::inputDataChanged()
     if(state)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverTime, m_inputEdit->text().toInt());
-        MusicApplicationObject::instance()->applySettingParameter();
+        MusicApplicationModule::instance()->applySettingParameter();
     }
 }
 
@@ -344,7 +344,7 @@ void MusicScreenSaverWidget::caseButtonOnAndOff()
 
     m_inputEdit->setEnabled(m_currentState);
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverEnable, m_currentState);
-    MusicApplicationObject::instance()->applySettingParameter();
+    MusicApplicationModule::instance()->applySettingParameter();
 }
 
 void MusicScreenSaverWidget::downLoadFinished(const QString &data)
@@ -372,7 +372,7 @@ void MusicScreenSaverWidget::itemHasClicked(int index, bool status)
         items << QString("%1,%2").arg(i).arg(statusVector[i]);
     }
     G_SETTING_PTR->setValue(MusicSettingManager::OtherScreenSaverIndex, items.join(";"));
-    MusicApplicationObject::instance()->applySettingParameter();
+    MusicApplicationModule::instance()->applySettingParameter();
 }
 
 void MusicScreenSaverWidget::initialize()

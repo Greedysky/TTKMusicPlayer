@@ -20,7 +20,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
-    ${MUSIC_WIDGET_DIR}/musicdownloadstatusobject.h
+    ${MUSIC_WIDGET_DIR}/musicdownloadstatusmodule.h
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
@@ -48,7 +48,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicrecommendquerywidget.h
     ${MUSIC_WIDGET_DIR}/musicartistlistquerywidget.h
     ${MUSIC_WIDGET_DIR}/musicartistlistquerycategorypopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicripplespecturmobject.h
+    ${MUSIC_WIDGET_DIR}/musicripplespecturmmodule.h
     ${MUSIC_WIDGET_DIR}/musicpluginwidget.h
   )
 
@@ -72,7 +72,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicdownloadstatusobject.cpp
+    ${MUSIC_WIDGET_DIR}/musicdownloadstatusmodule.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
@@ -100,7 +100,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicrecommendquerywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicartistlistquerywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicartistlistquerycategorypopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicripplespecturmobject.cpp
+    ${MUSIC_WIDGET_DIR}/musicripplespecturmmodule.cpp
     ${MUSIC_WIDGET_DIR}/musicpluginwidget.cpp
   )
   

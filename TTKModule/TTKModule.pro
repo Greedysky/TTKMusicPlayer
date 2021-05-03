@@ -45,7 +45,7 @@ SOURCES += \
     musictopareawidget.cpp \
     musicrightareawidget.cpp \
     musicbottomareawidget.cpp \
-    musicapplicationobject.cpp
+    musicapplicationmodule.cpp
 
 
 HEADERS  += \
@@ -54,7 +54,7 @@ HEADERS  += \
     musictopareawidget.h \
     musicrightareawidget.h \
     musicbottomareawidget.h \
-    musicapplicationobject.h
+    musicapplicationmodule.h
     
 win32{
     RC_FILE = TTKCore.rc

@@ -572,9 +572,9 @@
     </message>
 </context>
 <context>
-    <name>MusicApplicationObject</name>
+    <name>MusicApplicationModule</name>
     <message>
-        <location filename="../TTKModule/musicapplicationobject.cpp" line="439"/>
+        <location filename="../TTKModule/MusicApplicationModule.cpp" line="439"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation>打開均衡器將關閉神奇音效，是否繼續？</translation>
     </message>
@@ -1287,20 +1287,20 @@
     </message>
 </context>
 <context>
-    <name>MusicDownloadStatusObject</name>
+    <name>MusicDownloadStatusModule</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="52"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="53"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/MusicDownloadStatusModule.cpp" line="52"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/MusicDownloadStatusModule.cpp" line="53"/>
         <source>TTKMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="52"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/MusicDownloadStatusModule.cpp" line="52"/>
         <source>The Internet Seems To Be A Problem, Let&apos;s Listen To The Local Music.</source>
         <translation>網絡連接似乎出了點問題，先聽聽本地音樂吧!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp" line="53"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/MusicDownloadStatusModule.cpp" line="53"/>
         <source>Network Connection Has Been Restored.</source>
         <translation>網絡連接已恢復!</translation>
     </message>
@@ -3670,19 +3670,19 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
-    <name>MusicPagingWidgetObject</name>
+    <name>MusicPagingWidgetModule</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetobject.cpp" line="39"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/MusicPagingWidgetModule.cpp" line="39"/>
         <source>pre</source>
         <translation>上壹頁</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetobject.cpp" line="39"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/MusicPagingWidgetModule.cpp" line="39"/>
         <source>next</source>
         <translation>下壹頁</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetobject.cpp" line="81"/>
+        <location filename="../TTKModule/TTKWidget/musicCoreKits/MusicPagingWidgetModule.cpp" line="81"/>
         <source>There Is Empty!</source>
         <translation>空空如也, 快來搶沙發!</translation>
     </message>
@@ -8394,12 +8394,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplicationobject.cpp" line="339"/>
+        <location filename="../TTKModule/MusicApplicationModule.cpp" line="339"/>
         <source>No IE Core Detected!</source>
         <translation>沒有檢測到IE遊覽器!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplicationobject.cpp" line="339"/>
+        <location filename="../TTKModule/MusicApplicationModule.cpp" line="339"/>
         <source>IE Version Less Than 8!</source>
         <translation>當前IE的版本過低, 至少8以上!</translation>
     </message>

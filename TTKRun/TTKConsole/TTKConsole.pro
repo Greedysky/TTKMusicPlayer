@@ -46,10 +46,10 @@ INCLUDEPATH += \
 
 SOURCES += \
     musicconsolemain.cpp \
-    musicconsoleobject.cpp
+    musicconsolemodule.cpp
 
 HEADERS += \
-    musicconsoleobject.h
+    musicconsolemodule.h
 
 win32{
     RC_FILE = TTKConsole.rc

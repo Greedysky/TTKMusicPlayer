@@ -1,8 +1,8 @@
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musicmobiledeviceswidget.h"
 #include "musictimerwidget.h"
 #include "musicspectrumwidget.h"
-#include "musictimerautoobject.h"
+#include "musictimerautomodule.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
 #include "musicequalizerdialog.h"
@@ -35,9 +35,9 @@
 #define MARGIN_SIDE_BY  1
 #define SYNC_HOST_URL   "VDVnYUdYMW9xNnVWSnd6L0J6NHI2MFZ5d0R3R2NiRVF4VW5WckpNcUhnUT0="
 
-MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
+MusicApplicationModule *MusicApplicationModule::m_instance = nullptr;
 
-MusicApplicationObject::MusicApplicationObject(QObject *parent)
+MusicApplicationModule::MusicApplicationModule(QObject *parent)
     : QObject(parent)
 {
     Q_INIT_RESOURCE(MusicPlayer);
@@ -50,7 +50,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250 * MT_MS);
 
-    m_musicTimerAutoObject = new MusicTimerAutoObject(this);
+    m_MusicTimerAutoModule = new MusicTimerAutoModule(this);
     m_screenSaverWidget = nullptr;
     m_setWindowToTop = false;
     m_mobileDeviceWidget = nullptr;
@@ -68,12 +68,12 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     musicToolSetsParameter();
 }
 
-MusicApplicationObject::~MusicApplicationObject()
+MusicApplicationModule::~MusicApplicationModule()
 {
     cleanUp();
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
-    delete m_musicTimerAutoObject;
+    delete m_MusicTimerAutoModule;
     delete m_screenSaverWidget;
     delete m_quitAnimation;
     delete m_sideAnimation;
@@ -84,17 +84,17 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_counterPVThread;
 }
 
-MusicApplicationObject *MusicApplicationObject::instance()
+MusicApplicationModule *MusicApplicationModule::instance()
 {
     return m_instance;
 }
 
-bool MusicApplicationObject::isLastedVersion() const
+bool MusicApplicationModule::isLastedVersion() const
 {
     return m_sourceUpdatehread->isLastedVersion();
 }
 
-void MusicApplicationObject::loadNetWorkSetting()
+void MusicApplicationModule::loadNetWorkSetting()
 {
 #ifndef QT_NO_SSL
     // ssl support check
@@ -107,7 +107,7 @@ void MusicApplicationObject::loadNetWorkSetting()
     m_counterPVThread->startToDownload();
 }
 
-void MusicApplicationObject::applySettingParameter()
+void MusicApplicationModule::applySettingParameter()
 {
 #ifdef Q_OS_WIN
     if(G_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt())
@@ -123,7 +123,7 @@ void MusicApplicationObject::applySettingParameter()
     m_screenSaverWidget->applySettingParameter();
 }
 
-void MusicApplicationObject::windowCloseAnimation()
+void MusicApplicationModule::windowCloseAnimation()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toBool())
     {
@@ -153,14 +153,14 @@ void MusicApplicationObject::windowCloseAnimation()
     QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
 }
 
-void MusicApplicationObject::soureUpdateCheck()
+void MusicApplicationModule::soureUpdateCheck()
 {
     MusicSourceUpdateNotifyWidget *w = new MusicSourceUpdateNotifyWidget;
     w->start();
     w->show();
 }
 
-void MusicApplicationObject::sideAnimationByOn()
+void MusicApplicationModule::sideAnimationByOn()
 {
     if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
     {
@@ -197,7 +197,7 @@ void MusicApplicationObject::sideAnimationByOn()
     }
 }
 
-void MusicApplicationObject::sideAnimationByOff()
+void MusicApplicationModule::sideAnimationByOff()
 {
     if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
     {
@@ -226,7 +226,7 @@ void MusicApplicationObject::sideAnimationByOff()
     }
 }
 
-void MusicApplicationObject::sideAnimationReset()
+void MusicApplicationModule::sideAnimationReset()
 {
     if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
     {
@@ -246,7 +246,7 @@ void MusicApplicationObject::sideAnimationReset()
     }
 }
 
-void MusicApplicationObject::windowCloseAnimationFinished()
+void MusicApplicationModule::windowCloseAnimationFinished()
 {
     if(!m_quitContainer)
     {
@@ -273,22 +273,22 @@ void MusicApplicationObject::windowCloseAnimationFinished()
     }
 }
 
-void MusicApplicationObject::musicAboutUs()
+void MusicApplicationModule::musicAboutUs()
 {
     MusicMessageAboutDialog().exec();
 }
 
-void MusicApplicationObject::musicBugReportView()
+void MusicApplicationModule::musicBugReportView()
 {
     MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
 }
 
-void MusicApplicationObject::musicVersionUpdate()
+void MusicApplicationModule::musicVersionUpdate()
 {
     MusicSourceUpdateWidget(MusicApplication::instance()).exec();
 }
 
-void MusicApplicationObject::musicTimerWidget()
+void MusicApplicationModule::musicTimerWidget()
 {
     MusicTimerWidget timer;
 
@@ -298,12 +298,12 @@ void MusicApplicationObject::musicTimerWidget()
     timer.exec();
 }
 
-void MusicApplicationObject::musicSpectrumWidget()
+void MusicApplicationModule::musicSpectrumWidget()
 {
     SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
 }
 
-void MusicApplicationObject::musicSetWindowToTop()
+void MusicApplicationModule::musicSetWindowToTop()
 {
     m_setWindowToTop = !m_setWindowToTop;
     Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
@@ -311,7 +311,7 @@ void MusicApplicationObject::musicSetWindowToTop()
     MusicApplication::instance()->show();
 }
 
-void MusicApplicationObject::musicResetWindow()
+void MusicApplicationModule::musicResetWindow()
 {
     m_leftSideByOn = false;
     m_rightSideByOn = false;
@@ -328,9 +328,9 @@ void MusicApplicationObject::musicResetWindow()
     w->setGeometry((rect.width() - WINDOW_WIDTH_MIN) / 2, (rect.height() - WINDOW_HEIGHT_MIN) / 2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
-void MusicApplicationObject::musicToolSetsParameter()
+void MusicApplicationModule::musicToolSetsParameter()
 {
-    m_musicTimerAutoObject->runTimerAutoConfig();
+    m_MusicTimerAutoModule->runTimerAutoConfig();
 #ifdef Q_OS_WIN
     MusicPlatformManager platform;
     const int version = platform.getLocalIEVersion();
@@ -341,12 +341,12 @@ void MusicApplicationObject::musicToolSetsParameter()
 #endif
 }
 
-void MusicApplicationObject::musicDeviceNameChanged(const QString &name)
+void MusicApplicationModule::musicDeviceNameChanged(const QString &name)
 {
     G_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePath, name);
 }
 
-void MusicApplicationObject::musicDeviceChanged(bool state)
+void MusicApplicationModule::musicDeviceChanged(bool state)
 {
     delete m_mobileDeviceWidget;
     m_mobileDeviceWidget = nullptr;
@@ -362,7 +362,7 @@ void MusicApplicationObject::musicDeviceChanged(bool state)
     }
 }
 
-void MusicApplicationObject::musicSetEqualizer()
+void MusicApplicationModule::musicSetEqualizer()
 {
     if(!closeCurrentEqualizer())
     {
@@ -373,7 +373,7 @@ void MusicApplicationObject::musicSetEqualizer()
     equalizer.exec();
 }
 
-void MusicApplicationObject::musicSetSoundEffect()
+void MusicApplicationModule::musicSetSoundEffect()
 {
     if(!closeCurrentEqualizer())
     {
@@ -385,7 +385,7 @@ void MusicApplicationObject::musicSetSoundEffect()
     sound.exec();
 }
 
-void MusicApplicationObject::musicEffectChanged()
+void MusicApplicationModule::musicEffectChanged()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt() == 1)
     {
@@ -431,7 +431,7 @@ void MusicApplicationObject::musicEffectChanged()
 
 }
 
-bool MusicApplicationObject::closeCurrentEqualizer()
+bool MusicApplicationModule::closeCurrentEqualizer()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt() != 0)
     {
@@ -447,7 +447,7 @@ bool MusicApplicationObject::closeCurrentEqualizer()
     return true;
 }
 
-void MusicApplicationObject::cleanUp()
+void MusicApplicationModule::cleanUp()
 {
     ///remove daily pic theme
     MusicUtils::File::removeRecursively(TTK_STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));

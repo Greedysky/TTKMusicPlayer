@@ -28,7 +28,7 @@ class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
 class MusicRightAreaWidget;
 class MusicLeftAreaWidget;
-class MusicApplicationObject;
+class MusicApplicationModule;
 
 namespace Ui {
 class MusicApplication;
@@ -337,7 +337,7 @@ private:
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;
     MusicLeftAreaWidget *m_leftAreaWidget;
-    MusicApplicationObject *m_applicationObject;
+    MusicApplicationModule *m_applicationObject;
 
     static MusicApplication *m_instance;
 

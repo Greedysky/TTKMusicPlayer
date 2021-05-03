@@ -24,7 +24,7 @@
 
 class MusicSettingWidget;
 class MusicVideoPlayWidget;
-class MusicDownloadStatusObject;
+class MusicDownloadStatusModule;
 
 class MusicLrcAnalysis;
 class MusicLrcContainerForInterior;
@@ -314,7 +314,7 @@ protected:
     MusicLrcContainerForInterior *m_musicLrcForInterior;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;
     MusicLrcContainerForWallpaper *m_musicLrcForWallpaper;
-    MusicDownloadStatusObject *m_downloadStatusObject;
+    MusicDownloadStatusModule *m_downloadStatusObject;
 
     static MusicRightAreaWidget *m_instance;
 

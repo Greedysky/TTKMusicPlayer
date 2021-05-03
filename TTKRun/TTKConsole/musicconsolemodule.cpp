@@ -1,4 +1,4 @@
-#include "musicconsoleobject.h"
+#include "musicconsolemodule.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
 #include "musicfileutils.h"
@@ -11,7 +11,7 @@
 #include <QCommandLineParser>
 #endif
 
-MusicConsoleObject::MusicConsoleObject(QObject *parent)
+MusicConsoleModule::MusicConsoleModule(QObject *parent)
     : QObject(parent)
 {
     m_musicPlayer = new MusicPlayer(this);
@@ -67,14 +67,14 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
 
 }
 
-MusicConsoleObject::~MusicConsoleObject()
+MusicConsoleModule::~MusicConsoleModule()
 {
     TTK_LOGGER_INFO("\nRelease all");
     delete m_musicPlayer;
     delete m_musicPlaylist;
 }
 
-bool MusicConsoleObject::init(const QCoreApplication &app)
+bool MusicConsoleModule::init(const QCoreApplication &app)
 {
 #if TTK_QT_VERSION_CHECK(5,2,0)
     QCommandLineOption op1("u", "", ".");
@@ -190,23 +190,23 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
     return app.exec();
 }
 
-void MusicConsoleObject::durationChanged(qint64 duration)
+void MusicConsoleModule::durationChanged(qint64 duration)
 {
     print(0, duration);
 }
 
-void MusicConsoleObject::positionChanged(qint64 position)
+void MusicConsoleModule::positionChanged(qint64 position)
 {
     print(position, m_musicPlayer->duration());
 }
 
-void MusicConsoleObject::currentIndexChanged(int index)
+void MusicConsoleModule::currentIndexChanged(int index)
 {
     TTK_LOGGER_INFO("\nCurrent Play Indedx: " << index);
     QTimer::singleShot(MT_S2MS, this, SLOT(resetVolume()));
 }
 
-void MusicConsoleObject::musicStatePlay()
+void MusicConsoleModule::musicStatePlay()
 {
     if(m_musicPlaylist->isEmpty())
     {
@@ -224,7 +224,7 @@ void MusicConsoleObject::musicStatePlay()
     }
 }
 
-void MusicConsoleObject::musicPlayPrevious()
+void MusicConsoleModule::musicPlayPrevious()
 {
     if(m_musicPlaylist->isEmpty())
     {
@@ -244,7 +244,7 @@ void MusicConsoleObject::musicPlayPrevious()
     m_musicPlayer->setVolume(m_volume);
 }
 
-void MusicConsoleObject::musicPlayNext()
+void MusicConsoleModule::musicPlayNext()
 {
     if(m_musicPlaylist->isEmpty())
     {
@@ -264,12 +264,12 @@ void MusicConsoleObject::musicPlayNext()
     m_musicPlayer->setVolume(m_volume);
 }
 
-void MusicConsoleObject::resetVolume()
+void MusicConsoleModule::resetVolume()
 {
     m_musicPlayer->setVolume(m_volume);
 }
 
-void MusicConsoleObject::musicActionVolumeSub()
+void MusicConsoleModule::musicActionVolumeSub()
 {
     m_volume = m_musicPlayer->volume();
     m_volume -= 15;
@@ -281,7 +281,7 @@ void MusicConsoleObject::musicActionVolumeSub()
     m_musicPlayer->setVolume(m_volume);
 }
 
-void MusicConsoleObject::musicActionVolumePlus()
+void MusicConsoleModule::musicActionVolumePlus()
 {
     m_volume = m_musicPlayer->volume();
     m_volume += 15;
@@ -293,67 +293,67 @@ void MusicConsoleObject::musicActionVolumePlus()
     m_musicPlayer->setVolume(m_volume);
 }
 
-void MusicConsoleObject::musicPlayOrder()
+void MusicConsoleModule::musicPlayOrder()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
     m_playbackMode = "Order";
 }
 
-void MusicConsoleObject::musicPlayRandom()
+void MusicConsoleModule::musicPlayRandom()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayRandom);
     m_playbackMode = "Random";
 }
 
-void MusicConsoleObject::musicPlaylistLoop()
+void MusicConsoleModule::musicPlaylistLoop()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlaylistLoop);
     m_playbackMode = "ListLoop";
 }
 
-void MusicConsoleObject::musicPlayOneLoop()
+void MusicConsoleModule::musicPlayOneLoop()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOneLoop);
     m_playbackMode = "OneLoop";
 }
 
-void MusicConsoleObject::musicPlayItemOnce()
+void MusicConsoleModule::musicPlayItemOnce()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOnce);
     m_playbackMode = "Once";
 }
 
-void MusicConsoleObject::musicEnhancedOff()
+void MusicConsoleModule::musicEnhancedOff()
 {
     m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedOff);
     m_enhanced = "Off";
 }
 
-void MusicConsoleObject::musicEnhanced3D()
+void MusicConsoleModule::musicEnhanced3D()
 {
     m_musicPlayer->setMusicEnhanced(MusicPlayer::Enhanced3D);
     m_enhanced = "3D";
 }
 
-void MusicConsoleObject::musicEnhancedNICAM()
+void MusicConsoleModule::musicEnhancedNICAM()
 {
     m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedNICAM);
     m_enhanced = "NICAM";
 }
 
-void MusicConsoleObject::musicEnhancedSubwoofer()
+void MusicConsoleModule::musicEnhancedSubwoofer()
 {
     m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedSubwoofer);
     m_enhanced = "Subwoofer";
 }
 
-void MusicConsoleObject::musicEnhancedVocal()
+void MusicConsoleModule::musicEnhancedVocal()
 {
     m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedVocal);
     m_enhanced = "Vocal";
 }
 
-void MusicConsoleObject::print(qint64 position, qint64 duration)
+void MusicConsoleModule::print(qint64 position, qint64 duration)
 {
     TTK_LOGGER_INFO(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6"))
                 .arg(m_musicPlaylist->currentMediaPath())

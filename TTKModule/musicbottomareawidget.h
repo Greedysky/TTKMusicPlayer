@@ -25,7 +25,7 @@
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;
-class MusicRippleSpecturmObject;
+class MusicRippleSpecturmModule;
 
 namespace Ui {
     class MusicApplication;
@@ -145,7 +145,7 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
-    MusicRippleSpecturmObject *m_musicRippleObject;
+    MusicRippleSpecturmModule *m_musicRippleObject;
 
     static MusicBottomAreaWidget *m_instance;
 

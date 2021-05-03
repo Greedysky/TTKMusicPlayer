@@ -61,7 +61,7 @@ set(MUSIC_HEADERS
     ${MUSIC_LIB_DIR}/musictopareawidget.h
     ${MUSIC_LIB_DIR}/musicrightareawidget.h
     ${MUSIC_LIB_DIR}/musicbottomareawidget.h
-    ${MUSIC_LIB_DIR}/musicapplicationobject.h
+    ${MUSIC_LIB_DIR}/musicapplicationmodule.h
   )
 
 get_property(MUSIC_CORE_KITS_SOURCES GLOBAL PROPERTY "MUSIC_CORE_KITS_SOURCES")
@@ -109,7 +109,7 @@ set(MUSIC_SOURCES
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
     ${MUSIC_LIB_DIR}/musicrightareawidget.cpp
     ${MUSIC_LIB_DIR}/musicbottomareawidget.cpp
-    ${MUSIC_LIB_DIR}/musicapplicationobject.cpp
+    ${MUSIC_LIB_DIR}/musicapplicationmodule.cpp
   )
 
 get_property(MUSIC_UIS GLOBAL PROPERTY "MUSIC_UIS")

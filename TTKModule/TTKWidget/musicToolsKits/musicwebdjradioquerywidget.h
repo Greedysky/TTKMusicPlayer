@@ -22,7 +22,7 @@
 #include "musicabstractitemquerywidget.h"
 
 class QGridLayout;
-class MusicPagingWidgetObject;
+class MusicPagingWidgetModule;
 class MusicWebDJRadioInfoWidget;
 
 /*! @brief The class of the dj radio music item widget.
@@ -130,7 +130,7 @@ public Q_SLOTS:
 protected:
     bool m_initialized;
     QGridLayout *m_gridLayout;
-    MusicPagingWidgetObject *m_pagingWidgetObject;
+    MusicPagingWidgetModule *m_pagingWidgetObject;
     MusicWebDJRadioInfoWidget *m_infoWidget;
 
 };

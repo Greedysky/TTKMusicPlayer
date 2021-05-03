@@ -3,7 +3,7 @@
 #include "musicidentifysongsrequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloaddatarequest.h"
-#include "musicaudiorecorderobject.h"
+#include "musicaudiorecordermodule.h"
 #include "musicsongsharingwidget.h"
 #include "musicdownloadwidget.h"
 #include "musiccoremplayer.h"
@@ -35,7 +35,7 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     m_lrcLabel = nullptr;
     m_mediaPlayer = nullptr;
     m_analysis = nullptr;
-    m_recordCore = new MusicAudioRecorderObject(this);
+    m_recordCore = new MusicAudioRecorderModule(this);
     m_detectedThread = new MusicIdentifySongsRequest(this);
 
     QShortcut *cut = new QShortcut(Qt::SHIFT + Qt::CTRL + Qt::Key_T, this);

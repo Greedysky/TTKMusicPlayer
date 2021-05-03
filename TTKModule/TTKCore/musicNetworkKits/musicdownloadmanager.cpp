@@ -2,7 +2,7 @@
 #include "musicobject.h"
 #include "musicconnectionpool.h"
 #ifndef MUSIC_MOBILE
-#include "musicdownloadstatusobject.h"
+#include "musicdownloadstatusmodule.h"
 #include "musicdownloadrecordwidget.h"
 #include "musiccloudtablewidget.h"
 #endif
@@ -11,7 +11,7 @@ void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
 {
 #ifndef MUSIC_MOBILE
     m_queueList << object;
-    const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusObject::getClassName());
+    const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusModule::getClassName());
     if(to)
     {
         QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));

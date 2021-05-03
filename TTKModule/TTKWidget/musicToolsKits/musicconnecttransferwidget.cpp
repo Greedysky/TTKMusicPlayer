@@ -4,7 +4,7 @@
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musictoastlabel.h"
-#include "musicdeviceinfoobject.h"
+#include "musicdeviceinfomodule.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconnecttransferthread.h"
 

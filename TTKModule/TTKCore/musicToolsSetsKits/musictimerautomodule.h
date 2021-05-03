@@ -1,5 +1,5 @@
-#ifndef MUSICTIMERAUTOOBJECT_H
-#define MUSICTIMERAUTOOBJECT_H
+#ifndef MusicTimerAutoModule_H
+#define MusicTimerAutoModule_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -49,17 +49,17 @@ TTK_DECLARE_LISTS(MusicTimeData)
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicTimerAutoObject : public QObject
+class MUSIC_TOOLSET_EXPORT MusicTimerAutoModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTimerAutoObject)
+    TTK_DECLARE_MODULE(MusicTimerAutoModule)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTimerAutoObject(QObject *parent = nullptr);
+    explicit MusicTimerAutoModule(QObject *parent = nullptr);
 
-    ~MusicTimerAutoObject();
+    ~MusicTimerAutoModule();
 
     /*!
      * Run time auto from local file config.
@@ -83,4 +83,4 @@ protected:
 
 };
 
-#endif // MUSICTIMERAUTOOBJECT_H
+#endif // MusicTimerAutoModule_H

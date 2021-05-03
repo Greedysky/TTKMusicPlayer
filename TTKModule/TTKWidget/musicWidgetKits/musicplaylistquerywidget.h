@@ -23,7 +23,7 @@
 #include "musicabstractitemquerywidget.h"
 
 class QGridLayout;
-class MusicPagingWidgetObject;
+class MusicPagingWidgetModule;
 class MusicPlaylistQueryInfoWidget;
 class MusicPlaylistFoundCategoryPopWidget;
 
@@ -130,7 +130,7 @@ public Q_SLOTS:
 protected:
     bool m_initialized, m_categoryChanged;
     QGridLayout *m_gridLayout;
-    MusicPagingWidgetObject *m_pagingWidgetObject;
+    MusicPagingWidgetModule *m_pagingWidgetObject;
     MusicPlaylistQueryInfoWidget *m_infoWidget;
     MusicPlaylistFoundCategoryPopWidget *m_categoryButton;
 

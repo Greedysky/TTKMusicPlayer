@@ -1,10 +1,10 @@
-#include "musicripplespecturmobject.h"
+#include "musicripplespecturmmodule.h"
 #include "musicqmmputils.h"
 #include "musicobject.h"
 
 #include "visual.h"
 
-MusicRippleSpecturmObject::MusicRippleSpecturmObject(QObject *parent)
+MusicRippleSpecturmModule::MusicRippleSpecturmModule(QObject *parent)
     : QObject(parent)
 {
     m_topAreaLayout = nullptr;
@@ -12,12 +12,12 @@ MusicRippleSpecturmObject::MusicRippleSpecturmObject(QObject *parent)
     m_visualWidget = nullptr;
 }
 
-MusicRippleSpecturmObject::~MusicRippleSpecturmObject()
+MusicRippleSpecturmModule::~MusicRippleSpecturmModule()
 {
     removeSpectrum();
 }
 
-void MusicRippleSpecturmObject::setVisible(bool v)
+void MusicRippleSpecturmModule::setVisible(bool v)
 {
     if(!m_topAreaLayout || !m_topAreaWidget)
     {
@@ -27,7 +27,7 @@ void MusicRippleSpecturmObject::setVisible(bool v)
     m_visualWidget ? m_visualWidget->setVisible(v) : m_topAreaWidget->setVisible(v);
 }
 
-void MusicRippleSpecturmObject::show()
+void MusicRippleSpecturmModule::show()
 {
     if(!m_topAreaLayout || !m_topAreaWidget || m_visualWidget)
     {
@@ -55,7 +55,7 @@ void MusicRippleSpecturmObject::show()
     }
 }
 
-void MusicRippleSpecturmObject::close()
+void MusicRippleSpecturmModule::close()
 {
     if(!m_topAreaLayout || !m_topAreaWidget || !m_visualWidget)
     {
@@ -68,7 +68,7 @@ void MusicRippleSpecturmObject::close()
     removeSpectrum();
 }
 
-void MusicRippleSpecturmObject::update(bool up)
+void MusicRippleSpecturmModule::update(bool up)
 {
     up ? show() : close();
 
@@ -84,13 +84,13 @@ void MusicRippleSpecturmObject::update(bool up)
     }
 }
 
-void MusicRippleSpecturmObject::init(QVBoxLayout *layout, QWidget *widget)
+void MusicRippleSpecturmModule::init(QVBoxLayout *layout, QWidget *widget)
 {
     m_topAreaLayout = layout;
     m_topAreaWidget = widget;
 }
 
-void MusicRippleSpecturmObject::removeSpectrum()
+void MusicRippleSpecturmModule::removeSpectrum()
 {
     if(m_visualWidget)
     {

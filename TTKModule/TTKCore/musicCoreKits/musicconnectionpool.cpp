@@ -1,7 +1,7 @@
 #include "musicconnectionpool.h"
 #include "musicobject.h"
 #include "musicsong.h"
-#include "musicdownloadstatusobject.h"
+#include "musicdownloadstatusmodule.h"
 #ifndef MUSIC_MOBILE
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
@@ -39,7 +39,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         return;
     }
 
-    if(from == MusicNetworkThread::getClassName() && to == MusicDownloadStatusObject::getClassName())
+    if(from == MusicNetworkThread::getClassName() && to == MusicDownloadStatusModule::getClassName())
     {
         QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second, SLOT(networkConnectionStateChanged(bool)));
     }
@@ -74,7 +74,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(musicSongToPlaylistChanged(QString,QString,QString,bool)), second, SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
     }
-    else if(from == MusicLrcLocalLinkWidget::getClassName() && to == MusicDownloadStatusObject::getClassName())
+    else if(from == MusicLrcLocalLinkWidget::getClassName() && to == MusicDownloadStatusModule::getClassName())
     {
         QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second, SLOT(showDownLoadInfoFinished(QString)));
     }

@@ -4,7 +4,7 @@
 #include "musicquerymovierequest.h"
 #include "musicsimilarrequest.h"
 #include "musicrightareawidget.h"
-#include "musicpagingwidgetobject.h"
+#include "musicpagingwidgetmodule.h"
 #include "musictinyuiobject.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
@@ -149,7 +149,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
     if(!m_initialized)
     {
         m_initialized = true;
-        m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
+        m_pagingWidgetObject = new MusicPagingWidgetModule(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());

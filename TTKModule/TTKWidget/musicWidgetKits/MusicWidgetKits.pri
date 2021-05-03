@@ -38,7 +38,7 @@ HEADERS  += \
     $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicdownloadmgmtwidget.h \
-    $$PWD/musicdownloadstatusobject.h \
+    $$PWD/musicdownloadstatusmodule.h \
     $$PWD/musicsongsharingwidget.h \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
@@ -66,7 +66,7 @@ HEADERS  += \
     $$PWD/musicrecommendquerywidget.h \
     $$PWD/musicartistlistquerywidget.h \
     $$PWD/musicartistlistquerycategorypopwidget.h \
-    $$PWD/musicripplespecturmobject.h \
+    $$PWD/musicripplespecturmmodule.h \
     $$PWD/musicpluginwidget.h
 
 
@@ -90,7 +90,7 @@ SOURCES += \
     $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicdownloadmgmtwidget.cpp \
-    $$PWD/musicdownloadstatusobject.cpp \
+    $$PWD/musicdownloadstatusmodule.cpp \
     $$PWD/musicsongsharingwidget.cpp \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
@@ -118,5 +118,5 @@ SOURCES += \
     $$PWD/musicrecommendquerywidget.cpp \
     $$PWD/musicartistlistquerywidget.cpp \
     $$PWD/musicartistlistquerycategorypopwidget.cpp \
-    $$PWD/musicripplespecturmobject.cpp \
+    $$PWD/musicripplespecturmmodule.cpp \
     $$PWD/musicpluginwidget.cpp

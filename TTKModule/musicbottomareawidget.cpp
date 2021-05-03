@@ -7,7 +7,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicrightareawidget.h"
-#include "musicripplespecturmobject.h"
+#include "musicripplespecturmmodule.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
@@ -21,7 +21,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
-    m_musicRippleObject = new MusicRippleSpecturmObject(this);
+    m_musicRippleObject = new MusicRippleSpecturmModule(this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()

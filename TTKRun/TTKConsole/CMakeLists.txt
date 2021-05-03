@@ -14,11 +14,11 @@ add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
     ../musicrunglobaldefine.h
-    musicconsoleobject.h
+    musicconsolemodule.h
   )
 
 set(MUSIC_SOURCES
-    musicconsoleobject.cpp
+    musicconsolemodule.cpp
     musicconsolemain.cpp
   )
 

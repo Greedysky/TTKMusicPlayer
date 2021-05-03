@@ -1,5 +1,5 @@
 #include "musicsoundkmicrosettingpopwidget.h"
-#include "musicaudiorecorderobject.h"
+#include "musicaudiorecordermodule.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
@@ -88,7 +88,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     m_menu->setStyleSheet(MusicUIObject::MQSSMenuStyle05);
 }
 
-void MusicSoundKMicroSettingPopWidget::setAudioCore(MusicAudioRecorderObject *core)
+void MusicSoundKMicroSettingPopWidget::setAudioCore(MusicAudioRecorderModule *core)
 {
     m_recordCore = core;
     volumeChanged(100);

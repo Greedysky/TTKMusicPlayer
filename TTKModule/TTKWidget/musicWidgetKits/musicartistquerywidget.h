@@ -68,7 +68,7 @@ protected:
 
 };
 
-class MusicPagingWidgetObject;
+class MusicPagingWidgetModule;
 
 /*! @brief The class of the artist mvs query widget.
  * @author Greedysky <greedysky@163.com>
@@ -115,7 +115,7 @@ public Q_SLOTS:
 protected:
     QGridLayout *m_gridLayout;
     bool m_initialized;
-    MusicPagingWidgetObject *m_pagingWidgetObject;
+    MusicPagingWidgetModule *m_pagingWidgetObject;
 
 };
 

@@ -2,7 +2,7 @@
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musictoolsetsuiobject.h"
 
 #include <QButtonGroup>
@@ -253,7 +253,7 @@ void MusicTimerWidget::initThreeWidget()
 void MusicTimerWidget::saveResults()
 {
     writeParemeter();
-    MusicApplicationObject::instance()->musicToolSetsParameter();
+    MusicApplicationModule::instance()->musicToolSetsParameter();
     close();
 }
 

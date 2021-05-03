@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicmagicwidgetuiobject.h"
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musicrightareawidget.h"
 ///qmmp incldue
 #include "effect.h"
@@ -98,7 +98,7 @@ MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
 
     initWidget();
 
-    connect(MusicApplicationObject::instance(), SIGNAL(enhancedMusicChanged(int)), SLOT(setEnhancedMusicConfig(int)));
+    connect(MusicApplicationModule::instance(), SIGNAL(enhancedMusicChanged(int)), SLOT(setEnhancedMusicConfig(int)));
     connect(m_menu, SIGNAL(windowStateChanged(bool)), SLOT(buttonAnimationChanged(bool)));
 }
 

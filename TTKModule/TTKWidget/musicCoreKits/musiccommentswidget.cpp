@@ -7,7 +7,7 @@
 #include "ttkglobal.h"
 #include "musicclickedlabel.h"
 #include "musicsemaphoreloop.h"
-#include "musicpagingwidgetobject.h"
+#include "musicpagingwidgetmodule.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 
@@ -377,7 +377,7 @@ void MusicCommentsWidget::deleteCommentsItems()
 
 void MusicCommentsWidget::createPagingWidget()
 {
-    m_pagingWidgetObject = new MusicPagingWidgetObject(this);
+    m_pagingWidgetObject = new MusicPagingWidgetModule(this);
     connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
     const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());

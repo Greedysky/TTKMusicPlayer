@@ -24,7 +24,7 @@
 #include "musiccategoryconfigmanager.h"
 
 class QGridLayout;
-class MusicPagingWidgetObject;
+class MusicPagingWidgetModule;
 class MusicArtistListQueryCategoryPopWidget;
 
 /*! @brief The class of the artist list music item widget.
@@ -119,7 +119,7 @@ protected:
     bool m_initialized, m_categoryChanged;
     QString m_categoryId;
     QGridLayout *m_gridLayout;
-    MusicPagingWidgetObject *m_pagingWidgetObject;
+    MusicPagingWidgetModule *m_pagingWidgetObject;
     MusicArtistListQueryCategoryPopWidget *m_categoryButton;
 
 };

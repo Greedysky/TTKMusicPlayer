@@ -13,7 +13,7 @@
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musichotkeymanager.h"
 #include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
@@ -39,7 +39,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 #else
     setAttribute(Qt::WA_TranslucentBackground, false);
 #endif
-    m_applicationObject = new MusicApplicationObject(this);
+    m_applicationObject = new MusicApplicationModule(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_rightAreaWidget = new MusicRightAreaWidget(this);

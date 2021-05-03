@@ -1,5 +1,5 @@
-#ifndef MUSICPAGINGWIDGETOBJECT_H
-#define MUSICPAGINGWIDGETOBJECT_H
+#ifndef MUSICDEVICEINFOMODULE_H
+#define MUSICDEVICEINFOMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,57 +19,59 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include <QProcess>
 #include "musicglobaldefine.h"
 
-class MusicClickedLabel;
-
-/*! @brief The class of the paging widget object.
+/*! @brief The class of the system device info item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPagingWidgetObject : public QObject
+typedef struct MUSIC_TOOL_EXPORT MusicDeviceInfoItem
+{
+    QString m_name;
+    QString m_path;
+    int m_availableBytes;
+    int m_totalBytes;
+}MusicDeviceInfoItem;
+TTK_DECLARE_LISTS(MusicDeviceInfoItem)
+
+
+/*! @brief The class of the system device info.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOLSET_EXPORT MusicDeviceInfoModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPagingWidgetObject)
+    TTK_DECLARE_MODULE(MusicDeviceInfoModule)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPagingWidgetObject(QObject *parent = nullptr);
+    explicit MusicDeviceInfoModule(QObject *parent = nullptr);
 
-    virtual ~MusicPagingWidgetObject();
+    ~MusicDeviceInfoModule();
 
     /*!
-     * Get create paging widget.
+     * Get removable drive property.
      */
-    QWidget* getCreatePagingWidget();
+    bool getDisksProperty(const QString &drive) const;
     /*!
-     * Create paging items.
+     * Get removable drive name.
      */
-    QWidget* createPagingWidget(QWidget *parent, int total);
-    /*!
-     * Reset page to origin.
-     */
-    void reset(int total);
-    /*!
-     * Start to page by given index and total.
-     */
-    void paging(int index, int total);
-    /*!
-     * Get current page index.
-     */
-    int currentIndex() const;
+    MusicDeviceInfoItems getRemovableDrive();
 
-Q_SIGNALS:
+#ifdef Q_OS_UNIX
+private Q_SLOTS:
     /*!
-     * Mapped the clicked page index.
+     * Read data from device thread.
      */
-    void clicked(int index);
+    void readData();
 
-protected:
-    int m_currentPage;
-    QWidget *m_pagingWidget;
-    QList<MusicClickedLabel*> m_pagingItems;
+private:
+    QProcess* m_dfProcess;
+#endif
+private:
+    MusicDeviceInfoItems m_items;
 
 };
 
-#endif // MUSICPAGINGWIDGETOBJECT_H
+#endif // MUSICDEVICEINFOMODULE_H

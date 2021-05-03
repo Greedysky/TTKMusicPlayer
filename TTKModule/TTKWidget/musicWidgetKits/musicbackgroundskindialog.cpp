@@ -6,7 +6,7 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicobject.h"
 #include "musictopareawidget.h"
-#include "musicapplicationobject.h"
+#include "musicapplicationmodule.h"
 #include "musicfileutils.h"
 #include "musicsettingmanager.h"
 #include "musicextractwrap.h"
@@ -82,7 +82,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
     connect(m_backgroundList, SIGNAL(itemClicked(QString)), SLOT(backgroundListWidgetItemClicked(QString)));
     connect(m_myBackgroundList, SIGNAL(itemClicked(QString)), SLOT(myBackgroundListWidgetItemClicked(QString)));
-    connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicResetWindow()));
+    connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicResetWindow()));
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()

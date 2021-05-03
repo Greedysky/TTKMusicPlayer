@@ -1,5 +1,5 @@
-#ifndef MUSICAPPLICATIONOBJECT_H
-#define MUSICAPPLICATIONOBJECT_H
+#ifndef MusicApplicationModule_H
+#define MusicApplicationModule_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -24,7 +24,7 @@
 #include <QPropertyAnimation>
 
 class QDeviceWatcher;
-class MusicTimerAutoObject;
+class MusicTimerAutoModule;
 class MusicMobileDevicesWidget;
 class MusicSourceUpdateRequest;
 class MusicDownloadCounterPVRequest;
@@ -33,22 +33,22 @@ class MusicScreenSaverBackgroundWidget;
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicApplicationObject : public QObject
+class MUSIC_GUI_EXPORT MusicApplicationModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicApplicationObject)
+    TTK_DECLARE_MODULE(MusicApplicationModule)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicApplicationObject(QObject *parent = nullptr);
+    explicit MusicApplicationModule(QObject *parent = nullptr);
 
-    ~MusicApplicationObject();
+    ~MusicApplicationModule();
 
     /*!
      * Get class object instance.
      */
-    static MusicApplicationObject *instance();
+    static MusicApplicationModule *instance();
     /*!
      * Get current window is to top.
      */
@@ -165,7 +165,7 @@ protected:
     bool m_setWindowToTop;
     bool m_leftSideByOn, m_rightSideByOn;
     QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
-    MusicTimerAutoObject *m_musicTimerAutoObject;
+    MusicTimerAutoModule *m_MusicTimerAutoModule;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
@@ -174,8 +174,8 @@ protected:
     MusicDownloadCounterPVRequest *m_counterPVThread;
     MusicScreenSaverBackgroundWidget *m_screenSaverWidget;
 
-    static MusicApplicationObject *m_instance;
+    static MusicApplicationModule *m_instance;
 
 };
 
-#endif // MUSICAPPLICATIONOBJECT_H
+#endif // MusicApplicationModule_H

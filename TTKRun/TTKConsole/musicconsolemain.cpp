@@ -1,4 +1,4 @@
-#include "musicconsoleobject.h"
+#include "musicconsolemodule.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,6 +8,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
 
-    MusicConsoleObject object;
+    MusicConsoleModule object;
     return object.init(app);
 }

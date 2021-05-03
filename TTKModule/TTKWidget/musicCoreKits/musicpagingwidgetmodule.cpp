@@ -1,4 +1,4 @@
-#include "musicpagingwidgetobject.h"
+#include "musicpagingwidgetmodule.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
@@ -7,25 +7,25 @@
 
 #define PAGE_SIZE   10
 
-MusicPagingWidgetObject::MusicPagingWidgetObject(QObject *parent)
+MusicPagingWidgetModule::MusicPagingWidgetModule(QObject *parent)
     : QObject(parent)
 {
     m_currentPage = 0;
     m_pagingWidget = nullptr;
 }
 
-MusicPagingWidgetObject::~MusicPagingWidgetObject()
+MusicPagingWidgetModule::~MusicPagingWidgetModule()
 {
     qDeleteAll(m_pagingItems);
     delete m_pagingWidget;
 }
 
-QWidget* MusicPagingWidgetObject::getCreatePagingWidget()
+QWidget* MusicPagingWidgetModule::getCreatePagingWidget()
 {
     return m_pagingWidget;
 }
 
-QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
+QWidget* MusicPagingWidgetModule::createPagingWidget(QWidget *parent, int total)
 {
     m_pagingWidget = new QWidget(parent);
     QHBoxLayout *layout = new QHBoxLayout(m_pagingWidget);
@@ -92,7 +92,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     return m_pagingWidget;
 }
 
-void MusicPagingWidgetObject::reset(int total)
+void MusicPagingWidgetModule::reset(int total)
 {
     if(m_pagingItems.isEmpty())
     {
@@ -118,7 +118,7 @@ void MusicPagingWidgetObject::reset(int total)
     }
 }
 
-void MusicPagingWidgetObject::paging(int index, int total)
+void MusicPagingWidgetModule::paging(int index, int total)
 {
     if(total <= 0)
     {
@@ -212,7 +212,7 @@ void MusicPagingWidgetObject::paging(int index, int total)
     w->setFixedWidth(w->width() + 5);
 }
 
-int MusicPagingWidgetObject::currentIndex() const
+int MusicPagingWidgetModule::currentIndex() const
 {
     return m_pagingItems[m_currentPage]->text().toInt();
 }

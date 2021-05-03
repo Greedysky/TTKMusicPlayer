@@ -1,5 +1,5 @@
-#ifndef MUSICCONSOLEOBJECT_H
-#define MUSICCONSOLEOBJECT_H
+#ifndef MusicConsoleModule_H
+#define MusicConsoleModule_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -29,16 +29,16 @@ class MusicPlaylist;
 /*! @brief The class of the music console object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_RUN_EXPORT MusicConsoleObject : public QObject
+class MUSIC_RUN_EXPORT MusicConsoleModule : public QObject
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConsoleObject(QObject *parent = nullptr);
+    explicit MusicConsoleModule(QObject *parent = nullptr);
 
-    ~MusicConsoleObject();
+    ~MusicConsoleModule();
 
     /*!
      * Init all parameter.
@@ -140,4 +140,4 @@ protected:
 
 };
 
-#endif // MUSICCONSOLEOBJECT_H
+#endif // MusicConsoleModule_H

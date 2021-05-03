@@ -14,7 +14,7 @@
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
-#include "musicaudiorecorderobject.h"
+#include "musicaudiorecordermodule.h"
 #include "musiccodecutils.h"
 #include "musicfileutils.h"
 #include "musicsinglemanager.h"
@@ -77,7 +77,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
         m_musicLrcContainer.append(w);
     }
 
-    m_recordCore = new MusicAudioRecorderObject(this);
+    m_recordCore = new MusicAudioRecorderModule(this);
     m_ui->transferButton->setAudioCore(m_recordCore);
 
 #ifdef Q_OS_UNIX

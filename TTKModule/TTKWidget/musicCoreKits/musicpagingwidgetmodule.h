@@ -1,5 +1,5 @@
-#ifndef MUSICRIPPLESPECTURMOBJECT_H
-#define MUSICRIPPLESPECTURMOBJECT_H
+#ifndef MusicPagingWidgetModule_H
+#define MusicPagingWidgetModule_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,54 +19,57 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
-#include <QBoxLayout>
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the ripples spectrum object.
+class MusicClickedLabel;
+
+/*! @brief The class of the paging widget object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicRippleSpecturmObject : public QObject
+class MUSIC_WIDGET_EXPORT MusicPagingWidgetModule : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRippleSpecturmObject)
+    TTK_DECLARE_MODULE(MusicPagingWidgetModule)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRippleSpecturmObject(QObject *parent = nullptr);
+    explicit MusicPagingWidgetModule(QObject *parent = nullptr);
 
-    ~MusicRippleSpecturmObject();
+    virtual ~MusicPagingWidgetModule();
 
     /*!
-     * Set ripple spectrum show or not.
+     * Get create paging widget.
      */
-    void setVisible(bool v);
+    QWidget* getCreatePagingWidget();
     /*!
-     * Set ripple spectrum show.
+     * Create paging items.
      */
-    void show();
+    QWidget* createPagingWidget(QWidget *parent, int total);
     /*!
-     * Set ripple spectrum hide.
+     * Reset page to origin.
      */
-    void close();
+    void reset(int total);
     /*!
-     * Update ripple spectrum paramters.
+     * Start to page by given index and total.
      */
-    void update(bool up);
+    void paging(int index, int total);
     /*!
-     * Init ripple spectrum paramters.
+     * Get current page index.
      */
-    void init(QVBoxLayout *layout, QWidget *widget);
+    int currentIndex() const;
 
-private:
+Q_SIGNALS:
     /*!
-     * Remove ripple spectrum object.
+     * Mapped the clicked page index.
      */
-    void removeSpectrum();
+    void clicked(int index);
 
-    QVBoxLayout *m_topAreaLayout;
-    QWidget *m_topAreaWidget, *m_visualWidget;
+protected:
+    int m_currentPage;
+    QWidget *m_pagingWidget;
+    QList<MusicClickedLabel*> m_pagingItems;
+
 };
 
-#endif // MUSICRIPPLESPECTURMOBJECT_H
+#endif // MusicPagingWidgetModule_H

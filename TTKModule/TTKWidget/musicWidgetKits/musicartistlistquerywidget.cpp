@@ -3,7 +3,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
 #include "musicartistlistquerycategorypopwidget.h"
-#include "musicpagingwidgetobject.h"
+#include "musicpagingwidgetmodule.h"
 #include "musicrightareawidget.h"
 #include "musicclickedgroup.h"
 
@@ -158,7 +158,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
         mainlayout->addWidget(line);
         mainlayout->addWidget(containWidget);
 
-        m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
+        m_pagingWidgetObject = new MusicPagingWidgetModule(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
