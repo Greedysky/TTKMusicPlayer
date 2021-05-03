@@ -106,7 +106,7 @@ QList<VisualFactory*> *Visual::m_factories = nullptr;
 QHash<const VisualFactory*, QString> *Visual::m_files = nullptr;
 QList<Visual*> Visual::m_visuals;
 QHash<VisualFactory*, Visual*> Visual::m_vis_map;
-QWidget *Visual::m_parentWidget = nullptr;
+QWidget *Visual::m_parentClass = nullptr;
 QObject *Visual::m_receiver = nullptr;
 const char *Visual::m_member = nullptr;
 VisualBuffer Visual::m_buffer;
@@ -137,9 +137,9 @@ void Visual::setEnabled(VisualFactory *factory, bool enable)
     {
         if(!visList.contains(name))
             visList << name;
-        if(!m_vis_map.value(factory) && m_parentWidget)
+        if(!m_vis_map.value(factory) && m_parentClass)
         {
-            Visual* visual = factory->create(m_parentWidget);
+            Visual* visual = factory->create(m_parentClass);
             if(m_receiver && m_member)
                 connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
             visual->setWindowFlags(Qt::Window);
@@ -193,7 +193,7 @@ void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
 {
     m_receiver = receiver;
     m_member = member;
-    m_parentWidget = parent;
+    m_parentClass = parent;
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("Visualization/enabled_plugins", QStringList());

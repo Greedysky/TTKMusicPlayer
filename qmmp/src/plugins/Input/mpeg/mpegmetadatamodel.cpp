@@ -150,9 +150,9 @@ MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file,
     if(m_type == TagLib::MPEG::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
-        m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray());
+        m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "GB18030").toByteArray());
         if(!m_codec)
-            QTextCodec::codecForName("ISO-8859-1");
+            QTextCodec::codecForName("GB18030");
     }
     else if(m_type == TagLib::MPEG::File::ID3v2)
     {

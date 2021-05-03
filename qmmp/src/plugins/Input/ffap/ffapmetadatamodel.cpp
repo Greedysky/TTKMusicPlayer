@@ -67,7 +67,7 @@ FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::T
     if(m_type == TagLib::APE::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
-        m_codec = QTextCodec::codecForName("ISO-8859-1");
+        m_codec = QTextCodec::codecForName("GB18030");
     }
     else
     {

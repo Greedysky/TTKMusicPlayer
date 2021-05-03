@@ -152,7 +152,7 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
             switch((uint) tag_array[i])
             {
             case SettingsDialog::ID3v1:
-                codecName = settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray();
+                codecName = settings.value("ID3v1_encoding", "GB18030").toByteArray();
                 tag = fileRef.ID3v1Tag();
                 break;
             case SettingsDialog::ID3v2:
