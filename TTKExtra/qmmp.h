@@ -26,7 +26,7 @@
 
 #define QMMP_VERSION_MAJOR 1
 #define QMMP_VERSION_MINOR 4
-#define QMMP_VERSION_PATCH 4
+#define QMMP_VERSION_PATCH 5
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
 
@@ -46,6 +46,8 @@
 #ifndef qUtf8Printable
 #define qUtf8Printable(s) QString(s).toUtf8().constData()
 #endif
+
+#define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
 #ifndef TTK_AS_CONST
 #if (QT_VERSION < QT_VERSION_CHECK(5,7,0))

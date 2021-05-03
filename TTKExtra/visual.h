@@ -182,7 +182,7 @@ private:
     static void checkFactories();
     static QList<Visual*> m_visuals;
     static QHash<VisualFactory*, Visual*> m_vis_map; //internal visualization
-    static QWidget *m_parentWidget;
+    static QWidget *m_parentClass;
     static QObject *m_receiver;
     static const char *m_member;
     static VisualBuffer m_buffer;
