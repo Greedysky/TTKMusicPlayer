@@ -15,7 +15,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
     : QObject(parent)
 {
     m_previousState = true;
-    m_parentWidget = TTKStatic_cast(MusicApplication*, parent);
+    m_parentClass = TTKStatic_cast(MusicApplication*, parent);
 
     G_CONNECTION_PTR->setValue(getClassName(), this);
 #ifndef MUSIC_MOBILE
@@ -34,11 +34,11 @@ void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
     ///If the lyrics download finished immediately loaded to display
     if(type == "DownloadLrc")
     {
-        m_parentWidget->musicLoadCurrentSongLrc();
+        m_parentClass->musicLoadCurrentSongLrc();
     }
     else if(type == "DownloadSmallBackground")
     {
-        m_parentWidget->updateCurrentArtist();
+        m_parentClass->updateCurrentArtist();
     }
 }
 
@@ -71,12 +71,12 @@ void MusicDownloadStatusObject::checkLrcValid()
     if(checkSettingParameterValue())
     {
         ///Check there is no opening lyrics display mode
-       if(m_parentWidget->checkMusicListCurrentIndex())
+       if(m_parentClass->checkMusicListCurrentIndex())
        {
            return;
        }
 
-       const QString &filename = m_parentWidget->getCurrentFileName();
+       const QString &filename = m_parentClass->getCurrentFileName();
        ///Check if the file exists
        if(QFile::exists(MusicUtils::String::lrcPrefix() + filename + LRC_FILE) || QFile::exists(MusicUtils::String::lrcPrefix() + filename + KRC_FILE))
        {

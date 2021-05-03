@@ -82,7 +82,7 @@ private:
      */
     virtual void paintEvent(QPaintEvent *event) override;
 
-    QObject *m_parentObject;
+    QObject *m_parentClass;
     bool m_leftDirection, m_painetLineDone;
     int m_intervalCount, m_itemDelta;
     int m_currentIndex, m_paintIndex;

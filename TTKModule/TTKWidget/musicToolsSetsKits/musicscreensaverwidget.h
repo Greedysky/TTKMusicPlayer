@@ -77,7 +77,7 @@ protected:
 
     int m_index;
     QString m_path;
-    QLabel *m_parent;
+    QLabel *m_parentClass;
     QPushButton *m_enableButton;
 };
 

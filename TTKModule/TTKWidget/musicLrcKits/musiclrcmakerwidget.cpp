@@ -24,7 +24,8 @@
 #define ITEM_HEIGHT     40
 
 MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
-    : QLabel(ui), m_parentObject(parent)
+    : QLabel(ui),
+      m_parentClass(parent)
 {
     setStyleSheet(MusicUIObject::MQSSBorderStyle02 + MusicUIObject::MQSSBackgroundStyle17);
     setFixedSize(650, ITEM_HEIGHT);
@@ -108,7 +109,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
-        QTimer::singleShot(MT_MS, m_parentObject, SLOT(currentLineFinished()));
+        QTimer::singleShot(MT_MS, m_parentClass, SLOT(currentLineFinished()));
     }
     update();
 }

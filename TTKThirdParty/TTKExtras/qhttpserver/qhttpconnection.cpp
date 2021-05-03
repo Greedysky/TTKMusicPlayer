@@ -26,7 +26,7 @@ public:
     static int Body(http_parser *parser, const char *at, size_t length);
     static int MessageComplete(http_parser *parser);
 
-    QHttpConnection *m_parent;
+    QHttpConnection *m_parentClass;
     QTcpSocket *m_socket;
     http_parser *m_parser;
     http_parser_settings *m_parserSettings;
@@ -101,7 +101,7 @@ void QHttpConnectionPrivate::writeCount(qint64 count)
     {
         m_transmitLen = 0;
         m_transmitPos = 0;
-        Q_EMIT m_parent->allBytesWritten();
+        Q_EMIT m_parentClass->allBytesWritten();
     }
 }
 
@@ -130,7 +130,7 @@ QHttpConnection::QHttpConnection(QTcpSocket *socket, QObject *parent)
     TTK_INIT_PRIVATE(QHttpConnection);
     TTK_D(QHttpConnection);
     d->m_socket = socket;
-    d->m_parent = this;
+    d->m_parentClass = this;
 
     connect(socket, SIGNAL(readyRead()), this, SLOT(parseRequest()));
     connect(socket, SIGNAL(disconnected()), this, SLOT(socketDisconnected()));
@@ -247,11 +247,11 @@ int QHttpConnectionPrivate::MessageBegin(http_parser *parser)
 
     // The QHttpRequest should not be parented to this, since it's memory
     // management is the responsibility of the user of the library.
-    theConnection->m_request = new QHttpRequest(theConnection->m_parent);
+    theConnection->m_request = new QHttpRequest(theConnection->m_parentClass);
 
     // Invalidate the request when it is deleted to prevent keep-alive requests
     // from calling a signal on a deleted object.
-    QObject::connect(theConnection->m_request, SIGNAL(destroyed(QObject*)), theConnection->m_parent, SLOT(invalidateRequest()));
+    QObject::connect(theConnection->m_request, SIGNAL(destroyed(QObject*)), theConnection->m_parentClass, SLOT(invalidateRequest()));
 
     return 0;
 }
@@ -285,17 +285,17 @@ int QHttpConnectionPrivate::HeadersComplete(http_parser *parser)
     theConnection->m_request->setRemoteAddress(theConnection->m_socket->peerAddress().toString());
     theConnection->m_request->setRemotePort(theConnection->m_socket->peerPort());
 
-    QHttpResponse *response = new QHttpResponse(theConnection->m_parent);
+    QHttpResponse *response = new QHttpResponse(theConnection->m_parentClass);
     if(parser->http_major < 1 || parser->http_minor < 1)
     {
         response->setKeepAlive(false);
     }
 
-    QObject::connect(theConnection->m_parent, SIGNAL(destroyed()), response, SLOT(connectionClosed()));
-    QObject::connect(response, SIGNAL(done()), theConnection->m_parent, SLOT(responseDone()));
+    QObject::connect(theConnection->m_parentClass, SIGNAL(destroyed()), response, SLOT(connectionClosed()));
+    QObject::connect(response, SIGNAL(done()), theConnection->m_parentClass, SLOT(responseDone()));
 
     // we are good to go!
-    Q_EMIT theConnection->m_parent->newRequest(theConnection->m_request, response);
+    Q_EMIT theConnection->m_parentClass->newRequest(theConnection->m_request, response);
     return 0;
 }
 

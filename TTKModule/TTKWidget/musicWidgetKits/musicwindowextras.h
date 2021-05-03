@@ -51,14 +51,6 @@ public:
      */
     void setCurrentPlayStatus(bool status) const;
     /*!
-     * Set current value.
-     */
-    void setValue(int value) const;
-    /*!
-     * Set current range from start to end.
-     */
-    void setRange(int start, int end) const;
-    /*!
      * Enable or disable blur behind window.
      */
     void disableBlurBehindWindow(bool enable);
@@ -70,21 +62,11 @@ public:
 protected:
 #if defined Q_OS_WIN && defined TTK_WINEXTRAS
     /*!
-     * Create jump list.
-     */
-    void createJumpList() const;
-    /*!
-     * Create taskbar.
-     */
-    void createTaskbar();
-    /*!
      * Create thumbnail toolBar.
      */
     void createThumbnailToolBar();
 
-    MusicApplication *m_superClass;
-    QWinTaskbarButton *m_taskbarButton;
-    QWinTaskbarProgress *m_taskbarProgress;
+    MusicApplication *m_parentClass;
     QWinThumbnailToolBar *m_thumbnailToolBar;
     QWinThumbnailToolButton *m_playToolButton;
     QWinThumbnailToolButton *m_forwardToolButton;
