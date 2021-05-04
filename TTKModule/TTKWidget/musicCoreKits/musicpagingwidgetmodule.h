@@ -1,5 +1,5 @@
-#ifndef MusicPagingWidgetModule_H
-#define MusicPagingWidgetModule_H
+#ifndef MUSICPAGINGWIDGETMODULE_H
+#define MUSICPAGINGWIDGETMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -72,4 +72,4 @@ protected:
 
 };
 
-#endif // MusicPagingWidgetModule_H
+#endif // MUSICPAGINGWIDGETMODULE_H

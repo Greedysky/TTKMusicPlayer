@@ -1,5 +1,5 @@
-#ifndef MusicApplicationModule_H
-#define MusicApplicationModule_H
+#ifndef MUSICAPPLICATIONMODULE_H
+#define MUSICAPPLICATIONMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -178,4 +178,4 @@ protected:
 
 };
 
-#endif // MusicApplicationModule_H
+#endif // MUSICAPPLICATIONMODULE_H

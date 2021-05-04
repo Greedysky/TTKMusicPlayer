@@ -1,5 +1,5 @@
-#ifndef MusicAudioRecorderModule_H
-#define MusicAudioRecorderModule_H
+#ifndef MUSICAUDIORECORDERMODULE_H
+#define MUSICAUDIORECORDERMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -114,4 +114,4 @@ protected:
 
 };
 
-#endif // MusicAudioRecorderModule_H
+#endif // MUSICAUDIORECORDERMODULE_H

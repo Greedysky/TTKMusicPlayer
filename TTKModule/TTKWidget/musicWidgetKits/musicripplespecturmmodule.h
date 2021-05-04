@@ -1,5 +1,5 @@
-#ifndef MusicRippleSpecturmModule_H
-#define MusicRippleSpecturmModule_H
+#ifndef MUSICRIPPLESPECTURMMODULE_H
+#define MUSICRIPPLESPECTURMMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -69,4 +69,4 @@ private:
     QWidget *m_topAreaWidget, *m_visualWidget;
 };
 
-#endif // MusicRippleSpecturmModule_H
+#endif // MUSICRIPPLESPECTURMMODULE_H

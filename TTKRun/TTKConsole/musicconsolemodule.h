@@ -1,5 +1,5 @@
-#ifndef MusicConsoleModule_H
-#define MusicConsoleModule_H
+#ifndef MUSICCONSOLEMODULE_H
+#define MUSICCONSOLEMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -140,4 +140,4 @@ protected:
 
 };
 
-#endif // MusicConsoleModule_H
+#endif // MUSICCONSOLEMODULE_H

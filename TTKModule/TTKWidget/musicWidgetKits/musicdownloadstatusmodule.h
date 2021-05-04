@@ -1,5 +1,5 @@
-#ifndef MusicDownloadStatusModule_H
-#define MusicDownloadStatusModule_H
+#ifndef MUSICDOWNLOADSTATUSMODULE_H
+#define MUSICDOWNLOADSTATUSMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -68,4 +68,4 @@ protected:
 
 };
 
-#endif // MusicDownloadStatusModule_H
+#endif // MUSICDOWNLOADSTATUSMODULE_H

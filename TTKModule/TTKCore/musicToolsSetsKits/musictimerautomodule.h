@@ -1,5 +1,5 @@
-#ifndef MusicTimerAutoModule_H
-#define MusicTimerAutoModule_H
+#ifndef MUSICTIMERAUTOMODULE_H
+#define MUSICTIMERAUTOMODULE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -83,4 +83,4 @@ protected:
 
 };
 
-#endif // MusicTimerAutoModule_H
+#endif // MUSICTIMERAUTOMODULE_H
