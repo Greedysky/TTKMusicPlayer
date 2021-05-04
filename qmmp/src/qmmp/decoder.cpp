@@ -346,3 +346,17 @@ QList<DecoderFactory *> Decoder::enabledFactories()
     }
     return list;
 }
+
+QStringList Decoder::nameFilters()
+{
+    loadPlugins();
+    QStringList filters;
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+
+        filters << item->filters();
+    }
+    return filters;
+}

@@ -108,6 +108,20 @@ QList<EngineFactory *> AbstractEngine::enabledFactories()
     return list;
 }
 
+QStringList AbstractEngine::nameFilters()
+{
+    loadPlugins();
+    QStringList filters;
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+
+        filters << item->filters();
+    }
+    return filters;
+}
+
 EngineFactory *AbstractEngine::findByFilePath(const QString& source)
 {
     loadPlugins();

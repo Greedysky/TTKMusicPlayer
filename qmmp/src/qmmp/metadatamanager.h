@@ -62,7 +62,7 @@ public:
      */
     QStringList filters() const;
     /*!
-     * Returns a list of file name filters, i.e. "*.mp3 *.mpg"
+     * Returns a list of file name filters, i.e. "*.mp3 *.mpg".
      */
     QStringList nameFilters() const;
     /*!

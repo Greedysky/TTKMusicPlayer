@@ -22,16 +22,16 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
     key.remove(0,1);
 #endif
     if(settings->allKeys().contains(key))
-
     {
         QStringList values = settings->value(m_path).toStringList();
-        if(values.count() != 3)
+        if(values.count() != 4)
             update = true;
         else
         {
             m_shortName = values.at(0);
             m_priority = values.at(1).toInt();
-            update = (info.lastModified().toString(Qt::ISODate) != values.at(2));
+            m_filters = values.at(2).split(";");
+            update = (info.lastModified().toString(Qt::ISODate) != values.at(3));
         }
     }
     else
@@ -44,6 +44,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
         {
             m_shortName = factory->properties().shortName;
             m_priority = factory->properties().priority;
+            m_filters = factory->properties().filters;
         }
         else if(OutputFactory *factory = outputFactory())
         {
@@ -54,6 +55,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
         {
             m_shortName = factory->properties().shortName;
             m_priority = 0;
+            m_filters = factory->properties().filters;
         }
         else if(EffectFactory *factory = effectFactory())
         {
@@ -76,6 +78,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
             QStringList values;
             values << m_shortName;
             values << QString::number(m_priority);
+            values << m_filters.join(";");
             values << info.lastModified().toString(Qt::ISODate);
             settings->setValue(m_path, values);
             qDebug("QmmpPluginCache: added cache item \"%s=%s\"",
@@ -93,6 +96,11 @@ const QString QmmpPluginCache::shortName() const
 const QString QmmpPluginCache::file() const
 {
     return m_path;
+}
+
+const QStringList &QmmpPluginCache::filters() const
+{
+    return m_filters;
 }
 
 int QmmpPluginCache::priority() const
