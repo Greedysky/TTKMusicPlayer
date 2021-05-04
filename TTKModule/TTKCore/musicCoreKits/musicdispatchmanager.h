@@ -31,7 +31,7 @@ typedef struct MUSIC_CORE_EXPORT MusicDispatchItem
 {
     int m_type;
     int m_times;
-    QList<QVariant> m_args;
+    TTKVariantList m_args;
     MusicDispatchItem()
     {
         m_times = 0;
@@ -67,7 +67,7 @@ public:
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4);
-    void dispatch(int type, const QList<QVariant> &args);
+    void dispatch(int type, const TTKVariantList &args);
     void dispatch(int type, void *funcs);
 
 private Q_SLOTS:

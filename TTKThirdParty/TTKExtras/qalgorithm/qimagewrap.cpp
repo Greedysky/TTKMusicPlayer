@@ -168,7 +168,7 @@ public:
 
     int m_row;
     int m_column;
-    QList<int> m_data;
+    TTKIntList m_data;
 };
 
 CubeWavePrivate::CubeWavePrivate()

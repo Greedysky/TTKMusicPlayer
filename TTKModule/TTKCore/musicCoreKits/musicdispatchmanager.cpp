@@ -57,7 +57,7 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVaria
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QList<QVariant> &args)
+void MusicDispatchManager::dispatch(int type, const TTKVariantList &args)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
