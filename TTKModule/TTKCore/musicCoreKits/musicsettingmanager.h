@@ -38,10 +38,10 @@ public:
         ScreenSize,                      /*!< Screen Size Parameter*/
         WidgetPosition,                  /*!< Widget Position Parameter*/
         WidgetSize,                      /*!< Widget Size Parameter*/
-
+        //
         PlayMode,                        /*!< Play Mode Parameter*/
         Volume,                          /*!< Volume Parameter*/
-
+        //
         AutoPlay,                        /*!< Auto Play Parameter*/
         CurrentLanIndex,                 /*!< Current LanIndex Parameter*/
         CloseEvent,                      /*!< Close Event Parameter*/
@@ -57,7 +57,7 @@ public:
         BackgroundTransparent,           /*!< Background Transparent Parameter*/
         BackgroundListTransparent,       /*!< Background List Transparent Parameter*/
         BackgroundTransparentEnable,     /*!< Background Transparent Enable Parameter*/
-
+        //
         OtherBackgroundLossless,         /*!< Other Background Lossless Parameter*/
         OtherCheckUpdate,                /*!< Other Check Update Parameter*/
         OtherSearch,                     /*!< Other Search Optimzied Parameter*/
@@ -72,10 +72,10 @@ public:
         OtherScreenSaverEnable,          /*!< Other Screen Saver Enable Parameter*/
         OtherScreenSaverTime,            /*!< Other Screen Saver Time Parameter*/
         OtherScreenSaverIndex,           /*!< Other Screen Saver Index Parameter*/
-
+        //
         RippleSpectrumEnable,            /*!< Ripple Spectrum Enable Parameter*/
         RippleSpectrumColor,             /*!< Ripple Spectrum Color Parameter*/
-
+        //
         ShowInteriorLrc,                 /*!< Show Interior Lrc Parameter*/
         ShowCortanaLrc,                  /*!< Show Cortana Lrc Parameter*/
         LrcColor,                        /*!< Lrc Color Parameter*/
@@ -85,7 +85,7 @@ public:
         LrcFrontgroundColor,             /*!< Lrc Frontground Color Parameter*/
         LrcBackgroundColor,              /*!< Lrc Background Color Parameter*/
         LrcColorTrans,                   /*!< Lrc Color Trans Parameter*/
-
+        //
         ShowDesktopLrc,                  /*!< Show Desktop Lrc Parameter*/
         DLrcColor,                       /*!< Desktop Lrc Color Parameter*/
         DLrcSize,                        /*!< Desktop Lrc Size Parameter*/
@@ -98,7 +98,7 @@ public:
         DLrcSingleLineType,              /*!< Desktop Lrc Single Line Type Parameter*/
         DLrcLocked,                      /*!< Desktop Lrc Locked Parameter*/
         DLrcGeometry,                    /*!< Desktop Lrc Geometry Parameter*/
-
+        //
         EqualizerEnable,                 /*!< Equalizer Enable Parameter*/
         EqualizerValue,                  /*!< Equalizer Value Parameter*/
         EqualizerIndex,                  /*!< Equalizer Index Parameter*/
@@ -114,7 +114,7 @@ public:
         EnhancedSRC,                     /*!< Enhanced SRC Parameter*/
         EnhancedMonoToStereo,            /*!< Enhanced Mono To Stereo Parameter*/
         EnhancedMono,                    /*!< Enhanced Mono Parameter*/
-
+        //
         TimerAutoIndex,                  /*!< Timer Auto Index Parameter*/
         TimerAutoPlay,                   /*!< Timer Auto Play Parameter*/
         TimerAutoPlayHour,               /*!< Timer Auto Play Hour Parameter*/
@@ -130,7 +130,7 @@ public:
         TimerAutoShutdownHour,           /*!< Timer Auto Shutdown Hour Parameter*/
         TimerAutoShutdownSecond,         /*!< Timer Auto Shutdown Second Parameter*/
         TimerAutoShutdownRepeat,         /*!< Timer Auto Shutdown Repeat Parameter*/
-
+        //
         DownloadMusicPathDir,            /*!< Download Music Path Dir Parameter*/
         DownloadLrcPathDir,              /*!< Download Lrc Path Dir Parameter*/
         DownloadCacheLimit,              /*!< Download Cache Limit Parameter*/
@@ -139,16 +139,15 @@ public:
         DownloadServer,                  /*!< Download Server Parameter*/
         DownloadDLoadLimit,              /*!< Download DLoad Limit Parameter*/
         DownloadULoadLimit,              /*!< Download ULoad Limit Parameter*/
-
+        //
         HotkeyEnable,                    /*!< Hotkey Enable Parameter*/
         HotkeyString,                    /*!< Hotkey String Parameter*/
-
+        //
         NetworkCookie                    /*!< Network cookie Parameter*/
-
+        //
 #ifdef MUSIC_MOBILE
         ,MobileWifiConnect               /*!< Mobile Wifi Connect Parameter*/
 #endif
-
     };
 
     /*!

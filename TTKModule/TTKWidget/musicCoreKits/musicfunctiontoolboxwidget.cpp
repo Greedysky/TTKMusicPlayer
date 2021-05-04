@@ -25,6 +25,7 @@ MusicFunctionToolBoxTopWidget::MusicFunctionToolBoxTopWidget(int index, const QS
     QHBoxLayout *topLayout = new QHBoxLayout(this);
     topLayout->setContentsMargins(3, 0, 0, 0);
     topLayout->setSpacing(0);
+
     m_labelIcon = new QLabel(this);
     m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
     m_labelText = new QLabel(this);
