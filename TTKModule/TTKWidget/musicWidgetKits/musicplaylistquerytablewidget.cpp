@@ -16,7 +16,7 @@ void MusicPlaylistQueryTableWidget::setQueryInput(MusicAbstractQueryRequest *que
     MusicItemQueryTableWidget::setQueryInput(query);
 }
 
-void MusicPlaylistQueryTableWidget::setConnectObject(QObject *obj)
+void MusicPlaylistQueryTableWidget::setConnectClass(QObject *obj)
 {
     if(obj->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {

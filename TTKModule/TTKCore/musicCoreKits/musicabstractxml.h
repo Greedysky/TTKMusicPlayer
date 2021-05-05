@@ -108,6 +108,7 @@ public:
      * Xml stream data from byteArray.
      */
     bool fromByteArray(const QByteArray &data);
+
     /*!
      * Xml stream data to string.
      */
@@ -181,7 +182,6 @@ public:
 protected:
     QFile *m_file;
     QDomDocument *m_document;
-    MusicXmlNodeHelper *m_nodeHelper;
 
 };
 

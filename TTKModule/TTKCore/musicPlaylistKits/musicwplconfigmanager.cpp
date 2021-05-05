@@ -10,7 +10,10 @@ MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
 
 bool MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
-    const QDomNodeList &sepNodes = m_document->elementsByTagName(m_nodeHelper->nodeName("seq"));
+    MusicXmlNodeHelper nodeHelper(m_document->documentElement());
+    nodeHelper.load();
+
+    const QDomNodeList &sepNodes = m_document->elementsByTagName(nodeHelper.nodeName("seq"));
     for(int i=0; i<sepNodes.count(); ++i)
     {
         const QDomNode &node = sepNodes.at(i);

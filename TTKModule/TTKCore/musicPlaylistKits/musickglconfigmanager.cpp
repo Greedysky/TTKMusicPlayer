@@ -14,8 +14,11 @@ bool MusicKGLConfigManager::readPlaylistData(MusicSongItems &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
+    MusicXmlNodeHelper nodeHelper(m_document->documentElement());
+    nodeHelper.load();
+
     QTextCodec *codec = QTextCodec::codecForName("windows-1252");
-    const QDomNodeList &nodes = m_document->elementsByTagName(m_nodeHelper->nodeName("File"));
+    const QDomNodeList &nodes = m_document->elementsByTagName(nodeHelper.nodeName("File"));
     for(int i=0; i<nodes.count(); ++i)
     {
         MusicSong song;

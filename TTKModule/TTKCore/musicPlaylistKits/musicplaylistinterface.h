@@ -34,6 +34,7 @@ public:
     virtual ~MusicPlaylistInterface()
     {
     }
+
     /*!
      * Read datas from config file.
      */

@@ -95,9 +95,9 @@ public:
     virtual ~MusicDownloadBatchTableWidget();
 
     /*!
-     * Set parent object.
+     * Set parent class.
      */
-    void setParentObject(QWidget *parent);
+    void setParentClass(QWidget *parent);
     /*!
      * Clear All Items.
      */

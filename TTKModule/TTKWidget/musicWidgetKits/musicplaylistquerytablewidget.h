@@ -41,9 +41,9 @@ public:
      */
     virtual void setQueryInput(MusicAbstractQueryRequest *query) override;
     /*!
-     * Set connect object.
+     * Set connect class.
      */
-    void setConnectObject(QObject *obj);
+    void setConnectClass(QObject *obj);
 
 };
 

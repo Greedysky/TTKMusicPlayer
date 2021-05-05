@@ -259,7 +259,7 @@ MusicDownloadBatchTableWidget::~MusicDownloadBatchTableWidget()
     clearAllItems();
 }
 
-void MusicDownloadBatchTableWidget::setParentObject(QWidget *parent)
+void MusicDownloadBatchTableWidget::setParentClass(QWidget *parent)
 {
     m_supperClass = parent;
 }
@@ -357,7 +357,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
 
     m_queryType = MusicAbstractQueryRequest::MusicQuery;
 
-    m_ui->tableWidget->setParentObject(this);
+    m_ui->tableWidget->setParentClass(this);
     m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle06);
 #ifdef Q_OS_UNIX
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);

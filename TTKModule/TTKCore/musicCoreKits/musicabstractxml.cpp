@@ -60,6 +60,11 @@ bool MusicXmlNodeHelper::hasNext()
     return hasNext;
 }
 
+QDomNode MusicXmlNodeHelper::next() const
+{
+    return m_current;
+}
+
 QString MusicXmlNodeHelper::nodeName(const QString &name) const
 {
     for(const QString &value : qAsConst(m_nodeNames))
@@ -72,11 +77,6 @@ QString MusicXmlNodeHelper::nodeName(const QString &name) const
     return name;
 }
 
-QDomNode MusicXmlNodeHelper::next() const
-{
-    return m_current;
-}
-
 
 
 MusicAbstractXml::MusicAbstractXml(QObject *parent)
@@ -84,14 +84,12 @@ MusicAbstractXml::MusicAbstractXml(QObject *parent)
 {
     m_file = nullptr;
     m_document = nullptr;
-    m_nodeHelper = nullptr;
 }
 
 MusicAbstractXml::~MusicAbstractXml()
 {
     delete m_file;
     delete m_document;
-    delete m_nodeHelper;
 }
 
 bool MusicAbstractXml::readConfig(const QString &name)
@@ -113,9 +111,6 @@ bool MusicAbstractXml::readConfig(const QString &name)
         m_file = nullptr;
         return false;
     }
-
-    m_nodeHelper = new MusicXmlNodeHelper(m_document->documentElement());
-    m_nodeHelper->load();
 
     return true;
 }
@@ -146,9 +141,6 @@ bool MusicAbstractXml::fromString(const QString &data)
         return false;
     }
 
-    m_nodeHelper = new MusicXmlNodeHelper(m_document->documentElement());
-    m_nodeHelper->load();
-
     return true;
 }
 
@@ -163,9 +155,6 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
     {
         return false;
     }
-
-    m_nodeHelper = new MusicXmlNodeHelper(m_document->documentElement());
-    m_nodeHelper->load();
 
     return true;
 }

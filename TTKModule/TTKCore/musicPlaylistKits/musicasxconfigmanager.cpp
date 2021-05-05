@@ -12,7 +12,10 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    const QDomNodeList &itemNodes = m_document->elementsByTagName(m_nodeHelper->nodeName("Entry"));
+    MusicXmlNodeHelper nodeHelper(m_document->documentElement());
+    nodeHelper.load();
+
+    const QDomNodeList &itemNodes = m_document->elementsByTagName(nodeHelper.nodeName("Entry"));
     for(int i=0; i<itemNodes.count(); ++i)
     {
         const QDomNode &node = itemNodes.at(i);
