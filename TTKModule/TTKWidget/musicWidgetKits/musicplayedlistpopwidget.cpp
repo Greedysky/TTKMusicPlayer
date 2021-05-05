@@ -13,14 +13,14 @@
 #define MAX_SIZE    3
 
 MusicPlayedListTopContainerWidget::MusicPlayedListTopContainerWidget(QWidget *parent)
-    : QWidget(parent)
+    : QFrame(parent)
 {
     setFixedHeight(37);
 }
 
 void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
 {
-    QWidget::paintEvent(event);
+    QFrame::paintEvent(event);
     QPainter painter(this);
 
     QLinearGradient gradient;
@@ -81,7 +81,7 @@ void MusicPlayedListPopWidget::clear()
     setPlaylistCount(0);
 }
 
-void MusicPlayedListPopWidget::resetToolIndex(const PlayedPairList &indexs)
+void MusicPlayedListPopWidget::resetToolIndex(const PlayedItemList &indexs)
 {
     MusicPlayItems *items = m_playlist->mediaList();
     for(int s=0; s<items->count(); ++s)
@@ -312,10 +312,10 @@ void MusicPlayedListPopWidget::initWidget()
     m_scrollArea->setFrameShadow(QFrame::Plain);
     m_scrollArea->setAlignment(Qt::AlignLeft);
 
-    const QString &alphaStr = MusicUIObject::MQSSBackgroundStyle17;
+    const QString &background = MusicUIObject::MQSSBackgroundStyle17;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
+    view->setStyleSheet(QString("#viewport{%1}").arg(background));
     m_scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
@@ -340,7 +340,10 @@ void MusicPlayedListPopWidget::initWidget()
 QWidget *MusicPlayedListPopWidget::createContainerWidget()
 {
     MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
-
+#ifdef Q_OS_UNIX
+    topWidget->setObjectName("topWidget");
+    topWidget->setStyleSheet(QString("#topWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
+#endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
     QLabel *label = new QLabel(tr("playedList"), topWidget);

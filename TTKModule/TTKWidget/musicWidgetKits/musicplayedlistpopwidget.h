@@ -19,22 +19,22 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include <QLabel>
 #include "musicsong.h"
 #include "musictoolmenuwidget.h"
 
-class QLabel;
 class QScrollArea;
 class MusicPlaylist;
 class MusicSongsListPlayedTableWidget;
 
-#define PlayedPairItem(a, b) std::pair<int, int>(a, b);
-typedef QList< std::pair<int, int> > PlayedPairList;
+#define MakePlayedItem(a, b) std::pair<int, int>(a, b);
+typedef QList< std::pair<int, int> > PlayedItemList;
 
 
 /*! @brief The class of the played list top container widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlayedListTopContainerWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicPlayedListTopContainerWidget : public QFrame
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayedListTopContainerWidget)
@@ -87,9 +87,9 @@ public:
      */
     void clear();
     /*!
-     * Get current played list.
+     * Get current played item list.
      */
-    void resetToolIndex(const PlayedPairList &indexs);
+    void resetToolIndex(const PlayedItemList &indexs);
 
     /*!
      * Remove music from data list.
