@@ -61,7 +61,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPairData
     }
 }MusicDownLoadPairData;
 
-/*! @brief The class to produce the download manager.
+/*! @brief The class of produce the download manager.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownLoadManager : public QObject

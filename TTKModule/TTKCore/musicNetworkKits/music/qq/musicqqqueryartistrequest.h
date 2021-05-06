@@ -23,7 +23,7 @@
 #include "musicqqqueryinterface.h"
 #include "musicqueryartistrequest.h"
 
-/*! @brief The class to qq query artist info xml data from net.
+/*! @brief The class of qq query artist info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_CORE_EXPORT MusicQQArtistInfoConfigManager : public MusicAbstractXml
@@ -44,7 +44,7 @@ public:
 };
 
 
-/*! @brief The class to qq query artist download data from net.
+/*! @brief The class of qq query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQQQueryArtistRequest : public MusicQueryArtistRequest,

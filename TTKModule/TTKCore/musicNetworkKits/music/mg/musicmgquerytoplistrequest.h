@@ -22,7 +22,7 @@
 #include "musicmgqueryinterface.h"
 #include "musicquerytoplistrequest.h"
 
-/*! @brief The class to migu query toplist download data from net.
+/*! @brief The class of migu query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicMGQueryToplistRequest : public MusicQueryToplistRequest,

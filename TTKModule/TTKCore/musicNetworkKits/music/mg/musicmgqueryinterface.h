@@ -61,7 +61,7 @@ const QString MG_SUGGEST_URL            = "ZU5LU2pxcTg4QmlLVVM3STBCSXVzak94NUZSV
 
 class MusicResultsItem;
 
-/*! @brief The class to migu query interface.
+/*! @brief The class of migu query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicMGQueryInterface

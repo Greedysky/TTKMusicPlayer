@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musiccommentsrequest.h"
 
-/*! @brief The class to wangyi query song comments download data from net.
+/*! @brief The class of wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicWYSongCommentsRequest : public MusicCommentsRequest,
@@ -54,7 +54,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class to wangyi query playlist comments download data from net.
+/*! @brief The class of wangyi query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicWYPlaylistCommentsRequest : public MusicCommentsRequest,

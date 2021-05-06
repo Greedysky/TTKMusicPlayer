@@ -21,7 +21,7 @@
 
 #include "musicabstractnetwork.h"
 
-/*! @brief The class to abstract download paing request.
+/*! @brief The class of abstract download paing request.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicPagingRequest : public MusicAbstractNetwork

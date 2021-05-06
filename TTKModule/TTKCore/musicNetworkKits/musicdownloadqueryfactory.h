@@ -30,7 +30,7 @@ class MusicAbstractQueryRequest;
 class MusicDownloadBackgroundRequest;
 class MusicTranslationRequest;
 
-/*! @brief The class to produce the download query class by type.
+/*! @brief The class of produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory

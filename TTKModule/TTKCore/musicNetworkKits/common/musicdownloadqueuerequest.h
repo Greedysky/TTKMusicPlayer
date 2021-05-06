@@ -31,7 +31,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownloadQueueData
 }MusicDownloadQueueData;
 TTK_DECLARE_LISTS(MusicDownloadQueueData)
 
-/*! @brief The class to download data from queue request.
+/*! @brief The class of download data from queue request.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoadRequest

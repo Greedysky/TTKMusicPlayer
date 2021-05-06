@@ -60,7 +60,7 @@ const QString QQ_SUGGEST_URL            = "YVZrME9hWGRKNjJySkE1djh3T0wwVG1TY1FzV
 
 class QNetworkAccessManager;
 
-/*! @brief The class to qq query interface.
+/*! @brief The class of qq query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQQQueryInterface

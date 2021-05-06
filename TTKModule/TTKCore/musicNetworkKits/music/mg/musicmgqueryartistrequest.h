@@ -22,7 +22,7 @@
 #include "musicmgqueryinterface.h"
 #include "musicqueryartistrequest.h"
 
-/*! @brief The class to migu query artist download data from net.
+/*! @brief The class of migu query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicMGQueryArtistRequest : public MusicQueryArtistRequest,

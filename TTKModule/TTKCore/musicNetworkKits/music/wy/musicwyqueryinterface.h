@@ -85,7 +85,7 @@ const QString WY_SUGGEST_DATA_URL           = "ajU1Wm14WjV3KzhBeTdpSlNmVE5lUT09"
 
 class QNetworkRequest;
 
-/*! @brief The class to wangyi query interface.
+/*! @brief The class of wangyi query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicWYQueryInterface

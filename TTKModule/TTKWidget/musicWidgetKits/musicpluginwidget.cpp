@@ -2,12 +2,12 @@
 #include "ui_musicpluginwidget.h"
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
-///qmmp incldue
+
 #include "decoderfactory.h"
 #include "outputfactory.h"
 #include "visualfactory.h"
 #include "effectfactory.h"
-///qmmp incldue
+
 #include "decoder.h"
 #include "effect.h"
 #include "output.h"

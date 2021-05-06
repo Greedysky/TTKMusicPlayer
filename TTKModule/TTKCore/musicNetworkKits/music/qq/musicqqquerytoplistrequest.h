@@ -22,7 +22,7 @@
 #include "musicqqqueryinterface.h"
 #include "musicquerytoplistrequest.h"
 
-/*! @brief The class to qq query toplist download data from net.
+/*! @brief The class of qq query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQQQueryToplistRequest : public MusicQueryToplistRequest,

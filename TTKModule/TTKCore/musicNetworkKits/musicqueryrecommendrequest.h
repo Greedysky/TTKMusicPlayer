@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class to query recommend data from net.
+/*! @brief The class of query recommend data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQueryRecommendRequest : public MusicAbstractQueryRequest

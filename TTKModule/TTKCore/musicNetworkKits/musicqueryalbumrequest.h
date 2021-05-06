@@ -21,7 +21,7 @@
 
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class to query album download data from net.
+/*! @brief The class of query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQueryAlbumRequest : public MusicAbstractQueryRequest

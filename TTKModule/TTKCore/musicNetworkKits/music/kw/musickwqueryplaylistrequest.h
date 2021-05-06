@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryplaylistrequest.h"
 
-/*! @brief The class to kuwo query playlist download data from net.
+/*! @brief The class of kuwo query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKWQueryPlaylistRequest : public MusicQueryPlaylistRequest,

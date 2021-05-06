@@ -22,7 +22,7 @@
 #include "musicqqqueryinterface.h"
 #include "musicqueryplaylistrequest.h"
 
-/*! @brief The class to qq query playlist download data from net.
+/*! @brief The class of qq query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQQQueryPlaylistRequest : public MusicQueryPlaylistRequest,

@@ -22,7 +22,7 @@
 #include "tagwrapper.h"
 #include "musicglobaldefine.h"
 
-class MusicMeta;
+struct MusicMeta;
 
 /*! @brief The class of the music song meta.
  * @author Greedysky <greedysky@163.com>

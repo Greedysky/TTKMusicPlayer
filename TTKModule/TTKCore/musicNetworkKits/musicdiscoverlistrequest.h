@@ -21,7 +21,7 @@
 
 #include "musicpagingrequest.h"
 
-/*! @brief The class to download discover toplist request.
+/*! @brief The class of download discover toplist request.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDiscoverListRequest : public MusicPagingRequest

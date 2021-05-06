@@ -6,7 +6,6 @@
 #include "musicwidgetutils.h"
 #include "musicstringutils.h"
 
-///qmmp incldue
 #include "decoderfactory.h"
 #include "metadatamodel.h"
 #include "decoder.h"

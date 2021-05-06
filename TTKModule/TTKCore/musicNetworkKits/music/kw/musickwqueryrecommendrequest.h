@@ -22,7 +22,7 @@
 #include "musickwqueryinterface.h"
 #include "musicqueryrecommendrequest.h"
 
-/*! @brief The class to kuwo query recommend download data from net.
+/*! @brief The class of kuwo query recommend download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKWQueryRecommendRequest : public MusicQueryRecommendRequest,

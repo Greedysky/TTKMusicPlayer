@@ -21,7 +21,7 @@
 
 #include "musiccommentsrequest.h"
 
-/*! @brief The class to migu query song comments download data from net.
+/*! @brief The class of migu query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicMGSongCommentsRequest : public MusicCommentsRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class to migu query playlist comments download data from net.
+/*! @brief The class of migu query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicMGPlaylistCommentsRequest : public MusicCommentsRequest

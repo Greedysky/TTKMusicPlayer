@@ -21,7 +21,7 @@
 
 #include "musicdiscoverlistrequest.h"
 
-/*! @brief The class to migu discover toplist.
+/*! @brief The class of migu discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicMGDiscoverListRequest : public MusicDiscoverListRequest

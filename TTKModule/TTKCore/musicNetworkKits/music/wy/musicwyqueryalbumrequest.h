@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicqueryalbumrequest.h"
 
-/*! @brief The class to wangyi query album download data from net.
+/*! @brief The class of wangyi query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicWYQueryAlbumRequest : public MusicQueryAlbumRequest,

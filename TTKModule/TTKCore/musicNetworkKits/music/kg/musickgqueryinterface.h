@@ -59,7 +59,7 @@ const QString KG_SUGGEST_URL            = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZM
 
 class MusicResultsItem;
 
-/*! @brief The class to kugou query interface.
+/*! @brief The class of kugou query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKGQueryInterface

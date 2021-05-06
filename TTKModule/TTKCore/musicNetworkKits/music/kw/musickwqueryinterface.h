@@ -62,7 +62,7 @@ const QString KW_RECOMMEND_URL          = "SUVwN29KVHFLbVRzTC9PSW5QelFZTkJlMC9vV
 const QString KW_SUGGEST_URL            = "UXc5cFVXZG92VUxjeFpmR0w4OS9rUG12ZjNtdGZ6d2owb09SaXZrZmIxMEwxbEZYWVY4a0hWMVVQL2d0Y3dNbURPUE9PYWVlcjBXdW5aNjAxbnNLajl3N0ZoMG5UemFGTWFhYjFLeXhzcWJhVU04VA==";
 
 
-/*! @brief The class to kuwo query interface.
+/*! @brief The class of kuwo query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKWQueryInterface

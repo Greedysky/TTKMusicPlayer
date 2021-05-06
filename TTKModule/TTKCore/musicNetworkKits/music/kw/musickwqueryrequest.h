@@ -23,7 +23,7 @@
 #include "musickwqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class to kuwo query music info xml data from net.
+/*! @brief The class of kuwo query music info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_CORE_EXPORT MusicKWMusicInfoConfigManager : public MusicAbstractXml
@@ -44,7 +44,7 @@ public:
 };
 
 
-/*! @brief The class to kuwo query download data from net.
+/*! @brief The class of kuwo query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKWQueryRequest : public MusicAbstractQueryRequest,

@@ -21,7 +21,7 @@
 
 #include "musicdiscoverlistrequest.h"
 
-/*! @brief The class to kugou discover toplist.
+/*! @brief The class of kugou discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKGDiscoverListRequest : public MusicDiscoverListRequest

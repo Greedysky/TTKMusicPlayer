@@ -21,7 +21,7 @@
 
 #include "musiccommentsrequest.h"
 
-/*! @brief The class to kuwo query song comments download data from net.
+/*! @brief The class of kuwo query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKWSongCommentsRequest : public MusicCommentsRequest
@@ -52,7 +52,7 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class to kuwo query playlist comments download data from net.
+/*! @brief The class of kuwo query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicKWPlaylistCommentsRequest : public MusicCommentsRequest

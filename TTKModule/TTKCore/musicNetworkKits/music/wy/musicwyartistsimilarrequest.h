@@ -22,7 +22,7 @@
 #include "musicwyqueryinterface.h"
 #include "musicsimilarrequest.h"
 
-/*! @brief The class to query wangyi artist similar download data from net.
+/*! @brief The class of query wangyi artist similar download data from net.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicWYArtistSimilarRequest : public MusicSimilarRequest,
