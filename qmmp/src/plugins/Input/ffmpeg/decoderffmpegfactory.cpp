@@ -1,5 +1,6 @@
 #include <QSettings>
 #include <qmmp/cueparser.h>
+
 extern "C"{
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
@@ -63,6 +64,8 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
         return true;
     else if(filters.contains("*.spx") && formats.contains("spx"))
         return true;
+    else if(filters.contains("*.webm") && (formats.contains("webm") || formats.contains("matroska")))
+        return true;
     else if(formats.contains("matroska") && avcodec_find_decoder(AV_CODEC_ID_OPUS) && input->isSequential()) //audio from YouTube
         return true;
     return false;
@@ -72,7 +75,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.spx", "*.dsf", "*.dsdiff"
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.spx", "*.dsf", "*.dsdiff", "*.webm"
     };
     filters = settings.value("FFMPEG/filters", filters).toStringList();
 
@@ -115,6 +118,8 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.dsf");
         filters.removeAll("*.dsdiff");
     }
+    if(!avcodec_find_decoder(AV_CODEC_ID_OPUS))
+        filters.removeAll("*.webm");
 
     DecoderProperties properties;
     properties.name = tr("FFmpeg Plugin");
@@ -142,6 +147,8 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         properties.contentTypes << "audio/true-hd" << "audio/x-matroska";
     if(filters.contains("*.spx"))
         properties.contentTypes << "audio/speech";
+    if(filters.contains("*.webm"))
+        properties.contentTypes << "audio/webm";
 
     properties.shortName = "ffmpeg";
     properties.protocols << "ffmpeg" << "m4b";
