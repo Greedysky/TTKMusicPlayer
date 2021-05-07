@@ -21,7 +21,7 @@
 
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The class of the sync cloud data item.
+/*! @brief The class of the sync cloud utils.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_EXTRAS_EXPORT QSyncUtils

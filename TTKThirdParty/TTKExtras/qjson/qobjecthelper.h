@@ -136,10 +136,6 @@ namespace QJson {
     */
     static void qvariant2qobject(const QVariantMap &variant, QObject* object);
 
-    private:
-      class QObjectHelperPrivate;
-      TTK_DECLARE_PRIVATE(QObjectHelper)
-
   };
 }
 

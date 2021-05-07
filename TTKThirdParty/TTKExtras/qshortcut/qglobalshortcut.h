@@ -31,7 +31,6 @@ class QGlobalShortcutPrivate;
 class MUSIC_EXTRAS_EXPORT QGlobalShortcut : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_PRIVATE(QGlobalShortcut)
     Q_PROPERTY(bool enabled READ isEnabled WRITE setEnabled)
     Q_PROPERTY(QKeySequence shortcut READ shortcut WRITE setShortcut)
 public:
@@ -51,6 +50,9 @@ Q_SIGNALS:
 public Q_SLOTS:
     void setEnabled(bool enabled = true);
     void setDisabled(bool disabled = true);
+
+private:
+    TTK_DECLARE_PRIVATE(QGlobalShortcut)
 
 };
 

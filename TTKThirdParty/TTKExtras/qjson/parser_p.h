@@ -35,6 +35,9 @@ namespace yy {
 
 namespace QJson {
 
+  /**
+   * @brief Main class used to convert JSON data to QVariant objects private
+   */
   class ParserPrivate : public TTKPrivate<Parser>
   {
     public:

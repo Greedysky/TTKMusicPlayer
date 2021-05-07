@@ -11,6 +11,9 @@
 #include "decoder.h"
 
 
+/*! @brief The class of the music meta.
+ * @author Greedysky <greedysky@163.com>
+ */
 struct MusicMeta
 {
     QPixmap m_cover;

@@ -12,6 +12,9 @@ const QString XML_FOOT = "</SOAP-ENV:Body>\n</SOAP-ENV:Envelope>\n";
 const QStringList FRIENS_NAMES = QStringList() << "friendlyname" << "friendlyName" << "FriendlyName" << "FriendlyName";
 const QStringList AVT_NAMES = QStringList() << "avtransport" << "AVTransport";
 
+/*! @brief The class of the dlna client private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QDlnaClientPrivate : public TTKPrivate<QDlnaClient>
 {
 public:

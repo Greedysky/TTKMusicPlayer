@@ -21,7 +21,7 @@
 
 #include "qsyncdatainterface.h"
 
-/*! @brief The class of the sync cloud data item.
+/*! @brief The class of the sync cloud download data.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_EXTRAS_EXPORT QSyncDownloadData : public QSyncDataInterface

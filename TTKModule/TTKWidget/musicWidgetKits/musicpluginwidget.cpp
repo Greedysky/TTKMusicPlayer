@@ -15,6 +15,9 @@
 
 #include <QScrollBar>
 
+/*! @brief The class of the plugin item widget.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MusicPluginItem : public QTreeWidgetItem
 {
 public:

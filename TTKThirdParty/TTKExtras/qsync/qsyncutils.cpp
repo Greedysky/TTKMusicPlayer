@@ -34,7 +34,7 @@ static QString hmacSha1(QByteArray key, const QByteArray &baseString)
 
 static const QString self_define_header_prefix = "x-oss-";
 
-static inline TTKStringMap formatHeader(const TTKStringMap &headers)
+static TTKStringMap formatHeader(const TTKStringMap &headers)
 {
     TTKStringMap value;
     TTKStringMapterator it(headers);

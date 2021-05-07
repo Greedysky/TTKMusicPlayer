@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+/*! @brief The class of the ttk run application private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class TTKRunApplicationPrivate : public TTKPrivate<TTKRunApplication>
 {
 public:

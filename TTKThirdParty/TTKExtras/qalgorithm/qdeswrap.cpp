@@ -170,6 +170,9 @@ qint64 ARRAYLSMASK[] = {
     0x0000000000000000l, 0x0000000000100001l, 0x0000000000300003l
 };
 
+/*! @brief The class of the des wrapper private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QDesWrapPrivate : public TTKPrivate<QDesWrap>
 {
 public:

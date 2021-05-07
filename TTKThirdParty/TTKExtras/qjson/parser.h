@@ -34,7 +34,6 @@ QT_END_NAMESPACE
 namespace QJson {
 
   class ParserPrivate;
-
   /**
    * @brief Main class used to convert JSON data to QVariant objects
    */

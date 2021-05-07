@@ -25,7 +25,7 @@
 #define DATA_BUCKET     "greedysky-data"
 #define MUSIC_BUCKET    "greedysky-music"
 
-/*! @brief The class of the sync data item.
+/*! @brief The class of the sync data config.
  * @author Greedysky <greedysky@163.com>
  */
 struct MUSIC_EXTRAS_EXPORT QSyncConf

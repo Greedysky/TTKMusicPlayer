@@ -8,6 +8,9 @@
 #include <QRegExp>
 #include <QNetworkInterface>
 
+/*! @brief The class of the dlna file server private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QDlnaFileServerPrivate : public TTKPrivate<QDlnaFileServer>
 {
 public:

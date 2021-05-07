@@ -23,6 +23,9 @@
 #include <QPushButton>
 #include <QButtonGroup>
 
+/*! @brief The class of the kugou window widget private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QKugouWindowPrivate : public TTKPrivate<QKugouWindow>
 {
 public:

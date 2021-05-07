@@ -55,7 +55,6 @@ public:
     static QString getSongCategoryUrl();
 
 
-
     /*!
      * Get Radio Public Url.
      */
@@ -70,12 +69,10 @@ public:
     static QString getRadioFxUrl();
 
 
-
     /*!
      * Get List Url.
      */
     static QString getListUrl();
-
 
 
     /*!
@@ -92,12 +89,10 @@ public:
     static QString getMVFanxingUrl();
 
 
-
     /*!
      * Get Web Player Url.
      */
     static QString getWebPlayerUrl();
-
 
 
     /*!

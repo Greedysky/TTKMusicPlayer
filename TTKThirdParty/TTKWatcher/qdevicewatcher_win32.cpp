@@ -26,7 +26,7 @@ static const GUID InterfaceClassGuid = GUID_DEVINTERFACE_USBSTOR;//(GUID)HID_CLA
 
 Q_CORE_EXPORT HINSTANCE qWinAppInst();
 
-static inline QStringList drivesFromMask(quint32 driveBits) //driveBits ->unitmask
+static QStringList drivesFromMask(quint32 driveBits) //driveBits ->unitmask
 {
 		QStringList ret;
 #if 1  //a disk with multiple partitions removed
@@ -155,12 +155,12 @@ LRESULT CALLBACK dw_internal_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM
 	return DefWindowProc(hwnd, message, wParam, lParam);
 }
 
-static inline QString className()
+static QString className()
 {
 	return QLatin1String("QDeviceWatcherPrivateWin32_Internal_Widget") + QString::number(quintptr(dw_internal_proc));
 }
 
-static inline HWND dw_create_internal_window(const void* userData)
+static HWND dw_create_internal_window(const void* userData)
 {
 	QString className = ::className();
 	HINSTANCE hi = qWinAppInst();
@@ -214,7 +214,7 @@ static inline HWND dw_create_internal_window(const void* userData)
 	return hwnd;
 }
 
-static inline void dw_destroy_internal_window(HWND hwnd)
+static void dw_destroy_internal_window(HWND hwnd)
 {
 	if (hwnd)
 		DestroyWindow(hwnd);

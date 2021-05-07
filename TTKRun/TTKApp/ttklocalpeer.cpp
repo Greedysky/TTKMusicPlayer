@@ -29,6 +29,9 @@ namespace TTKLockedPrivate {
 #endif
 }
 
+/*! @brief The class of the ttk local peer private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class TTKLocalPeerPrivate : public TTKPrivate<TTKLocalPeer>
 {
 public:

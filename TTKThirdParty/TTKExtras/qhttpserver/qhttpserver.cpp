@@ -8,6 +8,9 @@
 
 QHash<int, QString> STATUS_CODES;
 
+/*! @brief The class of the http server private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QHttpServerPrivate : public TTKPrivate<QHttpServer>
 {
 public:

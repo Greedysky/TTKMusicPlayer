@@ -1,6 +1,9 @@
 #include "qhttprequest.h"
 #include "qhttpconnection.h"
 
+/*! @brief The class of the http request private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QHttpRequestPrivate : public TTKPrivate<QHttpRequest>
 {
 public:

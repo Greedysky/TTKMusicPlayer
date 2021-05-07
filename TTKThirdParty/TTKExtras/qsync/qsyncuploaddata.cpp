@@ -3,6 +3,9 @@
 
 #include <QFile>
 
+/*! @brief The class of the sync cloud upload data private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QSyncUploadDataPrivate : public QSyncDataInterfacePrivate
 {
 public:

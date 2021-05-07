@@ -21,6 +21,9 @@
 
 #include "qsyncdatainterface.h"
 
+/*! @brief The class of the sync cloud data interface private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QSyncDataInterfacePrivate : public TTKPrivate<QSyncDataInterface>
 {
 public:

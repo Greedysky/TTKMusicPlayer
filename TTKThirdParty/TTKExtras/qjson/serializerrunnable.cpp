@@ -29,8 +29,10 @@
 
 using namespace QJson;
 
-class SerializerRunnable::SerializerRunnablePrivate
-        : public TTKPrivate<SerializerRunnable>
+/**
+* @brief Convenience class for converting JSON data to QVariant objects using a dedicated thread private
+*/
+class SerializerRunnable::SerializerRunnablePrivate : public TTKPrivate<SerializerRunnable>
 {
 public:
   QVariant json;

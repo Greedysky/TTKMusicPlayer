@@ -26,7 +26,7 @@
 class MusicPlayer;
 class MusicPlaylist;
 
-/*! @brief The class of the music console object.
+/*! @brief The class of the music console module.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_RUN_EXPORT MusicConsoleModule : public QObject

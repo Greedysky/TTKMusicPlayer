@@ -2,6 +2,9 @@
 
 #include <QtXml/QDomDocument>
 
+/*! @brief The class of the dlna xml private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QDlnaXmlPrivate : public TTKPrivate<QDlnaXml>
 {
 public:

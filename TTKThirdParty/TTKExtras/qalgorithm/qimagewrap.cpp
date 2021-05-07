@@ -112,6 +112,9 @@ void GaussBlur::render(int* pix, int width, int height, int radius)
 
 
 ////////////////////////////////////////////////////////////////////////
+/*! @brief The class of the sharpe image private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class SharpeImagePrivate : public TTKPrivate<SharpeImage>
 {
 public:
@@ -156,6 +159,9 @@ void SharpeImage::input(const QRect &rectangle)
 
 
 ////////////////////////////////////////////////////////////////////////
+/*! @brief The class of the cube wave private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class CubeWavePrivate : public SharpeImagePrivate
 {
 public:
@@ -254,6 +260,9 @@ QPixmap CubeWave::render(const QPixmap &pixmap, int value)
 
 
 ////////////////////////////////////////////////////////////////////////
+/*! @brief The class of the water wave private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class WaterWavePrivate : public SharpeImagePrivate
 {
 public:

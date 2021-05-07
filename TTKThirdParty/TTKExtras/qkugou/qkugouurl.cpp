@@ -30,8 +30,6 @@ QString QKugouUrl::getSongCategoryUrl()
     return "http://www2.kugou.kugou.com/yueku/v9/categoryv2/index.html?ver=9173";
 }
 
-
-
 QString QKugouUrl::getRadioPublicUrl()
 {
     return "http://www2.kugou.kugou.com/fm2/app/public/html/recommend/index.html?ver=9173";
@@ -47,14 +45,10 @@ QString QKugouUrl::getRadioFxUrl()
     return "http://fanxing.kugou.com";
 }
 
-
-
 QString QKugouUrl::getListUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/special/index/getData.js?cdn=cdn&t=5&c=&ver=9173";
 }
-
-
 
 QString QKugouUrl::getMVRadioUrl()
 {
@@ -71,14 +65,10 @@ QString QKugouUrl::getMVFanxingUrl()
     return "http://fanxing.kugou.com/index.php?action=embedPageMv&ver=9173";
 }
 
-
-
 QString QKugouUrl::getWebPlayerUrl()
 {
     return "http://web.kugou.com/index.html?ver=9173";
 }
-
-
 
 QString QKugouUrl::getKuiSheUrl()
 {

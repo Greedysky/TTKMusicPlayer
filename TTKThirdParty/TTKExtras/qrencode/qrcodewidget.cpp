@@ -3,6 +3,9 @@
 #include <QPainter>
 #include <QPaintEvent>
 
+/*! @brief The class of the qr code widget private.
+ * @author Jemy Graw <jemygraw@gmail.com>
+ */
 class QRCodeQWidgetPrivate : public TTKPrivate<QRCodeQWidget>
 {
 public:
@@ -37,16 +40,9 @@ QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget 
 {
     TTK_INIT_PRIVATE(QRCodeQWidget);
     TTK_D(QRCodeQWidget);
-    if(text.isEmpty())
-    {
-        d->m_text = QByteArray("https://github.com/Greedysky/TTKMusicplayer");
-    }
-    else
-    {
-        d->m_text = text;
-    }
-    setFixedSize(size);
 
+    d->m_text = text.isEmpty() ? QByteArray("https://github.com/Greedysky/TTKMusicplayer") : text;
+    setFixedSize(size);
 }
 
 void QRCodeQWidget::setMargin(const int margin)

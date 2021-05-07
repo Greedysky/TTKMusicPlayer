@@ -4,6 +4,9 @@
 #include <QFile>
 #include <QDateTime>
 
+/*! @brief The class of the sync cloud download data private.
+ * @author Greedysky <greedysky@163.com>
+ */
 class QSyncDownloadDataPrivate : public QSyncDataInterfacePrivate
 {
 public:

@@ -10,7 +10,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 
-static inline QStringList getProcessLists()
+static QStringList getProcessLists()
 {
     QStringList lprocess;
     unsigned long aProcesses[1024], cbNeeded, cProcesses;
@@ -38,7 +38,7 @@ static inline QStringList getProcessLists()
     return lprocess;
 }
 
-static inline bool killProcess(LPCWSTR processName)
+static bool killProcess(LPCWSTR processName)
 {
    PROCESSENTRY32W pe;
    DWORD id = 0;
@@ -98,7 +98,7 @@ typedef struct PID_INFO
     QString m_path;
 }PID_INFO;
 
-static inline QList<PID_INFO> getProcessLists()
+static QList<PID_INFO> getProcessLists()
 {
     QList<PID_INFO> lprocess;
     QProcess process;
@@ -126,7 +126,7 @@ static inline QList<PID_INFO> getProcessLists()
     return lprocess;
 }
 
-static inline bool killProcess(int pid)
+static bool killProcess(int pid)
 {
     QProcess::execute("kill", QStringList() << "-s" << "9" << QString::number(pid));
     return true;

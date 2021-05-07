@@ -29,13 +29,9 @@
 
 using namespace QJson;
 
-class QObjectHelper::QObjectHelperPrivate : public TTKPrivate<QObjectHelper>
-{
-};
-
 QObjectHelper::QObjectHelper()
 {
-  TTK_INIT_PRIVATE(QObjectHelper);
+
 }
 
 QVariantMap QObjectHelper::qobject2qvariant( const QObject* object,
