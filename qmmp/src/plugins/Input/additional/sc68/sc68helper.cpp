@@ -92,7 +92,7 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    int res = sc68_load_uri(m_info->sc68, qPrintable(m_path));
+    int res = sc68_load_uri(m_info->sc68, qPrintable("file://" + m_path));
     if(res)
     {
         qWarning("SC68Helper: sc68_load_uri error");
