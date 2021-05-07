@@ -49,7 +49,7 @@ DecoderProperties DecoderAdplugFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("AdPlug Plugin");
-    properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds";
+    properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds" << "*.amd" << "*.d00" << "*.rad";
     properties.description = tr("AdLib Sound Files");
     properties.shortName = "adplug";
     return properties;
