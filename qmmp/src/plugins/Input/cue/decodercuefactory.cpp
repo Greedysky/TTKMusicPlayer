@@ -34,13 +34,14 @@ QList<TrackInfo*> DecoderCUEFactory::createPlayList(const QString &path, TrackIn
     CueFile cueFile(path);
     if(path.contains("://"))
     {
-        int track = path.section("#", -1).toInt();
+        const int track = path.section("#", -1).toInt();
         return cueFile.createPlayList(track);
     }
     else
     {
         if(ignoredPaths)
             ignoredPaths->append(cueFile.dataFilePaths());
+
         return cueFile.createPlayList();
     }
 }

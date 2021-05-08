@@ -30,15 +30,13 @@ Decoder *DecoderGmeFactory::create(const QString &path, QIODevice *input)
 
 QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    GmeHelper helper;
-    //is it one track?
-    if(path.contains("://"))
+    if(path.contains("://")) //is it one track?
     {
         QString filePath = path;
         filePath.remove("gme://");
         filePath.remove(RegularWrapper("#\\d+$"));
 
-        int track = path.section("#", -1).toInt();
+        const int track = path.section("#", -1).toInt();
         QList<TrackInfo*> list = createPlayList(filePath, parts, ignoredFiles);
         if(list.isEmpty() || track <= 0 || track > list.count())
         {
@@ -46,6 +44,7 @@ QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackIn
             list.clear();
             return list;
         }
+
         TrackInfo *info = list.takeAt(track - 1);
         qDeleteAll(list);
         return QList<TrackInfo*>() << info;
@@ -56,6 +55,7 @@ QList<TrackInfo*> DecoderGmeFactory::createPlayList(const QString &path, TrackIn
             ignoredFiles->push_back(path);
     }
 
+    GmeHelper helper;
     Music_Emu *emu = helper.load(path);
     if(!emu)
     {

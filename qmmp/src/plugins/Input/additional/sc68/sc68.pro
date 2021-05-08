@@ -3,13 +3,11 @@ include($$PWD/../common/common.pri)
 
 HEADERS += decodersc68factory.h \
            decoder_sc68.h \
-           sc68helper.h \
-           sc68metadatamodel.h
+           sc68helper.h
     
 SOURCES += decodersc68factory.cpp \
            decoder_sc68.cpp \
-           sc68helper.cpp \
-           sc68metadatamodel.cpp
+           sc68helper.cpp
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

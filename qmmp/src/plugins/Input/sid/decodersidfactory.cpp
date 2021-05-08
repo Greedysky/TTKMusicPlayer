@@ -59,7 +59,7 @@ QList<TrackInfo*> DecoderSIDFactory::createPlayList(const QString &path, TrackIn
 
     if(path.contains("://")) //is it url?
     {
-        int track = path.section("#", -1).toInt();
+        const int track = path.section("#", -1).toInt();
         if(track > list.count() || track < 1)
         {
             qDeleteAll(list);

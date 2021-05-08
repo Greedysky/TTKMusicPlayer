@@ -74,7 +74,10 @@ void SC68Helper::close()
 
 bool SC68Helper::initialize()
 {
-    FILE *file = stdio_open(qPrintable(m_path));
+    const int track = m_path.section("#", -1).toInt();
+    QString path = cleanPath();
+
+    FILE *file = stdio_open(qPrintable(path));
     if(!file)
     {
         qWarning("SC68Helper: open file failed");
@@ -92,24 +95,29 @@ bool SC68Helper::initialize()
         return false;
     }
 
-    int res = sc68_load_uri(m_info->sc68, qPrintable("file://" + m_path));
+    int res = sc68_load_uri(m_info->sc68, qPrintable("file://" + path));
     if(res)
     {
         qWarning("SC68Helper: sc68_load_uri error");
         return false;
     }
 
-    m_info->trk = 0;
-
     sc68_music_info_t info;
-    res = sc68_music_info(m_info->sc68, &info, m_info->trk + 1, 0);
+    res = sc68_music_info(m_info->sc68, &info, 0, 0);
     if(res < 0)
     {
         qWarning("SC68Helper: sc68_music_info error");
         return false;
     }
 
+    if(track > info.tracks || track < 0)
+    {
+        qWarning("SC68Helper: track number is out of range");
+        return false;
+    }
+
     m_info->loop = (info.trk.time_ms == 0);
+    m_info->trk = track;
 
     if(info.trk.time_ms > 0)
     {
@@ -123,7 +131,7 @@ bool SC68Helper::initialize()
     m_totalTime = m_info->totalsamples / sampleRate() * 1000;
     m_info->bitrate = size * 8.0 / m_totalTime + 1.0f;
 
-    sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
+    sc68_play(m_info->sc68, m_info->trk, m_info->loop);
 
     return true;
 }
@@ -139,7 +147,7 @@ void SC68Helper::seek(qint64 time)
     if(sample < m_info->currentsample)
     {
         sc68_stop(m_info->sc68);
-        sc68_play(m_info->sc68, m_info->trk + 1, m_info->loop);
+        sc68_play(m_info->sc68, m_info->trk, m_info->loop);
         m_info->currentsample = 0;
     }
 
@@ -200,25 +208,66 @@ int SC68Helper::read(unsigned char *buf, int size)
     return initsize - size;
 }
 
-QVariantMap SC68Helper::readMetaTags()
+QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
 {
+    QList<TrackInfo*> list;
+    if(!m_info->sc68)
+    {
+        return list;
+    }
+
     sc68_music_info_t info;
     if(sc68_music_info(m_info->sc68, &info, 0, 0) < 0)
     {
-        return m_meta;
+        return list;
     }
 
-    for(int tr = 0; tr < info.tracks; tr++)
+    for(int i = 1; i <= info.tracks; i++)
     {
         sc68_music_info_t ti;
         memset(&ti, 0, sizeof(ti));
-        if(sc68_music_info(m_info->sc68, &ti, tr + 1, 0) < 0)
+        if(sc68_music_info(m_info->sc68, &ti, i, 0) < 0)
         {
             continue;
         }
 
-        in_c68_meta_from_music_info(m_meta, &ti, tr);
-    }
+        QVariantMap meta;
+        in_c68_meta_from_music_info(meta, &ti, i);
 
-    return m_meta;
+        TrackInfo *info = new TrackInfo();
+        if(parts & TrackInfo::MetaData)
+        {
+            info->setValue(Qmmp::TITLE, meta.value("title").toString());
+            info->setValue(Qmmp::ARTIST, meta.value("artist").toString());
+            info->setValue(Qmmp::ALBUM, meta.value("album").toString());
+            info->setValue(Qmmp::YEAR, meta.value("year").toString());
+            info->setValue(Qmmp::GENRE, meta.value("genre").toString());
+            info->setValue(Qmmp::TRACK, i);
+        }
+
+        if(parts & TrackInfo::Properties)
+        {
+            info->setValue(Qmmp::BITRATE, bitrate());
+            info->setValue(Qmmp::SAMPLERATE, sampleRate());
+            info->setValue(Qmmp::CHANNELS, channels());
+            info->setValue(Qmmp::BITS_PER_SAMPLE, bitsPerSample());
+            info->setValue(Qmmp::FORMAT_NAME, "SC68");
+        }
+
+        info->setPath("sc68://" + cleanPath() + QString("#%1").arg(i));
+        info->setDuration(ti.trk.time_ms > 0 ? ti.trk.time_ms : (2 * 60));
+        list << info;
+    }
+    return list;
+}
+
+QString SC68Helper::cleanPath() const
+{
+    QString path = m_path;
+    if(m_path.contains("://"))
+    {
+        path.remove("sc68://");
+        path.remove(RegularWrapper("#\\d+$"));
+    }
+    return path;
 }

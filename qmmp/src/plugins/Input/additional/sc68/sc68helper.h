@@ -24,6 +24,7 @@ extern "C" {
 #include "sc68.h"
 }
 #include <QVariantMap>
+#include <qmmp/trackinfo.h>
 
 typedef struct {
     sc68_t *sc68;
@@ -55,20 +56,14 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readMetaTags();
 
-    inline QString title() const { return m_meta.value("title").toString(); }
-    inline QString artist() const { return m_meta.value("artist").toString(); }
-    inline QString album() const { return m_meta.value("album").toString(); }
-    inline QString year() const { return m_meta.value("year").toString(); }
-    inline QString genre() const { return m_meta.value("genre").toString(); }
-    inline QString track() const { return m_meta.value("track").toString(); }
+    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
+    QString cleanPath() const;
 
 private:
     QString m_path;
     sc68_info_t *m_info;
     qint64 m_totalTime = 0;
-    QVariantMap m_meta;
 
 };
 

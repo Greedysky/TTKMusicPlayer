@@ -21,12 +21,14 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
     if(m_emu)
         gme_delete(m_emu);
     m_emu = nullptr;
+
     QString path = url;
     if(url.contains("://"))
     {
         path.remove("gme://");
         path.remove(RegularWrapper("#\\d+$"));
     }
+
     const char *err = nullptr;
     gme_type_t file_type;
     if((err = gme_identify_file(qPrintable(path),&file_type)))
@@ -34,21 +36,25 @@ Music_Emu *GmeHelper::load(const QString &url, int sample_rate)
         qWarning("GmeHelper: %s", err);
         return nullptr;
     }
+
     if(!file_type)
     {
         qWarning("DecoderGme: unsupported music type");
         return nullptr;
     }
+
     if(!(m_emu = gme_new_emu(file_type, sample_rate)))
     {
         qWarning("GmeHelper: out of memory");
         return nullptr;
     }
+
     if((err = gme_load_file(m_emu, qPrintable(path))))
     {
         qWarning("GmeHelper: %s", err);
         return nullptr;
     }
+
     QString m3u_path = path.left(path.lastIndexOf("."));
     m3u_path.append(".m3u");
     gme_load_m3u(m_emu, qPrintable(m3u_path));
@@ -88,6 +94,7 @@ QList<TrackInfo*> GmeHelper::createPlayList(TrackInfo::Parts parts)
             info->setValue(Qmmp::COMMENT, track_info->comment);
             info->setValue(Qmmp::TRACK, i);
         }
+
         if(parts & TrackInfo::Properties)
         {
             info->setValue(Qmmp::BITRATE, 8);

@@ -23,6 +23,7 @@ SidTune *SIDHelper::load(const QString &url)
         delete m_tune;
         m_tune = nullptr;
     }
+
     QString path = url;
     int track = 1;
     if(url.contains("://"))
@@ -31,6 +32,7 @@ SidTune *SIDHelper::load(const QString &url)
         path.remove(RegularWrapper("#\\d+$"));
         track = url.section("#", -1).toInt();
     }
+
     m_tune = new SidTune(qPrintable(path));
     m_tune->selectSong(track - 1);
     m_path = path;

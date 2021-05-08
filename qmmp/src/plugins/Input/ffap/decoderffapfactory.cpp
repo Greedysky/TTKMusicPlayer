@@ -37,8 +37,8 @@ QList<TrackInfo*> DecoderFFapFactory::createPlayList(const QString &path, TrackI
 {
     int track = -1; //cue track
     QString filePath = path;
-    //extract metadata of one cue track
-    if(path.contains("://"))
+
+    if(path.contains("://"))    //extract metadata of one cue track
     {
         filePath.remove("ape://");
         filePath.remove(RegularWrapper("#\\d+$"));

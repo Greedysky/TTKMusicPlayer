@@ -33,7 +33,8 @@ int load_and_convert(const char *fname, uint8_t **conv, int *convlen)
         v2m_initialized = true;
     }
 
-    const int ver = CheckV2MVersion(buf, len);
+    ssbase base;
+    const int ver = CheckV2MVersion(buf, len, base);
     if(ver < 0)
     {
         free(buf);

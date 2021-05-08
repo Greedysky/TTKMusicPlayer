@@ -1,7 +1,6 @@
 #include "sc68helper.h"
 #include "decoder_sc68.h"
 #include "decodersc68factory.h"
-#include "sc68metadatamodel.h"
 
 bool DecoderSC68Factory::canDecode(QIODevice *) const
 {
@@ -26,50 +25,47 @@ Decoder *DecoderSC68Factory::create(const QString &path, QIODevice *input)
     return new DecoderSC68(path);
 }
 
-QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
+QList<TrackInfo*> DecoderSC68Factory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    TrackInfo *info = new TrackInfo(path);
-
-    if(parts == TrackInfo::Parts())
+    if(path.contains("://")) //is it one track?
     {
+        QString filePath = path;
+        filePath.remove("sc68://");
+        filePath.remove(RegularWrapper("#\\d+$"));
+
+        const int track = path.section("#", -1).toInt();
+        QList<TrackInfo*> list = createPlayList(filePath, parts, ignoredFiles);
+        if(list.isEmpty() || track <= 0 || track > list.count())
+        {
+            qDeleteAll(list);
+            list.clear();
+            return list;
+        }
+
+        TrackInfo *info = list.takeAt(track - 1);
+        qDeleteAll(list);
         return QList<TrackInfo*>() << info;
+    }
+    else
+    {
+        if(ignoredFiles)
+            ignoredFiles->push_back(path);
     }
 
     SC68Helper helper(path);
     if(!helper.initialize())
     {
-        delete info;
+        qWarning("DecoderSC68Factory: unable to open file");
         return QList<TrackInfo*>();
     }
-
-    if(parts & TrackInfo::MetaData)
-    {
-        helper.readMetaTags();
-        info->setValue(Qmmp::TITLE, helper.title());
-        info->setValue(Qmmp::ARTIST, helper.artist());
-        info->setValue(Qmmp::ALBUM, helper.album());
-        info->setValue(Qmmp::YEAR, helper.year());
-        info->setValue(Qmmp::GENRE, helper.genre());
-        info->setValue(Qmmp::TRACK, helper.track());
-    }
-
-    if(parts & TrackInfo::Properties)
-    {
-        info->setValue(Qmmp::BITRATE, helper.bitrate());
-        info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
-        info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setValue(Qmmp::FORMAT_NAME, "SC68");
-        info->setDuration(helper.totalTime());
-    }
-
-    return QList<TrackInfo*>() << info;
+    return helper.createPlayList(parts);
 }
 
 MetaDataModel* DecoderSC68Factory::createMetaDataModel(const QString &path, bool readOnly)
 {
+    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return new SC68MetaDataModel(path);
+    return nullptr;
 }
 
 void DecoderSC68Factory::showSettings(QWidget *parent)

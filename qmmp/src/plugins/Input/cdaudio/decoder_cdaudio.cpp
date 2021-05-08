@@ -345,12 +345,12 @@ bool DecoderCDAudio::initialize()
     m_bitrate = 0;
     m_totalTime = 0;
     //extract track from url
-    int track_number = m_url.section("#", -1).toInt();
+    int track = m_url.section("#", -1).toInt();
     QString device_path = m_url;
     device_path.remove("cdda://");
     device_path.remove(RegularWrapper("#\\d+$"));
 
-    track_number = qMax(track_number, 1);
+    track = qMax(track, 1);
     QList<CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path); //generate track list
     if(tracks.isEmpty())
     {
@@ -360,7 +360,7 @@ bool DecoderCDAudio::initialize()
     //find track by number
     int track_at = -1;
     for(int i = 0; i < tracks.size(); ++i)
-        if(tracks[i].info.value(Qmmp::TRACK).toInt() == track_number)
+        if(tracks[i].info.value(Qmmp::TRACK).toInt() == track)
         {
             track_at = i;
             break;
@@ -375,7 +375,7 @@ bool DecoderCDAudio::initialize()
     {
         QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
         device_path = settings.value("cdaudio/device").toString();
-        m_url = QString("cdda://%1#%2").arg(device_path).arg(track_number);
+        m_url = QString("cdda://%1#%2").arg(device_path).arg(track);
     }
 
     if(device_path.isEmpty() || device_path == "/")
