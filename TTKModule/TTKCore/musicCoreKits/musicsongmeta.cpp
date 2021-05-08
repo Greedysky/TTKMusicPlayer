@@ -300,6 +300,7 @@ bool MusicSongMeta::SongTrackValid(const QString &file)
     list << MUSIC_GME_FILE "://";
     list << MUSIC_SID_FILE "://";
     list << MUSIC_WVPACK_FILE "://";
+    list << MUSIC_SC68_FILE "://";
 
     for(const QString &path : qAsConst(list))
     {
@@ -322,6 +323,7 @@ bool MusicSongMeta::SongTrackTpyeContains(const QString &file)
     list << MUSIC_GME_FILE;
     list << MUSIC_SID_FILE;
     list << MUSIC_WVPACK_FILE;
+    list << MUSIC_SC68_FILE;
 
     return list.contains(file);
 }

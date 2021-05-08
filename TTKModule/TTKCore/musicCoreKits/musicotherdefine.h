@@ -29,6 +29,7 @@
 #define MUSIC_GME_FILE              "gme"
 #define MUSIC_SID_FILE              "sid"
 #define MUSIC_WVPACK_FILE           "wvpack"
+#define MUSIC_SC68_FILE             "sc68"
 #define MUSIC_ZIP_FILE              "zip"
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"
