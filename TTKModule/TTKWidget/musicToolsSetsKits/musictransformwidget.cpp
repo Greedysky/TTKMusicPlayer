@@ -116,12 +116,9 @@ void MusicTransformWidget::initInputPath()
     }
     else
     {
-        QFileDialog dialog(this);
-        dialog.setFileMode(QFileDialog::Directory);
-        dialog.setViewMode(QFileDialog::Detail);
-        if(dialog.exec())
+        path = MusicUtils::File::getOpenDirectoryDialog(this);
+        if(!path.isEmpty())
         {
-            path = dialog.directory().absolutePath();
             for(const QFileInfo &var : MusicUtils::File::getFileListByDir(path, true))
             {
                 if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
@@ -142,7 +139,7 @@ void MusicTransformWidget::initInputPath()
 
 void MusicTransformWidget::initOutputPath()
 {
-    const QString &path = QFileDialog::getExistingDirectory(this, QString(), "./");
+    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
     if(!path.isEmpty())
     {
         m_ui->outputLineEdit->setText(path);

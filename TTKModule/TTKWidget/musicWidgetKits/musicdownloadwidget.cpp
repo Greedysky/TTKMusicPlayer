@@ -7,6 +7,7 @@
 #include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicstringutils.h"
+#include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 
 Q_DECLARE_METATYPE(MusicDownloadTableItemRole)
@@ -378,20 +379,14 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 
 void MusicDownloadWidget::downloadDirSelected()
 {
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
+    const QString &path = MusicUtils::File::getOpenDirectoryDialog(nullptr);
+    if(!path.isEmpty())
     {
-        const QString path = dialog.directory().absolutePath();
-        if(!path.isEmpty())
+        if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
         {
-            if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
-            {
-                G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDir, path + "/");
-            }
-            m_ui->downloadPathEdit->setText(path + "/");
+            G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDir, path + "/");
         }
+        m_ui->downloadPathEdit->setText(path + "/");
     }
 }
 

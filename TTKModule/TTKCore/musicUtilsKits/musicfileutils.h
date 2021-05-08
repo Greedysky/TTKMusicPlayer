@@ -64,6 +64,11 @@ namespace MusicUtils
         MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj);
 
         /*!
+         * Get open dir dialog.
+         */
+        MUSIC_UTILS_EXPORT QString getOpenDirectoryDialog(QWidget *obj);
+
+        /*!
          * Get open files dialog.
          */
         MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);

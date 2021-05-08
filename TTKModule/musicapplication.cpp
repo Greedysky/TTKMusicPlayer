@@ -25,7 +25,6 @@
 #include "musictkplconfigmanager.h"
 
 #include <QMimeData>
-#include <QFileDialog>
 
 MusicApplication *MusicApplication::m_instance = nullptr;
 
@@ -523,13 +522,11 @@ void MusicApplication::musicImportSongsOnlyFile()
 
 void MusicApplication::musicImportSongsOnlyDir()
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
+    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    if(!path.isEmpty())
     {
         QStringList fileList;
-        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(dialog.directory().absolutePath(), true))
+        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, true))
         {
             if(MusicFormats::supportFormatsString().contains(info.suffix().toLower()))
             {

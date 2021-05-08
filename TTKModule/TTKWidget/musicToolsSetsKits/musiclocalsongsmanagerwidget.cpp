@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicsongmeta.h"
 #include "musicsinglemanager.h"
+#include "musicfileutils.h"
 
 #ifdef TTK_GREATER_NEW
 #  include <QtConcurrent/QtConcurrent>
@@ -468,12 +469,10 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
 
 bool MusicLocalSongsManagerWidget::filterIndexCustChanged()
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
+    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    if(!path.isEmpty())
     {
-        m_thread->setFindFilePath(dialog.directory().absolutePath());
+        m_thread->setFindFilePath(path);
     }
     else
     {

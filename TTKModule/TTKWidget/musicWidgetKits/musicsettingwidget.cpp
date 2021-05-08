@@ -23,7 +23,6 @@
 ///qmmp incldue
 #include "qmmpsettings.h"
 
-#include <QFileDialog>
 #include <QFontDatabase>
 #include <QButtonGroup>
 #include <QAudioDeviceInfo>
@@ -353,16 +352,10 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 
 void MusicSettingWidget::downloadDirSelected(int index)
 {
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
+    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    if(!path.isEmpty())
     {
-        const QString &path = dialog.directory().absolutePath();
-        if(!path.isEmpty())
-        {
-            index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
-        }
+        index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
     }
 }
 

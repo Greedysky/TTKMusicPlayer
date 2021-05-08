@@ -139,6 +139,11 @@ QString MusicUtils::File::getOpenFileDialog(QWidget *obj)
     return getOpenFileDialog(obj, "Images (*.png *.bmp *.jpg)");
 }
 
+QString MusicUtils::File::getOpenDirectoryDialog(QWidget *obj)
+{
+    return QFileDialog::getExistingDirectory(obj, QString(), "./");
+}
+
 QStringList MusicUtils::File::getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter)
 {
     return QFileDialog::getOpenFileNames(obj, title, QDir::currentPath(), filter);

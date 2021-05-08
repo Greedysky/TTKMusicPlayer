@@ -283,7 +283,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer()
 
 void MusicCloudManagerTableWidget::uploadFileDirToServer()
 {
-    const QString &path = QFileDialog::getExistingDirectory(this, QString(), "./");
+    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
     if(!path.isEmpty())
     {
         delete m_openFileWidget;
