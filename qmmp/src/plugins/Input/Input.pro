@@ -1,7 +1,8 @@
 include($$PWD/../plugins.pri)
 
 TEMPLATE = subdirs
-SUBDIRS += additional mpeg vorbis cue sndfile wavpack
+SUBDIRS += zed
+SUBDIRS += mpeg vorbis cue sndfile wavpack
 
 contains(CONFIG, FLAC_PLUGIN){
     SUBDIRS += flac

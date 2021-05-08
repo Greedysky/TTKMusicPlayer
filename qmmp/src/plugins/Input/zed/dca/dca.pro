@@ -1,4 +1,4 @@
-include($$PWD/../additional.pri)
+include($$PWD/../zed.pri)
 include($$PWD/../common/common.pri)
 
 HEADERS += decoderdcafactory.h \

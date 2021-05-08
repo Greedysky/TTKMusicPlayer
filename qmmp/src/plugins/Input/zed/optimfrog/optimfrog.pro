@@ -1,4 +1,4 @@
-include($$PWD/../additional.pri)
+include($$PWD/../zed.pri)
 
 HEADERS += decoderoptimfrogfactory.h \
            decoder_optimfrog.h \
