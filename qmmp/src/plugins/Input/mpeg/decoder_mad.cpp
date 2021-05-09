@@ -65,18 +65,22 @@ bool DecoderMAD::initialize()
         qDebug("DecoderMAD: Can't find a valid MPEG header.");
         return false;
     }
+
     mad_stream_buffer(&m_stream, (unsigned char *) m_input_buf, m_input_bytes);
     m_stream.error = MAD_ERROR_BUFLEN;
     mad_frame_mute(&m_frame);
     m_stream.next_frame = nullptr;
     m_stream.sync = 0;
+
     ChannelMap map;
     if(m_channels == 1)
         map << Qmmp::CHAN_FRONT_LEFT;
     else
         map << Qmmp::CHAN_FRONT_LEFT << Qmmp::CHAN_FRONT_RIGHT;
+
     configure(m_freq, map, Qmmp::PCM_FLOAT);
     m_inited = true;
+    qDebug("DecoderMAD: initialize succes");
     return true;
 }
 

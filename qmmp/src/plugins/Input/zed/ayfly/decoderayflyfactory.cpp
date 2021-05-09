@@ -46,7 +46,6 @@ QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, Track
 
     if(parts & TrackInfo::MetaData)
     {
-        helper.readMetaTags();
         info->setValue(Qmmp::ARTIST, helper.artist());
         info->setValue(Qmmp::TITLE, helper.title());
     }

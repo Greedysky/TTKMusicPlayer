@@ -45,18 +45,23 @@ bool DecoderModPlug::initialize()
         m_input_buf = file.readAll();
         file.close();
     }
+
     if(m_input_buf.isEmpty())
     {
         qWarning("DecoderModPlug: error while reading module file");
         return false;
     }
+
     m_soundFile = new CSoundFile();
     readSettings();
+
     m_sampleSize = m_bps / 8 * m_chan;
     m_soundFile->Create((uchar*) m_input_buf.data(), m_input_buf.size());
     m_bitrate = m_soundFile->GetNumChannels();
     m_totalTime = (qint64) m_soundFile->GetSongTime() * 1000;
+
     configure(m_freq, m_chan, (m_bps == 8 ? Qmmp::PCM_S8 : Qmmp::PCM_S16LE));
+    qDebug("DecoderModPlug: initialize succes");
     return true;
 }
 

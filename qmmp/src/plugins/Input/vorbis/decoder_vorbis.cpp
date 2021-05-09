@@ -115,8 +115,10 @@ bool DecoderVorbis::initialize()
         qWarning("DecoderVorbis: unsupported number of channels: %d", chan);
         return false;
     }
+
     configure(freq, chmap, Qmmp::PCM_FLOAT);
     m_inited = true;
+    qDebug("DecoderVorbis: initialize succes");
     return true;
 }
 

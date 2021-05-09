@@ -108,6 +108,7 @@ bool DecoderWavPack::initialize()
         qWarning("DecoderWavPack: unsupported bit depth");
         return false;
     }
+
     if(!m_parser)
         m_totalTime = (qint64) WavpackGetNumSamples(m_context) * 1000 / freq;
     else
@@ -119,6 +120,7 @@ bool DecoderWavPack::initialize()
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         seek(0);
     }
+
     m_totalBytes = 0;
     m_frame_size = audioParameters().frameSize();
     qDebug("DecoderWavPack: initialize succes");

@@ -49,7 +49,6 @@ bool DecoderYm::initialize()
     }
 
     configure(m_freq, 2, Qmmp::PCM_S16LE);
-    
     qDebug("DecoderYm: detected format: \"%s\"", info.pSongType);
     qDebug("DecoderYm: initialize success");
     return true;

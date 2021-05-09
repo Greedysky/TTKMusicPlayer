@@ -29,7 +29,7 @@ bool DecoderV2M::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_FLOAT);
-
+    qDebug("DecoderV2M: initialize succes");
     return true;
 }
 

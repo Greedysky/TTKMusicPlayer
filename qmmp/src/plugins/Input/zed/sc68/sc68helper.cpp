@@ -1,6 +1,6 @@
 #include "sc68helper.h"
 
-void in_c68_meta_from_music_info(QVariantMap &data, sc68_music_info_t *ti, int trk)
+void in_c68_meta_from_music_info(QMap<QString, QString> &data, sc68_music_info_t *ti)
 {
     // add metainfo
     if(!ti->title || !ti->title[0])
@@ -47,8 +47,6 @@ void in_c68_meta_from_music_info(QVariantMap &data, sc68_music_info_t *ti, int t
     {
         data.insert("SC68_CONVERTER", ti->converter);
     }
-
-    data.insert("track", trk);
 }
 
 
@@ -231,17 +229,17 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
             continue;
         }
 
-        QVariantMap meta;
-        in_c68_meta_from_music_info(meta, &ti, i);
+        QMap<QString, QString> meta;
+        in_c68_meta_from_music_info(meta, &ti);
 
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            info->setValue(Qmmp::TITLE, meta.value("title").toString());
-            info->setValue(Qmmp::ARTIST, meta.value("artist").toString());
-            info->setValue(Qmmp::ALBUM, meta.value("album").toString());
-            info->setValue(Qmmp::YEAR, meta.value("year").toString());
-            info->setValue(Qmmp::GENRE, meta.value("genre").toString());
+            info->setValue(Qmmp::TITLE, meta.value("title"));
+            info->setValue(Qmmp::ARTIST, meta.value("artist"));
+            info->setValue(Qmmp::ALBUM, meta.value("album"));
+            info->setValue(Qmmp::YEAR, meta.value("year"));
+            info->setValue(Qmmp::GENRE, meta.value("genre"));
             info->setValue(Qmmp::TRACK, i);
         }
 

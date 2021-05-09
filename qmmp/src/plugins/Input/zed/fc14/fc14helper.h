@@ -23,7 +23,7 @@ extern "C" {
 #include "fc14audiodecoder.h"
 #include "stdio_file.h"
 }
-#include <QVariantMap>
+#include <QString>
 
 typedef struct {
     void *fc;
@@ -55,7 +55,8 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readMetaTags();
+
+    QString comment() const;
 
 private:
     QString m_path;

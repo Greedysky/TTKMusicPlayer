@@ -32,9 +32,11 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
     uint8_t buf[PROBE_BUFFER_SIZE + AVPROBE_PADDING_SIZE];
     pd.buf_size = input->peek((char*)buf, sizeof(buf) - AVPROBE_PADDING_SIZE);
     pd.buf = buf;
+
     if(pd.buf_size < PROBE_BUFFER_SIZE)
         return false;
-    AVInputFormat *fmt = av_probe_input_format(&pd, 1);
+
+    const AVInputFormat *fmt = av_probe_input_format(&pd, 1);
     if(!fmt)
         return false;
 

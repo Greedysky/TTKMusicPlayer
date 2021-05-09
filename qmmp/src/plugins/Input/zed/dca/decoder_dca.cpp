@@ -29,7 +29,7 @@ bool DecoderDCA::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-
+    qDebug("DecoderDCA: initialize succes");
     return true;
 }
 

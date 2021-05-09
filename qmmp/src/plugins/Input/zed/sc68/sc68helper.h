@@ -23,7 +23,6 @@ extern "C" {
 #include "stdio_file.h"
 #include "sc68.h"
 }
-#include <QVariantMap>
 #include <qmmp/trackinfo.h>
 
 typedef struct {

@@ -435,7 +435,6 @@ void DCAHelper::seek(qint64 time)
     stdio_seek(m_info->file, offs, SEEK_SET);
     m_info->remaining = 0;
     m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
-
     m_info->currentsample = sample;
 }
 

@@ -15,11 +15,12 @@ bool DecoderAdplug::initialize()
         qWarning("DecoderAdplug: initialize failed");
         return false;
     }
+
     configure(m_adplug->rate(), m_adplug->channels(), Qmmp::PCM_S16LE);
 
     m_length = m_adplug->length();
     m_divisor = (m_adplug->rate() * m_adplug->channels() * (m_adplug->depth() / 8)) / 1000.0;
-
+    qDebug("DecoderAdplug: initialize succes");
     return true;
 }
 

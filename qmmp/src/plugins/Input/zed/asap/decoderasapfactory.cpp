@@ -47,7 +47,6 @@ QList<TrackInfo*> DecoderAsapFactory::createPlayList(const QString &path, TrackI
 
     if(parts & TrackInfo::MetaData)
     {
-        helper.readMetaTags();
         info->setValue(Qmmp::TITLE, helper.title());
         info->setValue(Qmmp::ARTIST, helper.artist());
         info->setValue(Qmmp::YEAR, helper.year());

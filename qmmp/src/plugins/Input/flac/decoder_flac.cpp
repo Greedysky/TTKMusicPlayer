@@ -425,9 +425,9 @@ bool DecoderFLAC::initialize()
         setReplayGainInfo(m_parser->info(m_track)->replayGainInfo());
         seek(0);
     }
+
     m_totalBytes = 0;
     m_sz = audioParameters().frameSize();
-
     qDebug("DecoderFLAC: initialize succes");
     return true;
 }

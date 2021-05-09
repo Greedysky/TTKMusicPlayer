@@ -197,7 +197,7 @@ int PSFHelper::read(unsigned char *buf, int size)
     return initsize - size;
 }
 
-QVariantMap PSFHelper::readMetaTags()
+QMap<QString, QString> PSFHelper::readMetaTags()
 {
     if(m_info->type < 0 || !m_info->decoder)
     {

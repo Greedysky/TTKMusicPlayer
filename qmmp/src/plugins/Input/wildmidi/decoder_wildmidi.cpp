@@ -41,6 +41,7 @@ bool DecoderWildMidi::initialize()
     m_sampleRate = WildMidiHelper::instance()->sampleRate();
     _WM_Info *wm_info = WildMidi_GetInfo(midi_ptr);
     m_totalTime = (qint64)wm_info->approx_total_samples * 1000 / WildMidiHelper::instance()->sampleRate();
+
     configure(m_sampleRate, 2, Qmmp::PCM_S16LE);
     qDebug("DecoderWildMidi: initialize succes");
     return true;

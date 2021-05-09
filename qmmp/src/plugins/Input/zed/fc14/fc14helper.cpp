@@ -67,15 +67,15 @@ bool FC14Helper::initialize()
     }
     free(module);
 
-    // Initialize decoder's audio sample mixer.  frequency : output sample frequency
-    // precision : bits per sample  channels : 1=mono, 2=stereo
-    // zero : value of silent output sample (e.g. 0x80 for unsigned 8-bit, 0x0000 for signed 16-bit)
-    fc14dec_mixer_init(m_info->fc, 44100, 16, 2, 0x0000);
-
-    m_info->length = fc14dec_duration(m_info->fc);
     m_info->channels = 2;
     m_info->sample_rate = 44100;
     m_info->bits_per_sample = 16;
+    // Initialize decoder's audio sample mixer.  frequency : output sample frequency
+    // precision : bits per sample  channels : 1=mono, 2=stereo
+    // zero : value of silent output sample (e.g. 0x80 for unsigned 8-bit, 0x0000 for signed 16-bit)
+    fc14dec_mixer_init(m_info->fc, m_info->sample_rate, m_info->bits_per_sample, m_info->channels, 0x0000);
+
+    m_info->length = fc14dec_duration(m_info->fc);
     m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
 
     return true;
@@ -121,9 +121,7 @@ int FC14Helper::read(unsigned char *buf, int size)
     return size;
 }
 
-QVariantMap FC14Helper::readMetaTags()
+QString FC14Helper::comment() const
 {
-    QVariantMap data;
-    data.insert("comment", fc14dec_format_name(m_info->fc));
-    return data;
+    return fc14dec_format_name(m_info->fc);
 }

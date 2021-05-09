@@ -29,7 +29,7 @@ bool DecoderFC14::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-
+    qDebug("DecoderFC14: initialize succes");
     return true;
 }
 

@@ -29,7 +29,7 @@ bool DecoderSC68::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-
+    qDebug("DecoderSC68: initialize succes");
     return true;
 }
 

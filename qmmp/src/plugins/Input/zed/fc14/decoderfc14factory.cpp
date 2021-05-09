@@ -41,6 +41,11 @@ QList<TrackInfo*> DecoderFC14Factory::createPlayList(const QString &path, TrackI
         return QList<TrackInfo*>();
     }
 
+    if(parts & TrackInfo::MetaData)
+    {
+        info->setValue(Qmmp::COMMENT, helper.comment());
+    }
+
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());

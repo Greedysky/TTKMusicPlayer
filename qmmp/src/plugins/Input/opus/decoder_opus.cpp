@@ -104,8 +104,10 @@ bool DecoderOpus::initialize()
         qWarning("DecoderOpus: unsupported number of channels: %d", m_chan);
         return false;
     }
+
     setProperty(Qmmp::FORMAT_NAME, "Ogg Opus");
     configure(48000, chmap, Qmmp::PCM_FLOAT); //opus codec supports 48 kHz only
+    qDebug("DecoderOpus: initialize succes");
     return true;
 }
 

@@ -115,8 +115,3 @@ int AyflyHelper::read(unsigned char *buf, int size)
 {
     return ay_rendersongbuffer(m_info->ay, buf, size);
 }
-
-QVariantMap AyflyHelper::readMetaTags()
-{
-    return m_meta;
-}

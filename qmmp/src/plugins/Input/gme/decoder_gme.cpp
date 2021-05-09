@@ -65,7 +65,6 @@ bool DecoderGme::initialize()
 
     gme_free_info(track_info);
     configure(44100, 2, Qmmp::PCM_S16LE);
-
     qDebug("DecoderGme: initialize succes");
     return true;
 }

@@ -410,12 +410,14 @@ bool DecoderCDAudio::initialize()
         }
         qDebug("DecoderCDAudio: using cd audio capable drive \"%s\"", qPrintable(device_path));
     }
+
     configure(44100, 2, Qmmp::PCM_S16LE);
     m_bitrate = 1411;
     m_totalTime = tracks[track_at].info.duration();
     m_first_sector = tracks[track_at].first_sector;
     m_current_sector = tracks[track_at].first_sector;
     m_last_sector = tracks[track_at].last_sector;
+
     addMetaData(tracks[track_at].info.metaData()); //send metadata
     setProperty(Qmmp::FORMAT_NAME, "CDDA");
     setProperty(Qmmp::BITRATE, m_bitrate);

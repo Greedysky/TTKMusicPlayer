@@ -29,7 +29,7 @@ bool DecoderAsap::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-
+    qDebug("DecoderAsap: initialize succes");
     return true;
 }
 

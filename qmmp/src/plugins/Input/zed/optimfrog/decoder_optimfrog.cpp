@@ -33,7 +33,7 @@ bool DecoderOptimFROG::initialize()
     }
 
     configure(m_frog->rate(), m_frog->channels(), format);
-
+    qDebug("DecoderOptimFROG: initialize succes");
     return true;
 }
 

@@ -27,7 +27,7 @@ QList<MetaDataItem> AsapMetaDataModel::extraProperties() const
 
     if(m_asap->initialize())
     {
-        const QVariantMap &data = m_asap->readMetaTags();
+        const QMap<QString, QString> &data = m_asap->readMetaTags();
         for(const QString &key : data.keys())
         {
             ep << MetaDataItem(key, data[key]);

@@ -29,7 +29,7 @@ bool DecoderAyfly::initialize()
     }
 
     configure(rate, channels, Qmmp::PCM_S16LE);
-
+    qDebug("DecoderAyfly: initialize succes");
     return true;
 }
 

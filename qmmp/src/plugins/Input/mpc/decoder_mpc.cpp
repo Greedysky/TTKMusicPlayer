@@ -86,8 +86,8 @@ bool DecoderMPC::initialize()
         return false;
     mpc_demux_get_info(m_data->demuxer, &m_data->info);
 
-    int chan = data()->info.channels;
-    configure(data()->info.sample_freq, chan, Qmmp::PCM_FLOAT);
+    configure(data()->info.sample_freq, data()->info.channels, Qmmp::PCM_FLOAT);
+
     QMap<Qmmp::ReplayGainKey, double> rg_info; //replay gain information
     rg_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = data()->info.gain_album/256.0;
     rg_info[Qmmp::REPLAYGAIN_TRACK_GAIN] = data()->info.gain_title/256.0;

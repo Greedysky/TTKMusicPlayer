@@ -23,7 +23,8 @@ extern "C" {
 #include "asap.h"
 #include "stdio_file.h"
 }
-#include <QVariantMap>
+#include <QMap>
+#include <QString>
 
 typedef struct {
     ASAP *asap;
@@ -55,16 +56,16 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readMetaTags();
+    QMap<QString, QString> readMetaTags() const;
 
-    inline QString title() const { return m_meta.value("title").toString(); }
-    inline QString artist() const { return m_meta.value("artist").toString(); }
-    inline QString year() const { return m_meta.value("year").toString(); }
+    inline QString title() const { return m_meta.value("title"); }
+    inline QString artist() const { return m_meta.value("artist"); }
+    inline QString year() const { return m_meta.value("year"); }
 
 private:
     QString m_path;
     asap_info_t *m_info;
-    QVariantMap m_meta;
+    QMap<QString, QString> m_meta;
 
 };
 

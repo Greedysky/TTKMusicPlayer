@@ -25,7 +25,7 @@ QList<MetaDataItem> PSFMetaDataModel::extraProperties() const
 
     if(m_psf->initialize())
     {
-        const QVariantMap &data = m_psf->readMetaTags();
+        const QMap<QString, QString> &data = m_psf->readMetaTags();
         for(const QString &key : data.keys())
         {
             ep << MetaDataItem(key, data[key]);

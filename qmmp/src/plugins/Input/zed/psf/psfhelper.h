@@ -19,7 +19,8 @@
 #ifndef PSFHELPER_H
 #define PSFHELPER_H
 
-#include <QVariantMap>
+#include <QMap>
+#include <QString>
 
 typedef struct {
     int type;
@@ -55,17 +56,17 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readMetaTags();
+    QMap<QString, QString> readMetaTags();
 
-    inline QString title() const { return m_meta.value("title").toString(); }
-    inline QString artist() const { return m_meta.value("artist").toString(); }
-    inline QString album() const { return m_meta.value("album").toString(); }
-    inline QString year() const { return m_meta.value("year").toString(); }
+    inline QString title() const { return m_meta.value("title"); }
+    inline QString artist() const { return m_meta.value("artist"); }
+    inline QString album() const { return m_meta.value("album"); }
+    inline QString year() const { return m_meta.value("year"); }
 
 private:
     QString m_path;
     psf_info_t *m_info;
-    QVariantMap m_meta;
+    QMap<QString, QString> m_meta;
 
 };
 

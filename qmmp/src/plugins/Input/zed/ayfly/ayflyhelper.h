@@ -23,10 +23,11 @@ extern "C" {
 #include "ayfly.h"
 #include "stdio_file.h"
 }
-#include <QVariantMap>
+#include <QMap>
+#include <QString>
 
 typedef struct {
-    void * ay;
+    void *ay;
     int rate;
     int length;
 } ay_info_t;
@@ -52,15 +53,14 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QVariantMap readMetaTags();
 
-    inline QString title() const { return m_meta.value("title").toString(); }
-    inline QString artist() const { return m_meta.value("artist").toString(); }
+    inline QString title() const { return m_meta.value("title"); }
+    inline QString artist() const { return m_meta.value("artist"); }
 
 private:
     QString m_path;
     ay_info_t *m_info;
-    QVariantMap m_meta;
+    QMap<QString, QString> m_meta;
 
 };
 
