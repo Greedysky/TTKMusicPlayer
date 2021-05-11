@@ -16,7 +16,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libhively/include
 
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libhively/lib -lhvl_replay$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libhively/lib -lhively$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {

@@ -335,7 +335,7 @@ bool DCAHelper::initialize()
         m_info->bits_per_sample = fmt.wBitsPerSample;
         m_info->channels = fmt.nChannels;
         m_info->sample_rate = fmt.nSamplesPerSec;
-        m_totalTime = (float)totalsamples / fmt.nSamplesPerSec * 1000;
+        m_info->length = (float)totalsamples / fmt.nSamplesPerSec * 1000;
     }
 
     m_info->gain = 1;
@@ -407,10 +407,10 @@ bool DCAHelper::initialize()
     }
 
     // calculate duration
-    if(m_totalTime <= 0)
+    if(m_info->length <= 0)
     {
         totalsamples = stdio_length(m_info->file) / len * m_info->frame_length;
-        m_totalTime = (float)totalsamples / m_info->sample_rate * 1000;
+        m_info->length = (float)totalsamples / m_info->sample_rate * 1000;
     }
 
     m_info->startsample = 0;
@@ -421,7 +421,7 @@ bool DCAHelper::initialize()
 
 int DCAHelper::totalTime() const
 {
-    return m_totalTime;
+    return m_info->length;
 }
 
 void DCAHelper::seek(qint64 time)

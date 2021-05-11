@@ -82,7 +82,7 @@ bool PSFHelper::initialize()
        have_info = true;
     }
 
-    m_info->duration = 120;
+    m_info->length = 120;
     if(!have_info)
     {
         qDebug("PSFHelper: ao has no display info");
@@ -97,11 +97,11 @@ bool PSFHelper::initialize()
             float sec;
             if(sscanf(info.info[i], "%d:%f", &min, &sec) == 2)
             {
-                m_info->duration = min * 60 + sec;
+                m_info->length = min * 60 + sec;
             }
             else if(sscanf(info.info[i], "%f", &sec) == 1)
             {
-                m_info->duration = sec;
+                m_info->length = sec;
             }
             break;
         }
@@ -111,7 +111,7 @@ bool PSFHelper::initialize()
 
 int PSFHelper::totalTime() const
 {
-    return m_info->duration * 1000;
+    return m_info->length * 1000;
 }
 
 void PSFHelper::seek(qint64 time)
@@ -152,7 +152,7 @@ int PSFHelper::bitsPerSample() const
 
 int PSFHelper::read(unsigned char *buf, int size)
 {
-    if(m_info->currentsample >= m_info->duration * sampleRate())
+    if(m_info->currentsample >= m_info->length * sampleRate())
     {
         return 0;
     }

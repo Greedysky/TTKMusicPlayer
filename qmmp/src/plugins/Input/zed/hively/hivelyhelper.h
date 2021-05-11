@@ -23,7 +23,6 @@
 #include <QString>
 
 typedef struct {
-    int len;
     int bitrate;
     struct hvl_tune *tune;
 } hively_info_t;

@@ -24,7 +24,7 @@
 
 typedef struct {
     uint8_t *tune;
-    int len;
+    int length;
     int bitrate;
     V2MPlayer *player;
 } v2m_info_t;
@@ -54,7 +54,6 @@ public:
 private:
     QString m_path;
     v2m_info_t *m_info;
-    qint64 m_totalTime = 0;
 
 };
 

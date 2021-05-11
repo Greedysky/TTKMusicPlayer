@@ -79,8 +79,6 @@ bool AsapHelper::initialize()
 
     m_info->length = ASAPInfo_GetDuration(info, ASAPInfo_GetDefaultSong(info));
     m_info->channels = ASAPInfo_GetChannels(info);
-    m_info->sample_rate = ASAP_SAMPLE_RATE;
-    m_info->bits_per_sample = 32;
     m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
 
     return true;
@@ -103,7 +101,7 @@ int AsapHelper::bitrate() const
 
 int AsapHelper::sampleRate() const
 {
-    return m_info->sample_rate;
+    return ASAP_SAMPLE_RATE;
 }
 
 int AsapHelper::channels() const
@@ -113,7 +111,7 @@ int AsapHelper::channels() const
 
 int AsapHelper::bitsPerSample() const
 {
-    return m_info->bits_per_sample;
+    return 32;
 }
 
 int AsapHelper::read(unsigned char *buf, int size)

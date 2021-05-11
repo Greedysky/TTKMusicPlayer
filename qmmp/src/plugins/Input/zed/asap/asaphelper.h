@@ -28,10 +28,8 @@ extern "C" {
 
 typedef struct {
     ASAP *asap;
-    int sample_rate;
     int length;
     int bitrate;
-    int bits_per_sample;
     int channels;
 } asap_info_t;
 

@@ -29,8 +29,7 @@ typedef struct {
     size_t filesize;
     char buffer[735 * 4]; // psf2 decoder only works with 735 samples buffer
     int remaining;
-    float duration;
-
+    int length;
     int currentsample;
     int samples_to_skip;
 } psf_info_t;

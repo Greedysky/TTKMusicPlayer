@@ -27,11 +27,8 @@ extern "C" {
 
 typedef struct {
     void *fc;
-    int sample_rate;
     int length;
     int bitrate;
-    int bits_per_sample;
-    int channels;
 } fc14_info_t;
 
 /*!

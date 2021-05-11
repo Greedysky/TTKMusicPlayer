@@ -115,7 +115,7 @@ bool SC68Helper::initialize()
     }
 
     m_info->loop = (info.trk.time_ms == 0);
-    m_info->trk = track;
+    m_info->track = track;
 
     if(info.trk.time_ms > 0)
     {
@@ -126,17 +126,17 @@ bool SC68Helper::initialize()
         m_info->totalsamples = 2 * 60 * sampleRate();
     }
 
-    m_totalTime = m_info->totalsamples / sampleRate() * 1000;
-    m_info->bitrate = size * 8.0 / m_totalTime + 1.0f;
+    m_info->length = m_info->totalsamples / sampleRate() * 1000;
+    m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
 
-    sc68_play(m_info->sc68, m_info->trk, m_info->loop);
+    sc68_play(m_info->sc68, m_info->track, m_info->loop);
 
     return true;
 }
 
 int SC68Helper::totalTime() const
 {
-    return m_totalTime;
+    return m_info->length;
 }
 
 void SC68Helper::seek(qint64 time)
@@ -145,7 +145,7 @@ void SC68Helper::seek(qint64 time)
     if(sample < m_info->currentsample)
     {
         sc68_stop(m_info->sc68);
-        sc68_play(m_info->sc68, m_info->trk, m_info->loop);
+        sc68_play(m_info->sc68, m_info->track, m_info->loop);
         m_info->currentsample = 0;
     }
 

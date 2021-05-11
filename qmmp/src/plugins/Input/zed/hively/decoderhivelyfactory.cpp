@@ -12,7 +12,7 @@ DecoderProperties DecoderHivelyFactory::properties() const
     DecoderProperties properties;
     properties.name = tr("Hively Plugin");
     properties.filters << "*.ahx" << "*.hvl";
-    properties.description = tr("HVL Module Player Files");
+    properties.description = tr("HVL Module Files");
     properties.shortName = "hively";
     properties.noInput = true;
     properties.protocols << "hively";
