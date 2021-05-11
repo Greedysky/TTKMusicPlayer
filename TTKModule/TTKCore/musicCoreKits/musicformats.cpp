@@ -22,6 +22,7 @@ QStringList MusicFormats::supportFormatsString()
                         << "vtx" << "asc" << "sqt" << "psg" << "stc" << "stp" << "pt1" << "pt2" << "pt3" << "psc" << "ay"
                         << "dts" << "cpt"
                         << "fc" << "fc13" << "fc14" << "smod"
+                        << "ahx" << "hvl"
                         << "ofr" << "ofs"
                         << "psf" << "spu" << "ssf" << "qsf" << "dsf" << "minipsf" << "minissf" << "miniqsf" << "minidsf"
                         << "sc68"
@@ -54,6 +55,7 @@ TTKStringListMap MusicFormats::supportFormatsStringMap()
     formats.insert("ayfly", QStringList() << "vtx" << "asc" << "sqt" << "psg" << "stc" << "stp" << "pt1" << "pt2" << "pt3" << "psc" << "ay");
     formats.insert("dca", QStringList() << "dts" << "cpt");
     formats.insert("fc14", QStringList() << "fc" << "fc13" << "fc14" << "smod");
+    formats.insert("hively", QStringList() << "ahx" << "hvl");
     formats.insert("optimfrog", QStringList() << "ofr" << "ofs");
     formats.insert("psf", QStringList() << "psf" << "spu" << "ssf" << "qsf" << "dsf" << "minipsf" << "minissf" << "miniqsf" << "minidsf");
     formats.insert("sc68", QStringList() << "sc68");
@@ -86,6 +88,7 @@ QStringList MusicFormats::supportFormatsFilterString()
                         << "*.vtx" << "*.asc" << "*.sqt" << "*.*psg" << "*.stc" << "*.stp" << "*.pt1" << "*.pt2" << "*.pt3" << "*.psc" << "*.ay"
                         << "*.dts" << "*.cpt"
                         << "*.fc" << "*.fc13" << "*.fc14" << "*.smod"
+                        << "*.ahx" << "*.hvl"
                         << "*.ofr" << "*.ofs"
                         << "*.psf" << "*.spu" << "*.ssf" << "*.qsf" << "*.dsf" << "*.minipsf" << "*.minissf" << "*.miniqsf" << "*.minidsf"
                         << "*.sc68"
@@ -118,6 +121,7 @@ QStringList MusicFormats::supportFormatsFilterDialogString()
                         << "AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.psc *.ay)"
                         << "DTS Coherent Acoustics File(*.dts *.cpt)"
                         << "Future Composer File(*.fc *.fc13 *.fc14 *.smod)"
+                        << "HVL Module File(*.ahx *.hvl)"
                         << "OptimFrog File(*.ofr *.ofs)"
                         << "Audio Overload File(*.psf *.spu *.ssf *.qsf *.dsf *.minipsf *.minissf *.miniqsf *.minidsf)"
                         << "Atari ST(E) And Amiga File(*.sc68)"
