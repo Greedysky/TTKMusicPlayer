@@ -31,7 +31,7 @@ typedef struct {
     int length;
     int bitrate;
     int channels;
-} asap_info_t;
+} asap_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -62,7 +62,7 @@ public:
 
 private:
     QString m_path;
-    asap_info_t *m_info;
+    asap_info *m_info;
     QMap<QString, QString> m_meta;
 
 };

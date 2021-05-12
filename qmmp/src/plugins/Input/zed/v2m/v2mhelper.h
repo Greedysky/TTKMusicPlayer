@@ -26,7 +26,7 @@ typedef struct {
     uint8_t *tune;
     int bitrate;
     V2MPlayer *player;
-} v2m_info_t;
+} v2m_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -52,7 +52,7 @@ public:
 
 private:
     QString m_path;
-    v2m_info_t *m_info;
+    v2m_info *m_info;
 
 };
 

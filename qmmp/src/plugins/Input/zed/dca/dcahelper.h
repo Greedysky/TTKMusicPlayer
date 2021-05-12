@@ -57,7 +57,7 @@ typedef struct {
     int endsample;
     int currentsample;
     int samples_to_skip;
-} dca_info_t;
+} dca_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -83,7 +83,7 @@ public:
 
 private:
     QString m_path;
-    dca_info_t *m_info;
+    dca_info *m_info;
 
 };
 

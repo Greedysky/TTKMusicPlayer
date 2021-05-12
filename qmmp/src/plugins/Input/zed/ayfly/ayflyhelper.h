@@ -30,7 +30,7 @@ typedef struct {
     void *ay;
     int rate;
     int length;
-} ay_info_t;
+} ay_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -59,7 +59,7 @@ public:
 
 private:
     QString m_path;
-    ay_info_t *m_info;
+    ay_info *m_info;
     QMap<QString, QString> m_meta;
 
 };

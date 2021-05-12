@@ -33,7 +33,7 @@ typedef struct {
     int length;
     int currentsample;
     int totalsamples;
-} sc68_info_t;
+} sc68_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -62,7 +62,7 @@ public:
 
 private:
     QString m_path;
-    sc68_info_t *m_info;
+    sc68_info *m_info;
 
 };
 

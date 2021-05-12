@@ -1617,8 +1617,6 @@ int ffap_read(FFap_decoder *decoder, unsigned char *buffer, int size)
 
 static int
 ffap_seek_sample (FFap_decoder *decoder, int sample) {
-    //ape_info_t *info = (ape_info_t*)_info;
-    //sample += info->startsample;
     trace ("ffap: seeking to %d/%u\n", sample, decoder->ape_ctx->totalsamples);
     uint32_t newsample = sample;
     if(newsample > decoder->ape_ctx->totalsamples) {

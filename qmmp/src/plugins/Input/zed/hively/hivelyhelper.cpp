@@ -9,7 +9,7 @@ extern "C" {
 HivelyHelper::HivelyHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (hively_info_t*)calloc(sizeof(hively_info_t), 1);
+    m_info = (hively_info*)calloc(sizeof(hively_info), 1);
 }
 
 HivelyHelper::~HivelyHelper()

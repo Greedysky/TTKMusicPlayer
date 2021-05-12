@@ -25,7 +25,7 @@
 typedef struct {
     int bitrate;
     struct hvl_tune *tune;
-} hively_info_t;
+} hively_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -51,7 +51,7 @@ public:
 
 private:
     QString m_path;
-    hively_info_t *m_info;
+    hively_info *m_info;
     QMap<QString, QString> m_meta;
 
 };

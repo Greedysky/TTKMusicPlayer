@@ -8,7 +8,7 @@ extern "C" {
 PSFHelper::PSFHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (psf_info_t*)calloc(sizeof(psf_info_t), 1);
+    m_info = (psf_info*)calloc(sizeof(psf_info), 1);
 }
 
 PSFHelper::~PSFHelper()

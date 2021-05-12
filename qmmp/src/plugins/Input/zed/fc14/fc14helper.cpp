@@ -3,7 +3,7 @@
 FC14Helper::FC14Helper(const QString &path)
     : m_path(path)
 {
-    m_info = (fc14_info_t*)calloc(sizeof(fc14_info_t), 1);
+    m_info = (fc14_info*)calloc(sizeof(fc14_info), 1);
 }
 
 FC14Helper::~FC14Helper()
