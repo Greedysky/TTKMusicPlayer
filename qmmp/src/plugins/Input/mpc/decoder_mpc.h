@@ -34,7 +34,7 @@ struct mpc_data
 class DecoderMPC : public Decoder
 {
 public:
-    explicit DecoderMPC(QIODevice *i);
+    explicit DecoderMPC(QIODevice *input);
     virtual ~DecoderMPC();
 
     struct mpc_data *data()

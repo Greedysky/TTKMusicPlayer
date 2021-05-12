@@ -46,8 +46,8 @@ static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
 }
 
 
-DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
-    : Decoder(i),
+DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *input)
+    : Decoder(input),
       m_path(path),
       m_pkt(av_packet_alloc())
 {

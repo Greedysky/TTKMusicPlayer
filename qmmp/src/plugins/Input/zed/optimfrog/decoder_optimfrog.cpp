@@ -1,7 +1,7 @@
 #include "decoder_optimfrog.h"
 
-DecoderOptimFROG::DecoderOptimFROG(QIODevice *i)
-    : Decoder(i)
+DecoderOptimFROG::DecoderOptimFROG(QIODevice *input)
+    : Decoder(input)
 {
 }
 
@@ -9,6 +9,7 @@ bool DecoderOptimFROG::initialize()
 {
     if(!input())
         return false;
+
     if(!input()->isOpen() && !input()->open(QIODevice::ReadOnly))
         return false;
 

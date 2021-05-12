@@ -10,8 +10,8 @@
 #define LAME_MAGIC (('L' << 24) | ('A' << 16) | ('M' << 8) | 'E')
 #define INPUT_BUFFER_SIZE (32*1024)
 
-DecoderMAD::DecoderMAD(bool crc, QIODevice *i)
-    : Decoder(i),
+DecoderMAD::DecoderMAD(bool crc, QIODevice *input)
+    : Decoder(input),
       m_crc(crc)
 {
 

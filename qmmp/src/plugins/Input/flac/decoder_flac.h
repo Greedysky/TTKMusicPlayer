@@ -61,7 +61,7 @@ struct flac_data
 class DecoderFLAC : public Decoder
 {
 public:
-    DecoderFLAC(const QString &path, QIODevice *i);
+    DecoderFLAC(const QString &path, QIODevice *input);
     virtual ~DecoderFLAC();
 
     // Standard Decoder API

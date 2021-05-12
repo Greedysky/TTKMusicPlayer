@@ -42,8 +42,8 @@ int64_t ffap_getlength_cb(void *client_data)
 }
 
 
-DecoderFFap::DecoderFFap(const QString &path, QIODevice *i)
-    : Decoder(i),
+DecoderFFap::DecoderFFap(const QString &path, QIODevice *input)
+    : Decoder(input),
       m_path(path)
 {
     ffap_load();

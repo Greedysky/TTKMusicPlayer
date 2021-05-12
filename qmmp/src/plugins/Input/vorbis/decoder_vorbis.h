@@ -27,7 +27,7 @@
 class DecoderVorbis : public Decoder
 {
 public:
-    explicit DecoderVorbis(QIODevice *i);
+    explicit DecoderVorbis(QIODevice *input);
     virtual ~DecoderVorbis();
 
     // Standard Decoder API

@@ -57,8 +57,8 @@ static long oggtell(void *src)
 }
 
 
-DecoderVorbis::DecoderVorbis(QIODevice *i)
-    : Decoder(i)
+DecoderVorbis::DecoderVorbis(QIODevice *input)
+    : Decoder(input)
 {
     memset(&oggfile, 0, sizeof(OggVorbis_File));
 }

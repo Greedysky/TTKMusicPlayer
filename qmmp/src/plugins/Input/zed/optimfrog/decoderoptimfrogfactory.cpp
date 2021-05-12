@@ -35,46 +35,50 @@ QList<TrackInfo*> DecoderOptimFROGFactory::createPlayList(const QString &path, T
     }
 
     QFile file(path);
-    if(file.open(QIODevice::ReadOnly))
+    if(!file.open(QIODevice::ReadOnly))
     {
-        OptimFROGHelper helper(&file);
-        if(!helper.initialize())
-        {
-            delete info;
-            return QList<TrackInfo*>();
-        }
-
-        if(parts & TrackInfo::Properties)
-        {
-            info->setValue(Qmmp::BITRATE, helper.bitrate());
-            info->setValue(Qmmp::SAMPLERATE, helper.rate());
-            info->setValue(Qmmp::CHANNELS, helper.channels());
-            info->setValue(Qmmp::FORMAT_NAME, "OptimFROG");
-            info->setDuration(helper.length());
-        }
-
-        if((parts & TrackInfo::MetaData) && helper.hasTags())
-        {
-            QString value;
-            value = helper.getTag("title");
-            info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
-            value = helper.getTag("artist");
-            info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
-            value = helper.getTag("album");
-            info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
-            value = helper.getTag("comment");
-            info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
-            value = helper.getTag("genre");
-            info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
-            value = helper.getTag("composer");
-            info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
-            value = helper.getTag("year");
-            info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
-            value = helper.getTag("track");
-            info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
-        }
+        delete info;
+        return QList<TrackInfo*>();
     }
 
+    OptimFROGHelper helper(&file);
+    if(!helper.initialize())
+    {
+        delete info;
+        return QList<TrackInfo*>();
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, helper.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, helper.rate());
+        info->setValue(Qmmp::CHANNELS, helper.channels());
+        info->setValue(Qmmp::FORMAT_NAME, "OptimFROG");
+        info->setDuration(helper.length());
+    }
+
+    if((parts & TrackInfo::MetaData) && helper.hasTags())
+    {
+        QString value;
+        value = helper.getTag("title");
+        info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
+        value = helper.getTag("artist");
+        info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
+        value = helper.getTag("album");
+        info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
+        value = helper.getTag("comment");
+        info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
+        value = helper.getTag("genre");
+        info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
+        value = helper.getTag("composer");
+        info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
+        value = helper.getTag("year");
+        info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
+        value = helper.getTag("track");
+        info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
+    }
+
+    file.close();
     return QList<TrackInfo*>() << info;
 }
 

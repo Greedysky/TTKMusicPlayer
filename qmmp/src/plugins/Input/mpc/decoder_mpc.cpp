@@ -38,8 +38,8 @@ static mpc_int32_t mpc_callback_get_size(mpc_reader *reader)
 }
 
 
-DecoderMPC::DecoderMPC(QIODevice *i)
-    : Decoder(i)
+DecoderMPC::DecoderMPC(QIODevice *input)
+    : Decoder(input)
 {
 
 }

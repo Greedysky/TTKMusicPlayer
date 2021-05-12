@@ -29,9 +29,7 @@
 class OptimFROGHelper
 {
 public:
-    explicit OptimFROGHelper(QIODevice *i);
-    OptimFROGHelper(const OptimFROGHelper &) = delete;
-    OptimFROGHelper &operator=(const OptimFROGHelper &) = delete;
+    explicit OptimFROGHelper(QIODevice *input);
     ~OptimFROGHelper();
 
     bool initialize();
@@ -51,12 +49,13 @@ public:
     QString getTag(const char* tag) { return QString::fromStdString(m_tags[tag]); }
 
 private:
+    Q_DISABLE_COPY(OptimFROGHelper)
 #if defined Q_OS_WIN && defined __GNUC__
     FARPROC GetSymbolAddress(const char* name) const;
     HINSTANCE m_instance = nullptr;
 #endif
     void *m_decoder;
-    void *m_reader;
+    void *m_input;
     OptimFROG_Info m_info;
     bool m_signed;
 

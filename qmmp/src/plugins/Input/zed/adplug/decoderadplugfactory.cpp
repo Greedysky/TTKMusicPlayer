@@ -7,8 +7,8 @@
 class InputStreamQIO : public InputStream
 {
 public:
-    explicit InputStreamQIO(QIODevice *i)
-        : m_device(i)
+    explicit InputStreamQIO(QIODevice *input)
+        : m_device(input)
     {
 
     }

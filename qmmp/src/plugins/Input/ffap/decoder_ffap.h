@@ -30,7 +30,7 @@
 class DecoderFFap : public Decoder
 {
 public:
-    DecoderFFap(const QString &path, QIODevice *i);
+    DecoderFFap(const QString &path, QIODevice *input);
     virtual ~DecoderFFap();
 
     // Standard Decoder API

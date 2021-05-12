@@ -32,7 +32,7 @@ struct aac_data
 class DecoderAAC : public Decoder
 {
 public:
-    explicit DecoderAAC(QIODevice *);
+    explicit DecoderAAC(QIODevice *input);
     virtual ~DecoderAAC();
 
     struct aac_data *data()

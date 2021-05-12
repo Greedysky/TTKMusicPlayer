@@ -31,7 +31,7 @@
 class DecoderMAD : public Decoder
 {
 public:
-    explicit DecoderMAD(bool crc, QIODevice *i);
+    explicit DecoderMAD(bool crc, QIODevice *input);
     virtual ~DecoderMAD();
 
     // standard decoder API

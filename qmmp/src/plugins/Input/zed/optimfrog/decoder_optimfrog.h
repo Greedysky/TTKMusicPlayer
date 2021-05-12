@@ -26,7 +26,7 @@
 class DecoderOptimFROG : public Decoder
 {
   public:
-    explicit DecoderOptimFROG(QIODevice *i);
+    explicit DecoderOptimFROG(QIODevice *input);
 
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;

@@ -13,9 +13,9 @@ typedef condition_t (*OFROG_seekable)(void*);
 typedef condition_t (*OFROG_seekTime)(void*, sInt64_t);
 #endif
 
-OptimFROGHelper::OptimFROGHelper(QIODevice *i)
+OptimFROGHelper::OptimFROGHelper(QIODevice *input)
    : m_decoder(nullptr),
-     m_reader(i)
+     m_input(input)
 {
 
 }
@@ -67,7 +67,7 @@ bool OptimFROGHelper::initialize()
     }
 
 #if defined Q_OS_WIN && defined __GNUC__
-    if(!((OFROG_openExt)GetSymbolAddress("OptimFROG_openExt"))(m_decoder, &rint, m_reader, C_TRUE))
+    if(!((OFROG_openExt)GetSymbolAddress("OptimFROG_openExt"))(m_decoder, &rint, m_input, C_TRUE))
     {
         qWarning("OptimFROGHelper: OptimFROG_openExt failed");
         ((OFROG_destroyInstance)GetSymbolAddress("OptimFROG_destroyInstance"))(m_decoder);
@@ -75,7 +75,7 @@ bool OptimFROGHelper::initialize()
     }
     ((OFROG_getInfo)GetSymbolAddress("OptimFROG_getInfo"))(m_decoder, &m_info);
 #else
-    if(!OptimFROG_openExt(m_decoder, &rint, m_reader, C_TRUE))
+    if(!OptimFROG_openExt(m_decoder, &rint, m_input, C_TRUE))
     {
         qWarning("OptimFROGHelper: OptimFROG_openExt failed");
         OptimFROG_destroyInstance(m_decoder);
@@ -163,7 +163,7 @@ void OptimFROGHelper::seek(int pos)
 int OptimFROGHelper::length() const
 {
 #if defined Q_OS_WIN && defined __GNUC__
-    return (static_cast<QIODevice*>(m_reader)->size() * 8.0) / m_info.bitrate;
+    return (static_cast<QIODevice*>(m_input)->size() * 8.0) / m_info.bitrate;
 #else
     return m_info.length_ms;
 #endif
