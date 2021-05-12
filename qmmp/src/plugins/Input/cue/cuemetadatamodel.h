@@ -39,6 +39,7 @@ public:
 
 private:
     QString m_dataFilePath, m_cueFilePath;
+    mutable QTextCodec *m_codec = nullptr;
 
 };
 
