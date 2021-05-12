@@ -11,15 +11,15 @@ bool DecoderAsapFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderAsapFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("Asap Plugin");
+    properties.name = "Asap Plugin";
+    properties.shortName = "asap";
     properties.filters << "*.sap";
     properties.filters << "*.cm3" << "*.cmc" << "*.cmr" << "*.cms";
     properties.filters << "*.dmc" << "*.dlt";
     properties.filters << "*.mpd" << "*.mpt" << "*.rmt" << "*.tm2" << "*.tm8" << "*.tmc";
-    properties.description = tr("Another Slight Atari Player Files");
-    properties.shortName = "asap";
+    properties.description = "Another Slight Atari Player Files";
+    properties.protocols << "file";
     properties.noInput = true;
-    properties.protocols << "asap";
     return properties;
 }
 

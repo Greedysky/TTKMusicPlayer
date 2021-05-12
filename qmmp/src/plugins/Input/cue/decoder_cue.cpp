@@ -43,12 +43,14 @@ bool DecoderCUE::initialize()
         qWarning("DecoderCUE: file \"%s\" doesn't exist", qPrintable(m_path));
         return false;
     }
+
     DecoderFactory *df = Decoder::findByFilePath(m_path);
     if(!df)
     {
         qWarning("DecoderCUE: unsupported file format");
         return false;
     }
+
     m_length = m_cueFile->duration(m_track);
     m_offset = m_cueFile->offset(m_track);
     if(!df->properties().noInput)
@@ -60,6 +62,7 @@ bool DecoderCUE::initialize()
             return false;
         }
     }
+
     m_decoder = df->create(m_path, m_input);
     if(!m_decoder->initialize())
     {

@@ -17,17 +17,17 @@ bool DecoderModPlugFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderModPlugFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("ModPlug Plugin");
+    properties.name = "ModPlug Plugin";
+    properties.shortName = "modplug";
     properties.filters << "*.amf" << "*.ams" << "*.dbm" << "*.dbf" << "*.dsm" << "*.far" << "*.mdl";
     properties.filters << "*.stm" << "*.ult" << "*.j2b" << "*.mt2" << "*.mdz" << "*.mdr" << "*.mdgz";
     properties.filters << "*.mdbz" << "*.mod" << "*.s3z" << "*.s3r" << "*.s3gz" << "*.s3m" << "*.xmz";
     properties.filters << "*.xmr" << "*.xmgz" << "*.itz" << "*.itr" << "*.itgz" << "*.dmf" "*.umx";
     properties.filters << "*.it" << "*.669" << "*.xm" << "*.mtm" << "*.psm" << "*.ft2" << "*.med";
-    properties.description = tr("ModPlug Files");
-    properties.shortName = "modplug";
+    properties.description = "ModPlug Files";
+    properties.protocols << "file";
     properties.hasSettings = true;
     properties.noInput = true;
-    properties.protocols << "file";
     return properties;
 }
 

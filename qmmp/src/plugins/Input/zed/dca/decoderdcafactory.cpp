@@ -10,12 +10,12 @@ bool DecoderDCAFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderDCAFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("DTS Plugin");
-    properties.filters << "*.dts" << "*.cpt";
-    properties.description = tr("DTS Coherent Acoustics Audio Files");
+    properties.name = "DTS Plugin";
     properties.shortName = "dca";
+    properties.filters << "*.dts" << "*.cpt";
+    properties.description = "DTS Coherent Acoustics Audio Files";
+    properties.protocols << "file";
     properties.noInput = true;
-    properties.protocols << "dca";
     return properties;
 }
 

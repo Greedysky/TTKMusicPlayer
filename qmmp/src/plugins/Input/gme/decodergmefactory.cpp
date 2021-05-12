@@ -11,14 +11,14 @@ bool DecoderGmeFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderGmeFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("GME Plugin");
+    properties.name = "GME Plugin";
+    properties.shortName = "gme";
     properties.filters << "*.ay" << "*.gbs" << "*.gym" << "*.hes" << "*.kss" << "*.nsf" << "*.nsfe";
     properties.filters << "*.sap" << "*.spc" << "*.vgm" << "*.vgz";
-    properties.description = tr("Game Music Emulator Files");
-    properties.shortName = "gme";
+    properties.description = "Game Music Emulator Files";
+    properties.protocols << "gme";
     properties.hasSettings = true;
     properties.noInput = true;
-    properties.protocols << "gme";
     return properties;
 }
 

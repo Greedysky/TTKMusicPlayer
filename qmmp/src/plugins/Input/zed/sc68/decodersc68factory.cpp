@@ -10,12 +10,12 @@ bool DecoderSC68Factory::canDecode(QIODevice *) const
 DecoderProperties DecoderSC68Factory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("SC68 Plugin");
-    properties.filters << "*.sc68";
-    properties.description = tr("Atari ST(E) And Amiga Audio Files");
+    properties.name = "SC68 Plugin";
     properties.shortName = "sc68";
-    properties.noInput = true;
+    properties.filters << "*.sc68";
+    properties.description = "Atari ST(E) And Amiga Audio Files";
     properties.protocols << "sc68";
+    properties.noInput = true;
     return properties;
 }
 

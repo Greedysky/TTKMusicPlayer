@@ -11,12 +11,12 @@ bool DecoderYmFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderYmFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("YM Plugin");
-    properties.filters << "*.ym";
-    properties.description = tr("ST-Sound, ATARI-ST Audio Files");
+    properties.name = "YM Plugin";
     properties.shortName = "ym";
-    properties.noInput = true;
+    properties.filters << "*.ym";
+    properties.description = "ST-Sound, ATARI-ST Audio Files";
     properties.protocols << "file";
+    properties.noInput = true;
     return properties;
 }
 

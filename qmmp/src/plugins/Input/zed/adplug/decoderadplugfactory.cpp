@@ -48,10 +48,10 @@ bool DecoderAdplugFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderAdplugFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("AdPlug Plugin");
-    properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds" << "*.amd" << "*.d00" << "*.rad";
-    properties.description = tr("AdLib Sound Files");
+    properties.name = "AdPlug Plugin";
     properties.shortName = "adplug";
+    properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds" << "*.amd" << "*.d00" << "*.rad";
+    properties.description = "AdLib Sound Files";
     return properties;
 }
 

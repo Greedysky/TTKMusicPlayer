@@ -23,6 +23,7 @@ DecoderAAC::~DecoderAAC()
         delete data();
         m_data = nullptr;
     }
+
     if(m_input_buf)
         delete[] m_input_buf;
     m_input_buf = nullptr;
@@ -39,6 +40,7 @@ bool DecoderAAC::initialize()
         qWarning("DecoderAAC: cannot initialize.  No input.");
         return false;
     }
+
     if(!m_input_buf)
         m_input_buf = new char[AAC_BUFFER_SIZE];
     m_input_at = 0;

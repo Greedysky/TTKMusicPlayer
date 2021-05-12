@@ -93,11 +93,11 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderSndFileFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("Sndfile Plugin");
+    properties.name = "Sndfile Plugin";
+    properties.shortName = "sndfile";
     properties.filters << "*.wav" << "*.au" << "*.snd" << "*.aif" << "*.aiff" << "*.8svx";
     properties.filters << "*.sph" << "*.sf" << "*.voc" << "*.w64";
-    properties.description = tr("PCM Files");
-    properties.shortName = "sndfile";
+    properties.description = "PCM Files";
     return properties;
 }
 

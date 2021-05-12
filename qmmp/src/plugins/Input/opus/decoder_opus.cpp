@@ -44,7 +44,7 @@ static opus_int64 opustell(void *src)
 }
 
 
-DecoderOpus::DecoderOpus(const QString &url, QIODevice *i)
+DecoderOpus::DecoderOpus(QIODevice *i)
     : Decoder(i)
 {
 

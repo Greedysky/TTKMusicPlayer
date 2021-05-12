@@ -10,15 +10,15 @@ bool DecoderAyflyFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderAyflyFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("ALFLY Plugin");
+    properties.name = "ALFLY Plugin";
+    properties.shortName = "alfly";
     properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*psg";
     properties.filters << "*.stc" << "*.stp";
     properties.filters << "*.pt1" << "*.pt2" << "*.pt3" << "*.psc";
     properties.filters << "*.ay";
-    properties.description = tr("AY/YM Audio Files");
-    properties.shortName = "alfly";
+    properties.description = "AY/YM Audio Files";
+    properties.protocols << "file";
     properties.noInput = true;
-    properties.protocols << "alfly";
     return properties;
 }
 

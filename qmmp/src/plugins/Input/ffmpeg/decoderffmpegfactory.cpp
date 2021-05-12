@@ -124,9 +124,11 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.webm");
 
     DecoderProperties properties;
-    properties.name = tr("FFmpeg Plugin");
+    properties.name = "FFmpeg Plugin";
+    properties.shortName = "ffmpeg";
     properties.filters = filters;
-    properties.description = tr("FFmpeg Formats Files");
+    properties.description = "FFmpeg Formats Files";
+
     if(filters.contains("*.wma"))
         properties.contentTypes << "audio/x-ms-wma";
     if(filters.contains("*.mp3"))
@@ -152,7 +154,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     if(filters.contains("*.webm"))
         properties.contentTypes << "audio/webm";
 
-    properties.shortName = "ffmpeg";
     properties.protocols << "ffmpeg" << "m4b";
     properties.priority = 10;
     return properties;

@@ -250,6 +250,7 @@ DecoderFLAC::~DecoderFLAC()
         delete m_data;
         m_data = nullptr;
     }
+
     if(m_buf)
         delete[] m_buf;
     m_buf = nullptr;

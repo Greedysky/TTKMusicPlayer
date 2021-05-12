@@ -19,10 +19,10 @@ bool DecoderVorbisFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderVorbisFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("Ogg Vorbis Plugin");
+    properties.name = "Ogg Vorbis Plugin";
     properties.shortName = "vorbis";
     properties.filters << "*.ogg";
-    properties.description = tr("Ogg Vorbis Files");
+    properties.description = "Ogg Vorbis Files";
     properties.contentTypes << "application/ogg" << "audio/x-vorbis+ogg";
     return properties;
 }

@@ -11,17 +11,17 @@ bool DecoderPSFFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderPSFFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("PSF Plugin");
+    properties.name = "PSF Plugin";
+    properties.shortName = "psf";
     properties.filters << "*.psf";
     properties.filters << "*.spu";
     properties.filters << "*.ssf";
     properties.filters << "*.qsf";
     properties.filters << "*.dsf";
     properties.filters << "*.minipsf" << "*.minissf" << "*.miniqsf" << "*.minidsf";
-    properties.description = tr("Audio Overload Files");
-    properties.shortName = "psf";
+    properties.description = "Audio Overload Files";
+    properties.protocols << "file";
     properties.noInput = true;
-    properties.protocols << "psf";
     return properties;
 }
 

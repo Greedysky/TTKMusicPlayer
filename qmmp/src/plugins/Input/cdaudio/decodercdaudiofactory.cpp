@@ -21,10 +21,11 @@ bool DecoderCDAudioFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderCDAudioFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("CD Audio Plugin");
+    properties.name = "CD Audio Plugin";
     properties.shortName = "cdaudio";
-    properties.description = tr("Compact Disc Input and Control Files");
+    properties.description = "Compact Disc Input and Control Files";
     properties.protocols << "cdda";
+    properties.noInput = true;
     return properties;
 }
 

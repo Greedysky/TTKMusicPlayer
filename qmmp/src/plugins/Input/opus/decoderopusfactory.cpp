@@ -17,17 +17,18 @@ bool DecoderOpusFactory::canDecode(QIODevice *input) const
 DecoderProperties DecoderOpusFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = tr("Opus Plugin");
+    properties.name = "Opus Plugin";
     properties.shortName = "opus";
     properties.filters << "*.opus";
-    properties.description = tr("Ogg Opus Files");
+    properties.description = "Ogg Opus Files";
     properties.contentTypes << "audio/opus";
     return properties;
 }
 
 Decoder *DecoderOpusFactory::create(const QString &path, QIODevice *input)
 {
-    return new DecoderOpus(path, input);
+    Q_UNUSED(path);
+    return new DecoderOpus(input);
 }
 
 QList<TrackInfo*> DecoderOpusFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)

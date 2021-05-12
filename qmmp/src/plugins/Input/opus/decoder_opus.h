@@ -30,7 +30,7 @@
 class DecoderOpus : public Decoder
 {
 public:
-    DecoderOpus(const QString &url, QIODevice *i);
+    DecoderOpus(QIODevice *i);
     virtual ~DecoderOpus();
 
     // Standard Decoder API
