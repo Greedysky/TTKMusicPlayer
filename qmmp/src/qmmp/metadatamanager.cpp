@@ -232,7 +232,7 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
         if(QDir::match(m_settings->coverNameFilters(false), i.fileName()))
             file_list.removeAll(i);
 
-        if(QImageReader::imageFormat(i.fileName()).isEmpty()) //remove unsupported image formats
+        if(QImageReader::imageFormat(i.filePath()).isEmpty()) //remove unsupported image formats
             file_list.removeAll(i.fileName());
     }
     if(!depth || !file_list.isEmpty())
