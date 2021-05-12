@@ -42,6 +42,7 @@ public:
 
     const QString shortName() const;
     const QString file() const;
+    const QStringList &filters() const;
     int priority() const;
     bool hasError() const;
 
@@ -58,6 +59,7 @@ private:
 
     QString m_path;
     QString m_shortName;
+    QStringList m_filters;
     bool m_error = false;
     QObject *m_instance = nullptr;
     DecoderFactory *m_decoderFactory = nullptr;

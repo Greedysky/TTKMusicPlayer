@@ -42,17 +42,17 @@
  *
  *  MPEG File(*.mp1 *.mp2 *.mp3)
  *
- *  Game Audio File(*.ay *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
+ *  Game Audio File(*.ay *.gbs *.gms *.gym *.hes *.kss *.nsf *.nsfe *.sap *.spc *.vgm *.vgz)
  *
  *  FLAC File(*.flac *.oga)
  *
  *  Monkey's Audio File(*.ape)
  *
- *  FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3 *.tak *.dsf *.dsdiff)
+ *  FFmpeg File(*.wma *.ape *.tta *.m4a *.ra *.shn *.vqf *.ac3 *.tak *.dsf *.dsdiff *.webm)
  *
  *  ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
  *
- *  AdLib Sound File(*.adl *.hsc *.ksm *.lds)
+ *  AdLib Sound File(*.adl *.hsc *.ksm *.lds *.amd *.d00 *.rad)
  *
  *  Another Slight Atari File(*.sap *.cm3 *.cmc *.cmr *.cms *.dmc *.dlt *.mpd *.mpt *.rmt *.tm2 *.tm8 *.tmc)
  *
@@ -73,6 +73,8 @@
  *  AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.psc *.ay)
  *
  *  ST-Sound File(*.ym)
+ *
+ *  HVL Module Player File(*.ahx *.hvl)
  *
  *  Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
  *

@@ -86,6 +86,10 @@ public:
      */
     static QList<EngineFactory*> enabledFactories();
     /*!
+     * Returns a list of file name filters, i.e. "*.mp3 *.mpg".
+     */
+    static QStringList nameFilters();
+    /*!
      * Returns EngineFactory pointer which supports file \b path or 0 if file \b path is unsupported.
      */
     static EngineFactory *findByFilePath(const QString &path);

@@ -168,6 +168,10 @@ public:
      */
     static QList<DecoderFactory*> enabledFactories();
     /*!
+     * Returns a list of file name filters, i.e. "*.mp3 *.mpg".
+     */
+    static QStringList nameFilters();
+    /*!
      * Returns plugin file path.
      * @param factory Decoder plugin factory.
      */

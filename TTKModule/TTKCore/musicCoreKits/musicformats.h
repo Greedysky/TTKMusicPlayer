@@ -32,19 +32,20 @@ public:
     /*!
      * Get player supported formats.
      */
-    static QStringList supportFormatsString();
+    static QStringList supportFormats();
     /*!
-     * Get player supported formats.
+     * Get player supported formats map.
      */
-    static TTKStringListMap supportFormatsStringMap();
+    static TTKStringListMap supportFormatsMap();
     /*!
      * Get player supported formats filter.
      */
-    static QStringList supportFormatsFilterString();
+    static QStringList supportFormatsFilter();
     /*!
-     * Get player supported formats filter dialog.
+     * Get player supported formats dialog filter.
      */
-    static QStringList supportFormatsFilterDialogString();
+    static QStringList supportFormatsDialogFilter();
+
     /*!
      * Get spek supported formats filter dialog.
      */
