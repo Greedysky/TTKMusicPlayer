@@ -97,7 +97,7 @@ DecoderProperties DecoderSndFileFactory::properties() const
     properties.shortName = "sndfile";
     properties.filters << "*.wav" << "*.au" << "*.snd" << "*.aif" << "*.aiff" << "*.8svx";
     properties.filters << "*.sph" << "*.sf" << "*.voc" << "*.w64";
-    properties.description = "PCM Files";
+    properties.description = "PCM File";
     return properties;
 }
 

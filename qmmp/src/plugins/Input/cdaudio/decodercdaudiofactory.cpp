@@ -23,7 +23,7 @@ DecoderProperties DecoderCDAudioFactory::properties() const
     DecoderProperties properties;
     properties.name = "CD Audio Plugin";
     properties.shortName = "cdaudio";
-    properties.description = "Compact Disc Input and Control Files";
+    properties.description = "Compact Disc Input and Control File";
     properties.protocols << "cdda";
     properties.noInput = true;
     return properties;

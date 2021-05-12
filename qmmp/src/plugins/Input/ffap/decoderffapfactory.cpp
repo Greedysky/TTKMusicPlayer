@@ -19,7 +19,7 @@ DecoderProperties DecoderFFapFactory::properties() const
     properties.name = "FFap Plugin";
     properties.shortName = "ffap";
     properties.filters << "*.ape";
-    properties.description = "Monkey's Audio Files";
+    properties.description = "Monkey's Audio File";
     properties.protocols << "ape";
     properties.priority = 9;
     return properties;

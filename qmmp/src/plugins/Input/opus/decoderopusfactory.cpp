@@ -20,7 +20,7 @@ DecoderProperties DecoderOpusFactory::properties() const
     properties.name = "Opus Plugin";
     properties.shortName = "opus";
     properties.filters << "*.opus";
-    properties.description = "Ogg Opus Files";
+    properties.description = "Ogg Opus File";
     properties.contentTypes << "audio/opus";
     return properties;
 }

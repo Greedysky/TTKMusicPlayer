@@ -13,7 +13,7 @@ DecoderProperties DecoderV2MFactory::properties() const
     properties.name = "V2M Plugin";
     properties.shortName = "v2m";
     properties.filters << "*.v2m";
-    properties.description = "V2 Module Player Files";
+    properties.description = "V2 Module Player File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;

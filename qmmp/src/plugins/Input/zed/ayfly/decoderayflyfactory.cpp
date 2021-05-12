@@ -16,7 +16,7 @@ DecoderProperties DecoderAyflyFactory::properties() const
     properties.filters << "*.stc" << "*.stp";
     properties.filters << "*.pt1" << "*.pt2" << "*.pt3" << "*.psc";
     properties.filters << "*.ay";
-    properties.description = "AY/YM Audio Files";
+    properties.description = "AY/YM Audio File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;

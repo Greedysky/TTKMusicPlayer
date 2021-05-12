@@ -24,7 +24,7 @@ DecoderProperties DecoderModPlugFactory::properties() const
     properties.filters << "*.mdbz" << "*.mod" << "*.s3z" << "*.s3r" << "*.s3gz" << "*.s3m" << "*.xmz";
     properties.filters << "*.xmr" << "*.xmgz" << "*.itz" << "*.itr" << "*.itgz" << "*.dmf" "*.umx";
     properties.filters << "*.it" << "*.669" << "*.xm" << "*.mtm" << "*.psm" << "*.ft2" << "*.med";
-    properties.description = "ModPlug Files";
+    properties.description = "ModPlug File";
     properties.protocols << "file";
     properties.hasSettings = true;
     properties.noInput = true;

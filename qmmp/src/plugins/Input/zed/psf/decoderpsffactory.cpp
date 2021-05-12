@@ -18,7 +18,7 @@ DecoderProperties DecoderPSFFactory::properties() const
     properties.filters << "*.qsf" << "*.miniqsf";
     properties.filters << "*.dsf" << "*.minidsf";
     properties.filters << "*.spu";
-    properties.description = "Audio Overload Files";
+    properties.description = "Audio Overload File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;

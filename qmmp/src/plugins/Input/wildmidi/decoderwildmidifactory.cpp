@@ -29,7 +29,7 @@ DecoderProperties DecoderWildMidiFactory::properties() const
 #if defined(LIBWILDMIDI_VERSION) && (LIBWILDMIDI_VERSION >= 0x000400)
     properties.filters << "*.mus" << "*.xmi";
 #endif
-    properties.description = "Midi Files";
+    properties.description = "Midi File";
     properties.protocols << "file";
     properties.hasSettings = true;
     properties.noInput = true;

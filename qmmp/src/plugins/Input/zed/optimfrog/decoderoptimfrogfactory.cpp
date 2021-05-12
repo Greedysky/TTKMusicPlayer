@@ -15,7 +15,7 @@ DecoderProperties DecoderOptimFROGFactory::properties() const
     properties.name = "OptimFROG Plugin";
     properties.shortName = "optimfrog";
     properties.filters << "*.ofr" << "*.ofs";
-    properties.description = "OptimFROG Lossless Audio Compression Audio Files";
+    properties.description = "OptimFROG Lossless Audio File";
     return properties;
 }
 

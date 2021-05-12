@@ -13,7 +13,7 @@ DecoderProperties DecoderDCAFactory::properties() const
     properties.name = "DTS Plugin";
     properties.shortName = "dca";
     properties.filters << "*.dts" << "*.cpt";
-    properties.description = "DTS Coherent Acoustics Audio Files";
+    properties.description = "DTS Coherent Acoustics Audio File";
     properties.protocols << "file";
     properties.noInput = true;
     return properties;

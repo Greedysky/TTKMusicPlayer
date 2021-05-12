@@ -105,7 +105,7 @@ DecoderProperties DecoderMPEGFactory::properties() const
     properties.name = "MPEG Plugin";
     properties.shortName = "mpeg";
     properties.filters << "*.mp1" << "*.mp2" << "*.mp3";
-    properties.description = "MPEG Audio Files";
+    properties.description = "MPEG Audio File";
     properties.contentTypes << "audio/mp3" << "audio/mpeg";
     properties.hasSettings = true;
     return properties;

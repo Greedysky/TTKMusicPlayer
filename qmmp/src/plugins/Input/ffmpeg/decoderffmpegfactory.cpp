@@ -127,7 +127,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     properties.name = "FFmpeg Plugin";
     properties.shortName = "ffmpeg";
     properties.filters = filters;
-    properties.description = "FFmpeg Formats Files";
+    properties.description = "FFmpeg Formats File";
 
     if(filters.contains("*.wma"))
         properties.contentTypes << "audio/x-ms-wma";

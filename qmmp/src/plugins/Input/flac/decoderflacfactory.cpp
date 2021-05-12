@@ -29,7 +29,7 @@ DecoderProperties DecoderFLACFactory::properties() const
     properties.name = "FLAC Plugin";
     properties.shortName = "flac";
     properties.filters << "*.flac" << "*.oga";
-    properties.description = "Free Lossless Audio Codec Files";
+    properties.description = "Free Lossless Audio Codec File";
     properties.contentTypes << "audio/x-flac" << "audio/flac";
     properties.protocols << "flac";
     return properties;

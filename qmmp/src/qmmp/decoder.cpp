@@ -341,6 +341,7 @@ QList<DecoderFactory *> Decoder::enabledFactories()
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
+
         if(item->decoderFactory())
             list.append(item->decoderFactory());
     }

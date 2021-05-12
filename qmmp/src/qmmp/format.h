@@ -16,25 +16,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALPALETTE_H
-#define VISUALPALETTE_H
+#ifndef FORMAT_H
+#define FORMAT_H
 
+#include <QMap>
+#include <QStringList>
 #include "qmmp_export.h"
 
-namespace VisualPalette {
-typedef enum palette {
-    PALETTE_SPECTRUM,
-    PALETTE_SPECTROGRAM,
-    PALETTE_SOX,
-    PALETTE_MONO,
-    PALETTE_DEFAULT = PALETTE_SPECTROGRAM,
-} Palette;
-
+/*! @brief The input file format support
+ * @author Greedysky <greedysky@163.com>
+ */
+class QMMP_EXPORT Format
+{
+public:
 /*!
-* Returns visual render palette by type.
-*/
-QMMP_EXPORT uint32_t renderPalette(Palette palette, double level);
+ * Get player supported formats.
+ */
+static QStringList decodeForString();
+/*!
+ * Get player supported formats.
+ */
+static QMap<QString, QStringList> decodeForStringMap();
+/*!
+ * Get player supported formats filter.
+ */
+static QStringList decodeForFilter();
+/*!
+ * Get player supported formats filter dialog.
+ */
+static QStringList decodeForFilterDialog();
 
-}
+};
 
-#endif
+#endif // FORMAT_H

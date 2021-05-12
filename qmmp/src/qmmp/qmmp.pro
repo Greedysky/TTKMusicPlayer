@@ -48,7 +48,8 @@ HEADERS += \
     qmmp_export.h \
     trackinfo.h \
     cueparser.h \
-    regularwrapper.h
+    regularwrapper.h \
+    format.h
 
 SOURCES += recycler.cpp \
     decoder.cpp \
@@ -88,7 +89,8 @@ SOURCES += recycler.cpp \
     florid.cpp \
     trackinfo.cpp \
     cueparser.cpp \
-    regularwrapper.cpp
+    regularwrapper.cpp \
+    format.cpp
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 
