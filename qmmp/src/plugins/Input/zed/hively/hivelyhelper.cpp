@@ -120,7 +120,7 @@ void HivelyHelper::seek(qint64 time)
 
 int HivelyHelper::bitrate() const
 {
-    return 8;
+    return m_info->bitrate;
 }
 
 int HivelyHelper::sampleRate() const
