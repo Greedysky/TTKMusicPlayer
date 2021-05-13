@@ -293,10 +293,10 @@ DCAHelper::DCAHelper(const QString &path)
 
 DCAHelper::~DCAHelper()
 {
-    close();
+    deinit();
 }
 
-void DCAHelper::close()
+void DCAHelper::deinit()
 {
     if(m_info)
     {

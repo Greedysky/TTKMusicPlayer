@@ -14,10 +14,10 @@ HivelyHelper::HivelyHelper(const QString &path)
 
 HivelyHelper::~HivelyHelper()
 {
-    close();
+    deinit();
 }
 
-void HivelyHelper::close()
+void HivelyHelper::deinit()
 {
     if(m_info)
     {

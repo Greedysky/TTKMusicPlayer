@@ -13,10 +13,10 @@ PSFHelper::PSFHelper(const QString &path)
 
 PSFHelper::~PSFHelper()
 {
-    close();
+    deinit();
 }
 
-void PSFHelper::close()
+void PSFHelper::deinit()
 {
     if(m_info) 
     {

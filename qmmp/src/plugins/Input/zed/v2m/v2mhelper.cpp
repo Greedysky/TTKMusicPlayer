@@ -89,10 +89,10 @@ V2MHelper::V2MHelper(const QString &path)
 
 V2MHelper::~V2MHelper()
 {
-    close();
+    deinit();
 }
 
-void V2MHelper::close()
+void V2MHelper::deinit()
 {
     if(m_info) 
     {

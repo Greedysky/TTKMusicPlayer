@@ -48,7 +48,6 @@ private:
     CSoundFile *m_soundFile = nullptr;
 
     int m_bps; //bits per sample
-    QByteArray m_input_buf; //input buffer
     quint32 m_freq = 0;
     int m_chan = 0, m_sampleSize = 0, m_bitrate = 0;
     qint64 m_totalTime = 0;

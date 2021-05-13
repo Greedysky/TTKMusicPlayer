@@ -8,10 +8,10 @@ FC14Helper::FC14Helper(const QString &path)
 
 FC14Helper::~FC14Helper()
 {
-    close();
+    deinit();
 }
 
-void FC14Helper::close()
+void FC14Helper::deinit()
 {
     if(m_info)
     {

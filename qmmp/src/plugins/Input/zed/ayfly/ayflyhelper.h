@@ -41,7 +41,7 @@ public:
     explicit AyflyHelper(const QString &path);
     ~AyflyHelper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

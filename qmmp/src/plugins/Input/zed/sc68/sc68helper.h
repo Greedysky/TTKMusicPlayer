@@ -44,7 +44,7 @@ public:
     explicit SC68Helper(const QString &path);
     ~SC68Helper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

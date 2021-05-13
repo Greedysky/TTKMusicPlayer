@@ -39,7 +39,7 @@ public:
     explicit FC14Helper(const QString &path);
     ~FC14Helper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

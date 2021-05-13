@@ -43,7 +43,7 @@ public:
     explicit PSFHelper(const QString &path);
     virtual ~PSFHelper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

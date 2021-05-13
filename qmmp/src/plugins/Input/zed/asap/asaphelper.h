@@ -42,7 +42,7 @@ public:
     explicit AsapHelper(const QString &path);
     ~AsapHelper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

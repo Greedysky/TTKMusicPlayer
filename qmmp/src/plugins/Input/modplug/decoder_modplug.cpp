@@ -12,7 +12,7 @@
 DecoderModPlug* DecoderModPlug::m_instance = nullptr;
 
 DecoderModPlug::DecoderModPlug(const QString &path)
-    : Decoder(nullptr),
+    : Decoder(),
       m_path(path)
 {
     m_instance = this;
@@ -31,9 +31,10 @@ bool DecoderModPlug::initialize()
     m_chan = 0;
     m_totalTime = 0;
 
+    QByteArray buffer; //input buffer
     ArchiveReader reader;
     if(reader.isSupported(m_path))
-        m_input_buf = reader.unpack(m_path);
+        buffer = reader.unpack(m_path);
     else
     {
         QFile file(m_path);
@@ -42,11 +43,11 @@ bool DecoderModPlug::initialize()
             qWarning("DecoderModPlug: error: %s", qPrintable(file.errorString()));
             return false;
         }
-        m_input_buf = file.readAll();
+        buffer = file.readAll();
         file.close();
     }
 
-    if(m_input_buf.isEmpty())
+    if(buffer.isEmpty())
     {
         qWarning("DecoderModPlug: error while reading module file");
         return false;
@@ -56,7 +57,7 @@ bool DecoderModPlug::initialize()
     readSettings();
 
     m_sampleSize = m_bps / 8 * m_chan;
-    m_soundFile->Create((uchar*) m_input_buf.data(), m_input_buf.size());
+    m_soundFile->Create((uchar*) buffer.data(), buffer.size());
     m_bitrate = m_soundFile->GetNumChannels();
     m_totalTime = (qint64) m_soundFile->GetSongTime() * 1000;
 
@@ -135,7 +136,6 @@ void DecoderModPlug::deinit()
         delete m_soundFile;
         m_soundFile = nullptr;
     }
-    m_input_buf.clear();
 }
 
 void DecoderModPlug::readSettings()

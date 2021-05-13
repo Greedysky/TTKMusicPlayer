@@ -36,7 +36,7 @@ public:
     explicit HivelyHelper(const QString &path);
     ~HivelyHelper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

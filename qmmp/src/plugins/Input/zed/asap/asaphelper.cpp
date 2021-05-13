@@ -8,10 +8,10 @@ AsapHelper::AsapHelper(const QString &path)
 
 AsapHelper::~AsapHelper()
 {
-    close();
+    deinit();
 }
 
-void AsapHelper::close()
+void AsapHelper::deinit()
 {
     if(m_info)
     {

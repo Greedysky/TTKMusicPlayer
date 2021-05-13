@@ -44,7 +44,6 @@ QList<TrackInfo*> DecoderModPlugFactory::createPlayList(const QString &path, Tra
     bool useFileName = settings.value("UseFileName", false).toBool();
 
     QByteArray buffer;
-
     ArchiveReader reader(nullptr);
     if(reader.isSupported(path))
     {

@@ -68,7 +68,7 @@ public:
     explicit DCAHelper(const QString &path);
     ~DCAHelper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;

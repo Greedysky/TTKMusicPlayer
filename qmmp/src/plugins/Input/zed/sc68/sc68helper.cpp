@@ -58,10 +58,10 @@ SC68Helper::SC68Helper(const QString &path)
 
 SC68Helper::~SC68Helper()
 {
-    close();
+    deinit();
 }
 
-void SC68Helper::close()
+void SC68Helper::deinit()
 {
     if(m_info->sc68)
     {

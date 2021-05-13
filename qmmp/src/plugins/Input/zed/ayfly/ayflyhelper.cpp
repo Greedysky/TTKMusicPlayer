@@ -13,10 +13,10 @@ AyflyHelper::AyflyHelper(const QString &path)
 
 AyflyHelper::~AyflyHelper()
 {
-    close();
+    deinit();
 }
 
-void AyflyHelper::close()
+void AyflyHelper::deinit()
 {
     if(m_info) 
     {
