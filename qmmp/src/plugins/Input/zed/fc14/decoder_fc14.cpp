@@ -4,24 +4,24 @@
 DecoderFC14::DecoderFC14(const QString &path)
     : Decoder()
 {
-    m_fc14 = new FC14Helper(path);
+    m_helper = new FC14Helper(path);
 }
 
 DecoderFC14::~DecoderFC14()
 {
-    delete m_fc14;
+    delete m_helper;
 }
 
 bool DecoderFC14::initialize()
 {
-    if(!m_fc14->initialize())
+    if(!m_helper->initialize())
     {
         qWarning("DecoderFC14: initialize failed");
         return false;
     }
 
-    const int rate = m_fc14->sampleRate();
-    const int channels = m_fc14->channels();
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderFC14: rate or channel invalid");
@@ -35,20 +35,20 @@ bool DecoderFC14::initialize()
 
 qint64 DecoderFC14::totalTime() const
 {
-    return m_fc14->totalTime();
+    return m_helper->totalTime();
 }
 
 int DecoderFC14::bitrate() const
 {
-    return m_fc14->bitrate();
+    return m_helper->bitrate();
 }
 
 qint64 DecoderFC14::read(unsigned char *data, qint64 size)
 {
-    return m_fc14->read(data, size);
+    return m_helper->read(data, size);
 }
 
 void DecoderFC14::seek(qint64 pos)
 {
-    m_fc14->seek(pos);
+    m_helper->seek(pos);
 }

@@ -35,7 +35,7 @@ class DecoderOptimFROG : public Decoder
     virtual void seek(qint64 time) override;
 
 private:
-    std::unique_ptr<OptimFROGHelper> m_frog;
+    std::unique_ptr<OptimFROGHelper> m_helper;
 
 };
 

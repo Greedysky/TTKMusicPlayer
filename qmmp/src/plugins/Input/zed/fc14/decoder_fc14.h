@@ -37,7 +37,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    FC14Helper* m_fc14;
+    FC14Helper* m_helper;
 
 };
 

@@ -78,9 +78,9 @@ bool HivelyHelper::initialize()
     }
 
     const char* tool = ahx ? "AHX Tracker" : "Hively Tracker";
-    m_meta.insert("SongTypeTag", tool);
-    m_meta.insert("AuthoringToolTag", tool);
-    m_meta.insert("TitleTag", m_info->tune->ht_Name);
+    m_metaData.insert("SongTypeTag", tool);
+    m_metaData.insert("AuthoringToolTag", tool);
+    m_metaData.insert("TitleTag", m_info->tune->ht_Name);
     
     QString instruments;
     // instruments starts from 1 in hively so skip 0
@@ -89,7 +89,7 @@ bool HivelyHelper::initialize()
         instruments += m_info->tune->ht_Instruments[i].ins_Name;
         instruments += " ";
     }
-    m_meta.insert("Instruments", instruments);
+    m_metaData.insert("Instruments", instruments);
 
     QString subsongs;
     if(m_info->tune->ht_SubsongNr > 1)
@@ -103,7 +103,7 @@ bool HivelyHelper::initialize()
             subsongs += " ";
         }
     }
-    m_meta.insert("SubSongs", subsongs);
+    m_metaData.insert("SubSongs", subsongs);
 
     return true;
 }

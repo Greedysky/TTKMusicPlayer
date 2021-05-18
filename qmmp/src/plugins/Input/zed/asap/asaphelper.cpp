@@ -73,9 +73,9 @@ bool AsapHelper::initialize()
         return false;
     }
 
-    m_meta.insert("title", ASAPInfo_GetTitle(info));
-    m_meta.insert("artist", ASAPInfo_GetAuthor(info));
-    m_meta.insert("year", QString::number(ASAPInfo_GetYear(info)));
+    m_metaData.insert(Qmmp::TITLE, ASAPInfo_GetTitle(info));
+    m_metaData.insert(Qmmp::ARTIST, ASAPInfo_GetAuthor(info));
+    m_metaData.insert(Qmmp::YEAR, QString::number(ASAPInfo_GetYear(info)));
 
     m_info->length = ASAPInfo_GetDuration(info, ASAPInfo_GetDefaultSong(info));
     m_info->channels = ASAPInfo_GetChannels(info);
@@ -124,7 +124,7 @@ int AsapHelper::read(unsigned char *buf, int size)
     return ASAP_Generate(m_info->asap, buf, size, ASAPSampleFormat_S16_L_E);
 }
 
-QMap<QString, QString> AsapHelper::readMetaTags() const
+QMap<Qmmp::MetaData, QString> AsapHelper::readMetaTags() const
 {
-    return m_meta;
+    return m_metaData;
 }

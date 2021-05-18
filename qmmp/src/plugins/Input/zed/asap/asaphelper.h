@@ -25,6 +25,7 @@ extern "C" {
 }
 #include <QMap>
 #include <QString>
+#include <qmmp/qmmp.h>
 
 typedef struct {
     ASAP *asap;
@@ -54,16 +55,16 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QMap<QString, QString> readMetaTags() const;
+    QMap<Qmmp::MetaData, QString> readMetaTags() const;
 
-    inline QString title() const { return m_meta.value("title"); }
-    inline QString artist() const { return m_meta.value("artist"); }
-    inline QString year() const { return m_meta.value("year"); }
+    inline QString title() const { return m_metaData.value(Qmmp::TITLE); }
+    inline QString artist() const { return m_metaData.value(Qmmp::ARTIST); }
+    inline QString year() const { return m_metaData.value(Qmmp::YEAR); }
 
 private:
     QString m_path;
     asap_info *m_info;
-    QMap<QString, QString> m_meta;
+    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

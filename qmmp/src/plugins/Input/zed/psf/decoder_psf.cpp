@@ -4,24 +4,24 @@
 DecoderPSF::DecoderPSF(const QString &path)
     : Decoder()
 {
-    m_psf = new PSFHelper(path);
+    m_helper = new PSFHelper(path);
 }
 
 DecoderPSF::~DecoderPSF()
 {
-    delete m_psf;
+    delete m_helper;
 }
 
 bool DecoderPSF::initialize()
 {
-    if(!m_psf->initialize())
+    if(!m_helper->initialize())
     {
         qWarning("DecoderPSF: initialize failed");
         return false;
     }
 
-    const int rate = m_psf->sampleRate();
-    const int channels = m_psf->channels();
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderPSF: rate or channel invalid");
@@ -35,20 +35,20 @@ bool DecoderPSF::initialize()
 
 qint64 DecoderPSF::totalTime() const
 {
-    return m_psf->totalTime();
+    return m_helper->totalTime();
 }
 
 int DecoderPSF::bitrate() const
 {
-    return m_psf->bitrate();
+    return m_helper->bitrate();
 }
 
 qint64 DecoderPSF::read(unsigned char *data, qint64 size)
 {
-    return m_psf->read(data, size);
+    return m_helper->read(data, size);
 }
 
 void DecoderPSF::seek(qint64 pos)
 {
-    m_psf->seek(pos);
+    m_helper->seek(pos);
 }

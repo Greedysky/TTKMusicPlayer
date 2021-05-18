@@ -75,8 +75,8 @@ bool AyflyHelper::initialize()
     m_info->rate = size * 8.0 / m_info->length + 1.0f;
     ay_setelapsedcallback(m_info->ay, endCallback, nullptr);
 
-    m_meta.insert("title", ay_getsongname(m_info->ay));
-    m_meta.insert("artist", ay_getsongauthor(m_info->ay));
+    m_metaData.insert(Qmmp::TITLE, ay_getsongname(m_info->ay));
+    m_metaData.insert(Qmmp::ARTIST, ay_getsongauthor(m_info->ay));
 
     return true;
 }

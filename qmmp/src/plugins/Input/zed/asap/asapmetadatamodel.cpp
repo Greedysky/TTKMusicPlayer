@@ -3,8 +3,8 @@
 AsapMetaDataModel::AsapMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
-    m_asap = new AsapHelper(path);
-    m_tags << new AsapFileTagModel(m_asap);
+    m_helper = new AsapHelper(path);
+    m_tags << new AsapFileTagModel(m_helper);
 }
 
 AsapMetaDataModel::~AsapMetaDataModel()
@@ -13,7 +13,7 @@ AsapMetaDataModel::~AsapMetaDataModel()
     {
         delete m_tags.takeFirst();
     }
-    delete m_asap;
+    delete m_helper;
 }
 
 QList<TagModel* > AsapMetaDataModel::tags() const
@@ -21,26 +21,10 @@ QList<TagModel* > AsapMetaDataModel::tags() const
     return m_tags;
 }
 
-QList<MetaDataItem> AsapMetaDataModel::extraProperties() const
-{
-    QList<MetaDataItem> ep;
-
-    if(m_asap->initialize())
-    {
-        const QMap<QString, QString> &data = m_asap->readMetaTags();
-        for(const QString &key : data.keys())
-        {
-            ep << MetaDataItem(key, data[key]);
-        }
-    }
-
-    return ep;
-}
-
 
 AsapFileTagModel::AsapFileTagModel(AsapHelper* asap)
     : TagModel(),
-      m_asap(asap)
+      m_helper(asap)
 {
 
 }
@@ -70,14 +54,14 @@ QList<Qmmp::MetaData> AsapFileTagModel::keys() const
 
 QString AsapFileTagModel::value(Qmmp::MetaData key) const
 {
-    if(m_asap && m_asap->initialize())
+    if(m_helper && m_helper->initialize())
     {
-        m_asap->readMetaTags();
+        m_helper->readMetaTags();
         switch((int) key)
         {
-        case Qmmp::TITLE: return m_asap->title();
-        case Qmmp::ARTIST: return m_asap->artist();
-        case Qmmp::YEAR: return m_asap->year();
+        case Qmmp::TITLE: return m_helper->title();
+        case Qmmp::ARTIST: return m_helper->artist();
+        case Qmmp::YEAR: return m_helper->year();
         }
     }
     return QString();
