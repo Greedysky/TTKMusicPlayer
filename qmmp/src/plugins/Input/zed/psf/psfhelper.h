@@ -57,15 +57,15 @@ public:
     int read(unsigned char *buf, int size);
     QMap<QString, QString> readMetaTags();
 
-    inline QString title() const { return m_meta.value("title"); }
-    inline QString artist() const { return m_meta.value("artist"); }
-    inline QString album() const { return m_meta.value("album"); }
-    inline QString year() const { return m_meta.value("year"); }
+    inline QString title() const { return m_metaData.value("title"); }
+    inline QString artist() const { return m_metaData.value("artist"); }
+    inline QString album() const { return m_metaData.value("album"); }
+    inline QString year() const { return m_metaData.value("year"); }
 
 private:
     QString m_path;
     psf_info *m_info;
-    QMap<QString, QString> m_meta;
+    QMap<QString, QString> m_metaData;
 
 };
 

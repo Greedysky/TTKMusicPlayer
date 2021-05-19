@@ -34,7 +34,7 @@ public:
 
 private:
     QList<TagModel* > m_tags;
-    PSFHelper* m_psf;
+    PSFHelper* m_helper;
 
 };
 
@@ -50,7 +50,7 @@ public:
     virtual void setValue(Qmmp::MetaData key, const QString &value) override;
 
 private:
-    PSFHelper* m_psf;
+    PSFHelper* m_helper;
 
 };
 

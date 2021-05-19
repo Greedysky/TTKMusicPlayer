@@ -4,24 +4,24 @@
 DecoderDCA::DecoderDCA(const QString &path)
     : Decoder()
 {
-    m_dca = new DCAHelper(path);
+    m_helper = new DCAHelper(path);
 }
 
 DecoderDCA::~DecoderDCA()
 {
-    delete m_dca;
+    delete m_helper;
 }
 
 bool DecoderDCA::initialize()
 {
-    if(!m_dca->initialize())
+    if(!m_helper->initialize())
     {
         qWarning("DecoderDCA: initialize failed");
         return false;
     }
 
-    const int rate = m_dca->sampleRate();
-    const int channels = m_dca->channels();
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderDCA: rate or channel invalid");
@@ -35,20 +35,20 @@ bool DecoderDCA::initialize()
 
 qint64 DecoderDCA::totalTime() const
 {
-    return m_dca->totalTime();
+    return m_helper->totalTime();
 }
 
 int DecoderDCA::bitrate() const
 {
-    return m_dca->bitrate();
+    return m_helper->bitrate();
 }
 
 qint64 DecoderDCA::read(unsigned char *data, qint64 size)
 {
-    return m_dca->read(data, size);
+    return m_helper->read(data, size);
 }
 
 void DecoderDCA::seek(qint64 pos)
 {
-    m_dca->seek(pos);
+    m_helper->seek(pos);
 }

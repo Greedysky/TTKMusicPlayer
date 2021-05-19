@@ -25,6 +25,7 @@ extern "C" {
 }
 #include <QMap>
 #include <QString>
+#include <qmmp/qmmp.h>
 
 typedef struct {
     void *ay;
@@ -54,13 +55,13 @@ public:
 
     int read(unsigned char *buf, int size);
 
-    inline QString title() const { return m_meta.value("title"); }
-    inline QString artist() const { return m_meta.value("artist"); }
+    inline QString title() const { return m_metaData.value(Qmmp::TITLE); }
+    inline QString artist() const { return m_metaData.value(Qmmp::ARTIST); }
 
 private:
     QString m_path;
     ay_info *m_info;
-    QMap<QString, QString> m_meta;
+    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

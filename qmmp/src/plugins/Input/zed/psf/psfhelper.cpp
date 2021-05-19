@@ -201,7 +201,7 @@ QMap<QString, QString> PSFHelper::readMetaTags()
 {
     if(m_info->type < 0 || !m_info->decoder)
     {
-        return m_meta;
+        return m_metaData;
     }
 
     ao_display_info info;
@@ -214,34 +214,34 @@ QMap<QString, QString> PSFHelper::readMetaTags()
 
     if(have_info)
     {
-        return m_meta;
+        return m_metaData;
     }
 
     for(int i = 1; i < 9; i++)
     {
         if(!strncasecmp(info.title[i], "Name: ", 6) || !strncasecmp(info.title[i], "Song: ", 6))
         {
-            m_meta.insert("title", info.info[i]);
+            m_metaData.insert("title", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Game: ", 6))
         {
-            m_meta.insert("album", info.info[i]);
+            m_metaData.insert("album", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Artist: ", 8))
         {
-            m_meta.insert("artist", info.info[i]);
+            m_metaData.insert("artist", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Copyright: ", 11))
         {
-            m_meta.insert("copyright", info.info[i]);
+            m_metaData.insert("copyright", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Year: ", 6))
         {
-            m_meta.insert("year", info.info[i]);
+            m_metaData.insert("year", info.info[i]);
         }
         else if(!strncasecmp(info.title[i], "Fade: ", 6))
         {
-            m_meta.insert("fade", info.info[i]);
+            m_metaData.insert("fade", info.info[i]);
         }
         else
         {
@@ -249,9 +249,9 @@ QMap<QString, QString> PSFHelper::readMetaTags()
             char name[colon - info.title[i] + 1];
             memcpy(name, info.title[i], colon - info.title[i]);
             name[colon - info.title[i]] = 0;
-            m_meta.insert(name, info.info[i]);
+            m_metaData.insert(name, info.info[i]);
         }
     }
 
-    return m_meta;
+    return m_metaData;
 }

@@ -4,24 +4,24 @@
 DecoderHively::DecoderHively(const QString &path)
     : Decoder()
 {
-    m_hively = new HivelyHelper(path);
+    m_helper = new HivelyHelper(path);
 }
 
 DecoderHively::~DecoderHively()
 {
-    delete m_hively;
+    delete m_helper;
 }
 
 bool DecoderHively::initialize()
 {
-    if(!m_hively->initialize())
+    if(!m_helper->initialize())
     {
         qWarning("DecoderHively: initialize failed");
         return false;
     }
 
-    const int rate = m_hively->sampleRate();
-    const int channels = m_hively->channels();
+    const int rate = m_helper->sampleRate();
+    const int channels = m_helper->channels();
     if(rate == 0 || channels == 0)
     {
         qWarning("DecoderHively: rate or channel invalid");
@@ -35,20 +35,20 @@ bool DecoderHively::initialize()
 
 qint64 DecoderHively::totalTime() const
 {
-    return m_hively->totalTime();
+    return m_helper->totalTime();
 }
 
 int DecoderHively::bitrate() const
 {
-    return m_hively->bitrate();
+    return m_helper->bitrate();
 }
 
 qint64 DecoderHively::read(unsigned char *data, qint64 size)
 {
-    return m_hively->read(data, size);
+    return m_helper->read(data, size);
 }
 
 void DecoderHively::seek(qint64 pos)
 {
-    m_hively->seek(pos);
+    m_helper->seek(pos);
 }

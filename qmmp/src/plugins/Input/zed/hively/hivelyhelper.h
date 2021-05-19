@@ -52,7 +52,7 @@ public:
 private:
     QString m_path;
     hively_info *m_info;
-    QMap<QString, QString> m_meta;
+    QMap<QString, QString> m_metaData;
 
 };
 

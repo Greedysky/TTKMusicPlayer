@@ -30,11 +30,10 @@ public:
     virtual ~AsapMetaDataModel();
 
     virtual QList<TagModel* > tags() const override;
-    virtual QList<MetaDataItem> extraProperties() const override;
 
 private:
     QList<TagModel* > m_tags;
-    AsapHelper* m_asap;
+    AsapHelper* m_helper;
 
 };
 
@@ -50,7 +49,7 @@ public:
     virtual void setValue(Qmmp::MetaData key, const QString &value) override;
 
 private:
-    AsapHelper* m_asap;
+    AsapHelper* m_helper;
 
 };
 

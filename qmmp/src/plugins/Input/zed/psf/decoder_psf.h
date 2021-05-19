@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    PSFHelper* m_psf;
+    PSFHelper* m_helper;
 
 };
 

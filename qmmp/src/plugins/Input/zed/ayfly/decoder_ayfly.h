@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    AyflyHelper* m_ayfly;
+    AyflyHelper* m_helper;
 
 };
 
