@@ -39,6 +39,10 @@ public:
     bool isSupported(const QString &path);
     QByteArray unpack(const QString &path);
 
+    bool mo3Check(const QString &path);
+    bool mo3Decode(void **data, unsigned *len);
+    void mo3Free(void *data);
+
 private:
     QProcess *m_process;
     QByteArray unzip(const QString &path);

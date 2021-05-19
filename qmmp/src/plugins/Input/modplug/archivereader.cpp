@@ -1,5 +1,6 @@
-#include <QProcess>
 #include "archivereader.h"
+#include <QProcess>
+#include <unmo3.h>
 
 ArchiveReader::ArchiveReader(QObject *parent)
     : QObject(parent)
@@ -46,6 +47,21 @@ QByteArray ArchiveReader::unpack(const QString &path)
         return bunzip2(path);
 
     return QByteArray();
+}
+
+bool ArchiveReader::mo3Check(const QString &path)
+{
+    return path.toLower().endsWith(".mo3");
+}
+
+bool ArchiveReader::mo3Decode(void **data, unsigned *len)
+{
+    return UNMO3_Decode(data, len, !UNMO3_DECODE_NOSAMPLES) == 0;
+}
+
+void ArchiveReader::mo3Free(void *data)
+{
+    UNMO3_Free(data);
 }
 
 QByteArray ArchiveReader::unzip(const QString &path)

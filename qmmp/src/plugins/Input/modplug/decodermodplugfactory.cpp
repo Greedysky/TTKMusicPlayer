@@ -24,6 +24,7 @@ DecoderProperties DecoderModPlugFactory::properties() const
     properties.filters << "*.mdbz" << "*.mod" << "*.s3z" << "*.s3r" << "*.s3gz" << "*.s3m" << "*.xmz";
     properties.filters << "*.xmr" << "*.xmgz" << "*.itz" << "*.itr" << "*.itgz" << "*.dmf" "*.umx";
     properties.filters << "*.it" << "*.669" << "*.xm" << "*.mtm" << "*.psm" << "*.ft2" << "*.med";
+    properties.filters << "*.mo3";
     properties.description = "ModPlug File";
     properties.protocols << "file";
     properties.hasSettings = true;
@@ -44,7 +45,7 @@ QList<TrackInfo*> DecoderModPlugFactory::createPlayList(const QString &path, Tra
     bool useFileName = settings.value("UseFileName", false).toBool();
 
     QByteArray buffer;
-    ArchiveReader reader(nullptr);
+    ArchiveReader reader;
     if(reader.isSupported(path))
     {
         buffer = reader.unpack(path);
@@ -64,7 +65,24 @@ QList<TrackInfo*> DecoderModPlugFactory::createPlayList(const QString &path, Tra
     if(!buffer.isEmpty())
     {
         CSoundFile *soundFile = new CSoundFile();
-        soundFile->Create((uchar*) buffer.data(), buffer.size() + 1);
+        if(reader.mo3Check(path))
+        {
+            void *buf = buffer.data();
+            unsigned len = buffer.size();
+            if(reader.mo3Decode(&buf, &len))
+            {
+                soundFile->Create((uchar*)buf, len);
+                reader.mo3Free(buf);
+            }
+            else
+            {
+                return list;
+            }
+        }
+        else
+        {
+            soundFile->Create((uchar*)buffer.data(), buffer.size());
+        }
 
         TrackInfo *info = new TrackInfo(path);
 

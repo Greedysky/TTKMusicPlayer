@@ -56,8 +56,26 @@ bool DecoderModPlug::initialize()
     m_soundFile = new CSoundFile();
     readSettings();
 
+    if(reader.mo3Check(m_path))
+    {
+        void *buf = buffer.data();
+        unsigned len = buffer.size();
+        if(reader.mo3Decode(&buf, &len))
+        {
+            m_soundFile->Create((uchar*)buf, len);
+            reader.mo3Free(buf);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        m_soundFile->Create((uchar*)buffer.data(), buffer.size());
+    }
+
     m_sampleSize = m_bps / 8 * m_chan;
-    m_soundFile->Create((uchar*) buffer.data(), buffer.size());
     m_bitrate = m_soundFile->GetNumChannels();
     m_totalTime = (qint64) m_soundFile->GetSongTime() * 1000;
 
