@@ -20,7 +20,7 @@
 #define HIVELYHELPER_H
 
 #include <QMap>
-#include <QString>
+#include <QFile>
 
 typedef struct {
     int bitrate;

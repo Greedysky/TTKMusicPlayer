@@ -1,5 +1,7 @@
 #include "sc68helper.h"
 
+#include <QFile>
+
 void in_c68_meta_from_music_info(QMap<QString, QString> &data, sc68_music_info_t *ti)
 {
     // add metainfo
@@ -75,16 +77,14 @@ bool SC68Helper::initialize()
     const int track = m_path.section("#", -1).toInt();
     QString path = cleanPath();
 
-    FILE *file = stdio_open(qPrintable(path));
-    if(!file)
+    QFile file(path);
+    if(!file.open(QFile::ReadOnly))
     {
         qWarning("SC68Helper: open file failed");
         return false;
     }
 
-    const int64_t size = stdio_length(file);
-    stdio_close(file);
-
+    const qint64 size = file.size();
     sc68_init(nullptr);
     m_info->sc68 = sc68_create(nullptr);
     if(!m_info->sc68)
@@ -153,7 +153,7 @@ void SC68Helper::seek(qint64 time)
     while(m_info->currentsample < sample)
     {
         int sz = (int)(sample - m_info->currentsample);
-        sz = MIN(sz, sizeof(buffer) >> 2);
+        sz = std::min<int>(sz, sizeof(buffer) >> 2);
 
         if(sc68_process(m_info->sc68, buffer, &sz) & SC68_END)
         {

@@ -20,12 +20,11 @@
 #define PSFHELPER_H
 
 #include <QMap>
-#include <QString>
+#include <QFile>
 
 typedef struct {
     int type;
     void *decoder;
-    char *filebuffer;
     size_t filesize;
     char buffer[735 * 4]; // psf2 decoder only works with 735 samples buffer
     int remaining;

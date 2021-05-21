@@ -21,9 +21,8 @@
 
 extern "C" {
 #include "fc14audiodecoder.h"
-#include "stdio_file.h"
 }
-#include <QString>
+#include <QFile>
 
 typedef struct {
     void *fc;

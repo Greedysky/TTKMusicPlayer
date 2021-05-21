@@ -1,5 +1,4 @@
 include($$PWD/../zed.pri)
-include($$PWD/../common/common.pri)
 
 HEADERS += decodersc68factory.h \
            decoder_sc68.h \

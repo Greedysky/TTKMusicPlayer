@@ -25,42 +25,29 @@ void AsapHelper::deinit()
 
 bool AsapHelper::initialize()
 {
-    FILE *file = stdio_open(qPrintable(m_path));
-    if(!file)
+    QFile file(m_path);
+    if(!file.open(QFile::ReadOnly))
     {
         qWarning("AsapHelper: open file failed");
         return false;
     }
 
-    const int64_t size = stdio_length(file);
-    if(size <= 0 || size > 256 * 1024)
+    const qint64 size = file.size();
+    if(size <= 0)
     {
         qWarning("AsapHelper: file size invalid");
-        stdio_close(file);
         return false;
     }
 
-    unsigned char *module = (unsigned char *)malloc(size);
-    if(!module)
-    {
-        qWarning("AsapHelper: file data read error");
-        stdio_close(file);
-        return false;
-    }
-
-    stdio_read(module, size, 1, file);
-    stdio_close(file);
-
+    unsigned char *module = reinterpret_cast<unsigned char *>(file.readAll().data());
     m_info->asap = ASAP_New();
     ASAP_DetectSilence(m_info->asap, 5);
 
     if(!ASAP_Load(m_info->asap, qPrintable(m_path), module, size))
     {
         qWarning("AsapHelper: ASAP_Load error");
-        free(module);
         return false;
     }
-    free(module);
 
     ASAPInfo *info =(ASAPInfo *)ASAP_GetInfo(m_info->asap);
     //struct ASAPInfo { int channels; int covoxAddr; int defaultSong; int fastplay; int headerLen;
@@ -80,7 +67,6 @@ bool AsapHelper::initialize()
     m_info->length = ASAPInfo_GetDuration(info, ASAPInfo_GetDefaultSong(info));
     m_info->channels = ASAPInfo_GetChannels(info);
     m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
-
     return true;
 }
 

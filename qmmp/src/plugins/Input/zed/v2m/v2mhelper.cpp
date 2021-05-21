@@ -7,7 +7,7 @@ extern "C" {
 #include "stdio_file.h"
 }
 
-bool v2m_initialized = false;
+static bool v2m_initialized = false;
 int load_and_convert(const char *fname, uint8_t **conv, int *convlen)
 {
     FILE *fp = stdio_open(fname);
@@ -45,39 +45,6 @@ int load_and_convert(const char *fname, uint8_t **conv, int *convlen)
     free(buf);
 
     return 0;
-}
-
-int get_total_samples(V2MPlayer *player)
-{
-    int totalsamples = 0;
-    float buffer[2048 * 2];
-    bool had_nonsilence = false;
-
-    while(true)
-    {
-        player->Render(buffer, 2048);
-        bool eof = true;
-        for(int i = 0; i < 2048*2; i++)
-        {
-            float v = fabs(buffer[i]);
-            if(v > 0.0000001f)
-            {
-                eof = false;
-                if(totalsamples > 44100*2)
-                {
-                    had_nonsilence = true;
-                }
-                break;
-            }
-        }
-
-        if(eof && had_nonsilence)
-        {
-            break;
-        }
-        totalsamples += 2048;
-    }
-    return totalsamples;
 }
 
 

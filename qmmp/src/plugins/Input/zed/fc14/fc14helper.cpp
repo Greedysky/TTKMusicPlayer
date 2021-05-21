@@ -25,55 +25,40 @@ void FC14Helper::deinit()
 
 bool FC14Helper::initialize()
 {
-    FILE *file = stdio_open(qPrintable(m_path));
-    if(!file)
+    QFile file(m_path);
+    if(!file.open(QFile::ReadOnly))
     {
-        qWarning("FC14Helper: open file failed");
+        qWarning("AsapHelper: open file failed");
         return false;
     }
 
-    const int64_t size = stdio_length(file);
-    if(size <= 0 || size > 256 * 1024)
+    const qint64 size = file.size();
+    if(size <= 0)
     {
-        qWarning("FC14Helper: file size invalid");
-        stdio_close(file);
+        qWarning("AsapHelper: file size invalid");
         return false;
     }
 
-    unsigned char *module = (unsigned char *)malloc(size);
-    if(!module)
-    {
-        qWarning("FC14Helper: file data read error");
-        stdio_close(file);
-        return false;
-    }
-
-    stdio_read(module, size, 1, file);
-    stdio_close(file);
-
+    void *module = file.readAll().data();
     m_info->fc = fc14dec_new();
+
     if(!fc14dec_detect(m_info->fc, module, size))
     {
         qWarning("FC14Helper: fc14dec_detect error");
-        free(module);
         return false;
     }
 
     if(!fc14dec_init(m_info->fc, module, size))
     {
         qWarning("FC14Helper: fc14dec_init error");
-        free(module);
         return false;
     }
-    free(module);
 
     // Initialize decoder's audio sample mixer.  frequency : output sample frequency
     // precision : bits per sample  channels : 1=mono, 2=stereo
     // zero : value of silent output sample (e.g. 0x80 for unsigned 8-bit, 0x0000 for signed 16-bit)
     fc14dec_mixer_init(m_info->fc, sampleRate(), bitsPerSample(), channels(), 0x0000);
-
     m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
-
     return true;
 }
 

@@ -1,5 +1,4 @@
 include($$PWD/../zed.pri)
-include($$PWD/../common/common.pri)
 
 HEADERS += decoderfc14factory.h \
            decoder_fc14.h \

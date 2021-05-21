@@ -3,7 +3,6 @@
 
 extern "C" {
 #include <hvl_replay.h>
-#include "stdio_file.h"
 }
 
 HivelyHelper::HivelyHelper(const QString &path)
@@ -32,42 +31,29 @@ void HivelyHelper::deinit()
 
 bool HivelyHelper::initialize()
 {
-    FILE *file = stdio_open(qPrintable(m_path));
-    if(!file)
+    QFile file(m_path);
+    if(!file.open(QFile::ReadOnly))
     {
-        qWarning("HivelyHelper: open file failed");
+        qWarning("AsapHelper: open file failed");
         return false;
     }
 
-    const int64_t size = stdio_length(file);
-    if(size <= 0 || size > 256 * 1024)
+    const qint64 size = file.size();
+    if(size <= 0)
     {
-        qWarning("HivelyHelper: file size invalid");
-        stdio_close(file);
+        qWarning("AsapHelper: file size invalid");
         return false;
     }
 
-    unsigned char *module = (unsigned char *)malloc(size);
-    if(!module)
-    {
-        qWarning("HivelyHelper: file data read error");
-        stdio_close(file);
-        return false;
-    }
-
-    stdio_read(module, size, 1, file);
-    stdio_close(file);
-
+    unsigned char *module = reinterpret_cast<unsigned char *>(file.readAll().data());
     hvl_InitReplayer();
 
     m_info->tune = hvl_ParseTune(module, size, sampleRate(), 0);
     if(!m_info->tune)
     {
         qDebug("HivelyHelper: hvl_LoadTune error");
-        free(module);
         return false;
     }
-    free(module);
 
     m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
 

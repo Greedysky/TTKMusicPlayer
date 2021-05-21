@@ -30,39 +30,26 @@ void AyflyHelper::deinit()
 
 bool AyflyHelper::initialize()
 {
-    FILE *file = stdio_open(qPrintable(m_path));
-    if(!file)
+    QFile file(m_path);
+    if(!file.open(QFile::ReadOnly))
     {
-        qWarning("AyflyHelper: open file failed");
+        qWarning("AsapHelper: open file failed");
         return false;
     }
 
-    const int64_t size = stdio_length(file);
+    const qint64 size = file.size();
     if(size <= 0)
     {
-        qWarning("AyflyHelper: file size invalid");
-        stdio_close(file);
+        qWarning("AsapHelper: file size invalid");
         return false;
     }
 
-    unsigned char *module = (unsigned char *)malloc(size);
-    if(!module)
-    {
-        qWarning("AyflyHelper: file data read error");
-        stdio_close(file);
-        return false;
-    }
-
-    stdio_read(module, size, 1, file);
-    stdio_close(file);
-
+    unsigned char *module = reinterpret_cast<unsigned char *>(file.readAll().data());
     if(!ay_initsongindirect(module, sampleRate(), size))
     {
         qWarning("AyflyHelper: ay_initsongindirect error");
-        free(module);
         return false;
     }
-    free(module);
 
     m_info->ay = ay_initsong(qPrintable(m_path), sampleRate());
     if(!m_info->ay)
@@ -77,7 +64,6 @@ bool AyflyHelper::initialize()
 
     m_metaData.insert(Qmmp::TITLE, ay_getsongname(m_info->ay));
     m_metaData.insert(Qmmp::ARTIST, ay_getsongauthor(m_info->ay));
-
     return true;
 }
 

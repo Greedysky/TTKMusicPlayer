@@ -1,5 +1,4 @@
 include($$PWD/../zed.pri)
-include($$PWD/../common/common.pri)
 
 HEADERS += decoderayflyfactory.h \
            decoder_ayfly.h \

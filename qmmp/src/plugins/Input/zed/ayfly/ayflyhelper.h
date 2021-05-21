@@ -21,10 +21,9 @@
 
 extern "C" {
 #include "ayfly.h"
-#include "stdio_file.h"
 }
 #include <QMap>
-#include <QString>
+#include <QFile>
 #include <qmmp/qmmp.h>
 
 typedef struct {
