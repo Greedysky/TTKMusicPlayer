@@ -16,7 +16,7 @@ libmpc-1.3.0
 libogg-1.3.4
 libprojectm-2.2.1
 libsamplerate-0.1.9
-libsidplayfp-2.0.4
+libsidplayfp-2.1.2
 libsndfile-1.0.31
 libvorbis-1.3.7
 libxmp-4.4.1
@@ -28,3 +28,4 @@ speex-1.2.0
 taglib-1.12
 wavpack-5.4.0
 wildmidi-wildmidi-0.4.3.mod
+unmo3lib.2.4.2
