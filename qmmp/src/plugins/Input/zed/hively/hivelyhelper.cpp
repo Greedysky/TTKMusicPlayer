@@ -39,16 +39,10 @@ bool HivelyHelper::initialize()
     }
 
     const qint64 size = file.size();
-    if(size <= 0)
-    {
-        qWarning("AsapHelper: file size invalid");
-        return false;
-    }
+    const QByteArray module = file.readAll();
 
-    unsigned char *module = reinterpret_cast<unsigned char *>(file.readAll().data());
     hvl_InitReplayer();
-
-    m_info->tune = hvl_ParseTune(module, size, sampleRate(), 0);
+    m_info->tune = hvl_ParseTune((unsigned char *)module.constData(), size, sampleRate(), 0);
     if(!m_info->tune)
     {
         qDebug("HivelyHelper: hvl_LoadTune error");
@@ -64,9 +58,9 @@ bool HivelyHelper::initialize()
     }
 
     const char* tool = ahx ? "AHX Tracker" : "Hively Tracker";
-    m_metaData.insert("SongTypeTag", tool);
-    m_metaData.insert("AuthoringToolTag", tool);
-    m_metaData.insert("TitleTag", m_info->tune->ht_Name);
+    m_metaData.insert(Qmmp::ALBUM/*"SongTypeTag"*/, tool);
+    m_metaData.insert(Qmmp::ARTIST/*"AuthoringToolTag"*/, tool);
+    m_metaData.insert(Qmmp::TITLE/*"TitleTag"*/, m_info->tune->ht_Name);
     
     QString instruments;
     // instruments starts from 1 in hively so skip 0
@@ -75,7 +69,7 @@ bool HivelyHelper::initialize()
         instruments += m_info->tune->ht_Instruments[i].ins_Name;
         instruments += " ";
     }
-    m_metaData.insert("Instruments", instruments);
+    m_metaData.insert(Qmmp::COMMENT/*"Instruments"*/, instruments);
 
     QString subsongs;
     if(m_info->tune->ht_SubsongNr > 1)
@@ -89,7 +83,7 @@ bool HivelyHelper::initialize()
             subsongs += " ";
         }
     }
-    m_metaData.insert("SubSongs", subsongs);
+    m_metaData.insert(Qmmp::TRACK/*"SubSongs"*/, subsongs);
 
     return true;
 }
@@ -136,4 +130,9 @@ int HivelyHelper::read(unsigned char *buffer, int )
 
     const int sample = (m_info->tune->ht_Frequency / 50 / m_info->tune->ht_SpeedMultiplier) * 4;
     return sample;
+}
+
+QMap<Qmmp::MetaData, QString> HivelyHelper::readMetaData() const
+{
+    return m_metaData;
 }

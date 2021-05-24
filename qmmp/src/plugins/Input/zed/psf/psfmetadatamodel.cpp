@@ -25,11 +25,9 @@ QList<MetaDataItem> PSFMetaDataModel::extraProperties() const
 
     if(m_helper->initialize())
     {
-        const QMap<QString, QString> &data = m_helper->readMetaTags();
-        for(const QString &key : data.keys())
-        {
-            ep << MetaDataItem(key, data[key]);
-        }
+        const QMap<Qmmp::MetaData, QString> &data = m_helper->readMetaData();
+        ep << MetaDataItem("Copyright", data[Qmmp::COMPOSER]);
+        ep << MetaDataItem("Comment", data[Qmmp::COMMENT]);
     }
 
     return ep;
@@ -69,13 +67,13 @@ QString PSFFileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_helper && m_helper->initialize())
     {
-        m_helper->readMetaTags();
+        const QMap<Qmmp::MetaData, QString> &data = m_helper->readMetaData();
         switch((int) key)
         {
-        case Qmmp::TITLE: return m_helper->title();
-        case Qmmp::ARTIST: return m_helper->artist();
-        case Qmmp::ALBUM: return m_helper->album();
-        case Qmmp::YEAR: return m_helper->year();
+        case Qmmp::TITLE: return data.value(Qmmp::TITLE);
+        case Qmmp::ARTIST: return data.value(Qmmp::ARTIST);
+        case Qmmp::ALBUM: return data.value(Qmmp::ALBUM);
+        case Qmmp::YEAR: return data.value(Qmmp::YEAR);
         }
     }
     return QString();

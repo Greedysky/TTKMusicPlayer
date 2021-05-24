@@ -34,27 +34,16 @@ bool XSFHelper::initialize()
     file.close();
 
     m_info->reader = XSFReader::makeReader(m_path);
+    if(!m_info->reader)
+    {
+        qWarning("XSFHelper: load file suffix error");
+        return false;
+    }
+
     if(!m_info->reader->load(qPrintable(m_path)))
     {
        qWarning("XSFHelper: load error");
        return false;
-    }
-
-    const file_meta meta(m_info->reader->get_meta_map());
-    for(auto itr = meta.begin(); itr != meta.end(); ++itr)
-    {
-        if(itr->first == "title")
-            m_metaData.insert(Qmmp::TITLE, QString::fromStdString(itr->second));
-        else if(itr->first == "artist")
-            m_metaData.insert(Qmmp::ARTIST, QString::fromStdString(itr->second));
-        else if(itr->first == "album")
-            m_metaData.insert(Qmmp::ALBUM, QString::fromStdString(itr->second));
-        else if(itr->first == "year")
-            m_metaData.insert(Qmmp::YEAR, QString::fromStdString(itr->second));
-        else if(itr->first == "genre")
-            m_metaData.insert(Qmmp::GENRE, QString::fromStdString(itr->second));
-        else if(itr->first == "copyright")
-            m_metaData.insert(Qmmp::COMMENT, QString::fromStdString(itr->second));
     }
 
     m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
@@ -98,5 +87,27 @@ int XSFHelper::read(unsigned char *buf, int)
 
 QMap<Qmmp::MetaData, QString> XSFHelper::readMetaData() const
 {
-    return m_metaData;
+    QMap<Qmmp::MetaData, QString> metaData;
+    if(!m_info->reader)
+    {
+        return metaData;
+    }
+
+    const file_meta meta(m_info->reader->get_meta_map());
+    for(auto itr = meta.begin(); itr != meta.end(); ++itr)
+    {
+        if(itr->first == "title")
+            metaData.insert(Qmmp::TITLE, QString::fromStdString(itr->second));
+        else if(itr->first == "artist")
+            metaData.insert(Qmmp::ARTIST, QString::fromStdString(itr->second));
+        else if(itr->first == "album")
+            metaData.insert(Qmmp::ALBUM, QString::fromStdString(itr->second));
+        else if(itr->first == "year")
+            metaData.insert(Qmmp::YEAR, QString::fromStdString(itr->second));
+        else if(itr->first == "genre")
+            metaData.insert(Qmmp::GENRE, QString::fromStdString(itr->second));
+        else if(itr->first == "copyright")
+            metaData.insert(Qmmp::COMMENT, QString::fromStdString(itr->second));
+    }
+    return metaData;
 }

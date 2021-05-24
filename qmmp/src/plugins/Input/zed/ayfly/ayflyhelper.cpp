@@ -38,14 +38,9 @@ bool AyflyHelper::initialize()
     }
 
     const qint64 size = file.size();
-    if(size <= 0)
-    {
-        qWarning("AsapHelper: file size invalid");
-        return false;
-    }
+    const QByteArray module = file.readAll();
 
-    unsigned char *module = reinterpret_cast<unsigned char *>(file.readAll().data());
-    if(!ay_initsongindirect(module, sampleRate(), size))
+    if(!ay_initsongindirect((unsigned char *)module.constData(), sampleRate(), size))
     {
         qWarning("AyflyHelper: ay_initsongindirect error");
         return false;
@@ -100,4 +95,9 @@ int AyflyHelper::bitsPerSample() const
 int AyflyHelper::read(unsigned char *buf, int size)
 {
     return ay_rendersongbuffer(m_info->ay, buf, size);
+}
+
+QMap<Qmmp::MetaData, QString> AyflyHelper::readMetaData() const
+{
+    return m_metaData;
 }

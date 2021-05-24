@@ -1,12 +1,59 @@
 include($$PWD/zed.pri)
 
-TEMPLATE = subdirs
-SUBDIRS += ym ayfly dca v2m psf xsf sc68 s98 asap fc14 hively mdx
+TEMPLATE = subdirs     
 
 contains(CONFIG, ADPLUG_PLUGIN){
     SUBDIRS += adplug
 }
 
+contains(CONFIG, ASAP_PLUGIN){
+    SUBDIRS += asap
+}
+
+contains(CONFIG, AYFLY_PLUGIN){
+    SUBDIRS += ayfly
+}
+
+contains(CONFIG, DCA_PLUGIN){
+    SUBDIRS += dca
+}
+
+contains(CONFIG, FC14_PLUGIN){
+    SUBDIRS += fc14
+}
+
+contains(CONFIG, HIVELY_PLUGIN){
+    SUBDIRS += hively
+}
+
+contains(CONFIG, MDX_PLUGIN){
+    SUBDIRS += mdx
+}
+
 contains(CONFIG, OPTIMFROG_PLUGIN){
     SUBDIRS += optimfrog
+}
+
+contains(CONFIG, PSF_PLUGIN){
+    SUBDIRS += psf
+}
+
+contains(CONFIG, S98_PLUGIN){
+    SUBDIRS += s98
+}
+
+contains(CONFIG, SC68_PLUGIN){
+    SUBDIRS += sc68
+}
+
+contains(CONFIG, V2M_PLUGIN){
+    SUBDIRS += v2m
+}
+
+contains(CONFIG, XSF_PLUGIN){
+    SUBDIRS += xsf
+}
+
+contains(CONFIG, YM_PLUGIN){
+    SUBDIRS += ym
 }

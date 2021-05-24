@@ -53,13 +53,11 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;
     s98_info *m_info;
-    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

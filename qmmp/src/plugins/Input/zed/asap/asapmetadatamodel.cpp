@@ -56,12 +56,12 @@ QString AsapFileTagModel::value(Qmmp::MetaData key) const
 {
     if(m_helper && m_helper->initialize())
     {
-        m_helper->readMetaTags();
+        const QMap<Qmmp::MetaData, QString> metaData(m_helper->readMetaData());
         switch((int) key)
         {
-        case Qmmp::TITLE: return m_helper->title();
-        case Qmmp::ARTIST: return m_helper->artist();
-        case Qmmp::YEAR: return m_helper->year();
+        case Qmmp::TITLE: return metaData.value(Qmmp::TITLE);
+        case Qmmp::ARTIST: return metaData.value(Qmmp::ARTIST);
+        case Qmmp::YEAR: return metaData.value(Qmmp::YEAR);
         }
     }
     return QString();

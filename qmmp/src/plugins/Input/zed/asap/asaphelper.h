@@ -54,11 +54,7 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QMap<Qmmp::MetaData, QString> readMetaTags() const;
-
-    inline QString title() const { return m_metaData.value(Qmmp::TITLE); }
-    inline QString artist() const { return m_metaData.value(Qmmp::ARTIST); }
-    inline QString year() const { return m_metaData.value(Qmmp::YEAR); }
+    QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;

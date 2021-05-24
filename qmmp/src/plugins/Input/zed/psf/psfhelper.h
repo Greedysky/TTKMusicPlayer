@@ -21,6 +21,7 @@
 
 #include <QMap>
 #include <QFile>
+#include <qmmp/qmmp.h>
 
 typedef struct {
     int type;
@@ -54,17 +55,11 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QMap<QString, QString> readMetaTags();
-
-    inline QString title() const { return m_metaData.value("title"); }
-    inline QString artist() const { return m_metaData.value("artist"); }
-    inline QString album() const { return m_metaData.value("album"); }
-    inline QString year() const { return m_metaData.value("year"); }
+    QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;
     psf_info *m_info;
-    QMap<QString, QString> m_metaData;
 
 };
 

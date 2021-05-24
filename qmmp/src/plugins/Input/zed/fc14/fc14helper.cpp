@@ -33,22 +33,16 @@ bool FC14Helper::initialize()
     }
 
     const qint64 size = file.size();
-    if(size <= 0)
-    {
-        qWarning("AsapHelper: file size invalid");
-        return false;
-    }
+    const QByteArray module = file.readAll();
 
-    void *module = file.readAll().data();
     m_info->fc = fc14dec_new();
-
-    if(!fc14dec_detect(m_info->fc, module, size))
+    if(!fc14dec_detect(m_info->fc, (void*)module.constData(), size))
     {
         qWarning("FC14Helper: fc14dec_detect error");
         return false;
     }
 
-    if(!fc14dec_init(m_info->fc, module, size))
+    if(!fc14dec_init(m_info->fc, (void*)module.constData(), size))
     {
         qWarning("FC14Helper: fc14dec_init error");
         return false;
@@ -102,7 +96,9 @@ int FC14Helper::read(unsigned char *buf, int size)
     return size;
 }
 
-QString FC14Helper::comment() const
+QMap<Qmmp::MetaData, QString> FC14Helper::readMetaData() const
 {
-    return fc14dec_format_name(m_info->fc);
+    QMap<Qmmp::MetaData, QString> metaData;
+    metaData.insert(Qmmp::COMMENT, fc14dec_format_name(m_info->fc));
+    return metaData;
 }

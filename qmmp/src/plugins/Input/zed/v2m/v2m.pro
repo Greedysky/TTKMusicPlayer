@@ -1,5 +1,4 @@
 include($$PWD/../zed.pri)
-include($$PWD/../common/common.pri)
 
 HEADERS += decoderv2mfactory.h \
            decoder_v2m.h \

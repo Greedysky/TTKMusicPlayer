@@ -22,7 +22,9 @@
 extern "C" {
 #include "fc14audiodecoder.h"
 }
+#include <QMap>
 #include <QFile>
+#include <qmmp/qmmp.h>
 
 typedef struct {
     void *fc;
@@ -50,8 +52,7 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-
-    QString comment() const;
+    QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;

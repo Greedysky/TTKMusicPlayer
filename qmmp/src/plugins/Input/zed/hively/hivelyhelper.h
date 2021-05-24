@@ -21,6 +21,7 @@
 
 #include <QMap>
 #include <QFile>
+#include <qmmp/qmmp.h>
 
 typedef struct {
     int bitrate;
@@ -48,11 +49,12 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
+    QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:
     QString m_path;
     hively_info *m_info;
-    QMap<QString, QString> m_metaData;
+    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 

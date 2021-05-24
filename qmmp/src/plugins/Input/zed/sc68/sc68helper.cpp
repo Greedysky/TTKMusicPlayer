@@ -86,6 +86,7 @@ bool SC68Helper::initialize()
 
     const qint64 size = file.size();
     sc68_init(nullptr);
+
     m_info->sc68 = sc68_create(nullptr);
     if(!m_info->sc68)
     {

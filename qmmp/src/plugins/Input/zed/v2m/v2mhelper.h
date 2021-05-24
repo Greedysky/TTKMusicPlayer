@@ -19,7 +19,7 @@
 #ifndef V2MHELPER_H
 #define V2MHELPER_H
 
-#include <QObject>
+#include <QFile>
 #include "v2mplayer.h"
 
 typedef struct {

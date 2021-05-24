@@ -41,6 +41,15 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
         return QList<TrackInfo*>();
     }
 
+    if(parts & TrackInfo::MetaData)
+    {
+        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
+        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
+        {
+            info->setValue(itr.key(), itr.value());
+        }
+    }
+
     if(parts & TrackInfo::Properties)
     {
         info->setValue(Qmmp::BITRATE, helper.bitrate());

@@ -33,17 +33,12 @@ bool AsapHelper::initialize()
     }
 
     const qint64 size = file.size();
-    if(size <= 0)
-    {
-        qWarning("AsapHelper: file size invalid");
-        return false;
-    }
+    const QByteArray module = file.readAll();
 
-    unsigned char *module = reinterpret_cast<unsigned char *>(file.readAll().data());
     m_info->asap = ASAP_New();
     ASAP_DetectSilence(m_info->asap, 5);
 
-    if(!ASAP_Load(m_info->asap, qPrintable(m_path), module, size))
+    if(!ASAP_Load(m_info->asap, qPrintable(m_path), (unsigned char *)module.constData(), size))
     {
         qWarning("AsapHelper: ASAP_Load error");
         return false;
@@ -110,7 +105,8 @@ int AsapHelper::read(unsigned char *buf, int size)
     return ASAP_Generate(m_info->asap, buf, size, ASAPSampleFormat_S16_L_E);
 }
 
-QMap<Qmmp::MetaData, QString> AsapHelper::readMetaTags() const
+QMap<Qmmp::MetaData, QString> AsapHelper::readMetaData() const
 {
     return m_metaData;
 }
+
