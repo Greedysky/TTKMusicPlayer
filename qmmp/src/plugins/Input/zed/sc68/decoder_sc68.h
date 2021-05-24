@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // DECODER_SC68_H
+#endif

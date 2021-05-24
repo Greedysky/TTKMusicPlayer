@@ -127,4 +127,4 @@ protected:
 
 };
 
-#endif // ColorWidget_H
+#endif

@@ -80,4 +80,4 @@ static inline void mono_from_multichannel(float *l,
     }
 }
 
-#endif // INLINES_H
+#endif

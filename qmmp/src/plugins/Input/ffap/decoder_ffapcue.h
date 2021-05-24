@@ -61,4 +61,4 @@ private:
 
 };
 
-#endif // DECODER_FFAPCUE_H
+#endif

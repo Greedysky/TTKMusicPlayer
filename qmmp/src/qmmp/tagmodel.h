@@ -103,4 +103,4 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TagModel::ModelCaps)
 
-#endif // TAGMODEL_H
+#endif

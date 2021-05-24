@@ -48,4 +48,4 @@ static QStringList decodeForFilterDialog();
 
 };
 
-#endif // FORMAT_H
+#endif

@@ -102,4 +102,4 @@ private:
 
 };
 
-#endif // DECODER_MAD_H
+#endif

@@ -96,4 +96,4 @@ private:
 
 };
 
-#endif // OUTPUTDIRECTSOUND_H
+#endif

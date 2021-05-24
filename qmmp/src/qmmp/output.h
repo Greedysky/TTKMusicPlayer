@@ -163,4 +163,4 @@ private:
 };
 
 
-#endif // OUTPUT_H
+#endif

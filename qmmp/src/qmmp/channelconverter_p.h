@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // CHANNELCONVERTER_P_H
+#endif

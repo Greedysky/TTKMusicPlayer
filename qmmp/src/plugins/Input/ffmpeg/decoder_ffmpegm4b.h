@@ -69,4 +69,4 @@ private:
     QList<ChapterInfo> m_chapters;
 };
 
-#endif // DECODER_FFMPEGM4B_H
+#endif

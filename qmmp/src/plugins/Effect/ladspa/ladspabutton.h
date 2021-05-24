@@ -43,4 +43,4 @@ private:
 
 };
 
-#endif // LADSPABUTTON_H
+#endif

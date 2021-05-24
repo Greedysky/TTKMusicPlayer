@@ -108,4 +108,4 @@ private:
 
 };
 
-#endif // EQSETTINGS_H
+#endif

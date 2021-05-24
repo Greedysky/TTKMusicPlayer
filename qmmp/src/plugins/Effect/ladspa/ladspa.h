@@ -598,6 +598,6 @@ typedef const LADSPA_Descriptor *
 }
 #endif
 
-#endif /* LADSPA_INCLUDED */
+#endif
 
 /* EOF */

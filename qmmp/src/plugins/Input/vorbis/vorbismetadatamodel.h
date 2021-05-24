@@ -66,4 +66,4 @@ private:
 
 };
 
-#endif // VORBISMETADATAMODEL_H
+#endif

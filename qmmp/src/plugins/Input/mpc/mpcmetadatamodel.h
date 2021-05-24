@@ -66,4 +66,4 @@ private:
 
 };
 
-#endif // MPCMETADATAMODEL_H
+#endif

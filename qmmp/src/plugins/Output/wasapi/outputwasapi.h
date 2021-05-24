@@ -97,4 +97,4 @@ private:
 
 };
 
-#endif // OUTPUTWASAPI_H
+#endif

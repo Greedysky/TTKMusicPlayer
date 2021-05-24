@@ -106,4 +106,4 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Volume::VolumeFlags)
 
-#endif // VOLUME_H
+#endif

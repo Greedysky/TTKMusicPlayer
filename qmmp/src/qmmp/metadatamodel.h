@@ -176,4 +176,4 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(MetaDataModel::DialogHints)
 
-#endif // METADATAMODEL_H
+#endif

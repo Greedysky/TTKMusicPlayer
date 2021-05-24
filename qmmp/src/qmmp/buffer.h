@@ -63,4 +63,4 @@ public:
 
 };
 
-#endif // BUFFER_H
+#endif

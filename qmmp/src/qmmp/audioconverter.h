@@ -60,4 +60,4 @@ private:
 
 };
 
-#endif // AUDIOCONVERTER_H
+#endif

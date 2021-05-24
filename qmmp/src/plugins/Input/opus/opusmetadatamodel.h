@@ -64,4 +64,4 @@ private:
 
 };
 
-#endif // OPUSMETADATAMODEL_H
+#endif

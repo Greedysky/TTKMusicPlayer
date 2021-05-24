@@ -37,4 +37,4 @@ public:
 
 };
 
-#endif // LADSPAHELPER_H
+#endif

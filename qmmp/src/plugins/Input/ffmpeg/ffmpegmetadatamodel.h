@@ -70,4 +70,4 @@ private:
 
 };
 
-#endif // FFMPEGMETADATAMODEL_H
+#endif

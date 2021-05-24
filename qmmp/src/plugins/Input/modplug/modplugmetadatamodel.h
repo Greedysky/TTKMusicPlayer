@@ -43,4 +43,4 @@ private:
 
 };
 
-#endif // MODPLUGMETADATAMODEL_H
+#endif

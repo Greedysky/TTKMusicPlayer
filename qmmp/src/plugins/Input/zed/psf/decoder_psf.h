@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // DECODER_PSF_H
+#endif

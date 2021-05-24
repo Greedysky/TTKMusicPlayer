@@ -71,4 +71,4 @@ protected:
 
 };
 
-#endif // QMUSICPLAYLIST_H
+#endif

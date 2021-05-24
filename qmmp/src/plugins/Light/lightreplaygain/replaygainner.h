@@ -70,4 +70,4 @@ private:
 
 };
 
-#endif // REPLAYGAINNER_H
+#endif

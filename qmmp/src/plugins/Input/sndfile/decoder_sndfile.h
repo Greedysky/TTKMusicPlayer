@@ -53,4 +53,4 @@ private:
 
 };
 
-#endif // DECODER_SNDFILE_H
+#endif

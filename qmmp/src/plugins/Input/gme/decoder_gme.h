@@ -50,4 +50,4 @@ private:
 
 };
 
-#endif // DECODER_GME_H
+#endif

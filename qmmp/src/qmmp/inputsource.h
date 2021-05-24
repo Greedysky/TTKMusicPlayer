@@ -199,4 +199,4 @@ private:
 
 };
 
-#endif // INPUTSOURCE_H
+#endif

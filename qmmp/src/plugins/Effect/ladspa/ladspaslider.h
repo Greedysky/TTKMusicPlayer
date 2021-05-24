@@ -51,4 +51,4 @@ private:
 
 };
 
-#endif // LADSPASLIDER_H
+#endif

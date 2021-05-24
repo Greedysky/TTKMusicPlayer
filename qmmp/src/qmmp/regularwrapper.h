@@ -54,4 +54,4 @@ private:
 
 };
 
-#endif // REGULARWRAPPER_H
+#endif

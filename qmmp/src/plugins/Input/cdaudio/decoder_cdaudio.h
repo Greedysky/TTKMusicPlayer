@@ -77,4 +77,4 @@ private:
 
 };
 
-#endif // DECODER_CDAUIDO_H
+#endif

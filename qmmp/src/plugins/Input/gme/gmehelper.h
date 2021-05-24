@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif // GMEHELPER_H
+#endif

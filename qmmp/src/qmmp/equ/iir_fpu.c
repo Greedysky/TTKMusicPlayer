@@ -64,7 +64,7 @@ __inline__ int eq_iir(float *d, int samples, int nch)
 
 #ifdef BENCHMARK
   start_counter();
-#endif //BENCHMARK
+#endif
 
   /**
    * IIR filter equation is
@@ -180,7 +180,7 @@ __inline__ int eq_iir(float *d, int samples, int nch)
     timex = 0.;
     count = 0;
   }
-#endif // BENCHMARK
+#endif
 
 //  FTZ_OFF;
   return samples;

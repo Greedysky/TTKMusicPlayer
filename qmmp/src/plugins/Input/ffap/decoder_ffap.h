@@ -49,4 +49,4 @@ private:
 
 };
 
-#endif // DECODER_FFAP_H
+#endif

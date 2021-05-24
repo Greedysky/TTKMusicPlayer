@@ -228,4 +228,4 @@ private:
 
 };
 
-#endif // DECODER_H
+#endif

@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // DECODER_DCA_H
+#endif

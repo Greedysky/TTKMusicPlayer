@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // REPLAYGAINREADER_H
+#endif

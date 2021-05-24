@@ -59,5 +59,4 @@ private:
 
 };
 
-
-#endif // __decoder_aac_h
+#endif

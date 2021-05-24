@@ -68,4 +68,4 @@ private:
 
 };
 
-#endif // FLACMETADATAMODEL_H
+#endif

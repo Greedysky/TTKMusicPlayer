@@ -89,4 +89,4 @@ private:
 
 };
 
-#endif // REPLAYGAINWIDGET_H
+#endif

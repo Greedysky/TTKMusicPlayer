@@ -139,4 +139,4 @@ private:
 
 };
 
-#endif // AUDIOPARAMETERS_H
+#endif

@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // OutputNull_H
+#endif

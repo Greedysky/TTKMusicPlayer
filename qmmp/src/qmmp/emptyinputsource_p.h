@@ -41,4 +41,4 @@ private:
 
 };
 
-#endif // EMPTYINPUTSOURCE_P_H
+#endif

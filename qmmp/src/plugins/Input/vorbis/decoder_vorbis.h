@@ -53,4 +53,4 @@ private:
 
 };
 
-#endif // __decoder_vorbis_h
+#endif

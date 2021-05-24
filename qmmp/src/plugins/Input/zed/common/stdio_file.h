@@ -43,4 +43,4 @@ int64_t stdio_length(FILE *stream);
 int stdio_get_leading_size(FILE *stream);
 ///
 
-#endif //STDIO_FILE_H
+#endif

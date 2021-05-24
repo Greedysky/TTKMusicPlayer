@@ -274,4 +274,4 @@ private:
 
 };
 
-#endif // QMMPSETTINGS_H
+#endif

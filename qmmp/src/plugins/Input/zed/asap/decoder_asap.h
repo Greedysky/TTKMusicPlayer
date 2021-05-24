@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // DECODER_ASAP_H
+#endif

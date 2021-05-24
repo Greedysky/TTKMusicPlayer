@@ -65,4 +65,4 @@ private:
 
 };
 
-#endif // DECODER_WAVPACK_H
+#endif

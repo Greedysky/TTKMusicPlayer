@@ -133,4 +133,4 @@ private:
 
 };
 
-#endif // METADATAMANAGER_H
+#endif

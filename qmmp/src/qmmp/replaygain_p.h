@@ -55,4 +55,4 @@ private:
 
 };
 
-#endif // REPLAYGAIN_H
+#endif

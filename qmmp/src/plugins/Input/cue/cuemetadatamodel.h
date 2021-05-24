@@ -43,4 +43,4 @@ private:
 
 };
 
-#endif // CUEMETADATAMODEL_H
+#endif

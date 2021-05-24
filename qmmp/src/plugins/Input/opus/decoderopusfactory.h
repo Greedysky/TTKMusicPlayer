@@ -41,4 +41,4 @@ public:
 
 };
 
-#endif //DECODEROPUSFACTORY_H
+#endif

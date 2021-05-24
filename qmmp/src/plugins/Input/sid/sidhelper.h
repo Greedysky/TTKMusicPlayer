@@ -45,4 +45,4 @@ private:
 
 };
 
-#endif // SIDHELPER_H
+#endif

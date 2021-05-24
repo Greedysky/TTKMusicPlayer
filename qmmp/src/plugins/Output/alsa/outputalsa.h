@@ -90,4 +90,4 @@ private:
 
 };
 
-#endif // OUTPUTALSA_H
+#endif

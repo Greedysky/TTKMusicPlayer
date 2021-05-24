@@ -71,4 +71,4 @@ private:
 
 };
 
-#endif // QMMPPLUGINCACHE_P_H
+#endif

@@ -85,4 +85,4 @@ private:
 
 };
 
-#endif // QMMPEVENTS_P_H
+#endif

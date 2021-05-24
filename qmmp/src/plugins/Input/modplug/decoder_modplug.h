@@ -58,4 +58,4 @@ private:
 
 };
 
-#endif // DECODER_MODPLUG_H
+#endif

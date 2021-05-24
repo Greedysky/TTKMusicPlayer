@@ -54,4 +54,4 @@ private:
 
 };
 
-#endif // PSFMETADATAMODEL_H
+#endif

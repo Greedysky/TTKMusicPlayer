@@ -57,4 +57,4 @@ private:
 
 };
 
-#endif // __decoder_mpc_h
+#endif

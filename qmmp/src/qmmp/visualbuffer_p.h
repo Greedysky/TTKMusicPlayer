@@ -57,4 +57,4 @@ private:
 
 };
 
-#endif // VISUALBUFFER_P_H
+#endif

@@ -71,4 +71,4 @@ private:
 
 };
 
-#endif // MPEGMETADATAMODEL_H
+#endif

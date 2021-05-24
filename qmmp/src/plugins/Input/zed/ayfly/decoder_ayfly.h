@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // DECODER_AYFLY_H
+#endif

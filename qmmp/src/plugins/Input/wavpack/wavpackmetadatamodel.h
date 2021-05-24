@@ -63,4 +63,4 @@ private:
 
 };
 
-#endif // WAVPACKMETADATAMODEL_H
+#endif

@@ -51,4 +51,4 @@ private:
 
 };
 
-#endif //CUEFILE_H
+#endif

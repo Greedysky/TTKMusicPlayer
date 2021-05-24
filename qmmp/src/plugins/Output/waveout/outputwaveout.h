@@ -68,4 +68,4 @@ public:
 };
 
 
-#endif // OUTPUTWAVEOUT_H
+#endif

@@ -93,4 +93,4 @@ private:
 
 };
 
-#endif // __decoder_flac_h
+#endif

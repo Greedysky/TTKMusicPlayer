@@ -54,4 +54,4 @@ private:
 
 };
 
-#endif // DECODER_SID_H
+#endif

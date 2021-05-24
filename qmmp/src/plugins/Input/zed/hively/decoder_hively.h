@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif // DECODER_HIVELY_H
+#endif

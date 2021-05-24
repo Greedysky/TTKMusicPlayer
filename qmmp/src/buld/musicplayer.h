@@ -109,4 +109,4 @@ protected:
 
 };
 
-#endif // MUSICPLAYER_H
+#endif

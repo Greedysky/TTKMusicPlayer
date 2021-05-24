@@ -158,7 +158,7 @@ OutputFactory *Output::currentFactory()
 #else
     QString name = settings.value("Output/current_plugin", "oss4").toString();
 #endif
-#endif //QMMP_DEFAULT_OUTPUT
+#endif
     for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(item->shortName() == name && item->outputFactory())

@@ -54,4 +54,4 @@ private:
 
 };
 
-#endif // WILDMIDIHELPER_H
+#endif

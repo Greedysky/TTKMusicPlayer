@@ -58,4 +58,4 @@ private:
 
 };
 
-#endif // DECODER_CUE_H
+#endif

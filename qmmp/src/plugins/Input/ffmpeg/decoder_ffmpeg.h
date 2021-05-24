@@ -68,4 +68,4 @@ private:
 
 };
 
-#endif // DECODER_FFMPEG_H
+#endif

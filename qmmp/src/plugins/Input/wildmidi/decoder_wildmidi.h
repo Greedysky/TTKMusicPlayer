@@ -47,4 +47,4 @@ private:
 
 };
 
-#endif // DECODER_WILDMIDI_H
+#endif

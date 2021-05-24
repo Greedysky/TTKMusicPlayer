@@ -38,4 +38,4 @@ private:
 
 };
 
-#endif // SETTINGSDIALOG_H
+#endif

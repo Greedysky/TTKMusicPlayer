@@ -131,4 +131,4 @@ private:
 
 };
 
-#endif // OUTPUTWRITER_P_H
+#endif

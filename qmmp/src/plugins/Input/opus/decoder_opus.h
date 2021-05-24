@@ -50,4 +50,4 @@ private:
 
 };
 
-#endif // DECODER_OPUS_H
+#endif
