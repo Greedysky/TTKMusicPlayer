@@ -50,9 +50,18 @@ DecoderProperties DecoderAdplugFactory::properties() const
     DecoderProperties properties;
     properties.name = "AdPlug Plugin";
     properties.shortName = "adplug";
-    properties.filters << "*.adl" << "*.hsc" << "*.ksm" << "*.lds" << "*.amd" << "*.d00" << "*.rad";
-    properties.filters << "*.dmo" << "*.dro" << "*.dtm" << "*.laa" << "*.msc" << "*.raw";
-    properties.filters << "*.m" << "*.sa2" << "*.sng" << "*.xad";
+    properties.filters << "*.a2m" << "*.adl" << "*.adlib" << "*.amd" << "*.as3m";
+    properties.filters << "*.bam";
+    properties.filters << "*.cmf";
+    properties.filters << "*.d00" << "*.dfm" << "*.dmo" << "*.dro" << "*.dtm";
+    properties.filters << "*.hsc";
+    properties.filters << "*.imf";
+    properties.filters << "*.jbm";
+    properties.filters << "*.laa" << "*.lds";
+    properties.filters << "*.m" << "*.mad" << "*.mkj" << "*.msc" << "*.mtk";
+    properties.filters << "*.rad" << "*.raw";
+    properties.filters << "*.sa2" << "*.sat" << "*.sng" << "*.sqx";
+    properties.filters << "*.xad" << "*.xms" << "*.xsm";
     properties.description = "AdLib Sound File";
     return properties;
 }
