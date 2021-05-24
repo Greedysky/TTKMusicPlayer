@@ -97,7 +97,7 @@ int AyflyHelper::read(unsigned char *buf, int size)
     return ay_rendersongbuffer(m_info->ay, buf, size);
 }
 
-QMap<Qmmp::MetaData, QString> AyflyHelper::readMetaData() const
+const QMap<Qmmp::MetaData, QString> &AyflyHelper::readMetaData() const
 {
     return m_metaData;
 }

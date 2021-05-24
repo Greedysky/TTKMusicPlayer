@@ -132,7 +132,7 @@ int HivelyHelper::read(unsigned char *buffer, int )
     return sample;
 }
 
-QMap<Qmmp::MetaData, QString> HivelyHelper::readMetaData() const
+const QMap<Qmmp::MetaData, QString> &HivelyHelper::readMetaData() const
 {
     return m_metaData;
 }

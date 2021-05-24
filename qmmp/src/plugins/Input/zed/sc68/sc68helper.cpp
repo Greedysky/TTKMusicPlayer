@@ -2,53 +2,53 @@
 
 #include <QFile>
 
-void in_c68_meta_from_music_info(QMap<QString, QString> &data, sc68_music_info_t *ti)
+void in_c68_meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
 {
     // add metainfo
     if(!ti->title || !ti->title[0])
     {
         // title is empty, this call will set track title to filename without extension
-        data.insert("title", QString());
+        info->setValue(Qmmp::TITLE, QString());
     }
     else
     {
-        data.insert("title", ti->title);
+        info->setValue(Qmmp::TITLE, ti->title);
     }
 
     if(ti->artist && ti->artist[0])
     {
-        data.insert("artist", ti->artist);
+        info->setValue(Qmmp::ARTIST, ti->artist);
     }
 
     if(ti->album && ti->album[0])
     {
-        data.insert("album", ti->album);
+        info->setValue(Qmmp::ALBUM, ti->album);
     }
 
     if(ti->genre && ti->genre[0])
     {
-        data.insert("genre", ti->genre);
+        info->setValue(Qmmp::GENRE, ti->genre);
     }
 
     if(ti->year && ti->year[0])
     {
-        data.insert("year", ti->year);
+        info->setValue(Qmmp::YEAR, ti->year);
     }
 
     if(ti->format && ti->format[0])
     {
-        data.insert("SC68_FORMAT", ti->format);
+        info->setValue(Qmmp::COMMENT, ti->format);
     }
 
-    if(ti->ripper && ti->ripper[0])
-    {
-        data.insert("SC68_RIPPER", ti->ripper);
-    }
+//    if(ti->ripper && ti->ripper[0])
+//    {
+//        data.insert("SC68_RIPPER", ti->ripper);
+//    }
 
-    if(ti->converter && ti->converter[0])
-    {
-        data.insert("SC68_CONVERTER", ti->converter);
-    }
+//    if(ti->converter && ti->converter[0])
+//    {
+//        data.insert("SC68_CONVERTER", ti->converter);
+//    }
 }
 
 
@@ -230,17 +230,10 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
             continue;
         }
 
-        QMap<QString, QString> meta;
-        in_c68_meta_from_music_info(meta, &ti);
-
         TrackInfo *info = new TrackInfo();
         if(parts & TrackInfo::MetaData)
         {
-            info->setValue(Qmmp::TITLE, meta.value("title"));
-            info->setValue(Qmmp::ARTIST, meta.value("artist"));
-            info->setValue(Qmmp::ALBUM, meta.value("album"));
-            info->setValue(Qmmp::YEAR, meta.value("year"));
-            info->setValue(Qmmp::GENRE, meta.value("genre"));
+            in_c68_meta_from_music_info(info, &ti);
             info->setValue(Qmmp::TRACK, i);
         }
 

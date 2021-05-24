@@ -56,7 +56,7 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
-    QMap<Qmmp::MetaData, QString> readMetaData() const;
+    const QMap<Qmmp::MetaData, QString> &readMetaData() const;
 
 private:
     QString m_path;

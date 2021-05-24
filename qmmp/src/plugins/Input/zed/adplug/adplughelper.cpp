@@ -43,12 +43,12 @@ bool AdplugHelper::initialize()
     return m_player.get();
 }
 
-int AdplugHelper::bitrate()
+int AdplugHelper::bitrate() const
 {
     return (QFileInfo(m_filePath.c_str()).size() * 8.0) / length() + 1.0f;
 }
 
-std::vector<std::string> AdplugHelper::instruments()
+std::vector<std::string> AdplugHelper::instruments() const
 {
     std::vector<std::string> insts;
     for(unsigned int i = 0; i < instrument_count(); i++)

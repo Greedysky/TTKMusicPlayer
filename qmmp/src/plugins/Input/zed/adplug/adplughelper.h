@@ -53,24 +53,24 @@ public:
 
     bool initialize();
 
-    int bitrate();
+    int bitrate() const;
     int rate() const { return 44100; }
     int depth() const { return 16; }
     int channels() const { return 1; }
 
-    unsigned long length() { return m_player->songlength(); }
-    void seek(unsigned long pos) { m_player->seek(pos); }
+    unsigned long length() const { return m_player->songlength(); }
+    void seek(unsigned long pos) const { m_player->seek(pos); }
 
     Frame read();
 
-    std::string title() { return m_player->gettitle(); }
-    std::string format() { return m_player->gettype(); }
-    std::string author() { return m_player->getauthor(); }
-    std::string description() { return m_player->getdesc(); }
-    unsigned int pattern_count() { return m_player->getpatterns(); }
-    unsigned int instrument_count() { return m_player->getinstruments(); }
+    std::string title() const { return m_player->gettitle(); }
+    std::string format() const { return m_player->gettype(); }
+    std::string author() const { return m_player->getauthor(); }
+    std::string description() const { return m_player->getdesc(); }
+    unsigned int pattern_count() const { return m_player->getpatterns(); }
+    unsigned int instrument_count() const { return m_player->getinstruments(); }
 
-    std::vector<std::string> instruments();
+    std::vector<std::string> instruments() const;
 
 private:
     std::string m_filePath;

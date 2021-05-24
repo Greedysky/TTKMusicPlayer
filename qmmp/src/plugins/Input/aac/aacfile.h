@@ -50,7 +50,7 @@ public:
     quint32 sampleRate() const;
     int offset() const;
     bool isValid() const;
-    const QMap<Qmmp::MetaData, QString> &metaData();
+    const QMap<Qmmp::MetaData, QString> &metaData() const;
 
 private:
     void parseADTS();

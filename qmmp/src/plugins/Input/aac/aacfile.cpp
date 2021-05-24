@@ -135,7 +135,7 @@ bool AACFile::isValid() const
     return m_isValid;
 }
 
-const QMap<Qmmp::MetaData, QString> &AACFile::metaData()
+const QMap<Qmmp::MetaData, QString> &AACFile::metaData() const
 {
     return m_metaData;
 }

@@ -105,7 +105,7 @@ int AsapHelper::read(unsigned char *buf, int size)
     return ASAP_Generate(m_info->asap, buf, size, ASAPSampleFormat_S16_L_E);
 }
 
-QMap<Qmmp::MetaData, QString> AsapHelper::readMetaData() const
+const QMap<Qmmp::MetaData, QString> &AsapHelper::readMetaData() const
 {
     return m_metaData;
 }

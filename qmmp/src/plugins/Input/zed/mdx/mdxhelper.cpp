@@ -137,7 +137,7 @@ int MdxHelper::read(unsigned char *buf, int)
     return SAMPLE_BUF_SIZE * 4;
 }
 
-QMap<Qmmp::MetaData, QString> MdxHelper::readMetaData() const
+const QMap<Qmmp::MetaData, QString> &MdxHelper::readMetaData() const
 {
     return m_metaData;
 }
