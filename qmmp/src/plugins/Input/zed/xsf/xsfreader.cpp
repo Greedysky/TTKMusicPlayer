@@ -5,15 +5,19 @@ FileReader* XSFReader::makeReader(const QString &path)
     const QString &suffix = path.toLower();
     if(suffix.endsWith(".2sf") || suffix.endsWith(".mini2sf"))
     {
-        return new DsFileReader;
+        return new File2SFReader;
     }
     else if(suffix.endsWith(".gsf") || suffix.endsWith(".minigsf"))
     {
-        return new GsFileReader;
+        return new FileGSFReader;
     }
     else if(suffix.endsWith(".usf") || suffix.endsWith(".miniusf"))
     {
-        return new UsFileReader;
+        return new FileUSFReader;
+    }
+    else if(suffix.endsWith(".ncsf") || suffix.endsWith(".minincsf"))
+    {
+        return new FileNCSFReader;
     }
     return nullptr;
 }

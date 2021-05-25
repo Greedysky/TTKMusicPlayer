@@ -21,9 +21,10 @@
 
 #include <QString>
 
-#include "vio2sf.h"
-#include "viogsf.h"
-#include "viousf.h"
+#include "file2sf.h"
+#include "filegsf.h"
+#include "fileusf.h"
+#include "filencsf.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>
