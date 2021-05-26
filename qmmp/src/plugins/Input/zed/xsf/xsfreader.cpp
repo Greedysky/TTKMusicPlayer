@@ -19,5 +19,9 @@ FileReader* XSFReader::makeReader(const QString &path)
     {
         return new FileNCSFReader;
     }
+    else if(suffix.endsWith(".snsf") || suffix.endsWith(".minisnsf"))
+    {
+        return new FileSNSFReader;
+    }
     return nullptr;
 }

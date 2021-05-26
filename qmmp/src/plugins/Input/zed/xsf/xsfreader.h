@@ -25,6 +25,7 @@
 #include "filegsf.h"
 #include "fileusf.h"
 #include "filencsf.h"
+#include "filesnsf.h"
 
 /*!
  * @author Greedysky <greedysky@163.com>

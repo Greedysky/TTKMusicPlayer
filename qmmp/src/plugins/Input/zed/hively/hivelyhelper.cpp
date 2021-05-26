@@ -34,7 +34,7 @@ bool HivelyHelper::initialize()
     QFile file(m_path);
     if(!file.open(QFile::ReadOnly))
     {
-        qWarning("AsapHelper: open file failed");
+        qWarning("HivelyHelper: open file failed");
         return false;
     }
 

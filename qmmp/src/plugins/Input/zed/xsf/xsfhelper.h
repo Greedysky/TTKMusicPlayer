@@ -28,6 +28,7 @@ class FileReader;
 typedef struct {
     FileReader *reader;
     int bitrate;
+    bool meta;
 } xsf_info;
 
 /*!
@@ -40,6 +41,7 @@ public:
     ~XSFHelper();
 
     void deinit();
+    void metaOnly(bool meta);
 
     bool initialize();
     int totalTime() const;

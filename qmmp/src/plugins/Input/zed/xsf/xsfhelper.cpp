@@ -20,6 +20,11 @@ void XSFHelper::deinit()
     free(m_info);
 }
 
+void XSFHelper::metaOnly(bool meta)
+{
+    m_info->meta = meta;
+}
+
 bool XSFHelper::initialize()
 {
     QFile file(m_path);
@@ -40,7 +45,7 @@ bool XSFHelper::initialize()
         return false;
     }
 
-    if(!m_info->reader->load(qPrintable(m_path)))
+    if(!m_info->reader->load(qPrintable(m_path), m_info->meta))
     {
        qWarning("XSFHelper: load error");
        return false;

@@ -33,7 +33,7 @@ bool AyflyHelper::initialize()
     QFile file(m_path);
     if(!file.open(QFile::ReadOnly))
     {
-        qWarning("AsapHelper: open file failed");
+        qWarning("AyflyHelper: open file failed");
         return false;
     }
 
