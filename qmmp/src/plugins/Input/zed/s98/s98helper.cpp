@@ -89,7 +89,7 @@ int S98Helper::read(unsigned char *buf, int)
         return 0;	// stop song
     }
 
-    m_info->s98->Write((Int16*)buf, SAMPLE_BUF_SIZE / 4);
+    m_info->s98->Write((short*)buf, SAMPLE_BUF_SIZE / 4);
     return SAMPLE_BUF_SIZE;
 }
 
@@ -185,5 +185,5 @@ QMap<Qmmp::MetaData, QString> S98Helper::readMetaData() const
             }
         }
     }
-
+    return metaData;
 }
