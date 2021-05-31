@@ -19,9 +19,9 @@ void PSFHelper::deinit()
 {
     if(m_info) 
     {
-        if(m_info->decoder && m_info->type >= 0)
+        if(m_info->input && m_info->type >= 0)
         {
-            ao_stop(m_info->type, m_info->decoder);
+            ao_stop(m_info->type, m_info->input);
         }
         free(m_info);
     }
@@ -36,7 +36,7 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_info->filesize = file.size();
+    m_info->file_size = file.size();
     const QByteArray module = file.readAll();
 
     m_info->type = ao_identify((char *)module.constData());
@@ -46,8 +46,8 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_info->decoder = ao_start(m_info->type, qPrintable(m_path), (uint8 *)module.constData(), m_info->filesize);
-    if(!m_info->decoder)
+    m_info->input = ao_start(m_info->type, qPrintable(m_path), (uint8 *)module.constData(), m_info->file_size);
+    if(!m_info->input)
     {
         qWarning("PSFHelper: ao_start error");
         return false;
@@ -56,7 +56,7 @@ bool PSFHelper::initialize()
     ao_display_info info;
     memset(&info, 0, sizeof(info));
     bool have_info = false;
-    if(ao_get_info(m_info->type, m_info->decoder, &info) == AO_SUCCESS)
+    if(ao_get_info(m_info->type, m_info->input, &info) == AO_SUCCESS)
     {
        have_info = true;
     }
@@ -96,22 +96,22 @@ int PSFHelper::totalTime() const
 void PSFHelper::seek(qint64 time)
 {
     const int sample = time * sampleRate() / 1000;
-    if(sample > m_info->currentsample)
+    if(sample > m_info->current_sample)
     {
-        m_info->samples_to_skip = sample - m_info->currentsample;
+        m_info->samples_to_skip = sample - m_info->current_sample;
     }
     else
     {
-        ao_command(m_info->type, m_info->decoder, COMMAND_RESTART, 0);
+        ao_command(m_info->type, m_info->input, COMMAND_RESTART, 0);
         m_info->samples_to_skip = sample;
     }
 
-    m_info->currentsample = sample;
+    m_info->current_sample = sample;
 }
 
 int PSFHelper::bitrate() const
 {
-    return m_info->filesize * 8.0 / totalTime();
+    return m_info->file_size * 8.0 / totalTime();
 }
 
 int PSFHelper::sampleRate() const
@@ -131,7 +131,7 @@ int PSFHelper::bitsPerSample() const
 
 int PSFHelper::read(unsigned char *buf, int size)
 {
-    if(m_info->currentsample >= m_info->length * sampleRate())
+    if(m_info->current_sample >= m_info->length * sampleRate())
     {
         return 0;
     }
@@ -167,19 +167,19 @@ int PSFHelper::read(unsigned char *buf, int size)
 
         if(!m_info->remaining)
         {
-            ao_decode(m_info->type, m_info->decoder, (int16_t *)m_info->buffer, 735);
+            ao_decode(m_info->type, m_info->input, (int16_t *)m_info->buffer, 735);
             m_info->remaining = 735;
         }
     }
 
-    m_info->currentsample += (initsize - size) / (channels() * bitsPerSample() / 8);
+    m_info->current_sample += (initsize - size) / (channels() * bitsPerSample() / 8);
     return initsize - size;
 }
 
 QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
 {
     QMap<Qmmp::MetaData, QString> metaData;
-    if(m_info->type < 0 || !m_info->decoder)
+    if(m_info->type < 0 || !m_info->input)
     {
         return metaData;
     }
@@ -187,7 +187,7 @@ QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const
     ao_display_info info;
     memset(&info, 0, sizeof(info));
     bool have_info = false;
-    if(ao_get_info(m_info->type, m_info->decoder, &info) == AO_SUCCESS)
+    if(ao_get_info(m_info->type, m_info->input, &info) == AO_SUCCESS)
     {
        have_info = true;
     }

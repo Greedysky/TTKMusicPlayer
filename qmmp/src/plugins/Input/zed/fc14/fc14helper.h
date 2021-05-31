@@ -27,7 +27,7 @@ extern "C" {
 #include <qmmp/qmmp.h>
 
 typedef struct {
-    void *fc;
+    void *input;
     int bitrate;
 } fc14_info;
 

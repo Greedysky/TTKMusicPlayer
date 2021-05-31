@@ -20,9 +20,9 @@ void AyflyHelper::deinit()
 {
     if(m_info) 
     {
-        if(m_info->ay)
+        if(m_info->input)
          {
-            ay_closesong(&m_info->ay);
+            ay_closesong(&m_info->input);
         }
         free(m_info);
     }
@@ -46,19 +46,19 @@ bool AyflyHelper::initialize()
         return false;
     }
 
-    m_info->ay = ay_initsong(qPrintable(m_path), sampleRate());
-    if(!m_info->ay)
+    m_info->input = ay_initsong(qPrintable(m_path), sampleRate());
+    if(!m_info->input)
     {
         qWarning("AyflyHelper: ay_initsong error");
         return false;
     }
 
-    m_info->length = ay_getsonglength(m_info->ay) / 50 * 1000;
-    m_info->rate = size * 8.0 / m_info->length + 1.0f;
-    ay_setelapsedcallback(m_info->ay, endCallback, nullptr);
+    m_info->length = ay_getsonglength(m_info->input) / 50 * 1000;
+    m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
+    ay_setelapsedcallback(m_info->input, endCallback, nullptr);
 
-    m_metaData.insert(Qmmp::TITLE, ay_getsongname(m_info->ay));
-    m_metaData.insert(Qmmp::ARTIST, ay_getsongauthor(m_info->ay));
+    m_metaData.insert(Qmmp::TITLE, ay_getsongname(m_info->input));
+    m_metaData.insert(Qmmp::ARTIST, ay_getsongauthor(m_info->input));
     return true;
 }
 
@@ -69,12 +69,12 @@ int AyflyHelper::totalTime() const
 
 void AyflyHelper::seek(qint64 time)
 {
-    ay_seeksong(m_info->ay, time / 1000 * 50);
+    ay_seeksong(m_info->input, time / 1000 * 50);
 }
 
 int AyflyHelper::bitrate() const
 {
-    return m_info->rate;
+    return m_info->bitrate;
 }
 
 int AyflyHelper::sampleRate() const
@@ -94,7 +94,7 @@ int AyflyHelper::bitsPerSample() const
 
 int AyflyHelper::read(unsigned char *buf, int size)
 {
-    return ay_rendersongbuffer(m_info->ay, buf, size);
+    return ay_rendersongbuffer(m_info->input, buf, size);
 }
 
 const QMap<Qmmp::MetaData, QString> &AyflyHelper::readMetaData() const

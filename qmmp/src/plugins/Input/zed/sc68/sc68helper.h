@@ -25,13 +25,13 @@ extern "C" {
 #include <qmmp/trackinfo.h>
 
 typedef struct {
-    sc68_t *sc68;
+    sc68_t *input;
     int track;
     int loop;
     int bitrate;
     int length;
-    int currentsample;
-    int totalsamples;
+    int current_sample;
+    int total_samples;
 } sc68_info;
 
 /*!

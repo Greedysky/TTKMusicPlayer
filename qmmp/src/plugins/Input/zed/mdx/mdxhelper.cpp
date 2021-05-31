@@ -19,7 +19,7 @@ void MdxHelper::deinit()
     {
         if(m_info->mdx_mode)
         {
-            mdx_close(&m_info->mdx);
+            mdx_close(&m_info->input);
         }
         else
         {
@@ -56,15 +56,15 @@ bool MdxHelper::initialize()
     char buffer[1024];
     if(m_info->mdx_mode)
     {
-       if(mdx_open(&m_info->mdx, qPrintable(m_path), nullptr) != 0)
+       if(mdx_open(&m_info->input, qPrintable(m_path), nullptr) != 0)
        {
            qWarning("MdxHelper: mdx_open error");
            return false;
        }
 
-        m_info->length = mdx_get_length(&m_info->mdx) * 1000;	// len in msecs: use to stop playback
-        mdx_set_max_loop(&m_info->mdx, 0);
-        mdx_get_title(&m_info->mdx, buffer);
+        m_info->length = mdx_get_length(&m_info->input) * 1000;	// len in msecs: use to stop playback
+        mdx_set_max_loop(&m_info->input, 0);
+        mdx_get_title(&m_info->input, buffer);
         m_metaData.insert(Qmmp::TITLE, buffer);
     }
     else
@@ -126,7 +126,7 @@ int MdxHelper::read(unsigned char *buf, int)
 
     if(m_info->mdx_mode)
     {
-        mdx_calc_sample(&m_info->mdx, (short*)buf, SAMPLE_BUF_SIZE);
+        mdx_calc_sample(&m_info->input, (short*)buf, SAMPLE_BUF_SIZE);
     }
     else
     {

@@ -44,10 +44,10 @@ void V2MHelper::deinit()
             free(m_info->tune);
         }
 
-        if(m_info->player)
+        if(m_info->input)
         {
-            m_info->player->Close();
-            delete m_info->player;
+            m_info->input->Close();
+            delete m_info->input;
         }
         free(m_info);
     }
@@ -72,24 +72,24 @@ bool V2MHelper::initialize()
         return false;
     }
 
-    m_info->player = new V2MPlayer;
-    m_info->player->Init();
-    m_info->player->Open(m_info->tune);
+    m_info->input = new V2MPlayer;
+    m_info->input->Init();
+    m_info->input->Open(m_info->tune);
 
     m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
-    m_info->player->Play();
+    m_info->input->Play();
 
     return true;
 }
 
 int V2MHelper::totalTime() const
 {
-    return m_info->player->Length() * 1000;
+    return m_info->input->Length() * 1000;
 }
 
 void V2MHelper::seek(qint64 time)
 {
-    m_info->player->Play(time);
+    m_info->input->Play(time);
 }
 
 int V2MHelper::bitrate() const
@@ -114,7 +114,7 @@ int V2MHelper::bitsPerSample() const
 
 int V2MHelper::read(unsigned char *buf, int size)
 {
-    if(!m_info->player->IsPlaying())
+    if(!m_info->input->IsPlaying())
     {
         return 0;
     }
@@ -122,7 +122,7 @@ int V2MHelper::read(unsigned char *buf, int size)
     const int samplesize = (bitsPerSample() >> 3) * channels();
     const int samples = size / samplesize;
 
-    m_info->player->Render((float*)buf, samples);
+    m_info->input->Render((float*)buf, samples);
 
     return size;
 }

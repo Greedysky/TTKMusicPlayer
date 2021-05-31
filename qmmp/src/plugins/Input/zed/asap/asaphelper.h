@@ -27,7 +27,7 @@ extern "C" {
 #include <qmmp/qmmp.h>
 
 typedef struct {
-    ASAP *asap;
+    ASAP *input;
     int length;
     int bitrate;
     int channels;

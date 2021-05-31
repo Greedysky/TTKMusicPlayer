@@ -20,9 +20,9 @@ void HivelyHelper::deinit()
 {
     if(m_info)
     {
-        if(m_info->tune)
+        if(m_info->input)
         {
-            hvl_FreeTune(m_info->tune);
+            hvl_FreeTune(m_info->input);
         }
 
         free(m_info);
@@ -42,8 +42,8 @@ bool HivelyHelper::initialize()
     const QByteArray module = file.readAll();
 
     hvl_InitReplayer();
-    m_info->tune = hvl_ParseTune((unsigned char *)module.constData(), size, sampleRate(), 0);
-    if(!m_info->tune)
+    m_info->input = hvl_ParseTune((unsigned char *)module.constData(), size, sampleRate(), 0);
+    if(!m_info->input)
     {
         qDebug("HivelyHelper: hvl_LoadTune error");
         return false;
@@ -60,24 +60,24 @@ bool HivelyHelper::initialize()
     const char* tool = ahx ? "AHX Tracker" : "Hively Tracker";
     m_metaData.insert(Qmmp::ALBUM/*"SongTypeTag"*/, tool);
     m_metaData.insert(Qmmp::ARTIST/*"AuthoringToolTag"*/, tool);
-    m_metaData.insert(Qmmp::TITLE/*"TitleTag"*/, m_info->tune->ht_Name);
+    m_metaData.insert(Qmmp::TITLE/*"TitleTag"*/, m_info->input->ht_Name);
     
     QString instruments;
     // instruments starts from 1 in hively so skip 0
-    for(int i = 1; i < m_info->tune->ht_InstrumentNr; ++i)
+    for(int i = 1; i < m_info->input->ht_InstrumentNr; ++i)
     {
-        instruments += m_info->tune->ht_Instruments[i].ins_Name;
+        instruments += m_info->input->ht_Instruments[i].ins_Name;
         instruments += " ";
     }
     m_metaData.insert(Qmmp::COMMENT/*"Instruments"*/, instruments);
 
     QString subsongs;
-    if(m_info->tune->ht_SubsongNr > 1)
+    if(m_info->input->ht_SubsongNr > 1)
     {
-        for(int i = 0, c = m_info->tune->ht_SubsongNr; i < c; ++i)
+        for(int i = 0, c = m_info->input->ht_SubsongNr; i < c; ++i)
         {
             char subsong_name[1024] = {0};
-            sprintf(subsong_name, "%s (%d/%d)", m_info->tune->ht_Name, i + 1, m_info->tune->ht_SubsongNr);
+            sprintf(subsong_name, "%s (%d/%d)", m_info->input->ht_Name, i + 1, m_info->input->ht_SubsongNr);
 
             subsongs += subsong_name;
             subsongs += " ";
@@ -90,12 +90,12 @@ bool HivelyHelper::initialize()
 
 int HivelyHelper::totalTime() const
 {
-    return hvl_GetPlayTime(m_info->tune);
+    return hvl_GetPlayTime(m_info->input);
 }
 
 void HivelyHelper::seek(qint64 time)
 {
-    hvl_Seek(m_info->tune, time);
+    hvl_Seek(m_info->input, time);
 }
 
 int HivelyHelper::bitrate() const
@@ -120,15 +120,15 @@ int HivelyHelper::bitsPerSample() const
 
 int HivelyHelper::read(unsigned char *buffer, int )
 {
-    if(m_info->tune->ht_SongEndReached)
+    if(m_info->input->ht_SongEndReached)
     {
         return 0;
     }
 
     int8* ptr = (int8*)buffer;
-    hvl_DecodeFrame(m_info->tune, ptr, ptr + 2, 4);
+    hvl_DecodeFrame(m_info->input, ptr, ptr + 2, 4);
 
-    const int sample = (m_info->tune->ht_Frequency / 50 / m_info->tune->ht_SpeedMultiplier) * 4;
+    const int sample = (m_info->input->ht_Frequency / 50 / m_info->input->ht_SpeedMultiplier) * 4;
     return sample;
 }
 

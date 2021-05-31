@@ -15,9 +15,9 @@ void AsapHelper::deinit()
 {
     if(m_info)
     {
-        if(m_info->asap)
+        if(m_info->input)
         {
-            ASAP_Delete(m_info->asap);
+            ASAP_Delete(m_info->input);
         }
         free(m_info);
     }
@@ -35,21 +35,21 @@ bool AsapHelper::initialize()
     const qint64 size = file.size();
     const QByteArray module = file.readAll();
 
-    m_info->asap = ASAP_New();
-    ASAP_DetectSilence(m_info->asap, 5);
+    m_info->input = ASAP_New();
+    ASAP_DetectSilence(m_info->input, 5);
 
-    if(!ASAP_Load(m_info->asap, qPrintable(m_path), (unsigned char *)module.constData(), size))
+    if(!ASAP_Load(m_info->input, qPrintable(m_path), (unsigned char *)module.constData(), size))
     {
         qWarning("AsapHelper: ASAP_Load error");
         return false;
     }
 
-    ASAPInfo *info =(ASAPInfo *)ASAP_GetInfo(m_info->asap);
+    ASAPInfo *info =(ASAPInfo *)ASAP_GetInfo(m_info->input);
     //struct ASAPInfo { int channels; int covoxAddr; int defaultSong; int fastplay; int headerLen;
     // int init; int music; cibool ntsc; int player; int songs; ASAPModuleType type;
     // unsigned char songPos[32]; char author[128]; char date[128]; int durations[32];
     // char filename[128]; cibool loops[32]; char title[128]; };
-    if(!ASAP_PlaySong(m_info->asap, ASAPInfo_GetDefaultSong(info), 360000))
+    if(!ASAP_PlaySong(m_info->input, ASAPInfo_GetDefaultSong(info), 360000))
     {
         qWarning("AsapHelper: ASAP_PlaySong error");
         return false;
@@ -72,7 +72,7 @@ int AsapHelper::totalTime() const
 
 void AsapHelper::seek(qint64 time)
 {
-    ASAP_Seek(m_info->asap, time);
+    ASAP_Seek(m_info->input, time);
 }
 
 int AsapHelper::bitrate() const
@@ -97,12 +97,12 @@ int AsapHelper::bitsPerSample() const
 
 int AsapHelper::read(unsigned char *buf, int size)
 {
-    if(ASAP_GetPosition(m_info->asap) >= totalTime())
+    if(ASAP_GetPosition(m_info->input) >= totalTime())
     {
         return 0;
     }
 
-    return ASAP_Generate(m_info->asap, buf, size, ASAPSampleFormat_S16_L_E);
+    return ASAP_Generate(m_info->input, buf, size, ASAPSampleFormat_S16_L_E);
 }
 
 const QMap<Qmmp::MetaData, QString> &AsapHelper::readMetaData() const

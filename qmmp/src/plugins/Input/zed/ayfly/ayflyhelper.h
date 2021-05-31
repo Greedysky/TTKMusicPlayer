@@ -27,9 +27,9 @@ extern "C" {
 #include <qmmp/qmmp.h>
 
 typedef struct {
-    void *ay;
-    int rate;
+    void *input;
     int length;
+    int bitrate;
 } ay_info;
 
 /*!

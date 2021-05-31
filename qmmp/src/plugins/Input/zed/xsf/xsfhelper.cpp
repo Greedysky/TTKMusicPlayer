@@ -16,7 +16,7 @@ XSFHelper::~XSFHelper()
 
 void XSFHelper::deinit()
 {
-    delete m_info->reader;
+    delete m_info->input;
     free(m_info);
 }
 
@@ -38,14 +38,14 @@ bool XSFHelper::initialize()
     const qint64 size = file.size();
     file.close();
 
-    m_info->reader = XSFReader::makeReader(m_path);
-    if(!m_info->reader)
+    m_info->input = XSFReader::makeReader(m_path);
+    if(!m_info->input)
     {
         qWarning("XSFHelper: load file suffix error");
         return false;
     }
 
-    if(!m_info->reader->load(qPrintable(m_path), m_info->meta))
+    if(!m_info->input->load(qPrintable(m_path), m_info->meta))
     {
        qWarning("XSFHelper: load error");
        return false;
@@ -57,12 +57,12 @@ bool XSFHelper::initialize()
 
 int XSFHelper::totalTime() const
 {
-    return m_info->reader->length();
+    return m_info->input->length();
 }
 
 void XSFHelper::seek(qint64 time)
 {
-    m_info->reader->seek(time);
+    m_info->input->seek(time);
 }
 
 int XSFHelper::bitrate() const
@@ -87,18 +87,18 @@ int XSFHelper::bitsPerSample() const
 
 int XSFHelper::read(unsigned char *buf, int)
 {
-    return m_info->reader->read((short*)buf, SAMPLE_BUF_SIZE) * 4;
+    return m_info->input->read((short*)buf, SAMPLE_BUF_SIZE) * 4;
 }
 
 QMap<Qmmp::MetaData, QString> XSFHelper::readMetaData() const
 {
     QMap<Qmmp::MetaData, QString> metaData;
-    if(!m_info->reader)
+    if(!m_info->input)
     {
         return metaData;
     }
 
-    const file_meta meta(m_info->reader->get_meta_map());
+    const file_meta meta(m_info->input->get_meta_map());
     for(auto itr = meta.begin(); itr != meta.end(); ++itr)
     {
         if(itr->first == "title")

@@ -322,12 +322,12 @@ bool DCAHelper::initialize()
     }
 
     wavfmt_t fmt;
-    int64_t totalsamples = -1;
+    int64_t total = -1;
     // WAV format
-    if((m_info->offset = dts_open_wav(m_info->file, &fmt, &totalsamples)) == -1)
+    if((m_info->offset = dts_open_wav(m_info->file, &fmt, &total)) == -1)
     {
         m_info->offset = 0;
-        totalsamples = -1;
+        total = -1;
         m_info->bits_per_sample = 16;
     }
     else
@@ -335,7 +335,7 @@ bool DCAHelper::initialize()
         m_info->bits_per_sample = fmt.wBitsPerSample;
         m_info->channels = fmt.nChannels;
         m_info->sample_rate = fmt.nSamplesPerSec;
-        m_info->length = (float)totalsamples / fmt.nSamplesPerSec * 1000;
+        m_info->length = (float)total / fmt.nSamplesPerSec * 1000;
     }
 
     m_info->gain = 1;
@@ -409,12 +409,12 @@ bool DCAHelper::initialize()
     // calculate duration
     if(m_info->length <= 0)
     {
-        totalsamples = stdio_length(m_info->file) / len * m_info->frame_length;
-        m_info->length = (float)totalsamples / m_info->sample_rate * 1000;
+        total = stdio_length(m_info->file) / len * m_info->frame_length;
+        m_info->length = (float)total / m_info->sample_rate * 1000;
     }
 
-    m_info->startsample = 0;
-    m_info->endsample = totalsamples - 1;
+    m_info->start_sample = 0;
+    m_info->end_sample = total - 1;
 
     return true;
 }
@@ -428,14 +428,14 @@ void DCAHelper::seek(qint64 time)
 {
     int sample = time * sampleRate() / 1000;
     // calculate file offset from framesize / framesamples
-    sample += m_info->startsample;
+    sample += m_info->start_sample;
     int64_t nframe = sample / m_info->frame_length;
     int64_t offs = m_info->frame_byte_size * nframe + m_info->offset;
 
     stdio_seek(m_info->file, offs, SEEK_SET);
     m_info->remaining = 0;
     m_info->samples_to_skip = (int)(sample - nframe * m_info->frame_length);
-    m_info->currentsample = sample;
+    m_info->current_sample = sample;
 }
 
 int DCAHelper::bitrate() const
@@ -461,11 +461,11 @@ int DCAHelper::bitsPerSample() const
 int DCAHelper::read(unsigned char *buf, int size)
 {
     const int samplesize = channels() * bitsPerSample() / 8;
-    if(m_info->endsample >= 0)
+    if(m_info->end_sample >= 0)
     {
-        if(m_info->currentsample + size / samplesize > m_info->endsample)
+        if(m_info->current_sample + size / samplesize > m_info->end_sample)
         {
-            size = (int)((m_info->endsample - m_info->currentsample + 1) * samplesize);
+            size = (int)((m_info->end_sample - m_info->current_sample + 1) * samplesize);
             if(size <= 0)
             {
                 return 0;
@@ -537,7 +537,7 @@ int DCAHelper::read(unsigned char *buf, int size)
         }
     }
 
-    m_info->currentsample += (initsize - size) / samplesize;
+    m_info->current_sample += (initsize - size) / samplesize;
 
     return initsize - size;
 }

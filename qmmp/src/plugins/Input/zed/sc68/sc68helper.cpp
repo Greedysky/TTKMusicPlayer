@@ -65,9 +65,9 @@ SC68Helper::~SC68Helper()
 
 void SC68Helper::deinit()
 {
-    if(m_info->sc68)
+    if(m_info->input)
     {
-        sc68_destroy(m_info->sc68);
+        sc68_destroy(m_info->input);
     }
     free(m_info);
 }
@@ -87,14 +87,14 @@ bool SC68Helper::initialize()
     const qint64 size = file.size();
     sc68_init(nullptr);
 
-    m_info->sc68 = sc68_create(nullptr);
-    if(!m_info->sc68)
+    m_info->input = sc68_create(nullptr);
+    if(!m_info->input)
     {
         qWarning("SC68Helper: sc68_create error");
         return false;
     }
 
-    int res = sc68_load_uri(m_info->sc68, qPrintable("file://" + path));
+    int res = sc68_load_uri(m_info->input, qPrintable("file://" + path));
     if(res)
     {
         qWarning("SC68Helper: sc68_load_uri error");
@@ -102,7 +102,7 @@ bool SC68Helper::initialize()
     }
 
     sc68_music_info_t info;
-    res = sc68_music_info(m_info->sc68, &info, 0, 0);
+    res = sc68_music_info(m_info->input, &info, 0, 0);
     if(res < 0)
     {
         qWarning("SC68Helper: sc68_music_info error");
@@ -120,17 +120,17 @@ bool SC68Helper::initialize()
 
     if(info.trk.time_ms > 0)
     {
-        m_info->totalsamples = (uint64_t)info.trk.time_ms * sampleRate() / 1000;
+        m_info->total_samples = (uint64_t)info.trk.time_ms * sampleRate() / 1000;
     }
     else
     {
-        m_info->totalsamples = 2 * 60 * sampleRate();
+        m_info->total_samples = 2 * 60 * sampleRate();
     }
 
-    m_info->length = m_info->totalsamples / sampleRate() * 1000;
+    m_info->length = m_info->total_samples / sampleRate() * 1000;
     m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
 
-    sc68_play(m_info->sc68, m_info->track, m_info->loop);
+    sc68_play(m_info->input, m_info->track, m_info->loop);
 
     return true;
 }
@@ -143,24 +143,24 @@ int SC68Helper::totalTime() const
 void SC68Helper::seek(qint64 time)
 {
     const int sample = time * sampleRate() / 1000;
-    if(sample < m_info->currentsample)
+    if(sample < m_info->current_sample)
     {
-        sc68_stop(m_info->sc68);
-        sc68_play(m_info->sc68, m_info->track, m_info->loop);
-        m_info->currentsample = 0;
+        sc68_stop(m_info->input);
+        sc68_play(m_info->input, m_info->track, m_info->loop);
+        m_info->current_sample = 0;
     }
 
     char buffer[512 * 4];
-    while(m_info->currentsample < sample)
+    while(m_info->current_sample < sample)
     {
-        int sz = (int)(sample - m_info->currentsample);
+        int sz = (int)(sample - m_info->current_sample);
         sz = std::min<int>(sz, sizeof(buffer) >> 2);
 
-        if(sc68_process(m_info->sc68, buffer, &sz) & SC68_END)
+        if(sc68_process(m_info->input, buffer, &sz) & SC68_END)
         {
             break;
         }
-        m_info->currentsample += sz;
+        m_info->current_sample += sz;
     }
 }
 
@@ -186,18 +186,18 @@ int SC68Helper::bitsPerSample() const
 
 int SC68Helper::read(unsigned char *buf, int size)
 {
-    if(m_info->currentsample >= m_info->totalsamples)
+    if(m_info->current_sample >= m_info->total_samples)
     {
         return 0;
     }
 
-    m_info->currentsample += size / (channels() * bitsPerSample() / 8);
+    m_info->current_sample += size / (channels() * bitsPerSample() / 8);
     const int initsize = size;
 
     while(size > 0)
     {
         int n = size >> 2;
-        if(sc68_process(m_info->sc68, buf, &n) & SC68_END)
+        if(sc68_process(m_info->input, buf, &n) & SC68_END)
         {
             break;
         }
@@ -210,13 +210,13 @@ int SC68Helper::read(unsigned char *buf, int size)
 QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
 {
     QList<TrackInfo*> list;
-    if(!m_info->sc68)
+    if(!m_info->input)
     {
         return list;
     }
 
     sc68_music_info_t info;
-    if(sc68_music_info(m_info->sc68, &info, 0, 0) < 0)
+    if(sc68_music_info(m_info->input, &info, 0, 0) < 0)
     {
         return list;
     }
@@ -225,7 +225,7 @@ QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)
     {
         sc68_music_info_t ti;
         memset(&ti, 0, sizeof(ti));
-        if(sc68_music_info(m_info->sc68, &ti, i, 0) < 0)
+        if(sc68_music_info(m_info->input, &ti, i, 0) < 0)
         {
             continue;
         }

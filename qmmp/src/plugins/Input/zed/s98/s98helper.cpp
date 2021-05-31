@@ -18,10 +18,10 @@ S98Helper::~S98Helper()
 
 void S98Helper::deinit()
 {
-    if(m_info->s98)
+    if(m_info->input)
     {
-        m_info->s98->Close();
-        delete m_info->s98;
+        m_info->input->Close();
+        delete m_info->input;
     }
     free(m_info);
 }
@@ -40,9 +40,9 @@ bool S98Helper::initialize()
     const QByteArray module = file.readAll();
     file.close();
 
-    m_info->s98 = new s98File();
+    m_info->input = new s98File();
     m_info->sound.dwSamplesPerSec = sampleRate();
-    if(!m_info->s98->OpenFromBuffer((unsigned char *)module.constData(), size, &m_info->sound))
+    if(!m_info->input->OpenFromBuffer((unsigned char *)module.constData(), size, &m_info->sound))
     {
         qWarning("S98Helper: OpenFromBuffer error");
         return false;
@@ -59,7 +59,7 @@ int S98Helper::totalTime() const
 
 void S98Helper::seek(qint64 time)
 {
-    m_info->s98->SetPosition(time);
+    m_info->input->SetPosition(time);
 }
 
 int S98Helper::bitrate() const
@@ -84,25 +84,25 @@ int S98Helper::bitsPerSample() const
 
 int S98Helper::read(unsigned char *buf, int)
 {
-    if(m_info->s98->GetPosition() >= totalTime())
+    if(m_info->input->GetPosition() >= totalTime())
     {
         return 0;	// stop song
     }
 
-    m_info->s98->Write((short*)buf, SAMPLE_BUF_SIZE / 4);
+    m_info->input->Write((short*)buf, SAMPLE_BUF_SIZE / 4);
     return SAMPLE_BUF_SIZE;
 }
 
 QMap<Qmmp::MetaData, QString> S98Helper::readMetaData() const
 {
     QMap<Qmmp::MetaData, QString> metaData;
-    if(!m_info->s98)
+    if(!m_info->input)
     {
         return metaData;
     }
 
     char buffer[TEXT_MAX];
-    m_info->s98->getRawFileInfo((unsigned char*)buffer, TEXT_MAX, 0);
+    m_info->input->getRawFileInfo((unsigned char*)buffer, TEXT_MAX, 0);
     if(strlen(buffer) != 0)
     {
         /*

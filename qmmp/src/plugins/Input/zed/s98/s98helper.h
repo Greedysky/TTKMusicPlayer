@@ -27,7 +27,7 @@ extern "C" {
 #include <qmmp/qmmp.h>
 
 typedef struct {
-    s98File *s98;
+    s98File *input;
     SOUNDINFO sound;
     int bitrate;
 } s98_info;

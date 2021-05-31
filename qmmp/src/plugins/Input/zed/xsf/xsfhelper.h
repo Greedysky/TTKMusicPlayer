@@ -26,7 +26,7 @@
 class FileReader;
 
 typedef struct {
-    FileReader *reader;
+    FileReader *input;
     int bitrate;
     bool meta;
 } xsf_info;

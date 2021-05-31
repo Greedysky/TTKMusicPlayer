@@ -28,8 +28,8 @@ extern "C" {
 #include <qmmp/qmmp.h>
 
 typedef struct {
+    t_mdxmini input;
     bool mdx_mode;
-    t_mdxmini mdx;
     int pos;
     int bitrate;
     int length;
