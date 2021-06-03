@@ -7,7 +7,7 @@
 
 void MusicUtils::Core::sleep(int msecond)
 {
-#if defined Q_OS_WIN && defined TTK_GREATER_NEW
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,0,0)
     QThread::msleep(msecond);
 #else
     usleep(msecond * 1000);

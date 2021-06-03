@@ -20,7 +20,8 @@
  ================================================= */
 
 #include <QMutex>
-#include "musicsingleton.h"
+#include "ttksingleton.h"
+#include "musicglobaldefine.h"
 
 class QTimer;
 

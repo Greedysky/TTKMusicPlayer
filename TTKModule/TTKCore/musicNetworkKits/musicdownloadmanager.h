@@ -19,8 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsingleton.h"
+#include "ttksingleton.h"
 #include "musicnetworkdefines.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of the download manager pair.
  * @author Greedysky <greedysky@163.com>
@@ -93,7 +94,7 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Update download percent\ total time and current time progress.
+     * Update download percent total time and current time progress.
      */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
 

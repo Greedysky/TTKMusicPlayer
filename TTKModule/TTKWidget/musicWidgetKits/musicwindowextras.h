@@ -23,7 +23,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
 class MusicApplication;
 class QWinTaskbarButton;
 class QWinTaskbarProgress;
@@ -60,7 +60,7 @@ public:
     inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
 
 protected:
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
     /*!
      * Create thumbnail toolBar.
      */

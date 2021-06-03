@@ -88,16 +88,6 @@ public:
      */
     void showMessage(const QString &title, const QString &text);
 
-#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
-    /*!
-     * Set current value.
-     */
-    void setValue(int value) const;
-    /*!
-     * Set current range from start to end.
-     */
-    void setRange(int min, int max) const;
-#endif
     /*!
      * Set window concise.
      */

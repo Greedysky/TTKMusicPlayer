@@ -31,10 +31,7 @@ INCLUDEPATH += $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 win32{
     LIBS += -lpsapi
-}
-
-win32:msvc{
-    CONFIG +=c++11
+    msvc:CONFIG += c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
 }
@@ -53,6 +50,4 @@ HEADERS += \
 #load extra define
 include($$PWD/../TTKExtrasDefine.pri)
 
-win32{
-    RC_FILE = TTKDumper.rc
-}
+win32:RC_FILE = TTKDumper.rc

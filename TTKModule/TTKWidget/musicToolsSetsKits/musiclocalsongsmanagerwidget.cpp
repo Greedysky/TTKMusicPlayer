@@ -9,7 +9,7 @@
 #include "musicsinglemanager.h"
 #include "musicfileutils.h"
 
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QtConcurrent/QtConcurrent>
 #else
 #  include <QtConcurrentRun>

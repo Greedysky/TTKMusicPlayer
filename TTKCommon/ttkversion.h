@@ -1,5 +1,5 @@
-#ifndef MUSICVERSION_H
-#define MUSICVERSION_H
+#ifndef TTKVERSION_H
+#define TTKVERSION_H
 
 /**
  * C
@@ -150,8 +150,7 @@
 
 #define TTKMUSIC_VERSION 0x02F00
 
-#define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
+#define TTK_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
-
-#endif // MUSICVERSION
+#endif // TTKVERSION_H
 

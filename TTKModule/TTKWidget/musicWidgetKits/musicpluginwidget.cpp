@@ -141,7 +141,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     m_ui->treeWidget->header()->setSectionsMovable(false);
     m_ui->treeWidget->header()->setSectionResizeMode(0, QHeaderView::Fixed);
 #else

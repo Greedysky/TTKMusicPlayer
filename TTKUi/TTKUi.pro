@@ -31,6 +31,4 @@ RESOURCES += \
     MusicPlayer.qrc \
     MusicThirdParty.qrc
     
-win32{
-    RC_FILE = TTKUi.rc
-}
+win32:RC_FILE = TTKUi.rc

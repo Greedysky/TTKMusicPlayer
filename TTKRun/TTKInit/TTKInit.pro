@@ -26,7 +26,7 @@ TARGET = TTKInit
 TEMPLATE = app
 
 win32:msvc{
-    CONFIG +=c++11
+    CONFIG += c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
 }
@@ -35,7 +35,7 @@ LIBS += -L$$DESTDIR -lTTKConfig
 
 INCLUDEPATH += \
     $$PWD/../ \
-    $$PWD/../../ \
+    $$PWD/../../TTKCommon \
     $$PWD/../../TTKConfig \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
@@ -43,6 +43,4 @@ INCLUDEPATH += \
 SOURCES += \
     musicinitmain.cpp
 
-win32{
-    RC_FILE = TTKInit.rc
-}
+win32:RC_FILE = TTKInit.rc

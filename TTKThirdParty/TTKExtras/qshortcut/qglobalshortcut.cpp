@@ -3,7 +3,7 @@
 bool QGlobalShortcutPrivate::error = false;
 int QGlobalShortcutPrivate::ref = 0;
 
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
 QAbstractEventDispatcher::EventFilter QGlobalShortcutPrivate::prevEventFilter = 0;
 #endif
 
@@ -16,7 +16,7 @@ QGlobalShortcutPrivate::QGlobalShortcutPrivate()
 {
     if(!ref++)
     {
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
         prevEventFilter = QAbstractEventDispatcher::instance()->setEventFilter(eventFilter);
 #else
         QAbstractEventDispatcher::instance()->installNativeEventFilter(this);
@@ -28,7 +28,7 @@ QGlobalShortcutPrivate::~QGlobalShortcutPrivate()
 {
     if(!--ref)
     {
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
         QAbstractEventDispatcher::instance()->setEventFilter(prevEventFilter);
 #else
         QAbstractEventDispatcher::instance()->removeNativeEventFilter(this);

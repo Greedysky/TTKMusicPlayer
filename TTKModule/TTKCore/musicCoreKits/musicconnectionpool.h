@@ -20,7 +20,8 @@
  ================================================= */
 
 #include <QMap>
-#include "musicsingleton.h"
+#include "ttksingleton.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of the qt signal and slot connection pool.
  * @author Greedysky <greedysky@163.com>

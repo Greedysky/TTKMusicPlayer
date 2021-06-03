@@ -3,11 +3,14 @@
 #include "musicsettingmanager.h"
 
 #include <QHostInfo>
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
 #  include <QtConcurrent/QtConcurrent>
 #else
 #  include <QtConcurrentRun>
 #endif
+
+#define NETWORK_DETECT_INTERVAL     5000             // second
+#define NETWORK_REQUEST_ADDRESS     "www.baidu.com"  // ip
 
 MusicNetworkThread::MusicNetworkThread()
     : QObject(nullptr), m_networkState(true)

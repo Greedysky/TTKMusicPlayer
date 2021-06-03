@@ -17,7 +17,7 @@ OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, v
     return noErr;
 }
 
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
 bool QGlobalShortcutPrivate::eventFilter(void* message)
 //bool QGlobalShortcutPrivate::macEventFilter(EventHandlerCallRef caller, EventRef event)
 {

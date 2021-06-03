@@ -10,7 +10,7 @@
 #include "musiccoreutils.h"
 #include "musicimageutils.h"
 
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
 #include <QStandardPaths>
 #else
 #include <QDesktopServices>
@@ -207,7 +207,7 @@ void MusicWebFMRadioWidget::sendToDesktopLink()
         fileName = it->text();
     }
 
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     const QString &desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 #else
     const QString &desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);

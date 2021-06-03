@@ -20,10 +20,8 @@
  ================================================= */
 
 #include <QTimer>
-#include "musicsingleton.h"
-
-#define NETWORK_DETECT_INTERVAL     5000             // second
-#define NETWORK_REQUEST_ADDRESS     "www.baidu.com"  // ip
+#include "ttksingleton.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of thread to check current network.
  * @author Greedysky <greedysky@163.com>

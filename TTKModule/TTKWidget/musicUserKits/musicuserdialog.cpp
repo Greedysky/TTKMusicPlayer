@@ -343,7 +343,7 @@ void MusicUserDialog::clearOriginData()
 
     m_ui->automaticLogin->setChecked(false);
     m_ui->rememberPwd->setChecked(false);
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     m_ui->userComboBox->setCurrentText(QString());
 #else
     m_ui->userComboBox->setCurrentIndex(-1);

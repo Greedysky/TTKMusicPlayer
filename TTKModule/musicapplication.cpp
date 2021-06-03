@@ -292,9 +292,6 @@ void MusicApplication::positionChanged(qint64 position)
     }
     //Show the current play time
     m_musicSongTreeWidget->updateTimeLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
-#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
-    m_bottomAreaWidget->setValue(position);
-#endif
 }
 
 void MusicApplication::durationChanged(qint64 duration)
@@ -304,9 +301,6 @@ void MusicApplication::durationChanged(qint64 duration)
     m_ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
-#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
-    m_bottomAreaWidget->setRange(0, duration);
-#endif
 }
 
 void MusicApplication::stateChanged()

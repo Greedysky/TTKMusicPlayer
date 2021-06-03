@@ -21,7 +21,8 @@
 
 #include <QMetaEnum>
 #include "musicobject.h"
-#include "musicsingleton.h"
+#include "ttksingleton.h"
+#include "musicglobaldefine.h"
 
 /*! @brief The class of the paramater setting manager.
  * @author Greedysky <greedysky@163.com>

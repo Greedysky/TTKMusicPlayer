@@ -25,13 +25,11 @@ CONFIG += plugin lib
 
 ##qmmp lib check
 include($$PWD/../TTKExtra/qmmp.pri)
-win32:{
+win32{
     QMMP_DEPANDS = $$DESTDIR/TTKqmmp.dll
     QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
 }
-unix:!mac{
-    QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.so
-}
+unix:!mac:QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.so
 !exists($$QMMP_DEPANDS): error("Could not find ttk qmmp library, please download and put it to output dir")
 
 
@@ -56,6 +54,4 @@ HEADERS  += \
     musicbottomareawidget.h \
     musicapplicationmodule.h
     
-win32{
-    RC_FILE = TTKCore.rc
-}
+win32:RC_FILE = TTKCore.rc

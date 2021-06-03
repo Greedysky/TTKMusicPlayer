@@ -16,46 +16,10 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-QT       += core
-
-TEMPLATE = lib
-
-include($$PWD/../../TTKVersion.pri)
-
-DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
-TARGET = TTKWatcher
-
-CONFIG += warn_off plugin lib
-
-unix{
-    macx{
-        SOURCES += $$PWD/qdevicewatcher_mac.cpp
-        LIBS += -framework DiskArbitration -framework Foundation
-    }else{
-        SOURCES += $$PWD/qdevicewatcher_linux.cpp
-    }
-}
-
-win32{
-    wince*: SOURCES += $$PWD/qdevicewatcher_wince.cpp
-    else: SOURCES += $$PWD/qdevicewatcher_win32.cpp
-    LIBS *= -luser32
-}
-
-win32:msvc{
-    CONFIG += c++11
-}else{
-    QMAKE_CXXFLAGS += -std=c++11
-}
-
-SOURCES += \
-    $$PWD/qdevicewatcher.cpp
-    
-HEADERS += \
-    $$PWD/qdevicewatcher_p.h \
-    $$PWD/qdevicewatcher.h
-
-#load extra define
-include($$PWD/../TTKExtrasDefine.pri)
-
-win32:RC_FILE = TTKWatcher.rc
+INCLUDEPATH += $$PWD
+HEADERS  += \
+    $$PWD/musicglobal.h \
+    $$PWD/ttkglobal.h \
+    $$PWD/ttkprivate.h \
+    $$PWD/ttksingleton.h \
+    $$PWD/ttkversion.h

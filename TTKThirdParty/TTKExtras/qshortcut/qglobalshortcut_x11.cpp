@@ -24,7 +24,7 @@ static int q_x_errhandler(Display* display, XErrorEvent *event)
     }
 }
 
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
 bool QGlobalShortcutPrivate::eventFilter(void* message)
 {
     XEvent *event = TTKStatic_cast(XEvent*, message);

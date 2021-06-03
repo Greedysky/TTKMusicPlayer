@@ -30,7 +30,7 @@ include($$PWD/TTKVersion.pri)
 DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 
 ##openssl lib check
-win32:{
+win32{
     SSL_DEPANDS = $$DESTDIR/ssleay32.dll
     SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
 #    exists($$SSL_DEPANDS):LIBS += -L$$DESTDIR -lssl
@@ -46,7 +46,7 @@ win32{
         greaterThan(QT_MINOR_VERSION, 1):QT  += winextras
         msvc{
             LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip -luser32
-            CONFIG +=c++11
+            CONFIG += c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
                  QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01
@@ -83,7 +83,6 @@ unix:!mac{
 DEFINES += TTK_LIBRARY QMMP_LIBRARY
 
 #########################################
-HEADERS += $$PWD/musicglobal.h
-INCLUDEPATH += $$PWD
-#########################################
+include($$PWD/TTKCommon/TTKCommon.pri)
 include($$PWD/TTKThirdParty/TTKThirdParty.pri)
+#########################################

@@ -90,7 +90,7 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
 void MusicBottomAreaWidget::setCurrentPlayStatus(bool status) const
 {
     m_systemTrayMenu->setCurrentPlayStatus(status);
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
     m_musicWindowExtras->setCurrentPlayStatus(status);
 #endif
 }
@@ -110,18 +110,6 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
 {
     m_systemTray->showMessage(title, text);
 }
-
-#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
-void MusicBottomAreaWidget::setValue(int value) const
-{
-    m_musicWindowExtras->setValue(value);
-}
-
-void MusicBottomAreaWidget::setRange(int min, int max) const
-{
-    m_musicWindowExtras->setRange(min, max);
-}
-#endif
 
 void MusicBottomAreaWidget::setWindowConcise()
 {

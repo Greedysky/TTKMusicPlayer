@@ -24,7 +24,7 @@ QT       += widgets
 }
 
 win32:msvc{
-    CONFIG +=c++11
+    CONFIG += c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
 }
@@ -34,7 +34,7 @@ TEMPLATE = app
 DEFINES += TTK_LIBRARY
 
 INCLUDEPATH += \
-    $$PWD/../../../ \
+    $$PWD/../../../TTKCommon \
     $$PWD/../../../TTKThirdParty \
     $$PWD/../../../TTKThirdParty/TTKDumper \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \

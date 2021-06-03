@@ -22,7 +22,7 @@ void QSyncDataInterface::handleError(QNetworkReply::NetworkError error)
 
 QString QSyncDataInterface::pathEncode(const QString &data) const
 {
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     return QUrl(data).toString(QUrl::FullyEncoded);
 #else
     return QUrl(data).toEncoded();
@@ -31,7 +31,7 @@ QString QSyncDataInterface::pathEncode(const QString &data) const
 
 QString QSyncDataInterface::pathDecode(const QString &data) const
 {
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     return QUrl(data).toString();
 #else
     return QByteArray::fromPercentEncoding(data.toUtf8());

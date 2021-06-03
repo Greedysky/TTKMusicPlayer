@@ -18,5 +18,5 @@
 
 INCLUDEPATH += \
     $$PWD/ \
-    $$PWD/../ \
+    $$PWD/../TTKCommon \
     $$PWD/TTKDumper

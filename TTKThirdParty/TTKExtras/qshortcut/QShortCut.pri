@@ -37,4 +37,3 @@ mac:SOURCES += $$PWD/qglobalshortcut_mac.cpp
 
 SOURCES += \
     $$PWD/qglobalshortcut.cpp
-

@@ -141,7 +141,7 @@ int MusicAudioRecorderModule::addWavHeader(const char *filename)
 void MusicAudioRecorderModule::setVolume(int volume)
 {
     m_inputVolume = volume;
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     if(m_mpAudioInputFile)
     {
         m_mpAudioInputFile->setVolume(volume);
@@ -187,7 +187,7 @@ void MusicAudioRecorderModule::onRecordStart()
         TTK_LOGGER_ERROR("Audio Input Open Error");
         return;
     }
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     m_mpAudioInputFile->setVolume(m_inputVolume);
 #endif
     m_mpAudioInputFile->start(m_mpOutputFile);

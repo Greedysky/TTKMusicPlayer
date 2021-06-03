@@ -50,6 +50,4 @@ SOURCES += \
     $$PWD/mztools.c \
     $$PWD/ioapi.c
     
-win32{
-    RC_FILE = ttkzip.rc
-}
+win32:RC_FILE = ttkzip.rc

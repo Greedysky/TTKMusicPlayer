@@ -22,7 +22,7 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicabstractmovewidget.h"
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
 #   include <QtWidgets>
 #else
 #   include <QtGui>

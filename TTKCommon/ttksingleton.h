@@ -1,5 +1,5 @@
-#ifndef MUSICSINGLETON_H
-#define MUSICSINGLETON_H
+#ifndef TTKSINGLETON_H
+#define TTKSINGLETON_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,17 +20,14 @@
  ================================================= */
 
 #include <QMutex>
-#include <QObject>
 #include <QScopedPointer>
-#include "musicglobaldefine.h"
 
 template <typename T>
 /*! @brief The class of the singleton base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSingleton
+class Q_DECL_EXPORT TTKSingleton
 {
-    TTK_DECLARE_MODULE(MusicSingleton)
 public:
     /*!
      * Get object instance ptr.
@@ -41,12 +38,12 @@ private:
     /*!
      * Object contsructor.
      */
-    MusicSingleton() = default;
-    ~MusicSingleton() = default;
+    TTKSingleton() = default;
+    ~TTKSingleton() = default;
 
     static QMutex m_mutex;
     static QScopedPointer<T> m_instance;
-    Q_DISABLE_COPY(MusicSingleton)
+    Q_DISABLE_COPY(TTKSingleton)
 
 };
 
@@ -56,11 +53,11 @@ private:
 ///                                                           //
 ////////////////////////////////////////////////////////////////
 
-template <typename T> QMutex MusicSingleton<T>::m_mutex;
-template <typename T> QScopedPointer<T> MusicSingleton<T>::m_instance;
+template <typename T> QMutex TTKSingleton<T>::m_mutex;
+template <typename T> QScopedPointer<T> TTKSingleton<T>::m_instance;
 
 template <typename T>
-T* MusicSingleton<T>::createInstance()
+T* TTKSingleton<T>::createInstance()
 {
     if(m_instance.isNull())
     {
@@ -82,9 +79,8 @@ T* MusicSingleton<T>::createInstance()
 
 ////Class that will implement the singleton mode,
 ////must use the macro in it's delare file
-#define DECLARE_SINGLETON_CLASS(Class)             \
-    friend class MusicSingleton<Class>;            \
+#define DECLARE_SINGLETON_CLASS(Class)           \
+    friend class TTKSingleton<Class>;            \
     friend struct QScopedPointerDeleter<Class>;
 
-#endif // MUSICSINGLETON
-
+#endif // TTKSINGLETON_H

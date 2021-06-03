@@ -30,16 +30,6 @@
 #endif
 
 #define TTK_QT_VERSION_CHECK(major, minor, patch) (QT_VERSION >= QT_VERSION_CHECK(major, minor, patch))
-#if TTK_QT_VERSION_CHECK(5,0,0)
-#  define TTK_GREATER_NEW
-#  if TTK_QT_VERSION_CHECK(5,2,0)
-#    define TTK_WINEXTRAS
-#  else
-#    define TTK_NO_WINEXTRAS
-#  endif
-#else
-#  define TTK_NO_WINEXTRAS
-#endif
 
 #ifndef qPrintable
 #define qPrintable(s) QString(s).toLocal8Bit().constData()

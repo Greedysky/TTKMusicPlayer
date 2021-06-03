@@ -122,7 +122,7 @@ void MusicUserManagerDialog::leaveEvent(QEvent *event)
 
 void MusicUserManagerDialog::popupUserRecordWidget()
 {
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
     close();
 #endif
     if(m_userUID.m_server <= 0)

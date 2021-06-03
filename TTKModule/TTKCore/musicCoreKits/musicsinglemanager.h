@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QMap>
-#include "musicsingleton.h"
+#include "ttksingleton.h"
 #include "musicwidgetutils.h"
 
 /////////////////////////////////////////////////////////////////////////

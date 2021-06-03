@@ -15,7 +15,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicsettingmanager.h
     ${MUSIC_CORE_DIR}/musicconnectionpool.h
     ${MUSIC_CORE_DIR}/musicplatformmanager.h
-    ${MUSIC_CORE_DIR}/musicsingleton.h
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
     ${MUSIC_CORE_DIR}/musicsongmeta.h

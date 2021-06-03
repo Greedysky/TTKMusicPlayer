@@ -1,7 +1,7 @@
 #include "qglobalshortcut_p.h"
 #include <qt_windows.h>
 
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
 bool QGlobalShortcutPrivate::eventFilter(void* message)
 {
 #else

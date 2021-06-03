@@ -22,7 +22,7 @@
 #include "qglobalshortcut.h"
 #include <QAbstractEventDispatcher>
 #include <QHash>
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
 #include <QAbstractNativeEventFilter>
 #endif
 
@@ -30,7 +30,7 @@
  * @author libqxt <foundation@libqxt.org>
  */
 class MUSIC_EXTRAS_EXPORT QGlobalShortcutPrivate : public TTKPrivate<QGlobalShortcut>
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
         , public QAbstractNativeEventFilter
 #endif
 {
@@ -48,7 +48,7 @@ public:
 
     static bool error;
     static int ref;
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
     static QAbstractEventDispatcher::EventFilter prevEventFilter;
     static bool eventFilter(void* message);
 #else

@@ -32,7 +32,6 @@ HEADERS  += \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
     $$PWD/musicplatformmanager.h \
-    $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
     $$PWD/musicsongmeta.h \

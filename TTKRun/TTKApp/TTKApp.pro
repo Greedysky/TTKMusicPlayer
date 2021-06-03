@@ -26,7 +26,7 @@ TARGET = TTKMusicPlayer
 TEMPLATE = app
 
 win32:msvc{
-    CONFIG +=c++11
+    CONFIG += c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
 }
@@ -46,7 +46,7 @@ else{
 
 INCLUDEPATH += \
     $$PWD/../ \
-    $$PWD/../../ \
+    $$PWD/../../TTKCommon \
     $$PWD/../../TTKConfig \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
@@ -65,6 +65,4 @@ HEADERS += \
 RESOURCES += \
     $$PWD/../../TTKUi/MusicApp.qrc
 
-win32{
-    RC_FILE = TTKApp.rc
-}
+win32:RC_FILE = TTKApp.rc

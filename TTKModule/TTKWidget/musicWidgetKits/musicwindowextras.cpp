@@ -2,14 +2,14 @@
 #include "musicapplication.h"
 
 #include <QStyle>
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
 #   include <QtWinExtras/QtWinExtras>
 #endif
 
 MusicWindowExtras::MusicWindowExtras(QObject *parent)
     : QObject(parent)
 {
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
     m_playToolButton = nullptr;
     m_forwardToolButton = nullptr;
     m_backwardToolButton = nullptr;
@@ -25,7 +25,7 @@ MusicWindowExtras::MusicWindowExtras(QObject *parent)
 
 MusicWindowExtras::~MusicWindowExtras()
 {
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
     delete m_playToolButton;
     delete m_forwardToolButton;
     delete m_backwardToolButton;
@@ -36,13 +36,13 @@ MusicWindowExtras::~MusicWindowExtras()
 void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 {
     m_disableBlurBehindWindow = enable;
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
     QtWin::enableBlurBehindWindow(m_parentClass);
     QtWin::disableBlurBehindWindow(m_parentClass);
 #endif
 }
 
-#if defined Q_OS_WIN && defined TTK_WINEXTRAS
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
 void MusicWindowExtras::setCurrentPlayStatus(bool status) const
 {
     if(!status)

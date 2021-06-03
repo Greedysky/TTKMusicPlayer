@@ -31,14 +31,14 @@ LIBS += -L$$DESTDIR -lTTKCore
 unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
 win32:msvc{
-    CONFIG +=c++11
+    CONFIG += c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
 INCLUDEPATH += \
     $$PWD/../ \
-    $$PWD/../../ \
+    $$PWD/../../TTKCommon \
     $$PWD/../../TTKThirdParty/TTKDumper \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../TTKModule/TTKCore/musicPlaylistKits \
@@ -51,6 +51,4 @@ SOURCES += \
 HEADERS += \
     musicconsolemodule.h
 
-win32{
-    RC_FILE = TTKConsole.rc
-}
+win32:RC_FILE = TTKConsole.rc

@@ -34,6 +34,4 @@ INCLUDEPATH += \
 SOURCES += \
     musicservicemain.cpp
 
-win32{
-    RC_FILE = TTKService.rc
-}
+win32:RC_FILE = TTKService.rc

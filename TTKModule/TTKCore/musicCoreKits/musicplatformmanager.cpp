@@ -79,7 +79,7 @@ QSize generateDPIValue()
 {
     const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
-  #ifdef TTK_GREATER_NEW
+  #if TTK_QT_VERSION_CHECK(5,0,0)
     if(!qApp)
     {
         int count = 0;

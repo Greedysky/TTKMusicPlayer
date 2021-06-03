@@ -40,12 +40,12 @@ public:
     */
     TTKRunApplication(const QString &id, int &argc, char **argv);
 
-#ifndef TTK_GREATER_NEW
+#if !TTK_QT_VERSION_CHECK(5,0,0)
     /*!
      * Object contsructor.
     */
     TTKRunApplication(int &argc, char **argv, Type type);
-#  if defined(Q_WS_X11)
+#if defined(Q_WS_X11)
     /*!
      * Object contsructor.
     */
@@ -58,7 +58,7 @@ public:
      * Object contsructor.
     */
     TTKRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
-#  endif
+#endif
 #endif
 
     /*!

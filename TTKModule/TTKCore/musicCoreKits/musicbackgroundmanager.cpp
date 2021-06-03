@@ -1,6 +1,8 @@
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
 
+#define MAX_INDEX 5
+
 MusicBackgroundManager::MusicBackgroundManager()
 {
     m_currentIndex = 0;

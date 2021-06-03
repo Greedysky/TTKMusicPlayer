@@ -19,6 +19,7 @@
 include($$PWD/TTKVersion.pri)
 
 TEMPLATE = subdirs
+CONFIG += ordered
 SUBDIRS = TTKConfig TTKUi TTKThirdParty TTKModule TTKService TTKRun
 
 TRANSLATIONS += TTKLanguage/cn.ts \
@@ -46,7 +47,7 @@ else{
 }
 
 ##update translation
-unix:{
+unix{
     output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
     !exists($$output):system(mkdir -p $$output)
 
@@ -54,7 +55,7 @@ unix:{
     system(find $$PWD/TTKLanguage -name *.qm | xargs rename -v -f 's/.qm/.ln/' *)
     system(for F in $$PWD/TTKLanguage/*.ln ; do mv $F $$output ;done)
 }
-win32:{
+win32{
     output = $$OUT_PWD/bin/$$TTKMusicPlayer/MLanguage
     output = $$replace(output, /, \\)
     !exists($$output):system(md $$output)

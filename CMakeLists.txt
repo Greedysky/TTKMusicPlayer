@@ -24,12 +24,14 @@ else()
 endif()
 
 set(MUSIC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set(MUSIC_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/TTKModule")
+set(MUSIC_COMMON_DIR "${MUSIC_DIR}/TTKCommon")
+set(MUSIC_LIB_DIR "${MUSIC_DIR}/TTKModule")
 set(MUSIC_LIB_CORE_DIR "${MUSIC_LIB_DIR}/TTKCore")
 set(MUSIC_LIB_WIDGET_DIR "${MUSIC_LIB_DIR}/TTKWidget")
 
 include_directories(
     ${MUSIC_DIR}
+    ${MUSIC_COMMON_DIR}
     ${MUSIC_LIB_DIR}
 )
 

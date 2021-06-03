@@ -1,5 +1,6 @@
 #include "musicdispatchmanager.h"
 
+#include <QFile>
 #include <QTimer>
 
 MusicDispatchManager::MusicDispatchManager()

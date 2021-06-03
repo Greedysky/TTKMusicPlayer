@@ -69,7 +69,7 @@ void MusicUtils::Url::urlDecode(QByteArray &data)
 
 void MusicUtils::Url::urlPrettyEncode(QString &data)
 {
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString(QUrl::FullyEncoded);
 #else
     data = QUrl(data).toEncoded();
@@ -78,7 +78,7 @@ void MusicUtils::Url::urlPrettyEncode(QString &data)
 
 void MusicUtils::Url::urlPrettyDecode(QString &data)
 {
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString();
 #else
     data = QByteArray::fromPercentEncoding(data.toUtf8());
@@ -87,7 +87,7 @@ void MusicUtils::Url::urlPrettyDecode(QString &data)
 
 void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
 {
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl(data).toString(QUrl::FullyEncoded).toUtf8();
 #else
     data = QUrl(data).toEncoded();
@@ -96,7 +96,7 @@ void MusicUtils::Url::urlPrettyEncode(QByteArray &data)
 
 void MusicUtils::Url::urlPrettyDecode(QByteArray &data)
 {
-#ifdef TTK_GREATER_NEW
+#if TTK_QT_VERSION_CHECK(5,0,0)
     data = QUrl::fromEncoded(data).toString(QUrl::FullyDecoded).toUtf8();
 #else
     data = QByteArray::fromPercentEncoding(data);
