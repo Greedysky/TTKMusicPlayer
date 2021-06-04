@@ -6,7 +6,7 @@
 XSFHelper::XSFHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (xsf_info*)calloc(sizeof(xsf_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 XSFHelper::~XSFHelper()

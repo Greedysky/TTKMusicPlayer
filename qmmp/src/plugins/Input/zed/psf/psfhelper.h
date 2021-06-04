@@ -32,7 +32,7 @@ typedef struct {
     int length;
     int current_sample;
     int samples_to_skip;
-} psf_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -59,7 +59,7 @@ public:
 
 private:
     QString m_path;
-    psf_info *m_info;
+    decode_info *m_info;
 
 };
 

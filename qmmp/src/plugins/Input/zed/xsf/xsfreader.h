@@ -21,11 +21,11 @@
 
 #include <QString>
 
-#include "file2sf.h"
-#include "filegsf.h"
-#include "fileusf.h"
-#include "filencsf.h"
-#include "filesnsf.h"
+#include <file2sf.h>
+#include <filegsf.h>
+#include <fileusf.h>
+#include <filencsf.h>
+#include <filesnsf.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

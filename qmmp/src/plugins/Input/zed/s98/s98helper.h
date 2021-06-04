@@ -20,7 +20,7 @@
 #define S98HELPER_H
 
 extern "C" {
-#include "m_s98.h"
+#include <m_s98.h>
 }
 #include <QMap>
 #include <QFile>
@@ -30,7 +30,7 @@ typedef struct {
     s98File *input;
     SOUNDINFO sound;
     int bitrate;
-} s98_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -57,7 +57,7 @@ public:
 
 private:
     QString m_path;
-    s98_info *m_info;
+    decode_info *m_info;
 
 };
 

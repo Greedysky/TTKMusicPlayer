@@ -179,7 +179,7 @@ int16_t convert(int32_t i)
     return (i > 32767) ? 32767 : ((i < -32768) ? -32768 : i);
 }
 
-int convert_samples(dca_info *state, int)
+int convert_samples(decode_info *state, int)
 {
     sample_t *samples = dca_samples(state->state);
 
@@ -200,7 +200,7 @@ int convert_samples(dca_info *state, int)
     return 0;
 }
 
-int dca_decode_data(dca_info *ddb_state, uint8_t * start, int size, int probe)
+int dca_decode_data(decode_info *ddb_state, uint8_t * start, int size, int probe)
 {
     int n_decoded = 0;
     uint8_t * end = start + size;
@@ -288,7 +288,7 @@ error:
 DCAHelper::DCAHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (dca_info*)calloc(sizeof(dca_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 DCAHelper::~DCAHelper()

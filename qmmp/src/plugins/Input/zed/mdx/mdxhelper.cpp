@@ -5,7 +5,7 @@
 MdxHelper::MdxHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (mdx_info*)calloc(sizeof(mdx_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 MdxHelper::~MdxHelper()

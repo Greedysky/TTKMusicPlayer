@@ -27,7 +27,7 @@ int load_and_convert(unsigned char *module, qint64 size, uint8_t **conv, int *co
 V2MHelper::V2MHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (v2m_info*)calloc(sizeof(v2m_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 V2MHelper::~V2MHelper()

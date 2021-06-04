@@ -8,7 +8,7 @@ bool endCallback(void *)
 AyflyHelper::AyflyHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (ay_info*)calloc(sizeof(ay_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 AyflyHelper::~AyflyHelper()

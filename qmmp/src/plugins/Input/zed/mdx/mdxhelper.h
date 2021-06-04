@@ -20,8 +20,8 @@
 #define MDXHELPER_H
 
 extern "C" {
-#include "mdxmini.h"
-#include "pmdmini.h"
+#include <mdxmini.h>
+#include <pmdmini.h>
 }
 #include <QMap>
 #include <QFile>
@@ -33,7 +33,7 @@ typedef struct {
     int pos;
     int bitrate;
     int length;
-} mdx_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -60,7 +60,7 @@ public:
 
 private:
     QString m_path;
-    mdx_info *m_info;
+    decode_info *m_info;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

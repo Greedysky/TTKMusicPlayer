@@ -20,7 +20,7 @@
 #define ASAPHELPER_H
 
 extern "C" {
-#include "asap.h"
+#include <asap.h>
 }
 #include <QMap>
 #include <QFile>
@@ -31,7 +31,7 @@ typedef struct {
     int length;
     int bitrate;
     int channels;
-} asap_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -58,7 +58,7 @@ public:
 
 private:
     QString m_path;
-    asap_info *m_info;
+    decode_info *m_info;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

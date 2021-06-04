@@ -3,7 +3,7 @@
 AsapHelper::AsapHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (asap_info*)calloc(sizeof(asap_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 AsapHelper::~AsapHelper()

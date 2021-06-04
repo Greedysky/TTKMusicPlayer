@@ -1,13 +1,13 @@
 #include "psfhelper.h"
 
 extern "C" {
-#include "ao.h"
+#include <ao.h>
 }
 
 PSFHelper::PSFHelper(const QString &path)
     : m_path(path)
 {
-    m_info = (psf_info*)calloc(sizeof(psf_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 PSFHelper::~PSFHelper()

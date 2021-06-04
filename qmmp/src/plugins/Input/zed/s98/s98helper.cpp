@@ -8,7 +8,7 @@
 S98Helper::S98Helper(const QString &path)
     : m_path(path)
 {
-    m_info = (s98_info*)calloc(sizeof(s98_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 S98Helper::~S98Helper()

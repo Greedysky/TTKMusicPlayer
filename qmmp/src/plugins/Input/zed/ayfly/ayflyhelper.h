@@ -20,7 +20,7 @@
 #define AYFLYHELPER_H
 
 extern "C" {
-#include "ayfly.h"
+#include <ayfly.h>
 }
 #include <QMap>
 #include <QFile>
@@ -30,7 +30,7 @@ typedef struct {
     void *input;
     int length;
     int bitrate;
-} ay_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -57,7 +57,7 @@ public:
 
 private:
     QString m_path;
-    ay_info *m_info;
+    decode_info *m_info;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };

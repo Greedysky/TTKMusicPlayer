@@ -29,7 +29,7 @@ typedef struct {
     FileReader *input;
     int bitrate;
     bool meta;
-} xsf_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -57,7 +57,7 @@ public:
 
 private:
     QString m_path;
-    xsf_info *m_info;
+    decode_info *m_info;
 
 };
 

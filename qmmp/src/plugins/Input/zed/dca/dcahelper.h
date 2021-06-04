@@ -22,9 +22,9 @@
 #include <QObject>
 
 extern "C" {
-#include "dca.h"
-#include "gettimeofday.h"
-#include "stdio_file.h"
+#include <dca.h>
+#include <gettimeofday.h>
+#include <stdio_file.h>
 }
 
 #define BUFFER_SIZE 24576
@@ -57,7 +57,7 @@ typedef struct {
     int end_sample;
     int current_sample;
     int samples_to_skip;
-} dca_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -83,7 +83,7 @@ public:
 
 private:
     QString m_path;
-    dca_info *m_info;
+    decode_info *m_info;
 
 };
 

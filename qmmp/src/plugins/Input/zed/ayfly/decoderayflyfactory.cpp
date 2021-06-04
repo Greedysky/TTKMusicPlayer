@@ -10,7 +10,7 @@ bool DecoderAyflyFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderAyflyFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "ALFLY Plugin";
+    properties.name = "AyFly Plugin";
     properties.shortName = "alfly";
     properties.filters << "*.vtx" << "*.asc" << "*.sqt" << "*psg";
     properties.filters << "*.stc" << "*.stp";
@@ -60,7 +60,7 @@ QList<TrackInfo*> DecoderAyflyFactory::createPlayList(const QString &path, Track
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
         info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
-        info->setValue(Qmmp::FORMAT_NAME, "ALFLY");
+        info->setValue(Qmmp::FORMAT_NAME, "AyFly");
         info->setDuration(helper.totalTime());
     }
 

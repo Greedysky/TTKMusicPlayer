@@ -55,7 +55,7 @@ void in_c68_meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
 SC68Helper::SC68Helper(const QString &path)
     : m_path(path)
 {
-    m_info = (sc68_info*)calloc(sizeof(sc68_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 SC68Helper::~SC68Helper()

@@ -3,7 +3,7 @@
 FC14Helper::FC14Helper(const QString &path)
     : m_path(path)
 {
-    m_info = (fc14_info*)calloc(sizeof(fc14_info), 1);
+    m_info = (decode_info*)calloc(sizeof(decode_info), 1);
 }
 
 FC14Helper::~FC14Helper()
@@ -28,7 +28,7 @@ bool FC14Helper::initialize()
     QFile file(m_path);
     if(!file.open(QFile::ReadOnly))
     {
-        qWarning("AsapHelper: open file failed");
+        qWarning("FC14Helper: open file failed");
         return false;
     }
 
