@@ -23,7 +23,7 @@
 #include <qmmp/visual.h>
 
 extern "C" {
-#include "goom.h"
+#include <libgoom/goom.h>
 }
 
 class QMenu;
