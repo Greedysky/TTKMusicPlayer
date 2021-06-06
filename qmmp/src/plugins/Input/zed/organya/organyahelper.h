@@ -19,8 +19,8 @@
 #ifndef ORGANYAHELPER_H
 #define ORGANYAHELPER_H
 
-#include <decoder.h>
-#include <organya.h>
+#include <liborganya/decoder.h>
+#include <liborganya/organya.h>
 
 #include <QMap>
 #include <QFile>

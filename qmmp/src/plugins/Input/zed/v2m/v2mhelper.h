@@ -20,7 +20,7 @@
 #define V2MHELPER_H
 
 #include <QFile>
-#include <v2mplayer.h>
+#include <libv2m/v2mplayer.h>
 
 typedef struct {
     uint8_t *tune;

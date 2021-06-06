@@ -2,7 +2,7 @@
 #include <math.h>
 
 extern "C" {
-#include <hvl_replay.h>
+#include <libhively/hvl_replay.h>
 }
 
 HivelyHelper::HivelyHelper(const QString &path)

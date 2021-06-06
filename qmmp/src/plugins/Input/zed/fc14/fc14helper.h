@@ -20,7 +20,7 @@
 #define FC14HELPER_H
 
 extern "C" {
-#include <fc14audiodecoder.h>
+#include <libfc14/fc14audiodecoder.h>
 }
 #include <QMap>
 #include <QFile>

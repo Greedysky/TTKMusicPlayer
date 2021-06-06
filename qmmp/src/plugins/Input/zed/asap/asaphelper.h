@@ -20,7 +20,7 @@
 #define ASAPHELPER_H
 
 extern "C" {
-#include <asap.h>
+#include <libasap/asap.h>
 }
 #include <QMap>
 #include <QFile>

@@ -20,8 +20,8 @@
 #define MDXHELPER_H
 
 extern "C" {
-#include <mdxmini.h>
-#include <pmdmini.h>
+#include <libmdx/mdxmini/mdxmini.h>
+#include <libmdx/pmdmini/pmdmini.h>
 }
 #include <QMap>
 #include <QFile>

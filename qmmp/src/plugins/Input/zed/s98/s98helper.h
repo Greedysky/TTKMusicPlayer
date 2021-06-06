@@ -20,7 +20,7 @@
 #define S98HELPER_H
 
 extern "C" {
-#include <m_s98.h>
+#include <libs98/m_s98.h>
 }
 #include <QMap>
 #include <QFile>

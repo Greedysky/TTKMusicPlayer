@@ -1,6 +1,6 @@
 #include "v2mhelper.h"
-#include "v2mconv.h"
-#include "sounddef.h"
+#include <libv2m/v2mconv.h>
+#include <libv2m/sounddef.h>
 #include <math.h>
 
 static bool v2m_initialized = false;

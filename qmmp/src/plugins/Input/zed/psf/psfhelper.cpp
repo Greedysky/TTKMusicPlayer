@@ -1,7 +1,7 @@
 #include "psfhelper.h"
 
 extern "C" {
-#include <ao.h>
+#include <libpsf/ao.h>
 }
 
 PSFHelper::PSFHelper(const QString &path)

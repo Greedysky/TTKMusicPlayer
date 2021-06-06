@@ -14,7 +14,7 @@ DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libxsf/include \
-               $$EXTRA_PREFIX/libxsf/include/mgba \
+               $$EXTRA_PREFIX/libxsf/include/libxsf/mgba \
 
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

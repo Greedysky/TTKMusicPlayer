@@ -20,7 +20,7 @@
 #define SC68HELPER_H
 
 extern "C" {
-#include <sc68.h>
+#include <libsc68/sc68/sc68.h>
 }
 #include <qmmp/trackinfo.h>
 

@@ -22,8 +22,8 @@
 #include <QObject>
 
 extern "C" {
-#include <dca.h>
-#include <gettimeofday.h>
+#include <libdca/dca.h>
+#include <libdca/gettimeofday.h>
 #include <stdio_file.h>
 }
 
