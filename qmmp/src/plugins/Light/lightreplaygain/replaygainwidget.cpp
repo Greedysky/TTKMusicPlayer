@@ -31,7 +31,7 @@ ReplayGainWidget::ReplayGainWidget(QWidget *parent)
 {
     m_ui.setupUi(this);
     m_ui.tableWidget->verticalHeader()->setDefaultSectionSize(fontMetrics().height() + 3);
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     m_ui.tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 #else
     m_ui.tableWidget->verticalHeader()->setResizeMode(QHeaderView::Fixed);

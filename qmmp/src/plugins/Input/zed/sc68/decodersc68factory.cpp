@@ -73,7 +73,7 @@ void DecoderSC68Factory::showSettings(QWidget *parent)
     Q_UNUSED(parent);
 }
 
-#ifndef QMMP_GREATER_NEW
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(sc68, DecoderSC68Factory)
 #endif

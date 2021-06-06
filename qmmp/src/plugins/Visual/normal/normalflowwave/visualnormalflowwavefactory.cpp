@@ -14,7 +14,7 @@ Visual *VisualNormalFlowWaveFactory::create(QWidget *parent)
     return new NormalFlowWave(parent);
 }
 
-#ifndef QMMP_GREATER_NEW
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(normalflowwave, VisualNormalFlowWaveFactory)
 #endif

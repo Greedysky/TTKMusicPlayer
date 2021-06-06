@@ -23,7 +23,7 @@ void EffectSoXRFactory::showSettings(QWidget *parent)
     s->show();
 }
 
-#ifndef QMMP_GREATER_NEW
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(soxr, EffectSoXRFactory)
 #endif

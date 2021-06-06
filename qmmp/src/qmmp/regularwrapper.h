@@ -20,7 +20,7 @@
 #define REGULARWRAPPER_H
 
 #include "qmmp_export.h"
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
 #include <QRegularExpression>
 #else
 #include <QRegExp>
@@ -41,7 +41,7 @@ public:
 
     static QString escape(const QString &str);
 
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     operator QRegularExpression () const;
 private:
     QRegularExpression m_regular;

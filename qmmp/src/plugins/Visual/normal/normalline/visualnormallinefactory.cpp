@@ -14,7 +14,7 @@ Visual *VisualNormalLineFactory::create(QWidget *parent)
     return new NormalLine(parent);
 }
 
-#ifndef QMMP_GREATER_NEW
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0)
 #include <QtPlugin>
 Q_EXPORT_PLUGIN2(normalline, VisualNormalLineFactory)
 #endif

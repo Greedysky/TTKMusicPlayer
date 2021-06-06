@@ -7,7 +7,7 @@ RegularWrapper::RegularWrapper()
 
 RegularWrapper::RegularWrapper(const QString &pattern)
 {
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     m_regular = QRegularExpression(pattern);
 #else
     m_regular = QRegExp(pattern);
@@ -21,7 +21,7 @@ RegularWrapper::~RegularWrapper()
 
 bool RegularWrapper::hasMatch(const QString &str)
 {
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     m_match = m_regular.match(str);
     return m_match.hasMatch();
 #else
@@ -31,7 +31,7 @@ bool RegularWrapper::hasMatch(const QString &str)
 
 QString RegularWrapper::value(int index) const
 {
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     return m_match.captured(index);
 #else
     return m_regular.cap(index);
@@ -40,14 +40,14 @@ QString RegularWrapper::value(int index) const
 
 QString RegularWrapper::escape(const QString &str)
 {
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
     return QRegularExpression::escape(str);
 #else
     return QRegExp::escape(str);
 #endif
 }
 
-#ifdef QMMP_GREATER_NEW
+#if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
 RegularWrapper::operator QRegularExpression () const
 {
     return  m_regular;
