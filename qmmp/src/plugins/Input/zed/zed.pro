@@ -34,6 +34,10 @@ contains(CONFIG, OPTIMFROG_PLUGIN){
     SUBDIRS += optimfrog
 }
 
+contains(CONFIG, ORGANYA_PLUGIN){
+    SUBDIRS += organya
+}
+
 contains(CONFIG, PSF_PLUGIN){
     SUBDIRS += psf
 }

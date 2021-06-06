@@ -1,0 +1,44 @@
+liborganya v0.1
+===============
+
+ A simple library for decoding Cave Story's org music files.
+ By Vincent Spader <liborganya (at) vspader (dot) com>
+ Public Domain
+
+Usage
+-----
+
+ To instantiate a decoder:
+   org_decoder_t *decoder = org_decoder_create("path/to/file.org", "samples");
+
+ The first argument is the path to the org file. The second argument is the
+ path to a directory that contains the data files that are included in the
+ samples directory.
+
+ To decode samples:
+   org_decode_samples(decoder, buffer, num_samples);
+
+ The output is 2 channel interleaved signed 16-bit host endian PCM data with
+ a 44100 sample rate. It returns the number of samples actually decoded.
+
+ When  you are finished:
+   org_decoder_destroy(decoder);
+
+ See orgyana.h for additional functions and details.
+
+Notes
+-----
+ The org file format description can be found at
+ http://cavestory-stuff.org/Info/orgfilesdesc.txt.
+ 
+ The org2dat folder contains the source to a simple command line utility that
+ uses liborganya to decode files to raw PCM data.
+
+ The component folder contains source to a CoreAudio AudioFile component. 
+
+Thanks
+------
+ - Pixel for making Cave Story and composing all the songs
+ - Moose for providing an overview of the format.
+ - Jan "Rrrola" Kadlec and The Echidna Tribe, whose org2xm tool and in_org winamp plugin filled in some additional details where the file format description is inadequate.
+ - Boredom for giving me a reason to do this
