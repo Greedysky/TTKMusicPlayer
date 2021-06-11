@@ -78,11 +78,6 @@ void MusicLrcContainerForDesktop::setCurrentPlayStatus(bool status) const
     m_toolPlayButton->setStyleSheet(status ? MusicUIObject::MQSSDeskTopPlay : MusicUIObject::MQSSDeskTopPause);
 }
 
-bool MusicLrcContainerForDesktop::getPlayStatus() const
-{
-    return m_toolPlayButton->styleSheet().contains(MusicUIObject::MQSSDeskTopPlay);
-}
-
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
     if(!m_singleLineType)
@@ -100,6 +95,12 @@ void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const Q
     }
 
     resizeLrcSizeArea();
+}
+
+void MusicLrcContainerForDesktop::makeStatusCopy(MusicLrcContainerForDesktop *other)
+{
+    m_currentSongName = other->m_currentSongName;
+    m_toolPlayButton->setStyleSheet(other->m_toolPlayButton->styleSheet());
 }
 
 void MusicLrcContainerForDesktop::setWindowLockedChanged()
@@ -210,7 +211,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     QToolButton *toolWindowTypeButton = new QToolButton(m_toolBarWidget);
     toolWindowTypeButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_WIDTH, m_verticalWindow ? TOOLBAR_WIDTH : TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolWindowTypeButton, 0, Qt::AlignCenter);
-    connect(toolWindowTypeButton, SIGNAL(clicked()), this, SIGNAL(setWindowLrcTypeChanged()));
+    connect(toolWindowTypeButton, SIGNAL(clicked()), parent(), SLOT(setWindowLrcTypeChanged()));
 
     QToolButton *toolPreSongButton = new QToolButton(m_toolBarWidget);
     toolPreSongButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
@@ -306,6 +307,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolNextSongButton->setStyleSheet(MusicUIObject::MQSSDeskTopNext);
     toolSettingButton->setStyleSheet(MusicUIObject::MQSSDeskTopSetting);
     m_toolPlayButton->setStyleSheet(MusicUIObject::MQSSDeskTopPlay);
+
     toolWindowTypeButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopHorizontal : MusicUIObject::MQSSDeskTopVertical);
     toolMakeLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVMakeLrc : MusicUIObject::MQSSDeskTopHMakeLrc);
     toolSearchLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVSearchLrc : MusicUIObject::MQSSDeskTopHSearchLrc);
@@ -361,7 +363,7 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     {
         setCursor(Qt::CrossCursor);
         move(event->globalPos() - m_offset);
-        G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QWidget::pos());
+        G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, pos());
     }
 }
 
@@ -371,6 +373,7 @@ void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
     {
         return;
     }
+
     MusicLrcContainer::enterEvent(event);
     m_toolBarWidget->show();
     setStyleSheet(QString("#desktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle08));
@@ -382,6 +385,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
     {
         return;
     }
+
     MusicLrcContainer::leaveEvent(event);
     m_toolBarWidget->hide();
     setStyleSheet(QString("#desktopWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));

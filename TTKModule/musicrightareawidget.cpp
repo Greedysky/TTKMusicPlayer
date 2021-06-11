@@ -700,11 +700,11 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool type = m_musicLrcForDesktop ? m_musicLrcForDesktop->getWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
+    const bool v = m_musicLrcForDesktop ? m_musicLrcForDesktop->isVerticalWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
-    MusicLrcContainerForDesktop *deskLrc = m_musicLrcForDesktop;
-    if(type)
+    MusicLrcContainerForDesktop *desktop = m_musicLrcForDesktop;
+    if(v)
     {
         m_musicLrcForDesktop = new MusicLrcContainerHorizontalDesktop(this);
     }
@@ -714,22 +714,21 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     }
     m_musicLrcForDesktop->setLrcAnalysisModel(m_lrcAnalysis);
 
-    if(deskLrc)
+    if(desktop)
     {
-        m_musicLrcForDesktop->setCurrentSongName(deskLrc->getCurrentSongName());
-        m_musicLrcForDesktop->setCurrentPlayStatus(deskLrc->getPlayStatus());
+        m_musicLrcForDesktop->makeStatusCopy(desktop);
+        desktop->deleteLater();
     }
+
     m_musicLrcForDesktop->applySettingParameter();
     m_musicLrcForDesktop->initCurrentLrc();
-    m_musicLrcForDesktop->setVisible(true);
+    m_musicLrcForDesktop->setVisible(G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toInt());
 
-    connect(m_musicLrcForDesktop, SIGNAL(setWindowLrcTypeChanged()), SLOT(setWindowLrcTypeChanged()));
     connect(m_musicLrcForDesktop, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeDesktopLrcWidget()));
 
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowType, type);
-    deskLrc->deleteLater();
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowType, v);
 }
 
 void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)

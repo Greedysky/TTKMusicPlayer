@@ -59,6 +59,11 @@ public:
      */
     virtual void stopLrcMask() = 0;
     /*!
+     * Set setting parameter.
+     */
+    virtual void applySettingParameter();
+
+    /*!
      * Set linear gradient color.
      */
     void setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType);
@@ -66,15 +71,6 @@ public:
      * Set linear gradient color.
      */
     void setLinearGradientColor(const MusicLrcColor &color);
-    /*!
-     * Set setting parameter.
-     */
-    virtual void applySettingParameter();
-
-    /*!
-     * Set current song name.
-     */
-    inline QString getCurrentSongName() const { return m_currentSongName; }
     /*!
      * Set current song name.
      */

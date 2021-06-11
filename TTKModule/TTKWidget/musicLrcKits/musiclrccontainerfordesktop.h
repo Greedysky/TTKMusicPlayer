@@ -62,32 +62,29 @@ public:
      * Init current lrc when the first show.
      */
     virtual void initCurrentLrc() const;
+
     /*!
      * Set current play state button.
      */
     void setCurrentPlayStatus(bool status) const;
     /*!
-     * Get current play state button.
-     */
-    bool getPlayStatus() const;
-    /*!
      * Update current lrc by first and second and time.
      */
     void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
     /*!
-     * Get current desktop lrc window type.
+     * Get current desktop lrc window type is vertical or not.
      */
-    bool getWindowType() const { return m_verticalWindow; }
+    inline bool isVerticalWindowType() const { return m_verticalWindow; }
+    /*!
+     * Make object status copy.
+     */
+    void makeStatusCopy(MusicLrcContainerForDesktop *other);
 
 Q_SIGNALS:
     /*!
      * Lock current desktop lrc state changed emit.
      */
     void setWindowLockedChanged(bool lock);
-    /*!
-     * Set current desktop lrc window type changed.
-     */
-    void setWindowLrcTypeChanged();
 
 public Q_SLOTS:
     /*!

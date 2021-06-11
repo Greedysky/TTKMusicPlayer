@@ -156,6 +156,7 @@ public:
      * Get music sort type.
      */
     inline Sort getMusicSort() const { return m_sortType; }
+
     /*!
      * Operator == function.
      */

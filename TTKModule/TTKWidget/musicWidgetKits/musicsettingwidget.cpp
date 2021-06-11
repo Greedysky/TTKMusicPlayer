@@ -49,7 +49,7 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionIt
     m_listIndex = index;
     for(int i=0; i<items.count(); ++i)
     {
-        const MusicFunctionItem &&fItem = std::move(items[i]);
+        const MusicFunctionItem &fItem = items[i];
         QTableWidgetItem *item = nullptr;
         setItem(i, 0, item = new QTableWidgetItem());
 

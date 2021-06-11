@@ -21,6 +21,11 @@ MusicLrcContainer::~MusicLrcContainer()
     delete m_musicLrcSearchWidget;
 }
 
+void MusicLrcContainer::applySettingParameter()
+{
+    applySettingParameter(m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
+}
+
 void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType)
 {
     const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(lrcColorType);
@@ -36,11 +41,6 @@ void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
 
     G_SETTING_PTR->setValue((m_containerType == LRC_DESKTOP_TPYE) ? MusicSettingManager::DLrcColor : MusicSettingManager::LrcColor, color.m_index);
     Q_EMIT linearGradientColorChanged();
-}
-
-void MusicLrcContainer::applySettingParameter()
-{
-    applySettingParameter(m_containerType == LRC_DESKTOP_TPYE ? LRC_DESKTOP_PREFIX : QString());
 }
 
 void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total)
