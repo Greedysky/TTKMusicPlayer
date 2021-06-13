@@ -24,7 +24,7 @@
 /*! @brief The class of the artist albums item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistAlbumsItemWidget : public QLabel
+class TTK_MODULE_EXPORT MusicArtistAlbumsItemWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistAlbumsItemWidget)
@@ -73,7 +73,7 @@ class MusicPagingWidgetModule;
 /*! @brief The class of the artist mvs query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistMvsQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicArtistMvsQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistMvsQueryWidget)
@@ -124,7 +124,7 @@ class MusicSimilarRequest;
 /*! @brief The class of the artist similar query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistSimilarQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicArtistSimilarQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistSimilarQueryWidget)
@@ -169,7 +169,7 @@ protected:
 /*! @brief The class of the artist albums query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistAlbumsQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicArtistAlbumsQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistAlbumsQueryWidget)
@@ -213,7 +213,7 @@ protected:
 /*! @brief The class of the artist music query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistQueryTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicArtistQueryTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistQueryTableWidget)
@@ -236,7 +236,7 @@ public:
 /*! @brief The class of artist music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicArtistQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistQueryWidget)

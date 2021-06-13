@@ -22,7 +22,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicsemaphoreloop.h
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplaylistmanager.h
-    ${MUSIC_CORE_DIR}/musicextractwrap.h
+    ${MUSIC_CORE_DIR}/musicextractwrapper.h
     ${MUSIC_CORE_DIR}/musicruntimemanager.h
     ${MUSIC_CORE_DIR}/musicdispatchmanager.h
     ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.h
@@ -49,7 +49,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicsemaphoreloop.cpp
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musicplaylistmanager.cpp
-    ${MUSIC_CORE_DIR}/musicextractwrap.cpp
+    ${MUSIC_CORE_DIR}/musicextractwrapper.cpp
     ${MUSIC_CORE_DIR}/musicruntimemanager.cpp
     ${MUSIC_CORE_DIR}/musicdispatchmanager.cpp
     ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.cpp

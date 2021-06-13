@@ -21,7 +21,7 @@
 #ifndef PARSERRUNNABLE_H
 #define PARSERRUNNABLE_H
 
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 #include <QtCore/QObject>
 #include <QtCore/QRunnable>
@@ -34,7 +34,7 @@ namespace QJson {
   /**
   * @brief Convenience class for converting JSON data to QVariant objects using a dedicated thread
   */
-  class MUSIC_EXTRAS_EXPORT ParserRunnable  : public QObject, public QRunnable
+  class TTK_MODULE_EXPORT ParserRunnable  : public QObject, public QRunnable
   {
     Q_OBJECT
     public:

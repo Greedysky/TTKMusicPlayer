@@ -21,12 +21,13 @@
 
 #include <QMutex>
 #include <QScopedPointer>
+#include "ttkglobaldefine.h"
 
 template <typename T>
 /*! @brief The class of the singleton base.
  * @author Greedysky <greedysky@163.com>
  */
-class Q_DECL_EXPORT TTKSingleton
+class TTK_MODULE_EXPORT TTKSingleton
 {
 public:
     /*!

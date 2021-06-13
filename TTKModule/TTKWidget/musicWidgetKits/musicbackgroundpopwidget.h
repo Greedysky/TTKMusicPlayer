@@ -26,7 +26,7 @@ class MusicClickedSlider;
 /*! @brief The class of the background popup widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicBackgroundPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundPopWidget)

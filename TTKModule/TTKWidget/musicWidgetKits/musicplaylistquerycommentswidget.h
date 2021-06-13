@@ -24,7 +24,7 @@
 /*! @brief The class of the playlist comment widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicPlaylistQueryCommentsWidget : public MusicCommentsWidget
+class TTK_MODULE_EXPORT MusicPlaylistQueryCommentsWidget : public MusicCommentsWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistQueryCommentsWidget)

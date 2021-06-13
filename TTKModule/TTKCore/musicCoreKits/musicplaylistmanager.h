@@ -24,7 +24,7 @@
 /*! @brief The class of the playlist manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlaylistManager
+class TTK_MODULE_EXPORT MusicPlaylistManager
 {
     TTK_DECLARE_MODULE(MusicPlaylistManager)
 public:

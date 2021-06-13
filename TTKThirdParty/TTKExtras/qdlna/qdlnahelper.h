@@ -19,16 +19,16 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 /*! @brief The class of the dlna helper.
  * @author Greedysky <greedysky@163.com>
  */
 namespace QHelperDlna {
-MUSIC_EXTRAS_EXPORT QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
-MUSIC_EXTRAS_EXPORT QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);
-MUSIC_EXTRAS_EXPORT QString removeHttpHeader(const QString &data);
-MUSIC_EXTRAS_EXPORT int     GetResponseCode(const QString &data);
+TTK_MODULE_EXPORT QString MakeRequest(const QString &methord, const QString &url, int length, const QString &soapAction, const QString &ip, const QString &port);
+TTK_MODULE_EXPORT QString makeSocketGetReply(const QString &ip, const QString &port, const QString &data);
+TTK_MODULE_EXPORT QString removeHttpHeader(const QString &data);
+TTK_MODULE_EXPORT int     GetResponseCode(const QString &data);
 }
 
 #endif // QDLNAHELPER_H

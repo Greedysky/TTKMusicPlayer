@@ -3,7 +3,7 @@
 MusicMGQueryArtistListRequest::MusicMGQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = DEFAULT_LEVEL_HIGHER;
+    m_pageSize = DEFAULT_HIGHER_LEVEL;
     m_queryServer = QUERY_MG_INTERFACE;
 }
 

@@ -190,7 +190,7 @@ void MusicVideoView::mediaChanged(const QString &data)
 
 void MusicVideoView::mediaAutionPlayError(int code)
 {
-    if(DEFAULT_LEVEL_NORMAL == code)
+    if(DEFAULT_NORMAL_LEVEL == code)
     {
         stop();
 

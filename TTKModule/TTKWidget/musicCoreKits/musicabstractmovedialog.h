@@ -26,7 +26,7 @@
 /*! @brief The class of the moving dialog base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractMoveDialog : public QDialog
+class TTK_MODULE_EXPORT MusicAbstractMoveDialog : public QDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveDialog)

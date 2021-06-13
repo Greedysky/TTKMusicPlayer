@@ -24,7 +24,7 @@
 /*! @brief The class of the user record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_USER_EXPORT MusicUserRecord
+typedef struct TTK_MODULE_EXPORT MusicUserRecord
 {
     QString m_uid;
     QString m_password;
@@ -44,7 +44,7 @@ TTK_DECLARE_LISTS(MusicUserRecord)
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicUserConfigManager)

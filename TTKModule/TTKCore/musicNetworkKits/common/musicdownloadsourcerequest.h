@@ -24,7 +24,7 @@
 /*! @brief The class of source data download request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadSourceRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicDownloadSourceRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadSourceRequest)

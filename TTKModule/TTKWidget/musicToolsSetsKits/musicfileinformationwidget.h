@@ -29,7 +29,7 @@ class MusicFileInformationWidget;
 /*! @brief The class of the file information widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFileInformationWidget)

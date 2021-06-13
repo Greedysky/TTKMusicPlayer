@@ -1,5 +1,5 @@
-#ifndef MUSICEXTRASGLOBALDEFINE_H
-#define MUSICEXTRASGLOBALDEFINE_H
+#ifndef TTKGLOBALDEFINE_H
+#define TTKGLOBALDEFINE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,16 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "ttkprivate.h"
-#include "musicglobal.h"
+#include "ttkglobal.h"
 
-///exoprt
-#define MUSIC_EXPORT
-
-#ifdef MUSIC_EXPORT
-#  define MUSIC_EXTRAS_EXPORT Q_DECL_EXPORT
+#ifdef TTK_LIBRARY
+#  define TTK_MODULE_EXPORT Q_DECL_EXPORT
 #else
-#  define MUSIC_EXTRAS_IMPORT Q_DECL_IMPORT
+#  define TTK_MODULE_EXPORT Q_DECL_IMPORT
 #endif
 
-#endif // MUSICEXTRASGLOBALDEFINE_H
+#endif // TTKGLOBALDEFINE_H

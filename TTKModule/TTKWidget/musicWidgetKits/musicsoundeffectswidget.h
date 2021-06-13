@@ -28,7 +28,7 @@ class MusicSoundEffectsWidget;
 /*! @brief The class of the sound effect item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSoundEffectsItemWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSoundEffectsItemWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundEffectsItemWidget)
@@ -103,7 +103,7 @@ protected:
 /*! @brief The class of the sound effect widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSoundEffectsWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSoundEffectsWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundEffectsWidget)

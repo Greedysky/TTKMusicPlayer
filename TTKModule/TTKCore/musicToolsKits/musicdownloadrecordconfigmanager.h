@@ -25,7 +25,7 @@
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)

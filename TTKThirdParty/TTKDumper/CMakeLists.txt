@@ -12,7 +12,6 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    ../musicextrasglobaldefine.h
     minidumper.h
     miniprocess.h
     ttkdumper.h

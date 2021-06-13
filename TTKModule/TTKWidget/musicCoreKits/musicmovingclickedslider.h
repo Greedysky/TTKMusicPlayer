@@ -24,7 +24,7 @@
 /*! @brief The class of the slider moving clicked slider.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMovingClickedSlider : public MusicClickedSlider
+class TTK_MODULE_EXPORT MusicMovingClickedSlider : public MusicClickedSlider
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMovingClickedSlider)

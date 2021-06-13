@@ -26,7 +26,7 @@ class QPushButton;
 /*! @brief The class of the lrc setting float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicAbstractFloatWidget
+class TTK_MODULE_EXPORT MusicLrcFloatSettingWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatSettingWidget)

@@ -25,7 +25,7 @@
 /*! @brief The class of the lrc defines.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcDefines
+class TTK_MODULE_EXPORT MusicLrcDefines
 {
     TTK_DECLARE_MODULE(MusicLrcDefines)
 public:

@@ -31,7 +31,7 @@ class MusicLrcManagerForInterior;
 /*! @brief The class of the lrc maker widget item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcMakerWidgetItem : public QLabel
+class TTK_MODULE_EXPORT MusicLrcMakerWidgetItem : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcMakerWidgetItem)
@@ -93,7 +93,7 @@ private:
 /*! @brief The class of the lrc maker widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcMakerWidget)

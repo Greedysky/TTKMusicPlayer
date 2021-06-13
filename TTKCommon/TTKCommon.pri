@@ -18,8 +18,12 @@
 
 INCLUDEPATH += $$PWD
 HEADERS  += \
-    $$PWD/musicglobal.h \
     $$PWD/ttkglobal.h \
+    $$PWD/ttkglobaldefine.h \
     $$PWD/ttkprivate.h \
     $$PWD/ttksingleton.h \
-    $$PWD/ttkversion.h
+    $$PWD/ttkversion.h \
+    $$PWD/ttkdesktopwrapper.h
+
+SOURCES  += \
+    $$PWD/ttkdesktopwrapper.cpp

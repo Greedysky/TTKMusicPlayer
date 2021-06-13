@@ -26,7 +26,7 @@ class QPushButton;
 /*! @brief The class of the search popup table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongSearchPopTableWidget)
@@ -65,7 +65,7 @@ public Q_SLOTS:
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopWidget : public QWidget
+class TTK_MODULE_EXPORT MusicLocalSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongSearchPopWidget)

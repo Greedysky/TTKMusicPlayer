@@ -25,7 +25,7 @@
 /*! @brief The class of the music time object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicTime
+class TTK_MODULE_EXPORT MusicTime
 {
     TTK_DECLARE_MODULE(MusicTime)
 public:

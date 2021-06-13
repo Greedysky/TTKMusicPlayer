@@ -24,7 +24,7 @@
 /*! @brief The class of kuwo query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWSongCommentsRequest : public MusicCommentsRequest
+class TTK_MODULE_EXPORT MusicKWSongCommentsRequest : public MusicCommentsRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWSongCommentsRequest)
@@ -55,7 +55,7 @@ public Q_SLOTS:
 /*! @brief The class of kuwo query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWPlaylistCommentsRequest : public MusicCommentsRequest
+class TTK_MODULE_EXPORT MusicKWPlaylistCommentsRequest : public MusicCommentsRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWPlaylistCommentsRequest)

@@ -27,7 +27,7 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the local song search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchDialog : public QDialog
+class TTK_MODULE_EXPORT MusicLocalSongSearchDialog : public QDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongSearchDialog)

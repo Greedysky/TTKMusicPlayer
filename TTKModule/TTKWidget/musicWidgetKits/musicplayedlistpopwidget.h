@@ -34,7 +34,7 @@ typedef QList< std::pair<int, int> > PlayedItemList;
 /*! @brief The class of the played list top container widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlayedListTopContainerWidget : public QFrame
+class TTK_MODULE_EXPORT MusicPlayedListTopContainerWidget : public QFrame
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayedListTopContainerWidget)
@@ -56,7 +56,7 @@ protected:
 /*! @brief The class of the played list pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayedListPopWidget)

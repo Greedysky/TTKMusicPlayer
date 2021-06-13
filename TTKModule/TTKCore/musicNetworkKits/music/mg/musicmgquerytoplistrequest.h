@@ -25,7 +25,7 @@
 /*! @brief The class of migu query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryToplistRequest : public MusicQueryToplistRequest,
+class TTK_MODULE_EXPORT MusicMGQueryToplistRequest : public MusicQueryToplistRequest,
                                                         private MusicMGQueryInterface
 {
     Q_OBJECT

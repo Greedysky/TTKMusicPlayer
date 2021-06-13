@@ -1,5 +1,5 @@
-#ifndef MUSICEMOJILABELWIDGET_H
-#define MUSICEMOJILABELWIDGET_H
+#ifndef TTKDESKTOPWRAPPER_H
+#define TTKDESKTOPWRAPPER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,53 +19,28 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
-#include "musicglobaldefine.h"
+#include <QWidget>
+#include "ttkglobaldefine.h"
 
-class QToolButton;
-
-/*! @brief The class of the emoji label widget.
+/*! @brief The class of the desktop screen wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicEMOJILabelWidget : public QLabel
+class TTK_MODULE_EXPORT TTKDesktopWrapper
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicEMOJILabelWidget)
 public:
     /*!
-     * Object contsructor.
+     * Get screen geometry by given screen index.
      */
-    explicit MusicEMOJILabelWidget(QWidget *parent = nullptr);
-
-    ~MusicEMOJILabelWidget();
-
-Q_SIGNALS:
+    static QRect screenGeometry(int index = 0);
     /*!
-     * Get current label emoji.
+     * Get all screen geometry.
      */
-    void dataChanged(const QString &data);
-
-private Q_SLOTS:
+    static QRect geometry();
     /*!
-     * Paging button changed.
+     * Grab all screen geometry pixmap by given rect.
      */
-    void buttonClicked(int index);
-    /*!
-     * Label selected state changed.
-     */
-    void labelClicked(int index);
-
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void leaveEvent(QEvent *event) override;
-
-    int m_currentPage;
-    QList<QLabel*> m_labelItems;
-    QList<QToolButton*> m_buttonItems;
-    QStringList m_datas;
+    static QPixmap grabWindow(int x = 0, int y = 0, int w = -1, int h = -1);
 
 };
 
-#endif // MUSICEMOJILABELWIDGET_H
+#endif // TTKDESKTOPWRAPPER_H

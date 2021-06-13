@@ -29,7 +29,7 @@ class QSyncDataInterfacePrivate;
 /*! @brief The class of the sync cloud data interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QSyncDataInterface : public QObject
+class TTK_MODULE_EXPORT QSyncDataInterface : public QObject
 {
     Q_OBJECT
 public:

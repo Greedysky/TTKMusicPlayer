@@ -32,7 +32,7 @@
 /*! @brief The class of the lrc color.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcColor
+class TTK_MODULE_EXPORT MusicLrcColor
 {
 public:
     enum LrcColorType
@@ -82,7 +82,7 @@ public:
 /*! @brief The class of the lrc manager base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcManager : public QLabel
+class TTK_MODULE_EXPORT MusicLrcManager : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcManager)

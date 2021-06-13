@@ -25,7 +25,7 @@
 /*! @brief The class of the image render thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicImageRenderer : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicImageRenderer : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicImageRenderer)

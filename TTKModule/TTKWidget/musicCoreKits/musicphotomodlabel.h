@@ -28,7 +28,7 @@
 /*! @brief The class of the photo modify label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicPhotoModLabel : public QWidget
+class TTK_MODULE_EXPORT MusicPhotoModLabel : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPhotoModLabel)

@@ -25,7 +25,7 @@
 /*! @brief The class of the open file widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicOpenFileWidget : public QWidget
+class TTK_MODULE_EXPORT MusicOpenFileWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicOpenFileWidget)

@@ -25,7 +25,7 @@
 /*! @brief The class of the move button.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMoveButton : public QPushButton
+class TTK_MODULE_EXPORT MusicMoveButton : public QPushButton
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMoveButton)
@@ -62,7 +62,7 @@ protected:
 /*! @brief The class of the cut slider widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicCutSliderWidget : public QWidget
+class TTK_MODULE_EXPORT MusicCutSliderWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCutSliderWidget)

@@ -9,7 +9,7 @@
 #include "musicapplicationmodule.h"
 #include "musicfileutils.h"
 #include "musicsettingmanager.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 
 #include <QScrollBar>
 
@@ -101,7 +101,7 @@ QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
     G_BACKGROUND_PTR->setBackgroundUrl(path);
 
     MusicBackgroundImage image;
-    return MusicExtractWrap::outputSkin(&image, path) ? image.m_pix : QPixmap();
+    return MusicExtractWrapper::outputSkin(&image, path) ? image.m_pix : QPixmap();
 }
 
 bool MusicBackgroundSkinDialog::themeValidCheck(QString &name, QString &path)
@@ -327,7 +327,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
         const int index = cpoyFileToLocalIndex();
         const QString &theme = QString("theme-%1").arg(index + 1);
         const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
-        MusicExtractWrap::inputSkin(&image, des);
+        MusicExtractWrapper::inputSkin(&image, des);
 
         m_myBackgroundList->createItem(theme, des, true);
         listWidgetItemClicked(m_myBackgroundList, theme);
@@ -410,5 +410,5 @@ int MusicBackgroundSkinDialog::cpoyFileToLocal(const QString &path)
     const QString &des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TTS_FILE);
     MusicBackgroundImage image;
     image.m_pix = QPixmap(path);
-    return MusicExtractWrap::inputSkin(&image, des) ? index : -1;
+    return MusicExtractWrapper::inputSkin(&image, des) ? index : -1;
 }

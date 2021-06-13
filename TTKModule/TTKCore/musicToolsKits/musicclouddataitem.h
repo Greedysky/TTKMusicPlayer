@@ -26,7 +26,7 @@
 /*! @brief The class of the cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
+typedef struct TTK_MODULE_EXPORT MusicCloudDataItem
 {
     enum State
     {

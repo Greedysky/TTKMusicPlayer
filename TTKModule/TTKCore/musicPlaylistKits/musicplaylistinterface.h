@@ -24,7 +24,7 @@
 /*! @brief The class of the playlist interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicPlaylistInterface
 {
 public:
     explicit MusicPlaylistInterface()

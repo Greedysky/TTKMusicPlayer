@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*! @brief The class of the sync data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_EXTRAS_EXPORT QSyncDataItem
+typedef struct TTK_MODULE_EXPORT QSyncDataItem
 {
     QString m_name;
     QString m_hash;

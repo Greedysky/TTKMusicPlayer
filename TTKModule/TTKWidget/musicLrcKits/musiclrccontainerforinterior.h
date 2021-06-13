@@ -31,7 +31,7 @@ class MusicVLayoutAnimationWidget;
 /*! @brief The class of the interior lrc container.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainerForInterior : public MusicLrcContainer
+class TTK_MODULE_EXPORT MusicLrcContainerForInterior : public MusicLrcContainer
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcContainerForInterior)

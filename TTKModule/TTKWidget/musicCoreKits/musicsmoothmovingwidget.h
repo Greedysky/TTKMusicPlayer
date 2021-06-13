@@ -27,7 +27,7 @@ class QPropertyAnimation;
 /*! @brief The class of the slider smooth moving table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSmoothMovingTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicSmoothMovingTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSmoothMovingTableWidget)
@@ -72,7 +72,7 @@ protected:
 /*! @brief The class of the slider smooth moving scroll area widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSmoothMovingScrollArea : public QScrollArea
+class TTK_MODULE_EXPORT MusicSmoothMovingScrollArea : public QScrollArea
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSmoothMovingScrollArea)

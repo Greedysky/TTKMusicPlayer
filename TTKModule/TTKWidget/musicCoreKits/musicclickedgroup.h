@@ -25,7 +25,7 @@
 /*! @brief The class of the label widget click group mapper.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicClickedGroup : public QObject
+class TTK_MODULE_EXPORT MusicClickedGroup : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicClickedGroup)

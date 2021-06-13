@@ -24,7 +24,7 @@
 /*! @brief The class of the m3u playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicM3UConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicM3UConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicM3UConfigManager)
 public:

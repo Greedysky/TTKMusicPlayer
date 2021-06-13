@@ -38,7 +38,7 @@ class QPushButton;
 /*! @brief The class of the radio button item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicRadioButtonDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicRadioButtonDelegate : public QItemDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRadioButtonDelegate)
@@ -78,7 +78,7 @@ protected:
 /*! @brief The class of the checkbox item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicCheckBoxDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicCheckBoxDelegate : public QItemDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCheckBoxDelegate)
@@ -130,7 +130,7 @@ protected:
 /*! @brief The class of the progress bar item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicProgressBarDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicProgressBarDelegate : public QItemDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicProgressBarDelegate)
@@ -170,7 +170,7 @@ private:
 /*! @brief The class of the label item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicLabelDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicLabelDelegate : public QItemDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLabelDelegate)
@@ -214,7 +214,7 @@ protected:
 /*! @brief The class of the push button item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPushButtonDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicPushButtonDelegate : public QItemDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPushButtonDelegate)
@@ -254,7 +254,7 @@ protected:
 /*! @brief The class of the rename lineedit item delegate.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicRenameLineEditDelegate : public QItemDelegate
+class TTK_MODULE_EXPORT MusicRenameLineEditDelegate : public QItemDelegate
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRenameLineEditDelegate)

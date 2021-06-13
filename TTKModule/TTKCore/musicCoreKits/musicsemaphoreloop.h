@@ -26,7 +26,7 @@
 /*! @brief The class of the semaphore event loop.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSemaphoreLoop : public QEventLoop
+class TTK_MODULE_EXPORT MusicSemaphoreLoop : public QEventLoop
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSemaphoreLoop)

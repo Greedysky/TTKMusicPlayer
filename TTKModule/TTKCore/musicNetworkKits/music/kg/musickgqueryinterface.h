@@ -62,7 +62,7 @@ class MusicResultsItem;
 /*! @brief The class of kugou query interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKGQueryInterface
+class TTK_MODULE_EXPORT MusicKGQueryInterface
 {
 public:
     /*!

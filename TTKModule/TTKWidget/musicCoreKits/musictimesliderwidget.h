@@ -30,7 +30,7 @@ class MusicMovingLabelSlider;
 /*! @brief The class of the time slider widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicTimeSliderWidget : public QWidget
+class TTK_MODULE_EXPORT MusicTimeSliderWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTimeSliderWidget)

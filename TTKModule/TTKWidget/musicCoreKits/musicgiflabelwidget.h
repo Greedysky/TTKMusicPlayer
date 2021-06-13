@@ -27,7 +27,7 @@ class QTimer;
 /*! @brief The class of the float gif label widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicGifLabelWidget : public QLabel
+class TTK_MODULE_EXPORT MusicGifLabelWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicGifLabelWidget)
@@ -130,7 +130,7 @@ protected:
 /*! @brief The class of the float gif label mask widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicGifLabelMaskWidget : public QWidget
+class TTK_MODULE_EXPORT MusicGifLabelMaskWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicGifLabelMaskWidget)

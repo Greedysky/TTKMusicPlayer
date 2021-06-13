@@ -21,7 +21,7 @@
 #ifndef QJSON_SERIALIZER_H
 #define QJSON_SERIALIZER_H
 
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 QT_BEGIN_NAMESPACE
 class QIODevice;
@@ -148,7 +148,7 @@ namespace QJson {
   *
   * It's possible to tune the indentation level of the resulting string. \sa setIndentMode
   */
-  class MUSIC_EXTRAS_EXPORT Serializer {
+  class TTK_MODULE_EXPORT Serializer {
   public:
     Serializer();
 

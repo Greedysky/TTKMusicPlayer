@@ -3,7 +3,7 @@
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
 #include "musicformats.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musicsettingmanager.h"
 
 MusicSong::MusicSong()
@@ -119,7 +119,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
     if(suffix == MUSIC_ZIP_FILE)
     {
         QStringList outputs;
-        if(!MusicExtractWrap::outputBinary(path, G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
+        if(!MusicExtractWrapper::outputBinary(path, G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
         {
             TTK_LOGGER_ERROR("Extract zip input error");
         }

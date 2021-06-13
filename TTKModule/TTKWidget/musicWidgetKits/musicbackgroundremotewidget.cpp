@@ -1,6 +1,6 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicdownloadqueuerequest.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 
 #include <QDir>
@@ -188,7 +188,7 @@ void MusicBackgroundThunderWidget::outputRemoteSkin(MusicBackgroundImage &image,
         MusicSkinRemoteItem *item = &(*items)[index];
         image.m_item.m_name = item->m_name;
         image.m_item.m_useCount = item->m_useCount;
-        MusicExtractWrap::outputThunderSkin(image.m_pix, data);
+        MusicExtractWrapper::outputThunderSkin(image.m_pix, data);
     }
 }
 

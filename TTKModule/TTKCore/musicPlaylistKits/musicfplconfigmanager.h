@@ -24,7 +24,7 @@
 /*! @brief The class of the foobar2k playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicFPLConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicFPLConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicFPLConfigManager)
 public:

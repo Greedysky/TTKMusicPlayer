@@ -31,31 +31,31 @@ namespace MusicUtils
         /*!
          * Get qmmp plugin dir path.
          */
-        MUSIC_UTILS_EXPORT QString pluginPath(const QString &module, const QString &format);
+        TTK_MODULE_EXPORT QString pluginPath(const QString &module, const QString &format);
         /*!
          * Update mid config file transfer.
          */
-        MUSIC_UTILS_EXPORT void updateMidConfigFile();
+        TTK_MODULE_EXPORT void updateMidConfigFile();
         /*!
          * Enable visual module control.
          */
-        MUSIC_UTILS_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
+        TTK_MODULE_EXPORT void enabledVisualPlugin(const QString &name, bool enable);
         /*!
          * Enable effect module control.
          */
-        MUSIC_UTILS_EXPORT void enabledEffectPlugin(const QString &name, bool enable);
+        TTK_MODULE_EXPORT void enabledEffectPlugin(const QString &name, bool enable);
         /*!
          * Check effect has setting.
          */
-        MUSIC_UTILS_EXPORT bool effectHasSetting(const QString &name);
+        TTK_MODULE_EXPORT bool effectHasSetting(const QString &name);
         /*!
          * Show effect setting control.
          */
-        MUSIC_UTILS_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
+        TTK_MODULE_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
         /*!
          * Update ripple spectrum config file transfer.
          */
-        MUSIC_UTILS_EXPORT void updateRippleSpectrumConfigFile();
+        TTK_MODULE_EXPORT void updateRippleSpectrumConfigFile();
     }
 }
 

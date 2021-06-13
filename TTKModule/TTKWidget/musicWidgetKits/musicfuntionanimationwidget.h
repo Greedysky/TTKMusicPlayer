@@ -28,7 +28,7 @@ class QPropertyAnimation;
 /*! @brief The class of the background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundWidget : public QWidget
+class TTK_MODULE_EXPORT MusicBackgroundWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundWidget)
@@ -57,7 +57,7 @@ protected:
 /*! @brief The class of the line background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicLineBackgroundWidget : public QWidget
+class TTK_MODULE_EXPORT MusicLineBackgroundWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLineBackgroundWidget)
@@ -86,7 +86,7 @@ protected:
 /*! @brief The class of the animation base widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBaseAnimationWidget : public QWidget
+class TTK_MODULE_EXPORT MusicBaseAnimationWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBaseAnimationWidget)
@@ -139,7 +139,7 @@ protected:
 /*! @brief The class of the function animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFuntionAnimationWidget : public MusicBaseAnimationWidget
+class TTK_MODULE_EXPORT MusicFuntionAnimationWidget : public MusicBaseAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFuntionAnimationWidget)
@@ -167,7 +167,7 @@ protected:
 /*! @brief The class of the function option animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicOptionAnimationWidget : public MusicBaseAnimationWidget
+class TTK_MODULE_EXPORT MusicOptionAnimationWidget : public MusicBaseAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicOptionAnimationWidget)
@@ -204,7 +204,7 @@ protected:
 /*! @brief The class of the function skin animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSkinAnimationWidget : public MusicBaseAnimationWidget
+class TTK_MODULE_EXPORT MusicSkinAnimationWidget : public MusicBaseAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSkinAnimationWidget)

@@ -28,7 +28,7 @@ class MusicLrcSearchWidget;
 /*! @brief The class of the lrc search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcSearchWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicLrcSearchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcSearchWidget)

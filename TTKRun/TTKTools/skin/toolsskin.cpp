@@ -1,6 +1,6 @@
 #include "toolsskin.h"
 #include "ui_toolsskin.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musicfileutils.h"
 #include "musiccolordialog.h"
 #include "musicbackgroundconfigmanager.h"
@@ -61,7 +61,7 @@ void ToolsSkin::readClicked()
     }
 
     MusicBackgroundImage image;
-    if(MusicExtractWrap::outputSkin(&image, path))
+    if(MusicExtractWrapper::outputSkin(&image, path))
     {
         m_pixmap = image.m_pix;
         m_ui->pixLabel->setPixmap(m_pixmap.scaled(m_ui->pixLabel->size()));
@@ -82,5 +82,5 @@ void ToolsSkin::writeClicked()
     image.m_pix = m_pixmap;
     image.m_item.m_name = m_ui->nameLineEdit->text().trimmed();
     image.m_item.m_useCount = m_ui->countLineEdit->text().trimmed().toInt();
-    TTK_LOGGER_INFO("Save state " << MusicExtractWrap::inputSkin(&image, path));
+    TTK_LOGGER_INFO("Save state " << MusicExtractWrapper::inputSkin(&image, path));
 }

@@ -1,7 +1,7 @@
 #include "musicabstractmovewidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 
@@ -96,7 +96,7 @@ void MusicAbstractMoveWidget::setBackgroundPixmap(const QSize &size)
 {
     QLabel *label = TTKStatic_cast(QLabel*, m_background);
     MusicBackgroundImage image;
-    if(MusicExtractWrap::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl()))
+    if(MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl()))
     {
         label->setPixmap(image.m_pix.scaled(size));
     }

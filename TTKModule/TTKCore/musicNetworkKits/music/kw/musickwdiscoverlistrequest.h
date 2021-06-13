@@ -24,7 +24,7 @@
 /*! @brief The class of kuwo discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWDiscoverListRequest : public MusicDiscoverListRequest
+class TTK_MODULE_EXPORT MusicKWDiscoverListRequest : public MusicDiscoverListRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWDiscoverListRequest)

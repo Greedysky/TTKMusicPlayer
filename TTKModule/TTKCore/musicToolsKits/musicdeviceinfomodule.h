@@ -25,7 +25,7 @@
 /*! @brief The class of the system device info item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOL_EXPORT MusicDeviceInfoItem
+typedef struct TTK_MODULE_EXPORT MusicDeviceInfoItem
 {
     QString m_name;
     QString m_path;
@@ -38,7 +38,7 @@ TTK_DECLARE_LISTS(MusicDeviceInfoItem)
 /*! @brief The class of the system device info.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicDeviceInfoModule : public QObject
+class TTK_MODULE_EXPORT MusicDeviceInfoModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDeviceInfoModule)

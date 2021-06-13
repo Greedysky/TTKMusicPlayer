@@ -30,7 +30,7 @@ class MusicToolSetsWidget;
 /*! @brief The class of the tool sets widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicToolSetsWidget)

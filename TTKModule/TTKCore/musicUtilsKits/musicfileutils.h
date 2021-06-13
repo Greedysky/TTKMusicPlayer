@@ -32,67 +32,67 @@ namespace MusicUtils
         /*!
          * Get given dir size.
          */
-        MUSIC_UTILS_EXPORT quint64 dirSize(const QString &dirName);
+        TTK_MODULE_EXPORT quint64 dirSize(const QString &dirName);
         /*!
          * Check given dir size is bigger than given size.
          */
-        MUSIC_UTILS_EXPORT void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
+        TTK_MODULE_EXPORT void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
         /*!
          * Get all files in given dir.
          */
-        MUSIC_UTILS_EXPORT QFileInfoList getFileListByDir(const QString &dpath, bool recursively);
+        TTK_MODULE_EXPORT QFileInfoList getFileListByDir(const QString &dpath, bool recursively);
         /*!
          * Get all files in given dir.
          */
-        MUSIC_UTILS_EXPORT QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
+        TTK_MODULE_EXPORT QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
         /*!
          * Dir remove recursively.
          */
-        MUSIC_UTILS_EXPORT bool removeRecursively(const QString &dir, bool self = true);
+        TTK_MODULE_EXPORT bool removeRecursively(const QString &dir, bool self = true);
 
         /*!
          * Get open file dialog.
          */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter);
+        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter);
         /*!
          * Get open file dialog.
          */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter);
+        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter);
         /*!
          * Get open file dialog.
          */
-        MUSIC_UTILS_EXPORT QString getOpenFileDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj);
 
         /*!
          * Get open dir dialog.
          */
-        MUSIC_UTILS_EXPORT QString getOpenDirectoryDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QString getOpenDirectoryDialog(QWidget *obj);
 
         /*!
          * Get open files dialog.
          */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);
+        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);
         /*!
          * Get open files dialog.
          */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter);
+        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter);
         /*!
          * Get open files dialog.
          */
-        MUSIC_UTILS_EXPORT QStringList getOpenFilesDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj);
 
         /*!
          * Get save file dialog.
          */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter);
+        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter);
         /*!
          * Get save file dialog.
          */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter);
+        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter);
         /*!
          * Get save file dialog.
          */
-        MUSIC_UTILS_EXPORT QString getSaveFileDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj);
 
     }
 }

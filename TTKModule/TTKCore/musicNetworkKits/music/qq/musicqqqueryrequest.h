@@ -25,7 +25,7 @@
 /*! @brief The class of qq query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQQueryRequest : public MusicAbstractQueryRequest,
+class TTK_MODULE_EXPORT MusicQQQueryRequest : public MusicAbstractQueryRequest,
                                                  private MusicQQQueryInterface
 {
     Q_OBJECT

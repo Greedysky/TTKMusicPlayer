@@ -31,7 +31,7 @@ const QString FM_LRC_URL      = "M2FqVHV6Z29kcUpNNEcvcHo3NmM5Rkc3S0FBVnFzYnRsdVJ
 /*! @brief The class of fm radio request base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicAbstractFMRadioRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicAbstractFMRadioRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractFMRadioRequest)

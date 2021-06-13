@@ -29,7 +29,7 @@
 /*! @brief The class of the qglobal shortcut private.
  * @author libqxt <foundation@libqxt.org>
  */
-class MUSIC_EXTRAS_EXPORT QGlobalShortcutPrivate : public TTKPrivate<QGlobalShortcut>
+class TTK_MODULE_EXPORT QGlobalShortcutPrivate : public TTKPrivate<QGlobalShortcut>
 #if TTK_QT_VERSION_CHECK(5,0,0)
         , public QAbstractNativeEventFilter
 #endif

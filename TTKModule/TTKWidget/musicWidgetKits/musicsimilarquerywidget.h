@@ -25,7 +25,7 @@
 /*! @brief The class of the similar music query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSimilarQueryTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicSimilarQueryTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSimilarQueryTableWidget)
@@ -55,7 +55,7 @@ public Q_SLOTS:
 /*! @brief The class of similar music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSimilarQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicSimilarQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSimilarQueryWidget)

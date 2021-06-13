@@ -25,7 +25,7 @@
 /*! @brief The class of the replay gain table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicReplayGainTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicReplayGainTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicReplayGainTableWidget)
@@ -54,7 +54,7 @@ class QProcess;
 /*! @brief The class of the replay gain widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicReplayGainWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicReplayGainWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicReplayGainWidget)

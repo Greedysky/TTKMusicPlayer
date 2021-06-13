@@ -27,7 +27,7 @@ class QLabel;
 /*! @brief The class of the show progress widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicProgressWidget : public QProgressDialog
+class TTK_MODULE_EXPORT MusicProgressWidget : public QProgressDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicProgressWidget)

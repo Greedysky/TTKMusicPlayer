@@ -25,7 +25,7 @@
 /*! @brief The class of the sound kmicro search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchTableWidget : public MusicItemSearchTableWidget
+class TTK_MODULE_EXPORT MusicSoundKMicroSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundKMicroSearchTableWidget)
@@ -98,7 +98,7 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the sound kmicro search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchWidget : public MusicAbstractMoveSingleWidget
+class TTK_MODULE_EXPORT MusicSoundKMicroSearchWidget : public MusicAbstractMoveSingleWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundKMicroSearchWidget)

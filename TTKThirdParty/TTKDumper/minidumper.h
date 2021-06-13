@@ -1,8 +1,7 @@
 #if !defined(AFX_MDUMP_H__FCECFEFE6E_FA36_4693_B07C_F8JHT75BB0101B__INCLUDED_)
 #define AFX_MDUMP_H__FCECFEFE6E_FA36_4693_B07C_F8JHT75BB0101B__INCLUDED_
 
-#include "musicextrasglobaldefine.h"
-
+#include "ttkglobaldefine.h"
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
 #include "dbghelp.h"
@@ -18,7 +17,7 @@ typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hF
 /*! @brief The class of the mini dumper win32.
  * @author DoubleLi <517712484@qq.com>
  */
-class MUSIC_EXTRAS_EXPORT MiniDumper
+class TTK_MODULE_EXPORT MiniDumper
 {
 public:
     MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber = nullptr);
@@ -41,7 +40,7 @@ private:
 /*! @brief The class of the mini dumper linux.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT MiniDumper
+class TTK_MODULE_EXPORT MiniDumper
 {
 public:
     MiniDumper();

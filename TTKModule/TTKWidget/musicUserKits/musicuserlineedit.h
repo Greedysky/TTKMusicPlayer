@@ -25,7 +25,7 @@
 /*! @brief The class of the user lineedit.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
+class TTK_MODULE_EXPORT MusicUserLineEdit : public QLineEdit
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicUserLineEdit)

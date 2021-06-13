@@ -26,7 +26,7 @@
 /*! @brief The class of thread to check current network.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
+class TTK_MODULE_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkThread)
@@ -76,6 +76,6 @@ private:
 };
 
 #define G_NETWORK_PTR GetMusicNetworkThread()
-MUSIC_NETWORK_EXPORT MusicNetworkThread* GetMusicNetworkThread();
+TTK_MODULE_EXPORT MusicNetworkThread* GetMusicNetworkThread();
 
 #endif // MUSICNETWORKTHREAD_H

@@ -28,7 +28,7 @@ class MusicWebDJRadioInfoWidget;
 /*! @brief The class of the dj radio music item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioQueryItemWidget : public QLabel
+class TTK_MODULE_EXPORT MusicWebDJRadioQueryItemWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioQueryItemWidget)
@@ -77,7 +77,7 @@ protected:
 /*! @brief The class of the dj radio music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicWebDJRadioQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioQueryWidget)

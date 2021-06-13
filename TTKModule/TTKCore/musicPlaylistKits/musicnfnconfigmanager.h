@@ -24,7 +24,7 @@
 /*! @brief The class of the nfn playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicNFNConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicNFNConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicNFNConfigManager)
 public:

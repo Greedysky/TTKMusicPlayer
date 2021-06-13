@@ -88,7 +88,7 @@ class QNetworkRequest;
 /*! @brief The class of wangyi query interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYQueryInterface
 {
 public:
     /*!

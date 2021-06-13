@@ -24,7 +24,7 @@
 /*! @brief The class of baidu query learn download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDQueryLearnRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicBDQueryLearnRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBDQueryLearnRequest)

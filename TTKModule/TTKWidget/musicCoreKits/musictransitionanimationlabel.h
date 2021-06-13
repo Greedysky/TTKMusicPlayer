@@ -23,14 +23,14 @@
 #include "musicglobaldefine.h"
 
 class QPropertyAnimation;
-namespace QImageWrap {
+namespace QImageWrapper {
 class SharpeImage;
 }
 
 /*! @brief The class of the label transition animation.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicTransitionAnimationLabel : public QLabel
+class TTK_MODULE_EXPORT MusicTransitionAnimationLabel : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTransitionAnimationLabel)
@@ -101,8 +101,8 @@ protected:
     QPixmap m_currentPixmap, m_previousPixmap;
     QPropertyAnimation *m_animation;
 
-    QImageWrap::SharpeImage *m_cubeWave;
-    QImageWrap::SharpeImage *m_waterWave;
+    QImageWrapper::SharpeImage *m_cubeWave;
+    QImageWrapper::SharpeImage *m_waterWave;
 
 };
 

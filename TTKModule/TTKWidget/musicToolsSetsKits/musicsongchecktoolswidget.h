@@ -33,7 +33,7 @@ class MusicSongCheckToolsQualityThread;
 /*! @brief The class of the song check tools widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSongCheckToolsWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsWidget)

@@ -25,7 +25,7 @@
 /*! @brief The class of the data download item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_WIDGET_EXPORT MusicDownloadData
+typedef struct TTK_MODULE_EXPORT MusicDownloadData
 {
     QString m_songName;
     QString m_time;
@@ -53,7 +53,7 @@ class MusicCoreMPlayer;
 /*! @brief The class of the song search online table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongSearchTableWidget : public MusicItemSearchTableWidget
+class TTK_MODULE_EXPORT MusicSongSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSearchTableWidget)
@@ -147,7 +147,7 @@ protected:
 /*! @brief The class of the song search online widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSongSearchOnlineWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSearchOnlineWidget)

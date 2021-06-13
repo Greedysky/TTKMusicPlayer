@@ -25,7 +25,7 @@
 /*! @brief The class of set music network proxy.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicNetworkProxy : public QObject
+class TTK_MODULE_EXPORT MusicNetworkProxy : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkProxy)

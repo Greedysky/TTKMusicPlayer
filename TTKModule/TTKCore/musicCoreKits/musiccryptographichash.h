@@ -41,7 +41,7 @@ typedef uint32_t xxtea_uint;
 /*! @brief The class of the string cryptographic hash.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicCryptographicHash
+class TTK_MODULE_EXPORT MusicCryptographicHash
 {
     TTK_DECLARE_MODULE(MusicCryptographicHash)
 public:

@@ -1,4 +1,4 @@
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicimageutils.h"
 #include "musiccoreutils.h"
@@ -13,7 +13,7 @@
 #  pragma GCC diagnostic ignored "-Wsign-compare"
 #endif
 
-bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &input)
+bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -75,18 +75,18 @@ bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &input)
     return true;
 }
 
-bool MusicExtractWrap::outputBinary(const QString &input)
+bool MusicExtractWrapper::outputBinary(const QString &input)
 {
     return outputBinary(input, QFileInfo(input).absolutePath() + "/" + QFileInfo(input).baseName() + "/");
 }
 
-bool MusicExtractWrap::outputBinary(const QString &input, const QString &output)
+bool MusicExtractWrapper::outputBinary(const QString &input, const QString &output)
 {
     QStringList path;
     return outputBinary(input, output, path);
 }
 
-bool MusicExtractWrap::outputBinary(const QString &input, const QString &output, QStringList &path)
+bool MusicExtractWrapper::outputBinary(const QString &input, const QString &output, QStringList &path)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -156,7 +156,7 @@ bool MusicExtractWrap::outputBinary(const QString &input, const QString &output,
     return true;
 }
 
-bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &input)
+bool MusicExtractWrapper::outputSkin(MusicBackgroundImage *image, const QString &input)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -241,7 +241,7 @@ bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &in
     return true;
 }
 
-bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &output)
+bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &output)
 {
     const zipFile &zFile = zipOpen64(qPrintable(output), 0);
     if(!zFile)
@@ -274,7 +274,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &out
     return true;
 }
 
-bool MusicExtractWrap::outputData(QByteArray &data, const QString &input)
+bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
 {
     const unzFile &zFile = unzOpen64(qPrintable(input));
     if(!zFile)
@@ -331,7 +331,7 @@ bool MusicExtractWrap::outputData(QByteArray &data, const QString &input)
     return true;
 }
 
-bool MusicExtractWrap::inputData(const QByteArray &data, const QString &output)
+bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &output)
 {
     const zipFile &zFile = zipOpen64(qPrintable(output), 0);
     if(!zFile)

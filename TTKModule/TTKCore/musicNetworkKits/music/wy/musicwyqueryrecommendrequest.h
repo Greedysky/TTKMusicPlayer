@@ -25,7 +25,7 @@
 /*! @brief The class of wangyi query recommend download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYQueryRecommendRequest : public MusicQueryRecommendRequest,
+class TTK_MODULE_EXPORT MusicWYQueryRecommendRequest : public MusicQueryRecommendRequest,
                                                           private MusicWYQueryInterface
 {
     Q_OBJECT

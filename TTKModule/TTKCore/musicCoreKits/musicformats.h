@@ -25,7 +25,7 @@
 /*! @brief The class of the music formats.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicFormats
+class TTK_MODULE_EXPORT MusicFormats
 {
     TTK_DECLARE_MODULE(MusicFormats)
 public:

@@ -41,14 +41,14 @@
 #endif //Q_OS_WIN
 #include <QtCore/QList>
 #include <QtCore/QThread>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QDeviceWatcher;
 
 /*! @brief The class of the device watcher private.
  * @author WangBin <wbsecg1@gmail.com>
  */
-class MUSIC_EXTRAS_EXPORT QDeviceWatcherPrivate
+class TTK_MODULE_EXPORT QDeviceWatcherPrivate
 #if CONFIG_THREAD
 		: public QThread
 #else

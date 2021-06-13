@@ -26,7 +26,7 @@ class MusicMarqueeWidget;
 /*! @brief The class of the desktop strip remote widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForStrip : public MusicRemoteWidget
+class TTK_MODULE_EXPORT MusicRemoteWidgetForStrip : public MusicRemoteWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidgetForStrip)

@@ -31,66 +31,66 @@ namespace MusicUtils
         /*!
          * Transform value to cp float value.
          */
-        MUSIC_UTILS_EXPORT QString size2Number(qint64 size);
+        TTK_MODULE_EXPORT QString size2Number(qint64 size);
         /*!
          * Transform value to cp int value.
          */
-        MUSIC_UTILS_EXPORT QString size2NumberInt(qint64 size);
+        TTK_MODULE_EXPORT QString size2NumberInt(qint64 size);
         /*!
          * Transform value to cp value.
          */
-        MUSIC_UTILS_EXPORT QString size2Label(qint64 size);
+        TTK_MODULE_EXPORT QString size2Label(qint64 size);
         /*!
          * Transform value to speed float value.
          */
-        MUSIC_UTILS_EXPORT QString speed2Label(qint64 size);
+        TTK_MODULE_EXPORT QString speed2Label(qint64 size);
         /*!
          * Transform value to speed int value.
          */
-        MUSIC_UTILS_EXPORT QString speed2LabelInt(qint64 size);
+        TTK_MODULE_EXPORT QString speed2LabelInt(qint64 size);
 
         /*!
          * Transform value to kb entity.
          */
-        MUSIC_UTILS_EXPORT float sizeByte2KByte(qint64 size);
+        TTK_MODULE_EXPORT float sizeByte2KByte(qint64 size);
         /*!
          * Transform value to mb entity.
          */
-        MUSIC_UTILS_EXPORT float sizeByte2MByte(qint64 size);
+        TTK_MODULE_EXPORT float sizeByte2MByte(qint64 size);
         /*!
          * Transform value to tb entity.
          */
-        MUSIC_UTILS_EXPORT float sizeByte2TByte(qint64 size);
+        TTK_MODULE_EXPORT float sizeByte2TByte(qint64 size);
 
         /*!
          * Transform value to speed value base.
          */
-        MUSIC_UTILS_EXPORT QString speed2LabelFromLabel(qint64 size, const QString &label);
+        TTK_MODULE_EXPORT QString speed2LabelFromLabel(qint64 size, const QString &label);
 
         /*!
          * Transfrom bitrate to quality.
          */
-        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitrate, QColor &color);
+        TTK_MODULE_EXPORT void transfromBitrateToQuality(int level, QString &bitrate, QColor &color);
         /*!
          * Transfrom bitrate to quality.
          */
-        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitrate);
+        TTK_MODULE_EXPORT void transfromBitrateToQuality(int level, QString &bitrate);
         /*!
          * Transfrom bitrate to quality.
          */
-        MUSIC_UTILS_EXPORT QString transfromBitrateToQuality(int level);
+        TTK_MODULE_EXPORT QString transfromBitrateToQuality(int level);
         /*!
          * Transfrom bitrate to level.
          */
-        MUSIC_UTILS_EXPORT int transfromBitrateToLevel(const QString &bitrate);
+        TTK_MODULE_EXPORT int transfromBitrateToLevel(const QString &bitrate);
         /*!
          * Transfrom bitrate to normal.
          */
-        MUSIC_UTILS_EXPORT int transfromBitrateToNormal(int bitrate);
+        TTK_MODULE_EXPORT int transfromBitrateToNormal(int bitrate);
         /*!
          * Transfrom bitrate to normal.
          */
-        MUSIC_UTILS_EXPORT int transfromBitrateToNormal(const QString &bitrate);
+        TTK_MODULE_EXPORT int transfromBitrateToNormal(const QString &bitrate);
 
     }
 }

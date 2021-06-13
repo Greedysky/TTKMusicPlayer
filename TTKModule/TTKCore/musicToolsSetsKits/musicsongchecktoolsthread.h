@@ -8,7 +8,7 @@
 /*! @brief The class of the song check tools rename thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongCheckToolsRenameThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsRenameThread)
@@ -60,7 +60,7 @@ protected:
 /*! @brief The class of the song check tools duplicate thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongCheckToolsDuplicateThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateThread)
@@ -113,7 +113,7 @@ protected:
 /*! @brief The class of the song check tools quality thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicSongCheckToolsQualityThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsQualityThread)

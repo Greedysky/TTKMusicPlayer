@@ -24,7 +24,7 @@
 /*! @brief The class of the more functions popup widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMoreFunctionsPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicMoreFunctionsPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMoreFunctionsPopWidget)

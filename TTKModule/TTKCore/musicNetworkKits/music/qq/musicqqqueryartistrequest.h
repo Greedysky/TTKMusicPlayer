@@ -26,7 +26,7 @@
 /*! @brief The class of qq query artist info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicQQArtistInfoConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicQQArtistInfoConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQQArtistInfoConfigManager)
@@ -47,7 +47,7 @@ public:
 /*! @brief The class of qq query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQQueryArtistRequest : public MusicQueryArtistRequest,
+class TTK_MODULE_EXPORT MusicQQQueryArtistRequest : public MusicQueryArtistRequest,
                                                        private MusicQQQueryInterface
 {
     Q_OBJECT

@@ -1,10 +1,10 @@
-#include "qimagewrap.h"
+#include "qimagewrapper.h"
 #include "random.h"
 
 #include <qmath.h>
 #include <QPainter>
 
-namespace QImageWrap {
+namespace QImageWrapper {
 void GaussBlur::render(int* pix, int width, int height, int radius)
 {
     const float sigma =  1.0 * radius / 2.57;

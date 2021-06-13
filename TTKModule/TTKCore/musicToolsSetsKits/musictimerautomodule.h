@@ -28,7 +28,7 @@
 /*! @brief The class of the time check object.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOLSET_EXPORT MusicTimeData
+typedef struct TTK_MODULE_EXPORT MusicTimeData
 {
     int m_index;
     int m_hour;
@@ -49,7 +49,7 @@ TTK_DECLARE_LISTS(MusicTimeData)
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicTimerAutoModule : public QObject
+class TTK_MODULE_EXPORT MusicTimerAutoModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTimerAutoModule)

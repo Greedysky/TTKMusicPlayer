@@ -27,7 +27,7 @@
 /*! @brief The class of the function tool box top widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFunctionToolBoxTopWidget : public QWidget
+class TTK_MODULE_EXPORT MusicFunctionToolBoxTopWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFunctionToolBoxTopWidget)
@@ -107,7 +107,7 @@ protected:
 /*! @brief The class of the function tool box widget item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFunctionToolBoxWidgetItem : public QWidget
+class TTK_MODULE_EXPORT MusicFunctionToolBoxWidgetItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFunctionToolBoxWidgetItem)
@@ -182,7 +182,7 @@ protected:
 /*! @brief The class of the normal tool box widget item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicNormalToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
+class TTK_MODULE_EXPORT MusicNormalToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNormalToolBoxWidgetItem)
@@ -200,7 +200,7 @@ class QScrollArea;
 /*! @brief The class of the tool box widget item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOL_EXPORT MusicToolBoxWidgetItem
+typedef struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
 {
     int m_itemIndex;
     MusicFunctionToolBoxWidgetItem* m_widgetItem;
@@ -216,7 +216,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicToolBoxWidgetItem
 /*! @brief The class of the function tool box widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFunctionToolBoxWidget : public QWidget
+class TTK_MODULE_EXPORT MusicFunctionToolBoxWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFunctionToolBoxWidget)

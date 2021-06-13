@@ -33,7 +33,7 @@ class MusicTranslationRequest;
 /*! @brief The class of produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory
+class TTK_MODULE_EXPORT MusicDownLoadQueryFactory
 {
     TTK_DECLARE_MODULE(MusicDownLoadQueryFactory)
 public:
@@ -118,6 +118,6 @@ protected:
 };
 
 #define G_DOWNLOAD_QUERY_PTR GetMusicDownLoadQueryFactory()
-MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory* GetMusicDownLoadQueryFactory();
+TTK_MODULE_EXPORT MusicDownLoadQueryFactory* GetMusicDownLoadQueryFactory();
 
 #endif // MUSICDOWNLOADQUERYFACTORY_H

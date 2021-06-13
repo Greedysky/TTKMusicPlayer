@@ -25,7 +25,7 @@
 /*! @brief The class of the song tool item rename widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
+class TTK_MODULE_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsToolItemRenamedWidget)

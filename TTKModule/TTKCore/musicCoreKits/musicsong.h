@@ -26,7 +26,7 @@
 /*! @brief The class of the music song info.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSong
+class TTK_MODULE_EXPORT MusicSong
 {
     TTK_DECLARE_MODULE(MusicSong)
 public:
@@ -186,7 +186,7 @@ class MusicAbstractSongsListTableWidget;
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicSongSort
+typedef struct TTK_MODULE_EXPORT MusicSongSort
 {
     int m_index;
     Qt::SortOrder m_sortType;
@@ -202,7 +202,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSongSort
 /*! @brief The class of the music song item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicSongItem
+typedef struct TTK_MODULE_EXPORT MusicSongItem
 {
     int m_itemIndex;
     QString m_itemName;
@@ -229,7 +229,7 @@ namespace MusicObject
     /*!
      * Generate music song plyalist.
      */
-    MUSIC_CORE_EXPORT MusicSongs generateMusicSongList(const QString &path);
+    TTK_MODULE_EXPORT MusicSongs generateMusicSongList(const QString &path);
 
 }
 

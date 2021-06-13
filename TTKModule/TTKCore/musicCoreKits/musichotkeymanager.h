@@ -27,7 +27,7 @@ class QGlobalShortcut;
 /*! @brief The class of the global hotkey setting manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicHotKeyManager : public QObject
+class TTK_MODULE_EXPORT MusicHotKeyManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicHotKeyManager)
@@ -109,6 +109,6 @@ protected:
 };
 
 #define G_HOTKEY_PTR GetMusicHotKeyManager()
-MUSIC_CORE_EXPORT MusicHotKeyManager* GetMusicHotKeyManager();
+TTK_MODULE_EXPORT MusicHotKeyManager* GetMusicHotKeyManager();
 
 #endif // MUSICHOTKEYMANAGER_H

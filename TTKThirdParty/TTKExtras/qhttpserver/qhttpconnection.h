@@ -26,7 +26,7 @@ class QHttpConnectionPrivate;
 /*! @brief The class of the http connection.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QHttpConnection : public QObject
+class TTK_MODULE_EXPORT QHttpConnection : public QObject
 {
     Q_OBJECT
 public:

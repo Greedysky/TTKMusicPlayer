@@ -24,7 +24,7 @@
 /*! @brief The class of the pls playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPLSConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicPLSConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicPLSConfigManager)
 public:

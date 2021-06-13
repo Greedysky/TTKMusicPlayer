@@ -25,7 +25,7 @@
 /*! @brief The class of kugou query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKGQueryToplistRequest : public MusicQueryToplistRequest,
+class TTK_MODULE_EXPORT MusicKGQueryToplistRequest : public MusicQueryToplistRequest,
                                                         private MusicKGQueryInterface
 {
     Q_OBJECT

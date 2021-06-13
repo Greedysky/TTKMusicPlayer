@@ -34,7 +34,7 @@ class QNetworkAccessManager;
 /*! @brief The class of the cloud shared song table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudManagerTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicCloudManagerTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudManagerTableWidget)
@@ -191,7 +191,7 @@ protected:
 /*! @brief The class of the cloud manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudManagerWidget : public QWidget
+class TTK_MODULE_EXPORT MusicCloudManagerWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudManagerWidget)

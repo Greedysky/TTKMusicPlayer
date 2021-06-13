@@ -27,7 +27,7 @@ class QKugouWindowPrivate;
 /*! @brief The class of the kugou window widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QKugouWindow : public QWidget
+class TTK_MODULE_EXPORT QKugouWindow : public QWidget
 {
     Q_OBJECT
 public:

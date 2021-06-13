@@ -26,7 +26,7 @@ class MusicClickedSlider;
 /*! @brief The class of the volume popup widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicVolumePopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicVolumePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVolumePopWidget)

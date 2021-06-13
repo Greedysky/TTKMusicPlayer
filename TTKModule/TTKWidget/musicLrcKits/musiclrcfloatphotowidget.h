@@ -28,7 +28,7 @@ class QPushButton;
 /*! @brief The class of the lrc photo float pixmap item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatPhotoItem : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicLrcFloatPhotoItem : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatPhotoItem)
@@ -98,7 +98,7 @@ protected:
 /*! @brief The class of the lrc photo float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicAbstractFloatWidget
+class TTK_MODULE_EXPORT MusicLrcFloatPhotoWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatPhotoWidget)

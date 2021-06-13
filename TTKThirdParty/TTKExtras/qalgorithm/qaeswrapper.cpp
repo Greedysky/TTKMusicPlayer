@@ -1,4 +1,4 @@
-#include "qaeswrap.h"
+#include "qaeswrapper.h"
 #include "base64.h"
 extern "C" {
 #include "aes.h"
@@ -6,12 +6,12 @@ extern "C" {
 
 #define DATA_CACHE_SIZE      1024
 
-QAesWrap::QAesWrap()
+QAesWrapper::QAesWrapper()
 {
 
 }
 
-QByteArray QAesWrap::encryptECB(const QByteArray &in, const QByteArray &key)
+QByteArray QAesWrapper::encryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
     char encryptString[DATA_CACHE_SIZE] = {0};
@@ -38,7 +38,7 @@ QByteArray QAesWrap::encryptECB(const QByteArray &in, const QByteArray &key)
     return QByteArray(str.data(), str.length());
 }
 
-QByteArray QAesWrap::decryptECB(const QByteArray &in, const QByteArray &key)
+QByteArray QAesWrapper::decryptECB(const QByteArray &in, const QByteArray &key)
 {
     AES_KEY aes;
     char decryptString[DATA_CACHE_SIZE] = {0};
@@ -53,7 +53,7 @@ QByteArray QAesWrap::decryptECB(const QByteArray &in, const QByteArray &key)
     return QByteArray(QString(decryptString).remove("\x0F").toUtf8());
 }
 
-QByteArray QAesWrap::encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+QByteArray QAesWrapper::encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
 {
     AES_KEY aes;
     char encryptString[DATA_CACHE_SIZE] = {0};
@@ -80,7 +80,7 @@ QByteArray QAesWrap::encryptCBC(const QByteArray &in, const QByteArray &key, con
     return QByteArray(str.data(), str.length());
 }
 
-QByteArray QAesWrap::decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
+QByteArray QAesWrapper::decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
 {
     AES_KEY aes;
     char decryptString[DATA_CACHE_SIZE] = {0};

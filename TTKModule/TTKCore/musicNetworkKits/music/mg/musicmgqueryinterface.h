@@ -64,7 +64,7 @@ class MusicResultsItem;
 /*! @brief The class of migu query interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryInterface
+class TTK_MODULE_EXPORT MusicMGQueryInterface
 {
 public:
     /*!

@@ -33,7 +33,7 @@ class MusicBackgroundRemoteWidget;
 /*! @brief The class of the local background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundSkinDialog)

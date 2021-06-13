@@ -6,7 +6,7 @@
 #include "musicuiobject.h"
 #include "musicfileutils.h"
 #include "musicimageutils.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicimageutils.h"
 
@@ -27,7 +27,7 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;
-        MusicExtractWrap::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
+        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
         m_pixmap = image.m_pix;
     }
 }

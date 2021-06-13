@@ -27,7 +27,7 @@ class MusicWebFMRadioWidget;
 /*! @brief The class of the web radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebRadioView : public QWidget
+class TTK_MODULE_EXPORT MusicWebRadioView : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebRadioView)

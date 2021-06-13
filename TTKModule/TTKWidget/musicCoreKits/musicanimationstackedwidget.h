@@ -27,7 +27,7 @@
 /*! @brief The class of the statckwidget switch animation.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAnimationStackedWidget : public QStackedWidget
+class TTK_MODULE_EXPORT MusicAnimationStackedWidget : public QStackedWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAnimationStackedWidget)

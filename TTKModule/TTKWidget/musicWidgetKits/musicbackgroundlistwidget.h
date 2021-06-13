@@ -27,7 +27,7 @@
 /*! @brief The class of the background list item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundListItem : public QLabel
+class TTK_MODULE_EXPORT MusicBackgroundListItem : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundListItem)
@@ -133,7 +133,7 @@ protected:
 /*! @brief The class of the background list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundListWidget : public QWidget
+class TTK_MODULE_EXPORT MusicBackgroundListWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundListWidget)

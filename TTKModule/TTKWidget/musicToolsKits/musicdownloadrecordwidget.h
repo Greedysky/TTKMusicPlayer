@@ -25,7 +25,7 @@
 /*! @brief The class of the download record table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicDownloadRecordTableWidget : public MusicAbstractDownloadTableWidget
+class TTK_MODULE_EXPORT MusicDownloadRecordTableWidget : public MusicAbstractDownloadTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordTableWidget)
@@ -48,7 +48,7 @@ protected:
 /*! @brief The class of the download tool box widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicDownloadToolBoxWidget : public MusicFunctionToolBoxWidget
+class TTK_MODULE_EXPORT MusicDownloadToolBoxWidget : public MusicFunctionToolBoxWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadToolBoxWidget)

@@ -30,7 +30,7 @@ class MusicPlaylistQueryCommentsWidget;
 /*! @brief The class of the playlist music query info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlaylistQueryInfoWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicPlaylistQueryInfoWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistQueryInfoWidget)

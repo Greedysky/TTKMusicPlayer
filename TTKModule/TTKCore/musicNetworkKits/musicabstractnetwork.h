@@ -31,7 +31,7 @@
 /*! @brief The class of abstract downloading data.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicAbstractNetwork : public QObject
+class TTK_MODULE_EXPORT MusicAbstractNetwork : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractNetwork)
@@ -118,7 +118,7 @@ namespace MusicObject
     /*!
      * Set request ssl configuration.
      */
-    MUSIC_NETWORK_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
+    TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
 
 }
 

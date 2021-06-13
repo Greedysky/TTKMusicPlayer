@@ -30,7 +30,7 @@ class MusicTranslationRequest;
 /*! @brief The class of the core lrc analysis.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcAnalysis : public QObject
+class TTK_MODULE_EXPORT MusicLrcAnalysis : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcAnalysis)

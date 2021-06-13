@@ -13,7 +13,6 @@
 #include "musicmessageaboutdialog.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
-#include "musicwidgetutils.h"
 #include "musicimageutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicurlutils.h"
@@ -23,6 +22,7 @@
 #include "musicdownloadcounterpvrequest.h"
 #include "musicsinglemanager.h"
 #include "musicscreensaverwidget.h"
+#include "ttkdesktopwrapper.h"
 
 #include "qdevicewatcher.h"
 #include "qsync/qsyncconf.h"
@@ -184,7 +184,7 @@ void MusicApplicationModule::sideAnimationByOn()
         G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
     }
 
-    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
+    const QRect &rect = TTKDesktopWrapper::screenGeometry();
     pt = w->mapToGlobal(rect.topRight());
     if(-MARGIN_SIDE + rect.width() <= pt.x() && pt.x() <= MARGIN_SIDE + rect.width())
     {
@@ -216,7 +216,7 @@ void MusicApplicationModule::sideAnimationByOff()
     }
     else if(m_rightSideByOn)
     {
-        const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
+        const QRect &rect = TTKDesktopWrapper::screenGeometry();
         m_rightSideByOn = false;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->geometry());
@@ -241,7 +241,7 @@ void MusicApplicationModule::sideAnimationReset()
     else if(m_rightSideByOn)
     {
         MusicApplication *w = MusicApplication::instance();
-        const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
+        const QRect &rect = TTKDesktopWrapper::screenGeometry();
         w->move(rect.width() - w->width() - MARGIN_SIDE_BY, w->y());
     }
 }
@@ -316,7 +316,7 @@ void MusicApplicationModule::musicResetWindow()
     m_leftSideByOn = false;
     m_rightSideByOn = false;
 
-    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
+    const QRect &rect = TTKDesktopWrapper::screenGeometry();
     G_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, rect.size());
     G_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 

@@ -36,7 +36,7 @@ namespace MusicObject
 /*! @brief The class of music dj radio program request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDJRadioProgramRequest : public MusicAbstractDJRadioRequest
+class TTK_MODULE_EXPORT MusicDJRadioProgramRequest : public MusicAbstractDJRadioRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDJRadioProgramRequest)

@@ -26,7 +26,7 @@
 /*! @brief The class of the toast widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToastLabel : public QLabel
+class TTK_MODULE_EXPORT MusicToastLabel : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicToastLabel)

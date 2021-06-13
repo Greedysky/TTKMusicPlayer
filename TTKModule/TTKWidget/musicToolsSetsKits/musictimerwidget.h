@@ -30,7 +30,7 @@ class MusicTimerWidget;
 /*! @brief The class of the timer widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTimerWidget)

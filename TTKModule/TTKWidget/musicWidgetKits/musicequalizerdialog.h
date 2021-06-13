@@ -31,7 +31,7 @@ class MusicEqualizerDialog;
 /*! @brief The class of the equalizer widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicEqualizerDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicEqualizerDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicEqualizerDialog)

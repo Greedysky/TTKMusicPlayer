@@ -34,7 +34,7 @@ extern QHash<int, QString> STATUS_CODES;
 /*! @brief The class of the http server.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QHttpServer : public QObject
+class TTK_MODULE_EXPORT QHttpServer : public QObject
 {
     Q_OBJECT
 public:

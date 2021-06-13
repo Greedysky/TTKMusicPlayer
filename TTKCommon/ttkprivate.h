@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "ttkglobaldefine.h"
 
 #define TTK_CREATE_PRIVATE(Class) (*new Class##Private)
 
@@ -44,7 +45,7 @@ template <typename PUB>
 /*! @brief The class of the ttk private base.
  * @author Greedysky <greedysky@163.com>
  */
-class TTKPrivate
+class TTK_MODULE_EXPORT TTKPrivate
 {
 public:
     TTKPrivate() { ttk_q_ptr = nullptr; }
@@ -64,7 +65,7 @@ template <typename PUB, typename PVT>
 /*! @brief The class of the ttk private interface.
  * @author Greedysky <greedysky@163.com>
  */
-class TTKPrivateInterface
+class TTK_MODULE_EXPORT TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
 public:
@@ -82,6 +83,5 @@ private:
     TTKPrivate<PUB>* pvt_ptr;
 
 };
-
 
 #endif // TTKPRIVATE_H

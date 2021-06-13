@@ -24,7 +24,7 @@
 /*! @brief The class of query recommend data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQueryRecommendRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicQueryRecommendRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQueryRecommendRequest)

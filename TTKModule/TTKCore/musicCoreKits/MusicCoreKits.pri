@@ -43,7 +43,7 @@ HEADERS  += \
     $$PWD/musichotkeymanager.h \
     $$PWD/musicruntimemanager.h \
     $$PWD/musicdispatchmanager.h \
-    $$PWD/musicextractwrap.h \
+    $$PWD/musicextractwrapper.h \
     $$PWD/musicbackgroundconfigmanager.h \
     $$PWD/musicconfigmanager.h \
     $$PWD/musicsinglemanager.h
@@ -70,7 +70,7 @@ SOURCES += \
     $$PWD/musichotkeymanager.cpp \
     $$PWD/musicruntimemanager.cpp \
     $$PWD/musicdispatchmanager.cpp \
-    $$PWD/musicextractwrap.cpp \
+    $$PWD/musicextractwrapper.cpp \
     $$PWD/musicbackgroundconfigmanager.cpp \
     $$PWD/musicconfigmanager.cpp \
     $$PWD/musicsinglemanager.cpp

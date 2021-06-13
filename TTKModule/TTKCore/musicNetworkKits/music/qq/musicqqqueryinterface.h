@@ -63,7 +63,7 @@ class QNetworkAccessManager;
 /*! @brief The class of qq query interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQQueryInterface
+class TTK_MODULE_EXPORT MusicQQQueryInterface
 {
 public:
     /*!

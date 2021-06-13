@@ -32,7 +32,7 @@ class MusicSourceUpdateWidget;
 /*! @brief The class of the application upgrade notify widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSourceUpdateNotifyWidget : public MusicAbstractMoveSingleWidget
+class TTK_MODULE_EXPORT MusicSourceUpdateNotifyWidget : public MusicAbstractMoveSingleWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSourceUpdateNotifyWidget)
@@ -68,7 +68,7 @@ protected:
 /*! @brief The class of the application upgrade widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSourceUpdateWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSourceUpdateWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSourceUpdateWidget)

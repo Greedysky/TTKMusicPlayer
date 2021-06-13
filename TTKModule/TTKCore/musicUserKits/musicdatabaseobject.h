@@ -40,7 +40,7 @@
 /*! @brief The class of the user uid item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_USER_EXPORT MusicUserUIDItem
+typedef struct TTK_MODULE_EXPORT MusicUserUIDItem
 {
     QString m_uid;
     int m_server;
@@ -67,7 +67,7 @@ typedef struct MUSIC_USER_EXPORT MusicUserUIDItem
 /*! @brief The class of the user info record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_USER_EXPORT MusicUserInfoRecord
+typedef struct TTK_MODULE_EXPORT MusicUserInfoRecord
 {
     MusicUserUIDItem m_item;
     QString m_userName;

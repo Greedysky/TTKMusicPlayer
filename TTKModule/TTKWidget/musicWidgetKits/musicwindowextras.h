@@ -34,7 +34,7 @@ class QWinThumbnailToolButton;
 /*! @brief The class of the windows extras.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
+class TTK_MODULE_EXPORT MusicWindowExtras : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWindowExtras)

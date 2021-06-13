@@ -27,7 +27,7 @@
 /*! @brief The class of the paramater setting manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSettingManager : public QObject
+class TTK_MODULE_EXPORT MusicSettingManager : public QObject
 {
     Q_OBJECT
     Q_ENUMS(ConfigType)
@@ -226,7 +226,7 @@ protected:
 };
 
 #define G_SETTING_PTR GetMusicSettingManager()
-MUSIC_CORE_EXPORT MusicSettingManager* GetMusicSettingManager();
+TTK_MODULE_EXPORT MusicSettingManager* GetMusicSettingManager();
 
 #endif // MUSICSETTINGMANAGER
 

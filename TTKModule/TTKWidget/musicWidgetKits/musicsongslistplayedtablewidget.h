@@ -26,7 +26,7 @@ class MusicSongsListPlayedWidget;
 /*! @brief The class of the songs played queue list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListPlayedTableWidget : public MusicAbstractSongsListTableWidget
+class TTK_MODULE_EXPORT MusicSongsListPlayedTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListPlayedTableWidget)

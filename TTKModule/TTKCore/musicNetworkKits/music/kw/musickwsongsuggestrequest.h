@@ -24,7 +24,7 @@
 /*! @brief The class of kuwo query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWSongSuggestRequest : public MusicSongSuggestRequest
+class TTK_MODULE_EXPORT MusicKWSongSuggestRequest : public MusicSongSuggestRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWSongSuggestRequest)

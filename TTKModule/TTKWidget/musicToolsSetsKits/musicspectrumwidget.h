@@ -32,7 +32,7 @@ class MusicSpectrumWidget;
 /*! @brief The class of the music spectrum object.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_TOOLSET_EXPORT MusicSpectrum
+typedef struct TTK_MODULE_EXPORT MusicSpectrum
 {
     enum SpectrumType
     {
@@ -53,7 +53,7 @@ TTK_DECLARE_LISTS(MusicSpectrum)
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSpectrumWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumWidget)

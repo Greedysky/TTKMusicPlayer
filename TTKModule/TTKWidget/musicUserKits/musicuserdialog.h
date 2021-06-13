@@ -32,7 +32,7 @@ class MusicUserDialog;
 /*! @brief The class of the user dialog.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicUserDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicUserDialog)

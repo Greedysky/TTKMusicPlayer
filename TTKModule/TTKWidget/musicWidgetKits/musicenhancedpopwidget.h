@@ -27,7 +27,7 @@ class QPropertyAnimation;
 /*! @brief The class of the enhanced tool button.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicEnhancedToolButton : public QToolButton
+class TTK_MODULE_EXPORT MusicEnhancedToolButton : public QToolButton
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicEnhancedToolButton)
@@ -73,7 +73,7 @@ protected:
 /*! @brief The class of the enhanced pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicEnhancedPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicEnhancedPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicEnhancedPopWidget)

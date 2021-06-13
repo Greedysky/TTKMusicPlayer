@@ -21,7 +21,7 @@
 
 #include <QMap>
 #include "ttksingleton.h"
-#include "musicwidgetutils.h"
+#include "ttkdesktopwrapper.h"
 
 /////////////////////////////////////////////////////////////////////////
 #define SINGLE_MANAGER_WIDGET_NEW2(name, parent)                           \
@@ -38,7 +38,7 @@
 #define SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                         \
 {                                                                          \
     SINGLE_MANAGER_WIDGET_NEW2(name, parent)                               \
-    const QRect &r = MusicUtils::Widget::windowScreenGeometry();           \
+    const QRect &r = TTKDesktopWrapper::screenGeometry();                  \
     w->move((r.width() - w->width()) / 2, (r.height() - w->height()) / 2); \
     w->raise();                                                            \
     w->show();                                                             \
@@ -61,7 +61,7 @@
 #define SINGLE_MANAGER_DIALOG_CLASS2(name, parent)                         \
 {                                                                          \
     SINGLE_MANAGER_DIALOG_NEW2(name, parent)                               \
-    const QRect &r = MusicUtils::Widget::windowScreenGeometry();           \
+    const QRect &r = TTKDesktopWrapper::screenGeometry();                  \
     w->move((r.width() - w->width()) / 2, (r.height() - w->height()) / 2); \
     w->exec();                                                             \
 }
@@ -94,7 +94,7 @@
 /*! @brief The class of the single object manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSingleManager
+class TTK_MODULE_EXPORT MusicSingleManager
 {
     TTK_DECLARE_MODULE(MusicSingleManager)
 public:
@@ -128,6 +128,6 @@ protected:
 };
 
 #define G_SINGLE_MANAGER_PTR GetMusicSingleManager()
-MUSIC_CORE_EXPORT MusicSingleManager* GetMusicSingleManager();
+TTK_MODULE_EXPORT MusicSingleManager* GetMusicSingleManager();
 
 #endif // MUSICSINGLEMANAGER_H

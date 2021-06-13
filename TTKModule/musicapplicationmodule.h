@@ -33,7 +33,7 @@ class MusicScreenSaverBackgroundWidget;
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicApplicationModule : public QObject
+class TTK_MODULE_EXPORT MusicApplicationModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicApplicationModule)

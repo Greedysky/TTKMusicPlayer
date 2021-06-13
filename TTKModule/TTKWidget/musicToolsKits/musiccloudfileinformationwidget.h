@@ -30,7 +30,7 @@ class MusicCloudFileInformationWidget;
 /*! @brief The class of the cloud file information widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)

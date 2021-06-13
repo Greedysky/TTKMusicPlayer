@@ -24,7 +24,7 @@
 /*! @brief The class of downloading the type of qq txt.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQDownLoadTextRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicQQDownLoadTextRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQQDownLoadTextRequest)

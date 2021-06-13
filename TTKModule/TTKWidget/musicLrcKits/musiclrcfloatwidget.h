@@ -28,7 +28,7 @@ class MusicLrcFloatSettingWidget;
 /*! @brief The class of the lrc float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicAbstractFloatWidget
+class TTK_MODULE_EXPORT MusicLrcFloatWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatWidget)

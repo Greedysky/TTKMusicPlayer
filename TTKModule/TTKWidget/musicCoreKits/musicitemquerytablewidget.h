@@ -24,7 +24,7 @@
 /*! @brief The class of the query item table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicItemQueryTableWidget : public MusicQueryTableWidget
+class TTK_MODULE_EXPORT MusicItemQueryTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicItemQueryTableWidget)

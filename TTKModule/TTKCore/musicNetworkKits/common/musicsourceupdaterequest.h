@@ -26,7 +26,7 @@
 /*! @brief The class of source data query pdate request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicSourceUpdateRequest : public QObject
+class TTK_MODULE_EXPORT MusicSourceUpdateRequest : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSourceUpdateRequest)

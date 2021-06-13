@@ -34,7 +34,7 @@ class QLabel;
 /*! @brief The class of the music song atrribute.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_WIDGET_EXPORT MusicDownloadTableItemRole
+typedef struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
 {
     int m_bitrate;
     QString m_format;
@@ -66,7 +66,7 @@ typedef struct MUSIC_WIDGET_EXPORT MusicDownloadTableItemRole
 /*! @brief The class of the download table item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadTableItem : public QWidget
+class TTK_MODULE_EXPORT MusicDownloadTableItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadTableItem)
@@ -100,7 +100,7 @@ protected:
 /*! @brief The class of the download table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicDownloadTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadTableWidget)
@@ -139,7 +139,7 @@ protected:
 /*! @brief The class of the download widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicDownloadWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadWidget)

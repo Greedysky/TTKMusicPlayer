@@ -29,7 +29,7 @@ class QTreeWidgetItem;
 /*! @brief The class of the plugin manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPluginWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicPluginWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPluginWidget)

@@ -25,7 +25,7 @@
 /*! @brief The class of the label widget that can click.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicClickedLabel : public QLabel
+class TTK_MODULE_EXPORT MusicClickedLabel : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicClickedLabel)

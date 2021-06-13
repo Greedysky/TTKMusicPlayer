@@ -25,7 +25,7 @@
 /*! @brief The class of the play back mode pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlayBackModePopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicPlayBackModePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayBackModePopWidget)

@@ -1,5 +1,5 @@
-#ifndef MUSICRUNGLOBALDEFINE_H
-#define MUSICRUNGLOBALDEFINE_H
+#ifndef QDESWRAPPER_H
+#define QDESWRAPPER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,15 +20,37 @@
  ================================================= */
 
 #include "ttkprivate.h"
-#include "musicglobal.h"
 
-///exoprt
-#define MUSIC_EXPORT
+class QDesWrapperPrivate;
 
-#ifdef MUSIC_EXPORT
-#  define MUSIC_RUN_EXPORT Q_DECL_EXPORT
-#else
-#  define MUSIC_RUN_EXPORT Q_DECL_IMPORT
-#endif
+/*! @brief The class of the des wrapper.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT QDesWrapper
+{
+public:
+    enum Mode
+    {
+        ENCRYPT = 0,
+        DECRYPT = 1
+    };
+    /*!
+     * Object contsructor.
+     */
+    QDesWrapper();
 
-#endif // MUSICRUNGLOBALDEFINE_H
+    /*!
+     * Encrypt des by input.
+     */
+    QByteArray encrypt(const QByteArray &in, const QByteArray &key);
+    /*!
+     * Decrypt des by input.
+     */
+    QByteArray decrypt(const QByteArray &in, const QByteArray &key);
+
+private:
+    TTK_DECLARE_PRIVATE(QDesWrapper)
+
+};
+
+#endif // QDESWRAPPER_H

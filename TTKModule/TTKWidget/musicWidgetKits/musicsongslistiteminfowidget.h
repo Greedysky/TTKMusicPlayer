@@ -30,7 +30,7 @@ class MusicSongsListItemInfoWidget;
 /*! @brief The class of the song list item info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListItemInfoWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSongsListItemInfoWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListItemInfoWidget)

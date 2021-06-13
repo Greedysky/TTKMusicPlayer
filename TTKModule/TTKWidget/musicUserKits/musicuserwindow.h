@@ -33,7 +33,7 @@ class MusicUserWindow;
 /*! @brief The class of the user window.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserWindow : public QStackedWidget
+class TTK_MODULE_EXPORT MusicUserWindow : public QStackedWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicUserWindow)

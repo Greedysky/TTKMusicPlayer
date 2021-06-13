@@ -25,7 +25,7 @@
 /*! @brief The class of migu query recommend download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryRecommendRequest : public MusicQueryRecommendRequest,
+class TTK_MODULE_EXPORT MusicMGQueryRecommendRequest : public MusicQueryRecommendRequest,
                                                           private MusicMGQueryInterface
 {
     Q_OBJECT

@@ -24,7 +24,7 @@
 /*! @brief The class of the photo grab label item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPhotoGrabItem : public MusicResizeGrabItemWidget
+class TTK_MODULE_EXPORT MusicPhotoGrabItem : public MusicResizeGrabItemWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPhotoGrabItem)
@@ -46,7 +46,7 @@ public:
 /*! @brief The class of the photo grab label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPhotoGrabLabel : public QWidget
+class TTK_MODULE_EXPORT MusicPhotoGrabLabel : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPhotoGrabLabel)

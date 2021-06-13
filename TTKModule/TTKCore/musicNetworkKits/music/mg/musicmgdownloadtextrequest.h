@@ -24,7 +24,7 @@
 /*! @brief The class of downloading the type of migu txt.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGDownLoadTextRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicMGDownLoadTextRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMGDownLoadTextRequest)

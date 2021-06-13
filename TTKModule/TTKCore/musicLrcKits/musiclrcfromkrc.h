@@ -24,7 +24,7 @@
 /*! @brief The class of the krc to lrc.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFromKrc
+class TTK_MODULE_EXPORT MusicLrcFromKrc
 {
     TTK_DECLARE_MODULE(MusicLrcFromKrc)
 public:

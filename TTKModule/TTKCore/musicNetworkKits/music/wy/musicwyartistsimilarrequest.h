@@ -25,7 +25,7 @@
 /*! @brief The class of query wangyi artist similar download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYArtistSimilarRequest : public MusicSimilarRequest,
+class TTK_MODULE_EXPORT MusicWYArtistSimilarRequest : public MusicSimilarRequest,
                                                          private MusicWYQueryInterface
 {
     Q_OBJECT

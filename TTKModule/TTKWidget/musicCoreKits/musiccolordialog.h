@@ -24,7 +24,7 @@
 /*! @brief The class of the color hl palette.
  * @author ToDo <278488569@qq.com>
  */
-class MUSIC_WIDGET_EXPORT MusicHlPalette : public QWidget
+class TTK_MODULE_EXPORT MusicHlPalette : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicHlPalette)
@@ -79,7 +79,7 @@ protected:
 /*! @brief The class of the color hl saturation palette.
  * @author ToDo <278488569@qq.com>
  */
-class MUSIC_WIDGET_EXPORT MusicHlSaturationPalette : public QWidget
+class TTK_MODULE_EXPORT MusicHlSaturationPalette : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicHlSaturationPalette)
@@ -132,7 +132,7 @@ class MusicColorDialog;
 /*! @brief The class of the get color table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicColorDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicColorDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicColorDialog)

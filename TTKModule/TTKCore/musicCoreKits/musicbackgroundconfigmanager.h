@@ -25,7 +25,7 @@
 /*! @brief The class of the skin config item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
+typedef struct TTK_MODULE_EXPORT MusicSkinConfigItem
 {
     QString m_name;
     int m_useCount;
@@ -48,7 +48,7 @@ TTK_DECLARE_LISTS(MusicSkinConfigItem)
 /*! @brief The class of the skin backgroud image.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage
+typedef struct TTK_MODULE_EXPORT MusicBackgroundImage
 {
     QPixmap m_pix;
     MusicSkinConfigItem m_item;
@@ -65,7 +65,7 @@ TTK_DECLARE_LISTS(MusicBackgroundImage)
 /*! @brief The class of the skin XML Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSkinConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicSkinConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSkinConfigManager)

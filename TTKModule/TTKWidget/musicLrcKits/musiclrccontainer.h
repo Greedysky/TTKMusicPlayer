@@ -36,7 +36,7 @@ class MusicLrcSearchWidget;
 /*! @brief The class of the lrc container base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainer : public QWidget
+class TTK_MODULE_EXPORT MusicLrcContainer : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcContainer)

@@ -25,7 +25,7 @@
 /*! @brief The class of the marquee widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMarqueeWidget : public QWidget
+class TTK_MODULE_EXPORT MusicMarqueeWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMarqueeWidget)

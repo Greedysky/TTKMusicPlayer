@@ -33,7 +33,7 @@ class MusicLRCManagerForDesktop;
 /*! @brief The class of the desktop lrc container.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainerForDesktop : public MusicLrcContainer
+class TTK_MODULE_EXPORT MusicLrcContainerForDesktop : public MusicLrcContainer
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcContainerForDesktop)
@@ -155,7 +155,7 @@ protected:
 /*! @brief The class of the desktop horizontal lrc container.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainerHorizontalDesktop : public MusicLrcContainerForDesktop
+class TTK_MODULE_EXPORT MusicLrcContainerHorizontalDesktop : public MusicLrcContainerForDesktop
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcContainerHorizontalDesktop)
@@ -188,7 +188,7 @@ protected:
 /*! @brief The class of the desktop vertical lrc container.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainerVerticalDesktop : public MusicLrcContainerForDesktop
+class TTK_MODULE_EXPORT MusicLrcContainerVerticalDesktop : public MusicLrcContainerForDesktop
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcContainerVerticalDesktop)

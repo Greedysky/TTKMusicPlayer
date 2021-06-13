@@ -24,7 +24,7 @@
 /*! @brief The class of downloading the type of data.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadDataRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicDownloadDataRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadDataRequest)

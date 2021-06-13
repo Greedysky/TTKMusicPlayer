@@ -24,7 +24,7 @@
 /*! @brief The class of the lrc song comment widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcCommentsWidget : public MusicCommentsWidget
+class TTK_MODULE_EXPORT MusicLrcCommentsWidget : public MusicCommentsWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcCommentsWidget)

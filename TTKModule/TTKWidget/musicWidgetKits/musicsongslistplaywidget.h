@@ -30,7 +30,7 @@ class MusicSongsToolItemRenamedWidget;
 /*! @brief The class of the song list play widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSongsListPlayWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListPlayWidget)

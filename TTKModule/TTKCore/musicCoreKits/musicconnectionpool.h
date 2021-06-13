@@ -26,7 +26,7 @@
 /*! @brief The class of the qt signal and slot connection pool.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicConnectionPool
+class TTK_MODULE_EXPORT MusicConnectionPool
 {
     TTK_DECLARE_MODULE(MusicConnectionPool)
 public:
@@ -89,6 +89,6 @@ protected:
 };
 
 #define G_CONNECTION_PTR GetMusicConnectionPool()
-MUSIC_CORE_EXPORT MusicConnectionPool* GetMusicConnectionPool();
+TTK_MODULE_EXPORT MusicConnectionPool* GetMusicConnectionPool();
 
 #endif // MUSICCONNECTIONPOOL_H

@@ -7,6 +7,7 @@
 #include "musicimageutils.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
+#include "ttkdesktopwrapper.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -15,7 +16,7 @@
 #include <QPainter>
 #include <QBoxLayout>
 
-#define ITEM_SIZE           QSize(165, 110)
+#define OS_ITEM_SIZE        QSize(165, 110)
 #define OS_COUNT            10
 
 #define OS_SCREENSAVER_URL  "ScreenSaver"
@@ -26,7 +27,7 @@
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
     : QLabel(parent)
 {
-    setFixedSize(ITEM_SIZE + QSize(8, 8));
+    setFixedSize(OS_ITEM_SIZE + QSize(8, 8));
     setAttribute(Qt::WA_TranslucentBackground);
 
     hide();
@@ -107,7 +108,7 @@ void MusicScreenSaverHoverItem::paintEvent(QPaintEvent *event)
 #else
     const QPixmap &pix = *pixmap();
 #endif
-    painter.drawPixmap(QRect(QPoint(4, 4), ITEM_SIZE), pix.scaled(ITEM_SIZE));
+    painter.drawPixmap(QRect(QPoint(4, 4), OS_ITEM_SIZE), pix.scaled(OS_ITEM_SIZE));
 }
 
 
@@ -465,7 +466,7 @@ void MusicScreenSaverBackgroundWidget::runningTimeout()
     if(!m_isRunning)
     {
         m_isRunning = true;
-        setGeometry(MusicUtils::Widget::windowScreenGeometry());
+        setGeometry(TTKDesktopWrapper::screenGeometry());
         setParent(nullptr);
         showFullScreen();
 

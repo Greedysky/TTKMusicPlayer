@@ -26,7 +26,7 @@
 /*! @brief The class of the interior lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcManagerForInterior : public MusicLrcManager
+class TTK_MODULE_EXPORT MusicLrcManagerForInterior : public MusicLrcManager
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcManagerForInterior)

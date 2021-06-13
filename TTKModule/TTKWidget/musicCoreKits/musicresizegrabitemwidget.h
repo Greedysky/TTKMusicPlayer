@@ -25,7 +25,7 @@
 /*! @brief The class of the resize grab label item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicResizeGrabItemWidget : public QWidget
+class TTK_MODULE_EXPORT MusicResizeGrabItemWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicResizeGrabItemWidget)

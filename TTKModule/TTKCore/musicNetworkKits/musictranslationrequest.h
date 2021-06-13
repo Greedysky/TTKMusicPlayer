@@ -24,7 +24,7 @@
 /*! @brief The class of translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicTranslationRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicTranslationRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTranslationRequest)

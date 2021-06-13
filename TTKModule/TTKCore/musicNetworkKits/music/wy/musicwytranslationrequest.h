@@ -24,7 +24,7 @@
 /*! @brief The class of wangyi translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYTranslationRequest : public MusicTranslationRequest
+class TTK_MODULE_EXPORT MusicWYTranslationRequest : public MusicTranslationRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYTranslationRequest)

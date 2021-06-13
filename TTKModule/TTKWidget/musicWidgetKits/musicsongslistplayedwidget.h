@@ -29,7 +29,7 @@ class MusicGifLabelWidget;
 /*! @brief The class of the song list played widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListPlayedWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSongsListPlayedWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListPlayedWidget)

@@ -1,5 +1,5 @@
-#ifndef QIMAGEWRAP_H
-#define QIMAGEWRAP_H
+#ifndef QIMAGEWRAPPER_H
+#define QIMAGEWRAPPER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,16 +20,16 @@
  ================================================= */
 
 #include <QImage>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 /*! @brief The class of the image wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-namespace QImageWrap {
+namespace QImageWrapper {
 /*! @brief The class of the gauss blur.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT GaussBlur
+class TTK_MODULE_EXPORT GaussBlur
 {
 public:
     /*!
@@ -44,7 +44,7 @@ class SharpeImagePrivate;
 /*! @brief The class of the sharpe image.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT SharpeImage
+class TTK_MODULE_EXPORT SharpeImage
 {
 public:
     SharpeImage();
@@ -71,7 +71,7 @@ protected:
 /*! @brief The class of the cube wave.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT CubeWave : public SharpeImage
+class TTK_MODULE_EXPORT CubeWave : public SharpeImage
 {
 public:
     CubeWave();
@@ -91,7 +91,7 @@ public:
 /*! @brief The class of the water wave.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT WaterWave : public SharpeImage
+class TTK_MODULE_EXPORT WaterWave : public SharpeImage
 {
 public:
     WaterWave(const QImage &image, int radius);
@@ -108,4 +108,4 @@ public:
 };
 }
 
-#endif // QIMAGEWRAP_H
+#endif // QIMAGEWRAPPER_H

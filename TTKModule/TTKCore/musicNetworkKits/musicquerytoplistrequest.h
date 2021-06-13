@@ -24,7 +24,7 @@
 /*! @brief The class of query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQueryToplistRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicQueryToplistRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQueryToplistRequest)

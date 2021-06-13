@@ -19,11 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*!
  * Set string to unicode string by format.
  */
-MUSIC_EXTRAS_EXPORT void killProcessByName(const QStringList &origin);
+TTK_MODULE_EXPORT void killProcessByName(const QStringList &origin);
 
 #endif

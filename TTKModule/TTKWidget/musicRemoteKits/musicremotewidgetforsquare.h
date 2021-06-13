@@ -24,7 +24,7 @@
 /*! @brief The class of the desktop square remote widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
+class TTK_MODULE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidgetForSquare)

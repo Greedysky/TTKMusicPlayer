@@ -33,7 +33,7 @@ class MusicWebFMRadioPlayWidget;
 /*! @brief The class of the web music radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebFMRadioPlayWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicWebFMRadioPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebFMRadioPlayWidget)

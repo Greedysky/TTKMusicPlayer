@@ -33,7 +33,7 @@ class MusicClickedSlider;
 /*! @brief The class of the desktop remote widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_REMOTE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidget)

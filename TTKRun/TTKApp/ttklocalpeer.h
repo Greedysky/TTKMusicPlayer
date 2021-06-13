@@ -20,14 +20,14 @@
  ================================================= */
 
 #include <QObject>
-#include "musicrunglobaldefine.h"
+#include "ttkprivate.h"
 
 class TTKLocalPeerPrivate;
 
 /*! @brief The class of the ttk local peer.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_RUN_EXPORT TTKLocalPeer : public QObject
+class TTK_MODULE_EXPORT TTKLocalPeer : public QObject
 {
     Q_OBJECT
 public:

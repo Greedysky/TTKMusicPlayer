@@ -27,7 +27,7 @@
 /*! @brief The class of the user data model.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserModel : public QSqlTableModel
+class TTK_MODULE_EXPORT MusicUserModel : public QSqlTableModel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicUserModel)

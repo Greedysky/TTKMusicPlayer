@@ -26,7 +26,7 @@
 /*! @brief The class of the manager of dealing with artist pictures.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicBackgroundManager : public QObject
+class TTK_MODULE_EXPORT MusicBackgroundManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundManager)
@@ -144,6 +144,6 @@ protected:
 };
 
 #define G_BACKGROUND_PTR GetMusicBackgroundManager()
-MUSIC_CORE_EXPORT MusicBackgroundManager* GetMusicBackgroundManager();
+TTK_MODULE_EXPORT MusicBackgroundManager* GetMusicBackgroundManager();
 
 #endif // MUSICBACKGROUNDMANAGER_H

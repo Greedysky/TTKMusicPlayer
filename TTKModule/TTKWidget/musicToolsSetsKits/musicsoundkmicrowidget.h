@@ -34,7 +34,7 @@ class MusicAudioRecorderModule;
 /*! @brief The class of the sound kmicro widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundKMicroWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSoundKMicroWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundKMicroWidget)

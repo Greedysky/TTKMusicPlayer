@@ -30,7 +30,7 @@ class MusicCoreMPlayer;
 /*! @brief The class of the song ringtone maker widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongRingtoneMaker : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSongRingtoneMaker : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongRingtoneMaker)

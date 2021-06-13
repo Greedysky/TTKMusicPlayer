@@ -28,7 +28,7 @@ class MusicPagingWidgetModule;
 /*! @brief The class of the song comment item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicCommentsItem : public QWidget
+class TTK_MODULE_EXPORT MusicCommentsItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCommentsItem)
@@ -61,7 +61,7 @@ protected:
 /*! @brief The class of the song comment widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicCommentsWidget : public QLabel
+class TTK_MODULE_EXPORT MusicCommentsWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCommentsWidget)

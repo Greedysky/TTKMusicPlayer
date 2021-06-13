@@ -29,7 +29,7 @@ class MusicAnimationStackedWidget;
 /*! @brief The class of the connect mobile widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicConnectMobileWidget : public QWidget
+class TTK_MODULE_EXPORT MusicConnectMobileWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectMobileWidget)

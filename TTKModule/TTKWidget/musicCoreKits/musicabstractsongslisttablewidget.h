@@ -26,7 +26,7 @@
 /*! @brief The class of the songs list abstract table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractSongsListTableWidget : public MusicSmoothMovingTableWidget
+class TTK_MODULE_EXPORT MusicAbstractSongsListTableWidget : public MusicSmoothMovingTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractSongsListTableWidget)

@@ -27,7 +27,7 @@ class MusicNetworkTestThread;
 /*! @brief The class of the network connection item Widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkConnectionItem : public QWidget
+class TTK_MODULE_EXPORT MusicNetworkConnectionItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkConnectionItem)
@@ -83,7 +83,7 @@ class MusicNetworkConnectionTestWidget;
 /*! @brief The class of the network connection test widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkConnectionTestWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicNetworkConnectionTestWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkConnectionTestWidget)

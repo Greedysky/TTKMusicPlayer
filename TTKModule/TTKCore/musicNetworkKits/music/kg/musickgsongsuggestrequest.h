@@ -24,7 +24,7 @@
 /*! @brief The class of kugou query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKGSongSuggestRequest : public MusicSongSuggestRequest
+class TTK_MODULE_EXPORT MusicKGSongSuggestRequest : public MusicSongSuggestRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKGSongSuggestRequest)

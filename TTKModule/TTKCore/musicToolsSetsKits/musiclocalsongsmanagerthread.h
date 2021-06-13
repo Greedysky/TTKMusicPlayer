@@ -25,7 +25,7 @@
 /*! @brief The class of the local songs manager thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicLocalSongsManagerThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongsManagerThread)

@@ -25,7 +25,7 @@
 /*! @brief The class of the music mv category item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMVRadioQueryCategoryItem : public QWidget
+class TTK_MODULE_EXPORT MusicWebMVRadioQueryCategoryItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebMVRadioQueryCategoryItem)
@@ -62,7 +62,7 @@ protected:
 /*! @brief The class of the music mv category pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMVRadioQueryCategoryPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicWebMVRadioQueryCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebMVRadioQueryCategoryPopWidget)

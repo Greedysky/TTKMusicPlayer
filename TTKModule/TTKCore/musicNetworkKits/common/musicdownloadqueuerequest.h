@@ -24,7 +24,7 @@
 /*! @brief The class of the download queue data.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicDownloadQueueData
+typedef struct TTK_MODULE_EXPORT MusicDownloadQueueData
 {
     QString m_url;        ///*download url*/
     QString m_savePath;   ///*save local path*/
@@ -34,7 +34,7 @@ TTK_DECLARE_LISTS(MusicDownloadQueueData)
 /*! @brief The class of download data from queue request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicDownloadQueueRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadQueueRequest)

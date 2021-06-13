@@ -28,7 +28,7 @@ class MusicTransitionAnimationLabel;
 /*! @brief The class of the wall paper lrc container.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcContainerForWallpaper : public MusicLrcContainer
+class TTK_MODULE_EXPORT MusicLrcContainerForWallpaper : public MusicLrcContainer
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcContainerForWallpaper)

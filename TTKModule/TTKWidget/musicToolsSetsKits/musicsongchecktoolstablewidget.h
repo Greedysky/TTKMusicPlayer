@@ -7,7 +7,7 @@
 /*! @brief The class of the song check tools rename table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicSongCheckToolsRenameTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsRenameTableWidget)
@@ -45,7 +45,7 @@ protected:
 /*! @brief The class of the song check tools duplicate table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicSongCheckToolsDuplicateTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateTableWidget)
@@ -95,7 +95,7 @@ protected:
 /*! @brief The class of the song check tools quality table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicSongCheckToolsQualityTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongCheckToolsQualityTableWidget)

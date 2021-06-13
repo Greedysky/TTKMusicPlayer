@@ -25,7 +25,7 @@
 /*! @brief The class of wangyi query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYQueryPlaylistRequest : public MusicQueryPlaylistRequest,
+class TTK_MODULE_EXPORT MusicWYQueryPlaylistRequest : public MusicQueryPlaylistRequest,
                                                          private MusicWYQueryInterface
 {
     Q_OBJECT

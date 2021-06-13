@@ -24,7 +24,7 @@
 /*! @brief The class of downloading the type of wangyi txt.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYDownLoadTextRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicWYDownLoadTextRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYDownLoadTextRequest)

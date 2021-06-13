@@ -26,7 +26,7 @@ class QPushButton;
 /*! @brief The class of the video float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoFloatWidget : public MusicAbstractFloatWidget
+class TTK_MODULE_EXPORT MusicVideoFloatWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoFloatWidget)

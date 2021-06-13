@@ -25,7 +25,7 @@
 /*! @brief The class of the recommend music query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicRecommendQueryTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicRecommendQueryTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRecommendQueryTableWidget)
@@ -54,7 +54,7 @@ public Q_SLOTS:
 /*! @brief The class of recommend music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicRecommendQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicRecommendQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRecommendQueryWidget)

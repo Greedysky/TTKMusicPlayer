@@ -3,7 +3,7 @@
 MusicKGQueryArtistListRequest::MusicKGQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = DEFAULT_LEVEL_HIGHER;
+    m_pageSize = DEFAULT_HIGHER_LEVEL;
     m_queryServer = QUERY_KG_INTERFACE;
 }
 
@@ -38,7 +38,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
             m_rawData["initial"] = "%E5%85%B6%E4%BB%96";
         }
     }
-    m_totalSize = DEFAULT_LEVEL_HIGHER;
+    m_totalSize = DEFAULT_HIGHER_LEVEL;
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_LIST_URL, false).arg(catId));

@@ -28,7 +28,7 @@
 /*! @brief The class of the audio recorder core.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicAudioRecorderModule : public QObject
+class TTK_MODULE_EXPORT MusicAudioRecorderModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAudioRecorderModule)
@@ -36,7 +36,7 @@ public:
     /*! @brief The class of the audio file tag header.
      * @author Greedysky <greedysky@163.com>
      */
-    typedef struct MUSIC_TOOLSET_EXPORT HEADER
+    typedef struct TTK_MODULE_EXPORT HEADER
     {
         char RIFFNAME[4];
         ulong nRIFFLength;

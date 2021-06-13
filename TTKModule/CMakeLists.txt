@@ -104,6 +104,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_VIDEO_KITS_SOURCES}
     ${MUSIC_WIDGET_CORE_KITS_SOURCES}
     ${MUSIC_WIDGET_KITS_SOURCES}
+    ${MUSIC_COMMON_DIR}/ttkdesktopwrapper.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp

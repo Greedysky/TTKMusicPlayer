@@ -24,7 +24,7 @@
 /*! @brief The class of music mv info table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMVRadioInfoTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicWebMVRadioInfoTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebMVRadioInfoTableWidget)
@@ -57,7 +57,7 @@ public Q_SLOTS:
 /*! @brief The class of music mv info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMVRadioInfoWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicWebMVRadioInfoWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebMVRadioInfoWidget)

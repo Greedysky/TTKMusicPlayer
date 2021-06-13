@@ -24,7 +24,7 @@
 /*! @brief The class of qq query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQSongSuggestRequest : public MusicSongSuggestRequest
+class TTK_MODULE_EXPORT MusicQQSongSuggestRequest : public MusicSongSuggestRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQQSongSuggestRequest)

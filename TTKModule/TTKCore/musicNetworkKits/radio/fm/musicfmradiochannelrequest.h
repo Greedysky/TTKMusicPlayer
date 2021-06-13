@@ -24,7 +24,7 @@
 /*! @brief The class of the fm radio channel info item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicFMRadioChannelData
+typedef struct TTK_MODULE_EXPORT MusicFMRadioChannelData
 {
     QString m_id;
     QString m_name;
@@ -35,7 +35,7 @@ TTK_DECLARE_LISTS(MusicFMRadioChannelData)
 /*! @brief The class of fm radio request of song channel.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicFMRadioChannelRequest : public MusicAbstractFMRadioRequest
+class TTK_MODULE_EXPORT MusicFMRadioChannelRequest : public MusicAbstractFMRadioRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFMRadioChannelRequest)

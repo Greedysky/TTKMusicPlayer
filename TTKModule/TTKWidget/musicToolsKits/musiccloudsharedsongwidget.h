@@ -29,7 +29,7 @@ class MusicCloudManagerWidget;
 /*! @brief The class of the cloud share song widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudSharedSongWidget : public QWidget
+class TTK_MODULE_EXPORT MusicCloudSharedSongWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudSharedSongWidget)

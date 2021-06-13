@@ -24,7 +24,7 @@
 /*! @brief The class of the txt playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicTXTConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicTXTConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicTXTConfigManager)
 public:

@@ -25,7 +25,7 @@
 /*! @brief The class of the artist list query category item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistListQueryCategoryItem : public QWidget
+class TTK_MODULE_EXPORT MusicArtistListQueryCategoryItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistListQueryCategoryItem)
@@ -62,7 +62,7 @@ protected:
 /*! @brief The class of the artist list query category pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistListQueryCategoryPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicArtistListQueryCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistListQueryCategoryPopWidget)

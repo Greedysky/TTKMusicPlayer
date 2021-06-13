@@ -25,7 +25,7 @@
 /*! @brief The class of qq query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQQueryToplistRequest : public MusicQueryToplistRequest,
+class TTK_MODULE_EXPORT MusicQQQueryToplistRequest : public MusicQueryToplistRequest,
                                                         private MusicQQQueryInterface
 {
     Q_OBJECT

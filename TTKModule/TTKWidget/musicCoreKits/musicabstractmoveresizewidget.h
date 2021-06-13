@@ -26,7 +26,7 @@
 /*! @brief The class of the moving resize struct.
  * @author Greedysky <greedysky@163.com>
  */
-struct MUSIC_WIDGET_EXPORT MoveResizeData
+struct TTK_MODULE_EXPORT MoveResizeData
 {
     bool m_mouseLeftPress;
     bool m_isPressBorder;
@@ -39,7 +39,7 @@ struct MUSIC_WIDGET_EXPORT MoveResizeData
  * @author Greedysky <greedysky@163.com>
  *         Lverson   <what951006@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractMoveResizeWidget : public QWidget
+class TTK_MODULE_EXPORT MusicAbstractMoveResizeWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveResizeWidget)

@@ -3,7 +3,7 @@
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 
-#include "qalgorithm/qdeswrap.h"
+#include "qalgorithm/qdeswrapper.h"
 
 MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)
@@ -246,7 +246,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
         return;
     }
 
-    QDesWrap des;
+    QDesWrapper des;
     const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MOVIE_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
 

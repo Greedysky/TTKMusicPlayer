@@ -26,7 +26,7 @@ class QHttpResponsePrivate;
 /*! @brief The class of the http response.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QHttpResponse : public QObject
+class TTK_MODULE_EXPORT QHttpResponse : public QObject
 {
     Q_OBJECT
 public:

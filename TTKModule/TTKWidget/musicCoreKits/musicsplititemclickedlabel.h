@@ -25,7 +25,7 @@
 /*! @brief The class of the split item clicked widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSplitItemClickedLabel : public QLabel
+class TTK_MODULE_EXPORT MusicSplitItemClickedLabel : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSplitItemClickedLabel)

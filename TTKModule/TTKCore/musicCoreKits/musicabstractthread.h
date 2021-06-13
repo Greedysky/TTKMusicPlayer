@@ -26,7 +26,7 @@
 /*! @brief The class of the abstract thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicAbstractThread : public QThread
+class TTK_MODULE_EXPORT MusicAbstractThread : public QThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractThread)

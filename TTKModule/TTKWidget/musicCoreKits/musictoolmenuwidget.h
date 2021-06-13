@@ -26,7 +26,7 @@
 /*! @brief The class of the tool menu.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToolMenu : public QMenu
+class TTK_MODULE_EXPORT MusicToolMenu : public QMenu
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicToolMenu)
@@ -55,7 +55,7 @@ protected:
 /*! @brief The class of the tool menu base widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToolMenuWidget : public QToolButton
+class TTK_MODULE_EXPORT MusicToolMenuWidget : public QToolButton
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicToolMenuWidget)

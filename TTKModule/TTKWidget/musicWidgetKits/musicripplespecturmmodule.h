@@ -26,7 +26,7 @@
 /*! @brief The class of the ripples spectrum object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicRippleSpecturmModule : public QObject
+class TTK_MODULE_EXPORT MusicRippleSpecturmModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRippleSpecturmModule)

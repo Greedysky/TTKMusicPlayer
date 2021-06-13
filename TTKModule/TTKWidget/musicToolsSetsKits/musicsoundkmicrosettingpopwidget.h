@@ -27,7 +27,7 @@ class MusicAudioRecorderModule;
 /*! @brief The class of the sound kmicro setting pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSettingPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicSoundKMicroSettingPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundKMicroSettingPopWidget)

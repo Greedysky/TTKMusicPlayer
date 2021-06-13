@@ -26,7 +26,7 @@
 /*! @brief The class of the searched data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
+typedef struct TTK_MODULE_EXPORT MusicSearchedItem
 {
     QString m_songName;
     QString m_singerName;
@@ -48,7 +48,7 @@ TTK_DECLARE_LISTS(MusicSearchedItem)
 /*! @brief The class of the search song results data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicResultsItem
+typedef struct TTK_MODULE_EXPORT MusicResultsItem
 {
     QString m_id;
     QString m_name;
@@ -97,7 +97,7 @@ enum DownloadQueryServer
 /*! @brief The class of abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicAbstractQueryRequest : public MusicPagingRequest
+class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPagingRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractQueryRequest)

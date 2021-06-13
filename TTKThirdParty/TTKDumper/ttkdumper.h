@@ -19,14 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 class MiniDumper;
 
 /*! @brief The class of the ttk dumper.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT TTKDumper
+class TTK_MODULE_EXPORT TTKDumper
 {
 public:
     /*!

@@ -27,7 +27,7 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the advance search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAdvancedSearchedWidget : public QWidget
+class TTK_MODULE_EXPORT MusicAdvancedSearchedWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAdvancedSearchedWidget)

@@ -25,7 +25,7 @@
 /*! @brief The class of kugou query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKGQueryPlaylistRequest : public MusicQueryPlaylistRequest,
+class TTK_MODULE_EXPORT MusicKGQueryPlaylistRequest : public MusicQueryPlaylistRequest,
                                                          private MusicKGQueryInterface
 {
     Q_OBJECT

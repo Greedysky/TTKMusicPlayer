@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicobject.h"
-#include "musicconfigglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*! @brief The class of the music init object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CONFIG_EXPORT MusicConfigObject : public QObject
+class TTK_MODULE_EXPORT MusicConfigObject : public QObject
 {
     Q_OBJECT
 public:

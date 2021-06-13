@@ -26,7 +26,7 @@ class MusicMarqueeWidget;
 /*! @brief The class of the desktop simple remote widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForSimpleStyle : public MusicRemoteWidget
+class TTK_MODULE_EXPORT MusicRemoteWidgetForSimpleStyle : public MusicRemoteWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidgetForSimpleStyle)

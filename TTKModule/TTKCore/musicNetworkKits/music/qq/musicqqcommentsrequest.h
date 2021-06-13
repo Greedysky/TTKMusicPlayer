@@ -24,7 +24,7 @@
 /*! @brief The class of qq query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQSongCommentsRequest : public MusicCommentsRequest
+class TTK_MODULE_EXPORT MusicQQSongCommentsRequest : public MusicCommentsRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQQSongCommentsRequest)
@@ -55,7 +55,7 @@ public Q_SLOTS:
 /*! @brief The class of qq query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQQPlaylistCommentsRequest : public MusicCommentsRequest
+class TTK_MODULE_EXPORT MusicQQPlaylistCommentsRequest : public MusicCommentsRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQQPlaylistCommentsRequest)

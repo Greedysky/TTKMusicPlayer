@@ -26,7 +26,7 @@ class QToolButton;
 /*! @brief The class of the lrc play float widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcFloatPlayWidget : public MusicAbstractFloatWidget
+class TTK_MODULE_EXPORT MusicLrcFloatPlayWidget : public MusicAbstractFloatWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcFloatPlayWidget)

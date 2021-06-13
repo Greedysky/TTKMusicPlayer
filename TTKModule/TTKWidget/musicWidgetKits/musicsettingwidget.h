@@ -33,7 +33,7 @@ class MusicSettingWidget;
 /*! @brief The class of the function tool item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_WIDGET_EXPORT MusicFunctionItem
+typedef struct TTK_MODULE_EXPORT MusicFunctionItem
 {
     MusicFunctionItem()
     {
@@ -54,7 +54,7 @@ TTK_DECLARE_LISTS(MusicFunctionItem)
 /*! @brief The class of the list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFunctionTableWidget)
@@ -94,7 +94,7 @@ protected:
 /*! @brief The class of the setting parameters widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSettingWidget)

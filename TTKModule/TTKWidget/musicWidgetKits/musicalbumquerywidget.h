@@ -24,7 +24,7 @@
 /*! @brief The class of the album music query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAlbumQueryTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicAlbumQueryTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAlbumQueryTableWidget)
@@ -47,7 +47,7 @@ public:
 /*! @brief The class of album music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAlbumQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicAlbumQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAlbumQueryWidget)

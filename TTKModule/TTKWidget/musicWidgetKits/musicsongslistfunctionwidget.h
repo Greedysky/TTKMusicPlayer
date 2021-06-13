@@ -28,7 +28,7 @@ class QPropertyAnimation;
 /*! @brief The class of the songs list function widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsListFunctionWidget : public QLabel
+class TTK_MODULE_EXPORT MusicSongsListFunctionWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsListFunctionWidget)

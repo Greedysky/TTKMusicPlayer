@@ -25,7 +25,7 @@
 /*! @brief The class of the platform system manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlatformManager
+class TTK_MODULE_EXPORT MusicPlatformManager
 {
     TTK_DECLARE_MODULE(MusicPlatformManager)
 public:

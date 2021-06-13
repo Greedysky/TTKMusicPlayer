@@ -37,7 +37,7 @@ class MusicApplication;
 /*! @brief The class of the app main widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveResizeWidget
+class TTK_MODULE_EXPORT MusicApplication : public MusicAbstractMoveResizeWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicApplication)

@@ -24,7 +24,7 @@
 /*! @brief The class of the desktop lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcManagerForDesktop : public MusicLrcManager
+class TTK_MODULE_EXPORT MusicLrcManagerForDesktop : public MusicLrcManager
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcManagerForDesktop)
@@ -40,7 +40,7 @@ public:
 /*! @brief The class of the desktop horizontal lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcManagerHorizontalDesktop : public MusicLrcManagerForDesktop
+class TTK_MODULE_EXPORT MusicLrcManagerHorizontalDesktop : public MusicLrcManagerForDesktop
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcManagerHorizontalDesktop)
@@ -62,7 +62,7 @@ protected:
 /*! @brief The class of the desktop vertical lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcManagerVerticalDesktop : public MusicLrcManagerForDesktop
+class TTK_MODULE_EXPORT MusicLrcManagerVerticalDesktop : public MusicLrcManagerForDesktop
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcManagerVerticalDesktop)

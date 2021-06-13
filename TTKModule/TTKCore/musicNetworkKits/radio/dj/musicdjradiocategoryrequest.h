@@ -24,7 +24,7 @@
 /*! @brief The class of music dj radio category request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDJRadioCategoryRequest : public MusicAbstractDJRadioRequest
+class TTK_MODULE_EXPORT MusicDJRadioCategoryRequest : public MusicAbstractDJRadioRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDJRadioCategoryRequest)

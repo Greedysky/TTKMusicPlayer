@@ -21,7 +21,7 @@
 #ifndef QJSON_PARSER_H
 #define QJSON_PARSER_H
 
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 QT_BEGIN_NAMESPACE
 class QIODevice;
@@ -37,7 +37,7 @@ namespace QJson {
   /**
    * @brief Main class used to convert JSON data to QVariant objects
    */
-  class MUSIC_EXTRAS_EXPORT Parser
+  class TTK_MODULE_EXPORT Parser
   {
     public:
       Parser();

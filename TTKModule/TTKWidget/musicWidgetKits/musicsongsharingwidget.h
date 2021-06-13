@@ -64,7 +64,7 @@ class MusicSongSharingWidget;
 /*! @brief The class of the song share widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongSharingWidget)

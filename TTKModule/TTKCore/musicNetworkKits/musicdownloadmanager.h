@@ -26,7 +26,7 @@
 /*! @brief The class of the download manager pair.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPairData
+typedef struct TTK_MODULE_EXPORT MusicDownLoadPairData
 {
     qint64 m_time;
     QObject *m_object;
@@ -65,7 +65,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPairData
 /*! @brief The class of produce the download manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadManager : public QObject
+class TTK_MODULE_EXPORT MusicDownLoadManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownLoadManager)
@@ -107,6 +107,6 @@ protected:
 };
 
 #define G_DOWNLOAD_MANAGER_PTR GetMusicDownLoadManager()
-MUSIC_NETWORK_EXPORT MusicDownLoadManager* GetMusicDownLoadManager();
+TTK_MODULE_EXPORT MusicDownLoadManager* GetMusicDownLoadManager();
 
 #endif // MUSICDOWNLOADMANAGER_H

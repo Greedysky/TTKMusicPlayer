@@ -28,7 +28,7 @@ class MusicMessageBox;
 /*! @brief The class of the messagebox widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMessageBox)

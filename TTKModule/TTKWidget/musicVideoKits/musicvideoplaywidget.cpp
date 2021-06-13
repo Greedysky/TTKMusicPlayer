@@ -8,6 +8,7 @@
 #include "musictinyuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
+#include "ttkdesktopwrapper.h"
 
 #include <QParallelAnimationGroup>
 
@@ -179,7 +180,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
     }
     QSize s = size();
 #ifdef Q_OS_UNIX
-    const QRect &rect = MusicUtils::Widget::windowScreenGeometry();
+    const QRect &rect = TTKDesktopWrapper::screenGeometry();
     if(isFullScreen() && !rect.isNull())
     {
         s = rect.size();

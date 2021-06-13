@@ -25,7 +25,7 @@
 /*! @brief The class of the local search line edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchEdit : public QLineEdit
+class TTK_MODULE_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongSearchEdit)

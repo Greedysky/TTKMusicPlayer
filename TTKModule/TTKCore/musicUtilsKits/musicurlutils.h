@@ -31,46 +31,46 @@ namespace MusicUtils
         /*!
          * Open file from local by path or net url.
          */
-        MUSIC_UTILS_EXPORT bool openUrl(const QString &exe, const QString &path);
+        TTK_MODULE_EXPORT bool openUrl(const QString &exe, const QString &path);
 
         /*!
          * Open file from local by path or net url.
          */
-        MUSIC_UTILS_EXPORT bool openUrl(const QString &path, bool local = true);
+        TTK_MODULE_EXPORT bool openUrl(const QString &path, bool local = true);
 
         /*!
          * Encode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlEncode(QString &data);
+        TTK_MODULE_EXPORT void urlEncode(QString &data);
         /*!
          * Decode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlDecode(QString &data);
+        TTK_MODULE_EXPORT void urlDecode(QString &data);
         /*!
          * Encode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlEncode(QByteArray &data);
+        TTK_MODULE_EXPORT void urlEncode(QByteArray &data);
         /*!
          * Decode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlDecode(QByteArray &data);
+        TTK_MODULE_EXPORT void urlDecode(QByteArray &data);
 
         /*!
          * Pretty encode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlPrettyEncode(QString &data);
+        TTK_MODULE_EXPORT void urlPrettyEncode(QString &data);
         /*!
          * Pretty decode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlPrettyDecode(QString &data);
+        TTK_MODULE_EXPORT void urlPrettyDecode(QString &data);
         /*!
          * Pretty encode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlPrettyEncode(QByteArray &data);
+        TTK_MODULE_EXPORT void urlPrettyEncode(QByteArray &data);
         /*!
          * Pretty decode the data into url.
          */
-        MUSIC_UTILS_EXPORT void urlPrettyDecode(QByteArray &data);
+        TTK_MODULE_EXPORT void urlPrettyDecode(QByteArray &data);
 
     }
 }

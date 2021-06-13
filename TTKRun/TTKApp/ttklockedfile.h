@@ -5,7 +5,7 @@
 #ifdef Q_OS_WIN
 #include <QVector>
 #endif
-#include "musicrunglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*! @brief The namespace of locked private.
  * @author Greedysky <greedysky@163.com>
@@ -14,7 +14,7 @@ namespace TTKLockedPrivate {
     /*! @brief The class of the ttk local file.
      * @author Greedysky <greedysky@163.com>
      */
-    class MUSIC_RUN_EXPORT TTKLockedFile : public QFile
+    class TTK_MODULE_EXPORT TTKLockedFile : public QFile
     {
     public:
         enum LockMode

@@ -6,7 +6,7 @@
 #include "musicsettingmanager.h"
 #include "musicabstractnetwork.h"
 
-#include "qalgorithm/qaeswrap.h"
+#include "qalgorithm/qaeswrapper.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -29,7 +29,7 @@ void MusicWYQueryInterface::makeTokenQueryRequest(QNetworkRequest *request)
 
 QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
 {
-    QAesWrap aes;
+    QAesWrapper aes;
     QByteArray parameter = aes.encryptCBC(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
     parameter = aes.encryptCBC(parameter, "a44e542eaac91dce", "0102030405060708");
     MusicUtils::Url::urlEncode(parameter);

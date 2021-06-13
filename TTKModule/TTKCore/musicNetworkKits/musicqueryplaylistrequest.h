@@ -24,7 +24,7 @@
 /*! @brief The class of query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQueryPlaylistRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicQueryPlaylistRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQueryPlaylistRequest)

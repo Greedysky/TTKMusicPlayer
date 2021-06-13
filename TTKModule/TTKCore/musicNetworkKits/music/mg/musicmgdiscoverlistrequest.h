@@ -24,7 +24,7 @@
 /*! @brief The class of migu discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGDiscoverListRequest : public MusicDiscoverListRequest
+class TTK_MODULE_EXPORT MusicMGDiscoverListRequest : public MusicDiscoverListRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMGDiscoverListRequest)

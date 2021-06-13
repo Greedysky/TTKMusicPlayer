@@ -20,12 +20,12 @@
  ================================================= */
 
 #include <QObject>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 /*! @brief The class of the kugou url.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QKugouUrl
+class TTK_MODULE_EXPORT QKugouUrl
 {
 public:
     /*!

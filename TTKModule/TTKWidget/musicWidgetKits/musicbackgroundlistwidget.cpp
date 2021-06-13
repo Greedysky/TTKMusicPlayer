@@ -1,5 +1,5 @@
 #include "musicbackgroundlistwidget.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 #include "musictoastlabel.h"
 #include "musicwidgetutils.h"
 
@@ -27,7 +27,7 @@ void MusicBackgroundListItem::updatePixImage()
     if(!m_path.isEmpty())
     {
         MusicBackgroundImage image;
-        if(MusicExtractWrap::outputSkin(&image, m_path))
+        if(MusicExtractWrapper::outputSkin(&image, m_path))
         {
             updatePixImage(image);
         }

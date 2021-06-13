@@ -180,7 +180,7 @@ void MusicPlaylist::removeQueueList()
 
 void MusicPlaylist::setCurrentIndex(int index)
 {
-    if(index == DEFAULT_LEVEL_NORMAL)
+    if(index == DEFAULT_NORMAL_LEVEL)
     {
         switch(m_playbackMode)
         {

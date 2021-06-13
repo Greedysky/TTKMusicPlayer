@@ -32,19 +32,19 @@ namespace MusicUtils
         /*!
          * Sleep by millisecond.
          */
-        MUSIC_UTILS_EXPORT void sleep(int msecond);
+        TTK_MODULE_EXPORT void sleep(int msecond);
         /*!
          * Get Language Name by given index.
          */
-        MUSIC_UTILS_EXPORT QString getLanguageName(int index);
+        TTK_MODULE_EXPORT QString getLanguageName(int index);
         /*!
          * App version check.
          */
-        MUSIC_UTILS_EXPORT bool appVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
+        TTK_MODULE_EXPORT bool appVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
         /*!
          * App version check.
          */
-        MUSIC_UTILS_EXPORT bool appVersionCheck(const QString &o, const QString &d);
+        TTK_MODULE_EXPORT bool appVersionCheck(const QString &o, const QString &d);
 
     }
 }

@@ -24,7 +24,7 @@
 /*! @brief The class of the barrage record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_VIDEO_EXPORT MusicBarrageRecord
+typedef struct TTK_MODULE_EXPORT MusicBarrageRecord
 {
     int m_size;
     QString m_color;
@@ -35,7 +35,7 @@ TTK_DECLARE_LISTS(MusicBarrageRecord)
 /*! @brief The class of the barrage record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicBarrageRecordConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicBarrageRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBarrageRecordConfigManager)

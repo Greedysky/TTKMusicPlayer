@@ -65,7 +65,7 @@ const QString KW_SUGGEST_URL            = "UXc5cFVXZG92VUxjeFpmR0w4OS9rUG12ZjNtd
 /*! @brief The class of kuwo query interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWQueryInterface
+class TTK_MODULE_EXPORT MusicKWQueryInterface
 {
 public:
     /*!

@@ -38,7 +38,7 @@ namespace Ui {
 /*! @brief The class of the app right area widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
+class TTK_MODULE_EXPORT MusicRightAreaWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRightAreaWidget)

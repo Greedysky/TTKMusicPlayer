@@ -25,7 +25,7 @@
 /*! @brief The class of the slider that can show such as tooltip.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public MusicMovingClickedSlider
+class TTK_MODULE_EXPORT MusicMovingLabelSlider : public MusicMovingClickedSlider
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMovingLabelSlider)

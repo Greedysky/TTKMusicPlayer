@@ -25,7 +25,7 @@
 /*! @brief The class of wangyi query program category download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDJRadioProgramCategoryRequest : public MusicAbstractQueryRequest,
+class TTK_MODULE_EXPORT MusicDJRadioProgramCategoryRequest : public MusicAbstractQueryRequest,
                                                                 private MusicWYQueryInterface
 {
     Q_OBJECT

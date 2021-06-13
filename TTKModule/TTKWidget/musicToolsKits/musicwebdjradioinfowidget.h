@@ -24,7 +24,7 @@
 /*! @brief The class of dj radio music info table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicWebDJRadioInfoTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioInfoTableWidget)
@@ -47,7 +47,7 @@ public:
 /*! @brief The class of dj radio music info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicWebDJRadioInfoWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioInfoWidget)

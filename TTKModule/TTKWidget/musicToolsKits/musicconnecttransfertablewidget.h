@@ -25,7 +25,7 @@
 /*! @brief The class of the transfer file list table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicConnectTransferTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicConnectTransferTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectTransferTableWidget)
@@ -50,7 +50,7 @@ public:
 /*! @brief The class of the transfer file list complete table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicConnectTransferCompleteTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicConnectTransferCompleteTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectTransferCompleteTableWidget)

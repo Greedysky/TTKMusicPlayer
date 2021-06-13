@@ -32,7 +32,7 @@ class QDlnaFileServer;
 /*! @brief The class of the song dlna transfer widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongDlnaTransferWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicSongDlnaTransferWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongDlnaTransferWidget)

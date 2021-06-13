@@ -30,7 +30,7 @@ class MusicDownloadBatchWidget;
 /*! @brief The class of the download batch table item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadBatchTableItem : public QWidget
+class TTK_MODULE_EXPORT MusicDownloadBatchTableItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBatchTableItem)
@@ -82,7 +82,7 @@ protected:
 /*! @brief The class of the download batch table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadBatchTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicDownloadBatchTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBatchTableWidget)
@@ -136,7 +136,7 @@ protected:
 /*! @brief The class of the download batch widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBatchWidget)

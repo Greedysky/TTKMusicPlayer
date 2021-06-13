@@ -36,49 +36,45 @@ namespace MusicUtils
         /*!
          * Set widget border shadow.
          */
-        MUSIC_UTILS_EXPORT void setBorderShadow(QWidget *widget, QPainter *painter);
+        TTK_MODULE_EXPORT void setBorderShadow(QWidget *widget, QPainter *painter);
         /*!
          * Set widget label font.
          */
-        MUSIC_UTILS_EXPORT void setLabelFontSize(QWidget *widget, int size);
+        TTK_MODULE_EXPORT void setLabelFontSize(QWidget *widget, int size);
         /*!
          * Set widget label font.
          */
-        MUSIC_UTILS_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
+        TTK_MODULE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
         /*!
          * Set text elided text by font.
          */
-        MUSIC_UTILS_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
+        TTK_MODULE_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
         /*!
          * Get text width by font.
          */
-        MUSIC_UTILS_EXPORT int fontTextWidth(const QFont &font, const QString &text);
+        TTK_MODULE_EXPORT int fontTextWidth(const QFont &font, const QString &text);
         /*!
          * Get font height by font.
          */
-        MUSIC_UTILS_EXPORT int fontTextHeight(const QFont &font);
+        TTK_MODULE_EXPORT int fontTextHeight(const QFont &font);
 
-        /*!
-         * Get window screen geometry.
-         */
-        MUSIC_UTILS_EXPORT QRect windowScreenGeometry(int index = 0);
         /*!
          * Adjust the menu position.
          */
-        MUSIC_UTILS_EXPORT void adjustMenuPosition(QMenu *menu);
+        TTK_MODULE_EXPORT void adjustMenuPosition(QMenu *menu);
 
         /*!
          * Set widget transparent.
          */
-        MUSIC_UTILS_EXPORT void setTransparent(QWidget *widget, int alpha);
+        TTK_MODULE_EXPORT void setTransparent(QWidget *widget, int alpha);
         /*!
          * Set ComboBox text.
          */
-        MUSIC_UTILS_EXPORT void setComboBoxText(QComboBox *object, const QString &text);
+        TTK_MODULE_EXPORT void setComboBoxText(QComboBox *object, const QString &text);
         /*!
          * Set widget to round by ratioX and ratioY.
          */
-        MUSIC_UTILS_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
 
     }
 }

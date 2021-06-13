@@ -1,7 +1,7 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicbackgroundmanager.h"
-#include "musicextractwrap.h"
+#include "musicextractwrapper.h"
 
 #include <QTimer>
 #include <QPixmap>
@@ -104,7 +104,7 @@ void MusicDesktopWallpaperThread::timeout()
     else
     {
         MusicBackgroundImage image;
-        MusicExtractWrap::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
+        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
 
         Q_EMIT updateBackground(image.m_pix);
     }

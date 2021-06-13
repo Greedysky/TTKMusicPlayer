@@ -24,7 +24,7 @@
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteItem
+typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
 {
     QString m_name;
     QString m_url;
@@ -47,7 +47,7 @@ TTK_DECLARE_LISTS(MusicSkinRemoteItem)
 /*! @brief The class of the remote skin item group.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteGroup
+typedef struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 {
     QString m_group;
     MusicSkinRemoteItems m_items;
@@ -64,7 +64,7 @@ TTK_DECLARE_LISTS(MusicSkinRemoteGroup)
 /*! @brief The class of the thunder skin XML Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicSkinThunderConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicSkinThunderConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSkinThunderConfigManager)
@@ -85,7 +85,7 @@ public:
 /*! @brief The class of download skin remote background.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundRemoteRequest : public QObject
+class TTK_MODULE_EXPORT MusicDownloadBackgroundRemoteRequest : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBackgroundRemoteRequest)
@@ -118,7 +118,7 @@ public Q_SLOTS:
 /*! @brief The class of download thunder skin background.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundThunderRequest : public MusicDownloadBackgroundRemoteRequest
+class TTK_MODULE_EXPORT MusicDownloadBackgroundThunderRequest : public MusicDownloadBackgroundRemoteRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBackgroundThunderRequest)
@@ -145,7 +145,7 @@ public Q_SLOTS:
 /*! @brief The class of download bing daily skin background.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundBingRequest : public MusicDownloadBackgroundRemoteRequest
+class TTK_MODULE_EXPORT MusicDownloadBackgroundBingRequest : public MusicDownloadBackgroundRemoteRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBackgroundBingRequest)

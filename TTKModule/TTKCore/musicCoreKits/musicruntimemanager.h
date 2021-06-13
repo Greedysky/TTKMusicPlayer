@@ -24,7 +24,7 @@
 /*! @brief The class of the app run time needed.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicRunTimeManager
+class TTK_MODULE_EXPORT MusicRunTimeManager
 {
     TTK_DECLARE_MODULE(MusicRunTimeManager)
 public:

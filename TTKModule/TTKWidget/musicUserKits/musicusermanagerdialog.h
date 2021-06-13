@@ -33,7 +33,7 @@ class MusicUserManagerDialog;
 /*! @brief The class of the user manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserManagerDialog : public QDialog
+class TTK_MODULE_EXPORT MusicUserManagerDialog : public QDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicUserManagerDialog)

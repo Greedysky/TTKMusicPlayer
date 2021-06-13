@@ -29,7 +29,7 @@ class MusicBackgroundPaletteWidget;
 /*! @brief The class of the background palette label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundPalette : public QLabel
+class TTK_MODULE_EXPORT MusicBackgroundPalette : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundPalette)
@@ -75,7 +75,7 @@ protected:
 /*! @brief The class of the background palette widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundPaletteWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicBackgroundPaletteWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundPaletteWidget)

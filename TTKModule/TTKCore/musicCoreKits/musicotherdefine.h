@@ -56,6 +56,12 @@
 #define MUSIC_YEAR_TIME_FORMAT      "yyyy-MM-dd hh:mm"
 #define MUSIC_YEAR_STIME_FORMAT     "yyyy-MM-dd hh:mm:ss"
 
+#define DEFAULT_LOWER_LEVEL         -1
+#define DEFAULT_LOW_LEVEL           0
+#define DEFAULT_NORMAL_LEVEL        -999
+#define DEFAULT_HIGH_LEVEL          999
+#define DEFAULT_HIGHER_LEVEL        9999
+
 //MusicLrcMakerWidget
 #define LRC_MAKER_INDEX_0           0
 #define LRC_MAKER_INDEX_1           1

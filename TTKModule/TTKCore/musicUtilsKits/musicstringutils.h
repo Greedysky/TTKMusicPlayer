@@ -31,89 +31,89 @@ namespace MusicUtils
         /*!
          * Get lrc dir prefix path.
          */
-        MUSIC_UTILS_EXPORT QString lrcPrefix();
+        TTK_MODULE_EXPORT QString lrcPrefix();
         /*!
          * Get music dir prefix path.
          */
-        MUSIC_UTILS_EXPORT QString musicPrefix();
+        TTK_MODULE_EXPORT QString musicPrefix();
 
         /*!
          * Get string prefix path.
          */
-        MUSIC_UTILS_EXPORT QString stringPrefix(const QString &name);
+        TTK_MODULE_EXPORT QString stringPrefix(const QString &name);
         /*!
          * Get string prefix path.
          */
-        MUSIC_UTILS_EXPORT QString stringPrefix(const QString &name, const QString &prefix);
+        TTK_MODULE_EXPORT QString stringPrefix(const QString &name, const QString &prefix);
         /*!
          * Get string suffix path.
          */
-        MUSIC_UTILS_EXPORT QString stringSuffix(const QString &name);
+        TTK_MODULE_EXPORT QString stringSuffix(const QString &name);
         /*!
          * Get string suffix path.
          */
-        MUSIC_UTILS_EXPORT QString stringSuffix(const QString &name, const QString &suffix);
+        TTK_MODULE_EXPORT QString stringSuffix(const QString &name, const QString &suffix);
         /*!
          * Get string splite path.
          */
-        MUSIC_UTILS_EXPORT QString stringSplitToken(const QString &name);
+        TTK_MODULE_EXPORT QString stringSplitToken(const QString &name);
         /*!
          * Get string splite path.
          */
-        MUSIC_UTILS_EXPORT QString stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
+        TTK_MODULE_EXPORT QString stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert = true);
         /*!
          * Get split string value.
          */
-        MUSIC_UTILS_EXPORT QStringList stringSplit(const QString &value, const QString &key = "-");
+        TTK_MODULE_EXPORT QStringList stringSplit(const QString &value, const QString &key = "-");
         /*!
          * Remove given key in string, default is space.
          */
-        MUSIC_UTILS_EXPORT QString removeStringToken(const QString &value, const QString &key = " ");
+        TTK_MODULE_EXPORT QString removeStringToken(const QString &value, const QString &key = " ");
 
         /*!
          * Get new \r \n string key.
          */
-        MUSIC_UTILS_EXPORT QString newlines();
+        TTK_MODULE_EXPORT QString newlines();
 
         /*!
          * Check the given char is or not chinese character.
          */
-        MUSIC_UTILS_EXPORT bool isChinese(const QChar &c);
+        TTK_MODULE_EXPORT bool isChinese(const QChar &c);
 
         /*!
          * Get song artist name.
          */
-        MUSIC_UTILS_EXPORT QString artistName(const QString &value, const QString &key = "-");
+        TTK_MODULE_EXPORT QString artistName(const QString &value, const QString &key = "-");
         /*!
          * Get song name.
          */
-        MUSIC_UTILS_EXPORT QString songName(const QString &value, const QString &key = "-");
+        TTK_MODULE_EXPORT QString songName(const QString &value, const QString &key = "-");
 
         /*!
          * Illegal characters check.
          */
-        MUSIC_UTILS_EXPORT QStringList illegalCharacters();
+        TTK_MODULE_EXPORT QStringList illegalCharacters();
         /*!
          * Illegal characters check.
          */
-        MUSIC_UTILS_EXPORT bool illegalCharactersCheck(const QString &value);
+        TTK_MODULE_EXPORT bool illegalCharactersCheck(const QString &value);
         /*!
          * Illegal characters replaced.
          */
-        MUSIC_UTILS_EXPORT QString illegalCharactersReplaced(const QString &value);
+        TTK_MODULE_EXPORT QString illegalCharactersReplaced(const QString &value);
 
         /*!
          * Transform colors string to color list.
          */
-        MUSIC_UTILS_EXPORT QList<QColor> readColorConfig(const QString &value);
+        TTK_MODULE_EXPORT QList<QColor> readColorConfig(const QString &value);
         /*!
          * Transform color to color string.
          */
-        MUSIC_UTILS_EXPORT QString writeColorConfig(const QColor &color);
+        TTK_MODULE_EXPORT QString writeColorConfig(const QColor &color);
         /*!
          * Transform color list to colors string.
          */
-        MUSIC_UTILS_EXPORT QString writeColorConfig(const QList<QColor> &colors);
+        TTK_MODULE_EXPORT QString writeColorConfig(const QList<QColor> &colors);
 
     }
 }

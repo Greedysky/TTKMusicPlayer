@@ -24,7 +24,7 @@
 /*! @brief The class of kuwo download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWDownloadBackgroundRequest : public MusicDownloadBackgroundRequest
+class TTK_MODULE_EXPORT MusicKWDownloadBackgroundRequest : public MusicDownloadBackgroundRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWDownloadBackgroundRequest)

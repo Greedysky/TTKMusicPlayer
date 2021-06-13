@@ -24,7 +24,7 @@
 /*! @brief The class of the lcal songs table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsTableWidget : public MusicAbstractSongsListTableWidget
+class TTK_MODULE_EXPORT MusicLocalSongsTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongsTableWidget)
@@ -74,7 +74,7 @@ typedef QMapIterator<QString , QFileInfoList> MusicInfoDataIterator;
 /*! @brief The class of the lcal songs info table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsInfoTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicLocalSongsInfoTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongsInfoTableWidget)

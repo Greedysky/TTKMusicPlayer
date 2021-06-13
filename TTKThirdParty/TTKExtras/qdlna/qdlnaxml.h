@@ -20,14 +20,13 @@
  ================================================= */
 
 #include "qdlnaservice.h"
-#include "musicextrasglobaldefine.h"
 
 class QDlnaXmlPrivate;
 
 /*! @brief The class of the dlna xml.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QDlnaXml
+class TTK_MODULE_EXPORT QDlnaXml
 {
 public:
     QDlnaXml();

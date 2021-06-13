@@ -26,7 +26,7 @@ class MusicCheckBoxDelegate;
 /*! @brief The class of the fill item table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFillItemTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicFillItemTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFillItemTableWidget)

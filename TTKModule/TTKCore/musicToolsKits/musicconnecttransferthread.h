@@ -24,7 +24,7 @@
 /*! @brief The class of the connect transfer thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicConnectTransferThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicConnectTransferThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConnectTransferThread)

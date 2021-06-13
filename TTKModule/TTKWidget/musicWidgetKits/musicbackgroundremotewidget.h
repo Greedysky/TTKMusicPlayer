@@ -30,7 +30,7 @@ class MusicDownloadQueueRequest;
 /*! @brief The class of the remote background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundRemoteWidget : public QWidget
+class TTK_MODULE_EXPORT MusicBackgroundRemoteWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundRemoteWidget)
@@ -80,7 +80,7 @@ protected:
 /*! @brief The class of the thunder background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundThunderWidget : public MusicBackgroundRemoteWidget
+class TTK_MODULE_EXPORT MusicBackgroundThunderWidget : public MusicBackgroundRemoteWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundThunderWidget)
@@ -136,7 +136,7 @@ protected:
 /*! @brief The class of the daily background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicBackgroundDailyWidget : public MusicBackgroundRemoteWidget
+class TTK_MODULE_EXPORT MusicBackgroundDailyWidget : public MusicBackgroundRemoteWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundDailyWidget)

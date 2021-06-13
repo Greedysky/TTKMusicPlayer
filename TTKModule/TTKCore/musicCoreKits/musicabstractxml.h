@@ -28,7 +28,7 @@
 /*! @brief The class of the xml attribute.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicXmlAttribute
+typedef struct TTK_MODULE_EXPORT MusicXmlAttribute
 {
     QString m_key;
     QVariant m_value;
@@ -44,7 +44,7 @@ TTK_DECLARE_LISTS(MusicXmlAttribute)
 /*! @brief The class of the xml node hepler.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicXmlNodeHelper
+class TTK_MODULE_EXPORT MusicXmlNodeHelper
 {
 public:
     /*!
@@ -79,7 +79,7 @@ private:
 /*! @brief The class of the base class of xml interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicAbstractXml : public QObject
+class TTK_MODULE_EXPORT MusicAbstractXml : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractXml)

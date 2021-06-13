@@ -1,6 +1,5 @@
 #include "toolsurl.h"
 #include "ui_toolsurl.h"
-#include "musicglobal.h"
 #include "musicalgorithmutils.h"
 
 ToolsUrl::ToolsUrl(QWidget *parent)

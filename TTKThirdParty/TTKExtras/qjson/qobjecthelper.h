@@ -21,7 +21,7 @@
 #ifndef QOBJECTHELPER_H
 #define QOBJECTHELPER_H
 
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 #include <QtCore/QLatin1String>
 #include <QtCore/QStringList>
@@ -115,7 +115,7 @@ namespace QJson {
     \sa Parser
     \sa Serializer
   */
-  class MUSIC_EXTRAS_EXPORT QObjectHelper {
+  class TTK_MODULE_EXPORT QObjectHelper {
     public:
       QObjectHelper();
 

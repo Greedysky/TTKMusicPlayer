@@ -33,7 +33,7 @@ namespace Ui {
 /*! @brief The class of the app left area widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicLeftAreaWidget : public QWidget
+class TTK_MODULE_EXPORT MusicLeftAreaWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLeftAreaWidget)

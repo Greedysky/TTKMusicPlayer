@@ -30,7 +30,7 @@ class MusicDownloadQueueRequest;
 /*! @brief The class of the screen saver hover item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicScreenSaverHoverItem : public QLabel
+class TTK_MODULE_EXPORT MusicScreenSaverHoverItem : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverHoverItem)
@@ -86,7 +86,7 @@ protected:
 /*! @brief The class of the screen saver list item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicScreenSaverListItem : public QLabel
+class TTK_MODULE_EXPORT MusicScreenSaverListItem : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverListItem)
@@ -122,7 +122,7 @@ protected:
 /*! @brief The class of the screen saver list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicScreenSaverListWidget : public QWidget
+class TTK_MODULE_EXPORT MusicScreenSaverListWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverListWidget)
@@ -160,7 +160,7 @@ protected:
 /*! @brief The class of the screen saver widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicScreenSaverWidget : public QWidget
+class TTK_MODULE_EXPORT MusicScreenSaverWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverWidget)
@@ -222,7 +222,7 @@ private:
 /*! @brief The class of the screen saver background widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicScreenSaverBackgroundWidget : public MusicTransitionAnimationLabel
+class TTK_MODULE_EXPORT MusicScreenSaverBackgroundWidget : public MusicTransitionAnimationLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicScreenSaverBackgroundWidget)

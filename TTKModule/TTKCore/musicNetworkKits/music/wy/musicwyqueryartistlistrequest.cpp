@@ -3,7 +3,7 @@
 MusicWYQueryArtistListRequest::MusicWYQueryArtistListRequest(QObject *parent)
     : MusicQueryArtistListRequest(parent)
 {
-    m_pageSize = DEFAULT_LEVEL_HIGHER;
+    m_pageSize = DEFAULT_HIGHER_LEVEL;
     m_queryServer = QUERY_WY_INTERFACE;
 }
 
@@ -39,7 +39,7 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
 
         initial = QString::number(mIdx);
     }
-    m_totalSize = DEFAULT_LEVEL_HIGHER;
+    m_totalSize = DEFAULT_HIGHER_LEVEL;
 
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();

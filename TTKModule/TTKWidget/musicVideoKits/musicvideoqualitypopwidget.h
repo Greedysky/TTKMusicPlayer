@@ -25,7 +25,7 @@
 /*! @brief The class of the video quality popup widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoQualityPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicVideoQualityPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoQualityPopWidget)

@@ -26,7 +26,7 @@
 /*! @brief The class of the moving widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractMoveWidget : public QWidget
+class TTK_MODULE_EXPORT MusicAbstractMoveWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveWidget)
@@ -85,7 +85,7 @@ protected:
 /*! @brief The class of the moving widget single without ui widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractMoveSingleWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicAbstractMoveSingleWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveSingleWidget)

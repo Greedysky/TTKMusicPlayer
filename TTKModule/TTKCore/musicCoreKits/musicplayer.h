@@ -33,7 +33,7 @@ class MusicPlaylist;
 /*! @brief The class of the music player.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlayer : public QObject
+class TTK_MODULE_EXPORT MusicPlayer : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayer)

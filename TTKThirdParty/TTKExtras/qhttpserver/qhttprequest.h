@@ -29,7 +29,7 @@ class QHttpRequestPrivate;
 /*! @brief The class of the http request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QHttpRequest : public QObject
+class TTK_MODULE_EXPORT QHttpRequest : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(HeaderHash headers READ headers)

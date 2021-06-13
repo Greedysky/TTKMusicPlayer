@@ -25,7 +25,7 @@
 /*! @brief The class of the slider that can clicked any position.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicClickedSlider : public QSlider
+class TTK_MODULE_EXPORT MusicClickedSlider : public QSlider
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicClickedSlider)

@@ -25,7 +25,7 @@
 /*! @brief The class of kuwo query artist list download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWQueryArtistListRequest : public MusicQueryArtistListRequest
+class TTK_MODULE_EXPORT MusicKWQueryArtistListRequest : public MusicQueryArtistListRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWQueryArtistListRequest)

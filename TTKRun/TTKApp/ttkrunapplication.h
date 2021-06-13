@@ -20,14 +20,14 @@
  ================================================= */
 
 #include <QApplication>
-#include "musicrunglobaldefine.h"
+#include "ttkprivate.h"
 
 class TTKRunApplicationPrivate;
 
 /*! @brief The class of the ttk run application.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_RUN_EXPORT TTKRunApplication : public QApplication
+class TTK_MODULE_EXPORT TTKRunApplication : public QApplication
 {
     Q_OBJECT
 public:
@@ -39,27 +39,6 @@ public:
      * Object contsructor.
     */
     TTKRunApplication(const QString &id, int &argc, char **argv);
-
-#if !TTK_QT_VERSION_CHECK(5,0,0)
-    /*!
-     * Object contsructor.
-    */
-    TTKRunApplication(int &argc, char **argv, Type type);
-#if defined(Q_WS_X11)
-    /*!
-     * Object contsructor.
-    */
-    TTKRunApplication(Display *dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
-    /*!
-     * Object contsructor.
-    */
-    TTKRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
-    /*!
-     * Object contsructor.
-    */
-    TTKRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
-#endif
-#endif
 
     /*!
      * Check the current server is running or not.

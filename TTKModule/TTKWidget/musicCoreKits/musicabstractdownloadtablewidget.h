@@ -27,7 +27,7 @@ class MusicProgressBarDelegate;
 /*! @brief The class of the download abstract table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractDownloadTableWidget : public MusicAbstractSongsListTableWidget
+class TTK_MODULE_EXPORT MusicAbstractDownloadTableWidget : public MusicAbstractSongsListTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractDownloadTableWidget)

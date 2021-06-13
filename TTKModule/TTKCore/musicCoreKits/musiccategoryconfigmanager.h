@@ -24,7 +24,7 @@
 /*! @brief The class of the results category item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicResultsCategoryItem
+typedef struct TTK_MODULE_EXPORT MusicResultsCategoryItem
 {
     QString m_key;
     QString m_value;
@@ -46,7 +46,7 @@ TTK_DECLARE_LISTS(MusicResultsCategoryItem)
 /*! @brief The class of the results category core.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicResultsCategory
+typedef struct TTK_MODULE_EXPORT MusicResultsCategory
 {
     QString m_category;
     MusicResultsCategoryItems m_items;
@@ -57,7 +57,7 @@ TTK_DECLARE_LISTS(MusicResultsCategory)
 /*! @brief The class of the category Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCategoryConfigManager)

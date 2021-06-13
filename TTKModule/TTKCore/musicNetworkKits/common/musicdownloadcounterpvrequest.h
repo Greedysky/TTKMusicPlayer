@@ -30,7 +30,7 @@ const QString RM_KEYWORD = "S3Z3ZCsxRzJTU2krRCtoeWNjMnhodjRtYk43VVRSYjhXc05vKzM3
 /*! @brief The class of get counter pv of player.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadCounterPVRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicDownloadCounterPVRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadCounterPVRequest)

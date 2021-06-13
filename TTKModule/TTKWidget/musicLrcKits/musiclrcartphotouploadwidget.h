@@ -28,7 +28,7 @@ class MusicLrcArtPhotoUploadWidget;
 /*! @brief The class of the lrc art photo upload.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcArtPhotoUploadWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicLrcArtPhotoUploadWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcArtPhotoUploadWidget)

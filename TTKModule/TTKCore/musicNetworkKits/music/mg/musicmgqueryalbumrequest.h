@@ -25,7 +25,7 @@
 /*! @brief The class of migu query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryAlbumRequest : public MusicQueryAlbumRequest,
+class TTK_MODULE_EXPORT MusicMGQueryAlbumRequest : public MusicQueryAlbumRequest,
                                                       private MusicMGQueryInterface
 {
     Q_OBJECT

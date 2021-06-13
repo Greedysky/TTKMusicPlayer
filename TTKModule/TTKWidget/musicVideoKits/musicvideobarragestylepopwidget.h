@@ -24,7 +24,7 @@
 /*! @brief The class of the video varrage style popup widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoBarrageStylePopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicVideoBarrageStylePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoBarrageStylePopWidget)

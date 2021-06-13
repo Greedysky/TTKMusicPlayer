@@ -1,5 +1,5 @@
-#ifndef QDESWRAP_H
-#define QDESWRAP_H
+#ifndef QAESWRAPPER_H
+#define QAESWRAPPER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,38 +19,37 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkglobaldefine.h"
 
-class QDesWrapPrivate;
-
-/*! @brief The class of the des wrapper.
+/*! @brief The class of the aes wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QDesWrap
+class TTK_MODULE_EXPORT QAesWrapper
 {
 public:
-    enum Mode
-    {
-        ENCRYPT = 0,
-        DECRYPT = 1
-    };
     /*!
      * Object contsructor.
      */
-    QDesWrap();
+    QAesWrapper();
 
     /*!
-     * Encrypt des by input.
+     * Encrypt des ECB by input.
      */
-    QByteArray encrypt(const QByteArray &in, const QByteArray &key);
+    QByteArray encryptECB(const QByteArray &in, const QByteArray &key);
     /*!
-     * Decrypt des by input.
+     * Decrypt des ECB by input.
      */
-    QByteArray decrypt(const QByteArray &in, const QByteArray &key);
+    QByteArray decryptECB(const QByteArray &in, const QByteArray &key);
 
-private:
-    TTK_DECLARE_PRIVATE(QDesWrap)
+    /*!
+     * Encrypt aes CBC by input.
+     */
+    QByteArray encryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
+    /*!
+     * Decrypt aes CBC by input.
+     */
+    QByteArray decryptCBC(const QByteArray &in, const QByteArray &key, const QByteArray &iv);
 
 };
 
-#endif // QDESWRAP_H
+#endif // QAESWRAPPER_H

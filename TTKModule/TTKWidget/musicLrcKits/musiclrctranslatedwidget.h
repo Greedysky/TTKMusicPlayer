@@ -25,7 +25,7 @@
 /*! @brief The class of the lrc translate widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcTranslatedWidget : public QLabel
+class TTK_MODULE_EXPORT MusicLrcTranslatedWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcTranslatedWidget)

@@ -21,14 +21,14 @@
 
 #include <QObject>
 #include <QKeySequence>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QGlobalShortcutPrivate;
 
 /*! @brief The class of the qglobal shortcut.
  * @author libqxt <foundation@libqxt.org>
  */
-class MUSIC_EXTRAS_EXPORT QGlobalShortcut : public QObject
+class TTK_MODULE_EXPORT QGlobalShortcut : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool enabled READ isEnabled WRITE setEnabled)

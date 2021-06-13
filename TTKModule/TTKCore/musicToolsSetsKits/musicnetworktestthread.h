@@ -6,7 +6,7 @@
 /*! @brief The class of thread to test input url network.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicNetworkTestThread : public MusicAbstractThread
+class TTK_MODULE_EXPORT MusicNetworkTestThread : public MusicAbstractThread
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkTestThread)

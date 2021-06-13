@@ -28,7 +28,7 @@
 /*! @brief The class of the float widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractFloatWidget : public QLabel
+class TTK_MODULE_EXPORT MusicAbstractFloatWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractFloatWidget)

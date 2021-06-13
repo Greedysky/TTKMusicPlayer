@@ -25,7 +25,7 @@
 /*! @brief The class of the music play item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicPlayItem
+typedef struct TTK_MODULE_EXPORT MusicPlayItem
 {
     int m_toolIndex;
     QString m_path;
@@ -57,7 +57,7 @@ TTK_DECLARE_LISTS(MusicPlayItem)
 /*! @brief The class of the music play list.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlaylist : public QObject
+class TTK_MODULE_EXPORT MusicPlaylist : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylist)
@@ -181,7 +181,7 @@ public Q_SLOTS:
     /*!
      * Set current play index.
      */
-    void setCurrentIndex(int index = DEFAULT_LEVEL_NORMAL);
+    void setCurrentIndex(int index = DEFAULT_NORMAL_LEVEL);
     /*!
      * Set current play index.
      */

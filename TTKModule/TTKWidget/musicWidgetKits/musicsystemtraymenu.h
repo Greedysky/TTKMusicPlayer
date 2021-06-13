@@ -27,7 +27,7 @@ class MusicClickedSlider;
 /*! @brief The class of the system tray menu widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
+class TTK_MODULE_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSystemTrayMenu)

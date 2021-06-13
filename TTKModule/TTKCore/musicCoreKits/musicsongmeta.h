@@ -27,7 +27,7 @@ struct MusicMeta;
 /*! @brief The class of the music song meta.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicSongMeta
+class TTK_MODULE_EXPORT MusicSongMeta
 {
     TTK_DECLARE_MODULE(MusicSongMeta)
 public:

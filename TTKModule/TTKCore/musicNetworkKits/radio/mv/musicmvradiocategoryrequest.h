@@ -24,7 +24,7 @@
 /*! @brief The class of mv radio category request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMVRadioCategoryRequest : public MusicAbstractMVRadioRequest
+class TTK_MODULE_EXPORT MusicMVRadioCategoryRequest : public MusicAbstractMVRadioRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMVRadioCategoryRequest)

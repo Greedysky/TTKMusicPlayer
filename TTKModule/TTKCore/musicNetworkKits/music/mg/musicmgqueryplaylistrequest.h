@@ -25,7 +25,7 @@
 /*! @brief The class of migu query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryPlaylistRequest : public MusicQueryPlaylistRequest,
+class TTK_MODULE_EXPORT MusicMGQueryPlaylistRequest : public MusicQueryPlaylistRequest,
                                                          private MusicMGQueryInterface
 {
     Q_OBJECT

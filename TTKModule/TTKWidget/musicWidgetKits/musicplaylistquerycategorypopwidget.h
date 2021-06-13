@@ -25,7 +25,7 @@
 /*! @brief The class of the playlist music query category item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlaylistQueryCategoryItem : public QWidget
+class TTK_MODULE_EXPORT MusicPlaylistQueryCategoryItem : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistQueryCategoryItem)
@@ -62,7 +62,7 @@ protected:
 /*! @brief The class of the playlist music found category pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryPopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicPlaylistFoundCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistFoundCategoryPopWidget)

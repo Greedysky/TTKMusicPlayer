@@ -29,7 +29,7 @@ class MusicBarrageWidget;
 /*! @brief The class of the video show widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
+class TTK_MODULE_EXPORT MusicViewWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicViewWidget)
@@ -70,7 +70,7 @@ protected:
 /*! @brief The class of the video view widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoView : public QAbstractScrollArea
+class TTK_MODULE_EXPORT MusicVideoView : public QAbstractScrollArea
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoView)

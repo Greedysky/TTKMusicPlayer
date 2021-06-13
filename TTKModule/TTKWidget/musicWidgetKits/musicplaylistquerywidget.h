@@ -30,7 +30,7 @@ class MusicPlaylistFoundCategoryPopWidget;
 /*! @brief The class of the playlist music item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlaylistQueryItemWidget : public QLabel
+class TTK_MODULE_EXPORT MusicPlaylistQueryItemWidget : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistQueryItemWidget)
@@ -79,7 +79,7 @@ protected:
 /*! @brief The class of the playlist music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlaylistQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicPlaylistQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlaylistQueryWidget)

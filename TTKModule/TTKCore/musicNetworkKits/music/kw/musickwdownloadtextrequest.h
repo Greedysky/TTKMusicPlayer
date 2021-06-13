@@ -24,7 +24,7 @@
 /*! @brief The class of downloading the type of kuwo txt.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWDownLoadTextRequest : public MusicAbstractDownLoadRequest
+class TTK_MODULE_EXPORT MusicKWDownLoadTextRequest : public MusicAbstractDownLoadRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWDownLoadTextRequest)

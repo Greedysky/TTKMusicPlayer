@@ -20,7 +20,7 @@
  ================================================= */
 
 #include "qdlnahelper.h"
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QHttpRequest;
 class QHttpResponse;
@@ -29,7 +29,7 @@ class QDlnaFileServerPrivate;
 /*! @brief The class of the dlna file server.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QDlnaFileServer : public QObject
+class TTK_MODULE_EXPORT QDlnaFileServer : public QObject
 {
     Q_OBJECT
 public:

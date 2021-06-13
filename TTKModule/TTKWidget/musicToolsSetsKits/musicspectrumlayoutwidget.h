@@ -27,7 +27,7 @@
 /*! @brief The class of the music spectrum layout item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumLayoutItem : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicSpectrumLayoutItem : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumLayoutItem)
@@ -65,7 +65,7 @@ private:
 /*! @brief The class of the music spectrum layout widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumLayoutWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicSpectrumLayoutWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumLayoutWidget)
@@ -121,7 +121,7 @@ protected:
 /*! @brief The class of the music spectrum normal layout widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumNormalLayoutWidget : public MusicSpectrumLayoutWidget
+class TTK_MODULE_EXPORT MusicSpectrumNormalLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumNormalLayoutWidget)
@@ -145,7 +145,7 @@ protected:
 /*! @brief The class of the music spectrum plus layout widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumPlusLayoutWidget : public MusicSpectrumLayoutWidget
+class TTK_MODULE_EXPORT MusicSpectrumPlusLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumPlusLayoutWidget)
@@ -169,7 +169,7 @@ protected:
 /*! @brief The class of the music spectrum flow layout widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumFlowLayoutWidget : public MusicSpectrumLayoutWidget
+class TTK_MODULE_EXPORT MusicSpectrumFlowLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumFlowLayoutWidget)
@@ -193,7 +193,7 @@ protected:
 /*! @brief The class of the music spectrum wave layout widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumWaveLayoutWidget : public MusicSpectrumLayoutWidget
+class TTK_MODULE_EXPORT MusicSpectrumWaveLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumWaveLayoutWidget)
@@ -217,7 +217,7 @@ protected:
 /*! @brief The class of the music spectrum florid layout widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSpectrumFloridLayoutWidget : public MusicSpectrumLayoutWidget
+class TTK_MODULE_EXPORT MusicSpectrumFloridLayoutWidget : public MusicSpectrumLayoutWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSpectrumFloridLayoutWidget)

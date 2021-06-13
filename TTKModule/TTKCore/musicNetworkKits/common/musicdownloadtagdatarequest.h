@@ -25,7 +25,7 @@
 /*! @brief The class of downloading the type of data by custom tags.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownloadTagDataRequest : public MusicDownloadDataRequest
+class TTK_MODULE_EXPORT MusicDownloadTagDataRequest : public MusicDownloadDataRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadTagDataRequest)

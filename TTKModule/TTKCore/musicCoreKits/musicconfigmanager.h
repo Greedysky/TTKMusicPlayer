@@ -25,7 +25,7 @@
 /*! @brief The class of the xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicConfigManager)

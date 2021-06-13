@@ -26,7 +26,7 @@ class MusicClickedLabel;
 /*! @brief The class of the paging widget object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPagingWidgetModule : public QObject
+class TTK_MODULE_EXPORT MusicPagingWidgetModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPagingWidgetModule)

@@ -24,7 +24,7 @@
 /*! @brief The class of migu mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGQueryMovieRequest : public MusicQueryMovieRequest
+class TTK_MODULE_EXPORT MusicMGQueryMovieRequest : public MusicQueryMovieRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMGQueryMovieRequest)

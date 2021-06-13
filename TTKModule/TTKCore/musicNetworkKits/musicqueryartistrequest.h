@@ -24,7 +24,7 @@
 /*! @brief The class of query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicQueryArtistRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicQueryArtistRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQueryArtistRequest)

@@ -26,7 +26,7 @@
 /*! @brief The class of the label show code area widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicCodeAreaWidget : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicCodeAreaWidget : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCodeAreaWidget)

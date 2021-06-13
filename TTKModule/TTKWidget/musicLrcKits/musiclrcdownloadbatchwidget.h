@@ -30,7 +30,7 @@ class MusicLrcDownloadBatchWidget;
 /*! @brief The class of the the lrc batch download table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLrcDownloadBatchTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicLrcDownloadBatchTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcDownloadBatchTableWidget)
@@ -57,7 +57,7 @@ public Q_SLOTS:
 /*! @brief The class of the lrc batch download widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcDownloadBatchWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicLrcDownloadBatchWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcDownloadBatchWidget)

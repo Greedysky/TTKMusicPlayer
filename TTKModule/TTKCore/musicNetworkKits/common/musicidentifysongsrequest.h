@@ -19,13 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicglobal.h"
 #include "musicabstractnetwork.h"
 
 /*! @brief The class of the song identify data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicSongIdentifyData
+typedef struct TTK_MODULE_EXPORT MusicSongIdentifyData
 {
     QString m_singerName;
     QString m_songName;
@@ -35,7 +34,7 @@ TTK_DECLARE_LISTS(MusicSongIdentifyData)
 /*! @brief The class of the song identify query request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicIdentifySongsRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicIdentifySongsRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicIdentifySongsRequest)

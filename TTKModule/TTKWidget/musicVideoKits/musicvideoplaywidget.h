@@ -34,7 +34,7 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the video play widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoPlayWidget)

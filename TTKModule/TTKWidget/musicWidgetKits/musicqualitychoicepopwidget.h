@@ -25,7 +25,7 @@
 /*! @brief The class of the quality choice table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQualityChoiceTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicQualityChoiceTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQualityChoiceTableWidget)
@@ -57,7 +57,7 @@ public Q_SLOTS:
 /*! @brief The class of the quality choice pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQualityChoicePopWidget : public MusicToolMenuWidget
+class TTK_MODULE_EXPORT MusicQualityChoicePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQualityChoicePopWidget)

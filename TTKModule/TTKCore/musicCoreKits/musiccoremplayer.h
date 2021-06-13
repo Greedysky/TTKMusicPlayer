@@ -28,7 +28,7 @@ class QProcess;
 /*! @brief The class of the mplayer core.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicCoreMPlayer : public QObject
+class TTK_MODULE_EXPORT MusicCoreMPlayer : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCoreMPlayer)

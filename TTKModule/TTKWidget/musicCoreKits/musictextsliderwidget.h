@@ -25,7 +25,7 @@
 /*! @brief The class of the text slider widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicTextSliderWidget : public QWidget
+class TTK_MODULE_EXPORT MusicTextSliderWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTextSliderWidget)

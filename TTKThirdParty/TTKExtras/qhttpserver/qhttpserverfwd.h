@@ -21,7 +21,7 @@
 
 #include <QHash>
 #include <QObject>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 /*!
  * A map of request or response headers

@@ -35,7 +35,7 @@
 /*! @brief The class of the table widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAbstractTableWidget : public QTableWidget
+class TTK_MODULE_EXPORT MusicAbstractTableWidget : public QTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractTableWidget)

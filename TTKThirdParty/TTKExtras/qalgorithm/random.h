@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*! @brief The class of the random wrapper.
  * @author Greedysky <greedysky@163.com>
@@ -29,11 +29,11 @@ namespace QRandom
     /*!
      * Init random value seed.
      */
-    MUSIC_EXTRAS_EXPORT void initRandom();
+    TTK_MODULE_EXPORT void initRandom();
     /*!
      * Get random value.
      */
-    MUSIC_EXTRAS_EXPORT int random(int value);
+    TTK_MODULE_EXPORT int random(int value);
 }
 
 #endif //RANDOM_H

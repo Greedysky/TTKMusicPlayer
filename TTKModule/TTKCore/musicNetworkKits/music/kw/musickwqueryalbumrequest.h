@@ -25,7 +25,7 @@
 /*! @brief The class of kuwo query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWQueryAlbumRequest : public MusicQueryAlbumRequest,
+class TTK_MODULE_EXPORT MusicKWQueryAlbumRequest : public MusicQueryAlbumRequest,
                                                       private MusicKWQueryInterface
 {
     Q_OBJECT

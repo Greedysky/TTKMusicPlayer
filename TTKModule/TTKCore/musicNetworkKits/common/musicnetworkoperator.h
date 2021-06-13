@@ -25,7 +25,7 @@
 /*! @brief The class of music network operator.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicNetworkOperator : public QObject
+class TTK_MODULE_EXPORT MusicNetworkOperator : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkOperator)

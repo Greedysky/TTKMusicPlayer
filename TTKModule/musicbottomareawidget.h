@@ -34,7 +34,7 @@ namespace Ui {
 /*! @brief The class of the app bottom area widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_GUI_EXPORT MusicBottomAreaWidget : public QWidget
+class TTK_MODULE_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBottomAreaWidget)

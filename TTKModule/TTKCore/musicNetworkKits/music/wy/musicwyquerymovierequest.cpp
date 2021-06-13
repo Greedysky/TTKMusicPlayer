@@ -425,13 +425,13 @@ void MusicWYQueryMovieRequest::getArtistMoviesCount(qint64 id)
         return;
     }
 
-    m_totalSize = DEFAULT_LEVEL_HIGHER;
+    m_totalSize = DEFAULT_HIGHER_LEVEL;
 
     QNetworkRequest request;
     TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL_HIGHER));
+                      MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(DEFAULT_HIGHER_LEVEL));
     TTK_NETWORK_MANAGER_CHECK();
     MusicObject::setSslConfiguration(&request);
 

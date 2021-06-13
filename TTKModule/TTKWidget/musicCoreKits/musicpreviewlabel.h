@@ -24,7 +24,7 @@
 /*! @brief The class of the lrc color preview label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicColorPreviewLabel : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicColorPreviewLabel : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicColorPreviewLabel)
@@ -61,7 +61,7 @@ protected:
 /*! @brief The class of the label previewed.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_WIDGET_EXPORT MusicPreviewLabelItem
+typedef struct TTK_MODULE_EXPORT MusicPreviewLabelItem
 {
     QString m_family;
     int m_size;
@@ -73,7 +73,7 @@ typedef struct MUSIC_WIDGET_EXPORT MusicPreviewLabelItem
 /*! @brief The class of the lrc setting preview label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPreviewLabel : public QLabel
+class TTK_MODULE_EXPORT MusicPreviewLabel : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPreviewLabel)
@@ -113,7 +113,7 @@ protected:
 /*! @brief The class of the theme line label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicThemeLineLabel : public QLabel
+class TTK_MODULE_EXPORT MusicThemeLineLabel : public QLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicThemeLineLabel)

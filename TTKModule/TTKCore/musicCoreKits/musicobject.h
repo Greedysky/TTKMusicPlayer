@@ -25,7 +25,7 @@
 #include <QtAndroidExtras/QtAndroid>
 #include <QtAndroidExtras/QAndroidJniEnvironment>
 #endif
-#include "musicglobal.h"
+#include "ttkglobal.h"
 
 #define DOT                     "."
 

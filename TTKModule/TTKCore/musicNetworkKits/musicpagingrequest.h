@@ -24,7 +24,7 @@
 /*! @brief The class of abstract download paing request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicPagingRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicPagingRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPagingRequest)

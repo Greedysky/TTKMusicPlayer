@@ -24,7 +24,7 @@
 /*! @brief The class of download discover toplist request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDiscoverListRequest : public MusicPagingRequest
+class TTK_MODULE_EXPORT MusicDiscoverListRequest : public MusicPagingRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDiscoverListRequest)

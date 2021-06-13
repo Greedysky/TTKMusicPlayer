@@ -27,7 +27,7 @@ const QString MV_CATEGORY_URL       = "a2JPOG81ckd3T1NtN004dnRBZ2JubTZYeFYxSFBXW
 /*! @brief The class of music mv radio request abstract.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicAbstractMVRadioRequest : public MusicAbstractQueryRequest
+class TTK_MODULE_EXPORT MusicAbstractMVRadioRequest : public MusicAbstractQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMVRadioRequest)

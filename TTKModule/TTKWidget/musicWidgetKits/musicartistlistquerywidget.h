@@ -30,7 +30,7 @@ class MusicArtistListQueryCategoryPopWidget;
 /*! @brief The class of the artist list music item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistListQueryItemWidget : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicArtistListQueryItemWidget : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistListQueryItemWidget)
@@ -67,7 +67,7 @@ protected:
 /*! @brief The class of the artist list music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistListQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicArtistListQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicArtistListQueryWidget)

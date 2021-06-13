@@ -27,7 +27,7 @@ class MusicSongsToolItemRenamedWidget;
 /*! @brief The class of the tool box top widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsToolBoxTopWidget : public MusicFunctionToolBoxTopWidget
+class TTK_MODULE_EXPORT MusicSongsToolBoxTopWidget : public MusicFunctionToolBoxTopWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsToolBoxTopWidget)
@@ -147,7 +147,7 @@ protected:
 /*! @brief The class of the tool box mask widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTopWidget
+class TTK_MODULE_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTopWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsToolBoxMaskWidget)
@@ -173,7 +173,7 @@ protected:
 /*! @brief The class of the tool box widget item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
+class TTK_MODULE_EXPORT MusicSongsToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsToolBoxWidgetItem)
@@ -232,7 +232,7 @@ Q_SIGNALS:
 /*! @brief The class of the tool box widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidget : public MusicFunctionToolBoxWidget
+class TTK_MODULE_EXPORT MusicSongsToolBoxWidget : public MusicFunctionToolBoxWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsToolBoxWidget)

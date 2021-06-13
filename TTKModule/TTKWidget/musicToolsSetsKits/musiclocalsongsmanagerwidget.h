@@ -35,7 +35,7 @@ class MusicLocalSongsManagerWidget;
 /*! @brief The class of the lcal songs manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongsManagerWidget)

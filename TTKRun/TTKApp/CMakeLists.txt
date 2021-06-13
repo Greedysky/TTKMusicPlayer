@@ -20,7 +20,6 @@ endif()
 include_directories(${MUSIC_CONFIG_DIR})
 
 set(MUSIC_HEADERS
-    ../musicrunglobaldefine.h
     ttklocalpeer.h
     ttkrunapplication.h
     ttkrunobject.h

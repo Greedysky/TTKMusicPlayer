@@ -24,7 +24,7 @@
 /*! @brief The class of query migu artist similar download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGArtistSimilarRequest : public MusicSimilarRequest
+class TTK_MODULE_EXPORT MusicMGArtistSimilarRequest : public MusicSimilarRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMGArtistSimilarRequest)

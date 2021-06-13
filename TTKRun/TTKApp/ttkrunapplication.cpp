@@ -43,38 +43,6 @@ TTKRunApplication::TTKRunApplication(const QString &appId, int &argc, char **arg
     initialize(appId);
 }
 
-#if !TTK_QT_VERSION_CHECK(5,0,0)
-TTKRunApplication::TTKRunApplication(int &argc, char **argv, Type type)
-    : QApplication(argc, argv, type)
-{
-    TTK_INIT_PRIVATE(TTKRunApplication);
-    initialize();
-}
-
-#if defined(Q_WS_X11)
-TTKRunApplication::TTKRunApplication(Display* dpy, Qt::HANDLE visual, Qt::HANDLE cmap)
-    : QApplication(dpy, visual, cmap)
-{
-    TTK_INIT_PRIVATE(TTKRunApplication);
-    initialize();
-}
-
-TTKRunApplication::TTKRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual, Qt::HANDLE cmap)
-    : QApplication(dpy, argc, argv, visual, cmap)
-{
-    TTK_INIT_PRIVATE(TTKRunApplication);
-    initialize();
-}
-
-TTKRunApplication::TTKRunApplication(Display* dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual, Qt::HANDLE cmap)
-    : QApplication(dpy, argc, argv, visual, cmap)
-{
-    TTK_INIT_PRIVATE(TTKRunApplication);
-    initialize(appId);
-}
-#endif
-#endif
-
 bool TTKRunApplication::isRunning() const
 {
     TTK_D(TTKRunApplication);

@@ -31,61 +31,61 @@ namespace MusicUtils
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &input, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QSize &size, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QSize &size, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QRect &rect, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QRect &rect, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_UTILS_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QPixmap &mask, const QSize &size);
+        TTK_MODULE_EXPORT QPixmap pixmapToRound(const QPixmap &input, const QPixmap &mask, const QSize &size);
         /*!
          * Get bitmap mask from rect.
          */
-        MUSIC_UTILS_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
 
         /*!
          * Get pximap data.
          */
-        MUSIC_UTILS_EXPORT QByteArray getPixmapData(const QPixmap &input);
+        TTK_MODULE_EXPORT QByteArray getPixmapData(const QPixmap &input);
 
         /*!
          * Set fusion two pixmap.
          */
-        MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
+        TTK_MODULE_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
         /*!
          * Set fusion two image.
          */
-        MUSIC_UTILS_EXPORT void fusionPixmap(QImage &back, const QImage &front, const QPoint &pt);
+        TTK_MODULE_EXPORT void fusionPixmap(QImage &back, const QImage &front, const QPoint &pt);
 
         /*!
          * Image gray scale.
          */
-        MUSIC_UTILS_EXPORT QPixmap grayScalePixmap(const QPixmap &input, int radius = 0);
+        TTK_MODULE_EXPORT QPixmap grayScalePixmap(const QPixmap &input, int radius = 0);
         /*!
          * Image gray average.
          */
-        MUSIC_UTILS_EXPORT int grayScaleAverage(const QImage &input, int width, int height);
+        TTK_MODULE_EXPORT int grayScaleAverage(const QImage &input, int width, int height);
 
         /*!
          * Image gauss filter.
          */
-        MUSIC_UTILS_EXPORT QImage gaussPixmap(const QImage &input, int radius);
+        TTK_MODULE_EXPORT QImage gaussPixmap(const QImage &input, int radius);
         /*!
          * Image gauss filter.
          */
-        MUSIC_UTILS_EXPORT void gaussPixmap(QImage &input, int radius);
+        TTK_MODULE_EXPORT void gaussPixmap(QImage &input, int radius);
 
         /*!
          * Rerender the custum value.
          */
         template <typename T>
-        MUSIC_UTILS_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
+        TTK_MODULE_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
             if(alpha < 0) return 0;
             else if(alpha > key) return key;
@@ -96,15 +96,15 @@ namespace MusicUtils
         /*!
          * Rerender the image alpha.
          */
-        MUSIC_UTILS_EXPORT int reRenderAlpha(int alpha, int value);
+        TTK_MODULE_EXPORT int reRenderAlpha(int alpha, int value);
         /*!
          * Rerender the image by color burn transform.
          */
-        MUSIC_UTILS_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
+        TTK_MODULE_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
         /*!
          * Image color burn transform.
          */
-        MUSIC_UTILS_EXPORT int colorBurnTransform(int c, int delta);
+        TTK_MODULE_EXPORT int colorBurnTransform(int c, int delta);
 
     }
 }

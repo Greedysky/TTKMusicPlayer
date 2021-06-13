@@ -21,14 +21,14 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QEvent>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QDeviceWatcherPrivate;
 
 /*! @brief The class of the device watcher.
  * @author WangBin <wbsecg1@gmail.com>
  */
-class MUSIC_EXTRAS_EXPORT QDeviceWatcher : public QObject
+class TTK_MODULE_EXPORT QDeviceWatcher : public QObject
 {
 	Q_OBJECT
 	Q_DECLARE_PRIVATE(QDeviceWatcher)
@@ -56,7 +56,7 @@ protected:
 /*! @brief The class of the device watcher event.
  * @author WangBin <wbsecg1@gmail.com>
  */
-class MUSIC_EXTRAS_EXPORT QDeviceChangeEvent : public QEvent
+class TTK_MODULE_EXPORT QDeviceChangeEvent : public QEvent
 {
 public:
     enum Action { Add, Remove, Change};

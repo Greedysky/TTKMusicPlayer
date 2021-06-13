@@ -26,7 +26,7 @@ class MusicApplication;
 /*! @brief The class of the show download state object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadStatusModule : public QObject
+class TTK_MODULE_EXPORT MusicDownloadStatusModule : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadStatusModule)

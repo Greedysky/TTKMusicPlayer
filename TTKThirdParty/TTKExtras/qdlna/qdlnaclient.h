@@ -19,14 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QDlnaClientPrivate;
 
 /*! @brief The class of the dlna client.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QDlnaClient
+class TTK_MODULE_EXPORT QDlnaClient
 {
 public:
     explicit QDlnaClient(const QString &data);

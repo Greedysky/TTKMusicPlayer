@@ -21,7 +21,7 @@
 
 #include <QCoreApplication>
 #include "musicobject.h"
-#include "musicrunglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 class MusicPlayer;
 class MusicPlaylist;
@@ -29,7 +29,7 @@ class MusicPlaylist;
 /*! @brief The class of the music console module.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_RUN_EXPORT MusicConsoleModule : public QObject
+class TTK_MODULE_EXPORT MusicConsoleModule : public QObject
 {
     Q_OBJECT
 public:

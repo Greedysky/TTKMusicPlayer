@@ -24,7 +24,7 @@
 /*! @brief The class of the csv playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicCSVConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicCSVConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicCSVConfigManager)
 public:

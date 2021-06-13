@@ -24,7 +24,7 @@
 /*! @brief The class of kugou discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKGDiscoverListRequest : public MusicDiscoverListRequest
+class TTK_MODULE_EXPORT MusicKGDiscoverListRequest : public MusicDiscoverListRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKGDiscoverListRequest)

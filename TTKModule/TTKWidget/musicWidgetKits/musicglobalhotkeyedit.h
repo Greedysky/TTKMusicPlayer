@@ -25,7 +25,7 @@
 /*! @brief The class of the global hotKey lineEdit.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
+class TTK_MODULE_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicGlobalHotKeyEdit)

@@ -34,7 +34,7 @@ class MusicTransformWidget;
 /*! @brief The class of the transform widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTransformWidget)

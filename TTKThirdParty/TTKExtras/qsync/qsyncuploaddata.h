@@ -24,7 +24,7 @@
 /*! @brief The class of the sync cloud upload data.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QSyncUploadData : public QSyncDataInterface
+class TTK_MODULE_EXPORT QSyncUploadData : public QSyncDataInterface
 {
     Q_OBJECT
 public:

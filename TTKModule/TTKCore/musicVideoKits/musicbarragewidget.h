@@ -28,7 +28,7 @@
 /*! @brief The class of the barrage animation.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicBarrageAnimation : public QPropertyAnimation
+class TTK_MODULE_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBarrageAnimation)
@@ -66,7 +66,7 @@ protected:
 /*! @brief The class of the barrage widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicBarrageWidget : public QObject
+class TTK_MODULE_EXPORT MusicBarrageWidget : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBarrageWidget)

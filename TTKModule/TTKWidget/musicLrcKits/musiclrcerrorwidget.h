@@ -28,7 +28,7 @@ class MusicLrcErrorWidget;
 /*! @brief The class of the report lrc error widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcErrorWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicLrcErrorWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcErrorWidget)

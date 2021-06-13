@@ -20,12 +20,11 @@
  ================================================= */
 
 #include "qdlnahelper.h"
-#include "musicextrasglobaldefine.h"
 
 /*! @brief The class of the dlna service.
  * @author Greedysky <greedysky@163.com>
  */
-struct MUSIC_EXTRAS_EXPORT QDlnaService
+struct TTK_MODULE_EXPORT QDlnaService
 {
     QString m_controlURL;
     QString m_scpdURL;

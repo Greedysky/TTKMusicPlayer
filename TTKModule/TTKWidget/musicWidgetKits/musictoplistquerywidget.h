@@ -27,7 +27,7 @@ class MusicToplistQueryCategoryPopWidget;
 /*! @brief The class of the toplist music query table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToplistQueryTableWidget : public MusicItemQueryTableWidget
+class TTK_MODULE_EXPORT MusicToplistQueryTableWidget : public MusicItemQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicToplistQueryTableWidget)
@@ -50,7 +50,7 @@ public:
 /*! @brief The class of toplist music query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToplistQueryWidget : public MusicAbstractItemQueryWidget
+class TTK_MODULE_EXPORT MusicToplistQueryWidget : public MusicAbstractItemQueryWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicToplistQueryWidget)

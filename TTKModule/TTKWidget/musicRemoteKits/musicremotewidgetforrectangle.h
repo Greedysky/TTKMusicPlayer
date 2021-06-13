@@ -26,7 +26,7 @@ class MusicMarqueeWidget;
 /*! @brief The class of the desktop rectangle remote widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
+class TTK_MODULE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicRemoteWidgetForRectangle)

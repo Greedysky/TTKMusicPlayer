@@ -28,7 +28,7 @@ class MusicLrcColorWidget;
 /*! @brief The class of the lrc color picker widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcColorWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicLrcColorWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcColorWidget)

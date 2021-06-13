@@ -28,7 +28,7 @@ class MusicSongSuggestRequest;
 /*! @brief The class of the net search interior edit widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchInteriorEdit : public MusicLocalSongSearchEdit
+class TTK_MODULE_EXPORT MusicLocalSongSearchInteriorEdit : public MusicLocalSongSearchEdit
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLocalSongSearchInteriorEdit)

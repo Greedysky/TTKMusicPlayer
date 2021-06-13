@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicextrasglobaldefine.h"
+#include "ttkglobaldefine.h"
 
 /*! @brief The class of the sync cloud utils.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QSyncUtils
+class TTK_MODULE_EXPORT QSyncUtils
 {
 public:
     /*!

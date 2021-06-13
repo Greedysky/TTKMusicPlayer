@@ -8,7 +8,7 @@
 /*! @brief The class of the song item selected table widget
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongItemSelectedTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicSongItemSelectedTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongItemSelectedTableWidget)
@@ -43,7 +43,7 @@ class MusicSongItemSelectedDialog;
 /*! @brief The class of the song item selected dialog widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongItemSelectedDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicSongItemSelectedDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongItemSelectedDialog)
@@ -87,7 +87,7 @@ class MusicClickedLabel;
 /*! @brief The class of the song item selected area widget
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongItemSelectedAreaWidget : public QWidget
+class TTK_MODULE_EXPORT MusicSongItemSelectedAreaWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongItemSelectedAreaWidget)

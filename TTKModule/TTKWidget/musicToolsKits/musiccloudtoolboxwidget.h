@@ -29,7 +29,7 @@ class MusicAbstractDownloadTableWidget;
 /*! @brief The class of the cloud tool box widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudToolBoxWidget : public MusicFunctionToolBoxWidget
+class TTK_MODULE_EXPORT MusicCloudToolBoxWidget : public MusicFunctionToolBoxWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCloudToolBoxWidget)

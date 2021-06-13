@@ -24,7 +24,7 @@
 /*! @brief The class of fm radio request of song info.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicFMRadioSongsRequest : public MusicAbstractFMRadioRequest
+class TTK_MODULE_EXPORT MusicFMRadioSongsRequest : public MusicAbstractFMRadioRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicFMRadioSongsRequest)

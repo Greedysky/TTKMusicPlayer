@@ -28,7 +28,7 @@ class MusicDJRadioCategoryRequest;
 /*! @brief The class of music dj radio category item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
+class TTK_MODULE_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioCategoryItemWidget)
@@ -71,7 +71,7 @@ protected:
 /*! @brief The class of music dj radio category widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
+class TTK_MODULE_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWebDJRadioCategoryWidget)

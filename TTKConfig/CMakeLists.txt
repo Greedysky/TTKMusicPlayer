@@ -13,7 +13,6 @@ add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
 set(MUSIC_HEADERS
-    musicconfigglobaldefine.h
     musicconfigdefine.h
     musicconfigobject.h
   )

@@ -26,7 +26,7 @@
 /*! @brief The class of kuwo query music info xml data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicKWMusicInfoConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicKWMusicInfoConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWMusicInfoConfigManager)
@@ -47,7 +47,7 @@ public:
 /*! @brief The class of kuwo query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKWQueryRequest : public MusicAbstractQueryRequest,
+class TTK_MODULE_EXPORT MusicKWQueryRequest : public MusicAbstractQueryRequest,
                                                  private MusicKWQueryInterface
 {
     Q_OBJECT

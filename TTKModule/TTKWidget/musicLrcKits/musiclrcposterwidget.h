@@ -30,7 +30,7 @@ class MusicLrcPosterWidget;
 /*! @brief The class of the lrc art poster maker item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcPosterItemWidget : public QWidget
+class TTK_MODULE_EXPORT MusicLrcPosterItemWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcPosterItemWidget)
@@ -169,7 +169,7 @@ protected:
 /*! @brief The class of the lrc art poster table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcPosterTableWidget : public MusicFillItemTableWidget
+class TTK_MODULE_EXPORT MusicLrcPosterTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcPosterTableWidget)
@@ -202,7 +202,7 @@ public Q_SLOTS:
 /*! @brief The class of the lrc art poster theme list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcPosterThemeListWidget : public QListWidget
+class TTK_MODULE_EXPORT MusicLrcPosterThemeListWidget : public QListWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcPosterThemeListWidget)
@@ -224,7 +224,7 @@ public Q_SLOTS:
 /*! @brief The class of the lrc art poster maker widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcPosterWidget)

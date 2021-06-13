@@ -24,7 +24,7 @@
 /*! @brief The class of baidu translation words request.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDTranslationRequest : public MusicTranslationRequest
+class TTK_MODULE_EXPORT MusicBDTranslationRequest : public MusicTranslationRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBDTranslationRequest)

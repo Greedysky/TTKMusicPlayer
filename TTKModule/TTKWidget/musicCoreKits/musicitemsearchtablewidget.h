@@ -27,7 +27,7 @@ class MusicGifLabelWidget;
 /*! @brief The class of the search item table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicItemSearchTableWidget : public MusicQueryTableWidget
+class TTK_MODULE_EXPORT MusicItemSearchTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicItemSearchTableWidget)

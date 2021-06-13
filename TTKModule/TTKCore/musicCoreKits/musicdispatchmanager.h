@@ -28,7 +28,7 @@ class QTimer;
 /*! @brief The class of the functions dispatch item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicDispatchItem
+typedef struct TTK_MODULE_EXPORT MusicDispatchItem
 {
     int m_type;
     int m_times;
@@ -55,7 +55,7 @@ typedef struct MUSIC_CORE_EXPORT MusicDispatchItem
 /*! @brief The class of the functions dispatch manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicDispatchManager : public QObject
+class TTK_MODULE_EXPORT MusicDispatchManager : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDispatchManager)
@@ -94,6 +94,6 @@ protected:
 };
 
 #define G_DISPATCH_PTR GetMusicDispatchManager()
-MUSIC_CORE_EXPORT MusicDispatchManager* GetMusicDispatchManager();
+TTK_MODULE_EXPORT MusicDispatchManager* GetMusicDispatchManager();
 
 #endif // MUSICDISPATCHMANAGER_H

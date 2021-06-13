@@ -1,5 +1,5 @@
-#ifndef MUSICEXTRACTWRAP_H
-#define MUSICEXTRACTWRAP_H
+#ifndef MUSICEXTRACTWRAPPER_H
+#define MUSICEXTRACTWRAPPER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -23,12 +23,12 @@
 
 class MusicBackgroundImage;
 
-/*! @brief The class of the extract data wrap.
+/*! @brief The class of the extract data wrapper.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicExtractWrap
+class TTK_MODULE_EXPORT MusicExtractWrapper
 {
-    TTK_DECLARE_MODULE(MusicExtractWrap)
+    TTK_DECLARE_MODULE(MusicExtractWrapper)
 public:
     /*!
      * Transfer file to image data.
@@ -68,4 +68,4 @@ public:
 
 };
 
-#endif // MUSICEXTRACTWRAP_H
+#endif // MUSICEXTRACTWRAPPER_H

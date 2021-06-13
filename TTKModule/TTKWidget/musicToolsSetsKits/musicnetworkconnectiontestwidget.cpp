@@ -2,7 +2,6 @@
 #include "ui_musicnetworkconnectiontestwidget.h"
 #include "musicnetworktestthread.h"
 #include "musicuiobject.h"
-#include "musicglobal.h"
 #include "musicsinglemanager.h"
 
 #define CHECK_WWW_VISIT       "www.baidu.com"

@@ -21,14 +21,14 @@
 
 #include <QWidget>
 #include "qrencode.h"
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QRCodeQWidgetPrivate;
 
 /*! @brief The class of the qr code widget.
  * @author Jemy Graw <jemygraw@gmail.com>
  */
-class MUSIC_EXTRAS_EXPORT QRCodeQWidget : public QWidget
+class TTK_MODULE_EXPORT QRCodeQWidget : public QWidget
 {
     Q_OBJECT
 public:

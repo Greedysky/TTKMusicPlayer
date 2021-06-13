@@ -25,7 +25,7 @@
 /*! @brief The class of the local data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_LRC_EXPORT MusicLocalDataItem
+typedef struct TTK_MODULE_EXPORT MusicLocalDataItem
 {
     QString m_name;
     QString m_path;
@@ -35,7 +35,7 @@ TTK_DECLARE_LISTS(MusicLocalDataItem)
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTableWidget
+class TTK_MODULE_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcLocalLinkTableWidget)
@@ -70,7 +70,7 @@ class MusicLrcLocalLinkWidget;
 /*! @brief The class of the local lrc link widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcLocalLinkWidget : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicLrcLocalLinkWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLrcLocalLinkWidget)

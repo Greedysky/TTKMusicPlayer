@@ -28,7 +28,7 @@ class QPropertyAnimation;
 /*! @brief The class of the layout float animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicLayoutAnimationWidget : public QWidget
+class TTK_MODULE_EXPORT MusicLayoutAnimationWidget : public QWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicLayoutAnimationWidget)
@@ -89,7 +89,7 @@ protected:
 /*! @brief The class of the vertical layout float animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicVLayoutAnimationWidget : public MusicLayoutAnimationWidget
+class TTK_MODULE_EXPORT MusicVLayoutAnimationWidget : public MusicLayoutAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVLayoutAnimationWidget)
@@ -116,7 +116,7 @@ protected:
 /*! @brief The class of the horizontal layout float animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicHLayoutAnimationWidget : public MusicLayoutAnimationWidget
+class TTK_MODULE_EXPORT MusicHLayoutAnimationWidget : public MusicLayoutAnimationWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicHLayoutAnimationWidget)

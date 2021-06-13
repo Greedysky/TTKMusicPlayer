@@ -27,7 +27,7 @@ Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
 /*! @brief The class of the video item play data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_VIDEO_EXPORT MusicVideoItem
+typedef struct TTK_MODULE_EXPORT MusicVideoItem
 {
     QString m_name;
     QString m_url;
@@ -39,7 +39,7 @@ typedef struct MUSIC_VIDEO_EXPORT MusicVideoItem
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoSearchTableWidget : public MusicItemSearchTableWidget
+class TTK_MODULE_EXPORT MusicVideoSearchTableWidget : public MusicItemSearchTableWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoSearchTableWidget)

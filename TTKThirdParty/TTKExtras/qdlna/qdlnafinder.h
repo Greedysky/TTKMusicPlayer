@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QStringList>
-#include "musicextrasglobaldefine.h"
+#include "ttkprivate.h"
 
 class QDlnaClient;
 class QDlnaFinderPrivate;
@@ -28,7 +28,7 @@ class QDlnaFinderPrivate;
 /*! @brief The class of the dlna finder.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QDlnaFinder : public QObject
+class TTK_MODULE_EXPORT QDlnaFinder : public QObject
 {
     Q_OBJECT
 public:

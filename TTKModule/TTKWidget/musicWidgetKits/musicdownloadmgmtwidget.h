@@ -29,7 +29,7 @@ class MusicDownloadResetWidget;
 /*! @brief The class of the download file exist widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWidget
+class TTK_MODULE_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadResetWidget)
@@ -82,7 +82,7 @@ protected:
 /*! @brief The class of the download manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadMgmtWidget : public QObject
+class TTK_MODULE_EXPORT MusicDownloadMgmtWidget : public QObject
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadMgmtWidget)

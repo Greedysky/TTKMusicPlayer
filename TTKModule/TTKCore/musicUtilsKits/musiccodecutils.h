@@ -31,19 +31,19 @@ namespace MusicUtils
         /*!
          * Set string to unicode string by format.
          */
-        MUSIC_UTILS_EXPORT QString toUnicode(const char *chars, const char *format = "GBK");
+        TTK_MODULE_EXPORT QString toUnicode(const char *chars, const char *format = "GBK");
         /*!
          * Set string to unicode string by format.
          */
-        MUSIC_UTILS_EXPORT QString toUnicode(const QByteArray &chars, const char *format = "GBK");
+        TTK_MODULE_EXPORT QString toUnicode(const QByteArray &chars, const char *format = "GBK");
         /*!
          * Set string from unicode string by format.
          */
-        MUSIC_UTILS_EXPORT QByteArray fromUnicode(const QString &chars, const char *format = "GBK");
+        TTK_MODULE_EXPORT QByteArray fromUnicode(const QString &chars, const char *format = "GBK");
         /*!
          * Set local codec by format.
          */
-        MUSIC_UTILS_EXPORT void setLocalCodec(const char *format = "utf-8");
+        TTK_MODULE_EXPORT void setLocalCodec(const char *format = "utf-8");
     }
 }
 

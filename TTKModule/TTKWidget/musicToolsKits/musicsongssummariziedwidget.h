@@ -33,7 +33,7 @@ class MusicLrcDownloadBatchWidget;
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget
+class TTK_MODULE_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSongsSummariziedWidget)

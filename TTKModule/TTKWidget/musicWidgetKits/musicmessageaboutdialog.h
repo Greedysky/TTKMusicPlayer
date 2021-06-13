@@ -29,7 +29,7 @@ namespace Ui {
 /*! @brief The class of the about application info dialog.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
+class TTK_MODULE_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMessageAboutDialog)
