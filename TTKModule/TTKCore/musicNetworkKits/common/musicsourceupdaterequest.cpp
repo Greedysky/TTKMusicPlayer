@@ -44,14 +44,21 @@ bool MusicSourceUpdateRequest::isLastedVersion() const
 
 void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &data)
 {
-    QJson::Parser parser;
-    bool ok;
-    const QVariant &parseData = parser.parse(data, &ok);
-    if(!ok)
+    if(data.isEmpty())
     {
-        return;
+        TTK_LOGGER_ERROR("Input byte data is empty");
     }
+    else
+    {
+        QJson::Parser parser;
+        bool ok;
+        const QVariant &parseData = parser.parse(data, &ok);
+        if(!ok)
+        {
+            return;
+        }
 
-    m_rawData = parseData.toMap();
-    Q_EMIT downLoadDataChanged(m_rawData);
+        m_rawData = parseData.toMap();
+        Q_EMIT downLoadDataChanged(m_rawData);
+    }
 }

@@ -253,12 +253,19 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
 
 void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
+
     m_analysis->setLrcData(data);
 
     for(int i=0; i<m_analysis->getLineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
+
     setItemStyleSheet(0, -3, 90);
     setItemStyleSheet(1, -6, 35);
     setItemStyleSheet(2, -10, 0);

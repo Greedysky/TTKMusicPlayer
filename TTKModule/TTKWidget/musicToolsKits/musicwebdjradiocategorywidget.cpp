@@ -45,6 +45,12 @@ void MusicWebDJRadioCategoryItemWidget::setMusicResultsItem(const MusicResultsIt
 
 void MusicWebDJRadioCategoryItemWidget::downLoadFinished(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
+
     QPixmap pix;
     pix.loadFromData(data);
     if(!pix.isNull())

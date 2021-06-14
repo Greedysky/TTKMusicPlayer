@@ -97,10 +97,6 @@ public Q_SLOTS:
      */
     void userEditTextChanged(const QString &uid);
     /*!
-     * Send recieved icon data from net.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
      * Override exec function.
      */
     virtual int exec();

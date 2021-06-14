@@ -132,6 +132,12 @@ void MusicCommentsItem::createSearchedItem(const MusicResultsItem &comments)
 
 void MusicCommentsItem::downLoadFinished(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
+
     QPixmap pix;
     pix.loadFromData(data);
     m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));

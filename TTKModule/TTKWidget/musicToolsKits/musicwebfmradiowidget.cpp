@@ -168,6 +168,12 @@ void MusicWebFMRadioWidget::addListWidgetItem()
 
 void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
+
     MusicDownloadSourceRequest *download(TTKStatic_cast(MusicDownloadSourceRequest*, sender()));
     if(!download)
     {

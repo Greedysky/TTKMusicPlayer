@@ -20,17 +20,23 @@ void MusicNetworkOperator::startToDownload()
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
     QString line;
-
-    QJson::Parser parser;
-    bool ok;
-    const QVariant &json = parser.parse(data, &ok);
-    if(ok)
+    if(data.isEmpty())
     {
-        QVariantMap value = json.toMap();
-        if(value.contains("result"))
+        TTK_LOGGER_ERROR("Input byte data is empty");
+    }
+    else
+    {
+        QJson::Parser parser;
+        bool ok;
+        const QVariant &json = parser.parse(data, &ok);
+        if(ok)
         {
-            value = value["result"].toMap();
-            line = value["operators"].toString();
+            QVariantMap value = json.toMap();
+            if(value.contains("result"))
+            {
+                value = value["result"].toMap();
+                line = value["operators"].toString();
+            }
         }
     }
 

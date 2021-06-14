@@ -116,14 +116,21 @@ void MusicCloudManagerTableWidget::itemCellClicked(int row, int column)
 
 void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &data)
 {
-    QJson::Parser parser;
-    bool ok;
-    QVariant dt = parser.parse(data, &ok);
-    if(ok)
+    if(data.isEmpty())
     {
-        QVariantMap value = dt.toMap();
-        QSyncConf::NAME = value["key"].toString();
-        QSyncConf::KEY = value["secret"].toByteArray();
+        TTK_LOGGER_ERROR("Input byte data is empty");
+    }
+    else
+    {
+        QJson::Parser parser;
+        bool ok;
+        QVariant dt = parser.parse(data, &ok);
+        if(ok)
+        {
+            QVariantMap value = dt.toMap();
+            QSyncConf::NAME = value["key"].toString();
+            QSyncConf::KEY = value["secret"].toByteArray();
+        }
     }
     Q_EMIT getKeyFinished();
 }

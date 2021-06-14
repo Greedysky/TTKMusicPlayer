@@ -125,16 +125,23 @@ void MusicIdentifySongsRequest::downLoadFinished()
 
 void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &data)
 {
-    QJson::Parser parser;
-    bool ok;
-    const QVariant &dt = parser.parse(data, &ok);
-    if(ok)
+    if(data.isEmpty())
     {
-        const QVariantMap &value = dt.toMap();
-        if(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
+        TTK_LOGGER_ERROR("Input byte data is empty");
+    }
+    else
+    {
+        QJson::Parser parser;
+        bool ok;
+        const QVariant &dt = parser.parse(data, &ok);
+        if(ok)
         {
-            m_accessKey = value["key"].toString();
-            m_accessSecret = value["secret"].toString();
+            const QVariantMap &value = dt.toMap();
+            if(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
+            {
+                m_accessKey = value["key"].toString();
+                m_accessSecret = value["secret"].toString();
+            }
         }
     }
 

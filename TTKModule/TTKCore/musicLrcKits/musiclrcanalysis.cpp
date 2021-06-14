@@ -66,6 +66,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         it.next();
         m_currentShowLrcContainer << it.value();
     }
+
     for(int i=0; i<getMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();

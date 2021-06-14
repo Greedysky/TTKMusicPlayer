@@ -94,6 +94,12 @@ void MusicPlaylistQueryItemWidget::setMusicResultsItem(const MusicResultsItem &i
 
 void MusicPlaylistQueryItemWidget::downLoadFinished(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
+
     MusicImageRenderer *render = new MusicImageRenderer(this);
     connect(render, SIGNAL(renderFinished(QImage)), SLOT(renderFinished(QImage)));
     render->setInputData(data, m_iconLabel->size());

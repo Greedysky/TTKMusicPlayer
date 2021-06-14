@@ -195,6 +195,11 @@ void MusicSongMeta::setCover(const QPixmap &pix)
 
 void MusicSongMeta::setCover(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
 #if TTKMUSIC_VERSION >= TTK_VERSION_CHECK(2,5,3,0)
     QPixmap pix;
     pix.loadFromData(data);

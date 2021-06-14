@@ -333,6 +333,12 @@ bool MusicExtractWrapper::outputData(QByteArray &data, const QString &input)
 
 bool MusicExtractWrapper::inputData(const QByteArray &data, const QString &output)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return false;
+    }
+
     const zipFile &zFile = zipOpen64(qPrintable(output), 0);
     if(!zFile)
     {

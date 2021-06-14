@@ -297,6 +297,12 @@ void MusicSongSharingWidget::textAreaChanged()
 
 void MusicSongSharingWidget::downLoadFinished(const QByteArray &data)
 {
+    if(data.isEmpty())
+    {
+        TTK_LOGGER_ERROR("Input byte data is empty");
+        return;
+    }
+
     if(m_ui->sharedNameIcon)
     {
         QPixmap pix;

@@ -209,16 +209,6 @@ void MusicUserDialog::userEditTextChanged(const QString &uid)
     }
 }
 
-void MusicUserDialog::downLoadFinished(const QByteArray &data)
-{
-    QPixmap pix;
-    pix.loadFromData(data);
-
-    const QString &path = MusicUserRecordWidget::avatarPixmapRender(m_userUID, pix);
-    m_userModel->updateUserIcon(m_userUID, path);
-    Q_EMIT userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
-}
-
 int MusicUserDialog::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
