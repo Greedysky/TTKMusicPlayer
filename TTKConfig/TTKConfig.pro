@@ -25,6 +25,7 @@ DESTDIR = $$OUT_PWD/../bin/$$TTKMusicPlayer
 TARGET = TTKConfig
 
 TEMPLATE = lib
+DEFINES += TTK_LIBRARY
 
 win32:msvc{
     CONFIG += c++11

@@ -153,4 +153,3 @@
 #define TTK_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
 #endif // TTKVERSION_H
-

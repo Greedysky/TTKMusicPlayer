@@ -20,9 +20,10 @@ QT       += core
 include($$PWD/../../TTKVersion.pri)
 
 TEMPLATE = app
+DEFINES += TTK_LIBRARY
+
 CONFIG += console
 
-DEFINES += TTK_LIBRARY
 
 DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKConsole

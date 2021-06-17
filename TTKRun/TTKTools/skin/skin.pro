@@ -30,6 +30,7 @@ win32:msvc{
 }
 
 TARGET = toolsskin
+
 TEMPLATE = app
 DEFINES += TTK_LIBRARY
 

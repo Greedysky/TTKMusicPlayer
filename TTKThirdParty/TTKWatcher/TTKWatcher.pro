@@ -19,6 +19,7 @@
 QT       += core
 
 TEMPLATE = lib
+DEFINES += TTK_LIBRARY
 
 include($$PWD/../../TTKVersion.pri)
 

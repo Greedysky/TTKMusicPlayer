@@ -26,6 +26,7 @@ DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKExtras
 
 TEMPLATE = lib
+DEFINES += TTK_LIBRARY
 
 win32:msvc{
     LIBS += -luser32

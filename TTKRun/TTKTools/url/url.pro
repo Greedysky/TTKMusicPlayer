@@ -30,6 +30,7 @@ win32:msvc{
 }
 
 TARGET = toolsurl
+
 TEMPLATE = app
 DEFINES += TTK_LIBRARY
 
