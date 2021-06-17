@@ -95,6 +95,7 @@ TTKMusicPlayer的壹些特性
  * HVL Module Player File(*.ahx *.hvl)
  * NEC Audio File(*.s98)
  * MDX Chiptunes Audio File(*.mdx *.m)
+ * Cave Story's org Audio File(*.org)
  * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
  * 華麗流星炫酷的界面設計，跨平臺有良好的性能表現。
  * 搜索和高速下載。歌曲搜索精度優化，智能節省帶寬，可以禁用網絡功能，支持8個國內音樂平臺曲庫。
