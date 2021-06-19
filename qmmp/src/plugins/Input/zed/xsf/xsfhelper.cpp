@@ -82,7 +82,7 @@ int XSFHelper::channels() const
 
 int XSFHelper::bitsPerSample() const
 {
-    return 2;
+    return 16;
 }
 
 int XSFHelper::read(unsigned char *buf, int)

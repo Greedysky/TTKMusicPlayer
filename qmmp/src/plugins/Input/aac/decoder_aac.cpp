@@ -88,12 +88,12 @@ bool DecoderAAC::initialize()
     unsigned char chan = 0;
 #endif
     int res = NeAACDecInit(data()->handle, (unsigned char*) m_input_buf, m_input_at, &freq, &chan);
-
     if(res < 0)
     {
         qWarning("DecoderAAC: NeAACDecInit() failed");
         return false;
     }
+
     if(!freq || !chan)
     {
         qWarning("DecoderAAC: invalid sound parameters");

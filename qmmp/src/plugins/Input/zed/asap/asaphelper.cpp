@@ -92,7 +92,7 @@ int AsapHelper::channels() const
 
 int AsapHelper::bitsPerSample() const
 {
-    return 32;
+    return 16;
 }
 
 int AsapHelper::read(unsigned char *buf, int size)

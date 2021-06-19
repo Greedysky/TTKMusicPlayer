@@ -115,7 +115,7 @@ int HivelyHelper::channels() const
 
 int HivelyHelper::bitsPerSample() const
 {
-    return 32;
+    return 16;
 }
 
 int HivelyHelper::read(unsigned char *buffer, int )

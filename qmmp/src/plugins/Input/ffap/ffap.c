@@ -1667,22 +1667,22 @@ FFap_decoder *ffap_new(ffap_read_callback read_callback,
 void ffap_load()
 {
 #if defined(__x86_64__) || defined(__i386__)
-    if (__builtin_cpu_supports("avx2"))
+    if(__builtin_cpu_supports("avx2"))
     {
         scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_avx2;
         trace ("ffap: avx2 support detected\n");
     }
-    else if (__builtin_cpu_supports("avx"))
+    else if(__builtin_cpu_supports("avx"))
     {
         scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_avx;
         trace ("ffap: avx support detected\n");
     }
-    else if (__builtin_cpu_supports("sse4.2"))
+    else if(__builtin_cpu_supports("sse4.2"))
     {
         scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_sse42;
         trace ("ffap: sse4.2 support detected\n");
     }
-    else if (__builtin_cpu_supports("sse2"))
+    else if(__builtin_cpu_supports("sse2"))
     {
         scalarproduct_and_madd_int16 = scalarproduct_and_madd_int16_sse2;
         trace ("ffap: sse2 support detected\n");

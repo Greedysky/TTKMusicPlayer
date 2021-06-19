@@ -55,7 +55,7 @@ int OrganyaHelper::totalTime() const
 
 void OrganyaHelper::seek(qint64 time)
 {
-    int64_t pos = time * sampleRate() / 1000;
+    const size_t pos = time * sampleRate() / 1000;
     org_decoder_seek_sample(m_info->input, pos);
 }
 
@@ -76,11 +76,11 @@ int OrganyaHelper::channels() const
 
 int OrganyaHelper::bitsPerSample() const
 {
-    return 2;
+    return 16;
 }
 
 int OrganyaHelper::read(unsigned char *buf, int size)
 {
-    unsigned int sample = size / 2 / sizeof(int16_t);
+    const unsigned int sample = size / 2 / sizeof(int16_t);
     return org_decode_samples(m_info->input, (int16_t*)buf, sample) * 2 * sizeof(int16_t);
 }

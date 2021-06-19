@@ -114,7 +114,7 @@ int MdxHelper::channels() const
 
 int MdxHelper::bitsPerSample() const
 {
-    return 2;
+    return 16;
 }
 
 int MdxHelper::read(unsigned char *buf, int)
