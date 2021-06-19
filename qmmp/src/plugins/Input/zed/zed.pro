@@ -14,6 +14,10 @@ contains(CONFIG, AYFLY_PLUGIN){
     SUBDIRS += ayfly
 }
 
+contains(CONFIG, BP_PLUGIN){
+    SUBDIRS += bp
+}
+
 contains(CONFIG, DCA_PLUGIN){
     SUBDIRS += dca
 }
