@@ -2,6 +2,56 @@
 #include "decoder.h"
 #include "decoderfactory.h"
 
+#define MUSIC_CUE_FILE              "cue"
+#define MUSIC_APE_FILE              "ape"
+#define MUSIC_FFMPEG_FILE           "ffmpeg"
+#define MUSIC_M4B_FILE              "m4b"
+#define MUSIC_FLAC_FILE             "flac"
+#define MUSIC_GME_FILE              "gme"
+#define MUSIC_SID_FILE              "sid"
+#define MUSIC_WVPACK_FILE           "wvpack"
+#define MUSIC_SC68_FILE             "sc68"
+
+
+bool Format::SongTrackValid(const QString &file)
+{
+    QStringList list;
+    list << MUSIC_CUE_FILE "://";
+    list << MUSIC_APE_FILE "://";
+    list << MUSIC_FFMPEG_FILE "://";
+    list << MUSIC_M4B_FILE "://";
+    list << MUSIC_FLAC_FILE "://";
+    list << MUSIC_GME_FILE "://";
+    list << MUSIC_SID_FILE "://";
+    list << MUSIC_WVPACK_FILE "://";
+    list << MUSIC_SC68_FILE "://";
+
+    for(const QString &path : qAsConst(list))
+    {
+        if(file.startsWith(path))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Format::SongTrackTpyeContains(const QString &file)
+{
+    QStringList list;
+    list << MUSIC_CUE_FILE;
+    list << MUSIC_APE_FILE;
+    list << MUSIC_FFMPEG_FILE;
+    list << MUSIC_M4B_FILE;
+    list << MUSIC_FLAC_FILE;
+    list << MUSIC_GME_FILE;
+    list << MUSIC_SID_FILE;
+    list << MUSIC_WVPACK_FILE;
+    list << MUSIC_SC68_FILE;
+
+    return list.contains(file);
+}
+
 QStringList Format::decodeForString()
 {
     QStringList formats;
