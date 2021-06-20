@@ -43,4 +43,4 @@ private:
 
 };
 
-#endif // FILEINPUTSOURCE_P_H
+#endif

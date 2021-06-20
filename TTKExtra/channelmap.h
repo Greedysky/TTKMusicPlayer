@@ -55,4 +55,4 @@ private:
 
 };
 
-#endif // CHANNELMAP_H
+#endif

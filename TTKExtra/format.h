@@ -29,23 +29,33 @@
 class QMMP_EXPORT Format
 {
 public:
-/*!
- * Get player supported formats.
- */
-static QStringList decodeForString();
-/*!
- * Get player supported formats.
- */
-static QMap<QString, QStringList> decodeForStringMap();
-/*!
- * Get player supported formats filter.
- */
-static QStringList decodeForFilter();
-/*!
- * Get player supported formats filter dialog.
- */
-static QStringList decodeForFilterDialog();
+    /*!
+     * Check song track is valid or not.
+     */
+    static bool SongTrackValid(const QString &file);
+    /*!
+     * Check song track contains type.
+     */
+    static bool SongTrackTpyeContains(const QString &file);
+
+public:
+    /*!
+     * Get player supported formats.
+     */
+    static QStringList decodeForString();
+    /*!
+     * Get player supported formats.
+     */
+    static QMap<QString, QStringList> decodeForStringMap();
+    /*!
+     * Get player supported formats filter.
+     */
+    static QStringList decodeForFilter();
+    /*!
+     * Get player supported formats filter dialog.
+     */
+    static QStringList decodeForFilterDialog();
 
 };
 
-#endif // FORMAT_H
+#endif

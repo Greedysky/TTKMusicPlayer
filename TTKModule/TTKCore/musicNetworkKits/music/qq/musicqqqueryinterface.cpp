@@ -61,7 +61,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
     else if(key["sizeflac"].toULongLong() != 0 && bitrate == MB_1000)
     {
-        const QString &musicUrl = getMusicPath("F000" + mid + FLC_FILE, mid);
+        const QString &musicUrl = getMusicPath("F000" + mid + FLAC_FILE, mid);
         if(musicUrl.isEmpty())
         {
             return;
@@ -70,7 +70,8 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
         attr.m_size = MusicUtils::Number::size2Label(key["sizeflac"].toULongLong());
-        attr.m_format = FLC_FILE_PREFIX;
+        attr.m_format =
+                FLAC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -158,7 +159,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
     }
     else if(key["size_flac"].toULongLong() != 0 && bitrate == MB_1000)
     {
-        const QString &musicUrl = getMusicPath("F000" + mid + FLC_FILE, mid);
+        const QString &musicUrl = getMusicPath("F000" + mid + FLAC_FILE, mid);
         if(musicUrl.isEmpty())
         {
             return;
@@ -167,7 +168,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
         attr.m_size = MusicUtils::Number::size2Label(key["size_flac"].toULongLong());
-        attr.m_format = FLC_FILE_PREFIX;
+        attr.m_format = FLAC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }

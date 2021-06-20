@@ -66,8 +66,8 @@
 #define MP3_FILE_PREFIX         "mp3"
 #define OGG_FILE_PREFIX         "ogg"
 #define APE_FILE_PREFIX         "ape"
-#define FLC_FILE_PREFIX         "flac"
-
+#define FLAC_FILE_PREFIX        "flac"
+#define ZIP_FILE_PREFIX         "zip"
 
 #define TTS_FILE                TTK_STRCAT(DOT, TTS_FILE_PREFIX)
 #define CFG_FILE                TTK_STRCAT(DOT, CFG_FILE_PREFIX)
@@ -91,7 +91,8 @@
 #define MP3_FILE                TTK_STRCAT(DOT, MP3_FILE_PREFIX)
 #define OGG_FILE                TTK_STRCAT(DOT, OGG_FILE_PREFIX)
 #define APE_FILE                TTK_STRCAT(DOT, APE_FILE_PREFIX)
-#define FLC_FILE                TTK_STRCAT(DOT, FLC_FILE_PREFIX)
+#define FLAC_FILE               TTK_STRCAT(DOT, FLAC_FILE_PREFIX)
+#define ZIP_FILE                TTK_STRCAT(DOT, ZIP_FILE_PREFIX)
 
 //
 #define APP_NAME                "TTKMusicPlayer"

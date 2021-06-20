@@ -148,8 +148,8 @@ void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
         readFromMusicSongAttribute(info, key["has3Dqq"].toInt() == 1, MB_192, MP3_FILE_PREFIX); //3D
         readFromMusicSongAttribute(info, key["hasHQqq"].toInt() == 1, MB_320, MP3_FILE_PREFIX); //HQ
-        readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_750, FLC_FILE_PREFIX); //SQ
-        readFromMusicSongAttribute(info, key["has24Bitqq"].toInt() == 1, MB_1000, FLC_FILE_PREFIX); //ZQ
+        readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_750, FLAC_FILE_PREFIX); //SQ
+        readFromMusicSongAttribute(info, key["has24Bitqq"].toInt() == 1, MB_1000, FLAC_FILE_PREFIX); //ZQ
     }
     else
     {
@@ -167,8 +167,8 @@ void MusicMGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_750, FLC_FILE_PREFIX); //SQ
-            readFromMusicSongAttribute(info, key["has24Bitqq"].toInt() == 1, MB_1000, FLC_FILE_PREFIX); //ZQ
+            readFromMusicSongAttribute(info, key["hasSQqq"].toInt() == 1, MB_750, FLAC_FILE_PREFIX); //SQ
+            readFromMusicSongAttribute(info, key["has24Bitqq"].toInt() == 1, MB_1000, FLAC_FILE_PREFIX); //ZQ
         }
     }
 }
@@ -180,8 +180,8 @@ void MusicMGQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         readFromMusicSongAttribute(info, true, MB_128, MP3_FILE_PREFIX); //PQ
         readFromMusicSongAttribute(info, !key["d3"].isNull(), MB_192, MP3_FILE_PREFIX); //3D
         readFromMusicSongAttribute(info, !key["hq"].isNull(), MB_320, MP3_FILE_PREFIX); //HQ
-        readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_750, FLC_FILE_PREFIX); //SQ
-        readFromMusicSongAttribute(info, !key["bit24"].isNull(), MB_1000, FLC_FILE_PREFIX); //ZQ
+        readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_750, FLAC_FILE_PREFIX); //SQ
+        readFromMusicSongAttribute(info, !key["bit24"].isNull(), MB_1000, FLAC_FILE_PREFIX); //ZQ
     }
     else
     {
@@ -199,8 +199,8 @@ void MusicMGQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_750, FLC_FILE_PREFIX); //SQ
-            readFromMusicSongAttribute(info, !key["bit24"].isNull(), MB_1000, FLC_FILE_PREFIX); //ZQ
+            readFromMusicSongAttribute(info, !key["sq"].isNull(), MB_750, FLAC_FILE_PREFIX); //SQ
+            readFromMusicSongAttribute(info, !key["bit24"].isNull(), MB_1000, FLAC_FILE_PREFIX); //ZQ
         }
     }
 }

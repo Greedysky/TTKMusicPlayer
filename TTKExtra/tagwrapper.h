@@ -68,4 +68,4 @@ protected:
 
 };
 
-#endif // TAGWRAPPER_H
+#endif

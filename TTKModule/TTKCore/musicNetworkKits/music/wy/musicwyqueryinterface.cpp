@@ -148,7 +148,7 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128, MP3_FILE_PREFIX);
             readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192, MP3_FILE_PREFIX);
             readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320, MP3_FILE_PREFIX);
-            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLAC_FILE_PREFIX);
         }
         else if(maxBr == MB_192)
         {
@@ -176,7 +176,7 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         }
         else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLAC_FILE_PREFIX);
         }
     }
 }
@@ -287,7 +287,7 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
             readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128, MP3_FILE_PREFIX);
             readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192, MP3_FILE_PREFIX);
             readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320, MP3_FILE_PREFIX);
-            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLC_FILE_PREFIX);
+            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLAC_FILE_PREFIX);
         }
         else if(maxBr == MB_192)
         {
@@ -315,7 +315,7 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         }
         else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLC_FILE_PREFIX);
+            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLAC_FILE_PREFIX);
         }
     }
 }

@@ -104,4 +104,4 @@ private:
 
 };
 
-#endif // QMMPAUDIOENGINE_P_H
+#endif

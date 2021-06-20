@@ -90,9 +90,9 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == FLC_FILE_PREFIX)
+    else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == FLAC_FILE_PREFIX)
     {
-        readFromMusicLLAttribute(info, FLC_FILE_PREFIX, "2000kflac", bitrate);
+        readFromMusicLLAttribute(info, FLAC_FILE_PREFIX, "2000kflac", bitrate);
     }
     else if(format.contains("AL") && bitrate == MB_750 && suffix == APE_FILE_PREFIX)
     {
@@ -129,9 +129,9 @@ void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == FLC_FILE_PREFIX)
+    else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == FLAC_FILE_PREFIX)
     {
-        readFromMusicLLAttribute(info, FLC_FILE_PREFIX, "2000kflac", bitrate);
+        readFromMusicLLAttribute(info, FLAC_FILE_PREFIX, "2000kflac", bitrate);
     }
     else if(format.contains("1000kape") && bitrate == MB_750 && suffix == APE_FILE_PREFIX)
     {
@@ -147,7 +147,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_192);
         readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_320);
         readFromMusicSongAttribute(info, APE_FILE_PREFIX, format, MB_750);
-        readFromMusicSongAttribute(info, FLC_FILE_PREFIX, format, MB_1000);
+        readFromMusicSongAttribute(info, FLAC_FILE_PREFIX, format, MB_1000);
     }
     else
     {
@@ -166,7 +166,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         else if(quality == QObject::tr("CD"))
         {
             readFromMusicSongAttribute(info, APE_FILE_PREFIX, format, MB_750);
-            readFromMusicSongAttribute(info, FLC_FILE_PREFIX, format, MB_1000);
+            readFromMusicSongAttribute(info, FLAC_FILE_PREFIX, format, MB_1000);
         }
     }
 }
@@ -182,7 +182,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_192);
             readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_320);
             readFromMusicSongAttributePlus(info, APE_FILE_PREFIX, fs, MB_750);
-            readFromMusicSongAttributePlus(info, FLC_FILE_PREFIX, fs, MB_1000);
+            readFromMusicSongAttributePlus(info, FLAC_FILE_PREFIX, fs, MB_1000);
         }
         else
         {
@@ -201,7 +201,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
             else if(quality == QObject::tr("CD"))
             {
                 readFromMusicSongAttributePlus(info, APE_FILE_PREFIX, fs, MB_750);
-                readFromMusicSongAttributePlus(info, FLC_FILE_PREFIX, fs, MB_1000);
+                readFromMusicSongAttributePlus(info, FLAC_FILE_PREFIX, fs, MB_1000);
             }
         }
     }

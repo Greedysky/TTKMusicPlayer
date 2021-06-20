@@ -37,7 +37,7 @@ bool MusicSongMeta::read(const QString &file)
 {
     bool track = false;
     QString path(file);
-    if(SongTrackValid(file))
+    if(MusicFormats::SongTrackValid(file))
     {
         path = path.section("://", -1);
         if(path.contains("#"))
@@ -292,45 +292,6 @@ MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
     other.m_songMetas.clear();
 
     return *this;
-}
-
-bool MusicSongMeta::SongTrackValid(const QString &file)
-{
-    QStringList list;
-    list << MUSIC_CUE_FILE "://";
-    list << MUSIC_APE_FILE "://";
-    list << MUSIC_FFMPEG_FILE "://";
-    list << MUSIC_M4B_FILE "://";
-    list << MUSIC_FLAC_FILE "://";
-    list << MUSIC_GME_FILE "://";
-    list << MUSIC_SID_FILE "://";
-    list << MUSIC_WVPACK_FILE "://";
-    list << MUSIC_SC68_FILE "://";
-
-    for(const QString &path : qAsConst(list))
-    {
-        if(file.startsWith(path))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool MusicSongMeta::SongTrackTpyeContains(const QString &file)
-{
-    QStringList list;
-    list << MUSIC_CUE_FILE;
-    list << MUSIC_APE_FILE;
-    list << MUSIC_FFMPEG_FILE;
-    list << MUSIC_M4B_FILE;
-    list << MUSIC_FLAC_FILE;
-    list << MUSIC_GME_FILE;
-    list << MUSIC_SID_FILE;
-    list << MUSIC_WVPACK_FILE;
-    list << MUSIC_SC68_FILE;
-
-    return list.contains(file);
 }
 
 void MusicSongMeta::setSongMetaIndex(int index)

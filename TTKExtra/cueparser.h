@@ -156,4 +156,4 @@ private:
 
 };
 
-#endif // CUEPARSER_H
+#endif

@@ -116,7 +116,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
         return songs;
     }
 
-    if(suffix == MUSIC_ZIP_FILE)
+    if(suffix == ZIP_FILE_PREFIX)
     {
         QStringList outputs;
         if(!MusicExtractWrapper::outputBinary(path, G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
@@ -129,7 +129,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
             songs << generateMusicSongList(path);
         }
     }
-    else if(MusicSongMeta::SongTrackTpyeContains(suffix))
+    else if(MusicFormats::SongTrackTpyeContains(suffix))
     {
         MusicSongMeta meta;
         if(!meta.read(path))

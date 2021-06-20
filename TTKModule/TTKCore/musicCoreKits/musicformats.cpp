@@ -3,6 +3,16 @@
 ///qmmp incldue
 #include "format.h"
 
+bool MusicFormats::SongTrackValid(const QString &file)
+{
+    return Format::SongTrackValid(file);
+}
+
+bool MusicFormats::SongTrackTpyeContains(const QString &file)
+{
+    return Format::SongTrackTpyeContains(file);
+}
+
 QStringList MusicFormats::supportFormats()
 {
     QStringList formats(Format::decodeForString());

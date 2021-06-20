@@ -30,6 +30,16 @@ class TTK_MODULE_EXPORT MusicFormats
     TTK_DECLARE_MODULE(MusicFormats)
 public:
     /*!
+     * Check song track is valid or not.
+     */
+    static bool SongTrackValid(const QString &file);
+    /*!
+     * Check song track contains type.
+     */
+    static bool SongTrackTpyeContains(const QString &file);
+
+public:
+    /*!
      * Get player supported formats.
      */
     static QStringList supportFormats();

@@ -58,4 +58,4 @@ private:
 
 };
 
-#endif // DITHERING_P_H
+#endif

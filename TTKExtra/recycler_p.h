@@ -121,4 +121,4 @@ private:
 
 };
 
-#endif // __recycler_h
+#endif
