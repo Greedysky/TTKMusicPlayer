@@ -90,6 +90,10 @@ public:
      */
     static QStringList nameFilters();
     /*!
+     * Returns a list of the supported mime types.
+     */
+    static QStringList contentTypes();
+    /*!
      * Returns EngineFactory pointer which supports file \b path or 0 if file \b path is unsupported.
      */
     static EngineFactory *findByFilePath(const QString &path);

@@ -67,7 +67,7 @@ public:
     /*!
      * Returns map of channels
      */
-     const ChannelMap channelMap() const;
+    const ChannelMap channelMap() const;
     /*!
      * Returns audio parameters for output data.
      */

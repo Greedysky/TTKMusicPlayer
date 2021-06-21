@@ -47,6 +47,7 @@ void AbstractEngine::loadPlugins()
         m_cache->append(item);
     }
     m_disabledNames = settings.value("Engine/disabled_plugins").toStringList();
+    QmmpPluginCache::cleanup(&settings);
 }
 
 AbstractEngine *AbstractEngine::create(InputSource *s, QObject *parent)
@@ -122,6 +123,20 @@ QStringList AbstractEngine::nameFilters()
     return filters;
 }
 
+QStringList AbstractEngine::contentTypes()
+{
+    loadPlugins();
+    QStringList types;
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+
+        types << item->contentTypes();
+    }
+    return types;
+}
+
 EngineFactory *AbstractEngine::findByFilePath(const QString& source)
 {
     loadPlugins();
@@ -184,15 +199,15 @@ QString AbstractEngine::file(const EngineFactory *factory)
 QStringList AbstractEngine::protocols()
 {
     loadPlugins();
-    QStringList protocolsList;
+    QStringList protocolList;
 
     for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
-        if(item->engineFactory())
-            protocolsList << item->engineFactory()->properties().protocols;
+
+        protocolList << item->protocols();
     }
-    protocolsList.removeDuplicates();
-    return protocolsList;
+    protocolList.removeDuplicates();
+    return protocolList;
 }
