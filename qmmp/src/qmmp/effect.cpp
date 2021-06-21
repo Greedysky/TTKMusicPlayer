@@ -160,10 +160,10 @@ bool Effect::isEnabled(const EffectFactory *factory)
 EffectFactory *Effect::findFactory(const QString &shortName)
 {
     loadPlugins();
-    for(EffectFactory *f : factories())
+    for(QmmpPluginCache *item : qAsConst(*m_cache))
     {
-        if(shortName == f->properties().shortName)
-            return f;
+        if(item->shortName() == shortName)
+            return item->effectFactory();
     }
     return nullptr;
 }
