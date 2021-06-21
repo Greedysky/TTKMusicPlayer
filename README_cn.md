@@ -93,7 +93,7 @@ TTKMusicPlayer的一些特性
  * AY/YM Audio File(*.vtx *.asc *.sqt *psg *.stc *.stp *.pt1 *.pt2 *.pt3 *.ay *.emul)
  * ST-Sound File(*.ym)
  * HVL Module Player File(*.ahx *.hvl)
- * NEC Audio File(*.s98)
+ * BP SoundMon Audio File(*.bp *.bp3)
  * MDX Chiptunes Audio File(*.mdx *.m)
  * Cave Story's org Audio File(*.org)
  * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)

@@ -76,7 +76,7 @@
  *
  *  HVL Module Player File(*.ahx *.hvl)
  *
- *  NEC Audio File(*.s98)
+ *  BP SoundMon Audio File(*.bp *.bp3)
  *
  *  MDX Chiptunes Audio File(*.mdx *.m)
  *
