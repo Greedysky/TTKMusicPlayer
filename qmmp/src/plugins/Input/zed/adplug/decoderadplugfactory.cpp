@@ -81,7 +81,7 @@ QList<TrackInfo*> DecoderAdplugFactory::createPlayList(const QString &path, Trac
         return QList<TrackInfo*>() << info;
     }
 
-    AdplugHelper helper(qUtf8Printable(path));
+    AdplugHelper helper(qPrintable(path));
     if(!helper.initialize())
     {
         delete info;

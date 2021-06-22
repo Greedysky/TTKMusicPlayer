@@ -39,16 +39,6 @@ void in_c68_meta_from_music_info(TrackInfo *info, sc68_music_info_t *ti)
     {
         info->setValue(Qmmp::COMMENT, ti->format);
     }
-
-//    if(ti->ripper && ti->ripper[0])
-//    {
-//        data.insert("SC68_RIPPER", ti->ripper);
-//    }
-
-//    if(ti->converter && ti->converter[0])
-//    {
-//        data.insert("SC68_CONVERTER", ti->converter);
-//    }
 }
 
 
