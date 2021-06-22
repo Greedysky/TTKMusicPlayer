@@ -46,11 +46,6 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
     }
 }
 
-SettingsDialog::~SettingsDialog()
-{
-
-}
-
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

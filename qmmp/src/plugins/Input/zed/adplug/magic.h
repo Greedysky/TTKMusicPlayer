@@ -21,7 +21,6 @@
 
 #include <cstddef>
 #include <exception>
-#include <string>
 
 class InputStream
 {

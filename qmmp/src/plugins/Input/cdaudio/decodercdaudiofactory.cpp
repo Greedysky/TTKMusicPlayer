@@ -7,9 +7,9 @@
 DecoderCDAudioFactory::DecoderCDAudioFactory()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    if(settings.value("cdaudio/cddb_server").toByteArray() == "freedb.org")
+    if(settings.value("CDAudio/cddb_server").toByteArray() == "freedb.org")
     {
-        settings.setValue("cdaudio/cddb_server", "gnudb.org");
+        settings.setValue("CDAudio/cddb_server", "gnudb.org");
     }
 }
 

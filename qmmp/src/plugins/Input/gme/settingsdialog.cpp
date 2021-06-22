@@ -18,11 +18,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.fadeoutSpinBox->setValue(settings.value("GME/fadeout_length", 7000).toInt());
 }
 
-SettingsDialog::~SettingsDialog()
-{
-
-}
-
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

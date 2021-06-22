@@ -295,7 +295,7 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
 
         if(in->nb_chapters > 1 && filePath.endsWith(".m4b", Qt::CaseInsensitive))
         {
-            QList<TrackInfo *> tracks = createPlayListFromChapters(in, info, trackNumber);
+            QList<TrackInfo*> tracks = createPlayListFromChapters(in, info, trackNumber);
             avformat_close_input(&in);
             delete info;
             return tracks;
@@ -312,9 +312,9 @@ QList<TrackInfo*> DecoderFFmpegFactory::createPlayList(const QString &path, Trac
     return QList<TrackInfo*>() << info;
 }
 
-QList<TrackInfo *> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
+QList<TrackInfo*> DecoderFFmpegFactory::createPlayListFromChapters(AVFormatContext *in, TrackInfo *extraInfo, int trackNumber)
 {
-    QList<TrackInfo *> tracks;
+    QList<TrackInfo*> tracks;
     for(unsigned int i = 0; i < in->nb_chapters; ++i)
     {
         if((trackNumber > 0) && (int(i + 1) != trackNumber))

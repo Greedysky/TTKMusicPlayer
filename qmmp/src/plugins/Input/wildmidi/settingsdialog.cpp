@@ -27,10 +27,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     settings.endGroup();
 }
 
-SettingsDialog::~SettingsDialog()
-{
-}
-
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

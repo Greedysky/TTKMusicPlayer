@@ -43,11 +43,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     updateRunningPlugins();
 }
 
-SettingsDialog::~SettingsDialog()
-{
-
-}
-
 void SettingsDialog::on_loadButton_clicked()
 {
     LADSPAHost *l = LADSPAHost::instance();

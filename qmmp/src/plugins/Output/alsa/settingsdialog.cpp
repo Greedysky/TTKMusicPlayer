@@ -39,11 +39,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     settings.endGroup();
 }
 
-SettingsDialog::~SettingsDialog()
-{
-
-}
-
 void SettingsDialog::getCards()
 {
     int card = -1, err;

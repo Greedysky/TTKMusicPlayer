@@ -23,11 +23,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         m_ui.qualityComboBox->setCurrentIndex(index);
 }
 
-SettingsDialog::~SettingsDialog()
-{
-
-}
-
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

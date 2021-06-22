@@ -7,14 +7,14 @@ AdplugMetaDataModel::AdplugMetaDataModel(const QString &path)
     AdplugHelper helper(qPrintable(path));
     if(helper.initialize())
     {
-        fill_in_extra_properties(&helper);
-        fill_in_descriptions(&helper);
+        fillEextraProperties(&helper);
+        fillDescriptions(&helper);
     }
 }
 
-void AdplugMetaDataModel::fill_in_extra_properties(AdplugHelper *helper)
+void AdplugMetaDataModel::fillEextraProperties(AdplugHelper *helper)
 {
-    if(helper->instrument_count() != 0)
+    if(helper->instrumentCount() != 0)
     {
         QString text;
         for(const QString &s : helper->instruments())
@@ -25,20 +25,21 @@ void AdplugMetaDataModel::fill_in_extra_properties(AdplugHelper *helper)
     }
 }
 
-void AdplugMetaDataModel::fill_in_descriptions(AdplugHelper *helper)
+void AdplugMetaDataModel::fillDescriptions(AdplugHelper *helper)
 {
     m_ap << MetaDataItem(tr("Title"), helper->title());
     m_ap << MetaDataItem(tr("Format"), helper->format());
     m_ap << MetaDataItem(tr("Author"), helper->author());
     m_ap << MetaDataItem(tr("Description"), helper->author());
 
-    if(helper->pattern_count() != 0)
+    if(helper->patternCount() != 0)
     {
-        m_ap << MetaDataItem(tr("Patterns"), QString::number(helper->pattern_count()));
+        m_ap << MetaDataItem(tr("Patterns"), QString::number(helper->patternCount()));
     }
-    if(helper->instrument_count() != 0)
+
+    if(helper->instrumentCount() != 0)
     {
-        m_ap << MetaDataItem(tr("Instruments"), QString::number(helper->instrument_count()));
+        m_ap << MetaDataItem(tr("Instruments"), QString::number(helper->instrumentCount()));
     }
 }
 

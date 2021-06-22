@@ -48,21 +48,21 @@ public:
     bool initialize();
 
     int bitrate() const;
-    int rate() const { return 44100; }
-    int depth() const { return 16; }
-    int channels() const { return 1; }
+    inline int rate() const { return 44100; }
+    inline int depth() const { return 16; }
+    inline int channels() const { return 1; }
 
-    unsigned long length() const { return m_player->songlength(); }
-    void seek(unsigned long pos) const { m_player->seek(pos); }
+    inline unsigned long length() const { return m_player->songlength(); }
+    inline void seek(unsigned long pos) const { m_player->seek(pos); }
 
     Frame read();
 
-    QString title() const { return QString::fromStdString(m_player->gettitle()); }
-    QString format() const { return QString::fromStdString(m_player->gettype()); }
-    QString author() const { return QString::fromStdString(m_player->getauthor()); }
-    QString description() const { return QString::fromStdString(m_player->getdesc()); }
-    unsigned int pattern_count() const { return m_player->getpatterns(); }
-    unsigned int instrument_count() const { return m_player->getinstruments(); }
+    inline QString title() const { return QString::fromStdString(m_player->gettitle()); }
+    inline QString format() const { return QString::fromStdString(m_player->gettype()); }
+    inline QString author() const { return QString::fromStdString(m_player->getauthor()); }
+    inline QString description() const { return QString::fromStdString(m_player->getdesc()); }
+    inline unsigned int patternCount() const { return m_player->getpatterns(); }
+    inline unsigned int instrumentCount() const { return m_player->getinstruments(); }
 
     QStringList instruments() const;
 

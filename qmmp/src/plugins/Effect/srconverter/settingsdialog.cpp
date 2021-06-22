@@ -13,11 +13,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.engineComboBox->setCurrentIndex(settings.value("SRC/engine", 0).toInt());
 }
 
-SettingsDialog::~SettingsDialog()
-{
-
-}
-
 void SettingsDialog::accept()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

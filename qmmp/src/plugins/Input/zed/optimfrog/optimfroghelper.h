@@ -37,19 +37,19 @@ public:
     int read(void *buf, long size);
     void seek(int pos);
 
-    int rate() const { return m_info.samplerate; }
-    int channels() const { return m_info.channels; }
-    int depth() const { return m_info.bitspersample; }
-    int bitrate() const { return m_info.bitrate; }
-    int version() const { return m_info.version; }
+    inline int rate() const { return m_info.samplerate; }
+    inline int channels() const { return m_info.channels; }
+    inline int depth() const { return m_info.bitspersample; }
+    inline int bitrate() const { return m_info.bitrate; }
+    inline int version() const { return m_info.version; }
     int length() const;
-    double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
 
-    bool hasTags() const { return !m_tags.isEmpty(); }
-    QString getTag(const char* tag) { return m_tags[tag]; }
+    inline double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
+
+    inline bool hasTags() const { return !m_tags.isEmpty(); }
+    inline QString getTag(const char* tag) { return m_tags[tag]; }
 
 private:
-    Q_DISABLE_COPY(OptimFROGHelper)
 #if defined Q_OS_WIN && defined __GNUC__
     FARPROC GetSymbolAddress(const char* name) const;
     HINSTANCE m_instance = nullptr;

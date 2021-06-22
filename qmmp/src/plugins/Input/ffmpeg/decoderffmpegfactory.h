@@ -41,7 +41,8 @@ public:
     virtual void showSettings(QWidget *parent) override;
 
 private:
-    QList<TrackInfo *> createPlayListFromChapters(AVFormatContext *in, TrackInfo *info, int trackNumber);
+    QList<TrackInfo*> createPlayListFromChapters(AVFormatContext *in, TrackInfo *info, int trackNumber);
+
 };
 
 #endif

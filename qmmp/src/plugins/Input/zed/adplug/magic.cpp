@@ -1,12 +1,9 @@
-#include <cstring>
-#include <fstream>
-#include <memory>
-#include <string>
-#include <vector>
-
-#include <QtGlobal>
-
 #include "magic.h"
+
+#include <vector>
+#include <cstring>
+#include <memory>
+#include <QtGlobal>
 
 class Matcher
 {

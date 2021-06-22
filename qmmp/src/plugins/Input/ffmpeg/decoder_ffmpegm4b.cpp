@@ -69,7 +69,7 @@ bool DecoderFFmpegM4b::initialize()
         return false;
     }
 
-    QList<TrackInfo *> tracks = m_factory->createPlayList(filePath, TrackInfo::AllParts, nullptr);
+    QList<TrackInfo*> tracks = m_factory->createPlayList(filePath, TrackInfo::AllParts, nullptr);
     if(tracks.isEmpty() || tracks.count() != int(in->nb_chapters))
     {
         qDeleteAll(tracks);

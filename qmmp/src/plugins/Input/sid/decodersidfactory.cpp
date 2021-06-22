@@ -34,9 +34,9 @@ DecoderProperties DecoderSIDFactory::properties() const
     properties.shortName = "sid";
     properties.filters << "*.sid" << "*.mus" << "*.str" << "*.prg" << "*.P00" << "*.c64";
     properties.description = "SID File";
+    properties.protocols << "sid";
     properties.hasSettings = true;
     properties.noInput = true;
-    properties.protocols << "sid";
     return properties;
 }
 

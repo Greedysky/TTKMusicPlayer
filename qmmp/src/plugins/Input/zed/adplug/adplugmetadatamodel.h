@@ -33,8 +33,8 @@ public:
     virtual QList<MetaDataItem> descriptions() const override;
 
 private:
-    void fill_in_extra_properties(AdplugHelper *helper);
-    void fill_in_descriptions(AdplugHelper *helper);
+    void fillEextraProperties(AdplugHelper *helper);
+    void fillDescriptions(AdplugHelper *helper);
 
     QList<MetaDataItem> m_ap;
     QList<MetaDataItem> m_desc;
