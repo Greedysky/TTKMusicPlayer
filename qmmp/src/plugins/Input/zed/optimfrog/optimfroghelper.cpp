@@ -14,8 +14,7 @@ typedef condition_t (*OFROG_seekTime)(void*, sInt64_t);
 #endif
 
 OptimFROGHelper::OptimFROGHelper(QIODevice *input)
-   : m_decoder(nullptr),
-     m_input(input)
+   : m_input(input)
 {
 
 }
@@ -108,9 +107,8 @@ bool OptimFROGHelper::initialize()
 #endif
     for(uInt32_t i = 0; i < ofr_tags.keyCount; i++)
     {
-        std::string key(ofr_tags.keys[i]);
-        std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-        m_tags.insert(std::pair<std::string, std::string>(key, std::string(ofr_tags.values[i])));
+        const QString key(ofr_tags.keys[i]);
+        m_tags.insert(key.toLower(), QString(ofr_tags.values[i]));
     }
 #if defined Q_OS_WIN && defined __GNUC__
     ((OFROG_freeTags)GetSymbolAddress("OptimFROG_freeTags"))(&ofr_tags);

@@ -26,6 +26,7 @@ class DecoderAdplug : public Decoder
 {
 public:
     explicit DecoderAdplug(const QString &path);
+    virtual ~DecoderAdplug();
 
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;
@@ -36,8 +37,7 @@ public:
 private:
     qint64 copy(unsigned char *, qint64);
 
-    QString m_path;
-    std::unique_ptr<AdplugHelper> m_adplug;
+    AdplugHelper *m_helper = nullptr;
     unsigned char *m_bufptr = nullptr;
     qint64 m_buf_filled = 0;
     unsigned long m_time = 0;

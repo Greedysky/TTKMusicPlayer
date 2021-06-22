@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    OrganyaHelper* m_helper;
+    OrganyaHelper* m_helper = nullptr;
 
 };
 

@@ -19,7 +19,7 @@
 #ifndef OPTIMFROGHELPER_H
 #define OPTIMFROGHELPER_H
 
-#include <map>
+#include <QMap>
 #include <QFile>
 #include <OptimFROG/OptimFROG.h>
 #if defined Q_OS_WIN && defined __GNUC__
@@ -45,8 +45,8 @@ public:
     int length() const;
     double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
 
-    bool hasTags() const { return !m_tags.empty(); }
-    QString getTag(const char* tag) { return QString::fromStdString(m_tags[tag]); }
+    bool hasTags() const { return !m_tags.isEmpty(); }
+    QString getTag(const char* tag) { return m_tags[tag]; }
 
 private:
     Q_DISABLE_COPY(OptimFROGHelper)
@@ -54,12 +54,12 @@ private:
     FARPROC GetSymbolAddress(const char* name) const;
     HINSTANCE m_instance = nullptr;
 #endif
-    void *m_decoder;
-    void *m_input;
+    void *m_decoder = nullptr;
+    void *m_input = nullptr;
     OptimFROG_Info m_info;
-    bool m_signed;
+    bool m_signed = false;
 
-    std::map<std::string, std::string> m_tags;
+    QMap<QString, QString> m_tags;
 
     static QIODevice *VFS(void *instance) { return reinterpret_cast<QIODevice *>(instance); }
 

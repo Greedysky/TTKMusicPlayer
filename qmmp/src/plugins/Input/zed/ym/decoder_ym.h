@@ -38,11 +38,11 @@ public:
 private:
     void deinit();
 
+    QString m_path;
     CYmMusic *m_music = nullptr;
     int m_bitrate = 0;
     quint32 m_freq = 0;
     qint64 m_totalTime = 0;
-    QString m_path;
 
 };
 

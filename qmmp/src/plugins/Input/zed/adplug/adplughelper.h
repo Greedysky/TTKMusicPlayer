@@ -19,9 +19,7 @@
 #ifndef ADPLUGHELPER_H
 #define ADPLUGHELPER_H
 
-#include <memory>
-#include <vector>
-
+#include <QStringList>
 #include <adplug/adplug.h>
 #include <adplug/emuopl.h>
 
@@ -40,16 +38,12 @@ public:
 
       }
 
-      size_t m_n;
-      unsigned char *m_buf;
+      size_t m_n = 0;
+      unsigned char *m_buf = nullptr;
     };
 
-    explicit AdplugHelper(const std::string &);
-    AdplugHelper(const AdplugHelper &) = delete;
-
-    AdplugHelper &operator=(const AdplugHelper &) = delete;
-
-    static std::string version() { return CAdPlug::get_version(); }
+    explicit AdplugHelper(const QString &path);
+    ~AdplugHelper();
 
     bool initialize();
 
@@ -63,19 +57,19 @@ public:
 
     Frame read();
 
-    std::string title() const { return m_player->gettitle(); }
-    std::string format() const { return m_player->gettype(); }
-    std::string author() const { return m_player->getauthor(); }
-    std::string description() const { return m_player->getdesc(); }
+    QString title() const { return QString::fromStdString(m_player->gettitle()); }
+    QString format() const { return QString::fromStdString(m_player->gettype()); }
+    QString author() const { return QString::fromStdString(m_player->getauthor()); }
+    QString description() const { return QString::fromStdString(m_player->getdesc()); }
     unsigned int pattern_count() const { return m_player->getpatterns(); }
     unsigned int instrument_count() const { return m_player->getinstruments(); }
 
-    std::vector<std::string> instruments() const;
+    QStringList instruments() const;
 
 private:
-    std::string m_filePath;
-    std::unique_ptr<Copl> m_opl;
-    std::unique_ptr<CPlayer> m_player;
+    QString m_filePath;
+    Copl *m_opl = nullptr;
+    CPlayer *m_player = nullptr;
     short m_buf[16384] = { 0 };
     size_t m_remaining = 0;
 

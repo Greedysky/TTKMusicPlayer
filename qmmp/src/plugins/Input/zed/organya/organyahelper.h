@@ -55,7 +55,7 @@ public:
 
 private:
     QString m_path;
-    organya_info *m_info;
+    organya_info *m_info = nullptr;
 
 };
 

@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    MdxHelper* m_helper;
+    MdxHelper* m_helper = nullptr;
 
 };
 

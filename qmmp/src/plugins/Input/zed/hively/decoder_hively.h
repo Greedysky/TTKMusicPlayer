@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    HivelyHelper* m_helper;
+    HivelyHelper* m_helper = nullptr;
 
 };
 

@@ -50,7 +50,7 @@ public:
     virtual void setValue(Qmmp::MetaData key, const QString &value) override;
 
 private:
-    PSFHelper* m_helper;
+    PSFHelper* m_helper = nullptr;
 
 };
 

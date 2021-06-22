@@ -90,8 +90,8 @@ QList<TrackInfo*> DecoderAdplugFactory::createPlayList(const QString &path, Trac
 
     if(parts & TrackInfo::MetaData)
     {
-        info->setValue(Qmmp::TITLE, QString::fromStdString(helper.title()));
-        info->setValue(Qmmp::ARTIST, QString::fromStdString(helper.author()));
+        info->setValue(Qmmp::TITLE, helper.title());
+        info->setValue(Qmmp::ARTIST, helper.author());
     }
 
     if(parts & TrackInfo::Properties)

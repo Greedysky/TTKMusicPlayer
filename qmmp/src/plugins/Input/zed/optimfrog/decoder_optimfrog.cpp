@@ -5,6 +5,11 @@ DecoderOptimFROG::DecoderOptimFROG(QIODevice *input)
 {
 }
 
+DecoderOptimFROG::~DecoderOptimFROG()
+{
+    delete m_helper;
+}
+
 bool DecoderOptimFROG::initialize()
 {
     if(!input())
@@ -13,7 +18,7 @@ bool DecoderOptimFROG::initialize()
     if(!input()->isOpen() && !input()->open(QIODevice::ReadOnly))
         return false;
 
-    m_helper = std::unique_ptr<OptimFROGHelper>(new OptimFROGHelper(input()));
+    m_helper = new OptimFROGHelper(input());
     if(!m_helper->initialize())
     {
         qWarning("DecoderOptimFROG: initialize failed");

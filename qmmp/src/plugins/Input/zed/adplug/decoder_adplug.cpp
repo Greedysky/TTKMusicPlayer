@@ -1,37 +1,40 @@
 #include "decoder_adplug.h"
 
 DecoderAdplug::DecoderAdplug(const QString &path)
-    : Decoder(),
-      m_path(path)
+    : Decoder()
 {
+    m_helper = new AdplugHelper(path);
+}
 
+DecoderAdplug::~DecoderAdplug()
+{
+    delete m_helper;
 }
 
 bool DecoderAdplug::initialize()
 {
-    m_adplug = std::unique_ptr<AdplugHelper>(new AdplugHelper(qUtf8Printable(m_path)));
-    if(!m_adplug->initialize())
+    if(!m_helper->initialize())
     {
         qWarning("DecoderAdplug: initialize failed");
         return false;
     }
 
-    m_length = m_adplug->length();
-    m_divisor = (m_adplug->rate() * m_adplug->channels() * (m_adplug->depth() / 8)) / 1000.0;
+    m_length = m_helper->length();
+    m_divisor = (m_helper->rate() * m_helper->channels() * (m_helper->depth() / 8)) / 1000.0;
 
-    configure(m_adplug->rate(), m_adplug->channels(), Qmmp::PCM_S16LE);
+    configure(m_helper->rate(), m_helper->channels(), Qmmp::PCM_S16LE);
     qDebug("DecoderAdplug: initialize succes");
     return true;
 }
 
 qint64 DecoderAdplug::totalTime() const
 {
-    return m_adplug->length();
+    return m_helper->length();
 }
 
 int DecoderAdplug::bitrate() const
 {
-    return m_adplug->depth();
+    return m_helper->depth();
 }
 
 qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
@@ -52,7 +55,7 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
 
     if(m_buf_filled == 0)
     {
-        AdplugHelper::Frame frame = m_adplug->read();
+        AdplugHelper::Frame frame = m_helper->read();
         if(frame.m_n == 0)
         {
             return copied;
@@ -69,7 +72,7 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
 
 void DecoderAdplug::seek(qint64 pos)
 {
-    m_adplug->seek(pos);
+    m_helper->seek(pos);
     m_time = pos;
 }
 

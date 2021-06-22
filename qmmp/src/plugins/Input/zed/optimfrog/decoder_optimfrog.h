@@ -27,6 +27,7 @@ class DecoderOptimFROG : public Decoder
 {
   public:
     explicit DecoderOptimFROG(QIODevice *input);
+    virtual ~DecoderOptimFROG();
 
     virtual bool initialize() override;
     virtual qint64 totalTime() const override;
@@ -35,7 +36,7 @@ class DecoderOptimFROG : public Decoder
     virtual void seek(qint64 time) override;
 
 private:
-    std::unique_ptr<OptimFROGHelper> m_helper;
+    OptimFROGHelper *m_helper = nullptr;
 
 };
 

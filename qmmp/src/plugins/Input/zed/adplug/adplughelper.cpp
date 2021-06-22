@@ -2,12 +2,17 @@
 
 #include <QFileInfo>
 
-AdplugHelper::AdplugHelper(const std::string &filename)
-    : m_filePath(filename),
-      m_opl(new CEmuopl(rate(), true, false)),
-      m_player(CAdPlug::factory(filename.c_str(), m_opl.get()))
+AdplugHelper::AdplugHelper(const QString &path)
+    : m_filePath(path)
 {
+    m_opl = new CEmuopl(rate(), true, false);
+    m_player = CAdPlug::factory(path.toStdString(), m_opl);
+}
 
+AdplugHelper::~AdplugHelper()
+{
+    delete m_opl;
+    delete m_player;
 }
 
 AdplugHelper::Frame AdplugHelper::read()
@@ -40,20 +45,20 @@ AdplugHelper::Frame AdplugHelper::read()
 
 bool AdplugHelper::initialize()
 {
-    return m_player.get();
+    return m_player;
 }
 
 int AdplugHelper::bitrate() const
 {
-    return (QFileInfo(m_filePath.c_str()).size() * 8.0) / length() + 1.0f;
+    return (QFileInfo(m_filePath).size() * 8.0) / length() + 1.0f;
 }
 
-std::vector<std::string> AdplugHelper::instruments() const
+QStringList AdplugHelper::instruments() const
 {
-    std::vector<std::string> insts;
+    QStringList insts;
     for(unsigned int i = 0; i < instrument_count(); i++)
     {
-        insts.push_back(m_player->getinstrument(i));
+        insts << QString::fromStdString(m_player->getinstrument(i));
     }
     return insts;
 }

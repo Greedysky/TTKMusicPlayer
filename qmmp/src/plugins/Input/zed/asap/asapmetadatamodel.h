@@ -49,7 +49,7 @@ public:
     virtual void setValue(Qmmp::MetaData key, const QString &value) override;
 
 private:
-    AsapHelper* m_helper;
+    AsapHelper* m_helper = nullptr;
 
 };
 
