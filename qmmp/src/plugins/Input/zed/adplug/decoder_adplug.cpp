@@ -39,9 +39,7 @@ int DecoderAdplug::bitrate() const
 
 qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
 {
-    qint64 copied;
-
-    copied = copy(audio, max_size);
+    qint64 copied = copy(audio, max_size);
     audio += copied;
     max_size -= copied;
 

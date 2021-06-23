@@ -48,7 +48,7 @@ bool BpHelper::initialize()
     return true;
 }
 
-int BpHelper::totalTime() const
+qint64 BpHelper::totalTime() const
 {
     return m_info->input->GetLength();
 }
@@ -78,11 +78,11 @@ int BpHelper::bitsPerSample() const
     return 8;
 }
 
-int BpHelper::read(unsigned char *buf, int)
+qint64 BpHelper::read(unsigned char *data, qint64)
 {
     if(!m_info->input->Run())
     {
         return 0;
     }
-    return m_info->input->Render(buf);
+    return m_info->input->Render(data);
 }

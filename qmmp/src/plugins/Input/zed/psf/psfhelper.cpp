@@ -88,7 +88,7 @@ bool PSFHelper::initialize()
     return true;
 }
 
-int PSFHelper::totalTime() const
+qint64 PSFHelper::totalTime() const
 {
     return m_info->length * 1000;
 }
@@ -129,15 +129,15 @@ int PSFHelper::bitsPerSample() const
     return 16;
 }
 
-int PSFHelper::read(unsigned char *buf, int size)
+qint64 PSFHelper::read(unsigned char *data, qint64 maxSize)
 {
     if(m_info->current_sample >= m_info->length * sampleRate())
     {
         return 0;
     }
 
-    const int initsize = size;
-    while(size > 0)
+    const int initSize = maxSize;
+    while(maxSize > 0)
     {
         if(m_info->remaining > 0)
         {
@@ -153,16 +153,16 @@ int PSFHelper::read(unsigned char *buf, int size)
                 continue;
             }
 
-            int n = size / 4;
+            int n = maxSize / 4;
             n = std::min<int>(m_info->remaining, n);
-            memcpy(buf, m_info->buffer, n * 4);
+            memcpy(data, m_info->buffer, n * 4);
             if(m_info->remaining > n)
             {
                 memmove(m_info->buffer, m_info->buffer + n * 4, (m_info->remaining - n) * 4);
             }
             m_info->remaining -= n;
-            buf += n*4;
-            size -= n*4;
+            data += n * 4;
+            maxSize -= n * 4;
         }
 
         if(!m_info->remaining)
@@ -172,8 +172,8 @@ int PSFHelper::read(unsigned char *buf, int size)
         }
     }
 
-    m_info->current_sample += (initsize - size) / (channels() * bitsPerSample() / 8);
-    return initsize - size;
+    m_info->current_sample += (initSize - maxSize) / (channels() * bitsPerSample() / 8);
+    return initSize - maxSize;
 }
 
 QMap<Qmmp::MetaData, QString> PSFHelper::readMetaData() const

@@ -82,7 +82,7 @@ bool V2MHelper::initialize()
     return true;
 }
 
-int V2MHelper::totalTime() const
+qint64 V2MHelper::totalTime() const
 {
     return m_info->input->Length() * 1000;
 }
@@ -112,17 +112,17 @@ int V2MHelper::bitsPerSample() const
     return 32;
 }
 
-int V2MHelper::read(unsigned char *buf, int size)
+qint64 V2MHelper::read(unsigned char *data, qint64 maxSize)
 {
     if(!m_info->input->IsPlaying())
     {
         return 0;
     }
 
-    const int samplesize = (bitsPerSample() >> 3) * channels();
-    const int samples = size / samplesize;
+    const int sampleSize = (bitsPerSample() >> 3) * channels();
+    const int samples = maxSize / sampleSize;
 
-    m_info->input->Render((float*)buf, samples);
+    m_info->input->Render((float*)data, samples);
 
-    return size;
+    return maxSize;
 }

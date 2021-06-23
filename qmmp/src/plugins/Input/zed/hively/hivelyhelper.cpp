@@ -88,7 +88,7 @@ bool HivelyHelper::initialize()
     return true;
 }
 
-int HivelyHelper::totalTime() const
+qint64 HivelyHelper::totalTime() const
 {
     return hvl_GetPlayTime(m_info->input);
 }
@@ -118,14 +118,14 @@ int HivelyHelper::bitsPerSample() const
     return 16;
 }
 
-int HivelyHelper::read(unsigned char *buffer, int )
+qint64 HivelyHelper::read(unsigned char *data, qint64)
 {
     if(m_info->input->ht_SongEndReached)
     {
         return 0;
     }
 
-    int8* ptr = (int8*)buffer;
+    int8* ptr = (int8*)data;
     hvl_DecodeFrame(m_info->input, ptr, ptr + 2, 4);
 
     const int sample = (m_info->input->ht_Frequency / 50 / m_info->input->ht_SpeedMultiplier) * 4;

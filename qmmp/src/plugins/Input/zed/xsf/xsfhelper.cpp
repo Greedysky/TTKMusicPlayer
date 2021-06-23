@@ -55,7 +55,7 @@ bool XSFHelper::initialize()
     return true;
 }
 
-int XSFHelper::totalTime() const
+qint64 XSFHelper::totalTime() const
 {
     return m_info->input->length();
 }
@@ -85,9 +85,9 @@ int XSFHelper::bitsPerSample() const
     return 16;
 }
 
-int XSFHelper::read(unsigned char *buf, int)
+qint64 XSFHelper::read(unsigned char *data, qint64)
 {
-    return m_info->input->read((short*)buf, SAMPLE_BUF_SIZE) * 4;
+    return m_info->input->read((short*)data, SAMPLE_BUF_SIZE) * 4;
 }
 
 QMap<Qmmp::MetaData, QString> XSFHelper::readMetaData() const

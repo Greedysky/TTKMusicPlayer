@@ -43,7 +43,7 @@ public:
     void deinit();
 
     bool initialize();
-    int totalTime() const;
+    qint64 totalTime() const;
     void seek(qint64 time);
 
     int bitrate() const;
@@ -51,7 +51,7 @@ public:
     int channels() const;
     int bitsPerSample() const;
 
-    int read(unsigned char *buf, int size);
+    qint64 read(unsigned char *data, qint64 maxSize);
     QMap<Qmmp::MetaData, QString> readMetaData() const;
 
 private:

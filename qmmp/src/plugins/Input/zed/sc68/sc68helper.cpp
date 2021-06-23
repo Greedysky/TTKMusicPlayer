@@ -125,7 +125,7 @@ bool SC68Helper::initialize()
     return true;
 }
 
-int SC68Helper::totalTime() const
+qint64 SC68Helper::totalTime() const
 {
     return m_info->length;
 }
@@ -174,27 +174,27 @@ int SC68Helper::bitsPerSample() const
     return 16;
 }
 
-int SC68Helper::read(unsigned char *buf, int size)
+qint64 SC68Helper::read(unsigned char *data, qint64 maxSize)
 {
     if(m_info->current_sample >= m_info->total_samples)
     {
         return 0;
     }
 
-    m_info->current_sample += size / (channels() * bitsPerSample() / 8);
-    const int initsize = size;
+    m_info->current_sample += maxSize / (channels() * bitsPerSample() / 8);
+    const int initSize = maxSize;
 
-    while(size > 0)
+    while(maxSize > 0)
     {
-        int n = size >> 2;
-        if(sc68_process(m_info->input, buf, &n) & SC68_END)
+        int n = maxSize >> 2;
+        if(sc68_process(m_info->input, data, &n) & SC68_END)
         {
             break;
         }
-        size -= n << 2;
+        maxSize -= n << 2;
     }
 
-    return initsize - size;
+    return initSize - maxSize;
 }
 
 QList<TrackInfo*> SC68Helper::createPlayList(TrackInfo::Parts parts)

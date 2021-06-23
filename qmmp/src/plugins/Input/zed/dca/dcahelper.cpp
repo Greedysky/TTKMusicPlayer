@@ -419,7 +419,7 @@ bool DCAHelper::initialize()
     return true;
 }
 
-int DCAHelper::totalTime() const
+qint64 DCAHelper::totalTime() const
 {
     return m_info->length;
 }
@@ -458,30 +458,30 @@ int DCAHelper::bitsPerSample() const
     return m_info->bits_per_sample;
 }
 
-int DCAHelper::read(unsigned char *buf, int size)
+qint64 DCAHelper::read(unsigned char *data, qint64 maxSize)
 {
-    const int samplesize = channels() * bitsPerSample() / 8;
+    const int sampleSize = channels() * bitsPerSample() / 8;
     if(m_info->end_sample >= 0)
     {
-        if(m_info->current_sample + size / samplesize > m_info->end_sample)
+        if(m_info->current_sample + maxSize / sampleSize > m_info->end_sample)
         {
-            size = (int)((m_info->end_sample - m_info->current_sample + 1) * samplesize);
-            if(size <= 0)
+            maxSize = (int)((m_info->end_sample - m_info->current_sample + 1) * sampleSize);
+            if(maxSize <= 0)
             {
                 return 0;
             }
         }
     }
 
-    int initsize = size;
-    while(size > 0)
+    int initSize = maxSize;
+    while(maxSize > 0)
     {
         if(m_info->samples_to_skip > 0 && m_info->remaining > 0)
         {
             int skip = MIN(m_info->remaining, m_info->samples_to_skip);
             if(skip < m_info->remaining)
             {
-                memmove(m_info->output_buffer, m_info->output_buffer + skip * channels(), (m_info->remaining - skip) * samplesize);
+                memmove(m_info->output_buffer, m_info->output_buffer + skip * channels(), (m_info->remaining - skip) * sampleSize);
             }
             m_info->remaining -= skip;
             m_info->samples_to_skip -= skip;
@@ -489,13 +489,13 @@ int DCAHelper::read(unsigned char *buf, int size)
 
         if(m_info->remaining > 0)
         {
-            int n = size / samplesize;
+            int n = maxSize / sampleSize;
             n = MIN(n, m_info->remaining);
 
             if(!(m_info->flags & DCA_LFE))
             {
-                memcpy(buf, m_info->output_buffer, n * samplesize);
-                buf += n * samplesize;
+                memcpy(data, m_info->output_buffer, n * sampleSize);
+                data += n * sampleSize;
             }
             else
             {
@@ -511,22 +511,22 @@ int DCAHelper::read(unsigned char *buf, int size)
                 {
                     for(int i = 0; i < channels(); i++)
                     {
-                        ((int16_t *)buf)[i] = ((int16_t*)in)[channel_remap[chmap][i]];
+                        ((int16_t *)data)[i] = ((int16_t*)in)[channel_remap[chmap][i]];
                     }
-                    in += samplesize;
-                    buf += samplesize;
+                    in += sampleSize;
+                    data += sampleSize;
                 }
             }
 
             if(m_info->remaining > n)
             {
-                memmove(m_info->output_buffer, m_info->output_buffer + n * channels(), (m_info->remaining - n) * samplesize);
+                memmove(m_info->output_buffer, m_info->output_buffer + n * channels(), (m_info->remaining - n) * sampleSize);
             }
-            size -= n * samplesize;
+            maxSize -= n * sampleSize;
             m_info->remaining -= n;
         }
 
-        if(size > 0 && !m_info->remaining)
+        if(maxSize > 0 && !m_info->remaining)
         {
             size_t rd = stdio_read(m_info->inbuf, 1, BUFFER_SIZE, m_info->file);
             int nsamples = dca_decode_data(m_info, m_info->inbuf, rd, 0);
@@ -537,7 +537,7 @@ int DCAHelper::read(unsigned char *buf, int size)
         }
     }
 
-    m_info->current_sample += (initsize - size) / samplesize;
+    m_info->current_sample += (initSize - maxSize) / sampleSize;
 
-    return initsize - size;
+    return initSize - maxSize;
 }

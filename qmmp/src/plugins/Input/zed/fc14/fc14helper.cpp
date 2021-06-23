@@ -56,7 +56,7 @@ bool FC14Helper::initialize()
     return true;
 }
 
-int FC14Helper::totalTime() const
+qint64 FC14Helper::totalTime() const
 {
     return fc14dec_duration(m_info->input);
 }
@@ -86,14 +86,14 @@ int FC14Helper::bitsPerSample() const
     return 16;
 }
 
-int FC14Helper::read(unsigned char *buf, int size)
+qint64 FC14Helper::read(unsigned char *data, qint64 maxSize)
 {
-    fc14dec_buffer_fill(m_info->input, buf, size);
+    fc14dec_buffer_fill(m_info->input, data, maxSize);
     if(fc14dec_song_end(m_info->input))
     {
         return 0;
     }
-    return size;
+    return maxSize;
 }
 
 QMap<Qmmp::MetaData, QString> FC14Helper::readMetaData() const

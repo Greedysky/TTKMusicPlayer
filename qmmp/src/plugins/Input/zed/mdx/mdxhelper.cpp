@@ -87,7 +87,7 @@ bool MdxHelper::initialize()
     return true;
 }
 
-int MdxHelper::totalTime() const
+qint64 MdxHelper::totalTime() const
 {
     return m_info->length;
 }
@@ -117,7 +117,7 @@ int MdxHelper::bitsPerSample() const
     return 16;
 }
 
-int MdxHelper::read(unsigned char *buf, int)
+qint64 MdxHelper::read(unsigned char *data, qint64)
 {
     if(m_info->length > 0 && m_info->pos >= m_info->length)
     {
@@ -126,11 +126,11 @@ int MdxHelper::read(unsigned char *buf, int)
 
     if(m_info->mdx_mode)
     {
-        mdx_calc_sample(&m_info->input, (short*)buf, SAMPLE_BUF_SIZE);
+        mdx_calc_sample(&m_info->input, (short*)data, SAMPLE_BUF_SIZE);
     }
     else
     {
-        pmd_renderer((short*)buf, SAMPLE_BUF_SIZE);
+        pmd_renderer((short*)data, SAMPLE_BUF_SIZE);
     }
 
     m_info->pos += SAMPLE_BUF_SIZE * 1000.0 / sampleRate();

@@ -48,7 +48,7 @@ bool OrganyaHelper::initialize()
     return true;
 }
 
-int OrganyaHelper::totalTime() const
+qint64 OrganyaHelper::totalTime() const
 {
     return org_decoder_get_total_samples(m_info->input) / sampleRate() * 1000;
 }
@@ -79,8 +79,8 @@ int OrganyaHelper::bitsPerSample() const
     return 16;
 }
 
-int OrganyaHelper::read(unsigned char *buf, int size)
+qint64 OrganyaHelper::read(unsigned char *data, qint64 maxSize)
 {
-    const unsigned int sample = size / 2 / sizeof(int16_t);
-    return org_decode_samples(m_info->input, (int16_t*)buf, sample) * 2 * sizeof(int16_t);
+    const unsigned int sample = maxSize / 2 / sizeof(int16_t);
+    return org_decode_samples(m_info->input, (int16_t*)data, sample) * 2 * sizeof(int16_t);
 }

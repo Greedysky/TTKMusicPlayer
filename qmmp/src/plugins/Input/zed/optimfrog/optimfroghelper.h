@@ -34,15 +34,15 @@ public:
 
     bool initialize();
 
-    int read(void *buf, long size);
-    void seek(int pos);
-
     inline int rate() const { return m_info.samplerate; }
     inline int channels() const { return m_info.channels; }
     inline int depth() const { return m_info.bitspersample; }
     inline int bitrate() const { return m_info.bitrate; }
     inline int version() const { return m_info.version; }
-    int length() const;
+
+    void seek(qint64 pos);
+    qint64 length() const;
+    qint64 read(unsigned char *data, qint64 maxSize);
 
     inline double compression() const { return 1000.0 * bitrate() / rate() / channels() / depth(); }
 

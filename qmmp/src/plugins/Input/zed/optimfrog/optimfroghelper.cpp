@@ -118,32 +118,7 @@ bool OptimFROGHelper::initialize()
     return true;
 }
 
-int OptimFROGHelper::read(void *buf, long size)
-{
-    sInt32_t n;
-    int bytes = depth() / 8;
-    sInt32_t point_conversion = bytes * m_info.channels;
-#if defined Q_OS_WIN && defined __GNUC__
-    n = ((OFROG_read)GetSymbolAddress("OptimFROG_read"))(m_decoder, buf, size / point_conversion, C_TRUE);
-#else
-    n = OptimFROG_read(m_decoder, buf, size / point_conversion, C_TRUE);
-#endif
-    n = n > 0 ? n * point_conversion : 0;
-
-    /* Qmmp doesn't support unsigned samples, so convert here. */
-    if(!m_signed)
-    {
-        unsigned char *overlay = reinterpret_cast<unsigned char *>(buf);
-
-        for(sInt32_t i = bytes - 1; i < n; i += bytes)
-        {
-            overlay[i] ^= 0x80;
-        }
-    }
-    return n;
-}
-
-void OptimFROGHelper::seek(int pos)
+void OptimFROGHelper::seek(qint64 pos)
 {
 #if defined Q_OS_WIN && defined __GNUC__
     if(((OFROG_seekable)GetSymbolAddress("OptimFROG_seekable"))(m_decoder))
@@ -158,7 +133,7 @@ void OptimFROGHelper::seek(int pos)
 #endif
 }
 
-int OptimFROGHelper::length() const
+qint64 OptimFROGHelper::length() const
 {
 #if defined Q_OS_WIN && defined __GNUC__
     return (static_cast<QIODevice*>(m_input)->size() * 8.0) / m_info.bitrate;
@@ -178,3 +153,27 @@ FARPROC OptimFROGHelper::GetSymbolAddress(const char* name) const
     return func;
 }
 #endif
+
+qint64 OptimFROGHelper::read(unsigned char *data, qint64 maxSize)
+{
+    sInt32_t n;
+    int bytes = depth() / 8;
+    sInt32_t point_conversion = bytes * m_info.channels;
+#if defined Q_OS_WIN && defined __GNUC__
+    n = ((OFROG_read)GetSymbolAddress("OptimFROG_read"))(m_decoder, buf, size / point_conversion, C_TRUE);
+#else
+    n = OptimFROG_read(m_decoder, data, maxSize / point_conversion, C_TRUE);
+#endif
+    n = n > 0 ? n * point_conversion : 0;
+
+    /* Qmmp doesn't support unsigned samples, so convert here. */
+    if(!m_signed)
+    {
+        unsigned char *overlay = data;
+        for(sInt32_t i = bytes - 1; i < n; i += bytes)
+        {
+            overlay[i] ^= 0x80;
+        }
+    }
+    return n;
+}
