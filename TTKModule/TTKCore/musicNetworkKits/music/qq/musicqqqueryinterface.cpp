@@ -70,8 +70,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
         attr.m_size = MusicUtils::Number::size2Label(key["sizeflac"].toULongLong());
-        attr.m_format =
-                FLAC_FILE_PREFIX;
+        attr.m_format = FLAC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }

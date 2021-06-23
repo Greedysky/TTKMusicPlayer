@@ -172,6 +172,10 @@ public:
      */
     static QStringList nameFilters();
     /*!
+     * Returns a list of the supported mime types.
+     */
+    static QStringList contentTypes();
+    /*!
      * Returns plugin file path.
      * @param factory Decoder plugin factory.
      */

@@ -66,7 +66,7 @@ public:
      * Creates playlist using parsed CUE metadata.
      * \param track Track number to return (-1 for all playlist or 1..n for specific track)
      */
-    QList<TrackInfo *> createPlayList(int track = -1) const;
+    QList<TrackInfo*> createPlayList(int track = -1) const;
     /*!
      * Returns a list of data files.
      */

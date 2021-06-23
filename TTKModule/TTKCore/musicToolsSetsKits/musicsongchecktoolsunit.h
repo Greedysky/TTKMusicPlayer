@@ -20,13 +20,13 @@ typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
     QString m_RecommendName;
-    QString m_filePath;
+    QString m_path;
 
     MusicSongCheckToolsRename(const QString &locaName, const QString &recommendName, const QString &path)
     {
         m_locaName = locaName;
         m_RecommendName = recommendName;
-        m_filePath = path;
+        m_path = path;
     }
 }MusicSongCheckToolsRename;
 TTK_DECLARE_LISTS(MusicSongCheckToolsRename)

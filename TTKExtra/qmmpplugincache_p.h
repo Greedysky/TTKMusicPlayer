@@ -43,6 +43,8 @@ public:
     const QString shortName() const;
     const QString file() const;
     const QStringList &filters() const;
+    const QStringList &contentTypes() const;
+    const QStringList &protocols() const;
     int priority() const;
     bool hasError() const;
 
@@ -60,6 +62,8 @@ private:
     QString m_path;
     QString m_shortName;
     QStringList m_filters;
+    QStringList m_contentTypes;
+    QStringList m_protocols;
     bool m_error = false;
     QObject *m_instance = nullptr;
     DecoderFactory *m_decoderFactory = nullptr;

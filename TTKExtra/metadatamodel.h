@@ -115,7 +115,7 @@ public:
      * Returns a list of available tags.
      * Subclass should reimplement this function. Default implementation returns empty array.
      */
-    virtual QList<TagModel* > tags() const;
+    virtual QList<TagModel*> tags() const;
     /*!
      * Returns cover pixmap.
      * Subclass should reimplement this function. Default implementation returns empty pixmap.

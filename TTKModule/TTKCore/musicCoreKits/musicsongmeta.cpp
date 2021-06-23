@@ -53,7 +53,7 @@ bool MusicSongMeta::read(const QString &file)
         return false;
     }
 
-    m_filePath = path;
+    m_path = path;
     const bool status = readInformation();
     if(status && track)
     {
@@ -70,7 +70,7 @@ bool MusicSongMeta::save()
 
 QString MusicSongMeta::getDecoder() const
 {
-    const QString &suffix = QFileInfo(m_filePath).suffix().toLower();
+    const QString &suffix = QFileInfo(m_path).suffix().toLower();
     const TTKStringListMap formats(MusicFormats::supportFormatsMap());
     for(const QString &key : formats.keys())
     {
@@ -85,7 +85,7 @@ QString MusicSongMeta::getDecoder() const
 
 QString MusicSongMeta::getFilePath() const
 {
-    return m_filePath;
+    return m_path;
 }
 
 QString MusicSongMeta::getFileBasePath()
@@ -242,7 +242,7 @@ MusicSongMeta::MusicSongMeta(const MusicSongMeta &other)
     }
 
     m_offset = other.m_offset;
-    m_filePath = other.m_filePath;
+    m_path = other.m_path;
     for(const MusicMeta *meta : m_songMetas)
     {
         m_songMetas << new MusicMeta(*meta);
@@ -257,7 +257,7 @@ MusicSongMeta::MusicSongMeta(MusicSongMeta &&other)
     }
 
     m_offset = other.m_offset;
-    m_filePath = other.m_filePath;
+    m_path = other.m_path;
     m_songMetas = other.m_songMetas;
     other.m_songMetas.clear();
 }
@@ -270,7 +270,7 @@ MusicSongMeta& MusicSongMeta::operator= (const MusicSongMeta &other)
     }
 
     m_offset = other.m_offset;
-    m_filePath = other.m_filePath;
+    m_path = other.m_path;
     for(const MusicMeta *meta : m_songMetas)
     {
         m_songMetas << new MusicMeta(*meta);
@@ -287,7 +287,7 @@ MusicSongMeta& MusicSongMeta::operator= (MusicSongMeta &&other)
     }
 
     m_offset = other.m_offset;
-    m_filePath = other.m_filePath;
+    m_path = other.m_path;
     m_songMetas = other.m_songMetas;
     other.m_songMetas.clear();
 
@@ -335,12 +335,12 @@ QString MusicSongMeta::findLegalDataString(TagWrapper::Type type)
 bool MusicSongMeta::readInformation()
 {
     clearSongMeta();
-    DecoderFactory *factory = Decoder::findByFilePath(m_filePath);
+    DecoderFactory *factory = Decoder::findByFilePath(m_path);
 
     if(factory)
     {
         QPixmap cover;
-        MetaDataModel *model = factory->createMetaDataModel(m_filePath, true);
+        MetaDataModel *model = factory->createMetaDataModel(m_path, true);
         if(model)
         {
             cover = model->cover();
@@ -349,7 +349,7 @@ bool MusicSongMeta::readInformation()
 
         qint64 length = 0;
         QStringList files;
-        const QList<TrackInfo*> infos(factory->createPlayList(m_filePath, TrackInfo::AllParts, &files));
+        const QList<TrackInfo*> infos(factory->createPlayList(m_path, TrackInfo::AllParts, &files));
 
         for(TrackInfo *info : qAsConst(infos))
         {
@@ -387,7 +387,7 @@ bool MusicSongMeta::readInformation()
             if(length == 0)
             {
                 TagWrapper wrapper;
-                if(wrapper.readFile(m_filePath))
+                if(wrapper.readFile(m_path))
                 {
                     const QMap<TagWrapper::Type, QString> &data = wrapper.getMusicTags();
                     length = data[TagWrapper::TAG_LENGTH].toLongLong();
@@ -402,11 +402,11 @@ bool MusicSongMeta::readInformation()
 
 bool MusicSongMeta::saveInformation()
 {
-    DecoderFactory *factory = Decoder::findByFilePath(m_filePath);
+    DecoderFactory *factory = Decoder::findByFilePath(m_path);
 
     if(factory)
     {
-        MetaDataModel *model = factory->createMetaDataModel(m_filePath, false);
+        MetaDataModel *model = factory->createMetaDataModel(m_path, false);
         if(model)
         {
             const QList<TagModel* > &tags = model->tags();

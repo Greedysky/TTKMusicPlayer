@@ -192,7 +192,7 @@ protected:
     bool saveInformation();
 
     int m_offset;
-    QString m_filePath;
+    QString m_path;
     QList<MusicMeta*> m_songMetas;
 
 };
