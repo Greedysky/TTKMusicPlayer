@@ -49,7 +49,7 @@ QList<MetaDataItem> FFapMetaDataModel::extraProperties() const
     return ep;
 }
 
-QList<TagModel* > FFapMetaDataModel::tags() const
+QList<TagModel*> FFapMetaDataModel::tags() const
 {
     return m_tags;
 }

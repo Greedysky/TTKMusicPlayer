@@ -32,7 +32,7 @@
  */
 namespace XSFReader
 {
-    FileReader* makeReader(const QString &path);
+    FileReader *makeReader(const QString &path);
 }
 
 #endif

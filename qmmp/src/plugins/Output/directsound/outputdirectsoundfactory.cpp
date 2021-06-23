@@ -9,7 +9,7 @@ OutputProperties OutputDirectSoundFactory::properties() const
     return properties;
 }
 
-Output* OutputDirectSoundFactory::create()
+Output *OutputDirectSoundFactory::create()
 {
     return new OutputDirectSound();
 }

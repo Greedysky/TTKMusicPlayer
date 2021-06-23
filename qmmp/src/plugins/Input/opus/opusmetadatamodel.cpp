@@ -35,7 +35,7 @@ QList<MetaDataItem> OpusMetaDataModel::extraProperties() const
     return ep;
 }
 
-QList<TagModel* > OpusMetaDataModel::tags() const
+QList<TagModel*> OpusMetaDataModel::tags() const
 {
     return m_tags;
 }

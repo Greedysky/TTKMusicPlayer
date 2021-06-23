@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    AsapHelper* m_helper = nullptr;
+    AsapHelper *m_helper = nullptr;
 
 };
 

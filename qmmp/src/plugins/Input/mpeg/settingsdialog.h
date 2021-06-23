@@ -41,7 +41,7 @@ private:
     void findCodecs();
 
     Ui::SettingsDialog m_ui;
-    QList<QTextCodec *> m_codecs;
+    QList<QTextCodec*> m_codecs;
 
 };
 

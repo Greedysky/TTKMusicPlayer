@@ -51,7 +51,7 @@ private:
 
     Ui::SettingsDialog m_ui;
     QStringList m_devices;
-    QList <QString> m_cards;
+    QList<QString> m_cards;
 
 };
 

@@ -65,7 +65,7 @@ QList<MetaDataItem> MPEGMetaDataModel::extraProperties() const
     return ep;
 }
 
-QList<TagModel* > MPEGMetaDataModel::tags() const
+QList<TagModel*> MPEGMetaDataModel::tags() const
 {
     return m_tags;
 }

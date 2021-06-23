@@ -34,14 +34,14 @@ public:
     virtual ~OpusMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QPixmap cover() const override;
     virtual void setCover(const QPixmap &pix) override;
     virtual void removeCover() override;
 
 private:
     QString m_path;
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::Ogg::Opus::File *m_file;
     TagLib::FileStream *m_stream;
 

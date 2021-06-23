@@ -35,13 +35,13 @@ public:
     virtual ~MPEGMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QPixmap cover() const override;
     virtual void setCover(const QPixmap &pix) override;
     virtual void removeCover() override;
 
 private:
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::MPEG::File *m_file;
     TagLib::FileStream *m_stream;
 

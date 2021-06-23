@@ -11,7 +11,7 @@ OutputProperties OutputALSAFactory::properties() const
     return properties;
 }
 
-Output* OutputALSAFactory::create()
+Output *OutputALSAFactory::create()
 {
     return new OutputALSA();
 }

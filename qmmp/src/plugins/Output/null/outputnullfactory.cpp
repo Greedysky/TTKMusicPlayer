@@ -9,7 +9,7 @@ OutputProperties OutputNullFactory::properties() const
     return properties;
 }
 
-Output* OutputNullFactory::create()
+Output *OutputNullFactory::create()
 {
     return new OutputNull();
 }

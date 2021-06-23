@@ -54,7 +54,7 @@ QList<MetaDataItem> WavPackMetaDataModel::extraProperties() const
     return ep;
 }
 
-QList<TagModel* > WavPackMetaDataModel::tags() const
+QList<TagModel*> WavPackMetaDataModel::tags() const
 {
     return m_tags;
 }

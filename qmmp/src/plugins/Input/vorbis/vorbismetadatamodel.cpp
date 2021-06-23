@@ -28,7 +28,7 @@ VorbisMetaDataModel::~VorbisMetaDataModel()
     delete m_stream;
 }
 
-QList<TagModel* > VorbisMetaDataModel::tags() const
+QList<TagModel*> VorbisMetaDataModel::tags() const
 {
     return m_tags;
 }

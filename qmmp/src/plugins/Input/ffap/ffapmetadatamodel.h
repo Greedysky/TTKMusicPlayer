@@ -39,12 +39,12 @@ public:
     virtual ~FFapMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QString coverPath() const override;
 
 private:
     QString m_path;
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::APE::File *m_file = nullptr;
     TagLib::FileStream *m_stream = nullptr;
 

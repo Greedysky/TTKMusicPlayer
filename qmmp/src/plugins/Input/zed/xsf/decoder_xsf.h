@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    XSFHelper* m_helper = nullptr;
+    XSFHelper *m_helper = nullptr;
 
 };
 

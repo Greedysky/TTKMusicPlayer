@@ -36,8 +36,8 @@ public:
     void readSettings();
     QString configFile() const;
 
-    void addPtr(void *);
-    void removePtr(void *);
+    void addPtr(void *t);
+    void removePtr(void *t);
     static WildMidiHelper *instance();
 
     int bitrate() const;
@@ -49,7 +49,7 @@ private:
     static WildMidiHelper *m_instance;
     bool m_inited = false;
     QMutex m_mutex;
-    QList<void *> m_ptrs;
+    QList<void*> m_ptrs;
     int m_sampleRate = 0;
 
 };

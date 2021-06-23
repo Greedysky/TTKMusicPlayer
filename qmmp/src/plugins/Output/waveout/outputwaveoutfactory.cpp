@@ -9,7 +9,7 @@ OutputProperties OutputWaveOutFactory::properties() const
     return properties;
 }
 
-Output* OutputWaveOutFactory::create()
+Output *OutputWaveOutFactory::create()
 {
     return new OutputWaveOut();
 }

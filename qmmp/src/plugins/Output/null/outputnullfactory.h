@@ -36,7 +36,7 @@ class OutputNullFactory : public QObject, OutputFactory
     Q_INTERFACES(OutputFactory)
 public:
     virtual OutputProperties properties() const override;
-    virtual Output* create() override;
+    virtual Output *create() override;
     virtual Volume *createVolume() override;
     virtual void showSettings(QWidget *parent) override;
 

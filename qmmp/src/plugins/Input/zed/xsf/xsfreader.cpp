@@ -1,6 +1,6 @@
 #include "xsfreader.h"
 
-FileReader* XSFReader::makeReader(const QString &path)
+FileReader *XSFReader::makeReader(const QString &path)
 {
     const QString &suffix = path.toLower();
     if(suffix.endsWith(".2sf") || suffix.endsWith(".mini2sf"))

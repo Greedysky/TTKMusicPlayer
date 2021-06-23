@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    DCAHelper* m_helper = nullptr;
+    DCAHelper *m_helper = nullptr;
 
 };
 

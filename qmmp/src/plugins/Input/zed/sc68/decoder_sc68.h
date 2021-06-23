@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    SC68Helper* m_helper = nullptr;
+    SC68Helper *m_helper = nullptr;
 
 };
 

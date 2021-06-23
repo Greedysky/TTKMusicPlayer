@@ -16,7 +16,7 @@ AsapMetaDataModel::~AsapMetaDataModel()
     delete m_helper;
 }
 
-QList<TagModel* > AsapMetaDataModel::tags() const
+QList<TagModel*> AsapMetaDataModel::tags() const
 {
     return m_tags;
 }

@@ -36,7 +36,7 @@ public:
 
     friend class VorbisCommentModel;
 
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QPixmap cover() const override;
     virtual void setCover(const QPixmap &pix) override;
     virtual void removeCover() override;
@@ -45,7 +45,7 @@ private:
     QString m_path;
     TagLib::Ogg::Vorbis::File *m_file;
     TagLib::Ogg::XiphComment *m_tag;
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::FileStream *m_stream;
 
 };

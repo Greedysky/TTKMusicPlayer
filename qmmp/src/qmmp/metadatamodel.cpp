@@ -60,9 +60,9 @@ QList<MetaDataItem> MetaDataModel::descriptions() const
     return QList<MetaDataItem>();
 }
 
-QList<TagModel* > MetaDataModel::tags() const
+QList<TagModel*> MetaDataModel::tags() const
 {
-    return QList<TagModel* >();
+    return QList<TagModel*>();
 }
 
 QPixmap MetaDataModel::cover() const

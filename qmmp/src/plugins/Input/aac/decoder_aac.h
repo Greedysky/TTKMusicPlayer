@@ -49,8 +49,8 @@ public:
 
 private:
     struct aac_data *m_data = nullptr;
-    char* m_input_buf = nullptr;
-    void* m_sample_buf = nullptr;
+    char *m_input_buf = nullptr;
+    void *m_sample_buf = nullptr;
     int m_sample_buf_at = 0;
     qint64 m_sample_buf_size = 0;
     int m_bitrate = 0;

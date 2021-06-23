@@ -76,7 +76,7 @@ FFmpegMetaDataModel::~FFmpegMetaDataModel()
     delete m_stream;
 }
 
-QList<TagModel *> FFmpegMetaDataModel::tags() const
+QList<TagModel*> FFmpegMetaDataModel::tags() const
 {
     return m_tags;
 }

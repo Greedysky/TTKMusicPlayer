@@ -34,10 +34,10 @@ public:
     MPCMetaDataModel(const QString &path, bool readOnly);
     virtual ~MPCMetaDataModel();
 
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
 
 private:
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::MPC::File *m_file;
     TagLib::FileStream *m_stream;
 

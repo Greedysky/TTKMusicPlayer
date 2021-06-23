@@ -360,12 +360,12 @@ void LADSPAHost::deactivateEffect(LADSPAEffect *e)
     e->handles.clear();
 }
 
-const QList<LADSPAPlugin *> &LADSPAHost::plugins() const
+const QList<LADSPAPlugin*> &LADSPAHost::plugins() const
 {
     return m_plugins;
 }
 
-const QList<LADSPAEffect *> &LADSPAHost::effects() const
+const QList<LADSPAEffect*> &LADSPAHost::effects() const
 {
     return m_effects;
 }

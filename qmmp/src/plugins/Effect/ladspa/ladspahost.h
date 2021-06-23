@@ -86,8 +86,8 @@ public:
 
     int applyEffect(float *data, size_t samples);
     void configure(quint32 freq, int chan);
-    const QList<LADSPAPlugin *> &plugins() const;
-    const QList<LADSPAEffect *> &effects() const;
+    const QList<LADSPAPlugin*> &plugins() const;
+    const QList<LADSPAEffect*> &effects() const;
     void load(LADSPAPlugin *plugin);
     void unload(LADSPAEffect *effect);
 
@@ -102,13 +102,13 @@ private:
     void activateEffect(LADSPAEffect *e);
     void deactivateEffect(LADSPAEffect *e);
 
-    QList<LADSPAPlugin *> m_plugins;
-    QList<LADSPAEffect *> m_effects;
+    QList<LADSPAPlugin*> m_plugins;
+    QList<LADSPAEffect*> m_effects;
 
     static LADSPAHost *m_instance;
     int m_chan = 2;
     quint32 m_freq = 44100;
-    QList<void *> m_modules;
+    QList<void*> m_modules;
     LADSPA_Data m_buf[9][MAX_SAMPLES];
 
 };

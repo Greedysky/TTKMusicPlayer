@@ -32,7 +32,7 @@ public:
     explicit FFmpegMetaDataModel(const QString &path, bool readOnly);
     virtual ~FFmpegMetaDataModel();
 
-    virtual QList<TagModel *> tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QPixmap cover() const override;
     virtual QString coverPath() const override;
     virtual QString cue() const override;
@@ -41,7 +41,7 @@ public:
 
 private:
     QPixmap m_pixmap;
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::APE::Tag *m_tag;
     TagLib::APE::File *m_file = nullptr;
     TagLib::FileStream *m_stream = nullptr;

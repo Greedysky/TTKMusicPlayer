@@ -11,7 +11,7 @@ OutputProperties OutputWASAPIFactory::properties() const
     return properties;
 }
 
-Output* OutputWASAPIFactory::create()
+Output *OutputWASAPIFactory::create()
 {
     return new OutputWASAPI();
 }

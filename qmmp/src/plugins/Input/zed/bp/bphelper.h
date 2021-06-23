@@ -54,6 +54,7 @@ public:
 private:
     QString m_path;
     decode_info *m_info = nullptr;
+
 };
 
 #endif

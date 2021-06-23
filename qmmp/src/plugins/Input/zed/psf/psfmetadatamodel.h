@@ -29,12 +29,12 @@ public:
     explicit PSFMetaDataModel(const QString &path);
     virtual ~PSFMetaDataModel();
 
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QList<MetaDataItem> extraProperties() const override;
 
 private:
-    QList<TagModel* > m_tags;
-    PSFHelper* m_helper;
+    QList<TagModel*> m_tags;
+    PSFHelper *m_helper = nullptr;
 
 };
 
@@ -50,7 +50,7 @@ public:
     virtual void setValue(Qmmp::MetaData key, const QString &value) override;
 
 private:
-    PSFHelper* m_helper = nullptr;
+    PSFHelper *m_helper = nullptr;
 
 };
 

@@ -33,7 +33,7 @@ public:
     FLACMetaDataModel(const QString &path, bool readOnly);
     virtual ~FLACMetaDataModel();
 
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QPixmap cover() const override;
     virtual QString coverPath() const override;
     virtual void setCover(const QPixmap &pix) override;
@@ -44,7 +44,7 @@ public:
 
 private:
     QString m_path;
-    QList<TagModel* > m_tags;
+    QList<TagModel*> m_tags;
     TagLib::Ogg::XiphComment *m_tag = nullptr;
     TagLib::File *m_file = nullptr;
     TagLib::FileStream *m_stream = nullptr;

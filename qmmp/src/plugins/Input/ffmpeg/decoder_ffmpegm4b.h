@@ -67,6 +67,7 @@ private:
     };
 
     QList<ChapterInfo> m_chapters;
+
 };
 
 #endif

@@ -40,7 +40,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    BpHelper* m_helper = nullptr;
+    BpHelper *m_helper = nullptr;
 
 };
 

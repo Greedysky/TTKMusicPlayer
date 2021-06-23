@@ -34,7 +34,7 @@ public:
     virtual ~WavPackMetaDataModel();
 
     virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<TagModel* > tags() const override;
+    virtual QList<TagModel*> tags() const override;
     virtual QString coverPath() const override;
     virtual QString cue() const override;
     virtual void setCue(const QString &content) override;
@@ -42,7 +42,7 @@ public:
 
 private:
     WavpackContext *m_ctx;
-    QList<TagModel *> m_tags;
+    QList<TagModel*> m_tags;
     QString m_path;
 
 };

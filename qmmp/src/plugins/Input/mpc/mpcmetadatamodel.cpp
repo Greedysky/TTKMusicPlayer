@@ -21,7 +21,7 @@ MPCMetaDataModel::~MPCMetaDataModel()
     delete m_stream;
 }
 
-QList<TagModel* > MPCMetaDataModel::tags() const
+QList<TagModel*> MPCMetaDataModel::tags() const
 {
     return m_tags;
 }

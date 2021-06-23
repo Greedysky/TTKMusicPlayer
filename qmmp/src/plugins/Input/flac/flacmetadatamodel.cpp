@@ -56,7 +56,7 @@ FLACMetaDataModel::~FLACMetaDataModel()
         delete m_stream;
 }
 
-QList<TagModel* > FLACMetaDataModel::tags() const
+QList<TagModel*> FLACMetaDataModel::tags() const
 {
     return m_tags;
 }

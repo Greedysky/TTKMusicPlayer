@@ -126,7 +126,7 @@ private:
 
     virtual void process(float *left, float *right) override;
 
-    ElectricLabel* m_label;
+    ElectricLabel *m_label;
 
 };
 

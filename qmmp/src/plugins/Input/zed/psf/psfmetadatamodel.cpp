@@ -14,7 +14,7 @@ PSFMetaDataModel::~PSFMetaDataModel()
     delete m_helper;
 }
 
-QList<TagModel* > PSFMetaDataModel::tags() const
+QList<TagModel*> PSFMetaDataModel::tags() const
 {
     return m_tags;
 }
