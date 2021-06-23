@@ -157,10 +157,10 @@ FARPROC OptimFROGHelper::GetSymbolAddress(const char* name) const
 qint64 OptimFROGHelper::read(unsigned char *data, qint64 maxSize)
 {
     sInt32_t n;
-    int bytes = depth() / 8;
+    const int bytes = depth() / 8;
     sInt32_t point_conversion = bytes * m_info.channels;
 #if defined Q_OS_WIN && defined __GNUC__
-    n = ((OFROG_read)GetSymbolAddress("OptimFROG_read"))(m_decoder, buf, size / point_conversion, C_TRUE);
+    n = ((OFROG_read)GetSymbolAddress("OptimFROG_read"))(m_decoder, data, maxSize / point_conversion, C_TRUE);
 #else
     n = OptimFROG_read(m_decoder, data, maxSize / point_conversion, C_TRUE);
 #endif

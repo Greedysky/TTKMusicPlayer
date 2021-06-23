@@ -3,10 +3,10 @@
 #include <QFileInfo>
 
 AdplugHelper::AdplugHelper(const QString &path)
-    : m_filePath(path)
+    : m_path(path)
 {
     m_opl = new CEmuopl(rate(), true, false);
-    m_player = CAdPlug::factory(path.toStdString(), m_opl);
+    m_player = CAdPlug::factory(qPrintable(path), m_opl);
 }
 
 AdplugHelper::~AdplugHelper()
@@ -50,7 +50,7 @@ bool AdplugHelper::initialize()
 
 int AdplugHelper::bitrate() const
 {
-    return (QFileInfo(m_filePath).size() * 8.0) / length() + 1.0f;
+    return QFileInfo(m_path).size() * 8.0 / length() + 1.0f;
 }
 
 QStringList AdplugHelper::instruments() const

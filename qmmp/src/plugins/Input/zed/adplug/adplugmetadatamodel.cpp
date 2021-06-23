@@ -4,7 +4,7 @@
 AdplugMetaDataModel::AdplugMetaDataModel(const QString &path)
     : MetaDataModel(true)
 {
-    AdplugHelper helper(qPrintable(path));
+    AdplugHelper helper(path);
     if(helper.initialize())
     {
         fillEextraProperties(&helper);

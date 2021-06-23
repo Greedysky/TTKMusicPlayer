@@ -67,7 +67,7 @@ public:
     QStringList instruments() const;
 
 private:
-    QString m_filePath;
+    QString m_path;
     Copl *m_opl = nullptr;
     CPlayer *m_player = nullptr;
     short m_buf[16384] = { 0 };

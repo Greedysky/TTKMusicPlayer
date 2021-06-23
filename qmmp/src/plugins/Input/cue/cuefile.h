@@ -47,7 +47,7 @@ private:
 
     QMap<QString, QString> m_dataFiles; //name, full path
     bool m_dirty;
-    QString m_filePath;
+    QString m_path;
 
 };
 

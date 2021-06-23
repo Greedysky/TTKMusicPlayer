@@ -1,8 +1,8 @@
 #include "decoderadplugfactory.h"
 #include "adplughelper.h"
 #include "decoder_adplug.h"
-#include "magic.h"
 #include "adplugmetadatamodel.h"
+#include "magic.h"
 
 class InputStreamQIO : public InputStream
 {
@@ -81,7 +81,7 @@ QList<TrackInfo*> DecoderAdplugFactory::createPlayList(const QString &path, Trac
         return QList<TrackInfo*>() << info;
     }
 
-    AdplugHelper helper(qPrintable(path));
+    AdplugHelper helper(path);
     if(!helper.initialize())
     {
         delete info;

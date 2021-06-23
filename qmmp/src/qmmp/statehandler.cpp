@@ -110,7 +110,7 @@ void StateHandler::dispatch(const QHash<QString, QString> &info)
     m_mutex.lock();
     QHash<QString, QString> tmp = info;
     const auto values = tmp.values();
-    for(const QString &value : values) //remove empty keys
+    for(const QString &value : qAsConst(values)) //remove empty keys
     {
         if(value.isEmpty())
             tmp.remove(tmp.key(value));

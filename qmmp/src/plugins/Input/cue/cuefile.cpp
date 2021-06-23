@@ -10,14 +10,14 @@
 CueFile::CueFile(const QString &path)
     : CueParser()
 {
-    m_filePath = path;
+    m_path = path;
     if(path.contains("://"))
     {
-        m_filePath.remove("cue://");
-        m_filePath.remove(RegularWrapper("#\\d+$"));
+        m_path.remove("cue://");
+        m_path.remove(RegularWrapper("#\\d+$"));
     }
 
-    QFile file(m_filePath);
+    QFile file(m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
         qDebug("CueFile: error: %s", qPrintable(file.errorString()));
@@ -55,11 +55,11 @@ CueFile::CueFile(const QString &path)
     settings.endGroup();
 
     loadData(data, codec);
-    setUrl("cue", m_filePath);
+    setUrl("cue", m_path);
 
     for(const QString &dataFileName : files())
     {
-        QString dataFilePath = getDirtyPath(m_filePath, QFileInfo(m_filePath).dir().filePath(dataFileName));
+        QString dataFilePath = getDirtyPath(m_path, QFileInfo(m_path).dir().filePath(dataFileName));
         m_dataFiles.insert(dataFileName, dataFilePath);
         QList<TrackInfo*> pl = MetaDataManager::instance()->createPlayList(dataFilePath, TrackInfo::Properties);
         if(!pl.isEmpty())
@@ -89,7 +89,7 @@ CueFile::~CueFile()
 
 QString CueFile::cueFilePath() const
 {
-    return m_filePath;
+    return m_path;
 }
 
 QString CueFile::dataFilePath(int track) const
