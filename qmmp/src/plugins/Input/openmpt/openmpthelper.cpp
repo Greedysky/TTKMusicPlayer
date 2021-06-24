@@ -13,7 +13,10 @@ OpenMPTHelper::OpenMPTHelper(QIODevice *input)
 
 OpenMPTHelper::~OpenMPTHelper()
 {
-    openmpt_module_destroy(m_mod);
+    if(m_mod)
+    {
+        openmpt_module_destroy(m_mod);
+    }
 }
 
 bool OpenMPTHelper::initialize()

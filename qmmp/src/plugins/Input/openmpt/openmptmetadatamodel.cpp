@@ -10,9 +10,12 @@ OpenMPTMetaDataModel::OpenMPTMetaDataModel(const QString &path)
   if(file.open(QIODevice::ReadOnly))
   {
       OpenMPTHelper helper(&file);
-      fillInExtraProperties(&helper);
-      fillInDescriptions(&helper);
-      file.close();
+      if(helper.initialize())
+      {
+          fillInExtraProperties(&helper);
+          fillInDescriptions(&helper);
+          file.close();
+      }
   }
 }
 
