@@ -9,7 +9,7 @@ contains(CONFIG, FLAC_PLUGIN){
 }
 
 contains(CONFIG, MODPLUG_PLUGIN){
-    SUBDIRS += modplug
+    SUBDIRS += openmpt
 }
 
 contains(CONFIG, MUSEPACK_PLUGIN){

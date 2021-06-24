@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2021 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2021 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,12 +18,15 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef DECODERMODPLUGFACTORY_H
-#define DECODERMODPLUGFACTORY_H
+#ifndef DECODEROPENMPTFACTORY_H
+#define DECODEROPENMPTFACTORY_H
 
 #include <qmmp/decoderfactory.h>
 
-class DecoderModPlugFactory : public QObject, DecoderFactory
+/**
+   @author Ilya Kotov <forkotov02@ya.ru>
+*/
+class DecoderOpenMPTFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
@@ -32,7 +35,7 @@ public:
     virtual bool canDecode(QIODevice *input) const override;
     virtual DecoderProperties properties() const override;
     virtual Decoder *create(const QString &path, QIODevice *input) override;
-    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override;
+    virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles) override;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
     virtual void showSettings(QWidget *parent) override;
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2021 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2021 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,43 +18,31 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef DECODER_MODPLUG_H
-#define DECODER_MODPLUG_H
+#ifndef OPENMPTMETADATAMODEL_H
+#define OPENMPTMETADATAMODEL_H
 
-#include <qmmp/decoder.h>
+#include <qmmp/metadatamodel.h>
 
-class CSoundFile;
+class OpenMPTHelper;
 
-class DecoderModPlug : public Decoder
+/**
+    @author Ilya Kotov <forkotov02@ya.ru>
+*/
+class OpenMPTMetaDataModel : public MetaDataModel
 {
+    Q_DECLARE_TR_FUNCTIONS(OpenMPTMetaDataModel)
 public:
-    explicit DecoderModPlug(const QString &path);
-    virtual ~DecoderModPlug();
+    OpenMPTMetaDataModel(const QString &path);
 
-    void readSettings();
-    static DecoderModPlug* instance();
-
-    // Standard Decoder API
-    virtual bool initialize() override;
-    virtual qint64 totalTime() const override;
-    virtual int bitrate() const override;
-    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
-    virtual void seek(qint64 time) override;
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<MetaDataItem> descriptions() const override;
 
 private:
-    //helper function
-    void deinit();
+    void fillInExtraProperties(OpenMPTHelper *helper);
+    void fillInDescriptions(OpenMPTHelper *helper);
 
-    CSoundFile *m_soundFile = nullptr;
-
-    int m_bps; //bits per sample
-    quint32 m_freq = 0;
-    int m_chan = 0, m_sampleSize = 0, m_bitrate = 0;
-    qint64 m_totalTime = 0;
-    double m_preampFactor = 0.0f;
-    bool m_usePreamp = false;
-    QString m_path;
-    static DecoderModPlug* m_instance;
+    QList<MetaDataItem> m_ap;
+    QList<MetaDataItem> m_desc;
 
 };
 

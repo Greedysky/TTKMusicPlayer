@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2021 by Ilya Kotov                                      *
+ *   Copyright (C) 2013-2021 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,28 +18,30 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef DECODER_OPENMPT_H
+#define DECODER_OPENMPT_H
 
-#include "ui_settingsdialog.h"
+#include "openmpthelper.h"
+#include <qmmp/decoder.h>
 
 /**
-	@author Ilya Kotov <forkotov02@ya.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
-class SettingsDialog : public QDialog
+class DecoderOpenMPT : public Decoder
 {
-    Q_OBJECT
 public:
-    explicit SettingsDialog(QWidget *parent = nullptr);
-    virtual ~SettingsDialog();
+    DecoderOpenMPT(QIODevice *input);
+    virtual ~DecoderOpenMPT();
 
-private slots:
-    void writeSettings();
-    void setPreamp(int preamp);
-    void exec(QAbstractButton *button);
+    // Standard Decoder API
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
-private: 
-     Ui::SettingsDialog m_ui;
+private:
+    OpenMPTHelper *m_helper = nullptr;
 
 };
 

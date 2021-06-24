@@ -1,6 +1,4 @@
 #include "archivereader.h"
-#include <QProcess>
-#include <unmo3.h>
 
 ArchiveReader::ArchiveReader(QObject *parent)
     : QObject(parent)
@@ -10,12 +8,12 @@ ArchiveReader::ArchiveReader(QObject *parent)
 
 ArchiveReader::~ArchiveReader()
 {
-
+    delete m_process;
 }
 
 bool ArchiveReader::isSupported(const QString &path)
 {
-    QString lPath = path.toLower();
+    const QString &lPath = path.toLower();
     return lPath.endsWith(".mdz") ||
            lPath.endsWith(".s3z") ||
            lPath.endsWith(".xmz") ||
@@ -32,7 +30,7 @@ bool ArchiveReader::isSupported(const QString &path)
 
 QByteArray ArchiveReader::unpack(const QString &path)
 {
-    QString lPath = path.toLower();
+    const QString &lPath = path.toLower();
     if(path.endsWith(".mdz") ||
             lPath.endsWith(".s3z") ||
             lPath.endsWith(".xmz") ||
@@ -47,21 +45,6 @@ QByteArray ArchiveReader::unpack(const QString &path)
         return bunzip2(path);
 
     return QByteArray();
-}
-
-bool ArchiveReader::mo3Check(const QString &path)
-{
-    return path.toLower().endsWith(".mo3");
-}
-
-bool ArchiveReader::mo3Decode(void **data, unsigned *len)
-{
-    return UNMO3_Decode(data, len, !UNMO3_DECODE_NOSAMPLES) == 0;
-}
-
-void ArchiveReader::mo3Free(void *data)
-{
-    UNMO3_Free(data);
 }
 
 QByteArray ArchiveReader::unzip(const QString &path)

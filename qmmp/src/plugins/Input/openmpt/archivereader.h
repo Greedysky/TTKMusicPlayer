@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2021 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2021 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,28 +18,31 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef MODPLUGMETADATAMODEL_H
-#define MODPLUGMETADATAMODEL_H
+#ifndef ARCHIVEREADER_H
+#define ARCHIVEREADER_H
 
-#include <qmmp/metadatamodel.h>
+#include <QProcess>
 
-class CSoundFile;
-
-class ModPlugMetaDataModel : public MetaDataModel
+/**
+	@author Ilya Kotov <forkotov02@ya.ru>
+*/
+class ArchiveReader : public QObject
 {
-    Q_DECLARE_TR_FUNCTIONS(ModPlugMetaDataModel)
+    Q_OBJECT
 public:
-    explicit ModPlugMetaDataModel(const QString &path);
-    virtual ~ModPlugMetaDataModel();
+    explicit ArchiveReader(QObject *parent = nullptr);
+    virtual ~ArchiveReader();
 
-    virtual QList<MetaDataItem> extraProperties() const override;
-    virtual QList<MetaDataItem> descriptions() const override;
-    static QString getTypeName(quint32 type);
+    bool isSupported(const QString &path);
+    QByteArray unpack(const QString &path);
 
 private:
-    CSoundFile* m_soundFile = nullptr;
-    QByteArray m_buffer;
-    QString m_path;
+    QByteArray unzip(const QString &path);
+    QByteArray gunzip(const QString &path);
+    QByteArray bunzip2(const QString &path);
+
+private:
+    QProcess *m_process;
 
 };
 

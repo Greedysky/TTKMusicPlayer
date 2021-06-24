@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2021 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2021 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,36 +18,28 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef ARCHIVEREADER_H
-#define ARCHIVEREADER_H
+#ifndef SETTINGSDIALOG_H
+#define SETTINGSDIALOG_H
 
-#include <QObject>
-#include <QByteArray>
-
-class QProcess;
+#include "ui_settingsdialog.h"
 
 /**
-	@author Ilya Kotov <forkotov02@ya.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
-class ArchiveReader : public QObject
+class SettingsDialog : public QDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit ArchiveReader(QObject *parent = nullptr);
-    ~ArchiveReader();
+    explicit SettingsDialog(QWidget *parent = nullptr);
 
-    bool isSupported(const QString &path);
-    QByteArray unpack(const QString &path);
-
-    bool mo3Check(const QString &path);
-    bool mo3Decode(void **data, unsigned *len);
-    void mo3Free(void *data);
+public slots:
+    virtual void accept() override;
+    void restoreDefaults();
 
 private:
-    QProcess *m_process;
-    QByteArray unzip(const QString &path);
-    QByteArray gunzip(const QString &path);
-    QByteArray bunzip2(const QString &path);
+    Ui::SettingsDialog m_ui;
+
+    void setInterpolator(int interpolator);
 
 };
 
