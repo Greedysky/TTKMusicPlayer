@@ -1,12 +1,13 @@
 #include "adplughelper.h"
 
 #include <QFileInfo>
+#include <qmmp/qmmp.h>
 
 AdplugHelper::AdplugHelper(const QString &path)
     : m_path(path)
 {
     m_opl = new CEmuopl(rate(), true, false);
-    m_player = CAdPlug::factory(qPrintable(path), m_opl);
+    m_player = CAdPlug::factory(Qmmp::textCodec(path), m_opl);
 }
 
 AdplugHelper::~AdplugHelper()

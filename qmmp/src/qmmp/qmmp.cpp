@@ -1,11 +1,10 @@
+#include "qmmp.h"
+
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QByteArray>
-
-#include "qmmp.h"
-
-QString Qmmp::m_configDir;
+#include <QTextCodec>
 
 QString Qmmp::configFile()
 {
@@ -14,28 +13,19 @@ QString Qmmp::configFile()
 
 QString Qmmp::configDir()
 {
-    if(m_configDir.isEmpty())
 #ifdef Q_OS_WIN
-        return QString::fromLocal8Bit(getenv("APPDATA")) + "/ttkmp";
+    return QString::fromLocal8Bit(getenv("APPDATA")) + "/ttkmp";
 #else
-        return QDir::homePath() + "/.config/ttkmp";
+    return QDir::homePath() + "/.config/ttkmp";
 #endif
-    else
-        return m_configDir;
-}
-
-void Qmmp::setConfigDir(const QString &path)
-{
-    m_configDir = path;
 }
 
 QString Qmmp::strVersion()
 {
-    QString ver = QString("%1.%2.%3")
+    return QString("%1.%2.%3")
             .arg(QMMP_VERSION_MAJOR)
             .arg(QMMP_VERSION_MINOR)
             .arg(QMMP_VERSION_PATCH);
-    return ver;
 }
 
 QString Qmmp::pluginPath()
@@ -55,4 +45,14 @@ QStringList Qmmp::findPlugins(const QString &prefix)
     for(const QFileInfo &info : pluginDir.entryInfoList(QStringList() << "*.dll" << "*.so", QDir::Files))
         paths << info.canonicalFilePath();
     return paths;
+}
+
+const char *Qmmp::textCodec(const QString &text)
+{
+#if QT_VERSION < QT_VERSION_CHECK(5,0,0) && defined Q_OS_WIN
+    QTextCodec *codec = QTextCodec::codecForName("GB18030");
+    return codec->fromUnicode(text).constData();
+#else
+    return qPrintable(text);
+#endif
 }

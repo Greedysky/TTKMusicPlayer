@@ -194,7 +194,7 @@ ChannelMap DecoderOpus::findChannelMap(int channels)
             << Qmmp::CHAN_LFE;
         break;
     default:
-        ;
+        break;
     }
     return map;
 }

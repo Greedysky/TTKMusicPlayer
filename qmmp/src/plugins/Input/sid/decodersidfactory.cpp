@@ -13,7 +13,7 @@ DecoderSIDFactory::DecoderSIDFactory()
     if(settings.value("use_hvsc", false).toBool())
     {
         QString default_path = Qmmp::configDir() + "/Songlengths.txt";
-        if(!m_db.open(qPrintable(settings.value("hvsc_path", default_path).toString())))
+        if(!m_db.open(Qmmp::textCodec(settings.value("hvsc_path", default_path).toString())))
             qWarning("DecoderSIDFactory: %s", m_db.error());
     }
     settings.endGroup();

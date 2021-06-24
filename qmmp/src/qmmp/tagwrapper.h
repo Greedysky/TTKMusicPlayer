@@ -21,7 +21,7 @@
 
 #include <QMap>
 #include <QString>
-#include "qmmp_export.h"
+#include "qmmp.h"
 
 /*! @brief The class of the file tag wrapper.
  * @author Greedysky <greedysky@163.com>

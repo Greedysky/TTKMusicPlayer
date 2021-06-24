@@ -28,7 +28,7 @@ bool DecoderWildMidi::initialize()
         return false;
     }
     WildMidiHelper::instance()->readSettings();
-    midi_ptr = WildMidi_Open(qPrintable(m_path));
+    midi_ptr = WildMidi_Open(Qmmp::textCodec(m_path));
 
     if(!midi_ptr)
     {

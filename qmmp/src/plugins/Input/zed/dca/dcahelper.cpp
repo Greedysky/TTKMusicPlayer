@@ -1,5 +1,7 @@
 #include "dcahelper.h"
 
+#include <qmmp/qmmp.h>
+
 #ifdef WORDS_BIGENDIAN
 #define s16_LE(s16,channels) s16_swap (s16, channels)
 #define s16_BE(s16,channels) do {} while(0)
@@ -314,7 +316,7 @@ void DCAHelper::deinit()
 
 bool DCAHelper::initialize()
 {
-    m_info->file = stdio_open(qPrintable(m_path));
+    m_info->file = stdio_open(Qmmp::textCodec(m_path));
     if(!m_info->file)
     {
         qWarning("DCAHelper: open file failed");

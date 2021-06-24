@@ -104,14 +104,12 @@ QStringList CueFile::dataFilePaths() const
 
 QStringList CueFile::splitLine(const QString &line)
 {
-    //qDebug("raw string = %s",qPrintable(line));
     QStringList list;
     QString buf = line.trimmed();
     if(buf.isEmpty())
         return list;
     while(!buf.isEmpty())
     {
-        //qDebug(qPrintable(buf));
         if(buf.startsWith('"'))
         {
             int end = buf.indexOf('"',1);

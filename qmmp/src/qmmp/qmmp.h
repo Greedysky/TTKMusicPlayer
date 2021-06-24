@@ -168,10 +168,6 @@ public:
      */
     static QString configDir();
     /*!
-     * Overrides default configuration directory path.
-     */
-    static void setConfigDir(const QString &path);
-    /*!
      * Returns %Qmmp library version.
      */
     static QString strVersion();
@@ -184,10 +180,11 @@ public:
      * @param prefix Plugin type or directory name (examples: Inpunt, Transport, Output).
      */
     static QStringList findPlugins(const QString &prefix);
-
-private:
-    static QString m_configDir;
-
+    /*!
+     * Returns the decoded text by intput text.
+     * @param input text.
+     */
+    static const char *textCodec(const QString &text);
 };
 
 #endif

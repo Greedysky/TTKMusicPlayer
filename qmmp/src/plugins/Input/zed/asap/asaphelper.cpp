@@ -38,7 +38,7 @@ bool AsapHelper::initialize()
     m_info->input = ASAP_New();
     ASAP_DetectSilence(m_info->input, 5);
 
-    if(!ASAP_Load(m_info->input, qPrintable(m_path), (unsigned char *)module.constData(), size))
+    if(!ASAP_Load(m_info->input, Qmmp::textCodec(m_path), (unsigned char *)module.constData(), size))
     {
         qWarning("AsapHelper: ASAP_Load error");
         return false;

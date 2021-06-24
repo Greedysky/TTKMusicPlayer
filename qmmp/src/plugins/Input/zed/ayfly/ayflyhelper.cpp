@@ -46,7 +46,7 @@ bool AyflyHelper::initialize()
         return false;
     }
 
-    m_info->input = ay_initsong(qPrintable(m_path), sampleRate());
+    m_info->input = ay_initsong(Qmmp::textCodec(m_path), sampleRate());
     if(!m_info->input)
     {
         qWarning("AyflyHelper: ay_initsong error");

@@ -60,6 +60,7 @@ bool DecoderFFapCUE::initialize()
         qWarning("DecoderFFapCUE: invalid cuesheet");
         return false;
     }
+
     m_input = new QFile(filePath);
     if(!m_input->open(QIODevice::ReadOnly))
     {

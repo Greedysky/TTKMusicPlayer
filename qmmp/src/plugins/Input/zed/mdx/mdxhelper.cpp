@@ -56,7 +56,7 @@ bool MdxHelper::initialize()
     char buffer[1024];
     if(m_info->mdx_mode)
     {
-       if(mdx_open(&m_info->input, qPrintable(m_path), nullptr) != 0)
+       if(mdx_open(&m_info->input, Qmmp::textCodec(m_path), nullptr) != 0)
        {
            qWarning("MdxHelper: mdx_open error");
            return false;
@@ -69,7 +69,7 @@ bool MdxHelper::initialize()
     }
     else
     {
-        if(pmd_play(qPrintable(m_path), nullptr) != 0)
+        if(pmd_play(Qmmp::textCodec(m_path), nullptr) != 0)
         {
             qWarning("MdxHelper: mdx_open error");
             return false;

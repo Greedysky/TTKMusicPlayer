@@ -45,7 +45,7 @@ bool XSFHelper::initialize()
         return false;
     }
 
-    if(!m_info->input->load(qPrintable(m_path), m_info->meta))
+    if(!m_info->input->load(Qmmp::textCodec(m_path), m_info->meta))
     {
        qWarning("XSFHelper: load error");
        return false;
