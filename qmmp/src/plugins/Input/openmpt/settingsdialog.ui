@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>357</width>
+    <width>370</width>
     <height>180</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>370</width>
+    <height>180</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>370</width>
+    <height>180</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>OpenMPT Plugin Settings</string>
