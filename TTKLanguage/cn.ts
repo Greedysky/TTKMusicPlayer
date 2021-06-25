@@ -8932,6 +8932,22 @@ too high may cause clipping!</source>
         <source>Use snd_pcm_pause function</source>
         <translation>使用 snd_pcm_pause 功能</translation>
     </message>
+    <message>
+        <source>OpenMPT Plugin Settings</source>
+        <translation>OpenMPT插件设置</translation>
+    </message>
+    <message>
+        <source>Interpolation:</source>
+        <translation>插值:</translation>
+    </message>
+    <message>
+        <source>Stereo separation:</source>
+        <translation>立体声分离:</translation>
+    </message>
+    <message>
+        <source>Restore Defaults</source>
+        <translation>恢复默认设置</translation>
+    </message>
 </context>
 <context>
     <name>SoniquePlugin</name>
