@@ -25,11 +25,11 @@
 #define CURRENT_TIME QTime::currentTime().toString("hh:mm:ss:zzz")
 #define CURRENT_DATE QDate::currentDate().toString("yyyy-MM-dd")
 
-#define TTK_LOGGER_INFO(str)  qDebug() << QString("[Info %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
-#define TTK_LOGGER_DEBUG(str) qDebug() << QString("[Debug %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
-#define TTK_LOGGER_WARN(str)  qDebug() << QString("[Warn %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
-#define TTK_LOGGER_TRACE(str) qDebug() << QString("[Trace %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
-#define TTK_LOGGER_ERROR(str) qDebug() << QString("[Error %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
-#define TTK_LOGGER_FATAL(str) qDebug() << QString("[Fatal %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
+#define TTK_LOGGER_INFO(str)  qDebug() << QString("[INFO %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
+#define TTK_LOGGER_DEBUG(str) qDebug() << QString("[DEBUG %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
+#define TTK_LOGGER_WARN(str)  qDebug() << QString("[WARN %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
+#define TTK_LOGGER_TRACE(str) qDebug() << QString("[TRACE %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
+#define TTK_LOGGER_ERROR(str) qDebug() << QString("[ERROR %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
+#define TTK_LOGGER_FATAL(str) qDebug() << QString("[FATAL %1 %2]: ").arg(CURRENT_DATE, CURRENT_TIME) << str
 
 #endif // TTKLOGGER_H
