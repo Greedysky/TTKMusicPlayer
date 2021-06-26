@@ -873,7 +873,6 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_qq"), tr("qqMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("kuwoMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_migu"), tr("miguMusic"));
 
     connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCachedClean()));
     //

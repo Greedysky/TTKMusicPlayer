@@ -34,8 +34,6 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
         return v.arg(tr("QQ"));
     else if(m_queryServer.contains(QUERY_WY_INTERFACE))
         return v.arg(tr("WY"));
-    else if(m_queryServer.contains(QUERY_MG_INTERFACE))
-        return v.arg(tr("MG"));
     else
         return QString();
 }

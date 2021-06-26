@@ -218,15 +218,6 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
                 break;
             }
-        case MGQueryServer:
-            {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_SG_SHARE, ALG_UNIMP_KEY, false).arg("69535600809"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_AR_SHARE, ALG_UNIMP_KEY, false).arg("112"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_AL_SHARE, ALG_UNIMP_KEY, false).arg("1136534807"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_PL_SHARE, ALG_UNIMP_KEY, false).arg("179730639"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_MV_SHARE, ALG_UNIMP_KEY, false).arg("699119Y9AS9"));
-                break;
-            }
         default: break;
     }
 }
@@ -280,32 +271,6 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
                 else
                 {
                     regx.setPattern("/(\\d+)");
-                }
-                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
-                break;
-            }
-        case MGQueryServer:
-            {
-                QRegExp regx;
-                if(type == 0)
-                {
-                    regx.setPattern("/song/(\\w+)");
-                }
-                else if(type == 1)
-                {
-                    regx.setPattern("/artist/(\\w+)");
-                }
-                else if(type == 2)
-                {
-                    regx.setPattern("/album/(\\w+)");
-                }
-                else if(type == 3)
-                {
-                    regx.setPattern("/playlist/(\\w+)");
-                }
-                else if(type == 4)
-                {
-                    regx.setPattern("/mv/(\\w+)");
                 }
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;

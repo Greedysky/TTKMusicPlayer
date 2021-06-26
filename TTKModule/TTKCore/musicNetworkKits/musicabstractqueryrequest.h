@@ -83,15 +83,13 @@ TTK_DECLARE_LISTS(MusicResultsItem)
 #define QUERY_BD_INTERFACE      "BaiDu"
 #define QUERY_KW_INTERFACE      "KuWo"
 #define QUERY_KG_INTERFACE      "KuGou"
-#define QUERY_MG_INTERFACE      "MiGu"
 
 enum DownloadQueryServer
 {
     WYQueryServer,
     QQQueryServer,
     KWQueryServer,
-    KGQueryServer,
-    MGQueryServer
+    KGQueryServer
 };
 
 /*! @brief The class of abstract query download data from net.

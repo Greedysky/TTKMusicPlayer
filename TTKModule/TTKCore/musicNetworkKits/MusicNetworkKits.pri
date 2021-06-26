@@ -23,7 +23,6 @@ INCLUDEPATH += $$PWD \
                $$PWD/music/kw \
                $$PWD/music/bd \
                $$PWD/music/qq \
-               $$PWD/music/mg \
                $$PWD/radio/fm \
                $$PWD/radio/dj \
                $$PWD/radio/mv
@@ -103,20 +102,6 @@ HEADERS  += \
     $$PWD/music/qq/musicqqcommentsrequest.h \
     $$PWD/music/qq/musicqqsongsuggestrequest.h \
     $$PWD/music/qq/musicqqartistsimilarrequest.h \
-    $$PWD/music/mg/musicmgqueryinterface.h \
-    $$PWD/music/mg/musicmgqueryrequest.h \
-    $$PWD/music/mg/musicmgdownloadtextrequest.h \
-    $$PWD/music/mg/musicmgsongsuggestrequest.h \
-    $$PWD/music/mg/musicmgdiscoverlistrequest.h \
-    $$PWD/music/mg/musicmgquerymovierequest.h \
-    $$PWD/music/mg/musicmgqueryrecommendrequest.h \
-    $$PWD/music/mg/musicmgquerytoplistrequest.h \
-    $$PWD/music/mg/musicmgqueryplaylistrequest.h \
-    $$PWD/music/mg/musicmgcommentsrequest.h \
-    $$PWD/music/mg/musicmgqueryartistrequest.h \
-    $$PWD/music/mg/musicmgqueryalbumrequest.h \
-    $$PWD/music/mg/musicmgartistsimilarrequest.h \
-    $$PWD/music/mg/musicmgqueryartistlistrequest.h \
     $$PWD/radio/fm/musicfmradiochannelrequest.h \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.h \
     $$PWD/radio/fm/musicfmradiosongsrequest.h \
@@ -223,20 +208,6 @@ SOURCES += \
     $$PWD/music/qq/musicqqcommentsrequest.cpp \
     $$PWD/music/qq/musicqqsongsuggestrequest.cpp \
     $$PWD/music/qq/musicqqartistsimilarrequest.cpp \
-    $$PWD/music/mg/musicmgqueryinterface.cpp \
-    $$PWD/music/mg/musicmgqueryrequest.cpp \
-    $$PWD/music/mg/musicmgdownloadtextrequest.cpp \
-    $$PWD/music/mg/musicmgsongsuggestrequest.cpp \
-    $$PWD/music/mg/musicmgdiscoverlistrequest.cpp \
-    $$PWD/music/mg/musicmgquerymovierequest.cpp \
-    $$PWD/music/mg/musicmgqueryrecommendrequest.cpp \
-    $$PWD/music/mg/musicmgquerytoplistrequest.cpp \
-    $$PWD/music/mg/musicmgqueryplaylistrequest.cpp \
-    $$PWD/music/mg/musicmgcommentsrequest.cpp \
-    $$PWD/music/mg/musicmgqueryartistrequest.cpp \
-    $$PWD/music/mg/musicmgqueryalbumrequest.cpp \
-    $$PWD/music/mg/musicmgartistsimilarrequest.cpp \
-    $$PWD/music/mg/musicmgqueryartistlistrequest.cpp \
     $$PWD/radio/fm/musicfmradiochannelrequest.cpp \
     $$PWD/radio/fm/musicfmradiodownloadtextrequest.cpp \
     $$PWD/radio/fm/musicfmradiosongsrequest.cpp \
