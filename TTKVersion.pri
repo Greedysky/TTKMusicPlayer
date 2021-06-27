@@ -21,5 +21,5 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-# update time 2021.05.02
-TTKMusicPlayer = 2.15.0.0
+# update time 2021.06.26
+TTKMusicPlayer = 2.15.1.0
