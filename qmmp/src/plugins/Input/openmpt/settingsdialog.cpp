@@ -10,6 +10,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
+#ifdef Q_OS_WIN
+    setMinimumWidth(370);
+    setMaximumWidth(370);
+#endif
+
     const QMap<QString, int> interpolators(OpenMPTHelper::getInterpolators());
     for(auto itr = interpolators.begin(); itr != interpolators.end(); ++itr)
     {

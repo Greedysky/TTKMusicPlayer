@@ -10,7 +10,7 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-#ifndef Q_OS_LINUX
+#ifdef Q_OS_WIN
     setMinimumHeight(320);
     setMaximumHeight(320);
 #endif

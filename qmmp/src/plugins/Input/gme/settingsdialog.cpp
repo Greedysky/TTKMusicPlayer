@@ -8,7 +8,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-#ifndef Q_OS_LINUX
+#ifdef Q_OS_WIN
     setMinimumHeight(98);
     setMaximumHeight(98);
 #endif
