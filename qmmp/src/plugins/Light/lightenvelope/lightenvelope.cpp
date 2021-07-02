@@ -146,7 +146,7 @@ void LightEnvelopeScanner::run()
         {
             converter.toFloat(tmp, out, len / m_ap.sampleSize());
 
-            for(uint sample = 0; sample < len / sizeof(float); sample++)
+            for(uint sample = 0; sample < len / m_ap.sampleSize(); sample++)
             {
                 int ch = sample % channels;
                 min[ch] = qMin(min[ch], out[sample]);
