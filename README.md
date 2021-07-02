@@ -81,9 +81,9 @@ The TTKMusicplayer plugin for run
  * ffmpeg
  * flac
  * gme
- * modplug
  * mpc
  * mpeg
+ * openmpt
  * opus
  * sid
  * sndfile
@@ -93,10 +93,15 @@ The TTKMusicplayer plugin for run
  * adplug
  * asap
  * ayfly
+ * bp
  * dca
  * fc14
+ * hively
+ * mdx
  * optimfrog
+ * organya
  * psf
  * sc68
  * v2m
+ * xsf
  * ym
