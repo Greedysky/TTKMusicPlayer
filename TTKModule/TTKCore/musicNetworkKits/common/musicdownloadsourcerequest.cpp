@@ -6,11 +6,6 @@ MusicDownloadSourceRequest::MusicDownloadSourceRequest(QObject *parent)
 
 }
 
-MusicDownloadSourceRequest::~MusicDownloadSourceRequest()
-{
-    deleteAll();
-}
-
 void MusicDownloadSourceRequest::startToDownload(const QString &url)
 {
     QNetworkRequest request;
@@ -23,6 +18,7 @@ void MusicDownloadSourceRequest::startToDownload(const QString &url)
 
 void MusicDownloadSourceRequest::downLoadFinished()
 {
+    MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         if(m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).isValid())

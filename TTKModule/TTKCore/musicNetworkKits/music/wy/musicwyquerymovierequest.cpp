@@ -81,10 +81,7 @@ void MusicWYQueryMovieRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
-    setNetworkAbort(false);
-
+    MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -142,8 +139,7 @@ void MusicWYQueryMovieRequest::pageDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
-
+    MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -188,9 +184,7 @@ void MusicWYQueryMovieRequest::singleDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
-    setNetworkAbort(false);
+    MusicQueryMovieRequest::downLoadFinished();
 
     const qint64 mvid = m_queryText.toLongLong();
     if(mvid != 0)

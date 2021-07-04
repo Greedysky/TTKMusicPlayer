@@ -9,11 +9,6 @@ MusicTextSliderWidget::MusicTextSliderWidget(QWidget *parent)
     m_currentValue = 0;
 }
 
-MusicTextSliderWidget::~MusicTextSliderWidget()
-{
-
-}
-
 void MusicTextSliderWidget::setMaxValue(int max)
 {
     m_maxValue = max;

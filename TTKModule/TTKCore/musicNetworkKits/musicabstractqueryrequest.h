@@ -113,8 +113,6 @@ public:
      */
     explicit MusicAbstractQueryRequest(QObject *parent = nullptr);
 
-    virtual ~MusicAbstractQueryRequest();
-
     /*!
      * Start to search data from name and type.
      * Subclass should implement this function.
@@ -199,6 +197,12 @@ Q_SIGNALS:
      * Create the current items by song name\ artist name and time.
      */
     void createSearchedItem(const MusicSearchedItem &songItem);
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override;
 
 protected:
     /*!

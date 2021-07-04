@@ -39,8 +39,7 @@ public:
      * Object contsructor.
      */
     explicit MusicPlaylistQueryInfoWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicPlaylistQueryInfoWidget();
+    ~MusicPlaylistQueryInfoWidget();
 
     /*!
      * Resize window bound by widget resize called.

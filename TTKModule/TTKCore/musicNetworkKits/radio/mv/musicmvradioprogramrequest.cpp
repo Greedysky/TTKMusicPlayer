@@ -12,8 +12,7 @@ MusicMVRadioProgramRequest::MusicMVRadioProgramRequest(QObject *parent)
 
 void MusicMVRadioProgramRequest::downLoadFinished()
 {
-    setNetworkAbort(false);
-
+    MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();

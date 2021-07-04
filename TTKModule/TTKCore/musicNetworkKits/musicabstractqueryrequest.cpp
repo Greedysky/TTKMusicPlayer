@@ -11,11 +11,6 @@ MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     m_queryServer = "Invalid";
 }
 
-MusicAbstractQueryRequest::~MusicAbstractQueryRequest()
-{
-    deleteAll();
-}
-
 void MusicAbstractQueryRequest::startToSingleSearch(const QString &text)
 {
     Q_UNUSED(text);
@@ -68,6 +63,13 @@ qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
     reply->deleteLater();
 
     return size;
+}
+
+void MusicAbstractQueryRequest::downLoadFinished()
+{
+    Q_EMIT clearAllItems();
+    m_musicSongInfos.clear();
+    MusicPagingRequest::downLoadFinished();
 }
 
 QString MusicAbstractQueryRequest::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)

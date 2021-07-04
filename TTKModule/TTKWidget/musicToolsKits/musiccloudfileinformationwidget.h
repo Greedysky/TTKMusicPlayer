@@ -39,8 +39,7 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudFileInformationWidget();
+    ~MusicCloudFileInformationWidget();
 
     /*!
      * Set music file song path name.

@@ -3,7 +3,7 @@
 MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
     : QObject(parent)
 {
-    setNetworkAbort(false);
+    m_interrupt = false;
     m_stateCode = MusicObject::NetworkQuery;
     m_reply = nullptr;
     m_manager = new QNetworkAccessManager(this);
@@ -14,25 +14,30 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
 
 MusicAbstractNetwork::~MusicAbstractNetwork()
 {
-    m_stateCode = MusicObject::NetworkSuccess;
-    deleteAll();
-}
+    m_interrupt = true;
+    m_stateCode = MusicObject::NetworkError;
 
-void MusicAbstractNetwork::deleteAll()
-{
+    deleteAll();
     if(m_manager)
     {
         m_manager->deleteLater();
         m_manager = nullptr;
     }
+}
 
+void MusicAbstractNetwork::deleteAll()
+{
     if(m_reply)
     {
         m_reply->deleteLater();
         m_reply = nullptr;
     }
+    m_interrupt = true;
+}
 
-    setNetworkAbort(true);
+void MusicAbstractNetwork::downLoadFinished()
+{
+    m_interrupt = false;
 }
 
 void MusicAbstractNetwork::replyError(QNetworkReply::NetworkError)

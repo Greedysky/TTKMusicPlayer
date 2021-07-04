@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSmoothMovingTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSmoothMovingTableWidget();
+    ~MusicSmoothMovingTableWidget();
 
     /*!
      * Set current moved scroll bar.
@@ -81,8 +80,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSmoothMovingScrollArea(QWidget *parent = nullptr);
-
-    virtual ~MusicSmoothMovingScrollArea();
+    ~MusicSmoothMovingScrollArea();
 
     /*!
      * Set current moved scroll bar.

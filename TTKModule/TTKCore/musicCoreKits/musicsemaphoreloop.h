@@ -35,7 +35,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSemaphoreLoop(QObject *parent = nullptr);
-
     ~MusicSemaphoreLoop();
 
     /*!

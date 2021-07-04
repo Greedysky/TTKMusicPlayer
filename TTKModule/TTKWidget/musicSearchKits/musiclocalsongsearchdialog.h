@@ -36,7 +36,6 @@ public:
      * Object contsructor.
      */
     explicit MusicLocalSongSearchDialog(QWidget *parent = nullptr);
-
     ~MusicLocalSongSearchDialog();
 
     /*!

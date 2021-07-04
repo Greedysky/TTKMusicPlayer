@@ -38,8 +38,7 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudToolBoxWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudToolBoxWidget();
+    ~MusicCloudToolBoxWidget();
 
 public Q_SLOTS:
     /*!

@@ -48,7 +48,6 @@ MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     buttonGroup->addButton(m_ui->radioButton3, 2);
     buttonGroup->addButton(m_ui->radioButton4, 3);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-
 }
 
 MusicLrcErrorWidget::~MusicLrcErrorWidget()

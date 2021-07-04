@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = nullptr);
-
-    virtual ~MusicLrcFloatPhotoItem();
+    ~MusicLrcFloatPhotoItem();
 
     /*!
      * Set photo path and pix.
@@ -107,8 +106,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcFloatPhotoWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcFloatPhotoWidget();
+    ~MusicLrcFloatPhotoWidget();
 
     /*!
      * Resize window bound by given width and height.

@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsListPlayedTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongsListPlayedTableWidget();
+    ~MusicSongsListPlayedTableWidget();
 
     /*!
      * Clear play queue state.

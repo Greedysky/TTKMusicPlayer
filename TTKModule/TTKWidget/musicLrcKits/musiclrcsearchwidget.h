@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcSearchWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcSearchWidget();
+    ~MusicLrcSearchWidget();
 
 public Q_SLOTS:
     /*!

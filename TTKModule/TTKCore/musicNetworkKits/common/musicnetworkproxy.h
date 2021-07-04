@@ -34,7 +34,6 @@ public:
      * Object contsructor.
      */
     explicit MusicNetworkProxy(QObject *parent = nullptr);
-
     ~MusicNetworkProxy();
 
     /*!

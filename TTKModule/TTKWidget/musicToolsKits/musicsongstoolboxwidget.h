@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = nullptr);
-
-    virtual ~MusicSongsToolBoxTopWidget();
+    ~MusicSongsToolBoxTopWidget();
 
     /*!
      * Set music sort.
@@ -156,8 +155,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsToolBoxMaskWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongsToolBoxMaskWidget();
+    ~MusicSongsToolBoxMaskWidget();
 
 protected:
     /*!

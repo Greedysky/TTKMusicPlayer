@@ -233,8 +233,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcPosterWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcPosterWidget();
+    ~MusicLrcPosterWidget();
 
     /*!
      * Set current lrc and song name.

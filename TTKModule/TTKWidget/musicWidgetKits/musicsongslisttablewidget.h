@@ -40,8 +40,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsListTableWidget(int index, QWidget *parent = nullptr);
-
-    virtual ~MusicSongsListTableWidget();
+    ~MusicSongsListTableWidget();
 
     /*!
      * Update songs file names in table.

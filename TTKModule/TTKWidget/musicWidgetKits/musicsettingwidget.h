@@ -109,8 +109,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSettingWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSettingWidget();
+    ~MusicSettingWidget();
 
     /*!
      * Init controller parameter to widget.

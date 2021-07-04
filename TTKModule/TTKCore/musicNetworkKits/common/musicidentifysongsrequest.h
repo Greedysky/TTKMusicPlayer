@@ -45,10 +45,6 @@ public:
     explicit MusicIdentifySongsRequest(QObject *parent = nullptr);
 
     /*!
-     * Release the network object.
-     */
-    virtual void deleteAll() override;
-    /*!
      * Get query song id keys.
      */
     bool getKey();

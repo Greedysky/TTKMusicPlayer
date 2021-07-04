@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcContainerForWallpaper(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcContainerForWallpaper();
+    ~MusicLrcContainerForWallpaper();
 
     /*!
      * Start timer clock to draw lrc.

@@ -41,6 +41,7 @@ void MusicWYTranslationRequest::startToDownload(const QString &data)
 
 void MusicWYTranslationRequest::downLoadFinished()
 {
+    MusicTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;

@@ -42,8 +42,6 @@ public:
     /** @param parent Parent QObject for the server. */
     explicit QHttpServer(QObject *parent = nullptr);
 
-    virtual ~QHttpServer();
-
     /// Start the server by bounding to the given @c address and @c port.
     /** @note This function returns immediately, it does not block.
         @param address Address on which to listen to. Default is to listen on

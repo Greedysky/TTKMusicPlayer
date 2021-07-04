@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcArtPhotoUploadWidget();
+    ~MusicLrcArtPhotoUploadWidget();
 
 public Q_SLOTS:
     /*!

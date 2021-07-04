@@ -39,10 +39,6 @@ QHttpRequest::QHttpRequest(QHttpConnection *connection, QObject *parent)
     d->m_connection = connection;
 }
 
-QHttpRequest::~QHttpRequest()
-{
-}
-
 QString QHttpRequest::header(const QString &field)
 {
     TTK_D(QHttpRequest);

@@ -24,11 +24,6 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     G_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
-MusicDownloadStatusModule::~MusicDownloadStatusModule()
-{
-
-}
-
 void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &type)
 {
     ///If the lyrics download finished immediately loaded to display

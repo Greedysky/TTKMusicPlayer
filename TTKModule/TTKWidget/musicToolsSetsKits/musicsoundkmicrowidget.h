@@ -43,8 +43,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSoundKMicroWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSoundKMicroWidget();
+    ~MusicSoundKMicroWidget();
 
     /*!
      * Set current button style.

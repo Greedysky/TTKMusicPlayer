@@ -35,7 +35,6 @@ public:
      * Object contsructor.
      */
     explicit MusicRippleSpecturmModule(QObject *parent = nullptr);
-
     ~MusicRippleSpecturmModule();
 
     /*!

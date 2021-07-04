@@ -54,7 +54,6 @@ public:
      */
     MusicDownloadQueueRequest(const MusicDownloadQueueDatas &datas,
                               MusicObject::DownloadType  type, QObject *parent = nullptr);
-
     ~MusicDownloadQueueRequest();
 
     /*!

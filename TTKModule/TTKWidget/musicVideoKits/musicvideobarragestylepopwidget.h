@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = nullptr);
-
-    virtual ~MusicVideoBarrageStylePopWidget();
+    ~MusicVideoBarrageStylePopWidget();
 
     /*!
      * Get barrage size.

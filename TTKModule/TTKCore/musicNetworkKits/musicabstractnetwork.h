@@ -40,22 +40,12 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractNetwork(QObject *parent = nullptr);
-
     virtual ~MusicAbstractNetwork();
 
     /*!
      * Release the network object.
      */
     virtual void deleteAll();
-
-    /*!
-     * Set network block state.
-     */
-    inline void setNetworkAbort(bool a) { m_interrupt = a; }
-    /*!
-     * Get network block state.
-     */
-    inline bool networkAbort() { return m_interrupt; }
 
     /*!
      * Set the current raw data.
@@ -81,7 +71,7 @@ public Q_SLOTS:
      * Download data from net finished.
      * Subclass should implement this function.
      */
-    virtual void downLoadFinished() = 0;
+    virtual void downLoadFinished();
     /*!
      * Download reply error.
      */

@@ -41,8 +41,6 @@ public:
      */
     explicit MusicAbstractFMRadioRequest(QObject *parent = nullptr);
 
-    virtual ~MusicAbstractFMRadioRequest();
-
     /*!
      * Start to download data.
      * Subclass should implement this function.

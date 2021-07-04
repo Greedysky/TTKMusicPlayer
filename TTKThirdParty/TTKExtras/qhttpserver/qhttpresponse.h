@@ -74,8 +74,6 @@ public:
         STATUS_HTTP_VERSION_NOT_SUPPORTED = 505
     };
 
-    virtual ~QHttpResponse();
-
     /// @cond nodoc
     friend class QHttpConnection;
     friend class QHttpConnectionPrivate;

@@ -26,7 +26,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicKGQueryAlbumRequest : public MusicQueryAlbumRequest,
-                                                      private MusicKGQueryInterface
+                                                   private MusicKGQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKGQueryAlbumRequest)

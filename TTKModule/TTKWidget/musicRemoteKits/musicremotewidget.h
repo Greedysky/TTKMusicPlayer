@@ -52,8 +52,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRemoteWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicRemoteWidget();
+    ~MusicRemoteWidget();
 
     /*!
      * Set current play state button.

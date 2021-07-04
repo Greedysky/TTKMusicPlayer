@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForSquare(QWidget *parent = nullptr);
-
-    virtual ~MusicRemoteWidgetForSquare();
+    ~MusicRemoteWidgetForSquare();
 
 public Q_SLOTS:
     /*!

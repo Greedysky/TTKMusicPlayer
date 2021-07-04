@@ -36,8 +36,7 @@ public:
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicAbstractDownLoadRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
-
-    virtual ~MusicAbstractDownLoadRequest();
+    ~MusicAbstractDownLoadRequest();
 
     /*!
      * Release the network object.
@@ -51,6 +50,10 @@ public:
     virtual void startToDownload() = 0;
 
 public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override;
     /*!
      * Get download received and total data.
      */

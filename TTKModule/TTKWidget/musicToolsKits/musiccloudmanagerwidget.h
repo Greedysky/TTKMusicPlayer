@@ -43,8 +43,7 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudManagerTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudManagerTableWidget();
+    ~MusicCloudManagerTableWidget();
 
     /*!
      * Get query cloud id keys.
@@ -200,7 +199,6 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudManagerWidget(QWidget *parent = nullptr);
-
     ~MusicCloudManagerWidget();
 
     /*!

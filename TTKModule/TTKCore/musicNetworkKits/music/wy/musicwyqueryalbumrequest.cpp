@@ -61,10 +61,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
-    setNetworkAbort(false);
-
+    MusicQueryAlbumRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -162,8 +159,7 @@ void MusicWYQueryAlbumRequest::singleDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
-
+    MusicAbstractNetwork::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {

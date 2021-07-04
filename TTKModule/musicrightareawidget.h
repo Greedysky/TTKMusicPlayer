@@ -73,7 +73,6 @@ public:
      * Object contsructor.
      */
     explicit MusicRightAreaWidget(QWidget *parent = nullptr);
-
     ~MusicRightAreaWidget();
 
     /*!

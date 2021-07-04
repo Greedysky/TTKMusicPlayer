@@ -35,7 +35,6 @@ public:
      * Object contsructor.
      */
     MusicSongMeta();
-
     ~MusicSongMeta();
 
     /*!

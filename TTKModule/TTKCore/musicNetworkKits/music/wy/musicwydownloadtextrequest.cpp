@@ -34,8 +34,7 @@ void MusicWYDownLoadTextRequest::startToDownload()
 
 void MusicWYDownLoadTextRequest::downLoadFinished()
 {
-    m_speedTimer.stop();
-
+    MusicAbstractDownLoadRequest::downLoadFinished();
     if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;

@@ -36,7 +36,6 @@ public:
      * Object contsructor.
      */
     explicit MusicFunctionToolBoxTopWidget(int index, const QString &text, QWidget *parent = nullptr);
-
     ~MusicFunctionToolBoxTopWidget();
 
     /*!
@@ -117,7 +116,6 @@ public:
      */
     explicit MusicFunctionToolBoxWidgetItem(QWidget *parent = nullptr);
     explicit MusicFunctionToolBoxWidgetItem(int index, const QString &text, QWidget *parent = nullptr);
-
     ~MusicFunctionToolBoxWidgetItem();
 
     /*!
@@ -225,7 +223,6 @@ public:
      * Object contsructor.
      */
     explicit MusicFunctionToolBoxWidget(QWidget *parent = nullptr);
-
     ~MusicFunctionToolBoxWidget();
 
     /*!

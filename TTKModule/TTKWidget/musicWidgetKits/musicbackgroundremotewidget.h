@@ -39,7 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicBackgroundRemoteWidget(QWidget *parent = nullptr);
-
     ~MusicBackgroundRemoteWidget();
 
     /*!
@@ -89,8 +88,7 @@ public:
      * Object contsructor.
      */
     explicit MusicBackgroundThunderWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicBackgroundThunderWidget();
+    ~MusicBackgroundThunderWidget();
 
     /*!
      * Init parameters.

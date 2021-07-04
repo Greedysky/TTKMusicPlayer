@@ -35,7 +35,6 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractThread(QObject *parent = nullptr);
-
     virtual ~MusicAbstractThread();
 
     /*!

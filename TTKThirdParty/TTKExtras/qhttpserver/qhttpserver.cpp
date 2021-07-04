@@ -131,10 +131,6 @@ QHttpServer::QHttpServer(QObject *parent)
     STATUS_CODE(510, "Not Extended") // RFC 2774
 }
 
-QHttpServer::~QHttpServer()
-{
-}
-
 void QHttpServer::newConnection()
 {
     TTK_D(QHttpServer);

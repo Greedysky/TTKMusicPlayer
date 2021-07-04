@@ -39,7 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadBatchTableItem(QWidget *parent = nullptr);
-
     ~MusicDownloadBatchTableItem();
 
     /*!
@@ -91,8 +90,7 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadBatchTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicDownloadBatchTableWidget();
+    ~MusicDownloadBatchTableWidget();
 
     /*!
      * Set parent class.
@@ -145,8 +143,7 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadBatchWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicDownloadBatchWidget();
+    ~MusicDownloadBatchWidget();
 
     /*!
      * Set current name to search and download musics.

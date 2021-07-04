@@ -95,8 +95,7 @@ public:
      * Object contsructor.
      */
     explicit MusicScreenSaverListItem(QObject *object, QWidget *parent = nullptr);
-
-    virtual ~MusicScreenSaverListItem();
+    ~MusicScreenSaverListItem();
 
     /*!
      * Set item file name.
@@ -131,8 +130,7 @@ public:
      * Object contsructor.
      */
     explicit MusicScreenSaverListWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicScreenSaverListWidget();
+    ~MusicScreenSaverListWidget();
 
     /*!
      * Create item by name and path.
@@ -169,8 +167,6 @@ public:
      * Object contsructor.
      */
     explicit MusicScreenSaverWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicScreenSaverWidget();
 
     /*!
      * Apply settings parameters.
@@ -231,8 +227,7 @@ public:
      * Object contsructor.
      */
     explicit MusicScreenSaverBackgroundWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicScreenSaverBackgroundWidget();
+    ~MusicScreenSaverBackgroundWidget();
 
     /*!
      * Apply settings parameters.

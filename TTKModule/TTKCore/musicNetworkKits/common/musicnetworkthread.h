@@ -66,7 +66,6 @@ private:
      * Object contsructor.
      */
     MusicNetworkThread();
-
     ~MusicNetworkThread();
 
     QTimer m_timer;

@@ -12,11 +12,6 @@ MusicFMRadioChannelRequest::MusicFMRadioChannelRequest(QObject *parent)
 
 }
 
-MusicFMRadioChannelRequest::~MusicFMRadioChannelRequest()
-{
-    deleteAll();
-}
-
 void MusicFMRadioChannelRequest::startToDownload(const QString &id)
 {
     Q_UNUSED(id);
@@ -31,6 +26,7 @@ void MusicFMRadioChannelRequest::startToDownload(const QString &id)
 
 void MusicFMRadioChannelRequest::downLoadFinished()
 {
+    MusicAbstractFMRadioRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         m_channels.clear();

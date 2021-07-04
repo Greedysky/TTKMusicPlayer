@@ -36,8 +36,7 @@ class TTK_MODULE_EXPORT QGlobalShortcut : public QObject
 public:
     explicit QGlobalShortcut(QObject* parent = nullptr);
     explicit QGlobalShortcut(const QKeySequence& shortcut, QObject* parent = nullptr);
-
-    virtual ~QGlobalShortcut();
+    ~QGlobalShortcut();
 
     QKeySequence shortcut() const;
     bool setShortcut(const QKeySequence& shortcut);

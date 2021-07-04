@@ -44,8 +44,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAnimationStackedWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicAnimationStackedWidget();
+    ~MusicAnimationStackedWidget();
 
     /*!
      * Start to anmiation by index.

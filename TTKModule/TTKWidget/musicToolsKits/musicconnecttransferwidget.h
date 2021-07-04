@@ -42,8 +42,7 @@ public:
      * Object contsructor.
      */
     explicit MusicConnectTransferWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicConnectTransferWidget();
+    ~MusicConnectTransferWidget();
 
     /*!
      * Set current device info item.

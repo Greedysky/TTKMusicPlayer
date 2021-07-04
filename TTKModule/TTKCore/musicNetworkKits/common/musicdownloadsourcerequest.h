@@ -34,8 +34,6 @@ public:
      */
     explicit MusicDownloadSourceRequest(QObject *parent = nullptr);
 
-    ~MusicDownloadSourceRequest();
-
     /*!
      * Start to download data.
      */

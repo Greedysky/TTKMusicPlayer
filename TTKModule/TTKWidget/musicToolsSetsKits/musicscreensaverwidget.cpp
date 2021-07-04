@@ -277,11 +277,6 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     applySettingParameter();
 }
 
-MusicScreenSaverWidget::~MusicScreenSaverWidget()
-{
-
-}
-
 void MusicScreenSaverWidget::applySettingParameter()
 {
     const bool state = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverEnable).toBool();

@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLocalSongSearchPopTableWidget();
+    ~MusicLocalSongSearchPopTableWidget();
 
     /*!
      * Clear All Items.
@@ -74,7 +73,6 @@ public:
      * Object contsructor.
      */
     explicit MusicLocalSongSearchPopWidget(QWidget *parent = nullptr);
-
     ~MusicLocalSongSearchPopWidget();
 
     /*!

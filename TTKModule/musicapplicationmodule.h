@@ -42,7 +42,6 @@ public:
      * Object contsructor.
      */
     explicit MusicApplicationModule(QObject *parent = nullptr);
-
     ~MusicApplicationModule();
 
     /*!

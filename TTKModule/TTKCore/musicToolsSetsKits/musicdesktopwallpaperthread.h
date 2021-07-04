@@ -43,7 +43,6 @@ public:
      * Object contsructor.
      */
     explicit MusicDesktopWallpaperThread(QObject *parent = nullptr);
-
     ~MusicDesktopWallpaperThread();
 
     /*!

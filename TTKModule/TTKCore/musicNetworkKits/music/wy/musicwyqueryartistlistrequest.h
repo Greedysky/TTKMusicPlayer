@@ -26,7 +26,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryArtistListRequest : public MusicQueryArtistListRequest,
-                                                           private MusicWYQueryInterface
+                                                        private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYQueryArtistListRequest)

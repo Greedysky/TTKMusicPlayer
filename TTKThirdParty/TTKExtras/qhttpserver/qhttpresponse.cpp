@@ -204,10 +204,6 @@ QHttpResponse::QHttpResponse(QHttpConnection *connection)
     connect(connection, SIGNAL(allBytesWritten()), this, SIGNAL(allBytesWritten()));
 }
 
-QHttpResponse::~QHttpResponse()
-{
-}
-
 void QHttpResponse::setHeader(const QString &field, const QString &value)
 {
     TTK_D(QHttpResponse);

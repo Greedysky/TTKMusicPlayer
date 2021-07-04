@@ -13,11 +13,6 @@ MusicSpectrumLayoutItem::MusicSpectrumLayoutItem(QWidget *parent)
     m_isSelected = false;
 }
 
-MusicSpectrumLayoutItem::~MusicSpectrumLayoutItem()
-{
-
-}
-
 void MusicSpectrumLayoutItem::addItem(const QString &item, const QString &tip)
 {
     setPixmap(MusicUtils::Image::pixmapToRound(item, 10, 10));
@@ -155,11 +150,6 @@ MusicSpectrumNormalLayoutWidget::MusicSpectrumNormalLayoutWidget(QWidget *parent
     addItems(items);
 }
 
-MusicSpectrumNormalLayoutWidget::~MusicSpectrumNormalLayoutWidget()
-{
-
-}
-
 QStringList MusicSpectrumNormalLayoutWidget::spectrumTypeList() const
 {
     return QStringList() << "normalanalyzer" << "normalewave" << "normalflowwave" << "normalhistogram" << "normalline";
@@ -176,11 +166,6 @@ MusicSpectrumPlusLayoutWidget::MusicSpectrumPlusLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/plus_3", tr("XRays"));
     items << ItemInfo(":/spectrum/plus_4", tr("BlurXRays"));
     addItems(items);
-}
-
-MusicSpectrumPlusLayoutWidget::~MusicSpectrumPlusLayoutWidget()
-{
-
 }
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
@@ -204,11 +189,6 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
     addItems(items);
 }
 
-MusicSpectrumFlowLayoutWidget::~MusicSpectrumFlowLayoutWidget()
-{
-
-}
-
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
     return QStringList() << "flowgoom" << "flowprojectm" << "flowsonique" << "flowmountain" << "flowethereality";
@@ -225,11 +205,6 @@ MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/wave_3", tr("Volume"));
     items << ItemInfo(":/spectrum/wave_4", tr("LightEnvelope"));
     addItems(items);
-}
-
-MusicSpectrumWaveLayoutWidget::~MusicSpectrumWaveLayoutWidget()
-{
-
 }
 
 QStringList MusicSpectrumWaveLayoutWidget::spectrumTypeList() const
@@ -252,11 +227,6 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
     items << ItemInfo(":/spectrum/florid_5", tr("Ancient"));
     items << ItemInfo(":/spectrum/florid_6", tr("Electric"));
     addItems(items);
-}
-
-MusicSpectrumFloridLayoutWidget::~MusicSpectrumFloridLayoutWidget()
-{
-
 }
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const

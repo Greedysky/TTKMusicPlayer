@@ -62,8 +62,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongSearchTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongSearchTableWidget();
+    ~MusicSongSearchTableWidget();
 
     /*!
      * Set wheather query all quality of records.
@@ -156,7 +155,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSongSearchOnlineWidget(QWidget *parent = nullptr);
-
     ~MusicSongSearchOnlineWidget();
 
     /*!

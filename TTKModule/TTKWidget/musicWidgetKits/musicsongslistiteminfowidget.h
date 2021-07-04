@@ -39,7 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsListItemInfoWidget(QWidget *parent = nullptr);
-
     ~MusicSongsListItemInfoWidget();
 
     /*!

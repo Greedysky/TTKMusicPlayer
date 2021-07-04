@@ -79,8 +79,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcLocalLinkWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcLocalLinkWidget();
+    ~MusicLrcLocalLinkWidget();
 
     /*!
      * Set current song name.

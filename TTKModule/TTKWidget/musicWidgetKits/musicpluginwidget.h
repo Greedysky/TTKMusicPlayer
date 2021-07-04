@@ -39,8 +39,6 @@ public:
      */
     explicit MusicPluginWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicPluginWidget();
-
 public Q_SLOTS:
     /*!
      * Plugin item clicked changed.

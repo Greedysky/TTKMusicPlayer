@@ -55,7 +55,6 @@ public:
      * Object contsructor.
      */
     explicit MusicPhotoGrabLabel(QWidget *parent = nullptr);
-
     ~MusicPhotoGrabLabel();
 
     /*!

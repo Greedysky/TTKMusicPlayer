@@ -66,8 +66,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcDownloadBatchWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcDownloadBatchWidget();
+    ~MusicLrcDownloadBatchWidget();
 
 public Q_SLOTS:
     /*!

@@ -55,8 +55,7 @@ QString MusicBDTranslationRequest::mapTypeFromEnumToString(TranslationType type)
 
 void MusicBDTranslationRequest::downLoadFinished()
 {
-    setNetworkAbort(false);
-
+    MusicTranslationRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;

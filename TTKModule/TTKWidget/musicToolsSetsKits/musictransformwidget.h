@@ -48,8 +48,7 @@ public:
      * Object contsructor.
      */
     explicit MusicTransformWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicTransformWidget();
+    ~MusicTransformWidget();
 
 public Q_SLOTS:
     /*!

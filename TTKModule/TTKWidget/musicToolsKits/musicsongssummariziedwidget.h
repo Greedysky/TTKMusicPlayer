@@ -42,8 +42,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsSummariziedWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongsSummariziedWidget();
+    ~MusicSongsSummariziedWidget();
 
     /*!
      * Add music datas into container.

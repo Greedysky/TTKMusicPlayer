@@ -141,8 +141,7 @@ public:
      * Object contsructor.
      */
     explicit MusicColorDialog(QWidget *parent = nullptr);
-
-    virtual ~MusicColorDialog();
+    ~MusicColorDialog();
 
     /*!
      * Get color static function.

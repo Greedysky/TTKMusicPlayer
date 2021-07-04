@@ -5,12 +5,3 @@ MusicTranslationRequest::MusicTranslationRequest(QObject *parent)
 {
     m_reply = nullptr;
 }
-
-void MusicTranslationRequest::deleteAll()
-{
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-}

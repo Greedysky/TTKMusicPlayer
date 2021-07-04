@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongsListFunctionWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongsListFunctionWidget();
+    ~MusicSongsListFunctionWidget();
 
     /*!
      * Set current animation active.

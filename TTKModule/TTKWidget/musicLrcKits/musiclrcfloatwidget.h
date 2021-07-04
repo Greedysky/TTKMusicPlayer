@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcFloatWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcFloatWidget();
+    ~MusicLrcFloatWidget();
 
     /*!
      * Resize window bound by given width and height.

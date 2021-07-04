@@ -5,8 +5,3 @@ MusicAbstractFMRadioRequest::MusicAbstractFMRadioRequest(QObject *parent)
 {
 
 }
-
-MusicAbstractFMRadioRequest::~MusicAbstractFMRadioRequest()
-{
-    deleteAll();
-}

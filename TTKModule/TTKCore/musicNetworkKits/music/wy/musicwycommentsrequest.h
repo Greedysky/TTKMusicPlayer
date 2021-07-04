@@ -26,7 +26,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYSongCommentsRequest : public MusicCommentsRequest,
-                                                        private MusicWYQueryInterface
+                                                     private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYSongCommentsRequest)
@@ -58,7 +58,7 @@ public Q_SLOTS:
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYPlaylistCommentsRequest : public MusicCommentsRequest,
-                                                            private MusicWYQueryInterface
+                                                         private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYPlaylistCommentsRequest)

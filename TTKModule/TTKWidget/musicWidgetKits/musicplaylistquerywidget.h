@@ -39,8 +39,7 @@ public:
      * Object contsructor.
      */
     explicit MusicPlaylistQueryItemWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicPlaylistQueryItemWidget();
+    ~MusicPlaylistQueryItemWidget();
 
     /*!
      * Set music results item.
@@ -88,8 +87,7 @@ public:
      * Object contsructor.
      */
     explicit MusicPlaylistQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicPlaylistQueryWidget();
+    ~MusicPlaylistQueryWidget();
 
     /*!
      * Set current name to search founds.

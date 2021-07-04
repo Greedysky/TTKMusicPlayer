@@ -39,7 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveDialog(bool transparent, QWidget *parent = nullptr);
-
     virtual ~MusicAbstractMoveDialog();
 
     /*!

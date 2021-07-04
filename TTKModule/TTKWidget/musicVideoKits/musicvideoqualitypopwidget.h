@@ -34,8 +34,7 @@ public:
      * Object contsructor.
      */
     explicit MusicVideoQualityPopWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicVideoQualityPopWidget();
+    ~MusicVideoQualityPopWidget();
 
     /*!
      * Set quality action state enable or disable.

@@ -40,8 +40,7 @@ public:
      * Object contsructor.
      */
     explicit MusicEqualizerDialog(QWidget *parent = nullptr);
-
-    virtual ~MusicEqualizerDialog();
+    ~MusicEqualizerDialog();
 
 Q_SIGNALS:
     /*!

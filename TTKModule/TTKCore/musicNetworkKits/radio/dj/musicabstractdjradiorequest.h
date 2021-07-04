@@ -37,7 +37,7 @@ const QString DJ_HOT_DATA_URL          = "NEZ4U1hlQnQ4SW1MQnNidE9ycytIWTZLR1E0PQ
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicAbstractDJRadioRequest : public MusicAbstractNetwork,
-                                                         protected MusicWYQueryInterface
+                                                      protected MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractDJRadioRequest)
@@ -47,10 +47,6 @@ public:
      */
     explicit MusicAbstractDJRadioRequest(QObject *parent = nullptr);
 
-    /*!
-     * Release the network object.
-     */
-    virtual void deleteAll() override;
     /*!
      * Get suggest list items.
      */

@@ -95,7 +95,6 @@ public:
      * Object contsructor.
      */
     explicit MusicBaseAnimationWidget(QWidget *parent = nullptr);
-
     ~MusicBaseAnimationWidget();
 
 Q_SIGNALS:

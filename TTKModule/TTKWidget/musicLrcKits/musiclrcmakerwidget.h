@@ -102,8 +102,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcMakerWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcMakerWidget();
+    ~MusicLrcMakerWidget();
 
     /*!
      * Set current song name.

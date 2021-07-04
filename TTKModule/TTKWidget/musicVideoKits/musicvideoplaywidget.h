@@ -43,7 +43,6 @@ public:
      * Object contsructor.
      */
     explicit MusicVideoPlayWidget(QWidget *parent = nullptr);
-
     ~MusicVideoPlayWidget();
 
     /*!

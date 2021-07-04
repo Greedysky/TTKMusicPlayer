@@ -65,8 +65,7 @@ public:
      * Object contsructor.
      */
     explicit MusicPlayedListPopWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicPlayedListPopWidget();
+    ~MusicPlayedListPopWidget();
 
     /*!
      * Get class object instance.

@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAdvancedSearchedWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicAdvancedSearchedWidget();
+    ~MusicAdvancedSearchedWidget();
 
 private Q_SLOTS:
     /*!

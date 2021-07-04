@@ -38,8 +38,7 @@ public:
      * Object contsructor.
      */
     explicit MusicFileInformationWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicFileInformationWidget();
+    ~MusicFileInformationWidget();
 
     /*!
      * Set music file song path name.

@@ -34,7 +34,6 @@ public:
      * Object contsructor.
      */
     explicit MusicImageRenderer(QObject *parent = nullptr);
-
     ~MusicImageRenderer();
 
     /*!

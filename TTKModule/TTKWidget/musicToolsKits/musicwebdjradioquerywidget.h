@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebDJRadioQueryItemWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicWebDJRadioQueryItemWidget();
+    ~MusicWebDJRadioQueryItemWidget();
 
     /*!
      * Set music results item.
@@ -86,8 +85,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebDJRadioQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicWebDJRadioQueryWidget();
+    ~MusicWebDJRadioQueryWidget();
 
     /*!
      * Set current name to search founds.

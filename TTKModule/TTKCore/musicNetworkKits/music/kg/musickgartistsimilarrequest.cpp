@@ -32,7 +32,7 @@ void MusicKGArtistSimilarRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
+    MusicSimilarRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

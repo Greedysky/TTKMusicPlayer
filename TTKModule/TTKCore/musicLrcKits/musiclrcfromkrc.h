@@ -32,7 +32,6 @@ public:
      * Object contsructor.
      */
     MusicLrcFromKrc();
-
     ~MusicLrcFromKrc();
 
     /*!

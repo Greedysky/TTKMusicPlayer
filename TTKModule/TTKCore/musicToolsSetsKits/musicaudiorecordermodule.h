@@ -57,7 +57,6 @@ public:
      * Object contsructor.
      */
     explicit MusicAudioRecorderModule(QObject *parent = nullptr);
-
     ~MusicAudioRecorderModule();
 
     /*!

@@ -68,8 +68,8 @@ void MusicDownloadDataRequest::downLoadFinished()
         return;
     }
 
+    MusicAbstractDownLoadRequest::downLoadFinished();
     m_redirection = false;
-    m_speedTimer.stop();
     m_file->flush();
     m_file->close();
 

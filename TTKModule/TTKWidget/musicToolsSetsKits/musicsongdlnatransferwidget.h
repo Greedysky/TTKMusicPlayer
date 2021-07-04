@@ -41,8 +41,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongDlnaTransferWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongDlnaTransferWidget();
+    ~MusicSongDlnaTransferWidget();
 
 Q_SIGNALS:
     /*!

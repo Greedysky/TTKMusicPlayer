@@ -34,8 +34,6 @@ public:
      */
     explicit MusicFMRadioSongsRequest(QObject *parent = nullptr);
 
-    virtual ~MusicFMRadioSongsRequest();
-
     /*!
      * Start to download data.
      */

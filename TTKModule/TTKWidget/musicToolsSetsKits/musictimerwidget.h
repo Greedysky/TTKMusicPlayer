@@ -39,8 +39,7 @@ public:
      * Object contsructor.
      */
     explicit MusicTimerWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicTimerWidget();
+    ~MusicTimerWidget();
 
     /*!
      * Set current songs path list.

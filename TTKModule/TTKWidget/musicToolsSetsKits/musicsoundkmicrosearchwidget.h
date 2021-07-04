@@ -34,8 +34,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSoundKMicroSearchTableWidget();
+    ~MusicSoundKMicroSearchTableWidget();
 
     /*!
      * Start search query by text.
@@ -107,7 +106,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSoundKMicroSearchWidget(QWidget *parent = nullptr);
-
     ~MusicSoundKMicroSearchWidget();
 
     /*!

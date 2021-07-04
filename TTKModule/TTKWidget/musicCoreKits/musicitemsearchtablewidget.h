@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicItemSearchTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicItemSearchTableWidget();
+    ~MusicItemSearchTableWidget();
 
     /*!
      * Start search query by text.

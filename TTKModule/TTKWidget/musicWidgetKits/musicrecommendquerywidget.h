@@ -34,8 +34,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRecommendQueryTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicRecommendQueryTableWidget();
+    ~MusicRecommendQueryTableWidget();
 
     /*!
      * Set network query input.

@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcContainerForCortana(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcContainerForCortana();
+    ~MusicLrcContainerForCortana();
 
     /*!
      * Start timer clock to draw lrc.

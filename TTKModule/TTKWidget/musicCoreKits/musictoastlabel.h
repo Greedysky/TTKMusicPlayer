@@ -39,7 +39,6 @@ public:
      * Object contsructor by context text.
      */
     explicit MusicToastLabel(const QString &text, QWidget *parent = nullptr);
-
     ~MusicToastLabel();
 
     /*!

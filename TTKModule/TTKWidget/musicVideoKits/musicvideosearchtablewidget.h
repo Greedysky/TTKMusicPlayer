@@ -48,8 +48,7 @@ public:
      * Object contsructor.
      */
     explicit MusicVideoSearchTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicVideoSearchTableWidget();
+    ~MusicVideoSearchTableWidget();
 
     /*!
      * Start search query by text.

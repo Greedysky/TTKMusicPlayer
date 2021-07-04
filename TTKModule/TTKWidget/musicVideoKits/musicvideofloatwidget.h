@@ -44,8 +44,7 @@ public:
      * Object contsructor.
      */
     explicit MusicVideoFloatWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicVideoFloatWidget();
+    ~MusicVideoFloatWidget();
 
     /*!
      * Resize window bound by given width and height.

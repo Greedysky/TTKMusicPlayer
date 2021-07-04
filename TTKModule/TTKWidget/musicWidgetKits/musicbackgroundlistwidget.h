@@ -142,7 +142,6 @@ public:
      * Object contsructor.
      */
     explicit MusicBackgroundListWidget(QWidget *parent = nullptr);
-
     ~MusicBackgroundListWidget();
 
     /*!

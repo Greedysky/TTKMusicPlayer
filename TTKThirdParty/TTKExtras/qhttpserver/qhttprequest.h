@@ -48,8 +48,6 @@ class TTK_MODULE_EXPORT QHttpRequest : public QObject
     /// @endcond
 
 public:
-    virtual ~QHttpRequest();
-
     /// Request method enumeration.
     /** @note Taken from http_parser.h -- make sure to keep synced */
     enum HttpMethod {

@@ -11,11 +11,6 @@ MusicFMRadioSongsRequest::MusicFMRadioSongsRequest(QObject *parent)
 
 }
 
-MusicFMRadioSongsRequest::~MusicFMRadioSongsRequest()
-{
-    deleteAll();
-}
-
 void MusicFMRadioSongsRequest::startToDownload(const QString &id)
 {
     m_cachedID = id;
@@ -33,6 +28,7 @@ void MusicFMRadioSongsRequest::startToDownload(const QString &id)
 
 void MusicFMRadioSongsRequest::downLoadFinished()
 {
+    MusicAbstractFMRadioRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;

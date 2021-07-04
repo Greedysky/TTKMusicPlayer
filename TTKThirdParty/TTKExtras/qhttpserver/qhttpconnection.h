@@ -31,7 +31,6 @@ class TTK_MODULE_EXPORT QHttpConnection : public QObject
     Q_OBJECT
 public:
     explicit QHttpConnection(QTcpSocket *socket, QObject *parent = nullptr);
-    virtual ~QHttpConnection();
 
     void write(const QByteArray &data);
     void flush();

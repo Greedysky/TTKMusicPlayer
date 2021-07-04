@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicWebDJRadioInfoTableWidget();
+    ~MusicWebDJRadioInfoTableWidget();
 
     /*!
      * Set network query input.

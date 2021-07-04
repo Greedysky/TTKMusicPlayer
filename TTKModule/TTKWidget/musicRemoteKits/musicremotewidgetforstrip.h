@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForStrip(QWidget *parent = nullptr);
-
-    virtual ~MusicRemoteWidgetForStrip();
+    ~MusicRemoteWidgetForStrip();
 
     /*!
      * Set current song text.

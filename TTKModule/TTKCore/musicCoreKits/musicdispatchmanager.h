@@ -82,7 +82,6 @@ protected:
      * Object contsructor.
      */
     MusicDispatchManager();
-
     ~MusicDispatchManager();
 
     QMutex m_mutex;

@@ -64,7 +64,6 @@ public:
      * Object contsructor.
      */
     explicit MusicToolMenuWidget(QWidget *parent = nullptr);
-
     ~MusicToolMenuWidget();
 
     /*!

@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLocalSongsTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLocalSongsTableWidget();
+    ~MusicLocalSongsTableWidget();
 
     /*!
      * Clear current items.

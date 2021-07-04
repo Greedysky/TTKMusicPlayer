@@ -75,7 +75,6 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadTableItem(QWidget *parent = nullptr);
-
     ~MusicDownloadTableItem();
 
     /*!
@@ -109,8 +108,7 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicDownloadTableWidget();
+    ~MusicDownloadTableWidget();
 
     /*!
      * Clear All Items.
@@ -148,8 +146,7 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicDownloadWidget();
+    ~MusicDownloadWidget();
 
     /*!
      * Set current name to search and download musics.

@@ -34,8 +34,7 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadRecordTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicDownloadRecordTableWidget();
+    ~MusicDownloadRecordTableWidget();
 
 protected:
     /*!
@@ -57,8 +56,7 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadToolBoxWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicDownloadToolBoxWidget();
+    ~MusicDownloadToolBoxWidget();
 
 public Q_SLOTS:
     /*!

@@ -75,10 +75,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
-    setNetworkAbort(false);
-
+    MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -136,7 +133,7 @@ void MusicKGQueryMovieRequest::pageDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
+    MusicQueryMovieRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -181,9 +178,7 @@ void MusicKGQueryMovieRequest::singleDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
-    setNetworkAbort(false);
+    MusicQueryMovieRequest::downLoadFinished();
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_queryText;

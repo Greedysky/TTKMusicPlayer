@@ -75,7 +75,6 @@ public:
      * Object contsructor.
      */
     explicit MusicBarrageWidget(QObject *parent = nullptr);
-
     ~MusicBarrageWidget();
 
     /*!

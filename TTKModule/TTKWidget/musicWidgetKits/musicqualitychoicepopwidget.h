@@ -34,8 +34,7 @@ public:
      * Object contsructor.
      */
     explicit MusicQualityChoiceTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicQualityChoiceTableWidget();
+    ~MusicQualityChoiceTableWidget();
 
 public Q_SLOTS:
     /*!

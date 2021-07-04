@@ -62,8 +62,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSpectrumWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSpectrumWidget();
+    ~MusicSpectrumWidget();
 
 public Q_SLOTS:
     /*!

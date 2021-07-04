@@ -26,7 +26,7 @@ void MusicDJRadioCategoryRequest::startToDownload()
 void MusicDJRadioCategoryRequest::downLoadFinished()
 {
     m_items.clear();
-    setNetworkAbort(false);
+    MusicAbstractDJRadioRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

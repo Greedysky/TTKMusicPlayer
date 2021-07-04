@@ -42,8 +42,7 @@ public:
      * Object contsructor.
      */
     explicit MusicBackgroundSkinDialog(QWidget *parent = nullptr);
-
-    virtual ~MusicBackgroundSkinDialog();
+    ~MusicBackgroundSkinDialog();
 
     /*!
      * Set artist background picture by name.

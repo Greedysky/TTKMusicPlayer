@@ -34,12 +34,6 @@ public:
      */
     explicit MusicPagingRequest(QObject *parent = nullptr);
 
-    virtual ~MusicPagingRequest();
-
-    /*!
-     * Release the network object.
-     */
-    virtual void deleteAll() override;
     /*!
      * Start to search data from name and type bt paging.
      */

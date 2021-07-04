@@ -33,7 +33,6 @@ class TTK_MODULE_EXPORT MusicAbstractDownloadTableWidget : public MusicAbstractS
     TTK_DECLARE_MODULE(MusicAbstractDownloadTableWidget)
 public:
     explicit MusicAbstractDownloadTableWidget(QWidget *parent = nullptr);
-
     virtual ~MusicAbstractDownloadTableWidget();
 
     /*!

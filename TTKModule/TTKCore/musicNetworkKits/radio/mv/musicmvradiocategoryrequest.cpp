@@ -8,8 +8,7 @@ MusicMVRadioCategoryRequest::MusicMVRadioCategoryRequest(QObject *parent)
 
 void MusicMVRadioCategoryRequest::downLoadFinished()
 {
-    setNetworkAbort(false);
-
+    MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();

@@ -54,8 +54,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongCheckToolsDuplicateTableWidget();
+    ~MusicSongCheckToolsDuplicateTableWidget();
 
     /*!
      * Create all items.
@@ -104,8 +103,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongCheckToolsQualityTableWidget();
+    ~MusicSongCheckToolsQualityTableWidget();
 
     /*!
      * Create all items.

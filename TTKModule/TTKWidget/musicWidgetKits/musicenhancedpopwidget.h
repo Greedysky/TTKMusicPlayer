@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicEnhancedToolButton(QWidget *parent = nullptr);
-
-    virtual ~MusicEnhancedToolButton();
+    ~MusicEnhancedToolButton();
 
     /*!
      * Set object style sheet.
@@ -82,8 +81,7 @@ public:
      * Object contsructor.
      */
     explicit MusicEnhancedPopWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicEnhancedPopWidget();
+    ~MusicEnhancedPopWidget();
 
 Q_SIGNALS:
     /*!

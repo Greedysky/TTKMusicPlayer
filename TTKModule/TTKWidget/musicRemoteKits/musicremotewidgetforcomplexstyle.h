@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForComplexStyle(QWidget *parent = nullptr);
-
-    virtual ~MusicRemoteWidgetForComplexStyle();
+    ~MusicRemoteWidgetForComplexStyle();
 
     /*!
      * Set current song text.

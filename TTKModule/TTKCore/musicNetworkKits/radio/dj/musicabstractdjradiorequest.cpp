@@ -5,12 +5,3 @@ MusicAbstractDJRadioRequest::MusicAbstractDJRadioRequest(QObject *parent)
 {
 
 }
-
-void MusicAbstractDJRadioRequest::deleteAll()
-{
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-}

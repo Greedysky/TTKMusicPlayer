@@ -88,8 +88,7 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractXml(QObject *parent = nullptr);
-
-    ~MusicAbstractXml();
+    virtual ~MusicAbstractXml();
 
     /*!
      * Read datas from xml file by given name.

@@ -39,7 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = nullptr);
-
     virtual ~MusicAbstractMoveWidget();
 
     /*!
@@ -98,7 +97,6 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent = nullptr);
-
     virtual ~MusicAbstractMoveSingleWidget();
 
 protected:

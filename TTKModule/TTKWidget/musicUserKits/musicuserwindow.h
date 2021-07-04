@@ -42,7 +42,6 @@ public:
      * Object contsructor.
      */
     explicit MusicUserWindow(QWidget *parent = nullptr);
-
     ~MusicUserWindow();
 
     /*!

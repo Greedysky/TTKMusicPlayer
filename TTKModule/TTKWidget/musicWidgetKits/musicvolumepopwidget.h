@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicVolumePopWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicVolumePopWidget();
+    ~MusicVolumePopWidget();
 
     /*!
      * Set slider value.

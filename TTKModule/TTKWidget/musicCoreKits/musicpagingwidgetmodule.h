@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicPagingWidgetModule(QObject *parent = nullptr);
-
-    virtual ~MusicPagingWidgetModule();
+    ~MusicPagingWidgetModule();
 
     /*!
      * Get create paging widget.

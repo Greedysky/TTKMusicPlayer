@@ -54,7 +54,7 @@ void MusicKGSongCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
+    MusicCommentsRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -137,7 +137,7 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
+    MusicCommentsRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

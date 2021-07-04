@@ -42,8 +42,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongCheckToolsWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongCheckToolsWidget();
+    ~MusicSongCheckToolsWidget();
 
 public Q_SLOTS:
     /*!

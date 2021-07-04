@@ -38,8 +38,7 @@ public:
      * Object contsructor.
      */
     explicit MusicMessageAboutDialog(QWidget *parent = nullptr);
-
-    virtual ~MusicMessageAboutDialog();
+    ~MusicMessageAboutDialog();
 
 public Q_SLOTS:
     /*!

@@ -39,7 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicTimeSliderWidget(QWidget *parent = nullptr);
-
     ~MusicTimeSliderWidget();
 
     /*!

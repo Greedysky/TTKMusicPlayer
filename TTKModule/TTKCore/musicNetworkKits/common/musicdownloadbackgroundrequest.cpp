@@ -16,6 +16,7 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 
 void MusicDownloadBackgroundRequest::downLoadFinished()
 {
+    MusicAbstractNetwork::downLoadFinished();
     if(++m_index >= m_counter)
     {
         G_BACKGROUND_PTR->setArtistName(m_artName);

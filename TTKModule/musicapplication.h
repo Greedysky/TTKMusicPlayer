@@ -46,8 +46,7 @@ public:
      * Object contsructor.
      */
     explicit MusicApplication(QWidget *parent = nullptr);
-
-    virtual ~MusicApplication();
+    ~MusicApplication();
 
     /*!
      * Get class object instance.

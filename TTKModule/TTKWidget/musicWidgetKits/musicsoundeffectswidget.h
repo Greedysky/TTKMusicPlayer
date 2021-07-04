@@ -50,7 +50,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSoundEffectsItemWidget(QWidget *parent = nullptr);
-
     ~MusicSoundEffectsItemWidget();
 
     /*!
@@ -112,8 +111,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSoundEffectsWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSoundEffectsWidget();
+    ~MusicSoundEffectsWidget();
 
     /*!
      * Set input connection.

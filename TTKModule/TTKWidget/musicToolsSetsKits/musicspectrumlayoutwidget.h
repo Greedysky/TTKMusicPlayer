@@ -37,8 +37,6 @@ public:
      */
     explicit MusicSpectrumLayoutItem(QWidget *parent = nullptr);
 
-    virtual ~MusicSpectrumLayoutItem();
-
     /*!
      * Create spectrum item.
      */
@@ -74,8 +72,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSpectrumLayoutWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSpectrumLayoutWidget();
+    ~MusicSpectrumLayoutWidget();
 
 Q_SIGNALS:
     /*!
@@ -131,8 +128,6 @@ public:
      */
     explicit MusicSpectrumNormalLayoutWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicSpectrumNormalLayoutWidget();
-
 protected:
     /*!
      * Spectrum types list.
@@ -154,8 +149,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSpectrumPlusLayoutWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSpectrumPlusLayoutWidget();
 
 protected:
     /*!
@@ -179,8 +172,6 @@ public:
      */
     explicit MusicSpectrumFlowLayoutWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicSpectrumFlowLayoutWidget();
-
 protected:
     /*!
      * Spectrum types list.
@@ -203,8 +194,6 @@ public:
      */
     explicit MusicSpectrumWaveLayoutWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicSpectrumWaveLayoutWidget();
-
 protected:
     /*!
      * Spectrum types list.
@@ -226,8 +215,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSpectrumFloridLayoutWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSpectrumFloridLayoutWidget();
 
 protected:
     /*!

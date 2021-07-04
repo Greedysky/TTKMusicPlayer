@@ -79,7 +79,6 @@ public:
      * Object contsructor.
      */
     explicit MusicVideoView(QWidget *parent = nullptr);
-
     ~MusicVideoView();
 
     /*!

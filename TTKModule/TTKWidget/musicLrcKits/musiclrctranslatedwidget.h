@@ -34,7 +34,6 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcTranslatedWidget(QWidget *parent = nullptr);
-
     ~MusicLrcTranslatedWidget();
 
     /*!

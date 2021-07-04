@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistAlbumsItemWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistAlbumsItemWidget();
+    ~MusicArtistAlbumsItemWidget();
 
     /*!
      * Set music results item.
@@ -82,8 +81,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistMvsQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistMvsQueryWidget();
+    ~MusicArtistMvsQueryWidget();
 
     /*!
      * Set current name to search founds.
@@ -133,8 +131,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistSimilarQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistSimilarQueryWidget();
+    ~MusicArtistSimilarQueryWidget();
 
     /*!
      * Set current name to search founds.
@@ -178,8 +175,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistAlbumsQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistAlbumsQueryWidget();
+    ~MusicArtistAlbumsQueryWidget();
 
     /*!
      * Set current name to search founds.
@@ -222,8 +218,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistQueryTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistQueryTableWidget();
+    ~MusicArtistQueryTableWidget();
 
     /*!
      * Set network query input.
@@ -245,8 +240,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistQueryWidget();
+    ~MusicArtistQueryWidget();
 
     /*!
      * Set current name to search founds.

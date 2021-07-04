@@ -35,7 +35,6 @@ public:
      * Object contsructor.
      */
     explicit MusicMobileDevicesWidget(QWidget *parent = nullptr);
-
     ~MusicMobileDevicesWidget();
 
 public Q_SLOTS:

@@ -18,9 +18,7 @@ void MusicWYQueryRequest::startToSearch(QueryType type, const QString &text)
 
     m_currentType = type;
     m_queryText = text.trimmed();
-
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
+    MusicAbstractQueryRequest::downLoadFinished();
 
     startToPage(0);
 }
@@ -79,7 +77,7 @@ void MusicWYQueryRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    setNetworkAbort(false);
+    MusicAbstractQueryRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -165,10 +163,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    Q_EMIT clearAllItems();
-    m_musicSongInfos.clear();
-    setNetworkAbort(false);
-
+    MusicAbstractQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {

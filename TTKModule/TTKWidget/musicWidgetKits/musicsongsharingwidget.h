@@ -78,8 +78,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongSharingWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongSharingWidget();
+    ~MusicSongSharingWidget();
 
     /*!
      * Set current data to share.

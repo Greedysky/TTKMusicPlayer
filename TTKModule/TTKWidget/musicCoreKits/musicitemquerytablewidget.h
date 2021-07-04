@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicItemQueryTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicItemQueryTableWidget();
+    ~MusicItemQueryTableWidget();
 
     /*!
      * Set network query input.

@@ -36,8 +36,7 @@ public:
      * Object contsructor.
      */
     explicit MusicToplistQueryTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicToplistQueryTableWidget();
+    ~MusicToplistQueryTableWidget();
 
     /*!
      * Set network query input.
@@ -59,8 +58,7 @@ public:
      * Object contsructor.
      */
     explicit MusicToplistQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicToplistQueryWidget();
+    ~MusicToplistQueryWidget();
 
     /*!
      * Set current name to search founds.

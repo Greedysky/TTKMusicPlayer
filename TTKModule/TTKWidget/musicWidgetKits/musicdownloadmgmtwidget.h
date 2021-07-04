@@ -38,7 +38,6 @@ public:
      * Object contsructor.
      */
     explicit MusicDownloadResetWidget(QWidget *parent = nullptr);
-
     ~MusicDownloadResetWidget();
 
     /*!

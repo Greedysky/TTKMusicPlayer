@@ -44,8 +44,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLocalSongsManagerWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLocalSongsManagerWidget();
+    ~MusicLocalSongsManagerWidget();
 
     /*!
      * Find extra device path.

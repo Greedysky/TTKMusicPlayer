@@ -38,8 +38,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebDJRadioProgramTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicWebDJRadioProgramTableWidget();
+    ~MusicWebDJRadioProgramTableWidget();
 
     /*!
      * Init widget.
@@ -92,8 +91,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebDJRadioProgramWidget(MusicObject::Program type, QWidget *parent = nullptr);
-
-    virtual ~MusicWebDJRadioProgramWidget();
+    ~MusicWebDJRadioProgramWidget();
 
     /*!
      * Init parameters.
@@ -123,8 +121,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebDJRadioWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicWebDJRadioWidget();
+    ~MusicWebDJRadioWidget();
 
     /*!
      * Init parameters.

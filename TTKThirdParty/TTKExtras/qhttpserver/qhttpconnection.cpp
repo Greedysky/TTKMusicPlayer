@@ -140,11 +140,6 @@ QHttpConnection::QHttpConnection(QTcpSocket *socket, QObject *parent)
     connect(socket, SIGNAL(bytesWritten(qint64)), this, SLOT(updateWriteCount(qint64)));
 }
 
-QHttpConnection::~QHttpConnection()
-{
-
-}
-
 void QHttpConnection::socketDisconnected()
 {
     deleteLater();

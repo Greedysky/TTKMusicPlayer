@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForRectangle(QWidget *parent = nullptr);
-
-    virtual ~MusicRemoteWidgetForRectangle();
+    ~MusicRemoteWidgetForRectangle();
 
     /*!
      * Set current song text.

@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcErrorWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcErrorWidget();
+    ~MusicLrcErrorWidget();
 
 public Q_SLOTS:
     /*!

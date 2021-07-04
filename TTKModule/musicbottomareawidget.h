@@ -43,7 +43,6 @@ public:
      * Object contsructor.
      */
     explicit MusicBottomAreaWidget(QWidget *parent = nullptr);
-
     ~MusicBottomAreaWidget();
 
     /*!

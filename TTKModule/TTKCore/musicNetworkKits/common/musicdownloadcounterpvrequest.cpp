@@ -7,11 +7,6 @@ MusicDownloadCounterPVRequest::MusicDownloadCounterPVRequest(QObject *parent)
 
 }
 
-MusicDownloadCounterPVRequest::~MusicDownloadCounterPVRequest()
-{
-    deleteAll();
-}
-
 void MusicDownloadCounterPVRequest::startToDownload()
 {
     QNetworkRequest request;
@@ -27,6 +22,7 @@ void MusicDownloadCounterPVRequest::startToDownload()
 
 void MusicDownloadCounterPVRequest::downLoadFinished()
 {
+    MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         const QByteArray &bytes = m_reply->readAll();

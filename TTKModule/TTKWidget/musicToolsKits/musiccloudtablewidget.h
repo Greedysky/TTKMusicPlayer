@@ -34,8 +34,7 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudDownloadTableWidget();
+    ~MusicCloudDownloadTableWidget();
 
 protected:
     /*!
@@ -58,8 +57,7 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudUploadTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicCloudUploadTableWidget();
+    ~MusicCloudUploadTableWidget();
 
 Q_SIGNALS:
     /*!

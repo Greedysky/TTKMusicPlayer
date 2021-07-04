@@ -35,8 +35,6 @@ public:
      */
     explicit MusicTextSliderWidget(QWidget *parent = nullptr);
 
-    ~MusicTextSliderWidget();
-
     /*!
      * Set max value.
      */

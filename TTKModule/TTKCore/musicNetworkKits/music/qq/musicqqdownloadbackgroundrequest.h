@@ -35,10 +35,6 @@ public:
     MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
     /*!
-     * Release the network object.
-     */
-    virtual void deleteAll() override;
-    /*!
      * Start to download artist picture from net.
      */
     virtual void startToDownload() override;

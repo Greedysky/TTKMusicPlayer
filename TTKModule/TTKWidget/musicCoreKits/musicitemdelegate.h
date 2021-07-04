@@ -47,8 +47,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRadioButtonDelegate(QObject* parent = nullptr);
-
-    virtual ~MusicRadioButtonDelegate();
+    ~MusicRadioButtonDelegate();
 
     /*!
      * Set delegate item style.
@@ -87,8 +86,7 @@ public:
      * Object contsructor.
      */
     explicit MusicCheckBoxDelegate(QObject* parent = nullptr);
-
-    virtual ~MusicCheckBoxDelegate();
+    ~MusicCheckBoxDelegate();
 
     /*!
      * Set delegate item style.
@@ -139,7 +137,6 @@ public:
      * Object contsructor.
      */
     explicit MusicProgressBarDelegate(QObject* parent = nullptr);
-
     ~MusicProgressBarDelegate();
 
     /*!
@@ -179,8 +176,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLabelDelegate(QObject* parent = nullptr);
-
-    virtual ~MusicLabelDelegate();
+    ~MusicLabelDelegate();
 
     /*!
      * Set delegate item style.
@@ -223,8 +219,7 @@ public:
      * Object contsructor.
      */
     explicit MusicPushButtonDelegate(QObject* parent = nullptr);
-
-    virtual ~MusicPushButtonDelegate();
+    ~MusicPushButtonDelegate();
 
     /*!
      * Set delegate item style.

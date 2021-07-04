@@ -36,7 +36,6 @@ public:
      * Object contsructor.
      */
     explicit MusicWebFMRadioWidget(QWidget *parent = nullptr);
-
     ~MusicWebFMRadioWidget();
 
     /*!

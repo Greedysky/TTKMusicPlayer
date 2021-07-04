@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicFillItemTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicFillItemTableWidget();
+    ~MusicFillItemTableWidget();
 
     /*!
      * Get selected items.

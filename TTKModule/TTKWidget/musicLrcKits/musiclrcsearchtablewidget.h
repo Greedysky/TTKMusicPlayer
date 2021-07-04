@@ -33,8 +33,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcSearchTableWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicLrcSearchTableWidget();
+    ~MusicLrcSearchTableWidget();
 
     /*!
      * Start search query by text.

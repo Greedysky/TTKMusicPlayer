@@ -34,7 +34,6 @@ public:
      * Object contsructor.
      */
     explicit MusicGlobalHotKeyEdit(QWidget *parent = nullptr);
-
     ~MusicGlobalHotKeyEdit();
 
     /*!

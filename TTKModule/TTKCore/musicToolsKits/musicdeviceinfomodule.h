@@ -47,7 +47,6 @@ public:
      * Object contsructor.
      */
     explicit MusicDeviceInfoModule(QObject *parent = nullptr);
-
     ~MusicDeviceInfoModule();
 
     /*!

@@ -71,7 +71,6 @@ public:
      * Object contsructor.
      */
     explicit MusicCutSliderWidget(QWidget *parent = nullptr);
-
     ~MusicCutSliderWidget();
 
     /*!

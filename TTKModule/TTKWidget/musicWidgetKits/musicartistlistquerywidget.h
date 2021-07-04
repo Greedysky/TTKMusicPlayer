@@ -76,8 +76,7 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistListQueryWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicArtistListQueryWidget();
+    ~MusicArtistListQueryWidget();
 
     /*!
      * Set current name to search founds.

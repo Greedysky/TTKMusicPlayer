@@ -114,8 +114,8 @@ void MusicDownloadQueueRequest::downLoadFinished()
     {
         return;
     }
-    m_speedTimer.stop();
 
+    MusicAbstractDownLoadRequest::downLoadFinished();
     m_file->flush();
     m_file->close();
     m_reply->deleteLater();

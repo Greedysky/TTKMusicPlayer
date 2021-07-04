@@ -52,8 +52,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongItemSelectedDialog(QWidget *parent = nullptr);
-
-    virtual ~MusicSongItemSelectedDialog();
+    ~MusicSongItemSelectedDialog();
 
     /*!
      * Create all items.
@@ -96,8 +95,7 @@ public:
      * Object contsructor.
      */
     explicit MusicSongItemSelectedAreaWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicSongItemSelectedAreaWidget();
+    ~MusicSongItemSelectedAreaWidget();
 
     /*!
      * Get selected song items.

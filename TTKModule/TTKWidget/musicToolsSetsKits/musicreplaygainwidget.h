@@ -35,8 +35,6 @@ public:
      */
     explicit MusicReplayGainTableWidget(QWidget *parent = nullptr);
 
-    virtual ~MusicReplayGainTableWidget();
-
 public Q_SLOTS:
     /*!
      * Table widget item cell click.
@@ -63,8 +61,7 @@ public:
      * Object contsructor.
      */
     explicit MusicReplayGainWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicReplayGainWidget();
+    ~MusicReplayGainWidget();
 
 public Q_SLOTS:
     /*!

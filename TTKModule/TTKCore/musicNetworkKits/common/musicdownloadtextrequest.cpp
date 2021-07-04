@@ -34,8 +34,7 @@ void MusicDownLoadTextRequest::startToDownload()
 
 void MusicDownLoadTextRequest::downLoadFinished()
 {
-    m_speedTimer.stop();
-
+    MusicAbstractDownLoadRequest::downLoadFinished();
     if(m_reply && m_file && m_reply->error() == QNetworkReply::NoError)
     {
        

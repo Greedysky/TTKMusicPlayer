@@ -42,8 +42,7 @@ public:
      * Object contsructor.
      */
     explicit MusicWebFMRadioPlayWidget(QWidget *parent = nullptr);
-
-    virtual ~MusicWebFMRadioPlayWidget();
+    ~MusicWebFMRadioPlayWidget();
 
     /*!
      * Update radio song by given id.

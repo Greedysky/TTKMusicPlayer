@@ -35,8 +35,7 @@ public:
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForRipple(QWidget *parent = nullptr);
-
-    virtual ~MusicRemoteWidgetForRipple();
+    ~MusicRemoteWidgetForRipple();
 
     /*!
      * Set current song text.

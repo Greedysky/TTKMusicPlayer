@@ -17,15 +17,6 @@ MusicIdentifySongsRequest::MusicIdentifySongsRequest(QObject *parent)
 
 }
 
-void MusicIdentifySongsRequest::deleteAll()
-{
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-}
-
 bool MusicIdentifySongsRequest::getKey()
 {
     MusicSemaphoreLoop loop;
@@ -87,7 +78,9 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
 
 void MusicIdentifySongsRequest::downLoadFinished()
 {
+    MusicAbstractNetwork::downLoadFinished();
     m_songIdentifys.clear();
+
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;

@@ -40,8 +40,6 @@ public:
      */
     explicit MusicDownloadCounterPVRequest(QObject *parent = nullptr);
 
-    virtual ~MusicDownloadCounterPVRequest();
-
     /*!
      * Start to download counter pv from net.
      */

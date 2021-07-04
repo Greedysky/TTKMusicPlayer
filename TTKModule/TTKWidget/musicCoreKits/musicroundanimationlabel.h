@@ -35,7 +35,6 @@ public:
      * Object contsructor.
      */
     explicit MusicRoundAnimationLabel(QWidget *parent = nullptr);
-
     ~MusicRoundAnimationLabel();
 
     /*!

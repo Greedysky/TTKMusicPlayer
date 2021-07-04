@@ -194,11 +194,6 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     connect(m_ui->treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), SLOT(pluginItemChanged(QTreeWidgetItem*,int)));
 }
 
-MusicPluginWidget::~MusicPluginWidget()
-{
-
-}
-
 void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
     if(column == 0 && (item->type() == MusicPluginItem::DECODER || item->type() == MusicPluginItem::OUTPUT))

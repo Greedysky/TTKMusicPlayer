@@ -44,7 +44,6 @@ public:
      * Object contsructor.
      */
     explicit MusicCoreMPlayer(QObject *parent = nullptr);
-
     ~MusicCoreMPlayer();
 
     /*!

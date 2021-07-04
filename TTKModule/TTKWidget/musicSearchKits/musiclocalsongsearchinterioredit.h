@@ -37,8 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicLocalSongSearchInteriorEdit(QWidget *parent = nullptr);
-
-    virtual ~MusicLocalSongSearchInteriorEdit();
+    ~MusicLocalSongSearchInteriorEdit();
 
     /*!
      * Create all widget in layout.

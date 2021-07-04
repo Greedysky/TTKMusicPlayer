@@ -49,6 +49,12 @@ void MusicAbstractDownLoadRequest::deleteAll()
     deleteLater();
 }
 
+void MusicAbstractDownLoadRequest::downLoadFinished()
+{
+    MusicAbstractNetwork::downLoadFinished();
+    m_speedTimer.stop();
+}
+
 void MusicAbstractDownLoadRequest::replyError(QNetworkReply::NetworkError)
 {
     TTK_LOGGER_ERROR("Abnormal network connection");
