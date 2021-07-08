@@ -136,24 +136,31 @@ void LightEnvelopeScanner::run()
     float *max = new float[m_ap.channels()]{ -1.0 };
     float *min = new float[m_ap.channels()]{ 1.0 };
     float *rms = new float[m_ap.channels()]{ 0 };
+
     int counter = 0;
     int channels = m_ap.channels();
+    float value = 0.f;
+
     while(!m_user_stop)
     {
         m_mutex.unlock();
-        qint64 len = m_decoder->read(tmp, sizeof(tmp));
+        const qint64 len = m_decoder->read(tmp, sizeof(tmp));
         if(len > 0)
         {
-            converter.toFloat(tmp, out, len / m_ap.sampleSize());
+            const qint64 samples = len / m_ap.sampleSize();
+            converter.toFloat(tmp, out, samples);
 
-            for(uint sample = 0; sample < len / m_ap.sampleSize(); sample++)
+            for(uint sample = 0; sample < samples - channels; sample += channels)
             {
-                int ch = sample % channels;
-                min[ch] = qMin(min[ch], out[sample]);
-                max[ch] = qMax(max[ch], out[sample]);
-                rms[ch] += (out[sample] * out[sample]);
+                for(int ch = 0; ch < channels; ++ch)
+                {
+                    value = out[sample + ch];
+                    min[ch] = qMin(min[ch], value);
+                    max[ch] = qMax(max[ch], value);
+                    rms[ch] += (value * value);
+                }
+                counter += channels;
 
-                counter++;
                 if(counter >= samplesPerValue)
                 {
                     m_mutex.lock();
@@ -166,6 +173,7 @@ void LightEnvelopeScanner::run()
                         min[ch] = 1.0;
                         rms[ch] = 0;
                     }
+
                     if(m_data.size() / 3 / channels % (NUMBER_OF_VALUES / 64) == 0)
                         emit dataChanged();
                     m_mutex.unlock();
