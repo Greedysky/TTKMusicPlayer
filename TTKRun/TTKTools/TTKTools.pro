@@ -17,4 +17,5 @@
 # =================================================
 
 TEMPLATE = subdirs
+CONFIG += ordered
 SUBDIRS = url skin

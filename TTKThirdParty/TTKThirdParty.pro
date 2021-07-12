@@ -17,4 +17,5 @@
 # =================================================
 
 TEMPLATE = subdirs
+CONFIG += ordered
 SUBDIRS = Zlib TTKDumper TTKWatcher TTKExtras
