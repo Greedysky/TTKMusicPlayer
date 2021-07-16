@@ -78,7 +78,7 @@ void MusicUserRecordWidget::initTabF()
     m_ui->cityComboBox_F->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->countryComboBox_F->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
     m_ui->signatureEdit_F->setStyleSheet(MusicUIObject::MQSSTextEditStyle01);
-    connect(m_ui->cityComboBox_F, SIGNAL(currentIndexChanged(QString)), SLOT(cityComboBoxIndexChanged(QString)));
+    connect(m_ui->cityComboBox_F, SIGNAL(currentIndexChanged(int)), SLOT(cityComboBoxIndexChanged(int)));
 
     m_ui->cityComboBox_F->addItems(m_userModel->getAllCities());
 
@@ -144,8 +144,9 @@ void MusicUserRecordWidget::initTabT()
     connect(m_ui->confirmButton_T, SIGNAL(clicked()), SLOT(confirmButtonClickedT()));
 }
 
-void MusicUserRecordWidget::cityComboBoxIndexChanged(const QString &city)
+void MusicUserRecordWidget::cityComboBoxIndexChanged(int index)
 {
+    const QString &city = m_ui->countryComboBox_F->itemText(index);
     const QStringList &country = m_userModel->getAllCountries(city);
     m_ui->countryComboBox_F->clear();
     m_ui->countryComboBox_F->addItems(country);

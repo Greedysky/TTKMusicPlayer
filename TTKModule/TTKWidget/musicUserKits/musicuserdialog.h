@@ -90,7 +90,7 @@ public Q_SLOTS:
     /*!
      * Selected new user to login.
      */
-    void userComboBoxChanged(const QString &uid);
+    void userComboBoxChanged(int index);
     /*!
      * Input a new user to login.
      */

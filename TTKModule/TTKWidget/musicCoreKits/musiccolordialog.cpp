@@ -157,7 +157,11 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     const int ntRight = rect().right();
     const int ntBottm = rect().bottom();
 
-    double dblVH, dblVS, dblVL = -100.0;
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    float dblVH, dblVS, dblVL = -100.0f;
+#else
+    qreal dblVH, dblVS, dblVL = -100.0f;
+#endif
     m_color.getHslF(&dblVH, &dblVS, &dblVL);
     QColor colorCenter; colorCenter.setHslF(dblVH, 0.5, dblVL);
     QColor colorStart;  colorStart.setHslF(dblVH, 1, dblVL);

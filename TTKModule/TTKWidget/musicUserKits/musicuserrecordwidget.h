@@ -67,7 +67,7 @@ public Q_SLOTS:
     /*!
      * City index has changed.
      */
-    void cityComboBoxIndexChanged(const QString &city);
+    void cityComboBoxIndexChanged(int index);
     /*!
      * Save first information button clicked.
      */

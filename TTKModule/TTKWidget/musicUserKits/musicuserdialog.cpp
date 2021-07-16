@@ -36,7 +36,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
 
     m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), DEFAULT_LOGIN_SERVER);
 
-    connect(m_ui->userComboBox, SIGNAL(currentIndexChanged(QString)), SLOT(userComboBoxChanged(QString)));
+    connect(m_ui->userComboBox, SIGNAL(currentIndexChanged(int)), SLOT(userComboBoxChanged(int)));
     connect(m_ui->userComboBox, SIGNAL(editTextChanged(QString)), SLOT(userEditTextChanged(QString)));
 
     readFromUserConfig();
@@ -188,8 +188,9 @@ void MusicUserDialog::changeVerificationCode()
     m_ui->verificationCode->renderPicture();
 }
 
-void MusicUserDialog::userComboBoxChanged(const QString &uid)
+void MusicUserDialog::userComboBoxChanged(int index)
 {
+    const QString &uid = m_ui->userComboBox->itemText(index);
     m_userUID = MusicUserUIDItem(uid, DEFAULT_LOGIN_SERVER);
     readFromUserSettings();
 }

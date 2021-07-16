@@ -55,7 +55,7 @@ QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text, Q
 int MusicUtils::Widget::fontTextWidth(const QFont &font, const QString &text)
 {
     QFontMetrics ft(font);
-#if TTK_QT_VERSION_CHECK(5,13,0)
+#if TTK_QT_VERSION_CHECK(5,11,0)
     return ft.horizontalAdvance(text);
 #else
     return ft.width(text);
