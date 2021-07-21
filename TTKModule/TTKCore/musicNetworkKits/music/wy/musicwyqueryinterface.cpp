@@ -50,7 +50,11 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -192,7 +196,11 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

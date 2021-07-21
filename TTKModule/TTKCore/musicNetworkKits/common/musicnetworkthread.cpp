@@ -37,7 +37,7 @@ void MusicNetworkThread::setBlockNetWork(int block)
 
 void MusicNetworkThread::networkStateChanged()
 {
-    QtConcurrent::run([&]
+    const auto status = QtConcurrent::run([&]()
     {
         const bool block = G_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toBool();
         const QHostInfo &info = QHostInfo::fromName(NETWORK_REQUEST_ADDRESS);
@@ -45,4 +45,5 @@ void MusicNetworkThread::networkStateChanged()
         m_networkState = block ? false : m_networkState;
         Q_EMIT networkConnectionStateChanged(m_networkState);
     });
+    Q_UNUSED(status);
 }

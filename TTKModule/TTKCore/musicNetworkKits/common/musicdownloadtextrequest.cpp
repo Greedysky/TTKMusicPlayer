@@ -20,7 +20,11 @@ void MusicDownLoadTextRequest::startToDownload()
 
             m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+            connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
             connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
             connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
         }
         else

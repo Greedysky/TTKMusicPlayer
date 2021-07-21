@@ -170,9 +170,13 @@ void MusicToplistQueryWidget::createLabels()
     hlayout->addWidget(m_songButton);
     hlayout->addStretch(1);
     functionWidget->setLayout(hlayout);
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(m_songButton, 0);
-    connect(group, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(m_songButton, 0);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), m_container, SLOT(setCurrentIndex(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
+#endif
 
 #ifdef Q_OS_UNIX
     m_songButton->setFocusPolicy(Qt::NoFocus);

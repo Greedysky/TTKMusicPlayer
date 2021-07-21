@@ -29,12 +29,16 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     sizeLabel->setGeometry(10, 70, 70, 20);
     backLabel->setGeometry(10, 115, 70, 20);
 
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(createPushButton(0), 0);
-    group->addButton(createPushButton(1), 8);
-    group->addButton(createPushButton(2), 1);
-    group->addButton(createPushButton(3), 7);
-    connect(group, SIGNAL(buttonClicked(int)), parent, SLOT(changeCurrentLrcColor(int)));
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(createPushButton(0), 0);
+    buttonGroup->addButton(createPushButton(1), 8);
+    buttonGroup->addButton(createPushButton(2), 1);
+    buttonGroup->addButton(createPushButton(3), 7);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), parent, SLOT(changeCurrentLrcColor(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), parent, SLOT(changeCurrentLrcColor(int)));
+#endif
 
     QPushButton *sizeBigerButton = new QPushButton(this);
     QPushButton *sizeSmallerButton = new QPushButton(this);

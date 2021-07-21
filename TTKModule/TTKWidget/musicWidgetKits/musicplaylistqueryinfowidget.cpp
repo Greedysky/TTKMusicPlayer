@@ -216,15 +216,18 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     hlayout->addWidget(commentsButton);
     hlayout->addStretch(1);
     functionWidget->setLayout(hlayout);
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(m_songButton, 0);
-    group->addButton(infoButton, 1);
-    group->addButton(commentsButton, 2);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
+
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(m_songButton, 0);
+    buttonGroup->addButton(infoButton, 1);
+    buttonGroup->addButton(commentsButton, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setCurrentIndex(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
+#endif
 
     grid->addWidget(functionWidget);
-    //
-
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
     playAllButton->setFocusPolicy(Qt::NoFocus);
@@ -255,8 +258,15 @@ void MusicPlaylistQueryInfoWidget::setQueryInput(MusicAbstractQueryRequest *quer
 
 void MusicPlaylistQueryInfoWidget::setCurrentIndex(int index)
 {
-    if(m_queryTableWidget) m_queryTableWidget->hide();
-    if(m_infoLabel) m_infoLabel->hide();
+    if(m_queryTableWidget)
+    {
+        m_queryTableWidget->hide();
+    }
+
+    if(m_infoLabel)
+    {
+        m_infoLabel->hide();
+    }
 
     delete m_commentsWidget;
     m_commentsWidget = nullptr;

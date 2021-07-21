@@ -82,9 +82,9 @@ void QDeviceWatcherPrivate::parseDeviceInfo()
 	QByteArray data;
 #if CONFIG_SOCKETNOTIFIER
 	//socket_notifier->setEnabled(false); //for win
-	data.resize(UEVENT_BUFFER_SIZE*2);
+    data.resize(UEVENT_BUFFER_SIZE * 2);
 	data.fill(0);
-	size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE*2);
+    size_t len = read(socket_notifier->socket(), data.data(), UEVENT_BUFFER_SIZE * 2);
         qDebug("read fro socket %d bytes", len);
 	data.resize(len);
 	//socket_notifier->setEnabled(true); //for win
@@ -110,9 +110,9 @@ void QDeviceWatcherPrivate::run()
 	QByteArray data;
 	//loop only when event happens. because of recv() block the function?
 	while (1) {
-		//char buf[UEVENT_BUFFER_SIZE*2] = {0};
+        //char buf[UEVENT_BUFFER_SIZE * 2] = {0};
 		//recv(d->netlink_socket, &buf, sizeof(buf), 0);
-		data.resize(UEVENT_BUFFER_SIZE*2);
+        data.resize(UEVENT_BUFFER_SIZE * 2);
 		data.fill(0);
 		size_t len = recv(netlink_socket, data.data(), data.size(), 0);
                 qDebug("read fro socket %d bytes", len);

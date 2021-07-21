@@ -117,7 +117,11 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     m_sizeGroup->addButton(smallButton, 0);
     m_sizeGroup->addButton(middleButton, 1);
     m_sizeGroup->addButton(bigButton, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_sizeGroup, SIGNAL(idClicked(int)), SLOT(barrageSizeButtonClicked(int)));
+#else
     connect(m_sizeGroup, SIGNAL(buttonClicked(int)), SLOT(barrageSizeButtonClicked(int)));
+#endif
 
     sizeLayout->addWidget(sizeLabel, 1, Qt::AlignCenter);
     sizeLayout->addWidget(smallButton);
@@ -175,7 +179,11 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     m_colorGroup->addButton(greenButton, 4);
     m_colorGroup->addButton(blueButton, 5);
     m_colorGroup->addButton(purpleButton, 6);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_colorGroup, SIGNAL(idClicked(int)), SLOT(barrageColorButtonClicked(int)));
+#else
     connect(m_colorGroup, SIGNAL(buttonClicked(int)), SLOT(barrageColorButtonClicked(int)));
+#endif
 
     colorLayout->addWidget(colorLabel, 0, Qt::AlignCenter);
     colorLayout->addWidget(whiteButton);

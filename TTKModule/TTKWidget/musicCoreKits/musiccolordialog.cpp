@@ -163,9 +163,10 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     qreal dblVH, dblVS, dblVL = -100.0f;
 #endif
     m_color.getHslF(&dblVH, &dblVS, &dblVL);
-    QColor colorCenter; colorCenter.setHslF(dblVH, 0.5, dblVL);
-    QColor colorStart;  colorStart.setHslF(dblVH, 1, dblVL);
-    QColor colorFinal;  colorFinal.setHslF(dblVH, 0, dblVL);
+    QColor colorCenter, colorStart, colorFinal;
+    colorCenter.setHslF(dblVH, 0.5, dblVL);
+    colorStart.setHslF(dblVH, 1, dblVL);
+    colorFinal.setHslF(dblVH, 0, dblVL);
 
     QLinearGradient linearGradient;
     linearGradient.setStart(QPointF(0, 0));
@@ -264,11 +265,15 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     m_status = 0;
     m_ui->wgtPalette->initialize();
 
-    QButtonGroup *groupButton = new QButtonGroup(this);
-    groupButton->addButton(m_ui->topTitleCloseButton, 0);
-    groupButton->addButton(m_ui->confirmButton, 1);
-    groupButton->addButton(m_ui->cancelButton, 2);
-    connect(groupButton, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(m_ui->topTitleCloseButton, 0);
+    buttonGroup->addButton(m_ui->confirmButton, 1);
+    buttonGroup->addButton(m_ui->cancelButton, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
 }
 
 MusicColorDialog::~MusicColorDialog()

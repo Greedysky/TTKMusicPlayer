@@ -40,7 +40,11 @@ void MusicBackgroundPalette::copyColorToMemory(const QColor &color)
     }
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicBackgroundPalette::enterEvent(QEnterEvent *event)
+#else
 void MusicBackgroundPalette::enterEvent(QEvent *event)
+#endif
 {
     QLabel::enterEvent(event);
     copyColorToMemory(m_color);

@@ -59,7 +59,11 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
 
     QNetworkReply *reply = d->m_manager->put(request, fileData);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
+#else
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
+#endif
     if(parent()->metaObject()->indexOfSlot("uploadProgress(QString,qint64,qint64)") != -1)
     {
         connect(reply, SIGNAL(uploadProgress(qint64,qint64)), SLOT(uploadProgress(qint64,qint64)));

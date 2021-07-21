@@ -70,14 +70,17 @@ void MusicResizeGrabItemWidget::mousePressEvent(QMouseEvent *event)
         {
             mouseGrabber();
         }
+#if TTK_QT_VERSION_CHECK(6,0,0)
+        m_movePos = event->globalPosition().toPoint() - pos();
+#else
         m_movePos = event->globalPos() - pos();
+#endif
     }
 }
 
 void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
 {
     const QPoint &gloPoint = mapToParent(event->pos());
-
     const QPoint &pt_lu = mapToParent(rect().topLeft());
     const QPoint &pt_ll = mapToParent(rect().bottomLeft());
     const QPoint &pt_rl = mapToParent(rect().bottomRight());
@@ -141,13 +144,22 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
         }
         else
         {
+#if TTK_QT_VERSION_CHECK(6,0,0)
+            if(!m_borderRect.contains(QRect(event->globalPosition().toPoint() - m_movePos, size())))
+#else
             if(!m_borderRect.contains(QRect(event->globalPos() - m_movePos, size())))
+#endif
             {
                 return;
             }
 
-            move(event->globalPos() - m_movePos);
-            m_movePos = event->globalPos() - pos();
+#if TTK_QT_VERSION_CHECK(6,0,0)
+           move(event->globalPosition().toPoint() - m_movePos);
+           m_movePos = event->globalPosition().toPoint() - pos();
+#else
+           move(event->globalPos() - m_movePos);
+           m_movePos = event->globalPos() - pos();
+#endif
         }
     }
     m_currentRect = geometry();

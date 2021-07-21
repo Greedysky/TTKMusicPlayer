@@ -47,7 +47,11 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
 
     m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicQQSongCommentsRequest::downLoadFinished()
@@ -130,7 +134,11 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
 
     m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicQQPlaylistCommentsRequest::downLoadFinished()

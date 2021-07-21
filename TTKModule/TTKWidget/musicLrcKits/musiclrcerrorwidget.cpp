@@ -47,7 +47,11 @@ MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     buttonGroup->addButton(m_ui->radioButton2, 1);
     buttonGroup->addButton(m_ui->radioButton3, 2);
     buttonGroup->addButton(m_ui->radioButton4, 3);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
 }
 
 MusicLrcErrorWidget::~MusicLrcErrorWidget()

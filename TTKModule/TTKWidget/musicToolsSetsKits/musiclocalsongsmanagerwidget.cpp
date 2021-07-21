@@ -73,7 +73,11 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->scanButton, 0);
     buttonGroup->addButton(m_ui->scanCustButton, 1);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(filterScanChanged(int)));
+#else
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(filterScanChanged(int)));
+#endif
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
@@ -287,7 +291,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
     controlEnabled(false);
     m_runTypeChanged = true;
 
-    QtConcurrent::run([&]
+    const auto status = QtConcurrent::run([&]()
     {
         MusicInfoData arts;
         MusicSongMeta meta;
@@ -322,6 +326,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
 
         loadingLabelState(false);
     });
+    Q_UNUSED(status);
 }
 
 void MusicLocalSongsManagerWidget::setShowAlbumButton()
@@ -332,7 +337,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     controlEnabled(false);
     m_runTypeChanged = true;
 
-    QtConcurrent::run([&]
+    const auto status = QtConcurrent::run([&]()
     {
         MusicInfoData albums;
         MusicSongMeta meta;
@@ -367,6 +372,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
 
         loadingLabelState(false);
     });
+    Q_UNUSED(status);
 }
 
 void MusicLocalSongsManagerWidget::show()

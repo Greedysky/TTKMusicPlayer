@@ -36,7 +36,7 @@ void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    const int h = height() - 4*2;
+    const int h = height() - 4 * 2;
     m_linearGradient.setFinalStop(0, height());
 
     painter.setFont(font());
@@ -50,7 +50,7 @@ void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
     painter.drawRect(4, 4, h, h);
 
     painter.setPen(QPen(Qt::black, 0));
-    painter.drawText(h + 2*4, 4, width() - h - 3*4, h, Qt::AlignCenter, text());
+    painter.drawText(h + 2 * 4, 4, width() - h - 3 * 4, h, Qt::AlignCenter, text());
 }
 
 

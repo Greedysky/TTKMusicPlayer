@@ -209,7 +209,11 @@ void MusicSongsListPlayWidget::currentDownloadStateClicked()
     m_downloadButton->setStyleSheet(state ? MusicUIObject::MQSSTinyBtnDownload : MusicUIObject::MQSSTinyBtnUnDownload);
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicSongsListPlayWidget::enterEvent(QEnterEvent *event)
+#else
 void MusicSongsListPlayWidget::enterEvent(QEvent *event)
+#endif
 {
     QWidget::enterEvent(event);
     Q_EMIT enterChanged(m_currentPlayIndex, -1);

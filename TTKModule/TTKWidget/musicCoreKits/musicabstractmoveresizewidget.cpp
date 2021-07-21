@@ -60,7 +60,11 @@ void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
         m_struct.m_windowPos = pos();
         if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1) * 2, height() - (DISTANCE + 1) * 2).contains(event->pos()))
         {
+#if TTK_QT_VERSION_CHECK(6,0,0)
+            m_struct.m_mousePos = event->globalPosition().toPoint();
+#else
             m_struct.m_mousePos = event->globalPos();
+#endif
             m_struct.m_mouseLeftPress = true;
         }
         else
@@ -73,18 +77,20 @@ void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
 void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-
     !m_struct.m_isPressBorder ? sizeDirection() : moveDirection();
     if(m_struct.m_mouseLeftPress)
     {
+#if TTK_QT_VERSION_CHECK(6,0,0)
+        move(m_struct.m_windowPos + (event->globalPosition().toPoint() - m_struct.m_mousePos));
+#else
         move(m_struct.m_windowPos + (event->globalPos() - m_struct.m_mousePos));
+#endif
     }
 }
 
 void MusicAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
-
     m_struct.m_isPressBorder = false;
     m_struct.m_mouseLeftPress = false;
     setCursor(QCursor(Qt::ArrowCursor));

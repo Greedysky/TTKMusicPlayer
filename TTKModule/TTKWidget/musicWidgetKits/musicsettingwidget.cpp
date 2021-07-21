@@ -740,13 +740,13 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
-    QButtonGroup *b1 = new QButtonGroup(this);
-    b1->addButton(m_ui->minimumRadioBox, 0);
-    b1->addButton(m_ui->quitRadioBox, 1);
+    QButtonGroup *buttonGroup1 = new QButtonGroup(this);
+    buttonGroup1->addButton(m_ui->minimumRadioBox, 0);
+    buttonGroup1->addButton(m_ui->quitRadioBox, 1);
 
-    QButtonGroup *b2 = new QButtonGroup(this);
-    b2->addButton(m_ui->quitOpacityRadioBox, 0);
-    b2->addButton(m_ui->quitWindowRadioBox, 1);
+    QButtonGroup *buttonGroup2 = new QButtonGroup(this);
+    buttonGroup2->addButton(m_ui->quitOpacityRadioBox, 0);
+    buttonGroup2->addButton(m_ui->quitWindowRadioBox, 1);
 
 #ifdef Q_OS_UNIX
     m_ui->autoPlayCheckBox->setFocusPolicy(Qt::NoFocus);
@@ -876,20 +876,32 @@ void MusicSettingWidget::initDownloadWidget()
 
     connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCachedClean()));
     //
-    QButtonGroup *buttonGroup = new QButtonGroup(this);
-    buttonGroup->addButton(m_ui->downloadCacheAutoRadioBox, 0);
-    buttonGroup->addButton(m_ui->downloadCacheManRadioBox, 1);
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(downloadGroupCached(int)));
+    QButtonGroup *buttonGroup1 = new QButtonGroup(this);
+    buttonGroup1->addButton(m_ui->downloadCacheAutoRadioBox, 0);
+    buttonGroup1->addButton(m_ui->downloadCacheManRadioBox, 1);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup1, SIGNAL(idClicked(int)), SLOT(downloadGroupCached(int)));
+#else
+    connect(buttonGroup1, SIGNAL(buttonClicked(int)), SLOT(downloadGroupCached(int)));
+#endif
 
     QButtonGroup *buttonGroup2 = new QButtonGroup(this);
     buttonGroup2->addButton(m_ui->downloadFullRadioBox, 0);
     buttonGroup2->addButton(m_ui->downloadLimitRadioBox, 1);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup2, SIGNAL(idClicked(int)), SLOT(downloadGroupSpeedLimit(int)));
+#else
     connect(buttonGroup2, SIGNAL(buttonClicked(int)), SLOT(downloadGroupSpeedLimit(int)));
+#endif
 
     QButtonGroup *buttonGroup3 = new QButtonGroup(this);
     buttonGroup3->addButton(m_ui->downloadDirButton, 0);
     buttonGroup3->addButton(m_ui->downloadLrcDirButton, 1);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup3, SIGNAL(idClicked(int)), SLOT(downloadDirSelected(int)));
+#else
     connect(buttonGroup3, SIGNAL(buttonClicked(int)), SLOT(downloadDirSelected(int)));
+#endif
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();

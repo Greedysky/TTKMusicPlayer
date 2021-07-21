@@ -87,7 +87,11 @@ void MusicSongsListFunctionWidget::animationFinished()
     }
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicSongsListFunctionWidget::enterEvent(QEnterEvent *event)
+#else
 void MusicSongsListFunctionWidget::enterEvent(QEvent *event)
+#endif
 {
     QLabel::enterEvent(event);
     if(m_currentAnimationValue != 0)

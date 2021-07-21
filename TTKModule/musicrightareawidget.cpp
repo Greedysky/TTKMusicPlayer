@@ -84,10 +84,14 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
     //
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
-    group->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
+    buttonGroup->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(musicFunctionClicked(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
+#endif
     connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     //
     connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInteriorLrcWidget()));

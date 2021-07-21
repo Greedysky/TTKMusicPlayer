@@ -33,7 +33,11 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicWYQueryMovieRequest::startToPage(int offset)
@@ -59,7 +63,11 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicWYQueryMovieRequest::startToSingleSearch(const QString &text)
@@ -211,7 +219,11 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -285,7 +297,11 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -375,7 +391,11 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -432,7 +452,11 @@ void MusicWYQueryMovieRequest::getArtistMoviesCount(qint64 id)
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

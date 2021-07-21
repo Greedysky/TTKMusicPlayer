@@ -142,7 +142,11 @@ protected:
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    virtual void enterEvent(QEnterEvent *event) override;
+#else
     virtual void enterEvent(QEvent *event) override;
+#endif
     virtual void leaveEvent(QEvent *event) override;
     /*!
      * Set current title text(song name).

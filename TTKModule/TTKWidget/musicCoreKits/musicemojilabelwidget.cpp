@@ -55,8 +55,12 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     buttonWidgetLayout->setContentsMargins(0, 0, 5, 0);
     buttonWidgetLayout->addStretch(1);
 
-    QButtonGroup *group = new QButtonGroup(buttonWidget);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+    QButtonGroup *buttonGroup = new QButtonGroup(buttonWidget);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
     for(int i=0; i<5; ++i)
     {
         QToolButton *button = new QToolButton(buttonWidget);
@@ -65,7 +69,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         button->setFixedSize(15, 15);
         buttonWidgetLayout->addWidget(button, 0 , Qt::AlignRight);
         buttonWidget->setLayout(buttonWidgetLayout);
-        group->addButton(button, i);
+        buttonGroup->addButton(button, i);
         m_buttonItems << button;
     }
     buttonClicked(0);
@@ -110,7 +114,7 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
 
 void MusicEMOJILabelWidget::labelClicked(int index)
 {
-    const int offset = index + m_currentPage*21;
+    const int offset = index + m_currentPage * 21;
     if(offset < 0 || offset >= m_datas.count())
     {
         return;

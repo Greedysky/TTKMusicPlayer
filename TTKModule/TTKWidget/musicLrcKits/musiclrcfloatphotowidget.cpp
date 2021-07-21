@@ -94,23 +94,11 @@ void MusicLrcFloatPhotoItem::exportArtPixmap()
     }
 }
 
-void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
-{
-    MusicClickedLabel::contextMenuEvent(event);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    if(!pixmap(Qt::ReturnByValue).isNull())
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicLrcFloatPhotoItem::enterEvent(QEnterEvent *event)
 #else
-    if(!pixmap()->isNull())
-#endif
-    {
-        QMenu menu(this);
-        menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-        menu.addAction(tr("Export"), this, SLOT(exportArtPixmap()));
-        menu.exec(QCursor::pos());
-    }
-}
-
 void MusicLrcFloatPhotoItem::enterEvent(QEvent *event)
+#endif
 {
     MusicClickedLabel::enterEvent(event);
 #if TTK_QT_VERSION_CHECK(5,15,0)
@@ -124,6 +112,22 @@ void MusicLrcFloatPhotoItem::enterEvent(QEvent *event)
     else
     {
         unsetCursor();
+    }
+}
+
+void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicClickedLabel::contextMenuEvent(event);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    if(!pixmap(Qt::ReturnByValue).isNull())
+#else
+    if(!pixmap()->isNull())
+#endif
+    {
+        QMenu menu(this);
+        menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+        menu.addAction(tr("Export"), this, SLOT(exportArtPixmap()));
+        menu.exec(QCursor::pos());
     }
 }
 

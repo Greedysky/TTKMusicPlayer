@@ -138,7 +138,11 @@ void MusicScreenSaverListItem::setStatus(int index, bool status)
     m_hoverItem->setStatus(index, status);
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicScreenSaverListItem::enterEvent(QEnterEvent *event)
+#else
 void MusicScreenSaverListItem::enterEvent(QEvent *event)
+#endif
 {
     QLabel::enterEvent(event);
     m_hoverItem->showItem(mapToParent(rect().center()));

@@ -83,7 +83,11 @@ void MusicWebMVRadioQueryItemWidget::currentItemClicked()
     Q_EMIT currentItemClicked(m_itemData);
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicWebMVRadioQueryItemWidget::enterEvent(QEnterEvent *event)
+#else
 void MusicWebMVRadioQueryItemWidget::enterEvent(QEvent *event)
+#endif
 {
     QLabel::enterEvent(event);
 

@@ -28,12 +28,15 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    QButtonGroup *groupButton = new QButtonGroup(this);
-    groupButton->addButton(m_ui->topTitleCloseButton, 0);
-    groupButton->addButton(m_ui->confirmButton, 1);
-    groupButton->addButton(m_ui->cancelButton, 2);
-    connect(groupButton, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(m_ui->topTitleCloseButton, 0);
+    buttonGroup->addButton(m_ui->confirmButton, 1);
+    buttonGroup->addButton(m_ui->cancelButton, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
 }
 
 MusicMessageBox::MusicMessageBox(const QString &text, QWidget *parent)

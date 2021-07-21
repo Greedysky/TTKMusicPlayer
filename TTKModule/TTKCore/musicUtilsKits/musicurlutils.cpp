@@ -12,7 +12,7 @@ bool MusicUtils::Url::openUrl(const QString &exe, const QString &path)
 {
 #ifdef Q_OS_WIN
     const HINSTANCE value = ShellExecuteW(0, exe.toStdWString().c_str(), path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
-    return (int)value >= 32;
+    return value->unused >= 32;
 #else
     Q_UNUSED(exe);
     return QProcess::startDetached(path, QStringList());
@@ -33,7 +33,7 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
         p.replace("/", "\\");
         p = "/select," + p;
         const HINSTANCE value = ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
-        return (int)value >= 32;
+        return value->unused >= 32;
     }
 #endif
     return QDesktopServices::openUrl(local ? QUrl::fromLocalFile(path) : QUrl(path, QUrl::TolerantMode));

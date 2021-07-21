@@ -139,7 +139,6 @@ void MusicFunctionToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
 void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
-
     QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
     if(!itemRect.contains(event->pos()) && isItemEnabled())
     {

@@ -316,7 +316,11 @@ void QKugouWindow::createKugouSongWidget()
     bt = new QPushButton(tr(" SongCategory "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 3);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(d->m_buttonGroup, SIGNAL(idClicked(int)), SLOT(kugouSongIndexChanged(int)));
+#else
     connect(d->m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(kugouSongIndexChanged(int)));
+#endif
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
@@ -368,7 +372,11 @@ void QKugouWindow::createKugouRadioWidget()
     bt = new QPushButton(tr(" RadioFx "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(d->m_buttonGroup, SIGNAL(idClicked(int)), SLOT(kugouRadioIndexChanged(int)));
+#else
     connect(d->m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(kugouRadioIndexChanged(int)));
+#endif
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));
@@ -442,7 +450,11 @@ void QKugouWindow::createKugouMVWidget()
     bt = new QPushButton(tr(" MVFanxing "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(d->m_buttonGroup, SIGNAL(idClicked(int)), SLOT(kugouMVIndexChanged(int)));
+#else
     connect(d->m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(kugouMVIndexChanged(int)));
+#endif
 
     topLayout->addStretch(1);
     topLayout->addWidget(d->m_buttonGroup->button(0));

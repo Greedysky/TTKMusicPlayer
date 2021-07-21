@@ -84,8 +84,12 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+#if TTK_QT_VERSION_CHECK(6,0,0)
+    virtual void enterEvent(QEnterEvent *event) override;
+#else
     virtual void enterEvent(QEvent *event) override;
+#endif
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     int m_index;
     QString m_pixPath;

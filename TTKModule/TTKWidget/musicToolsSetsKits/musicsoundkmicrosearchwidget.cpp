@@ -222,10 +222,16 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     mvButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     QRadioButton *songButton = new QRadioButton(tr("Song"), searchWidget);
     songButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(mvButton, 0);
-    group->addButton(songButton, 1);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(setQueryMovieFlag(int)));
+
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(mvButton, 0);
+    buttonGroup->addButton(songButton, 1);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setQueryMovieFlag(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setQueryMovieFlag(int)));
+#endif
+
     searchLayout->addWidget(mvButton);
     searchLayout->addWidget(songButton);
     searchLayout->addWidget(m_searchEdit);

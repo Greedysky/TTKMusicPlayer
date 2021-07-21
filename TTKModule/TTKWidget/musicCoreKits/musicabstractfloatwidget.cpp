@@ -27,7 +27,11 @@ void MusicAbstractFloatWidget::animationOut()
     m_animation->start();
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicAbstractFloatWidget::enterEvent(QEnterEvent *event)
+#else
 void MusicAbstractFloatWidget::enterEvent(QEvent *event)
+#endif
 {
     QLabel::enterEvent(event);
     if(!m_blockAnimation)

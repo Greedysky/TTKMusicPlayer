@@ -43,7 +43,11 @@ void MusicQQQueryPlaylistRequest::startToPage(int offset)
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicQQQueryPlaylistRequest::startToSearch(const QString &playlist)
@@ -65,7 +69,11 @@ void MusicQQQueryPlaylistRequest::startToSearch(const QString &playlist)
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
@@ -88,7 +96,11 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -300,7 +312,11 @@ void MusicQQQueryPlaylistRequest::getMoreDetails(MusicResultsItem *item)
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

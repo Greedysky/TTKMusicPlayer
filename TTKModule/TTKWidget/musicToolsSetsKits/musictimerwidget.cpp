@@ -50,26 +50,42 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     initThreeWidget();
     initParemeter();
 
-    QButtonGroup *group0 = new QButtonGroup(this);
-    group0->addButton(m_ui->timerToPlay, 0);
-    group0->addButton(m_ui->timerToStop, 1);
-    group0->addButton(m_ui->timerToShutdown, 2);
-    connect(group0, SIGNAL(buttonClicked(int)), SLOT(changeWidgetIndex(int)));
+    QButtonGroup *buttonGroup0 = new QButtonGroup(this);
+    buttonGroup0->addButton(m_ui->timerToPlay, 0);
+    buttonGroup0->addButton(m_ui->timerToStop, 1);
+    buttonGroup0->addButton(m_ui->timerToShutdown, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup0, SIGNAL(idClicked(int)), SLOT(changeWidgetIndex(int)));
+#else
+    connect(buttonGroup0, SIGNAL(buttonClicked(int)), SLOT(changeWidgetIndex(int)));
+#endif
 
-    QButtonGroup *group1 = new QButtonGroup(this);
-    group1->addButton(m_ui->noSetRadioButton1, 0);
-    group1->addButton(m_ui->setRadioButton1, 1);
-    connect(group1, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+    QButtonGroup *buttonGroup1 = new QButtonGroup(this);
+    buttonGroup1->addButton(m_ui->noSetRadioButton1, 0);
+    buttonGroup1->addButton(m_ui->setRadioButton1, 1);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup1, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
+    connect(buttonGroup1, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
 
-    QButtonGroup *group2 = new QButtonGroup(this);
-    group2->addButton(m_ui->noSetRadioButton2, 2);
-    group2->addButton(m_ui->setRadioButton2, 3);
-    connect(group2, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+    QButtonGroup *buttonGroup2 = new QButtonGroup(this);
+    buttonGroup2->addButton(m_ui->noSetRadioButton2, 2);
+    buttonGroup2->addButton(m_ui->setRadioButton2, 3);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup2, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
+    connect(buttonGroup2, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
 
-    QButtonGroup *group3 = new QButtonGroup(this);
-    group3->addButton(m_ui->noSetRadioButton3, 4);
-    group3->addButton(m_ui->setRadioButton3, 5);
-    connect(group3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+    QButtonGroup *buttonGroup3 = new QButtonGroup(this);
+    buttonGroup3->addButton(m_ui->noSetRadioButton3, 4);
+    buttonGroup3->addButton(m_ui->setRadioButton3, 5);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup3, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
+    connect(buttonGroup3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
 
     changeWidgetIndex(0);
 }

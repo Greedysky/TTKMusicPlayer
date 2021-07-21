@@ -41,7 +41,7 @@ public:
     void run();
 
 protected:
-    MiniDumper *m_winDump;
+    MiniDumper *m_dump;
 
 };
 

@@ -31,7 +31,11 @@ void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+#endif
 }
 
 void MusicBDQueryLearnRequest::downLoadFinished()
@@ -116,7 +120,11 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)
@@ -126,7 +134,6 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
 
     QJson::Parser parser;
     bool ok;
-
     const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
@@ -161,7 +168,11 @@ void MusicBDQueryLearnRequest::readFromMusicLrcAttribute(MusicObject::MusicSongI
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

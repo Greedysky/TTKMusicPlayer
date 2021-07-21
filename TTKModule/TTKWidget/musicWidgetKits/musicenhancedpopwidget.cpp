@@ -81,7 +81,11 @@ void MusicEnhancedToolButton::finished()
     }
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicEnhancedToolButton::enterEvent(QEnterEvent *event)
+#else
 void MusicEnhancedToolButton::enterEvent(QEvent *event)
+#endif
 {
     QToolButton::enterEvent(event);
     if(!m_state)
@@ -228,13 +232,16 @@ void MusicEnhancedPopWidget::initWidget()
     button4->setStyleSheet("background-image:url(':/enhance/lb_vocalOff')");
     button4->setCursor(Qt::PointingHandCursor);
 
-    QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(button1, 1);
-    group->addButton(button2, 2);
-    group->addButton(button3, 3);
-    group->addButton(button4, 4);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(setEnhancedMusicConfig(int)));
-
+    QButtonGroup *buttonGroup = new QButtonGroup(this);
+    buttonGroup->addButton(button1, 1);
+    buttonGroup->addButton(button2, 2);
+    buttonGroup->addButton(button3, 3);
+    buttonGroup->addButton(button4, 4);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(setEnhancedMusicConfig(int)));
+#else
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(setEnhancedMusicConfig(int)));
+#endif
     m_buttons << button1 << button2 << button3 << button4;
 
     m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt();

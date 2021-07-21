@@ -352,7 +352,11 @@ void MusicLrcContainerForDesktop::mousePressEvent(QMouseEvent *event)
     MusicLrcContainer::mousePressEvent(event);
     if(!m_windowLocked && event->button() == Qt::LeftButton)
     {
+#if TTK_QT_VERSION_CHECK(6,0,0)
+        m_offset = event->globalPosition().toPoint() - frameGeometry().topLeft();
+#else
         m_offset = event->globalPos() - frameGeometry().topLeft();
+#endif
     }
 }
 
@@ -362,12 +366,20 @@ void MusicLrcContainerForDesktop::mouseMoveEvent(QMouseEvent *event)
     if(!m_windowLocked && (event->buttons() & Qt::LeftButton))
     {
         setCursor(Qt::CrossCursor);
+#if TTK_QT_VERSION_CHECK(6,0,0)
+        move(event->globalPosition().toPoint() - m_offset);
+#else
         move(event->globalPos() - m_offset);
+#endif
         G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, pos());
     }
 }
 
+#if TTK_QT_VERSION_CHECK(6,0,0)
+void MusicLrcContainerForDesktop::enterEvent(QEnterEvent *event)
+#else
 void MusicLrcContainerForDesktop::enterEvent(QEvent *event)
+#endif
 {
     if(m_windowLocked)
     {
@@ -444,8 +456,8 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     desktopWidget->setObjectName("desktopWidget");
     m_musicLrcContainer << new MusicLrcManagerHorizontalDesktop(desktopWidget)
                         << new MusicLrcManagerHorizontalDesktop(desktopWidget);
-    setGeometry(200,  windowSize.height() - height() - 200, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
-    desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
+    setGeometry(200,  windowSize.height() - height() - 200, m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
+    desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
 
     setSelfGeometry();
     m_currentLrcFontSize = m_musicLrcContainer[0]->getFirstFontSize();
@@ -523,8 +535,8 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     desktopWidget->setObjectName("desktopWidget");
     m_musicLrcContainer << new MusicLrcManagerVerticalDesktop(desktopWidget)
                         << new MusicLrcManagerVerticalDesktop(desktopWidget);
-    setGeometry(200,  75, 2*m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
-    desktopWidget->setGeometry(TOOLBAR_MAIN_HEIGHT, 0, 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
+    setGeometry(200,  75, 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
+    desktopWidget->setGeometry(TOOLBAR_MAIN_HEIGHT, 0, 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
 
     setSelfGeometry();
     m_currentLrcFontSize = m_musicLrcContainer[0]->getFirstFontSize();

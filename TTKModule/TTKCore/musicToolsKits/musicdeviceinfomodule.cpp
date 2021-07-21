@@ -163,7 +163,11 @@ MusicDeviceInfoItems MusicDeviceInfoModule::getRemovableDrive()
     m_dfProcess->close();
     m_dfProcess->start("df -h");
     QObject::connect(m_dfProcess, SIGNAL(finished(int)), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(m_dfProcess, SIGNAL(errorOccurred(QProcess::ProcessError)), &loop, SLOT(quit()));
+#else
     QObject::connect(m_dfProcess, SIGNAL(error(QProcess::ProcessError)), &loop, SLOT(quit()));
+#endif
     loop.exec();
 #endif
     return m_items;

@@ -12,15 +12,17 @@
 void loadAppScaledFactor(int argc, char *argv[])
 {
 #if TTK_QT_VERSION_CHECK(5,4,0)
-    #if TTK_QT_VERSION_CHECK(5,12,0)
+   #if TTK_QT_VERSION_CHECK(6,0,0)
+      // do nothing
+   #elif TTK_QT_VERSION_CHECK(5,12,0)
       QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    #elif TTK_QT_VERSION_CHECK(5,6,0)
+   #elif TTK_QT_VERSION_CHECK(5,6,0)
       MusicPlatformManager platform;
       const float dpi = platform.getLogicalDotsPerInch() / 96.0;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
-    #else
+   #else
       qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
-    #endif
+   #endif
 #endif
     Q_UNUSED(argc);
     Q_UNUSED(argv);
@@ -52,7 +54,10 @@ int main(int argc, char *argv[])
     manager.run();
 
     QTranslator translator;
-    translator.load(manager.translator());
+    if(!translator.load(manager.translator()))
+    {
+        TTK_LOGGER_ERROR("Load translation error");
+    }
     a.installTranslator(&translator);
 
     MusicApplication w;

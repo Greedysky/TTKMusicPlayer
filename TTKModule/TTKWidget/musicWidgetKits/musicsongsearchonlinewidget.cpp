@@ -529,7 +529,11 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     buttonGroup->addButton(m_playButton, 0);
     buttonGroup->addButton(addButton, 1);
     buttonGroup->addButton(downloadButton, 2);
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
+#else
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+#endif
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 
