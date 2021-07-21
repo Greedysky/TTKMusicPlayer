@@ -8,7 +8,7 @@
 #define XING_MAGIC (('X' << 24) | ('i' << 16) | ('n' << 8) | 'g')
 #define XING_MAGIC2 (('I' << 24) | ('n' << 16) | ('f' << 8) | 'o')
 #define LAME_MAGIC (('L' << 24) | ('A' << 16) | ('M' << 8) | 'E')
-#define INPUT_BUFFER_SIZE (32*1024)
+#define INPUT_BUFFER_SIZE (32 * 1024)
 
 DecoderMAD::DecoderMAD(bool crc, QIODevice *input)
     : Decoder(input),

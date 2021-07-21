@@ -81,15 +81,15 @@ qint64 DecoderYm::read(unsigned char *data, qint64 size)
     qint64 stereoSize, i;
     ymsample *psample=(ymsample *)data;
 
-    stereoSize = size / (2*sizeof(ymsample));
+    stereoSize = size / (2 * sizeof(ymsample));
     
     if(m_music->update(psample, stereoSize))
     {
         // recopy mono YM sound to 2 channels
         for(i=stereoSize-1; i>=0; i--)
         {
-            psample[(i*2)    ] = psample[i];
-            psample[(i*2) + 1] = psample[i];
+            psample[(i * 2)    ] = psample[i];
+            psample[(i * 2) + 1] = psample[i];
         }
 
         return size;

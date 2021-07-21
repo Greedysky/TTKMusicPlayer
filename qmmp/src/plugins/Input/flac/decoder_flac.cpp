@@ -112,7 +112,7 @@ static FLAC__StreamDecoderReadStatus flac_callback_read(const FLAC__StreamDecode
 
 static FLAC__StreamDecoderWriteStatus flac_callback_write(const FLAC__StreamDecoder *d,
         const FLAC__Frame *frame,
-        const FLAC__int32* const buffer[],
+        const FLAC__int32 *const buffer[],
         void *client_data)
 {
     flac_data *data = static_cast<flac_data *>(client_data);

@@ -126,7 +126,7 @@ void LightSpectrum::paint(QPainter *dc)
 
         if(m_duration) {
             // Time ruler.
-            int time_factors[] = {1, 2, 5, 10, 20, 30, 1*60, 2*60, 5*60, 10*60, 20*60, 30*60, 0};
+            int time_factors[] = {1, 2, 5, 10, 20, 30, 1 * 60, 2 * 60, 5 * 60, 10 * 60, 20 * 60, 30 * 60, 0};
             SpekRuler time_ruler(
                 LPAD,
                 h - BPAD,
