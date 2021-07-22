@@ -35,7 +35,7 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    qint64 copy(unsigned char *audio, qint64 maxSize);
+    qint64 copy(unsigned char *data, qint64 maxSize);
 
     AdplugHelper *m_helper = nullptr;
     unsigned char *m_bufptr = nullptr;

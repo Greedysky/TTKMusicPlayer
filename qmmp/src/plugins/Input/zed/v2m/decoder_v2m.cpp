@@ -43,9 +43,9 @@ int DecoderV2M::bitrate() const
     return m_helper->bitrate();
 }
 
-qint64 DecoderV2M::read(unsigned char *data, qint64 size)
+qint64 DecoderV2M::read(unsigned char *data, qint64 maxSize)
 {
-    return m_helper->read(data, size);
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderV2M::seek(qint64 pos)

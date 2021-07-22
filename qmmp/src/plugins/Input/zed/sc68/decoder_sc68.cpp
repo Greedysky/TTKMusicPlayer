@@ -43,9 +43,9 @@ int DecoderSC68::bitrate() const
     return m_helper->bitrate();
 }
 
-qint64 DecoderSC68::read(unsigned char *data, qint64 size)
+qint64 DecoderSC68::read(unsigned char *data, qint64 maxSize)
 {
-    return m_helper->read(data, size);
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderSC68::seek(qint64 pos)

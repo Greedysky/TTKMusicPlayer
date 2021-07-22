@@ -163,20 +163,19 @@ void DecoderWavPack::seek(qint64 time)
     WavpackSeekSample(m_context, time * audioParameters().sampleRate() / 1000);
 }
 
-qint64 DecoderWavPack::read(unsigned char *data, qint64 size)
+qint64 DecoderWavPack::read(unsigned char *data, qint64 maxSize)
 {
     if(m_parser)
     {
         if(m_length_in_bytes - m_totalBytes < m_frame_size) //end of cue track
             return 0;
-
         //returned size must contain integer number of frames
-        size = qMin(size, (m_length_in_bytes - m_totalBytes) / m_frame_size * m_frame_size);
-        size = wavpack_decode(data, size);
-        m_totalBytes += size;
-        return size;
+        maxSize = qMin(maxSize, (m_length_in_bytes - m_totalBytes) / m_frame_size * m_frame_size);
+        maxSize = wavpack_decode(data, maxSize);
+        m_totalBytes += maxSize;
+        return maxSize;
     }
-    return wavpack_decode(data, size);
+    return wavpack_decode(data, maxSize);
 }
 
 const QString DecoderWavPack::nextURL() const

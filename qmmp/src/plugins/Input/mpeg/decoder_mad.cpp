@@ -372,14 +372,14 @@ int DecoderMAD::bitrate() const
     return int(m_bitrate);
 }
 
-qint64 DecoderMAD::read(unsigned char *data, qint64 size)
+qint64 DecoderMAD::read(unsigned char *data, qint64 maxSize)
 {
     while(m_skip_bytes > 0)
     {
         if(!decodeFrame())
             return 0;
 
-        qint64 l = madOutputFloat((float*)data, size / sizeof(float)) * sizeof(float);
+        qint64 l = madOutputFloat((float*)data, maxSize / sizeof(float)) * sizeof(float);
 
         if(m_skip_bytes > l)
         {
@@ -404,7 +404,7 @@ qint64 DecoderMAD::read(unsigned char *data, qint64 size)
     if(!decodeFrame())
         return 0;
 
-    qint64 l = madOutputFloat((float*)data, size / sizeof(float)) * sizeof(float);
+    qint64 l = madOutputFloat((float*)data, maxSize / sizeof(float)) * sizeof(float);
 
     if(m_play_bytes > 0)
     {

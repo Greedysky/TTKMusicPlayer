@@ -43,7 +43,7 @@ int DecoderOpenMPT::bitrate() const
     return m_helper->channelCount();
 }
 
-qint64 DecoderOpenMPT::read(unsigned char *audio, qint64 max_size)
+qint64 DecoderOpenMPT::read(unsigned char *data, qint64 maxSize)
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OpenMPT");
@@ -51,7 +51,7 @@ qint64 DecoderOpenMPT::read(unsigned char *audio, qint64 max_size)
     m_helper->setStereoSeparation(settings.value("stereo_separation", 70).toInt());
     settings.endGroup();
 
-    return m_helper->read(audio, max_size);
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderOpenMPT::seek(qint64 pos)

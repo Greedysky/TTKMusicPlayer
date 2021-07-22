@@ -104,9 +104,9 @@ void DecoderFFap::seek(qint64 time)
     ffap_seek(m_ffap_decoder, time / 1000.0);
 }
 
-qint64 DecoderFFap::read(unsigned char *data, qint64 size)
+qint64 DecoderFFap::read(unsigned char *data, qint64 maxSize)
 {
-    return ffap_read(m_ffap_decoder, data, size);
+    return ffap_read(m_ffap_decoder, data, maxSize);
 }
 
 void DecoderFFap::deinit()

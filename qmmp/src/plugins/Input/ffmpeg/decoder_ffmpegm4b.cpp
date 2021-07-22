@@ -134,7 +134,7 @@ void DecoderFFmpegM4b::seek(qint64 pos)
     m_written = audioParameters().sampleRate() * audioParameters().channels() * audioParameters().sampleSize() * pos / 1000;
 }
 
-qint64 DecoderFFmpegM4b::read(unsigned char *data, qint64 size)
+qint64 DecoderFFmpegM4b::read(unsigned char *data, qint64 maxSize)
 {
     if(m_trackSize - m_written < m_frameSize) //end of cue track
         return 0;
@@ -143,19 +143,19 @@ qint64 DecoderFFmpegM4b::read(unsigned char *data, qint64 size)
 
     if(m_buf) //read remaining data first
     {
-        len = qMin(m_bufSize, size);
+        len = qMin(m_bufSize, maxSize);
         memmove(data, m_buf, len);
-        if(size >= m_bufSize)
+        if(maxSize >= m_bufSize)
         {
             delete[] m_buf;
             m_buf = nullptr;
             m_bufSize = 0;
         }
         else
-            memmove(m_buf, m_buf + len, size - len);
+            memmove(m_buf, m_buf + len, maxSize - len);
     }
     else
-        len = m_decoder->read(data, size);
+        len = m_decoder->read(data, maxSize);
 
     if(len <= 0) //end of file
         return 0;

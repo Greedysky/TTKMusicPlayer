@@ -53,9 +53,9 @@ int DecoderOptimFROG::bitrate() const
     return m_helper->bitrate();
 }
 
-qint64 DecoderOptimFROG::read(unsigned char *audio, qint64 max_size)
+qint64 DecoderOptimFROG::read(unsigned char *data, qint64 maxSize)
 {
-    return m_helper->read(audio, max_size);
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderOptimFROG::seek(qint64 pos)

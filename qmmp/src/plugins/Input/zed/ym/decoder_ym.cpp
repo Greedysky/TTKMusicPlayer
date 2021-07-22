@@ -76,12 +76,11 @@ int DecoderYm::bitrate() const
     return m_bitrate ? m_bitrate : 0;
 }
 
-qint64 DecoderYm::read(unsigned char *data, qint64 size)
+qint64 DecoderYm::read(unsigned char *data, qint64 maxSize)
 {
     qint64 stereoSize, i;
-    ymsample *psample=(ymsample *)data;
-
-    stereoSize = size / (2 * sizeof(ymsample));
+    ymsample *psample = (ymsample *)data;
+    stereoSize = maxSize / (2 * sizeof(ymsample));
     
     if(m_music->update(psample, stereoSize))
     {
@@ -91,10 +90,8 @@ qint64 DecoderYm::read(unsigned char *data, qint64 size)
             psample[(i * 2)    ] = psample[i];
             psample[(i * 2) + 1] = psample[i];
         }
-
-        return size;
+        return maxSize;
     }
-
     return 0;
 }
 

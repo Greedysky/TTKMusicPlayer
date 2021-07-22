@@ -137,12 +137,12 @@ int DecoderSID::bitrate() const
     return 8;
 }
 
-qint64 DecoderSID::read(unsigned char *data, qint64 size)
+qint64 DecoderSID::read(unsigned char *data, qint64 maxSize)
 {
-    size = qMin(size, qMax(m_length_in_bytes - m_read_bytes, qint64(0)));
-    size -= size % 4;
-    if(size <= 0)
+    maxSize = qMin(maxSize, qMax(m_length_in_bytes - m_read_bytes, qint64(0)));
+    maxSize -= maxSize % 4;
+    if(maxSize <= 0)
         return 0;
-    m_read_bytes += size;
-    return m_player->play((short *)data, size/2) * 2;
+    m_read_bytes += maxSize;
+    return m_player->play((short *)data, maxSize/2) * 2;
 }

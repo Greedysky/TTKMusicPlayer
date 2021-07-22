@@ -84,7 +84,7 @@ int DecoderGme::bitrate() const
     return 8;
 }
 
-qint64 DecoderGme::read(unsigned char *data, qint64 size)
+qint64 DecoderGme::read(unsigned char *data, qint64 maxSize)
 {
     if(gme_track_ended(m_emu))
         return 0;
@@ -92,9 +92,9 @@ qint64 DecoderGme::read(unsigned char *data, qint64 size)
     if(m_totalTime && gme_tell(m_emu) > m_totalTime)
         return 0;
 
-    if(gme_play(m_emu, size / 2, (short*)data))
+    if(gme_play(m_emu, maxSize / 2, (short*)data))
     {
         return 0;
     }
-    return size;
+    return maxSize;
 }

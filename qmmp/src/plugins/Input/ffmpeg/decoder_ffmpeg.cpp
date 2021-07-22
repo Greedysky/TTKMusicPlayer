@@ -276,7 +276,7 @@ int DecoderFFmpeg::bitrate() const
     return m_bitrate;
 }
 
-qint64 DecoderFFmpeg::read(unsigned char *audio, qint64 maxSize)
+qint64 DecoderFFmpeg::read(unsigned char *data, qint64 maxSize)
 {
     m_skipBytes = 0;
 
@@ -294,7 +294,7 @@ qint64 DecoderFFmpeg::read(unsigned char *audio, qint64 maxSize)
 
         for(int i = 0; i < len / bps; i++)
         {
-            memcpy(audio + i * bps, m_frame->extended_data[i % m_channels] + i / m_channels * bps, bps);
+            memcpy(data + i * bps, m_frame->extended_data[i % m_channels] + i / m_channels * bps, bps);
         }
 
         m_output_size -= len;
@@ -306,7 +306,7 @@ qint64 DecoderFFmpeg::read(unsigned char *audio, qint64 maxSize)
     }
     else
     {
-        memcpy(audio, m_frame->extended_data[0], len);
+        memcpy(data, m_frame->extended_data[0], len);
         m_output_size -= len;
         memmove(m_frame->extended_data[0], m_frame->extended_data[0] + len, m_output_size);
     }

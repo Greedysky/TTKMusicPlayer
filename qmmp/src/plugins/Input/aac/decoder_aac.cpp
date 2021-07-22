@@ -109,7 +109,7 @@ bool DecoderAAC::initialize()
     return true;
 }
 
-qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
+qint64 DecoderAAC::read(unsigned char *data, qint64 maxSize)
 {
     NeAACDecFrameInfo frame_info;
     qint64 size = 0, to_read, read;
@@ -129,7 +129,7 @@ qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
         if(m_input_at == 0)
             return 0;
 
-        m_sample_buf = NeAACDecDecode(data()->handle, &frame_info, (uchar *)m_input_buf, m_input_at);
+        m_sample_buf = NeAACDecDecode(this->data()->handle, &frame_info, (uchar *)m_input_buf, m_input_at);
         memmove(m_input_buf, m_input_buf + frame_info.bytesconsumed,
                 m_input_at - frame_info.bytesconsumed);
 
@@ -153,7 +153,7 @@ qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
     if(m_sample_buf_size > 0)
     {
         size = qMin(m_sample_buf_size, maxSize);
-        memcpy(audio, (char *)(m_sample_buf) + m_sample_buf_at, size);
+        memcpy(data, (char *)(m_sample_buf) + m_sample_buf_at, size);
         m_sample_buf_at += size;
         m_sample_buf_size -= size;
     }

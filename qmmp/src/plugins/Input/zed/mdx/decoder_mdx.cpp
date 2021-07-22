@@ -43,9 +43,9 @@ int DecoderMdx::bitrate() const
     return m_helper->bitrate();
 }
 
-qint64 DecoderMdx::read(unsigned char *data, qint64 size)
+qint64 DecoderMdx::read(unsigned char *data, qint64 maxSize)
 {
-    return m_helper->read(data, size);
+    return m_helper->read(data, maxSize);
 }
 
 void DecoderMdx::seek(qint64 pos)

@@ -95,7 +95,7 @@ void DecoderCUE::seek(qint64 pos)
                     audioParameters().frameSize() * pos / 1000;
 }
 
-qint64 DecoderCUE::read(unsigned char *data, qint64 size)
+qint64 DecoderCUE::read(unsigned char *data, qint64 maxSize)
 {
     if(length_in_bytes - m_totalBytes < m_sz) //end of cue track
         return 0;
@@ -104,19 +104,19 @@ qint64 DecoderCUE::read(unsigned char *data, qint64 size)
 
     if(m_buf) //read remaining data first
     {
-        len = qMin(m_buf_size, size);
+        len = qMin(m_buf_size, maxSize);
         memmove(data, m_buf, len);
-        if(size >= m_buf_size)
+        if(maxSize >= m_buf_size)
         {
             delete[] m_buf;
             m_buf = nullptr;
             m_buf_size = 0;
         }
         else
-            memmove(m_buf, m_buf + len, size - len);
+            memmove(m_buf, m_buf + len, maxSize - len);
     }
     else
-        len = m_decoder->read(data, size);
+        len = m_decoder->read(data, maxSize);
 
     if(len <= 0) //end of file
         return 0;

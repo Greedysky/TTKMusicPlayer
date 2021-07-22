@@ -457,7 +457,7 @@ void DecoderFLAC::seek(qint64 time)
 
 }
 
-qint64 DecoderFLAC::read(unsigned char *buf, qint64 size)
+qint64 DecoderFLAC::read(unsigned char *data, qint64 maxSize)
 {
     if(m_parser)
     {
@@ -468,19 +468,19 @@ qint64 DecoderFLAC::read(unsigned char *buf, qint64 size)
 
         if(m_buf) //read remaining data first
         {
-            len = qMin(m_buf_size, size);
-            memmove(buf, m_buf, len);
-            if(size >= m_buf_size)
+            len = qMin(m_buf_size, maxSize);
+            memmove(data, m_buf, len);
+            if(maxSize >= m_buf_size)
             {
                 delete[] m_buf;
                 m_buf = nullptr;
                 m_buf_size = 0;
             }
             else
-                memmove(m_buf, m_buf + len, size - len);
+                memmove(m_buf, m_buf + len, maxSize - len);
         }
         else
-            len = flac_decode (m_data, buf, size);
+            len = flac_decode (m_data, data, maxSize);
 
         if(len <= 0) //end of file
             return 0;
@@ -499,10 +499,10 @@ qint64 DecoderFLAC::read(unsigned char *buf, qint64 size)
             delete[] m_buf;
         m_buf_size = len - len2;
         m_buf = new char[m_buf_size];
-        memmove(m_buf, buf + len2, m_buf_size);
+        memmove(m_buf, data + len2, m_buf_size);
         return len2;
     }
-    return flac_decode(m_data, buf, size);
+    return flac_decode(m_data, data, maxSize);
 }
 
 void DecoderFLAC::deinit()

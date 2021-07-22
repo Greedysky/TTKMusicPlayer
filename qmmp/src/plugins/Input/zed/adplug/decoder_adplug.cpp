@@ -37,11 +37,11 @@ int DecoderAdplug::bitrate() const
     return m_helper->depth();
 }
 
-qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
+qint64 DecoderAdplug::read(unsigned char *data, qint64 maxSize)
 {
-    qint64 copied = copy(audio, max_size);
-    audio += copied;
-    max_size -= copied;
+    qint64 copied = copy(data, maxSize);
+    data += copied;
+    maxSize -= copied;
 
     /* Some songs loop endlessly.  If we pass the length threshold (Adplug
     * caps the reported length at 10 minutes), then report EOF.
@@ -63,7 +63,7 @@ qint64 DecoderAdplug::read(unsigned char *audio, qint64 max_size)
         m_buf_filled += frame.m_n;
     }
 
-    copied += copy(audio, max_size);
+    copied += copy(data, maxSize);
     m_time += copied / m_divisor;
     return copied;
 }
@@ -74,10 +74,10 @@ void DecoderAdplug::seek(qint64 pos)
     m_time = pos;
 }
 
-qint64 DecoderAdplug::copy(unsigned char *audio, qint64 maxSize)
+qint64 DecoderAdplug::copy(unsigned char *data, qint64 maxSize)
 {
-    qint64 copied = qMin(m_buf_filled, maxSize);
-    memcpy(audio, m_bufptr, copied);
+    const qint64 copied = qMin(m_buf_filled, maxSize);
+    memcpy(data, m_bufptr, copied);
 
     m_bufptr += copied;
     m_buf_filled -= copied;
