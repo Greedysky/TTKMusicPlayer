@@ -83,7 +83,7 @@ bool MdxHelper::initialize()
         m_metaData.insert(Qmmp::TITLE, buffer);
     }
 
-    m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
+    m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
     return true;
 }
 

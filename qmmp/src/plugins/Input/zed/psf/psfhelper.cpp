@@ -111,7 +111,7 @@ void PSFHelper::seek(qint64 time)
 
 int PSFHelper::bitrate() const
 {
-    return m_info->file_size * 8.0 / totalTime();
+    return m_info->file_size * 8.0 / totalTime() + 1.0f;
 }
 
 int PSFHelper::sampleRate() const

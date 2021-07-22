@@ -54,7 +54,7 @@ bool AyflyHelper::initialize()
     }
 
     m_info->length = ay_getsonglength(m_info->input) / 50 * 1000;
-    m_info->bitrate = size * 8.0 / m_info->length + 1.0f;
+    m_info->bitrate = size * 8.0 / totalTime() + 1.0f;
     ay_setelapsedcallback(m_info->input, endCallback, nullptr);
 
     m_metaData.insert(Qmmp::TITLE, ay_getsongname(m_info->input));
