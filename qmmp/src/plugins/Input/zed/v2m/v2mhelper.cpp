@@ -12,8 +12,7 @@ int load_and_convert(unsigned char *module, qint64 size, uint8_t **conv, int *co
         v2m_initialized = true;
     }
 
-    ssbase base;
-    const int ver = CheckV2MVersion(module, size, base);
+    const int ver = CheckV2MVersion(module, size);
     if(ver < 0)
     {
         return -1;
