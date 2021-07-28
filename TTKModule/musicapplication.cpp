@@ -506,7 +506,7 @@ void MusicApplication::musicImportSongsOnlyFile()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(MusicFormats::supportFormatsDialogFilter());
+    dialog.setNameFilters(MusicFormats::supportMusicInputFormats());
 
     if(dialog.exec())
     {
@@ -522,7 +522,7 @@ void MusicApplication::musicImportSongsOnlyDir()
         QStringList fileList;
         for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, true))
         {
-            if(MusicFormats::supportFormats().contains(info.suffix().toLower()))
+            if(MusicFormats::supportMusicFormats().contains(info.suffix().toLower()))
             {
                fileList << info.absoluteFilePath();
             }
@@ -537,7 +537,7 @@ void MusicApplication::musicImportSongsItemList()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(MusicFormats::supportFormatsPlaylistDialogString());
+    dialog.setNameFilters(MusicFormats::supportPlaylistInputFormats());
 
     if(dialog.exec())
     {
@@ -550,7 +550,7 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, tr("Save List File"), MusicFormats::supportFormatsPlaylistString());
+    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, tr("Save List File"), MusicFormats::supportPlaylistOutputFormats());
     if(!fileName.isEmpty())
     {
         const MusicSongItems &items = m_musicSongTreeWidget->getMusicLists();

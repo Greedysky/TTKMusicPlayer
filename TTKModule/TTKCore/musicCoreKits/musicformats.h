@@ -42,32 +42,32 @@ public:
     /*!
      * Get player supported formats.
      */
-    static QStringList supportFormats();
+    static QStringList supportMusicFormats();
     /*!
-     * Get player supported formats map.
+     * Get player supported map formats.
      */
-    static TTKStringListMap supportFormatsMap();
+    static TTKStringListMap supportMusicMapFormats();
     /*!
-     * Get player supported formats filter.
+     * Get player supported input filter formats.
      */
-    static QStringList supportFormatsFilter();
+    static QStringList supportMusicInputFilterFormats();
     /*!
-     * Get player supported formats dialog filter.
+     * Get player supported input format .
      */
-    static QStringList supportFormatsDialogFilter();
+    static QStringList supportMusicInputFormats();
 
     /*!
-     * Get spek supported formats filter dialog.
+     * Get spek supported input formats.
      */
-    static QStringList supportFormatsSpekString();
+    static QStringList supportSpekInputFormats();
     /*!
-     * Get playlist supported formats filter dialog.
+     * Get playlist supported input formats.
      */
-    static QStringList supportFormatsPlaylistDialogString();
+    static QStringList supportPlaylistInputFormats();
     /*!
-     * Get playlist supported formats dialog.
+     * Get playlist supported output formats.
      */
-    static QString supportFormatsPlaylistString();
+    static QString supportPlaylistOutputFormats();
 
 };
 

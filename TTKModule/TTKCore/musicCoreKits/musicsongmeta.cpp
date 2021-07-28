@@ -71,7 +71,7 @@ bool MusicSongMeta::save()
 QString MusicSongMeta::getDecoder() const
 {
     const QString &suffix = QFileInfo(m_path).suffix().toLower();
-    const TTKStringListMap formats(MusicFormats::supportFormatsMap());
+    const TTKStringListMap formats(MusicFormats::supportMusicMapFormats());
     for(const QString &key : formats.keys())
     {
         if(formats.value(key).contains(suffix))

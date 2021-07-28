@@ -160,7 +160,7 @@ void MusicSpectrumWidget::openFileButtonClicked()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(MusicFormats::supportFormatsSpekString());
+    dialog.setNameFilters(MusicFormats::supportSpekInputFormats());
     if(dialog.exec())
     {
         const QString &path = dialog.selectedFiles().last();

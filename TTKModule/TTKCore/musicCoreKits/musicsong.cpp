@@ -108,7 +108,7 @@ bool MusicSong::operator> (const MusicSong &other) const
 MusicSongs MusicObject::generateMusicSongList(const QString &path)
 {
     MusicSongs songs;
-    const QStringList &support = MusicFormats::supportFormats();
+    const QStringList &support = MusicFormats::supportMusicFormats();
     const QString &suffix = QFileInfo(path).suffix().toLower();
 
     if(!support.contains(suffix))

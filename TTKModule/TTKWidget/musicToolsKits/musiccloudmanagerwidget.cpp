@@ -283,7 +283,7 @@ void MusicCloudManagerTableWidget::cancelUploadFilesToServer()
 
 void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
-    const QString filter(MusicFormats::supportFormatsDialogFilter().join(";;"));
+    const QString filter(MusicFormats::supportMusicInputFormats().join(";;"));
     const QStringList &paths = MusicUtils::File::getOpenFilesDialog(this, filter);
     uploadFilesToServer(paths);
 }
@@ -296,7 +296,7 @@ void MusicCloudManagerTableWidget::uploadFileDirToServer()
         delete m_openFileWidget;
         m_openFileWidget = nullptr;
 
-        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, MusicFormats::supportFormatsFilter(), true))
+        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, MusicFormats::supportMusicInputFilterFormats(), true))
         {
             MusicCloudDataItem item;
             item.m_id = QString::number(MusicTime::timestamp());

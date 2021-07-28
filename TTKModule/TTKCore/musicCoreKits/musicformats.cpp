@@ -13,42 +13,42 @@ bool MusicFormats::SongTrackTpyeContains(const QString &file)
     return Format::SongTrackTpyeContains(file);
 }
 
-QStringList MusicFormats::supportFormats()
+QStringList MusicFormats::supportMusicFormats()
 {
-    QStringList formats(Format::decodeForString());
+    QStringList formats(Format::supportMusicFormats());
     formats << "zip";
     return formats;
 }
 
-TTKStringListMap MusicFormats::supportFormatsMap()
+TTKStringListMap MusicFormats::supportMusicMapFormats()
 {
-    TTKStringListMap formats(Format::decodeForStringMap());
+    TTKStringListMap formats(Format::supportMusicMapFormats());
     formats.insert("zip", QStringList() << "zip");
     return formats;
 }
 
-QStringList MusicFormats::supportFormatsFilter()
+QStringList MusicFormats::supportMusicInputFilterFormats()
 {
-    QStringList formats(Format::decodeForFilter());
+    QStringList formats(Format::supportMusicInputFilterFormats());
     formats << "*.zip";
     return formats;
 }
 
-QStringList MusicFormats::supportFormatsDialogFilter()
+QStringList MusicFormats::supportMusicInputFormats()
 {
-    QStringList formats(Format::decodeForFilterDialog());
+    QStringList formats(Format::supportMusicInputFormats());
     formats << "Zip File(*.zip)";
     return formats;
 }
 
-QStringList MusicFormats::supportFormatsSpekString()
+QStringList MusicFormats::supportSpekInputFormats()
 {
     return QStringList()<< "*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac "
                            "*.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra "
                            "*.ram *.snd *.wav *.wma *.wv";
 }
 
-QStringList MusicFormats::supportFormatsPlaylistDialogString()
+QStringList MusicFormats::supportPlaylistInputFormats()
 {
     return QStringList()<< "File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.fpl *.csv *.txt)"
                         << "TTKlist File(*.tkpl)"
@@ -63,7 +63,7 @@ QStringList MusicFormats::supportFormatsPlaylistDialogString()
                         << "TXT Playlist File(*.txt)";
 }
 
-QString MusicFormats::supportFormatsPlaylistString()
+QString MusicFormats::supportPlaylistOutputFormats()
 {
     return QString("TTKlist File(*.tkpl);; \
                     M3U File(*.m3u);; \
