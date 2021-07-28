@@ -26,71 +26,60 @@ typedef struct FPLTrackChunk{
 
 
 MusicFPLConfigManager::MusicFPLConfigManager()
-    : MusicPlaylistInterface()
+    : MusicPlaylistReader()
+    , MusicPlaylistInterface()
 {
 
-}
-
-bool MusicFPLConfigManager::readConfig(const QString &name)
-{
-    m_fileName = name;
-    return true;
 }
 
 bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
-    QFileInfo info(m_fileName);
+    QFileInfo info(m_file.fileName());
     MusicSongItem item;
     item.m_itemName = info.baseName();
 
-    FILE *fp = nullptr;
-    if((fp = fopen(qPrintable(m_fileName), "rb")) == nullptr)
-    {
-        return false;
-    }
-
     // read 16-byte signature
     char magic[16];
-    fread(magic, 16, 1, fp);
+    m_file.read(magic, 16);
 
     // load primary data string into memory
     uint dataSize;
-    fread(&dataSize, 4, 1, fp);
+    m_file.read((char*)&dataSize, 4);
 
-    char *dataPrime = (char*)malloc(dataSize);
+    char *dataPrime = new char[dataSize];
     // read in primary string to memory
-    fread(dataPrime, dataSize, 1, fp);
+    m_file.read(dataPrime, dataSize);
 
     // read playlist count integer
     uint plSize;
-    fread(&plSize, 4, 1, fp);
+    m_file.read((char*)&plSize, 4);
 
     uint keyRunner[512];
     double duration = 0.0f;
 
     FPLTrackChunk chunkRunner;
-    for(size_t i=0; i<plSize && !feof(fp); ++i)
+    for(size_t i=0; i<plSize && !m_file.atEnd(); ++i)
     {
-        fread((void*)&chunkRunner, sizeof(FPLTrackChunk), 1, fp);
+        m_file.read((char*)&chunkRunner, sizeof(FPLTrackChunk));
         // keys_dex sanity check
         if(chunkRunner.keys_dex > 512)
         {
-            free(dataPrime);
-            fclose(fp);
+            delete[] dataPrime;
+            m_file.close();
             return false;
         }
 
-        fread((void*)&keyRunner, sizeof(uint), chunkRunner.keys_dex - 3, fp);
+        m_file.read((char*)&keyRunner, sizeof(uint) * (chunkRunner.keys_dex - 3));
         memcpy((void*)&duration, chunkRunner.duration_dbl, 8);
 
         QString path = dataPrime + chunkRunner.file_ofz;
-        path.remove("file:/");
-        path = info.absolutePath() + path;
+        path.remove("file://");
+        path = info.absolutePath() + "/" + path;
         item.m_songs << MusicSong(path, 0, MusicTime::msecTime2LabelJustified(duration * MT_S2MS), QString());
     }
 
-    free(dataPrime);
-    fclose(fp);
+    delete[] dataPrime;
+    m_file.close();
 
     if(!item.m_songs.isEmpty())
     {

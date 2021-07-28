@@ -1,7 +1,7 @@
 #include "musicasxconfigmanager.h"
 
-MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+MusicASXConfigManager::MusicASXConfigManager()
+    : MusicAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 

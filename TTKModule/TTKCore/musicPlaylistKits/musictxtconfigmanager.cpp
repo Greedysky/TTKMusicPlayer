@@ -1,15 +1,10 @@
 #include "musictxtconfigmanager.h"
 
 MusicTXTConfigManager::MusicTXTConfigManager()
-    : MusicPlaylistInterface()
+    : MusicPlaylistReader()
+    , MusicPlaylistInterface()
 {
 
-}
-
-bool MusicTXTConfigManager::readConfig(const QString &name)
-{
-    m_file.setFileName(name);
-    return m_file.open(QFile::ReadOnly);
 }
 
 bool MusicTXTConfigManager::readPlaylistData(MusicSongItems &items)

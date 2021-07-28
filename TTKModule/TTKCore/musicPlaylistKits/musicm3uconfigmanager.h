@@ -24,7 +24,7 @@
 /*! @brief The class of the m3u playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicM3UConfigManager : public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicM3UConfigManager : public MusicPlaylistReader, private MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicM3UConfigManager)
 public:
@@ -34,11 +34,6 @@ public:
     explicit MusicM3UConfigManager();
 
     /*!
-     * Read datas from xml file by given name.
-     */
-    bool readConfig(const QString &name);
-
-    /*!
      * Read datas from config file.
      */
     virtual bool readPlaylistData(MusicSongItems &items) override;
@@ -46,9 +41,6 @@ public:
      * Write datas into config file.
      */
     virtual bool writePlaylistData(const MusicSongItems &items, const QString &path) override;
-
-private:
-    QFile m_file;
 
 };
 

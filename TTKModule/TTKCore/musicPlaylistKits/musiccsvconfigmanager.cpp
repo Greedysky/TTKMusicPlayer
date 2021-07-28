@@ -1,15 +1,10 @@
 #include "musiccsvconfigmanager.h"
 
 MusicCSVConfigManager::MusicCSVConfigManager()
-    : MusicPlaylistInterface()
+    : MusicPlaylistReader()
+    , MusicPlaylistInterface()
 {
 
-}
-
-bool MusicCSVConfigManager::readConfig(const QString &name)
-{
-    m_file.setFileName(name);
-    return m_file.open(QFile::ReadOnly);
 }
 
 bool MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)

@@ -25,8 +25,7 @@
 /*! @brief The class of wangyi query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYQueryAlbumRequest : public MusicQueryAlbumRequest,
-                                                   private MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYQueryAlbumRequest : public MusicQueryAlbumRequest, private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYQueryAlbumRequest)

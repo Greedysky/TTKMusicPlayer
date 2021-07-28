@@ -1,15 +1,10 @@
 #include "musicplsconfigmanager.h"
 
 MusicPLSConfigManager::MusicPLSConfigManager()
-    : MusicPlaylistInterface()
+    : MusicPlaylistReader()
+    , MusicPlaylistInterface()
 {
 
-}
-
-bool MusicPLSConfigManager::readConfig(const QString &name)
-{
-    m_file.setFileName(name);
-    return m_file.open(QFile::ReadOnly);
 }
 
 bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
@@ -34,7 +29,7 @@ bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
     int number = 0;
     bool error = false;
 
-    for(QString line : qAsConst(data))
+    for(const QString &line : qAsConst(data))
     {
         if(fileRegExp.indexIn(line) > -1)
         {

@@ -25,8 +25,7 @@
 /*! @brief The class of qq query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQQQueryPlaylistRequest : public MusicQueryPlaylistRequest,
-                                                      private MusicQQQueryInterface
+class TTK_MODULE_EXPORT MusicQQQueryPlaylistRequest : public MusicQueryPlaylistRequest, private MusicQQQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicQQQueryPlaylistRequest)

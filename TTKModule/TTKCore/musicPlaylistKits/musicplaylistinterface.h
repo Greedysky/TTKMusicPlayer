@@ -21,6 +21,34 @@
 
 #include "musicsong.h"
 
+/*! @brief The class of the playlist reader.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicPlaylistReader
+{
+public:
+    explicit MusicPlaylistReader()
+    {
+    }
+
+    virtual ~MusicPlaylistReader()
+    {
+    }
+
+    /*!
+     * Read datas from xml file by given name.
+     */
+    inline bool readConfig(const QString &name)
+    {
+        m_file.setFileName(name);
+        return m_file.open(QFile::ReadOnly);
+    }
+
+protected:
+    QFile m_file;
+
+};
+
 /*! @brief The class of the playlist interface.
  * @author Greedysky <greedysky@163.com>
  */

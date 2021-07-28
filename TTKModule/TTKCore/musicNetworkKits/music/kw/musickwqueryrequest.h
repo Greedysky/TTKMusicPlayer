@@ -47,8 +47,7 @@ public:
 /*! @brief The class of kuwo query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWQueryRequest : public MusicAbstractQueryRequest,
-                                              private MusicKWQueryInterface
+class TTK_MODULE_EXPORT MusicKWQueryRequest : public MusicAbstractQueryRequest, private MusicKWQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWQueryRequest)

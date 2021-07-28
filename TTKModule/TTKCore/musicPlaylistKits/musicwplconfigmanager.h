@@ -25,7 +25,7 @@
 /*! @brief The class of the wpl playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWPLConfigManager : public MusicAbstractXml, public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicWPLConfigManager : public MusicAbstractXml, private MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWPLConfigManager)
@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWPLConfigManager(QObject *parent = nullptr);
+    explicit MusicWPLConfigManager();
 
     /*!
      * Read datas from config file.

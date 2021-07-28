@@ -1095,10 +1095,10 @@ void MusicApplication::readSystemConfigFromFile()
 
     //Path configuration song
     MusicSongItems songs;
-    MusicTKPLConfigManager listXml;
-    if(listXml.readConfig())
+    MusicTKPLConfigManager manager;
+    if(manager.readConfig())
     {
-        listXml.readPlaylistData(songs);
+        manager.readPlaylistData(songs);
     }
     const bool success = m_musicSongTreeWidget->addMusicLists(songs);
     //
@@ -1266,6 +1266,6 @@ void MusicApplication::writeSystemConfigToFile()
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeSysConfigData();
 
-    MusicTKPLConfigManager listXml;
-    listXml.writePlaylistData(m_musicSongTreeWidget->getMusicLists());
+    MusicTKPLConfigManager manager;
+    manager.writePlaylistData(m_musicSongTreeWidget->getMusicLists(), MUSICPATH_FULL);
 }

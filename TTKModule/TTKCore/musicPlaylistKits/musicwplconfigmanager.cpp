@@ -1,8 +1,8 @@
 #include "musicwplconfigmanager.h"
 #include "ttkversion.h"
 
-MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+MusicWPLConfigManager::MusicWPLConfigManager()
+    : MusicAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 

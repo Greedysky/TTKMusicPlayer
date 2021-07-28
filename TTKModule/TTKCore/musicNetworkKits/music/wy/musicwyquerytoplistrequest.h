@@ -25,8 +25,7 @@
 /*! @brief The class of wangyi query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYQueryToplistRequest : public MusicQueryToplistRequest,
-                                                     private MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYQueryToplistRequest : public MusicQueryToplistRequest, private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYQueryToplistRequest)

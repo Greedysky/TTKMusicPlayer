@@ -25,7 +25,7 @@
 /*! @brief The class of the xspf playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicXSPFConfigManager : public MusicAbstractXml, public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicXSPFConfigManager : public MusicAbstractXml, private MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicXSPFConfigManager)
@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicXSPFConfigManager(QObject *parent = nullptr);
+    explicit MusicXSPFConfigManager();
 
     /*!
      * Read datas from config file.

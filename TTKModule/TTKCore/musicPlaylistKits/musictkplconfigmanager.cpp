@@ -1,7 +1,7 @@
 #include "musictkplconfigmanager.h"
 
-MusicTKPLConfigManager::MusicTKPLConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+MusicTKPLConfigManager::MusicTKPLConfigManager()
+    : MusicAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 
@@ -26,11 +26,6 @@ bool MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
         items << item;
     }
     return true;
-}
-
-bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items)
-{
-    return writePlaylistData(items, MUSICPATH_FULL);
 }
 
 bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)

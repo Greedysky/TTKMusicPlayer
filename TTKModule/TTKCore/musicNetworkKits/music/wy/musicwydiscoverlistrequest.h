@@ -25,8 +25,7 @@
 /*! @brief The class of wangyi discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYDiscoverListRequest : public MusicDiscoverListRequest,
-                                                     private MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYDiscoverListRequest : public MusicDiscoverListRequest, private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYDiscoverListRequest)

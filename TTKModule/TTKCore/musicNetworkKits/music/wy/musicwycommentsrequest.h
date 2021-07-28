@@ -25,8 +25,7 @@
 /*! @brief The class of wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYSongCommentsRequest : public MusicCommentsRequest,
-                                                     private MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYSongCommentsRequest : public MusicCommentsRequest, private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYSongCommentsRequest)
@@ -57,8 +56,7 @@ public Q_SLOTS:
 /*! @brief The class of wangyi query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicWYPlaylistCommentsRequest : public MusicCommentsRequest,
-                                                         private MusicWYQueryInterface
+class TTK_MODULE_EXPORT MusicWYPlaylistCommentsRequest : public MusicCommentsRequest, private MusicWYQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicWYPlaylistCommentsRequest)

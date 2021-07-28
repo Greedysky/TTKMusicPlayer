@@ -25,8 +25,7 @@
 /*! @brief The class of kuwo query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWQueryPlaylistRequest : public MusicQueryPlaylistRequest,
-                                                      private MusicKWQueryInterface
+class TTK_MODULE_EXPORT MusicKWQueryPlaylistRequest : public MusicQueryPlaylistRequest, private MusicKWQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKWQueryPlaylistRequest)

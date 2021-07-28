@@ -25,7 +25,7 @@
 /*! @brief The class of the tkpl config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicTKPLConfigManager : public MusicAbstractXml, public MusicPlaylistInterface
+class TTK_MODULE_EXPORT MusicTKPLConfigManager : public MusicAbstractXml, private MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTKPLConfigManager)
@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTKPLConfigManager(QObject *parent = nullptr);
+    explicit MusicTKPLConfigManager();
 
     /*!
      * Read config datas from xml file by given name.
@@ -44,10 +44,6 @@ public:
      * Read datas from config file.
      */
     virtual bool readPlaylistData(MusicSongItems &items) override;
-    /*!
-     * Write music datas into xml file.
-     */
-    bool writePlaylistData(const MusicSongItems &items);
     /*!
      * Write datas into config file.
      */

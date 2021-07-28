@@ -1,7 +1,7 @@
 #include "musicxspfconfigmanager.h"
 
-MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+MusicXSPFConfigManager::MusicXSPFConfigManager()
+    : MusicAbstractXml(nullptr)
     , MusicPlaylistInterface()
 {
 

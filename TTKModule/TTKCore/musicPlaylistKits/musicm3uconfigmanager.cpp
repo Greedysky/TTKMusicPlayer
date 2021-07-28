@@ -1,15 +1,10 @@
 #include "musicm3uconfigmanager.h"
 
 MusicM3UConfigManager::MusicM3UConfigManager()
-    : MusicPlaylistInterface()
+    : MusicPlaylistReader()
+    , MusicPlaylistInterface()
 {
 
-}
-
-bool MusicM3UConfigManager::readConfig(const QString &name)
-{
-    m_file.setFileName(name);
-    return m_file.open(QFile::ReadOnly);
 }
 
 bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)

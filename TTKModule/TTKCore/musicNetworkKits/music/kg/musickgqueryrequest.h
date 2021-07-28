@@ -25,8 +25,7 @@
 /*! @brief The class of kugou query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKGQueryRequest : public MusicAbstractQueryRequest,
-                                              private MusicKGQueryInterface
+class TTK_MODULE_EXPORT MusicKGQueryRequest : public MusicAbstractQueryRequest, private MusicKGQueryInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicKGQueryRequest)
