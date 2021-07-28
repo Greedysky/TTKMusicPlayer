@@ -12,7 +12,6 @@
 #define MUSIC_WVPACK_FILE           "wvpack"
 #define MUSIC_SC68_FILE             "sc68"
 
-
 bool Format::SongTrackValid(const QString &file)
 {
     QStringList list;
@@ -52,7 +51,7 @@ bool Format::SongTrackTpyeContains(const QString &file)
     return list.contains(file);
 }
 
-QStringList Format::decodeForString()
+QStringList Format::supportMusicFormats()
 {
     QStringList formats;
     const QList<DecoderFactory *> factorys(Decoder::enabledFactories());
@@ -66,7 +65,7 @@ QStringList Format::decodeForString()
     return formats;
 }
 
-QMap<QString, QStringList> Format::decodeForStringMap()
+QMap<QString, QStringList> Format::supportMusicMapFormats()
 {
     QMap<QString, QStringList> formats;
     const QList<DecoderFactory *> factorys(Decoder::enabledFactories());
@@ -86,7 +85,7 @@ QMap<QString, QStringList> Format::decodeForStringMap()
     return formats;
 }
 
-QStringList Format::decodeForFilter()
+QStringList Format::supportMusicInputFilterFormats()
 {
     QStringList formats;
     const QList<DecoderFactory *> factorys(Decoder::enabledFactories());
@@ -97,7 +96,7 @@ QStringList Format::decodeForFilter()
     return formats;
 }
 
-QStringList Format::decodeForFilterDialog()
+QStringList Format::supportMusicInputFormats()
 {
     QStringList formats("All File(*.*)");
     const QList<DecoderFactory *> factorys(Decoder::enabledFactories());

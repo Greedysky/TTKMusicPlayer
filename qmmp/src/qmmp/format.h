@@ -42,19 +42,19 @@ public:
     /*!
      * Get player supported formats.
      */
-    static QStringList decodeForString();
+    static QStringList supportMusicFormats();
     /*!
-     * Get player supported formats.
+     * Get player supported map formats.
      */
-    static QMap<QString, QStringList> decodeForStringMap();
+    static QMap<QString, QStringList> supportMusicMapFormats();
     /*!
-     * Get player supported formats filter.
+     * Get player supported input filter formats.
      */
-    static QStringList decodeForFilter();
+    static QStringList supportMusicInputFilterFormats();
     /*!
-     * Get player supported formats filter dialog.
+     * Get player supported input format .
      */
-    static QStringList decodeForFilterDialog();
+    static QStringList supportMusicInputFormats();
 
 };
 
