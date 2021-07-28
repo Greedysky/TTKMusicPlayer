@@ -1,7 +1,5 @@
 #include "musicplaylistmanager.h"
 #include "musicasxconfigmanager.h"
-#include "musickglconfigmanager.h"
-#include "musickwlconfigmanager.h"
 #include "musicm3uconfigmanager.h"
 #include "musicplsconfigmanager.h"
 #include "musicwplconfigmanager.h"
@@ -10,7 +8,6 @@
 #include "musicfplconfigmanager.h"
 #include "musiccsvconfigmanager.h"
 #include "musictxtconfigmanager.h"
-#include "musicnfnconfigmanager.h"
 
 void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem& item)
 {
@@ -49,10 +46,6 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     {
         writeTXTList(path, item);
     }
-    else if(suffix == NFN_FILE_PREFIX)
-    {
-        writeNFNList(path, item);
-    }
 }
 
 void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSongItems& items)
@@ -85,14 +78,6 @@ void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSong
         else if(suffix == ASX_FILE_PREFIX)
         {
             readASXList(path, items);
-        }
-        else if(suffix == KWL_FILE_PREFIX)
-        {
-            readKWLList(path, items);
-        }
-        else if(suffix == KGL_FILE_PREFIX)
-        {
-            readKGLList(path, items);
         }
         else if(suffix == FPL_FILE_PREFIX)
         {
@@ -205,26 +190,6 @@ bool MusicPlaylistManager::writeASXList(const QString &path, const MusicSongItem
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readKWLList(const QString &path, MusicSongItems& items)
-{
-    MusicKWLConfigManager manager;
-    if(manager.readConfig(path))
-    {
-        return manager.readPlaylistData(items);
-    }
-    return false;
-}
-
-bool MusicPlaylistManager::readKGLList(const QString &path, MusicSongItems& items)
-{
-    MusicKGLConfigManager manager;
-    if(manager.readConfig(path))
-    {
-        return manager.readPlaylistData(items);
-    }
-    return false;
-}
-
 bool MusicPlaylistManager::readFPLList(const QString &path, MusicSongItems& items)
 {
     MusicFPLConfigManager manager;
@@ -264,11 +229,5 @@ bool MusicPlaylistManager::readTXTList(const QString &path, MusicSongItems &item
 bool MusicPlaylistManager::writeTXTList(const QString &path, const MusicSongItem &item)
 {
     MusicTXTConfigManager manager;
-    return manager.writePlaylistData(MusicSongItems() << item, path);
-}
-
-bool MusicPlaylistManager::writeNFNList(const QString &path, const MusicSongItem &item)
-{
-    MusicNFNConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }

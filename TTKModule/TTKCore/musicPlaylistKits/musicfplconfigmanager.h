@@ -69,7 +69,7 @@ public:
 
 private:
     QString m_fileName;
-    FPLTrackChunk m_chunkrunner;
+    FPLTrackChunk m_chunkRunner;
 
 };
 

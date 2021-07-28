@@ -54,11 +54,8 @@
 #define XSPF_FILE_PREFIX        "xspf"
 #define ASX_FILE_PREFIX         "asx"
 #define FPL_FILE_PREFIX         "fpl"
-#define KWL_FILE_PREFIX         "kwl"
-#define KGL_FILE_PREFIX         "kgl"
 #define CSV_FILE_PREFIX         "csv"
 #define TXT_FILE_PREFIX         "txt"
-#define NFN_FILE_PREFIX         "nfn"
 
 //file ext
 #define AAC_FILE_PREFIX         "aac"

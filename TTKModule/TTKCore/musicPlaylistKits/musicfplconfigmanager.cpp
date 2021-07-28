@@ -49,16 +49,16 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
 
     for(size_t i=0; i<plSize && !feof(fp); ++i)
     {
-        fread((void*)&m_chunkrunner, sizeof(FPLTrackChunk), 1, fp);
+        fread((void*)&m_chunkRunner, sizeof(FPLTrackChunk), 1, fp);
         // keys_dex sanity check
-        if(m_chunkrunner.keys_dex > 512)
+        if(m_chunkRunner.keys_dex > 512)
         {
             return false;
         }
 
-        fread((void*)&keyRunner, sizeof(uint), m_chunkrunner.keys_dex - 3, fp);
-        memcpy((void*)&duration, m_chunkrunner.duration_dbl, 8);
-        item.m_songs << MusicSong(dataPrime + m_chunkrunner.file_ofz, 0, MusicTime::msecTime2LabelJustified(duration * MT_S2MS), QString());
+        fread((void*)&keyRunner, sizeof(uint), m_chunkRunner.keys_dex - 3, fp);
+        memcpy((void*)&duration, m_chunkRunner.duration_dbl, 8);
+        item.m_songs << MusicSong(dataPrime + m_chunkRunner.file_ofz, 0, MusicTime::msecTime2LabelJustified(duration * MT_S2MS), QString());
     }
 
     free(dataPrime);

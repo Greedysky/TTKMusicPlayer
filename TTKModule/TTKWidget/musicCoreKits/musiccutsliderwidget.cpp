@@ -50,7 +50,6 @@ void MusicMoveButton::mouseMoveEvent(QMouseEvent *event)
     const int xpos = event->globalX() - m_pressAt.x();
     m_pressAt = event->globalPos();
 #endif
-    m_pressAt = event->globalPos();
     move(x() + xpos, y());
     Q_EMIT moveChanged();
 }

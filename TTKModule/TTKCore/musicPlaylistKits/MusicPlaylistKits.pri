@@ -22,28 +22,22 @@ HEADERS  += \
     $$PWD/musicplaylistinterface.h \
     $$PWD/musicfplconfigmanager.h \
     $$PWD/musicasxconfigmanager.h \
-    $$PWD/musickglconfigmanager.h \
-    $$PWD/musickwlconfigmanager.h \
     $$PWD/musicm3uconfigmanager.h \
     $$PWD/musicplsconfigmanager.h \
     $$PWD/musictkplconfigmanager.h \
     $$PWD/musicwplconfigmanager.h \
     $$PWD/musicxspfconfigmanager.h \
     $$PWD/musiccsvconfigmanager.h \
-    $$PWD/musictxtconfigmanager.h \
-    $$PWD/musicnfnconfigmanager.h
+    $$PWD/musictxtconfigmanager.h
 
 
 SOURCES += \
     $$PWD/musicasxconfigmanager.cpp \
     $$PWD/musicfplconfigmanager.cpp \
-    $$PWD/musickglconfigmanager.cpp \
-    $$PWD/musickwlconfigmanager.cpp \
     $$PWD/musicm3uconfigmanager.cpp \
     $$PWD/musicplsconfigmanager.cpp \
     $$PWD/musictkplconfigmanager.cpp \
     $$PWD/musicwplconfigmanager.cpp \
     $$PWD/musicxspfconfigmanager.cpp \
     $$PWD/musiccsvconfigmanager.cpp \
-    $$PWD/musictxtconfigmanager.cpp \
-    $$PWD/musicnfnconfigmanager.cpp
+    $$PWD/musictxtconfigmanager.cpp

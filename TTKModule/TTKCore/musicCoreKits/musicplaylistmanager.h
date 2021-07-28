@@ -93,16 +93,6 @@ protected:
     bool writeASXList(const QString &path, const MusicSongItem &item);
 
     /*!
-     * Read kuwo music playlist data from file.
-     */
-    bool readKWLList(const QString &path, MusicSongItems &items);
-
-    /*!
-     * Read kugou music playlist data from file.
-     */
-    bool readKGLList(const QString &path, MusicSongItems &items);
-
-    /*!
      * Read foobar2k music playlist data from file.
      */
     bool readFPLList(const QString &path, MusicSongItems &items);
@@ -124,11 +114,6 @@ protected:
      * Write txt music playlist data to file.
      */
     bool writeTXTList(const QString &path, const MusicSongItem &item);
-
-    /*!
-     * Write nfn music playlist data to file.
-     */
-    bool writeNFNList(const QString &path, const MusicSongItem &item);
 
 };
 
