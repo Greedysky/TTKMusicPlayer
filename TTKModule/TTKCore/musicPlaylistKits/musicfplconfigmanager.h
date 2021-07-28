@@ -28,26 +28,6 @@ class TTK_MODULE_EXPORT MusicFPLConfigManager : public MusicPlaylistInterface
 {
     TTK_DECLARE_MODULE(MusicFPLConfigManager)
 public:
-    typedef struct FPLTrackChunk{
-        uint unk1;		// not sure??
-        uint file_ofz;	// filename string offset
-        uint subsong;	// subsong index value
-        uint fsize;		// filesize
-        uint unk2;		// ??
-        uint unk3;		// ??
-        uint unk4;		// ??
-        char duration_dbl[8]; // track duration data (converted later)
-        float rpg_album;	// replay gain, album
-        float rpg_track;	// replay gain, track
-        float rpk_album;	// replay gain, album peak
-        float rpk_track;    // replay gain, track peak
-        uint  keys_dex;	    // number of key/pointers that follow
-        uint  key_primary;  // number of primary info keys
-        uint  key_second;   // number of secondary info key combos
-        uint  key_sec_offset; // index of secondary key start
-    } FPLTrackChunk;
-
-public:
     /*!
      * Object contsructor.
      */
@@ -69,7 +49,6 @@ public:
 
 private:
     QString m_fileName;
-    FPLTrackChunk m_chunkRunner;
 
 };
 

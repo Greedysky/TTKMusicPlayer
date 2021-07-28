@@ -5,6 +5,26 @@
 #  pragma GCC diagnostic ignored "-Wunused-result"
 #endif
 
+typedef struct FPLTrackChunk{
+    uint unk1;		// not sure??
+    uint file_ofz;	// filename string offset
+    uint subsong;	// subsong index value
+    uint fsize;		// filesize
+    uint unk2;		// ??
+    uint unk3;		// ??
+    uint unk4;		// ??
+    char duration_dbl[8]; // track duration data (converted later)
+    float rpg_album;	// replay gain, album
+    float rpg_track;	// replay gain, track
+    float rpk_album;	// replay gain, album peak
+    float rpk_track;    // replay gain, track peak
+    uint  keys_dex;	    // number of key/pointers that follow
+    uint  key_primary;  // number of primary info keys
+    uint  key_second;   // number of secondary info key combos
+    uint  key_sec_offset; // index of secondary key start
+} FPLTrackChunk;
+
+
 MusicFPLConfigManager::MusicFPLConfigManager()
     : MusicPlaylistInterface()
 {
@@ -19,8 +39,9 @@ bool MusicFPLConfigManager::readConfig(const QString &name)
 
 bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
+    QFileInfo info(m_fileName);
     MusicSongItem item;
-    item.m_itemName = QFileInfo(m_fileName).baseName();
+    item.m_itemName = info.baseName();
 
     FILE *fp = nullptr;
     if((fp = fopen(qPrintable(m_fileName), "rb")) == nullptr)
@@ -47,18 +68,25 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
     uint keyRunner[512];
     double duration = 0.0f;
 
+    FPLTrackChunk chunkRunner;
     for(size_t i=0; i<plSize && !feof(fp); ++i)
     {
-        fread((void*)&m_chunkRunner, sizeof(FPLTrackChunk), 1, fp);
+        fread((void*)&chunkRunner, sizeof(FPLTrackChunk), 1, fp);
         // keys_dex sanity check
-        if(m_chunkRunner.keys_dex > 512)
+        if(chunkRunner.keys_dex > 512)
         {
+            free(dataPrime);
+            fclose(fp);
             return false;
         }
 
-        fread((void*)&keyRunner, sizeof(uint), m_chunkRunner.keys_dex - 3, fp);
-        memcpy((void*)&duration, m_chunkRunner.duration_dbl, 8);
-        item.m_songs << MusicSong(dataPrime + m_chunkRunner.file_ofz, 0, MusicTime::msecTime2LabelJustified(duration * MT_S2MS), QString());
+        fread((void*)&keyRunner, sizeof(uint), chunkRunner.keys_dex - 3, fp);
+        memcpy((void*)&duration, chunkRunner.duration_dbl, 8);
+
+        QString path = dataPrime + chunkRunner.file_ofz;
+        path.remove("file:/");
+        path = info.absolutePath() + path;
+        item.m_songs << MusicSong(path, 0, MusicTime::msecTime2LabelJustified(duration * MT_S2MS), QString());
     }
 
     free(dataPrime);
