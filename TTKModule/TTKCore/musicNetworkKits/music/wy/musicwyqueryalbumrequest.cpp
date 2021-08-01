@@ -167,7 +167,7 @@ void MusicWYQueryAlbumRequest::singleDownLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    MusicAbstractNetwork::downLoadFinished();
+    MusicPagingRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {

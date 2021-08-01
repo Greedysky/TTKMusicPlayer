@@ -59,7 +59,6 @@ void MusicKGSongCommentsRequest::downLoadFinished()
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
     MusicCommentsRequest::downLoadFinished();
-
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
@@ -146,7 +145,6 @@ void MusicKGPlaylistCommentsRequest::downLoadFinished()
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
     MusicCommentsRequest::downLoadFinished();
-
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;

@@ -37,7 +37,7 @@ void MusicQQSongSuggestRequest::downLoadFinished()
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
     m_items.clear();
-    MusicAbstractNetwork::downLoadFinished();
+    MusicSongSuggestRequest::downLoadFinished();
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

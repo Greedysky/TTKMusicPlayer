@@ -85,7 +85,7 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
     TTK_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
 
-    MusicAbstractNetwork::downLoadFinished();
+    MusicPagingRequest::downLoadFinished();
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_PLAYLIST_INFO_URL, false).arg(item.m_id));

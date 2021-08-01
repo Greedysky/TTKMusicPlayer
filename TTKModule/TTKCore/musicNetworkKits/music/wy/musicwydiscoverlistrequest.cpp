@@ -39,7 +39,7 @@ void MusicWYDiscoverListRequest::downLoadFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
 
-    MusicAbstractNetwork::downLoadFinished();
+    MusicDiscoverListRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
