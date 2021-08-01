@@ -44,15 +44,15 @@ public:
     /*!
      * Create current item by song info.
      */
-    void createItem(const MusicObject::MusicSongInformation &info);
+    void createItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Start to download data.
      */
-    void startToDownload(MusicAbstractQueryRequest::QueryType type);
+    void startToDownload();
     /*!
-     * Set current quality.
+     * Set current quality by index.
      */
-    void setCurrentQuality(int bitrate);
+    void setCurrentQuality(int index);
 
 public Q_SLOTS:
     /*!
@@ -74,6 +74,7 @@ protected:
     QComboBox *m_qulity;
     MusicObject::MusicSongInformation m_songInfo;
     QLabel *m_songName, *m_singer, *m_information;
+    MusicAbstractQueryRequest::QueryType m_queryType;
 
 };
 
@@ -103,11 +104,11 @@ public:
     /*!
      * Create current item by song info.
      */
-    void createItem(const MusicObject::MusicSongInformation &info);
+    void createItem(const MusicObject::MusicSongInformation &info, MusicAbstractQueryRequest::QueryType type);
     /*!
      * Start to download music data.
      */
-    void startToDownload(MusicAbstractQueryRequest::QueryType type);
+    void startToDownload();
 
 public Q_SLOTS:
     /*!
@@ -163,7 +164,6 @@ public Q_SLOTS:
 protected:
     Ui::MusicDownloadBatchWidget *m_ui;
 
-    MusicAbstractQueryRequest::QueryType m_queryType;
 };
 
 #endif // MUSICDOWNLOADBATCHWIDGET_H
