@@ -114,10 +114,10 @@ void MusicQQQueryMovieRequest::downLoadFinished()
                             continue;
                         }
                         const QVariantMap &name = var.toMap();
-                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
                     }
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                     musicInfo.m_songId = value["vid"].toString();

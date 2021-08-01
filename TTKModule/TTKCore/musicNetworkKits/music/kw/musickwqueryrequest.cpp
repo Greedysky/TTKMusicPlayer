@@ -163,8 +163,8 @@ void MusicKWQueryRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["ARTIST"].toString());
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["SONGNAME"].toString());
+                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
 
                     musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
@@ -181,7 +181,7 @@ void MusicKWQueryRequest::downLoadFinished()
                         readFromMusicSongPicture(&musicInfo);
                         TTK_NETWORK_QUERY_CHECK();
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                        musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
+                        musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
                         readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_queryQuality, m_queryAllRecords);
                         TTK_NETWORK_QUERY_CHECK();
 

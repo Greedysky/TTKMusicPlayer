@@ -242,8 +242,8 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
             value = value["data"].toMap();
             MusicObject::MusicSongInformation musicInfo;
             musicInfo.m_songId = QString::number(id);
-            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
-            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
+            musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
+            musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artistName"].toString());
             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();
@@ -320,11 +320,11 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
             value = value["data"].toMap();
             MusicObject::MusicSongInformation musicInfo;
             musicInfo.m_songId = id;
-            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
+            musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["durationms"].toInt());
 
             const QVariantMap &artistObject = value["creator"].toMap();
-            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artistObject["nickname"].toString());
+            musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["nickname"].toString());
 
             const QVariantList &datas = value["resolutions"].toList();
             for(const QVariant &var : qAsConst(datas))

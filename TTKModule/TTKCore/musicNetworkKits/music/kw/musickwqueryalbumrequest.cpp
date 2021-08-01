@@ -100,14 +100,14 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist"].toString());
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = STRING_NULL;
 
                     musicInfo.m_songId = value["id"].toString();
                     musicInfo.m_artistId = value["artistid"].toString();
                     musicInfo.m_albumId = info.m_nickName;
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumName);
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumName);
 
                     musicInfo.m_year = QString();
                     musicInfo.m_discNumber = "1";

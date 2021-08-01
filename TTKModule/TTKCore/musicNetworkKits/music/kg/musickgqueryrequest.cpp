@@ -105,13 +105,13 @@ void MusicKGQueryRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singername"].toString());
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
+                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     musicInfo.m_songId = value["hash"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album_name"].toString());
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["album_name"].toString());
 
                     musicInfo.m_year = QString();
                     musicInfo.m_discNumber = "1";
@@ -169,8 +169,8 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 value = value["data"].toMap();
                 MusicObject::MusicSongInformation musicInfo;
                 musicInfo.m_songId = value["hash"].toString();
-                musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singername"].toString());
-                musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
+                musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
+                musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                 musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
                 musicInfo.m_artistId = QString::number(value["singerid"].toULongLong());
                 musicInfo.m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
@@ -187,7 +187,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
 
                     const QVariantMap &albumMap = var.toMap();
                     musicInfo.m_albumId = albumMap["album_audio_id"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumMap["album_name"].toString());
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumMap["album_name"].toString());
                 }
 
                 musicInfo.m_year = QString();

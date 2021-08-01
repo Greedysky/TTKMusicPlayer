@@ -63,14 +63,14 @@ void MusicKWQueryArtistRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["ARTIST"].toString());
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["SONGNAME"].toString());
+                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
 
                     musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
                     musicInfo.m_artistId = value["ARTISTID"].toString();
                     musicInfo.m_albumId = value["ALBUMID"].toString();
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["ALBUM"].toString());
 
                     musicInfo.m_year = value["RELEASEDATE"].toString();
                     musicInfo.m_discNumber = "1";
@@ -156,9 +156,6 @@ void MusicKWQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
         item->m_tags = value["country"].toString();
         item->m_updateTime = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();
-        item->m_description = value["info"].toString();
-
-        item->m_description.replace("&nbsp;", " ");
-        item->m_description.replace("&lt;br&gt;", "\r\n");
+        item->m_description = MusicUtils::String::convertHtmlToPlain(value["info"].toString());
     }
 }

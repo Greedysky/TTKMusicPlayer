@@ -102,7 +102,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
@@ -110,7 +110,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                     const QVariantMap &albumObject = value["al"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
                     musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumObject["name"].toString());
 
                     const QVariantList &artistsArray = value["ar"].toList();
                     for(const QVariant &artistValue : qAsConst(artistsArray))
@@ -122,7 +122,7 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
 
                         const QVariantMap &artistMap = artistValue.toMap();
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artistMap["name"].toString());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistMap["name"].toString());
                     }
 
                     musicInfo.m_year = QString();

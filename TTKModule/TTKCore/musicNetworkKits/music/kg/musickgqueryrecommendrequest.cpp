@@ -59,14 +59,14 @@ void MusicKGQueryRecommendRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["filename"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     if(musicInfo.m_songName.contains(STRING_NULL))
                     {
                         const QStringList &ll = musicInfo.m_songName.split(STRING_NULL);
-                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
-                        musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
+                        musicInfo.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
                     }
 
                     musicInfo.m_songId = value["hash"].toString();
@@ -79,7 +79,7 @@ void MusicKGQueryRecommendRequest::downLoadFinished()
                     MusicResultsItem albumInfo;
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumInfo.m_nickName);
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(albumInfo.m_nickName);
                     TTK_NETWORK_QUERY_CHECK();
                     readFromMusicSongLrcAndPicture(&musicInfo);
                     TTK_NETWORK_QUERY_CHECK();

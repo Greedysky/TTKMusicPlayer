@@ -135,10 +135,10 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                         }
 
                         const QVariantMap &name = var.toMap();
-                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(name["name"].toString());
+                        musicInfo.m_singerName = MusicUtils::String::charactersReplaced(name["name"].toString());
                         musicInfo.m_artistId = name["mid"].toString();
                     }
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songname"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                     m_rawData["sid"] = value["songid"].toString();
@@ -147,7 +147,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(musicInfo.m_albumId);
 
-                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumname"].toString());
+                    musicInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumname"].toString());
 
                     musicInfo.m_year = QString();
                     musicInfo.m_discNumber = value["cdIdx"].toString();

@@ -68,8 +68,8 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             TTK_NETWORK_QUERY_CHECK();
 
                             MusicObject::MusicSongInformation musicInfo;
-                            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
-                            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+                            musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["name"].toString());
+                            musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                             if(musicInfo.m_singerName.contains(" - "))
                             {
                                 const QStringList &ds = musicInfo.m_singerName.split(" - ");

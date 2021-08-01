@@ -200,13 +200,13 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     musicInfo.m_smallPicUrl = radioObject["picUrl"].toString();
                     musicInfo.m_artistId = QString::number(radioObject["id"].toInt());
-                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(radioObject["name"].toString());
+                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(radioObject["name"].toString());
 
                     const QVariantMap &mainSongObject = value["mainSong"].toMap();
                     musicInfo.m_songId = QString::number(mainSongObject["id"].toInt());

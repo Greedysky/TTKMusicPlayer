@@ -2,6 +2,7 @@
 #include "musicsettingmanager.h"
 
 #include <QColor>
+#include <QTextDocument>
 
 QString MusicUtils::String::lrcPrefix()
 {
@@ -153,6 +154,13 @@ QString MusicUtils::String::songName(const QString &value, const QString &key)
     return value;
 }
 
+QString MusicUtils::String::convertHtmlToPlain(const QString &value)
+{
+    QTextDocument text;
+    text.setHtml(value);
+    return text.toPlainText();
+}
+
 QStringList MusicUtils::String::illegalCharacters()
 {
     QStringList acs;
@@ -160,7 +168,7 @@ QStringList MusicUtils::String::illegalCharacters()
     return acs;
 }
 
-bool MusicUtils::String::illegalCharactersCheck(const QString &value)
+bool MusicUtils::String::isCharacterValid(const QString &value)
 {
     const QStringList acs(illegalCharacters());
     for(const QString &ac : qAsConst(acs))
@@ -174,10 +182,10 @@ bool MusicUtils::String::illegalCharactersCheck(const QString &value)
     return false;
 }
 
-QString MusicUtils::String::illegalCharactersReplaced(const QString &value)
+QString MusicUtils::String::charactersReplaced(const QString &value)
 {
+    QString s(convertHtmlToPlain(value));
     const QStringList acs(illegalCharacters());
-    QString s(value);
 
     for(const QString &ac : qAsConst(acs))
     {

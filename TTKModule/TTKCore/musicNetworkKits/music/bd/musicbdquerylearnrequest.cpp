@@ -66,8 +66,8 @@ void MusicBDQueryLearnRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist_name"].toString());
-                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["song_title"].toString());
+                    musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist_name"].toString());
+                    musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["song_title"].toString());
                     musicInfo.m_songId = value["song_id"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 

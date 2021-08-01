@@ -27,7 +27,7 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(const QString &
 
 void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
 {
-    if(MusicUtils::String::illegalCharactersCheck(text))
+    if(MusicUtils::String::isCharacterValid(text))
     {
         backspace();
         m_focusBlock = true;

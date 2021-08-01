@@ -90,17 +90,21 @@ namespace MusicUtils
         TTK_MODULE_EXPORT QString songName(const QString &value, const QString &key = "-");
 
         /*!
-         * Illegal characters check.
+         * Html string to plain.
+         */
+        TTK_MODULE_EXPORT QString convertHtmlToPlain(const QString &value);
+        /*!
+         * Illegal characters.
          */
         TTK_MODULE_EXPORT QStringList illegalCharacters();
         /*!
          * Illegal characters check.
          */
-        TTK_MODULE_EXPORT bool illegalCharactersCheck(const QString &value);
+        TTK_MODULE_EXPORT bool isCharacterValid(const QString &value);
         /*!
          * Illegal characters replaced.
          */
-        TTK_MODULE_EXPORT QString illegalCharactersReplaced(const QString &value);
+        TTK_MODULE_EXPORT QString charactersReplaced(const QString &value);
 
         /*!
          * Transform colors string to color list.
