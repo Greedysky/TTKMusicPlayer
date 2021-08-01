@@ -66,6 +66,7 @@ public:
      * Data download to local file.
      */
     virtual void musicDownloadLocal(int row) override;
+
     /*!
      * Resize widget size by delta.
      */

@@ -47,6 +47,7 @@ public:
      * Data download to local file.
      */
     virtual void musicDownloadLocal(int row) override;
+
     /*!
      * Download data from net and just play or not.
      */
@@ -82,9 +83,9 @@ public Q_SLOTS:
      */
     void createFinishedItem();
     /*!
-     * Search menu type changed.
+     * Menu action type changed.
      */
-    void searchChanged(QAction *action);
+    void menuActionChanged(QAction *action);
 
 protected:
     /*!

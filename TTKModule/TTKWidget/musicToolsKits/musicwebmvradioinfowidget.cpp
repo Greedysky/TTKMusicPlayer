@@ -28,6 +28,19 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
     }
 }
 
+void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
+{
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MovieQuery);
+    download->show();
+}
+
 void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 {
     MusicQueryTableWidget::itemCellClicked(row, column);
@@ -52,17 +65,42 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
     }
 }
 
-void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
+void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
+    const int row = currentRow();
     const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MovieQuery);
-    download->show();
+    switch(action->data().toInt())
+    {
+        case 0: itemCellClicked(row, 6); break;
+        case 1: itemCellClicked(row, 7); break;
+        default: break;
+    }
+}
+
+void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicQueryTableWidget::contextMenuEvent(event);
+
+    QMenu menu;
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+
+    const int row = currentRow();
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"))->setData(0);
+    menu.addAction(tr("downloadMore..."))->setData(1);
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(actionChanged(QAction*)));
+
+    menu.exec(QCursor::pos());
 }
 
 

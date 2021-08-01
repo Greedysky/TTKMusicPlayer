@@ -132,7 +132,7 @@ void MusicItemQueryTableWidget::resizeWindow()
     }
 }
 
-void MusicItemQueryTableWidget::searchChanged(QAction *action)
+void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
     const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
@@ -186,7 +186,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("search '%1'").arg(info.m_songName))->setData(4);
     menu.addAction(tr("search '%1'").arg(info.m_albumName))->setData(5);
     menu.addAction(tr("search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName))->setData(6);
-    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchChanged(QAction*)));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(menuActionChanged(QAction*)));
 
     menu.exec(QCursor::pos());
 }

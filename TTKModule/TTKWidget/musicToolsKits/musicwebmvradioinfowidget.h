@@ -49,6 +49,16 @@ public Q_SLOTS:
      * Subclass should implement this function.
      */
     virtual void itemCellClicked(int row, int column) override;
+    /*!
+     * Menu action type changed.
+     */
+    void actionChanged(QAction *action);
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 

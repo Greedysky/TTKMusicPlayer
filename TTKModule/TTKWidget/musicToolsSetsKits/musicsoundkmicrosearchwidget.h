@@ -44,6 +44,7 @@ public:
      * Data download to local file.
      */
     virtual void musicDownloadLocal(int row) override;
+
     /*!
      * Set query Movie flag.
      */
