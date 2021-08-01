@@ -52,12 +52,12 @@ typedef struct TTK_MODULE_EXPORT MusicDownloadTableItemRole
         m_size = s;
     }
 
-    bool isEmpty() const
+    inline bool isEmpty() const
     {
         return m_bitrate == -1 && m_format.isEmpty() && m_size.isEmpty();
     }
 
-    bool isEqual(const MusicDownloadTableItemRole &r) const
+    inline bool isEqual(const MusicDownloadTableItemRole &r) const
     {
         return m_bitrate == r.m_bitrate && m_format == r.m_format && m_size == r.m_size;
     }
@@ -115,7 +115,7 @@ public:
      */
     void clearAllItems();
     /*!
-     * Create current itrm by given bitrate\type\icon\otherinfo.
+     * Create current item by given bitrate\type\icon.
      */
     void createItem(const MusicObject::MusicSongAttribute &attr, const QString &type, const QString &icon);
     /*!
@@ -171,7 +171,7 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void queryAllFinished();
+    void downLoadFinished();
     /*!
      * Change data download save path.
      */
@@ -212,21 +212,9 @@ protected:
      */
     MusicObject::MusicSongInformation getMatchMusicSongInformation();
     /*!
-     * Query all quality that musics is finished.
+     * Create current all items.
      */
-    void queryAllFinishedMusic();
-    /*!
-     * Query all quality that musics is finished.
-     */
-    void queryAllFinishedMusic(const MusicObject::MusicSongAttributes &attrs);
-    /*!
-     * Query all quality that movies is finished.
-     */
-    void queryAllFinishedMovie();
-    /*!
-     * Query all quality that movies is finished.
-     */
-    void queryAllFinishedMovie(const MusicObject::MusicSongAttributes &attrs);
+    void createAllItems(const MusicObject::MusicSongAttributes &attrs);
     /*!
      * Strat to download music.
      */

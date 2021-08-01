@@ -339,8 +339,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
     }
 
     MusicObject::MusicSongAttributes attrs(downloadInfo.m_songAttrs);
-    std::sort(attrs.begin(), attrs.end());
-    //to find out the min bitrate
+    std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
 
     if(!attrs.isEmpty())
     {

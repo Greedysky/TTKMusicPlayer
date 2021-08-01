@@ -141,7 +141,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
-    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
+    connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
 }
 
 MusicDownloadWidget::~MusicDownloadWidget()
@@ -193,14 +193,7 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &i
     initWidget();
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), QString("%1 - %2").arg(info.m_singerName).arg(info.m_songName), Qt::ElideRight, 200));
 
-    if(type == MusicAbstractQueryRequest::MusicQuery)
-    {
-        queryAllFinishedMusic(info.m_songAttrs);
-    }
-    else if(type == MusicAbstractQueryRequest::MovieQuery)
-    {
-        queryAllFinishedMovie(info.m_songAttrs);
-    }
+    createAllItems(info.m_songAttrs);
 }
 
 void MusicDownloadWidget::show()
@@ -209,7 +202,7 @@ void MusicDownloadWidget::show()
     return MusicAbstractMoveWidget::show();
 }
 
-void MusicDownloadWidget::queryAllFinished()
+void MusicDownloadWidget::downLoadFinished()
 {
     if(!G_NETWORK_PTR->isOnline())
     {
@@ -217,13 +210,15 @@ void MusicDownloadWidget::queryAllFinished()
     }
 
     m_ui->viewArea->clearAllItems();
-    if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
+    const MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
+    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
-        queryAllFinishedMusic();
+        createAllItems(musicSongInfo.m_songAttrs);
     }
-    else if(m_queryType == MusicAbstractQueryRequest::MovieQuery)
+    else
     {
-        queryAllFinishedMovie();
+        close();
+        MusicToastLabel::popup(tr("No Resource found!"));
     }
 }
 
@@ -251,88 +246,30 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
     return MusicObject::MusicSongInformation();
 }
 
-void MusicDownloadWidget::queryAllFinishedMusic()
-{
-    const MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
-    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
-    {
-        queryAllFinishedMusic(musicSongInfo.m_songAttrs);
-    }
-    else
-    {
-        close();
-        MusicToastLabel::popup(tr("No Resource found!"));
-    }
-}
-
-void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttributes &attrs)
+void MusicDownloadWidget::createAllItems(const MusicObject::MusicSongAttributes &attrs)
 {
     MusicObject::MusicSongAttributes attributes = attrs;
-    std::sort(attributes.begin(), attributes.end());
-    //to find out the min bitrate
+    std::sort(attributes.begin(), attributes.end()); //to find out the min bitrate
 
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attributes))
+    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
     {
-        if(attr.m_bitrate == MB_128)        ///sd
+        if((attr.m_bitrate == MB_128 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+           (attr.m_bitrate <= MB_250 && m_queryType == MusicAbstractQueryRequest::MovieQuery))       ///sd
         {
             m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
-        else if(attr.m_bitrate == MB_192)   ///hd
+        else if((attr.m_bitrate == MB_192 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+                (attr.m_bitrate == MB_500 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///hd
         {
             m_ui->viewArea->createItem(attr, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
-        else if(attr.m_bitrate == MB_320)   ///sq
+        else if((attr.m_bitrate == MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+                (attr.m_bitrate == MB_750 && m_queryType == MusicAbstractQueryRequest::MovieQuery))  ///sq
         {
             m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
-        else if(attr.m_bitrate > MB_320)    ///cd
-        {
-            m_ui->viewArea->createItem(attr, tr("CD"), QString(":/quality/lb_cd_quality"));
-        }
-        else
-        {
-            continue;
-        }
-    }
-
-    resizeWindow();
-}
-
-void MusicDownloadWidget::queryAllFinishedMovie()
-{
-    const MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
-    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
-    {
-        queryAllFinishedMovie(musicSongInfo.m_songAttrs);
-    }
-    else
-    {
-        close();
-        MusicToastLabel::popup(tr("No Resource found!"));
-    }
-}
-
-void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttributes &attrs)
-{
-    MusicObject::MusicSongAttributes attributes = attrs;
-    std::sort(attributes.begin(), attributes.end());
-    //to find out the min bitrate
-
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attributes))
-    {
-        if(attr.m_bitrate <= MB_250)       ///sd
-        {
-            m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
-        }
-        else if(attr.m_bitrate == MB_500)  ///hd
-        {
-            m_ui->viewArea->createItem(attr, tr("HD"), QString(":/quality/lb_hd_quality"));
-        }
-        else if(attr.m_bitrate == MB_750)  ///sq
-        {
-            m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
-        }
-        else if(attr.m_bitrate >= MB_1000) ///cd
+        else if((attr.m_bitrate > MB_320 && m_queryType == MusicAbstractQueryRequest::MusicQuery) ||
+                (attr.m_bitrate >= MB_1000 && m_queryType == MusicAbstractQueryRequest::MovieQuery)) ///cd
         {
             m_ui->viewArea->createItem(attr, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
