@@ -43,7 +43,7 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
 void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate*1000).arg(info->m_songId));
+    request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
     makeTokenQueryRequest(&request);
 
     QNetworkAccessManager manager;
@@ -98,28 +98,6 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate, const QString &suffix)
-{
-    const qint64 dfsId = /*key.value("dfsId").toLongLong()*/0;
-    if(key.isEmpty() || dfsId == 0)
-    {
-        readFromMusicSongAttribute(info, bitrate);
-    }
-    else
-    {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = key.value("extension").toString();
-        if(attr.m_format.isEmpty())
-        {
-            attr.m_format = suffix;
-        }
-        attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_OLD_URL, false).arg(encryptedId(dfsId)).arg(dfsId);
-        info->m_songAttrs.append(attr);
-    }
-}
-
 void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     int maxBr = MB_1000;
@@ -149,38 +127,38 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     {
         if(maxBr == MB_1000 || maxBr == MB_320)
         {
-            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128, MP3_FILE_PREFIX);
-            readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192, MP3_FILE_PREFIX);
-            readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320, MP3_FILE_PREFIX);
-            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLAC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongAttribute(info, MB_320);
+            readFromMusicSongAttribute(info, MB_1000);
         }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192, MP3_FILE_PREFIX);
-            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongAttribute(info, MB_128);
         }
         else
         {
-            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_128);
         }
     }
     else
     {
         if(quality == QObject::tr("SD") && maxBr >= MB_128)
         {
-            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_128);
         }
         else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
         {
-            readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_192);
         }
         else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
         {
-            readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_320);
         }
         else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttribute(info, key["fMusic"].toMap(), MB_1000, FLAC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_1000);
         }
     }
 }
@@ -190,7 +168,7 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false),
-                      MusicUtils::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate*1000));
+                      MusicUtils::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
@@ -241,28 +219,6 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
     }
 }
 
-void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate, const QString &suffix)
-{
-    const qint64 fid = /*key.value("fid").toLongLong()*/0;
-    if(key.isEmpty() || fid == 0)
-    {
-        readFromMusicSongAttribute(info, bitrate);
-    }
-    else
-    {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = key.value("extension").toString();
-        if(attr.m_format.isEmpty())
-        {
-            attr.m_format = suffix;
-        }
-        attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_OLD_URL, false).arg(encryptedId(fid)).arg(fid);
-        info->m_songAttrs.append(attr);
-    }
-}
-
 void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     int maxBr = MB_1000;
@@ -292,64 +248,38 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
     {
         if(maxBr == MB_1000 || maxBr == MB_320)
         {
-            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128, MP3_FILE_PREFIX);
-            readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192, MP3_FILE_PREFIX);
-            readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320, MP3_FILE_PREFIX);
-            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLAC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_128);
+            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongAttribute(info, MB_320);
+            readFromMusicSongAttribute(info, MB_1000);
         }
         else if(maxBr == MB_192)
         {
-            readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192, MP3_FILE_PREFIX);
-            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_192);
+            readFromMusicSongAttribute(info, MB_128);
         }
         else
         {
-            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_128);
         }
     }
     else
     {
         if(quality == QObject::tr("SD") && maxBr >= MB_128)
         {
-            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_128);
         }
         else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
         {
-            readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_192);
         }
         else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
         {
-            readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320, MP3_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_320);
         }
         else if(quality == QObject::tr("CD") && maxBr >= MB_1000)
         {
-            readFromMusicSongAttributeNew(info, key["f"].toMap(), MB_1000, FLAC_FILE_PREFIX);
+            readFromMusicSongAttribute(info, MB_1000);
         }
     }
-}
-
-QString MusicWYQueryInterface::encryptedId(qint64 id)
-{
-    return encryptedId(QString::number(id));
-}
-
-QString MusicWYQueryInterface::encryptedId(const QString &string)
-{
-    const QByteArray array1(WY_ENCRYPT_STRING.toUtf8());
-    QByteArray array2 = string.toUtf8();
-    int length = array1.length();
-    for(int i=0; i<array2.length(); ++i)
-    {
-        array2[i] = array2[i]^array1[i % length];
-    }
-
-    QByteArray encodedData = MusicUtils::Algorithm::md5(array2);
-#if TTK_QT_VERSION_CHECK(5,2,0)
-    encodedData = encodedData.toBase64(QByteArray::Base64UrlEncoding);
-#else
-    encodedData = encodedData.toBase64();
-    encodedData.replace("+", "-");
-    encodedData.replace("/", "_");
-#endif
-    return encodedData;
 }

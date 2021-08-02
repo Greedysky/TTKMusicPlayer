@@ -23,7 +23,7 @@
 #include "musicglobaldefine.h"
 
 ///cookie url
-const QString WY_UA_URL                     = "bVlDb2p4N2ppaEs3b0RUV1dmQ2puZG9oRWNoZ2w5NmhJRG9DTkFLck00RFc4TzhCQnlmcGFwSjZWb3VkeHFXcUdWM3B0RTJnRzlVRlJFL0gxeS9RUU1VUVpMUVpycEVzNy9QUkVhNlc0ZXFpd1BrZzBmRXk5bDV6UXN2dnlNSTFBRDRSTzFvVkJFRVJpMXpMMHhDK0lOY0xzVXUvMFRBUmhGaUg2aWszRmRvPQ==";
+const QString WY_UA_URL                     = "blh5d29qL3ByYWhHKzRLdVZjMkJ5Um1VSjY5WWtCSk50S0JRQ0t1Rlg2a1pKWUs5MWhTUkwycHRxTzdPcFNOWkdjMVc4TkZFS1lZamQ3bW83bExLWkRyYnZrbFFYUVBkTmZCU0hFdzVla0J1Q2Z5MHZsYUpscko4bnFTdUY2NC82RHFpQ0JlMnRMd21aL2wrWXRGR0RPcENXcXNjZ3I2NDlaQjNCUT09";
 const QString WY_COOKIE_URL                 = "bSs4UEJOUzFwRWpzRVY0WUVJekhzU0Nzc1JZT0pLc2tOdFNaM05DWnRhM3JHT0kzSWpQb1MyNXJkK3A5YmV3YklpM082dDk1amVjejV0NlV5aHYybkF4Zjd3L2NSblJkYmRXOS8xVlJOWnYvMWhweUxsSGhtSGVPYnFQZE10d01sNWswZFNzYnVEOGhBWkpHdHFTUGpJNVROdWM9";
 const QString WY_NUID_URL                   = "b3dKbGtVNzlPOVd2VXFNblZaN1dXYW5WZ2hKNEZkUENjaUpxUDF3c2hvLzFaVnRW";
 const QString WY_NNID_URL                   = "RjF6ZXpKb2cyN1Nyay9FZ2c4L3hXUGtqdXo3WkdOa05FK0ZjNTVNczY2Q3YyNGhrYXlWSUh2TDVlMkxQVXRGY3JYRDFHZz09";
@@ -31,13 +31,11 @@ const QString WY_WYYY_URL                   = "MG6QwDltNsmCgQuuPzMXdhc%2BpK3ejnT
 const QString WY_NMTID_URL                  = "V0Zsb2tGREU1R0thR29GYjRYdk5jbm5NZjEvN1d6WWNiQlZqb2k4eE1nTm9lTHlBRktkQTBOaXNjQ3ZHU0ZMSw==";
 ///base url
 const QString WY_BASE_URL                   = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
-const QString WY_ENCRYPT_STRING             = "3go8&$8*3*3h0k(2)2";
 const QString WY_SECKRY_STRING              = "411571dca16717d9af5ef1ac97a8d21cb740329890560688b1b624de43f49fdd7702493835141b06ae45f1326e264c98c24ce87199c1a776315e5f25c11056b02dd92791fcc012bff8dd4fc86e37888d5ccc060f7837b836607dbb28bddc703308a0ba67c24c6420dd08eec2b8111067486c907b6e53c027ae1e56c188bc568e";
 ///song url
 const QString WY_SONG_SEARCH_URL            = "STg2eHNFN0FLWnRzeDNlQXRlaHIvVlJ6b2k5a2s3Y2JmMG9lUEQzTytuNG5JenowY3ZleC9SbXFyak1ta29pYzA3dytZZz09";
 const QString WY_SONG_SEARCH_DATA_URL       = "UUlpSjlhZzFoVnExMDRudE5PWlFva25EWCt1d09CbGVYdlNpVVhvUWVna29JVU9sa3cxK2N0bUU0eW1VMENTTjlhR3JnQT09";
 const QString WY_SONG_LRC_OLD_URL           = "eEZRWnA5eWZZZWFvakpnQ2F2Sml1aTZQa1crekFlZUJoTXUwRUgwekRtOXFsU2l2S1BKZFdwTUVaNGRzWUJ2ZTNpdlRDNnVuTUt2M0xtUTRsaWh2NTZBQ0JacnNTbXp6";
-const QString WY_SONG_PATH_OLD_URL          = "SXZWVUpDL0FCM1pUODJsaDNGZjN4OFlVZk1JQzdXOXRpWVJTSTVEUEZJZkI3YUJOMUdLQ3lnPT0=";
 const QString WY_SONG_PATH_URL              = "M21IV2dlSHNzaE1zZEpyb2hrQ0dqVEY3Ly9DZ3ZteDM1RStuSlJIRVVCRTljbWJKKzRBVnNZY3JEcEZKY045dEJ5KzM0WHArSDVCYXhrMHBoZmlTZXBWdHIvND0=";
 const QString WY_SONG_PATH_DATA_URL         = "ei9SdFJqZWlHWlh3eXBsWHJTS09FbUpRU1J4Zi9wZDlOQUMyVTVnL3c0YW9GSjVH";
 const QString WY_SONG_INFO_OLD_URL          = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
@@ -107,10 +105,6 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate, const QString &suffix);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
     void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
@@ -119,20 +113,7 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate, const QString &suffix);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
     void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all);
-
-    /*!
-     * Encrypted music info id.
-     */
-    QString encryptedId(qint64 id);
-    /*!
-     * Encrypted music info id.
-     */
-    QString encryptedId(const QString &string);
 
 };
 

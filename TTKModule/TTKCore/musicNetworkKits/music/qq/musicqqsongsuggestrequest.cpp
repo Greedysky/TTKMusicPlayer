@@ -63,8 +63,8 @@ void MusicQQSongSuggestRequest::downLoadFinished()
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem item;
-                    item.m_name = value["name"].toString();
-                    item.m_nickName = value["singer"].toString();
+                    item.m_name = MusicUtils::String::charactersReplaced(value["name"].toString());
+                    item.m_nickName = MusicUtils::String::charactersReplaced(value["singer"].toString());
                     m_items << item;
                 }
             }
