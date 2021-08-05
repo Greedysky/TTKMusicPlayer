@@ -35,7 +35,6 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
                 if(m_counter < 5 && !dataMap.isEmpty())
                 {
                     const QString &url = dataMap.values().first().toString();
-                    TTK_LOGGER_ERROR(url);
                     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(m_counter++).arg(SKN_FILE), MusicObject::DownloadBigBackground, this);
                     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     download->startToDownload();
