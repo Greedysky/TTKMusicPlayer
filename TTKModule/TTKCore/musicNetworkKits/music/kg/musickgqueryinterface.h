@@ -58,6 +58,16 @@ const QString KG_SUGGEST_URL            = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZM
 
 
 class MusicResultsItem;
+class QNetworkRequest;
+
+namespace MusicKGInterface
+{
+    /*!
+     * Make request query data.
+     */
+    void makeRequestRawHeader(QNetworkRequest *request);
+
+}
 
 /*! @brief The class of kugou query interface.
  * @author Greedysky <greedysky@163.com>

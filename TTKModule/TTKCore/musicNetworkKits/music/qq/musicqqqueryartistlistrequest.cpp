@@ -42,8 +42,7 @@ void MusicQQQueryArtistListRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset + 1));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

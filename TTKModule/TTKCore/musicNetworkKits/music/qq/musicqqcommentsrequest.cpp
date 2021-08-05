@@ -42,8 +42,7 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -129,8 +128,7 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

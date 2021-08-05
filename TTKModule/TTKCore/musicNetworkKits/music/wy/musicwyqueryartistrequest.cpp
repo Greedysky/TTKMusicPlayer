@@ -20,12 +20,9 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
     m_queryText = artist;
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(artist),
                       QString("{}"));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -144,12 +141,9 @@ void MusicWYQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
     }
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryText));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);

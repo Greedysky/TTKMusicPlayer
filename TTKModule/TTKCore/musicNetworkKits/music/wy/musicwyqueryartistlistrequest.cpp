@@ -42,12 +42,9 @@ void MusicWYQueryArtistListRequest::startToPage(int offset)
     m_totalSize = DEFAULT_HIGHER_LEVEL;
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_LIST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_LIST_DATA_URL, false).arg(catId).arg(0).arg(100).arg(initial));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

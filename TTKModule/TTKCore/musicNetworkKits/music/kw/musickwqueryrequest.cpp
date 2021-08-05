@@ -98,8 +98,7 @@ void MusicKWQueryRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_queryText).arg(offset).arg(m_pageSize));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -123,8 +122,7 @@ void MusicKWQueryRequest::startToSingleSearch(const QString &text)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(text));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));

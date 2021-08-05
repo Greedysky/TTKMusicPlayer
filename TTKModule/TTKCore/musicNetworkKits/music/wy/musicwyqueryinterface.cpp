@@ -13,19 +13,17 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicWYQueryInterface::makeTokenQueryRequest(QNetworkRequest *request)
+void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL, ALG_UA_KEY, false).toUtf8());
-
-    QString cookie = G_SETTING_PTR->value(MusicSettingManager::NetworkCookie).toString();
-    cookie = cookie.isEmpty() ? MusicUtils::Algorithm::mdII(WY_COOKIE_URL, false) : cookie;
-    request->setRawHeader("Cookie", QString("MUSIC_U=%1; NMTID=%2; ").arg(cookie)
+    request->setRawHeader("Cookie", QString("MUSIC_U=%1; NMTID=%2; ").arg(MusicUtils::Algorithm::mdII(WY_COOKIE_URL, false))
                                             .arg(MusicUtils::Algorithm::mdII(WY_NMTID_URL, ALG_UA_KEY, false))
                                             .toUtf8());
     MusicObject::setSslConfiguration(request);
 }
+
 
 QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
 {
@@ -35,7 +33,7 @@ QByteArray MusicWYQueryInterface::makeTokenQueryUrl(QNetworkRequest *request, co
     MusicUtils::Url::urlEncode(parameter);
 
     request->setUrl(query);
-    makeTokenQueryRequest(request);
+    MusicWYInterface::makeRequestRawHeader(request);
 
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY_STRING.toUtf8();
 }
@@ -44,7 +42,7 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
-    makeTokenQueryRequest(&request);
+    MusicWYInterface::makeRequestRawHeader(&request);
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;

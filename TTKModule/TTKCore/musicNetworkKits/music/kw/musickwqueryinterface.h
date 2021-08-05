@@ -62,6 +62,17 @@ const QString KW_RECOMMEND_URL          = "SUVwN29KVHFLbVRzTC9PSW5QelFZTkJlMC9vV
 const QString KW_SUGGEST_URL            = "UXc5cFVXZG92VUxjeFpmR0w4OS9rUG12ZjNtdGZ6d2owb09SaXZrZmIxMEwxbEZYWVY4a0hWMVVQL2d0Y3dNbURPUE9PYWVlcjBXdW5aNjAxbnNLajl3N0ZoMG5UemFGTWFhYjFLeXhzcWJhVU04VA==";
 
 
+class QNetworkRequest;
+
+namespace MusicKWInterface
+{
+    /*!
+     * Make request query data.
+     */
+    void makeRequestRawHeader(QNetworkRequest *request);
+
+}
+
 /*! @brief The class of kuwo query interface.
  * @author Greedysky <greedysky@163.com>
  */
@@ -79,7 +90,7 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
+    void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
