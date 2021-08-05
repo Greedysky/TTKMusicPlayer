@@ -41,11 +41,10 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_BASE_URL, false));
+    MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(offset).arg(m_pageSize).toUtf8());
+    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(m_pageSize).arg(offset).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -69,9 +68,9 @@ void MusicQQSongCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 0)
             {
-                m_totalSize = value["commenttotal"].toInt();
-
-                const QVariantList &datas = value["comment"].toList();
+                QVariantMap req = value["req_1"].toMap();
+                req = req["data"].toMap();
+                QVariantList datas = req["response_list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
@@ -79,15 +78,56 @@ void MusicQQSongCommentsRequest::downLoadFinished()
                         continue;
                     }
 
-                    value = var.toMap();
+                    req = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    m_totalSize = req["count"].toInt();
+                }
+
+                req = value["req_2"].toMap();
+                req = req["data"].toMap();
+                QVariantMap comment = req["CommentList2"].toMap();
+                datas = comment["Comments"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    req = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    comment.m_playCount = QString::number(value["praisenum"].toInt());
-                    comment.m_updateTime = QString::number(value["time"].toLongLong() * 1000);
-                    comment.m_description = value["rootcommentcontent"].toString();
-                    comment.m_nickName = value["nick"].toString();
-                    comment.m_coverUrl = value["avatarurl"].toString();
+                    comment.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    comment.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    comment.m_description = req["Content"].toString();
+                    comment.m_nickName = req["Nick"].toString();
+                    comment.m_coverUrl = req["Avatar"].toString();
+
+                    Q_EMIT createSearchedItem(comment);
+                }
+
+                req = value["req_2"].toMap();
+                req = req["data"].toMap();
+                comment = req["CommentList"].toMap();
+                datas = comment["Comments"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    req = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultsItem comment;
+                    comment.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    comment.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    comment.m_description = req["Content"].toString();
+                    comment.m_nickName = req["Nick"].toString();
+                    comment.m_coverUrl = req["Avatar"].toString();
 
                     Q_EMIT createSearchedItem(comment);
                 }
@@ -128,11 +168,10 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
     m_totalSize = 0;
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(QQ_COMMENT_URL, false));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    request.setUrl(MusicUtils::Algorithm::mdII(QQ_BASE_URL, false));
+    MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(offset).arg(m_pageSize).toUtf8());
+    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(m_pageSize).arg(offset).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -156,9 +195,9 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 0)
             {
-                m_totalSize = value["commenttotal"].toInt();
-
-                const QVariantList &datas = value["comment"].toList();
+                QVariantMap req = value["req_1"].toMap();
+                req = req["data"].toMap();
+                QVariantList datas = req["response_list"].toList();
                 for(const QVariant &var : qAsConst(datas))
                 {
                     if(var.isNull())
@@ -166,15 +205,56 @@ void MusicQQPlaylistCommentsRequest::downLoadFinished()
                         continue;
                     }
 
-                    value = var.toMap();
+                    req = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    m_totalSize = req["count"].toInt();
+                }
+
+                req = value["req_2"].toMap();
+                req = req["data"].toMap();
+                QVariantMap comment = req["CommentList2"].toMap();
+                datas = comment["Comments"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    req = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
 
                     MusicResultsItem comment;
-                    comment.m_playCount = QString::number(value["praisenum"].toInt());
-                    comment.m_updateTime = QString::number(value["time"].toLongLong() * 1000);
-                    comment.m_description = value["rootcommentcontent"].toString();
-                    comment.m_nickName = value["nick"].toString();
-                    comment.m_coverUrl = value["avatarurl"].toString();
+                    comment.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    comment.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    comment.m_description = req["Content"].toString();
+                    comment.m_nickName = req["Nick"].toString();
+                    comment.m_coverUrl = req["Avatar"].toString();
+
+                    Q_EMIT createSearchedItem(comment);
+                }
+
+                req = value["req_2"].toMap();
+                req = req["data"].toMap();
+                comment = req["CommentList"].toMap();
+                datas = comment["Comments"].toList();
+                for(const QVariant &var : qAsConst(datas))
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    req = var.toMap();
+                    TTK_NETWORK_QUERY_CHECK();
+
+                    MusicResultsItem comment;
+                    comment.m_playCount = QString::number(req["PraiseNum"].toInt());
+                    comment.m_updateTime = QString::number(req["PubTime"].toLongLong());
+                    comment.m_description = req["Content"].toString();
+                    comment.m_nickName = req["Nick"].toString();
+                    comment.m_coverUrl = req["Avatar"].toString();
 
                     Q_EMIT createSearchedItem(comment);
                 }

@@ -160,10 +160,6 @@ public:
     /*!
      * Start search query by text.
      */
-    void startSearchQuery(const QString &name);
-    /*!
-     * Start search query by text.
-     */
     void startSearchQuery(const QString &name, bool all);
     /*!
      * Start search query by given id.

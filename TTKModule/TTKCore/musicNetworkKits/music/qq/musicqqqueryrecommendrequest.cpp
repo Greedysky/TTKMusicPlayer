@@ -21,8 +21,7 @@ void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_RECOMMEND_URL, false));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -90,7 +89,7 @@ void MusicQQQueryRecommendRequest::downLoadFinished()
                     musicInfo.m_trackNumber = value["index_album"].toString();
 
                     TTK_NETWORK_QUERY_CHECK();
-                    readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
+                    readFromMusicSongAttributeNew(&musicInfo, value["file"].toMap());
                     TTK_NETWORK_QUERY_CHECK();
 
                     if(musicInfo.m_songAttrs.isEmpty())

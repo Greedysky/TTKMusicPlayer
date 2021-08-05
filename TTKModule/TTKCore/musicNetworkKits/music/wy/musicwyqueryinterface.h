@@ -83,16 +83,21 @@ const QString WY_SUGGEST_DATA_URL           = "ajU1Wm14WjV3KzhBeTdpSlNmVE5lUT09"
 
 class QNetworkRequest;
 
+namespace MusicWYInterface
+{
+    /*!
+     * Make request query data.
+     */
+    void makeRequestRawHeader(QNetworkRequest *request);
+
+}
+
 /*! @brief The class of wangyi query interface.
  * @author Greedysky <greedysky@163.com>
  */
 class TTK_MODULE_EXPORT MusicWYQueryInterface
 {
 public:
-    /*!
-     * Make token query url string.
-     */
-    void makeTokenQueryRequest(QNetworkRequest *request);
     /*!
      * Make token query url string.
      */

@@ -11,12 +11,9 @@ void MusicDJRadioCategoryRequest::startToDownload()
     deleteAll();
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(DJ_CATEGORY_URL, false),
                       QString("{}"));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

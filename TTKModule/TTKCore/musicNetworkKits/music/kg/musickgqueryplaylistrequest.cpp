@@ -35,8 +35,7 @@ void MusicKGQueryPlaylistRequest::startToPage(int offset)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false).arg(m_queryText).arg(offset + 1).arg(m_pageSize));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicKGInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -60,8 +59,7 @@ void MusicKGQueryPlaylistRequest::startToSearch(const QString &playlist)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_INFO_URL, false).arg(playlist));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicKGInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
@@ -85,8 +83,7 @@ void MusicKGQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KG_PLAYLIST_DETAIL_URL, false).arg(item.m_id));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicKGInterface::makeRequestRawHeader(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);

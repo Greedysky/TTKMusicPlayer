@@ -21,12 +21,9 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
     m_queryText = album;
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ALBUM_URL, false).arg(album),
                       QString("{}"));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -49,12 +46,9 @@ void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
     deleteAll();
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));

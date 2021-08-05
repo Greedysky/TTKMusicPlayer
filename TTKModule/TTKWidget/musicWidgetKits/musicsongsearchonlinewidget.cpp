@@ -399,11 +399,6 @@ MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
     delete m_searchTableWidget;
 }
 
-void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name)
-{
-    startSearchQuery(name, true);
-}
-
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all)
 {
     setResizeLabelText(name);

@@ -19,8 +19,7 @@ void MusicQQDownloadBackgroundRequest::startToDownload()
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadDataFinished()));
@@ -111,8 +110,7 @@ void MusicQQDownloadBackgroundRequest::downLoadUrl(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));

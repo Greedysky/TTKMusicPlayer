@@ -37,12 +37,9 @@ void MusicWYQueryRequest::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryText).arg(1).arg(m_pageSize).arg(m_pageSize * offset).toUtf8());
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -65,12 +62,9 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &text)
     deleteAll();
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(text));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));

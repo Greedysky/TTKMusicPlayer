@@ -11,6 +11,14 @@
 
 #define REFER_URL   "M25YVkpIeHVOaVFRY0k3dmFWOFJsOE1tU013ZWV0Sy8="
 
+void MusicQQInterface::makeRequestRawHeader(QNetworkRequest *request)
+{
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("Cookie", MusicUtils::Algorithm::mdII(QQ_COOKIE_URL, false).toUtf8());
+    MusicObject::setSslConfiguration(request);
+}
+
+
 void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     const QString &mid = key["songmid"].toString();
@@ -108,7 +116,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
+void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     const QString &mid = key["media_mid"].toString();
     if(key["size_128mp3"].toULongLong() != 0 && bitrate == MB_128)
@@ -173,13 +181,13 @@ void MusicQQQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSon
     }
 }
 
-void MusicQQQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key)
 {
-    readFromMusicSongAttributePlus(info, key, MB_128);
-    readFromMusicSongAttributePlus(info, key, MB_192);
-    readFromMusicSongAttributePlus(info, key, MB_320);
-    readFromMusicSongAttributePlus(info, key, MB_750);
-    readFromMusicSongAttributePlus(info, key, MB_1000);
+    readFromMusicSongAttributeNew(info, key, MB_128);
+    readFromMusicSongAttributeNew(info, key, MB_192);
+    readFromMusicSongAttributeNew(info, key, MB_320);
+    readFromMusicSongAttributeNew(info, key, MB_750);
+    readFromMusicSongAttributeNew(info, key, MB_1000);
 }
 
 QString MusicQQQueryInterface::getMusicPath(const QString &file, const QString &mid)
@@ -187,8 +195,7 @@ QString MusicQQQueryInterface::getMusicPath(const QString &file, const QString &
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(file).arg(mid));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicQQInterface::makeRequestRawHeader(&request);
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
@@ -215,33 +222,40 @@ QString MusicQQQueryInterface::getMusicPath(const QString &file, const QString &
         if(value.contains("code") && value["code"].toInt() == 0)
         {
             QString url;
-            if(value.contains("req_0"))
-            {
-                QVariantMap req_0 = value["req_0"].toMap();
-                req_0 = req_0["data"].toMap();
-                const QVariantList &datas = req_0["midurlinfo"].toList();
-                for(const QVariant &var : qAsConst(datas))
-                {
-                    req_0 = var.toMap();
-                    if(req_0.contains("purl"))
-                    {
-                        url = req_0["purl"].toString();
-                        break;
-                    }
-                }
-            }
-
-            if(value.contains("req") && file.startsWith("M500"))
+            if(value.contains("req"))
             {
                 QVariantMap req = value["req"].toMap();
                 req = req["data"].toMap();
-                if(req.contains("keepalivefile"))
+
+                QString url_prefix;
+                if(req.contains("sip"))
                 {
-                    url = req["keepalivefile"].toString();
+                    const QVariantList &sip = req["sip"].toList();
+                    if(sip.size() > 0)
+                    {
+                        url_prefix = sip[0].toString();
+                    }
+                }
+
+                const QVariantList &info = req["midurlinfo"].toList();
+                for(const QVariant &var : qAsConst(info))
+                {
+                    req = var.toMap();
+                    if(req.contains("purl"))
+                    {
+                        url = req["purl"].toString();
+                        break;
+                    }
+                }
+
+                if(!url_prefix.isEmpty() && !url.isEmpty())
+                {
+                    url = url_prefix + url;
+                    url.replace("\u0026", "&");
                 }
             }
 
-            return url.isEmpty() ? url : MusicUtils::Algorithm::mdII(QQ_SONG_PREFIX_URL, false) + url;
+            return url;
         }
     }
 

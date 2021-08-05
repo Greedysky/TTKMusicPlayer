@@ -18,12 +18,9 @@ void MusicWYSongSuggestRequest::startToSearch(const QString &text)
     deleteAll();
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SUGGEST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SUGGEST_DATA_URL, false).arg(text));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

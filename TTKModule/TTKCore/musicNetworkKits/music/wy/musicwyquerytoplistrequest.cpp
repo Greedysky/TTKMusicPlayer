@@ -30,12 +30,9 @@ void MusicWYQueryToplistRequest::startToSearch(const QString &toplist)
     deleteAll();
 
     QNetworkRequest request;
-    TTK_NETWORK_MANAGER_CHECK();
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_TOPLIST_DATA_URL, false).arg(toplist));
-    TTK_NETWORK_MANAGER_CHECK();
-    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

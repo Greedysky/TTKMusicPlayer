@@ -11,6 +11,13 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
+void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
+{
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
+    MusicObject::setSslConfiguration(request);
+}
+
+
 void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if(info->m_songId.isEmpty())
@@ -25,7 +32,7 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
-    MusicObject::setSslConfiguration(&request);
+    MusicKWInterface::makeRequestRawHeader(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -104,7 +111,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     }
 }
 
-void MusicKWQueryInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
+void MusicKWQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QString &suffix, const QString &format, int bitrate)
 {
     if(format.contains("128kmp3") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
@@ -182,30 +189,30 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         const QString &fs = var.toString();
         if(all)
         {
-            readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_128);
-            readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_192);
-            readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_320);
-            readFromMusicSongAttributePlus(info, APE_FILE_PREFIX, fs, MB_750);
-            readFromMusicSongAttributePlus(info, FLAC_FILE_PREFIX, fs, MB_1000);
+            readFromMusicSongAttributeNew(info, MP3_FILE_PREFIX, fs, MB_128);
+            readFromMusicSongAttributeNew(info, MP3_FILE_PREFIX, fs, MB_192);
+            readFromMusicSongAttributeNew(info, MP3_FILE_PREFIX, fs, MB_320);
+            readFromMusicSongAttributeNew(info, APE_FILE_PREFIX, fs, MB_750);
+            readFromMusicSongAttributeNew(info, FLAC_FILE_PREFIX, fs, MB_1000);
         }
         else
         {
             if(quality == QObject::tr("SD"))
             {
-                readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_128);
+                readFromMusicSongAttributeNew(info, MP3_FILE_PREFIX, fs, MB_128);
             }
             else if(quality == QObject::tr("HQ"))
             {
-                readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_192);
+                readFromMusicSongAttributeNew(info, MP3_FILE_PREFIX, fs, MB_192);
             }
             else if(quality == QObject::tr("SQ"))
             {
-                readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_320);
+                readFromMusicSongAttributeNew(info, MP3_FILE_PREFIX, fs, MB_320);
             }
             else if(quality == QObject::tr("CD"))
             {
-                readFromMusicSongAttributePlus(info, APE_FILE_PREFIX, fs, MB_750);
-                readFromMusicSongAttributePlus(info, FLAC_FILE_PREFIX, fs, MB_1000);
+                readFromMusicSongAttributeNew(info, APE_FILE_PREFIX, fs, MB_750);
+                readFromMusicSongAttributeNew(info, FLAC_FILE_PREFIX, fs, MB_1000);
             }
         }
     }
@@ -220,8 +227,7 @@ void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInfor
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId));
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());
-    MusicObject::setSslConfiguration(&request);
+    MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
