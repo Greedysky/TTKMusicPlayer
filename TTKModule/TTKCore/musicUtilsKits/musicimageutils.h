@@ -73,15 +73,6 @@ namespace MusicUtils
         TTK_MODULE_EXPORT int grayScaleAverage(const QImage &input, int width, int height);
 
         /*!
-         * Image gauss filter.
-         */
-        TTK_MODULE_EXPORT QImage gaussPixmap(const QImage &input, int radius);
-        /*!
-         * Image gauss filter.
-         */
-        TTK_MODULE_EXPORT void gaussPixmap(QImage &input, int radius);
-
-        /*!
          * Rerender the custum value.
          */
         template <typename T>

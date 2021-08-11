@@ -26,20 +26,6 @@
  * @author Greedysky <greedysky@163.com>
  */
 namespace QImageWrapper {
-/*! @brief The class of the gauss blur.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT GaussBlur
-{
-public:
-    /*!
-     * Image gauss blur render.
-     */
-    void render(int* pix, int width, int height, int radius);
-
-};
-
-
 class SharpeImagePrivate;
 
 /*! @brief The class of the sharpe image.
@@ -65,6 +51,22 @@ protected:
 
 protected:
     TTK_DECLARE_PRIVATE(SharpeImage)
+
+};
+
+
+/*! @brief The class of the gauss blur.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT GaussBlur : public SharpeImage
+{
+public:
+    GaussBlur();
+
+    /*!
+     * Render data.
+     */
+    virtual QPixmap render(const QPixmap &pixmap, int value) override;
 
 };
 

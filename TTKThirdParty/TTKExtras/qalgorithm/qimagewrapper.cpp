@@ -5,113 +5,6 @@
 #include <QPainter>
 
 namespace QImageWrapper {
-void GaussBlur::render(int* pix, int width, int height, int radius)
-{
-    const float sigma =  1.0 * radius / 2.57;
-    const float deno  =  1.0 / (sigma * sqrt(2.0 * M_PI));
-    const float nume  = -1.0 / (2.0 * sigma * sigma);
-
-    float* gaussMatrix = (float*)malloc(sizeof(float)* (radius + radius + 1));
-    float gaussSum = 0.0;
-    for(int i = 0, x = -radius; x <= radius; ++x, ++i)
-    {
-        float g = deno * exp(1.0 * nume * x * x);
-
-        gaussMatrix[i] = g;
-        gaussSum += g;
-    }
-
-    const int len = radius + radius + 1;
-    for(int i = 0; i < len; ++i)
-    {
-        gaussMatrix[i] /= gaussSum;
-    }
-
-    int* rowData  = (int*)malloc(width * sizeof(int));
-    int* listData = (int*)malloc(height * sizeof(int));
-
-    for(int y = 0; y < height; ++y)
-    {
-        memcpy(rowData, pix + y * width, sizeof(int) *width);
-
-        for(int x = 0; x < width; ++x)
-        {
-            float r = 0, g = 0, b = 0;
-            gaussSum = 0;
-
-            for(int i = -radius; i <= radius; ++i)
-            {
-                int k = x + i;
-
-                if(0 <= k && k <= width)
-                {
-                    int color = rowData[k];
-                    int cr = (color & 0x00ff0000) >> 16;
-                    int cg = (color & 0x0000ff00) >> 8;
-                    int cb = (color & 0x000000ff);
-
-                    r += cr * gaussMatrix[i + radius];
-                    g += cg * gaussMatrix[i + radius];
-                    b += cb * gaussMatrix[i + radius];
-
-                    gaussSum += gaussMatrix[i + radius];
-                }
-            }
-
-            int cr = (int)(r / gaussSum);
-            int cg = (int)(g / gaussSum);
-            int cb = (int)(b / gaussSum);
-
-            pix[y * width + x] = cr << 16 | cg << 8 | cb | 0xff000000;
-        }
-    }
-
-    for(int x = 0; x < width; ++x)
-    {
-        for(int y = 0; y < height; ++y)
-        {
-            listData[y] = pix[y * width + x];
-        }
-
-        for(int y = 0; y < height; ++y)
-        {
-            float r = 0, g = 0, b = 0;
-            gaussSum = 0;
-
-            for(int j = -radius; j <= radius; ++j)
-            {
-                int k = y + j;
-
-                if(0 <= k && k <= height)
-                {
-                    int color = listData[k];
-                    int cr = (color & 0x00ff0000) >> 16;
-                    int cg = (color & 0x0000ff00) >> 8;
-                    int cb = (color & 0x000000ff);
-
-                    r += cr * gaussMatrix[j + radius];
-                    g += cg * gaussMatrix[j + radius];
-                    b += cb * gaussMatrix[j + radius];
-
-                    gaussSum += gaussMatrix[j + radius];
-                }
-            }
-
-            int cr = (int)(r / gaussSum);
-            int cg = (int)(g / gaussSum);
-            int cb = (int)(b / gaussSum);
-
-            pix[y * width + x] = cr << 16 | cg << 8 | cb | 0xff000000;
-        }
-    }
-
-    free(gaussMatrix);
-    free(rowData);
-    free(listData);
-}
-
-
-////////////////////////////////////////////////////////////////////////
 /*! @brief The class of the sharpe image private.
  * @author Greedysky <greedysky@163.com>
  */
@@ -155,6 +48,126 @@ void SharpeImage::input(const QRect &region)
 {
     TTK_D(SharpeImage);
     d->m_rectangle = region;
+}
+
+////////////////////////////////////////////////////////////////////////
+GaussBlur::GaussBlur()
+    : SharpeImage()
+{
+
+}
+
+QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
+{
+    TTK_D(SharpeImage);
+    QImage image = pixmap.copy(d->m_rectangle).toImage();
+
+    const float sigma =  1.0 * value / 2.57;
+    const float deno  =  1.0 / (sigma * sqrt(2.0 * M_PI));
+    const float nume  = -1.0 / (2.0 * sigma * sigma);
+
+    float* gaussMatrix = (float*)malloc(sizeof(float)* (value + value + 1));
+    float gaussSum = 0.0;
+    for(int i = 0, x = -value; x <= value; ++x, ++i)
+    {
+        float g = deno * exp(1.0 * nume * x * x);
+
+        gaussMatrix[i] = g;
+        gaussSum += g;
+    }
+
+    const int len = value + value + 1;
+    for(int i = 0; i < len; ++i)
+    {
+        gaussMatrix[i] /= gaussSum;
+    }
+
+    const int width = image.width();
+    const int height = image.height();
+    int* pix = (int*)image.bits();
+    int* rowData  = (int*)malloc(width * sizeof(int));
+    int* listData = (int*)malloc(height * sizeof(int));
+
+    for(int y = 0; y < height; ++y)
+    {
+        memcpy(rowData, pix + y * width, sizeof(int) *width);
+
+        for(int x = 0; x < width; ++x)
+        {
+            float r = 0, g = 0, b = 0;
+            gaussSum = 0;
+
+            for(int i = -value; i <= value; ++i)
+            {
+                int k = x + i;
+
+                if(0 <= k && k <= width)
+                {
+                    int color = rowData[k];
+                    int cr = (color & 0x00ff0000) >> 16;
+                    int cg = (color & 0x0000ff00) >> 8;
+                    int cb = (color & 0x000000ff);
+
+                    r += cr * gaussMatrix[i + value];
+                    g += cg * gaussMatrix[i + value];
+                    b += cb * gaussMatrix[i + value];
+
+                    gaussSum += gaussMatrix[i + value];
+                }
+            }
+
+            int cr = (int)(r / gaussSum);
+            int cg = (int)(g / gaussSum);
+            int cb = (int)(b / gaussSum);
+
+            pix[y * width + x] = cr << 16 | cg << 8 | cb | 0xff000000;
+        }
+    }
+
+    for(int x = 0; x < width; ++x)
+    {
+        for(int y = 0; y < height; ++y)
+        {
+            listData[y] = pix[y * width + x];
+        }
+
+        for(int y = 0; y < height; ++y)
+        {
+            float r = 0, g = 0, b = 0;
+            gaussSum = 0;
+
+            for(int j = -value; j <= value; ++j)
+            {
+                int k = y + j;
+
+                if(0 <= k && k <= height)
+                {
+                    int color = listData[k];
+                    int cr = (color & 0x00ff0000) >> 16;
+                    int cg = (color & 0x0000ff00) >> 8;
+                    int cb = (color & 0x000000ff);
+
+                    r += cr * gaussMatrix[j + value];
+                    g += cg * gaussMatrix[j + value];
+                    b += cb * gaussMatrix[j + value];
+
+                    gaussSum += gaussMatrix[j + value];
+                }
+            }
+
+            int cr = (int)(r / gaussSum);
+            int cg = (int)(g / gaussSum);
+            int cb = (int)(b / gaussSum);
+
+            pix[y * width + x] = cr << 16 | cg << 8 | cb | 0xff000000;
+        }
+    }
+
+    free(gaussMatrix);
+    free(rowData);
+    free(listData);
+
+    return QPixmap::fromImage(image);
 }
 
 

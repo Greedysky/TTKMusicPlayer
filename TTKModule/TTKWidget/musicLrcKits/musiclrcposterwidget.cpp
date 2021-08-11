@@ -9,6 +9,7 @@
 #include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicimageutils.h"
+#include "qalgorithm/qimagewrapper.h"
 
 #include <qmath.h>
 #include <QPainter>
@@ -468,11 +469,13 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 
     const int gWidth = pix.width() * 3 / 4;
     const int gHeight = pix.height() * 3 / 4;
-    QRect gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2, gWidth, gHeight);
-    const QImage& gauss = pix.copy(gaussRect).toImage();
+    const QRect &gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2, gWidth, gHeight);
 
-    gaussRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2 + fixedOffset, gWidth, gHeight);
-    painter->drawImage(gaussRect, MusicUtils::Image::gaussPixmap(gauss, 10));
+    QImageWrapper::GaussBlur blur;
+    blur.input(gaussRect);
+
+    const QRect &drawRect = QRect((pix.width() - gWidth) / 2, (pix.height() - gHeight) / 2 + fixedOffset, gWidth, gHeight);
+    painter->drawPixmap(drawRect, blur.render(pix, 10));
     //
     const int lineHeight = MusicUtils::Widget::fontTextHeight(font());
     int v = 1;
@@ -480,14 +483,14 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 
     for(int i=0; i<m_data.count(); ++i)
     {
-        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(gaussRect.width() - 6 * ITEM_BORDER) + 1;
+        v = MusicUtils::Widget::fontTextWidth(font(), m_data[i])/(drawRect.width() - 6 * ITEM_BORDER) + 1;
         v = 3 * ITEM_BORDER + v * lineHeight;
-        if(offset + v >= gauss.height())
+        if(offset + v >= gaussRect.height())
         {
             break;
         }
         painter->setPen(QColor(0x66, 0x66, 0x66));
-        painter->drawText(3 * ITEM_BORDER + gaussRect.x(), offset + gaussRect.y(), gaussRect.width() - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
+        painter->drawText(3 * ITEM_BORDER + drawRect.x(), offset + drawRect.y(), drawRect.width() - 6 * ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
         offset += v;
     }
 }
