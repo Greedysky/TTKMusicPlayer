@@ -183,10 +183,10 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
 
 void MusicDownloadBatchTableItem::startToDownloadMusic()
 {
-    const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
+    const MusicObject::MusicSongAttribute &attr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     const QString &downloadPrefix = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString();
-    QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+    QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(attr.m_format);
 
     MusicSongs records;
     MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
@@ -199,7 +199,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     MusicSong record;
     record.setMusicName(musicSong);
     record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
-    record.setMusicSizeStr(musicAttr.m_size);
+    record.setMusicSizeStr(attr.m_size);
     record.setMusicAddTimeStr("-1");
     records << record;
     down.writeDownloadData(records);
@@ -217,11 +217,11 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
                 musicSong.chop(3);
             }
             musicSong += QString("(%1)").arg(i);
-            downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+            downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(attr.m_format);
         }
     }
     //
-    MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+    MusicDownloadTagDataRequest *downSong = new MusicDownloadTagDataRequest(attr.m_url, downloadName, MusicObject::DownloadMusic, this);
     downSong->setRecordType(MusicObject::RecordNormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
 
@@ -239,11 +239,11 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
 
 void MusicDownloadBatchTableItem::startToDownloadMovie()
 {
-    const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
+    const MusicObject::MusicSongAttribute &attr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     const QString &downloadPrefix = MOVIE_DIR_FULL;
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     //
-    QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+    QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(attr.m_format);
     if(QFile::exists(downloadName))
     {
         for(int i=1; i<99; ++i)
@@ -257,11 +257,11 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
                 musicSong.chop(3);
             }
             musicSong += QString("(%1)").arg(i);
-            downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
+            downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(attr.m_format);
         }
     }
     //
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(musicAttr.m_url, downloadName, MusicObject::DownloadVideo, this);
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(attr.m_url, downloadName, MusicObject::DownloadVideo, this);
     download->startToDownload();
 }
 

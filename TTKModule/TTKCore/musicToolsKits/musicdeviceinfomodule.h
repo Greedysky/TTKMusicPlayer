@@ -63,7 +63,7 @@ private Q_SLOTS:
     /*!
      * Read data from device thread.
      */
-    void readData();
+    void handleReadyRead();
 
 private:
     QProcess* m_dfProcess;

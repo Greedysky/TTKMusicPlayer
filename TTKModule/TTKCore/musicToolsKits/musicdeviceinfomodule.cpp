@@ -13,7 +13,7 @@ MusicDeviceInfoModule::MusicDeviceInfoModule(QObject *parent)
 {
 #ifdef Q_OS_UNIX
     m_dfProcess = new QProcess(this);
-    connect(m_dfProcess, SIGNAL(readyRead()), this, SLOT(readData()));
+    connect(m_dfProcess, SIGNAL(readyRead()), this, SLOT(handleReadyRead()));
 #endif
 }
 
@@ -174,7 +174,7 @@ MusicDeviceInfoItems MusicDeviceInfoModule::getRemovableDrive()
 }
 
 #ifdef Q_OS_UNIX
-void MusicDeviceInfoModule::readData()
+void MusicDeviceInfoModule::handleReadyRead()
 {
     while(!m_dfProcess->atEnd())
     {

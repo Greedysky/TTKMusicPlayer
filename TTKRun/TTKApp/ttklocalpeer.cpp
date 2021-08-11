@@ -147,7 +147,7 @@ bool TTKLocalPeer::sendMessage(const QString &message, int timeout)
     {
         // Try twice, in case the other instance is just starting up
         socket.connectToServer(d->m_socketName);
-        connOk = socket.waitForConnected(timeout/2);
+        connOk = socket.waitForConnected(timeout / 2);
         if(connOk || i)
         {
             break;

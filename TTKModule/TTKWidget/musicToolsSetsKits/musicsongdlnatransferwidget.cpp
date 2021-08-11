@@ -62,6 +62,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 
     m_dlnaFinder = new QDlnaFinder(this);
     m_dlnaFileServer = new QDlnaFileServer(this);
+
     startToScan();
     m_dlnaFileServer->start();
 

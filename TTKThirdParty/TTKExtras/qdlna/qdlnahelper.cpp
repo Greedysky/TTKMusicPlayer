@@ -41,7 +41,9 @@ QString makeSocketGetReply(const QString &ip, const QString &port, const QString
 {
     QTcpSocket sock;
     sock.connectToHost(ip, port.toUShort());
-    if(sock.waitForConnected())
+    const int timeout = 5000 / 2;
+
+    if(sock.waitForConnected(timeout))
     {
         sock.write(data.toLatin1());
     }
@@ -50,12 +52,12 @@ QString makeSocketGetReply(const QString &ip, const QString &port, const QString
         return "Couldn't connect";
     }
 
-    if(!sock.waitForBytesWritten())
+    if(!sock.waitForBytesWritten(timeout))
     {
         return "Couldn't write";
     }
 
-    if(sock.waitForReadyRead())
+    if(sock.waitForReadyRead(timeout))
     {
         return QString::fromUtf8(sock.readAll());
     }

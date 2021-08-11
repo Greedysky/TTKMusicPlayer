@@ -41,6 +41,7 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pai
         case MusicObject::RecordCloudUpload : className = MusicCloudUploadTableWidget::getClassName(); break;
         default: break;
     }
+
     const QObject *to = G_CONNECTION_PTR->value(className);
     if(to && pair.m_object)
     {

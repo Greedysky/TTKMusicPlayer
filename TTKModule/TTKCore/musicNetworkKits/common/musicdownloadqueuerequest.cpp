@@ -104,11 +104,11 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
     m_request->setUrl(url);
     m_reply = m_manager->get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(readyRead()), SLOT(readyReadSlot()));
+    connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(errorSlot(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 #else
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(errorSlot(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
 #endif
 }
 
@@ -130,7 +130,7 @@ void MusicDownloadQueueRequest::downLoadFinished()
     startOrderImageQueue();
 }
 
-void MusicDownloadQueueRequest::readyReadSlot()
+void MusicDownloadQueueRequest::handleReadyRead()
 {
     if(!m_file || !m_reply)
     {
@@ -141,7 +141,7 @@ void MusicDownloadQueueRequest::readyReadSlot()
     m_file->flush();
 }
 
-void MusicDownloadQueueRequest::errorSlot(QNetworkReply::NetworkError code)
+void MusicDownloadQueueRequest::handleError(QNetworkReply::NetworkError code)
 {
     if(!m_file || !m_reply)
     {

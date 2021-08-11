@@ -44,7 +44,7 @@ Q_SIGNALS:
     void finished();
 
 public Q_SLOTS:
-    void readResponse();
+    void handleReadyRead();
 
 private:
     TTK_DECLARE_PRIVATE(QDlnaFinder)

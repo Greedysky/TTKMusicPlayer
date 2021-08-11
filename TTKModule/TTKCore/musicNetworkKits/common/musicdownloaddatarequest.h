@@ -78,7 +78,7 @@ public Q_SLOTS:
     /*!
      * Download received data ready.
      */
-    void downLoadReadyRead();
+    void handleReadyRead();
 
 protected:
     /*!

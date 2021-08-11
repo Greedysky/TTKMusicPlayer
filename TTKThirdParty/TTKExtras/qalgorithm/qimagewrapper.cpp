@@ -151,10 +151,10 @@ SharpeImage::~SharpeImage()
 
 }
 
-void SharpeImage::input(const QRect &rectangle)
+void SharpeImage::input(const QRect &region)
 {
     TTK_D(SharpeImage);
-    d->m_rectangle = rectangle;
+    d->m_rectangle = region;
 }
 
 
@@ -214,12 +214,12 @@ CubeWave::CubeWave()
 
 }
 
-void CubeWave::input(const QRect &rectangle)
+void CubeWave::input(const QRect &region)
 {
-    SharpeImage::input(rectangle);
+    SharpeImage::input(region);
 
     TTK_D(CubeWave);
-    d->init(rectangle.width(), rectangle.height());
+    d->init(region.width(), region.height());
     for(int index = 0; index < d->count(); ++index)
     {
         d->m_data.push_back(QRandom::random(100));
@@ -463,12 +463,12 @@ WaterWave::WaterWave(const QImage &image, int radius)
     d->init(image, radius);
 }
 
-void WaterWave::input(const QRect &rectangle)
+void WaterWave::input(const QRect &region)
 {
-    SharpeImage::input(rectangle);
+    SharpeImage::input(region);
 
     TTK_D(WaterWave);
-    d->setWaveSourcePosition(rectangle.width() / 2, rectangle.height() / 2);
+    d->setWaveSourcePosition(region.width() / 2, region.height() / 2);
 }
 
 QPixmap WaterWave::render(const QPixmap &pixmap, int value)

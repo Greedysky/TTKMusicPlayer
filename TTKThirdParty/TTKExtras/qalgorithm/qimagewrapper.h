@@ -41,6 +41,7 @@ public:
 
 
 class SharpeImagePrivate;
+
 /*! @brief The class of the sharpe image.
  * @author Greedysky <greedysky@163.com>
  */
@@ -53,7 +54,7 @@ public:
     /*!
      * Init item data.
      */
-    virtual void input(const QRect &rectangle);
+    virtual void input(const QRect &region);
     /*!
      * Render data.
      */
@@ -79,7 +80,7 @@ public:
     /*!
      * Init item data.
      */
-    virtual void input(const QRect &rectangle) override;
+    virtual void input(const QRect &region) override;
     /*!
      * Render data.
      */
@@ -99,7 +100,7 @@ public:
     /*!
      * Init item data.
      */
-    virtual void input(const QRect &rectangle) override;
+    virtual void input(const QRect &region) override;
     /*!
      * Render data.
      */

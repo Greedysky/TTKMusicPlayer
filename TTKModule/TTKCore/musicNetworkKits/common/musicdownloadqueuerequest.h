@@ -81,11 +81,11 @@ public Q_SLOTS:
     /*!
      * Download received data ready.
      */
-    void readyReadSlot();
+    void handleReadyRead();
     /*!
      * Download reply error.
      */
-    void errorSlot(QNetworkReply::NetworkError code);
+    void handleError(QNetworkReply::NetworkError code);
 
 protected:
     /*!

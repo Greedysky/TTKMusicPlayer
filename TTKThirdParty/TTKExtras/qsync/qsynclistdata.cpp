@@ -38,9 +38,9 @@ void QSyncListData::listDataOperator(const QString &bucket)
     QNetworkReply *reply = d->m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(receiveDataFromServer()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(handleError(QNetworkReply::NetworkError)));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #endif
 }
 

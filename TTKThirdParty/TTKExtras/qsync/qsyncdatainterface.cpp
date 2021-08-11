@@ -15,7 +15,7 @@ QSyncDataInterface::QSyncDataInterface(QSyncDataInterfacePrivate &pvt, QNetworkA
     d->m_manager = networkManager;
 }
 
-void QSyncDataInterface::handleError(QNetworkReply::NetworkError error)
+void QSyncDataInterface::replyError(QNetworkReply::NetworkError error)
 {
     TTK_LOGGER_ERROR("error" << error);
 }

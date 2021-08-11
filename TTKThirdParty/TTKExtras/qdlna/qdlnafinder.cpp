@@ -2,6 +2,7 @@
 #include "qdlnaclient.h"
 
 #include <QUdpSocket>
+#include <QApplication>
 
 #define DEFAULT_ROUTER_IP   "192.168.0.1"
 
@@ -73,7 +74,7 @@ QDlnaFinder::QDlnaFinder(QObject *parent)
 {
     TTK_INIT_PRIVATE(QDlnaFinder);
     TTK_D(QDlnaFinder);
-    connect(d->m_udpSock, SIGNAL(readyRead()), SLOT(readResponse()));
+    connect(d->m_udpSock, SIGNAL(readyRead()), SLOT(handleReadyRead()));
 }
 
 void QDlnaFinder::find()
@@ -110,7 +111,7 @@ QStringList QDlnaFinder::clientNames() const
     return names;
 }
 
-void QDlnaFinder::readResponse()
+void QDlnaFinder::handleReadyRead()
 {
     TTK_D(QDlnaFinder);
     while(d->m_udpSock->hasPendingDatagrams())
@@ -126,11 +127,12 @@ void QDlnaFinder::readResponse()
             continue;
         }
 
-        int tryTimes = 5;
+        int tryTimes = 3;
         do
         {
             --tryTimes;
             client->connect();
+            qApp->processEvents();
         } while(!client->isConnected() && tryTimes > 0);
 
         d->m_clients.push_back(client);

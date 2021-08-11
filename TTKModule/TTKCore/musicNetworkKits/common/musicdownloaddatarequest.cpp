@@ -53,7 +53,7 @@ void MusicDownloadDataRequest::startRequest(const QUrl &url)
 #else
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #endif
-    connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
+    connect(m_reply, SIGNAL(readyRead()),this, SLOT(handleReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     /// only download music data can that show progress
     if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)
@@ -102,7 +102,7 @@ void MusicDownloadDataRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicDownloadDataRequest::downLoadReadyRead()
+void MusicDownloadDataRequest::handleReadyRead()
 {
     if(m_file)
     {
