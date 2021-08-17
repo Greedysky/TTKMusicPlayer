@@ -426,13 +426,6 @@ void Serializer::serialize( const QVariant &v, QIODevice* io, bool* ok)
   }
 }
 
-QByteArray Serializer::serialize( const QVariant &v)
-{
-  bool ok;
-
-  return serialize(v, &ok);
-}
-
 QByteArray Serializer::serialize( const QVariant &v, bool *ok)
 {
   TTK_D(Serializer);
