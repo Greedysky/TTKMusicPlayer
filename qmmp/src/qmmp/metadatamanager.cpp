@@ -157,15 +157,13 @@ QList<RegularWrapper> MetaDataManager::regExps() const
 
 bool MetaDataManager::supports(const QString &fileName) const
 {
-    DecoderFactory *fact = nullptr;
-    EngineFactory *efact = nullptr;
     if(!fileName.contains("://")) //local file
     {
         if(!QFile::exists(fileName))
             return false;
-        if((fact = Decoder::findByFilePath(fileName)))
+        if(Decoder::findByFilePath(fileName))
             return true;
-        else if((efact = AbstractEngine::findByFilePath(fileName)))
+        else if(AbstractEngine::findByFilePath(fileName))
             return true;
         return false;
     }

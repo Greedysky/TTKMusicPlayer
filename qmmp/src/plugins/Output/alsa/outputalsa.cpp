@@ -127,7 +127,6 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     if(rate != exact_rate)
     {
         qWarning("OutputALSA: The rate %d Hz is not supported by your hardware.\n==> Using %d Hz instead.", rate, exact_rate);
-        rate = exact_rate;
     }
     uint c = map.count();
     if((err = snd_pcm_hw_params_set_channels_near(pcm_handle, hwparams, &c)) < 0)
