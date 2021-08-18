@@ -257,13 +257,6 @@ void MusicSongSharingWidget::downLoadFinished(const QString &playUrl, const QStr
     QTimer::singleShot(MT_S2MS, this, SLOT(close()));
 }
 
-void MusicSongSharingWidget::close()
-{
-    ///remove temp file path
-    QFile::remove(ART_DIR_FULL + TEMPPATH);
-    MusicAbstractMoveDialog::close();
-}
-
 void MusicSongSharingWidget::textAreaChanged()
 {
     const int max = 150;

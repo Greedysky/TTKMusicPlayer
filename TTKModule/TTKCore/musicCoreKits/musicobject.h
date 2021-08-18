@@ -135,7 +135,6 @@
 #define MAKE_GAIN               TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
 
 
-#define TEMPPATH                "musictemp"
 #define COFIGPATH               "musicconfig.xml"
 #define MUSICPATH               "music.tkpl"
 #define NORMALDOWNPATH          "musicdown.ttk"
@@ -184,7 +183,6 @@
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 
-#define TEMPPATH_FULL           MusicObject::getAppDir() + TEMPPATH
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR

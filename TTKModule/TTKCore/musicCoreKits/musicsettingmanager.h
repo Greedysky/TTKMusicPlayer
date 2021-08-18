@@ -78,7 +78,6 @@ public:
         RippleSpectrumColor,             /*!< Ripple Spectrum Color Parameter*/
         //
         ShowInteriorLrc,                 /*!< Show Interior Lrc Parameter*/
-        ShowCortanaLrc,                  /*!< Show Cortana Lrc Parameter*/
         LrcColor,                        /*!< Lrc Color Parameter*/
         LrcSize,                         /*!< Lrc Size Parameter*/
         LrcType,                         /*!< Lrc Type Parameter*/

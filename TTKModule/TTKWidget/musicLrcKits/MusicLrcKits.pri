@@ -26,7 +26,6 @@ HEADERS  += \
     $$PWD/musiclrccontainerfordesktop.h \
     $$PWD/musiclrccontainerforinterior.h \
     $$PWD/musiclrccontainerforwallpaper.h \
-    $$PWD/musiclrccontainerforcortana.h \
     $$PWD/musiclrcsearchwidget.h \
     $$PWD/musiclrcsearchtablewidget.h \
     $$PWD/musiclrcartphotouploadwidget.h \
@@ -52,7 +51,6 @@ SOURCES += \
     $$PWD/musiclrccontainerfordesktop.cpp \
     $$PWD/musiclrccontainerforinterior.cpp \
     $$PWD/musiclrccontainerforwallpaper.cpp \
-    $$PWD/musiclrccontainerforcortana.cpp \
     $$PWD/musiclrcsearchwidget.cpp \
     $$PWD/musiclrcsearchtablewidget.cpp \
     $$PWD/musiclrcartphotouploadwidget.cpp \

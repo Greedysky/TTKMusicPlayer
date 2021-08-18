@@ -107,10 +107,6 @@ public Q_SLOTS:
      */
     void queryUrlTimeout();
     /*!
-     * Override close function.
-     */
-    void close();
-    /*!
      * Download pixmap data finished.
      */
     void downLoadFinished(const QByteArray &data);

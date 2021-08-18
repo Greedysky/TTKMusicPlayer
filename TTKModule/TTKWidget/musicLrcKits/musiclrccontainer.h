@@ -30,7 +30,6 @@ class MusicLrcSearchWidget;
 #define LRC_WALLPAPER_TPYE     "WALLPAPER"
 #define LRC_INTERIOR_TPYE      "INTERIOR"
 #define LRC_DESKTOP_TPYE       "DESKTOP"
-#define LRC_CORTANA_TPYE       "CORTANA"
 #define LRC_DESKTOP_PREFIX     "D"
 
 /*! @brief The class of the lrc container base.
