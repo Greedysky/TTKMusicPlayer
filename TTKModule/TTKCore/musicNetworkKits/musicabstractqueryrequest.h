@@ -206,10 +206,6 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Find time string by attrs.
-     */
-    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
-    /*!
      * Find download file size.
      */
     bool findUrlFileSize(MusicObject::MusicSongAttribute *attr);

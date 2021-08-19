@@ -198,7 +198,7 @@ void MusicKGQueryMovieRequest::singleDownLoadFinished()
         MusicSearchedItem item;
         item.m_songName = musicInfo.m_songName;
         item.m_singerName = musicInfo.m_singerName;
-        item.m_duration = findTimeStringByAttrs(musicInfo.m_songAttrs);
+        item.m_duration = musicInfo.m_duration;
         item.m_type = mapQueryServerString();
         Q_EMIT createSearchedItem(item);
         m_musicSongInfos << musicInfo;
@@ -327,6 +327,9 @@ void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     else if(bitrate > 875)
         attr.m_bitrate = MB_1000;
 
-    attr.m_duration = MusicTime::msecTime2LabelJustified(key["timelength"].toInt());
+    if(info->m_duration.isEmpty())
+    {
+        info->m_duration = MusicTime::msecTime2LabelJustified(key["timelength"].toInt());
+    }
     info->m_songAttrs.append(attr);
 }

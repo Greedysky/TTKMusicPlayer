@@ -76,19 +76,6 @@ void MusicAbstractQueryRequest::downLoadFinished()
     MusicPagingRequest::downLoadFinished();
 }
 
-QString MusicAbstractQueryRequest::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
-{
-    for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
-    {
-        if(!attr.m_duration.isEmpty())
-        {
-            return attr.m_duration;
-        }
-    }
-
-    return QString(STRING_NULL);
-}
-
 bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
 {
     TTK_NETWORK_QUERY_CHECK(false);

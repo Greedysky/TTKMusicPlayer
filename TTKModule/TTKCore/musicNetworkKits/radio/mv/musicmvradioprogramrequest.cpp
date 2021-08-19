@@ -188,6 +188,5 @@ void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSong
     else if(bitrate > 875)
         attr.m_bitrate = MB_1000;
 
-    attr.m_duration = MusicTime::msecTime2LabelJustified(key["timelength"].toInt());
     info->m_songAttrs.append(attr);
 }

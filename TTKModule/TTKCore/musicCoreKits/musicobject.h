@@ -220,7 +220,6 @@ namespace MusicObject
         QString m_format;
         QString m_url;
         QString m_size;
-        QString m_duration;
 
         MusicSongAttribute()
         {
