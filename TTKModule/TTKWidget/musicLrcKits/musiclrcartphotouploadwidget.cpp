@@ -89,7 +89,7 @@ void MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
     const QString &name = m_ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
     {
-        MusicToastLabel::popup(tr("the art is empty!"));
+        MusicToastLabel::popup(tr("The art is empty!"));
         return;
     }
 

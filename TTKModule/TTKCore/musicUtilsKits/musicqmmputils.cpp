@@ -4,12 +4,11 @@
 #include "musicsettingmanager.h"
 
 #include <QSettings>
-///qmmp incldue
-#include "qmmp.h"
-#include "visual.h"
-#include "visualfactory.h"
-#include "effect.h"
-#include "effectfactory.h"
+#include <qmmp/qmmp.h>
+#include <qmmp/visual.h>
+#include <qmmp/visualfactory.h>
+#include <qmmp/effect.h>
+#include <qmmp/effectfactory.h>
 
 QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &format)
 {

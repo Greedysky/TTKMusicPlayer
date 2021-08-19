@@ -191,7 +191,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
 {
     if(m_path.isEmpty())
     {
-        MusicToastLabel::popup(tr("the input is empty!"));
+        MusicToastLabel::popup(tr("The input is empty!"));
         return false;
     }
 
@@ -200,7 +200,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
 
     if(in.isEmpty() || out.isEmpty())
     {
-        MusicToastLabel::popup(tr("the out is empty!"));
+        MusicToastLabel::popup(tr("The out is empty!"));
         return false;
     }
 

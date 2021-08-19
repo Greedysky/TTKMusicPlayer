@@ -135,7 +135,7 @@ public Q_SLOTS:
     /*!
      * Set clean download cache.
      */
-    void downloadCachedClean();
+    void downloadCacheClean();
     /*!
      * Set enable or disable download cache.
      */

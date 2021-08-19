@@ -93,7 +93,7 @@ void MusicLrcErrorWidget::textAreaChanged()
 
 void MusicLrcErrorWidget::confirmButtonClicked()
 {
-    MusicToastLabel::popup(tr("report error finished"));
+    MusicToastLabel::popup(tr("Report error finished"));
 
     close();
 }

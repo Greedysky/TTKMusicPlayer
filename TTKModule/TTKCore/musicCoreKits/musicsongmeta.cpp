@@ -1,15 +1,14 @@
 #include "musicsongmeta.h"
 #include "musictime.h"
 #include "musicformats.h"
-#include "ttkversion.h"
 #include "musicqmmputils.h"
 #include "musicwidgetutils.h"
 #include "musicstringutils.h"
+#include "ttkversion.h"
 
-#include "decoderfactory.h"
-#include "metadatamodel.h"
-#include "decoder.h"
-
+#include <qmmp/decoderfactory.h>
+#include <qmmp/metadatamodel.h>
+#include <qmmp/decoder.h>
 
 /*! @brief The class of the music meta.
  * @author Greedysky <greedysky@163.com>

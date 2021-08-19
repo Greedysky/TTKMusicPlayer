@@ -267,7 +267,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
     }
     m_analysis->saveLrcData();
 
-    MusicToastLabel::popup(tr("save file finished"));
+    MusicToastLabel::popup(tr("Save file finished"));
 }
 
 void MusicLrcMakerWidget::reMakeButtonClicked()
@@ -687,13 +687,13 @@ bool MusicLrcMakerWidget::checkInputValid()
     if(m_ui->songNameEdit->text().isEmpty())
     {
         error = true;
-        msg = tr("song name is empty!");
+        msg = tr("sSong name is empty!");
     }
 
     if(m_ui->lrcTextEdit->toPlainText().isEmpty())
     {
         error = true;
-        msg = tr("lrc text is empty!");
+        msg = tr("Lrc text is empty!");
     }
 
     if(error)

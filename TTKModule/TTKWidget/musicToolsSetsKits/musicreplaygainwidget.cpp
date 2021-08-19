@@ -11,8 +11,7 @@
 #include <QProcess>
 #include <QPluginLoader>
 
-///qmmp incldue
-#include "lightfactory.h"
+#include <qmmp/lightfactory.h>
 
 #define GAIN_DEFAULT 89
 #define GAIN_TRACKDB "Recommended \"Track\" dB change:"

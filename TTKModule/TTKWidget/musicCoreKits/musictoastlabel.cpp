@@ -41,13 +41,6 @@ void MusicToastLabel::setFontMargin(int height, int width)
     m_margin.setY(width);
 }
 
-void MusicToastLabel::setTimerInterval(int msecond)
-{
-    m_timer.stop();
-    m_timer.setInterval(msecond);
-    m_timer.start();
-}
-
 int MusicToastLabel::getTimerInterval() const
 {
     return m_timer.interval();
@@ -57,22 +50,6 @@ void MusicToastLabel::setFontSize(int size)
 {
     m_font.setPointSize(size);
     setFont(m_font);
-}
-
-int MusicToastLabel::getFontSize() const
-{
-    return m_font.pointSize();
-}
-
-void MusicToastLabel::setBold(bool bold)
-{
-    m_font.setBold(bold);
-    setFont(m_font);
-}
-
-bool MusicToastLabel::bold() const
-{
-    return m_font.bold();
 }
 
 void MusicToastLabel::popup(QWidget *parent)
@@ -115,7 +92,6 @@ void MusicToastLabel::closeAnimation()
 
     connect(animation, SIGNAL(finished()), SLOT(close()));
     connect(animation, SIGNAL(finished()), SIGNAL(animationCloseChanged()));
-
 }
 
 void MusicToastLabel::paintEvent(QPaintEvent *event)

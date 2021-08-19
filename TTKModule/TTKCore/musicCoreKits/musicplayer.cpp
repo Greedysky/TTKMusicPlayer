@@ -2,9 +2,8 @@
 #include "musicplaylist.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
-///qmmp incldue
-#include "soundcore.h"
-///
+
+#include <qmmp/soundcore.h>
 #include <qmath.h>
 
 MusicPlayer::MusicPlayer(QObject *parent)

@@ -3,15 +3,14 @@
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
 
-#include "decoderfactory.h"
-#include "outputfactory.h"
-#include "visualfactory.h"
-#include "effectfactory.h"
-
-#include "decoder.h"
-#include "effect.h"
-#include "output.h"
-#include "visual.h"
+#include <qmmp/decoderfactory.h>
+#include <qmmp/outputfactory.h>
+#include <qmmp/visualfactory.h>
+#include <qmmp/effectfactory.h>
+#include <qmmp/decoder.h>
+#include <qmmp/effect.h>
+#include <qmmp/output.h>
+#include <qmmp/visual.h>
 
 #include <QScrollBar>
 

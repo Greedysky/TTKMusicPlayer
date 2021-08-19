@@ -1,7 +1,6 @@
 #include "musicformats.h"
 
-///qmmp incldue
-#include "format.h"
+#include <qmmp/format.h>
 
 bool MusicFormats::SongTrackValid(const QString &file)
 {

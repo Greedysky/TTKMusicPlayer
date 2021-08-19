@@ -12,7 +12,6 @@
 #include "musiclrcdefines.h"
 #include "musicplatformmanager.h"
 #include "musiclrcmanager.h"
-#include "ttkversion.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"
 #include "musiccolordialog.h"
@@ -20,8 +19,9 @@
 #include "musicpluginwidget.h"
 #include "musicfileutils.h"
 #include "musicmessagebox.h"
-///qmmp incldue
-#include "qmmpsettings.h"
+#include "ttkversion.h"
+
+#include <qmmp/qmmpsettings.h>
 
 #include <QFontDatabase>
 #include <QButtonGroup>
@@ -320,7 +320,7 @@ void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
     m_ui->item_S16->setHotKeyEnabled(state);
 }
 
-void MusicSettingWidget::downloadCachedClean()
+void MusicSettingWidget::downloadCacheClean()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to clean?"));
@@ -332,6 +332,8 @@ void MusicSettingWidget::downloadCachedClean()
     MusicUtils::File::removeRecursively(CACHE_DIR_FULL, false);
     MusicUtils::File::removeRecursively(ART_DIR_FULL, false);
     MusicUtils::File::removeRecursively(BACKGROUND_DIR_FULL, false);
+
+    MusicToastLabel::popup(tr("Cache is cleaned"));
 }
 
 void MusicSettingWidget::downloadGroupCached(int index)
@@ -868,7 +870,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("kuwoMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
 
-    connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCachedClean()));
+    connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCacheClean()));
     //
     QButtonGroup *buttonGroup1 = new QButtonGroup(this);
     buttonGroup1->addButton(m_ui->downloadCacheAutoRadioBox, 0);
@@ -1172,7 +1174,7 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
     QString value = m_ui->proxyIpEdit->text().trimmed();
     if(value.isEmpty())
     {
-        MusicToastLabel::popup(tr("proxy hostname is empty"));
+        MusicToastLabel::popup(tr("Proxy hostname is empty"));
         return false;
     }
     proxy.setHostName(value);
@@ -1180,7 +1182,7 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
     value = m_ui->proxyPortEdit->text().trimmed();
     if(value.isEmpty())
     {
-        MusicToastLabel::popup(tr("proxy port is empty"));
+        MusicToastLabel::popup(tr("Proxy port is empty"));
         return false;
     }
     proxy.setPort(value.toInt());

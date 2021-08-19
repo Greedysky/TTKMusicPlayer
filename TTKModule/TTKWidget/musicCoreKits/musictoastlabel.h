@@ -46,10 +46,6 @@ public:
      */
     void setFontMargin(int height, int width);
     /*!
-     * Set timer interval to hide.
-     */
-    void setTimerInterval(int msecond);
-    /*!
      * Get timer interval.
      */
     int getTimerInterval() const;
@@ -57,18 +53,6 @@ public:
      * Set context font size.
      */
     void setFontSize(int size);
-    /*!
-     * Get context font size.
-     */
-    int getFontSize() const;
-    /*!
-     * Set context font bold.
-     */
-    void setBold(bool bold);
-    /*!
-     * Get context font bold.
-     */
-    bool bold() const;
 
     /*!
      * Popup the toast widget in parent widget.

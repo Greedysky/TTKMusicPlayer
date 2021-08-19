@@ -24,7 +24,6 @@ CONFIG += plugin lib
 
 
 ##qmmp lib check
-include($$PWD/../TTKExtra/qmmp.pri)
 win32{
     QMMP_DEPANDS = $$DESTDIR/TTKqmmp.dll
     QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
@@ -35,7 +34,9 @@ unix:!mac:QMMP_DEPANDS = $$DESTDIR/libTTKqmmp.so
 
 TARGET = TTKCore
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += \
+    $$PWD \
+    $$PWD/../TTKExtra
 
 SOURCES += \
     musicapplication.cpp \

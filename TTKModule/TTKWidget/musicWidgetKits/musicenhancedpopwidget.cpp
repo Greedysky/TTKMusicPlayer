@@ -5,9 +5,9 @@
 #include "musicmagicwidgetuiobject.h"
 #include "musicapplicationmodule.h"
 #include "musicrightareawidget.h"
-///qmmp incldue
-#include "effect.h"
-#include "effectfactory.h"
+
+#include <qmmp/effect.h>
+#include <qmmp/effectfactory.h>
 
 #include <QLabel>
 #include <QButtonGroup>
@@ -136,7 +136,6 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusic, type);
-
     //
     if(type != 0)
     {
@@ -148,7 +147,6 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
         Effect::setEnabled(factory, false);
     }
     //
-
     Q_EMIT enhancedMusicChanged(type);
 
     m_menu->close();

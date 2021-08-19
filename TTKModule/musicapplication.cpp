@@ -8,7 +8,6 @@
 #include "musicplaylist.h"
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
-#include "ttkversion.h"
 #include "musicbottomareawidget.h"
 #include "musictopareawidget.h"
 #include "musicrightareawidget.h"
@@ -23,6 +22,7 @@
 #include "musictinyuiobject.h"
 #include "musicdispatchmanager.h"
 #include "musictkplconfigmanager.h"
+#include "ttkversion.h"
 
 #include <QMimeData>
 
@@ -720,7 +720,7 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
         m_leftAreaWidget->musictLoveStateClicked(false);
     }
 
-    MusicToastLabel::popup(!contains ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
+    MusicToastLabel::popup(!contains ? tr("Add music to lovest list done!") : tr("Remove music to lovest list done!"));
 }
 
 void MusicApplication::musicWindowConciseChanged()

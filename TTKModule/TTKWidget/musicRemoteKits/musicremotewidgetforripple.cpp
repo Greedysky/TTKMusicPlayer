@@ -3,9 +3,8 @@
 #include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
 #include "musicqmmputils.h"
-///qmmp incldue
-#include "visual.h"
-#include "visualfactory.h"
+///
+#include <qmmp/visual.h>
 
 MusicRemoteWidgetForRipple::MusicRemoteWidgetForRipple(QWidget *parent)
     : MusicRemoteWidget(parent)

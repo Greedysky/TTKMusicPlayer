@@ -17,8 +17,7 @@
 #include "musicsinglemanager.h"
 #include "musicimageutils.h"
 
-///qmmp incldue
-#include "visual.h"
+#include <qmmp/visual.h>
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 

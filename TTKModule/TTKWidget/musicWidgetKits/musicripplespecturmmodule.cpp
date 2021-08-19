@@ -2,7 +2,7 @@
 #include "musicqmmputils.h"
 #include "musicobject.h"
 
-#include "visual.h"
+#include <qmmp/visual.h>
 
 MusicRippleSpecturmModule::MusicRippleSpecturmModule(QObject *parent)
     : QObject(parent)

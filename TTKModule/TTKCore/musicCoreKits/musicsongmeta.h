@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "tagwrapper.h"
+#include <qmmp/tagwrapper.h>
 #include "musicglobaldefine.h"
 
 struct MusicMeta;

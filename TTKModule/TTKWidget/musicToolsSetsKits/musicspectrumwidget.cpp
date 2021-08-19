@@ -11,11 +11,10 @@
 
 #include <QPluginLoader>
 
-///qmmp incldue
-#include "florid.h"
-#include "visualfactory.h"
-#include "lightfactory.h"
-#include "soundcore.h"
+#include <qmmp/florid.h>
+#include <qmmp/visualfactory.h>
+#include <qmmp/lightfactory.h>
+#include <qmmp/soundcore.h>
 
 #define ITEM_DEFAULT_COUNT      3
 #define ITEM_OFFSET             107
