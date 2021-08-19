@@ -213,7 +213,7 @@ void MusicKGQueryPlaylistRequest::getDetailsFinished()
 
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     if(musicInfo.m_songName.contains(STRING_NULL))
                     {
@@ -249,7 +249,7 @@ void MusicKGQueryPlaylistRequest::getDetailsFinished()
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_albumName = musicInfo.m_albumName;
-                    item.m_time = musicInfo.m_timeLength;
+                    item.m_duration = musicInfo.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;

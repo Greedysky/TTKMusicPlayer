@@ -105,7 +105,7 @@ void MusicWYQueryRequest::downLoadFinished()
 
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
@@ -146,7 +146,7 @@ void MusicWYQueryRequest::downLoadFinished()
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
                         item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
+                        item.m_duration = musicInfo.m_duration;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
                     }
@@ -189,7 +189,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
 
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(musicInfo.m_songId);
 
@@ -225,7 +225,7 @@ void MusicWYQueryRequest::singleDownLoadFinished()
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
                         item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
+                        item.m_duration = musicInfo.m_duration;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
                         m_musicSongInfos << musicInfo;

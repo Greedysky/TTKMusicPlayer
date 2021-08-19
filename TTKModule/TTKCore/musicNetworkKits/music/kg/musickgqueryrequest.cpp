@@ -104,7 +104,7 @@ void MusicKGQueryRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     musicInfo.m_songId = value["hash"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
@@ -133,7 +133,7 @@ void MusicKGQueryRequest::downLoadFinished()
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
                         item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
+                        item.m_duration = musicInfo.m_duration;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
                     }
@@ -168,7 +168,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                 musicInfo.m_songId = value["hash"].toString();
                 musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                 musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
                 musicInfo.m_artistId = QString::number(value["singerid"].toULongLong());
                 musicInfo.m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
                 musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
@@ -201,7 +201,7 @@ void MusicKGQueryRequest::singleDownLoadFinished()
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_albumName = musicInfo.m_albumName;
-                    item.m_time = musicInfo.m_timeLength;
+                    item.m_duration = musicInfo.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;

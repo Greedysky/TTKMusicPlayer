@@ -261,9 +261,9 @@ void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInfor
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
             }
 
-            if(info->m_timeLength.isEmpty())
+            if(info->m_duration.isEmpty())
             {
-                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                info->m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
             }
         }
     }

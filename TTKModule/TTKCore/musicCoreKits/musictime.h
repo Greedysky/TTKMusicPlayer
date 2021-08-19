@@ -190,7 +190,7 @@ public:
      */
     static QString normalTime2Label(qint64 time);
 
-    MusicTime& operator=  (const MusicTime &other);
+    MusicTime& operator = (const MusicTime &other);
     MusicTime& operator+= (const MusicTime &other);
     MusicTime& operator+= (const int other);
     MusicTime& operator-= (const MusicTime &other);

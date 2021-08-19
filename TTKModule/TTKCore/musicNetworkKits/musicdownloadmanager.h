@@ -28,37 +28,37 @@
  */
 typedef struct TTK_MODULE_EXPORT MusicDownLoadPairData
 {
-    qint64 m_time;
+    qint64 m_timestamp;
     QObject *m_object;
     MusicObject::RecordType m_type;
 
     MusicDownLoadPairData()
     {
-        m_time = -1;
+        m_timestamp = -1;
         m_object = nullptr;
         m_type = MusicObject::RecordNormalDownload;
     }
 
     MusicDownLoadPairData(qint64 t) : MusicDownLoadPairData()
     {
-        m_time = t;
+        m_timestamp = t;
     }
 
     MusicDownLoadPairData(qint64 t, QObject *object, MusicObject::RecordType type)
     {
-        m_time = t;
+        m_timestamp = t;
         m_object = object;
         m_type = type;
     }
 
     bool operator< (const MusicDownLoadPairData &other) const
     {
-        return m_time < other.m_time;
+        return m_timestamp < other.m_timestamp;
     }
 
     bool operator== (const MusicDownLoadPairData &other) const
     {
-        return m_time == other.m_time;
+        return m_timestamp == other.m_timestamp;
     }
 }MusicDownLoadPairData;
 

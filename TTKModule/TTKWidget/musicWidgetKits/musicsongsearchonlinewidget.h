@@ -28,19 +28,19 @@
 typedef struct TTK_MODULE_EXPORT MusicDownloadData
 {
     QString m_songName;
-    QString m_time;
+    QString m_timestamp;
     QString m_format;
 
     void clear()
     {
         m_songName.clear();
-        m_time.clear();
+        m_timestamp.clear();
         m_format.clear();
     }
 
     bool isValid() const
     {
-        return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
+        return !(m_songName.isEmpty() && m_timestamp.isEmpty() && m_format.isEmpty());
     }
 
 }MusicDownloadData;

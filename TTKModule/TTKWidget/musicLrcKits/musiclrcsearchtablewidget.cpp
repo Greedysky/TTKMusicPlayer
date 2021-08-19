@@ -119,7 +119,7 @@ void MusicLrcSearchTableWidget::createSearchedItem(const MusicSearchedItem &song
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 2, item);
 
-                      item = new QTableWidgetItem(songItem.m_time);
+                      item = new QTableWidgetItem(songItem.m_duration);
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(100, 100, 100));
 #else

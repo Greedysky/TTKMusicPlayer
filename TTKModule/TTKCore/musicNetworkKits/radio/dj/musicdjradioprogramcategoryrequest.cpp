@@ -195,7 +195,7 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
 
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
                     const QVariantMap &radioObject = value["radio"].toMap();
                     musicInfo.m_smallPicUrl = radioObject["picUrl"].toString();
@@ -230,7 +230,7 @@ void MusicDJRadioProgramCategoryRequest::getDetailsFinished()
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_albumName.clear();
-                    item.m_time = musicInfo.m_timeLength;
+                    item.m_duration = musicInfo.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;

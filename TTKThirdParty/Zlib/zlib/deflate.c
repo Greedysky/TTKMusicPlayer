@@ -316,7 +316,7 @@ int ZEXPORT deflateInit2_(strm, level, method, windowBits, memLevel, strategy,
     s->hash_bits = (uInt)memLevel + 7;
     s->hash_size = 1 << s->hash_bits;
     s->hash_mask = s->hash_size - 1;
-    s->hash_shift =  ((s->hash_bits+MIN_MATCH-1)/MIN_MATCH);
+    s->hash_shift = ((s->hash_bits+MIN_MATCH-1)/MIN_MATCH);
 
     s->window = (Bytef *) ZALLOC(strm, s->w_size, 2*sizeof(Byte));
     s->prev   = (Posf *)  ZALLOC(strm, s->w_size, sizeof(Pos));

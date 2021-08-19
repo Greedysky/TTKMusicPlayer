@@ -31,7 +31,7 @@ typedef struct TTK_MODULE_EXPORT MusicSearchedItem
     QString m_songName;
     QString m_singerName;
     QString m_albumName;
-    QString m_time;
+    QString m_duration;
     QString m_type;
 
     MusicSearchedItem()
@@ -39,7 +39,7 @@ typedef struct TTK_MODULE_EXPORT MusicSearchedItem
         m_songName = STRING_NULL;
         m_singerName = STRING_NULL;
         m_albumName = STRING_NULL;
-        m_time = STRING_NULL;
+        m_duration = STRING_NULL;
         m_type = STRING_NULL;
     }
 }MusicSearchedItem;

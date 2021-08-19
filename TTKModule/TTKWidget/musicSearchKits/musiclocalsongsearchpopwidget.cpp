@@ -119,7 +119,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     m_popTableWidget->setRowCount(count);
     for(int i=0; i<count; ++i)
     {
-        m_popTableWidget->createItems(i, records[i].m_name, utcTimeToLocal(records[i].m_time));
+        m_popTableWidget->createItems(i, records[i].m_name, utcTimeToLocal(records[i].m_timestamp));
     }
 }
 

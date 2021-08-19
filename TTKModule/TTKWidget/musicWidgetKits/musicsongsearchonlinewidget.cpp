@@ -58,7 +58,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     search.readSearchData(records);
     MusicSearchRecord record;
     record.m_name = text;
-    record.m_time = QString::number(MusicTime::timestamp());
+    record.m_timestamp = QString::number(MusicTime::timestamp());
     records.insert(0, record);
     search.writeSearchData(records);
     //
@@ -220,7 +220,7 @@ void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &son
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 
-                      item = new QTableWidgetItem(songItem.m_time);
+                      item = new QTableWidgetItem(songItem.m_duration);
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(100, 100, 100));
 #else
@@ -285,7 +285,7 @@ void MusicSongSearchTableWidget::searchDataDwonloadFinished()
 {
     if(m_downloadData.isValid())
     {
-        Q_EMIT musicSongToPlaylistChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format, true);
+        Q_EMIT musicSongToPlaylistChanged(m_downloadData.m_songName, m_downloadData.m_timestamp, m_downloadData.m_format, true);
     }
     m_downloadData.clear();
 }
@@ -362,7 +362,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 
     m_downloadData.clear();
     m_downloadData.m_songName = musicEnSong;
-    m_downloadData.m_time =  item(row, 4)->text();
+    m_downloadData.m_timestamp = item(row, 4)->text();
     m_downloadData.m_format = musicSongAttr.m_format;
 }
 

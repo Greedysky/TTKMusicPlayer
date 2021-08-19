@@ -107,7 +107,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["singername"].toString());
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
                     musicInfo.m_songId = value["mvhash"].toString();
                     TTK_NETWORK_QUERY_CHECK();
@@ -122,7 +122,7 @@ void MusicKGQueryMovieRequest::downLoadFinished()
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
-                    item.m_time = musicInfo.m_timeLength;
+                    item.m_duration = musicInfo.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
@@ -198,7 +198,7 @@ void MusicKGQueryMovieRequest::singleDownLoadFinished()
         MusicSearchedItem item;
         item.m_songName = musicInfo.m_songName;
         item.m_singerName = musicInfo.m_singerName;
-        item.m_time = findTimeStringByAttrs(musicInfo.m_songAttrs);
+        item.m_duration = findTimeStringByAttrs(musicInfo.m_songAttrs);
         item.m_type = mapQueryServerString();
         Q_EMIT createSearchedItem(item);
         m_musicSongInfos << musicInfo;

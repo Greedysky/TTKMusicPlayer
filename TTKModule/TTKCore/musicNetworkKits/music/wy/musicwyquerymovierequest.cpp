@@ -235,7 +235,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
             musicInfo.m_songId = QString::number(id);
             musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
             musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artistName"].toString());
-            musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+            musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();
             for(const QString &key : value.keys())
@@ -267,7 +267,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
             MusicSearchedItem item;
             item.m_songName = musicInfo.m_songName;
             item.m_singerName = musicInfo.m_singerName;
-            item.m_time = musicInfo.m_timeLength;
+            item.m_duration = musicInfo.m_duration;
             item.m_type = mapQueryServerString();
             Q_EMIT createSearchedItem(item);
             m_musicSongInfos << musicInfo;
@@ -309,7 +309,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
             MusicObject::MusicSongInformation musicInfo;
             musicInfo.m_songId = id;
             musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["title"].toString());
-            musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["durationms"].toInt());
+            musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["durationms"].toInt());
 
             const QVariantMap &artistObject = value["creator"].toMap();
             musicInfo.m_singerName = MusicUtils::String::charactersReplaced(artistObject["nickname"].toString());
@@ -358,7 +358,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
             MusicSearchedItem item;
             item.m_songName = musicInfo.m_songName;
             item.m_singerName = musicInfo.m_singerName;
-            item.m_time = musicInfo.m_timeLength;
+            item.m_duration = musicInfo.m_duration;
             item.m_type = mapQueryServerString();
             Q_EMIT createSearchedItem(item);
             m_musicSongInfos << musicInfo;

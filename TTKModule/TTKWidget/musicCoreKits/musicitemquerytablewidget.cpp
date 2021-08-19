@@ -265,7 +265,7 @@ void MusicItemQueryTableWidget::createSearchedItem(const MusicSearchedItem &song
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     setItem(count, 2, item);
 
-                      item = new QTableWidgetItem(songItem.m_time);
+                      item = new QTableWidgetItem(songItem.m_duration);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(100, 100, 100));
@@ -353,7 +353,7 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
         download->startToDownload();
         loop.exec();
 
-        Q_EMIT musicSongToPlaylistChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
+        Q_EMIT musicSongToPlaylistChanged(musicEnSong, downloadInfo.m_duration, attr.m_format, play);
     }
 
     return true;

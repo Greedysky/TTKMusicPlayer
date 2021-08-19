@@ -163,7 +163,7 @@ void MusicKWQueryRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["ARTIST"].toString());
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["SONGNAME"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt() * 1000);
 
                     musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
                     musicInfo.m_artistId = value["ARTISTID"].toString();
@@ -194,7 +194,7 @@ void MusicKWQueryRequest::downLoadFinished()
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
                         item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
+                        item.m_duration = musicInfo.m_duration;
                         item.m_type = mapQueryServerString();
                         Q_EMIT createSearchedItem(item);
                     }
@@ -242,7 +242,7 @@ void MusicKWQueryRequest::singleDownLoadFinished()
                 MusicSearchedItem item;
                 item.m_songName = musicInfo.m_songName;
                 item.m_singerName = musicInfo.m_singerName;
-                item.m_time = musicInfo.m_timeLength;
+                item.m_duration = musicInfo.m_duration;
                 item.m_type = mapQueryServerString();
                 Q_EMIT createSearchedItem(item);
                 m_musicSongInfos << musicInfo;

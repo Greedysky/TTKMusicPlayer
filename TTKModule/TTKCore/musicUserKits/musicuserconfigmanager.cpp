@@ -17,7 +17,7 @@ void MusicUserConfigManager::readUserData(MusicUserRecords &records)
         record.m_remember = (element.attribute("remember") == "1");
         record.m_auto = (element.attribute("auto") == "1");
         record.m_server = element.attribute("type").toInt();
-        record.m_password =  element.text();
+        record.m_password = element.text();
         records << record;
     }
 }

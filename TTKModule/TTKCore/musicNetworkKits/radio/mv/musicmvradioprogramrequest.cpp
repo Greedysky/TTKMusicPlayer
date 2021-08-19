@@ -79,7 +79,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                                     musicInfo.m_songName = ds.back();
                                 }
                             }
-                            musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["time"].toInt());
+                            musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["time"].toInt());
 
                             musicInfo.m_songId = value["mvhash"].toString();
                             TTK_NETWORK_QUERY_CHECK();
@@ -94,7 +94,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
                             MusicSearchedItem item;
                             item.m_songName = musicInfo.m_songName;
                             item.m_singerName = musicInfo.m_singerName;
-                            item.m_time = musicInfo.m_timeLength;
+                            item.m_duration = musicInfo.m_duration;
                             item.m_albumName.clear();
                             item.m_type.clear();
                             Q_EMIT createSearchedItem(item);

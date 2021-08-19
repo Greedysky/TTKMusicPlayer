@@ -116,7 +116,7 @@ void MusicQQQueryMovieRequest::downLoadFinished()
                         musicInfo.m_artistId = name["mid"].toString();
                     }
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["songname"].toString());
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
+                    musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["interval"].toInt() * 1000);
 
                     musicInfo.m_songId = value["vid"].toString();
                     TTK_NETWORK_QUERY_CHECK();
@@ -131,7 +131,7 @@ void MusicQQQueryMovieRequest::downLoadFinished()
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
-                    item.m_time = musicInfo.m_timeLength;
+                    item.m_duration = musicInfo.m_duration;
                     item.m_type = mapQueryServerString();
                     Q_EMIT createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
@@ -204,7 +204,7 @@ void MusicQQQueryMovieRequest::singleDownLoadFinished()
         MusicSearchedItem item;
         item.m_songName = musicInfo.m_songName;
         item.m_singerName = musicInfo.m_singerName;
-        item.m_time = musicInfo.m_timeLength;
+        item.m_duration = musicInfo.m_duration;
         item.m_type = mapQueryServerString();
         Q_EMIT createSearchedItem(item);
         m_musicSongInfos << musicInfo;
@@ -263,7 +263,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 {
                     info->m_singerName = "Default";
                     info->m_songName = vlValue["ti"].toString();
-                    info->m_timeLength = MusicTime::msecTime2LabelJustified(TTKStatic_cast(int, vlValue["td"].toString().toFloat()) * 1000);
+                    info->m_duration = MusicTime::msecTime2LabelJustified(TTKStatic_cast(int, vlValue["td"].toString().toFloat()) * 1000);
                 }
 
                 vlValue = vlValue["ul"].toMap();

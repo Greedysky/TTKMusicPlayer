@@ -27,7 +27,7 @@
 typedef struct TTK_MODULE_EXPORT MusicSearchRecord
 {
     QString m_name;
-    QString m_time;
+    QString m_timestamp;
 }MusicSearchRecord;
 TTK_DECLARE_LISTS(MusicSearchRecord)
 

@@ -94,7 +94,7 @@ protected:
     Ui::MusicUserManagerDialog *m_ui;
     MusicUserModel *m_userModel;
     MusicUserUIDItem m_userUID;
-    QElapsedTimer m_time;
+    QElapsedTimer m_timer;
     QMenu m_popMenu;
 
 };

@@ -215,7 +215,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     for(int i=0; i<m_data.count(); ++i)
     {
         offset = ITEM_WIDTH - delta*(i + 1);
-        if(offset <= delta || offset <=  2 * delta)
+        if(offset <= delta || offset <= 2 * delta)
         {
             break;
         }
@@ -519,7 +519,7 @@ void MusicLrcPosterItemWidget::drawTheme11(QPainter *painter)
 
     if(h <= height())
     {
-        w =  TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -564,12 +564,12 @@ void MusicLrcPosterItemWidget::drawTheme12(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_summer");
-    int h =  TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -614,12 +614,12 @@ void MusicLrcPosterItemWidget::drawTheme13(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_autumn");
-    int h =  TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 
@@ -664,12 +664,12 @@ void MusicLrcPosterItemWidget::drawTheme14(QPainter *painter)
     setFixedHeight(qMax(offset + v, ITEM_HEIGHT));
     //
     QPixmap pix(":/lrc/lb_poster_winter");
-    int h =  TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
+    int h = TTKStatic_cast(int, pix.height() * width() * 1.0f / pix.width());
     int w = width();
 
     if(h <= height())
     {
-        w =  TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
+        w = TTKStatic_cast(int, width() * qMax(1.0f, height() * 1.0f / pix.height()));
         h = height();
     }
 

@@ -62,8 +62,8 @@ QPixmap GaussBlur::render(const QPixmap &pixmap, int value)
     TTK_D(SharpeImage);
     QImage image = pixmap.copy(d->m_rectangle).toImage();
 
-    const float sigma =  1.0 * value / 2.57;
-    const float deno  =  1.0 / (sigma * sqrt(2.0 * M_PI));
+    const float sigma = 1.0 * value / 2.57;
+    const float deno  = 1.0 / (sigma * sqrt(2.0 * M_PI));
     const float nume  = -1.0 / (2.0 * sigma * sigma);
 
     float* gaussMatrix = (float*)malloc(sizeof(float)* (value + value + 1));

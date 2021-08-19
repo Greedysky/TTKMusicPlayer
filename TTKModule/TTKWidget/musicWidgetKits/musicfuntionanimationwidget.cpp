@@ -114,7 +114,7 @@ void MusicBaseAnimationWidget::paintEvent(QPaintEvent *event)
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
         painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
 
-        int offset =  m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
+        int offset = m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
             offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);
         if(m_showLine)
         {

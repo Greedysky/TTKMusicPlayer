@@ -13,7 +13,7 @@ void MusicLocalSongSearchRecordConfigManager::readSearchData(MusicSearchRecords 
     {
         MusicSearchRecord record;
         record.m_name = nodeList.at(i).toElement().attribute("name");
-        record.m_time = nodeList.at(i).toElement().text();
+        record.m_timestamp = nodeList.at(i).toElement().text();
         records << record;
     }
 }
@@ -32,7 +32,7 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchR
 
     for(const MusicSearchRecord &record : qAsConst(records))
     {
-        writeDomElementText(download, "value", MusicXmlAttribute("name", record.m_name), record.m_time);
+        writeDomElementText(download, "value", MusicXmlAttribute("name", record.m_name), record.m_timestamp);
     }
 
     QTextStream out(m_file);

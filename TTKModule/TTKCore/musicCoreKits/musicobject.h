@@ -254,7 +254,7 @@ namespace MusicObject
         QString m_singerName;
         QString m_albumName;
         QString m_songName;
-        QString m_timeLength;
+        QString m_duration;
         QString m_year;
         QString m_discNumber;
         QString m_trackNumber;

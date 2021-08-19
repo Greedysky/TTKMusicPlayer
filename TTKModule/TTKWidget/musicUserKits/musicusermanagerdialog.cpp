@@ -38,7 +38,7 @@ MusicUserManagerDialog::~MusicUserManagerDialog()
     if(!m_userUID.m_uid.isEmpty())
     {
         m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
-                                QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed() / (MT_S2MS * 30)));
+                                QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_timer.elapsed() / (MT_S2MS * 30)));
     }
     delete m_ui;
 }
@@ -50,7 +50,7 @@ void MusicUserManagerDialog::setUserUID(const MusicUserUIDItem &uid)
     m_ui->userIcon->setPixmap(QPixmap(m_userModel->getUserIcon(uid)).scaled(m_ui->userIcon->size()));
 
     createUserTime();
-    m_time.start();
+    m_timer.start();
 }
 
 void MusicUserManagerDialog::setUserModel(MusicUserModel *model)
@@ -77,7 +77,7 @@ void MusicUserManagerDialog::createButtonPopMenu()
 void MusicUserManagerDialog::musicUserLogoff()
 {
     m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
-                            QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed() / (MT_S2MS * 30)));
+                            QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_timer.elapsed() / (MT_S2MS * 30)));
 
     MusicUserConfigManager xml;
     if(!xml.readConfig())
