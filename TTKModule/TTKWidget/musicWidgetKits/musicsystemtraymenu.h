@@ -74,6 +74,7 @@ protected:
      * Override the widget event.
      */
     virtual void showEvent(QShowEvent *event) override;
+
     /*!
      * Create play widget actions.
      */
@@ -84,7 +85,7 @@ protected:
     void createVolumeWidgetActions();
 
     QLabel *m_showText;
-    QToolButton *m_PlayOrStop, *m_volumeButton;
+    QToolButton *m_playButton, *m_volumeButton;
     MusicClickedSlider *m_volumeSlider;
     QAction *m_showLrcAction, *m_lockLrcAction, *m_loginAction;
 

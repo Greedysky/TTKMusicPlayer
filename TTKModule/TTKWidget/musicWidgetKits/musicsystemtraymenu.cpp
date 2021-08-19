@@ -43,7 +43,7 @@ MusicSystemTrayMenu::~MusicSystemTrayMenu()
 {
 #ifndef Q_OS_UNIX
     delete m_showText;
-    delete m_PlayOrStop;
+    delete m_playButton;
     delete m_volumeButton;
     delete m_volumeSlider;
 #endif
@@ -81,7 +81,7 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
 void MusicSystemTrayMenu::setCurrentPlayStatus(bool status) const
 {
 #ifndef Q_OS_UNIX
-    m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MQSSContextPlay : MusicUIObject::MQSSContextPause);
+    m_playButton->setStyleSheet(status ? MusicUIObject::MQSSContextPlay : MusicUIObject::MQSSContextPause);
 #else
     Q_UNUSED(status);
 #endif
@@ -147,26 +147,26 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     QToolButton *previousPlay = new QToolButton(widgetContainer);
     QToolButton *nextPlay = new QToolButton(widgetContainer);
-    m_PlayOrStop = new QToolButton(widgetContainer);
+    m_playButton = new QToolButton(widgetContainer);
 
     previousPlay->setFixedSize(32, 32);
     nextPlay->setFixedSize(32, 32);
-    m_PlayOrStop->setFixedSize(32, 32);
+    m_playButton->setFixedSize(32, 32);
 
     previousPlay->setStyleSheet(MusicUIObject::MQSSContextPrevious);
     nextPlay->setStyleSheet(MusicUIObject::MQSSContextNext);
-    m_PlayOrStop->setStyleSheet(MusicUIObject::MQSSContextPlay);
+    m_playButton->setStyleSheet(MusicUIObject::MQSSContextPlay);
 
     previousPlay->setCursor(QCursor(Qt::PointingHandCursor));
     nextPlay->setCursor(QCursor(Qt::PointingHandCursor));
-    m_PlayOrStop->setCursor(QCursor(Qt::PointingHandCursor));
+    m_playButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     previousPlay->setToolTip(tr("Previous"));
     nextPlay->setToolTip(tr("Next"));
-    m_PlayOrStop->setToolTip(tr("Play"));
+    m_playButton->setToolTip(tr("Play"));
 
     box->addWidget(previousPlay);
-    box->addWidget(m_PlayOrStop);
+    box->addWidget(m_playButton);
     box->addWidget(nextPlay);
 
     m_showText = new QLabel(widgetActionContainer);
@@ -180,7 +180,7 @@ void MusicSystemTrayMenu::createPlayWidgetActions()
 
     connect(previousPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayPrevious()));
     connect(nextPlay, SIGNAL(clicked()), parent(), SLOT(musicPlayNext()));
-    connect(m_PlayOrStop, SIGNAL(clicked()), parent(), SLOT(musicStatePlay()));
+    connect(m_playButton, SIGNAL(clicked()), parent(), SLOT(musicStatePlay()));
 }
 
 void MusicSystemTrayMenu::createVolumeWidgetActions()
