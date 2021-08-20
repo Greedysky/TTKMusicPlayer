@@ -19,7 +19,7 @@ INCLUDEPATH += $$EXTRA_PREFIX/libwildmidi/include
 
 unix:{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib/x86_64-linux-gnu -lWildMidi$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libwildmidi/lib -lWildMidi$$STATIC_LIBRARY_SUFFIX
 }
 
 win32:{

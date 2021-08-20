@@ -1,6 +1,5 @@
 #include <QSettings>
 #include <cdio/version.h>
-#include <cddb/version.h>
 #include "decoder_cdaudio.h"
 #include "decodercdaudiofactory.h"
 
