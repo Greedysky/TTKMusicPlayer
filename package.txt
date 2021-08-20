@@ -1,31 +1,32 @@
-adplug-2.3.2
-alsa-lib-1.2.2
-enca-1.19
-faad2-2.9.2
-ffmpeg-3.4.6
-flac-1.3.3
-game-music-emu-0.6.3
-libbinio-1.5
-libbs2b-3.1.0
-libcddb-1.3.2
-libcdio-paranoia-release-10.2-2.0.1
-libcdio-release-2.1.0
-libmad-0.15.1b
-libopenmpt-0.3.30
-libmpc-1.3.0
-libogg-1.3.5
-libprojectm-2.2.1
-libsamplerate-0.1.9
-libsidplayfp-2.1.2
-libsndfile-1.0.31
-libvorbis-1.3.7
-libxmp-4.4.1
-OptimFROG-5100
-opus-1.3.1
-opusfile-0.12
-soxr-0.1.3
-speex-1.2.0
-taglib-1.12
-wavpack-5.4.0
-wildmidi-wildmidi-0.4.3.mod
+adplug-2.3.2	https://github.com/adplug/adplug
+alsa-lib-1.2.2	https://www.alsa-project.org/wiki/Download
+enca-1.19	https://cihar.com/software/enca
+faad2-2.9.2	https://github.com/knik0/faad2
+ffmpeg-3.4.6	https://github.com/FFmpeg/FFmpeg
+flac-1.3.3	https://xiph.org/flac/download.html
+game-music-emu-0.6.3	https://bitbucket.org/mpyne/game-music-emu/downloads
+libbinio-1.5	https://github.com/adplug/libbinio
+libbs2b-3.1.0	https://sourceforge.net/projects/bs2b
+libcddb-1.3.2	https://sourceforge.net/projects/libcddb
+libcdio-paranoia-release-10.2-2.0.1	http://ftp.gnu.org/gnu/libcdio
+libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
+libmad-0.15.1b	https://sourceforge.net/projects/mad
+libmpc-1.3.0	files.musepack.net/source/musepack_src_r475.tar.gz
+libogg-1.3.5	https://xiph.org/downloads
+libopenmpt-0.3.30	https://lib.openmpt.org/libopenmpt
+libprojectm-2.2.1	https://github.com/projectM-visualizer/projectm
+libsamplerate-0.1.9	http://libsndfile.github.io/libsamplerate/download.html
+libsidplayfp-2.1.2	https://sourceforge.net/projects/sidplay-residfp
+libsndfile-1.0.31	https://github.com/libsndfile/libsndfile
+libvorbis-1.3.7	https://xiph.org/downloads
+mp3gain-1_5_2	http://mp3gain.sourceforge.net/download.php
+MPlayer-1.2.1	http://mplayerhq.hu/design7/dload.html
+OptimFROG-5100	http://losslessaudio.org/Downloads.php
+opus-1.3.1	https://www.opus-codec.org/downloads
+opusfile-0.12	https://www.opus-codec.org/downloads
+soxr-0.1.3	https://sourceforge.net/projects/soxr
+speex-1.2.0	https://gitlab.xiph.org/xiph/speex
+taglib-1.12	https://github.com/taglib/taglib
+wavpack-5.4.0	https://www.wavpack.com/downloads.html
+wildmidi-wildmidi-0.4.3.mod	https://github.com/Mindwerks/wildmidi
 zed-1.0.9
