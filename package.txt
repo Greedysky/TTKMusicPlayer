@@ -1,5 +1,5 @@
 adplug-2.3.3	https://github.com/adplug/adplug
-alsa-lib-1.2.5.1	https://www.alsa-project.org/wiki/Download
+#alsa-lib-1.2.5.1	https://www.alsa-project.org/wiki/Download
 enca-1.19	https://cihar.com/software/enca
 faad2-2.10.0	https://github.com/knik0/faad2
 ffmpeg-3.4.6	https://github.com/FFmpeg/FFmpeg

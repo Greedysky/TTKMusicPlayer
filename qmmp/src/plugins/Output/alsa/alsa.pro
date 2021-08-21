@@ -15,6 +15,4 @@ TARGET = $${TARGET}
 
 QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 
-INCLUDEPATH += $$EXTRA_PREFIX/libalsa/include
-
-LIBS += -L$$EXTRA_PREFIX/libalsa/lib -lasound
+LIBS += -lasound
