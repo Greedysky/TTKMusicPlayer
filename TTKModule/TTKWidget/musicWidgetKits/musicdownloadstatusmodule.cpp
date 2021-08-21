@@ -73,7 +73,7 @@ void MusicDownloadStatusModule::checkLrcValid()
 
        const QString &filename = m_parentClass->getCurrentFileName();
        ///Check if the file exists
-       if(QFile::exists(MusicUtils::String::lrcPrefix() + filename + LRC_FILE) || QFile::exists(MusicUtils::String::lrcPrefix() + filename + KRC_FILE))
+       if(QFile::exists(MusicUtils::String::lrcPrefix() + filename + LRC_FILE))
        {
            return;
        }

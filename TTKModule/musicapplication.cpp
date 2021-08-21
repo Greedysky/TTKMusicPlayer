@@ -166,8 +166,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
     }
 
     const QString &filename = getCurrentFileName();
-    const QString &prefix = MusicUtils::String::lrcPrefix();
-    const QString &path = QFile::exists(prefix + filename + LRC_FILE) ? (prefix + filename + LRC_FILE) : (prefix + filename + KRC_FILE);
+    const QString &path = MusicUtils::String::lrcPrefix() + filename + LRC_FILE;
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
 
     //reset current song lrc index.
