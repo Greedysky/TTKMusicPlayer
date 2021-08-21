@@ -17,6 +17,7 @@ SRConverter::SRConverter()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_overSamplingFs = settings.value("SRC/sample_rate", 48000).toInt();
     m_converter_type = converter_type_array[settings.value("SRC/engine", 0).toInt()];
+    memset(&m_src_data, 0, sizeof(SRC_DATA));
 }
 
 SRConverter::~SRConverter()
@@ -88,6 +89,7 @@ void SRConverter::freeSRC()
         delete[] m_src_data.data_in;
         m_src_data.data_in = nullptr;
     }
+
     if(m_src_data.data_out)
     {
         delete[] m_src_data.data_out;
