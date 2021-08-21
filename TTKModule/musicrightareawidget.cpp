@@ -60,7 +60,12 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     delete m_downloadStatusObject;
     delete m_musicLrcForDesktop;
     delete m_musicLrcForWallpaper;
-    delete m_videoPlayerWidget;
+
+    if(m_videoPlayerWidget)
+    {
+        m_videoPlayerWidget->setVisible(false); //Fix bug on linux
+        delete m_videoPlayerWidget;
+    }
 }
 
 MusicRightAreaWidget *MusicRightAreaWidget::instance()
