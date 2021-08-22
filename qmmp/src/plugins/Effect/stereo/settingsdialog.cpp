@@ -6,7 +6,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
     m_ui.setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_level = settings.value("Stereo/intensity", 1.0).toDouble();

@@ -14,7 +14,7 @@
 Visual::Visual(QWidget *parent, Qt::WindowFlags f)
     : QWidget(parent, f)
 {
-    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
     setAttribute(Qt::WA_QuitOnClose, false);
 
     m_timer = new QTimer(this);
