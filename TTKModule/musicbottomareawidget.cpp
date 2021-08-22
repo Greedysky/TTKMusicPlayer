@@ -90,9 +90,7 @@ void MusicBottomAreaWidget::setDestopLrcVisible(bool status) const
 void MusicBottomAreaWidget::setCurrentPlayStatus(bool status) const
 {
     m_systemTrayMenu->setCurrentPlayStatus(status);
-#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
     m_musicWindowExtras->setCurrentPlayStatus(status);
-#endif
 }
 
 void MusicBottomAreaWidget::setVolumeValue(int value) const

@@ -200,7 +200,7 @@ void MusicSoundKMicroWidget::playButtonChanged()
         }
         else
         {
-            m_musicLrcContainer[m_analysis->getMiddle()]->stopLrcMask();
+            m_musicLrcContainer[m_analysis->getMiddle()]->stopDrawLrc();
             m_ui->musicPage->stop();
         }
     }

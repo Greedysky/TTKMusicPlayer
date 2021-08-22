@@ -338,7 +338,7 @@ void MusicApplication::showCurrentSong(int index)
         m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
         m_playControl = true;
         m_musicPlayer->stop();
-        m_rightAreaWidget->stopLrcMask();
+        m_rightAreaWidget->stopDrawLrc();
 
         m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
         m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
@@ -379,7 +379,7 @@ void MusicApplication::musicStatePlay()
         m_playControl = false;
         m_musicPlayer->play();
         m_topAreaWidget->musicBackgroundThemeDownloadFinished();
-        m_rightAreaWidget->startTimerClock();
+        m_rightAreaWidget->startDrawLrc();
     }
     else
     {
@@ -387,7 +387,7 @@ void MusicApplication::musicStatePlay()
         m_playControl = true;
         m_musicPlayer->pause();
         m_topAreaWidget->setBackgroundAnimation(false);
-        m_rightAreaWidget->stopLrcMask();
+        m_rightAreaWidget->stopDrawLrc();
     }
     m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
     m_rightAreaWidget->setCurrentPlayStatus(m_playControl);

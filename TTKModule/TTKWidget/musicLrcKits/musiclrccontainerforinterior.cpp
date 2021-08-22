@@ -82,14 +82,14 @@ MusicLrcContainerForInterior::~MusicLrcContainerForInterior()
     delete m_layoutWidget;
 }
 
-void MusicLrcContainerForInterior::startTimerClock()
+void MusicLrcContainerForInterior::startDrawLrc()
 {
-    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startTimerClock();
+    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startDrawLrc();
 }
 
-void MusicLrcContainerForInterior::stopLrcMask()
+void MusicLrcContainerForInterior::stopDrawLrc()
 {
-    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->stopLrcMask();
+    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->stopDrawLrc();
     m_layoutWidget->stop();
 }
 
@@ -172,7 +172,7 @@ void MusicLrcContainerForInterior::setLrcSize(int size)
 
     resizeWindow();
     setItemStyleSheet();
-    startTimerClock();
+    startDrawLrc();
 }
 
 int MusicLrcContainerForInterior::getLrcSize() const

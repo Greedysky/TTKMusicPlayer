@@ -42,19 +42,17 @@ void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 #endif
 }
 
-#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
 void MusicWindowExtras::setCurrentPlayStatus(bool status) const
 {
-    if(!status)
-    {
-        m_playToolButton->setIcon(m_parentClass->style()->standardIcon(QStyle::SP_MediaPause));
-    }
-    else
-    {
-        m_playToolButton->setIcon(m_parentClass->style()->standardIcon(QStyle::SP_MediaPlay));
-    }
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
+    const StandardPixmap pix = status ? QStyle::SP_MediaPlay : QStyle::SP_MediaPause;
+    m_playToolButton->setIcon(m_parentClass->style()->standardIcon(pix);
+#else
+    Q_UNUSED(status);
+#endif
 }
 
+#if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
 void MusicWindowExtras::createThumbnailToolBar()
 {
     m_thumbnailToolBar = new QWinThumbnailToolBar(this);

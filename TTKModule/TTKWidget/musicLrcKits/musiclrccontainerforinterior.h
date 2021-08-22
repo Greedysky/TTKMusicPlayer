@@ -45,11 +45,11 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void startTimerClock() override;
+    virtual void startDrawLrc() override;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void stopLrcMask() override;
+    virtual void stopDrawLrc() override;
     /*!
      * Set setting parameter.
      */

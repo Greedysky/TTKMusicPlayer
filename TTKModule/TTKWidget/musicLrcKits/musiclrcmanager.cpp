@@ -149,7 +149,7 @@ MusicLrcManager::~MusicLrcManager()
     delete m_timer;
 }
 
-void MusicLrcManager::startTimerClock()
+void MusicLrcManager::startDrawLrc()
 {
     m_timer->start(LRC_PER_TIME);
 }
@@ -238,7 +238,7 @@ void MusicLrcManager::startLrcMask(qint64 intervaltime)
     m_timer->start(LRC_PER_TIME);
 }
 
-void MusicLrcManager::stopLrcMask()
+void MusicLrcManager::stopDrawLrc()
 {
     m_timer->stop();
     update();

@@ -96,7 +96,7 @@ public:
     /*!
      * Start timer clock to draw lrc.
      */
-    void startTimerClock();
+    void startDrawLrc();
     /*!
      * Start timer clock to draw lrc mask.
      */
@@ -104,7 +104,7 @@ public:
     /*!
      * Stop timer clock to draw lrc mask.
      */
-    void stopLrcMask();
+    void stopDrawLrc();
     /*!
      * Set linear gradient color.
      */

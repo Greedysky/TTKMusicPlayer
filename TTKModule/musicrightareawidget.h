@@ -83,14 +83,15 @@ public:
      * Set up app ui.
      */
     void setupUi(Ui::MusicApplication* ui);
-    /*!
-     * Stop timer clock to draw lrc.
-     */
-    void stopLrcMask() const;
+
     /*!
      * Start timer clock to draw lrc.
      */
-    void startTimerClock() const;
+    void startDrawLrc() const;
+    /*!
+     * Stop timer clock to draw lrc.
+     */
+    void stopDrawLrc() const;
     /*!
      * Set current play state button.
      */

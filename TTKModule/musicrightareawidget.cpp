@@ -107,28 +107,28 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicSongSearchEdit, SIGNAL(enterFinished(QString)), SLOT(musicSongSearchedFound(QString)));
 }
 
-void MusicRightAreaWidget::stopLrcMask() const
+void MusicRightAreaWidget::startDrawLrc() const
 {
     if(checkSettingParameterValue())
     {
-       m_musicLrcForInterior->stopLrcMask();
-       m_musicLrcForDesktop->stopLrcMask();
+       m_musicLrcForInterior->startDrawLrc();
+       m_musicLrcForDesktop->startDrawLrc();
        if(m_musicLrcForWallpaper)
        {
-           m_musicLrcForWallpaper->stopLrcMask();
+           m_musicLrcForWallpaper->startDrawLrc();
        }
     }
 }
 
-void MusicRightAreaWidget::startTimerClock() const
+void MusicRightAreaWidget::stopDrawLrc() const
 {
     if(checkSettingParameterValue())
     {
-       m_musicLrcForInterior->startTimerClock();
-       m_musicLrcForDesktop->startTimerClock();
+       m_musicLrcForInterior->stopDrawLrc();
+       m_musicLrcForDesktop->stopDrawLrc();
        if(m_musicLrcForWallpaper)
        {
-           m_musicLrcForWallpaper->startTimerClock();
+           m_musicLrcForWallpaper->stopDrawLrc();
        }
     }
 }
@@ -190,7 +190,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 {
     if(checkSettingParameterValue())
     {
-        m_musicLrcForInterior->stopLrcMask();
+        m_musicLrcForInterior->stopDrawLrc();
         m_musicLrcForInterior->setCurrentSongName(name);
 
         MusicLrcAnalysis::State state;
@@ -206,7 +206,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         }
 
         m_musicLrcForInterior->updateCurrentLrc(state);
-        m_musicLrcForDesktop->stopLrcMask();
+        m_musicLrcForDesktop->stopDrawLrc();
         m_musicLrcForDesktop->setCurrentSongName(name);
 
         if(!state)
@@ -216,7 +216,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 
         if(m_musicLrcForWallpaper)
         {
-            m_musicLrcForWallpaper->stopLrcMask();
+            m_musicLrcForWallpaper->stopDrawLrc();
             m_musicLrcForWallpaper->setCurrentSongName(name);
             m_musicLrcForWallpaper->start(true);
 

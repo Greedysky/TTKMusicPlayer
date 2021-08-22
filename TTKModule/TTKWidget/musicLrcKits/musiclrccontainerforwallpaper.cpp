@@ -44,14 +44,14 @@ MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
     delete m_wallThread;
 }
 
-void MusicLrcContainerForWallpaper::startTimerClock()
+void MusicLrcContainerForWallpaper::startDrawLrc()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startTimerClock();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrc();
 }
 
-void MusicLrcContainerForWallpaper::stopLrcMask()
+void MusicLrcContainerForWallpaper::stopDrawLrc()
 {
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->stopLrcMask();
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->stopDrawLrc();
     m_layoutWidget->stop();
 }
 

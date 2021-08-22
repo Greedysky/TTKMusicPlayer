@@ -315,7 +315,7 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     }
     else
     {
-        m_musicLrcContainer[m_analysis->getMiddle()]->stopLrcMask();
+        m_musicLrcContainer[m_analysis->getMiddle()]->stopDrawLrc();
         m_ui->lrcViewer->stop();
     }
 }

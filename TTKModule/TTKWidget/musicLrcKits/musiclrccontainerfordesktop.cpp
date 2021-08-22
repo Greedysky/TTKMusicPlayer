@@ -33,16 +33,16 @@ MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
     delete m_toolBarWidget;
 }
 
-void MusicLrcContainerForDesktop::startTimerClock()
+void MusicLrcContainerForDesktop::startDrawLrc()
 {
-    m_musicLrcContainer[!m_singleLineType ? !m_reverse : 0]->startTimerClock();
+    m_musicLrcContainer[!m_singleLineType ? !m_reverse : 0]->startDrawLrc();
 }
 
-void MusicLrcContainerForDesktop::stopLrcMask()
+void MusicLrcContainerForDesktop::stopDrawLrc()
 {
     for(MusicLrcManager *manager : qAsConst(m_musicLrcContainer))
     {
-        manager->stopLrcMask();
+        manager->stopDrawLrc();
     }
 }
 
@@ -151,7 +151,7 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
         if(!m_reverse)
         {
             m_musicLrcContainer[0]->setText(m_musicLrcContainer[1]->text());
-            startTimerClock();
+            startDrawLrc();
         }
         m_musicLrcContainer[1]->hide();
     }
@@ -456,7 +456,9 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     desktopWidget->setObjectName("desktopWidget");
     m_musicLrcContainer << new MusicLrcManagerHorizontalDesktop(desktopWidget)
                         << new MusicLrcManagerHorizontalDesktop(desktopWidget);
-    setGeometry(200,  windowSize.height() - height() - 200, m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
+
+    move(200,  windowSize.height() - height() - 200);
+    setFixedSize(m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
     desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
 
     setSelfGeometry();
@@ -535,7 +537,9 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     desktopWidget->setObjectName("desktopWidget");
     m_musicLrcContainer << new MusicLrcManagerVerticalDesktop(desktopWidget)
                         << new MusicLrcManagerVerticalDesktop(desktopWidget);
-    setGeometry(200,  75, 2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
+
+    move(200, 75);
+    setFixedSize(2 * m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
     desktopWidget->setGeometry(TOOLBAR_MAIN_HEIGHT, 0, 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
 
     setSelfGeometry();

@@ -50,12 +50,12 @@ public:
      * Start timer clock to draw lrc.
      * Subclass should implement this function.
      */
-    virtual void startTimerClock() = 0;
+    virtual void startDrawLrc() = 0;
     /*!
      * Stop timer clock to draw lrc.
      * Subclass should implement this function.
      */
-    virtual void stopLrcMask() = 0;
+    virtual void stopDrawLrc() = 0;
     /*!
      * Set setting parameter.
      */
