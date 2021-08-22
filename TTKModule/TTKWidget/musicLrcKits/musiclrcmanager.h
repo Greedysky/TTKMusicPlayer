@@ -54,8 +54,7 @@ public:
         DBlack,      /*!< color black */
         DYellow,     /*!< color yellow */
         DPurple,     /*!< color purple */
-        DGreen,      /*!< color green */
-
+        DGreen       /*!< color green */
     };
 
     /*!
@@ -100,7 +99,7 @@ public:
     /*!
      * Start timer clock to draw lrc mask.
      */
-    void startLrcMask(qint64 intervaltime);
+    void startDrawLrcMask(qint64 intervaltime);
     /*!
      * Stop timer clock to draw lrc mask.
      */
@@ -127,27 +126,27 @@ public:
     inline void setSpeedLevel(int l) { m_speedLevel = l; }
 
     /*!
-     * Set self geometry by point.
+     * Set self position by point.
      */
-    void setSelfGeometry(const QPoint &point);
+    void setSelfPosition(const QPoint &point);
     /*!
-     * Set self geometry by x and y.
+     * Set self position by x and y.
      */
-    void setSelfGeometry(int x, int y);
+    void setSelfPosition(int x, int y);
     /*!
-     * Get self geometry x.
+     * Get self position x.
      */
     int x() const;
     /*!
-     * Get self geometry y.
+     * Get self position y.
      */
     int y() const;
     /*!
-     * Set self geometry x.
+     * Set self position x.
      */
     void setX(int x);
     /*!
-     * Set self geometry y.
+     * Set self position y.
      */
     void setY(int y);
     /*!
@@ -161,7 +160,7 @@ public:
     /*!
      * Get current font szie.
      */
-    inline int getFirstFontSize() const { return m_font.pointSize(); }
+    inline int getLrcFontSize() const { return m_font.pointSize(); }
 
 public Q_SLOTS:
     /*!
@@ -180,7 +179,7 @@ protected:
     float m_lrcMaskWidth, m_lrcMaskWidthInterval, m_intervalCount;
 
     int m_lrcPerWidth, m_transparent, m_speedLevel;
-    QPoint m_geometry;
+    QPoint m_position;
 
 };
 

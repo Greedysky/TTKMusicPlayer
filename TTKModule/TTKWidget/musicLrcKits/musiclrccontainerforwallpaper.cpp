@@ -152,7 +152,7 @@ void MusicLrcContainerForWallpaper::updateAnimationLrc()
     {
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - length));
     }
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startLrcMask(m_animationFreshTime);
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrcMask(m_animationFreshTime);
 }
 
 void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)

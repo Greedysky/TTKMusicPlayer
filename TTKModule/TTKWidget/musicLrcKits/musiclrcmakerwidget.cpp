@@ -311,7 +311,7 @@ void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
     MusicApplication::instance()->musicStatePlay();
     if(state)
     {
-        m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
+        m_musicLrcContainer[m_analysis->getMiddle()]->startDrawLrcMask(m_intervalTime);
     }
     else
     {
@@ -408,7 +408,7 @@ void MusicLrcMakerWidget::updateAnimationLrc()
         m_musicLrcContainer[i]->setText(m_analysis->getText(i));
     }
     m_analysis->setCurrentIndex(m_analysis->getCurrentIndex() + 1);
-    m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
+    m_musicLrcContainer[m_analysis->getMiddle()]->startDrawLrcMask(m_intervalTime);
 }
 
 void MusicLrcMakerWidget::lrcSpeedSlower()

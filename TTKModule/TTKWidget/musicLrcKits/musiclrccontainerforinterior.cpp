@@ -369,7 +369,7 @@ void MusicLrcContainerForInterior::updateAnimationLrc()
         m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
     }
     m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->getCurrentIndex() + 1);
-    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startLrcMask(m_animationFreshTime);
+    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startDrawLrcMask(m_animationFreshTime);
     setItemStyleSheet();
 }
 

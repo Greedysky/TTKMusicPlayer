@@ -178,35 +178,35 @@ void MusicLrcManager::setFontType(int type)
     m_font.setItalic((type == 2 || type == 3));
 }
 
-void MusicLrcManager::setSelfGeometry(const QPoint &point)
+void MusicLrcManager::setSelfPosition(const QPoint &point)
 {
-    m_geometry = point;
+    m_position = point;
 }
 
-void MusicLrcManager::setSelfGeometry(int x, int y)
+void MusicLrcManager::setSelfPosition(int x, int y)
 {
-    m_geometry = QPoint(x, y);
+    m_position = QPoint(x, y);
     m_lrcPerWidth = x;
 }
 
 int MusicLrcManager::x() const
 {
-    return m_geometry.x();
+    return m_position.x();
 }
 
 int MusicLrcManager::y() const
 {
-    return m_geometry.y();
+    return m_position.y();
 }
 
 void MusicLrcManager::setX(int x)
 {
-    m_geometry.setX(x);
+    m_position.setX(x);
 }
 
 void MusicLrcManager::setY(int y)
 {
-    m_geometry.setY(y);
+    m_position.setY(y);
 }
 
 void MusicLrcManager::reset()
@@ -223,17 +223,18 @@ void MusicLrcManager::setLrcFontSize(int size)
     {
         m_font.setPointSize(size);
     }
+
     setText(text());
     update();
 }
 
-void MusicLrcManager::startLrcMask(qint64 intervaltime)
+void MusicLrcManager::startDrawLrcMask(qint64 intervaltime)
 {
     m_intervalCount = 0.0f;
-    m_geometry.setX(MusicUtils::Widget::fontTextWidth(m_font, text()));
+    m_position.setX(MusicUtils::Widget::fontTextWidth(m_font, text()));
 
     const float count = intervaltime / m_speedLevel;
-    m_lrcMaskWidthInterval = (count != 0) ? m_geometry.x() / count : 0;
+    m_lrcMaskWidthInterval = (count != 0) ? m_position.x() / count : 0;
     m_lrcMaskWidth = 0;
     m_timer->start(LRC_PER_TIME);
 }
@@ -278,6 +279,6 @@ void MusicLrcManager::setUpdateMask()
 
 void MusicLrcManager::setText(const QString &str)
 {
-    m_geometry.setX(MusicUtils::Widget::fontTextWidth(m_font, str));
+    m_position.setX(MusicUtils::Widget::fontTextWidth(m_font, str));
     QLabel::setText(str);
 }

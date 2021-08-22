@@ -113,9 +113,9 @@ protected:
      */
     void createColorMenu(QMenu &menu);
     /*!
-     * Set self geometry.
+     * Set self position.
      */
-    void setSelfGeometry() const;
+    void setSelfPosition() const;
     /*!
      * Creat toolBar widget.
      */
