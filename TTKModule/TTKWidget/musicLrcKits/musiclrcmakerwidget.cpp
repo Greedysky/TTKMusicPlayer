@@ -14,7 +14,6 @@
 #include "musiclrcmanagerforinterior.h"
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
-#include "musicwidgetutils.h"
 
 #include <QPainter>
 #include <QTextBlock>
@@ -152,7 +151,8 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->stackedWidget->setFocusPolicy(Qt::StrongFocus);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -180,12 +180,12 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
+    resetToOriginPlayMode();
+    G_CONNECTION_PTR->removeValue(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     qDeleteAll(m_musicLrcContainer);
     delete m_lineItem;
     delete m_analysis;
-
-    resetToOriginPlayMode();
-    G_CONNECTION_PTR->removeValue(getClassName());
     delete m_ui;
 }
 

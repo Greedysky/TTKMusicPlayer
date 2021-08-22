@@ -22,6 +22,7 @@
 #include <QLabel>
 #include <QMouseEvent>
 #include "musicglobaldefine.h"
+#include "musicsinglemanager.h"
 
 /*! @brief The class of the moving widget base.
  * @author Greedysky <greedysky@163.com>

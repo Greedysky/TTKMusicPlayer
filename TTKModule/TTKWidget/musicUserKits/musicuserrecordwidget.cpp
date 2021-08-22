@@ -4,7 +4,6 @@
 #include "musicusermodel.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
-#include "musicwidgetutils.h"
 #include "musicalgorithmutils.h"
 
 #include <QStyledItemDelegate>

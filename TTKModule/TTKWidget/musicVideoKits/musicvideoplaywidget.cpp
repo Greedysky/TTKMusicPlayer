@@ -116,7 +116,6 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     connect(m_videoFloatWidget, SIGNAL(fullscreenButtonClicked()), SLOT(fullscreenButtonClicked()));
     connect(m_videoFloatWidget, SIGNAL(downloadButtonClicked()), SLOT(downloadButtonClicked()));
     connect(m_videoFloatWidget, SIGNAL(shareButtonClicked()), SLOT(shareButtonClicked()));
-
 }
 
 MusicVideoPlayWidget::~MusicVideoPlayWidget()

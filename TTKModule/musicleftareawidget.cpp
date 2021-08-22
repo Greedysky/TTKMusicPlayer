@@ -21,7 +21,6 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_stackedWidget = nullptr;
-    m_soundKMicroWidget = nullptr;
     m_qualityChoiceWidget = nullptr;
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
@@ -29,7 +28,6 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
-    delete m_soundKMicroWidget;
     delete m_qualityChoiceWidget;
     delete m_cloudSharedSongWidget;
     delete m_stackedWidget;
@@ -104,12 +102,8 @@ void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 
 void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
 {
-    if(m_soundKMicroWidget == nullptr)
-    {
-        m_soundKMicroWidget = new MusicSoundKMicroWidget(this);
-    }
-    m_soundKMicroWidget->startSeachKMicro(name);
-    m_soundKMicroWidget->show();
+    MusicSoundKMicroWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicSoundKMicroWidget);
+    w->startSeachKMicro(name);
 }
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()

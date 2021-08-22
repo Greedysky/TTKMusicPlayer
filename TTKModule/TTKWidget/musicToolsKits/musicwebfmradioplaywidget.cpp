@@ -60,6 +60,7 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->volumeSlider->setValue(100);
 
     createCoreModule();
+    MusicUtils::Widget::positionInCenter(this);
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));

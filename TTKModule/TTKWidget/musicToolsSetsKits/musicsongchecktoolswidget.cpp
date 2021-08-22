@@ -16,6 +16,9 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
+
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -31,6 +34,7 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
 
 MusicSongCheckToolsWidget::~MusicSongCheckToolsWidget()
 {
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_renameCore;
     delete m_duplicateCore;
     delete m_qualityCore;

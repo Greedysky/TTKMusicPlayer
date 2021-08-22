@@ -470,9 +470,8 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             selectedItems << musicSongInfos[index];
         }
 
-        MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
+        MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_CLASS(MusicDownloadBatchWidget);
         w->setSongName(selectedItems, MusicAbstractQueryRequest::MusicQuery);
-        w->show();
     }
 }
 

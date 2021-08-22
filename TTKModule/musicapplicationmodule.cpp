@@ -20,7 +20,6 @@
 #include "musicalgorithmutils.h"
 #include "musicsourceupdaterequest.h"
 #include "musicdownloadcounterpvrequest.h"
-#include "musicsinglemanager.h"
 #include "musicscreensaverwidget.h"
 #include "ttkdesktopwrapper.h"
 
@@ -290,17 +289,17 @@ void MusicApplicationModule::musicVersionUpdate()
 
 void MusicApplicationModule::musicTimerWidget()
 {
-    MusicTimerWidget timer;
-
     QStringList list;
     MusicApplication::instance()->getCurrentPlaylist(list);
+
+    MusicTimerWidget timer;
     timer.setSongStringList(list);
     timer.exec();
 }
 
 void MusicApplicationModule::musicSpectrumWidget()
 {
-    SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
+    GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
 }
 
 void MusicApplicationModule::musicSetWindowToTop()

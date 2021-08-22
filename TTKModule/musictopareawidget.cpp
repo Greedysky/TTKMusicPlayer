@@ -14,7 +14,6 @@
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musictoolsetswidget.h"
-#include "musicsinglemanager.h"
 #include "musicimageutils.h"
 
 #include <qmmp/visual.h>
@@ -422,7 +421,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
 
 void MusicTopAreaWidget::musicStackedToolsWidgetChanged()
 {
-    SINGLE_MANAGER_WIDGET_CLASS(MusicToolSetsWidget);
+    GENERATE_SINGLE_WIDGET_CLASS(MusicToolSetsWidget);
 }
 
 void MusicTopAreaWidget::backgroundTransparentChanged(int value)

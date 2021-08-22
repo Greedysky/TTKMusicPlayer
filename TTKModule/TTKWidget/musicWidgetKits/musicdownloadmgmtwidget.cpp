@@ -22,6 +22,7 @@ MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     m_ui->openDetailButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);

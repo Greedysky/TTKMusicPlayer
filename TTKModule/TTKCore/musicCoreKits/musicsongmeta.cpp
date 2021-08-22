@@ -2,7 +2,6 @@
 #include "musictime.h"
 #include "musicformats.h"
 #include "musicqmmputils.h"
-#include "musicwidgetutils.h"
 #include "musicstringutils.h"
 #include "ttkversion.h"
 

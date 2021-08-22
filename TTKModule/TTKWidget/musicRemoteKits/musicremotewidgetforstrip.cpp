@@ -1,6 +1,5 @@
 #include "musicremotewidgetforstrip.h"
 #include "musictinyuiobject.h"
-#include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
 
 MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
@@ -9,6 +8,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
     setGeometry(200, 200, 320, 80);
     adjustPosition(this);
     setAttribute(Qt::WA_DeleteOnClose, false);
+    setAttribute(Qt::WA_QuitOnClose, false);
 
     QHBoxLayout *hbox = new QHBoxLayout(this);
     hbox->setContentsMargins(5, 5, 5, 5);

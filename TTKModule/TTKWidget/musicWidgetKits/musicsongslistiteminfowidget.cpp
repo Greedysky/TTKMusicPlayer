@@ -3,7 +3,6 @@
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
-#include "musicwidgetutils.h"
 #include "musicsettingmanager.h"
 #include "musicsongmeta.h"
 

@@ -6,7 +6,6 @@
 #include "musictoastlabel.h"
 #include "musicconnectionpool.h"
 #include "musicsongmeta.h"
-#include "musicsinglemanager.h"
 #include "musicfileutils.h"
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
@@ -25,8 +24,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    setAttribute(Qt::WA_DeleteOnClose, true);
-    setAttribute(Qt::WA_QuitOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

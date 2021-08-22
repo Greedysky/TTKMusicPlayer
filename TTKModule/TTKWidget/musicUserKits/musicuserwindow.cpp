@@ -5,7 +5,6 @@
 #include "musicusermanagerdialog.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
-#include "musicwidgetutils.h"
 #include "musicimageutils.h"
 
 #include <QTimer>

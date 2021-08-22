@@ -2,7 +2,6 @@
 #include "ui_musicnetworkconnectiontestwidget.h"
 #include "musicnetworktestthread.h"
 #include "musicuiobject.h"
-#include "musicsinglemanager.h"
 
 #define CHECK_WWW_VISIT       "www.baidu.com"
 #define CHECK_NORMAL_VISIT    "github.com"
@@ -22,7 +21,8 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
     m_stateText = new QLabel(this);
 
     m_iconLabel->setFixedWidth(32);
-    m_nameText->setFixedWidth(340);
+    m_nameText->setFixedWidth(330);
+    m_stateText->setAlignment(Qt::AlignCenter);
 
     layout->addWidget(m_iconLabel);
     layout->addWidget(m_nameText);
@@ -102,8 +102,8 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    setAttribute(Qt::WA_DeleteOnClose, true);
-    setAttribute(Qt::WA_QuitOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

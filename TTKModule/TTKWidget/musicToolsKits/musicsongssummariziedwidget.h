@@ -25,10 +25,8 @@
 
 class QTableWidgetItem;
 class MusicSongsListWidget;
-class MusicSongCheckToolsWidget;
 class MusicSongsListFunctionWidget;
 class MusicLocalSongSearchDialog;
-class MusicLrcDownloadBatchWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -294,10 +292,8 @@ protected:
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     TTKIntListMap m_searchfileListCache;
-    MusicSongCheckToolsWidget *m_songCheckToolsWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_musicSongSearchWidget;
-    MusicLrcDownloadBatchWidget *m_lrcBatchDownloadWidget;
 
 };
 

@@ -3,7 +3,6 @@
 #include "musicanimationstackedwidget.h"
 #include "musictextsliderwidget.h"
 #include "musicclickedlabel.h"
-#include "musicwidgetutils.h"
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
 

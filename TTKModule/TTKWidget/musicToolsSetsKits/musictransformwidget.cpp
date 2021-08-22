@@ -3,7 +3,6 @@
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 #include "musiccoreutils.h"
-#include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
 
 #include <QSound>

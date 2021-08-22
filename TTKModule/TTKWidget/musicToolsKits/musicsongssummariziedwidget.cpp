@@ -33,10 +33,8 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     connect(m_listMaskWidget, SIGNAL(mousePressAt(int)), SLOT(mousePressAt(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
-    m_songCheckToolsWidget = nullptr;
     m_listFunctionWidget = nullptr;
     m_musicSongSearchWidget = nullptr;
-    m_lrcBatchDownloadWidget = nullptr;
 
     G_CONNECTION_PTR->setValue(getClassName(), this);
     G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
@@ -44,12 +42,10 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
 
 MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
 {
+    G_CONNECTION_PTR->removeValue(getClassName());
     delete m_listMaskWidget;
-    delete m_songCheckToolsWidget;
     delete m_listFunctionWidget;
     delete m_musicSongSearchWidget;
-    delete m_lrcBatchDownloadWidget;
-    G_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
 
@@ -562,16 +558,12 @@ void MusicSongsSummariziedWidget::musicImportSongsOnlyDir()
 
 void MusicSongsSummariziedWidget::musicSongsCheckTestTools()
 {
-    delete m_songCheckToolsWidget;
-    m_songCheckToolsWidget = new MusicSongCheckToolsWidget(this);
-    m_songCheckToolsWidget->show();
+    GENERATE_SINGLE_WIDGET_CLASS(MusicSongCheckToolsWidget);
 }
 
 void MusicSongsSummariziedWidget::musicLrcBatchDownload()
 {
-    delete m_lrcBatchDownloadWidget;
-    m_lrcBatchDownloadWidget = new MusicLrcDownloadBatchWidget(this);
-    m_lrcBatchDownloadWidget->show();
+    GENERATE_SINGLE_WIDGET_CLASS(MusicLrcDownloadBatchWidget);
 }
 
 void MusicSongsSummariziedWidget::setCurrentIndex()
@@ -581,6 +573,7 @@ void MusicSongsSummariziedWidget::setCurrentIndex()
     {
         return;
     }
+
     m_currentPlayToolIndex = keyList[1].toInt();
     const int index = keyList[2].toInt();
     MusicSongsToolBoxWidget::setCurrentIndex(index);

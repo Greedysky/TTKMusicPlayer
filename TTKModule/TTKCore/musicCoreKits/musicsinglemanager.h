@@ -21,73 +21,26 @@
 
 #include <QMap>
 #include "ttksingleton.h"
-#include "ttkdesktopwrapper.h"
+#include "musicwidgetutils.h"
 
 /////////////////////////////////////////////////////////////////////////
-#define SINGLE_MANAGER_WIDGET_NEW2(name, parent)                           \
+#define GENERATE_SINGLE_WIDGET_CLASS(name)                                 \
+    GENERATE_SINGLE_WIDGET_PARENT(name, MusicApplication::instance())
+
+#define GENERATE_SINGLE_WIDGET_PARENT(name, widget)                        \
+[](QWidget *parent)                                                        \
+{                                                                          \
     MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
     if(!manager->contains(#name))                                          \
     {                                                                      \
         manager->createObject(#name, new name(parent));                    \
     }                                                                      \
-    name *w = TTKStatic_cast(name*, manager->object(#name));
-
-#define SINGLE_MANAGER_WIDGET_NEW(name)                                    \
-    SINGLE_MANAGER_WIDGET_NEW2(name, MusicApplication::instance())
-
-#define SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                         \
-{                                                                          \
-    SINGLE_MANAGER_WIDGET_NEW2(name, parent)                               \
-    const QRect &r = TTKDesktopWrapper::screenGeometry();                  \
-    w->move((r.width() - w->width()) / 2, (r.height() - w->height()) / 2); \
+    name *w = TTKStatic_cast(name*, manager->object(#name));               \
+    MusicUtils::Widget::positionInCenter(w);                               \
     w->raise();                                                            \
     w->show();                                                             \
-}
-
-#define SINGLE_MANAGER_WIDGET_CLASS(name)                                  \
-    SINGLE_MANAGER_WIDGET_CLASS2(name, MusicApplication::instance())
-/////////////////////////////////////////////////////////////////////////
-#define SINGLE_MANAGER_DIALOG_NEW2(name, parent)                           \
-    MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
-    if(!manager->contains(#name))                                          \
-    {                                                                      \
-        manager->createObject(#name, new name(parent));                    \
-    }                                                                      \
-    name *w = TTKStatic_cast(name*, manager->object(#name));
-
-#define SINGLE_MANAGER_DIALOG_NEW(name)                                    \
-    SINGLE_MANAGER_DIALOG_NEW2(name, MusicApplication::instance())
-
-#define SINGLE_MANAGER_DIALOG_CLASS2(name, parent)                         \
-{                                                                          \
-    SINGLE_MANAGER_DIALOG_NEW2(name, parent)                               \
-    const QRect &r = TTKDesktopWrapper::screenGeometry();                  \
-    w->move((r.width() - w->width()) / 2, (r.height() - w->height()) / 2); \
-    w->exec();                                                             \
-}
-
-#define SINGLE_MANAGER_DIALOG_CLASS(name)                                  \
-    SINGLE_MANAGER_DIALOG_CLASS2(name, MusicApplication::instance())
-/////////////////////////////////////////////////////////////////////////
-#define SINGLE_MANAGER_CORE_NEW2(name, parent)                             \
-    MusicSingleManager *manager = G_SINGLE_MANAGER_PTR;                    \
-    if(!manager->contains(#name))                                          \
-    {                                                                      \
-        manager->createObject(#name, new name(parent));                    \
-    }                                                                      \
-    name *w = TTKStatic_cast(name*, manager->object(#name));
-
-#define SINGLE_MANAGER_CORE_NEW(name)                                      \
-    SINGLE_MANAGER_CORE_NEW2(name, nullptr)
-
-#define SINGLE_MANAGER_CORE_CLASS2(name, parent)                           \
-{                                                                          \
-    SINGLE_MANAGER_CORE_NEW2(name, parent)                                 \
-    w->start();                                                            \
-}
-
-#define SINGLE_MANAGER_CORE_CLASS(name)                                    \
-    SINGLE_MANAGER_CORE_CLASS2(name, nullptr)
+    return w;                                                              \
+}(widget)
 /////////////////////////////////////////////////////////////////////////
 
 

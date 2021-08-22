@@ -1,6 +1,5 @@
 #include "musicsystemtraymenu.h"
 #include "musicuiobject.h"
-#include "musicwidgetutils.h"
 #include "musiccontextuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"

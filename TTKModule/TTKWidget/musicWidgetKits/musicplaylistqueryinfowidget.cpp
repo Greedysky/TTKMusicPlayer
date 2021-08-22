@@ -5,7 +5,6 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicstringutils.h"
-#include "musicwidgetutils.h"
 
 #include "qrencode/qrcodewidget.h"
 

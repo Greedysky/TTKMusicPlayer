@@ -1,6 +1,7 @@
 #include "musicwidgetutils.h"
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
+#include "ttkdesktopwrapper.h"
 
 #include <QBitmap>
 #include <QPainter>
@@ -83,6 +84,12 @@ void MusicUtils::Widget::adjustMenuPosition(QMenu *menu)
 #else
     Q_UNUSED(menu);
 #endif
+}
+
+void MusicUtils::Widget::positionInCenter(QWidget *widget)
+{
+    const QRect &rect = TTKDesktopWrapper::screenGeometry();
+    widget->move((rect.width() - widget->width()) / 2, (rect.height() - widget->height()) / 2);
 }
 
 void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)

@@ -4,7 +4,6 @@
 #include "musicsemaphoreloop.h"
 #include "musicfileutils.h"
 #include "musicwidgetheaders.h"
-#include "musicsinglemanager.h"
 #include "musicqmmputils.h"
 #include "musictoastlabel.h"
 
@@ -43,8 +42,8 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    setAttribute(Qt::WA_DeleteOnClose, true);
-    setAttribute(Qt::WA_QuitOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);

@@ -62,6 +62,10 @@ namespace MusicUtils
          * Adjust the menu position.
          */
         TTK_MODULE_EXPORT void adjustMenuPosition(QMenu *menu);
+        /*!
+         * Adjust the widget in screen center.
+         */
+        TTK_MODULE_EXPORT void positionInCenter(QWidget *widget);
 
         /*!
          * Set widget transparent.

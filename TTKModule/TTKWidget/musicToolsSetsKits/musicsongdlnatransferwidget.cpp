@@ -15,6 +15,9 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
+
     m_isPlaying = false;
     m_currentPlayIndex = -1;
     m_musicSongs = nullptr;
@@ -79,6 +82,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
     G_CONNECTION_PTR->removeValue(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_dlnaFinder;
     delete m_ui;
 }

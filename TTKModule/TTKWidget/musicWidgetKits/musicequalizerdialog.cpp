@@ -5,7 +5,6 @@
 #include "musicmagicwidgetuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicsoundeffectswidget.h"
-#include "musicwidgetutils.h"
 #include "musicplayer.h"
 #include "musicclickedgroup.h"
 

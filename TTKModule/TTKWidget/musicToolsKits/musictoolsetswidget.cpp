@@ -10,7 +10,6 @@
 #include "musicapplication.h"
 #include "musicrightareawidget.h"
 #include "musicspectrumwidget.h"
-#include "musicsinglemanager.h"
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -19,8 +18,8 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(size());
 
-    setAttribute(Qt::WA_DeleteOnClose, true);
-    setAttribute(Qt::WA_QuitOnClose, true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -97,7 +96,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
             {
-                SINGLE_MANAGER_WIDGET_CLASS(MusicLocalSongsManagerWidget);
+                GENERATE_SINGLE_WIDGET_CLASS(MusicLocalSongsManagerWidget);
                 break;
             }
         case 1:
@@ -121,22 +120,22 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 4:
             {
-                SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
+                GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
                 break;
             }
         case 5:
             {
-                SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
+                GENERATE_SINGLE_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
                 break;
             }
         case 6:
             {
-                SINGLE_MANAGER_WIDGET_CLASS(MusicReplayGainWidget);
+                GENERATE_SINGLE_WIDGET_CLASS(MusicReplayGainWidget);
                 break;
             }
         case 7:
             {
-                SINGLE_MANAGER_WIDGET_CLASS(MusicSongDlnaTransferWidget);
+                GENERATE_SINGLE_WIDGET_CLASS(MusicSongDlnaTransferWidget);
                 break;
             }
         case 8:

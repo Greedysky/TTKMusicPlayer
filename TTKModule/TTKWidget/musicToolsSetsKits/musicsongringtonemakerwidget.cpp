@@ -6,7 +6,6 @@
 #include "musicuiobject.h"
 #include "musicsongmeta.h"
 #include "musicfileutils.h"
-#include "musicwidgetutils.h"
 #include "musictime.h"
 
 #include <QProcess>

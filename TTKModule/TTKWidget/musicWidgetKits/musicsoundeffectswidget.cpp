@@ -220,7 +220,6 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
     G_CONNECTION_PTR->removeValue(getClassName());
     writeSoundEffect();
-
     delete m_ui;
 }
 

@@ -4,7 +4,6 @@
 #include "musicuserlineedit.h"
 #include "musicusermodel.h"
 #include "musictoastlabel.h"
-#include "musicwidgetutils.h"
 
 #include "musicuserrecordwidget.h"
 #include "musicdownloadsourcerequest.h"

@@ -2,7 +2,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrapper.h"
-#include "musicwidgetutils.h"
 
 #include <QPainter>
 #include <QMouseEvent>

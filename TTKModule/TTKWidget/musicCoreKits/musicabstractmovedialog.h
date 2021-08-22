@@ -21,7 +21,7 @@
 
 #include <QLabel>
 #include <QDialog>
-#include "musicglobaldefine.h"
+#include "musicwidgetutils.h"
 
 /*! @brief The class of the moving dialog base.
  * @author Greedysky <greedysky@163.com>

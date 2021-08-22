@@ -22,7 +22,6 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicSoundKMicroWidget;
 class MusicCloudSharedSongWidget;
 class MusicQualityChoicePopWidget;
 
@@ -115,7 +114,6 @@ protected:
 
     int m_currentIndex;
     QWidget *m_stackedWidget;
-    MusicSoundKMicroWidget *m_soundKMicroWidget;
     MusicQualityChoicePopWidget *m_qualityChoiceWidget;
     MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
 

@@ -14,6 +14,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
 {
     setFixedSize(260, 175);
     setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
     setStyleSheet("background:white");
 
     QVBoxLayout *layout = new QVBoxLayout(this);

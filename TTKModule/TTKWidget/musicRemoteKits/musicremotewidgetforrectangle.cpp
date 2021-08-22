@@ -1,6 +1,5 @@
 #include "musicremotewidgetforrectangle.h"
 #include "musicmarqueewidget.h"
-#include "musicwidgetutils.h"
 
 MusicRemoteWidgetForRectangle::MusicRemoteWidgetForRectangle(QWidget *parent)
     : MusicRemoteWidget(parent)

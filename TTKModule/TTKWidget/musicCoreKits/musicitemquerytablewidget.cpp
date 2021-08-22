@@ -34,8 +34,8 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
-    delete m_labelDelegate;
     G_CONNECTION_PTR->removeValue(getClassName());
+    delete m_labelDelegate;
     clearAllItems();
 }
 
@@ -110,9 +110,8 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
         selectedItems << musicSongInfos[index];
     }
 
-    MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
+    MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_PARENT(MusicDownloadBatchWidget, this);
     w->setSongName(selectedItems, music ? MusicAbstractQueryRequest::MusicQuery : MusicAbstractQueryRequest::MovieQuery);
-    w->show();
 }
 
 void MusicItemQueryTableWidget::resizeWindow()

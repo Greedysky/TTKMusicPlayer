@@ -3,7 +3,6 @@
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
-#include "musicwidgetutils.h"
 
 #include <QPainter>
 

@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "musicsong.h"
-#include "musicglobaldefine.h"
 #include "musicabstractmovewidget.h"
 
 namespace Ui {

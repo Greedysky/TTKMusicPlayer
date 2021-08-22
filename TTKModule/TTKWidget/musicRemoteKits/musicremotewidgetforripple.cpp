@@ -1,6 +1,5 @@
 #include "musicremotewidgetforripple.h"
 #include "musictinyuiobject.h"
-#include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
 #include "musicqmmputils.h"
 ///

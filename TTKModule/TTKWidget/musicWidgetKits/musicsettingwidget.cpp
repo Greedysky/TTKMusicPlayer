@@ -13,7 +13,6 @@
 #include "musicplatformmanager.h"
 #include "musiclrcmanager.h"
 #include "musicsourceupdatewidget.h"
-#include "musicsinglemanager.h"
 #include "musiccolordialog.h"
 #include "musicalgorithmutils.h"
 #include "musicpluginwidget.h"
@@ -512,7 +511,7 @@ void MusicSettingWidget::testNetworkConnection()
 
 void MusicSettingWidget::checkNetworkConnection()
 {
-    SINGLE_MANAGER_WIDGET_CLASS2(MusicNetworkConnectionTestWidget, this);
+    GENERATE_SINGLE_WIDGET_PARENT(MusicNetworkConnectionTestWidget, this);
 }
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)

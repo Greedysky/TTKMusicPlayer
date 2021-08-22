@@ -7,7 +7,6 @@
 #include "musicobject.h"
 #include "musicurlutils.h"
 #include "musicstringutils.h"
-#include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicdownloadsourcerequest.h"
 

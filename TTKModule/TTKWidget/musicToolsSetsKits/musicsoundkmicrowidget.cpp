@@ -17,7 +17,6 @@
 #include "musicaudiorecordermodule.h"
 #include "musiccodecutils.h"
 #include "musicfileutils.h"
-#include "musicsinglemanager.h"
 
 #ifdef Q_CC_GNU
     #pragma GCC diagnostic ignored "-Wparentheses"
@@ -29,6 +28,9 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
+
+    setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
@@ -99,6 +101,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
 {
+    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_ui;
 }
 

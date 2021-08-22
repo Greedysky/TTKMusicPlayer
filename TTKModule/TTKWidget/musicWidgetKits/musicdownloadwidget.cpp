@@ -121,6 +121,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->downloadPathEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->pathChangedButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
@@ -142,6 +143,8 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(startToDownload()));
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+
+    MusicUtils::Widget::positionInCenter(this);
 }
 
 MusicDownloadWidget::~MusicDownloadWidget()

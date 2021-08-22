@@ -4,7 +4,6 @@
 #include "musicusermodel.h"
 #include "musicuserconfigmanager.h"
 #include "musicuserrecordwidget.h"
-#include "musicwidgetutils.h"
 
 MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
      : QDialog(parent),
