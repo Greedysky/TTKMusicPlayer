@@ -11,36 +11,33 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
     : QObject(parent)
 {
     m_inputVolume = 0;
+    m_audioInputFile = nullptr;
+    m_audioOutputFile = nullptr;
 
-    m_mpAudioInputFile = nullptr;
-    m_mpAudioOutputFile = nullptr;
+    m_outputFile = new QFile(this);
+    m_outputFile->setFileName(MUSIC_RECORD_FILE);
+    m_formatFile.setSampleSize(16);
+    m_formatFile.setSampleType(QAudioFormat::SignedInt);
+    m_formatFile.setByteOrder(QAudioFormat::LittleEndian);
+    m_formatFile.setCodec("audio/pcm");
 
-    m_mpOutputFile = new QFile(this);
-    m_mpOutputFile->setFileName(MUSIC_RECORD_FILE);
-
-    m_mFormatFile.setSampleSize(16);
-    m_mFormatFile.setSampleType(QAudioFormat::SignedInt);
-    m_mFormatFile.setByteOrder(QAudioFormat::LittleEndian);
-    m_mFormatFile.setCodec("audio/pcm");
-
-    const QAudioDeviceInfo info(QAudioDeviceInfo::defaultInputDevice());
-    if(!info.isFormatSupported(m_mFormatFile))
+    const QAudioDeviceInfo input_info(QAudioDeviceInfo::defaultInputDevice());
+    if(!input_info.isFormatSupported(m_formatFile))
     {
-        TTK_LOGGER_WARN("input default mFormatFile not supported try to use nearest");
-        m_mFormatFile = info.nearestFormat(m_mFormatFile);
+        TTK_LOGGER_WARN("input default format file not supported try to use nearest");
+        m_formatFile = input_info.nearestFormat(m_formatFile);
     }
 
-    const QAudioDeviceInfo info1(QAudioDeviceInfo::defaultOutputDevice());
-    if(!info1.isFormatSupported(m_mFormatFile))
+    const QAudioDeviceInfo output_info(QAudioDeviceInfo::defaultOutputDevice());
+    if(!output_info.isFormatSupported(m_formatFile))
     {
-        TTK_LOGGER_WARN("output default mFormatFile not supported - trying to use nearest");
-        TTK_LOGGER_WARN("output no support input mFormatFile.");
+        TTK_LOGGER_WARN("output default format file not supported - trying to use nearest");
+        TTK_LOGGER_WARN("output no support input format file.");
     }
 
-    if(m_mFormatFile.sampleSize() != 16)
+    if(m_formatFile.sampleSize() != 16)
     {
-        TTK_LOGGER_INFO(QString("audio device doesn't support 16 bit support %d bit samples, example cannot run %1")
-                      .arg(m_mFormatFile.sampleSize()));
+        TTK_LOGGER_INFO(QString("audio device doesn't support 16 bit support %d bit samples, example cannot run %1").arg(m_formatFile.sampleSize()));
     }
 }
 
@@ -50,101 +47,99 @@ MusicAudioRecorderModule::~MusicAudioRecorderModule()
     QFile::remove(MUSIC_RECORD_IN_FILE);
     QFile::remove(MUSIC_RECORD_OUT_FILE);
 
-    delete m_mpOutputFile;
-    delete m_mpAudioInputFile;
-    delete m_mpAudioOutputFile;
+    delete m_outputFile;
+    delete m_audioInputFile;
+    delete m_audioOutputFile;
 }
 
-int MusicAudioRecorderModule::addWavHeader(const char *filename)
+int MusicAudioRecorderModule::addWavHeader(const char *filename) const
 {
-    HEADER destionFileHeader;
-    destionFileHeader.RIFFNAME[0] = 'R';
-    destionFileHeader.RIFFNAME[1] = 'I';
-    destionFileHeader.RIFFNAME[2] = 'F';
-    destionFileHeader.RIFFNAME[3] = 'F';
+    WAVHEADER fileHeader;
+    fileHeader.RIFFNAME[0] = 'R';
+    fileHeader.RIFFNAME[1] = 'I';
+    fileHeader.RIFFNAME[2] = 'F';
+    fileHeader.RIFFNAME[3] = 'F';
 
-    destionFileHeader.WAVNAME[0] = 'W';
-    destionFileHeader.WAVNAME[1] = 'A';
-    destionFileHeader.WAVNAME[2] = 'V';
-    destionFileHeader.WAVNAME[3] = 'E';
+    fileHeader.WAVNAME[0] = 'W';
+    fileHeader.WAVNAME[1] = 'A';
+    fileHeader.WAVNAME[2] = 'V';
+    fileHeader.WAVNAME[3] = 'E';
 
-    destionFileHeader.FMTNAME[0] = 'f';
-    destionFileHeader.FMTNAME[1] = 'm';
-    destionFileHeader.FMTNAME[2] = 't';
-    destionFileHeader.FMTNAME[3] = 0x20;
-    destionFileHeader.nFMTLength = 16;
-    destionFileHeader.nAudioFormat = 1;
+    fileHeader.FMTNAME[0] = 'f';
+    fileHeader.FMTNAME[1] = 'm';
+    fileHeader.FMTNAME[2] = 't';
+    fileHeader.FMTNAME[3] = 0x20;
+    fileHeader.FMTLENGTH = 16;
+    fileHeader.AUDIOFORMAT = 1;
 
-    destionFileHeader.DATANAME[0] = 'd';
-    destionFileHeader.DATANAME[1] = 'a';
-    destionFileHeader.DATANAME[2] = 't';
-    destionFileHeader.DATANAME[3] = 'a';
-    destionFileHeader.nBitsPerSample = 16;
-    destionFileHeader.nBytesPerSample = 2;
-    destionFileHeader.nSampleRate = 8000;
-    destionFileHeader.nBytesPerSecond = 16000;
-    destionFileHeader.nChannleNumber = 1;
+    fileHeader.DATANAME[0] = 'd';
+    fileHeader.DATANAME[1] = 'a';
+    fileHeader.DATANAME[2] = 't';
+    fileHeader.DATANAME[3] = 'a';
+    fileHeader.BITSPERSAMPLE = 16;
+    fileHeader.BYTESPERSAMPLE = 2;
+    fileHeader.SAMPLERATE = 8000;
+    fileHeader.BYTESPERSECOND = 16000;
+    fileHeader.CHANNLENUMBER = 1;
 
-    int nFileLen = 0;
-    int nSize = sizeof(destionFileHeader);
+    int fileLen = 0;
+    const int headerSize = sizeof(fileHeader);
 
-    FILE *fpInput = nullptr;
-    FILE *fpOutput = nullptr;
-    if((fpInput = fopen(qPrintable(m_mpOutputFile->fileName()), "rb")) == nullptr)
+    FILE *input = nullptr;
+    FILE *output = nullptr;
+    if((input = fopen(qPrintable(m_outputFile->fileName()), "rb")) == nullptr)
     {
         return OPEN_FILE_ERROR;
     }
 
-    if((fpOutput = fopen(qPrintable(filename), "wb+")) == nullptr)
+    if((output = fopen(qPrintable(filename), "wb+")) == nullptr)
     {
         return SAVE_FILE_ERROR;
     }
 
-    int nWrite = fwrite(&destionFileHeader, 1, nSize, fpOutput);
-    if(nWrite != nSize)
+    if(fwrite(&fileHeader, 1, headerSize, output) != headerSize)
     {
-        fclose(fpInput);
-        fclose(fpOutput);
+        fclose(input);
+        fclose(output);
         return WRITE_FILE_ERROR;
     }
 
-    while(!feof(fpInput))
+    while(!feof(input))
     {
         char readBuf[4096];
-        const int nRead = fread(readBuf, 1, 4096, fpInput);
+        const int nRead = fread(readBuf, 1, 4096, input);
         if(nRead > 0)
         {
-            fwrite(readBuf, 1, nRead, fpOutput);
+            fwrite(readBuf, 1, nRead, output);
         }
 
-        nFileLen += nRead;
+        fileLen += nRead;
     }
 
-    fseek(fpOutput, 0L, SEEK_SET);
-    destionFileHeader.nRIFFLength = nFileLen - 8 + nSize;
-    destionFileHeader.nDataLength = nFileLen;
+    fseek(output, 0L, SEEK_SET);
+    fileHeader.RIFFLENGTH = fileLen - 8 + headerSize;
+    fileHeader.DATALENGTH = fileLen;
 
-    nWrite = fwrite(&destionFileHeader, 1, nSize, fpOutput);
-    if(nWrite != nSize)
+    if(fwrite(&fileHeader, 1, headerSize, output) != headerSize)
     {
-        fclose(fpInput);
-        fclose(fpOutput);
+        fclose(input);
+        fclose(output);
         return REWRITE_FILE_ERROR;
     }
 
-    fclose(fpInput);
-    fclose(fpOutput);
+    fclose(input);
+    fclose(output);
 
-    return nFileLen;
+    return fileLen;
 }
 
 void MusicAudioRecorderModule::setVolume(int volume)
 {
     m_inputVolume = volume;
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    if(m_mpAudioInputFile)
+    if(m_audioInputFile)
     {
-        m_mpAudioInputFile->setVolume(volume);
+        m_audioInputFile->setVolume(volume);
     }
 #endif
 }
@@ -156,75 +151,74 @@ int MusicAudioRecorderModule::volume() const
 
 void MusicAudioRecorderModule::setFileName(const QString &name)
 {
-    m_mpOutputFile->setFileName(name);
+    m_outputFile->setFileName(name);
 }
 
 QString MusicAudioRecorderModule::getFileName() const
 {
-    return m_mpOutputFile->fileName();
+    return m_outputFile->fileName();
 }
 
 bool MusicAudioRecorderModule::error() const
 {
-    if(!m_mpAudioInputFile)
+    if(!m_audioInputFile)
     {
         return true;
     }
 
-    return (m_mpAudioInputFile->error() != QAudio::NoError);
+    return m_audioInputFile->error() != QAudio::NoError;
 }
 
 void MusicAudioRecorderModule::onRecordStart()
 {
-    if(!m_mpOutputFile->isOpen())
+    if(!m_outputFile->isOpen())
     {
-        m_mpOutputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
-        m_mpAudioInputFile = new QAudioInput(m_mFormatFile, this);
+        m_outputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
+        m_audioInputFile = new QAudioInput(m_formatFile, this);
     }
 
-    if(m_mpAudioInputFile->error() != QAudio::NoError)
+    if(m_audioInputFile->error() != QAudio::NoError)
     {
-        TTK_LOGGER_ERROR("Audio Input Open Error");
+        TTK_LOGGER_ERROR("audio input open error");
         return;
     }
 #if TTK_QT_VERSION_CHECK(5,0,0)
-    m_mpAudioInputFile->setVolume(m_inputVolume);
+    m_audioInputFile->setVolume(m_inputVolume);
 #endif
-    m_mpAudioInputFile->start(m_mpOutputFile);
+    m_audioInputFile->start(m_outputFile);
 }
 
 void MusicAudioRecorderModule::onRecordPlay()
 {
-    m_mpOutputFile->open(QIODevice::ReadOnly | QIODevice::Truncate);
-
-    m_mpAudioOutputFile = new QAudioOutput(m_mFormatFile, this);
-    if(m_mpAudioOutputFile->error() != QAudio::NoError)
+    m_outputFile->open(QIODevice::ReadOnly | QIODevice::Truncate);
+    m_audioOutputFile = new QAudioOutput(m_formatFile, this);
+    if(m_audioOutputFile->error() != QAudio::NoError)
     {
-        TTK_LOGGER_ERROR("Audio Output Open Error");
+        TTK_LOGGER_ERROR("audio output open error");
         return;
     }
-    connect(m_mpAudioOutputFile, SIGNAL(stateChanged(QAudio::State)), SLOT(onStateChange(QAudio::State)));
-    m_mpAudioOutputFile->start(m_mpOutputFile);
 
+    connect(m_audioOutputFile, SIGNAL(stateChanged(QAudio::State)), SLOT(onStateChange(QAudio::State)));
+    m_audioOutputFile->start(m_outputFile);
 }
 
 void MusicAudioRecorderModule::onRecordStop()
 {
-    if(m_mpAudioInputFile)
+    if(m_audioInputFile)
     {
-        m_mpAudioInputFile->stop();
-        delete m_mpAudioInputFile;
-        m_mpAudioInputFile = nullptr;
+        m_audioInputFile->stop();
+        delete m_audioInputFile;
+        m_audioInputFile = nullptr;
     }
 
-    if(m_mpAudioOutputFile)
+    if(m_audioOutputFile)
     {
-        m_mpAudioOutputFile->stop();
-        delete m_mpAudioOutputFile;
-        m_mpAudioOutputFile = nullptr;
+        m_audioOutputFile->stop();
+        delete m_audioOutputFile;
+        m_audioOutputFile = nullptr;
     }
 
-    m_mpOutputFile->close();
+    m_outputFile->close();
 }
 
 void MusicAudioRecorderModule::onStateChange(QAudio::State state)

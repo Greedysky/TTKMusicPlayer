@@ -33,25 +33,25 @@ class TTK_MODULE_EXPORT MusicAudioRecorderModule : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAudioRecorderModule)
 public:
-    /*! @brief The class of the audio file tag header.
+    /*! @brief The class of the audio file wav header.
      * @author Greedysky <greedysky@163.com>
      */
-    typedef struct TTK_MODULE_EXPORT HEADER
+    typedef struct TTK_MODULE_EXPORT WAVHEADER
     {
         char RIFFNAME[4];
-        ulong nRIFFLength;
+        ulong RIFFLENGTH;
         char WAVNAME[4];
         char FMTNAME[4];
-        ulong nFMTLength;
-        ushort nAudioFormat;
-        ushort nChannleNumber;
-        ulong nSampleRate;
-        ulong nBytesPerSecond;
-        ushort nBytesPerSample;
-        ushort nBitsPerSample;
+        ulong FMTLENGTH;
+        ushort AUDIOFORMAT;
+        ushort CHANNLENUMBER;
+        ulong SAMPLERATE;
+        ulong BYTESPERSECOND;
+        ushort BYTESPERSAMPLE;
+        ushort BITSPERSAMPLE;
         char DATANAME[4];
-        ulong nDataLength;
-    }HEADER;
+        ulong DATALENGTH;
+    }WAVHEADER;
 
     /*!
      * Object contsructor.
@@ -62,7 +62,7 @@ public:
     /*!
      * Add the header of wav.
      */
-    int addWavHeader(const char *filename);
+    int addWavHeader(const char *filename) const;
 
     /*!
      * Set volume by value.
@@ -106,10 +106,10 @@ public Q_SLOTS:
 
 protected:
     int m_inputVolume;
-    QAudioFormat m_mFormatFile;
-    QFile *m_mpOutputFile;
-    QAudioInput *m_mpAudioInputFile;
-    QAudioOutput *m_mpAudioOutputFile;
+    QFile *m_outputFile;
+    QAudioFormat m_formatFile;
+    QAudioInput *m_audioInputFile;
+    QAudioOutput *m_audioOutputFile;
 
 };
 
