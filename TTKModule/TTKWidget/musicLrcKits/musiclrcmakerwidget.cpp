@@ -150,9 +150,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
-
     setAttribute(Qt::WA_DeleteOnClose);
-    setAttribute(Qt::WA_QuitOnClose);
 
     m_ui->stackedWidget->setFocusPolicy(Qt::StrongFocus);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));

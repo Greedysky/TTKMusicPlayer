@@ -14,9 +14,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
-
     setAttribute(Qt::WA_DeleteOnClose);
-    setAttribute(Qt::WA_QuitOnClose);
 
     m_isPlaying = false;
     m_currentPlayIndex = -1;

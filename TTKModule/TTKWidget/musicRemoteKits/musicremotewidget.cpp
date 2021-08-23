@@ -15,7 +15,6 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 {
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint | Qt::Tool);
     setAttribute(Qt::WA_DeleteOnClose);
-    setAttribute(Qt::WA_QuitOnClose);
 
     drawWindowShadow(false);
     setMouseTracking(true);
