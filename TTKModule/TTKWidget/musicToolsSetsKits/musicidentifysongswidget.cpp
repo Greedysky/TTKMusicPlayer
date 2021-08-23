@@ -42,7 +42,6 @@ MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     connect(cut, SIGNAL(activated()), SLOT(detectedButtonClicked()));
 
     createDetectedWidget();
-
     m_detectedButton->setEnabled(false);
 }
 
@@ -216,10 +215,15 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     QVBoxLayout *iconLabelLayout = new QVBoxLayout(iconLabel);
     iconLabelLayout->setSpacing(0);
     iconLabelLayout->setContentsMargins(0, 0, 0, 0);
+
     m_detectedButton = new QPushButton(widget);
     m_detectedButton->setStyleSheet(MusicUIObject::MQSSSongsDetectStartBtn);
     m_detectedButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_detectedButton->setFixedSize(162, 162);
+#ifdef Q_OS_UNIX
+    m_detectedButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     iconLabelLayout->addWidget(m_detectedButton, 0, Qt::AlignCenter);
     iconLabel->setMovie(m_detectedMovie);
     iconLabel->setLayout(iconLabelLayout);

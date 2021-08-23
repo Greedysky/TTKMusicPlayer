@@ -39,12 +39,12 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
 
     const QString &httpMethod = "POST";
     const QString &httpUri = "/v1/identify";
-    const QString &dataType = "audio";
+    const QString &dataType = "fingerprint";
     const QString &signatureVersion = "1";
     const QString &timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
 
-    const QString &postData = httpMethod + "\n" + httpUri + "\n" + m_accessKey + "\n" + dataType + "\n" + signatureVersion + "\n" + timeStamp;
-    QByteArray content = MusicUtils::Algorithm::hmacSha1(postData.toUtf8(), m_accessSecret.toUtf8()).toBase64();
+    const QString &signString = httpMethod + "\n" + httpUri + "\n" + m_accessKey + "\n" + dataType + "\n" + signatureVersion + "\n" + timeStamp;
+    QByteArray content = MusicUtils::Algorithm::hmacSha1(signString.toUtf8(), m_accessSecret.toUtf8()).toBase64();
 
     QString value;
     value += startBoundary + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + m_accessKey + "\r\n";
@@ -56,8 +56,10 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
     QFile file(path);
     if(!file.open(QFile::ReadOnly))
     {
+        TTK_LOGGER_ERROR("Load input audio wav file error");
         return;
     }
+
     value += startBoundary + "\r\nContent-Disposition: form-data; name=\"sample_bytes\"\r\n\r\n" + QString::number(file.size()) + "\r\n";
     value += startBoundary + "\r\nContent-Disposition: form-data; name=\"sample\"; filename=\"" + file.fileName() + "\"\r\n";
     value += "Content-Type: application/octet-stream\r\n\r\n";
@@ -69,8 +71,8 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
     MusicObject::setSslConfiguration(&request);
+    request.setRawHeader("Content-Type", contentType.toUtf8());
 
     m_reply = m_manager->post(request, content);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -86,6 +88,7 @@ void MusicIdentifySongsRequest::downLoadFinished()
         QJson::Parser parser;
         bool ok;
         const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        TTK_LOGGER_INFO(data);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -130,11 +133,11 @@ void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &data)
         if(ok)
         {
             const QVariantMap &value = dt.toMap();
-            if(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
-            {
+//            if(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
+//            {
                 m_accessKey = value["key"].toString();
                 m_accessSecret = value["secret"].toString();
-            }
+//            }
         }
     }
 

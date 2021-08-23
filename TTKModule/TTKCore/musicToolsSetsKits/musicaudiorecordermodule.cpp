@@ -16,7 +16,9 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
 
     m_outputFile = new QFile(this);
     m_outputFile->setFileName(MUSIC_RECORD_FILE);
+    m_formatFile.setChannelCount(1);
     m_formatFile.setSampleSize(16);
+    m_formatFile.setSampleRate(8000);
     m_formatFile.setSampleType(QAudioFormat::SignedInt);
     m_formatFile.setByteOrder(QAudioFormat::LittleEndian);
     m_formatFile.setCodec("audio/pcm");
