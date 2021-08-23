@@ -70,7 +70,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
 void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 {
     QStringList arguments;
-    arguments << "-slave" << "-quiet" << "-wid";
+    arguments << "-softvol" << "-slave" << "-quiet" << "-wid";
     arguments << QString::number(winId);
 #ifdef Q_OS_WIN
     arguments << "-vo" << "direct3d" << data;
@@ -90,7 +90,7 @@ void MusicCoreMPlayer::setMusicMedia(const QString &data)
     Q_EMIT mediaChanged(data);
 
     QStringList arguments;
-    arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    arguments << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
     m_process->start(MAKE_PLAYER_FULL, arguments);
 }
