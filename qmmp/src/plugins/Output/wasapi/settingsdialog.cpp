@@ -13,12 +13,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
 #ifdef Q_OS_WIN
-    setMinimumHeight(95);
-    setMaximumHeight(95);
+    setFixedHeight(95);
 #endif
-
     enumDevices();
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2021 by Ilya Kotov                                      *
+ *   Copyright (C) 2008-2021 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,7 +30,7 @@ class SettingsDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit SettingsDialog(QWidget *parent = nullptr);
+    SettingsDialog(QWidget *parent = nullptr);
 
 public slots:
     virtual void accept() override;

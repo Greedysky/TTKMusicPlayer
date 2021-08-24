@@ -9,6 +9,7 @@ extern "C"{
 }
 
 #include "ffmpegmetadatamodel.h"
+#include "settingsdialog.h"
 #include "decoder_ffmpeg.h"
 #include "decoder_ffmpegcue.h"
 #include "decoder_ffmpegm4b.h"
@@ -77,9 +78,12 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters = {
-        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.spx", "*.dsf", "*.dsdiff", "*.webm", "*.mka"
+        "*.wma", "*.ape", "*.tta", "*.m4a", "*.m4b", "*.aac", "*.ra", "*.shn", "*.vqf", "*.ac3", "*.tak", "*.spx", "*.webm", "*.dsf", "*.dsdiff", "*.mka"
     };
-    filters = settings.value("FFMPEG/filters", filters).toStringList();
+
+    const QStringList &disabledFilters = settings.value("FFMPEG/disabled_filters").toStringList();
+    for(const QString &filter : qAsConst(disabledFilters))
+        filters.removeAll(filter);
 
     if(filters.contains("*.m4a") && !filters.contains("*.m4b"))
         filters << "*.m4b";
@@ -115,13 +119,13 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.tak");
     if(!avcodec_find_decoder(AV_CODEC_ID_TRUESPEECH))
         filters.removeAll("*.spx");
+    if(!avcodec_find_decoder(AV_CODEC_ID_OPUS))
+        filters.removeAll("*.webm");
     if(!avcodec_find_decoder(AV_CODEC_ID_DSD_LSBF))
     {
         filters.removeAll("*.dsf");
         filters.removeAll("*.dsdiff");
     }
-    if(!avcodec_find_decoder(AV_CODEC_ID_OPUS))
-        filters.removeAll("*.webm");
 
     DecoderProperties properties;
     properties.name = "FFmpeg Plugin";
@@ -156,6 +160,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 
     properties.protocols << "ffmpeg" << "m4b";
     properties.priority = 10;
+    properties.hasSettings = true;
     return properties;
 }
 
@@ -344,7 +349,8 @@ MetaDataModel* DecoderFFmpegFactory::createMetaDataModel(const QString &path, bo
 
 void DecoderFFmpegFactory::showSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

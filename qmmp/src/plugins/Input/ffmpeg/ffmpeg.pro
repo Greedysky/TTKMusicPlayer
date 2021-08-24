@@ -5,14 +5,18 @@ HEADERS += decoderffmpegfactory.h \
            ffmpegmetadatamodel.h \
            decoder_ffmpegcue.h \
            decoder_ffmpegm4b.h \
-           replaygainreader.h
+           replaygainreader.h \
+	   settingsdialog.h
     
 SOURCES += decoderffmpegfactory.cpp \
            decoder_ffmpeg.cpp \
            ffmpegmetadatamodel.cpp \
            decoder_ffmpegcue.cpp \
            decoder_ffmpegm4b.cpp \
-           replaygainreader.cpp
+           replaygainreader.cpp \
+	   settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}

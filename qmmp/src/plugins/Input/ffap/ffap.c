@@ -496,7 +496,7 @@ ape_read_header (FFap_decoder *decoder)
             ape->bps = 16;
 
         //if(ape->fileversion >= 3950)
-            ape->blocksperframe = 73728 * 4;
+        ape->blocksperframe = 73728 * 4;
         /*else if(ape->fileversion >= 3900 || (ape->fileversion >= 3800  && ape->compressiontype >= 4000))
             ape->blocksperframe = 73728;
         else

@@ -99,8 +99,8 @@ MetaDataModel *DecoderOpenMPTFactory::createMetaDataModel(const QString &path, b
 
 void DecoderOpenMPTFactory::showSettings(QWidget *parent)
 {
-    SettingsDialog *d = new SettingsDialog(parent);
-    d->show();
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

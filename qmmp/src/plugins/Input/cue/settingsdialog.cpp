@@ -12,15 +12,14 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
 #ifdef Q_OS_WIN
-    setMinimumHeight(205);
-    setMaximumHeight(205);
+    setFixedHeight(205);
 #endif
-
     findCodecs();
     for(const QTextCodec *codec : qAsConst(m_codecs))
+    {
         m_ui.cueEncComboBox->addItem(codec->name());
+    }
 
 #ifdef WITH_ENCA
     size_t n = 0;

@@ -47,7 +47,7 @@ public:
 private:
     Decoder *m_decoder = nullptr;
     char *m_buf = nullptr; //buffer for remainig data
-    int m_track = 0, m_count = 0;
+    int m_track = 0;
     qint64 m_duration = 0;
     qint64 m_offset = 0;
     qint64 m_trackSize = 0;
