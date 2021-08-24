@@ -86,9 +86,9 @@ void MusicWYQueryMovieRequest::downLoadFinished()
     MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -144,9 +144,9 @@ void MusicWYQueryMovieRequest::pageDownLoadFinished()
     MusicPagingRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -222,9 +222,9 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -297,9 +297,9 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -388,9 +388,9 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -446,9 +446,9 @@ void MusicWYQueryMovieRequest::getArtistMoviesCount(qint64 id)
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         const QVariantMap &value = data.toMap();

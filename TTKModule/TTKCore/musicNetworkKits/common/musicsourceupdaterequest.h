@@ -58,13 +58,13 @@ Q_SIGNALS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const QVariant &data);
+    void downLoadDataChanged(const QVariant &bytes);
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
 
 protected:
     QVariantMap m_rawData;

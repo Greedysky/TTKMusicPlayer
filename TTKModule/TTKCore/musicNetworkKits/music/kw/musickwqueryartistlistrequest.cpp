@@ -61,9 +61,9 @@ void MusicKWQueryArtistListRequest::downLoadFinished()
     MusicQueryArtistListRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll().replace("'", "\""), &ok);
+        const QVariant &data = json.parse(m_reply->readAll().replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

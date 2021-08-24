@@ -50,9 +50,9 @@ void MusicQQDownLoadTextRequest::downLoadFinished()
         bytes.replace("MusicJsonCallback(", "");
         bytes.chop(1);
 
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
             QByteArray lrcData;

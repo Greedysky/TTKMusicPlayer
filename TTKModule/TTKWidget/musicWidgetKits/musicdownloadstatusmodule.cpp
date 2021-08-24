@@ -24,14 +24,14 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     G_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
-void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &type)
+void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
 {
     ///If the lyrics download finished immediately loaded to display
-    if(type == "DownloadLrc")
+    if(bytes == "DownloadLrc")
     {
         m_parentClass->musicLoadCurrentSongLrc();
     }
-    else if(type == "DownloadSmallBackground")
+    else if(bytes == "DownloadSmallBackground")
     {
         m_parentClass->updateCurrentArtist();
     }

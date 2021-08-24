@@ -17,21 +17,21 @@ void MusicNetworkOperator::startToDownload()
     download->startToDownload(MusicUtils::Algorithm::mdII(IP_CHECK_URL, false));
 }
 
-void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
+void MusicNetworkOperator::downLoadFinished(const QByteArray &bytes)
 {
     QString line;
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
     }
     else
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &json = parser.parse(data, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
-            QVariantMap value = json.toMap();
+            QVariantMap value = data.toMap();
             if(value.contains("result"))
             {
                 value = value["result"].toMap();

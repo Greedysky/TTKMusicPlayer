@@ -84,9 +84,9 @@ void MusicKGQueryMovieRequest::downLoadFinished()
     MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -142,9 +142,9 @@ void MusicKGQueryMovieRequest::pageDownLoadFinished()
     MusicPagingRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -236,9 +236,9 @@ void MusicKGQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

@@ -48,7 +48,7 @@ private Q_SLOTS:
     /*!
      * Send recieved data from net.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
 
 protected:
     QTextEdit *m_userCommit;

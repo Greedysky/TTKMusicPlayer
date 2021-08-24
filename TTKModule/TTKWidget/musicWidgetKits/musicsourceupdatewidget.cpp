@@ -78,9 +78,9 @@ void MusicSourceUpdateNotifyWidget::updateSourceClicked()
     MusicSourceUpdateWidget().exec();
 }
 
-void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &data)
+void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
 {
-    const QVariantMap &value = data.toMap();
+    const QVariantMap &value = bytes.toMap();
     const QString &versionStr = value["version"].toString();
 
     if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, versionStr))
@@ -148,9 +148,9 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 #endif
 }
 
-void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
+void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
 {
-    const QVariantMap &value = data.toMap();
+    const QVariantMap &value = bytes.toMap();
     m_newVersionStr = value["version"].toString();
 
     QString text;

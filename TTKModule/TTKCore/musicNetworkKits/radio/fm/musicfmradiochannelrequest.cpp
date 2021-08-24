@@ -36,9 +36,9 @@ void MusicFMRadioChannelRequest::downLoadFinished()
         m_channels.clear();
         setHeader("Cookie", m_reply->rawHeader("Set-Cookie"));
 
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

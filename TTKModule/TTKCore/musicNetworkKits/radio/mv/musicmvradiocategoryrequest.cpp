@@ -15,9 +15,9 @@ void MusicMVRadioCategoryRequest::downLoadFinished()
         bytes = QString(bytes).split("var mvfmdata = ").back().split("$img = ").front().toUtf8();
         bytes.chop(3);
 
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
             const QVariantList &datas = data.toList();

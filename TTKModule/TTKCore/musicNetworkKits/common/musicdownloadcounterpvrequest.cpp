@@ -25,14 +25,13 @@ void MusicDownloadCounterPVRequest::downLoadFinished()
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        const QByteArray &bytes = m_reply->readAll();
-        QString value(bytes);
-        value.remove(MusicUtils::Algorithm::mdII(RM_KEYWORD, false));
-        value.remove(");}catch(e){}");
+        QString bytes(m_reply->readAll());
+        bytes.remove(MusicUtils::Algorithm::mdII(RM_KEYWORD, false));
+        bytes.remove(");}catch(e){}");
 
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(value.toUtf8(), &ok);
+        const QVariant &data = json.parse(bytes.toUtf8(), &ok);
         if(ok)
         {
             const QVariantMap &value = data.toMap();

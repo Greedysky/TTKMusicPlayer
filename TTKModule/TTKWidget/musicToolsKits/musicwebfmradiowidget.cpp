@@ -165,9 +165,9 @@ void MusicWebFMRadioWidget::addListWidgetItem()
     }
 }
 
-void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data)
+void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
@@ -183,7 +183,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &data)
     if(it)
     {
         QPixmap pix;
-        pix.loadFromData(data);
+        pix.loadFromData(bytes);
         it->setIcon(MusicUtils::Image::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
     }
 }

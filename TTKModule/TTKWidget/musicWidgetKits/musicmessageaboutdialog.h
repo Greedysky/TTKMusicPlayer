@@ -44,7 +44,7 @@ public Q_SLOTS:
     /*!
      * Get counter pv finished.
      */
-    void musicGetCounterFinished(const QString &data);
+    void musicGetCounterFinished(const QString &bytes);
     /*!
      * Override exec function.
      */

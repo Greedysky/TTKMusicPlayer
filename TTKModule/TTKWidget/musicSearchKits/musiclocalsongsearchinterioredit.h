@@ -56,7 +56,7 @@ public Q_SLOTS:
     /*!
      * Search top list information finished.
      */
-    void searchToplistInfoFinished(const QString &data);
+    void searchToplistInfoFinished(const QString &bytes);
 
 protected:
     /*!

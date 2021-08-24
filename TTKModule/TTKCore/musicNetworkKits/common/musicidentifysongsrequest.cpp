@@ -17,10 +17,10 @@ MusicIdentifySongsRequest::MusicIdentifySongsRequest(QObject *parent)
 
 }
 
-bool MusicIdentifySongsRequest::getKey()
+bool MusicIdentifySongsRequest::queryIdentifyKey()
 {
     MusicSemaphoreLoop loop;
-    connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
+    connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
@@ -85,9 +85,9 @@ void MusicIdentifySongsRequest::downLoadFinished()
 
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -122,20 +122,20 @@ void MusicIdentifySongsRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &data)
+void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
     }
     else
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &dt = parser.parse(data, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
-            const QVariantMap &value = dt.toMap();
+            const QVariantMap &value = data.toMap();
             if(QDateTime::fromString(value["time"].toString(), MUSIC_YEAR_STIME_FORMAT) > QDateTime::currentDateTime())
             {
                 m_accessKey = value["key"].toString();
@@ -144,5 +144,5 @@ void MusicIdentifySongsRequest::downLoadFinished(const QByteArray &data)
         }
     }
 
-    Q_EMIT getKeyFinished();
+    Q_EMIT finished();
 }

@@ -83,9 +83,9 @@ void MusicQQQueryMovieRequest::downLoadFinished()
     MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -151,9 +151,9 @@ void MusicQQQueryMovieRequest::pageDownLoadFinished()
     MusicPagingRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -244,9 +244,9 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     bytes.replace("QZOutputJson=", "");
     bytes.chop(1);
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(bytes, &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -346,9 +346,9 @@ QString MusicQQQueryMovieRequest::getMovieKey(int id, const QString &videoId)
     bytes.replace("QZOutputJson=", "");
     bytes.chop(1);
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(bytes, &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         const QVariantMap &value = data.toMap();

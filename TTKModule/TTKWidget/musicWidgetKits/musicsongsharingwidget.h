@@ -109,7 +109,7 @@ public Q_SLOTS:
     /*!
      * Download pixmap data finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
 
 protected:
     Ui::MusicSongSharingWidget *m_ui;

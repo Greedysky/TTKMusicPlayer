@@ -19,9 +19,9 @@ void MusicMVRadioProgramRequest::downLoadFinished()
         bytes = QString(bytes).split("var mvfmdata = ").back().split("$img = ").front().toUtf8();
         bytes.chop(3);
 
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
             bool contains = false;
@@ -138,9 +138,9 @@ void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSong
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

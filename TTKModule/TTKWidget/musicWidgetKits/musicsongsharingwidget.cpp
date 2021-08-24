@@ -277,9 +277,9 @@ void MusicSongSharingWidget::textAreaChanged()
     }
 }
 
-void MusicSongSharingWidget::downLoadFinished(const QByteArray &data)
+void MusicSongSharingWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
@@ -288,7 +288,7 @@ void MusicSongSharingWidget::downLoadFinished(const QByteArray &data)
     if(m_ui->sharedNameIcon)
     {
         QPixmap pix;
-        pix.loadFromData(data);
+        pix.loadFromData(bytes);
         m_ui->sharedNameIcon->setPixmap(pix.scaled(m_ui->sharedNameIcon->size()));
     }
 }

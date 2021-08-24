@@ -65,9 +65,9 @@ void MusicWebDJRadioQueryItemWidget::setMusicResultsItem(const MusicResultsItem 
     }
 }
 
-void MusicWebDJRadioQueryItemWidget::downLoadFinished(const QByteArray &data)
+void MusicWebDJRadioQueryItemWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
@@ -75,7 +75,7 @@ void MusicWebDJRadioQueryItemWidget::downLoadFinished(const QByteArray &data)
 
     MusicImageRenderer *render = new MusicImageRenderer(this);
     connect(render, SIGNAL(renderFinished(QImage)), SLOT(renderFinished(QImage)));
-    render->setInputData(data, m_iconLabel->size());
+    render->setInputData(bytes, m_iconLabel->size());
     render->start();
 }
 

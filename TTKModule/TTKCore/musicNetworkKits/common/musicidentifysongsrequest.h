@@ -47,7 +47,7 @@ public:
     /*!
      * Get query song id keys.
      */
-    bool getKey();
+    bool queryIdentifyKey();
     /*!
      * To query song by input path.
      */
@@ -61,7 +61,7 @@ Q_SIGNALS:
     /*!
      * Get key data from net finished.
      */
-    void getKeyFinished();
+    void finished();
 
 public Q_SLOTS:
     /*!
@@ -71,7 +71,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
 
 protected:
     MusicSongIdentifyDatas m_songIdentifys;

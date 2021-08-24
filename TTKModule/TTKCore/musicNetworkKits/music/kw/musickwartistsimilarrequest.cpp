@@ -95,9 +95,9 @@ QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
         return name;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = json.parse(reply->readAll().replace("'", "\""), &ok);
     if(ok)
     {
         const QVariantMap &value = data.toMap();
@@ -134,9 +134,9 @@ QString MusicKWArtistSimilarRequest::getArtistIdName(const QString &name)
         return QString();
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = json.parse(reply->readAll().replace("'", "\""), &ok);
 
     QString id;
     if(ok)

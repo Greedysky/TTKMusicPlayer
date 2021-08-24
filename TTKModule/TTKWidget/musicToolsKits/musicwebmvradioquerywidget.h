@@ -54,7 +54,7 @@ public Q_SLOTS:
     /*!
      * Send recieved data from net.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
     /*!
      * Image render finished.
      */

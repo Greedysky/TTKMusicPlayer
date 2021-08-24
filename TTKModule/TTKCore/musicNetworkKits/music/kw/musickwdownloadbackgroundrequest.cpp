@@ -22,9 +22,9 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
 {
     if(bytes != "NO_PIC")
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(bytes, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap dataMap = data.toMap();

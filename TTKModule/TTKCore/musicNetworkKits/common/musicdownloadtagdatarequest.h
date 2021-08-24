@@ -58,7 +58,7 @@ public Q_SLOTS:
     /*!
      * Send download byte data from net.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
 
 protected:
     MusicSongMeta m_musicMeta;

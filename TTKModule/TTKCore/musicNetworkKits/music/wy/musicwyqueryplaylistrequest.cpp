@@ -103,9 +103,9 @@ void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -143,9 +143,9 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(m_reply->readAll(), &ok);
+        const QVariant &data = json.parse(m_reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -202,9 +202,9 @@ void MusicWYQueryPlaylistRequest::getDetailsFinished()
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &data = parser.parse(reply->readAll(), &ok);
+        const QVariant &data = json.parse(reply->readAll(), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

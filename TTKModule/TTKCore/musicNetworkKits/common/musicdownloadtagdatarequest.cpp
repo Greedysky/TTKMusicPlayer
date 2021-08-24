@@ -59,7 +59,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
     TTK_LOGGER_INFO("data download has finished");
 }
 
-void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
+void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
 {
     MusicSongMeta meta;
     if(meta.read(m_savePath))
@@ -75,13 +75,13 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &data)
 
         if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())
         {
-            if(data.isEmpty())
+            if(bytes.isEmpty())
             {
                 TTK_LOGGER_ERROR("Input byte data is empty");
             }
             else
             {
-                meta.setCover(data);
+                meta.setCover(bytes);
             }
         }
         meta.save();

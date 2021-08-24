@@ -130,16 +130,16 @@ void MusicCommentsItem::createSearchedItem(const MusicResultsItem &comments)
     request->startToDownload(comments.m_coverUrl);
 }
 
-void MusicCommentsItem::downLoadFinished(const QByteArray &data)
+void MusicCommentsItem::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
     }
 
     QPixmap pix;
-    pix.loadFromData(data);
+    pix.loadFromData(bytes);
     m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
 }
 

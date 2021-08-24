@@ -60,7 +60,7 @@ MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
 
 void MusicIdentifySongsWidget::getKey()
 {
-    if(m_detectedThread->getKey())
+    if(m_detectedThread->queryIdentifyKey())
     {
         m_detectedButton->setEnabled(true);
     }

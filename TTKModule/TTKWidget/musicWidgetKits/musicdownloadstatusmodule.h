@@ -54,7 +54,7 @@ public Q_SLOTS:
     /*!
      * Show download state string type.
      */
-    void showDownLoadInfoFinished(const QString &type);
+    void showDownLoadInfoFinished(const QString &bytes);
     /*!
      * Show current net connect state changed by net request.
      */

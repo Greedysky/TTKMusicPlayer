@@ -347,17 +347,17 @@ void MusicScreenSaverWidget::caseButtonOnAndOff()
     MusicApplicationModule::instance()->applySettingParameter();
 }
 
-void MusicScreenSaverWidget::downLoadFinished(const QString &data)
+void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
 {
     QVector<bool> statusVector(parseSettingParameter());
-    if(data.contains(OS_WALLNAIL_NAME))
+    if(bytes.contains(OS_WALLNAIL_NAME))
     {
-        const int index = MusicUtils::String::stringSplitToken(data, SCREEN_DIR, "/").toInt();
+        const int index = MusicUtils::String::stringSplitToken(bytes, SCREEN_DIR, "/").toInt();
         if(index < 0 || index >= statusVector.count())
         {
             return;
         }
-        m_backgroundList->createItem(this, data, index, statusVector[index]);
+        m_backgroundList->createItem(this, bytes, index, statusVector[index]);
     }
 }
 

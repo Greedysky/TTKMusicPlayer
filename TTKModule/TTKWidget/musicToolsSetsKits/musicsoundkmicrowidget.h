@@ -98,7 +98,7 @@ public Q_SLOTS:
     /*!
      * Receive download byte data from net.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
     /*!
      * Animation finished.
      */

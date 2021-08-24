@@ -141,9 +141,9 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     }
 }
 
-void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data)
+void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
@@ -159,7 +159,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data)
     if(it)
     {
         QPixmap pix;
-        pix.loadFromData(data);
+        pix.loadFromData(bytes);
         it->setIcon(pix);
     }
 }

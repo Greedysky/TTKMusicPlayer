@@ -37,7 +37,7 @@ void MusicBackgroundRemoteWidget::abort()
     m_downloadQueue->abort();
 }
 
-void MusicBackgroundRemoteWidget::downLoadFinished(const QString &data)
+void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
 {
     if(m_groups.isEmpty())
     {
@@ -45,17 +45,17 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const QString &data)
     }
 
     MusicBackgroundImage image;
-    outputRemoteSkin(image, data);
+    outputRemoteSkin(image, bytes);
     if(!image.isValid())
     {
         image.m_pix = QPixmap(":/image/lb_noneImage");
     }
-    m_backgroundList->updateItem(image, data);
+    m_backgroundList->updateItem(image, bytes);
 }
 
-void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroups &data)
+void MusicBackgroundRemoteWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
 {
-    m_groups = data;
+    m_groups = bytes;
 }
 
 void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
@@ -214,9 +214,9 @@ void MusicBackgroundThunderWidget::buttonClicked(int index)
     startToDownload(TTS_FILE);
 }
 
-void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups &data)
+void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
 {
-    MusicBackgroundRemoteWidget::downLoadFinished(data);
+    MusicBackgroundRemoteWidget::downLoadFinished(bytes);
 
     for(int i=0; i<m_groups.count(); ++i)
     {
@@ -296,8 +296,8 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
     }
 }
 
-void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroups &data)
+void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
 {
-    MusicBackgroundRemoteWidget::downLoadFinished(data);
+    MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     startToDownload(TTS_FILE);
 }

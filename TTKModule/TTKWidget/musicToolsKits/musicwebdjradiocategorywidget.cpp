@@ -43,16 +43,16 @@ void MusicWebDJRadioCategoryItemWidget::setMusicResultsItem(const MusicResultsIt
     }
 }
 
-void MusicWebDJRadioCategoryItemWidget::downLoadFinished(const QByteArray &data)
+void MusicWebDJRadioCategoryItemWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
     }
 
     QPixmap pix;
-    pix.loadFromData(data);
+    pix.loadFromData(bytes);
     if(!pix.isNull())
     {
         m_iconLabel->setPixmap(pix.copy(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE));

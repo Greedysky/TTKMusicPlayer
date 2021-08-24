@@ -252,16 +252,15 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
     }
 }
 
-void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &data)
+void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
         return;
     }
 
-    m_analysis->setLrcData(data);
-
+    m_analysis->setLrcData(bytes);
     for(int i=0; i<m_analysis->getLineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());

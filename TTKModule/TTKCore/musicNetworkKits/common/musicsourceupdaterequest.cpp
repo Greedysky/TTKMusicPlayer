@@ -42,23 +42,23 @@ bool MusicSourceUpdateRequest::isLastedVersion() const
     }
 }
 
-void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &data)
+void MusicSourceUpdateRequest::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
     }
     else
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        const QVariant &parseData = parser.parse(data, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(!ok)
         {
             return;
         }
 
-        m_rawData = parseData.toMap();
+        m_rawData = data.toMap();
         Q_EMIT downLoadDataChanged(m_rawData);
     }
 }

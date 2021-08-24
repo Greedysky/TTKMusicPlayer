@@ -36,9 +36,9 @@ MusicMessageAboutDialog::~MusicMessageAboutDialog()
     delete m_ui;
 }
 
-void MusicMessageAboutDialog::musicGetCounterFinished(const QString &data)
+void MusicMessageAboutDialog::musicGetCounterFinished(const QString &bytes)
 {
-    m_ui->counterLabel->setText(tr("Counter: %1").arg(data));
+    m_ui->counterLabel->setText(tr("Counter: %1").arg(bytes));
 }
 
 int MusicMessageAboutDialog::exec()

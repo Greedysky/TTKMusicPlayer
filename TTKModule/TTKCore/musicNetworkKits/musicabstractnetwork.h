@@ -60,11 +60,11 @@ Q_SIGNALS:
     /*!
      * Send download raw data changed.
      */
-    void downLoadRawDataChanged(const QByteArray &data);
+    void downLoadRawDataChanged(const QByteArray &bytes);
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const QString &data);
+    void downLoadDataChanged(const QString &bytes);
 
 public Q_SLOTS:
     /*!
@@ -96,11 +96,10 @@ protected:
 
 };
 
-#define TTK_HTTPM   "http:"
 #define TTK_HTTP    "http://"
 #define TTK_HTTPS   "https://"
 
-#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkQuery) return VALUE
+#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(!m_manager || m_interrupt || m_stateCode != MusicObject::NetworkQuery) return VALUE
 
 namespace MusicObject
 {

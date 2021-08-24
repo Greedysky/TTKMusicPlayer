@@ -66,7 +66,7 @@ Q_SIGNALS:
     /*!
      * Get key data from net finished.
      */
-    void getKeyFinished();
+    void finished();
     /*!
      * Upload file error occurred.
      */
@@ -80,7 +80,7 @@ public Q_SLOTS:
     /*!
      * Send recieved data from net.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QByteArray &bytes);
     /*!
      * Receive data from sync finshed.
      */

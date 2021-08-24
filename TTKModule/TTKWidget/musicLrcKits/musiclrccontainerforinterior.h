@@ -175,7 +175,7 @@ private Q_SLOTS:
     /*!
      * Get translated lrc finished.
      */
-    void getTranslatedLrcFinished(const QString &data);
+    void getTranslatedLrcFinished(const QString &bytes);
     /*!
      * Video button clicked.
      */

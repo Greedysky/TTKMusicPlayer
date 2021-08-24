@@ -66,9 +66,9 @@ void MusicLocalSongSearchInteriorEdit::suggestDataChanged()
     }
 }
 
-void MusicLocalSongSearchInteriorEdit::searchToplistInfoFinished(const QString &data)
+void MusicLocalSongSearchInteriorEdit::searchToplistInfoFinished(const QString &bytes)
 {
-    setPlaceholderText(data);
+    setPlaceholderText(bytes);
 }
 
 void MusicLocalSongSearchInteriorEdit::popWidgetChanged(const QString &text)

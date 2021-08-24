@@ -56,7 +56,7 @@ public Q_SLOTS:
     /*!
      * Download data from kuwo net finished.
      */
-    void downLoadFinished(const QVariant &data);
+    void downLoadFinished(const QVariant &bytes);
 
 protected:
     QLabel *m_textLabel;
@@ -91,7 +91,7 @@ public Q_SLOTS:
     /*!
      * Download data from kuwo net finished.
      */
-    void downLoadFinished(const QVariant &data);
+    void downLoadFinished(const QVariant &bytes);
     /*!
      * Update download speed label.
      */

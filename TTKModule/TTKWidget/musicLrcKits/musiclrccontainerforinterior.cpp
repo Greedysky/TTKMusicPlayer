@@ -333,10 +333,10 @@ void MusicLrcContainerForInterior::showLrcPosterWidget()
     poster.exec();
 }
 
-void MusicLrcContainerForInterior::getTranslatedLrcFinished(const QString &data)
+void MusicLrcContainerForInterior::getTranslatedLrcFinished(const QString &bytes)
 {
     QString text;
-    for(const QString &var : data.split("\r"))
+    for(const QString &var : bytes.split("\r"))
     {
         text += var.trimmed() + "\r\n";
     }

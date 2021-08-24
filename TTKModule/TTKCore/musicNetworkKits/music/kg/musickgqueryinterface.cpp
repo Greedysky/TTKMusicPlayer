@@ -45,9 +45,9 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         const QVariantMap &value = data.toMap();
@@ -123,9 +123,9 @@ void MusicKGQueryInterface::readFromMusicSongLrcAndPicture(MusicObject::MusicSon
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -163,9 +163,9 @@ void MusicKGQueryInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, c
         return;
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

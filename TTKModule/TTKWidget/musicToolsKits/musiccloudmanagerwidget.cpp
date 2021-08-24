@@ -78,7 +78,7 @@ MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 bool MusicCloudManagerTableWidget::getKey()
 {
     MusicSemaphoreLoop loop;
-    connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
+    connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
@@ -114,25 +114,25 @@ void MusicCloudManagerTableWidget::itemCellClicked(int row, int column)
     Q_UNUSED(column);
 }
 
-void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &data)
+void MusicCloudManagerTableWidget::downLoadFinished(const QByteArray &bytes)
 {
-    if(data.isEmpty())
+    if(bytes.isEmpty())
     {
         TTK_LOGGER_ERROR("Input byte data is empty");
     }
     else
     {
-        QJson::Parser parser;
+        QJson::Parser json;
         bool ok;
-        QVariant dt = parser.parse(data, &ok);
+        const QVariant &data = json.parse(bytes, &ok);
         if(ok)
         {
-            QVariantMap value = dt.toMap();
+            QVariantMap value = data.toMap();
             QSyncConf::NAME = value["key"].toString();
             QSyncConf::KEY = value["secret"].toByteArray();
         }
     }
-    Q_EMIT getKeyFinished();
+    Q_EMIT finished();
 }
 
 void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItems &items)

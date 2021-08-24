@@ -213,9 +213,9 @@ QString MusicQQQueryInterface::getMusicPath(const QString &file, const QString &
         return QString();
     }
 
-    QJson::Parser parser;
+    QJson::Parser json;
     bool ok;
-    const QVariant &data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
