@@ -40,8 +40,7 @@ void MusicRippleSpecturmModule::show()
     if(!vs->isEmpty() && vs->last())
     {
         m_visualWidget = vs->last();
-        m_visualWidget->setMinimumHeight(65);
-        m_visualWidget->setMaximumHeight(65);
+        m_visualWidget->setFixedHeight(65);
         m_visualWidget->setMinimumWidth(CONCISE_WIDTH_MIN);
 
         QVBoxLayout *layout = new QVBoxLayout(m_visualWidget);
