@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
+    <width>390</width>
     <height>180</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>370</width>
+    <width>390</width>
     <height>180</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>370</width>
+    <width>390</width>
     <height>180</height>
    </size>
   </property>
@@ -30,7 +30,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>348</width>
+     <width>374</width>
      <height>167</height>
     </rect>
    </property>
@@ -74,6 +74,9 @@
     </item>
     <item row="2" column="0" colspan="2">
      <widget class="QCheckBox" name="use_filename">
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="text">
        <string>Use filename as song title</string>
       </property>
@@ -81,6 +84,9 @@
     </item>
     <item row="3" column="0">
      <widget class="QPushButton" name="defaults_button">
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="text">
        <string>Restore Defaults</string>
       </property>

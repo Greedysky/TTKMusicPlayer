@@ -1,5 +1,5 @@
 #include <QSettings>
-#include <QFileInfo>
+#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <sidplayfp/SidConfig.h>
 #include "settingsdialog.h"
@@ -10,7 +10,12 @@ SettingsDialog::SettingsDialog(SidDatabase *db, QWidget *parent)
     m_db = db;
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
+#ifdef Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
+#endif
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("SID");
 

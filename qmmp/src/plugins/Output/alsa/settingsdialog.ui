@@ -37,6 +37,9 @@
    </property>
    <item row="0" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>

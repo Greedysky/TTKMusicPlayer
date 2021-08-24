@@ -1,5 +1,6 @@
-#include <QTextCodec>
 #include <QSettings>
+#include <QTextCodec>
+#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <qmmp/regularwrapper.h>
 #ifdef WITH_ENCA
@@ -14,6 +15,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
     setFixedHeight(205);
+#elif defined Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
 #endif
     findCodecs();
     for(const QTextCodec *codec : qAsConst(m_codecs))

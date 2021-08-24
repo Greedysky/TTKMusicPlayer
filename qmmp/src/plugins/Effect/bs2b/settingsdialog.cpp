@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QAbstractButton>
 #include <bs2b/bs2b.h>
 #include "bs2bplugin.h"
 #include "settingsdialog.h"
@@ -8,7 +9,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
+#ifdef Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
+#endif
     m_ui.feedSlider->setRange(BS2B_MINFEED, BS2B_MAXFEED);
     m_ui.freqSlider->setRange(BS2B_MINFCUT, BS2B_MAXFCUT);
 

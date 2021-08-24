@@ -69,6 +69,9 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QCheckBox" name="wmaCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Windows Media Audio</string>
         </property>
@@ -76,6 +79,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="apeCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Monkey's Audio (APE)</string>
         </property>
@@ -83,6 +89,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="ttaCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>True Audio</string>
         </property>
@@ -90,6 +99,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="aacCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>ADTS AAC</string>
         </property>
@@ -97,6 +109,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="mp4CheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>MPEG-4 AAC/ALAC</string>
         </property>
@@ -104,6 +119,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="raCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>RealAudio 1.0/2.0</string>
         </property>
@@ -111,6 +129,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="shCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Shorten</string>
         </property>
@@ -118,6 +139,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="ac3CheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>AC3/EAC</string>
         </property>
@@ -125,6 +149,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="dtsCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>DTS/DTS-Core</string>
         </property>
@@ -132,6 +159,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="mkaCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Matroska Audio (Dolby TrueHD Lossless)</string>
         </property>
@@ -139,6 +169,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="vqfCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>VQF</string>
         </property>
@@ -146,6 +179,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="takCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Tom's lossless Audio Kompressor (TAK)</string>
         </property>
@@ -153,6 +189,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="spxCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Speex Audio (SPX)</string>
         </property>
@@ -160,6 +199,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="webmCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Web Media Audio</string>
         </property>
@@ -167,6 +209,9 @@
       </item>
       <item>
        <widget class="QCheckBox" name="dsdCheckBox">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
         <property name="text">
          <string>Direct Stream Digital (DSD)</string>
         </property>

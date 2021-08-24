@@ -1,5 +1,5 @@
 #include <QSettings>
-#include <QStringList>
+#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include "wildmidihelper.h"
 #include "settingsdialog.h"
@@ -11,6 +11,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
     setFixedHeight(110);
+#elif defined Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
 #endif
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");

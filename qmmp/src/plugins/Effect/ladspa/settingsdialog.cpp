@@ -1,11 +1,8 @@
 #include <QSettings>
-#include <QApplication>
-#include <QStyle>
+#include <QAbstractButton>
 #include <QStandardItemModel>
 #include <QFormLayout>
-#include <QWidget>
 #include <QLabel>
-#include <QIcon>
 #include <qmmp/qmmp.h>
 #include "ladspaslider.h"
 #include "ladspabutton.h"
@@ -17,7 +14,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
+#ifdef Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
+#endif
     m_ui.loadButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowRight));
     m_ui.unloadButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_ArrowLeft));
     m_ui.configureButton->setIcon(QIcon::fromTheme("configure"));

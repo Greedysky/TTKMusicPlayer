@@ -1,20 +1,23 @@
+#include <QSettings>
+#include <QAbstractButton>
+#include <qmmp/qmmp.h>
 #include "settingsdialog.h"
 #include "openmpthelper.h"
-#include <qmmp/qmmp.h>
-
-#include <QSettings>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
 #ifdef Q_OS_WIN
     setMinimumWidth(370);
     setMaximumWidth(370);
+#elif defined Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
 #endif
-
     const QMap<QString, int> interpolators(OpenMPTHelper::getInterpolators());
     for(auto itr = interpolators.begin(); itr != interpolators.end(); ++itr)
     {

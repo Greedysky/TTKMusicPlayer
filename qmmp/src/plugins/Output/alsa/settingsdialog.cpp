@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 extern "C"
 {
@@ -11,7 +12,12 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     m_ui.setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-
+#ifdef Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
+#endif
     m_ui.deviceComboBox->setEditable(true);
 
     getCards();
@@ -48,8 +54,7 @@ void SettingsDialog::getCards()
     m_ui.deviceComboBox->addItem("Default PCM device(default)");
 
     if((err = snd_card_next(&card)) !=0)
-        qWarning("SettingsDialog(ALSA): snd_next_card() failed: %s",
-                 snd_strerror(-err));
+        qWarning("SettingsDialog(ALSA): snd_next_card() failed: %s", snd_strerror(-err));
 
     while(card > -1)
     {
@@ -57,8 +62,7 @@ void SettingsDialog::getCards()
         m_cards << QString("hw:%1").arg(card);
         if((err = snd_card_next(&card)) !=0)
         {
-            qWarning("SettingsDialog(ALSA): snd_next_card() failed: %s",
-                     snd_strerror(-err));
+            qWarning("SettingsDialog(ALSA): snd_next_card() failed: %s", snd_strerror(-err));
             break;
         }
     }
@@ -81,9 +85,7 @@ void SettingsDialog::getSoftDevices()
             char *device_desc = snd_device_name_get_hint(hints[i], "DESC");
 
             m_devices << QString(device_name);
-            QString str = QString("%1(%2)").arg(device_desc).arg(device_name);
-            qDebug("%s", qPrintable(str));
-            m_ui.deviceComboBox->addItem(str);
+            m_ui.deviceComboBox->addItem(QString("%1(%2)").arg(device_desc).arg(device_name));
             free(device_name);
             free(device_desc);
         }
@@ -114,25 +116,21 @@ void SettingsDialog::getCardDevices(int card)
 
     if((err = snd_card_get_name(card, &card_name)) != 0)
     {
-        qWarning("SettingsDialog(ALSA): snd_card_get_name() failed: %s",
-                 snd_strerror(-err));
+        qWarning("SettingsDialog(ALSA): snd_card_get_name() failed: %s", snd_strerror(-err));
         card_name = strdup("Unknown soundcard");
     }
     m_ui.mixerCardComboBox->addItem(QString(card_name));
 
     snd_pcm_info_alloca(&pcm_info);
-
-    qDebug("SettingsDialog(ALSA): detected sound cards:");
-
     for(;;)
     {
         QString device;
         if((err = snd_ctl_pcm_next_device(ctl, &pcm_device)) < 0)
         {
-            qWarning("SettingsDialog(ALSA): snd_ctl_pcm_next_device() failed: %s",
-                     snd_strerror(-err));
+            qWarning("SettingsDialog(ALSA): snd_ctl_pcm_next_device() failed: %s", snd_strerror(-err));
             pcm_device = -1;
         }
+
         if(pcm_device < 0)
             break;
 
@@ -150,11 +148,7 @@ void SettingsDialog::getCardDevices(int card)
         }
         device = QString("hw:%1,%2").arg(card).arg(pcm_device);
         m_devices << device;
-        QString str;
-        str =  QString(card_name) + ": "+
-               snd_pcm_info_get_name(pcm_info)+"("+device+")";
-        qDebug("%s",qPrintable(str));
-        m_ui.deviceComboBox->addItem(str);
+        m_ui.deviceComboBox->addItem(QString(card_name) + ": "+ snd_pcm_info_get_name(pcm_info) + "(" + device + ")");
     }
 
     free(card_name);
@@ -189,17 +183,18 @@ void SettingsDialog::setText(int n)
 
 void SettingsDialog::accept()
 {
-    qDebug("SettingsDialog(ALSA):: writeSettings()");
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ALSA");
     settings.setValue("device", m_ui.deviceComboBox->currentText());
     settings.setValue("buffer_time", m_ui.bufferSpinBox->value());
     settings.setValue("period_time", m_ui.periodSpinBox->value());
+
     if(m_ui.mixerCardComboBox->currentIndex() >= 0)
     {
         QString card = m_cards.at(m_ui.mixerCardComboBox->currentIndex());
         settings.setValue("mixer_card", card);
     }
+
     settings.setValue("mixer_device", m_ui.mixerDeviceComboBox->currentText());
     settings.setValue("use_mmap", m_ui.mmapCheckBox->isChecked());
     settings.setValue("use_snd_pcm_pause", m_ui.pauseCheckBox->isChecked());

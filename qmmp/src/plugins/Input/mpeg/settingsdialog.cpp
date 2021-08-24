@@ -1,5 +1,6 @@
-#include <QTextCodec>
 #include <QSettings>
+#include <QTextCodec>
+#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include <qmmp/regularwrapper.h>
 #include "settingsdialog.h"
@@ -11,6 +12,11 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
     setFixedHeight(320);
+#elif defined Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
 #endif
     findCodecs();
     for(const QTextCodec *codec : qAsConst(m_codecs))

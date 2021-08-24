@@ -1,5 +1,5 @@
 #include <QSettings>
-#include <QStringList>
+#include <QAbstractButton>
 #include <qmmp/qmmp.h>
 #include "settingsdialog.h"
 
@@ -16,6 +16,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 #ifdef Q_OS_WIN
     setFixedHeight(350);
+#elif defined Q_OS_UNIX
+    for(QAbstractButton *button : m_ui.buttonBox->buttons())
+    {
+        button->setFocusPolicy(Qt::NoFocus);
+    }
 #endif
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     const QStringList &disabledFilters = settings.value("FFMPEG/disabled_filters").toStringList();
