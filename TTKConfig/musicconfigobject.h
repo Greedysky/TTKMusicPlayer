@@ -50,7 +50,7 @@ public:
     /*!
      * Check current dir is exist, no, just create it.
      */
-    void dirIsExist(const QString &name);
+    void directoryExist(const QString &name);
     /*!
      * Check the related dir is exist.
      */

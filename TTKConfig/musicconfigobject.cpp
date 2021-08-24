@@ -35,7 +35,7 @@ void MusicConfigObject::initialize()
     copyFileOverwrite(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 }
 
-void MusicConfigObject::dirIsExist(const QString &name)
+void MusicConfigObject::directoryExist(const QString &name)
 {
     QDir dir;
     if(!dir.exists(name))
@@ -46,22 +46,22 @@ void MusicConfigObject::dirIsExist(const QString &name)
 
 void MusicConfigObject::checkTheDirectoryExist()
 {
-    dirIsExist(TTK_LRC_DIR_FULL);
-    dirIsExist(TTK_MUSIC_DIR_FULL);
-    dirIsExist(TTK_MOVIE_DIR_FULL);
-    dirIsExist(TTK_UPDATE_DIR_FULL);
+    directoryExist(TTK_LRC_DIR_FULL);
+    directoryExist(TTK_MUSIC_DIR_FULL);
+    directoryExist(TTK_MOVIE_DIR_FULL);
+    directoryExist(TTK_UPDATE_DIR_FULL);
 
-    dirIsExist(TTK_CACHE_DIR_FULL);
-    dirIsExist(TTK_ART_DIR_FULL);
-    dirIsExist(TTK_BACKGROUND_DIR_FULL);
-    dirIsExist(TTK_SCREEN_DIR_FULL);
+    directoryExist(TTK_CACHE_DIR_FULL);
+    directoryExist(TTK_ART_DIR_FULL);
+    directoryExist(TTK_BACKGROUND_DIR_FULL);
+    directoryExist(TTK_SCREEN_DIR_FULL);
 
-    dirIsExist(TTK_AVATAR_DIR_FULL);
-    dirIsExist(TTK_USER_THEME_DIR_FULL);
+    directoryExist(TTK_AVATAR_DIR_FULL);
+    directoryExist(TTK_USER_THEME_DIR_FULL);
 
-    dirIsExist(TTK_THEME_DIR_FULL);
-    dirIsExist(TTK_PLUGINS_DIR_FULL);
-    dirIsExist(TTK_LANGUAGE_DIR_FULL);
+    directoryExist(TTK_THEME_DIR_FULL);
+    directoryExist(TTK_PLUGINS_DIR_FULL);
+    directoryExist(TTK_LANGUAGE_DIR_FULL);
 }
 
 void MusicConfigObject::checkTheFileNeededExist()
