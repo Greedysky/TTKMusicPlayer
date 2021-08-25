@@ -5,6 +5,7 @@
 #include "musicclickedslider.h"
 #include "musicrightareawidget.h"
 #include "musictopareawidget.h"
+#include "musicwidgetutils.h"
 
 #include <QWidgetAction>
 
