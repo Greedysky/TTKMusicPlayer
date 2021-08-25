@@ -310,6 +310,7 @@ int MusicSongMeta::getSongMetaSize() const
 void MusicSongMeta::clearSongMeta()
 {
     qDeleteAll(m_songMetas);
+    m_songMetas.clear();
     m_offset = -1;
 }
 

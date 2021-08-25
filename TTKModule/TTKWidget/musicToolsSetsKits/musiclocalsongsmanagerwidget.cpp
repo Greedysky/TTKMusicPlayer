@@ -8,11 +8,6 @@
 #include "musicsongmeta.h"
 #include "musicfileutils.h"
 
-#if TTK_QT_VERSION_CHECK(5,0,0)
-#  include <QtConcurrent/QtConcurrent>
-#else
-#  include <QtConcurrentRun>
-#endif
 #include <QButtonGroup>
 #include <QStyledItemDelegate>
 
@@ -288,42 +283,39 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
     controlEnabled(false);
     m_runTypeChanged = true;
 
-    const auto status = QtConcurrent::run([&]()
+    MusicInfoData arts;
+    MusicSongMeta meta;
+    for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
     {
-        MusicInfoData arts;
-        MusicSongMeta meta;
-        for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
+        if(!m_runTypeChanged)
         {
-            if(!m_runTypeChanged)
-            {
-                break;
-            }
-
-            if(meta.read(file.absoluteFilePath()))
-            {
-                QString artString = meta.getArtist().trimmed();
-                if(artString.isEmpty())
-                {
-                    artString = "Various Artists";
-                }
-
-                if(!arts.contains(artString))
-                {
-                    arts.insert(artString, QFileInfoList() << file);
-                }
-                else
-                {
-                    arts.insert(artString, arts[artString] << file);
-                }
-            }
+            return;
         }
 
-        m_ui->songInfoTable->setRowCount(arts.count());
-        m_ui->songInfoTable->addItems(arts);
+        qApp->processEvents();
+        if(meta.read(file.absoluteFilePath()))
+        {
+            QString artString = meta.getArtist().trimmed();
+            if(artString.isEmpty())
+            {
+                artString = "Various Artists";
+            }
 
-        loadingLabelState(false);
-    });
-    Q_UNUSED(status);
+            if(!arts.contains(artString))
+            {
+                arts.insert(artString, QFileInfoList() << file);
+            }
+            else
+            {
+                arts.insert(artString, arts[artString] << file);
+            }
+        }
+    }
+
+    m_ui->songInfoTable->setRowCount(arts.count());
+    m_ui->songInfoTable->addItems(arts);
+
+    loadingLabelState(false);
 }
 
 void MusicLocalSongsManagerWidget::setShowAlbumButton()
@@ -334,42 +326,39 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     controlEnabled(false);
     m_runTypeChanged = true;
 
-    const auto status = QtConcurrent::run([&]()
+    MusicInfoData albums;
+    MusicSongMeta meta;
+    for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
     {
-        MusicInfoData albums;
-        MusicSongMeta meta;
-        for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
+        if(!m_runTypeChanged)
         {
-            if(!m_runTypeChanged)
-            {
-                break;
-            }
-
-            if(meta.read(file.absoluteFilePath()))
-            {
-                QString albumString = meta.getAlbum().trimmed();
-                if(albumString.isEmpty())
-                {
-                    albumString = "Various Album";
-                }
-
-                if(!albums.contains(albumString))
-                {
-                    albums.insert(albumString, QFileInfoList() << file);
-                }
-                else
-                {
-                    albums.insert(albumString, albums[albumString] << file);
-                }
-            }
+            return;
         }
 
-        m_ui->songInfoTable->setRowCount(albums.count());
-        m_ui->songInfoTable->addItems(albums);
+        qApp->processEvents();
+        if(meta.read(file.absoluteFilePath()))
+        {
+            QString albumString = meta.getAlbum().trimmed();
+            if(albumString.isEmpty())
+            {
+                albumString = "Various Album";
+            }
 
-        loadingLabelState(false);
-    });
-    Q_UNUSED(status);
+            if(!albums.contains(albumString))
+            {
+                albums.insert(albumString, QFileInfoList() << file);
+            }
+            else
+            {
+                albums.insert(albumString, albums[albumString] << file);
+            }
+        }
+    }
+
+    m_ui->songInfoTable->setRowCount(albums.count());
+    m_ui->songInfoTable->addItems(albums);
+
+    loadingLabelState(false);
 }
 
 void MusicLocalSongsManagerWidget::show()

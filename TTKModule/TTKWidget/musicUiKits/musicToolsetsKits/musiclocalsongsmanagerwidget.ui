@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>768</width>
-    <height>573</height>
+    <height>563</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>760</width>
-     <height>565</height>
+     <height>555</height>
     </rect>
    </property>
    <property name="text">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>540</height>
+     <height>530</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -149,7 +149,7 @@
      <x>129</x>
      <y>29</y>
      <width>635</width>
-     <height>540</height>
+     <height>530</height>
     </rect>
    </property>
    <property name="autoFillBackground">
@@ -288,6 +288,19 @@ background:rgba(255,255,255,50)</string>
     <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>
     <widget class="MusicLocalSongsInfoTableWidget" name="songInfoTable"/>
    </widget>
+   <widget class="QWidget" name="bottomWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>525</y>
+      <width>635</width>
+      <height>5</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(255,255,255,150)</string>
+    </property>
+   </widget>
    <zorder>backgroundMask2</zorder>
    <zorder>allSelectedcheckBox</zorder>
    <zorder>auditionButton</zorder>
@@ -297,6 +310,7 @@ background:rgba(255,255,255,50)</string>
    <zorder>searchLineLabel</zorder>
    <zorder>filterComboBox</zorder>
    <zorder>stackedWidget</zorder>
+   <zorder>bottomWidget</zorder>
   </widget>
   <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
