@@ -3,45 +3,35 @@
 #include <QColor>
 #include <QStringList>
 
-QString MusicUtils::Number::size2Number(qint64 size)
+static QString size2Number(qint64 size)
 {
     if(size < MH_KB2B)
     {
-        return QString::number(size*1.0, 'f', 2);
+        return QString::number(size * 1.0, 'f', 1);
     }
     else if(MH_KB2B <= size && size < MH_MB2B)
     {
-        return QString::number(size*1.0/MH_KB2B, 'f', 2);
+        return QString::number(size * 1.0 / MH_KB2B, 'f', 1);
     }
     else if(MH_MB2B <= size && size < MH_GB2B)
     {
-        return QString::number(size*1.0/MH_MB2B, 'f', 2);
+        return QString::number(size * 1.0 / MH_MB2B, 'f', 1);
     }
     else if(MH_GB2B <= size && size < MH_TB2B)
     {
-        return QString::number(size*1.0/MH_GB2B, 'f', 2);
+        return QString::number(size * 1.0 / MH_GB2B, 'f', 1);
     }
     else
     {
-        return QString::number(size*1.0/MH_TB2B, 'f', 2);
+        return QString::number(size * 1.0 / MH_TB2B, 'f', 1);
     }
 }
 
-QString MusicUtils::Number::size2NumberInt(qint64 size)
-{
-    QString label = size2Number(size);
-    if(label.contains("."))
-    {
-        label = label.split(".").front();
-    }
-    return label;
-}
-
-QString MusicUtils::Number::size2Label(qint64 size)
+QString MusicUtils::Number::sizeByte2Label(qint64 size)
 {
     if(size < 0)
     {
-        return "0.00B";
+        return "0.0B";
     }
 
     const QString &label = size2Number(size);
@@ -67,33 +57,14 @@ QString MusicUtils::Number::size2Label(qint64 size)
     }
 }
 
-QString MusicUtils::Number::speed2Label(qint64 size)
+QString MusicUtils::Number::speedByte2Label(qint64 size)
 {
-    return speed2LabelFromLabel(size, size2Number(size));
-}
+    if(size < 0)
+    {
+        return "0.0B/s";
+    }
 
-QString MusicUtils::Number::speed2LabelInt(qint64 size)
-{
-    return speed2LabelFromLabel(size, size2NumberInt(size));
-}
-
-float MusicUtils::Number::sizeByte2KByte(qint64 size)
-{
-    return size*1.0 / MH_KB;
-}
-
-float MusicUtils::Number::sizeByte2MByte(qint64 size)
-{
-    return sizeByte2KByte(size) / MH_MB;
-}
-
-float MusicUtils::Number::sizeByte2TByte(qint64 size)
-{
-    return sizeByte2MByte(size) / MH_GB;
-}
-
-QString MusicUtils::Number::speed2LabelFromLabel(qint64 size, const QString &label)
-{
+    const QString &label = size2Number(size);
     if(size < MH_KB2B)
     {
         return QString("%1B/s").arg(label);
@@ -142,20 +113,6 @@ void MusicUtils::Number::transfromBitrateToQuality(int level, QString &bitrate, 
     }
 }
 
-void MusicUtils::Number::transfromBitrateToQuality(int level, QString &bitrate)
-{
-    QColor color;
-    transfromBitrateToQuality(level, bitrate, color);
-}
-
-QString MusicUtils::Number::transfromBitrateToQuality(int level)
-{
-    QColor color;
-    QString bitrate;
-    transfromBitrateToQuality(level, bitrate, color);
-    return bitrate;
-}
-
 int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
 {
     if(bitrate.isEmpty())
@@ -195,20 +152,4 @@ int MusicUtils::Number::transfromBitrateToNormal(int bitrate)
         return MB_500;
     else
         return bitrate;
-}
-
-int MusicUtils::Number::transfromBitrateToNormal(const QString &bitrate)
-{
-    if(bitrate == "e")
-        return MB_32;
-    else if(bitrate == "f")
-        return MB_128;
-    else if(bitrate == "l")
-        return MB_192;
-    else if(bitrate == "h")
-        return MB_320;
-    else if(bitrate == "s")
-        return MB_500;
-    else
-        return MB_128;
 }

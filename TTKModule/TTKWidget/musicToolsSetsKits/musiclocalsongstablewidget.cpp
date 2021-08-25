@@ -47,7 +47,7 @@ void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
-        item->setToolTip(MusicUtils::Number::size2Label(path[i].size()));
+        item->setToolTip(MusicUtils::Number::sizeByte2Label(path[i].size()));
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
         item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 1, item);

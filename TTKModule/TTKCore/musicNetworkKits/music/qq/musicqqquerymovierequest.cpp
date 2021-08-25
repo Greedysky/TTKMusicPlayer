@@ -285,7 +285,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 TTK_NETWORK_QUERY_CHECK();
 
                 MusicObject::MusicSongAttribute attr;
-                attr.m_size = MusicUtils::Number::size2Label(flValue["fs"].toInt());
+                attr.m_size = MusicUtils::Number::sizeByte2Label(flValue["fs"].toInt());
                 attr.m_format = "mp4";
 
                 int bitrate = flValue["br"].toInt() * 10;

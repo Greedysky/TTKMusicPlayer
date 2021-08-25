@@ -28,11 +28,12 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     {
         m_musicName = info.completeBaseName();
     }
+
     m_musicSize = info.size();
     m_musicType = info.suffix();
     m_musicAddTime = info.lastModified().currentMSecsSinceEpoch();
     m_musicAddTimeStr = QString::number(m_musicAddTime);
-    m_musicSizeStr = MusicUtils::Number::size2Label(m_musicSize);
+    m_musicSizeStr = MusicUtils::Number::sizeByte2Label(m_musicSize);
 }
 
 MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &musicName)

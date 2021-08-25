@@ -344,7 +344,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                 else if(bitrate > 875)
                     attr.m_bitrate = MB_1000;
 
-                attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
+                attr.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
                 attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
                 //
                 musicInfo.m_songAttrs.append(attr);

@@ -6,7 +6,6 @@
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
-#include "musicsongmeta.h"
 #include "musicprogresswidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongchecktoolswidget.h"

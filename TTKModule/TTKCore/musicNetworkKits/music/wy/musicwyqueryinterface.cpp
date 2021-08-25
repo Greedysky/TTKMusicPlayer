@@ -88,7 +88,7 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
                 return;
             }
 
-            attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
+            attr.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
             attr.m_format = value["type"].toString();
             info->m_songAttrs.append(attr);
         }
@@ -208,7 +208,7 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
                     break;
                 }
 
-                attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
+                attr.m_size = MusicUtils::Number::sizeByte2Label(value["size"].toInt());
                 attr.m_format = value["type"].toString();
                 info->m_songAttrs.append(attr);
             }

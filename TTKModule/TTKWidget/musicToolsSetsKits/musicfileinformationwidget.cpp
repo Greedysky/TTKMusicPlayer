@@ -238,7 +238,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? STRING_NULL : check);
     m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? STRING_NULL : check);
-    m_ui->fileSizeEdit->setText((check = MusicUtils::Number::size2Label(fin.size())).isEmpty() ? STRING_NULL : check);
+    m_ui->fileSizeEdit->setText((check = MusicUtils::Number::sizeByte2Label(fin.size())).isEmpty() ? STRING_NULL : check);
 
     m_ui->fileAlbumEdit->setText(state ? ((check = meta.getAlbum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
     m_ui->fileArtistEdit->setText(state ? ((check = meta.getArtist()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
@@ -252,7 +252,11 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->SamplingRateEdit->setText(state ? ((check = meta.getSampleRate()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
     m_ui->TrackNumEdit->setText(state ? ((check = meta.getTrackNum()).isEmpty() ? STRING_NULL : check) : STRING_NULL);
     m_ui->decoderLabel->setText(state ? ((check = meta.getDecoder()).isEmpty() ? STRING_NULL : check.toUpper()) : STRING_NULL);
-    m_ui->qualityEdit->setText(MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())));
+
+    QColor color;
+    QString bitrate;
+    MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text()), bitrate, color);
+    m_ui->qualityEdit->setText(bitrate);
 }
 
 void MusicFileInformationWidget::setEditLineEnabled(bool enable)

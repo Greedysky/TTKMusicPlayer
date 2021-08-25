@@ -175,7 +175,7 @@ void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSong
 {
     MusicObject::MusicSongAttribute attr;
     attr.m_url = key["downurl"].toString();
-    attr.m_size = MusicUtils::Number::size2Label(key["filesize"].toInt());
+    attr.m_size = MusicUtils::Number::sizeByte2Label(key["filesize"].toInt());
     attr.m_format = MusicUtils::String::stringSplitToken(attr.m_url);
 
     const int bitrate = key["bitrate"].toInt() / 1000;

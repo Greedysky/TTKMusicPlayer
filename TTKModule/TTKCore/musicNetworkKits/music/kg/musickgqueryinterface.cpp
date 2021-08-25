@@ -61,7 +61,7 @@ void MusicKGQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
             MusicObject::MusicSongAttribute attr;
             attr.m_url = value["url"].toString();
-            attr.m_size = MusicUtils::Number::size2Label(value["fileSize"].toInt());
+            attr.m_size = MusicUtils::Number::sizeByte2Label(value["fileSize"].toInt());
             attr.m_format = value["extName"].toString();
             attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitrate / 1000);
             info->m_songAttrs.append(attr);

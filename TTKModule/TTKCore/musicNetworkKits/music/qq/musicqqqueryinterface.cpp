@@ -32,7 +32,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["size128"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size128"].toULongLong());
         attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -47,7 +47,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["size320"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size320"].toULongLong());
         attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -62,7 +62,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["sizeape"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["sizeape"].toULongLong());
         attr.m_format = APE_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -77,7 +77,7 @@ void MusicQQQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["sizeflac"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["sizeflac"].toULongLong());
         attr.m_format = FLAC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -129,7 +129,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["size_128mp3"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_128mp3"].toULongLong());
         attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -144,7 +144,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["size_320mp3"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_320mp3"].toULongLong());
         attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -159,7 +159,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["size_ape"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_ape"].toULongLong());
         attr.m_format = APE_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
@@ -174,7 +174,7 @@ void MusicQQQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = musicUrl;
-        attr.m_size = MusicUtils::Number::size2Label(key["size_flac"].toULongLong());
+        attr.m_size = MusicUtils::Number::sizeByte2Label(key["size_flac"].toULongLong());
         attr.m_format = FLAC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);

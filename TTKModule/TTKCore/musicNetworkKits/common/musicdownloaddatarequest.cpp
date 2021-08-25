@@ -116,16 +116,16 @@ void MusicDownloadDataRequest::downloadProgress(qint64 bytesReceived, qint64 byt
     /// only download music data or oather type can that show progress
     if(m_downloadType == MusicObject::DownloadMusic || m_downloadType == MusicObject::DownloadOther)
     {
-        const QString &total = MusicUtils::Number::size2Label(bytesTotal);
-        Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);
+        const QString &total = MusicUtils::Number::sizeByte2Label(bytesTotal);
+        Q_EMIT downloadProgressChanged(bytesTotal != 0 ? bytesReceived * 100.0 / bytesTotal : 0, total, m_createItemTime);
     }
 }
 
 void MusicDownloadDataRequest::updateDownloadSpeed()
 {
     const qint64 speed = m_currentReceived - m_hasReceived;
-    const QString &label = MusicUtils::Number::speed2Label(speed);
-    const qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived)/speed : 0;
+    const QString &label = MusicUtils::Number::speedByte2Label(speed);
+    const qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived) / speed : 0;
 
     Q_EMIT downloadSpeedLabelChanged(label, time);
     MusicAbstractDownLoadRequest::updateDownloadSpeed();

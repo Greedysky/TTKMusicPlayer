@@ -147,7 +147,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setText(QString::number(MusicUtils::Number::sizeByte2MByte(song.m_song.getMusicSize())).left(4) + "M");
+        item->setText(song.m_song.getMusicSizeStr());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 3, item);
 
@@ -279,7 +279,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
-        item->setText(QString::number(MusicUtils::Number::sizeByte2MByte(song.m_song.getMusicSize())).left(4) + "M");
+        item->setText(song.m_song.getMusicSizeStr());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 3, item);
 
@@ -289,8 +289,8 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         setItem(i, 4, item);
 
                 item = new QTableWidgetItem;
-        QString bitrate;
         QColor color;
+        QString bitrate;
         MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitrate), bitrate, color);
         item->setText(bitrate);
         item->setTextAlignment(Qt::AlignCenter);
