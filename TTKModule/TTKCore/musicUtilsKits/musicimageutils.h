@@ -47,12 +47,12 @@ namespace MusicUtils
         /*!
          * Get bitmap mask from rect.
          */
-        TTK_MODULE_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QBitmap GenerateMask(const QRect &rect, int ratioX, int ratioY);
 
         /*!
          * Get pximap data.
          */
-        TTK_MODULE_EXPORT QByteArray getPixmapData(const QPixmap &input);
+        TTK_MODULE_EXPORT QByteArray GeneratePixmapData(const QPixmap &input);
 
         /*!
          * Set fusion two pixmap.
@@ -78,24 +78,21 @@ namespace MusicUtils
         template <typename T>
         TTK_MODULE_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
-            if(alpha < 0) return 0;
-            else if(alpha > key) return key;
-
+            if(alpha < 0)
+            {
+                return 0;
+            }
+            else if(alpha > key)
+            {
+                return key;
+            }
             return (key - alpha) * 1.0 / 100 * value + alpha;
         }
 
         /*!
-         * Rerender the image alpha.
-         */
-        TTK_MODULE_EXPORT int reRenderAlpha(int alpha, int value);
-        /*!
          * Rerender the image by color burn transform.
          */
         TTK_MODULE_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
-        /*!
-         * Image color burn transform.
-         */
-        TTK_MODULE_EXPORT int colorBurnTransform(int c, int delta);
 
     }
 }

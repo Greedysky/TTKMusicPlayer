@@ -117,5 +117,5 @@ void MusicUtils::Widget::setComboBoxText(QComboBox *object, const QString &text)
 
 void MusicUtils::Widget::widgetToRound(QWidget *w, int ratioX, int ratioY)
 {
-    w->setMask(MusicUtils::Image::getBitmapMask(w->rect(), ratioX, ratioY));
+    w->setMask(MusicUtils::Image::GenerateMask(w->rect(), ratioX, ratioY));
 }

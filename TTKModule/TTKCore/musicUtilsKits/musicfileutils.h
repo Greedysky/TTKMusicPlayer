@@ -30,10 +30,6 @@ namespace MusicUtils
     namespace File
     {
         /*!
-         * Get given dir size.
-         */
-        TTK_MODULE_EXPORT quint64 dirSize(const QString &dirName);
-        /*!
          * Check given dir size is bigger than given size.
          */
         TTK_MODULE_EXPORT void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
@@ -51,48 +47,21 @@ namespace MusicUtils
         TTK_MODULE_EXPORT bool removeRecursively(const QString &dir, bool self = true);
 
         /*!
-         * Get open file dialog.
-         */
-        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get open file dialog.
-         */
-        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get open file dialog.
-         */
-        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj);
-
-        /*!
          * Get open dir dialog.
          */
         TTK_MODULE_EXPORT QString getOpenDirectoryDialog(QWidget *obj);
-
+        /*!
+         * Get open file dialog.
+         */
+        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
         /*!
          * Get open files dialog.
          */
-        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get open files dialog.
-         */
-        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get open files dialog.
-         */
-        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj);
-
+        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
         /*!
          * Get save file dialog.
          */
-        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter);
-        /*!
-         * Get save file dialog.
-         */
-        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter);
-        /*!
-         * Get save file dialog.
-         */
-        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
 
     }
 }

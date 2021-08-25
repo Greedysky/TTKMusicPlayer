@@ -3,19 +3,18 @@
 
 #include <QDirIterator>
 
-quint64 MusicUtils::File::dirSize(const QString &dirName)
+static quint64 directorySize(const QString &dirName)
 {
     quint64 size = 0;
     if(QFileInfo(dirName).isDir())
     {
         QDir dir(dirName);
-        const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden |
-                                                          QDir::NoSymLinks | QDir::NoDotAndDotDot);
+        const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
         for(const QFileInfo &fileInfo : qAsConst(fileList))
         {
             if(fileInfo.isDir())
             {
-                size += dirSize(fileInfo.absoluteFilePath());
+                size += directorySize(fileInfo.absoluteFilePath());
             }
             else
             {
@@ -30,7 +29,7 @@ void MusicUtils::File::checkCacheSize(quint64 cacheSize, bool disabled, const QS
 {
     if(disabled)
     {
-        quint64 size = dirSize(path);
+        quint64 size = directorySize(path);
         if(size > cacheSize)
         {
             const QFileInfoList &fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
@@ -90,6 +89,7 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
         di.next();
         const QFileInfo &fi = di.fileInfo();
         const QString &filePath = di.filePath();
+
         bool ok;
         if(fi.isDir() && !fi.isSymLink())
         {
@@ -104,8 +104,7 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
                 const QFile::Permissions permissions = QFile::permissions(filePath);
                 if(!(permissions & QFile::WriteUser))
                 {
-                    ok = QFile::setPermissions(filePath, permissions | QFile::WriteUser)
-                      && QFile::remove(filePath);
+                    ok = QFile::setPermissions(filePath, permissions | QFile::WriteUser) && QFile::remove(filePath);
                 }
             }
         }
@@ -124,52 +123,22 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
     return success;
 }
 
-QString MusicUtils::File::getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter)
-{
-    return QFileDialog::getOpenFileName(obj, title, QDir::currentPath(), filter);
-}
-
-QString MusicUtils::File::getOpenFileDialog(QWidget *obj, const QString &filter)
-{
-    return getOpenFileDialog(obj, QObject::tr("choose a filename to open under"), filter);
-}
-
-QString MusicUtils::File::getOpenFileDialog(QWidget *obj)
-{
-    return getOpenFileDialog(obj, "Images (*.png *.bmp *.jpg)");
-}
-
 QString MusicUtils::File::getOpenDirectoryDialog(QWidget *obj)
 {
     return QFileDialog::getExistingDirectory(obj, QString(), "./");
 }
 
-QStringList MusicUtils::File::getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter)
+QString MusicUtils::File::getOpenFileDialog(QWidget *obj, const QString &filter)
 {
-    return QFileDialog::getOpenFileNames(obj, title, QDir::currentPath(), filter);
+    return QFileDialog::getOpenFileName(obj, QObject::tr("choose a filename to open under"), QDir::currentPath(), filter);
 }
 
 QStringList MusicUtils::File::getOpenFilesDialog(QWidget *obj, const QString &filter)
 {
-    return getOpenFilesDialog(obj, QObject::tr("choose a filename to open under"), filter);
-}
-
-QStringList MusicUtils::File::getOpenFilesDialog(QWidget *obj)
-{
-    return getOpenFilesDialog(obj, "Images (*.png *.bmp *.jpg)");
-}
-
-QString MusicUtils::File::getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter)
-{
-    return QFileDialog::getSaveFileName(obj, title, QDir::currentPath(), filter);
+    return QFileDialog::getOpenFileNames(obj, QObject::tr("choose a filename to open under"), QDir::currentPath(), filter);
 }
 
 QString MusicUtils::File::getSaveFileDialog(QWidget *obj, const QString &filter)
 {
-    return getSaveFileDialog(obj, QObject::tr("choose a filename to save under"), filter);
-}
-
-QString MusicUtils::File::getSaveFileDialog(QWidget *obj)
-{
-    return getSaveFileDialog(obj, "Images (*.png *.bmp *.jpg)");
+    return QFileDialog::getSaveFileName(obj,  QObject::tr("choose a filename to save under"), QDir::currentPath(), filter);
 }

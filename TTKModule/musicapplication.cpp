@@ -549,7 +549,7 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, tr("Save List File"), MusicFormats::supportPlaylistOutputFormats());
+    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, MusicFormats::supportPlaylistOutputFormats());
     if(!fileName.isEmpty())
     {
         const MusicSongItems &items = m_musicSongTreeWidget->getMusicLists();

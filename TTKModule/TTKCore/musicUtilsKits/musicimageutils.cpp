@@ -23,7 +23,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QRect &rect
     }
 
     QPixmap image = input.scaled(rect.size());
-    image.setMask(getBitmapMask(rect, ratioX, ratioY));
+    image.setMask(GenerateMask(rect, ratioX, ratioY));
     return image;
 }
 
@@ -43,7 +43,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QPixmap &ma
     return image;
 }
 
-QBitmap MusicUtils::Image::getBitmapMask(const QRect &rect, int ratioX, int ratioY)
+QBitmap MusicUtils::Image::GenerateMask(const QRect &rect, int ratioX, int ratioY)
 {
     QBitmap mask(rect.size());
     QPainter painter(&mask);
@@ -54,7 +54,7 @@ QBitmap MusicUtils::Image::getBitmapMask(const QRect &rect, int ratioX, int rati
     return mask;
 }
 
-QByteArray MusicUtils::Image::getPixmapData(const QPixmap &input)
+QByteArray MusicUtils::Image::GeneratePixmapData(const QPixmap &input)
 {
     if(input.isNull())
     {
@@ -124,26 +124,7 @@ int MusicUtils::Image::grayScaleAverage(const QImage &input, int width, int heig
     return average / (width * height);
 }
 
-int MusicUtils::Image::reRenderAlpha(int alpha, int value)
-{
-    return reRenderValue<int>(0xFF, alpha, value);
-}
-
-void MusicUtils::Image::reRenderImage(int delta, const QImage *input, QImage *output)
-{
-    for(int w=0; w<input->width(); w++)
-    {
-        for(int h=0; h<input->height(); h++)
-        {
-            const QRgb rgb = input->pixel(w, h);
-            output->setPixel(w, h, qRgb(colorBurnTransform(qRed(rgb), delta),
-                                        colorBurnTransform(qGreen(rgb), delta),
-                                        colorBurnTransform(qBlue(rgb), delta)));
-        }
-    }
-}
-
-int MusicUtils::Image::colorBurnTransform(int c, int delta)
+static int colorBurnTransform(int c, int delta)
 {
     if(0 > delta || delta > 0xFF)
     {
@@ -160,4 +141,18 @@ int MusicUtils::Image::colorBurnTransform(int c, int delta)
         return 0;
     }
     return result;
+}
+
+void MusicUtils::Image::reRenderImage(int delta, const QImage *input, QImage *output)
+{
+    for(int w=0; w<input->width(); w++)
+    {
+        for(int h=0; h<input->height(); h++)
+        {
+            const QRgb rgb = input->pixel(w, h);
+            output->setPixel(w, h, qRgb(colorBurnTransform(qRed(rgb), delta),
+                                        colorBurnTransform(qGreen(rgb), delta),
+                                        colorBurnTransform(qBlue(rgb), delta)));
+        }
+    }
 }
