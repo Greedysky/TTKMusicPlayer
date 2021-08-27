@@ -237,7 +237,7 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         data.m_url = attr.m_url;
         data.m_id = musicSongInfo.m_songId;
         data.m_server = m_networkRequest->getQueryServer();
-        Q_EMIT mediaUrlNameChanged(data);
+        Q_EMIT mediaUrlPathChanged(data);
     }
 }
 

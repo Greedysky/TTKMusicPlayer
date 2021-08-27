@@ -107,7 +107,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
     connect(m_searchButton, SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
-    connect(m_videoTable, SIGNAL(mediaUrlNameChanged(MusicVideoItem)), SLOT(mediaUrlNameChanged(MusicVideoItem)));
+    connect(m_videoTable, SIGNAL(mediaUrlPathChanged(MusicVideoItem)), SLOT(mediaUrlPathChanged(MusicVideoItem)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
@@ -260,7 +260,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
         data.m_url = attr.m_url;
         data.m_id = info.m_songId;
         data.m_server = MUSIC_MOVIE_RADIO;
-        mediaUrlNameChanged(data);
+        mediaUrlPathChanged(data);
     }
 }
 
@@ -289,7 +289,7 @@ void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
     switchToPlayView();
 }
 
-void MusicVideoPlayWidget::mediaUrlNameChanged(const MusicVideoItem &item)
+void MusicVideoPlayWidget::mediaUrlPathChanged(const MusicVideoItem &item)
 {
     m_videoItem = item;
     setTitleText(item.m_name);
@@ -382,7 +382,7 @@ void MusicVideoPlayWidget::leaveEvent(QEvent *event)
 
 void MusicVideoPlayWidget::setTitleText(const QString &text)
 {
-    m_textLabel->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 275));
+    m_textLabel->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, width() - 50));
 }
 
 void MusicVideoPlayWidget::start(int st, int end, int ctrlst, int ctrlend)

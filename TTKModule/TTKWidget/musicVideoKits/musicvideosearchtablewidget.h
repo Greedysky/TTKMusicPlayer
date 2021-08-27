@@ -76,7 +76,7 @@ Q_SIGNALS:
     /*!
      * Set current media name and url to play.
      */
-    void mediaUrlNameChanged(const MusicVideoItem &item);
+    void mediaUrlPathChanged(const MusicVideoItem &item);
 
 public Q_SLOTS:
     /*!
