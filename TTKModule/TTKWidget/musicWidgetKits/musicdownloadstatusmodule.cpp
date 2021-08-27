@@ -71,16 +71,16 @@ void MusicDownloadStatusModule::checkLrcValid()
            return;
        }
 
-       const QString &filename = m_parentClass->getCurrentFileName();
+       const QString &fileName = m_parentClass->getCurrentFileName();
        ///Check if the file exists
-       if(QFile::exists(MusicUtils::String::lrcPrefix() + filename + LRC_FILE))
+       if(QFile::exists(MusicUtils::String::lrcPrefix() + fileName + LRC_FILE))
        {
            return;
        }
 
        ///Start the request query
        MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
-       d->startToSearch(MusicAbstractQueryRequest::MusicQuery, filename);
+       d->startToSearch(MusicAbstractQueryRequest::MusicQuery, fileName);
        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
     }
 }
@@ -96,10 +96,10 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
     const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &filename = d->getQueryText();
-        const int count = MusicUtils::String::stringSplit(filename).count();
-        const QString &artistName = MusicUtils::String::artistName(filename);
-        const QString &songName = MusicUtils::String::songName(filename);
+        const QString &fileName = d->getQueryText();
+        const int count = MusicUtils::String::stringSplit(fileName).count();
+        const QString &artistName = MusicUtils::String::artistName(fileName);
+        const QString &songName = MusicUtils::String::songName(fileName);
 
         MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
         for(const MusicObject::MusicSongInformation &var : qAsConst(musicSongInfos))
@@ -112,7 +112,7 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         }
 
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
         G_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture

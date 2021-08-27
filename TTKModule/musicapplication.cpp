@@ -165,9 +165,9 @@ void MusicApplication::musicLoadCurrentSongLrc()
         return;
     }
 
-    const QString &filename = getCurrentFileName();
-    const QString &path = MusicUtils::String::lrcPrefix() + filename + LRC_FILE;
-    m_rightAreaWidget->loadCurrentSongLrc(filename, path);
+    const QString &fileName = getCurrentFileName();
+    const QString &path = MusicUtils::String::lrcPrefix() + fileName + LRC_FILE;
+    m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
 
     //reset current song lrc index.
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
@@ -922,8 +922,8 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
 
 void MusicApplication::musicCurrentLrcUpdated()
 {
-    const QString &filename = getCurrentFileName();
-    QFile file(MusicUtils::String::lrcPrefix() + filename + LRC_FILE);
+    const QString &fileName = getCurrentFileName();
+    QFile file(MusicUtils::String::lrcPrefix() + fileName + LRC_FILE);
     if(file.exists())
     {
         file.remove();

@@ -23,9 +23,7 @@ MusicLrcAnalysis::~MusicLrcAnalysis()
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 {
-    m_currentLrcIndex = 0;
-    m_lrcContainer.clear();
-    m_currentShowLrcContainer.clear();
+    clear();
 
     QStringList getAllText = QString(data).split("\n");
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
@@ -77,14 +75,13 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data)
 {
+    clear();
     if(data.isEmpty())
     {
         return OpenFileFail;
     }
 
     m_lrcContainer = data;
-    m_currentLrcIndex = 0;
-    m_currentShowLrcContainer.clear();
 
     for(int i=0; i<getMiddle(); ++i)
     {
@@ -111,10 +108,11 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
     return OpenFileSuccess;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &fileName)
+MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
 {
-    QFile file(m_currentLrcFileName = fileName);
+    QFile file(m_currentFilePath = path);
 
+    clear();
     if(!file.open(QIODevice::ReadOnly))
     {
         return OpenFileFail;
@@ -126,16 +124,14 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &fileNam
     return state;
 }
 
-MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &fileName)
+MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
 {
 #ifndef MUSIC_MOBILE
-    m_lrcContainer.clear();
-    m_currentShowLrcContainer.clear();
-    m_currentLrcIndex = 0;
-    m_currentLrcFileName = fileName;
+    clear();
+    m_currentFilePath = path;
 
     MusicLrcFromKrc krc;
-    if(!krc.decode(fileName))
+    if(!krc.decode(path))
     {
         return OpenFileFail;
     }
@@ -449,7 +445,7 @@ void MusicLrcAnalysis::saveLrcData()
         data.append(it.value() + "\n");
     }
 
-    QFile file(m_currentLrcFileName);
+    QFile file(m_currentFilePath);
     if(!file.open(QIODevice::WriteOnly))
     {
         return;
@@ -464,6 +460,13 @@ void MusicLrcAnalysis::saveLrcData()
     outstream << endl;
 #endif
     file.close();
+}
+
+void MusicLrcAnalysis::clear()
+{
+    m_currentLrcIndex = 0;
+    m_lrcContainer.clear();
+    m_currentShowLrcContainer.clear();
 }
 
 bool MusicLrcAnalysis::isValid() const
@@ -606,6 +609,6 @@ void MusicLrcAnalysis::getTranslatedLrc()
 #endif
     }
 
-    m_networkRequest->setHeader("name", m_currentLrcFileName);
+    m_networkRequest->setHeader("name", m_currentFilePath);
     m_networkRequest->startToDownload(data);
 }

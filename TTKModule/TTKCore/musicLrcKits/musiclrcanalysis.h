@@ -94,11 +94,11 @@ public:
     /*!
      * Analysis lrc file to map return the state.
      */
-    State readFromLrcFile(const QString &fileName);
+    State readFromLrcFile(const QString &path);
     /*!
      * Analysis krc file to map return the state.
      */
-    State readFromKrcFile(const QString &fileName);
+    State readFromKrcFile(const QString &path);
 
     /*!
      * Set song speed by given time, return new time.
@@ -118,14 +118,18 @@ public:
      */
     int getCurrentIndex() const { return m_currentLrcIndex; }
     /*!
-     * Set current file name.
+     * Set current file path.
      */
-    inline void setCurrentFileName(const QString &name) { m_currentLrcFileName = name; }
+    inline void setCurrentFilePath(const QString &name) { m_currentFilePath = name; }
     /*!
-     * Get current file name.
+     * Get current file path.
      */
-    inline QString getCurrentFileName() const { return m_currentLrcFileName; }
+    inline QString getCurrentFilePath() const { return m_currentFilePath; }
 
+    /*!
+     * Clear current lrc cache.
+     */
+    void clear();
     /*!
      * Check current index is valid or not.
      */
@@ -190,7 +194,7 @@ protected:
     void matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second, const QString &third);
 
     int m_lineMax, m_currentLrcIndex;
-    QString m_currentLrcFileName;
+    QString m_currentFilePath;
     TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
     MusicTranslationRequest *m_networkRequest;

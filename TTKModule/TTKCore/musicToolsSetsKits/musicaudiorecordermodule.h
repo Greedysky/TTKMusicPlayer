@@ -62,7 +62,7 @@ public:
     /*!
      * Add the header of wav.
      */
-    int addWavHeader(const char *filename) const;
+    int addWavHeader(const char *fileName) const;
 
     /*!
      * Set volume by value.

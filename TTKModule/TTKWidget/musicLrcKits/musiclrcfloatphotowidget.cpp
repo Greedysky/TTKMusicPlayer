@@ -86,11 +86,11 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
 
 void MusicLrcFloatPhotoItem::exportArtPixmap()
 {
-    const QString &filename = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
-    if(!filename.isEmpty())
+    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    if(!fileName.isEmpty())
     {
         QPixmap pix(m_pixPath);
-        pix.save(filename, JPG_FILE_PREFIX);
+        pix.save(fileName, JPG_FILE_PREFIX);
     }
 }
 

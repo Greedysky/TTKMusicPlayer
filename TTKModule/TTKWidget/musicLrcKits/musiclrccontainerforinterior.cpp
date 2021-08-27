@@ -285,7 +285,7 @@ void MusicLrcContainerForInterior::showArtistBackgroundUploadedWidget()
 
 void MusicLrcContainerForInterior::lrcOpenFileDir() const
 {
-    MusicUtils::Url::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
+    MusicUtils::Url::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFilePath()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInterior::lrcCopyClipboard() const
@@ -457,8 +457,8 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
-    const QString &fileName = m_lrcAnalysis->getCurrentFileName();
-    const bool fileCheck = !fileName.isEmpty() && QFile::exists(fileName);
+    const QString &filePath = m_lrcAnalysis->getCurrentFilePath();
+    const bool fileCheck = !filePath.isEmpty() && QFile::exists(filePath);
 
     changeLrcLinkMenu.addAction(tr("localLink"), this, SLOT(showLocalLinkWidget()));
     QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));

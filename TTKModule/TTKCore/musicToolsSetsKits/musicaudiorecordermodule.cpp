@@ -54,7 +54,7 @@ MusicAudioRecorderModule::~MusicAudioRecorderModule()
     delete m_audioOutputFile;
 }
 
-int MusicAudioRecorderModule::addWavHeader(const char *filename) const
+int MusicAudioRecorderModule::addWavHeader(const char *fileName) const
 {
     WAVHEADER fileHeader;
     fileHeader.RIFFNAME[0] = 'R';
@@ -94,7 +94,7 @@ int MusicAudioRecorderModule::addWavHeader(const char *filename) const
         return OPEN_FILE_ERROR;
     }
 
-    if((output = fopen(qPrintable(filename), "wb+")) == nullptr)
+    if((output = fopen(qPrintable(fileName), "wb+")) == nullptr)
     {
         return SAVE_FILE_ERROR;
     }
