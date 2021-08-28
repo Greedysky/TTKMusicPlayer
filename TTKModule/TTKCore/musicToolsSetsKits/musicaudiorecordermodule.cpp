@@ -190,20 +190,6 @@ void MusicAudioRecorderModule::onRecordStart()
     m_audioInputFile->start(m_outputFile);
 }
 
-void MusicAudioRecorderModule::onRecordPlay()
-{
-    m_outputFile->open(QIODevice::ReadOnly | QIODevice::Truncate);
-    m_audioOutputFile = new QAudioOutput(m_formatFile, this);
-    if(m_audioOutputFile->error() != QAudio::NoError)
-    {
-        TTK_LOGGER_ERROR("audio output open error");
-        return;
-    }
-
-    connect(m_audioOutputFile, SIGNAL(stateChanged(QAudio::State)), SLOT(onStateChange(QAudio::State)));
-    m_audioOutputFile->start(m_outputFile);
-}
-
 void MusicAudioRecorderModule::onRecordStop()
 {
     if(m_audioInputFile)
@@ -221,12 +207,4 @@ void MusicAudioRecorderModule::onRecordStop()
     }
 
     m_outputFile->close();
-}
-
-void MusicAudioRecorderModule::onStateChange(QAudio::State state)
-{
-    if(state == QAudio::IdleState)
-    {
-        onRecordStop();
-    }
 }

@@ -48,7 +48,7 @@ public:
     /*!
      * Get query cloud id keys.
      */
-    bool getKey();
+    bool queryCloudKey();
     /*!
      * Resize window bound by widget resize called.
      */

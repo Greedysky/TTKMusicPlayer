@@ -145,16 +145,16 @@ void MusicAbstractItemQueryWidget::initFirstWidget()
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);
     marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
-    QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
+    QCheckBox *allCheckBox = new QCheckBox(" " + tr("All"), middleFuncWidget);
+    QPushButton *playButton = new QPushButton(tr("Play"), middleFuncWidget);
     playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playButton->setIconSize(QSize(14, 14));
     playButton->setFixedSize(55, 25);
     playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *addButton = new QPushButton(tr("add"), middleFuncWidget);
+    QPushButton *addButton = new QPushButton(tr("Add"), middleFuncWidget);
     addButton->setFixedSize(55, 25);
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
+    QPushButton *downloadButton = new QPushButton(tr("Download"), middleFuncWidget);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -212,6 +212,6 @@ void MusicAbstractItemQueryWidget::setSongCountText()
     const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(m_songButton)
     {
-        m_songButton->setText(tr("songItems") + QString("(%1)").arg(musicSongInfos.count()));
+        m_songButton->setText(tr("SongItems") + QString("(%1)").arg(musicSongInfos.count()));
     }
 }

@@ -47,7 +47,7 @@ public:
     /*!
      * Get query song id keys.
      */
-    void getKey();
+    void queryIdentifyKey();
 
 public Q_SLOTS:
     /*!

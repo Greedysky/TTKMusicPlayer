@@ -98,7 +98,7 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
 
     if(!MusicUtils::Url::openUrl(QFileInfo(path).absoluteFilePath()))
     {
-        MusicToastLabel::popup(tr("The origin one does not exist!"));
+        MusicToastLabel::popup(tr("The file has been moved or does not exist!"));
     }
 }
 
@@ -220,12 +220,12 @@ void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
-    addMenu->addAction(tr("musicCloud"));
+    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("Add To List"));
+    addMenu->addAction(tr("Cloud"));
     MusicUtils::Widget::adjustMenuPosition(addMenu);
 
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), this, SLOT(musicSimilarQueryWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(musicSongSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), this, SLOT(musicSimilarQueryWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(musicSongSharedWidget()));
 }
 
 QString MusicAbstractSongsListTableWidget::getCurrentSongPath() const

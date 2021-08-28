@@ -58,7 +58,7 @@ MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
     delete m_mainWindow;
 }
 
-void MusicIdentifySongsWidget::getKey()
+void MusicIdentifySongsWidget::queryIdentifyKey()
 {
     if(m_detectedThread->queryIdentifyKey())
     {
@@ -82,6 +82,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
         m_recordCore->onRecordStart();
         if(m_recordCore->error())
         {
+            MusicToastLabel::popup(tr("Audio Init Error!"));
             return;
         }
 

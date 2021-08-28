@@ -75,7 +75,7 @@ MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
     delete m_progressBarDelegate;
 }
 
-bool MusicCloudManagerTableWidget::getKey()
+bool MusicCloudManagerTableWidget::queryCloudKey()
 {
     MusicSemaphoreLoop loop;
     connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -669,7 +669,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     mainLayout->addWidget(labelWidget);
     //
     m_managerTableWidget = new MusicCloudManagerTableWidget(this);
-    m_managerTableWidget->getKey();
+    m_managerTableWidget->queryCloudKey();
 
     connect(m_managerTableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
     connect(m_managerTableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));

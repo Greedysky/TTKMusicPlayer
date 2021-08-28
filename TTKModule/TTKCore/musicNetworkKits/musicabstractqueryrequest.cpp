@@ -18,7 +18,7 @@ void MusicAbstractQueryRequest::startToSingleSearch(const QString &text)
 
 QString MusicAbstractQueryRequest::mapQueryServerString() const
 {
-    const QString &v = tr("Current Used Server Is %1");
+    const QString &v = tr("Current used server from %1");
     if(m_queryServer.contains(QUERY_BD_INTERFACE))
         return v.arg(tr("BD"));
     else if(m_queryServer.contains(QUERY_KG_INTERFACE))

@@ -518,7 +518,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 MusicIdentifySongsWidget *widget = new MusicIdentifySongsWidget(this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
                 m_ui->functionsContainer->setCurrentWidget(widget);
-                widget->getKey();
+                widget->queryIdentifyKey();
                 Q_EMIT updateBackgroundTheme();
                 break;
             }

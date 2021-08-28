@@ -86,7 +86,6 @@ public:
      */
     bool error() const;
 
-public Q_SLOTS:
     /*!
      * Recorder play start.
      */
@@ -95,14 +94,6 @@ public Q_SLOTS:
      * Recorder play stop.
      */
     void onRecordStop();
-    /*!
-     * Recorder play play.
-     */
-    void onRecordPlay();
-    /*!
-     * Recorder play state changed.
-     */
-    void onStateChange(QAudio::State state);
 
 protected:
     int m_inputVolume;

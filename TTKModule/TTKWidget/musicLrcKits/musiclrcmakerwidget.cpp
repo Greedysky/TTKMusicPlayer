@@ -685,7 +685,7 @@ bool MusicLrcMakerWidget::checkInputValid()
     if(m_ui->songNameEdit->text().isEmpty())
     {
         error = true;
-        msg = tr("sSong name is empty!");
+        msg = tr("Song name is empty!");
     }
 
     if(m_ui->lrcTextEdit->toPlainText().isEmpty())
