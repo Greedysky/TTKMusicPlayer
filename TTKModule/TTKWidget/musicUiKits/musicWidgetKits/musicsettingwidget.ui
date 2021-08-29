@@ -68,7 +68,7 @@
     <string notr="true">color:#444444;</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="MusicThemeLineLabel" name="baseSetShowInfoWidget">
@@ -2664,7 +2664,7 @@ font-weight:bold;</string>
       <rect>
        <x>255</x>
        <y>220</y>
-       <width>71</width>
+       <width>75</width>
        <height>25</height>
       </rect>
      </property>
@@ -2677,7 +2677,7 @@ font-weight:bold;</string>
       <rect>
        <x>255</x>
        <y>255</y>
-       <width>71</width>
+       <width>75</width>
        <height>25</height>
       </rect>
      </property>

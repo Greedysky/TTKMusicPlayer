@@ -136,7 +136,7 @@ QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidge
         }
 
         hbox->addStretch(1);
-        QPushButton *p = createButton(tr("ALL"));
+        QPushButton *p = createButton(tr("All"));
         p->setStyleSheet(p->styleSheet() + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
 
         m_functionsWidget->setLayout(hbox);

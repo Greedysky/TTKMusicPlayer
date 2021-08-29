@@ -107,7 +107,7 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
         path.addEllipse(m_ptVernierPos, 7, 7);
         if(path.contains(event->pos()))
         {
-            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this, QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)));
+            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust hue and brightness"), this, QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)));
         }
     }
 }
@@ -220,7 +220,7 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
         path.addEllipse(ptfCenter, 7, 7);
         if(path.contains(event->pos()))
         {
-            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this, QRect(event->pos() - QPoint(8, 8), QSize(16, 16)));
+            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust hue and brightness"), this, QRect(event->pos() - QPoint(8, 8), QSize(16, 16)));
         }
     }
 }

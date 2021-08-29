@@ -6,7 +6,7 @@ MusicCloudToolBoxWidget::MusicCloudToolBoxWidget(QWidget *parent)
 {
     MusicCloudUploadTableWidget *uploadTable = new MusicCloudUploadTableWidget(this);
     m_songItems << MusicSongItem();
-    createWidgetItem(uploadTable, tr("UploadFailed"), 0);
+    createWidgetItem(uploadTable, tr("Failed"), 0);
 
     MusicCloudDownloadTableWidget *downloadTable = new MusicCloudDownloadTableWidget(this);
     m_songItems << MusicSongItem();

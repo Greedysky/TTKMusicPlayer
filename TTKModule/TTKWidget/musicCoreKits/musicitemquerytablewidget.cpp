@@ -76,7 +76,7 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
     const TTKIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -95,7 +95,7 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
     const TTKIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -174,17 +174,17 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
         return;
     }
 
-    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"))->setData(0);
-    menu.addAction(tr("musicAdd"))->setData(1);
-    menu.addAction(tr("downloadMore..."))->setData(2);
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"))->setData(0);
+    menu.addAction(tr("Add to list"))->setData(1);
+    menu.addAction(tr("Download More..."))->setData(2);
 
     menu.addSeparator();
 
     const MusicObject::MusicSongInformation &info = musicSongInfos[row];
-    menu.addAction(tr("search '%1'").arg(info.m_singerName))->setData(3);
-    menu.addAction(tr("search '%1'").arg(info.m_songName))->setData(4);
-    menu.addAction(tr("search '%1'").arg(info.m_albumName))->setData(5);
-    menu.addAction(tr("search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName))->setData(6);
+    menu.addAction(tr("Search '%1'").arg(info.m_singerName))->setData(3);
+    menu.addAction(tr("Search '%1'").arg(info.m_songName))->setData(4);
+    menu.addAction(tr("Search '%1'").arg(info.m_albumName))->setData(5);
+    menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName))->setData(6);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(menuActionChanged(QAction*)));
 
     menu.exec(QCursor::pos());
@@ -306,7 +306,7 @@ void MusicItemQueryTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        it->setData(MUSIC_TEXT_ROLE, tr("No More Data"));
+        it->setData(MUSIC_TEXT_ROLE, tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
 
         setFixedHeight(rowHeight(0) * rowCount());
@@ -317,7 +317,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
     if(row < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 

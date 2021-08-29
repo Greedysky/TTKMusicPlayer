@@ -80,7 +80,7 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
     list.removeOne(m_ui->tableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 

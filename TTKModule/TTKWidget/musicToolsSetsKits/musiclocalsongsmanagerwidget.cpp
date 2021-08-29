@@ -146,7 +146,7 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
     }
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -163,7 +163,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
 
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 

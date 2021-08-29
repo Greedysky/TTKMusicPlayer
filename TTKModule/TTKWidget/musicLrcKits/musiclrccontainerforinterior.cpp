@@ -129,7 +129,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
 
     if(state == MusicLrcAnalysis::OpenFileFail)
     {
-        m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("unFoundLrc"));
+        m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("No lrc data file found"));
         showNoLrcCurrentInfo();
     }
     else
@@ -903,7 +903,7 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
 
     if(m_lrcAnalysis->isEmpty())
     {
-        initCurrentLrc(tr("unFoundLrc"));
+        initCurrentLrc(tr("No lrc data file found"));
         showNoLrcCurrentInfo();
     }
     else if(m_currentTime != 0 && m_lrcAnalysis->getCurrentIndex() == 0)

@@ -42,7 +42,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 {
     if(row < 0 || (row >= rowCount() - 1))
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 

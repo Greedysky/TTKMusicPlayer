@@ -140,6 +140,7 @@ void MusicConnectMobileWidget::initSecondWidget()
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
     deviceButton->setFocusPolicy(Qt::NoFocus);
+    refreshButton->setFocusPolicy(Qt::NoFocus);
     importSong->setFocusPolicy(Qt::NoFocus);
     importRing->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -170,16 +171,16 @@ void MusicConnectMobileWidget::initThirdWidget()
     backButton->setCursor(Qt::PointingHandCursor);
     connect(backButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetFirst()));
 
-    QLabel *label = new QLabel(tr("use mobile app to connect"), thirdWidget);
+    QLabel *label = new QLabel(tr("Use mobile app to connect"), thirdWidget);
     label->setStyleSheet(MusicUIObject::MQSSFontStyle05);
 
     QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(130, 130), this);
     code->setMargin(8);
     code->setIcon(":/image/lb_app_logo", 0.23);
 
-    QLabel *label2 = new QLabel(tr("\t1. client and app must in the same wifi"), thirdWidget);
+    QLabel *label2 = new QLabel(tr("\t1. Client and app must in the same wifi"), thirdWidget);
     label2->setStyleSheet(MusicUIObject::MQSSFontStyle03);
-    QLabel *label3 = new QLabel(tr("\t2. use scanning by mobile app"), thirdWidget);
+    QLabel *label3 = new QLabel(tr("\t2. Use scanning by mobile app"), thirdWidget);
     label3->setStyleSheet(MusicUIObject::MQSSFontStyle03);
 
 #ifdef Q_OS_UNIX

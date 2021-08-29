@@ -66,7 +66,7 @@ void MusicIdentifySongsWidget::queryIdentifyKey()
     }
     else
     {
-        MusicToastLabel::popup(tr("Init Error!"));
+        MusicToastLabel::popup(tr("Init error!"));
     }
 }
 
@@ -82,14 +82,14 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
         m_recordCore->onRecordStart();
         if(m_recordCore->error())
         {
-            MusicToastLabel::popup(tr("Audio Init Error!"));
+            MusicToastLabel::popup(tr("Audio init error!"));
             return;
         }
 
         m_detectedMovie->start();
         m_timer->start();
         m_detectedButton->setStyleSheet(MusicUIObject::MQSSSongsDetectStopBtn);
-        m_detectedLabel->setText(tr("Recogniting the music being played"));
+        m_detectedLabel->setText(tr("Recognizing playing song"));
     }
     else
     {
@@ -97,7 +97,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
         m_detectedMovie->stop();
         m_timer->stop();
         m_detectedButton->setStyleSheet(MusicUIObject::MQSSSongsDetectStartBtn);
-        m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
+        m_detectedLabel->setText(tr("Intelligent recognition of playing song"));
     }
 }
 
@@ -175,7 +175,7 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
 
     if(m_analysis->isEmpty())
     {
-        const QString &lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
+        const QString &lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("No lrc data file found"));
         m_lrcLabel->setText(lrc);
         return;
     }
@@ -231,9 +231,9 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     connect(m_detectedButton, SIGNAL(clicked()), SLOT(detectedButtonClicked()));
 
     m_detectedLabel = new QLabel(widget);
-    m_detectedLabel->setText(tr("Intelligent Recognition Of The Music Being Played"));
+    m_detectedLabel->setText(tr("Intelligent recognition of playing song"));
 
-    QLabel *text = new QLabel(tr("ShotCut:") + " Shift + Ctrl + T", widget);
+    QLabel *text = new QLabel(tr("Shortcut:") + " Shift + Ctrl + T", widget);
     text->setStyleSheet(MusicUIObject::MQSSFontStyle03);
 
     widgetLayout->addStretch(2);
@@ -346,7 +346,6 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     downButton->setStyleSheet(MusicUIObject::MQSSSongsDetectDownloadBtn);
     shareButton->setStyleSheet(MusicUIObject::MQSSSongsDetectShareBtn);
     connect(playButton, SIGNAL(clicked()), SLOT(musicSongPlay()));
-//    connect(loveButton, SIGNAL(clicked()), SLOT(musicSongShare()));
     connect(downButton, SIGNAL(clicked()), SLOT(musicSongDownload()));
     connect(shareButton, SIGNAL(clicked()), SLOT(musicSongShare()));
 
@@ -416,8 +415,8 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
 
     QLabel *iconLabel = new QLabel(widget);
     iconLabel->setPixmap(QPixmap(":/toolSets/lb_detect_error"));
-    QLabel *text1Label = new QLabel(tr("No Songs Identified"), widget);
-    QLabel *text2Label = new QLabel(tr("Only The Music Being Played Can Be Recognized"), widget);
+    QLabel *text1Label = new QLabel(tr("There are no recognized songs"), widget);
+    QLabel *text2Label = new QLabel(tr("Only playing songs can be recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
     text3Label->setStyleSheet(MusicUIObject::MQSSFontStyle03);
     //

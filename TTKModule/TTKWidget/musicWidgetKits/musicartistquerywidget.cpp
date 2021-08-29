@@ -616,8 +616,8 @@ void MusicArtistQueryWidget::createLabels()
     topButtonWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
-    QPushButton *playAllButton = new QPushButton(tr("playAll"), topButtonWidget);
-    QPushButton *shareButton = new QPushButton(tr("share"), topButtonWidget);
+    QPushButton *playAllButton = new QPushButton(tr("PlayAll"), topButtonWidget);
+    QPushButton *shareButton = new QPushButton(tr("Share"), topButtonWidget);
     playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playAllButton->setIconSize(QSize(14, 14));
     playAllButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -683,7 +683,7 @@ void MusicArtistQueryWidget::createLabels()
     functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
-    m_songButton->setText(tr("songItems"));
+    m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(m_songButton);
@@ -703,7 +703,7 @@ void MusicArtistQueryWidget::createLabels()
     albumsButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(albumsButton);
     QPushButton *mvsButton = new QPushButton(functionWidget);
-    mvsButton->setText(tr("Mvs"));
+    mvsButton->setText(tr("Movies"));
     mvsButton->setFixedSize(100, 25);
     mvsButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(mvsButton);

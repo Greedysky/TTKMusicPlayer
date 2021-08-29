@@ -233,7 +233,7 @@ void MusicWebFMRadioWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    rightClickMenu.addAction(tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addAction(tr("Play"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
     rightClickMenu.addAction(tr("sendToDesktop"), this, SLOT(sendToDesktopLink()));

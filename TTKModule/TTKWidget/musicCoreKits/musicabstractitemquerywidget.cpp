@@ -51,7 +51,7 @@ void MusicAbstractItemQueryWidget::initWidget()
     m_mainWindow->setObjectName("MainWindow");
     m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MQSSBackgroundStyle17));
 
-    m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
+    m_statusLabel = new QLabel(tr("Loading now ... "), m_mainWindow);
     m_statusLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05 + MusicUIObject::MQSSFontStyle01);
 
     QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);

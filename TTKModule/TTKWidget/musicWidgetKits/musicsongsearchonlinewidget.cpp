@@ -314,8 +314,8 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicItemSearchTableWidget::contextMenuEvent(event);
 
     QMenu rightClickMenu(this);
-    m_actionGroup->addAction(rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay")))->setData(4);
-    m_actionGroup->addAction(rightClickMenu.addAction(tr("downloadMore...")))->setData(5);
+    m_actionGroup->addAction(rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("Download More...")))->setData(5);
 
     createContextMenu(rightClickMenu);
 
@@ -323,7 +323,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     {
         const QString &albumName = (currentRow() != -1 && rowCount() > 0) ? item(currentRow(), 3)->toolTip() : QString();
         QAction *lastAction = m_actionGroup->actions().last();
-        QAction *action = m_actionGroup->addAction(tr("search '%1'").arg(albumName));
+        QAction *action = m_actionGroup->addAction(tr("Search '%1'").arg(albumName));
         action->setData(6);
         rightClickMenu.insertAction(lastAction, action);
     }
@@ -339,7 +339,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 
     if(row < 0 || (row >= rowCount() - 1))
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -439,7 +439,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
     list.removeOne(m_searchTableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 

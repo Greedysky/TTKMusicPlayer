@@ -156,7 +156,7 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
-    names << tr("musicPlaylist") << tr("musicCloud") << tr("musicRadio") << tr("musicMobile") << tr("musicMydownl");
+    names << tr("Playlist") << tr("Cloud") << tr("Radio") << tr("Mobile") << tr("Download");
     for(int i=0; i<names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);

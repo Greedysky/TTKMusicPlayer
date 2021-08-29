@@ -716,10 +716,10 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addAction(tr("playLater"), this, SLOT(musicAddToPlayLater()));
     rightClickMenu.addAction(tr("addToPlaylist"), this, SLOT(musicAddToPlayedList()));
-    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
+    rightClickMenu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
 
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
@@ -893,8 +893,8 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
     const QStringList names(MusicUtils::String::stringSplit(songName));
     for(int i=1; i<=names.count(); ++i)
     {
-        menu.addAction(tr("search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_NORMAL_LEVEL);
+        menu.addAction(tr("Search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_NORMAL_LEVEL);
     }
-    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_NORMAL_LEVEL);
+    menu.addAction(tr("Search '%1'").arg(songName))->setData(DEFAULT_NORMAL_LEVEL);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }

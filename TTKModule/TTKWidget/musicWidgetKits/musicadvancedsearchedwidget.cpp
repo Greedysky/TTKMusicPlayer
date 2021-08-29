@@ -79,7 +79,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     //
     QWidget *movieWidget = new QWidget(m_tabWidget);
     QVBoxLayout *movieWidgetLayout = new QVBoxLayout(movieWidget);
-    QLabel *movieLabel = new QLabel(tr("Input Movie id or url link"), movieWidget);
+    QLabel *movieLabel = new QLabel(tr("Input movie id or url link"), movieWidget);
     movieLabel->setStyleSheet(MusicUIObject::MQSSFontStyle05);
     movieWidgetLayout->setSpacing(10);
     movieWidgetLayout->addStretch(1);

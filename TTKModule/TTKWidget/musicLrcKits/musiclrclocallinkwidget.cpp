@@ -163,7 +163,7 @@ void MusicLrcLocalLinkWidget::deleteFoundLrc()
     const int row = m_ui->searchedTable->currentRow();
     if(row < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -175,7 +175,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
     const int row = m_ui->searchedTable->currentRow();
     if(row < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 

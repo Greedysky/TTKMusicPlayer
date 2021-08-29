@@ -211,7 +211,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 
         if(!state)
         {
-            m_musicLrcForDesktop->updateCurrentLrc(tr("unFoundLrc"), QString(), 0);
+            m_musicLrcForDesktop->updateCurrentLrc(tr("No lrc data file found"), QString(), 0);
         }
 
         if(m_musicLrcForWallpaper)
@@ -222,7 +222,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 
             if(!state)
             {
-                m_musicLrcForWallpaper->updateCurrentLrc(tr("unFoundLrc"));
+                m_musicLrcForWallpaper->updateCurrentLrc(tr("No lrc data file found"));
             }
         }
     }

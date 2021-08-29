@@ -380,7 +380,7 @@ void MusicSoundKMicroWidget::recordStateChanged(bool state)
             m_recordCore->onRecordStart();
             if(m_recordCore->error())
             {
-                MusicToastLabel::popup(tr("Audio Init Error!"));
+                MusicToastLabel::popup(tr("Audio init error!"));
                 return;
             }
         }

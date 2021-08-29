@@ -491,10 +491,10 @@ void MusicApplication::musicImportSongs()
 {
     QMenu menu;
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    menu.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
-    menu.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
+    menu.addAction(tr("Open Files"), this, SLOT(musicImportSongsOnlyFile()));
+    menu.addAction(tr("Open Dir"), this, SLOT(musicImportSongsOnlyDir()));
     menu.addSeparator();
-    menu.addAction(tr("dragAnddrop"))->setEnabled(false);
+    menu.addAction(tr("Files Drag Drop"))->setEnabled(false);
 
     MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
@@ -737,25 +737,25 @@ void MusicApplication::musicCreateRightMenu()
 {
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_login"), m_topAreaWidget->getUserLoginState() ? tr("logout") : tr("login"), m_topAreaWidget, SLOT(musicUserContextLogin()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_login"), m_topAreaWidget->getUserLoginState() ? tr("Logout") : tr("Login"), m_topAreaWidget, SLOT(musicUserContextLogin()));
     rightClickMenu.addSeparator();
 
-    QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
+    QMenu musicAddNewFiles(tr("Add New Files"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
-    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(musicImportSongsOnlyFile()));
-    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(musicImportSongsOnlyDir()));
+    musicAddNewFiles.addAction(tr("Open Files"), this, SLOT(musicImportSongsOnlyFile()));
+    musicAddNewFiles.addAction(tr("Open Dir"), this, SLOT(musicImportSongsOnlyDir()));
     MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
-    QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
+    QMenu musicPlaybackMode(tr("Playback Mode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
 
     MusicObject::PlayMode mode = m_musicPlaylist->playbackMode();
     QList<QAction*> actions;
-    actions << musicPlaybackMode.addAction(tr("OrderPlay"), this, SLOT(musicPlayOrder()));
-    actions << musicPlaybackMode.addAction(tr("RandomPlay"), this, SLOT(musicPlayRandom()));
-    actions << musicPlaybackMode.addAction(tr("ListCycle"), this, SLOT(musicPlaylistLoop()));
-    actions << musicPlaybackMode.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
-    actions << musicPlaybackMode.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
+    actions << musicPlaybackMode.addAction(tr("Order Play"), this, SLOT(musicPlayOrder()));
+    actions << musicPlaybackMode.addAction(tr("Random Play"), this, SLOT(musicPlayRandom()));
+    actions << musicPlaybackMode.addAction(tr("List Cycle"), this, SLOT(musicPlaylistLoop()));
+    actions << musicPlaybackMode.addAction(tr("Single Cycle"), this, SLOT(musicPlayOneLoop()));
+    actions << musicPlaybackMode.addAction(tr("Play Once"), this, SLOT(musicPlayItemOnce()));
 
     int index = DEFAULT_LOWER_LEVEL;
     switch(mode)
@@ -774,25 +774,25 @@ void MusicApplication::musicCreateRightMenu()
     }
 
     rightClickMenu.addSeparator();
-    QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
+    QMenu musicRemoteControl(tr("Remote Control"), &rightClickMenu);
     rightClickMenu.addMenu(&musicRemoteControl);
-    musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
-    musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
-    musicRemoteControl.addAction(tr("SimpleStyleRemote"), m_topAreaWidget, SLOT(musicSimpleStyleRemote()));
-    musicRemoteControl.addAction(tr("ComplexStyleRemote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
-    musicRemoteControl.addAction(tr("RippleRemote"), m_topAreaWidget, SLOT(musicRippleRemote()));
-    musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
+    musicRemoteControl.addAction(tr("Square Remote"), m_topAreaWidget, SLOT(musicSquareRemote()));
+    musicRemoteControl.addAction(tr("Rectangle Remote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
+    musicRemoteControl.addAction(tr("Simple Style Remote"), m_topAreaWidget, SLOT(musicSimpleStyleRemote()));
+    musicRemoteControl.addAction(tr("Complex Style Remote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
+    musicRemoteControl.addAction(tr("Ripple Remote"), m_topAreaWidget, SLOT(musicRippleRemote()));
+    musicRemoteControl.addAction(tr("Delete Remote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
     MusicUtils::Widget::adjustMenuPosition(&musicRemoteControl);
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
-    rightClickMenu.addAction(tr("SoundEffect"), m_applicationObject, SLOT(musicSetSoundEffect()));
-    rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
-    rightClickMenu.addAction(tr("MusicSpectrum"), m_applicationObject, SLOT(musicSpectrumWidget()));
+    rightClickMenu.addAction(tr("Sound Effect"), m_applicationObject, SLOT(musicSetSoundEffect()));
+    rightClickMenu.addAction(tr("Timing Settings"), m_applicationObject, SLOT(musicTimerWidget()));
+    rightClickMenu.addAction(tr("Music Spectrum"), m_applicationObject, SLOT(musicSpectrumWidget()));
     rightClickMenu.addSeparator();
 
-    QAction *window = rightClickMenu.addAction(tr("windowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));
+    QAction *window = rightClickMenu.addAction(tr("Window Top"), m_applicationObject, SLOT(musicSetWindowToTop()));
     window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/contextMenu/btn_selected" : QString()));
-    rightClickMenu.addAction(tr("resetWindow"), m_applicationObject, SLOT(musicResetWindow()));
+    rightClickMenu.addAction(tr("Reset Window"), m_applicationObject, SLOT(musicResetWindow()));
 
     QMenu musicDownload(tr("Download"), &rightClickMenu);
     rightClickMenu.addMenu(&musicDownload);
@@ -809,15 +809,15 @@ void MusicApplication::musicCreateRightMenu()
     {
         rightClickMenu.addAction(QIcon(":/contextMenu/btn_update"), tr("New Version"), m_applicationObject, SLOT(musicVersionUpdate()));
     }
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Setting"), this, SLOT(musicSetting()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), this, SLOT(musicSetting()));
 
-    QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
+    QMenu musicInfo(tr("About"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
     musicInfo.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationObject, SLOT(musicBugReportView()));
     musicInfo.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR), m_applicationObject, SLOT(musicAboutUs()));
 
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_quit"), tr("quit"), this, SLOT(quitWindowClose()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_quit"), tr("Quit"), this, SLOT(quitWindowClose()));
     rightClickMenu.exec(QCursor::pos());
 }
 

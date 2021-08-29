@@ -243,7 +243,7 @@ void MusicReplayGainWidget::rmFileButtonClicked()
     const int row = m_ui->tableWidget->currentRow();
     if(row < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
     m_ui->tableWidget->removeRow(row);

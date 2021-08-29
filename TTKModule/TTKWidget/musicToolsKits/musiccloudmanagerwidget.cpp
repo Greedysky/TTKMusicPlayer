@@ -143,7 +143,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItems &item
     const int count = items.count();
     if(count == 0)
     {
-        Q_EMIT updateLabelMessage(tr("List Is Empty!"));
+        Q_EMIT updateLabelMessage(tr("List is empty!"));
         createUploadFileModule();
         return;
     }
@@ -160,7 +160,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QSyncDataItems &item
         createItem(data);
     }
 
-    Q_EMIT updateLabelMessage(tr("List Update Finished!"));
+    Q_EMIT updateLabelMessage(tr("List update finished!"));
     Q_EMIT updataSizeLabel(m_totalFileSzie);
 }
 
@@ -194,12 +194,12 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 
 void MusicCloudManagerTableWidget::deleteFileFinished(bool state)
 {
-    Q_EMIT updateLabelMessage(state ? tr("Delete The Current File Success!") : tr("Delete The Current File Error!"));
+    Q_EMIT updateLabelMessage(state ? tr("Delete current file success!") : tr("Delete current file error!"));
 }
 
 void MusicCloudManagerTableWidget::updateListToServer()
 {
-    Q_EMIT updateLabelMessage(tr("List Updating"));
+    Q_EMIT updateLabelMessage(tr("List updating"));
     m_syncListData->listDataOperator(MUSIC_BUCKET);
 }
 
@@ -207,7 +207,7 @@ void MusicCloudManagerTableWidget::deleteFileToServer()
 {
     if(currentRow() < 0 || m_uploading)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -258,7 +258,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
 {
     if(currentRow() < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -370,26 +370,26 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    QMenu uploadMenu(tr("upload"), &menu);
+    QMenu uploadMenu(tr("Upload"), &menu);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     if(m_currentDataItem.isValid() && m_currentDataItem.m_state == MusicCloudDataItem::Waited)
     {
-        uploadMenu.addAction(tr("cancelUpload"), this, SLOT(cancelUploadFilesToServer()));
+        uploadMenu.addAction(tr("Cancel Upload"), this, SLOT(cancelUploadFilesToServer()));
     }
 
-    uploadMenu.addAction(tr("uploadFile"), this, SLOT(uploadFilesToServer()));
-    uploadMenu.addAction(tr("uploadFiles"), this, SLOT(uploadFileDirToServer()));
+    uploadMenu.addAction(tr("Upload File"), this, SLOT(uploadFilesToServer()));
+    uploadMenu.addAction(tr("Upload Files"), this, SLOT(uploadFileDirToServer()));
     MusicUtils::Widget::adjustMenuPosition(&uploadMenu);
 
     menu.addMenu(&uploadMenu);
-    menu.addAction(tr("deleteFile"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
-    menu.addAction(tr("deleteFiles"), this, SLOT(deleteFilesToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Delete File"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Delete Files"), this, SLOT(deleteFilesToServer()))->setEnabled(!m_uploading);
     menu.addSeparator();
-    menu.addAction(tr("download"), this, SLOT(downloadFileToServer()))->setEnabled(!m_uploading);
-    menu.addAction(tr("updateFiles"), this, SLOT(updateListToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Download"), this, SLOT(downloadFileToServer()))->setEnabled(!m_uploading);
+    menu.addAction(tr("Update List"), this, SLOT(updateListToServer()))->setEnabled(!m_uploading);
     menu.addSeparator();
-    menu.addAction(tr("musicInfo..."), this, SLOT(showFileInformationWidget()));
+    menu.addAction(tr("Song Info..."), this, SLOT(showFileInformationWidget()));
 
     MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
@@ -448,7 +448,7 @@ void MusicCloudManagerTableWidget::createUploadFileModule()
 void MusicCloudManagerTableWidget::startToUploadFile()
 {
     m_uploading = true;
-    Q_EMIT updateLabelMessage(tr("Files Is Uploading!"));
+    Q_EMIT updateLabelMessage(tr("Files is uploading..."));
 
     if(m_cancel)
     {
@@ -585,7 +585,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     pLabel->setFont(pLabelFont);
     pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle13);
 
-    QLabel *iLabel = new QLabel(tr("Sharing Of Cloud Disk Songs"), topWidget);
+    QLabel *iLabel = new QLabel(tr("Sharing of cloud disk songs"), topWidget);
     QFont iLabelFont = iLabel->font();
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);

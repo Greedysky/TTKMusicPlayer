@@ -35,7 +35,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle03);
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->allSelectedcheckBox->setText(tr("allselected"));
+    m_ui->allSelectedcheckBox->setText(tr("All"));
     connect(m_ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
     m_ui->transferUSBButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -128,7 +128,7 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
     const TTKIntList list(m_ui->listTableWidget->getSelectedItems());
     if(list.isEmpty())
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return paths;
     }
 
@@ -182,7 +182,6 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
 {
-    m_ui->allSelectedcheckBox->setText(check ? tr("allcanceled") : tr("allselected"));
     m_ui->listTableWidget->selectedAllItems(check);
     itemSelectedChanged();
 }

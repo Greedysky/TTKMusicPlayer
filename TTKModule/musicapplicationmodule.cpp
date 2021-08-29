@@ -435,7 +435,7 @@ bool MusicApplicationModule::closeCurrentEqualizer()
     if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt() != 0)
     {
         MusicMessageBox message;
-        message.setText(tr("we are opening the magic sound, if you want to close?"));
+        message.setText(tr("We are opening the magic sound, if you want to close?"));
         if(!message.exec())
         {
             return false;

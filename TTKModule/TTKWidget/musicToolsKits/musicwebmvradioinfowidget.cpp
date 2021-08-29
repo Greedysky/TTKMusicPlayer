@@ -96,8 +96,8 @@ void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
         return;
     }
 
-    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"))->setData(0);
-    menu.addAction(tr("downloadMore..."))->setData(1);
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"))->setData(0);
+    menu.addAction(tr("Download More..."))->setData(1);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(actionChanged(QAction*)));
 
     menu.exec(QCursor::pos());

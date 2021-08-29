@@ -38,7 +38,7 @@ void MusicItemSearchTableWidget::itemCellClicked(int row, int column)
     if(rowCount() > 0 && row == rowCount() - 1)
     {
         QTableWidgetItem *it = item(row, 0);
-        if(it && it->data(MUSIC_TEXT_ROLE).toString() == tr("More Data"))
+        if(it && it->data(MUSIC_TEXT_ROLE).toString() == tr("Query more data"))
         {
             setItemDelegateForRow(row, nullptr);
             clearSpans();
@@ -97,7 +97,7 @@ void MusicItemSearchTableWidget::createFinishedItem()
     {
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
         const bool more = (pageTotal > m_networkRequest->getPageIndex() + 1);
-        it->setData(MUSIC_TEXT_ROLE, more ? tr("More Data") : tr("No More Data"));
+        it->setData(MUSIC_TEXT_ROLE, more ? tr("Query more data") : tr("No more data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
 }
@@ -110,7 +110,7 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     }
 
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    m_actionGroup->addAction(menu.addAction(tr("musicDownload")))->setData(0);
+    m_actionGroup->addAction(menu.addAction(tr("Download")))->setData(0);
     menu.addSeparator();
 
     const int row = currentRow();
@@ -121,9 +121,9 @@ void MusicItemSearchTableWidget::createContextMenu(QMenu &menu)
     }
 
     const MusicObject::MusicSongInformation &info = musicSongInfos[row];
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info.m_songName)))->setData(1);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info.m_singerName)))->setData(2);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName)))->setData(3);
+    m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_songName)))->setData(1);
+    m_actionGroup->addAction(menu.addAction(tr("Search '%1'").arg(info.m_singerName)))->setData(2);
+    m_actionGroup->addAction(menu.addAction(tr("Search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName)))->setData(3);
 }
 
 void MusicItemSearchTableWidget::resizeEvent(QResizeEvent *event)

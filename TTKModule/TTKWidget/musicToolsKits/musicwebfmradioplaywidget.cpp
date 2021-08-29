@@ -287,7 +287,7 @@ void MusicWebFMRadioPlayWidget::positionChanged(qint64 position)
 
     if(m_analysis->isEmpty())
     {
-        QString lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
+        QString lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("No lrc data file found"));
         m_ui->lrcLabel->setText(lrc);
         return;
     }

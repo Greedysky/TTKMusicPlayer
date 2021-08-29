@@ -306,7 +306,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
 {
     if(m_items.count() == 1)
     {
-        MusicToastLabel::popup(tr("Last One Item Can not be deleted!"));
+        MusicToastLabel::popup(tr("Last one item can not be deleted!"));
         return;
     }
 

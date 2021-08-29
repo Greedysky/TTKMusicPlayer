@@ -113,7 +113,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
 {
     if(currentRow() < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -134,7 +134,7 @@ void MusicCloudUploadTableWidget::reuploadFiles()
 {
     if(currentRow() < 0)
     {
-        MusicToastLabel::popup(tr("Please Select One Item First!"));
+        MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
@@ -199,16 +199,16 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const bool empty = !m_musicSongs->isEmpty();
-    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addSeparator();
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
     rightClickMenu.addSeparator();
 
-    rightClickMenu.addAction(tr("reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("reuploadAll"), this, SLOT(reuploadFiles()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("Reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("Reupload All"), this, SLOT(reuploadFiles()))->setEnabled(empty);
     rightClickMenu.addSeparator();
     rightClickMenu.exec(QCursor::pos());
 }

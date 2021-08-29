@@ -130,7 +130,7 @@ void MusicArtistListQueryWidget::createArtistListItem(const MusicResultsItem &it
 
             if(i == -1)
             {
-                l->setText(tr("hot"));
+                l->setText(tr("Hot"));
             }
             else if(i == 26)
             {
