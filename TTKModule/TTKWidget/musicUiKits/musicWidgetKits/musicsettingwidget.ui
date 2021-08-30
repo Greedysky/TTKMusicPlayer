@@ -68,7 +68,7 @@
     <string notr="true">color:#444444;</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="MusicThemeLineLabel" name="baseSetShowInfoWidget">
@@ -1166,51 +1166,12 @@ font-weight:bold;</string>
       <string>基本设置</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="otherNormalImageRadioBox">
-     <property name="geometry">
-      <rect>
-       <x>135</x>
-       <y>50</y>
-       <width>80</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>普清</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="otherHeighImageRadioBox">
-     <property name="geometry">
-      <rect>
-       <x>230</x>
-       <y>50</y>
-       <width>80</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>高清</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="otherImageLabel">
-     <property name="geometry">
-      <rect>
-       <x>25</x>
-       <y>50</y>
-       <width>101</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>写真图片质量</string>
-     </property>
-    </widget>
     <widget class="QCheckBox" name="otherCheckUpdateBox">
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>185</y>
-       <width>190</width>
+       <y>165</y>
+       <width>210</width>
        <height>20</height>
       </rect>
      </property>
@@ -1222,8 +1183,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>213</y>
-       <width>190</width>
+       <y>200</y>
+       <width>210</width>
        <height>20</height>
       </rect>
      </property>
@@ -1235,8 +1196,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>85</y>
-       <width>190</width>
+       <y>55</y>
+       <width>210</width>
        <height>20</height>
       </rect>
      </property>
@@ -1248,8 +1209,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>115</y>
-       <width>190</width>
+       <y>90</y>
+       <width>210</width>
        <height>20</height>
       </rect>
      </property>
@@ -1261,7 +1222,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>150</y>
+       <y>130</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1279,8 +1240,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>185</y>
-       <width>190</width>
+       <y>165</y>
+       <width>200</width>
        <height>20</height>
       </rect>
      </property>
@@ -1292,8 +1253,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>213</y>
-       <width>190</width>
+       <y>200</y>
+       <width>200</width>
        <height>20</height>
       </rect>
      </property>
@@ -1304,9 +1265,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherWriteAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>85</y>
-       <width>190</width>
+       <x>240</x>
+       <y>55</y>
+       <width>200</width>
        <height>20</height>
       </rect>
      </property>
@@ -1317,9 +1278,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherWriteInfoCheckBox">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>115</y>
-       <width>190</width>
+       <x>240</x>
+       <y>90</y>
+       <width>200</width>
        <height>20</height>
       </rect>
      </property>
@@ -1331,8 +1292,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>241</y>
-       <width>190</width>
+       <y>235</y>
+       <width>200</width>
        <height>20</height>
       </rect>
      </property>

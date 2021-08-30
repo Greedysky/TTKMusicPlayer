@@ -1,4 +1,4 @@
-#include "musicdownloadbackgroundremoterequest.h"
+#include "musicdownloadbackgroundskinrequest.h"
 #include "musicdownloadsourcerequest.h"
 
 #define THUD_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="

@@ -59,7 +59,6 @@ public:
         BackgroundListTransparent,       /*!< Background List Transparent Parameter*/
         BackgroundTransparentEnable,     /*!< Background Transparent Enable Parameter*/
         //
-        OtherBackgroundLossless,         /*!< Other Background Lossless Parameter*/
         OtherCheckUpdate,                /*!< Other Check Update Parameter*/
         OtherSearch,                     /*!< Other Search Optimzied Parameter*/
         OtherUseAlbumCover,              /*!< Other Use File Album Parameter*/

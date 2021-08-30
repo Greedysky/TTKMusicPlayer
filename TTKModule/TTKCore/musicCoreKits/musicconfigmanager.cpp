@@ -36,8 +36,6 @@ void MusicConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("windowQuitMode").toInt());
 
 
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLossless,
-                     readXmlAttributeByTagNameValue("otherBackgroundLossless").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdate,
                      readXmlAttributeByTagNameValue("otherCheckUpdate").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSearch,
@@ -231,7 +229,6 @@ void MusicConfigManager::writeSysConfigData()
     const int windowQuitMode = G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toInt();
 
     //
-    const int otherBackgroundLossless = G_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toInt();
     const int otherCheckUpdate = G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdate).toInt();
     const int otherSearch = G_SETTING_PTR->value(MusicSettingManager::OtherSearch).toInt();
     const int otherUseAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toInt();
@@ -366,7 +363,6 @@ void MusicConfigManager::writeSysConfigData()
     writeDomElement(plusSettingDom, "windowQuitMode", MusicXmlAttribute("value", windowQuitMode));
 
     //
-    writeDomElement(otherSettingDom, "otherBackgroundLossless", MusicXmlAttribute("value", otherBackgroundLossless));
     writeDomElement(otherSettingDom, "otherCheckUpdate", MusicXmlAttribute("value", otherCheckUpdate));
     writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearch));
     writeDomElement(otherSettingDom, "otherUseAlbumCover", MusicXmlAttribute("value", otherUseAlbumCover));

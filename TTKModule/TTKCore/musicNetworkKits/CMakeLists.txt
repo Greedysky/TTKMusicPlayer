@@ -8,12 +8,12 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtextrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtagdatarequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadsourcerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadqueuerequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicidentifysongsrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicsourceupdaterequest.h
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadcounterpvrequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundremoterequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundphotorequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.h
@@ -92,6 +92,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/musicabstractdownloadrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadbackgroundrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicpagingrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryalbumrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistrequest.h
@@ -115,12 +116,12 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtextrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadtagdatarequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadsourcerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadqueuerequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicidentifysongsrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicsourceupdaterequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadcounterpvrequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundremoterequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundphotorequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/common/musicdownloadbackgroundskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.cpp
@@ -197,6 +198,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/musicabstractdownloadrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadbackgroundrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicpagingrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryalbumrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistrequest.cpp

@@ -35,12 +35,12 @@ HEADERS  += \
     $$PWD/common/musicdownloadtextrequest.h \
     $$PWD/common/musicdownloadtagdatarequest.h \
     $$PWD/common/musicdownloadsourcerequest.h \
-    $$PWD/common/musicdownloadbackgroundrequest.h \
     $$PWD/common/musicdownloadqueuerequest.h \
     $$PWD/common/musicidentifysongsrequest.h \
     $$PWD/common/musicsourceupdaterequest.h \
     $$PWD/common/musicdownloadcounterpvrequest.h \
-    $$PWD/common/musicdownloadbackgroundremoterequest.h \
+    $$PWD/common/musicdownloadbackgroundphotorequest.h \
+    $$PWD/common/musicdownloadbackgroundskinrequest.h \
     $$PWD/music/wy/musicwyqueryinterface.h \
     $$PWD/music/wy/musicwyqueryrequest.h \
     $$PWD/music/wy/musicwyqueryalbumrequest.h \
@@ -119,6 +119,7 @@ HEADERS  += \
     $$PWD/musicabstractdownloadrequest.h \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadmanager.h \
+    $$PWD/musicdownloadbackgroundrequest.h \
     $$PWD/musicpagingrequest.h \
     $$PWD/musicqueryalbumrequest.h \
     $$PWD/musicqueryartistrequest.h \
@@ -142,12 +143,12 @@ SOURCES += \
     $$PWD/common/musicdownloadtextrequest.cpp \
     $$PWD/common/musicdownloadtagdatarequest.cpp \
     $$PWD/common/musicdownloadsourcerequest.cpp \
-    $$PWD/common/musicdownloadbackgroundrequest.cpp \
     $$PWD/common/musicdownloadqueuerequest.cpp \
     $$PWD/common/musicidentifysongsrequest.cpp \
     $$PWD/common/musicsourceupdaterequest.cpp \
     $$PWD/common/musicdownloadcounterpvrequest.cpp \
-    $$PWD/common/musicdownloadbackgroundremoterequest.cpp \
+    $$PWD/common/musicdownloadbackgroundphotorequest.cpp \
+    $$PWD/common/musicdownloadbackgroundskinrequest.cpp \
     $$PWD/music/wy/musicwyqueryinterface.cpp \
     $$PWD/music/wy/musicwyqueryrequest.cpp \
     $$PWD/music/wy/musicwyqueryalbumrequest.cpp \
@@ -224,6 +225,7 @@ SOURCES += \
     $$PWD/musicabstractdownloadrequest.cpp \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadmanager.cpp \
+    $$PWD/musicdownloadbackgroundrequest.cpp \
     $$PWD/musicpagingrequest.cpp \
     $$PWD/musicqueryalbumrequest.cpp \
     $$PWD/musicqueryartistrequest.cpp \

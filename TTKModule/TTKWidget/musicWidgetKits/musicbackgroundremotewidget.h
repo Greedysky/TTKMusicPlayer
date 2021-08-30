@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include "musicbackgroundlistwidget.h"
-#include "musicdownloadbackgroundremoterequest.h"
+#include "musicdownloadbackgroundskinrequest.h"
 
 class QPushButton;
 class QListWidgetItem;

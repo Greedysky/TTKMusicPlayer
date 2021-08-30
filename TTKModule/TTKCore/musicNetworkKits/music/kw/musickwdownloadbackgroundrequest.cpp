@@ -12,6 +12,8 @@ MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString
 
 void MusicKWDownloadBackgroundRequest::startToDownload()
 {
+    deleteAll();
+
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     ///Set search image API
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
@@ -20,6 +22,7 @@ void MusicKWDownloadBackgroundRequest::startToDownload()
 
 void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
 {
+    MusicAbstractNetwork::downLoadFinished();
     if(bytes != "NO_PIC")
     {
         QJson::Parser json;
@@ -41,5 +44,12 @@ void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
                 }
             }
         }
+    }
+
+    emit downLoadDataChanged(QString::number(m_counter));
+    if(m_counter == 0)
+    {
+        deleteAll();
+        deleteLater();
     }
 }

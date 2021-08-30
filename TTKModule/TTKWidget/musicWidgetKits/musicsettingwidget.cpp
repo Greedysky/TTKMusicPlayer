@@ -192,7 +192,6 @@ void MusicSettingWidget::initControllerParameter()
     rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
 
     //
-    G_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool() ? m_ui->otherHeighImageRadioBox->click() : m_ui->otherNormalImageRadioBox->click();
     m_ui->otherCheckUpdateBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdate).toBool());
     m_ui->otherSearchCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherSearch).toBool());
     m_ui->otherUseAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool());
@@ -563,7 +562,6 @@ void MusicSettingWidget::saveResults()
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, MusicUtils::String::writeColorConfig(m_ui->rippleSpectrumColorButton->getColors()));
 
 
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLossless, m_ui->otherHeighImageRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdate, m_ui->otherCheckUpdateBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherSearch, m_ui->otherSearchCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover, m_ui->otherUseAlbumCoverCheckBox->isChecked());
@@ -787,8 +785,6 @@ void MusicSettingWidget::initSpectrumSettingWidget()
 
 void MusicSettingWidget::initOtherSettingWidget()
 {
-    m_ui->otherNormalImageRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
-    m_ui->otherHeighImageRadioBox->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherSearchCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherUseAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
@@ -803,8 +799,6 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherPluginManagerButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
 #ifdef Q_OS_UNIX
-    m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSearchCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherUseAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
@@ -816,7 +810,6 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherScreenSaverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherPluginManagerButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    m_ui->otherNormalImageRadioBox->click();
 }
 
 void MusicSettingWidget::initDownloadWidget()

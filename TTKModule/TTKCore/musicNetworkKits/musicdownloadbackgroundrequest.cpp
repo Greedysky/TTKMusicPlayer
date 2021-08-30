@@ -27,6 +27,8 @@ void MusicDownloadBackgroundRequest::downLoadFinished()
         G_BACKGROUND_PTR->setMBackground(path);
         Q_EMIT G_BACKGROUND_PTR->setUserSelectArtistIndex(0);
 #endif
+        emit downLoadDataChanged(STRING_NULL);
+        deleteAll();
         deleteLater();
     }
 }

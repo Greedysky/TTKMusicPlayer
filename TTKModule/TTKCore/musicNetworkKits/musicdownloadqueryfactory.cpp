@@ -71,8 +71,7 @@
 #include "musickwdownloadtextrequest.h"
 #include "musicqqdownloadtextrequest.h"
 //
-#include "musickwdownloadbackgroundrequest.h"
-#include "musicqqdownloadbackgroundrequest.h"
+#include "musicdownloadbackgroundphotorequest.h"
 //
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getQueryRequest(QObject *parent)
@@ -325,13 +324,5 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(c
 
 MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent)
 {
-    const bool index = G_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLossless).toBool();
-    if(index)
-    {
-        return (new MusicQQDownloadBackgroundRequest(name, save, parent));
-    }
-    else
-    {
-        return (new MusicKWDownloadBackgroundRequest(name, save, parent));
-    }
+    return (new MusicDownloadBackgroundPhotoRequest(name, save, parent));
 }
