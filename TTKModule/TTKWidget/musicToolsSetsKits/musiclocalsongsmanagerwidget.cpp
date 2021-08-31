@@ -30,7 +30,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     m_ui->allSelectedcheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle03);
     m_ui->allSelectedcheckBox->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->allSelectedcheckBox->setText(tr("allselected"));
+    m_ui->allSelectedcheckBox->setText(tr("All"));
     connect(m_ui->allSelectedcheckBox, SIGNAL(clicked(bool)), SLOT(selectedAllItems(bool)));
 
     m_ui->auditionButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle01 + MusicUIObject::MQSSToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_audition); }");
@@ -126,13 +126,11 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
 {
     if(!check)
     {
-        m_ui->allSelectedcheckBox->setText(tr("allselected"));
         m_ui->songlistsTable->clearSelection();
         m_ui->songlistsTable->setCurrentIndex(QModelIndex());
     }
     else
     {
-        m_ui->allSelectedcheckBox->setText(tr("allcanceled"));
         m_ui->songlistsTable->selectAll();
     }
 }
@@ -437,7 +435,7 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
 {
     if(m_ui->filterComboBox->currentIndex() < 0)
     {
-        MusicToastLabel::popup(tr("please select one dirver"));
+        MusicToastLabel::popup(tr("Please select one dirver"));
         return false;
     }
 

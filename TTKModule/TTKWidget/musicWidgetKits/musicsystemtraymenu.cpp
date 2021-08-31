@@ -16,7 +16,7 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
 
     m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc_label"),tr("showDeskLrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
-    m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this);
+    m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("Lock Lrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
 #ifndef Q_OS_UNIX
     m_loginAction = new QAction(QIcon(":/contextMenu/btn_login"), QString(" "), this);
@@ -70,7 +70,7 @@ void MusicSystemTrayMenu::showDesktopLrc(bool show) const
 
 void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
 {
-    m_lockLrcAction->setText(!lock ? tr("lockLrc") : tr("unlockLrc"));
+    m_lockLrcAction->setText(!lock ? tr("Lock Lrc") : tr("Unlock Lrc"));
 }
 
 void MusicSystemTrayMenu::setWindowLockedChanged()

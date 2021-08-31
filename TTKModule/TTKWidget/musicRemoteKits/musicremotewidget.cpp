@@ -38,11 +38,11 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_showMainWindowButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
     m_showMainWindowButton->setIcon(QIcon(":/image/lb_app_logo"));
 
-    m_showMainWindowButton->setToolTip(tr("showMainWindow"));
+    m_showMainWindowButton->setToolTip(tr("Show MainWindow"));
     m_preSongButton->setToolTip(tr("Previous"));
     m_nextSongButton->setToolTip(tr("Next"));
     m_playButton->setToolTip(tr("Play"));
-    m_settingButton->setToolTip(tr("showSetting"));
+    m_settingButton->setToolTip(tr("Settings"));
 
     m_preSongButton->setFixedSize(28, 28);
     m_nextSongButton->setFixedSize(28, 28);
@@ -175,7 +175,7 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setAttribute(Qt::WA_TranslucentBackground);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
-    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowChanged()));
+    menu.addAction(tr("Show MainWindow"), this, SIGNAL(musicWindowChanged()));
     menu.addSeparator();
 
     QAction * action = menu.addAction(tr("SquareRemote"));

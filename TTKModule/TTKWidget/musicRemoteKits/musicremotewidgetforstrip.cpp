@@ -132,7 +132,7 @@ void MusicRemoteWidgetForStrip::contextMenuEvent(QContextMenuEvent *event)
     menu.setAttribute(Qt::WA_TranslucentBackground);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle03);
     menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
-    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowChanged()));
+    menu.addAction(tr("Show MainWindow"), this, SIGNAL(musicWindowChanged()));
     menu.addAction(tr("quit"), this, SLOT(close()));
     menu.exec(QCursor::pos());
 }

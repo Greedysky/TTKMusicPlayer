@@ -86,14 +86,14 @@ void MusicLrcErrorWidget::textAreaChanged()
         const QString &style = QString("<html><head/><body><p><span style=' font-size:10pt;'>%1"
                                  "</span><span style=' font-size:10pt; color:#ff0000;'> %2 "
                                  "</span><span style=' font-size:10pt;'>%3</span></p></body></html>")
-                                 .arg(tr("you can now input")).arg(MAX_LEGNTH - length).arg(tr("word"));
+                                 .arg(tr("You can now input")).arg(MAX_LEGNTH - length).arg(tr("Words"));
         m_ui->label->setText(style);
     }
 }
 
 void MusicLrcErrorWidget::confirmButtonClicked()
 {
-    MusicToastLabel::popup(tr("Report error finished"));
+    MusicToastLabel::popup(tr("Report error finished!"));
 
     close();
 }

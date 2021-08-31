@@ -69,7 +69,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
 {
     if(m_currentTime == 0)
     {
-        m_musicLrcContainer[0]->setText(tr("welcome use TTKMusicPlayer"));
+        m_musicLrcContainer[0]->setText(tr("Welcome to use TTKMusicPlayer!"));
     }
 }
 
@@ -165,16 +165,16 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
 void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
 {
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(menu.addAction(tr("DWhite")))->setData(0 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("DBlue")))->setData(1 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("DRed")))->setData(2 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("DBlack")))->setData(3 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("DYellow")))->setData(4 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("DPurple")))->setData(5 + LRC_COLOR_OFFSET);
-    group->addAction(menu.addAction(tr("DGreen")))->setData(6 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("White")))->setData(0 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("Blue")))->setData(1 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("Red")))->setData(2 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("Black")))->setData(3 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("Yellow")))->setData(4 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("Purple")))->setData(5 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("Green")))->setData(6 + LRC_COLOR_OFFSET);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
     menu.addSeparator();
-    menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
+    menu.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
 
     const int index = G_SETTING_PTR->value("DLrcColor").toInt() - LRC_COLOR_OFFSET;
     if(index > -1 && index < group->actions().count())
@@ -314,14 +314,14 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolUpdateLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVUpdateLrc : MusicUIObject::MQSSDeskTopHUpdateLrc);
     toolErrorLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVErrorLrc : MusicUIObject::MQSSDeskTopHErrorLrc);
 
-    showMainWindow->setToolTip(tr("showMainWindow"));
-    toolCloseButton->setToolTip(tr("hide"));
-    toolWindowLockedButton->setToolTip(tr("lockLrc"));
-    toolLrcBigerButton->setToolTip(tr("lrcBiger"));
-    toolLrcSmallerButton->setToolTip(tr("lrcSmaller"));
+    showMainWindow->setToolTip(tr("Show MainWindow"));
+    toolCloseButton->setToolTip(tr("Hide"));
+    toolWindowLockedButton->setToolTip(tr("Lock Lrc"));
+    toolLrcBigerButton->setToolTip(tr("Zoom Up"));
+    toolLrcSmallerButton->setToolTip(tr("Zoom Down"));
     toolPreSongButton->setToolTip(tr("Previous"));
     toolNextSongButton->setToolTip(tr("Next"));
-    toolSettingButton->setToolTip(tr("Setting"));
+    toolSettingButton->setToolTip(tr("Settings"));
     m_toolPlayButton->setToolTip(tr("Play"));
 
     m_toolBarWidget->hide();
@@ -415,23 +415,23 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu menu;
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
-    menu.addAction(tr("updateLrc"), this, SIGNAL(currentLrcUpdated()));
-    menu.addAction(tr("makeLrc"), this, SLOT(showLrcMakedWidget()));
-    menu.addAction(!m_singleLineType ? tr("SingleLine") : tr("DoubleLine"), this, SLOT(setSingleLineTypeChanged()));
+    menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
+    menu.addAction(tr("Lrc Update"), this, SIGNAL(currentLrcUpdated()));
+    menu.addAction(tr("Lrc Make"), this, SLOT(showLrcMakedWidget()));
+    menu.addAction(!m_singleLineType ? tr("Single Line") : tr("Double Line"), this, SLOT(setSingleLineTypeChanged()));
     menu.addSeparator();
 
-    QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));
-    m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
-    menu.addAction(tr("hide"), this, SLOT(close()));
-    menu.addAction(QIcon(":/contextMenu/btn_lock"), m_windowLocked ? tr("unlockLrc"): tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
+    QAction *lrcLinkAc = menu.addAction(tr("Link Off"), this, SLOT(linkLrcStateChanged()));
+    m_linkLocalLrc ? lrcLinkAc->setText(tr("Link Off")) : lrcLinkAc->setText(tr("Link On"));
+    menu.addAction(tr("Hide"), this, SLOT(close()));
+    menu.addAction(QIcon(":/contextMenu/btn_lock"), m_windowLocked ? tr("Unlock Lrc"): tr("Lock Lrc"), this, SLOT(setWindowLockedChanged()));
 
-    QMenu changColorMenu(tr("changColorMenu"), &menu);
+    QMenu changColorMenu(tr("Color"), &menu);
     createColorMenu(changColorMenu);
     menu.addMenu(&changColorMenu);
 
     menu.addSeparator();
-    menu.addAction(tr("customSetting"), this, SLOT(currentLrcCustom()));
+    menu.addAction(tr("Settings"), this, SLOT(currentLrcCustom()));
 
     menu.exec(QCursor::pos());
 }

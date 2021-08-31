@@ -147,7 +147,7 @@ void MusicSongRingtoneMaker::playRingtone()
 {
     if(!m_mediaPlayer->isPlaying())
     {
-        m_ui->playSongButton->setText(tr("Stop"));
+        m_ui->playSongButton->setText(tr("Pause"));
     }
     m_playRingtone = true;
     m_mediaPlayer->setPosition(m_startPos);
@@ -181,7 +181,7 @@ void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
 {
     if(!m_mediaPlayer->isPlaying())
     {
-        m_ui->playSongButton->setText(tr("Stop"));
+        m_ui->playSongButton->setText(tr("Pause"));
     }
     m_mediaPlayer->setPosition(pos);
 }
@@ -215,7 +215,7 @@ void MusicSongRingtoneMaker::playButtonStateChanged()
 {
     if(!m_mediaPlayer->isPlaying())
     {
-        m_ui->playSongButton->setText(tr("Stop"));
+        m_ui->playSongButton->setText(tr("Pause"));
     }
     else
     {

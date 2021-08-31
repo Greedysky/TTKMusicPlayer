@@ -137,7 +137,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     disable = isItemEnabled();
-    menu.addAction(tr("deleteAll"), this, SLOT(deleteRowItemAll()));
+    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItemAll()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
 

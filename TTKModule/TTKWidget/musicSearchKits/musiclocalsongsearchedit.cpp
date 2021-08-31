@@ -8,7 +8,7 @@ MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
     setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
-    setPlaceholderText(tr("please input search text"));
+    setPlaceholderText(tr("Please input search words!"));
 }
 
 void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
@@ -23,7 +23,7 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(tr("Paste"), this, SLOT(paste()));
     QAction *deleteM = rightClickMenu.addAction(tr("Delete"), this, SLOT(clear()));
     rightClickMenu.addSeparator();
-    QAction *selectM = rightClickMenu.addAction(tr("SelectAll"), this, SLOT(selectAll()));
+    QAction *selectM = rightClickMenu.addAction(tr("Select All"), this, SLOT(selectAll()));
 
     const bool state = hasSelectedText();
     shearM->setEnabled(state);

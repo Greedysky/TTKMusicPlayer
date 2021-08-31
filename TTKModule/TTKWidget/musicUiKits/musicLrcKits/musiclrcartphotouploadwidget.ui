@@ -60,7 +60,7 @@
     <rect>
      <x>24</x>
      <y>46</y>
-     <width>31</width>
+     <width>42</width>
      <height>20</height>
     </rect>
    </property>
@@ -71,7 +71,7 @@
   <widget class="QLineEdit" name="artSearchEdit">
    <property name="geometry">
     <rect>
-     <x>64</x>
+     <x>66</x>
      <y>46</y>
      <width>170</width>
      <height>20</height>
@@ -178,7 +178,7 @@
   <widget class="QLabel" name="deltaLabel">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>338</x>
      <y>46</y>
      <width>60</width>
      <height>20</height>

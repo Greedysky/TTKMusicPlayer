@@ -63,7 +63,7 @@ MusicLrcContainerForInterior::MusicLrcContainerForInterior(QWidget *parent)
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
     m_floatPlayWidget = nullptr;
 
-    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("noCurrentSongPlay"));
+    m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->setText(tr("No song is playing now!"));
     createNoLrcCurrentInfo();
 
     m_commentsWidget = nullptr;
@@ -134,7 +134,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
     }
     else
     {
-        m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("noCurrentSongPlay"));
+        m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("No song is playing now!"));
         m_noLrcCurrentInfo->hide();
     }
 }
@@ -377,22 +377,22 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
     QMenu menu(this);
-    QMenu changColorMenu(tr("changColorMenu"), &menu);
-    QMenu changeLrcSize(tr("changeLrcSize"), &menu);
-    QMenu changeLrcTimeFast(tr("changeLrcTimeFast"), &menu);
-    QMenu changeLrcTimeSlow(tr("changeLrcTimeSlow"), &menu);
-    QMenu changeLrcLinkMenu(tr("lrcLinkMenu"), &menu);
+    QMenu changColorMenu(tr("Color"), &menu);
+    QMenu changeLrcSize(tr("Lrc Size"), &menu);
+    QMenu changeLrcTimeFast(tr("Time After"), &menu);
+    QMenu changeLrcTimeSlow(tr("Time Before"), &menu);
+    QMenu changeLrcLinkMenu(tr("Lrc Link"), &menu);
 
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
-    menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
-    menu.addAction(tr("updateLrc"), this, SIGNAL(currentLrcUpdated()));
-    menu.addAction(tr("makeLrc"), this, SLOT(showLrcMakedWidget()));
-    menu.addAction(tr("errorLrc"), this, SLOT(showLrcErrorWidget()));
-    menu.addAction(tr("lrcPoster"), this, SLOT(showLrcPosterWidget()))->setEnabled(hasLrcContainer);
+    menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
+    menu.addAction(tr("Lrc Update"), this, SIGNAL(currentLrcUpdated()));
+    menu.addAction(tr("Lrc Make"), this, SLOT(showLrcMakedWidget()));
+    menu.addAction(tr("Lrc Error Report"), this, SLOT(showLrcErrorWidget()));
+    menu.addAction(tr("Lrc Poster"), this, SLOT(showLrcPosterWidget()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
-    menu.addAction(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("showNormalMode") : tr("showFullMode"),
+    menu.addAction(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("Show Normal Mode") : tr("Show FullScreen Mode"),
                    MusicBottomAreaWidget::instance(), SLOT(lrcWidgetShowFullScreen()));
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
@@ -400,17 +400,17 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
     menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
-    menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
-    menu.addAction(tr("saveLrcChanged"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
+    menu.addAction(tr("Revert Mode"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);
+    menu.addAction(tr("Save Mode"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
     //
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(changeLrcSize.addAction(tr("smaller")))->setData(0);
-    group->addAction(changeLrcSize.addAction(tr("small")))->setData(1);
-    group->addAction(changeLrcSize.addAction(tr("middle")))->setData(2);
-    group->addAction(changeLrcSize.addAction(tr("big")))->setData(3);
-    group->addAction(changeLrcSize.addAction(tr("bigger")))->setData(4);
+    group->addAction(changeLrcSize.addAction(tr("Smaller")))->setData(0);
+    group->addAction(changeLrcSize.addAction(tr("Small")))->setData(1);
+    group->addAction(changeLrcSize.addAction(tr("Middle")))->setData(2);
+    group->addAction(changeLrcSize.addAction(tr("Big")))->setData(3);
+    group->addAction(changeLrcSize.addAction(tr("Bigger")))->setData(4);
     int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     switch(size)
     {
@@ -429,48 +429,48 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     connect(group, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
 
     changeLrcSize.addSeparator();
-    changeLrcSize.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
+    changeLrcSize.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
 
     //
     QActionGroup *lrcTimeFastGroup = new QActionGroup(this);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast0.5s")))->setData(0);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast1s")))->setData(1);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast2s")))->setData(2);
-    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast5s")))->setData(3);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 0.5s")))->setData(0);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 1.0s")))->setData(1);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 2.0s")))->setData(2);
+    lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("After 5.0s")))->setData(3);
     connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
     MusicUtils::Widget::adjustMenuPosition(&changeLrcTimeFast);
     //
     QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow0.5s")))->setData(4);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow1s")))->setData(5);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow2s")))->setData(6);
-    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow5s")))->setData(7);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 0.5s")))->setData(4);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 1.0s")))->setData(5);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 2.0s")))->setData(6);
+    lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("Before 5.0s")))->setData(7);
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
     MusicUtils::Widget::adjustMenuPosition(&changeLrcTimeSlow);
     //
-    QAction *artAction = menu.addAction(tr("artbgoff"), this, SLOT(artistBackgroundChanged()));
-    m_showArtistBackground ? artAction->setText(tr("artbgoff")) : artAction->setText(tr("artbgon"));
-    QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(linkLrcStateChanged()));
-    m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
-    menu.addAction(tr("artbgupload"), this, SLOT(showArtistBackgroundUploadedWidget()));
-    menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
+    QAction *artAction = menu.addAction(tr("Art Turn Off"), this, SLOT(artistBackgroundChanged()));
+    m_showArtistBackground ? artAction->setText(tr("Art Turn Off")) : artAction->setText(tr("Art Turn On"));
+    QAction *showLrc = menu.addAction(tr("Lrc Turn Off"), this, SLOT(linkLrcStateChanged()));
+    m_linkLocalLrc ? showLrc->setText(tr("Lrc Turn Off")) : showLrc->setText(tr("Lrc Turn On"));
+    menu.addAction(tr("Art Background Upload"), this, SLOT(showArtistBackgroundUploadedWidget()));
+    menu.addAction(tr("Set As Background"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!G_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
     const QString &filePath = m_lrcAnalysis->getCurrentFilePath();
     const bool fileCheck = !filePath.isEmpty() && QFile::exists(filePath);
 
-    changeLrcLinkMenu.addAction(tr("localLink"), this, SLOT(showLocalLinkWidget()));
-    QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));
-    m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
+    changeLrcLinkMenu.addAction(tr("Local Lrc Link"), this, SLOT(showLocalLinkWidget()));
+    QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("Link Off"), this, SLOT(linkLrcStateChanged()));
+    m_linkLocalLrc ? lrcLinkAc->setText(tr("Link Off")) : lrcLinkAc->setText(tr("Link On"));
     MusicUtils::Widget::adjustMenuPosition(&changeLrcLinkMenu);
     menu.addMenu(&changeLrcLinkMenu);
 
-    menu.addAction(tr("copyToClip"), this, SLOT(lrcCopyClipboard()))->setEnabled(fileCheck);
-    menu.addAction(tr("showLrcFile"), this, SLOT(lrcOpenFileDir()))->setEnabled(fileCheck);
+    menu.addAction(tr("Copy To Clip"), this, SLOT(lrcCopyClipboard()))->setEnabled(fileCheck);
+    menu.addAction(tr("Open Lrc File"), this, SLOT(lrcOpenFileDir()))->setEnabled(fileCheck);
 
     menu.addSeparator();
-    menu.addAction(tr("customSetting"), this, SLOT(currentLrcCustom()));
+    menu.addAction(tr("Settings"), this, SLOT(currentLrcCustom()));
 
     MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());
@@ -627,18 +627,18 @@ void MusicLrcContainerForInterior::mouseDoubleClickEvent(QMouseEvent *event)
 void MusicLrcContainerForInterior::createColorMenu(QMenu &menu)
 {
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(menu.addAction(tr("IYellow")))->setData(0);
-    group->addAction(menu.addAction(tr("IBlue")))->setData(1);
-    group->addAction(menu.addAction(tr("IGray")))->setData(2);
-    group->addAction(menu.addAction(tr("IPink")))->setData(3);
-    group->addAction(menu.addAction(tr("IGreen")))->setData(4);
-    group->addAction(menu.addAction(tr("IRed")))->setData(5);
-    group->addAction(menu.addAction(tr("IPurple")))->setData(6);
-    group->addAction(menu.addAction(tr("IOrange")))->setData(7);
-    group->addAction(menu.addAction(tr("IIndigo")))->setData(8);
+    group->addAction(menu.addAction(tr("Yellow")))->setData(0);
+    group->addAction(menu.addAction(tr("Blue")))->setData(1);
+    group->addAction(menu.addAction(tr("Gray")))->setData(2);
+    group->addAction(menu.addAction(tr("Pink")))->setData(3);
+    group->addAction(menu.addAction(tr("Green")))->setData(4);
+    group->addAction(menu.addAction(tr("Red")))->setData(5);
+    group->addAction(menu.addAction(tr("Purple")))->setData(6);
+    group->addAction(menu.addAction(tr("Orange")))->setData(7);
+    group->addAction(menu.addAction(tr("Indigo")))->setData(8);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
     menu.addSeparator();
-    menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
+    menu.addAction(tr("Custom"), this, SLOT(currentLrcCustom()));
 
     const int index = G_SETTING_PTR->value("LrcColor").toInt();
     if(index > -1 && index < group->actions().count())
@@ -661,11 +661,11 @@ void MusicLrcContainerForInterior::revertLrcTimeSpeed(qint64 pos)
     QString message;
     if(m_changeSpeedValue > 0)
     {
-        message = tr("after%1s").arg(m_changeSpeedValue * 1.0 / MT_S2MS);
+        message = tr("After %1s").arg(m_changeSpeedValue * 1.0 / MT_S2MS);
     }
     else if(m_changeSpeedValue < 0)
     {
-        message = tr("before%1s").arg(-m_changeSpeedValue * 1.0 / MT_S2MS);
+        message = tr("Before %1s").arg(-m_changeSpeedValue * 1.0 / MT_S2MS);
     }
     else
     {
@@ -681,7 +681,7 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
     MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FT_Underline);
     m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MQSSColorStyle06);
-    m_noLrcCurrentInfo->setText(tr("makeLrc"));
+    m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 
     connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));
     m_noLrcCurrentInfo->hide();
@@ -741,7 +741,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     message->setCursor(Qt::PointingHandCursor);
 
     translation->setToolTip(tr("Translation"));
-    movie->setToolTip(tr("MV"));
+    movie->setToolTip(tr("Movie"));
     microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
 
@@ -908,7 +908,7 @@ void MusicLrcContainerForInterior::resizeWidth(int w, int h)
     }
     else if(m_currentTime != 0 && m_lrcAnalysis->getCurrentIndex() == 0)
     {
-        initCurrentLrc(tr("noCurrentSongPlay"));
+        initCurrentLrc(tr("No song is playing now!"));
     }
 
     if(m_commentsWidget)

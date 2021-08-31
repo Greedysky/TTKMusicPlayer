@@ -87,9 +87,9 @@ void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
     createMoreMenu(&rightClickMenu);
 
     const bool empty = !m_musicSongs->isEmpty();
-    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumQueryWidget()));
+    rightClickMenu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
     rightClickMenu.addSeparator();
 
     rightClickMenu.exec(QCursor::pos());
@@ -146,7 +146,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
         setItem(i, 1, item);
 
                          item = new QTableWidgetItem;
-        item->setText(tr("All Number %1").arg(it.value().count()));
+        item->setText(tr("All number %1").arg(it.value().count()));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         QVariant v;
         v.setValue(it.value());

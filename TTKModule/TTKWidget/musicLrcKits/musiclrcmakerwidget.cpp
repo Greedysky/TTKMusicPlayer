@@ -271,7 +271,7 @@ void MusicLrcMakerWidget::saveButtonClicked()
 void MusicLrcMakerWidget::reMakeButtonClicked()
 {
     MusicMessageBox message;
-    message.setText(tr("Are you sure you want to remake lyrics?"));
+    message.setText(tr("Are you sure that you want to remake lyrics?"));
     if(message.exec())
     {
         MusicApplication::instance()->musicPlayAnyTimeAt(0);
@@ -292,7 +292,7 @@ void MusicLrcMakerWidget::backToMakeLrcWidget()
 
 void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
 {
-    const QString &text = (m_ui->stateButton_F->text() == tr("Play")) ? tr("Stop") : tr("Play");
+    const QString &text = (m_ui->stateButton_F->text() == tr("Play")) ? tr("Pause") : tr("Play");
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
@@ -302,7 +302,7 @@ void MusicLrcMakerWidget::firstWidgetStateButtonClicked()
 void MusicLrcMakerWidget::thirdWidgetStateButtonClicked()
 {
     const bool state = m_ui->stateButton_T->text() == tr("Play");
-    const QString &text = state ? tr("Stop") : tr("Play");
+    const QString &text = state ? tr("Pause") : tr("Play");
     m_ui->stateButton_F->setText(text);
     m_ui->stateButton_T->setText(text);
 
@@ -550,7 +550,7 @@ void MusicLrcMakerWidget::createMainWidget()
 
 void MusicLrcMakerWidget::createFirstWidget()
 {
-    m_ui->stateButton_F->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Stop"));
+    m_ui->stateButton_F->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Pause"));
 
     m_ui->artNameEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
     m_ui->songNameEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
@@ -638,10 +638,10 @@ void MusicLrcMakerWidget::createThirdWidget()
         m_musicLrcContainer.append(w);
     }
 
-    m_ui->stateButton_T->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Stop"));
+    m_ui->stateButton_T->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Pause"));
     m_ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
-    m_ui->lrc_make_up_T->setToolTip(tr("Before 1s"));
-    m_ui->lrc_make_down_T->setToolTip(tr("After 1s"));
+    m_ui->lrc_make_up_T->setToolTip(tr("Before 1.0s"));
+    m_ui->lrc_make_down_T->setToolTip(tr("After 1.0s"));
     m_ui->lrc_make_up_T->setStyleSheet(MusicUIObject::MQSSInteriorMakeUp);
     m_ui->lrc_make_down_T->setStyleSheet(MusicUIObject::MQSSInteriorMakeDown);
     connect(m_ui->lrc_make_up_T, SIGNAL(clicked()), SLOT(lrcSpeedSlower()));

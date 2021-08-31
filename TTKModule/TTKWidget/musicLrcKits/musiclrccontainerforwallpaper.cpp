@@ -90,7 +90,7 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     }
     m_layoutWidget->addStretch(1);
 
-    initCurrentLrc(tr("Init Wallpaper Module"));
+    initCurrentLrc(tr("Init wallpaper module now"));
 
     start(false);
 }

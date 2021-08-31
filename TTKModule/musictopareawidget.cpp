@@ -78,7 +78,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowChangeSkin->setStyleSheet(MusicUIObject::MQSSBtnSkin);
     connect(ui->musicWindowChangeSkin, SIGNAL(clicked()), SLOT(musicShowSkinChangedWindow()));
 
-    ui->musicWindowSetting->setToolTip(tr("setting"));
+    ui->musicWindowSetting->setToolTip(tr("Settings"));
     ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowSetting->setStyleSheet(MusicUIObject::MQSSBtnSetting);
     connect(ui->musicWindowSetting, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCreateRightMenu()));

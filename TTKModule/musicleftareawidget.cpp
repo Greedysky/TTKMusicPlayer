@@ -80,11 +80,11 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicKey->setToolTip(tr("Play"));
     ui->musicPrevious->setToolTip(tr("Previous"));
     ui->musicNext->setToolTip(tr("Next"));
-    ui->musicBestLove->setToolTip(tr("bestlove"));
-    ui->musicDownload->setToolTip(tr("download"));
-    ui->musicMoreFunction->setToolTip(tr("moreFunction"));
-    ui->musicDesktopLrc->setToolTip(tr("desktopLrc"));
-    ui->musicPlayMode->setToolTip(tr("playMode"));
+    ui->musicBestLove->setToolTip(tr("Best Love"));
+    ui->musicDownload->setToolTip(tr("Download"));
+    ui->musicMoreFunction->setToolTip(tr("More"));
+    ui->musicDesktopLrc->setToolTip(tr("Desktop Lrc"));
+    ui->musicPlayMode->setToolTip(tr("Play Mode"));
 }
 
 void MusicLeftAreaWidget::radioExecuteOuter(const QString &path)

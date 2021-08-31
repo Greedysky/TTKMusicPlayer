@@ -616,7 +616,7 @@ void MusicArtistQueryWidget::createLabels()
     topButtonWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
-    QPushButton *playAllButton = new QPushButton(tr("PlayAll"), topButtonWidget);
+    QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
     QPushButton *shareButton = new QPushButton(tr("Share"), topButtonWidget);
     playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playAllButton->setIconSize(QSize(14, 14));

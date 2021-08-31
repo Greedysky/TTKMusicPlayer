@@ -427,7 +427,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 QString searchedString = m_ui->musicSongSearchEdit->text().trimmed();
                         searchedString = searchedString.isEmpty() ? m_ui->musicSongSearchEdit->placeholderText() : searchedString;
                 //The string searched wouldn't allow to be none
-                if(!searchedString.isEmpty() && searchedString != tr("please input search text"))
+                if(!searchedString.isEmpty() && searchedString != tr("Please input search words!"))
                 {
                     m_ui->musicSongSearchEdit->setText(searchedString);
                     m_ui->songSearchWidget->startSearchQuery(searchedString, true);

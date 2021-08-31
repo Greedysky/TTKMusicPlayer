@@ -71,7 +71,7 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
 
     m_popTableWidget = new MusicLocalSongSearchPopTableWidget(this);
     m_popTableWidget->setFixedWidth(285);
-    m_clearButton = new QPushButton("   " + tr("clear"), this);
+    m_clearButton = new QPushButton("   " + tr("Clear History"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
     m_clearButton->setStyleSheet(MusicUIObject::MQSSCustomStyle01 + MusicUIObject::MQSSFontStyle02 + MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBorderStyle01 + MusicUIObject::MQSSBackgroundStyle17);

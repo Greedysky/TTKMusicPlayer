@@ -51,10 +51,10 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     connect(sizeBigerButton, SIGNAL(clicked()), SLOT(lrcSizeUpChanged()));
     connect(sizeSmallerButton, SIGNAL(clicked()), SLOT(lrcSizeLowChanged()));
 
-    QPushButton *musicBackButton = new QPushButton(tr("MusicBg"), this);
+    QPushButton *musicBackButton = new QPushButton(tr("Defualt"), this);
     musicBackButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(musicBackButton,SIGNAL(clicked()), SLOT(lrcMusicBackgroundChanged()));
-    QPushButton *artBackButton = new QPushButton(tr("ArtBg"), this);
+    QPushButton *artBackButton = new QPushButton(tr("Art"), this);
     artBackButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(artBackButton, SIGNAL(clicked()), SLOT(lrcArtBackgroundChanged()));
     musicBackButton->setStyleSheet(MusicUIObject::MQSSInteriorFloatSetting + MusicUIObject::MQSSPushButtonStyle08);
