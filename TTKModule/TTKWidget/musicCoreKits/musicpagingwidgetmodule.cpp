@@ -20,11 +20,6 @@ MusicPagingWidgetModule::~MusicPagingWidgetModule()
     delete m_pagingWidget;
 }
 
-QWidget* MusicPagingWidgetModule::getCreatePagingWidget()
-{
-    return m_pagingWidget;
-}
-
 QWidget* MusicPagingWidgetModule::createPagingWidget(QWidget *parent, int total)
 {
     m_pagingWidget = new QWidget(parent);
@@ -78,7 +73,7 @@ QWidget* MusicPagingWidgetModule::createPagingWidget(QWidget *parent, int total)
         QVBoxLayout *funcLayout = new QVBoxLayout(func);
         QLabel *icon = new QLabel(func);
         icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
-        QLabel *text = new QLabel(tr("There Is Empty!"), func);
+        QLabel *text = new QLabel(tr("There is empty!"), func);
         text->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle05);
         text->setAlignment(Qt::AlignCenter);
         funcLayout->addWidget(icon, 0, Qt::AlignCenter);

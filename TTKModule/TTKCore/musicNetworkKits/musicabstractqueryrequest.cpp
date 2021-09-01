@@ -1,6 +1,4 @@
 #include "musicabstractqueryrequest.h"
-#include "musicsemaphoreloop.h"
-#include "musicnumberutils.h"
 
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
     : MusicPagingRequest(parent)

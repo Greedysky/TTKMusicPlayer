@@ -1,6 +1,4 @@
 #include "musicqqquerymovierequest.h"
-#include "musicsemaphoreloop.h"
-#include "musicnumberutils.h"
 
 MusicQQQueryMovieRequest::MusicQQQueryMovieRequest(QObject *parent)
     : MusicQueryMovieRequest(parent)

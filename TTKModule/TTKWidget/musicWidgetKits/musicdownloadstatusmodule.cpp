@@ -8,8 +8,6 @@
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadbackgroundrequest.h"
-#include "musiccoreutils.h"
-#include "musicstringutils.h"
 
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     : QObject(parent)

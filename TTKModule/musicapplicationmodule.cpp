@@ -17,7 +17,6 @@
 #include "musicgiflabelwidget.h"
 #include "musicurlutils.h"
 #include "musicfileutils.h"
-#include "musicalgorithmutils.h"
 #include "musicsourceupdaterequest.h"
 #include "musicdownloadcounterpvrequest.h"
 #include "musicscreensaverwidget.h"

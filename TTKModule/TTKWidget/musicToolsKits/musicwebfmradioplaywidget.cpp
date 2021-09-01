@@ -6,7 +6,6 @@
 #include "musicfmradiodownloadtextrequest.h"
 #include "musicdownloaddatarequest.h"
 #include "musiclrcanalysis.h"
-#include "musiccoreutils.h"
 #include "musicimageutils.h"
 #include "musicfunctionuiobject.h"
 #include "musicdownloadwidget.h"

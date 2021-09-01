@@ -1,9 +1,7 @@
 #include "musiccloudmanagerwidget.h"
 #include "musicuiobject.h"
-#include "musicsemaphoreloop.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicitemdelegate.h"
-#include "musicnumberutils.h"
 #include "musicopenfilewidget.h"
 #include "musicsettingmanager.h"
 #include "musiccloudfileinformationwidget.h"
@@ -438,7 +436,7 @@ void MusicCloudManagerTableWidget::createUploadFileModule()
     {
         m_openFileWidget = new MusicOpenFileWidget(this);
         connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFilesToServer()));
-        connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFileDirToServer()));
+        connect(m_openFileWidget, SIGNAL(uploadDirClicked()), SLOT(uploadFileDirToServer()));
         m_openFileWidget->adjustWidgetRect(width(), height());
     }
     m_openFileWidget->raise();

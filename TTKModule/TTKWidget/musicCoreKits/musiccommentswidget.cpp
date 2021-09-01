@@ -5,7 +5,6 @@
 #include "musicinteriorlrcuiobject.h"
 #include "musicuiobject.h"
 #include "musicclickedlabel.h"
-#include "musicsemaphoreloop.h"
 #include "musicpagingwidgetmodule.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"

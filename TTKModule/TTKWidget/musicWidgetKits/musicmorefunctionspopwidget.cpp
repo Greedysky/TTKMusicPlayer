@@ -73,14 +73,14 @@ void MusicMoreFunctionsPopWidget::initWidget()
     m_menu->removeAction(m_menu->actions().first());
 
     QActionGroup *group = new QActionGroup(this);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_message_hover"), tr("message")))->setData(0);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_similar_hover"), tr("similar")))->setData(1);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_ablum_hover"), tr("ablum")))->setData(2);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("artist")))->setData(3);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_toplist_hover"), tr("toplist")))->setData(4);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("playlist")))->setData(5);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_recommend_hover"), tr("recommend")))->setData(6);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("search")))->setData(7);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("artists")))->setData(8);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_message_hover"), tr("Message")))->setData(0);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_similar_hover"), tr("Similar")))->setData(1);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_ablum_hover"), tr("Ablum")))->setData(2);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("Artist")))->setData(3);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_toplist_hover"), tr("Toplist")))->setData(4);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("Playlist")))->setData(5);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_recommend_hover"), tr("Recommend")))->setData(6);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("Advance")))->setData(7);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("Artists")))->setData(8);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(musicFunctionClicked(QAction*)));
 }

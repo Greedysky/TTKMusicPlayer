@@ -1,5 +1,4 @@
 #include "musicwyqueryartistrequest.h"
-#include "musicsemaphoreloop.h"
 
 MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
     : MusicQueryArtistRequest(parent)

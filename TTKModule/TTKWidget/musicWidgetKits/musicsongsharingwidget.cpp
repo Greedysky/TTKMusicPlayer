@@ -6,8 +6,6 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicurlutils.h"
-#include "musicstringutils.h"
-#include "musicsemaphoreloop.h"
 #include "musicdownloadsourcerequest.h"
 
 #include "qrencode/qrcodewidget.h"

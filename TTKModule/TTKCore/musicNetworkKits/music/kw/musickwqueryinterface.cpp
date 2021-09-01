@@ -1,7 +1,4 @@
 #include "musickwqueryinterface.h"
-#include "musicnumberutils.h"
-#include "musicsemaphoreloop.h"
-#include "musicalgorithmutils.h"
 #include "musicabstractnetwork.h"
 
 #include "qalgorithm/qdeswrapper.h"

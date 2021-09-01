@@ -1,7 +1,4 @@
 #include "musickgqueryalbumrequest.h"
-#include "musicnumberutils.h"
-#include "musicsemaphoreloop.h"
-#include "musicstringutils.h"
 
 MusicKGQueryAlbumRequest::MusicKGQueryAlbumRequest(QObject *parent)
     : MusicQueryAlbumRequest(parent)

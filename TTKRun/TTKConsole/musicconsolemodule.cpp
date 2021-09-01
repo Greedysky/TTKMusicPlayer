@@ -1,10 +1,10 @@
 #include "musicconsolemodule.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
-#include "musicfileutils.h"
 #include "musicformats.h"
 #include "musictkplconfigmanager.h"
 #include "musichotkeymanager.h"
+#include "musicfileutils.h"
 
 #if TTK_QT_VERSION_CHECK(5,2,0)
 #include <QCommandLineOption>

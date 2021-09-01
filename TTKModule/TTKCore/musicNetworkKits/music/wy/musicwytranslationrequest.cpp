@@ -1,5 +1,4 @@
 #include "musicwytranslationrequest.h"
-#include "musicsemaphoreloop.h"
 #include "musicwyqueryinterface.h"
 #include "musicwyqueryrequest.h"
 

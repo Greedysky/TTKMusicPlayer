@@ -6,7 +6,6 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicwebdjradioinfowidget.h"
-#include "musicimageutils.h"
 
 #include <qmath.h>
 

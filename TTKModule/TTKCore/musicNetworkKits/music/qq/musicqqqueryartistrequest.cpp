@@ -1,5 +1,4 @@
 #include "musicqqqueryartistrequest.h"
-#include "musicsemaphoreloop.h"
 
 #define REFER_URL   "a2tQNGw2RlJyeC9sZjc5RXpsM2hZRXZUeWd0UVJycE1oTzI5MkRQbVRQemN3WUhtOHJiV3FzcS95ZVU9"
 

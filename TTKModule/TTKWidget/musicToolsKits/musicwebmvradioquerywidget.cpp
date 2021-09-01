@@ -4,7 +4,6 @@
 #include "musicmvradiocategoryrequest.h"
 #include "musicdownloadsourcerequest.h"
 #include "musictinyuiobject.h"
-#include "musicimageutils.h"
 
 #define WIDTH_LABEL_SIZE   150
 #define HEIGHT_LABEL_SIZE  100

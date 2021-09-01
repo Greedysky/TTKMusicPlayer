@@ -1,5 +1,4 @@
 #include "musicqqqueryrecommendrequest.h"
-#include "musicsemaphoreloop.h"
 
 MusicQQQueryRecommendRequest::MusicQQQueryRecommendRequest(QObject *parent)
     : MusicQueryRecommendRequest(parent)

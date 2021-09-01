@@ -1,5 +1,4 @@
 #include "musicwyqueryplaylistrequest.h"
-#include "musicsemaphoreloop.h"
 
 MusicWYQueryPlaylistRequest::MusicWYQueryPlaylistRequest(QObject *parent)
     : MusicQueryPlaylistRequest(parent)

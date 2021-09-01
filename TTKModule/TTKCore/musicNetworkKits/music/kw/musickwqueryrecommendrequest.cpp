@@ -1,5 +1,4 @@
 #include "musickwqueryrecommendrequest.h"
-#include "musicnumberutils.h"
 
 MusicKWQueryRecommendRequest::MusicKWQueryRecommendRequest(QObject *parent)
     : MusicQueryRecommendRequest(parent)

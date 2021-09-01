@@ -6,7 +6,6 @@
 #include "musicdownloadtagdatarequest.h"
 #include "musictoastlabel.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicstringutils.h"
 #include "musicfileutils.h"
 #include "musicwidgetheaders.h"
 

@@ -1,7 +1,4 @@
 #include "musickwquerymovierequest.h"
-#include "musicsemaphoreloop.h"
-#include "musicnumberutils.h"
-#include "musiccoreutils.h"
 
 #include "qalgorithm/qdeswrapper.h"
 

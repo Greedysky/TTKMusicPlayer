@@ -6,7 +6,6 @@
 #include "musicplatformmanager.h"
 #include "musicwidgetheaders.h"
 #include "musicitemdelegate.h"
-#include "musiccoreutils.h"
 #include "musicimageutils.h"
 
 #if TTK_QT_VERSION_CHECK(5,0,0)

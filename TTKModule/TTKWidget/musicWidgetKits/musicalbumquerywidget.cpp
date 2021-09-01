@@ -3,7 +3,6 @@
 #include "musicdownloadsourcerequest.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musicstringutils.h"
 
 #include "qrencode/qrcodewidget.h"
 

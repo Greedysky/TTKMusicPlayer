@@ -1,6 +1,5 @@
 #include "musicdownloadtagdatarequest.h"
 #include "musicdownloadsourcerequest.h"
-#include "musicsemaphoreloop.h"
 #include "musicsettingmanager.h"
 
 #include <QImage>

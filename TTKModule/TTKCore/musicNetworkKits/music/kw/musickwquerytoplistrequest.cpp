@@ -1,5 +1,4 @@
 #include "musickwquerytoplistrequest.h"
-#include "musicnumberutils.h"
 
 MusicKWQueryToplistRequest::MusicKWQueryToplistRequest(QObject *parent)
     : MusicQueryToplistRequest(parent)

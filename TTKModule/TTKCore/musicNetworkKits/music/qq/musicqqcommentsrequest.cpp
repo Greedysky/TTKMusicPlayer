@@ -1,6 +1,5 @@
 #include "musicqqcommentsrequest.h"
 #include "musicqqqueryrequest.h"
-#include "musicsemaphoreloop.h"
 
 MusicQQSongCommentsRequest::MusicQQSongCommentsRequest(QObject *parent)
     : MusicCommentsRequest(parent)

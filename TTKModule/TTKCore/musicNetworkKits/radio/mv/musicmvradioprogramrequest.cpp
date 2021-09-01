@@ -1,8 +1,5 @@
 #include "musicmvradioprogramrequest.h"
 #include "musickgqueryinterface.h"
-#include "musicsemaphoreloop.h"
-#include "musicnumberutils.h"
-#include "musiccoreutils.h"
 
 MusicMVRadioProgramRequest::MusicMVRadioProgramRequest(QObject *parent)
     : MusicAbstractMVRadioRequest(parent)

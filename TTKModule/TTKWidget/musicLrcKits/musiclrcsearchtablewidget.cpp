@@ -3,7 +3,6 @@
 #include "musicitemdelegate.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicgiflabelwidget.h"
-#include "musiccoreutils.h"
 
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicItemSearchTableWidget(parent)

@@ -3,7 +3,6 @@
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
 #include "musictoastlabel.h"
-#include "musicsemaphoreloop.h"
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicsongssummariziedwidget.h"

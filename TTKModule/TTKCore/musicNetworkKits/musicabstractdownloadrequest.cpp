@@ -1,7 +1,6 @@
 #include "musicabstractdownloadrequest.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadmanager.h"
-#include "musicstringutils.h"
 #include "musiccoreutils.h"
 
 #include <QSslError>

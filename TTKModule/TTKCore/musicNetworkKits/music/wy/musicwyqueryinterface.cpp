@@ -1,7 +1,4 @@
 #include "musicwyqueryinterface.h"
-#include "musicsemaphoreloop.h"
-#include "musicnumberutils.h"
-#include "musicalgorithmutils.h"
 #include "musicurlutils.h"
 #include "musicsettingmanager.h"
 #include "musicabstractnetwork.h"

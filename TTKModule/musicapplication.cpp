@@ -16,7 +16,6 @@
 #include "musichotkeymanager.h"
 #include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
-#include "musiccoreutils.h"
 #include "musicfileutils.h"
 #include "musicplaylistmanager.h"
 #include "musictinyuiobject.h"

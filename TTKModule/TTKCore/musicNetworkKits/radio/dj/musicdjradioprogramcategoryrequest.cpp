@@ -1,6 +1,5 @@
 #include "musicdjradioprogramcategoryrequest.h"
 #include "musicabstractdjradiorequest.h"
-#include "musicsemaphoreloop.h"
 
 MusicDJRadioProgramCategoryRequest::MusicDJRadioProgramCategoryRequest(QObject *parent)
     : MusicAbstractQueryRequest(parent)

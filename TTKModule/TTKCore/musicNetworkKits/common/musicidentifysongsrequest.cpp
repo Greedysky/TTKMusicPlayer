@@ -1,7 +1,5 @@
 #include "musicidentifysongsrequest.h"
 #include "musicdownloadsourcerequest.h"
-#include "musicsemaphoreloop.h"
-#include "musicalgorithmutils.h"
 #include "musicsettingmanager.h"
 
 #include "qsync/qsyncutils.h"

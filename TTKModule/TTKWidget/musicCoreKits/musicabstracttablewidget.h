@@ -22,7 +22,6 @@
 #include <QHeaderView>
 #include <QTableWidget>
 
-#include "musicglobaldefine.h"
 #include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"

@@ -6,7 +6,6 @@
 #include "musicsettingmanager.h"
 #include "musiclrcanalysis.h"
 #include "musiclrcmanagerforinterior.h"
-#include "musicstringutils.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicvideouiobject.h"
 #include "musictinyuiobject.h"
@@ -15,7 +14,6 @@
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
 #include "musicaudiorecordermodule.h"
-#include "musiccodecutils.h"
 #include "musicfileutils.h"
 
 #ifdef Q_CC_GNU

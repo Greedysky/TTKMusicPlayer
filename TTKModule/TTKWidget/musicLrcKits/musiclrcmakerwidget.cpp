@@ -8,7 +8,6 @@
 #include "musictime.h"
 #include "musicconnectionpool.h"
 #include "musicplayer.h"
-#include "musiccoreutils.h"
 #include "musicapplication.h"
 #include "musiclrcanalysis.h"
 #include "musiclrcmanagerforinterior.h"

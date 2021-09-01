@@ -6,7 +6,6 @@
 #include "musictinyuiobject.h"
 #include "musicplaylistquerycategorypopwidget.h"
 #include "musicpagingwidgetmodule.h"
-#include "musicimageutils.h"
 
 #include <qmath.h>
 #include <QGridLayout>

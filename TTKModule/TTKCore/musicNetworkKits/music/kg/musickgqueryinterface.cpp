@@ -1,7 +1,4 @@
 #include "musickgqueryinterface.h"
-#include "musicnumberutils.h"
-#include "musicsemaphoreloop.h"
-#include "musicalgorithmutils.h"
 #include "musicabstractqueryrequest.h"
 
 #include <QNetworkReply>

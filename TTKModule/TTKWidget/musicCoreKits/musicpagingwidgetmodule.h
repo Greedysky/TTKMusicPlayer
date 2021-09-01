@@ -38,10 +38,6 @@ public:
     ~MusicPagingWidgetModule();
 
     /*!
-     * Get create paging widget.
-     */
-    QWidget* getCreatePagingWidget();
-    /*!
      * Create paging items.
      */
     QWidget* createPagingWidget(QWidget *parent, int total);

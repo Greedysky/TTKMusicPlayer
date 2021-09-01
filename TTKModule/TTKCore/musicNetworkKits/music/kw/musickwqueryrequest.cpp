@@ -1,5 +1,4 @@
 #include "musickwqueryrequest.h"
-#include "musicnumberutils.h"
 
 MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
     : MusicAbstractXml(parent)

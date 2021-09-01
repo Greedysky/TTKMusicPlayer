@@ -3,8 +3,6 @@
 #include "ui_musiclrcdownloadbatchwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloaddatarequest.h"
-#include "musicsemaphoreloop.h"
-#include "musiccoreutils.h"
 #include "musicuiobject.h"
 
 #include <QScrollBar>

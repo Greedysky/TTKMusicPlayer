@@ -10,8 +10,6 @@
 #include "musiclrcanalysis.h"
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
-#include "musiccoreutils.h"
-#include "musicsemaphoreloop.h"
 
 #include <QMovie>
 #include <QShortcut>

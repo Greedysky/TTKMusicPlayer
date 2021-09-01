@@ -1,5 +1,4 @@
 #include "musicaudiorecordermodule.h"
-#include "musiccodecutils.h"
 #include "musicobject.h"
 
 #define OPEN_FILE_ERROR     -1

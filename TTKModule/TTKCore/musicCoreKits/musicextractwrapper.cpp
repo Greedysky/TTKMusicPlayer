@@ -1,7 +1,6 @@
 #include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicimageutils.h"
-#include "musiccoreutils.h"
 
 #include "ttkzip/zip.h"
 #include "ttkzip/unzip.h"

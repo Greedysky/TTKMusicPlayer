@@ -1,8 +1,6 @@
 #include "musicbdquerylearnrequest.h"
 #include "musicbdqueryinterface.h"
-#include "musicsemaphoreloop.h"
 #include "musicurlutils.h"
-#include "musiccoreutils.h"
 
 #include "qalgorithm/qaeswrapper.h"
 

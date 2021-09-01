@@ -5,7 +5,6 @@
 #include "musicformats.h"
 #include "musictoastlabel.h"
 #include "musicwidgetheaders.h"
-#include "musicqmmputils.h"
 #include "musictopareawidget.h"
 
 #include <QPluginLoader>

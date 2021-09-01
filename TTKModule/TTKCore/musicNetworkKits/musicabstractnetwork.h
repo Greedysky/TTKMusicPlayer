@@ -23,8 +23,10 @@
 #include <QSslConfiguration>
 
 #include "musictime.h"
+#include "musicsemaphoreloop.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkdefines.h"
+#include "musicnumberutils.h"
 #include "musicalgorithmutils.h"
 #include "qjson/parser.h"
 

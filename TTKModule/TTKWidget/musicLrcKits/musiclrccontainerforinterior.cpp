@@ -9,7 +9,6 @@
 #include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"
 #include "musicurlutils.h"
-#include "musicstringutils.h"
 #include "musicinteriorlrcuiobject.h"
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"

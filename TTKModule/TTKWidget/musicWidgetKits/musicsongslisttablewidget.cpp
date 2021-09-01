@@ -6,7 +6,6 @@
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
-#include "musiccoreutils.h"
 #include "musicstringutils.h"
 #include "musicsongsharingwidget.h"
 #include "musicrightareawidget.h"
@@ -300,7 +299,7 @@ bool MusicSongsListTableWidget::createUploadFileModule()
         {
             m_openFileWidget = new MusicOpenFileWidget(this);
             connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SIGNAL(musicAddNewFiles()));
-            connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SIGNAL(musicAddNewDir()));
+            connect(m_openFileWidget, SIGNAL(uploadDirClicked()), SIGNAL(musicAddNewDir()));
             m_openFileWidget->adjustWidgetRect(width(), height());
         }
         m_openFileWidget->raise();

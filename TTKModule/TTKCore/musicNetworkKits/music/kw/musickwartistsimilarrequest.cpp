@@ -1,6 +1,5 @@
 #include "musickwartistsimilarrequest.h"
 #include "musickwqueryinterface.h"
-#include "musicsemaphoreloop.h"
 
 MusicKWArtistSimilarRequest::MusicKWArtistSimilarRequest(QObject *parent)
     : MusicSimilarRequest(parent)

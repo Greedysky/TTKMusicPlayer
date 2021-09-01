@@ -1,6 +1,5 @@
 #include "musicqmmputils.h"
 #include "musicobject.h"
-#include "musicstringutils.h"
 #include "musicsettingmanager.h"
 
 #include <QSettings>

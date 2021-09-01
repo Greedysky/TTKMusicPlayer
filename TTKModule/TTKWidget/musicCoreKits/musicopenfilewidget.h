@@ -46,9 +46,9 @@ Q_SIGNALS:
      */
     void uploadFileClicked();
     /*!
-     * Upload files(dir) button clicked.
+     * Upload dir button clicked.
      */
-    void uploadFilesClicked();
+    void uploadDirClicked();
 
 };
 

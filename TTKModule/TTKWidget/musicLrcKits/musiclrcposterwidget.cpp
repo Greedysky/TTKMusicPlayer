@@ -8,7 +8,6 @@
 #include "musicimageutils.h"
 #include "musicextractwrapper.h"
 #include "musicbackgroundconfigmanager.h"
-#include "musicimageutils.h"
 #include "qalgorithm/qimagewrapper.h"
 
 #include <qmath.h>

@@ -2,12 +2,13 @@
 #include "ui_musicnetworkconnectiontestwidget.h"
 #include "musicnetworktestthread.h"
 #include "musicuiobject.h"
+#include "musicalgorithmutils.h"
 
-#define CHECK_WWW_VISIT       "www.baidu.com"
-#define CHECK_NORMAL_VISIT    "github.com"
-#define CHECK_VIP_VISIT       "qmmp.ylsoftware.com"
-#define CHECK_DOWNLOAD_VISIT  "download.qt.io"
-#define CHECK_SERVER_VISIT    "download.csdn.net"
+#define CHECK_WWW_VISIT       "dm81Smp4VzI3eHFVNzV4aHgyU2RYN2paNDhJPQ=="
+#define CHECK_NORMAL_VISIT    "aGEvbU52TkJVMzQ0Z0hoSllOd2wwZz09"
+#define CHECK_VIP_VISIT       "ZjlBQUFxY25KM1BKd2h3VzZVZ1F5dVJHMThEYlFkTWU="
+#define CHECK_DOWNLOAD_VISIT  "bkIwTS9NZE9wSUZyLythbm5YQVJVeDBtQStBPQ=="
+#define CHECK_SERVER_VISIT    "T2tjRlYvUVUvVUVORDg4dHI1NlorOUR0SHVvZ3RUQ1g="
 
 MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
     : QWidget(parent)
@@ -21,7 +22,7 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
     m_stateText = new QLabel(this);
 
     m_iconLabel->setFixedWidth(32);
-    m_nameText->setFixedWidth(330);
+    m_nameText->setFixedWidth(325);
     m_stateText->setAlignment(Qt::AlignCenter);
 
     layout->addWidget(m_iconLabel);
@@ -68,7 +69,7 @@ void MusicNetworkConnectionItem::stop()
 {
     m_iconLabel->setPixmap(QPixmap(":/tiny/lb_question"));
 
-    m_stateText->setText(tr("Not Detected"));
+    m_stateText->setText(tr("Undetected"));
     m_stateText->setStyleSheet(MusicUIObject::MQSSColorStyle03);
     if(m_thread->isRunning())
     {
@@ -86,7 +87,7 @@ void MusicNetworkConnectionItem::testFinshed(bool state)
     }
     else
     {
-        m_stateText->setText(tr("Detected Failed"));
+        m_stateText->setText(tr("Failed"));
         m_iconLabel->setPixmap(QPixmap(":/tiny/lb_error"));
         m_stateText->setStyleSheet(MusicUIObject::MQSSColorStyle05);
     }
@@ -121,36 +122,36 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
 
     MusicNetworkConnectionItem *item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
-    item->setText(tr("Check www Visit"));
-    item->setUrl(CHECK_WWW_VISIT);
+    item->setText(tr("Check www visit"));
+    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_WWW_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
-    item->setText(tr("Check Normal Visit"));
-    item->setUrl(CHECK_NORMAL_VISIT);
+    item->setText(tr("Check normal visit"));
+    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_NORMAL_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
-    item->setText(tr("Check Vip Visit"));
-    item->setUrl(CHECK_VIP_VISIT);
+    item->setText(tr("Check vip visit"));
+    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_VIP_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
-    item->setText(tr("Check Download Visit"));
-    item->setUrl(CHECK_DOWNLOAD_VISIT);
+    item->setText(tr("Check download visit"));
+    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_DOWNLOAD_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
     item = new MusicNetworkConnectionItem(this);
     m_connectionItems << item;
-    item->setText(tr("Check Server Visit"));
-    item->setUrl(CHECK_SERVER_VISIT);
+    item->setText(tr("Check server visit"));
+    item->setUrl(MusicUtils::Algorithm::mdII(CHECK_SERVER_VISIT, false));
     connect(item, SIGNAL(networkConnectionTestChanged()), SLOT(testFinshed()));
     m_ui->verticalLayout->addWidget(item);
 
@@ -179,7 +180,7 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
     if(!m_ui->iconLabel->isRunning())
     {
         m_ui->iconLabel->start();
-        m_ui->startButton->setText(tr("stopTest"));
+        m_ui->startButton->setText(tr("Stop"));
         for(MusicNetworkConnectionItem *item : qAsConst(m_connectionItems))
         {
             item->start();
@@ -188,7 +189,7 @@ void MusicNetworkConnectionTestWidget::buttonStateChanged()
     else
     {
         m_ui->iconLabel->stop();
-        m_ui->startButton->setText(tr("startTest"));
+        m_ui->startButton->setText(tr("Start"));
         for(MusicNetworkConnectionItem *item : qAsConst(m_connectionItems))
         {
             item->stop();
@@ -201,6 +202,6 @@ void MusicNetworkConnectionTestWidget::testFinshed()
     if(++m_countIndex == 5)
     {
         m_ui->iconLabel->stop();
-        m_ui->startButton->setText(tr("startTest"));
+        m_ui->startButton->setText(tr("Start"));
     }
 }

@@ -5,7 +5,6 @@
 #include "musicuiobject.h"
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
-#include "musicalgorithmutils.h"
 #include "musictoastlabel.h"
 
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)

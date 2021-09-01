@@ -2,7 +2,6 @@
 #include "ui_musictransformwidget.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
-#include "musiccoreutils.h"
 #include "musicwidgetheaders.h"
 
 #include <QSound>
