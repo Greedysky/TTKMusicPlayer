@@ -134,7 +134,7 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
     topButtonLayout->setContentsMargins(0, 0, 0, 0);
     QPushButton *playAllButton = new QPushButton(tr("Play All"), topButtonWidget);
-    QPushButton *shareButton = new QPushButton(tr("share"), topButtonWidget);
+    QPushButton *shareButton = new QPushButton(tr("Share"), topButtonWidget);
     playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playAllButton->setIconSize(QSize(14, 14));
     playAllButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -197,7 +197,7 @@ void MusicPlaylistQueryInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
-    m_songButton->setText(tr("songItems"));
+    m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(m_songButton);

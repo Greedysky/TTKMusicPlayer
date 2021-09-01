@@ -20,7 +20,6 @@
  ================================================= */
 
 #include <QWidget>
-#include "musicglobaldefine.h"
 #include "musicclouddataitem.h"
 
 class MusicCloudToolBoxWidget;

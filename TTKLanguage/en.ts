@@ -3550,16 +3550,6 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicPagingWidgetModule</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetmodule.cpp" line="34"/>
-        <source>pre</source>
-        <translation>Pre</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetmodule.cpp" line="34"/>
-        <source>next</source>
-        <translation>Next</translation>
-    </message>
-    <message>
         <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetmodule.cpp" line="76"/>
         <source>There is empty!</source>
         <translation type="unfinished"></translation>
@@ -3570,31 +3560,31 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="18"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="48"/>
-        <source>OrderPlay</source>
+        <source>Order Play</source>
         <translation>Order Play</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="22"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="50"/>
-        <source>RandomPlay</source>
+        <source>Random Play</source>
         <translation>Random Play</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="26"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="49"/>
-        <source>ListCycle</source>
+        <source>List Cycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="30"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="47"/>
-        <source>SingleCycle</source>
+        <source>Single Cycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="34"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="46"/>
-        <source>PlayOnce</source>
+        <source>Play Once</source>
         <translation>Play Once</translation>
     </message>
 </context>
@@ -3603,23 +3593,23 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="49"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="349"/>
-        <source>playedList</source>
-        <translation>Play List</translation>
+        <source>Played List</source>
+        <translation>Played List</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="354"/>
-        <source>shareList</source>
-        <translation>Share Play List</translation>
+        <source>Share List</source>
+        <translation>Share List</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="360"/>
-        <source>clearList</source>
-        <translation>Clear Play List</translation>
+        <source>Clear List</source>
+        <translation>Clear List</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="372"/>
-        <source>closeList</source>
-        <translation>Close Play List</translation>
+        <source>Close List</source>
+        <translation>Close List</translation>
     </message>
 </context>
 <context>
@@ -3664,7 +3654,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistqueryinfowidget.cpp" line="137"/>
-        <source>share</source>
+        <source>Share</source>
         <translation>Share</translation>
     </message>
     <message>
@@ -3674,7 +3664,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistqueryinfowidget.cpp" line="200"/>
-        <source>songItems</source>
+        <source>SongItems</source>
         <translation>SongItems</translation>
     </message>
     <message>
@@ -3692,7 +3682,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <name>MusicPlaylistQueryItemWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistquerywidget.cpp" line="74"/>
-        <source>%1Thous</source>
+        <source>%1W</source>
         <translation>%1W</translation>
     </message>
 </context>
@@ -3786,7 +3776,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="150"/>
         <source>Quality Choice</source>
-        <translation>品质选择</translation>
+        <translation>Quality Choice</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="185"/>
@@ -3875,17 +3865,17 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="181"/>
-        <source>SquareRemote</source>
-        <translation type="unfinished">Square Remote</translation>
+        <source>Square Remote</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="184"/>
-        <source>RectangleRemote</source>
-        <translation type="unfinished">Rectangle Remote</translation>
+        <source>Rectangle Remote</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="187"/>
-        <source>SimpleStyleRemote</source>
+        <source>Simple Style Remote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3895,12 +3885,12 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="193"/>
-        <source>RippleRemote</source>
-        <translation type="unfinished">Ripple Remote</translation>
+        <source>Ripple Remote</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="196"/>
-        <source>quit</source>
+        <source>Quit</source>
         <translation>Quit</translation>
     </message>
 </context>
@@ -5824,27 +5814,27 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="727"/>
-        <source>OrderPlay</source>
+        <source>Order Play</source>
         <translation>Order Play</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="728"/>
-        <source>RandomPlay</source>
+        <source>Random Play</source>
         <translation>Random Play</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="729"/>
-        <source>ListCycle</source>
+        <source>List Cycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="730"/>
-        <source>SingleCycle</source>
+        <source>Single Cycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="731"/>
-        <source>PlayOnce</source>
+        <source>Play Once</source>
         <translation>Play Once</translation>
     </message>
     <message>

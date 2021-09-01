@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 #include "musicdeviceinfomodule.h"
 

@@ -1,5 +1,7 @@
 #include "musicremotewidgetforsquare.h"
 
+#include <QGraphicsOpacityEffect>
+
 MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
     : MusicRemoteWidget(parent)
 {

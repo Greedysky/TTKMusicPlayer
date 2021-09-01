@@ -21,6 +21,8 @@
 
 #include "musicremotewidget.h"
 
+class QGraphicsOpacityEffect;
+
 /*! @brief The class of the desktop square remote widget.
  * @author Greedysky <greedysky@163.com>
  */

@@ -346,18 +346,18 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
 #endif
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
-    QLabel *label = new QLabel(tr("playedList"), topWidget);
+    QLabel *label = new QLabel(tr("Played List"), topWidget);
     label->setStyleSheet(MusicUIObject::MQSSColorStyle11 + MusicUIObject::MQSSFontStyle01 + MusicUIObject::MQSSFontStyle03);
 
     QPushButton *shareButton = new QPushButton(this);
     shareButton->setFixedSize(16, 16);
-    shareButton->setToolTip(tr("shareList"));
+    shareButton->setToolTip(tr("Share List"));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareButton->setStyleSheet(MusicUIObject::MQSSTinyBtnShare);
 
     QPushButton *deleteButton = new QPushButton(this);
     deleteButton->setFixedSize(16, 16);
-    deleteButton->setToolTip(tr("clearList"));
+    deleteButton->setToolTip(tr("Clear List"));
     deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
     deleteButton->setStyleSheet(MusicUIObject::MQSSTinyBtnDelete);
     connect(deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAll()));
@@ -369,7 +369,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
 
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
-    closeButton->setToolTip(tr("closeList"));
+    closeButton->setToolTip(tr("Close List"));
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
     closeButton->setStyleSheet(MusicUIObject::MQSSTinyBtnClose);
     connect(closeButton, SIGNAL(clicked()), m_menu, SLOT(close()));

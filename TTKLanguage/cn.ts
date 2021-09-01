@@ -5,92 +5,92 @@
     <name>ColorWidget</name>
     <message>
         <source>Close</source>
-        <translation type="vanished">关闭</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="vanished">添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="vanished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <source>Modify</source>
-        <translation type="vanished">修改</translation>
+        <translation>修改</translation>
     </message>
     <message>
         <source>Top</source>
-        <translation type="vanished">向上</translation>
+        <translation>向上</translation>
     </message>
     <message>
         <source>Bottom</source>
-        <translation type="vanished">向下</translation>
+        <translation>向下</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="vanished">确定</translation>
+        <translation>确定</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="vanished">取消</translation>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
     <name>GoomWidget</name>
     <message>
         <source>Refresh Rate</source>
-        <translation type="vanished">刷新率</translation>
+        <translation>刷新率</translation>
     </message>
     <message>
         <source>60 fps</source>
-        <translation type="vanished">60 帧每秒</translation>
+        <translation>60 帧每秒</translation>
     </message>
     <message>
         <source>50 fps</source>
-        <translation type="vanished">50 帧每秒</translation>
+        <translation>50 帧每秒</translation>
     </message>
     <message>
         <source>25 fps</source>
-        <translation type="vanished">25 帧每秒</translation>
+        <translation>25 帧每秒</translation>
     </message>
 </context>
 <context>
     <name>LightEnvelope</name>
     <message>
         <source>Double Channels</source>
-        <translation type="vanished">双通道</translation>
+        <translation>双通道</translation>
     </message>
     <message>
         <source>Root Mean Square</source>
-        <translation type="vanished">显示均方根差</translation>
+        <translation>显示均方根差</translation>
     </message>
 </context>
 <context>
     <name>LightSpectrum</name>
     <message>
         <source>Type</source>
-        <translation type="vanished">类型</translation>
+        <translation>类型</translation>
     </message>
     <message>
         <source>Spectrum</source>
-        <translation type="vanished">蓝谱</translation>
+        <translation>蓝谱</translation>
     </message>
     <message>
         <source>Spectrogram</source>
-        <translation type="vanished">光谱</translation>
+        <translation>光谱</translation>
     </message>
     <message>
         <source>Sox</source>
-        <translation type="vanished">红谱</translation>
+        <translation>红谱</translation>
     </message>
     <message>
         <source>Mono</source>
-        <translation type="vanished">黑白谱</translation>
+        <translation>黑白谱</translation>
     </message>
 </context>
 <context>
@@ -3637,16 +3637,6 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
 <context>
     <name>MusicPagingWidgetModule</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetmodule.cpp" line="34"/>
-        <source>pre</source>
-        <translation>上一页</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetmodule.cpp" line="34"/>
-        <source>next</source>
-        <translation>下一页</translation>
-    </message>
-    <message>
         <location filename="../TTKModule/TTKWidget/musicCoreKits/musicpagingwidgetmodule.cpp" line="76"/>
         <source>There is empty!</source>
         <translation>空空如也, 快来抢沙发!</translation>
@@ -3657,31 +3647,31 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="18"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="48"/>
-        <source>OrderPlay</source>
+        <source>Order Play</source>
         <translation>顺序播放</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="22"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="50"/>
-        <source>RandomPlay</source>
+        <source>Random Play</source>
         <translation>随机播放</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="26"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="49"/>
-        <source>ListCycle</source>
+        <source>List Cycle</source>
         <translation>列表循环</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="30"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="47"/>
-        <source>SingleCycle</source>
+        <source>Single Cycle</source>
         <translation>单曲循环</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="34"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="46"/>
-        <source>PlayOnce</source>
+        <source>Play Once</source>
         <translation>单曲播放</translation>
     </message>
 </context>
@@ -3690,22 +3680,22 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="49"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="349"/>
-        <source>playedList</source>
+        <source>Played List</source>
         <translation>播放队列</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="354"/>
-        <source>shareList</source>
+        <source>Share List</source>
         <translation>分享歌单</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="360"/>
-        <source>clearList</source>
+        <source>Clear List</source>
         <translation>清空队列</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="372"/>
-        <source>closeList</source>
+        <source>Close List</source>
         <translation>收起播放队列</translation>
     </message>
 </context>
@@ -3751,7 +3741,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistqueryinfowidget.cpp" line="137"/>
-        <source>share</source>
+        <source>Share</source>
         <translation>分享</translation>
     </message>
     <message>
@@ -3761,7 +3751,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistqueryinfowidget.cpp" line="200"/>
-        <source>songItems</source>
+        <source>SongItems</source>
         <translation>歌曲列表</translation>
     </message>
     <message>
@@ -3779,7 +3769,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <name>MusicPlaylistQueryItemWidget</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplaylistquerywidget.cpp" line="74"/>
-        <source>%1Thous</source>
+        <source>%1W</source>
         <translation>%1万</translation>
     </message>
 </context>
@@ -3962,32 +3952,32 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="181"/>
-        <source>SquareRemote</source>
+        <source>Square Remote</source>
         <translation>魔方遥控器</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="184"/>
-        <source>RectangleRemote</source>
+        <source>Rectangle Remote</source>
         <translation>平行遥控器</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="187"/>
-        <source>SimpleStyleRemote</source>
+        <source>Simple Style Remote</source>
         <translation>简约遥控器</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="190"/>
-        <source>ComplexStyleRemote</source>
+        <source>Complex Style Remote</source>
         <translation>时尚遥控器</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="193"/>
-        <source>RippleRemote</source>
+        <source>Ripple Remote</source>
         <translation>个性遥控器</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicRemoteKits/musicremotewidget.cpp" line="196"/>
-        <source>quit</source>
+        <source>Quit</source>
         <translation>退出</translation>
     </message>
 </context>
@@ -5911,27 +5901,27 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="727"/>
-        <source>OrderPlay</source>
+        <source>Order Play</source>
         <translation>顺序播放</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="728"/>
-        <source>RandomPlay</source>
+        <source>Random Play</source>
         <translation>随机播放</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="729"/>
-        <source>ListCycle</source>
+        <source>List Cycle</source>
         <translation>列表循环</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="730"/>
-        <source>SingleCycle</source>
+        <source>Single Cycle</source>
         <translation>单曲循环</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongslisttablewidget.cpp" line="731"/>
-        <source>PlayOnce</source>
+        <source>Play Once</source>
         <translation>单曲播放</translation>
     </message>
     <message>
@@ -8006,190 +7996,190 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <name>NormalAnalyzer</name>
     <message>
         <source>Peaks</source>
-        <translation type="vanished">峰</translation>
+        <translation>峰</translation>
     </message>
     <message>
         <source>Refresh Rate</source>
-        <translation type="vanished">刷新率</translation>
+        <translation>刷新率</translation>
     </message>
     <message>
         <source>50 fps</source>
-        <translation type="vanished">50 帧每秒</translation>
+        <translation>50 帧每秒</translation>
     </message>
     <message>
         <source>25 fps</source>
-        <translation type="vanished">25 帧每秒</translation>
+        <translation>25 帧每秒</translation>
     </message>
     <message>
         <source>10 fps</source>
-        <translation type="vanished">10 帧每秒</translation>
+        <translation>10 帧每秒</translation>
     </message>
     <message>
         <source>5 fps</source>
-        <translation type="vanished">5 帧每秒</translation>
+        <translation>5 帧每秒</translation>
     </message>
     <message>
         <source>Analyzer Falloff</source>
-        <translation type="vanished">分析器坠落</translation>
+        <translation>分析器坠落</translation>
     </message>
     <message>
         <source>Slowest</source>
-        <translation type="vanished">最慢</translation>
+        <translation>最慢</translation>
     </message>
     <message>
         <source>Slow</source>
-        <translation type="vanished">慢</translation>
+        <translation>慢</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="vanished">中等</translation>
+        <translation>中等</translation>
     </message>
     <message>
         <source>Fast</source>
-        <translation type="vanished">快</translation>
+        <translation>快</translation>
     </message>
     <message>
         <source>Fastest</source>
-        <translation type="vanished">最快</translation>
+        <translation>最快</translation>
     </message>
     <message>
         <source>Peaks Falloff</source>
-        <translation type="vanished">顶峰坠落</translation>
+        <translation>顶峰坠落</translation>
     </message>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>NormalEWave</name>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>NormalFlowWave</name>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>NormalHistogram</name>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>NormalLine</name>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>NormalSpaceWave</name>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>PlusBlurXRays</name>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
 </context>
 <context>
     <name>PlusFoldWave</name>
     <message>
         <source>Star</source>
-        <translation type="vanished">星星</translation>
+        <translation>星星</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <source>StarColor</source>
-        <translation type="vanished">星星颜色</translation>
+        <translation>星星颜色</translation>
     </message>
 </context>
 <context>
     <name>PlusXRays</name>
     <message>
         <source>Grid</source>
-        <translation type="vanished">网格</translation>
+        <translation>网格</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="vanished">颜色</translation>
+        <translation>颜色</translation>
     </message>
 </context>
 <context>
     <name>ProjectMPlugin</name>
     <message>
         <source>&amp;Next Preset</source>
-        <translation type="vanished">下一个边框模式(N)</translation>
+        <translation>下一个边框模式(N)</translation>
     </message>
     <message>
         <source>&amp;Previous Preset</source>
-        <translation type="vanished">上一个边框模式(P)</translation>
+        <translation>上一个边框模式(P)</translation>
     </message>
     <message>
         <source>&amp;Random Preset</source>
-        <translation type="vanished">随机边框模式(R)</translation>
+        <translation>随机边框模式(R)</translation>
     </message>
 </context>
 <context>
@@ -8384,547 +8374,547 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     <name>ReplayGainWidget</name>
     <message>
         <source>ReplayGain Scanner</source>
-        <translation type="vanished">回放增益扫描器</translation>
+        <translation>回放增益扫描器</translation>
     </message>
     <message>
         <source>Write track gain/peak</source>
-        <translation type="vanished">写下曲目增益/峰值</translation>
+        <translation>写下曲目增益/峰值</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="vanished">题头</translation>
+        <translation>题头</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="vanished">进度</translation>
+        <translation>进度</translation>
     </message>
     <message>
         <source>Track Gain</source>
-        <translation type="vanished">曲目增益</translation>
+        <translation>曲目增益</translation>
     </message>
     <message>
         <source>Album Gain</source>
-        <translation type="vanished">专辑增益</translation>
+        <translation>专辑增益</translation>
     </message>
     <message>
         <source>Track Peak</source>
-        <translation type="vanished">曲目峰值</translation>
+        <translation>曲目峰值</translation>
     </message>
     <message>
         <source>Album Peak</source>
-        <translation type="vanished">专辑峰值</translation>
+        <translation>专辑峰值</translation>
     </message>
     <message>
         <source>Skip already scanned files</source>
-        <translation type="vanished">跳过已扫描过得文件</translation>
+        <translation>跳过已扫描过得文件</translation>
     </message>
     <message>
         <source>Calculate</source>
-        <translation type="vanished">计算</translation>
+        <translation>计算</translation>
     </message>
     <message>
         <source>Write Tags</source>
-        <translation type="vanished">写标签</translation>
+        <translation>写标签</translation>
     </message>
     <message>
         <source>Write album gain/peak</source>
-        <translation type="vanished">写专辑的增益/峰值</translation>
+        <translation>写专辑的增益/峰值</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="vanished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
         <source>%1 dB</source>
-        <translation type="vanished">%1分贝</translation>
+        <translation>%1分贝</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
         <source>FFmpeg Plugin Settings</source>
-        <translation type="vanished">FFmpeg插件设置</translation>
+        <translation>FFmpeg插件设置</translation>
     </message>
     <message>
         <source>Formats</source>
-        <translation type="vanished">格式</translation>
+        <translation>格式</translation>
     </message>
     <message>
         <source>Sample Rate Converter Plugin Settings</source>
-        <translation type="vanished">取样率转换插件设置</translation>
+        <translation>取样率转换插件设置</translation>
     </message>
     <message>
         <source>Sample Rate (Hz):</source>
-        <translation type="vanished">取样率 (Hz)：</translation>
+        <translation>取样率 (Hz)：</translation>
     </message>
     <message>
         <source>Interpolation Engine:</source>
-        <translation type="vanished">内插引擎：</translation>
+        <translation>内插引擎：</translation>
     </message>
     <message>
         <source>Best Sinc Interpolation</source>
-        <translation type="vanished">最好 SINC 插入 (高品质)</translation>
+        <translation>最好 SINC 插入 (高品质)</translation>
     </message>
     <message>
         <source>Medium Sinc Interpolation</source>
-        <translation type="vanished">一般 SINC 插入 (中品质)</translation>
+        <translation>一般 SINC 插入 (中品质)</translation>
     </message>
     <message>
         <source>Fastest Sinc Interpolation</source>
-        <translation type="vanished">最快 SINC 插入 (低品质)</translation>
+        <translation>最快 SINC 插入 (低品质)</translation>
     </message>
     <message>
         <source>ZOH Interpolation</source>
-        <translation type="vanished">零阶保持插入 (ZOH)</translation>
+        <translation>零阶保持插入 (ZOH)</translation>
     </message>
     <message>
         <source>Linear Interpolation</source>
-        <translation type="vanished">线性插入</translation>
+        <translation>线性插入</translation>
     </message>
     <message>
         <source>Extra Stereo Plugin Settings</source>
-        <translation type="vanished">立体声扩展插件设置</translation>
+        <translation>立体声扩展插件设置</translation>
     </message>
     <message>
         <source>Effect intensity:</source>
-        <translation type="vanished">效果强度：</translation>
+        <translation>效果强度：</translation>
     </message>
     <message>
         <source>SoX Resampler Plugin Settings</source>
-        <translation type="vanished">Soxr插件設置</translation>
+        <translation>Soxr插件設置</translation>
     </message>
     <message>
         <source>Quality:</source>
-        <translation type="vanished">质量：</translation>
+        <translation>质量：</translation>
     </message>
     <message>
         <source>Quick</source>
-        <translation type="vanished">快速</translation>
+        <translation>快速</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="vanished">低</translation>
+        <translation>低</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="vanished">中等</translation>
+        <translation>中等</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="vanished">高</translation>
+        <translation>高</translation>
     </message>
     <message>
         <source>Very High</source>
-        <translation type="vanished">非常高</translation>
+        <translation>非常高</translation>
     </message>
     <message>
         <source>LADSPA Plugin Catalog</source>
-        <translation type="vanished">LADSPA 插件设置</translation>
+        <translation>LADSPA 插件设置</translation>
     </message>
     <message>
         <source>Configure</source>
-        <translation type="vanished">配置</translation>
+        <translation>配置</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="vanished">用户ID</translation>
+        <translation>用户ID</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source>This LADSPA plugin has no user controls</source>
-        <translation type="vanished">LADSPA 插件用户设置</translation>
+        <translation>LADSPA 插件用户设置</translation>
     </message>
     <message>
         <source>Crossfade Plugin Settings</source>
-        <translation type="vanished">交叉衰落插件设置</translation>
+        <translation>交叉衰落插件设置</translation>
     </message>
     <message>
         <source>Overlap:</source>
-        <translation type="vanished">重叠：</translation>
+        <translation>重叠：</translation>
     </message>
     <message>
         <source>BS2B Plugin Settings</source>
-        <translation type="vanished">BS2B插件设置</translation>
+        <translation>BS2B插件设置</translation>
     </message>
     <message>
         <source>Crossfeed level</source>
-        <translation type="vanished">串扰水平</translation>
+        <translation>串扰水平</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="vanished">默认</translation>
+        <translation>默认</translation>
     </message>
     <message>
         <source>%1 Hz, %2 us</source>
-        <translation type="vanished">%1 赫兹，%2 微秒</translation>
+        <translation>%1 赫兹，%2 微秒</translation>
     </message>
     <message>
         <source>%1 dB</source>
-        <translation type="vanished">%1分贝</translation>
+        <translation>%1分贝</translation>
     </message>
     <message>
         <source>CUE Plugin Settings</source>
-        <translation type="vanished">CUE插件设置</translation>
+        <translation>CUE插件设置</translation>
     </message>
     <message>
         <source>Common settings</source>
-        <translation type="vanished">基本设置</translation>
+        <translation>基本设置</translation>
     </message>
     <message>
         <source>Load incorrect cue sheets if possible</source>
-        <translation type="vanished">如可能载入不正确的cue单</translation>
+        <translation>如可能载入不正确的cue单</translation>
     </message>
     <message>
         <source>CUE encoding</source>
-        <translation type="vanished">CUE编码</translation>
+        <translation>CUE编码</translation>
     </message>
     <message>
         <source>Automatic charset detection</source>
-        <translation type="vanished">自动检测字符集</translation>
+        <translation>自动检测字符集</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="vanished">语言：</translation>
+        <translation>语言：</translation>
     </message>
     <message>
         <source>Default encoding:</source>
-        <translation type="vanished">默认编码：</translation>
+        <translation>默认编码：</translation>
     </message>
     <message>
         <source>GME Plugin Settings</source>
-        <translation type="vanished">GME插件设置</translation>
+        <translation>GME插件设置</translation>
     </message>
     <message>
         <source>Fadeout length:</source>
-        <translation type="vanished">淡出长度</translation>
+        <translation>淡出长度</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="vanished">毫秒</translation>
+        <translation>毫秒</translation>
     </message>
     <message>
         <source>Enable fadeout</source>
-        <translation type="vanished">开启淡出功能</translation>
+        <translation>开启淡出功能</translation>
     </message>
     <message>
         <source>ModPlug Plugin Settings</source>
-        <translation type="vanished">ModPlug插件设置</translation>
+        <translation>ModPlug插件设置</translation>
     </message>
     <message>
         <source>Quality</source>
-        <translation type="vanished">品质</translation>
+        <translation>品质</translation>
     </message>
     <message>
         <source>Resolution</source>
-        <translation type="vanished">分辨率</translation>
+        <translation>分辨率</translation>
     </message>
     <message>
         <source>16 bit</source>
-        <translation type="vanished">16 位</translation>
+        <translation>16 位</translation>
     </message>
     <message>
         <source>8 bit</source>
-        <translation type="vanished">8 位</translation>
+        <translation>8 位</translation>
     </message>
     <message>
         <source>Channels</source>
-        <translation type="vanished">声音通道</translation>
+        <translation>声音通道</translation>
     </message>
     <message>
         <source>Stereo</source>
-        <translation type="vanished">立体声</translation>
+        <translation>立体声</translation>
     </message>
     <message>
         <source>Mono (downmix)</source>
-        <translation type="vanished">单声道</translation>
+        <translation>单声道</translation>
     </message>
     <message>
         <source>Resampling</source>
-        <translation type="vanished">重取样</translation>
+        <translation>重取样</translation>
     </message>
     <message>
         <source>Nearest (fastest)</source>
-        <translation type="vanished">最近(最快)</translation>
+        <translation>最近(最快)</translation>
     </message>
     <message>
         <source>Linear (fast)</source>
-        <translation type="vanished">直线(快)</translation>
+        <translation>直线(快)</translation>
     </message>
     <message>
         <source>Spline (good quality)</source>
-        <translation type="vanished">曲线（好品质）</translation>
+        <translation>曲线（好品质）</translation>
     </message>
     <message>
         <source>8-tap Fir (extremely high quality)</source>
-        <translation type="vanished">8-Tap FIR (最高品质)</translation>
+        <translation>8-Tap FIR (最高品质)</translation>
     </message>
     <message>
         <source>Sampling Rate</source>
-        <translation type="vanished">取样率</translation>
+        <translation>取样率</translation>
     </message>
     <message>
         <source>Effects</source>
-        <translation type="vanished">特效</translation>
+        <translation>特效</translation>
     </message>
     <message>
         <source>Reverb</source>
-        <translation type="vanished">余响</translation>
+        <translation>余响</translation>
     </message>
     <message>
         <source>Depth (%)</source>
-        <translation type="vanished">深度 (%)</translation>
+        <translation>深度 (%)</translation>
     </message>
     <message>
         <source>Delay (ms)</source>
-        <translation type="vanished">延迟 (ms)</translation>
+        <translation>延迟 (ms)</translation>
     </message>
     <message>
         <source>Bass Boost</source>
-        <translation type="vanished">低音提升</translation>
+        <translation>低音提升</translation>
     </message>
     <message>
         <source>Amount (%)</source>
-        <translation type="vanished">总计 (%)</translation>
+        <translation>总计 (%)</translation>
     </message>
     <message>
         <source>Range (Hz)</source>
-        <translation type="vanished">范围 (Hz)</translation>
+        <translation>范围 (Hz)</translation>
     </message>
     <message>
         <source>Surround</source>
-        <translation type="vanished">环绕</translation>
+        <translation>环绕</translation>
     </message>
     <message>
         <source>Preamp</source>
-        <translation type="vanished">前置放大器</translation>
+        <translation>前置放大器</translation>
     </message>
     <message>
         <source>Volume</source>
-        <translation type="vanished">音量</translation>
+        <translation>音量</translation>
     </message>
     <message>
         <source>Note: Setting the preamp
 too high may cause clipping!</source>
-        <translation type="vanished">注释：设置前置放大器
+        <translation>注释：设置前置放大器
 太高可能会产生削波现象！</translation>
     </message>
     <message>
         <source>Misc</source>
-        <translation type="vanished">杂项</translation>
+        <translation>杂项</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="vanished">常规</translation>
+        <translation>常规</translation>
     </message>
     <message>
         <source>Use filename as song title</source>
-        <translation type="vanished">使用文件名为曲目标题</translation>
+        <translation>使用文件名为曲目标题</translation>
     </message>
     <message>
         <source>Noise reduction</source>
-        <translation type="vanished">噪声抑制</translation>
+        <translation>噪声抑制</translation>
     </message>
     <message>
         <source>Fast playlist info</source>
-        <translation type="vanished">快速播放列表信息</translation>
+        <translation>快速播放列表信息</translation>
     </message>
     <message>
         <source>Play Amiga MOD</source>
-        <translation type="vanished">播放 Amiga MOD</translation>
+        <translation>播放 Amiga MOD</translation>
     </message>
     <message>
         <source>Looping</source>
-        <translation type="vanished">循环</translation>
+        <translation>循环</translation>
     </message>
     <message>
         <source>Don&apos;t loop</source>
-        <translation type="vanished">不循环</translation>
+        <translation>不循环</translation>
     </message>
     <message>
         <source>Loop</source>
-        <translation type="vanished">循环</translation>
+        <translation>循环</translation>
     </message>
     <message>
         <source>time(s)</source>
-        <translation type="vanished">(秒) 时间</translation>
+        <translation>(秒) 时间</translation>
     </message>
     <message>
         <source>Loop forever</source>
-        <translation type="vanished">永远循环</translation>
+        <translation>永远循环</translation>
     </message>
     <message>
         <source>MPEG Plugin Settings</source>
-        <translation type="vanished">MPEG插件设置</translation>
+        <translation>MPEG插件设置</translation>
     </message>
     <message>
         <source>Decoder</source>
-        <translation type="vanished">解码器</translation>
+        <translation>解码器</translation>
     </message>
     <message>
         <source>Enable CRC checking</source>
-        <translation type="vanished">开启CRC检测</translation>
+        <translation>开启CRC检测</translation>
     </message>
     <message>
         <source>Tag Priority</source>
-        <translation type="vanished">标签优先</translation>
+        <translation>标签优先</translation>
     </message>
     <message>
         <source>First:</source>
-        <translation type="vanished">第一：</translation>
+        <translation>第一：</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="vanished">关闭</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <source>Second:</source>
-        <translation type="vanished">第二：</translation>
+        <translation>第二：</translation>
     </message>
     <message>
         <source>Third:</source>
-        <translation type="vanished">第三：</translation>
+        <translation>第三：</translation>
     </message>
     <message>
         <source>Merge selected tag types</source>
-        <translation type="vanished">合并选定的标记类型 </translation>
+        <translation>合并选定的标记类型 </translation>
     </message>
     <message>
         <source>Encodings</source>
-        <translation type="vanished">编码</translation>
+        <translation>编码</translation>
     </message>
     <message>
         <source>ID3v1 encoding:</source>
-        <translation type="vanished">ID3v1 编码：</translation>
+        <translation>ID3v1 编码：</translation>
     </message>
     <message>
         <source>ID3v2 encoding:</source>
-        <translation type="vanished">ID3v2 编码：</translation>
+        <translation>ID3v2 编码：</translation>
     </message>
     <message>
         <source>SID Plugin Settings</source>
-        <translation type="vanished">SID插件设置</translation>
+        <translation>SID插件设置</translation>
     </message>
     <message>
         <source>Emulation:</source>
-        <translation type="vanished">模拟：</translation>
+        <translation>模拟：</translation>
     </message>
     <message>
         <source>Resampling method:</source>
-        <translation type="vanished">重取样方式：</translation>
+        <translation>重取样方式：</translation>
     </message>
     <message>
         <source>Fast resampling</source>
-        <translation type="vanished">快速重新取样</translation>
+        <translation>快速重新取样</translation>
     </message>
     <message>
         <source>WildMidi Plugin Settings</source>
-        <translation type="vanished">WildMidi插件设置</translation>
+        <translation>WildMidi插件设置</translation>
     </message>
     <message>
         <source>Sample rate:</source>
-        <translation type="vanished">取样率：</translation>
+        <translation>取样率：</translation>
     </message>
     <message>
         <source>Enhanced resampling</source>
-        <translation type="vanished">提高再取样</translation>
+        <translation>提高再取样</translation>
     </message>
     <message>
         <source>Reverberation</source>
-        <translation type="vanished">混响效果</translation>
+        <translation>混响效果</translation>
     </message>
     <message>
         <source>WASAPI Plugin Settings</source>
-        <translation type="vanished">WASAPI插件设置</translation>
+        <translation>WASAPI插件设置</translation>
     </message>
     <message>
         <source>Device:</source>
-        <translation type="vanished">设备：</translation>
+        <translation>设备：</translation>
     </message>
     <message>
         <source>Exclusive mode</source>
-        <translation type="vanished">独占模式</translation>
+        <translation>独占模式</translation>
     </message>
     <message>
         <source>ALSA Plugin Settings</source>
-        <translation type="vanished">ALSA插件设置</translation>
+        <translation>ALSA插件设置</translation>
     </message>
     <message>
         <source>Device Settings</source>
-        <translation type="vanished">设备设置</translation>
+        <translation>设备设置</translation>
     </message>
     <message>
         <source>Audio device</source>
-        <translation type="vanished">音频设备</translation>
+        <translation>音频设备</translation>
     </message>
     <message>
         <source>Mixer</source>
-        <translation type="vanished">混频</translation>
+        <translation>混频</translation>
     </message>
     <message>
         <source>Mixer card:</source>
-        <translation type="vanished">混频卡：</translation>
+        <translation>混频卡：</translation>
     </message>
     <message>
         <source>Mixer device:</source>
-        <translation type="vanished">混频设备：</translation>
+        <translation>混频设备：</translation>
     </message>
     <message>
         <source>Advanced Settings</source>
-        <translation type="vanished">高级设置</translation>
+        <translation>高级设置</translation>
     </message>
     <message>
         <source>Soundcard</source>
-        <translation type="vanished">声卡</translation>
+        <translation>声卡</translation>
     </message>
     <message>
         <source>Buffer time (ms):</source>
-        <translation type="vanished">缓冲时间(ms)：</translation>
+        <translation>缓冲时间(ms)：</translation>
     </message>
     <message>
         <source>Period time (ms):</source>
-        <translation type="vanished">周期时间(ms)：</translation>
+        <translation>周期时间(ms)：</translation>
     </message>
     <message>
         <source>Use mmap access</source>
-        <translation type="vanished">使用内存映射</translation>
+        <translation>使用内存映射</translation>
     </message>
     <message>
         <source>Use snd_pcm_pause function</source>
-        <translation type="vanished">使用 snd_pcm_pause 功能</translation>
+        <translation>使用 snd_pcm_pause 功能</translation>
     </message>
     <message>
         <source>OpenMPT Plugin Settings</source>
-        <translation type="vanished">OpenMPT插件设置</translation>
+        <translation>OpenMPT插件设置</translation>
     </message>
     <message>
         <source>Interpolation:</source>
-        <translation type="vanished">插值:</translation>
+        <translation>插值:</translation>
     </message>
     <message>
         <source>Stereo separation:</source>
-        <translation type="vanished">立体声分离:</translation>
+        <translation>立体声分离:</translation>
     </message>
     <message>
         <source>Restore Defaults</source>
-        <translation type="vanished">恢复默认设置</translation>
+        <translation>恢复默认设置</translation>
     </message>
 </context>
 <context>
     <name>SoniquePlugin</name>
     <message>
         <source>&amp;Next Preset</source>
-        <translation type="vanished">下一个边框模式(N)</translation>
+        <translation>下一个边框模式(N)</translation>
     </message>
     <message>
         <source>&amp;Previous Preset</source>
-        <translation type="vanished">上一个边框模式(P)</translation>
+        <translation>上一个边框模式(P)</translation>
     </message>
     <message>
         <source>&amp;Random Preset</source>
-        <translation type="vanished">随机边框模式(R)</translation>
+        <translation>随机边框模式(R)</translation>
     </message>
 </context>
 <context>
@@ -9007,30 +8997,30 @@ too high may cause clipping!</source>
     <name>Visual</name>
     <message>
         <source>Fullscreen</source>
-        <translation type="vanished">全屏显示</translation>
+        <translation>全屏显示</translation>
     </message>
 </context>
 <context>
     <name>WaveVoice</name>
     <message>
         <source>Type</source>
-        <translation type="vanished">类型</translation>
+        <translation>类型</translation>
     </message>
     <message>
         <source>Spectrum</source>
-        <translation type="vanished">蓝谱</translation>
+        <translation>蓝谱</translation>
     </message>
     <message>
         <source>Spectrogram</source>
-        <translation type="vanished">光谱</translation>
+        <translation>光谱</translation>
     </message>
     <message>
         <source>Sox</source>
-        <translation type="vanished">红谱</translation>
+        <translation>红谱</translation>
     </message>
     <message>
         <source>Mono</source>
-        <translation type="vanished">黑白谱</translation>
+        <translation>黑白谱</translation>
     </message>
 </context>
 </TS>

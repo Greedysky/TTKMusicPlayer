@@ -178,22 +178,22 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Show MainWindow"), this, SIGNAL(musicWindowChanged()));
     menu.addSeparator();
 
-    QAction * action = menu.addAction(tr("SquareRemote"));
+    QAction * action = menu.addAction(tr("Square Remote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForSquare*, this));
     action->setData(Square);
-    action = menu.addAction(tr("RectangleRemote"));
+    action = menu.addAction(tr("Rectangle Remote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRectangle*, this));
     action->setData(Rectangle);
-    action = menu.addAction(tr("SimpleStyleRemote"));
+    action = menu.addAction(tr("Simple Style Remote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
     action->setData(SimpleStyle);
-    action = menu.addAction(tr("ComplexStyleRemote"));
+    action = menu.addAction(tr("Complex Style Remote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForComplexStyle*, this));
     action->setData(ComplexStyle);
-    action = menu.addAction(tr("RippleRemote"));
+    action = menu.addAction(tr("Ripple Remote"));
     action->setEnabled(!TTKObject_cast(MusicRemoteWidgetForRipple*, this));
     action->setData(Ripple);
-    menu.addAction(tr("quit"), this, SLOT(close()));
+    menu.addAction(tr("Quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
 
     menu.exec(QCursor::pos());

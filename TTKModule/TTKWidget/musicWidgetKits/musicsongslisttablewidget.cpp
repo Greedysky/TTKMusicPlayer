@@ -724,11 +724,11 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
     QList<QAction*> actions;
-    actions << musicPlaybackMode.addAction(tr("OrderPlay"), MusicApplication::instance(), SLOT(musicPlayOrder()));
-    actions << musicPlaybackMode.addAction(tr("RandomPlay"), MusicApplication::instance(), SLOT(musicPlayRandom()));
-    actions << musicPlaybackMode.addAction(tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
-    actions << musicPlaybackMode.addAction(tr("SingleCycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
-    actions << musicPlaybackMode.addAction(tr("PlayOnce"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
+    actions << musicPlaybackMode.addAction(tr("Order Play"), MusicApplication::instance(), SLOT(musicPlayOrder()));
+    actions << musicPlaybackMode.addAction(tr("Random Play"), MusicApplication::instance(), SLOT(musicPlayRandom()));
+    actions << musicPlaybackMode.addAction(tr("List Cycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
+    actions << musicPlaybackMode.addAction(tr("Single Cycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
+    actions << musicPlaybackMode.addAction(tr("Play Once"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
 
     const MusicObject::PlayMode mode = MusicApplication::instance()->getPlayMode();
     int index = -1;

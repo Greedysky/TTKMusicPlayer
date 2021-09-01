@@ -31,7 +31,7 @@ QWidget* MusicPagingWidgetModule::createPagingWidget(QWidget *parent, int total)
     {
         m_pagingItems << (new MusicClickedLabel(QString::number(i), m_pagingWidget));
     }
-    m_pagingItems << (new MusicClickedLabel(tr("pre"), m_pagingWidget)) << (new MusicClickedLabel(tr("next"), m_pagingWidget));
+    m_pagingItems << (new MusicClickedLabel("<<", m_pagingWidget)) << (new MusicClickedLabel(">>", m_pagingWidget));
 
     MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
     connect(clickedGroup, SIGNAL(clicked(int)), SIGNAL(clicked(int)));

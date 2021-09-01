@@ -71,7 +71,7 @@ void MusicPlaylistQueryItemWidget::setMusicResultsItem(const MusicResultsItem &i
     {
         if(count >= 10000)
         {
-            m_topListenButton->setText(tr("%1Thous").arg(count / 10000));
+            m_topListenButton->setText(tr("%1W").arg(count / 10000));
         }
         else
         {
