@@ -20,21 +20,17 @@ typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hF
 class TTK_MODULE_EXPORT MiniDumper
 {
 public:
-    MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber = nullptr);
-    ~MiniDumper();
-
-    static void SetVersion(LPCWSTR szVersion);
-    static void SetBuildNumber(LPCWSTR szBuildNumber);
-    static void SetDumpFilePath(LPCWSTR szFilePath);
+    MiniDumper(LPCWSTR name, LPCWSTR version, LPCWSTR number = nullptr);
 
 private:
-    static LPCWSTR m_szAppName;
-    static LPWSTR m_szAppVersion;
-    static LPWSTR m_szAppBuildNumber;
-    static LPWSTR m_szDumpFilePath;
-    static LONG WINAPI TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo);
+    static LPCWSTR m_appName;
+    static LPWSTR m_appVersion;
+    static LPWSTR m_appBuildNumber;
+    static LPWSTR m_dumpFilePath;
+    static LONG WINAPI TopLevelFilter(EXCEPTION_POINTERS *info);
 
 };
+
 
 #elif defined Q_OS_UNIX
 /*! @brief The class of the mini dumper linux.

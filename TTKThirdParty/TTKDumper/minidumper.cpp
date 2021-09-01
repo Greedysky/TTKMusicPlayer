@@ -23,58 +23,24 @@ void cleanAppicationCache()
 #ifdef Q_OS_WIN
 #include <wchar.h>
 
-LPCWSTR MiniDumper::m_szAppName;
-LPWSTR MiniDumper::m_szAppVersion;
-LPWSTR MiniDumper::m_szAppBuildNumber;
-LPWSTR MiniDumper::m_szDumpFilePath;
+LPCWSTR MiniDumper::m_appName;
+LPWSTR MiniDumper::m_appVersion;
+LPWSTR MiniDumper::m_appBuildNumber;
+LPWSTR MiniDumper::m_dumpFilePath;
 
 #define MAX_DUMP_FILE_NUMBER 9999
 
-MiniDumper::MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber)
+MiniDumper::MiniDumper(LPCWSTR name, LPCWSTR version, LPCWSTR number)
 {
-    m_szAppName = szAppName ? wcsdup(szAppName) : wcsdup(L"TTK");
-    m_szAppVersion = szVersion ? wcsdup(szVersion) : wcsdup(L"1.0.0.0");
-    m_szAppBuildNumber = szBuildNumber ? wcsdup(szBuildNumber) : wcsdup(L"0000");
-    m_szDumpFilePath = nullptr;
-	
+    m_appName = name ? wcsdup(name) : wcsdup(L"TTK");
+    m_appVersion = version ? wcsdup(version) : wcsdup(L"1.0.0.0");
+    m_appBuildNumber = number ? wcsdup(number) : wcsdup(L"0000");
+    m_dumpFilePath = nullptr;
+
     ::SetUnhandledExceptionFilter(TopLevelFilter);
 }
 
-MiniDumper::~MiniDumper()
-{
-    cleanAppicationCache();
-}
-
-void MiniDumper::SetVersion(LPCWSTR szVersion)
-{
-    if(szVersion)
-    {
-        free(m_szAppVersion);
-        m_szAppVersion = wcsdup(szVersion);
-    }
-}
-
-void MiniDumper::SetBuildNumber(LPCWSTR szBuildNumber)
-{
-    if(szBuildNumber)
-    {
-        free(m_szAppBuildNumber);
-        m_szAppBuildNumber = wcsdup(szBuildNumber);
-    }
-}
-
-void MiniDumper::SetDumpFilePath(LPCWSTR szFilePath)
-{
-    free(m_szDumpFilePath);
-    m_szDumpFilePath = nullptr;
-
-    if(szFilePath)
-    {
-        m_szDumpFilePath = wcsdup(szFilePath);
-    }
-}
-
-LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
+LONG MiniDumper::TopLevelFilter(EXCEPTION_POINTERS *info)
 {
     LONG retval = EXCEPTION_CONTINUE_SEARCH;
 
@@ -82,15 +48,15 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
     // look next to the EXE first, as the one in System32 might be old
     // (e.g. Windows 2000)
     HMODULE hDll = nullptr;
-    WCHAR szDbgHelpPath[_MAX_PATH];
+    WCHAR dbgHelpPath[_MAX_PATH];
 
-    if(GetModuleFileNameW(nullptr, szDbgHelpPath, _MAX_PATH))
+    if(GetModuleFileNameW(nullptr, dbgHelpPath, _MAX_PATH))
     {
-        WCHAR *pSlash = wcsrchr(szDbgHelpPath, L'\\');
-        if(pSlash)
+        WCHAR *slash = wcsrchr(dbgHelpPath, L'\\');
+        if(slash)
         {
-            wcscpy(pSlash + 1, L"DBGHELP.DLL");
-            hDll = ::LoadLibraryW(szDbgHelpPath);
+            wcscpy(slash + 1, L"DBGHELP.DLL");
+            hDll = ::LoadLibraryW(dbgHelpPath);
         }
     }
 
@@ -102,97 +68,91 @@ LONG MiniDumper::TopLevelFilter(struct _EXCEPTION_POINTERS *pExceptionInfo)
 
     if(hDll)
     {
-        MINIDUMPWRITEDUMP pDump = (MINIDUMPWRITEDUMP)::GetProcAddress(hDll, "MiniDumpWriteDump");
-        if(pDump)
+        MINIDUMPWRITEDUMP dump = (MINIDUMPWRITEDUMP)::GetProcAddress(hDll, "MiniDumpWriteDump");
+        if(dump)
         {
-            WCHAR szDumpPath[_MAX_PATH];
-            WCHAR szDumpRootPath[_MAX_PATH];
-            WCHAR szScratch[_MAX_PATH];
+            WCHAR dumpPath[_MAX_PATH];
+            WCHAR dumpRootPath[_MAX_PATH];
+            WCHAR scratch[_MAX_PATH];
 
             // work out a good place for the dump file
-
-            if(m_szDumpFilePath == nullptr)
+            if(m_dumpFilePath == nullptr)
             {
-                if(GetModuleFileNameW(nullptr, szDbgHelpPath, _MAX_PATH))
+                if(GetModuleFileNameW(nullptr, dbgHelpPath, _MAX_PATH))
                 {
-                    WCHAR *pSlash = wcsrchr(szDbgHelpPath, L'\\');
-                    if(pSlash)
+                    WCHAR *slash = wcsrchr(dbgHelpPath, L'\\');
+                    if(slash)
                     {
-                        wcscpy(pSlash + 1, L"");
-                        wcscpy(szDumpPath, szDbgHelpPath);
+                        wcscpy(slash + 1, L"");
+                        wcscpy(dumpPath, dbgHelpPath);
                     }
                 }
-                else if(!GetTempPathW(_MAX_PATH, szDumpPath))
+                else if(!GetTempPathW(_MAX_PATH, dumpPath))
                 {
-                    wcscpy(szDumpPath, L"c:\\temp\\");
+                    wcscpy(dumpPath, L"c:\\temp\\");
                 }
             }
             else
             {
-                wcscpy(szDumpPath, m_szDumpFilePath);
+                wcscpy(dumpPath, m_dumpFilePath);
             }
-            wcscpy(szDumpRootPath, szDumpPath);
-
-            //PrintDebug(L"[MiniDumper] Mini Dump file:[%s]",szDumpPath);
+            wcscpy(dumpRootPath, dumpPath);
 
             // ask the user if they want to save a dump file
             //if(::MessageBox(nullptr, _T("Something bad happened in your program, would you like to save a diagnostic file?"), m_szAppName, MB_YESNO)==IDYES)
             {
-                HANDLE hFile = INVALID_HANDLE_VALUE;
+                HANDLE file = INVALID_HANDLE_VALUE;
                 int i = 1;
-                WCHAR szFileNumber[_MAX_PATH];
-                while(hFile == INVALID_HANDLE_VALUE)
+                WCHAR fileNumber[_MAX_PATH];
+                while(file == INVALID_HANDLE_VALUE)
                 {
-                    swprintf(szFileNumber, sizeof(szFileNumber), L"_%04d",i);
-                    wcscpy(szDumpPath, szDumpRootPath);
-                    wcscat(szDumpPath, m_szAppName);
-                    wcscat(szDumpPath, L"_");
-                    wcscat(szDumpPath, m_szAppVersion);
-                    wcscat(szDumpPath, L"_");
-                    wcscat(szDumpPath, m_szAppBuildNumber);
-                    wcscat(szDumpPath, szFileNumber);
-                    wcscat(szDumpPath, L".dmp");
+                    swprintf(fileNumber, sizeof(fileNumber), L"_%04d",i);
+                    wcscpy(dumpPath, dumpRootPath);
+                    wcscat(dumpPath, m_appName);
+                    wcscat(dumpPath, L"_");
+                    wcscat(dumpPath, m_appVersion);
+                    wcscat(dumpPath, L"_");
+                    wcscat(dumpPath, m_appBuildNumber);
+                    wcscat(dumpPath, fileNumber);
+                    wcscat(dumpPath, L".dmp");
 
-                    hFile = ::CreateFileW(szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr);
+                    file = ::CreateFileW(dumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr);
                     i++;
                     if(i > MAX_DUMP_FILE_NUMBER)
                     {
-                        hFile = ::CreateFileW(szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+                        file = ::CreateFileW(dumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
                         break;
                     }
                 }
                 // create the file
-
-                if(hFile!=INVALID_HANDLE_VALUE)
+                if(file != INVALID_HANDLE_VALUE)
                 {
-                    _MINIDUMP_EXCEPTION_INFORMATION ExInfo;
-
-                    ExInfo.ThreadId = ::GetCurrentThreadId();
-                    ExInfo.ExceptionPointers = pExceptionInfo;
-                    ExInfo.ClientPointers = 0;
+                    MINIDUMP_EXCEPTION_INFORMATION exInfo;
+                    exInfo.ThreadId = ::GetCurrentThreadId();
+                    exInfo.ExceptionPointers = info;
+                    exInfo.ClientPointers = 0;
 
                     // write the dump
-                    BOOL bOK = pDump(GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpNormal, &ExInfo, nullptr, nullptr);
-                    if(bOK)
+                    BOOL ok = dump(GetCurrentProcess(), GetCurrentProcessId(), file, MiniDumpNormal, &exInfo, nullptr, nullptr);
+                    if(ok)
                     {
-                        swprintf(szScratch, sizeof(szScratch), L"Saved dump file to '%s'", szDumpPath);
+                        swprintf(scratch, sizeof(scratch), L"Saved dump file to '%s'", dumpPath);
                         retval = EXCEPTION_EXECUTE_HANDLER;
                     }
                     else
                     {
-                        swprintf(szScratch, sizeof(szScratch),L"Failed to save dump file to '%s' (error %d)", szDumpPath, GetLastError());
+                        swprintf(scratch, sizeof(scratch), L"Failed to save dump file to '%s' (error %d)", dumpPath, GetLastError());
                     }
-                    ::CloseHandle(hFile);
+                    ::CloseHandle(file);
 
-                    WCHAR csOutMessage[MAX_WARNING_MESSAGE_PATH];
-                    swprintf(csOutMessage, sizeof(csOutMessage), csOutMessage, m_szAppName, szDumpPath);
+                    WCHAR outMessage[MAX_WARNING_MESSAGE_PATH];
+                    swprintf(outMessage, sizeof(outMessage), outMessage, m_appName, dumpPath);
                 }
                 else
                 {
-                    swprintf(szScratch, sizeof(szScratch),L"Failed to create dump file '%s' (error %d)", szDumpPath, GetLastError());
+                    swprintf(scratch, sizeof(scratch), L"Failed to create dump file '%s' (error %d)", dumpPath, GetLastError());
                 }
             }
-
         }
     }
 
