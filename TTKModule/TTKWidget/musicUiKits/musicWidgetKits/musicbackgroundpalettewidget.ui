@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>皮肤与窗口调整</string>
+   <string>调色板</string>
   </property>
   <widget class="MusicTransitionAnimationLabel" name="background">
    <property name="geometry">

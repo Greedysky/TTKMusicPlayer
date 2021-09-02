@@ -54,37 +54,37 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
     m_ui->addFileButton->setIcon(QIcon(":/toolSets/btn_gain_add_file"));
     m_ui->addFileButton->setIconSize(QSize(40, 40));
     m_ui->addFileButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_ui->addFileButton->setToolTip(tr("addFile"));
+    m_ui->addFileButton->setToolTip(tr("Add File"));
     m_ui->addFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->addFilesButton->setIcon(QIcon(":/toolSets/btn_gain_add_files"));
     m_ui->addFilesButton->setIconSize(QSize(40, 40));
     m_ui->addFilesButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_ui->addFilesButton->setToolTip(tr("addFiles"));
+    m_ui->addFilesButton->setToolTip(tr("Add Files"));
     m_ui->addFilesButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->rmFileButton->setIcon(QIcon(":/toolSets/btn_gain_rm_file"));
     m_ui->rmFileButton->setIconSize(QSize(40, 40));
     m_ui->rmFileButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_ui->rmFileButton->setToolTip(tr("rmFile"));
+    m_ui->rmFileButton->setToolTip(tr("Remove File"));
     m_ui->rmFileButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->rmFilesButton->setIcon(QIcon(":/toolSets/btn_gain_rm_files"));
     m_ui->rmFilesButton->setIconSize(QSize(40, 40));
     m_ui->rmFilesButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_ui->rmFilesButton->setToolTip(tr("rmFiles"));
+    m_ui->rmFilesButton->setToolTip(tr("Remove Files"));
     m_ui->rmFilesButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->analysisButton->setIcon(QIcon(":/toolSets/btn_analysis"));
     m_ui->analysisButton->setIconSize(QSize(40, 40));
     m_ui->analysisButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_ui->analysisButton->setToolTip(tr("analysis"));
+    m_ui->analysisButton->setToolTip(tr("Analysis"));
     m_ui->analysisButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->applyButton->setIcon(QIcon(":/toolSets/btn_analysis_apply"));
     m_ui->applyButton->setIconSize(QSize(50, 50));
     m_ui->applyButton->setStyleSheet(MusicUIObject::MQSSToolButtonStyle04);
-    m_ui->applyButton->setToolTip(tr("apply"));
+    m_ui->applyButton->setToolTip(tr("Apply"));
     m_ui->applyButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->volumeLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle01);
@@ -134,7 +134,7 @@ void MusicReplayGainWidget::initialize()
     }
     else
     {
-        MusicToastLabel::popup(tr("ReplayGain Init Error!"));
+        MusicToastLabel::popup(tr("ReplayGain init error!"));
     }
 }
 

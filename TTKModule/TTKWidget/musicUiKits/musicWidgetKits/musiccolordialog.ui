@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>提示框</string>
+   <string>颜色调色板</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>

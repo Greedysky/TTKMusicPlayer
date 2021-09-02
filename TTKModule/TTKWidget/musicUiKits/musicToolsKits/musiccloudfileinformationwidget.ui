@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>文件管理</string>
+   <string>歌曲信息</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

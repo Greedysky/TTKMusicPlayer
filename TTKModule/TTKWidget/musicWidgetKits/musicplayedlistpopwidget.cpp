@@ -46,7 +46,7 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     m_instance = this;
     m_playlist = nullptr;
 
-    setToolTip(tr("playedList"));
+    setToolTip(tr("Played List"));
     setStyleSheet(MusicUIObject::MQSSBtnPlayedList);
 
     initWidget();

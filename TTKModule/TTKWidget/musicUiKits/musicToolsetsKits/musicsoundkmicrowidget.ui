@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>选择扫描范围</string>
+   <string>一起来K歌</string>
   </property>
   <widget class="QWidget" name="topWidget" native="true">
    <property name="geometry">

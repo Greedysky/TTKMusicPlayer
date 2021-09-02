@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>DLNA传输</string>
+   <string>DLNA</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">

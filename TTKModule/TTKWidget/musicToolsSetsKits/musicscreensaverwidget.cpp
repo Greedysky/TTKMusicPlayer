@@ -218,13 +218,13 @@ MusicScreenSaverWidget::MusicScreenSaverWidget(QWidget *parent)
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setContentsMargins(10, 10, 10, 10);
 
-    QLabel *pLabel = new QLabel(tr("Screen Saver "), topWidget);
+    QLabel *pLabel = new QLabel(tr("Screen Saver"), topWidget);
     QFont pLabelFont = pLabel->font();
     pLabelFont.setPixelSize(20);
     pLabel->setFont(pLabelFont);
     pLabel->setStyleSheet(MusicUIObject::MQSSColorStyle13);
 
-    QLabel *iLabel = new QLabel(tr("Spend Your Leisure Time With You"), topWidget);
+    QLabel *iLabel = new QLabel(tr("Popular singers spend your leisure time with you"), topWidget);
     QFont iLabelFont = iLabel->font();
     iLabelFont.setPixelSize(15);
     iLabel->setFont(iLabelFont);

@@ -498,7 +498,7 @@ void MusicSettingWidget::testNetworkProxy()
 
 void MusicSettingWidget::testProxyStateChanged(bool state)
 {
-    MusicToastLabel::popup(state ? tr("Test Successed!") : tr("Test Failed!"));
+    MusicToastLabel::popup(state ? tr("Test successed!") : tr("Test failed!"));
 }
 
 void MusicSettingWidget::testNetworkConnection()
@@ -857,10 +857,10 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadLimitSpeedComboBox->addItems(downloadSpeed);
     m_ui->uploadLimitSpeedComboBox->addItems(downloadSpeed);
 
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("wangyiMusic"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_qq"), tr("qqMusic"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("kuwoMusic"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_wangyiyun"), tr("WangYi Music"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_qq"), tr("QQ Music"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("KuWo Music"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("KuGou Music"));
 
     connect(m_ui->downloadCacheCleanButton, SIGNAL(clicked()), SLOT(downloadCacheClean()));
     //
@@ -958,7 +958,7 @@ void MusicSettingWidget::initInteriorLrcWidget()
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInteriorLrcSize());
     m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("IYellow") << tr("IBlue") << tr("IGray") << tr("IPink") << tr("IGreen") << tr("IRed") << tr("IPurple") << tr("IOrange") << tr("IIndigo"));
+    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("Yellow") << tr("Blue") << tr("Gray") << tr("Pink") << tr("Green") << tr("Red") << tr("Purple") << tr("Orange") << tr("Indigo"));
 
     connect(m_ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInteriorLrcDemo()));
     connect(m_ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInteriorLrcDemo()));

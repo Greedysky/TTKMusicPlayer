@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>用户设置 </string>
+   <string>用户设置</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -45,7 +45,7 @@
     <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
    </property>
    <property name="text">
-    <string>用户设置 </string>
+    <string>用户设置</string>
    </property>
   </widget>
   <widget class="QToolButton" name="topTitleCloseButton">

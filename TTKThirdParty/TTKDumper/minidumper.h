@@ -31,7 +31,6 @@ private:
 
 };
 
-
 #elif defined Q_OS_UNIX
 /*! @brief The class of the mini dumper linux.
  * @author Greedysky <greedysky@163.com>

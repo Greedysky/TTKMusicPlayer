@@ -435,7 +435,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 else
                 {
                     musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
-                    MusicToastLabel::popup(tr("Enter input search text first"));
+                    MusicToastLabel::popup(tr("Please enter input search text first!"));
                     break;
                 }
 
