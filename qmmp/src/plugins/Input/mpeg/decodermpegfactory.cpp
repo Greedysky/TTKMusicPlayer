@@ -20,19 +20,6 @@
 #include "decodermpegfactory.h"
 #include "settingsdialog.h"
 
-DecoderMPEGFactory::DecoderMPEGFactory()
-{
-    char str[] = { char(0xF2), char(0xE5), char(0xF1), char(0xF2), '\0'};
-    QTextCodec *codec = QTextCodec::codecForName("windows-1251");
-    TagLib::String tstr(str);
-    if(codec->toUnicode(str) == QString::fromUtf8(tstr.toCString(true)))
-    {
-        qDebug("DecoderMADFactory: found taglib with rusxmms patch");
-        m_using_rusxmms = true;
-        TagExtractor::setForceUtf8(m_using_rusxmms);
-    }
-}
-
 bool DecoderMPEGFactory::canDecode(QIODevice *input) const
 {
     char buf[8192];
@@ -167,7 +154,7 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
                 break;
             }
 
-            if(m_using_rusxmms || codecName.contains("UTF"))
+            if(codecName.contains("UTF"))
                 codec = QTextCodec::codecForName("UTF-8");
             else if(!codecName.isEmpty())
                 codec = QTextCodec::codecForName(codecName);
@@ -298,12 +285,12 @@ QList<TrackInfo*> DecoderMPEGFactory::createPlayList(const QString &path, TrackI
 
 MetaDataModel* DecoderMPEGFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-   return new MPEGMetaDataModel(m_using_rusxmms, path, readOnly);
+   return new MPEGMetaDataModel(path, readOnly);
 }
 
 void DecoderMPEGFactory::showSettings(QWidget *parent)
 {
-    SettingsDialog *s = new SettingsDialog(m_using_rusxmms, parent);
+    SettingsDialog *s = new SettingsDialog(parent);
     s->show();
 }
 

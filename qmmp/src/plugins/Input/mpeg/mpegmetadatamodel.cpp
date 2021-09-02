@@ -16,14 +16,14 @@
 #include <taglib/id3v2framefactory.h>
 #include "mpegmetadatamodel.h"
 
-MPEGMetaDataModel::MPEGMetaDataModel(bool using_rusxmms, const QString &path, bool readOnly)
+MPEGMetaDataModel::MPEGMetaDataModel(const QString &path, bool readOnly)
     : MetaDataModel(readOnly, MetaDataModel::IsCoverEditable)
 {
     m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
     m_file = new TagLib::MPEG::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
-    m_tags << new MpegFileTagModel(using_rusxmms, m_file, TagLib::MPEG::File::ID3v1);
-    m_tags << new MpegFileTagModel(using_rusxmms, m_file, TagLib::MPEG::File::ID3v2);
-    m_tags << new MpegFileTagModel(using_rusxmms, m_file, TagLib::MPEG::File::APE);
+    m_tags << new MpegFileTagModel(m_file, TagLib::MPEG::File::ID3v1);
+    m_tags << new MpegFileTagModel(m_file, TagLib::MPEG::File::ID3v2);
+    m_tags << new MpegFileTagModel(m_file, TagLib::MPEG::File::APE);
 }
 
 MPEGMetaDataModel::~MPEGMetaDataModel()
@@ -139,9 +139,8 @@ void MPEGMetaDataModel::removeCover()
     }
 }
 
-MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type)
+MpegFileTagModel::MpegFileTagModel(TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes type)
     : TagModel(),
-      m_using_rusxmms(using_rusxmms),
       m_file(file),
       m_type(type)
 {
@@ -167,7 +166,7 @@ MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file,
         m_codec = QTextCodec::codecForName("UTF-8");
     }
 
-    if(m_using_rusxmms || !m_codec || m_codec->name().startsWith("UTF"))
+    if(!m_codec || m_codec->name().startsWith("UTF"))
     {
         m_codec = QTextCodec::codecForName("UTF-8");
     }
@@ -279,11 +278,8 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
 
     if(m_type == TagLib::MPEG::File::ID3v1)
     {
-        if(m_codec->name().contains("UTF") && !m_using_rusxmms) //utf is unsupported
+        if(m_codec->name().contains("UTF")) //utf is unsupported
             return;
-
-        if(m_using_rusxmms)
-            type = TagLib::String::UTF8;
     }
     else if(m_type == TagLib::MPEG::File::ID3v2)
     {

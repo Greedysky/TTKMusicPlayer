@@ -29,17 +29,12 @@ class DecoderMPEGFactory : public QObject, DecoderFactory
     Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.DecoderFactoryInterface.1.0")
     Q_INTERFACES(DecoderFactory)
 public:
-    DecoderMPEGFactory();
-
     virtual bool canDecode(QIODevice *input) const override;
     virtual DecoderProperties properties() const override;
     virtual Decoder *create(const QString &, QIODevice *input) override;
     virtual QList<TrackInfo*> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) override;
     virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) override;
     virtual void showSettings(QWidget *parent) override;
-
-private:
-    bool m_using_rusxmms = false;
 
 };
 

@@ -8,8 +8,6 @@
 
 #include "tagextractor.h"
 
-bool TagExtractor::m_using_rusxmms = false;
-
 TagExtractor::TagExtractor(QIODevice *d)
     : m_input(d)
 {
@@ -37,10 +35,8 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
     QByteArray codecName = settings.value("ID3v2_encoding", "UTF-8").toByteArray();
 
     QTextCodec *codec = nullptr;
-    if(m_using_rusxmms || codecName.contains("UTF"))
-    {
+    if(codecName.contains("UTF"))
         codec = QTextCodec::codecForName("UTF-8");
-    }
     else if(!codecName.isEmpty())
         codec = QTextCodec::codecForName(codecName);
 
@@ -70,11 +66,6 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag() const
         tags.insert(Qmmp::DISCNUMBER, QString(disc.toCString()).trimmed());
     }
     return tags;
-}
-
-void TagExtractor::setForceUtf8(bool enabled)
-{
-    m_using_rusxmms = enabled;
 }
 
 ID3v2Tag::ID3v2Tag(QByteArray *array, long offset)

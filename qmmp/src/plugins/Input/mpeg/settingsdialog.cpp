@@ -5,7 +5,7 @@
 #include <qmmp/regularwrapper.h>
 #include "settingsdialog.h"
 
-SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
+SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
 {
     m_ui.setupUi(this);
@@ -41,12 +41,6 @@ SettingsDialog::SettingsDialog(bool using_rusxmms, QWidget *parent)
     m_ui.mergeTagsCheckBox->setChecked(settings.value("merge_tags", false).toBool());
 
     settings.endGroup();
-
-    if(using_rusxmms)
-    {
-        m_ui.id3v1EncComboBox->setEnabled(false);
-        m_ui.id3v2EncComboBox->setEnabled(false);
-    }
 }
 
 void SettingsDialog::accept()

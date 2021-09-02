@@ -45,11 +45,9 @@ public:
     ~TagExtractor();
 
     const QMap<Qmmp::MetaData, QString> id3v2tag() const;
-    static void setForceUtf8(bool enabled);
 
 private:
     QIODevice *m_input;
-    static bool m_using_rusxmms;
 
 };
 
