@@ -218,7 +218,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setIconSize(QSize(25, 25));
-    QRadioButton *mvButton = new QRadioButton(tr("MV"), searchWidget);
+    QRadioButton *mvButton = new QRadioButton(tr("Movie"), searchWidget);
     mvButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     QRadioButton *songButton = new QRadioButton(tr("Song"), searchWidget);
     songButton->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
@@ -287,5 +287,5 @@ void MusicSoundKMicroSearchWidget::setQueryMovieFlag(int flag)
 void MusicSoundKMicroSearchWidget::setCurrentSongName(const QString &name)
 {
     Q_UNUSED(name);
-    MusicToastLabel::popup(tr("Search Not Supported!"));
+    MusicToastLabel::popup(tr("Search not supported!"));
 }

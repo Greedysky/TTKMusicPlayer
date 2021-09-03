@@ -28,7 +28,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
                                MusicUIObject::MQSSComboBoxStyle01 +
                                MusicUIObject::MQSSPushButtonStyle15);
 
-    setText(tr("null"));
+    setText(tr("Null"));
 
     QWidget *func = new QWidget(this);
     func->setStyleSheet(MusicUIObject::MQSSBackgroundStyle04);
@@ -40,7 +40,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
     m_settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle01);
     m_settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_settingButton->setFixedWidth(40);
-    m_settingButton->setText(tr("Sets"));
+    m_settingButton->setText(tr("PSet"));
     m_settingButton->setEnabled(false);
     connect(m_settingButton, SIGNAL(clicked()), SLOT(soundEffectValueChanged()));
 

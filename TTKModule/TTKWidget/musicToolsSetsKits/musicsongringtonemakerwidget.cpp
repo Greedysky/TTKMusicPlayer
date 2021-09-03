@@ -106,7 +106,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     else
     {
-        m_ui->songLabelValue->setText(tr("Open File Error!"));
+        m_ui->songLabelValue->setText(tr("Open file error!"));
         return;
     }
 

@@ -9,7 +9,7 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
 
     resizeWindow(0, 0);
     m_search = new QPushButton(tr(" Search"), this);
-    m_fresh = new QPushButton(tr(" Fresh"), this);
+    m_fresh = new QPushButton(tr(" Popup"), this);
     m_fullscreen = new QPushButton(tr(" Fullscreen"), this);
     m_download = new QPushButton(tr(" Download"), this);
     m_share = new QPushButton(tr(" Share"), this);

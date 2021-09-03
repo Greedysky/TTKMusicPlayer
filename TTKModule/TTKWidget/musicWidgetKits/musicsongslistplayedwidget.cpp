@@ -29,20 +29,20 @@ MusicSongsListPlayedWidget::MusicSongsListPlayedWidget(int index, QWidget *paren
     m_downloadButton = new QPushButton(this);
     m_downloadButton->setGeometry(220, 7, 16, 16);
     m_downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_downloadButton->setToolTip(tr("songDownload"));
+    m_downloadButton->setToolTip(tr("Download"));
     m_downloadButton->setStyleSheet(MusicUIObject::MQSSTinyBtnUnDownload);
 
     m_deleteButton = new QPushButton(this);
     m_deleteButton->setGeometry(245, 7, 16, 16);
     m_deleteButton->setStyleSheet(MusicUIObject::MQSSTinyBtnDelete);
     m_deleteButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_deleteButton->setToolTip(tr("deleteMusic"));
+    m_deleteButton->setToolTip(tr("Delete"));
 
     m_moreButton = new QPushButton(this);
     m_moreButton->setGeometry(270, 7, 16, 16);
     m_moreButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle13 + MusicUIObject::MQSSTinyBtnMore);
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_moreButton->setToolTip(tr("moreFunction"));
+    m_moreButton->setToolTip(tr("More"));
 
 #ifdef Q_OS_UNIX
     m_downloadButton->setFocusPolicy(Qt::NoFocus);
@@ -95,10 +95,10 @@ void MusicSongsListPlayedWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
-    addMenu->addAction(tr("musicCloud"));
+    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("Add To List"));
+    addMenu->addAction(tr("Cloud"));
     MusicUtils::Widget::adjustMenuPosition(addMenu);
 
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), m_parentClass, SLOT(musicPlayedSimilarQueryWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), m_parentClass, SLOT(musicSongPlayedSharedWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), m_parentClass, SLOT(musicPlayedSimilarQueryWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), m_parentClass, SLOT(musicSongPlayedSharedWidget()));
 }

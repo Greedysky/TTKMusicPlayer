@@ -62,16 +62,16 @@ void MusicToolSetsWidget::addListWidgetItem()
     TTK_DECLARE_LISTS(ToolItem);
 
     ToolItems pairs;
-    pairs << ToolItem(":/tools/lb_localmanager", tr("localmanager"))
-          << ToolItem(":/tools/lb_bell", tr("bell"))
-          << ToolItem(":/tools/lb_timer", tr("timer"))
-          << ToolItem(":/tools/lb_transform", tr("transform"))
-          << ToolItem(":/tools/lb_spectrum", tr("spectrum"))
-          << ToolItem(":/tools/lb_connections" ,tr("connections"))
-          << ToolItem(":/tools/lb_gain", tr("gain"))
-          << ToolItem(":/tools/lb_dlna", tr("dlna"))
-          << ToolItem(":/tools/lb_detect", tr("detect"))
-          << ToolItem(":/tools/lb_screen_saver", tr("saver"));
+    pairs << ToolItem(":/tools/lb_localmanager", tr("Loacl"))
+          << ToolItem(":/tools/lb_bell", tr("Bell"))
+          << ToolItem(":/tools/lb_timer", tr("Timing"))
+          << ToolItem(":/tools/lb_transform", tr("Transform"))
+          << ToolItem(":/tools/lb_spectrum", tr("Spectrum"))
+          << ToolItem(":/tools/lb_connections" ,tr("Connection"))
+          << ToolItem(":/tools/lb_gain", tr("Gain"))
+          << ToolItem(":/tools/lb_dlna", tr("DLNA"))
+          << ToolItem(":/tools/lb_detect", tr("Identify"))
+          << ToolItem(":/tools/lb_screen_saver", tr("Saver"));
 
     for(const ToolItem &pair : qAsConst(pairs))
     {

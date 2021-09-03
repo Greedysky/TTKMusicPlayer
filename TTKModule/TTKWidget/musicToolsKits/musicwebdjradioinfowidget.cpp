@@ -185,7 +185,7 @@ void MusicWebDJRadioInfoWidget::createLabels()
     functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
-    m_songButton->setText(tr("songItems"));
+    m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(m_songButton);

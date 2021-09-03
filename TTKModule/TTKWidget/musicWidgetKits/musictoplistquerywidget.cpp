@@ -163,7 +163,7 @@ void MusicToplistQueryWidget::createLabels()
     functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
-    m_songButton->setText(tr("songItems"));
+    m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(m_songButton);
@@ -230,7 +230,7 @@ void MusicToplistQueryWidget::categoryChanged(const MusicResultsCategoryItem &ca
         m_categoryButton->setText(category.m_value);
         m_categoryButton->closeMenu();
 
-        m_songButton->setText(tr("songItems"));
+        m_songButton->setText(tr("SongItems"));
         m_networkRequest->setQueryAllRecords(true);
         m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, category.m_key);
     }

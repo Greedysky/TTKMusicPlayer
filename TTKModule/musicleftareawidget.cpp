@@ -83,7 +83,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicBestLove->setToolTip(tr("Best Love"));
     ui->musicDownload->setToolTip(tr("Download"));
     ui->musicMoreFunction->setToolTip(tr("More"));
-    ui->musicDesktopLrc->setToolTip(tr("Desktop Lrc"));
+    ui->musicDesktopLrc->setToolTip(tr("Show Desktop Lrc"));
     ui->musicPlayMode->setToolTip(tr("Play Mode"));
 }
 

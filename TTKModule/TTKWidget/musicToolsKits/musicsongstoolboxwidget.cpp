@@ -18,19 +18,19 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_renameLine = nullptr;
 
     QPushButton *enhanceButton = new QPushButton(this);
-    enhanceButton->setToolTip(tr("enhanceLossless"));
+    enhanceButton->setToolTip(tr("Enhance Lossless"));
     enhanceButton->setStyleSheet(MusicUIObject::MQSSTinyBtnEnhanceLossless);
     enhanceButton->setCursor(QCursor(Qt::PointingHandCursor));
     enhanceButton->setGeometry(240, 12, 16, 16);
 
     QPushButton *shareListButton = new QPushButton(this);
-    shareListButton->setToolTip(tr("shareList"));
+    shareListButton->setToolTip(tr("Share Playlist"));
     shareListButton->setStyleSheet(MusicUIObject::MQSSTinyBtnShare);
     shareListButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareListButton->setGeometry(265, 12, 16, 16);
 
     QPushButton *menuButton = new QPushButton(this);
-    menuButton->setToolTip(tr("listMenu"));
+    menuButton->setToolTip(tr("Menu"));
     menuButton->setStyleSheet(MusicUIObject::MQSSTinyBtnListMenu);
     menuButton->setCursor(QCursor(Qt::PointingHandCursor));
     menuButton->setGeometry(290, 12, 16, 16);
@@ -98,26 +98,26 @@ void MusicSongsToolBoxTopWidget::showMenu()
 {
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    menu.addAction(tr("addNewItem"), this, SIGNAL(addNewRowItem()));
+    menu.addAction(tr("Create Item"), this, SIGNAL(addNewRowItem()));
     menu.addSeparator();
 
-    QMenu musicAddNewFiles(tr("addNewFiles"), &menu);
+    QMenu musicAddNewFiles(tr("Add New Files"), &menu);
     bool disable = !(m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST || m_index == MUSIC_RECENT_LIST);
     menu.addMenu(&musicAddNewFiles)->setEnabled(disable);
-    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
-    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
+    musicAddNewFiles.addAction(tr("Open Files"), this, SLOT(addNewFiles()));
+    musicAddNewFiles.addAction(tr("Open Dir"), this, SLOT(addNewDir()));
     MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
-    menu.addAction(tr("playLater"), this, SLOT(addToPlayLater()));
-    menu.addAction(tr("addToPlaylist"), this, SLOT(addToPlayedList()));
+    menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
+    menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
 
-    QMenu musicSortFiles(tr("sort"), &menu);
-    musicSortFiles.addAction(tr("sortByFileName"))->setData(0);
-    musicSortFiles.addAction(tr("sortBySinger"))->setData(1);
-    musicSortFiles.addAction(tr("sortByFileSize"))->setData(2);
-    musicSortFiles.addAction(tr("sortByAddTime"))->setData(3);
-    musicSortFiles.addAction(tr("sortByPlayTime"))->setData(4);
-    musicSortFiles.addAction(tr("sortByPlayCount"))->setData(5);
+    QMenu musicSortFiles(tr("Sort"), &menu);
+    musicSortFiles.addAction(tr("Sort By FileName"))->setData(0);
+    musicSortFiles.addAction(tr("Sort By Singer"))->setData(1);
+    musicSortFiles.addAction(tr("Sort By FileSize"))->setData(2);
+    musicSortFiles.addAction(tr("Sort By AddTime"))->setData(3);
+    musicSortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
+    musicSortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
     MusicUtils::Widget::adjustMenuPosition(&musicSortFiles);
     connect(&musicSortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
@@ -132,14 +132,14 @@ void MusicSongsToolBoxTopWidget::showMenu()
     }
     menu.addMenu(&musicSortFiles);
 
-    menu.addAction(tr("collectAll"));
-    menu.addAction(tr("exportList"), this, SLOT(exportSongsItemList()));
+    menu.addAction(tr("Collect All"));
+    menu.addAction(tr("Export List"), this, SLOT(exportSongsItemList()));
     menu.addSeparator();
 
     disable = isItemEnabled();
     menu.addAction(tr("Delete All"), this, SLOT(deleteRowItemAll()));
-    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
-    menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete Item"), this, SLOT(deleteRowItem()))->setEnabled(disable);
+    menu.addAction(tr("Rename"), this, SLOT(changRowItemName()))->setEnabled(disable);
 
     menu.exec(QCursor::pos());
 }

@@ -206,7 +206,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
     {
         if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit_T->text().trimmed())
         {
-            MusicToastLabel::popup(tr("You verificationCode is incorrect"));
+            MusicToastLabel::popup(tr("Your verificationCode is incorrect"));
             return;
         }
         if(!m_userModel->passwordCheck(m_userUID, m_ui->originPwdEdit_T->text()))
@@ -232,7 +232,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
     }
     else
     {
-        MusicToastLabel::popup(tr("You entered is incorrect"));
+        MusicToastLabel::popup(tr("Your entered is incorrect"));
     }
 }
 

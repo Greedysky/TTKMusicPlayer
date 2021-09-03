@@ -495,7 +495,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 
     m_textLabel = new QLabel(this);
     m_textLabel->setTextFormat(Qt::RichText);
-    m_textLabel->setText(tr("&nbsp;find no result"));
+    m_textLabel->setText(tr("&nbsp;Find no result"));
     m_textLabel->setStyleSheet(MusicUIObject::MQSSColorStyle03);
     funcLayout->addWidget(m_textLabel);
 

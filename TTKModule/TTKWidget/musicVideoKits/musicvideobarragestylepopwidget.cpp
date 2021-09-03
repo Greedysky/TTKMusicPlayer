@@ -94,7 +94,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     QWidget *sizeWidget = new QWidget(m_containWidget);
     QHBoxLayout *sizeLayout = new QHBoxLayout(sizeWidget);
     sizeLayout->setContentsMargins(0, 0, 0, 0);
-    QLabel *sizeLabel= new QLabel(tr("size"), sizeWidget);
+    QLabel *sizeLabel= new QLabel(tr("Size"), sizeWidget);
     QPushButton *smallButton = new QPushButton(sizeWidget);
     QPushButton *middleButton = new QPushButton(sizeWidget);
     QPushButton *bigButton = new QPushButton(sizeWidget);
@@ -136,7 +136,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     QHBoxLayout *colorLayout = new QHBoxLayout(colorWidget);
     colorLayout->setContentsMargins(0, 0, 0, 0);
     colorLayout->setSpacing(2);
-    QLabel *colorLabel= new QLabel(tr("color"), colorWidget);
+    QLabel *colorLabel= new QLabel(tr("Color"), colorWidget);
     QPushButton *whiteButton = new QPushButton(colorWidget);
     QPushButton *redButton = new QPushButton(colorWidget);
     QPushButton *orangeButton = new QPushButton(colorWidget);

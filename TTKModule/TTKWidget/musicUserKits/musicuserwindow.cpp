@@ -86,27 +86,31 @@ bool MusicUserWindow::connectDatabase()
         {
             data = QSqlDatabase::addDatabase(DB_SQLITE_DATABASE, "user-data");
         }
+
         data.setDatabaseName(DARABASEPATH_FULL);
         if(!data.isDriverAvailable(DB_SQLITE_DATABASE))
         {
             throw QString("The driver name is not available");
         }
+
         if(!data.isValid())
         {
             throw QString("The database has not a valid driver");
         }
+
         if(!data.isOpen() && !data.open())
         {
             throw QString("Can not open database connection");
         }
+
         if(!data.tables().contains("MusicUser"))
         {
             QSqlQuery query(data);
-            QString musicUserSql = QString("create table MusicUser (USERID vchar(%1),SERVER vchar(%2),"
+            const QString &sql = QString("create table MusicUser (USERID vchar(%1),SERVER vchar(%2),"
                     "PASSWD vchar(%3),EMAIL vchar(%4),USERNAME vchar(%5),LOGINTIME vchar(%6),"
                     "SEX vchar(%7),ICON TEXT,BIRTHDAY Date,CITY TEXT,COUNTRY TEXT,SIGNATURE TEXT)")
                     .arg(DB_USERID).arg(DB_SERVER).arg(DB_PASSWD).arg(DB_EMAIL).arg(DB_USERNAME).arg(DB_LOGINTIME).arg(DB_SEX);
-            query.exec(musicUserSql);
+            query.exec(sql);
         }
     }
     catch(QString exception)
@@ -122,7 +126,7 @@ void MusicUserWindow::userStateChanged(const MusicUserUIDItem &uid, const QStrin
     if(uid.m_uid.isEmpty())
     {
         m_ui->userIconU->setPixmap(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_app_logo"), QPixmap(":/usermanager/lb_mask_30"), m_ui->userIconU->size()));
-        m_ui->userNameU->setText(tr("L|R"));
+        m_ui->userNameU->setText(tr("Login"));
         setCurrentIndex(USER_WINDOW_INDEX_0);
     }
     else

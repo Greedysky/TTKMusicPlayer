@@ -96,7 +96,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);
     m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, tr("PopupMode"));
+    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, tr("Popup"));
 
     m_leaverAnimation = new QParallelAnimationGroup(this);
     QPropertyAnimation *topAnimation = new QPropertyAnimation(m_topWidget, "pos", m_leaverAnimation);
@@ -133,7 +133,7 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
 
 void MusicVideoPlayWidget::popup(bool popup)
 {
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, popup ? tr("InlineMode") : tr("PopupMode"));
+    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, popup ? tr("Inline") : tr("Popup"));
     blockMoveOption(!popup);
 
     if(popup)
@@ -146,7 +146,7 @@ void MusicVideoPlayWidget::popup(bool popup)
     }
     else
     {
-        m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + tr("FullScreenMode"));
+        m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + tr("Fullscreen"));
     }
 }
 
@@ -299,19 +299,19 @@ void MusicVideoPlayWidget::mediaUrlPathChanged(const MusicVideoItem &item)
 void MusicVideoPlayWidget::freshButtonClicked()
 {
     const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
-    Q_EMIT freshButtonClicked(text == tr("PopupMode"));
+    Q_EMIT freshButtonClicked(text == tr("Popup"));
 }
 
 void MusicVideoPlayWidget::fullscreenButtonClicked()
 {
-    if(m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType) == tr("PopupMode"))
+    if(m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType) == tr("Popup"))
     {
         return;
     }
 
-    const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) == tr("NormalMode") ? tr("FullScreenMode") : tr("NormalMode");
+    const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) == tr("Normal") ? tr("Fullscreen") : tr("Normal");
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
-    Q_EMIT fullscreenButtonClicked(text == tr("NormalMode"));
+    Q_EMIT fullscreenButtonClicked(text == tr("Normal"));
 }
 
 void MusicVideoPlayWidget::downloadButtonClicked()

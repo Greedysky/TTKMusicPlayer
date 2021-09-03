@@ -69,25 +69,25 @@ bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
                 case MUSIC_NORMAL_LIST:
                     {
                         songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("myDefaultPlayItem");
+                        songItem.m_itemName = tr("Default Item");
                         break;
                     }
                 case MUSIC_LOVEST_LIST:
                     {
                         songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("myLoveSongItem");
+                        songItem.m_itemName = tr("Lovest Item");
                         break;
                     }
                 case MUSIC_NETWORK_LIST:
                     {
                         songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("myNetSongItem");
+                        songItem.m_itemName = tr("Net Item");
                         break;
                     }
                 case MUSIC_RECENT_LIST:
                     {
                         songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("myRecentSongItem");
+                        songItem.m_itemName = tr("Recent Item");
                         break;
                     }
                 default: break;
@@ -130,7 +130,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
 
     MusicProgressWidget progress;
     progress.show();
-    progress.setTitle(tr("Import File Mode"));
+    progress.setTitle(tr("Import file mode"));
     progress.setRange(0, files.count());
 
     MusicSongItem *item = &m_songItems[m_currentImportIndex];
@@ -151,7 +151,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
 
     MusicSongsToolBoxWidget::setCurrentIndex(m_currentImportIndex);
 
-    MusicToastLabel::popup(tr("Import Music Songs Done!"));
+    MusicToastLabel::popup(tr("Import music songs done!"));
 }
 
 QStringList MusicSongsSummariziedWidget::getMusicSongsFileName(int index) const
@@ -332,7 +332,7 @@ void MusicSongsSummariziedWidget::addNewRowItem()
 {
     if(m_songItems.count() <= ITEM_MAX_COUNT)
     {
-        QString name = tr("defaultItem");
+        QString name = tr("Default Item");
         checkCurrentNameExist(name);
         addNewRowItem(name);
     }
@@ -1077,11 +1077,11 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
-    menu.addAction(tr("importItem"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
-    menu.addAction(tr("musicTest"), this, SLOT(musicSongsCheckTestTools()));
-    menu.addAction(tr("lrcBatch"), this, SLOT(musicLrcBatchDownload()));
-    menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > ITEM_MIN_COUNT);
+    menu.addAction(tr("Create Item"), this, SLOT(addNewRowItem()));
+    menu.addAction(tr("Import Item"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
+    menu.addAction(tr("Music Test Tools"), this, SLOT(musicSongsCheckTestTools()));
+    menu.addAction(tr("Lrc Batch Download"), this, SLOT(musicLrcBatchDownload()));
+    menu.addAction(tr("Delete All"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > ITEM_MIN_COUNT);
 
     MusicUtils::Widget::adjustMenuPosition(&menu);
     menu.exec(QCursor::pos());

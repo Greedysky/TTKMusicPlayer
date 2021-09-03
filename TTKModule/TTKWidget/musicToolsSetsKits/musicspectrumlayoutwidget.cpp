@@ -182,7 +182,7 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
 
     ItemInfos items;
     items << ItemInfo(":/spectrum/flow_1", tr("Goom"));
-    items << ItemInfo(":/spectrum/flow_2", tr("ProjectM"));
+    items << ItemInfo(":/spectrum/flow_2", tr("Dazzle"));
     items << ItemInfo(":/spectrum/flow_3", tr("Sonique"));
     items << ItemInfo(":/spectrum/flow_4", tr("Mountain"));
     items << ItemInfo(":/spectrum/flow_5", tr("Ethereality"));
@@ -203,7 +203,7 @@ MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
     items << ItemInfo(":/spectrum/wave_1", tr("Voice"));
     items << ItemInfo(":/spectrum/wave_2", tr("Crest"));
     items << ItemInfo(":/spectrum/wave_3", tr("Volume"));
-    items << ItemInfo(":/spectrum/wave_4", tr("LightEnvelope"));
+    items << ItemInfo(":/spectrum/wave_4", tr("Envelope"));
     addItems(items);
 }
 

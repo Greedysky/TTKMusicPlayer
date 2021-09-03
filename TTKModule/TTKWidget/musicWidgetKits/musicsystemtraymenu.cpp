@@ -14,7 +14,7 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
 {
     setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc_label"),tr("showDeskLrc"), this);
+    m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc_label"),tr("Show Desktop Lrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("Lock Lrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
@@ -31,12 +31,12 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(QIcon(":/contextMenu/btn_setting"), tr("showSetting"), parent, SLOT(musicSetting()));
+    addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), parent, SLOT(musicSetting()));
     addSeparator();
 #ifndef Q_OS_UNIX
     addAction(m_loginAction);
 #endif
-    addAction(tr("appClose"), parent, SLOT(quitWindowClose()));
+    addAction(tr("Quit"), parent, SLOT(quitWindowClose()));
 }
 
 MusicSystemTrayMenu::~MusicSystemTrayMenu()
@@ -64,7 +64,7 @@ void MusicSystemTrayMenu::setLabelText(const QString &text) const
 
 void MusicSystemTrayMenu::showDesktopLrc(bool show) const
 {
-    m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
+    m_showLrcAction->setText(show ? tr("Hide Desktop Lrc") : tr("Show Desktop Lrc"));
     m_lockLrcAction->setEnabled(show);
 }
 
@@ -119,8 +119,8 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
 
 void MusicSystemTrayMenu::showDesktopLrc()
 {
-    const bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
-    m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
+    const bool show = m_showLrcAction->text().trimmed() == tr("Show Desktop Lrc").trimmed();
+    m_showLrcAction->setText(show ? tr("Hide Desktop Lrc") : tr("Show Desktop Lrc"));
     m_lockLrcAction->setEnabled(show);
     MusicRightAreaWidget::instance()->setDestopLrcVisible(show);
 }
@@ -130,7 +130,7 @@ void MusicSystemTrayMenu::showEvent(QShowEvent *event)
     QMenu::showEvent(event);
 #ifndef Q_OS_UNIX
     const bool state = MusicTopAreaWidget::instance()->getUserLoginState();
-    m_loginAction->setText(state ? tr("logout") : tr("login"));
+    m_loginAction->setText(state ? tr("Logout") : tr("Login"));
 #endif
 }
 

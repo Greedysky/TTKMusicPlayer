@@ -173,7 +173,7 @@ void MusicTimerWidget::initComboParameter()
     {
         m_second << tr("%1S").arg(i).rightJustified(3, '0');
     }
-    m_repeat << tr("once") << tr("evMonth") << tr("evWeek") << tr("evDay");
+    m_repeat << tr("Once") << tr("Month") << tr("Week") << tr("Day");
 }
 
 void MusicTimerWidget::changeWidgetIndex(int index)
@@ -198,7 +198,7 @@ void MusicTimerWidget::initFirstWidget()
     m_ui->hourComboBox1->addItems(m_hour);
     m_ui->secComboBox1->addItems(m_second);
     m_ui->repeatComboBox1->addItems(m_repeat);
-    m_ui->plistComboBox->addItem(tr("defualt"));
+    m_ui->plistComboBox->addItem(tr("Defualt"));
     m_ui->noSetRadioButton1->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     m_ui->setRadioButton1->setStyleSheet(MusicUIObject::MQSSRadioButtonStyle01);
     m_ui->hourComboBox1->setItemDelegate(new QStyledItemDelegate(m_ui->hourComboBox1));

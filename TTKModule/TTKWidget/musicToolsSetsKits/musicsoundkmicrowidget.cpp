@@ -156,7 +156,7 @@ void MusicSoundKMicroWidget::playFinished()
     m_mediaPlayer->stop();
     if(m_ui->gifLabel->isRunning())
     {
-        MusicToastLabel::popup(tr("Record Finished"));
+        MusicToastLabel::popup(tr("Record finished"));
 
         recordStateChanged(false);
 
@@ -286,7 +286,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
     if(m_ui->gifLabel->isRunning())
     {
         MusicMessageBox message;
-        message.setText(tr("Recording Now, Stop It?"));
+        message.setText(tr("Recording now, do you want to stop it?"));
         if(message.exec())
         {
             recordStateChanged(false);
@@ -301,7 +301,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
         }
         else
         {
-            MusicToastLabel::popup(tr("Input Error"));
+            MusicToastLabel::popup(tr("Audio input error"));
         }
     }
 }

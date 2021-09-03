@@ -96,7 +96,7 @@ void MusicUserDialog::checkUserLogin()
 
     if(uid.m_uid.trimmed().isEmpty() || pwd.trimmed().isEmpty())
     {
-        MusicToastLabel::popup(tr("You entered is incorrect"));
+        MusicToastLabel::popup(tr("Your entered is incorrect"));
         return;
     }
 
@@ -134,12 +134,12 @@ void MusicUserDialog::checkRegisterUser()
             return;
         }
 
-        MusicToastLabel::popup(tr("The register successfully"));
+        MusicToastLabel::popup(tr("Register Successfully"));
         userLogin();
     }
     else
     {
-        MusicToastLabel::popup(tr("You entered is incorrect"));
+        MusicToastLabel::popup(tr("Your entered is incorrect"));
     }
 }
 
@@ -155,22 +155,22 @@ void MusicUserDialog::checkUserForgotPasswd()
 
      if(user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty())
      {
-         MusicToastLabel::popup(tr("You entered is incorrect"));
+         MusicToastLabel::popup(tr("Your entered is incorrect"));
          return;
      }
      if(!m_userModel->mailCheck(user, mail))
      {
-         MusicToastLabel::popup(tr("You mail is incorrect or user is not exist"));
+         MusicToastLabel::popup(tr("Your mail is incorrect or user is not exist"));
          return;
      }
      if(!m_ui->pwdLineEdit->getStrStatus())
      {
-         MusicToastLabel::popup(tr("You passwd is incorrect"));
+         MusicToastLabel::popup(tr("Your password is incorrect"));
          return;
      }
      if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit->text().trimmed())
      {
-         MusicToastLabel::popup(tr("You verificationCode is incorrect"));
+         MusicToastLabel::popup(tr("Your verificationCode is incorrect"));
          return;
      }
      if(m_userModel->updateUser(user, m_ui->pwdLineEdit->text(), mail, QString(), QString()))

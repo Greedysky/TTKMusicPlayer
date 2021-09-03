@@ -67,8 +67,8 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 
     bool playing;
     Q_EMIT mediaIsPlaying(playing);
-    menu.addAction(tr("videoPlay"), parent(), SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
-    menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
+    menu.addAction(tr("Video Play"), parent(), SLOT(play()))->setText(playing ? tr("Video Pause") : tr("Video Play"));
+    menu.addAction(tr("Video Stop"), parent(), SLOT(stop()));
     MusicUtils::Widget::adjustMenuPosition(&menu);
 
     menu.exec(QCursor::pos());
@@ -120,8 +120,8 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
     bool playing;
     mediaIsPlaying(playing);
-    menu.addAction(tr("videoPlay"), this, SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
-    menu.addAction(tr("videoStop"), this, SLOT(stop()));
+    menu.addAction(tr("Video Play"), this, SLOT(play()))->setText(playing ? tr("Video Pause") : tr("Video Play"));
+    menu.addAction(tr("Video Stop"), this, SLOT(stop()));
     MusicUtils::Widget::adjustMenuPosition(&menu);
 
     menu.exec(QCursor::pos());
@@ -194,7 +194,7 @@ void MusicVideoView::mediaAutionPlayError(int code)
     {
         stop();
 
-        MusicToastLabel::popup(tr("Audio Play Time out!"));
+        MusicToastLabel::popup(tr("Audio play time out!"));
     }
 }
 

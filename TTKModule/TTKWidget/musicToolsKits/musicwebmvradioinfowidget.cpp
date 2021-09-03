@@ -249,7 +249,7 @@ void MusicWebMVRadioInfoWidget::createLabels()
     functionWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
     m_songButton = new QPushButton(functionWidget);
-    m_songButton->setText(tr("songItems"));
+    m_songButton->setText(tr("SongItems"));
     m_songButton->setFixedSize(100, 25);
     m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(m_songButton);
@@ -291,8 +291,8 @@ void MusicWebMVRadioInfoWidget::initThirdWidget()
     middleFuncLayout->setContentsMargins(0, 5, 0, 5);
     QLabel *marginLabel = new QLabel(middleFuncWidget);
     marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
-    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
+    QCheckBox *allCheckBox = new QCheckBox(" " + tr("All"), middleFuncWidget);
+    QPushButton *downloadButton = new QPushButton(tr("Download"), middleFuncWidget);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 

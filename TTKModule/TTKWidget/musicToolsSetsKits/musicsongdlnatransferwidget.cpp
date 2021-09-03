@@ -58,7 +58,7 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle10);
     m_ui->timeSlider->setValue(0);
 
-    m_ui->deviceComboBox->addItem(tr("No Connections"));
+    m_ui->deviceComboBox->addItem(tr("No connections"));
     m_ui->deviceComboBox->setEnabled(false);
 
     m_dlnaFinder = new QDlnaFinder(this);
@@ -120,7 +120,7 @@ void MusicSongDlnaTransferWidget::durationChanged(qint64 duration)
 
 void MusicSongDlnaTransferWidget::musicPlay()
 {
-    if(m_ui->deviceComboBox->currentText() == tr("No Connections"))
+    if(m_ui->deviceComboBox->currentText() == tr("No connections"))
     {
         return;
     }

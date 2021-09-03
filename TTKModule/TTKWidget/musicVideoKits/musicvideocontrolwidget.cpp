@@ -125,7 +125,7 @@ void MusicVideoControlWidget::pushBarrageClicked()
 
 void MusicVideoControlWidget::sendBarrageClicked()
 {
-    if(m_lineEditBarrage->text() == tr("just one barrage!"))
+    if(m_lineEditBarrage->text() == tr("Just one barrage!"))
     {
         return;
     }
@@ -155,7 +155,7 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
 
     m_lineEditBarrage = new MusicLocalSongSearchEdit(pairWidget);
     m_lineEditBarrage->setFixedHeight(24);
-    m_lineEditBarrage->setPlaceholderText(tr("just one barrage!"));
+    m_lineEditBarrage->setPlaceholderText(tr("Just one barrage!"));
 
     m_lineEditBarrage->setStyleSheet(MusicUIObject::MQSSLineEditStyle06);
     connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));

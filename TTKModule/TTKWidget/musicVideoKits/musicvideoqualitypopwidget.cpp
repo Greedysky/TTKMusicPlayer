@@ -71,10 +71,10 @@ void MusicVideoQualityPopWidget::initWidget()
 
     m_containWidget->setFixedSize(140, 125);
     m_menu->removeAction(m_menu->actions().first());
-    m_actionGroup->addAction(m_menu->addAction(tr("StMV")))->setData(0);
-    m_actionGroup->addAction(m_menu->addAction(tr("SdMV")))->setData(1);
-    m_actionGroup->addAction(m_menu->addAction(tr("HdMV")))->setData(2);
-    m_actionGroup->addAction(m_menu->addAction(tr("SqMV")))->setData(3);
+    m_actionGroup->addAction(m_menu->addAction(tr("ST")))->setData(0);
+    m_actionGroup->addAction(m_menu->addAction(tr("SD")))->setData(1);
+    m_actionGroup->addAction(m_menu->addAction(tr("HD")))->setData(2);
+    m_actionGroup->addAction(m_menu->addAction(tr("SQ")))->setData(3);
 
     setQualityActionState();
 }

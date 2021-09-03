@@ -28,11 +28,11 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     m_containWidget->setFixedSize(310, 190);
     m_containWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle08 + MusicUIObject::MQSSColorStyle03);
 
-    QCheckBox *checkBox = new QCheckBox(tr("Hear Yourself Singing"), m_containWidget);
+    QCheckBox *checkBox = new QCheckBox(tr("Hear yourself singing"), m_containWidget);
     checkBox->setGeometry(10, 20, 280, 25);
     checkBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle05);
 
-    QCheckBox *checkBox2 = new QCheckBox(tr("Noise Elimination"), m_containWidget);
+    QCheckBox *checkBox2 = new QCheckBox(tr("Noise elimination"), m_containWidget);
     checkBox2->setGeometry(10, 50, 280, 25);
     checkBox2->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle05);
 

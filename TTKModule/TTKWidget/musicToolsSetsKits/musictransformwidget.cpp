@@ -189,7 +189,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
 {
     if(m_path.isEmpty())
     {
-        MusicToastLabel::popup(tr("The input is empty!"));
+        MusicToastLabel::popup(tr("The input file path is empty!"));
         return false;
     }
 
@@ -198,7 +198,7 @@ bool MusicTransformWidget::processTransform(const QString &para)
 
     if(in.isEmpty() || out.isEmpty())
     {
-        MusicToastLabel::popup(tr("The out is empty!"));
+        MusicToastLabel::popup(tr("The output file path is empty!"));
         return false;
     }
 

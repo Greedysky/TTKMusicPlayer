@@ -399,5 +399,5 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
 
 void MusicSpectrumWidget::showMessageBoxWidget()
 {
-    MusicToastLabel::popup(tr("Spectrum Init Error!"));
+    MusicToastLabel::popup(tr("Spectrum init error!"));
 }

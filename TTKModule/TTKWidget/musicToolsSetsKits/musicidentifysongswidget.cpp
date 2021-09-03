@@ -64,7 +64,7 @@ void MusicIdentifySongsWidget::queryIdentifyKey()
     }
     else
     {
-        MusicToastLabel::popup(tr("Init error!"));
+        MusicToastLabel::popup(tr("Config init error!"));
     }
 }
 

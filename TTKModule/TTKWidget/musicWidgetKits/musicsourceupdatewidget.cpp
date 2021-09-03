@@ -86,7 +86,7 @@ void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &bytes)
     if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, versionStr))
     {
         show();
-        m_textLabel->setText(tr("New Version Found") + "\r\n" + versionStr);
+        m_textLabel->setText(tr("New version found") + "\r\n" + versionStr);
     }
     else
     {
@@ -144,7 +144,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     connect(download, SIGNAL(downloadSpeedLabelChanged(QString,qint64)), SLOT(downloadSpeedLabelChanged(QString,qint64)));
     download->startToDownload();
 #else
-    MusicToastLabel::popup(tr("Current Platform Not Supported!"));
+    MusicToastLabel::popup(tr("Current platform is not supported!"));
 #endif
 }
 
@@ -189,7 +189,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     const QString &localDwonload = "v" + m_newVersionStr + EXE_FILE;
 
     MusicMessageBox message(this);
-    message.setText(tr("Download Finish, Install Or Not"));
+    message.setText(tr("Download finished, to be installed or not?"));
     if(message.exec())
     {
         MusicUtils::Url::openUrl("open", UPDATE_DIR_FULL+ localDwonload);

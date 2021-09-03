@@ -474,7 +474,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
 
     MusicProgressWidget progress;
     progress.show();
-    progress.setTitle(tr("Delete File Mode"));
+    progress.setTitle(tr("Delete file mode"));
     progress.setRange(0, deleteList.count() / 3 * 2);
 
     for(int i=0; i<deleteList.count(); ++i)
@@ -716,12 +716,12 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu rightClickMenu(this);
     rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
-    rightClickMenu.addAction(tr("playLater"), this, SLOT(musicAddToPlayLater()));
-    rightClickMenu.addAction(tr("addToPlaylist"), this, SLOT(musicAddToPlayedList()));
+    rightClickMenu.addAction(tr("Play Later"), this, SLOT(musicAddToPlayLater()));
+    rightClickMenu.addAction(tr("Add To Playlist"), this, SLOT(musicAddToPlayedList()));
     rightClickMenu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
 
-    QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
+    QMenu musicPlaybackMode(tr("Playback Mode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
     QList<QAction*> actions;
     actions << musicPlaybackMode.addAction(tr("Order Play"), MusicApplication::instance(), SLOT(musicPlayOrder()));
@@ -747,20 +747,20 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
 
-    QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
+    QMenu musicAddNewFiles(tr("Add New Files"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
     musicAddNewFiles.setEnabled(m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST);
-    musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
-    musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
+    musicAddNewFiles.addAction(tr("Open Files"), this, SIGNAL(musicAddNewFiles()));
+    musicAddNewFiles.addAction(tr("Open Dir"), this, SIGNAL(musicAddNewDir()));
     MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
-    QMenu musicSortFiles(tr("sort"), &rightClickMenu);
-    musicSortFiles.addAction(tr("sortByFileName"))->setData(0);
-    musicSortFiles.addAction(tr("sortBySinger"))->setData(1);
-    musicSortFiles.addAction(tr("sortByFileSize"))->setData(2);
-    musicSortFiles.addAction(tr("sortByAddTime"))->setData(3);
-    musicSortFiles.addAction(tr("sortByPlayTime"))->setData(4);
-    musicSortFiles.addAction(tr("sortByPlayCount"))->setData(5);
+    QMenu musicSortFiles(tr("Sort"), &rightClickMenu);
+    musicSortFiles.addAction(tr("Sort By FileName"))->setData(0);
+    musicSortFiles.addAction(tr("Sort By Singer"))->setData(1);
+    musicSortFiles.addAction(tr("Sort By FileSize"))->setData(2);
+    musicSortFiles.addAction(tr("Sort By AddTime"))->setData(3);
+    musicSortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
+    musicSortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
     MusicUtils::Widget::adjustMenuPosition(&musicSortFiles);
     connect(&musicSortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
@@ -775,14 +775,14 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     }
     rightClickMenu.addMenu(&musicSortFiles);
 
-    rightClickMenu.addAction(tr("foundMV"), this, SLOT(musicSongMovieFound()));
+    rightClickMenu.addAction(tr("Found Movie"), this, SLOT(musicSongMovieFound()));
     rightClickMenu.addSeparator();
 
     createMoreMenu(&rightClickMenu);
 
-    QMenu musicToolMenu(tr("musicTool"), &rightClickMenu);
-    musicToolMenu.addAction(tr("bell"), this, SLOT(musicMakeRingWidget()));
-    musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
+    QMenu musicToolMenu(tr("Tools"), &rightClickMenu);
+    musicToolMenu.addAction(tr("Make Bell"), this, SLOT(musicMakeRingWidget()));
+    musicToolMenu.addAction(tr("Make Transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
     MusicUtils::Widget::adjustMenuPosition(&musicToolMenu);
 
@@ -793,7 +793,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     bool empty;
     Q_EMIT isSearchFileListEmpty(empty);
-    rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("Rename"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
     rightClickMenu.addAction(tr("Delete With File"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);
     rightClickMenu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);

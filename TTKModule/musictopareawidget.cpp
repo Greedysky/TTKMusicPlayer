@@ -64,16 +64,16 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchButton->setStyleSheet(MusicUIObject::MQSSTinyBtnMainSearch);
 
-    ui->musicWindowIdentify->setToolTip(tr("identify"));
+    ui->musicWindowIdentify->setToolTip(tr("Identify Songs"));
     ui->musicWindowIdentify->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowIdentify->setStyleSheet(MusicUIObject::MQSSBtnIdentify);
 
-    ui->musicWindowTools->setToolTip(tr("tools"));
+    ui->musicWindowTools->setToolTip(tr("Tools"));
     ui->musicWindowTools->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowTools->setStyleSheet(MusicUIObject::MQSSBtnTools);
     connect(ui->musicWindowTools, SIGNAL(clicked()), SLOT(musicStackedToolsWidgetChanged()));
 
-    ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
+    ui->musicWindowChangeSkin->setToolTip(tr("Skin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowChangeSkin->setStyleSheet(MusicUIObject::MQSSBtnSkin);
     connect(ui->musicWindowChangeSkin, SIGNAL(clicked()), SLOT(musicShowSkinChangedWindow()));
@@ -83,12 +83,12 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowSetting->setStyleSheet(MusicUIObject::MQSSBtnSetting);
     connect(ui->musicWindowSetting, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCreateRightMenu()));
 
-    ui->musicWindowConcise->setToolTip(tr("concisein/out"));
+    ui->musicWindowConcise->setToolTip(tr("Concise Mode"));
     ui->musicWindowConcise->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowConcise->setStyleSheet(MusicUIObject::MQSSBtnConciseIn);
     connect(ui->musicWindowConcise, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicWindowConciseChanged()));
 
-    ui->musicWindowRemote->setToolTip(tr("remoteWindow"));
+    ui->musicWindowRemote->setToolTip(tr("Open Remote"));
     ui->musicWindowRemote->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowRemote->setStyleSheet(MusicUIObject::MQSSBtnRemote);
     connect(ui->musicWindowRemote, SIGNAL(clicked()), SLOT(musicSquareRemote()));

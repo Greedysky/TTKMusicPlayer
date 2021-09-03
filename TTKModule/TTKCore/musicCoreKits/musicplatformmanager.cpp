@@ -322,7 +322,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
 
     const QString &playListString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\PlayList";
     QSettings playListSetting(playListString, QSettings::NativeFormat);
-    playListSetting.setValue("Default", QObject::tr("add TTKMusicPlayer playList"));
+    playListSetting.setValue("Default", QObject::tr("Add to TTKMusicPlayer Playlist"));
 
     const QString &playListComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);

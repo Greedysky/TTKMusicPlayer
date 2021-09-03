@@ -267,7 +267,7 @@ MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
     QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
-    names << tr("Re") << tr("My") << tr("daily") << tr("Online");
+    names << tr("Recommand") << tr("My") << tr("Daily") << tr("Online");
     for(int i=0; i<names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);
