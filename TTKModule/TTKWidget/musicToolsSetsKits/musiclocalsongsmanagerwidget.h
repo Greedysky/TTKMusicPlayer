@@ -55,7 +55,7 @@ Q_SIGNALS:
     /*!
      * Add current selected song to play lists.
      */
-    void addSongToPlay(const QStringList &names);
+    void addSongToPlaylist(const QStringList &names);
 
 public Q_SLOTS:
     /*!

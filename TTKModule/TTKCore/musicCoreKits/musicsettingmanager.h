@@ -152,7 +152,7 @@ public:
      */
     inline void setValue(ConfigType type, const QVariant &var)
     {
-        m_para[type] = var;
+        m_parameter[type] = var;
     }
 
     /*!
@@ -160,7 +160,7 @@ public:
      */
     inline void setValue(const QString &stype, const QVariant &var)
     {
-        m_para[typeStringToEnum(stype)] = var;
+        m_parameter[typeStringToEnum(stype)] = var;
     }
 
     /*!
@@ -168,7 +168,7 @@ public:
      */
     inline QVariant value(ConfigType type) const
     {
-        return m_para[type];
+        return m_parameter[type];
     }
 
     /*!
@@ -176,7 +176,7 @@ public:
      */
     inline QVariant value(const QString &stype) const
     {
-        return m_para[typeStringToEnum(stype)];
+        return m_parameter[typeStringToEnum(stype)];
     }
 
     /*!
@@ -184,7 +184,7 @@ public:
      */
     inline int count() const
     {
-        return m_para.count();
+        return m_parameter.count();
     }
 
     /*!
@@ -192,7 +192,7 @@ public:
      */
     inline bool isEmpty() const
     {
-        return m_para.isEmpty();
+        return m_parameter.isEmpty();
     }
 
     /*!
@@ -200,7 +200,7 @@ public:
      */
     inline bool contains(ConfigType type) const
     {
-        return m_para.contains(type);
+        return m_parameter.contains(type);
     }
 
 protected:
@@ -216,7 +216,7 @@ protected:
     }
 
     QVariant m_variant;
-    QMap<ConfigType, QVariant> m_para;
+    QMap<ConfigType, QVariant> m_parameter;
 
     DECLARE_SINGLETON_CLASS(MusicSettingManager)
 };

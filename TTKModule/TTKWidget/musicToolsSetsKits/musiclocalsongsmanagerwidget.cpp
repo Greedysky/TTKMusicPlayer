@@ -182,7 +182,7 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row, int col)
                   m_ui->searchLineEdit->clear();
                   m_searchfileListCache.clear();
               }
-              Q_EMIT addSongToPlay(QStringList(m_fileNames[row].absoluteFilePath()));
+              Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row].absoluteFilePath()));
               break;
            }
         default: break;
@@ -198,7 +198,7 @@ void MusicLocalSongsManagerWidget::itemDoubleClicked(int row, int)
         m_ui->searchLineEdit->clear();
         m_searchfileListCache.clear();
     }
-    Q_EMIT addSongToPlay(QStringList(m_fileNames[row].absoluteFilePath()));
+    Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row].absoluteFilePath()));
 }
 
 void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
@@ -428,7 +428,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
         names << m_fileNames[index].absoluteFilePath();
     }
 
-    Q_EMIT addSongToPlay(names);
+    Q_EMIT addSongToPlaylist(names);
 }
 
 bool MusicLocalSongsManagerWidget::filterIndexChanged()

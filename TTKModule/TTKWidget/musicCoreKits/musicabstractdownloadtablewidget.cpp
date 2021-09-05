@@ -55,7 +55,7 @@ void MusicAbstractDownloadTableWidget::musicPlay()
     }
 
     const QString &path = (*m_musicSongs)[currentRow()].getMusicPath();
-    Q_EMIT addSongToPlay(QStringList(QFile::exists(path) ? path : QString()));
+    Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 
 void MusicAbstractDownloadTableWidget::setDeleteItemAt()

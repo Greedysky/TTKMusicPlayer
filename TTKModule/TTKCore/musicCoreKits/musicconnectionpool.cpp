@@ -54,7 +54,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
             (from == MusicSongCheckToolsQualityTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicAbstractDownloadTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
-        QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second, SLOT(addSongToPlaylist(QStringList)));
+        QObject::connect(first, SIGNAL(addSongToPlaylist(QStringList)), second, SLOT(addSongToPlaylist(QStringList)));
     }
     else if(from == MusicEqualizerDialog::getClassName() && to == MusicPlayer::getClassName())
     {
