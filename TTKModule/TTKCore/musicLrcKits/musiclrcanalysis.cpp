@@ -1,12 +1,11 @@
 #include "musiclrcanalysis.h"
-#ifndef MUSIC_MOBILE
 #include "musiclrcfromkrc.h"
-#endif
-#include <qmath.h>
 #include "musicstringutils.h"
 #include "musicapplication.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictranslationrequest.h"
+
+#include <qmath.h>
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -126,7 +125,6 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
 
 MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
 {
-#ifndef MUSIC_MOBILE
     clear();
     m_currentFilePath = path;
 
@@ -171,10 +169,6 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
     }
 
     return OpenFileSuccess;
-#else
-    Q_UNUSED(fileName);
-    return OpenFileFail;
-#endif
 }
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)

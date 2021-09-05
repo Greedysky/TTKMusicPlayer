@@ -53,9 +53,10 @@
 #define WPL_FILE_PREFIX         "wpl"
 #define XSPF_FILE_PREFIX        "xspf"
 #define ASX_FILE_PREFIX         "asx"
-#define FPL_FILE_PREFIX         "fpl"
 #define CSV_FILE_PREFIX         "csv"
 #define TXT_FILE_PREFIX         "txt"
+#define FPL_FILE_PREFIX         "fpl"
+#define DBPL_FILE_PREFIX        "dbpl"
 
 //file ext
 #define AAC_FILE_PREFIX         "aac"

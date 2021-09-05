@@ -1,24 +1,18 @@
 #include "musicdownloadmanager.h"
 #include "musicobject.h"
 #include "musicconnectionpool.h"
-#ifndef MUSIC_MOBILE
 #include "musicdownloadstatusmodule.h"
 #include "musicdownloadrecordwidget.h"
 #include "musiccloudtablewidget.h"
-#endif
 
 void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
 {
-#ifndef MUSIC_MOBILE
     m_queueList << object;
     const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusModule::getClassName());
     if(to)
     {
         QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));
     }
-#else
-    Q_UNUSED(object);
-#endif
 }
 
 void MusicDownLoadManager::removeNetworkMultiValue(QObject *object)
@@ -32,7 +26,6 @@ void MusicDownLoadManager::removeNetworkMultiValue(QObject *object)
 
 void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pair)
 {
-#ifndef MUSIC_MOBILE
     QString className;
     switch(pair.m_type)
     {
@@ -51,9 +44,6 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pai
 
     QObject::connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), SLOT(downloadProgressChanged(float, QString, qint64)));
     m_pairList << pair;
-#else
-    Q_UNUSED(pair);
-#endif
 }
 
 void MusicDownLoadManager::reconnectMusicDownload(const MusicDownLoadPairData &pair)

@@ -1,9 +1,7 @@
 #include "musicdownloadstatusmodule.h"
 #include "musicapplication.h"
-#ifndef MUSIC_MOBILE
 #include "musicbottomareawidget.h"
 #include "musicsongsearchonlinewidget.h"
-#endif
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
@@ -16,9 +14,7 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     m_parentClass = TTKStatic_cast(MusicApplication*, parent);
 
     G_CONNECTION_PTR->setValue(getClassName(), this);
-#ifndef MUSIC_MOBILE
     G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
-#endif
     G_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
@@ -40,11 +36,9 @@ void MusicDownloadStatusModule::networkConnectionStateChanged(bool state)
     G_NETWORK_PTR->setNetWorkState(state);
     if(m_previousState != state)
     {
-#ifndef MUSIC_MOBILE
         MusicBottomAreaWidget *w = MusicBottomAreaWidget::instance();
         m_previousState ? w->showMessage(tr("TTKMusicPlayer"), tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
                         : w->showMessage(tr("TTKMusicPlayer"), tr("Network Connection Has Been Restored."));
-#endif
     }
     m_previousState = state;
 }

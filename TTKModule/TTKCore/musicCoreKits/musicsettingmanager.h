@@ -140,11 +140,7 @@ public:
         DownloadULoadLimit,              /*!< Download ULoad Limit Parameter*/
         //
         HotkeyEnable,                    /*!< Hotkey Enable Parameter*/
-        HotkeyString,                    /*!< Hotkey String Parameter*/
-        //
-#ifdef MUSIC_MOBILE
-        ,MobileWifiConnect               /*!< Mobile Wifi Connect Parameter*/
-#endif
+        HotkeyString                     /*!< Hotkey String Parameter*/
     };
 
     /*!

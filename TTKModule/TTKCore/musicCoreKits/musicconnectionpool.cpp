@@ -2,7 +2,6 @@
 #include "musicobject.h"
 #include "musicsong.h"
 #include "musicdownloadstatusmodule.h"
-#ifndef MUSIC_MOBILE
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
 #include "musicsongssummariziedwidget.h"
@@ -23,7 +22,6 @@
 #include "musiccloudmanagerwidget.h"
 #include "musicsongdlnatransferwidget.h"
 #include "musicsongitemselectedareawidget.h"
-#endif
 
 MusicConnectionPool::MusicConnectionPool()
 {
@@ -43,7 +41,6 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(networkConnectionStateChanged(bool)), second, SLOT(networkConnectionStateChanged(bool)));
     }
-#ifndef MUSIC_MOBILE
     else if(from == MusicPlayer::getClassName() && to == MusicLrcMakerWidget::getClassName())
     {
         QObject::connect(first, SIGNAL(positionChanged(qint64)), second, SLOT(positionChanged(qint64)));
@@ -93,7 +90,6 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(uploadFileError(MusicCloudDataItem)), second, SLOT(uploadFileError(MusicCloudDataItem)));
         QObject::connect(second, SIGNAL(reuploadFilesToServer(QStringList)), first, SLOT(reuploadFilesToServer(QStringList)));
     }
-#endif
 }
 
 void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)

@@ -60,19 +60,10 @@
 #define CONNECT_MOBILE_INDEX_0      0
 
 //MusicSongsSummariziedWidget
-#ifndef MUSIC_MOBILE
 #define MUSIC_NORMAL_LIST           0
 #define MUSIC_LOVEST_LIST           1
 #define MUSIC_NETWORK_LIST          2
 #define MUSIC_RECENT_LIST           3
-#else
-#define MUSIC_NORMAL_LIST           0
-#define MUSIC_DOWNLOAD_LIST         1
-#define MUSIC_RECENT_LIST           2
-#define MUSIC_LOVEST_LIST           3
-#define MUSIC_DOWNMV_LIST           4
-#define MUSIC_MUSICRG_LIST          5
-#endif
 
 //MusicIdentifySongsWidget
 #define IDENTIFY_SONGS_INDEX_0      0
