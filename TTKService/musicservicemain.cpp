@@ -21,7 +21,7 @@ void loadAppScaledFactor(int argc, char *argv[])
       const float dpi = platform.getLogicalDotsPerInch() / 96.0;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
    #else
-//      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
    #endif
 #endif
     Q_UNUSED(argc);

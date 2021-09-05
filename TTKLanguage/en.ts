@@ -304,7 +304,7 @@
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="786"/>
         <source>Equalizer</source>
-        <translation>Effect</translation>
+        <translation>Equalizer</translation>
     </message>
     <message>
         <location filename="../TTKModule/musicapplication.cpp" line="787"/>

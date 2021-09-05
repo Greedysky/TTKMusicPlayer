@@ -24,7 +24,7 @@
 /*! @brief The class of the dlna service.
  * @author Greedysky <greedysky@163.com>
  */
-struct TTK_MODULE_EXPORT QDlnaService
+typedef struct TTK_MODULE_EXPORT QDlnaService
 {
     QString m_controlURL;
     QString m_scpdURL;
@@ -36,6 +36,6 @@ struct TTK_MODULE_EXPORT QDlnaService
     {
         return m_controlURL.isEmpty() && m_scpdURL.isEmpty() && m_eventSubURL.isEmpty() && m_serviceType.isEmpty() && m_serviceID.isEmpty();
     }
-};
+}QDlnaService;
 
 #endif // QDLNASERVICE_H
