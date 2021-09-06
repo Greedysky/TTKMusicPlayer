@@ -10,7 +10,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 
-static QStringList getProcessLists()
+static QStringList getProcessList()
 {
     QStringList lprocess;
     unsigned long aProcesses[1024], cbNeeded, cProcesses;
@@ -80,7 +80,7 @@ static bool killProcess(LPCWSTR processName)
 
 void killProcessByName(const QStringList &origin)
 {
-    QStringList list(getProcessLists());
+    QStringList list(getProcessList());
     for(const QString &process : qAsConst(origin))
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
@@ -98,7 +98,7 @@ typedef struct PID_INFO
     QString m_path;
 }PID_INFO;
 
-static QList<PID_INFO> getProcessLists()
+static QList<PID_INFO> getProcessList()
 {
     QList<PID_INFO> lprocess;
     QProcess process;
@@ -134,7 +134,7 @@ static bool killProcess(int pid)
 
 void killProcessByName(const QStringList &origin)
 {
-    QList<PID_INFO>  list(getProcessLists());
+    QList<PID_INFO>  list(getProcessList());
     for(const PID_INFO &info : qAsConst(list))
     {
         for(const QString &process : qAsConst(origin))

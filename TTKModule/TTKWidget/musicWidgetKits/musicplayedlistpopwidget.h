@@ -172,7 +172,7 @@ protected:
 
     QList<QLabel*> m_labels;
     MusicPlaylist *m_playlist;
-    MusicSongs m_songLists;
+    MusicSongs m_songList;
     QScrollArea *m_scrollArea;
     MusicSongsListPlayedTableWidget *m_playedListWidget;
 

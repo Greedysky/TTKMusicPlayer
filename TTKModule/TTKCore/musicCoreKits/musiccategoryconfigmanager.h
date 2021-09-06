@@ -40,7 +40,7 @@ typedef struct TTK_MODULE_EXPORT MusicResultsCategoryItem
         m_value = value;
     }
 }MusicResultsCategoryItem;
-TTK_DECLARE_LISTS(MusicResultsCategoryItem)
+TTK_DECLARE_LIST(MusicResultsCategoryItem)
 
 
 /*! @brief The class of the results category core.
@@ -51,7 +51,7 @@ typedef struct TTK_MODULE_EXPORT MusicResultsCategory
     QString m_category;
     MusicResultsCategoryItems m_items;
 }MusicResultsCategory;
-TTK_DECLARE_LISTS(MusicResultsCategory)
+TTK_DECLARE_LIST(MusicResultsCategory)
 
 
 /*! @brief The class of the category Config Manager.

@@ -49,7 +49,7 @@ typedef struct TTK_MODULE_EXPORT MusicFunctionItem
     QString m_icon;
     QString m_name;
 }MusicFunctionItem;
-TTK_DECLARE_LISTS(MusicFunctionItem)
+TTK_DECLARE_LIST(MusicFunctionItem)
 
 /*! @brief The class of the list table widget.
  * @author Greedysky <greedysky@163.com>

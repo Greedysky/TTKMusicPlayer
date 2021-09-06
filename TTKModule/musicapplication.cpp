@@ -122,7 +122,7 @@ QString MusicApplication::getCurrentFileName() const
         return QString();
     }
 
-    const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+    const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
     if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
     {
         const MusicSongs &songs = items[m_currentMusicSongTreeIndex].m_songs;
@@ -139,7 +139,7 @@ QString MusicApplication::getCurrentFilePath() const
         return QString();
     }
 
-    const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+    const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
     if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
     {
         const MusicSongs &songs = items[m_currentMusicSongTreeIndex].m_songs;
@@ -220,7 +220,7 @@ bool MusicApplication::musicLovestContains() const
     if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_LOWER_LEVEL)
     {
         const MusicPlayItem &item = m_musicPlaylist->currentItem();
-        const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+        const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
         if(item.isValid() && item.m_toolIndex < items.count())
         {
             const MusicSongs &currentSongs = items[item.m_toolIndex].m_songs;
@@ -236,7 +236,7 @@ bool MusicApplication::musicListLovestContains(int index) const
 {
     if(m_musicSongTreeWidget->currentIndex() != DEFAULT_LOWER_LEVEL && index > DEFAULT_LOWER_LEVEL)
     {
-        const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+        const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
         if(m_musicSongTreeWidget->currentIndex() < items.count())
         {
             const MusicSongs &currentSongs = items[m_musicSongTreeWidget->currentIndex()].m_songs;
@@ -542,7 +542,7 @@ void MusicApplication::musicImportSongsItemList()
         MusicPlaylistManager manager;
         MusicSongItems items;
         manager.getMusicSongItems(dialog.selectedFiles(), items);
-        m_musicSongTreeWidget->appendMusicLists(items);
+        m_musicSongTreeWidget->appendMusicItemList(items);
     }
 }
 
@@ -551,7 +551,7 @@ void MusicApplication::musicExportSongsItemList(int index)
     const QString &fileName = MusicUtils::File::getSaveFileDialog(this, MusicFormats::supportPlaylistOutputFormats());
     if(!fileName.isEmpty())
     {
-        const MusicSongItems &items = m_musicSongTreeWidget->getMusicLists();
+        const MusicSongItems &items = m_musicSongTreeWidget->getMusicItemList();
         if(index < 0 || index >= items.count())
         {
             return;
@@ -601,7 +601,7 @@ void MusicApplication::musicPlayIndex(int row, int)
     if(m_currentMusicSongTreeIndex != m_musicSongTreeWidget->currentIndex() || m_musicPlaylist->mediaCount() == 0)
     {
         setMusicPlayIndex();
-        const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+        const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
         const int index = m_musicSongTreeWidget->currentIndex();
         if(0 <= index && index < items.count())
         {
@@ -626,7 +626,7 @@ void MusicApplication::musicPlayIndexClicked(int row, int col)
     if(m_currentMusicSongTreeIndex == m_musicSongTreeWidget->currentIndex())
     {
         setMusicPlayIndex();
-        const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+        const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
         const int index = m_musicSongTreeWidget->currentIndex();
         if(0 <= index && index < items.count())
         {
@@ -1098,7 +1098,7 @@ void MusicApplication::readSystemConfigFromFile()
     {
         manager.readPlaylistData(songs);
     }
-    const bool success = m_musicSongTreeWidget->addMusicLists(songs);
+    const bool success = m_musicSongTreeWidget->addMusicItemList(songs);
     //
     MusicConfigManager xml;
     if(!xml.readConfig())
@@ -1265,5 +1265,5 @@ void MusicApplication::writeSystemConfigToFile()
     xml.writeSysConfigData();
 
     MusicTKPLConfigManager manager;
-    manager.writePlaylistData(m_musicSongTreeWidget->getMusicLists(), MUSICPATH_FULL);
+    manager.writePlaylistData(m_musicSongTreeWidget->getMusicItemList(), MUSICPATH_FULL);
 }

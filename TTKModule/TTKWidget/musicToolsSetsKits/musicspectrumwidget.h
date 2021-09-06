@@ -48,7 +48,7 @@ typedef struct TTK_MODULE_EXPORT MusicSpectrum
     QWidget *m_object;
     SpectrumType m_type;
 }MusicSpectrum;
-TTK_DECLARE_LISTS(MusicSpectrum)
+TTK_DECLARE_LIST(MusicSpectrum)
 
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>

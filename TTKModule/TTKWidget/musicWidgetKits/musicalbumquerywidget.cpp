@@ -135,8 +135,8 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        QStringList lists = item.m_description.split(TTK_STR_SPLITER);
-        if(lists.count() < 4)
+        QStringList list = item.m_description.split(TTK_STR_SPLITER);
+        if(list.count() < 4)
         {
             return;
         }
@@ -148,19 +148,19 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
             download->startToDownload(item.m_coverUrl);
         }
 
-        for(int i=0; i<lists.count(); ++i)
+        for(int i=0; i<list.count(); ++i)
         {
-            if(lists[i].isEmpty())
+            if(list[i].isEmpty())
             {
-                lists[i] = STRING_NULL;
+                list[i] = STRING_NULL;
             }
         }
 
         TTKResizeWidget *data = &m_resizeWidgets[0];
-        data->m_label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(lists[0]));
+        data->m_label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(list[0]));
 
         data = &m_resizeWidgets[1];
-        data->m_label->setToolTip(lists[0]);
+        data->m_label->setToolTip(list[0]);
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 210));
 
         data = &m_resizeWidgets[2];
@@ -168,15 +168,15 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
 
         data = &m_resizeWidgets[3];
-        data->m_label->setToolTip(tr("Language: %1").arg(lists[1]));
+        data->m_label->setToolTip(tr("Language: %1").arg(list[1]));
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
 
         data = &m_resizeWidgets[4];
-        data->m_label->setToolTip(tr("Company: %1").arg(lists[2]));
+        data->m_label->setToolTip(tr("Company: %1").arg(list[2]));
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
 
         data = &m_resizeWidgets[5];
-        data->m_label->setToolTip(tr("Year: %1").arg(lists[3]));
+        data->m_label->setToolTip(tr("Year: %1").arg(list[3]));
         data->m_label->setText(MusicUtils::Widget::elidedText(data->m_font, data->m_label->toolTip(), Qt::ElideRight, 180));
     }
 }

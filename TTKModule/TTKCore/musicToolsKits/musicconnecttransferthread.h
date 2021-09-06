@@ -35,7 +35,7 @@ public:
     explicit MusicConnectTransferThread(QObject *parent = nullptr);
 
     /*!
-     * Set copy file path lists.
+     * Set copy file path list.
      */
     void setCopyFilePath(const QString &target, const QStringList &path);
 

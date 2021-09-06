@@ -294,7 +294,7 @@ public Q_SLOTS:
      */
     void setStopSongChanged();
     /*!
-     * Get current play lists.
+     * Get current play list.
      */
     void getCurrentPlaylist(QStringList &list);
 

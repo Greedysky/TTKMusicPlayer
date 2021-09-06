@@ -29,7 +29,7 @@ typedef struct TTK_MODULE_EXPORT MusicSearchRecord
     QString m_name;
     QString m_timestamp;
 }MusicSearchRecord;
-TTK_DECLARE_LISTS(MusicSearchRecord)
+TTK_DECLARE_LIST(MusicSearchRecord)
 
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>

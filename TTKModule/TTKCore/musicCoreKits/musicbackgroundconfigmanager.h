@@ -42,7 +42,7 @@ typedef struct TTK_MODULE_EXPORT MusicSkinConfigItem
     }
 
 }MusicSkinConfigItem;
-TTK_DECLARE_LISTS(MusicSkinConfigItem)
+TTK_DECLARE_LIST(MusicSkinConfigItem)
 
 
 /*! @brief The class of the skin backgroud image.
@@ -59,7 +59,7 @@ typedef struct TTK_MODULE_EXPORT MusicBackgroundImage
     }
 
 }MusicBackgroundImage;
-TTK_DECLARE_LISTS(MusicBackgroundImage)
+TTK_DECLARE_LIST(MusicBackgroundImage)
 
 
 /*! @brief The class of the skin XML Config Manager.

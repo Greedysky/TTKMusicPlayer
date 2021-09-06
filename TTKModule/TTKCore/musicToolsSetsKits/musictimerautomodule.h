@@ -43,7 +43,7 @@ typedef struct TTK_MODULE_EXPORT MusicTimeData
         m_state = false;
     }
 }MusicTimeData;
-TTK_DECLARE_LISTS(MusicTimeData)
+TTK_DECLARE_LIST(MusicTimeData)
 
 
 /*! @brief The class of the time auto run.

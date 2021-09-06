@@ -122,7 +122,7 @@ void MusicSongItemSelectedDialog::createAllItems(MusicSongItems *items)
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
-    Q_EMIT itemListsChanged(m_ui->itemTableWidget->getSelectedItems());
+    Q_EMIT itemListChanged(m_ui->itemTableWidget->getSelectedItems());
     accept();
 }
 
@@ -139,7 +139,7 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
 {
     m_selected = false;
     m_label = new QLabel(tr("Range:"));
-    m_itemLabel = new QLabel(tr("All Lists"));
+    m_itemLabel = new QLabel(tr("All List"));
     m_modifiedItemButton = new MusicClickedLabel(tr("Mod"));
 
     m_label->setFixedWidth(60);
@@ -174,7 +174,7 @@ MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
 MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
 {
     MusicSongItems songs;
-    Q_EMIT getMusicLists(songs);
+    Q_EMIT getMusicItemList(songs);
 
     MusicSongs selectedSongs;
     for(const MusicSongItem &item : qAsConst(songs))
@@ -200,20 +200,20 @@ MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
 void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 {
     MusicSongItems songs;
-    Q_EMIT getMusicLists(songs);
+    Q_EMIT getMusicItemList(songs);
 
     m_selected = true;
 
     MusicSongItemSelectedDialog dialog;
-    connect(&dialog, SIGNAL(itemListsChanged(TTKIntList)), SLOT(itemListsChanged(TTKIntList)));
+    connect(&dialog, SIGNAL(itemListChanged(TTKIntList)), SLOT(itemListChanged(TTKIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();
 
     Q_EMIT confirmChanged();
 }
 
-void MusicSongItemSelectedAreaWidget::itemListsChanged(const TTKIntList &items)
+void MusicSongItemSelectedAreaWidget::itemListChanged(const TTKIntList &items)
 {
     m_selectedItems = items;
-    m_itemLabel->setText(tr("Custom Lists"));
+    m_itemLabel->setText(tr("Custom List"));
 }

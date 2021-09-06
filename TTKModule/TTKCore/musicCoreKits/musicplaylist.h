@@ -51,7 +51,7 @@ typedef struct TTK_MODULE_EXPORT MusicPlayItem
         return m_toolIndex == other.m_toolIndex && m_path == other.m_path;
     }
 }MusicPlayItem;
-TTK_DECLARE_LISTS(MusicPlayItem)
+TTK_DECLARE_LIST(MusicPlayItem)
 
 
 /*! @brief The class of the music play list.

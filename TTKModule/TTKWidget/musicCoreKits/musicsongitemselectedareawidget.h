@@ -79,9 +79,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Item lists changed.
+     * Item list changed.
      */
-    void itemListsChanged(const TTKIntList &items);
+    void itemListChanged(const TTKIntList &items);
 
 public Q_SLOTS:
     /*!
@@ -124,7 +124,7 @@ Q_SIGNALS:
     /*!
      * Get music datas from container.
      */
-    void getMusicLists(MusicSongItems &songs);
+    void getMusicItemList(MusicSongItems &songs);
     /*!
      * Confirm changed.
      */
@@ -136,9 +136,9 @@ public Q_SLOTS:
      */
     void modifiedItemButtonClicked();
     /*!
-     * Item lists changed.
+     * Item list changed.
      */
-    void itemListsChanged(const TTKIntList &items);
+    void itemListChanged(const TTKIntList &items);
 
 protected:
     bool m_selected;

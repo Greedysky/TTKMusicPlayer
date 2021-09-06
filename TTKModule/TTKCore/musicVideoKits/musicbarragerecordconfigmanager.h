@@ -30,7 +30,7 @@ typedef struct TTK_MODULE_EXPORT MusicBarrageRecord
     QString m_color;
     QString m_value;
 }MusicBarrageRecord;
-TTK_DECLARE_LISTS(MusicBarrageRecord)
+TTK_DECLARE_LIST(MusicBarrageRecord)
 
 /*! @brief The class of the barrage record manager.
  * @author Greedysky <greedysky@163.com>

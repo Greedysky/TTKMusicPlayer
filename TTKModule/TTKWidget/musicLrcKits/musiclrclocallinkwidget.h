@@ -30,7 +30,7 @@ typedef struct TTK_MODULE_EXPORT MusicLocalDataItem
     QString m_name;
     QString m_path;
 }MusicLocalDataItem;
-TTK_DECLARE_LISTS(MusicLocalDataItem)
+TTK_DECLARE_LIST(MusicLocalDataItem)
 
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>

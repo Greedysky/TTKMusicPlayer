@@ -39,7 +39,7 @@ typedef struct TTK_MODULE_EXPORT MusicXmlAttribute
         m_value = value;
     }
 }MusicXmlAttribute;
-TTK_DECLARE_LISTS(MusicXmlAttribute)
+TTK_DECLARE_LIST(MusicXmlAttribute)
 
 /*! @brief The class of the xml node hepler.
  * @author Greedysky <greedysky@163.com>

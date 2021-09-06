@@ -170,6 +170,6 @@ void MusicLocalSongsInfoTableWidget::itemCellDoubleClicked(int row, int column)
     if(it)
     {
         QFileInfoList list = it->data(MUSIC_INFO_ROLE).value<QFileInfoList>();
-        Q_EMIT updateFileLists(list);
+        Q_EMIT updateFileList(list);
     }
 }

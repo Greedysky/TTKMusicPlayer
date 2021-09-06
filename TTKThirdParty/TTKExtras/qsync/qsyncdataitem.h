@@ -46,6 +46,6 @@ typedef struct TTK_MODULE_EXPORT QSyncDataItem
         m_size = 0;
     }
 }QSyncDataItem;
-TTK_DECLARE_LISTS(QSyncDataItem)
+TTK_DECLARE_LIST(QSyncDataItem)
 
 #endif

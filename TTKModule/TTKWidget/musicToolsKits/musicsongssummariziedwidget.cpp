@@ -45,10 +45,10 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
     delete m_listMaskWidget;
     delete m_listFunctionWidget;
     delete m_musicSongSearchWidget;
-    clearAllLists();
+    clearAllList();
 }
 
-bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
+bool MusicSongsSummariziedWidget::addMusicItemList(const MusicSongItems &names)
 {
     TTKIntSet inDeed;
     inDeed << MUSIC_NORMAL_LIST << MUSIC_LOVEST_LIST << MUSIC_NETWORK_LIST << MUSIC_RECENT_LIST;
@@ -109,7 +109,7 @@ bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
     return inDeed.isEmpty();
 }
 
-void MusicSongsSummariziedWidget::appendMusicLists(const MusicSongItems &names)
+void MusicSongsSummariziedWidget::appendMusicItemList(const MusicSongItems &names)
 {
     for(int i=0; i<names.count(); ++i)
     {
@@ -832,7 +832,7 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
     }
 }
 
-void MusicSongsSummariziedWidget::getMusicLists(MusicSongItems &songs)
+void MusicSongsSummariziedWidget::getMusicItemList(MusicSongItems &songs)
 {
     songs = m_songItems;
 }
@@ -1004,7 +1004,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
-void MusicSongsSummariziedWidget::clearAllLists()
+void MusicSongsSummariziedWidget::clearAllList()
 {
     while(!m_songItems.isEmpty())
     {

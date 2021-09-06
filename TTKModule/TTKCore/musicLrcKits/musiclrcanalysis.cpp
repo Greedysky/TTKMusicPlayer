@@ -359,15 +359,15 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const Q
 {
     cap.chop(1);
     cap.remove(0, 1);
-    const QStringList lists(cap.split(splite));
-    if(lists.count() != 3)
+    const QStringList list(cap.split(splite));
+    if(list.count() != 3)
     {
         return;
     }
 
-    const int minutes = lists[0].toInt();
-    const int seconds = lists[1].toInt();
-    const int milliseconds = lists[2].toInt();
+    const int minutes = list[0].toInt();
+    const int seconds = list[1].toInt();
+    const int milliseconds = list[2].toInt();
     const int length = QString::number(milliseconds).length();
     const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);

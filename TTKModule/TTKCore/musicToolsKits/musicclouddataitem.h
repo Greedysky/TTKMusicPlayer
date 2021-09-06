@@ -59,6 +59,6 @@ typedef struct TTK_MODULE_EXPORT MusicCloudDataItem
         return m_dataItem.m_name == other.m_dataItem.m_name;
     }
 }MusicCloudDataItem;
-TTK_DECLARE_LISTS(MusicCloudDataItem)
+TTK_DECLARE_LIST(MusicCloudDataItem)
 
 #endif // MUSICCLOUDDATAITEM_H

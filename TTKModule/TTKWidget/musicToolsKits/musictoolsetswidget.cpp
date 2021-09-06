@@ -59,7 +59,7 @@ void MusicToolSetsWidget::addListWidgetItem()
             m_name = name;
         }
     }ToolItem;
-    TTK_DECLARE_LISTS(ToolItem);
+    TTK_DECLARE_LIST(ToolItem);
 
     ToolItems pairs;
     pairs << ToolItem(":/tools/lb_localmanager", tr("Loacl"))

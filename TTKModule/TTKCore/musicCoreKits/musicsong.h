@@ -178,7 +178,7 @@ protected:
     QString m_musicName, m_musicPath, m_musicType, m_musicPlayTime;
 
 };
-TTK_DECLARE_LISTS(MusicSong)
+TTK_DECLARE_LIST(MusicSong)
 
 
 class MusicAbstractSongsListTableWidget;
@@ -221,7 +221,7 @@ typedef struct TTK_MODULE_EXPORT MusicSongItem
         return m_itemIndex < other.m_itemIndex;
     }
 }MusicSongItem;
-TTK_DECLARE_LISTS(MusicSongItem)
+TTK_DECLARE_LIST(MusicSongItem)
 
 
 namespace MusicObject

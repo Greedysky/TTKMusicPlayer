@@ -252,10 +252,10 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
         {
             QString urlPrefix;
             QVariantMap vlValue = value["vl"].toMap();
-            QVariantList viLists = vlValue["vi"].toList();
-            if(!viLists.isEmpty())
+            QVariantList viList = vlValue["vi"].toList();
+            if(!viList.isEmpty())
             {
-                vlValue = viLists.first().toMap();
+                vlValue = viList.first().toMap();
 
                 if(more)
                 {
@@ -265,8 +265,8 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
                 }
 
                 vlValue = vlValue["ul"].toMap();
-                viLists = vlValue["ui"].toList();
-                vlValue = viLists.first().toMap();
+                viList = vlValue["ui"].toList();
+                vlValue = viList.first().toMap();
                 urlPrefix = vlValue["url"].toString();
             }
 

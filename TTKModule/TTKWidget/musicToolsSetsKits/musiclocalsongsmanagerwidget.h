@@ -53,7 +53,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Add current selected song to play lists.
+     * Add current selected song to playlist.
      */
     void addSongToPlaylist(const QStringList &names);
 
@@ -91,9 +91,9 @@ public Q_SLOTS:
      */
     void musicSearchIndexChanged(int row, int col);
     /*!
-     * Update file lists.
+     * Update file list.
      */
-    void updateFileLists(const QFileInfoList &list);
+    void updateFileList(const QFileInfoList &list);
 
     /*!
      * Select to show list mode.

@@ -237,7 +237,7 @@ namespace MusicObject
             return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
     }MusicSongAttribute;
-    TTK_DECLARE_LISTS(MusicSongAttribute)
+    TTK_DECLARE_LIST(MusicSongAttribute)
 
 
     /*! @brief The class of the music song information.
@@ -259,7 +259,7 @@ namespace MusicObject
         QString m_discNumber;
         QString m_trackNumber;
     }MusicSongInformation;
-    TTK_DECLARE_LISTS(MusicSongInformation)
+    TTK_DECLARE_LIST(MusicSongInformation)
 
 
     enum PlayState

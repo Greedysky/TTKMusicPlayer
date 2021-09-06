@@ -29,7 +29,7 @@ typedef struct TTK_MODULE_EXPORT MusicSongIdentifyData
     QString m_singerName;
     QString m_songName;
 }MusicSongIdentifyData;
-TTK_DECLARE_LISTS(MusicSongIdentifyData)
+TTK_DECLARE_LIST(MusicSongIdentifyData)
 
 /*! @brief The class of the song identify query request.
  * @author Greedysky <greedysky@163.com>

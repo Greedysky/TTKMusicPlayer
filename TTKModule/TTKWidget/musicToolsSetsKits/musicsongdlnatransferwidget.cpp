@@ -132,7 +132,7 @@ void MusicSongDlnaTransferWidget::musicPlay()
     }
 
     MusicSongItems songs;
-    Q_EMIT getMusicLists(songs);
+    Q_EMIT getMusicItemList(songs);
 
     if(songs.empty())
     {

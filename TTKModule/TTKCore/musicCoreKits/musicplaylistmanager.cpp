@@ -9,7 +9,7 @@
 #include "musiccsvconfigmanager.h"
 #include "musictxtconfigmanager.h"
 
-void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem& item)
+void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSongItem &item)
 {
     const QFileInfo info(path);
     const QString &suffix = info.suffix().toLower();
@@ -48,7 +48,7 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     }
 }
 
-void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSongItems& items)
+void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSongItems &items)
 {
     for(const QString &path : qAsConst(paths))
     {
@@ -94,7 +94,7 @@ void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSong
     }
 }
 
-bool MusicPlaylistManager::readTKPLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readTKPLList(const QString &path, MusicSongItems &items)
 {
     MusicTKPLConfigManager manager;
     if(manager.readConfig(path))
@@ -104,13 +104,13 @@ bool MusicPlaylistManager::readTKPLList(const QString &path, MusicSongItems& ite
     return false;
 }
 
-bool MusicPlaylistManager::writeTKPLList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeTKPLList(const QString &path, const MusicSongItem &item)
 {
     MusicTKPLConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems &items)
 {
     MusicM3UConfigManager manager;
     if(manager.readConfig(path))
@@ -120,13 +120,13 @@ bool MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems& item
     return false;
 }
 
-bool MusicPlaylistManager::writeM3UList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeM3UList(const QString &path, const MusicSongItem &item)
 {
     MusicM3UConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems &items)
 {
     MusicPLSConfigManager manager;
     if(manager.readConfig(path))
@@ -136,13 +136,13 @@ bool MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems& item
     return false;
 }
 
-bool MusicPlaylistManager::writePLSList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writePLSList(const QString &path, const MusicSongItem &item)
 {
     MusicPLSConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems &items)
 {
     MusicWPLConfigManager manager;
     if(manager.readConfig(path))
@@ -152,13 +152,13 @@ bool MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems& item
     return false;
 }
 
-bool MusicPlaylistManager::writeWPLList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeWPLList(const QString &path, const MusicSongItem &item)
 {
     MusicWPLConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems &items)
 {
     MusicXSPFConfigManager manager;
     if(manager.readConfig(path))
@@ -168,13 +168,13 @@ bool MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems& ite
     return false;
 }
 
-bool MusicPlaylistManager::writeXSPFList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeXSPFList(const QString &path, const MusicSongItem &item)
 {
     MusicXSPFConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readASXList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readASXList(const QString &path, MusicSongItems &items)
 {
     MusicASXConfigManager manager;
     if(manager.readConfig(path))
@@ -184,13 +184,13 @@ bool MusicPlaylistManager::readASXList(const QString &path, MusicSongItems& item
     return false;
 }
 
-bool MusicPlaylistManager::writeASXList(const QString &path, const MusicSongItem& item)
+bool MusicPlaylistManager::writeASXList(const QString &path, const MusicSongItem &item)
 {
     MusicASXConfigManager manager;
     return manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
-bool MusicPlaylistManager::readFPLList(const QString &path, MusicSongItems& items)
+bool MusicPlaylistManager::readFPLList(const QString &path, MusicSongItems &items)
 {
     MusicFPLConfigManager manager;
     if(manager.readConfig(path))

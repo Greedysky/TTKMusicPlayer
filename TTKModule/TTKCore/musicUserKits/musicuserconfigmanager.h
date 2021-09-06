@@ -39,7 +39,7 @@ typedef struct TTK_MODULE_EXPORT MusicUserRecord
         m_auto = false;
     }
 }MusicUserRecord;
-TTK_DECLARE_LISTS(MusicUserRecord)
+TTK_DECLARE_LIST(MusicUserRecord)
 
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>

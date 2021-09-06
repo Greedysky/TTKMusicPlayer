@@ -94,9 +94,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Update file lists.
+     * Update file list.
      */
-    void updateFileLists(const QFileInfoList &list);
+    void updateFileList(const QFileInfoList &list);
 
 public Q_SLOTS:
     /*!

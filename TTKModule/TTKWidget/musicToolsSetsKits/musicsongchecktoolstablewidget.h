@@ -81,7 +81,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Add current selected song to play lists.
+     * Add current selected song to playlist.
      */
     void addSongToPlaylist(const QStringList &list);
 
@@ -130,7 +130,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Add current selected song to play lists.
+     * Add current selected song to playlist.
      */
     void addSongToPlaylist(const QStringList &list);
 

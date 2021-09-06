@@ -32,7 +32,7 @@ typedef struct TTK_MODULE_EXPORT MusicDeviceInfoItem
     int m_availableBytes;
     int m_totalBytes;
 }MusicDeviceInfoItem;
-TTK_DECLARE_LISTS(MusicDeviceInfoItem)
+TTK_DECLARE_LIST(MusicDeviceInfoItem)
 
 
 /*! @brief The class of the system device info.

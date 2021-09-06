@@ -45,15 +45,15 @@ public:
     /*!
      * Add music datas into container.
      */
-    bool addMusicLists(const MusicSongItems &names);
+    bool addMusicItemList(const MusicSongItems &names);
     /*!
      * Append music datas into container.
      */
-    void appendMusicLists(const MusicSongItems &names);
+    void appendMusicItemList(const MusicSongItems &names);
     /*!
      * Get music datas from container.
      */
-    inline const MusicSongItems& getMusicLists() const  { return m_songItems; }
+    inline const MusicSongItems& getMusicItemList() const  { return m_songItems; }
     /*!
      * Input imported music datas into container.
      */
@@ -188,7 +188,7 @@ public Q_SLOTS:
      */
     void addNetMusicSongToList(const QString &name, const QString &time, const QString &format, bool play);
     /*!
-     * Add current selected song to play lists.
+     * Add current selected song to play list.
      */
     void addSongToPlaylist(const QStringList &items);
     /*!
@@ -218,7 +218,7 @@ public Q_SLOTS:
     /*!
      * Get music datas from container.
      */
-    void getMusicLists(MusicSongItems &songs);
+    void getMusicItemList(MusicSongItems &songs);
     /*!
      * Update current artist when it download finished.
      */
@@ -262,7 +262,7 @@ protected:
     /*!
      * Delete all objects.
      */
-    void clearAllLists();
+    void clearAllList();
     /*!
      * Set item title.
      */

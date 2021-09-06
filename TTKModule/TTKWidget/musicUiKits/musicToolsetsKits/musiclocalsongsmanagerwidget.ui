@@ -283,9 +283,9 @@ background:rgba(255,255,255,50)</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
-    <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>
+    <widget class="MusicLocalSongsTableWidget" name="songlistTable"/>
     <widget class="MusicLocalSongsInfoTableWidget" name="songInfoTable"/>
    </widget>
    <widget class="QWidget" name="bottomWidget" native="true">

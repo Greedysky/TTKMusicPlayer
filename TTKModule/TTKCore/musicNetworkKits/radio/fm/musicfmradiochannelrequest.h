@@ -30,7 +30,7 @@ typedef struct TTK_MODULE_EXPORT MusicFMRadioChannelData
     QString m_name;
     QString m_coverUrl;
 }MusicFMRadioChannelData;
-TTK_DECLARE_LISTS(MusicFMRadioChannelData)
+TTK_DECLARE_LIST(MusicFMRadioChannelData)
 
 /*! @brief The class of fm radio request of song channel.
  * @author Greedysky <greedysky@163.com>

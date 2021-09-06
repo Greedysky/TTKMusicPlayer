@@ -75,9 +75,9 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
 
-    connect(m_ui->songlistsTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));
-    connect(m_ui->songlistsTable, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
-    connect(m_ui->songInfoTable, SIGNAL(updateFileLists(QFileInfoList)), SLOT(updateFileLists(QFileInfoList)));
+    connect(m_ui->songlistTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));
+    connect(m_ui->songlistTable, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
+    connect(m_ui->songInfoTable, SIGNAL(updateFileList(QFileInfoList)), SLOT(updateFileList(QFileInfoList)));
 
     connect(m_ui->showlistButton, SIGNAL(clicked()), SLOT(setShowlistButton()));
     connect(m_ui->showArtButton, SIGNAL(clicked()), SLOT(setShowArtButton()));
@@ -126,23 +126,23 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
 {
     if(!check)
     {
-        m_ui->songlistsTable->clearSelection();
-        m_ui->songlistsTable->setCurrentIndex(QModelIndex());
+        m_ui->songlistTable->clearSelection();
+        m_ui->songlistTable->setCurrentIndex(QModelIndex());
     }
     else
     {
-        m_ui->songlistsTable->selectAll();
+        m_ui->songlistTable->selectAll();
     }
 }
 
 void MusicLocalSongsManagerWidget::auditionButtonClick()
 {
-    if(m_ui->songlistsTable->selectedItems().count() > 0)
+    if(m_ui->songlistTable->selectedItems().count() > 0)
     {
         itemsSelected();
         return;
     }
-    if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
+    if(m_ui->songlistTable->rowCount() <= 0 || m_ui->songlistTable->currentRow() < 0)
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
@@ -153,13 +153,13 @@ void MusicLocalSongsManagerWidget::auditionButtonClick()
 
 void MusicLocalSongsManagerWidget::addButtonClick()
 {
-    if(m_ui->songlistsTable->selectedItems().count() > 0)
+    if(m_ui->songlistTable->selectedItems().count() > 0)
     {
         itemsSelected();
         return;
     }
 
-    if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0)
+    if(m_ui->songlistTable->rowCount() <= 0 || m_ui->songlistTable->currentRow() < 0)
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
@@ -206,7 +206,7 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
     TTK_LOGGER_INFO("stop fetch");
     loadingLabelState(false);
 
-    m_ui->songlistsTable->setFiles(name);
+    m_ui->songlistTable->setFiles(name);
     setShowlistButton();
 }
 
@@ -255,7 +255,7 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
     addAllItems(names);
 }
 
-void MusicLocalSongsManagerWidget::updateFileLists(const QFileInfoList &list)
+void MusicLocalSongsManagerWidget::updateFileList(const QFileInfoList &list)
 {
     m_fileNames = list;
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
@@ -269,7 +269,7 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
     controlEnabled(true);
-    addAllItems(m_fileNames = m_ui->songlistsTable->getFiles());
+    addAllItems(m_fileNames = m_ui->songlistTable->getFiles());
     loadingLabelState(false);
 }
 
@@ -283,7 +283,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
 
     MusicInfoData arts;
     MusicSongMeta meta;
-    for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
+    for(const QFileInfo &file : m_ui->songlistTable->getFiles())
     {
         if(!m_runTypeChanged)
         {
@@ -326,7 +326,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
 
     MusicInfoData albums;
     MusicSongMeta meta;
-    for(const QFileInfo &file : m_ui->songlistsTable->getFiles())
+    for(const QFileInfo &file : m_ui->songlistTable->getFiles())
     {
         if(!m_runTypeChanged)
         {
@@ -375,7 +375,7 @@ void MusicLocalSongsManagerWidget::clearAllItems()
 
     switch(m_ui->stackedWidget->currentIndex())
     {
-        case 0: m_ui->songlistsTable->clear(); break;
+        case 0: m_ui->songlistTable->clear(); break;
         case 1:
         case 2: m_ui->songInfoTable->clear(); break;
         default: break;
@@ -384,9 +384,9 @@ void MusicLocalSongsManagerWidget::clearAllItems()
 
 void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
 {
-    m_ui->songlistsTable->setRowCount(fileName.count()); //reset row count
+    m_ui->songlistTable->setRowCount(fileName.count()); //reset row count
     m_ui->songCountLabel->setText(tr("showSongCount\n(%1)").arg(fileName.count()));
-    m_ui->songlistsTable->addItems(fileName);
+    m_ui->songlistTable->addItems(fileName);
 }
 
 void MusicLocalSongsManagerWidget::addDrivesList()
@@ -404,7 +404,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
 void MusicLocalSongsManagerWidget::itemsSelected()
 {
     TTKIntSet auditionRow; //if selected multi rows
-    for(QTableWidgetItem *item : m_ui->songlistsTable->selectedItems())
+    for(QTableWidgetItem *item : m_ui->songlistTable->selectedItems())
     {
         if(!m_searchfileListCache.isEmpty())
         {

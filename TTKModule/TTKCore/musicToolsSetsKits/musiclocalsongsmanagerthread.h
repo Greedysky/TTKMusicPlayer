@@ -40,7 +40,7 @@ public:
      */
     void setFindFilePath(const QString &path);
     /*!
-     * Set find file path by given path lists.
+     * Set find file path by given path list.
      */
     void setFindFilePath(const QStringList &path);
 

@@ -42,7 +42,7 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
     }
 
 }MusicSkinRemoteItem;
-TTK_DECLARE_LISTS(MusicSkinRemoteItem)
+TTK_DECLARE_LIST(MusicSkinRemoteItem)
 
 /*! @brief The class of the remote skin item group.
  * @author Greedysky <greedysky@163.com>
@@ -58,7 +58,7 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
     }
 
 }MusicSkinRemoteGroup;
-TTK_DECLARE_LISTS(MusicSkinRemoteGroup)
+TTK_DECLARE_LIST(MusicSkinRemoteGroup)
 
 
 /*! @brief The class of the thunder skin XML Config Manager.

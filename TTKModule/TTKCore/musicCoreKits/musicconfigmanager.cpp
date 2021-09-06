@@ -489,12 +489,12 @@ QRect MusicConfigManager::readWindowGeometry() const
     }
 
     const QDomElement &element = nodeList.at(0).toElement();
-    const QStringList &lists = element.attribute("value").split(",");
-    if(lists.count() == 4)
+    const QStringList &list = element.attribute("value").split(",");
+    if(list.count() == 4)
     {
-        return QRect(lists[0].toInt() < 0 ? 0 : lists[0].toInt(),
-                     lists[1].toInt() < 0 ? 0 : lists[1].toInt(),
-                     lists[2].toInt(), lists[3].toInt());
+        return QRect(list[0].toInt() < 0 ? 0 : list[0].toInt(),
+                     list[1].toInt() < 0 ? 0 : list[1].toInt(),
+                     list[2].toInt(), list[3].toInt());
     }
     else
     {

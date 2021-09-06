@@ -45,9 +45,9 @@ public:
      */
     inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
     /*!
-     * Set item lists.
+     * Set item list.
      */
-    inline void setItemLists(const TTKIntList &items) { m_itemIDs = items; }
+    inline void setItemList(const TTKIntList &items) { m_itemIDs = items; }
 
     /*!
      * Set find file path by given path.
@@ -97,9 +97,9 @@ public:
      */
     inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
     /*!
-     * Set item lists.
+     * Set item list.
      */
-    inline void setItemLists(const TTKIntList &items) { m_itemIDs = items; }
+    inline void setItemList(const TTKIntList &items) { m_itemIDs = items; }
 
     /*!
      * Set find file path by given path.

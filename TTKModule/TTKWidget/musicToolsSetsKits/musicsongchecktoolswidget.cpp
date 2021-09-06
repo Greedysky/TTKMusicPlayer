@@ -65,7 +65,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->hide();
         m_ui->renameReCheckButton->show();
 
-        m_renameCore->setItemLists(m_ui->renameTableWidget->getSelectedItems());
+        m_renameCore->setItemList(m_ui->renameTableWidget->getSelectedItems());
         m_renameCore->setMode(MusicObject::Apply);
         m_renameCore->stopAndQuitThread();
         m_renameCore->start();
@@ -186,7 +186,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateReCheckButton->show();
 
-        m_duplicateCore->setItemLists(m_ui->duplicateTableWidget->getSelectedItems());
+        m_duplicateCore->setItemList(m_ui->duplicateTableWidget->getSelectedItems());
         m_duplicateCore->setMode(MusicObject::Apply);
         m_duplicateCore->stopAndQuitThread();
         m_duplicateCore->start();

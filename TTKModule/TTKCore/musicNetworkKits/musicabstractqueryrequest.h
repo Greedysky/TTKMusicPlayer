@@ -43,7 +43,7 @@ typedef struct TTK_MODULE_EXPORT MusicSearchedItem
         m_type = STRING_NULL;
     }
 }MusicSearchedItem;
-TTK_DECLARE_LISTS(MusicSearchedItem)
+TTK_DECLARE_LIST(MusicSearchedItem)
 
 /*! @brief The class of the search song results data item.
  * @author Greedysky <greedysky@163.com>
@@ -76,7 +76,7 @@ typedef struct TTK_MODULE_EXPORT MusicResultsItem
         return m_name == STRING_NULL || m_nickName == STRING_NULL || m_coverUrl == STRING_NULL || m_description == STRING_NULL || m_tags == STRING_NULL;
     }
 }MusicResultsItem;
-TTK_DECLARE_LISTS(MusicResultsItem)
+TTK_DECLARE_LIST(MusicResultsItem)
 
 #define QUERY_WY_INTERFACE      "WangYi"
 #define QUERY_QQ_INTERFACE      "QQ"
