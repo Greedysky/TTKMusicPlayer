@@ -38,14 +38,14 @@ bool MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
     item.m_itemName = info.baseName();
 
     // read 16-byte signature
-    char magic[16];
+    char magic[16] = {0};
     m_file.read(magic, 16);
 
     // load primary data string into memory
     uint dataSize;
     m_file.read((char*)&dataSize, 4);
 
-    char *dataPrime = new char[dataSize];
+    char *dataPrime = new char[dataSize]{0};
     // read in primary string to memory
     m_file.read(dataPrime, dataSize);
 

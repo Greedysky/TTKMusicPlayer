@@ -96,7 +96,7 @@ TTKMusicPlayer的一些特性
  * BP SoundMon Audio File(*.bp *.bp3)
  * MDX Chiptunes Audio File(*.mdx *.m)
  * Cave Story's org Audio File(*.org)
- * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, csv, txt)
+ * 支持的播放列表格式(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
  * 华丽流星炫酷的界面设计，跨平台有良好的性能表现。
  * 搜索和高速下载。歌曲搜索精度优化，智能节省带宽，可以禁用网络功能，支持8个国内音乐平台曲库。
  * 支持本地播放，兼容所有音频文件，超级完美的声音，音乐和更吸引人。

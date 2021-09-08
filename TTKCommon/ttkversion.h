@@ -82,7 +82,7 @@
  *
  *  Cave Story's org Audio File(*.org)
  *
- *  Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl, fpl, csv, txt, nfn)
+ *  Playlist formats(tkpl, m3u, m3u8, pls, wpl, xspf, asx, fpl, dbpl, csv, txt)
  *
  *  Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  *
