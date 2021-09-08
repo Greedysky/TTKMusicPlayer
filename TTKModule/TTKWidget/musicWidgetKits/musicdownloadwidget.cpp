@@ -329,13 +329,13 @@ void MusicDownloadWidget::downloadDirSelected()
 
 void MusicDownloadWidget::startToDownload()
 {
-    hide(); ///hide download widget
     if(m_ui->viewArea->getCurrentItemRole().isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
+    hide(); ///hide download widget
     if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
     {
         m_querySingleInfo ? startToDownloadMusic(m_singleSongInfo) : startToDownloadMusic();

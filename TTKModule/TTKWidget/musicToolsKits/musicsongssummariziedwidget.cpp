@@ -922,7 +922,7 @@ void MusicSongsSummariziedWidget::musicSearchWidget()
 
 void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
 {
-    if(value >= 40*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
+    if(value >= 40 * (m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
     {
         MusicSongItem *songItem = &m_songItems[m_currentIndex];
         m_listMaskWidget->setItemIndex(songItem->m_itemIndex);

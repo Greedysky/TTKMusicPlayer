@@ -186,7 +186,7 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        offset = ITEM_WIDTH - delta*(i + 1);
+        offset = ITEM_WIDTH - delta * (i + 1);
         if(offset <= delta)
         {
             break;
@@ -213,7 +213,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        offset = ITEM_WIDTH - delta*(i + 1);
+        offset = ITEM_WIDTH - delta * (i + 1);
         if(offset <= delta || offset <= 2 * delta)
         {
             break;
@@ -298,7 +298,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     //
     for(int i=0; i<m_data.count(); ++i)
     {
-        offset = ITEM_WIDTH - delta*(i+2);
+        offset = ITEM_WIDTH - delta * (i + 2);
         if(offset <= delta)
         {
             break;
@@ -797,7 +797,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     painter->setPen(QColor(0x66, 0x66, 0x66));
     for(int i=0; i<m_data.count(); ++i)
     {
-        offset = ITEM_WIDTH - delta*(i+2);
+        offset = ITEM_WIDTH - delta * (i + 2);
         if(offset <= delta)
         {
             break;
