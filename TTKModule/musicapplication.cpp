@@ -501,14 +501,10 @@ void MusicApplication::musicImportSongs()
 
 void MusicApplication::musicImportSongsOnlyFile()
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-    dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(MusicFormats::supportMusicInputFormats());
-
-    if(dialog.exec())
+    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, MusicFormats::supportMusicInputFormats());
+    if(!files.isEmpty())
     {
-        musicImportSongsPath(dialog.selectedFiles());
+        musicImportSongsPath(files);
     }
 }
 
@@ -532,16 +528,12 @@ void MusicApplication::musicImportSongsOnlyDir()
 
 void MusicApplication::musicImportSongsItemList()
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-    dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(MusicFormats::supportPlaylistInputFormats());
-
-    if(dialog.exec())
+    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, MusicFormats::supportPlaylistInputFormats());
+    if(!files.isEmpty())
     {
         MusicPlaylistManager manager;
         MusicSongItems items;
-        manager.getMusicSongItems(dialog.selectedFiles(), items);
+        manager.getMusicSongItems(files, items);
         m_musicSongTreeWidget->appendMusicItemList(items);
     }
 }

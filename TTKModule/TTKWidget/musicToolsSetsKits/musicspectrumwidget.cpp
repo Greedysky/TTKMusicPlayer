@@ -6,6 +6,7 @@
 #include "musictoastlabel.h"
 #include "musicwidgetheaders.h"
 #include "musictopareawidget.h"
+#include "musicfileutils.h"
 
 #include <QPluginLoader>
 
@@ -152,13 +153,10 @@ void MusicSpectrumWidget::localFileButtonClicked()
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(MusicFormats::supportSpekInputFormats());
-    if(dialog.exec())
+    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, MusicFormats::supportSpekInputFormats());
+    if(!files.isEmpty())
     {
-        const QString &path = dialog.selectedFiles().last();
+        const QString &path = files.last();
         bool state = true;
         createLightWidget(MusicSpectrum::Light, state, "lightspectrum", m_ui->spectrumLightAreaLayout, path);
     }

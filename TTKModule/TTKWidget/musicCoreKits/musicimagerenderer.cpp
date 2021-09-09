@@ -1,7 +1,7 @@
 #include "musicimagerenderer.h"
 #include "musicimageutils.h"
 
-#include <QImage>
+#include <QPixmap>
 
 MusicImageRenderer::MusicImageRenderer(QObject *parent)
     : MusicAbstractThread(parent)
@@ -36,6 +36,6 @@ void MusicImageRenderer::run()
 
     if(m_running)
     {
-        Q_EMIT renderFinished(image);
+        Q_EMIT renderFinished(QPixmap::fromImage(image));
     }
 }

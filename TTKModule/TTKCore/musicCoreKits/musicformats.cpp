@@ -33,45 +33,49 @@ QStringList MusicFormats::supportMusicInputFilterFormats()
     return formats;
 }
 
-QStringList MusicFormats::supportMusicInputFormats()
+QString MusicFormats::supportMusicInputFormats()
 {
     QStringList formats(Format::supportMusicInputFormats());
     formats << "Zip File(*.zip)";
-    return formats;
+    return formats.join(";;");
 }
 
-QStringList MusicFormats::supportSpekInputFormats()
+QString MusicFormats::supportSpekInputFormats()
 {
-    return QStringList()<< "*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac "
-                           "*.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra "
-                           "*.ram *.snd *.wav *.wma *.wv";
+    return QString("*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac \
+                    *.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra \
+                    *.ram *.snd *.wav *.wma *.wv");
 }
 
-QStringList MusicFormats::supportPlaylistInputFormats()
+QString MusicFormats::supportPlaylistInputFormats()
 {
-    return QStringList()<< "File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.fpl *.dbpl *.csv *.txt)"
-                        << "TTKlist File(*.tkpl)"
-                        << "M3U File(*.m3u)"
-                        << "M3U8 File(*.m3u8)"
-                        << "Playlist File(*.pls)"
-                        << "Windows Playlist File(*.wpl)"
-                        << "XML Shareable Playlist File(*.xspf)"
-                        << "Windows Media Playlist File(*.asx)"
-                        << "Foobar2k Playlist File(*.fpl)"
-                        << "Deadbeef Playlist File(*.dbpl)"
-                        << "CSV Playlist File(*.csv)"
-                        << "TXT Playlist File(*.txt)";
+    QStringList formats;
+    formats << "File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.fpl *.dbpl *.csv *.txt)";
+    formats << "TTKlist File(*.tkpl)";
+    formats << "M3U File(*.m3u)";
+    formats << "M3U8 File(*.m3u8)";
+    formats << "Playlist File(*.pls)";
+    formats << "Windows Playlist File(*.wpl)";
+    formats << "XML Shareable Playlist File(*.xspf)";
+    formats << "Windows Media Playlist File(*.asx)";
+    formats << "Foobar2k Playlist File(*.fpl)";
+    formats << "Deadbeef Playlist File(*.dbpl)";
+    formats << "CSV Playlist File(*.csv)";
+    formats << "TXT Playlist File(*.txt)";
+    return formats.join(";;");
 }
 
 QString MusicFormats::supportPlaylistOutputFormats()
 {
-    return QString("TTKlist File(*.tkpl);; \
-                    M3U File(*.m3u);; \
-                    M3U8 File(*.m3u8);; \
-                    Playlist File(*.pls);; \
-                    Windows Playlist File(*.wpl);; \
-                    XML Shareable Playlist File(*.xspf);; \
-                    Windows Media Playlist File(*.asx);; \
-                    CSV Playlist File(*.csv);; \
-                    TXT Playlist File(*.txt)");
+    QStringList formats;
+    formats << "TTKlist File(*.tkpl)";
+    formats << "M3U File(*.m3u)";
+    formats << "M3U8 File(*.m3u8)";
+    formats << "Playlist File(*.pls)";
+    formats << "Windows Playlist File(*.wpl)";
+    formats << "XML Shareable Playlist File(*.xspf)";
+    formats << "Windows Media Playlist File(*.asx)";
+    formats << "CSV Playlist File(*.csv)";
+    formats << "TXT Playlist File(*.txt)";
+    return formats.join(";;");
 }

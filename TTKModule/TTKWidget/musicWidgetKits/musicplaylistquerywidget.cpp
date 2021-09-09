@@ -100,14 +100,14 @@ void MusicPlaylistQueryItemWidget::downLoadFinished(const QByteArray &bytes)
     }
 
     MusicImageRenderer *render = new MusicImageRenderer(this);
-    connect(render, SIGNAL(renderFinished(QImage)), SLOT(renderFinished(QImage)));
+    connect(render, SIGNAL(renderFinished(QPixmap)), SLOT(renderFinished(QPixmap)));
     render->setInputData(bytes, m_iconLabel->size());
     render->start();
 }
 
-void MusicPlaylistQueryItemWidget::renderFinished(const QImage &data)
+void MusicPlaylistQueryItemWidget::renderFinished(const QPixmap &data)
 {
-    m_iconLabel->setPixmap(QPixmap::fromImage(data));
+    m_iconLabel->setPixmap(data);
     m_topListenButton->raise();
     m_playButton->raise();
 }

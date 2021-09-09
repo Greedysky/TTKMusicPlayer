@@ -54,16 +54,16 @@ public:
     /*!
      * Get player supported input format .
      */
-    static QStringList supportMusicInputFormats();
+    static QString supportMusicInputFormats();
 
     /*!
      * Get spek supported input formats.
      */
-    static QStringList supportSpekInputFormats();
+    static QString supportSpekInputFormats();
     /*!
      * Get playlist supported input formats.
      */
-    static QStringList supportPlaylistInputFormats();
+    static QString supportPlaylistInputFormats();
     /*!
      * Get playlist supported output formats.
      */

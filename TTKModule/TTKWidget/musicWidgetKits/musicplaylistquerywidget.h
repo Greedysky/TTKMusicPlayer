@@ -60,7 +60,7 @@ public Q_SLOTS:
     /*!
      * Image render finished.
      */
-    void renderFinished(const QImage &data);
+    void renderFinished(const QPixmap &data);
     /*!
      * Current item clicked.
      */

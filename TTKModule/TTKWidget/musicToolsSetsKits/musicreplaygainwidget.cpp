@@ -188,21 +188,19 @@ void MusicReplayGainWidget::setControlEnabled(bool enable)
 
 void MusicReplayGainWidget::addFileButtonClicked()
 {
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-    dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(QStringList() << "All File(*.*)" << "MP3 File(*.mp3)");
-    if(dialog.exec())
+    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, "All File(*.*);;MP3 File(*.mp3)");
+    if(!files.isEmpty())
     {
         setControlEnabled(false);
         const int orcount = m_paths.count();
-        for(const QString &path : dialog.selectedFiles())
+        for(const QString &path : files)
         {
             if(!m_paths.contains(path))
             {
                 m_paths << path;
             }
         }
+
         for(int i=orcount; i<m_paths.count(); ++i)
         {
             m_currentIndex = i;
