@@ -92,7 +92,7 @@ void MusicTransformWidget::initInputPath()
 {
     QString path;
     QStringList supportedFormat;
-    (m_currentType == Music) ? supportedFormat << "mp3" <<"wav" <<"wma" << "ogg" << "flac" << "ac3" << "aac" : supportedFormat << "krc";
+    (m_currentType == Music) ? (supportedFormat << "mp3" << "wav" << "wma" << "ogg" << "flac" << "ac3" << "aac") : supportedFormat << "krc";
     if(!m_ui->folderBox->isChecked())
     {
         QString filter = "Files (";

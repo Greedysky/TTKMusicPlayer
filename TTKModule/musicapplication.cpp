@@ -540,8 +540,8 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, MusicFormats::supportPlaylistOutputFormats());
-    if(!fileName.isEmpty())
+    const QString &path = MusicUtils::File::getSaveFileDialog(this, MusicFormats::supportPlaylistOutputFormats());
+    if(!path.isEmpty())
     {
         const MusicSongItems &items = m_musicSongTreeWidget->getMusicItemList();
         if(index < 0 || index >= items.count())
@@ -550,7 +550,7 @@ void MusicApplication::musicExportSongsItemList(int index)
         }
 
         MusicPlaylistManager manager;
-        manager.setMusicSongItem(fileName, items[index]);
+        manager.setMusicSongItem(path, items[index]);
     }
 }
 

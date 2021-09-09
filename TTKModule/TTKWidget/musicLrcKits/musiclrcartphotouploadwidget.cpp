@@ -58,13 +58,13 @@ void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 {
-    const QString &picPath = MusicUtils::File::getOpenFileDialog(this);
-    if(picPath.isEmpty())
+    const QString &path = MusicUtils::File::getOpenFileDialog(this);
+    if(path.isEmpty())
     {
         return;
     }
 
-    QPixmap pix(picPath);
+    QPixmap pix(path);
     if(pix.width() < WINDOW_WIDTH_MIN || pix.height() < WINDOW_HEIGHT_MIN)
     {
         m_ui->stateLabel->show();
@@ -78,7 +78,7 @@ void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
         m_ui->closeButton->show();
         m_ui->introduceLabel->hide();
         m_ui->selectButton->hide();
-        m_ui->imageLabel->setImagePath(picPath);
+        m_ui->imageLabel->setImagePath(path);
     }
 }
 

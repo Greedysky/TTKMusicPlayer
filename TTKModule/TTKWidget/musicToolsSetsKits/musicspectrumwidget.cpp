@@ -153,10 +153,9 @@ void MusicSpectrumWidget::localFileButtonClicked()
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, MusicFormats::supportSpekInputFormats());
-    if(!files.isEmpty())
+    const QString &path = MusicUtils::File::getOpenFileDialog(this, MusicFormats::supportSpekInputFormats());
+    if(!path.isEmpty())
     {
-        const QString &path = files.last();
         bool state = true;
         createLightWidget(MusicSpectrum::Light, state, "lightspectrum", m_ui->spectrumLightAreaLayout, path);
     }

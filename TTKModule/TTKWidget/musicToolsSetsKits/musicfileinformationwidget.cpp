@@ -151,10 +151,10 @@ void MusicFileInformationWidget::saveAlbumPicture()
 
     if(!pix.isNull())
     {
-        const QString &fileName = MusicUtils::File::getSaveFileDialog(this);
-        if(!fileName.isEmpty())
+        const QString &path = MusicUtils::File::getSaveFileDialog(this);
+        if(!path.isEmpty())
         {
-            pix.save(fileName);
+            pix.save(path);
         }
     }
 }

@@ -72,7 +72,7 @@ void ToolsSkin::readClicked()
 
 void ToolsSkin::writeClicked()
 {
-    QString path = MusicUtils::File::getSaveFileDialog(this, "TTKS Files (*.ttks)");
+    const QString &path = MusicUtils::File::getSaveFileDialog(this, "TTKS Files (*.ttks)");
     if(path.isEmpty())
     {
         return;

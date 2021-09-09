@@ -1026,19 +1026,19 @@ void MusicLrcPosterWidget::setCurrentLrcs(const QStringList &lrcs, const QString
 
 void MusicLrcPosterWidget::openButtonClicked()
 {
-    const QString &picPath = MusicUtils::File::getOpenFileDialog(this);
-    if(picPath.isEmpty())
+    const QString &path = MusicUtils::File::getOpenFileDialog(this);
+    if(path.isEmpty())
     {
         return;
     }
 
-    m_itemWidget->setImagePath(picPath);
+    m_itemWidget->setImagePath(path);
 }
 
 void MusicLrcPosterWidget::saveButtonClicked()
 {
-    const QString &fileName = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
-    if(!fileName.isEmpty())
+    const QString &path = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    if(!path.isEmpty())
     {
         QRect rect = m_itemWidget->rect();
         if(m_itemWidget->hasScroll())
@@ -1046,9 +1046,9 @@ void MusicLrcPosterWidget::saveButtonClicked()
             rect.setWidth(rect.width() + ITEM_SCROLL_WIDTH);
         }
 #if TTK_QT_VERSION_CHECK(5,0,0)
-        m_itemWidget->grab(rect).save(fileName, JPG_FILE_PREFIX);
+        m_itemWidget->grab(rect).save(path, JPG_FILE_PREFIX);
 #else
-        QPixmap::grabWidget(this, rect).save(fileName, JPG_FILE_PREFIX);
+        QPixmap::grabWidget(this, rect).save(path, JPG_FILE_PREFIX);
 #endif
     }
 }

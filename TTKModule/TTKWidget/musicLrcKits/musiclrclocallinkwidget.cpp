@@ -145,15 +145,15 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    const QString &picPath = MusicUtils::File::getOpenFileDialog(this, "LRC (*.lrc)");
-    if(picPath.isEmpty() || m_ui->searchedTable->contains(picPath))
+    const QString &path = MusicUtils::File::getOpenFileDialog(this, "LRC (*.lrc)");
+    if(path.isEmpty() || m_ui->searchedTable->contains(path))
     {
         return;
     }
 
     MusicLocalDataItem item;
-    item.m_name = QFileInfo(picPath).fileName();
-    item.m_path = picPath;
+    item.m_name = QFileInfo(path).fileName();
+    item.m_path = path;
 
     m_ui->searchedTable->createAllItems(MusicLocalDataItems() << item);
 }
