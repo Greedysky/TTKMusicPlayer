@@ -946,15 +946,16 @@ void MusicSongsSummariziedWidget::deleteFloatWidget()
 
 void MusicSongsSummariziedWidget::checkCurrentNameExist(QString &name)
 {
+    QString check = name;
     for(int i=1; i<=ITEM_MAX_COUNT; ++i)
     {
         bool hasName = false;
-        const QString &check = name + QString::number(i);
         for(const MusicSongItem &songItem : qAsConst(m_songItems))
         {
             if(check == songItem.m_itemName)
             {
                 hasName = true;
+                check = name + QString::number(i);
                 break;
             }
         }

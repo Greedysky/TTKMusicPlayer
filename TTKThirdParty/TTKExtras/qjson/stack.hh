@@ -44,7 +44,7 @@
 namespace yy {
 /* Line 34 of stack.hh  */
 #line 47 "stack.hh"
-  template <class T, class S = std::deque<T> >
+  template <typename T, typename S = std::deque<T> >
   class stack
   {
   public:
@@ -104,7 +104,7 @@ namespace yy {
   };
 
   /// Present a slice of the top of a stack.
-  template <class T, class S = stack<T> >
+  template <typename T, typename S = stack<T> >
   class slice
   {
   public:
