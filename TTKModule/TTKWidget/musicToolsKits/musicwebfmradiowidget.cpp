@@ -109,7 +109,7 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
 
     if(!channels.isEmpty())
     {
-        m_musicRadio->updateRadioSong(channels[row].m_id, m_getChannelThread->getHeader("Cookie").toString());
+        m_musicRadio->updateRadioSong(channels[row].m_id);
     }
     m_musicRadio->show();
 }

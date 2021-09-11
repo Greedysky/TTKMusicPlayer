@@ -152,6 +152,10 @@ private Q_SLOTS:
 
 protected:
     /*!
+     * Close output media module.
+     */
+    void closeModule();
+    /*!
      * Set player to video media data.
      */
     void setVideoMedia(const QString &data, int winId);

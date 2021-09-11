@@ -13,7 +13,7 @@
 MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicWebFMRadioPlayWidget),
-      m_songsThread(nullptr)
+      m_songThread(nullptr)
 {
     m_ui->setupUi(this);
     setFixedSize(size());
@@ -72,15 +72,14 @@ MusicWebFMRadioPlayWidget::~MusicWebFMRadioPlayWidget()
 {
     delete m_analysis;
     delete m_mediaPlayer;
-    delete m_songsThread;
+    delete m_songThread;
     delete m_ui;
 }
 
-void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id, const QString &cookie)
+void MusicWebFMRadioPlayWidget::updateRadioSong(const QString &id)
 {
     m_currentID = id;
-    m_songsThread->setHeader("Cookie", cookie);
-    m_songsThread->startToDownload(m_currentID);
+    m_songThread->startToDownload(m_currentID);
 }
 
 void MusicWebFMRadioPlayWidget::mediaAutionPlayError(int code)
@@ -110,7 +109,7 @@ void MusicWebFMRadioPlayWidget::radioPrevious()
         return;
     }
 
-    m_songsThread->startToDownload(m_currentID);
+    m_songThread->startToDownload(m_currentID);
 
     if(!m_isPlaying)
     {
@@ -125,7 +124,7 @@ void MusicWebFMRadioPlayWidget::radioNext()
         return;
     }
 
-    m_songsThread->startToDownload(m_currentID);
+    m_songThread->startToDownload(m_currentID);
 
     if(!m_isPlaying)
     {
@@ -144,9 +143,9 @@ void MusicWebFMRadioPlayWidget::radioVolume(int num)
 void MusicWebFMRadioPlayWidget::radioResourceDownload()
 {
     MusicObject::MusicSongInformation info;
-    if(m_songsThread)
+    if(m_songThread)
     {
-        info = m_songsThread->getMusicSongInfo();
+        info = m_songThread->getMusicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -175,20 +174,20 @@ void MusicWebFMRadioPlayWidget::closeEvent(QCloseEvent *event)
 void MusicWebFMRadioPlayWidget::createCoreModule()
 {
     m_mediaPlayer = new MusicCoreMPlayer(this);
-    m_songsThread = new MusicFMRadioSongsRequest(this);
+    m_songThread = new MusicFMRadioSongsRequest(this);
 
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
-    connect(m_songsThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
+    connect(m_songThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
 }
 
 void MusicWebFMRadioPlayWidget::startToPlay()
 {
     MusicObject::MusicSongInformation info;
-    if(m_songsThread)
+    if(m_songThread)
     {
-        info = m_songsThread->getMusicSongInfo();
+        info = m_songThread->getMusicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -237,9 +236,9 @@ void MusicWebFMRadioPlayWidget::startToPlay()
 void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 {
     MusicObject::MusicSongInformation info;
-    if(m_songsThread)
+    if(m_songThread)
     {
-        info = m_songsThread->getMusicSongInfo();
+        info = m_songThread->getMusicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -255,9 +254,9 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
 void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
 {
     MusicObject::MusicSongInformation info;
-    if(m_songsThread)
+    if(m_songThread)
     {
-        info = m_songsThread->getMusicSongInfo();
+        info = m_songThread->getMusicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -270,6 +269,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
     {
         pix.load(":/image/lb_defaultArt");
     }
+
     pix = MusicUtils::Image::pixmapToRound(pix, QSize(150, 150), 100, 100);
     m_ui->artistLabel->setPixmap(pix);
     m_ui->artistLabel->start();

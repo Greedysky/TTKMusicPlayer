@@ -1,6 +1,7 @@
 #include "musiccoremplayer.h"
 #include "musicobject.h"
 #include "musicabstractnetwork.h"
+#include "miniprocess.h"
 
 #include <QProcess>
 
@@ -20,27 +21,12 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
 
 MusicCoreMPlayer::~MusicCoreMPlayer()
 {
-    m_timer.stop();
-    m_checkTimer.stop();
-
-    if(m_process)
-    {
-        m_process->kill();
-    }
-
-    delete m_process;
+    closeModule();
 }
 
 void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
 {
-    m_timer.stop();
-    if(m_process)
-    {
-        m_process->kill();
-        delete m_process;
-        m_process = nullptr;
-    }
-
+    closeModule();
     if(!QFile::exists(MAKE_PLAYER_FULL))
     {
         TTK_LOGGER_ERROR("Lack of plugin file");
@@ -67,10 +53,24 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     }
 }
 
+void MusicCoreMPlayer::closeModule()
+{
+    m_timer.stop();
+    m_checkTimer.stop();
+
+    if(m_process)
+    {
+        m_process->kill();
+        delete m_process;
+        m_process = nullptr;
+        killProcessByName(QStringList() << MAKE_PLAYER_FULL);
+    }
+}
+
 void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 {
     QStringList arguments;
-    arguments << "-softvol" << "-slave" << "-quiet" << "-wid";
+    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-wid";
     arguments << QString::number(winId);
 #ifdef Q_OS_WIN
     arguments << "-vo" << "direct3d" << data;
@@ -90,7 +90,7 @@ void MusicCoreMPlayer::setMusicMedia(const QString &data)
     Q_EMIT mediaChanged(data);
 
     QStringList arguments;
-    arguments << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
+    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
     m_process->start(MAKE_PLAYER_FULL, arguments);
 }

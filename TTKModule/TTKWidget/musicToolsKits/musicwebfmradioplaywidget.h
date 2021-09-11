@@ -47,7 +47,7 @@ public:
     /*!
      * Update radio song by given id.
      */
-    void updateRadioSong(const QString &id, const QString &cookie);
+    void updateRadioSong(const QString &id);
 
 public Q_SLOTS:
     /*!
@@ -119,7 +119,7 @@ protected:
 
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_mediaPlayer;
-    MusicFMRadioSongsRequest *m_songsThread;
+    MusicFMRadioSongsRequest *m_songThread;
 
 };
 

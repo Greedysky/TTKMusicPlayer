@@ -42,15 +42,15 @@ QString MusicFormats::supportMusicInputFormats()
 
 QString MusicFormats::supportSpekInputFormats()
 {
-    return QString("*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac \
+    return QString("Audio File(*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac \
                     *.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra \
-                    *.ram *.snd *.wav *.wma *.wv");
+                    *.ram *.snd *.wav *.wma *.wv)");
 }
 
 QString MusicFormats::supportPlaylistInputFormats()
 {
     QStringList formats;
-    formats << "File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.fpl *.dbpl *.csv *.txt)";
+    formats << "Playlist File(*.tkpl *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.fpl *.dbpl *.csv *.txt)";
     formats << "TTKlist File(*.tkpl)";
     formats << "M3U File(*.m3u)";
     formats << "M3U8 File(*.m3u8)";
