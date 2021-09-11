@@ -16,7 +16,7 @@ void MusicFMRadioChannelRequest::startToDownload(const QString &id)
 {
     Q_UNUSED(id);
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(FM_CHANNEL_URL, false).arg(FM_API_KEY));
+    request.setUrl(MusicUtils::Algorithm::mdII(FM_CHANNEL_URL, false));
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -34,7 +34,6 @@ void MusicFMRadioChannelRequest::downLoadFinished()
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
         m_channels.clear();
-        setHeader("Cookie", m_reply->rawHeader("Set-Cookie"));
 
         QJson::Parser json;
         bool ok;

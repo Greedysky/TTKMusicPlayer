@@ -16,8 +16,7 @@ void MusicFMRadioSongsRequest::startToDownload(const QString &id)
     m_songInfo = MusicObject::MusicSongInformation();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(FM_SONG_URL, false).arg(id).arg(FM_API_KEY));
-    request.setRawHeader("Cookie", getHeader("Cookie").toByteArray());
+    request.setUrl(MusicUtils::Algorithm::mdII(FM_PLAYLIST_URL, false).arg(id));
     MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -73,8 +72,14 @@ void MusicFMRadioSongsRequest::downLoadFinished()
                 m_songInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
                 m_songInfo.m_smallPicUrl = value["picture"].toString();
                 m_songInfo.m_albumName = MusicUtils::String::charactersReplaced(value["albumtitle"].toString());
-                m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString()).arg(value["ssid"].toString()).arg(FM_API_KEY);
+                m_songInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(FM_LRC_URL, false).arg(value["sid"].toString()).arg(value["ssid"].toString());
+
+                if(!m_songInfo.m_songAttrs.isEmpty())
+                {
+                    break;
+                }
             }
+
         }
     }
 
