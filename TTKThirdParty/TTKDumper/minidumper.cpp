@@ -12,12 +12,12 @@ void cleanAppicationCache()
     QFile::remove(MUSIC_RECORD_OUT_FILE);
 
     ///clean thirdparty process
-    QStringList origin;
-    origin << MAKE_TRANSFORM_PREFIX
+    QStringList process;
+    process << MAKE_TRANSFORM_PREFIX
            << MAKE_KRC2LRC_PREFIX
            << MAKE_PLAYER_PREFIX
            << MAKE_GAIN_PREFIX;
-    killProcessByName(origin);
+    killProcessByName(process);
 }
 
 #ifdef Q_OS_WIN

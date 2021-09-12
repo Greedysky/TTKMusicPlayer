@@ -63,7 +63,7 @@ void MusicCoreMPlayer::closeModule()
         m_process->kill();
         delete m_process;
         m_process = nullptr;
-        killProcessByName(QStringList() << MAKE_PLAYER_FULL);
+        killProcessByName(MAKE_PLAYER_FULL);
     }
 }
 

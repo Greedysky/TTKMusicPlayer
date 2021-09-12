@@ -22,8 +22,12 @@
 #include "ttkglobaldefine.h"
 
 /*!
- * Set string to unicode string by format.
+ * Kill process by name.
  */
-TTK_MODULE_EXPORT void killProcessByName(const QStringList &origin);
+TTK_MODULE_EXPORT void killProcessByName(const QString &process);
+/*!
+ * Kill process by name list.
+ */
+TTK_MODULE_EXPORT void killProcessByName(const QStringList &processes);
 
 #endif

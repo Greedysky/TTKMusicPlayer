@@ -20,7 +20,6 @@ static QStringList getProcessList()
     }
 
     cProcesses = cbNeeded / sizeof(unsigned long);
-
     for(unsigned int i = 0; i < cProcesses; i++)
     {
         if(aProcesses[i] == 0)
@@ -78,10 +77,19 @@ static bool killProcess(LPCWSTR processName)
    return true;
 }
 
-void killProcessByName(const QStringList &origin)
+void killProcessByName(const QString &process)
 {
     QStringList list(getProcessList());
-    for(const QString &process : qAsConst(origin))
+    if(list.contains(process) && killProcess(process.toStdWString().c_str()))
+    {
+        TTK_LOGGER_INFO("Windows Kill Process " << process << " Successed");
+    }
+}
+
+void killProcessByName(const QStringList &processes)
+{
+    QStringList list(getProcessList());
+    for(const QString &process : qAsConst(b))
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
@@ -92,35 +100,41 @@ void killProcessByName(const QStringList &origin)
 #elif defined Q_OS_UNIX
 #include <QProcess>
 
-typedef struct PID_INFO
+typedef struct PIDInfo
 {
     int m_pid;
     QString m_path;
-}PID_INFO;
+}PIDInfo;
 
-static QList<PID_INFO> getProcessList()
+static QList<PIDInfo> getProcessList()
 {
-    QList<PID_INFO> lprocess;
+    QList<PIDInfo> lprocess;
     QProcess process;
     process.start("/bin/bash", QStringList() << "-c" << "ps -xu | awk '{print $2\";\"$11}'");
-    if(process.waitForFinished())
+    if(!process.waitForFinished())
     {
-        const QString data(process.readAll());
-        if(!data.isEmpty())
+        return lprocess;
+    }
+
+    const QString data(process.readAll());
+    if(data.isEmpty())
+    {
+        return lprocess;
+    }
+
+    const QStringList &sp = data.split("\n");
+    for(const QString &var : qAsConst(sp))
+    {
+        const QStringList &line = var.split(";");
+        if(line.count() != 2)
         {
-            const QStringList &sp = data.split("\n");
-            for(const QString &var : qAsConst(sp))
-            {
-                const QStringList &line = var.split(";");
-                if(line.count() == 2)
-                {
-                    PID_INFO info;
-                    info.m_pid = line.first().toInt();
-                    info.m_path = line.last();
-                    lprocess << info;
-                }
-            }
+            continue;
         }
+
+        PIDInfo info;
+        info.m_pid = line.first().toInt();
+        info.m_path = line.last();
+        lprocess << info;
     }
 
     return lprocess;
@@ -132,16 +146,30 @@ static bool killProcess(int pid)
     return true;
 }
 
-void killProcessByName(const QStringList &origin)
+void killProcessByName(const QString &process)
 {
-    QList<PID_INFO>  list(getProcessList());
-    for(const PID_INFO &info : qAsConst(list))
+    QList<PIDInfo> list(getProcessList());
+    for(const PIDInfo &info : qAsConst(list))
     {
-        for(const QString &process : qAsConst(origin))
+        if(info.m_path.contains(process) && killProcess(info.m_pid))
+        {
+            TTK_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed");
+            break;
+        }
+    }
+}
+
+void killProcessByName(const QStringList &processes)
+{
+    QList<PIDInfo> list(getProcessList());
+    for(const QString &process : qAsConst(processes))
+    {
+        for(const PIDInfo &info : qAsConst(list))
         {
             if(info.m_path.contains(process) && killProcess(info.m_pid))
             {
                 TTK_LOGGER_INFO("Unix Kill Process " << process << " PID" << info.m_pid << " Successed");
+                break;
             }
         }
     }

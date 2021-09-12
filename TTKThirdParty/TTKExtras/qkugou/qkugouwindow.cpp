@@ -328,12 +328,14 @@ void QKugouWindow::createKugouSongWidget()
     topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addWidget(d->m_buttonGroup->button(3));
     topLayout->addStretch(1);
+
 #ifdef Q_OS_UNIX
     d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(3)->setFocusPolicy(Qt::NoFocus);
 #endif
+
     createWebViewer();
     layout->addWidget(d->m_topWidget);
     layout->addWidget(d->m_webView);
@@ -383,6 +385,12 @@ void QKugouWindow::createKugouRadioWidget()
     topLayout->addWidget(d->m_buttonGroup->button(1));
     topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addStretch(1);
+
+#ifdef Q_OS_UNIX
+    d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
+#endif
 
     createWebViewer();
     layout->addWidget(d->m_topWidget);
@@ -461,6 +469,12 @@ void QKugouWindow::createKugouMVWidget()
     topLayout->addWidget(d->m_buttonGroup->button(1));
     topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addStretch(1);
+
+#ifdef Q_OS_UNIX
+    d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
+#endif
 
     createWebViewer();
     layout->addWidget(d->m_topWidget);
