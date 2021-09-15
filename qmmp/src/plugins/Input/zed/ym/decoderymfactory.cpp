@@ -36,7 +36,7 @@ QList<TrackInfo*> DecoderYmFactory::createPlayList(const QString &path, TrackInf
     }
 
     CYmMusic *music = new CYmMusic;
-    if(!music->load(Qmmp::textCodec(path)))
+    if(!music->load(Qmmp::generatePrintable(path)))
     {
         delete info;
         return QList<TrackInfo*>();

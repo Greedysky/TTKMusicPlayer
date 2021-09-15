@@ -33,7 +33,7 @@ SidTune *SIDHelper::load(const QString &url)
         track = url.section("#", -1).toInt();
     }
 
-    m_tune = new SidTune(Qmmp::textCodec(path));
+    m_tune = new SidTune(Qmmp::generatePrintable(path));
     m_tune->selectSong(track - 1);
     m_path = path;
     return m_tune;

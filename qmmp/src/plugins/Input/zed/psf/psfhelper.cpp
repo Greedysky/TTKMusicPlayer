@@ -46,7 +46,7 @@ bool PSFHelper::initialize()
         return false;
     }
 
-    m_info->input = ao_start(m_info->type, Qmmp::textCodec(m_path), (uint8 *)module.constData(), m_info->file_size);
+    m_info->input = ao_start(m_info->type, Qmmp::generatePrintable(m_path), (uint8 *)module.constData(), m_info->file_size);
     if(!m_info->input)
     {
         qWarning("PSFHelper: ao_start error");

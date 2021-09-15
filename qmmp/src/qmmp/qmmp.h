@@ -184,7 +184,7 @@ public:
      * Returns the decoded text by intput text.
      * @param input text.
      */
-    static const char *textCodec(const QString &text);
+    static const char *generatePrintable(const QString &text);
 };
 
 #endif
