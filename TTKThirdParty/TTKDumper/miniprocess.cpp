@@ -89,7 +89,7 @@ void killProcessByName(const QString &process)
 void killProcessByName(const QStringList &processes)
 {
     QStringList list(getProcessList());
-    for(const QString &process : qAsConst(b))
+    for(const QString &process : qAsConst(processes))
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
         {
