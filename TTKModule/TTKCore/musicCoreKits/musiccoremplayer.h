@@ -50,6 +50,7 @@ public:
      * Set media by type and data path.
      */
     void setMedia(Category type, const QString &data, int winId = -1);
+
     /*!
      * Set current play pos.
      */

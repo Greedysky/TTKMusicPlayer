@@ -15,7 +15,7 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
 
-    m_checkTimer.setInterval(5 * MT_S2MS);
+    m_checkTimer.setInterval(10 * MT_S2MS);
     connect(&m_checkTimer, SIGNAL(timeout()), SLOT(checkTimerout()));
 }
 
@@ -38,16 +38,16 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     m_process = new QProcess(this);
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
-    QString inputUrl = data;
-    if(inputUrl.contains(TTK_HTTPS))
+    QString url = data;
+    if(url.contains(TTK_HTTPS))
     {
-        inputUrl.replace(TTK_HTTPS, TTK_HTTP);
+        url.replace(TTK_HTTPS, TTK_HTTP);
     }
 
     switch(m_category)
     {
-        case MusicCategory: setMusicMedia(inputUrl); break;
-        case VideoCategory: setVideoMedia(inputUrl, winId); break;
+        case MusicCategory: setMusicMedia(url); break;
+        case VideoCategory: setVideoMedia(url, winId); break;
         case NullCategory: break;
         default: break;
     }

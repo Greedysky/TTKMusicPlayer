@@ -45,7 +45,6 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     connect(m_fullscreen, SIGNAL(clicked()), SIGNAL(fullscreenButtonClicked()));
     connect(m_download, SIGNAL(clicked()), SIGNAL(downloadButtonClicked()));
     connect(m_share, SIGNAL(clicked()), SIGNAL(shareButtonClicked()));
-
 }
 
 MusicVideoFloatWidget::~MusicVideoFloatWidget()

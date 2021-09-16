@@ -146,6 +146,12 @@ void MusicVideoPlayWidget::popup(bool popup)
     }
     else
     {
+#ifdef Q_OS_UNIX
+        if(isFullScreen())
+        {
+            showNormal();
+        }
+#endif
         m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + tr("Fullscreen"));
     }
 }
@@ -157,12 +163,18 @@ bool MusicVideoPlayWidget::isPopup() const
 
 void MusicVideoPlayWidget::resizeWindow()
 {
-    const int width = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    const int height = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
+    const int w = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int h = G_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
 
     if(!isFullScreen())
     {
-        resizeWindow(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+        resizeWindow(w - WINDOW_WIDTH_MIN, h - WINDOW_HEIGHT_MIN);
+#ifdef Q_OS_UNIX
+        if(isPopup())
+        {
+            resizeWindow(width() - 680, height() - 508);
+        }
+#endif
     }
 }
 
