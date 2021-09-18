@@ -1,5 +1,4 @@
 adplug-2.3.3	https://github.com/adplug/adplug
-#alsa-lib-1.2.5.1	https://www.alsa-project.org/wiki/Download
 enca-1.19	https://cihar.com/software/enca
 faad2-2.10.0	https://github.com/knik0/faad2
 ffmpeg-3.4.6	https://github.com/FFmpeg/FFmpeg
@@ -13,9 +12,9 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmad-0.15.1b	https://sourceforge.net/projects/mad
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.3.31	https://lib.openmpt.org/libopenmpt
+libopenmpt-0.3.32	https://lib.openmpt.org/libopenmpt
 libprojectm-2.2.1	https://github.com/projectM-visualizer/projectm
-libsamplerate-0.1.9	http://libsndfile.github.io/libsamplerate/download.html
+libsamplerate-0.2.1	http://libsndfile.github.io/libsamplerate/download.html
 libsidplayfp-2.2.2	https://sourceforge.net/projects/sidplay-residfp
 libsndfile-1.0.31	https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://xiph.org/downloads
@@ -28,5 +27,5 @@ soxr-0.1.3	https://sourceforge.net/projects/soxr
 speex-1.2.0	https://gitlab.xiph.org/xiph/speex
 taglib-1.12	https://github.com/taglib/taglib
 wavpack-5.4.0	https://www.wavpack.com/downloads.html
-wildmidi-wildmidi-0.4.4.mod	https://github.com/Mindwerks/wildmidi
-zed-1.1.0
+wildmidi-wildmidi-0.4.4.patch	https://github.com/Mindwerks/wildmidi
+zed-1.1.1

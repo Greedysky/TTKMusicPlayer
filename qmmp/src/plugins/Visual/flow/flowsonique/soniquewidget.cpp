@@ -16,7 +16,7 @@ typedef VisInfo* (*SoniqueModule)();
 #define SPECTRUM_SIZE   256
 #define FFT_SIZE        (SPECTRUM_SIZE * 2)
 
-void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
+static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
 {
     const float zoom = 0.8;
     unsigned int *vtp = vt;
@@ -68,7 +68,7 @@ void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
     }
 }
 
-QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively)
+static QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -77,13 +77,10 @@ QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, 
     }
 
     QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-    if(recursively)
+    const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for(const QFileInfo &file : folderList)
     {
-        const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-        for(const QFileInfo &file : folderList)
-        {
-            fileList.append(getFileListByDir(file.absoluteFilePath(), filter, recursively));
-        }
+        fileList.append(getFileListByDir(file.absoluteFilePath(), filter));
     }
 
     return fileList;
@@ -139,8 +136,10 @@ void SoniqueWidget::addBuffer(float *left, float *right)
             m_in_freq_data[i].r = left[i];
             m_in_freq_data[i].i = 0;
         }
+
         kiss_fft(m_kiss_cfg, m_in_freq_data, m_out_freq_data);
         m_visData->Spectrum[0][0] = std::min(255, int(m_out_freq_data[0].r * 512));
+
         for(int j=0; j<SPECTRUM_SIZE; j++)
         {
             const int value = sqrt(pow((((m_out_freq_data[j].r) / 512) * 2), 2) + pow((((m_out_freq_data[j].i) / 512) * 2), 2)) * 512;
@@ -152,8 +151,10 @@ void SoniqueWidget::addBuffer(float *left, float *right)
             m_in_freq_data[i].r = right[i];
             m_in_freq_data[i].i = 0;
         }
+
         kiss_fft(m_kiss_cfg, m_in_freq_data, m_out_freq_data);
         m_visData->Spectrum[1][0] = std::min(255, int(m_out_freq_data[0].r * 512));
+
         for(int j=0; j<SPECTRUM_SIZE; j++)
         {
             const int value = sqrt(pow((((m_out_freq_data[j].r) / 512) * 2), 2) + pow((((m_out_freq_data[j].i) / 512) * 2), 2)) * 512;
@@ -247,7 +248,7 @@ void SoniqueWidget::randomPreset()
 void SoniqueWidget::initialize()
 {
     const QString &dir = Qmmp::pluginPath() + "/../MPlugins/config/sonique";
-    const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp", true));
+    const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp"));
     for(const QFileInfo &info : folderList)
     {
         m_presetList << info.absoluteFilePath();
@@ -305,7 +306,7 @@ void SoniqueWidget::generatePreset()
     m_sonique = module();
 
     const QString &dir = QFileInfo(m_presetList[m_currentIndex]).absolutePath();
-    const QFileInfoList iniList(getFileListByDir(dir, QStringList() << "*.ini", true));
+    const QFileInfoList iniList(getFileListByDir(dir, QStringList() << "*.ini"));
     if(!iniList.isEmpty())
     {
         char *init_path = iniList.first().absoluteFilePath().toLocal8Bit().data();
