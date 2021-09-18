@@ -9,22 +9,13 @@ SOURCES += decodersndfilefactory.cpp \
 DESTDIR = $$PLUGINS_PREFIX/Input
 TARGET = $${TARGET}
 
-INCLUDEPATH += $$EXTRA_PREFIX/libsndfile/include \
-               $$EXTRA_PREFIX/libflac/include \
-               $$EXTRA_PREFIX/libvorbis/include \
-               $$EXTRA_PREFIX/libogg/include
+INCLUDEPATH += $$EXTRA_PREFIX/libsndfile/include
 
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L$$EXTRA_PREFIX/libsndfile/lib -lsndfile$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libflac/lib -lFLAC$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisenc$$STATIC_LIBRARY_SUFFIX -lvorbis$$STATIC_LIBRARY_SUFFIX \
-            -L$$EXTRA_PREFIX/libogg/lib -logg$$STATIC_LIBRARY_SUFFIX
+    LIBS += -L$$EXTRA_PREFIX/libsndfile/lib -lsndfile$$STATIC_LIBRARY_SUFFIX
 }
 
 win32 {
-    LIBS += -L$$EXTRA_PREFIX/libsndfile/lib -lsndfile \
-            -L$$EXTRA_PREFIX/libflac/lib -lflac \
-            -L$$EXTRA_PREFIX/libvorbis/lib -lvorbisenc -lvorbis \
-            -L$$EXTRA_PREFIX/libogg/lib -logg
+    LIBS += -L$$EXTRA_PREFIX/libsndfile/lib -lsndfile
 }
