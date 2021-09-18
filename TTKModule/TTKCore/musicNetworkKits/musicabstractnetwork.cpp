@@ -6,9 +6,8 @@ MusicAbstractNetwork::MusicAbstractNetwork(QObject *parent)
     m_interrupt = false;
     m_stateCode = MusicObject::NetworkQuery;
     m_reply = nullptr;
-    m_manager = new QNetworkAccessManager(this);
 #ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    connect(&m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
 #endif
 }
 
@@ -18,11 +17,6 @@ MusicAbstractNetwork::~MusicAbstractNetwork()
     m_stateCode = MusicObject::NetworkError;
 
     deleteAll();
-    if(m_manager)
-    {
-        m_manager->deleteLater();
-        m_manager = nullptr;
-    }
 }
 
 void MusicAbstractNetwork::deleteAll()

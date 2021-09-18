@@ -22,11 +22,6 @@ void MusicWYQueryPlaylistRequest::startToSearch(QueryType type, const QString &p
 
 void MusicWYQueryPlaylistRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -37,7 +32,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_DATA_URL, false).arg(m_queryText).arg(m_pageSize).arg(m_pageSize * offset));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -48,11 +43,6 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
 
 void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
 
     deleteAll();
@@ -62,7 +52,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(playlist));
 
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -73,11 +63,6 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
 
 void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
 
     MusicPagingRequest::downLoadFinished();
@@ -88,7 +73,7 @@ void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(item.m_id));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

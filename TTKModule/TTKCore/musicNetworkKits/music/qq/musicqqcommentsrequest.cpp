@@ -29,11 +29,6 @@ void MusicQQSongCommentsRequest::startToSearch(const QString &name)
 
 void MusicQQSongCommentsRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -43,7 +38,7 @@ void MusicQQSongCommentsRequest::startToPage(int offset)
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_BASE_URL, false));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(m_pageSize).arg(offset).toUtf8());
+    m_reply = m_manager.post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toString()).arg(m_pageSize).arg(offset).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -156,11 +151,6 @@ void MusicQQPlaylistCommentsRequest::startToSearch(const QString &name)
 
 void MusicQQPlaylistCommentsRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -170,7 +160,7 @@ void MusicQQPlaylistCommentsRequest::startToPage(int offset)
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_BASE_URL, false));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(m_pageSize).arg(offset).toUtf8());
+    m_reply = m_manager.post(request, MusicUtils::Algorithm::mdII(QQ_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toString()).arg(m_pageSize).arg(offset).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

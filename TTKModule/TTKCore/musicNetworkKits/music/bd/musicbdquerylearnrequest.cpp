@@ -12,11 +12,6 @@ MusicBDQueryLearnRequest::MusicBDQueryLearnRequest(QObject *parent)
 
 void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     Q_UNUSED(type);
@@ -27,7 +22,7 @@ void MusicBDQueryLearnRequest::startToSearch(QueryType type, const QString &text
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -101,11 +96,6 @@ void MusicBDQueryLearnRequest::downLoadFinished()
 
 void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     const QString &key = MusicUtils::Algorithm::mdII(BD_LEARN_DATA_URL, false).arg(info->m_songId).arg(MusicTime::timestamp());
     QString eKey = QString(QAesWrapper().encryptCBC(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Url::urlEncode(eKey);
@@ -116,7 +106,7 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
@@ -153,18 +143,13 @@ void MusicBDQueryLearnRequest::readFromMusicSongAttribute(MusicObject::MusicSong
 
 void MusicBDQueryLearnRequest::readFromMusicLrcAttribute(MusicObject::MusicSongInformation *info)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(BD_SONG_PATH_URL, false).arg(info->m_songId));
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

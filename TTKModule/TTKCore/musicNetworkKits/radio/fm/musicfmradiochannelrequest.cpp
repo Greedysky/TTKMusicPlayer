@@ -2,10 +2,6 @@
 
 #include "qsync/qsyncutils.h"
 
-#include <QNetworkRequest>
-#include <QNetworkCookie>
-#include <QNetworkAccessManager>
-
 MusicFMRadioChannelRequest::MusicFMRadioChannelRequest(QObject *parent)
     : MusicAbstractFMRadioRequest(parent)
 {
@@ -19,7 +15,7 @@ void MusicFMRadioChannelRequest::startToDownload(const QString &id)
     request.setUrl(MusicUtils::Algorithm::mdII(FM_CHANNEL_URL, false));
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

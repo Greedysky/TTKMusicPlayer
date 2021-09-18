@@ -9,11 +9,6 @@ MusicKWArtistSimilarRequest::MusicKWArtistSimilarRequest(QObject *parent)
 
 void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -22,7 +17,7 @@ void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_SIMILAR_URL, false).arg(getArtistNameById(text)));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -69,7 +64,7 @@ void MusicKWArtistSimilarRequest::downLoadFinished()
 QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
 {
     QString name;
-    if(id.isEmpty() || !m_manager)
+    if(id.isEmpty())
     {
         return name;
     }
@@ -78,9 +73,8 @@ QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(id));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
@@ -108,7 +102,7 @@ QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
 
 QString MusicKWArtistSimilarRequest::getArtistIdName(const QString &name)
 {
-    if(name.isEmpty() || !m_manager)
+    if(name.isEmpty())
     {
         return QString();
     }
@@ -117,9 +111,8 @@ QString MusicKWArtistSimilarRequest::getArtistIdName(const QString &name)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_NAME_URL, false).arg(name));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

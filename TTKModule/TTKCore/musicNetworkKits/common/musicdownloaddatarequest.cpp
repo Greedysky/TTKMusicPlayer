@@ -34,18 +34,13 @@ void MusicDownloadDataRequest::setRecordType(MusicObject::RecordType type)
 
 void MusicDownloadDataRequest::startRequest(const QUrl &url)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     m_speedTimer.start();
 
     QNetworkRequest request;
     request.setUrl(url);
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

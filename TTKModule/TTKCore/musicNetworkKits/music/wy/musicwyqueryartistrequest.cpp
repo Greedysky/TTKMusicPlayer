@@ -8,11 +8,6 @@ MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
 
 void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
 
     deleteAll();
@@ -23,7 +18,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
                       MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(artist),
                       QString("{}"));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -134,18 +129,13 @@ void MusicWYQueryArtistRequest::downLoadFinished()
 
 void MusicWYQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_DATA_URL, false).arg(m_queryText));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

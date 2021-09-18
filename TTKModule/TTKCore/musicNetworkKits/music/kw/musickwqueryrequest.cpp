@@ -68,11 +68,6 @@ MusicKWQueryRequest::MusicKWQueryRequest(QObject *parent)
 
 void MusicKWQueryRequest::startToSearch(QueryType type, const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     m_currentType = type;
@@ -84,11 +79,6 @@ void MusicKWQueryRequest::startToSearch(QueryType type, const QString &text)
 
 void MusicKWQueryRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -99,7 +89,7 @@ void MusicKWQueryRequest::startToPage(int offset)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(m_queryText).arg(offset).arg(m_pageSize));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -110,11 +100,6 @@ void MusicKWQueryRequest::startToPage(int offset)
 
 void MusicKWQueryRequest::startToSingleSearch(const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -123,7 +108,7 @@ void MusicKWQueryRequest::startToSingleSearch(const QString &text)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(text));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

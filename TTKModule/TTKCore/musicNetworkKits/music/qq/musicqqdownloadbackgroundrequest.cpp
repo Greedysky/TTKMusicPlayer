@@ -21,7 +21,7 @@ void MusicQQDownloadBackgroundRequest::startToDownload()
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadDataFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -118,7 +118,7 @@ void MusicQQDownloadBackgroundRequest::downLoadUrl(const QString &id)
     request.setUrl(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadUrlFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

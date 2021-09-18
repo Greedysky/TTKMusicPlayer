@@ -29,11 +29,6 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &name)
 
 void MusicWYSongCommentsRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -44,7 +39,7 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_COMMENT_SONG_URL, false).arg(m_rawData["sid"].toInt()),
                       MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toInt()).arg(m_pageSize).arg(m_pageSize * offset));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -116,11 +111,6 @@ void MusicWYPlaylistCommentsRequest::startToSearch(const QString &name)
 
 void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -131,7 +121,7 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_COMMENT_PLAYLIST_URL, false).arg(m_rawData["sid"].toLongLong()),
                       MusicUtils::Algorithm::mdII(WY_COMMENT_DATA_URL, false).arg(m_rawData["sid"].toLongLong()).arg(m_pageSize).arg(m_pageSize * offset));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

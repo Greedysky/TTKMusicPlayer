@@ -1,11 +1,6 @@
 #include "musicqqqueryinterface.h"
 #include "musicabstractnetwork.h"
 
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QSslConfiguration>
-#include <QNetworkAccessManager>
-
 #define REFER_URL   "M25YVkpIeHVOaVFRY0k3dmFWOFJsOE1tU013ZWV0Sy8="
 
 void MusicQQInterface::makeRequestRawHeader(QNetworkRequest *request)

@@ -20,11 +20,6 @@ void MusicKGQueryToplistRequest::startToSearch(QueryType type, const QString &to
 
 void MusicKGQueryToplistRequest::startToSearch(const QString &toplist)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
 
     deleteAll();
@@ -33,7 +28,7 @@ void MusicKGQueryToplistRequest::startToSearch(const QString &toplist)
     request.setUrl(MusicUtils::Algorithm::mdII(KG_TOPLIST_URL, false).arg(toplist));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

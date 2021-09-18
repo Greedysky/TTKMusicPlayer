@@ -12,7 +12,7 @@ void MusicDownloadSourceRequest::startToDownload(const QString &url)
     request.setUrl(url);
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 

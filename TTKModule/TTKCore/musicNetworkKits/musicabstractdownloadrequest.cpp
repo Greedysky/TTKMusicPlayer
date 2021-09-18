@@ -4,8 +4,6 @@
 #include "musiccoreutils.h"
 
 #include <QSslError>
-#include <QNetworkRequest>
-#include <QNetworkAccessManager>
 
 MusicAbstractDownLoadRequest::MusicAbstractDownLoadRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicAbstractNetwork(parent)

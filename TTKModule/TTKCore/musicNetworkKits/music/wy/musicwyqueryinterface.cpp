@@ -5,11 +5,6 @@
 
 #include "qalgorithm/qaeswrapper.h"
 
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QSslConfiguration>
-#include <QNetworkAccessManager>
-
 void MusicWYInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());

@@ -1,11 +1,6 @@
 #include "musickgqueryinterface.h"
 #include "musicabstractqueryrequest.h"
 
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QSslConfiguration>
-#include <QNetworkAccessManager>
-
 void MusicKGInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL, ALG_UA_KEY, false).toUtf8());

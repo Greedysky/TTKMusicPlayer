@@ -95,14 +95,14 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
         return;
     }
 
-    if(!m_request || !m_manager)
+    if(!m_request)
     {
         return;
     }
 
     m_speedTimer.start();
     m_request->setUrl(url);
-    m_reply = m_manager->get(*m_request);
+    m_reply = m_manager.get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(readyRead()), SLOT(handleReadyRead()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
@@ -114,7 +114,7 @@ void MusicDownloadQueueRequest::startDownload(const QString &url)
 
 void MusicDownloadQueueRequest::downLoadFinished()
 {
-    if(m_isAbort || !m_request || !m_manager || !m_reply || !m_file)
+    if(m_isAbort || !m_request || !m_reply || !m_file)
     {
         return;
     }

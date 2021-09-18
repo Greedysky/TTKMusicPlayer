@@ -109,7 +109,7 @@ void MusicMVRadioProgramRequest::downLoadFinished()
 
 void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info)
 {
-    if(info->m_songId.isEmpty() || !m_manager)
+    if(info->m_songId.isEmpty())
     {
         return;
     }
@@ -121,7 +121,7 @@ void MusicMVRadioProgramRequest::readFromMusicMVAttribute(MusicObject::MusicSong
     MusicKGInterface::makeRequestRawHeader(&request);
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

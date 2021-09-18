@@ -16,7 +16,7 @@ void MusicDownloadCounterPVRequest::startToDownload()
     request.setRawHeader("Cookie", MusicUtils::Algorithm::mdII(COOKIE_URL, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 

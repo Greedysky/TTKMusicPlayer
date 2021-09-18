@@ -8,11 +8,6 @@ MusicQQQueryRecommendRequest::MusicQQQueryRecommendRequest(QObject *parent)
 
 void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
 
     deleteAll();
@@ -22,7 +17,7 @@ void MusicQQQueryRecommendRequest::startToSearch(const QString &id)
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_RECOMMEND_URL, false));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

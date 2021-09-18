@@ -94,14 +94,14 @@ protected:
     volatile bool m_interrupt;
     volatile MusicObject::NetworkCode m_stateCode;
     QNetworkReply *m_reply;
-    QNetworkAccessManager *m_manager;
+    QNetworkAccessManager m_manager;
 
 };
 
 #define TTK_HTTP    "http://"
 #define TTK_HTTPS   "https://"
 
-#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(!m_manager || m_interrupt || m_stateCode != MusicObject::NetworkQuery) return VALUE
+#define TTK_NETWORK_QUERY_CHECK(VALUE)   if(m_interrupt || m_stateCode != MusicObject::NetworkQuery) return VALUE
 
 namespace MusicObject
 {

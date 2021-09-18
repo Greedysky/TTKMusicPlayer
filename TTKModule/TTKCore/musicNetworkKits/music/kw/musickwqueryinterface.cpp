@@ -3,11 +3,6 @@
 
 #include "qalgorithm/qdeswrapper.h"
 
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QSslConfiguration>
-#include <QNetworkAccessManager>
-
 void MusicKWInterface::makeRequestRawHeader(QNetworkRequest *request)
 {
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL, ALG_UA_KEY, false).toUtf8());

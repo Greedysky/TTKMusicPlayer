@@ -10,11 +10,6 @@ MusicWYQueryAlbumRequest::MusicWYQueryAlbumRequest(QObject *parent)
 
 void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
@@ -25,7 +20,7 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
                       MusicUtils::Algorithm::mdII(WY_ALBUM_URL, false).arg(album),
                       QString("{}"));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -36,11 +31,6 @@ void MusicWYQueryAlbumRequest::startToSearch(const QString &album)
 
 void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
@@ -50,7 +40,7 @@ void MusicWYQueryAlbumRequest::startToSingleSearch(const QString &album)
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_ALBUM_DATA_URL, false));
 
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

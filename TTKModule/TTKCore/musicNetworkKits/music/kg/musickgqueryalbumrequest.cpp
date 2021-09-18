@@ -8,11 +8,6 @@ MusicKGQueryAlbumRequest::MusicKGQueryAlbumRequest(QObject *parent)
 
 void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
 
     deleteAll();
@@ -22,7 +17,7 @@ void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(album));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -33,11 +28,6 @@ void MusicKGQueryAlbumRequest::startToSearch(const QString &album)
 
 void MusicKGQueryAlbumRequest::startToSingleSearch(const QString &artist)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
 
     deleteAll();
@@ -46,7 +36,7 @@ void MusicKGQueryAlbumRequest::startToSingleSearch(const QString &artist)
     request.setUrl(MusicUtils::Algorithm::mdII(KG_ARTIST_ALBUM_URL, false).arg(artist));
     MusicKGInterface::makeRequestRawHeader(&request);
 
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

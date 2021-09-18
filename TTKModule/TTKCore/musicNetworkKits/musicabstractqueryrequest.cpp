@@ -35,11 +35,11 @@ qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
 {
     qint64 size = -1;
 
-    QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(url);
     MusicObject::setSslConfiguration(&request);
 
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.head(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));

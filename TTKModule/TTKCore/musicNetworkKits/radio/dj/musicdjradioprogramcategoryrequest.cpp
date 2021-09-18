@@ -23,11 +23,6 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(QueryType type, const QSt
 
 void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -37,7 +32,7 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
     request.setUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_queryText));
     MusicObject::setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -48,11 +43,6 @@ void MusicDJRadioProgramCategoryRequest::startToPage(int offset)
 
 void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(category));
 
     deleteAll();
@@ -62,7 +52,7 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_DETAIL_DATA_URL, false).arg(category));
 
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -73,11 +63,6 @@ void MusicDJRadioProgramCategoryRequest::startToSearch(const QString &category)
 
 void MusicDJRadioProgramCategoryRequest::getProgramInfo(MusicResultsItem &item)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 getProgramInfo %2").arg(getClassName()).arg(item.m_id));
 
     QNetworkRequest request;
@@ -86,7 +71,7 @@ void MusicDJRadioProgramCategoryRequest::getProgramInfo(MusicResultsItem &item)
                       MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_DATA_URL, false).arg(item.m_id));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

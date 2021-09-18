@@ -9,11 +9,6 @@ MusicKWQueryArtistListRequest::MusicKWQueryArtistListRequest(QObject *parent)
 
 void MusicKWQueryArtistListRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -39,7 +34,7 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize) + initial);
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

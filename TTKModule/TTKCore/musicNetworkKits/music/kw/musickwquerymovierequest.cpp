@@ -11,11 +11,6 @@ MusicKWQueryMovieRequest::MusicKWQueryMovieRequest(QObject *parent)
 
 void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -26,7 +21,7 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -37,11 +32,6 @@ void MusicKWQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
 void MusicKWQueryMovieRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -52,7 +42,7 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_MOVIE_URL, false).arg(m_queryText).arg(m_pageSize).arg(offset));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -63,11 +53,6 @@ void MusicKWQueryMovieRequest::startToPage(int offset)
 
 void MusicKWQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -210,7 +195,7 @@ void MusicKWQueryMovieRequest::singleDownLoadFinished()
 
 void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format)
 {
-    if(info->m_songId.isEmpty() || !m_manager)
+    if(info->m_songId.isEmpty())
     {
         return;
     }
@@ -238,7 +223,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
 
 void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format, int bitrate)
 {
-    if(info->m_songId.isEmpty() || !m_manager)
+    if(info->m_songId.isEmpty())
     {
         return;
     }
@@ -252,7 +237,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     MusicKWInterface::makeRequestRawHeader(&request);
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
@@ -292,7 +277,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
 
 void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInformation *info)
 {
-    if(info->m_songId.isEmpty() || !m_manager)
+    if(info->m_songId.isEmpty())
     {
         return;
     }
@@ -305,7 +290,7 @@ void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInforma
     MusicKWInterface::makeRequestRawHeader(&request);
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

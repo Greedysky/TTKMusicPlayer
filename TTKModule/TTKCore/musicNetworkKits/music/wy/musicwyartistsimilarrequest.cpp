@@ -8,11 +8,6 @@ MusicWYArtistSimilarRequest::MusicWYArtistSimilarRequest(QObject *parent)
 
 void MusicWYArtistSimilarRequest::startToSearch(const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -22,7 +17,7 @@ void MusicWYArtistSimilarRequest::startToSearch(const QString &text)
                       MusicUtils::Algorithm::mdII(WY_ARTIST_SIMILAR_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_SIMILAR_DATA_URL, false).arg(text));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

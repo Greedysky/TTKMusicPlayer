@@ -9,11 +9,6 @@ MusicWYQueryMovieRequest::MusicWYQueryMovieRequest(QObject *parent)
 
 void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -25,7 +20,7 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryText).arg(1014).arg(m_pageSize).arg(0).toUtf8());
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -36,11 +31,6 @@ void MusicWYQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
 void MusicWYQueryMovieRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -52,7 +42,7 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(m_queryText).arg(m_pageSize * offset).arg(m_pageSize));
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -63,11 +53,6 @@ void MusicWYQueryMovieRequest::startToPage(int offset)
 
 void MusicWYQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
     m_queryText = text.trimmed();
@@ -205,7 +190,7 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
                       MusicUtils::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
@@ -280,7 +265,7 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                       MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_DATA_URL, false).arg(id));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
@@ -371,7 +356,7 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
                       MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
@@ -416,11 +401,6 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
 
 void MusicWYQueryMovieRequest::getArtistMoviesCount(qint64 id)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     m_totalSize = DEFAULT_HIGHER_LEVEL;
 
     QNetworkRequest request;
@@ -429,7 +409,7 @@ void MusicWYQueryMovieRequest::getArtistMoviesCount(qint64 id)
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(DEFAULT_HIGHER_LEVEL));
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

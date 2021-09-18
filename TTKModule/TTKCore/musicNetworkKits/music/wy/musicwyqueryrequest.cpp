@@ -9,11 +9,6 @@ MusicWYQueryRequest::MusicWYQueryRequest(QObject *parent)
 
 void MusicWYQueryRequest::startToSearch(QueryType type, const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
 
     m_currentType = type;
@@ -25,11 +20,6 @@ void MusicWYQueryRequest::startToSearch(QueryType type, const QString &text)
 
 void MusicWYQueryRequest::startToPage(int offset)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
 
     deleteAll();
@@ -41,7 +31,7 @@ void MusicWYQueryRequest::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_DATA_URL, false).arg(m_queryText).arg(1).arg(m_pageSize).arg(m_pageSize * offset).toUtf8());
 
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager.post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -52,11 +42,6 @@ void MusicWYQueryRequest::startToPage(int offset)
 
 void MusicWYQueryRequest::startToSingleSearch(const QString &text)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
     deleteAll();
@@ -66,7 +51,7 @@ void MusicWYQueryRequest::startToSingleSearch(const QString &text)
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_DATA_URL, false).arg(text));
 
-    QNetworkReply *reply = m_manager->post(request, parameter);
+    QNetworkReply *reply = m_manager.post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

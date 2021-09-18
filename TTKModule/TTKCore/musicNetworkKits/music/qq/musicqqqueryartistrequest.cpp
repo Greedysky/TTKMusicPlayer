@@ -71,11 +71,6 @@ MusicQQQueryArtistRequest::MusicQQQueryArtistRequest(QObject *parent)
 
 void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
 
     deleteAll();
@@ -85,7 +80,7 @@ void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_URL, false).arg(artist).arg(0).arg(50));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager.get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(m_reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -192,18 +187,13 @@ void MusicQQQueryArtistRequest::downLoadFinished()
 
 void MusicQQQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_queryText));
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
+    QNetworkReply *reply = m_manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));

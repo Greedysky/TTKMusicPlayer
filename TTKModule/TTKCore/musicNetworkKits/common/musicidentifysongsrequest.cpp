@@ -72,7 +72,7 @@ void MusicIdentifySongsRequest::startToDownload(const QString &path)
     MusicObject::setSslConfiguration(&request);
     request.setRawHeader("Content-Type", contentType.toUtf8());
 
-    m_reply = m_manager->post(request, body);
+    m_reply = m_manager.post(request, body);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 
