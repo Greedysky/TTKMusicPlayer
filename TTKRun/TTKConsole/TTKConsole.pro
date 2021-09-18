@@ -29,7 +29,7 @@ DESTDIR = $$OUT_PWD/../../bin/$$TTKMusicPlayer
 TARGET = TTKConsole
 
 LIBS += -L$$DESTDIR -lTTKCore
-unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+unix:LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 
 win32:msvc{
     CONFIG += c++11
