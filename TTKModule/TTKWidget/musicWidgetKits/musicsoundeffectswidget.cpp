@@ -9,17 +9,17 @@
 
 #include <QStyledItemDelegate>
 
-MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
+MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(Type type, QWidget *parent)
     : QWidget(parent)
 {
-    m_type = Null;
+    m_type = type;
     m_enable = false;
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
-    m_textLabel = new QLabel(this);
+    m_textLabel = new QLabel(" " + transformQStringFromEnum(m_type), this);
     m_textLabel->setObjectName("Background");
     m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle08) +
                                MusicUIObject::MQSSSpinBoxStyle01 +
@@ -27,8 +27,6 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
                                MusicUIObject::MQSSCheckBoxStyle01 +
                                MusicUIObject::MQSSComboBoxStyle01 +
                                MusicUIObject::MQSSPushButtonStyle15);
-
-    setText(tr("Null"));
 
     QWidget *func = new QWidget(this);
     func->setStyleSheet(MusicUIObject::MQSSBackgroundStyle04);
@@ -71,6 +69,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
     layout->addWidget(func);
 
     setLayout(layout);
+    setFixedHeight(60);
 }
 
 MusicSoundEffectsItemWidget::~MusicSoundEffectsItemWidget()
@@ -78,16 +77,6 @@ MusicSoundEffectsItemWidget::~MusicSoundEffectsItemWidget()
     delete m_textLabel;
     delete m_openButton;
     delete m_settingButton;
-}
-
-void MusicSoundEffectsItemWidget::setText(const QString &text)
-{
-    m_textLabel->setText(" " + text);
-}
-
-void MusicSoundEffectsItemWidget::setType(Type type)
-{
-    m_type = type;
 }
 
 void MusicSoundEffectsItemWidget::setPluginEnabled(bool enable)
@@ -171,7 +160,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->stateComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->stateComboBox));
     m_ui->stateComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
     m_ui->stateComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    m_ui->stateComboBox->addItems(QStringList() << tr("OperatorAll") << tr("All On") << tr("All Off"));
+    m_ui->stateComboBox->addItems(QStringList() << tr("OperatorAll") << tr("All Off"));
     connect(m_ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 
     m_ui->eqButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
@@ -183,32 +172,34 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->eqEffectButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    //
-    m_ui->BS2BWidget->setText("BS2B");
-    m_ui->BS2BWidget->setType(MusicSoundEffectsItemWidget::BS2B);
+    m_ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_ui->scrollArea->setWidgetResizable(true);
+    m_ui->scrollArea->setFrameShape(QFrame::NoFrame);
+    m_ui->scrollArea->setFrameShadow(QFrame::Plain);
+    m_ui->scrollArea->setAlignment(Qt::AlignVCenter);
+    m_ui->scrollArea->setWidget(m_ui->effectContainer);
+    m_ui->scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
-    m_ui->CrossfadeWidget->setText("Crossfade");
-    m_ui->CrossfadeWidget->setType(MusicSoundEffectsItemWidget::Crossfade);
-
-    m_ui->StereoWidget->setText("Stereo");
-    m_ui->StereoWidget->setType(MusicSoundEffectsItemWidget::Stereo);
-
-    m_ui->SOXWidget->setText("Soxr");
-    m_ui->SOXWidget->setType(MusicSoundEffectsItemWidget::Soxr);
-
-    m_ui->SRCWidget->setText("SrcConverter");
-    m_ui->SRCWidget->setType(MusicSoundEffectsItemWidget::SrcConverter);
-
-    m_ui->MonoToStereoWidget->setText("MonoToStereo");
-    m_ui->MonoToStereoWidget->setType(MusicSoundEffectsItemWidget::MonoToStereo);
-
-    m_ui->MonoWidget->setText("Mono");
-    m_ui->MonoWidget->setType(MusicSoundEffectsItemWidget::Mono);
-
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::BS2B, this));
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Crossfade, this));
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Stereo, this));
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Soxr, this));
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::SrcConverter, this));
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::MonoToStereo, this));
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Mono, this));
 #ifdef Q_OS_UNIX
-    m_ui->LADSPAWidget->setText("LADSPA");
-    m_ui->LADSPAWidget->setType(MusicSoundEffectsItemWidget::LADSPA);
+    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::LADSPA, this));
 #endif
+
+    QVBoxLayout *layout = new QVBoxLayout(m_ui->effectContainer);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(10);
+    m_ui->effectContainer->setLayout(layout);
+
+    for(MusicSoundEffectsItemWidget *item : m_items)
+    {
+        layout->addWidget(item);
+    }
 
     readSoundEffect();
 
@@ -220,6 +211,7 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
     G_CONNECTION_PTR->removeValue(getClassName());
     writeSoundEffect();
+    qDeleteAll(m_items);
     delete m_ui;
 }
 
@@ -261,29 +253,10 @@ void MusicSoundEffectsWidget::stateComboBoxChanged(int index)
 
     if(index == 1)
     {
-        m_ui->BS2BWidget->setPluginEnabled(true);
-        m_ui->CrossfadeWidget->setPluginEnabled(true);
-        m_ui->StereoWidget->setPluginEnabled(true);
-        m_ui->SOXWidget->setPluginEnabled(true);
-        m_ui->SRCWidget->setPluginEnabled(true);
-        m_ui->MonoToStereoWidget->setPluginEnabled(true);
-        m_ui->MonoWidget->setPluginEnabled(true);
-#ifdef Q_OS_UNIX
-        m_ui->LADSPAWidget->setPluginEnabled(true);
-#endif
-    }
-    else if(index == 2)
-    {
-        m_ui->BS2BWidget->setPluginEnabled(false);
-        m_ui->CrossfadeWidget->setPluginEnabled(false);
-        m_ui->StereoWidget->setPluginEnabled(false);
-        m_ui->SOXWidget->setPluginEnabled(false);
-        m_ui->SRCWidget->setPluginEnabled(false);
-        m_ui->MonoToStereoWidget->setPluginEnabled(false);
-        m_ui->MonoWidget->setPluginEnabled(false);
-#ifdef Q_OS_UNIX
-        m_ui->LADSPAWidget->setPluginEnabled(false);
-#endif
+        for(MusicSoundEffectsItemWidget *item : m_items)
+        {
+            item->setPluginEnabled(false);
+        }
     }
 }
 
@@ -295,28 +268,28 @@ int MusicSoundEffectsWidget::exec()
 
 void MusicSoundEffectsWidget::readSoundEffect()
 {
-    m_ui->BS2BWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt());
-    m_ui->CrossfadeWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfade).toInt());
-    m_ui->StereoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt());
-    m_ui->SOXWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
-    m_ui->SRCWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
-    m_ui->MonoToStereoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt());
-    m_ui->MonoWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt());
+    m_items[0]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt());
+    m_items[1]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfade).toInt());
+    m_items[2]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt());
+    m_items[3]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
+    m_items[4]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
+    m_items[5]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt());
+    m_items[6]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt());
 #ifdef Q_OS_UNIX
-    m_ui->LADSPAWidget->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
+    m_items[7]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
 #endif
 }
 
 void MusicSoundEffectsWidget::writeSoundEffect()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2B, m_ui->BS2BWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfade, m_ui->CrossfadeWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereo, m_ui->StereoWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_ui->SOXWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_ui->SRCWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoToStereo, m_ui->MonoToStereoWidget->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono, m_ui->MonoWidget->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2B, m_items[0]->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfade, m_items[1]->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereo, m_items[2]->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_items[3]->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_items[4]->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoToStereo, m_items[5]->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono, m_items[6]->pluginEnabled());
 #ifdef Q_OS_UNIX
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_ui->LADSPAWidget->pluginEnabled());
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_items[7]->pluginEnabled());
 #endif
 }

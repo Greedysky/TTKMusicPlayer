@@ -39,27 +39,18 @@ public:
         BS2B,         /*!< sound BS2B effect*/
         Crossfade,    /*!< sound Crossfade effect*/
         Stereo,       /*!< sound Stereo effect*/
-        LADSPA,       /*!< sound LADSPA effect*/
         Soxr,         /*!< sound SoX Resampler effect*/
         SrcConverter, /*!< sound srconverter effect*/
         MonoToStereo, /*!< sound mono to stereo effect*/
-        Mono          /*!< sound mono effect*/
+        Mono,         /*!< sound mono effect*/
+        LADSPA        /*!< sound LADSPA effect*/
     };
 
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundEffectsItemWidget(QWidget *parent = nullptr);
+    explicit MusicSoundEffectsItemWidget(Type type, QWidget *parent = nullptr);
     ~MusicSoundEffectsItemWidget();
-
-    /*!
-     * Set sound effect plugin name.
-     */
-    void setText(const QString &text);
-    /*!
-     * Set sound effect plugin type.
-     */
-    void setType(Type type);
 
     /*!
      * Set plugin enable or not.
@@ -153,6 +144,7 @@ protected:
     void writeSoundEffect();
 
     Ui::MusicSoundEffectsWidget *m_ui;
+    QList<MusicSoundEffectsItemWidget*> m_items;
 
 };
 

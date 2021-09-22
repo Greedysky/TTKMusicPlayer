@@ -119,85 +119,28 @@
      <string>调整</string>
     </property>
    </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="BS2BWidget" native="true">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
-      <width>160</width>
-      <height>50</height>
+      <y>50</y>
+      <width>340</width>
+      <height>300</height>
      </rect>
     </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="CrossfadeWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>60</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
+    <property name="widgetResizable">
+     <bool>true</bool>
     </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="StereoWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="LADSPAWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>270</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="SOXWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>200</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="SRCWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>130</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="MonoToStereoWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>190</x>
-      <y>200</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="MusicSoundEffectsItemWidget" name="MonoWidget" native="true">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>270</y>
-      <width>160</width>
-      <height>50</height>
-     </rect>
-    </property>
+    <widget class="QWidget" name="effectContainer">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>338</width>
+       <height>298</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
   </widget>
   <zorder>background</zorder>
@@ -205,14 +148,6 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>MusicSoundEffectsItemWidget</class>
-   <extends>QWidget</extends>
-   <header>musicsoundeffectswidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
