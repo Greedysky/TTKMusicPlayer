@@ -22,7 +22,6 @@
 #define EFFECTBS2BFACTORY_H
 
 #include <qmmp/effectfactory.h>
-#include <qmmp/effect.h>
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>

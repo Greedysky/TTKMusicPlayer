@@ -21,9 +21,9 @@
 
 #include <qmmp/decoderfactory.h>
 
-/**
-    @author Ilya Kotov <forkotov02@ya.ru>
-*/
+/*!
+ * @author Greedysky <greedysky@163.com>
+ */
 class DecoderOptimFROGFactory : public QObject, DecoderFactory
 {
     Q_OBJECT

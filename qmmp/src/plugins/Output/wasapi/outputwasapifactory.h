@@ -21,7 +21,6 @@
 #ifndef OUTPUTWASAPIFACTORY_H
 #define OUTPUTWASAPIFACTORY_H
 
-#include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
 class OutputWASAPIFactory : public QObject, OutputFactory

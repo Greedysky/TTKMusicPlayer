@@ -21,7 +21,6 @@
 #ifndef OUTPUTALSAFACTORY_H
 #define OUTPUTALSAFACTORY_H
 
-#include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
 class OutputALSAFactory : public QObject, OutputFactory

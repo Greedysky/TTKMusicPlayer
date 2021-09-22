@@ -6,8 +6,6 @@
 #include <string.h>
 #include <iostream>
 
-#include <qmmp/buffer.h>
-#include <qmmp/visual.h>
 #include "outputalsa.h"
 
 OutputALSA::OutputALSA()

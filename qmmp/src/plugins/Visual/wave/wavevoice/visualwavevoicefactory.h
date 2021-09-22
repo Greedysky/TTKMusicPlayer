@@ -20,7 +20,6 @@
 #define VISUALWAVEVOICEFACTORY_H
 
 #include <qmmp/visualfactory.h>
-#include <qmmp/visual.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>

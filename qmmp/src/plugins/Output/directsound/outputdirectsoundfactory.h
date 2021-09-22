@@ -21,7 +21,6 @@
 #ifndef OUTPUTDIRECTSOUNDFACTORY_H
 #define OUTPUTDIRECTSOUNDFACTORY_H
 
-#include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
 class OutputDirectSoundFactory : public QObject, OutputFactory

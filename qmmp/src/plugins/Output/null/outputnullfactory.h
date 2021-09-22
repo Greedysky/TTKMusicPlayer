@@ -21,7 +21,6 @@
 #ifndef OUTPUTNULLFACTORY_H
 #define OUTPUTNULLFACTORY_H
 
-#include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
 class OutputNullFactory : public QObject, OutputFactory

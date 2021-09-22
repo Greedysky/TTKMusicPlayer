@@ -21,7 +21,6 @@
 #ifndef OUTPUTWAVEOUTFACTORY_H
 #define OUTPUTWAVEOUTFACTORY_H
 
-#include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
 class OutputWaveOutFactory : public QObject, OutputFactory

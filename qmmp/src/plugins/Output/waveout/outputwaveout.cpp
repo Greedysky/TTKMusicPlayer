@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <iostream>
 
-#include <qmmp/buffer.h>
-#include <qmmp/visual.h>
 #include "outputwaveout.h"
 
 #define MAX_WAVEBLOCKS    256
