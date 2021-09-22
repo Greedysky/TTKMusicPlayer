@@ -1,6 +1,5 @@
 #include <QSettings>
 #include <math.h>
-#include <stdlib.h>
 #include "srconverter.h"
 
 SRConverter::SRConverter()

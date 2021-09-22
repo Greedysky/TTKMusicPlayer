@@ -21,8 +21,8 @@
 #ifndef QMMPSETTINGS_H
 #define QMMPSETTINGS_H
 
-#include <QObject>
 #include <QUrl>
+#include <QObject>
 #include <QStringList>
 #include "qmmp.h"
 #include "eqsettings.h"

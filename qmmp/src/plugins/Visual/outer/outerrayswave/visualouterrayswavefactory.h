@@ -19,7 +19,6 @@
 #ifndef VISUALOUTERRAYSWAVEFACTORY_H
 #define VISUALOUTERRAYSWAVEFACTORY_H
 
-#include <QObject>
 #include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 

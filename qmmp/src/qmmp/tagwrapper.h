@@ -20,7 +20,6 @@
 #define TAGWRAPPER_H
 
 #include <QMap>
-#include <QString>
 #include "qmmp.h"
 
 /*! @brief The class of the file tag wrapper.

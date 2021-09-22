@@ -22,7 +22,6 @@
 #ifndef LADSPAHOST_H
 #define LADSPAHOST_H
 
-#include <QMutex>
 #include <QList>
 #include <QObject>
 #include <stddef.h>

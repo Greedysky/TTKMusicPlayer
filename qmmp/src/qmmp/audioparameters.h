@@ -21,7 +21,6 @@
 #ifndef AUDIOPARAMETERS_H
 #define AUDIOPARAMETERS_H
 
-#include <QtGlobal>
 #include "channelmap.h"
 #include "qmmp.h"
 

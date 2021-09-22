@@ -19,7 +19,6 @@
 #ifndef VISUALFLOWMOUNTAINFACTORY_H
 #define VISUALFLOWMOUNTAINFACTORY_H
 
-#include <QObject>
 #include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 

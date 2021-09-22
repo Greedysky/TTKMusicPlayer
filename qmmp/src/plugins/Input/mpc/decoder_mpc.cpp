@@ -1,4 +1,3 @@
-#include <QObject>
 #include <QIODevice>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>

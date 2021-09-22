@@ -21,11 +21,8 @@
 #ifndef VISUAL_H
 #define VISUAL_H
 
-#include <QMutex>
-#include <QStringList>
-#include <QWidget>
 #include <QHash>
-#include <stddef.h>
+#include <QWidget>
 #include "qmmp_export.h"
 
 #define QMMP_VISUAL_INTERVAL  40

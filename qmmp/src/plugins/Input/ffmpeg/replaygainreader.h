@@ -22,7 +22,7 @@
 #define REPLAYGAINREADER_H
 
 #include <QMap>
-#include <QString>
+
 extern "C"{
 #include <libavformat/avformat.h>
 #include <libavutil/dict.h>

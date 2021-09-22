@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QStringList>
 #include <QObject>
+#include <QStringList>
 
 enum SongPlayType
     {

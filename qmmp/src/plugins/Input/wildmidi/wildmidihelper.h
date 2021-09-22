@@ -21,9 +21,8 @@
 #ifndef WILDMIDIHELPER_H
 #define WILDMIDIHELPER_H
 
-#include <QObject>
 #include <QMutex>
-#include <QStringList>
+#include <QObject>
 
 class WildMidiHelper : public QObject
 {

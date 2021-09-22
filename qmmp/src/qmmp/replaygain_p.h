@@ -21,7 +21,6 @@
 #ifndef REPLAYGAIN_H
 #define REPLAYGAIN_H
 
-#include <QtGlobal>
 #include <QMap>
 #include "effect.h"
 #include "qmmpsettings.h"

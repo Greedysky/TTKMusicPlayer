@@ -21,10 +21,7 @@
 #ifndef SOUNDCORE_H
 #define SOUNDCORE_H
 
-#include <QObject>
-#include <QString>
 #include <QQueue>
-#include <QHash>
 #include "decoder.h"
 #include "output.h"
 #include "visual.h"

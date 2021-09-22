@@ -1,6 +1,4 @@
-#include <QStringList>
 #include <QDir>
-#include <stdio.h>
 #include "audioparameters.h"
 #include "qmmpsettings.h"
 #include "buffer.h"

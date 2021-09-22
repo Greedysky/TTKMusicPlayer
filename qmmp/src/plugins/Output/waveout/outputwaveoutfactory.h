@@ -21,11 +21,6 @@
 #ifndef OUTPUTWAVEOUTFACTORY_H
 #define OUTPUTWAVEOUTFACTORY_H
 
-#include <QObject>
-#include <QString>
-#include <QIODevice>
-#include <QWidget>
-
 #include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 

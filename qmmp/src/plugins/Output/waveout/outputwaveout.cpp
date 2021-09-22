@@ -1,7 +1,5 @@
-#include <QObject>
 #include <unistd.h>
 #include <stdio.h>
-#include <string.h>
 #include <iostream>
 
 #include <qmmp/buffer.h>

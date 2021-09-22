@@ -1,4 +1,3 @@
-#include <QStringList>
 #include <math.h>
 #include <qmmp/inputsourcefactory.h>
 #include <qmmp/decoderfactory.h>

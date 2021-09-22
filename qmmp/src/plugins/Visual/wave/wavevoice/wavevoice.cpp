@@ -2,7 +2,6 @@
 #include <QPaintEvent>
 #include <QMenu>
 #include <math.h>
-#include <stdlib.h>
 
 #include "inlines.h"
 #include "wavevoice.h"

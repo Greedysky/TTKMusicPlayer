@@ -1,4 +1,3 @@
-#include <QtGlobal>
 #include "eqsettings.h"
 
 EqSettings::EqSettings(const EqSettings &other)

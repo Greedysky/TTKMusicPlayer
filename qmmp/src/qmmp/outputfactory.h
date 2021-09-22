@@ -21,12 +21,9 @@
 #ifndef OUTPUTFACTORY_H
 #define OUTPUTFACTORY_H
 
+#include <QWidget>
 #include "qmmp_export.h"
 
-class QObject;
-class QString;
-class QIODevice;
-class QWidget;
 class Volume;
 class Decoder;
 class Output;

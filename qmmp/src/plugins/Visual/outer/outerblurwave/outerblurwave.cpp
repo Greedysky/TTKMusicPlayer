@@ -3,7 +3,6 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <math.h>
-#include <stdlib.h>
 #include <qmmp/qmmp.h>
 
 #include "inlines.h"

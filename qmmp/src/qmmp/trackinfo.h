@@ -22,7 +22,6 @@
 #define TRACKINFO_H
 
 #include <QMap>
-#include <QString>
 #include <QVariant>
 #include "qmmp.h"
 #include "regularwrapper.h"

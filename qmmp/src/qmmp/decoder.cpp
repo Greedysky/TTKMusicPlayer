@@ -1,6 +1,5 @@
 #include <QStringList>
 #include <QSettings>
-#include <QBuffer>
 #include <QDir>
 #include <math.h>
 #include <algorithm>

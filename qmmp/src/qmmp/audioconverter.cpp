@@ -1,6 +1,5 @@
 #include <math.h>
 #include <limits.h>
-#include <QtGlobal>
 #include <QtEndian>
 #include "audioconverter.h"
 

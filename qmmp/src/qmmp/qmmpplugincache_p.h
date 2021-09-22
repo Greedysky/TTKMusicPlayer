@@ -21,8 +21,6 @@
 #ifndef QMMPPLUGINCACHE_P_H
 #define QMMPPLUGINCACHE_P_H
 
-#include <QString>
-#include <QObject>
 #include <QSettings>
 #include "qmmp_export.h"
 

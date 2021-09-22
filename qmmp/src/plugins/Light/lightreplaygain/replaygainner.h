@@ -22,7 +22,6 @@
 #define REPLAYGAINNER_H
 
 #include <QRunnable>
-#include <QObject>
 #include <QMutex>
 #include <qmmp/decoder.h>
 #include <qmmp/inputsource.h>

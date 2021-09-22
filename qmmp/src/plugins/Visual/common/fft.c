@@ -35,9 +35,6 @@
 #endif
 
 #include "fft.h"
-
-//#include <glib.h>
-#include <stdlib.h>
 #include <math.h>
 #ifndef PI
 #ifdef M_PI
@@ -100,7 +97,7 @@ fft_init(void)
 
     state = (fft_state *) malloc(sizeof(fft_state));
     if(!state)
-        return NULL;
+        return 0;
 
     for(i = 0; i < FFT_BUFFER_SIZE; i++) {
         bitReverse[i] = reverseBits(i);

@@ -21,7 +21,6 @@
 #ifndef MONOTOSTEREOPLUGIN_H
 #define MONOTOSTEREOPLUGIN_H
 
-#include <QMutex>
 #include <qmmp/effect.h>
 
 /**

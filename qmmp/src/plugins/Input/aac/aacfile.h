@@ -22,7 +22,6 @@
 #define AACFILE_H
 
 #include <QMap>
-#include <QString>
 
 #include <taglib/tag.h>
 #include <taglib/fileref.h>

@@ -19,7 +19,6 @@
 #ifndef SPEKRULER_H
 #define SPEKRULER_H
 
-#include <QObject>
 #include <QPainter>
 
 /*!

@@ -2,7 +2,6 @@
 #include <QMenu>
 #include <QPaintEvent>
 #include <math.h>
-#include <stdlib.h>
 
 #include "inlines.h"
 #include "plusspacewave.h"

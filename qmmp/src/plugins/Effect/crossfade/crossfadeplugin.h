@@ -21,7 +21,6 @@
 #ifndef CROSSFADEPLUGIN_H
 #define CROSSFADEPLUGIN_H
 
-#include <QMutex>
 #include <stddef.h>
 #include <qmmp/effect.h>
 

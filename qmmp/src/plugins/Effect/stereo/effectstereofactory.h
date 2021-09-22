@@ -21,7 +21,6 @@
 #ifndef EFFECTSTEREOFACTORY_H
 #define EFFECTSTEREOFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

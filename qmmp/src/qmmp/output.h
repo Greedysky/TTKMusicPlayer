@@ -23,7 +23,6 @@
 
 #include <QList>
 #include <QIODevice>
-#include <QMap>
 #include "outputfactory.h"
 #include "audioparameters.h"
 #include "trackinfo.h"

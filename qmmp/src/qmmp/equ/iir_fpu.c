@@ -28,7 +28,6 @@
      removed glib dependency
 */
 
-#include <stdlib.h>
 #include <string.h>
 #include "iir_fpu.h"
 #include "iir.h"

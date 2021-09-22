@@ -21,12 +21,9 @@
 #ifndef VISUALFACTORY_H
 #define VISUALFACTORY_H
 
-#include <QString>
+#include <QObject>
 #include "qmmp_export.h"
 
-class QObject;
-class QWidget;
-class QDialog;
 class Visual;
 
 /*! @brief Structure to store visual plugin properies.

@@ -21,7 +21,6 @@
 #ifndef EFFECTCROSSFADEFACTORY_H
 #define EFFECTCROSSFADEFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

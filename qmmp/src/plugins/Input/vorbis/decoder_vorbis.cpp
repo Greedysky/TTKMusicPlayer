@@ -1,9 +1,5 @@
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <stdlib.h>
-#include <string.h>
-#include <QObject>
-#include <QIODevice>
 #include "decoder_vorbis.h"
 
 // ic functions for OggVorbis

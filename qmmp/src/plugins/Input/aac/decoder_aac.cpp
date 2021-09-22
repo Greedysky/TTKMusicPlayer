@@ -1,6 +1,4 @@
-#include <QObject>
 #include <QIODevice>
-#include <QtGlobal>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
 #include "decoder_aac.h"

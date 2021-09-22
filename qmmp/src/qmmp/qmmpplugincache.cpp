@@ -1,4 +1,3 @@
-#include <QStringList>
 #include <QDateTime>
 #include <QFileInfo>
 #include <QPluginLoader>

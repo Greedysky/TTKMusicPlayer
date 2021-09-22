@@ -32,8 +32,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
-#include <stdlib.h>
-#include <assert.h>
 #include <math.h>
 #include "ffap.h"
 
@@ -1428,9 +1426,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
             if(s->currentframe == s->totalframes) {
                 return -1;
             }
-            assert (!s->samples);
 //            fprintf (stderr, "start reading packet %d\n", ape_ctx.currentframe);
-            assert (s->samples == 0); // all samples from prev packet must have been read
             // start new packet
             if(ape_read_packet (decoder) < 0) {
                 fprintf (stderr, "ape: error reading packet\n");
@@ -1591,7 +1587,6 @@ int ffap_read(FFap_decoder *decoder, unsigned char *buffer, int size)
             continue;
         }
         int s = BLOCKS_PER_LOOP * 2 * 2 * 2;
-        assert (decoder->ape_ctx->remaining <= s/2);
         s -= decoder->ape_ctx->remaining;
         uint8_t *buf = decoder->ape_ctx->buffer + decoder->ape_ctx->remaining;
         int n = ape_decode_frame (decoder, buf, &s);

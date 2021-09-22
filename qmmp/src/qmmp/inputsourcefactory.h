@@ -21,8 +21,7 @@
 #ifndef INPUTSOURCEFACTORY_H
 #define INPUTSOURCEFACTORY_H
 
-#include <QObject>
-#include <QList>
+#include <QStringList>
 #include "qmmp_export.h"
 #include "regularwrapper.h"
 

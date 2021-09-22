@@ -1,6 +1,4 @@
-#include <QObject>
 #include <QSettings>
-#include <string.h>
 #include <iostream>
 #include <unistd.h>
 #include <qmmp/buffer.h>

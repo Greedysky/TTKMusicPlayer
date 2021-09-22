@@ -21,7 +21,6 @@
 #ifndef EFFECTMONOFACTORY_H
 #define EFFECTMONOFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

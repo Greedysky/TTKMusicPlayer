@@ -21,7 +21,6 @@
 #ifndef EFFECTLADSPAFACTORY_H
 #define EFFECTLADSPAFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

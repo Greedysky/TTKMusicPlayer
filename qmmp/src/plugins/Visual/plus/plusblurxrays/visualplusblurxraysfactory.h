@@ -19,7 +19,6 @@
 #ifndef VISUALPLUSBLURXRAYSFACTORY_H
 #define VISUALPLUSBLURXRAYSFACTORY_H
 
-#include <QObject>
 #include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 

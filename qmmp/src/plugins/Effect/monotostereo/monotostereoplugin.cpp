@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "monotostereoplugin.h"
 
 MonoToStereoPlugin::MonoToStereoPlugin()

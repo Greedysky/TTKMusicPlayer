@@ -21,7 +21,6 @@
 #ifndef EFFECTSOXRFACTORY_H
 #define EFFECTSOXRFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

@@ -21,9 +21,8 @@
 #ifndef VISUALBUFFER_P_H
 #define VISUALBUFFER_P_H
 
-#include <QtGlobal>
-#include <QElapsedTimer>
 #include <QMutex>
+#include <QElapsedTimer>
 #include "qmmp_export.h"
 
 #define VISUAL_BUFFER_SIZE 128 //number of nodes

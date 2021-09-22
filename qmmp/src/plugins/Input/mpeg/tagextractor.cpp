@@ -4,7 +4,6 @@
 #include <QBuffer>
 #include <QTextCodec>
 #include <QSettings>
-#include <stdlib.h>
 
 #include "tagextractor.h"
 

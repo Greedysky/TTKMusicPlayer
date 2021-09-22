@@ -4,7 +4,6 @@
 #include <QFileInfo>
 #include <QSettings>
 #include <math.h>
-#include <stdlib.h>
 #include <dlfcn.h>
 #include <algorithm>
 #include <qmmp/audioparameters.h>

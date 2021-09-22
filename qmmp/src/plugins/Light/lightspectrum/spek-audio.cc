@@ -1,6 +1,3 @@
-#include <assert.h>
-#include <QtGlobal>
-
 extern "C" {
 #define __STDC_CONSTANT_MACROS
 #define __STDC_LIMIT_MACROS
@@ -246,7 +243,6 @@ void AudioFileImpl::start(int channel, int samples)
 {
     m_channel = channel;
     if(channel < 0 || channel >= m_channels) {
-        assert(false);
         m_error = AudioError::NO_CHANNELS;
     }
 

@@ -21,9 +21,6 @@
 #ifndef METADATAMODEL_H
 #define METADATAMODEL_H
 
-#include <QHash>
-#include <QList>
-#include <QString>
 #include <QCoreApplication>
 #include <QPixmap>
 #include <QVariant>

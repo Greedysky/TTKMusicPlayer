@@ -1,4 +1,3 @@
-#include <string.h>
 #include "statehandler.h"
 #include "visual.h"
 #include "output.h"

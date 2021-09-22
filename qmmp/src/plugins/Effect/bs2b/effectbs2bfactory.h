@@ -21,7 +21,6 @@
 #ifndef EFFECTBS2BFACTORY_H
 #define EFFECTBS2BFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

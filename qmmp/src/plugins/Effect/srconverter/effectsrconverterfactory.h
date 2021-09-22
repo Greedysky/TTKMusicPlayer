@@ -21,7 +21,6 @@
 #ifndef EFFECTSRCONVERTERFACTORY_H
 #define EFFECTSRCONVERTERFACTORY_H
 
-#include <QObject>
 #include <qmmp/effectfactory.h>
 #include <qmmp/effect.h>
 

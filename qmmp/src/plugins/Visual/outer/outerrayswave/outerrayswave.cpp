@@ -2,7 +2,6 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <math.h>
-#include <stdlib.h>
 
 #include "inlines.h"
 #include "outerrayswave.h"

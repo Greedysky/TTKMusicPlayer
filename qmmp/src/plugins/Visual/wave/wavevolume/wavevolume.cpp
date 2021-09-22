@@ -2,7 +2,6 @@
 #include <QMenu>
 #include <QPaintEvent>
 #include <math.h>
-#include <stdlib.h>
 #include <qmmp/soundcore.h>
 
 #include "inlines.h"

@@ -1,4 +1,3 @@
-#include <QtGlobal>
 #include <QBuffer>
 
 #include <taglib/tag.h>

@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "monoplugin.h"
 
 MonoPlugin::MonoPlugin()
