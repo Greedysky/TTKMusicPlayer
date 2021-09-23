@@ -105,7 +105,7 @@ void MusicBackgroundManager::addObserver(QObject *object)
 
 void MusicBackgroundManager::removeObserver(QObject *object)
 {
-    m_observer.removeAll(object);
+    m_observer.removeOne(object);
     disconnect(this, SIGNAL(backgroundChanged()), object, SLOT(backgroundChanged()));
 }
 

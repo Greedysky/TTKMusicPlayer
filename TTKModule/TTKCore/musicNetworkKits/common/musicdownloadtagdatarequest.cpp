@@ -63,7 +63,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
     MusicSongMeta meta;
     if(meta.read(m_savePath))
     {
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteInfo).toBool())
+        if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toBool())
         {
             meta.setTitle(m_musicMeta.getTitle());
             meta.setArtist(m_musicMeta.getArtist());

@@ -575,7 +575,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
@@ -681,10 +681,10 @@ void MusicRightAreaWidget::musicSingleSearchedFound(const QString &id)
 void MusicRightAreaWidget::musicLoadSongIndexWidget()
 {
     ///To prevent concise state changed while function musicWindowConciseChanged first called
-    const bool pre = G_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool();
-    G_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, false);
+    const bool pre = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, false);
     musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
-    G_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, pre);
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, pre);
 }
 
 void MusicRightAreaWidget::deleteStackedFuncWidget()
@@ -708,7 +708,7 @@ void MusicRightAreaWidget::setWindowLockedChanged()
 
 void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
-    const bool v = m_musicLrcForDesktop ? m_musicLrcForDesktop->isVerticalWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowType).toInt());
+    const bool v = m_musicLrcForDesktop ? m_musicLrcForDesktop->isVerticalWindowType() : TTKStatic_cast(bool, G_SETTING_PTR->value(MusicSettingManager::DLrcWindowMode).toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, QPoint());
 
     MusicLrcContainerForDesktop *desktop = m_musicLrcForDesktop;
@@ -736,7 +736,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeDesktopLrcWidget()));
 
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowType, v);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowMode, v);
 }
 
 void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
@@ -863,19 +863,19 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
 
 void MusicRightAreaWidget::musicChangeDownloadFulllyWidget()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, true);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, true);
 }
 
 void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimit, false);
+    G_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitEnable, false);
     m_settingWidget->changeDownloadWidget();
     showSettingWidget();
 }
 
 void MusicRightAreaWidget::musicFunctionParameterInit(MusicFunction func)
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::WindowConcise).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }

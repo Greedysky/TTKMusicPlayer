@@ -820,7 +820,7 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
     MusicLrcManagerForInterior *w = TTKStatic_cast(MusicLrcManagerForInterior*, m_musicLrcContainer[index]);
     w->setFontSize(size);
 
-    int value = G_SETTING_PTR->value("LrcColorTrans").toInt() - transparent;
+    int value = G_SETTING_PTR->value("LrcColorTransparent").toInt() - transparent;
     value = (value < 0) ? 0 : value;
     value = (value > 100) ? 100 : value;
     w->setFontTransparent(value);
@@ -833,8 +833,8 @@ void MusicLrcContainerForInterior::setItemStyleSheet(int index, int size, int tr
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

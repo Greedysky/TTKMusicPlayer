@@ -33,25 +33,16 @@ class TTK_MODULE_EXPORT MusicSoundEffectsItemWidget : public QWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSoundEffectsItemWidget)
 public:
-    enum Type
-    {
-        Null,         /*!< sound null effect*/
-        BS2B,         /*!< sound BS2B effect*/
-        Crossfade,    /*!< sound Crossfade effect*/
-        Stereo,       /*!< sound Stereo effect*/
-        Soxr,         /*!< sound SoX Resampler effect*/
-        SrcConverter, /*!< sound srconverter effect*/
-        MonoToStereo, /*!< sound mono to stereo effect*/
-        Mono,         /*!< sound mono effect*/
-        LADSPA        /*!< sound LADSPA effect*/
-    };
-
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundEffectsItemWidget(Type type, QWidget *parent = nullptr);
+    explicit MusicSoundEffectsItemWidget(const QString &name, QWidget *parent = nullptr);
     ~MusicSoundEffectsItemWidget();
 
+    /*!
+     * Get plugin module name.
+     */
+    inline QString getName() const { return m_type; }
     /*!
      * Set plugin enable or not.
      */
@@ -64,7 +55,7 @@ public:
     /*!
      * Sound effect changed.
      */
-    static void soundEffectChanged(Type type, bool enable);
+    static void soundEffectChanged(const QString &name, bool enable);
 
 public Q_SLOTS:
     /*!
@@ -77,12 +68,7 @@ public Q_SLOTS:
     void soundEffectValueChanged();
 
 protected:
-    /*!
-     * Transform string from enum.
-     */
-    static QString transformQStringFromEnum(Type type);
-
-    Type m_type;
+    QString m_type;
     bool m_enable;
     QLabel *m_textLabel;
     QPushButton *m_settingButton, *m_openButton;

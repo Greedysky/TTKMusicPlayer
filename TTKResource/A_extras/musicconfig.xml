@@ -1,30 +1,29 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
     <musicSetting>
-        <playMode value="2"/>
+        <playMode value="1"/>
         <playVolume value="100"/>
         <lastPlayIndex value="1">-1,-1</lastPlayIndex>
     </musicSetting>
     <plusSetting>
         <geometry value="242,84,1000,665"/>
         <language value="0"/>
-        <autoPlay value="0"/>
-        <closeEvent value="1"/>
-        <closeNetwork value="0"/>
-        <fileAssociation value="0"/>
-        <windowConcise value="0"/>
+        <autoPlayMode value="0"/>
+        <closeEventMode value="1"/>
+        <closeNetworkMode value="0"/>
+        <fileAssociationMode value="0"/>
+        <windowConciseMode value="0"/>
         <remoteWidgetMode value="0"/>
         <windowQuitMode value="0"/>
     </plusSetting>
     <otherSetting>
-        <otherCheckUpdate value="0"/>
-        <otherSearch value="0"/>
+        <otherCheckUpdateEnable value="0"/>
+        <otherSearchOptimized value="0"/>
         <otherUseAlbumCover value="1"/>
-        <otherUseInfo value="1"/>
+        <otherUseFileInfo value="1"/>
         <otherWriteAlbumCover value="1"/>
-        <otherWriteInfo value="1"/>
-        <otherSideBy value="0"/>
-        <otherSongFormat value="0"/>
+        <otherWriteFileInfo value="1"/>
+        <otherSideByMode value="0"/>
         <otherLrcKTVMode value="1"/>
         <otherScreenSaverEnable value="0"/>
         <otherScreenSaverTime value="10"/>
@@ -35,14 +34,14 @@
         <rippleSpectrumColor value="250,218,131"/>
     </rippleSetting>
     <backgroundSetting>
-        <backgroundTheme value="theme-7"/>
+        <backgroundThemeValue value="theme-7"/>
         <backgroundTransparent value="0"/>
         <backgroundListTransparent value="67"/>
         <backgroundTransparentEnable value="0"/>
     </backgroundSetting>
     <hotkeySetting>
         <hotkeyEnable value="0"/>
-        <hotkeyString value=""/>
+        <hotkeyValue value=""/>
     </hotkeySetting>
     <interiorLrcSetting>
         <showInteriorLrc value="1"/>
@@ -63,41 +62,34 @@
         <lrcDTransparent value="99"/>
         <lrcDFrontgroundColor value="130,247,253;255,255,255;3,233,252;"/>
         <lrcDBackgroundColor value="0,52,138;0,128,192;3,202,252;"/>
-        <lrcDWindowType value="1"/>
-        <lrcDSingleLineType value="0"/>
-        <lrcDLocked value="0"/>
+        <lrcDWindowMode value="1"/>
+        <lrcDSingleLineMode value="0"/>
+        <lrcDLockedMode value="0"/>
         <lrcDGeometry value="178,415"/>
     </desktopLrcSetting>
     <equalizerSetting>
-        <enhancedMusic value="3"/>
+        <enhancedMusicIndex value="3"/>
         <equalizerEnable value="0"/>
         <equalizerIndex value="5"/>
         <equalizerValue value="0,-6,6,6,3,2,-2,-5,-6,-8,-8"/>
         <enhancedFadeEnable value="0"/>
         <enhancedFadeInValue value="1000"/>
         <enhancedFadeOutValue value="1000"/>
-        <enhancedBS2B value="0"/>
-        <enhancedCrossfade value="0"/>
-        <enhancedStereo value="0"/>
-        <enhancedLADSPA value="0"/>
-        <enhancedSOX value="0"/>
-        <enhancedSRC value="0"/>
-        <enhancedMonoToStereo value="0"/>
-        <enhancedMono value="0"/>
+        <enhancedEffectValue value=""/>
     </equalizerSetting>
     <timeSetting>
-        <timeAutoIndex value="2"/>
-        <timeAutoPlay value="1"/>
+        <timeAutoIndex value="0"/>
+        <timeAutoPlayMode value="1"/>
         <timeAutoPlayHour value="20"/>
         <timeAutoPlaySecond value="45"/>
         <timeAutoPlayRepeat value="0"/>
         <timeAutoPlayItemIndex value="0"/>
-        <timeAutoPlaySongIndex value="3"/>
-        <timeAutoStop value="1"/>
+        <timeAutoPlaySongIndex value="-1"/>
+        <timeAutoStopMode value="1"/>
         <timeAutoStopHour value="15"/>
         <timeAutoStopSecond value="38"/>
         <timeAutoStopRepeat value="0"/>
-        <timeAutoShutdown value="1"/>
+        <timeAutoShutdownMode value="1"/>
         <timeAutoShutdownHour value="1"/>
         <timeAutoShutdownSecond value="54"/>
         <timeAutoShutdownRepeat value="0"/>
@@ -105,11 +97,11 @@
     <downloadSetting>
         <downloadMusicPath value=""/>
         <downloadLrcPath value=""/>
-        <downloadCacheLimit value="1"/>
+        <downloadCacheEnable value="1"/>
         <downloadCacheSize value="1024"/>
-        <downloadLimit value="1"/>
-        <downloadServer value="0"/>
-        <downloadDLoadLimit value="100"/>
-        <downloadULoadLimit value="100"/>
+        <downloadLimitEnable value="1"/>
+        <downloadServerIndex value="0"/>
+        <downloadDownloadLimitSize value="100"/>
+        <downloadUploadLimitSize value="100"/>
     </downloadSetting>
 </TTKMusicPlayer>

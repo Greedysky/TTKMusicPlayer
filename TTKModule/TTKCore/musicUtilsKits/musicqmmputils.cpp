@@ -56,6 +56,14 @@ void MusicUtils::QMMP::enabledVisualPlugin(const QString &name, bool enable)
     }
 }
 
+void MusicUtils::QMMP::enabledEffectPlugin(bool enable)
+{
+    for(EffectFactory *factory : Effect::factories())
+    {
+        Effect::setEnabled(factory, enable);
+    }
+}
+
 void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
 {
     for(EffectFactory *factory : Effect::factories())
@@ -68,6 +76,19 @@ void MusicUtils::QMMP::enabledEffectPlugin(const QString &name, bool enable)
     }
 }
 
+QStringList MusicUtils::QMMP::effectPlugins()
+{
+    QStringList value;
+    for(EffectFactory *factory : Effect::factories())
+    {
+        value << factory->properties().shortName;
+    }
+#ifdef Q_OS_WIN
+    value.removeOne("ladspa");
+#endif
+    return value;
+}
+
 bool MusicUtils::QMMP::effectHasSetting(const QString &name)
 {
     for(EffectFactory *factory : Effect::factories())
@@ -77,7 +98,6 @@ bool MusicUtils::QMMP::effectHasSetting(const QString &name)
             return factory->properties().hasSettings;
         }
     }
-
     return false;
 }
 

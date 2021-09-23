@@ -361,8 +361,8 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         w->setLinearGradientColor(cl);
     }
 }

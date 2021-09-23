@@ -36,6 +36,7 @@ namespace MusicUtils
          * Update mid config file transfer.
          */
         TTK_MODULE_EXPORT void updateMidConfigFile();
+
         /*!
          * Enable visual module control.
          */
@@ -43,7 +44,16 @@ namespace MusicUtils
         /*!
          * Enable effect module control.
          */
+        TTK_MODULE_EXPORT void enabledEffectPlugin(bool enable);
+        /*!
+         * Enable effect module control.
+         */
         TTK_MODULE_EXPORT void enabledEffectPlugin(const QString &name, bool enable);
+
+        /*!
+         * Check effect is valid.
+         */
+        TTK_MODULE_EXPORT QStringList effectPlugins();
         /*!
          * Check effect has setting.
          */
@@ -52,6 +62,7 @@ namespace MusicUtils
          * Show effect setting control.
          */
         TTK_MODULE_EXPORT void showEffectSetting(const QString &name, QWidget *parent);
+
         /*!
          * Update ripple spectrum config file transfer.
          */

@@ -120,7 +120,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
     if(suffix == ZIP_FILE_PREFIX)
     {
         QStringList outputs;
-        if(!MusicExtractWrapper::outputBinary(path, G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString(), outputs))
+        if(!MusicExtractWrapper::outputBinary(path, G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString(), outputs))
         {
             TTK_LOGGER_ERROR("Extract zip input error");
         }
@@ -147,7 +147,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
             const QString &artist = meta.getArtist();
 
             QString name;
-            if(G_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && !title.isEmpty() && !artist.isEmpty())
+            if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !title.isEmpty() && !artist.isEmpty())
             {
                 name = artist + " - " + title;
             }
@@ -167,7 +167,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
     const QString &time = state ? meta.getLengthString() : STRING_NULL;
 
     QString name;
-    if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseInfo).toBool() && !meta.getTitle().isEmpty() && !meta.getArtist().isEmpty())
+    if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !meta.getTitle().isEmpty() && !meta.getArtist().isEmpty())
     {
         name = meta.getArtist() + " - " + meta.getTitle();
     }

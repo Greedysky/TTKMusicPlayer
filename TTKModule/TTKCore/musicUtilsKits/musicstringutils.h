@@ -106,19 +106,6 @@ namespace MusicUtils
          */
         TTK_MODULE_EXPORT QString charactersReplaced(const QString &value);
 
-        /*!
-         * Transform colors string to color list.
-         */
-        TTK_MODULE_EXPORT QList<QColor> readColorConfig(const QString &value);
-        /*!
-         * Transform color to color string.
-         */
-        TTK_MODULE_EXPORT QString writeColorConfig(const QColor &color);
-        /*!
-         * Transform color list to colors string.
-         */
-        TTK_MODULE_EXPORT QString writeColorConfig(const QList<QColor> &colors);
-
     }
 }
 

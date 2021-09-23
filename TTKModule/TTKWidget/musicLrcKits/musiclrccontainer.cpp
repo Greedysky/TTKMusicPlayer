@@ -2,7 +2,6 @@
 #include "musiclrcsearchwidget.h"
 #include "musiclrcmakerwidget.h"
 #include "musiclrcerrorwidget.h"
-#include "musicstringutils.h"
 
 #include <QActionGroup>
 
@@ -130,7 +129,7 @@ void MusicLrcContainer::applySettingParameter(const QString &t)
     {
         manager->setFontFamily(G_SETTING_PTR->value(t + "LrcFamily").toInt());
         manager->setFontType(G_SETTING_PTR->value(t + "LrcType").toInt());
-        manager->setFontTransparent(G_SETTING_PTR->value(t + "LrcColorTrans").toInt());
+        manager->setFontTransparent(G_SETTING_PTR->value(t + "LrcColorTransparent").toInt());
         manager->setLrcFontSize(G_SETTING_PTR->value(t + "LrcSize").toInt());
     }
     if(G_SETTING_PTR->value(t + "LrcColor").toInt() != -1)
@@ -140,8 +139,8 @@ void MusicLrcContainer::applySettingParameter(const QString &t)
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
-                               MusicUtils::String::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcFrontgroundColor").toString()),
+                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value(t + "LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

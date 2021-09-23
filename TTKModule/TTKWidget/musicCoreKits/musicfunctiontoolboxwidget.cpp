@@ -224,7 +224,7 @@ void MusicFunctionToolBoxWidgetItem::addItem(QWidget *item)
 
 void MusicFunctionToolBoxWidgetItem::removeItem(QWidget *item)
 {
-    m_itemList.removeAll(item);
+    m_itemList.removeOne(item);
     m_layout->removeWidget(item);
 }
 

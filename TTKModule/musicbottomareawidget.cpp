@@ -112,7 +112,7 @@ void MusicBottomAreaWidget::showMessage(const QString &title, const QString &tex
 void MusicBottomAreaWidget::setWindowConcise()
 {
     const bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
-    G_SETTING_PTR->setValue(MusicSettingManager::WindowConcise, con);
+    G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, con);
 
     m_ui->topRightWidget->setVisible(!con);
     m_ui->centerRightWidget->setVisible(!con);
@@ -200,7 +200,7 @@ void MusicBottomAreaWidget::resizeWindow()
 
 void MusicBottomAreaWidget::applySettingParameter()
 {
-    bool config = G_SETTING_PTR->value(MusicSettingManager::CloseEvent).toBool();
+    bool config = G_SETTING_PTR->value(MusicSettingManager::CloseEventMode).toBool();
     setSystemCloseConfig(config);
          config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     setDestopLrcVisible(config);
@@ -216,7 +216,7 @@ bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
 
 void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::OtherSideByIn).toBool())
+    if(G_SETTING_PTR->value(MusicSettingManager::OtherSideByInMode).toBool())
     {
         return;
     }

@@ -9,17 +9,17 @@
 
 #include <QStyledItemDelegate>
 
-MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(Type type, QWidget *parent)
+MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const QString &name, QWidget *parent)
     : QWidget(parent)
 {
-    m_type = type;
+    m_type = name;
     m_enable = false;
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
-    m_textLabel = new QLabel(" " + transformQStringFromEnum(m_type), this);
+    m_textLabel = new QLabel(" " + m_type, this);
     m_textLabel->setObjectName("Background");
     m_textLabel->setStyleSheet(QString("#Background{%1}").arg(MusicUIObject::MQSSBackgroundStyle08) +
                                MusicUIObject::MQSSSpinBoxStyle01 +
@@ -90,10 +90,9 @@ bool MusicSoundEffectsItemWidget::pluginEnabled() const
     return m_enable;
 }
 
-void MusicSoundEffectsItemWidget::soundEffectChanged(Type type, bool enable)
+void MusicSoundEffectsItemWidget::soundEffectChanged(const QString &name, bool enable)
 {
-    const QString plugin(transformQStringFromEnum(type));
-    MusicUtils::QMMP::enabledEffectPlugin(plugin, enable);
+    MusicUtils::QMMP::enabledEffectPlugin(name, enable);
 }
 
 void MusicSoundEffectsItemWidget::setPluginEnabled()
@@ -104,8 +103,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
         m_openButton->setIcon(QIcon(":/tiny/btn_effect_off"));
         soundEffectChanged(m_type, true);
 
-        const QString plugin(transformQStringFromEnum(m_type));
-        m_settingButton->setEnabled(MusicUtils::QMMP::effectHasSetting(plugin));
+        m_settingButton->setEnabled(MusicUtils::QMMP::effectHasSetting(m_type));
         m_openButton->setToolTip(tr("Off"));
     }
     else
@@ -120,26 +118,7 @@ void MusicSoundEffectsItemWidget::setPluginEnabled()
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    const QString plugin(transformQStringFromEnum(m_type));
-    MusicUtils::QMMP::showEffectSetting(plugin, m_textLabel);
-}
-
-QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
-{
-    QString plugin;
-    switch(type)
-    {
-        case BS2B:         plugin = "bs2b"; break;
-        case Crossfade:    plugin = "crossfade"; break;
-        case Stereo:       plugin = "stereo"; break;
-        case LADSPA:       plugin = "ladspa"; break;
-        case Soxr:         plugin = "soxr"; break;
-        case SrcConverter: plugin = "srconverter"; break;
-        case MonoToStereo: plugin = "monotostereo"; break;
-        case Mono:         plugin = "mono"; break;
-        default:           plugin = "unknow"; break;
-    }
-    return plugin;
+    MusicUtils::QMMP::showEffectSetting(m_type, m_textLabel);
 }
 
 
@@ -179,27 +158,6 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->scrollArea->setAlignment(Qt::AlignVCenter);
     m_ui->scrollArea->setWidget(m_ui->effectContainer);
     m_ui->scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::BS2B, this));
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Crossfade, this));
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Stereo, this));
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Soxr, this));
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::SrcConverter, this));
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::MonoToStereo, this));
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::Mono, this));
-#ifdef Q_OS_UNIX
-    m_items.push_back(new MusicSoundEffectsItemWidget(MusicSoundEffectsItemWidget::LADSPA, this));
-#endif
-
-    QVBoxLayout *layout = new QVBoxLayout(m_ui->effectContainer);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->setSpacing(10);
-    m_ui->effectContainer->setLayout(layout);
-
-    for(MusicSoundEffectsItemWidget *item : m_items)
-    {
-        layout->addWidget(item);
-    }
 
     readSoundEffect();
 
@@ -268,28 +226,39 @@ int MusicSoundEffectsWidget::exec()
 
 void MusicSoundEffectsWidget::readSoundEffect()
 {
-    m_items[0]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt());
-    m_items[1]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfade).toInt());
-    m_items[2]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt());
-    m_items[3]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt());
-    m_items[4]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt());
-    m_items[5]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt());
-    m_items[6]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt());
-#ifdef Q_OS_UNIX
-    m_items[7]->setPluginEnabled(G_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt());
+    QVBoxLayout *layout = new QVBoxLayout(m_ui->effectContainer);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(10);
+    m_ui->effectContainer->setLayout(layout);
+
+    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const QStringList &effects = value.split(";", Qt::SkipEmptyParts);
+#else
+    const QStringList &effects = value.split(";", QString::SkipEmptyParts);
 #endif
+    for(const QString &plugin : MusicUtils::QMMP::effectPlugins())
+    {
+        MusicSoundEffectsItemWidget *item = new MusicSoundEffectsItemWidget(plugin, this);
+        m_items.push_back(item);
+        layout->addWidget(item);
+
+        if(effects.contains(plugin))
+        {
+            item->setPluginEnabled(true);
+        }
+    }
 }
 
 void MusicSoundEffectsWidget::writeSoundEffect()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2B, m_items[0]->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfade, m_items[1]->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereo, m_items[2]->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOX, m_items[3]->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRC, m_items[4]->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMonoToStereo, m_items[5]->pluginEnabled());
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMono, m_items[6]->pluginEnabled());
-#ifdef Q_OS_UNIX
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPA, m_items[7]->pluginEnabled());
-#endif
+    QString value;
+    for(const MusicSoundEffectsItemWidget *item : qAsConst(m_items))
+    {
+        if(item->pluginEnabled())
+        {
+            value.append(item->getName() + ";");
+        }
+    }
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);
 }

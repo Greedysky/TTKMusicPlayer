@@ -6,7 +6,7 @@
 
 QString MusicUtils::String::lrcPrefix()
 {
-    QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDir).toString();
+    QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadLrcDirPath).toString();
     if(path.isEmpty())
     {
         path = LRC_DIR_FULL;
@@ -23,7 +23,7 @@ QString MusicUtils::String::lrcPrefix()
 
 QString MusicUtils::String::musicPrefix()
 {
-    QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString();
+    QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     if(path.isEmpty())
     {
         path = MUSIC_DIR_FULL;
@@ -121,16 +121,8 @@ QString MusicUtils::String::artistName(const QString &value, const QString &key)
     const QStringList &s = stringSplit(value);
     if(s.count() >= 2)
     {
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt() == 0)
-        {
-            const int index = value.indexOf(key);
-            return value.left(index).trimmed();
-        }
-        else
-        {
-            const int index = value.indexOf(key) + 1;
-            return value.right(value.length() - index).trimmed();
-        }
+        const int index = value.indexOf(key);
+        return value.left(index).trimmed();
     }
     return value;
 }
@@ -140,16 +132,8 @@ QString MusicUtils::String::songName(const QString &value, const QString &key)
     const QStringList &s = stringSplit(value);
     if(s.count() >= 2)
     {
-        if(G_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt() == 0)
-        {
-            const int index = value.indexOf(key) + 1;
-            return value.right(value.length() - index).trimmed();
-        }
-        else
-        {
-            const int index = value.indexOf(key);
-            return value.left(index).trimmed();
-        }
+        const int index = value.indexOf(key) + 1;
+        return value.right(value.length() - index).trimmed();
     }
     return value;
 }
@@ -196,39 +180,4 @@ QString MusicUtils::String::charactersReplaced(const QString &value)
     }
 
     return s;
-}
-
-QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
-{
-    QList<QColor> colors;
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    const QStringList &rgbs = value.split(";", Qt::SkipEmptyParts);
-#else
-    const QStringList &rgbs = value.split(";", QString::SkipEmptyParts);
-#endif
-    for(const QString &rgb : qAsConst(rgbs))
-    {
-        const QStringList &var = rgb.split(",");
-        if(var.count() != 3)
-        {
-            continue;
-        }
-        colors << QColor(var[0].toInt(), var[1].toInt(), var[2].toInt());
-    }
-    return colors;
-}
-
-QString MusicUtils::String::writeColorConfig(const QColor &color)
-{
-    return QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue());
-}
-
-QString MusicUtils::String::writeColorConfig(const QList<QColor> &colors)
-{
-    QString value;
-    for(const QColor &rgb : qAsConst(colors))
-    {
-        value.append(writeColorConfig(rgb) + ";");
-    }
-    return value;
 }

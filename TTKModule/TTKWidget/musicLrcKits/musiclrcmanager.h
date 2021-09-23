@@ -71,12 +71,21 @@ public:
      * Map index to color.
      */
     static MusicLrcColor mapIndexToColor(MusicLrcColor::LrcColorType index);
+    /*!
+     * Transform colors string to color list.
+     */
+    static QList<QColor> readColorConfig(const QString &value);
+    /*!
+     * Transform color list to colors string.
+     */
+    static QString writeColorConfig(const QList<QColor> &colors);
 
     QList<QColor> m_frontColor;
     QList<QColor> m_backColor;
     MusicLrcColor::LrcColorType m_index;
 
 };
+
 
 /*! @brief The class of the lrc manager base.
  * @author Greedysky <greedysky@163.com>

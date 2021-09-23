@@ -33,10 +33,10 @@ void MusicRunTimeManager::run() const
 
     MusicUtils::File::checkCacheSize(
                 G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
-                G_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimit).toInt(),
-                G_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDir).toString());
+                G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt(),
+                G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
     G_NETWORK_PTR->setBlockNetWork(
-                G_SETTING_PTR->value(MusicSettingManager::CloseNetWork).toInt());
+                G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 }
 
 QString MusicRunTimeManager::translator() const

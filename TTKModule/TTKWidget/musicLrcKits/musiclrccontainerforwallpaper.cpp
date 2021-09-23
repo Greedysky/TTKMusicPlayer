@@ -4,7 +4,6 @@
 #include "musiclayoutanimationwidget.h"
 #include "musictransitionanimationlabel.h"
 #include "musicbackgroundmanager.h"
-#include "musicstringutils.h"
 
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -180,8 +179,8 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
-                               MusicUtils::String::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
+        const MusicLrcColor cl(MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcFrontgroundColor").toString()),
+                               MusicLrcColor::readColorConfig(G_SETTING_PTR->value("LrcBackgroundColor").toString()));
         setLinearGradientColor(cl);
     }
 }

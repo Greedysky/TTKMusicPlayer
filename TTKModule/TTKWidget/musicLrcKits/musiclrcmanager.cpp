@@ -123,6 +123,35 @@ MusicLrcColor MusicLrcColor::mapIndexToColor(MusicLrcColor::LrcColorType index)
     return MusicLrcColor(front, back, index);
 }
 
+QList<QColor> MusicLrcColor::readColorConfig(const QString &value)
+{
+    QList<QColor> colors;
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const QStringList &rgbs = value.split(";", Qt::SkipEmptyParts);
+#else
+    const QStringList &rgbs = value.split(";", QString::SkipEmptyParts);
+#endif
+    for(const QString &rgb : qAsConst(rgbs))
+    {
+        const QStringList &var = rgb.split(",");
+        if(var.count() != 3)
+        {
+            continue;
+        }
+        colors << QColor(var[0].toInt(), var[1].toInt(), var[2].toInt());
+    }
+    return colors;
+}
+
+QString MusicLrcColor::writeColorConfig(const QList<QColor> &colors)
+{
+    QString value;
+    for(const QColor &rgb : qAsConst(colors))
+    {
+        value.append(QString("%1,%2,%3;").arg(rgb.red()).arg(rgb.green()).arg(rgb.blue()));
+    }
+    return value;
+}
 
 
 MusicLrcManager::MusicLrcManager(QWidget *parent)

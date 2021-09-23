@@ -5,9 +5,7 @@
 #include "musicmagicwidgetuiobject.h"
 #include "musicapplicationmodule.h"
 #include "musicrightareawidget.h"
-
-#include <qmmp/effect.h>
-#include <qmmp/effectfactory.h>
+#include "musicqmmputils.h"
 
 #include <QLabel>
 #include <QButtonGroup>
@@ -135,17 +133,14 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     m_buttons[3]->setStyleSheet(prfix.arg(type == 4 ? "vocalOn" : "vocalOff"), type == 4);
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
-    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusic, type);
+    G_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicIndex, type);
     //
     if(type != 0)
     {
         G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, 0);
     }
 
-    for(EffectFactory *factory : Effect::factories())
-    {
-        Effect::setEnabled(factory, false);
-    }
+    MusicUtils::QMMP::enabledEffectPlugin(false);
     //
     Q_EMIT enhancedMusicChanged(type);
 
@@ -159,7 +154,7 @@ void MusicEnhancedPopWidget::caseButtonOnAndOff()
 
 void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)
 {
-    const int index = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt();
+    const int index = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();
     if(index < 1 || index > m_buttons.count())
     {
         return;
@@ -242,6 +237,6 @@ void MusicEnhancedPopWidget::initWidget()
 #endif
     m_buttons << button1 << button2 << button3 << button4;
 
-    m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt();
+    m_lastSelectedIndex = G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt();
     connect(m_caseButton, SIGNAL(clicked()), SLOT(caseButtonOnAndOff()));
 }

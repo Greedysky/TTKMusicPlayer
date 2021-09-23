@@ -54,8 +54,8 @@ void MusicLrcContainerForDesktop::applySettingParameter()
         m_currentLrcFontSize = G_SETTING_PTR->value(MusicSettingManager::DLrcSize).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
-    m_windowLocked = G_SETTING_PTR->value(MusicSettingManager::DLrcLocked).toInt() == 1;
-    m_singleLineType = !(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineType).toInt() == 1);
+    m_windowLocked = G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt() == 1;
+    m_singleLineType = !(G_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineMode).toInt() == 1);
     setSingleLineTypeChanged();
 
     const QPoint &point = G_SETTING_PTR->value(MusicSettingManager::DLrcGeometry).toPoint();
@@ -111,7 +111,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        m_toolBarWidget->hide();
        setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     }
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcLocked,  m_windowLocked ? 1 : 0);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedMode,  m_windowLocked ? 1 : 0);
     MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
 }
 
@@ -144,7 +144,7 @@ void MusicLrcContainerForDesktop::toolStyleChanged()
 void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
 {
     m_singleLineType = !m_singleLineType;
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineType, m_singleLineType);
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineMode, m_singleLineType);
 
     if(m_singleLineType)
     {

@@ -160,7 +160,7 @@ void MusicApplicationModule::soureUpdateCheck()
 
 void MusicApplicationModule::sideAnimationByOn()
 {
-    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
     {
         return;
     }
@@ -179,7 +179,7 @@ void MusicApplicationModule::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(-w->width() + MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
 
     const QRect &rect = TTKDesktopWrapper::screenGeometry();
@@ -191,13 +191,13 @@ void MusicApplicationModule::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(rect.width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, true);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, true);
     }
 }
 
 void MusicApplicationModule::sideAnimationByOff()
 {
-    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
     {
         return;
     }
@@ -210,7 +210,7 @@ void MusicApplicationModule::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, false);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
     }
     else if(m_rightSideByOn)
     {
@@ -220,13 +220,13 @@ void MusicApplicationModule::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(rect.width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
-        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByIn, false);
+        G_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInMode, false);
     }
 }
 
 void MusicApplicationModule::sideAnimationReset()
 {
-    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideBy).toBool())
+    if(!G_SETTING_PTR->value(MusicSettingManager::OtherSideByMode).toBool())
     {
         return;
     }
@@ -385,53 +385,21 @@ void MusicApplicationModule::musicSetSoundEffect()
 
 void MusicApplicationModule::musicEffectChanged()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedBS2B).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::BS2B, true);
-    }
-
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfade).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Crossfade, true);
-    }
-
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedStereo).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Stereo, true);
-    }
-
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedSOX).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Soxr, true);
-    }
-
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedSRC).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::SrcConverter, true);
-    }
-
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMonoToStereo).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::MonoToStereo, true);
-    }
-
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMono).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Mono, true);
-    }
-
-#ifdef Q_OS_UNIX
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPA).toInt() == 1)
-    {
-        MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::LADSPA, true);
-    }
+    const QString &value = G_SETTING_PTR->value(MusicSettingManager::EnhancedEffectValue).toString();
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    const QStringList &effects = value.split(";", Qt::SkipEmptyParts);
+#else
+    const QStringList &effects = value.split(";", QString::SkipEmptyParts);
 #endif
-
+    for(const QString &effect : qAsConst(effects))
+    {
+        MusicSoundEffectsItemWidget::soundEffectChanged(effect, true);
+    }
 }
 
 bool MusicApplicationModule::closeCurrentEqualizer()
 {
-    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusic).toInt() != 0)
+    if(G_SETTING_PTR->value(MusicSettingManager::EnhancedMusicIndex).toInt() != 0)
     {
         MusicMessageBox message;
         message.setText(tr("We are opening the magic sound, if you want to close?"));

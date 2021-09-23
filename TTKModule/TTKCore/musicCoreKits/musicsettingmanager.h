@@ -43,31 +43,30 @@ public:
         PlayMode,                        /*!< Play Mode Parameter*/
         Volume,                          /*!< Volume Parameter*/
         //
-        AutoPlay,                        /*!< Auto Play Parameter*/
+        AutoPlayMode,                    /*!< Auto Play Parameter*/
         CurrentLanIndex,                 /*!< Current LanIndex Parameter*/
-        CloseEvent,                      /*!< Close Event Parameter*/
+        CloseEventMode,                  /*!< Close Event Parameter*/
         LastPlayIndex,                   /*!< Last Play Index Parameter*/
-        CloseNetWork,                    /*!< Close NetWork Parameter*/
-        FileAssociation,                 /*!< File Association Parameter*/
+        CloseNetWorkMode,                /*!< Close NetWork Parameter*/
+        FileAssociationMode,             /*!< File Association Parameter*/
         ExtraDevicePath,                 /*!< Set Extra Device Path Parameter*/
-        WindowConcise,                   /*!< Window Concise Parameter*/
+        WindowConciseMode,               /*!< Window Concise Parameter*/
         RemoteWidgetMode,                /*!< Remote Widget Mode Parameter*/
         WindowQuitMode,                  /*!< Window Quit Mode Parameter*/
 
-        BackgroundTheme,                 /*!< Background Theme Parameter*/
+        BackgroundThemeValue,            /*!< Background Theme Parameter*/
         BackgroundTransparent,           /*!< Background Transparent Parameter*/
         BackgroundListTransparent,       /*!< Background List Transparent Parameter*/
         BackgroundTransparentEnable,     /*!< Background Transparent Enable Parameter*/
         //
-        OtherCheckUpdate,                /*!< Other Check Update Parameter*/
-        OtherSearch,                     /*!< Other Search Optimzied Parameter*/
+        OtherCheckUpdateEnable,          /*!< Other Check Update Parameter*/
+        OtherSearchOptimized,            /*!< Other Search Optimzied Parameter*/
         OtherUseAlbumCover,              /*!< Other Use File Album Parameter*/
-        OtherUseInfo,                    /*!< Other Use File Info Parameter*/
+        OtherUseFileInfo,                /*!< Other Use File Info Parameter*/
         OtherWriteAlbumCover,            /*!< Other Write File Album Parameter*/
-        OtherWriteInfo,                  /*!< Other Write File Info Parameter*/
-        OtherSongFormat,                 /*!< Other Song Format Parameter*/
-        OtherSideBy,                     /*!< Other App Side By Mode Parameter*/
-        OtherSideByIn,                   /*!< Other App Side By In Mode Parameter*/
+        OtherWriteFileInfo,              /*!< Other Write File Info Parameter*/
+        OtherSideByMode,                 /*!< Other App Side By Mode Parameter*/
+        OtherSideByInMode,               /*!< Other App Side By In Mode Parameter*/
         OtherLrcKTVMode,                 /*!< Other Lrc KTV Mode Parameter*/
         OtherScreenSaverEnable,          /*!< Other Screen Saver Enable Parameter*/
         OtherScreenSaverTime,            /*!< Other Screen Saver Time Parameter*/
@@ -83,7 +82,7 @@ public:
         LrcFamily,                       /*!< Lrc Family Parameter*/
         LrcFrontgroundColor,             /*!< Lrc Frontground Color Parameter*/
         LrcBackgroundColor,              /*!< Lrc Background Color Parameter*/
-        LrcColorTrans,                   /*!< Lrc Color Trans Parameter*/
+        LrcColorTransparent,             /*!< Lrc Color Transparent Parameter*/
         //
         ShowDesktopLrc,                  /*!< Show Desktop Lrc Parameter*/
         DLrcColor,                       /*!< Desktop Lrc Color Parameter*/
@@ -92,55 +91,48 @@ public:
         DLrcFamily,                      /*!< Desktop Lrc Family Parameter*/
         DLrcFrontgroundColor,            /*!< Desktop Lrc Frontground Color Parameter*/
         DLrcBackgroundColor,             /*!< Desktop Lrc Background Color Parameter*/
-        DLrcColorTrans,                  /*!< Desktop Lrc Color Trans Parameter*/
-        DLrcWindowType,                  /*!< Desktop Lrc Window Type Parameter*/
-        DLrcSingleLineType,              /*!< Desktop Lrc Single Line Type Parameter*/
-        DLrcLocked,                      /*!< Desktop Lrc Locked Parameter*/
+        DLrcColorTransparent,            /*!< Desktop Lrc Color Transparent Parameter*/
+        DLrcWindowMode,                  /*!< Desktop Lrc Window Mode Parameter*/
+        DLrcSingleLineMode,              /*!< Desktop Lrc Single Line Mode Parameter*/
+        DLrcLockedMode,                  /*!< Desktop Lrc Locked Mode Parameter*/
         DLrcGeometry,                    /*!< Desktop Lrc Geometry Parameter*/
         //
         EqualizerEnable,                 /*!< Equalizer Enable Parameter*/
         EqualizerValue,                  /*!< Equalizer Value Parameter*/
         EqualizerIndex,                  /*!< Equalizer Index Parameter*/
-        EnhancedMusic,                   /*!< Enhanced Music Parameter*/
+        EnhancedMusicIndex,              /*!< Enhanced Music Parameter*/
         EnhancedFadeEnable,              /*!< Enhanced Fade Enable Parameter*/
         EnhancedFadeInValue,             /*!< Enhanced Fade In Value Parameter*/
         EnhancedFadeOutValue,            /*!< Enhanced Fade Out Value Parameter*/
-        EnhancedBS2B,                    /*!< Enhanced BS2B Parameter*/
-        EnhancedCrossfade,               /*!< Enhanced Crossfade Parameter*/
-        EnhancedStereo,                  /*!< Enhanced Stereo Parameter*/
-        EnhancedLADSPA,                  /*!< Enhanced LADSPA Parameter*/
-        EnhancedSOX,                     /*!< Enhanced SOX Parameter*/
-        EnhancedSRC,                     /*!< Enhanced SRC Parameter*/
-        EnhancedMonoToStereo,            /*!< Enhanced Mono To Stereo Parameter*/
-        EnhancedMono,                    /*!< Enhanced Mono Parameter*/
+        EnhancedEffectValue,             /*!< Enhanced Effect Value Parameter*/
         //
         TimerAutoIndex,                  /*!< Timer Auto Index Parameter*/
-        TimerAutoPlay,                   /*!< Timer Auto Play Parameter*/
+        TimerAutoPlayMode,               /*!< Timer Auto Play Parameter*/
         TimerAutoPlayHour,               /*!< Timer Auto Play Hour Parameter*/
         TimerAutoPlaySecond,             /*!< Timer Auto Play Second Parameter*/
         TimerAutoPlayRepeat,             /*!< Timer Auto Play Repeat Parameter*/
         TimerAutoPlayItemIndex,          /*!< Timer Auto Play Item Index Parameter*/
         TimerAutoPlaySongIndex,          /*!< Timer Auto Play Song Index Parameter*/
-        TimerAutoStop,                   /*!< Timer Auto Stop Parameter*/
+        TimerAutoStopMode,               /*!< Timer Auto Stop Parameter*/
         TimerAutoStopHour,               /*!< Timer Auto Stop Hour Parameter*/
         TimerAutoStopSecond,             /*!< Timer Auto Stop Second Parameter*/
         TimerAutoStopRepeat,             /*!< Timer Auto Stop Repeat Parameter*/
-        TimerAutoShutdown,               /*!< Timer Auto Shutdown Parameter*/
+        TimerAutoShutdownMode,           /*!< Timer Auto Shutdown Parameter*/
         TimerAutoShutdownHour,           /*!< Timer Auto Shutdown Hour Parameter*/
         TimerAutoShutdownSecond,         /*!< Timer Auto Shutdown Second Parameter*/
         TimerAutoShutdownRepeat,         /*!< Timer Auto Shutdown Repeat Parameter*/
         //
-        DownloadMusicPathDir,            /*!< Download Music Path Dir Parameter*/
-        DownloadLrcPathDir,              /*!< Download Lrc Path Dir Parameter*/
-        DownloadCacheLimit,              /*!< Download Cache Limit Parameter*/
+        DownloadMusicDirPath,            /*!< Download Music Dir Path Parameter*/
+        DownloadLrcDirPath,              /*!< Download Lrc Dir Path Parameter*/
+        DownloadServerIndex,             /*!< Download Server Parameter*/
+        DownloadCacheEnable,             /*!< Download Cache Enable Parameter*/
         DownloadCacheSize,               /*!< Download Cache Size Parameter*/
-        DownloadLimit,                   /*!< Download Limit Parameter*/
-        DownloadServer,                  /*!< Download Server Parameter*/
-        DownloadDLoadLimit,              /*!< Download DLoad Limit Parameter*/
-        DownloadULoadLimit,              /*!< Download ULoad Limit Parameter*/
+        DownloadLimitEnable,             /*!< Download Limit Parameter*/
+        DownloadDownloadLimitSize,       /*!< Download Download Limit Parameter*/
+        DownloadUploadLimitSize,         /*!< Download Upload Limit Parameter*/
         //
         HotkeyEnable,                    /*!< Hotkey Enable Parameter*/
-        HotkeyString                     /*!< Hotkey String Parameter*/
+        HotkeyValue                      /*!< Hotkey String Parameter*/
     };
 
     /*!
