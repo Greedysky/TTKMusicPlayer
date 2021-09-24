@@ -45,10 +45,12 @@ namespace MusicUtils
          * Set widget label font.
          */
         TTK_MODULE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
+
         /*!
          * Set text elided text by font.
          */
         TTK_MODULE_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
+
         /*!
          * Get text width by font.
          */
@@ -79,6 +81,15 @@ namespace MusicUtils
          * Set widget to round by ratioX and ratioY.
          */
         TTK_MODULE_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
+
+        /*!
+         * Generate vertical scrollArea format style.
+         */
+        TTK_MODULE_EXPORT void generateVScrollAreaFormat(QWidget *w, QWidget *parent);
+        /*!
+         * Generate horizontal scrollArea format style.
+         */
+        TTK_MODULE_EXPORT void generateHScrollAreaFormat(QWidget *w, QWidget *parent);
 
     }
 }

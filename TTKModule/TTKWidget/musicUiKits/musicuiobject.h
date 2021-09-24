@@ -326,7 +326,7 @@ namespace MusicUIObject
 
 ///ScrollBar
     const QString MQSSScrollBarStyle01 = " \
-            QScrollBar{ background:#FFFFFF; width:8px; padding-top:0px; padding-bottom:0px; } \
+            QScrollBar{ background:transparent; width:8px; padding-top:0px; padding-bottom:0px; } \
             QScrollBar::handle:vertical{ border-radius:4px; background:#CFCFCF; min-height: 30px; } \
             QScrollBar::handle:vertical::disabled{ background:#DBDBDB; } \
             QScrollBar::handle:vertical:hover{ background:#BBBBBB; } \
@@ -334,21 +334,12 @@ namespace MusicUIObject
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }";
 
     const QString MQSSScrollBarStyle02 = " \
-            QScrollBar{ background:#FFFFFF; height:8px; padding-left:0px; padding-right:0px; } \
+            QScrollBar{ background:transparent; height:8px; padding-left:0px; padding-right:0px; } \
             QScrollBar::handle:horizontal{ border-radius:4px; background:#CFCFCF; min-width: 30px; } \
             QScrollBar::handle:horizontal::disabled{ background:#DBDBDB; } \
             QScrollBar::handle:horizontal:hover{ background:#BBBBBB; } \
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none; } \
             QScrollBar::add-page, QScrollBar::sub-page{ background:none; }";
-
-    const QString MQSSScrollBarStyle03 = MQSSScrollBarStyle01 + " \
-            QScrollBar{ background:transparent; }";
-
-    const QString MQSSScrollBarStyle04 = MQSSScrollBarStyle02 + " \
-            QScrollBar{ background:transparent; }";
-
-    const QString MQSSScrollBarStyle05 = " \
-            QScrollBar{ background:rgba(255, 255, 255, %1); }";
 
 
 ///Label

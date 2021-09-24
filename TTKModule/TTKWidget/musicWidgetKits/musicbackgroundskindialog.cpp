@@ -11,19 +11,7 @@
 #include "musicsettingmanager.h"
 #include "musicextractwrapper.h"
 
-#include <QScrollBar>
-
 #define CURRENT_ITEMS_COUNT     47
-
-#define NEW_OPERATOR(ui, list)                                                  \
-    ui->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);                   \
-    ui->setWidgetResizable(true);                                               \
-    ui->setFrameShape(QFrame::NoFrame);                                         \
-    ui->setFrameShadow(QFrame::Plain);                                          \
-    ui->setAlignment(Qt::AlignVCenter);                                         \
-    ui->setWidget(list);                                                        \
-    ui->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -50,16 +38,16 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     //
     m_backgroundList = new MusicBackgroundListWidget(this);
-    NEW_OPERATOR(m_ui->recommandScrollArea, m_backgroundList);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->recommandScrollArea, m_backgroundList);
 
     m_myBackgroundList = new MusicBackgroundListWidget(this);
-    NEW_OPERATOR(m_ui->userScrollArea, m_myBackgroundList);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->userScrollArea, m_myBackgroundList);
 
     m_thunderBackgroundList = new MusicBackgroundThunderWidget(this);
-    NEW_OPERATOR(m_ui->remoteScrollArea, m_thunderBackgroundList);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->remoteScrollArea, m_thunderBackgroundList);
 
     m_dailyBackgroundList = new MusicBackgroundDailyWidget(this);
-    NEW_OPERATOR(m_ui->dailyScrollArea, m_dailyBackgroundList);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->dailyScrollArea, m_dailyBackgroundList);
 
     m_myThemeIndex = CURRENT_ITEMS_COUNT;
     addThemeListWidgetItem();

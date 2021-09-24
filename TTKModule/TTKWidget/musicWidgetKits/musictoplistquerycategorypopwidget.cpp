@@ -1,4 +1,5 @@
 #include "musictoplistquerycategorypopwidget.h"
+#include "musicwidgetutils.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
@@ -74,11 +75,7 @@ void MusicToplistQueryCategoryPopWidget::setCategory(const QString &server, QObj
     containWidget->setLayout(containLayout);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setFrameShape(QFrame::NoFrame);
-    scrollArea->setAlignment(Qt::AlignLeft);
-    scrollArea->setWidget(containWidget);
+    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
     layout->addWidget(scrollArea);
 
     for(const MusicResultsCategory &category : qAsConst(categorys))

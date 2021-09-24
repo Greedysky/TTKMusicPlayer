@@ -5,8 +5,6 @@
 #include "musicdownloaddatarequest.h"
 #include "musicuiobject.h"
 
-#include <QScrollBar>
-
 MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {

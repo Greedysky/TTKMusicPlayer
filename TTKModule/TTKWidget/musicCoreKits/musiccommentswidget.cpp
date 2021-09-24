@@ -267,12 +267,7 @@ void MusicCommentsWidget::initWidget(bool isPain)
     if(isPain)
     {
         QScrollArea *scrollArea = new QScrollArea(this);
-        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-        scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
-        scrollArea->setWidgetResizable(true);
-        scrollArea->setFrameShape(QFrame::NoFrame);
-        scrollArea->setAlignment(Qt::AlignLeft);
-        scrollArea->setWidget(contentsWidget);
+        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget);
 
         contentsWidget->setObjectName("contentsWidget");
         contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));

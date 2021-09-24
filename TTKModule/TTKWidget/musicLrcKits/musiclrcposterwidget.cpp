@@ -834,7 +834,7 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
@@ -982,23 +982,11 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     m_itemWidget = new MusicLrcPosterItemWidget(this);
-    m_ui->viewArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->viewArea->setWidgetResizable(true);
-    m_ui->viewArea->setFrameShape(QFrame::NoFrame);
-    m_ui->viewArea->setFrameShadow(QFrame::Plain);
-    m_ui->viewArea->setAlignment(Qt::AlignVCenter);
-    m_ui->viewArea->setWidget(m_itemWidget);
-    m_ui->viewArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->viewArea, m_itemWidget);
     connect(m_ui->lrcArea, SIGNAL(textChanged(QStringList)), m_itemWidget, SLOT(textChanged(QStringList)));
 
     m_themeWidget = new MusicLrcPosterThemeListWidget(this);
-    m_ui->listArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->listArea->setWidgetResizable(true);
-    m_ui->listArea->setFrameShape(QFrame::NoFrame);
-    m_ui->listArea->setFrameShadow(QFrame::Plain);
-    m_ui->listArea->setAlignment(Qt::AlignVCenter);
-    m_ui->listArea->setWidget(m_themeWidget);
-    m_ui->listArea->horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle04);
+    MusicUtils::Widget::generateHScrollAreaFormat(m_ui->listArea, m_themeWidget);
 
     m_ui->openButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->saveButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);

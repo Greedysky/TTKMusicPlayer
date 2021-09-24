@@ -160,11 +160,7 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
 
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
-        scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-        scrollArea->setWidgetResizable(true);
-        scrollArea->setFrameShape(QFrame::NoFrame);
-        scrollArea->setAlignment(Qt::AlignLeft);
-        scrollArea->setWidget(m_mainWindow);
+        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, m_mainWindow);
         m_container->addWidget(scrollArea);
 
         m_initialized = true;

@@ -6,7 +6,6 @@
 #include "musicdownloadtagdatarequest.h"
 
 #include <QTimer>
-#include <QScrollBar>
 #include <QStyledItemDelegate>
 
 Q_DECLARE_METATYPE(MusicObject::MusicSongAttribute)

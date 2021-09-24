@@ -3,7 +3,6 @@
 #include "musicwidgetutils.h"
 
 #include <QPainter>
-#include <QScrollBar>
 #include <QScrollArea>
 #include <QMouseEvent>
 #include <QDrag>
@@ -311,12 +310,7 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
     m_contentsWidget->setLayout(m_layout);
 
     m_scrollArea = new QScrollArea(this);
-    m_scrollArea->setWidgetResizable(true);
-    m_scrollArea->setFrameShape(QFrame::NoFrame);
-    m_scrollArea->setFrameShadow(QFrame::Plain);
-    m_scrollArea->setAlignment(Qt::AlignLeft);
-    m_scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_scrollArea->setWidget(m_contentsWidget);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_scrollArea, m_contentsWidget);
 
     setTransparent(0);
 

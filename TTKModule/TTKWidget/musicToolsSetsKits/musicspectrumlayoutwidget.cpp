@@ -1,4 +1,5 @@
 #include "musicspectrumlayoutwidget.h"
+#include "musicwidgetutils.h"
 #include "musicuiobject.h"
 #include "musicimageutils.h"
 #include "musicclickedgroup.h"
@@ -108,11 +109,7 @@ void MusicSpectrumLayoutWidget::initWidget()
     m_containLayout->setSpacing(20);
     containWidget->setLayout(m_containLayout);
 
-    scrollArea->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setFrameShape(QFrame::NoFrame);
-    scrollArea->setAlignment(Qt::AlignLeft);
-    scrollArea->setWidget(containWidget);
+    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, containWidget);
     scrollArea->viewport()->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
     layout->addWidget(scrollArea);
 

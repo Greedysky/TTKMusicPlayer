@@ -6,7 +6,6 @@
 #include "musicdownloadwidget.h"
 
 #include <qmath.h>
-#include <QScrollBar>
 
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
     : MusicAbstractSongsListTableWidget(parent)

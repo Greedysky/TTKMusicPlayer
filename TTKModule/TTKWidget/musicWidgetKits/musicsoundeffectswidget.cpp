@@ -151,14 +151,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->eqEffectButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->scrollArea->setWidgetResizable(true);
-    m_ui->scrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->scrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->scrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->scrollArea->setWidget(m_ui->effectContainer);
-    m_ui->scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->scrollArea, m_ui->effectContainer);
     readSoundEffect();
 
     G_CONNECTION_PTR->setValue(getClassName(), this);

@@ -307,16 +307,11 @@ void MusicPlayedListPopWidget::initWidget()
     containLayout->addWidget(createContainerWidget());
 
     m_scrollArea = new QScrollArea(this);
-    m_scrollArea->setWidgetResizable(true);
-    m_scrollArea->setFrameShape(QFrame::NoFrame);
-    m_scrollArea->setFrameShadow(QFrame::Plain);
-    m_scrollArea->setAlignment(Qt::AlignLeft);
 
     const QString &background = MusicUIObject::MQSSBackgroundStyle17;
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(background));
-    m_scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
     m_playedListWidget->setSongsFileName(&m_songList);
@@ -330,7 +325,7 @@ void MusicPlayedListPopWidget::initWidget()
     playedListLayout->addWidget(m_playedListWidget);
     playedListContainer->setLayout(playedListLayout);
 
-    m_scrollArea->setWidget(playedListContainer);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_scrollArea, playedListContainer);
     m_playedListWidget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
 
     containLayout->addWidget(m_scrollArea);

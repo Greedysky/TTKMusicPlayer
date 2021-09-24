@@ -77,11 +77,7 @@ MusicWebDJRadioCategoryWidget::MusicWebDJRadioCategoryWidget(QWidget *parent)
     QWidget *mainWindow = new QWidget(this);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setFrameShape(QFrame::NoFrame);
-    scrollArea->setAlignment(Qt::AlignLeft);
-    scrollArea->setWidget(mainWindow);
+    MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, mainWindow);
     layout->addWidget(scrollArea);
 
     m_gridLayout = new QGridLayout(mainWindow);

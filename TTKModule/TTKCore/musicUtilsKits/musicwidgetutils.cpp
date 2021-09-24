@@ -2,9 +2,11 @@
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
 #include "ttkdesktopwrapper.h"
+#include "musicuiobject.h"
 
 #include <QBitmap>
 #include <QPainter>
+#include <QScrollArea>
 
 #define WIDTH  4
 #define HEIGHT 4
@@ -118,4 +120,36 @@ void MusicUtils::Widget::setComboBoxText(QComboBox *object, const QString &text)
 void MusicUtils::Widget::widgetToRound(QWidget *w, int ratioX, int ratioY)
 {
     w->setMask(MusicUtils::Image::GenerateMask(w->rect(), ratioX, ratioY));
+}
+
+void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *w, QWidget *parent)
+{
+    QScrollArea *area = TTKStatic_cast(QScrollArea*, w);
+    if(area)
+    {
+        area->setWidgetResizable(true);
+        area->setFrameShape(QFrame::NoFrame);
+        area->setFrameShadow(QFrame::Plain);
+        area->setAlignment(Qt::AlignLeft);
+        area->setWidget(parent);
+        area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        area->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+        area->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    }
+}
+
+void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *w, QWidget *parent)
+{
+    QScrollArea *area = TTKStatic_cast(QScrollArea*, w);
+    if(area)
+    {
+        area->setWidgetResizable(true);
+        area->setFrameShape(QFrame::NoFrame);
+        area->setFrameShadow(QFrame::Plain);
+        area->setAlignment(Qt::AlignLeft);
+        area->setWidget(parent);
+        area->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        area->setStyleSheet(MusicUIObject::MQSSScrollBarStyle02);
+        area->horizontalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle02);
+    }
 }

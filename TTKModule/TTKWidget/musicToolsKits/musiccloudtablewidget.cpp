@@ -4,8 +4,6 @@
 #include "musicnumberutils.h"
 #include "musictoastlabel.h"
 
-#include <QScrollBar>
-
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
@@ -25,7 +23,7 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     setFixedHeight(0);
 }
@@ -86,7 +84,7 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
     setFixedHeight(0);
 }
