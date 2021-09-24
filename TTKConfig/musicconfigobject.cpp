@@ -35,6 +35,11 @@ void MusicConfigObject::initialize()
     copyFileOverwrite(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 }
 
+void MusicConfigObject::reset()
+{
+    copyFileOverwrite(":/data/musicconfig.xml", TTK_COFIGPATH_FULL);
+}
+
 void MusicConfigObject::directoryExist(const QString &name)
 {
     QDir dir;

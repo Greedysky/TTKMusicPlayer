@@ -108,7 +108,7 @@ void MusicApplicationModule::loadNetWorkSetting()
 void MusicApplicationModule::applySettingParameter()
 {
 #ifdef Q_OS_WIN
-    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociation).toInt())
+    if(G_SETTING_PTR->value(MusicSettingManager::FileAssociationMode).toInt())
     {
         MusicPlatformManager platform;
         platform.setMusicRegeditAssociateFileIcon();

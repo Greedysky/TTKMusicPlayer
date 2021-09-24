@@ -6,6 +6,7 @@
 #include "musicfileutils.h"
 #include "musiccoreutils.h"
 #include "musiccodecutils.h"
+#include "ttkversion.h"
 
 #include <QFont>
 #include <QApplication>
@@ -31,16 +32,19 @@ void MusicRunTimeManager::run() const
     xml.readConfig();
     xml.readSysConfigData();
 
-    MusicUtils::File::checkCacheSize(
-                G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
-                G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt(),
-                G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
-    G_NETWORK_PTR->setBlockNetWork(
-                G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
+    MusicUtils::File::checkCacheSize(G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
+                                     G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt(),
+                                     G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
+    G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 }
 
 QString MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
     return MusicUtils::Core::getLanguageName(index);
+}
+
+bool MusicRunTimeManager::configVersionCheck() const
+{
+    return G_SETTING_PTR->value(MusicSettingManager::ConfigVersion).toString() == TTKCONFIG_VERSION_STR;
 }

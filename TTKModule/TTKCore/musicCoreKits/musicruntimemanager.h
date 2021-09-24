@@ -38,6 +38,11 @@ public:
      */
     QString translator() const;
 
+    /*!
+     * Check config version is new.
+     */
+    bool configVersionCheck() const;
+
 };
 
 #endif // MUSICRUNTIMEMANAGER_H

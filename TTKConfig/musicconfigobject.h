@@ -38,7 +38,6 @@ public:
      * Check current setting file's validation.
      */
     void checkValid();
-
     /*!
      * Get app path.
      */
@@ -47,6 +46,12 @@ public:
      * Init parameters.
      */
     void initialize();
+    /*!
+     * Reset config parameters.
+     */
+    void reset();
+
+private:
     /*!
      * Check current dir is exist, no, just create it.
      */

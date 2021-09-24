@@ -20,12 +20,8 @@
  ================================================= */
 
 #include <QDir>
-#include <QCoreApplication>
-#if defined (Q_OS_ANDROID)
-#include <QtAndroidExtras/QtAndroid>
-#include <QtAndroidExtras/QAndroidJniEnvironment>
-#endif
 #include "ttkglobal.h"
+#include <QCoreApplication>
 
 #define DOT                     "."
 
@@ -147,17 +143,10 @@
 #define BARRAGEPATH             "musicbarrage.ttk"
 
 
-//
-#if defined (Q_OS_ANDROID)
-#  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
-#  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + DOWNLOADS_DIR
-#  define APPCACHE_DIR_FULL     MusicObject::getAppDir() + APPCACHE_DIR
-#else
-#  define MAIN_DIR_FULL         MusicObject::getAppDir() + "../"
-#  define APPDATA_DIR_FULL      MusicObject::getConfigDir() + APPDATA_DIR
-#  define DOWNLOADS_DIR_FULL    MAIN_DIR_FULL + DOWNLOADS_DIR
-#  define APPCACHE_DIR_FULL     MusicObject::getConfigDir() + APPCACHE_DIR
-#endif
+#define MAIN_DIR_FULL         MusicObject::getAppDir() + "../"
+#define APPDATA_DIR_FULL      MusicObject::getConfigDir() + APPDATA_DIR
+#define APPCACHE_DIR_FULL     MusicObject::getConfigDir() + APPCACHE_DIR
+#define DOWNLOADS_DIR_FULL    MAIN_DIR_FULL + DOWNLOADS_DIR
 
 
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
@@ -227,12 +216,12 @@ namespace MusicObject
             m_bitrate = -1;
         }
 
-        bool operator< (const MusicSongAttribute &other) const
+        inline bool operator< (const MusicSongAttribute &other) const
         {
             return m_bitrate < other.m_bitrate;
         }
 
-        bool operator== (const MusicSongAttribute &other) const
+        inline bool operator== (const MusicSongAttribute &other) const
         {
             return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
@@ -294,20 +283,7 @@ namespace MusicObject
      */
     static QString getAppDir()
     {
-#if defined (Q_OS_ANDROID)
-        QAndroidJniObject mediaDir = QAndroidJniObject::callStaticObjectMethod("android/os/Environment",
-                                                                           "getExternalStorageDirectory",
-                                                                           "()Ljava/io/File;");
-        QAndroidJniObject mediaPath = mediaDir.callObjectMethod("getAbsolutePath", "()Ljava/lang/String;");
-        QString path = mediaPath.toString() + "/TTKMobile/";
-        if(!QDir().exists(path))
-        {
-            QDir().mkpath(path);
-        }
-        return path;
-#else
         return QCoreApplication::applicationDirPath() + "/";
-#endif
     }
 
     /*!

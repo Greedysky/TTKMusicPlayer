@@ -40,6 +40,7 @@ public:
         WidgetPosition,                  /*!< Widget Position Parameter*/
         WidgetSize,                      /*!< Widget Size Parameter*/
         //
+        ConfigVersion,                   /*!< Config Version Parameter*/
         PlayMode,                        /*!< Play Mode Parameter*/
         Volume,                          /*!< Volume Parameter*/
         //
@@ -53,7 +54,7 @@ public:
         WindowConciseMode,               /*!< Window Concise Parameter*/
         RemoteWidgetMode,                /*!< Remote Widget Mode Parameter*/
         WindowQuitMode,                  /*!< Window Quit Mode Parameter*/
-
+        //
         BackgroundThemeValue,            /*!< Background Theme Parameter*/
         BackgroundTransparent,           /*!< Background Transparent Parameter*/
         BackgroundListTransparent,       /*!< Background List Transparent Parameter*/

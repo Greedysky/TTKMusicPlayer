@@ -1,6 +1,7 @@
 #include "musicconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicstringutils.h"
+#include "ttkversion.h"
 
 #include <QRect>
 
@@ -12,6 +13,10 @@ MusicConfigManager::MusicConfigManager(QObject *parent)
 
 void MusicConfigManager::readSysConfigData() const
 {
+    G_SETTING_PTR->setValue(MusicSettingManager::ConfigVersion,
+                     readXmlAttributeByTagNameValue("configVersion"));
+
+
     G_SETTING_PTR->setValue(MusicSettingManager::PlayMode,
                      readXmlAttributeByTagNameValue("playMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::Volume,
@@ -320,10 +325,10 @@ void MusicConfigManager::writeSysConfigData()
     QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
     QDomElement downloadSettingDom = writeDomNode(musicPlayerDom, "downloadSetting");
 
+    writeDomElement(musicSettingDom, "configVersion", MusicXmlAttribute("value", TTKCONFIG_VERSION_STR));
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
-    writeDomElementText(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndex[0]),
-                                                          QString("%1,%2").arg(lastPlayIndex[1]).arg(lastPlayIndex[2]));
+    writeDomElementText(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndex[0]), QString("%1,%2").arg(lastPlayIndex[1]).arg(lastPlayIndex[2]));
 
     //
     writeDomElement(plusSettingDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPosition.x())
