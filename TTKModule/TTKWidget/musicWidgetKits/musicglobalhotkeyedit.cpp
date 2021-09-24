@@ -10,17 +10,11 @@ MusicGlobalHotKeyEdit::MusicGlobalHotKeyEdit(QWidget *parent)
     setReadOnly(true);
 }
 
-MusicGlobalHotKeyEdit::~MusicGlobalHotKeyEdit()
-{
-
-}
-
 void MusicGlobalHotKeyEdit::setHotKeyEnabled(bool state)
 {
     setEnabled(state);
     setReadOnly(!state);
-    setStyleSheet(state ? MusicUIObject::MQSSColorStyle10 + MusicUIObject::MQSSBackgroundStyle05
-                        : MusicUIObject::MQSSColorStyle01 + MusicUIObject::MQSSBackgroundStyle08);
+    setStyleSheet(MusicUIObject::MQSSColorStyle10);
 }
 
 void MusicGlobalHotKeyEdit::keyPressEvent(QKeyEvent *event)

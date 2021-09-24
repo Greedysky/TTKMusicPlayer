@@ -34,7 +34,6 @@ public:
      * Object contsructor.
      */
     explicit MusicGlobalHotKeyEdit(QWidget *parent = nullptr);
-    ~MusicGlobalHotKeyEdit();
 
     /*!
      * Set hotKey enable state.
@@ -45,7 +44,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    void keyPressEvent(QKeyEvent *event);
+    virtual void keyPressEvent(QKeyEvent *event) override;
 
 };
 
