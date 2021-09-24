@@ -175,7 +175,7 @@ private Q_SLOTS:
     /*!
      * Get translated lrc finished.
      */
-    void getTranslatedLrcFinished(const QString &bytes);
+    void queryTranslatedLrcFinished(const QString &bytes);
     /*!
      * Video button clicked.
      */
@@ -184,6 +184,10 @@ private Q_SLOTS:
      * Animation finished.
      */
     void updateAnimationLrc();
+    /*!
+     * Get all lrcs from tr container.
+     */
+    void getTranslatedLrc();
 
 protected:
     /*!

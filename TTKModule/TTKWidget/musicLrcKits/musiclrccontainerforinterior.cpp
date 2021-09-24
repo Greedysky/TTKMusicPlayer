@@ -4,6 +4,8 @@
 #include "musiclrcfloatwidget.h"
 #include "musiclrcfloatplaywidget.h"
 #include "musiclrclocallinkwidget.h"
+#include "musictranslationrequest.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
@@ -332,7 +334,7 @@ void MusicLrcContainerForInterior::showLrcPosterWidget()
     poster.exec();
 }
 
-void MusicLrcContainerForInterior::getTranslatedLrcFinished(const QString &bytes)
+void MusicLrcContainerForInterior::queryTranslatedLrcFinished(const QString &bytes)
 {
     QString text;
     for(const QString &var : bytes.split("\r"))
@@ -370,6 +372,15 @@ void MusicLrcContainerForInterior::updateAnimationLrc()
     m_lrcAnalysis->setCurrentIndex(m_lrcAnalysis->getCurrentIndex() + 1);
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startDrawLrcMask(m_animationFreshTime);
     setItemStyleSheet();
+}
+
+void MusicLrcContainerForInterior::getTranslatedLrc()
+{
+    MusicTranslationRequest *request = G_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
+    connect(request, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
+
+    request->setHeader("name", m_lrcAnalysis->getCurrentFilePath());
+    request->startToDownload(m_lrcAnalysis->getAllLrcString());
 }
 
 void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
@@ -744,7 +755,7 @@ void MusicLrcContainerForInterior::initFunctionLabel()
     microphone->setToolTip(tr("KMicro"));
     message->setToolTip(tr("Message"));
 
-    connect(translation, SIGNAL(clicked()), m_lrcAnalysis, SLOT(getTranslatedLrc()));
+    connect(translation, SIGNAL(clicked()), SLOT(getTranslatedLrc()));
     connect(movie, SIGNAL(clicked()), SLOT(musicSongMovieClicked()));
     connect(microphone, SIGNAL(clicked()), SLOT(showSoundKMicroWidget()));
     connect(message, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));

@@ -25,8 +25,6 @@
 #define MUSIC_TTKLRCF               "[TTKLRCF]"
 #define MUSIC_LRC_INTERIOR_MAX_LINE 11
 
-class MusicTranslationRequest;
-
 /*! @brief The class of the core lrc analysis.
  * @author Greedysky <greedysky@163.com>
  */
@@ -169,12 +167,6 @@ public:
      */
     QString getAllLrcString() const;
 
-public Q_SLOTS:
-    /*!
-     * Get all lrcs from tr container.
-     */
-    void getTranslatedLrc();
-
 protected:
     /*!
      * Lrc analysis by match lrc line base.
@@ -197,7 +189,6 @@ protected:
     QString m_currentFilePath;
     TTKIntStringMap m_lrcContainer;
     QStringList m_currentShowLrcContainer;
-    MusicTranslationRequest *m_networkRequest;
 
 };
 

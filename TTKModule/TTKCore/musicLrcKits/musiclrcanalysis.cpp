@@ -2,8 +2,7 @@
 #include "musiclrcfromkrc.h"
 #include "musicstringutils.h"
 #include "musicapplication.h"
-#include "musicdownloadqueryfactory.h"
-#include "musictranslationrequest.h"
+#include "musictime.h"
 
 #include <qmath.h>
 
@@ -12,12 +11,11 @@ MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
 {
     m_lineMax = 0;
     m_currentLrcIndex = 0;
-    m_networkRequest = nullptr;
 }
 
 MusicLrcAnalysis::~MusicLrcAnalysis()
 {
-    delete m_networkRequest;
+
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
@@ -583,26 +581,4 @@ QString MusicLrcAnalysis::getAllLrcString() const
         clipString.append(s + "\n");
     }
     return clipString;
-}
-
-void MusicLrcAnalysis::getTranslatedLrc()
-{
-    delete m_networkRequest;
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
-    if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
-    {
-        connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(getTranslatedLrcFinished(QString)));
-    }
-
-    QString data;
-    for(const qint64 &key : m_lrcContainer.keys())
-    {
-        data.append(QString("[%1.000]").arg(MusicTime::msecTime2LabelJustified(key)) + m_lrcContainer.value(key));
-#ifdef Q_OS_UNIX
-        data.append("\r");
-#endif
-    }
-
-    m_networkRequest->setHeader("name", m_currentFilePath);
-    m_networkRequest->startToDownload(data);
 }
