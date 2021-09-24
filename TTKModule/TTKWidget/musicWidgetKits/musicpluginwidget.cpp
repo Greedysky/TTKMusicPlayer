@@ -183,7 +183,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
                                     MusicUIObject::MQSSComboBoxStyle01 +
                                     MusicUIObject::MQSSPushButtonStyle15);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
     m_ui->treeWidget->setFocusPolicy(Qt::NoFocus);
 
     loadPluginsInfo();

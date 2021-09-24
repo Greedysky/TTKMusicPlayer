@@ -128,7 +128,7 @@ void MusicReplayGainWidget::initialize()
     {
         m_replayGainWidget = factory->create(this);
         m_replayGainWidget->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04 + MusicUIObject::MQSSCheckBoxStyle01 + \
-                                          MusicUIObject::MQSSScrollBarStyle01 + MusicUIObject::MQSSProgressBar01 + \
+                                          MusicUIObject::MQSSScrollBarStyle03 + MusicUIObject::MQSSProgressBar01 + \
                                           MusicUIObject::MQSSHeaderView01);
         m_ui->replayGainLayout->addWidget(m_replayGainWidget);
     }

@@ -267,7 +267,7 @@ void MusicCommentsWidget::initWidget(bool isPain)
     if(isPain)
     {
         QScrollArea *scrollArea = new QScrollArea(this);
-        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget);
+        MusicUtils::Widget::generateVScrollAreaFormat(scrollArea, contentsWidget, false);
 
         contentsWidget->setObjectName("contentsWidget");
         contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MQSSBackgroundStyle01));

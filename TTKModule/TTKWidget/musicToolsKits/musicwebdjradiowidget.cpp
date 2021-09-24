@@ -20,7 +20,7 @@ MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *pa
     headerview->resizeSection(4, 105);
     headerview->resizeSection(5, 110);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
 
     m_programThread = new MusicDJRadioProgramRequest(this);
     connect(m_programThread, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));

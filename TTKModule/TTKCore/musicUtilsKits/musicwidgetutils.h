@@ -85,11 +85,11 @@ namespace MusicUtils
         /*!
          * Generate vertical scrollArea format style.
          */
-        TTK_MODULE_EXPORT void generateVScrollAreaFormat(QWidget *w, QWidget *parent);
+        TTK_MODULE_EXPORT void generateVScrollAreaFormat(QWidget *w, QWidget *parent, bool background = true);
         /*!
          * Generate horizontal scrollArea format style.
          */
-        TTK_MODULE_EXPORT void generateHScrollAreaFormat(QWidget *w, QWidget *parent);
+        TTK_MODULE_EXPORT void generateHScrollAreaFormat(QWidget *w, QWidget *parent, bool background = true);
 
     }
 }

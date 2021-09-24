@@ -310,7 +310,7 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
     m_contentsWidget->setLayout(m_layout);
 
     m_scrollArea = new QScrollArea(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_scrollArea, m_contentsWidget);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_scrollArea, m_contentsWidget, false);
 
     setTransparent(0);
 
