@@ -22,7 +22,7 @@ void StereoPlugin::applyEffect(Buffer *b)
 
     m_mutex.lock();
     float *data = b->data;
-    for(uint i = 0; i < b->samples; i += 2)
+    for(size_t i = 0; i < b->samples; i += 2)
     {
         m_avg = (data[i] + data[i + 1]) / 2;
         m_ldiff = data[i] - m_avg;

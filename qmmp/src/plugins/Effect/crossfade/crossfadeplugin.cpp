@@ -23,8 +23,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
     switch(m_state)
     {
     case WAITING:
-        if((m_core->duration() > m_overlap + 2000)
-                && (m_core->duration() - m_handler->elapsed() < m_overlap + 2000))
+        if((m_core->duration() > m_overlap + 2000) && (m_core->duration() - m_handler->elapsed() < m_overlap + 2000))
         {
             StateHandler::instance()->sendNextTrackRequest();
             m_state = CHECKING;
@@ -41,14 +40,14 @@ void CrossfadePlugin::applyEffect(Buffer *b)
             if(m_buffer_at + b->samples > m_buffer_size)
             {
                 m_buffer_size = m_buffer_at + b->samples;
-                float *tmp = m_buffer;
+                float *buffer = m_buffer;
                 m_buffer = (float *)realloc(m_buffer, m_buffer_size * sizeof(float));
                 if(!m_buffer)
                 {
                     qWarning("CrossfadePlugin: unable to allocate  %zu bytes", m_buffer_size);
                     m_buffer_size = 0;
-                    if(tmp)
-                        free(tmp);
+                    if(buffer)
+                        free(buffer);
                 }
             }
 

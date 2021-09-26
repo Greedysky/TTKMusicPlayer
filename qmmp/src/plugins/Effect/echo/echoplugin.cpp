@@ -1,19 +1,12 @@
 #include "echoplugin.h"
 #include <QSettings>
 
-static int chsign(int x, int s)
-{
-    return (x < 0) ^ (s < 0) ? -x : x;
-}
-
-static int rdiv(int x, int y)
-{
-    return (x + chsign(y / 2, x)) / y;
-}
+#define CH_SIGN(x, y) ((x < 0) ^ (y < 0) ? -x : x)
 
 static int rescale(int x, int old_scale, int new_scale)
 {
-    return rdiv(x * new_scale, old_scale);
+    int v = x * new_scale;
+    return (v + CH_SIGN(old_scale / 2, v)) / old_scale;
 }
 
 EchoPlugin *EchoPlugin::m_instance = nullptr;
@@ -53,7 +46,7 @@ void EchoPlugin::applyEffect(Buffer *b)
     }
 
     float *data = b->data;
-    for(uint i = 0; i < b->samples; i ++)
+    for(size_t i = 0; i < b->samples; i++)
     {
         float in = data[i];
         float buf = m_buffer[offset];
@@ -83,7 +76,6 @@ void EchoPlugin::configure(quint32 freq, ChannelMap map)
         m_size = rescale(1000, 1000, m_freq) * m_chan;
         m_buffer = new float[m_size]{0};
     }
-
     Effect::configure(freq, map);
 }
 
