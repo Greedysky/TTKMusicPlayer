@@ -8,10 +8,10 @@ SOURCES += stereoplugin.cpp \
            effectstereofactory.cpp \
            settingsdialog.cpp
 
+FORMS += settingsdialog.ui
+
 DESTDIR = $$PLUGINS_PREFIX/Effect
 TARGET = $${TARGET}
-
-FORMS += settingsdialog.ui
 
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

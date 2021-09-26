@@ -8,12 +8,12 @@ SOURCES += bs2bplugin.cpp \
            effectbs2bfactory.cpp \
            settingsdialog.cpp
 
+FORMS += settingsdialog.ui
+
 DESTDIR = $$PLUGINS_PREFIX/Effect
 TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libbs2b/include
-
-FORMS += settingsdialog.ui
 
 win32:{
     LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b

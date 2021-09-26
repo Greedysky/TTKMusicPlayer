@@ -37,8 +37,8 @@ public:
 
 private:
     bool m_enabled = false;
-    float *m_tmp = nullptr;
-    size_t m_size = 0; //in samples
+    float *m_buffer = nullptr;
+    size_t m_size = 0;
 
 };
 

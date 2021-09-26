@@ -39,7 +39,6 @@ public:
 private:
     int m_chan = 0;
     double m_avg = 0;
-    QMutex m_mutex;
 
 };
 

@@ -8,10 +8,10 @@ MonoToStereoPlugin::MonoToStereoPlugin()
 
 MonoToStereoPlugin::~MonoToStereoPlugin()
 {
-    if(m_tmp)
+    if(m_buffer)
     {
-        delete[] m_tmp;
-        m_tmp = nullptr;
+        delete[] m_buffer;
+        m_buffer = nullptr;
     }
 }
 
@@ -21,12 +21,14 @@ void MonoToStereoPlugin::applyEffect(Buffer *b)
     {
         if(m_size < b->samples)
         {
-            if(m_tmp)
-                delete[] m_tmp;
-            m_tmp = new float[b->samples];
+            if(m_buffer)
+            {
+                delete[] m_buffer;
+            }
+            m_buffer = new float[b->samples];
         }
-        memcpy(m_tmp, b->data, b->samples * sizeof(float));
 
+        memcpy(m_buffer, b->data, b->samples * sizeof(float));
         b->samples *= 2;
 
         if(b->samples > b->size)
@@ -37,7 +39,9 @@ void MonoToStereoPlugin::applyEffect(Buffer *b)
         }
 
         for(size_t i = 0; i < b->samples; ++i)
-            b->data[i] = m_tmp[i >> 1];
+        {
+            b->data[i] = m_buffer[i >> 1];
+        }
     }
 }
 

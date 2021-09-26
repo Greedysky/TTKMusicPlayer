@@ -1,11 +1,11 @@
 include($$PWD/../../plugins.pri)
 
-HEADERS += crossfadeplugin.h \
-           effectcrossfadefactory.h \
+HEADERS += echoplugin.h \
+           effectechofactory.h \
            settingsdialog.h
 
-SOURCES += crossfadeplugin.cpp \
-           effectcrossfadefactory.cpp \
+SOURCES += echoplugin.cpp \
+           effectechofactory.cpp \
            settingsdialog.cpp
 
 FORMS += settingsdialog.ui
@@ -15,5 +15,4 @@ TARGET = $${TARGET}
 
 unix {
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
-    LIBS += -L/usr/lib -I/usr/include
 }

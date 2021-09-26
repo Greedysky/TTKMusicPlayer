@@ -46,8 +46,7 @@ void ReplayGain::applyEffect(Buffer *b)
     }
 }
 
-void ReplayGain::updateSettings(QmmpSettings::ReplayGainMode mode, double preamp,
-                                double default_gain, bool clip)
+void ReplayGain::updateSettings(QmmpSettings::ReplayGainMode mode, double preamp, double default_gain, bool clip)
 {
     m_mode = mode;
     m_preamp = preamp;

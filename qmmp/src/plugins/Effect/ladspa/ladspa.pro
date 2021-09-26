@@ -15,10 +15,10 @@ SOURCES += ladspahost.cpp \
            ladspahelper.cpp \
            ladspabutton.cpp
 
+FORMS += settingsdialog.ui
+
 DESTDIR = $$PLUGINS_PREFIX/Effect
 TARGET = $${TARGET}
-
-FORMS += settingsdialog.ui
 
 LIBS += -L/usr/lib \
         -I/usr/include

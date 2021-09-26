@@ -28,8 +28,8 @@ void SettingsDialog::accept()
 
 void SettingsDialog::SettingsDialog::reject()
 {
-    if(StereoPlugin::instance()) //restore settings
-        StereoPlugin::instance()->setIntensity(m_level);
+    if(StereoPlugin::instance())
+        StereoPlugin::instance()->setIntensity(m_level); //restore settings
     QDialog::reject();
 }
 

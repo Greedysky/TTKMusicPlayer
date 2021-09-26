@@ -35,13 +35,15 @@ public:
 
     virtual void applyEffect(Buffer *b) override;
     virtual void configure(quint32 freq, ChannelMap map) override;
+
     void setIntensity(double level);
     static StereoPlugin* instance();
 
 private:
     int m_chan = 0;
     QMutex m_mutex;
-    double m_avg = 0, m_ldiff = 0, m_rdiff = 0, m_tmp = 0, m_mul = 2.0;
+    double m_avg = 0, m_ldiff = 0, m_rdiff = 0;
+    double m_offset = 0, m_mul = 2.0;
     static StereoPlugin *m_instance;
 
 };

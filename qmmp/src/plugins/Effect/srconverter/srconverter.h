@@ -45,7 +45,7 @@ private:
     quint32 m_overSamplingFs;
     int m_srcError = 0;
     int m_converter_type;
-    int m_sz = 0; //sample size
+    int m_sz = 0;
 
 };
 

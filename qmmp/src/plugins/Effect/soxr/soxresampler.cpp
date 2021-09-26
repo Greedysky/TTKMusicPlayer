@@ -56,6 +56,7 @@ void SoXResampler::freeSoXR()
         soxr_delete(m_soxr);
         m_soxr = nullptr;
     }
+
     if(m_out)
     {
         delete[] m_out;

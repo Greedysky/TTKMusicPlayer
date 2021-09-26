@@ -33,8 +33,8 @@ void SettingsDialog::accept()
 
 void SettingsDialog::SettingsDialog::reject()
 {
-    if(Bs2bPlugin::instance()) //restore crossfeed settings
-        Bs2bPlugin::instance()->setCrossfeedLevel(m_level);
+    if(Bs2bPlugin::instance())
+        Bs2bPlugin::instance()->setCrossfeedLevel(m_level); //restore crossfeed settings
     QDialog::reject();
 }
 
