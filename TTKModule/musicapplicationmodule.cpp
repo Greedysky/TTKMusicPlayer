@@ -334,7 +334,7 @@ void MusicApplicationModule::musicToolSetsParameter()
     const int version = platform.getLocalIEVersion();
     if(version == -1 || version < 8)
     {
-        MusicToastLabel::popup(version == -1 ? QObject::tr("No IE Core Detected!") : QObject::tr("IE Version Less Than 8!"));
+        MusicToastLabel::popup(version == -1 ? QObject::tr("No ie core version detected!") : QObject::tr("IE core version less than 8!"));
     }
 #endif
 }

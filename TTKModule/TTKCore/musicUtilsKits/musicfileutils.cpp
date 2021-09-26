@@ -130,15 +130,15 @@ QString MusicUtils::File::getOpenDirectoryDialog(QWidget *obj)
 
 QString MusicUtils::File::getOpenFileDialog(QWidget *obj, const QString &filter)
 {
-    return QFileDialog::getOpenFileName(obj, QObject::tr("choose a filename to open under"), QDir::currentPath(), filter);
+    return QFileDialog::getOpenFileName(obj, QObject::tr("Choose a filename to open under"), QDir::currentPath(), filter);
 }
 
 QStringList MusicUtils::File::getOpenFilesDialog(QWidget *obj, const QString &filter)
 {
-    return QFileDialog::getOpenFileNames(obj, QObject::tr("choose a filename to open under"), QDir::currentPath(), filter);
+    return QFileDialog::getOpenFileNames(obj, QObject::tr("Choose a filename to open under"), QDir::currentPath(), filter);
 }
 
 QString MusicUtils::File::getSaveFileDialog(QWidget *obj, const QString &filter)
 {
-    return QFileDialog::getSaveFileName(obj,  QObject::tr("choose a filename to save under"), QDir::currentPath(), filter);
+    return QFileDialog::getSaveFileName(obj,  QObject::tr("Choose a filename to save under"), QDir::currentPath(), filter);
 }

@@ -96,7 +96,7 @@ void MusicEnhancedToolButton::enterEvent(QEvent *event)
 MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
-    setToolTip(tr("magic music"));
+    setToolTip(tr("Magic Music"));
 
     initWidget();
 

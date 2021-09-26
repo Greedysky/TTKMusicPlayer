@@ -313,7 +313,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
 
     const QString &openString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\Open";
     QSettings openSetting(openString, QSettings::NativeFormat);
-    openSetting.setValue("Default", QObject::tr("user TTKMusicPlayer play"));
+    openSetting.setValue("Default", QObject::tr("Use TTKMusicPlayer play"));
 
     const QString &openComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
