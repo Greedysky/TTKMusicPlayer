@@ -74,24 +74,15 @@ void MusicQQQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -284,24 +275,15 @@ void MusicQQQueryPlaylistRequest::getMoreDetails(MusicResultsItem *item)
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

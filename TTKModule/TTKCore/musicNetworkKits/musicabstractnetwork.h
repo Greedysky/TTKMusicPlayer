@@ -109,6 +109,14 @@ namespace MusicObject
      * Set request ssl configuration.
      */
     TTK_MODULE_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
+    /*!
+     * Sync network query for get.
+     */
+    TTK_MODULE_EXPORT QByteArray syncNetworkQueryForGet(QNetworkRequest *request);
+    /*!
+     * Sync network query for post.
+     */
+    TTK_MODULE_EXPORT QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data);
 
 }
 

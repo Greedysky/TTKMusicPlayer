@@ -73,24 +73,15 @@ QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(id));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    QByteArray bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return name;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = json.parse(bytes.replace("'", "\""), &ok);
     if(ok)
     {
         const QVariantMap &value = data.toMap();
@@ -111,24 +102,15 @@ QString MusicKWArtistSimilarRequest::getArtistIdName(const QString &name)
     request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_NAME_URL, false).arg(name));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    QByteArray bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return QString();
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = json.parse(bytes.replace("'", "\""), &ok);
 
     QString id;
     if(ok)

@@ -236,22 +236,12 @@ void MusicKWQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
-    const QByteArray &bytes = reply->readAll();
     if(!bytes.isEmpty() && !bytes.contains("res not found"))
     {
         const QString text(bytes);
@@ -289,22 +279,13 @@ void MusicKWQueryMovieRequest::readFromMusicMVInfo(MusicObject::MusicSongInforma
     request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_HOME_URL, false).arg(info->m_songId));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
-    const QString text(reply->readAll());
+    const QString text(bytes);
     QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
 
     if(text.indexOf(regx) != -1)

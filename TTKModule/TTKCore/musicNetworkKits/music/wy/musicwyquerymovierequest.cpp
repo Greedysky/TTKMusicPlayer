@@ -189,24 +189,15 @@ void MusicWYQueryMovieRequest::queryMovieList(qint64 id)
                       MusicUtils::Algorithm::mdII(WY_MOVIE_URL, false),
                       MusicUtils::Algorithm::mdII(WY_MOVIE_DATA_URL, false).arg(id));
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.post(request, parameter);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -264,24 +255,15 @@ void MusicWYQueryMovieRequest::queryVideoList(const QString &id)
                       MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_URL, false),
                       MusicUtils::Algorithm::mdII(WY_VIDEO_INFO_DATA_URL, false).arg(id));
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.post(request, parameter);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -355,24 +337,15 @@ void MusicWYQueryMovieRequest::queryVideoUrlPath(QString &url, const QString &id
                       MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_VIDEO_PATH_DATA_URL, false).arg(id).arg(bitrate));
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.post(request, parameter);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -408,24 +381,15 @@ void MusicWYQueryMovieRequest::getArtistMoviesCount(qint64 id)
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_URL, false),
                       MusicUtils::Algorithm::mdII(WY_ARTIST_MOVIE_DATA_URL, false).arg(id).arg(0).arg(DEFAULT_HIGHER_LEVEL));
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.post(request, parameter);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         const QVariantMap &value = data.toMap();

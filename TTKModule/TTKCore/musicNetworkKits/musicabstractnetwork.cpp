@@ -80,4 +80,50 @@ void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mo
     Q_UNUSED(mode);
 #endif
 }
+
+QByteArray syncNetworkQueryForGet(QNetworkRequest *request)
+{
+    MusicSemaphoreLoop loop;
+    QNetworkAccessManager manager;
+    QNetworkReply *reply = manager.get(*request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return QByteArray();
+    }
+
+    const QByteArray bytes(reply->readAll());
+    reply->deleteLater();
+    return bytes;
+}
+
+QByteArray syncNetworkQueryForPost(QNetworkRequest *request, const QByteArray &data)
+{
+    MusicSemaphoreLoop loop;
+    QNetworkAccessManager manager;
+    QNetworkReply *reply = manager.post(*request, data);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+#if TTK_QT_VERSION_CHECK(5,15,0)
+    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#else
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+#endif
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return QByteArray();
+    }
+
+    const QByteArray bytes(reply->readAll());
+    reply->deleteLater();
+    return bytes;
+}
 }

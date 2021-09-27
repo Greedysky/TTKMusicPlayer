@@ -39,8 +39,8 @@ qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
     request.setUrl(url);
     MusicObject::setSslConfiguration(&request);
 
-    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
+    QNetworkAccessManager manager;
     QNetworkReply *reply = manager.head(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 #if TTK_QT_VERSION_CHECK(5,15,0)

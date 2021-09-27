@@ -35,25 +35,15 @@ void MusicWYQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
     request.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_INFO_OLD_URL, false).arg(bitrate * 1000).arg(info->m_songId));
     MusicWYInterface::makeRequestRawHeader(&request);
 
-    QNetworkAccessManager manager;
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -159,25 +149,15 @@ void MusicWYQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
                       MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_PATH_DATA_URL, false).arg(info->m_songId).arg(bitrate * 1000));
 
-    QNetworkAccessManager manager;
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.post(request, parameter);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForPost(&request, parameter);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

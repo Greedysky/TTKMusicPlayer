@@ -20,31 +20,19 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
     QDesWrapper des;
     const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_DATA_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
                                               MusicUtils::Algorithm::mdII(_SIGN, ALG_UNIMP_KEY, false).toUtf8());
-
-    QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_MOVIE_URL, false).arg(QString(parameter)));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
-    const QByteArray &data = reply->readAll();
-    if(!data.isEmpty() && !data.contains("res not found"))
+    if(!bytes.isEmpty() && !bytes.contains("res not found"))
     {
-        const QString text(data);
+        const QString text(bytes);
         QRegExp regx(".*url=(.*)\r\nsig=");
 
         if(text.indexOf(regx) != -1)
@@ -221,25 +209,15 @@ void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInfor
     request.setUrl(MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId));
     MusicKWInterface::makeRequestRawHeader(&request);
 
-    QNetworkAccessManager manager;
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    const QByteArray &bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
     QJson::Parser json;
     bool ok;
-    const QVariant &data = json.parse(reply->readAll(), &ok);
+    const QVariant &data = json.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

@@ -208,22 +208,12 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_MOVIE_INFO_URL, false).arg(info->m_songId));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    QByteArray bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return;
     }
 
-    QByteArray bytes = reply->readAll();
     bytes.replace("QZOutputJson=", "");
     bytes.chop(1);
 
@@ -310,22 +300,12 @@ QString MusicQQQueryMovieRequest::getMovieKey(int id, const QString &videoId)
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_MOVIE_KEY_URL, false).arg(id).arg(videoId).arg(fn));
     MusicQQInterface::makeRequestRawHeader(&request);
 
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager.get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-#if TTK_QT_VERSION_CHECK(5,15,0)
-    QObject::connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#else
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-#endif
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
+    QByteArray bytes = MusicObject::syncNetworkQueryForGet(&request);
+    if(bytes.isEmpty())
     {
         return QString();
     }
 
-    QByteArray bytes = reply->readAll();
     bytes.replace("QZOutputJson=", "");
     bytes.chop(1);
 
