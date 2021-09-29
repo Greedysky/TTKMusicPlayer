@@ -15,5 +15,4 @@ ren *.qm *.ln
 for /F %%f in ('dir /A:A /s /b *.ln') do (
   move %%f %OUTPUT%
 )
-
 POPD %~dp0
