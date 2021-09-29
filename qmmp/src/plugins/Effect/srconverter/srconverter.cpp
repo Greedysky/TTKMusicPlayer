@@ -22,7 +22,6 @@ SRConverter::SRConverter()
 SRConverter::~SRConverter()
 {
     freeSRC();
-    m_sz = 0;
 }
 
 void SRConverter::applyEffect(Buffer *b)
@@ -68,7 +67,6 @@ void SRConverter::configure(quint32 freq, ChannelMap map)
         else
             qDebug("SRConverter: src_new(): %s", src_strerror(m_srcError));
 
-        m_sz = audioParameters().sampleSize();
         m_src_data.data_out = new float[int(m_src_data.src_ratio * QMMP_BLOCK_FRAMES * map.count() * 2 + 2)];
     }
     Effect::configure(m_overSamplingFs, map);

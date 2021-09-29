@@ -8,6 +8,8 @@ StereoPlugin::StereoPlugin()
     : Effect()
 {
     m_instance = this;
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    m_intensity = settings.value("Stereo/intensity", 1.0).toDouble();
 }
 
 StereoPlugin::~StereoPlugin()
@@ -28,9 +30,9 @@ void StereoPlugin::applyEffect(Buffer *b)
         m_ldiff = data[i] - m_avg;
         m_rdiff = data[i + 1] - m_avg;
 
-        m_offset = m_avg + m_ldiff * m_mul;
+        m_offset = m_avg + m_ldiff * m_intensity;
         data[i] = qBound(-1.0, m_offset, 1.0);
-        m_offset = m_avg + m_rdiff * m_mul;
+        m_offset = m_avg + m_rdiff * m_intensity;
         data[i + 1] = qBound(-1.0, m_offset, 1.0);
     }
     m_mutex.unlock();
@@ -45,7 +47,7 @@ void StereoPlugin::configure(quint32 freq, ChannelMap map)
 void StereoPlugin::setIntensity(double level)
 {
     m_mutex.lock();
-    m_mul = level;
+    m_intensity = level;
     m_mutex.unlock();
 }
 

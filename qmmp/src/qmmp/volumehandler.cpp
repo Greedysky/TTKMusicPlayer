@@ -11,6 +11,7 @@ VolumeHandler::VolumeHandler(QObject *parent) : QObject(parent)
 {
     if(m_instance)
         qFatal("VolumeHandler: only one instance is allowed!");
+    m_instance = this;
 
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_settings.left = settings.value("Volume/left", 80).toInt();
@@ -18,7 +19,6 @@ VolumeHandler::VolumeHandler(QObject *parent) : QObject(parent)
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), SLOT(checkVolume()));
     reload();
-    m_instance = this;
 }
 
 VolumeHandler::~VolumeHandler()
