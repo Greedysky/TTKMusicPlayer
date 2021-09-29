@@ -73,6 +73,7 @@ public:
         OtherScreenSaverTime,            /*!< Other Screen Saver Time Parameter*/
         OtherScreenSaverIndex,           /*!< Other Screen Saver Index Parameter*/
         //
+        RippleLowPowerMode,              /*!< Ripple Low Power Mode Parameter*/
         RippleSpectrumEnable,            /*!< Ripple Spectrum Enable Parameter*/
         RippleSpectrumColor,             /*!< Ripple Spectrum Color Parameter*/
         //

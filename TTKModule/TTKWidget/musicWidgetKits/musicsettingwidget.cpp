@@ -187,9 +187,14 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->rippleVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
     m_ui->rippleVersionUpdateValue->setText(TTKMUSIC_VER_TIME_STR);
     m_ui->rippleVersionFileValue->setText(MusicUtils::Algorithm::sha1(TTKMUSIC_VER_TIME_STR).toHex().toUpper());
+    m_ui->rippleLowPowerModeBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool());
     m_ui->rippleSpectrumEnableBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool());
     m_ui->rippleSpectrumColorButton->setColors(MusicLrcColor::readColorConfig(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString()));
     rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isChecked());
+    if(m_ui->rippleLowPowerModeBox->isChecked())
+    {
+        rippleLowPowerEnableBoxClicked(true);
+    }
 
     //
     m_ui->otherCheckUpdateBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool());
@@ -372,6 +377,13 @@ void MusicSettingWidget::rippleSpectrumColorChanged()
 void MusicSettingWidget::rippleSpectrumOpacityEnableClicked(bool state)
 {
     m_ui->rippleSpectrumColorButton->setEnabled(state);
+}
+
+void MusicSettingWidget::rippleLowPowerEnableBoxClicked(bool state)
+{
+    m_ui->rippleSpectrumEnableBox->setEnabled(!state);
+    m_ui->rippleSpectrumEnableBox->setChecked(false);
+    rippleSpectrumOpacityEnableClicked(false);
 }
 
 void MusicSettingWidget::otherPluginManagerChanged()
@@ -558,6 +570,7 @@ void MusicSettingWidget::saveResults()
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());
 
 
+    G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, m_ui->rippleLowPowerModeBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, MusicLrcColor::writeColorConfig(m_ui->rippleSpectrumColorButton->getColors()));
 
@@ -767,16 +780,19 @@ void MusicSettingWidget::initNormalSettingWidget()
 
 void MusicSettingWidget::initSpectrumSettingWidget()
 {
+    m_ui->rippleLowPowerModeBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->rippleSpectrumEnableBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 
     m_ui->rippleSpectrumColorButton->setText(tr("Effect"));
     connect(m_ui->rippleSpectrumColorButton, SIGNAL(clicked()), SLOT(rippleSpectrumColorChanged()));
+    connect(m_ui->rippleLowPowerModeBox, SIGNAL(clicked(bool)), SLOT(rippleLowPowerEnableBoxClicked(bool)));
     connect(m_ui->rippleSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(rippleSpectrumOpacityEnableClicked(bool)));
 
     m_ui->rippleVersionUpdateButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->rippleVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->rippleVersionUpdateButton, SIGNAL(clicked()), SLOT(rippleVersionUpdateChanged()));
 #ifdef Q_OS_UNIX
+    m_ui->rippleLowPowerModeBox->setFocusPolicy(Qt::NoFocus);
     m_ui->rippleSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
     m_ui->rippleVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
 #endif

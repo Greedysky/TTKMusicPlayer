@@ -65,6 +65,8 @@ void MusicConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("otherScreenSaverIndex"));
 
 
+    G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode,
+                     readXmlAttributeByTagNameValue("rippleLowPowerMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable,
                      readXmlAttributeByTagNameValue("rippleSpectrumEnable").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor,
@@ -230,6 +232,7 @@ void MusicConfigManager::writeSysConfigData()
     const int otherScreenSaverTime = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverTime).toInt();
     const QString &otherScreenSaverIndex = G_SETTING_PTR->value(MusicSettingManager::OtherScreenSaverIndex).toString();
     //
+    const int rippleLowPowerMode = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toInt();
     const int rippleSpectrumEnable = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toInt();
     const QString &rippleSpectrumColor = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumColor).toString();
     //
@@ -345,6 +348,7 @@ void MusicConfigManager::writeSysConfigData()
     writeDomElement(otherSettingDom, "otherScreenSaverTime", MusicXmlAttribute("value", otherScreenSaverTime));
     writeDomElement(otherSettingDom, "otherScreenSaverIndex", MusicXmlAttribute("value", otherScreenSaverIndex));
     //
+    writeDomElement(rippleSettingDom, "rippleLowPowerMode", MusicXmlAttribute("value", rippleLowPowerMode));
     writeDomElement(rippleSettingDom, "rippleSpectrumEnable", MusicXmlAttribute("value", rippleSpectrumEnable));
     writeDomElement(rippleSettingDom, "rippleSpectrumColor", MusicXmlAttribute("value", rippleSpectrumColor));
     //

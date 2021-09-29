@@ -161,6 +161,10 @@ public Q_SLOTS:
      * Ripple spectrum opacity enable changed.
      */
     void rippleSpectrumOpacityEnableClicked(bool state);
+    /*!
+     * Ripple low power mode enable changed.
+     */
+    void rippleLowPowerEnableBoxClicked(bool state);
 
     /*!
      * Plugin manager changed.

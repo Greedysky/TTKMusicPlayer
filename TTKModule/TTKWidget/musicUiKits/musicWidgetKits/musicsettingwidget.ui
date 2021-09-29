@@ -93,7 +93,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>45</y>
+       <y>47</y>
        <width>155</width>
        <height>20</height>
       </rect>
@@ -106,7 +106,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>185</x>
-       <y>45</y>
+       <y>47</y>
        <width>260</width>
        <height>20</height>
       </rect>
@@ -1036,17 +1036,17 @@ font-weight:bold;</string>
       <string>特效设置</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="rippleSpectrumEnableBox">
+    <widget class="QCheckBox" name="rippleLowPowerModeBox">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>53</y>
-       <width>230</width>
+       <x>230</x>
+       <y>50</y>
+       <width>200</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>开启音频波纹特效</string>
+      <string>开启低功耗模式</string>
      </property>
     </widget>
     <widget class="QLabel" name="rippleSpectrumColorLabel">
@@ -1146,6 +1146,19 @@ font-weight:bold;</string>
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
+    <widget class="QCheckBox" name="rippleSpectrumEnableBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>50</y>
+       <width>205</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启音频波纹特效</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="five">
     <widget class="MusicThemeLineLabel" name="baseSetOtherWidget">
@@ -1170,7 +1183,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>165</y>
+       <y>160</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1183,7 +1196,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>200</y>
+       <y>195</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1196,7 +1209,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>55</y>
+       <y>50</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1209,7 +1222,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>90</y>
+       <y>80</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1222,7 +1235,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>130</y>
+       <y>125</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1240,7 +1253,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>165</y>
+       <y>160</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1253,7 +1266,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>200</y>
+       <y>195</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1266,7 +1279,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>55</y>
+       <y>50</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1279,7 +1292,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>90</y>
+       <y>80</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1292,7 +1305,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>235</y>
+       <y>230</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1305,7 +1318,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>275</y>
+       <y>270</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1323,7 +1336,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>305</y>
+       <y>300</y>
        <width>100</width>
        <height>25</height>
       </rect>

@@ -30,6 +30,7 @@
         <otherScreenSaverIndex value=""/>
     </otherSetting>
     <rippleSetting>
+        <rippleLowPowerMode value="1"/>
         <rippleSpectrumEnable value="1"/>
         <rippleSpectrumColor value="250,218,131"/>
     </rippleSetting>

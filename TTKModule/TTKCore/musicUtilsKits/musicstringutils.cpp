@@ -9,7 +9,7 @@ QString MusicUtils::String::lrcPrefix()
     QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadLrcDirPath).toString();
     if(path.isEmpty())
     {
-        path = LRC_DIR_FULL;
+        path = QDir(LRC_DIR_FULL).canonicalPath();
     }
     else
     {
@@ -26,7 +26,7 @@ QString MusicUtils::String::musicPrefix()
     QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
     if(path.isEmpty())
     {
-        path = MUSIC_DIR_FULL;
+        path = QDir(MUSIC_DIR_FULL).canonicalPath();
     }
     else
     {
