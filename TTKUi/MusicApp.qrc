@@ -7,8 +7,6 @@
         <file alias="musiccloud.ttk">../TTKResource/A_extras/musiccloud.ttk</file>
         <file alias="musiccloudp.ttk">../TTKResource/A_extras/musiccloudp.ttk</file>
         <file alias="musichistory.ttk">../TTKResource/A_extras/musichistory.ttk</file>
-        <file alias="musicuser.dll">../TTKResource/A_extras/musicuser.dll</file>
-        <file alias="musicuser.ttk">../TTKResource/A_extras/musicuser.ttk</file>
         <file alias="TTKRoutine.sh">../TTKResource/A_extras/TTKRoutine.sh</file>
         <file alias="TTKRoutineCopy.sh">../TTKResource/A_extras/TTKRoutineCopy.sh</file>
         <file alias="TTKConsole.sh">../TTKResource/A_extras/TTKConsole.sh</file>

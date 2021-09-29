@@ -37,9 +37,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicopenfilewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicsplititemclickedlabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicphotomodlabel.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicphotograblabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicresizegrabitemwidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musiccodeareawidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiclayoutanimationwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiccommentswidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.h
@@ -86,9 +84,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicopenfilewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicsplititemclickedlabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicphotomodlabel.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicphotograblabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicresizegrabitemwidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musiccodeareawidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiclayoutanimationwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiccommentswidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.cpp

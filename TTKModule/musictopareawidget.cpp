@@ -1,7 +1,6 @@
 #include "musictopareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicapplication.h"
-#include "musicuserwindow.h"
 #include "musicbackgroundskindialog.h"
 #include "musicbackgroundmanager.h"
 #include "musicremotewidgetforsquare.h"
@@ -24,7 +23,6 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_instance = this;
-    m_musicUserWindow = nullptr;
     m_musicBackgroundWidget = nullptr;
     m_musicRemoteWidget = nullptr;
 
@@ -40,7 +38,6 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
 {
-    delete m_musicUserWindow;
     delete m_musicBackgroundWidget;
     delete m_musicRemoteWidget;
 }
@@ -55,8 +52,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui = ui;
 
     musicBackgroundAnimationChanged(true);
-    m_musicUserWindow = new MusicUserWindow(this);
-    ui->userWindow->addWidget(m_musicUserWindow);
+    ui->userIcon->setPixmap(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_app_logo"), QPixmap(":/image/lb_mask_30"), QSize(30, 30)));
 
     ui->musicSongSearchEdit->initWidget(MusicApplication::instance());
     ui->musicSongSearchEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle03);
@@ -134,11 +130,6 @@ QPixmap MusicTopAreaWidget::getRendererPixmap() const
     return m_ui->background->getRendererPixmap();
 }
 
-bool MusicTopAreaWidget::getUserLoginState() const
-{
-    return m_musicUserWindow->isUserLogin();
-}
-
 void MusicTopAreaWidget::setBackgroundAnimation(bool state)
 {
     state ? m_pictureCarouselTimer.start() : m_pictureCarouselTimer.stop();
@@ -176,11 +167,6 @@ void MusicTopAreaWidget::musicShowSkinChangedWindow()
     }
     m_musicBackgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundListAlpha);
     m_musicBackgroundWidget->exec();
-}
-
-void MusicTopAreaWidget::musicUserContextLogin()
-{
-    m_musicUserWindow->musicUserContextLogin();
 }
 
 void MusicTopAreaWidget::musicBackgroundTransparentChanged(int value)

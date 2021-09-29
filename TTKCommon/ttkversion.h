@@ -28,7 +28,7 @@
  *
  *  WavPack File(*.wv)
  *
- *  Ogg Vorbis File(*.ogg)
+ *  Ogg Vorbis File(*.ogg *.ogv)
  *
  *  Ogg Opus File(*.opus)
  *

@@ -42,23 +42,21 @@ Download
 ---
 OSChina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
-Qmmp Player You Can See Here: **<u>http://qmmp.ylsoftware.com</u>**
+Qmmp Source Player URL: **<u>https://qmmp.ylsoftware.com</u>**
 
-Qmmp Source You Can See Here: **<u>https://github.com/Greedysky/qmmp</u>**
+Qmmp Source Mirror URL: **<u>https://github.com/Greedysky/qmmp</u>**
 
-Qmmp Source Mod You Can See Here: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+Qmmp Source Modified URL: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
 
-Qmmp Core Mod Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
+Qmmp Extra Plugins URL: **<u>https://github.com/TTK-qmmp</u>**
+
+Qmmp Core Modified Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 Player Base URL: **<u>http://pan.baidu.com/s/1gdB5QLH</u>**
 
 Skin Download URL: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
-Executable Download URL: **<u>http://download.csdn.net/album/detail/3094</u>**
-
-Executable Download URL(extra): **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
-
-Mobile branch : **<u>https://github.com/Greedysky/TTKMusicplayer/tree/mobile</u>**
+Executable Download URL: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
 KuGou Resource Download URL: **<u>https://github.com/Greedysky/KugouResource</u>**
 
@@ -69,7 +67,7 @@ TTKMusicPlayer can meet your most demands
  * SID File(*.sid *.mus *.str *.prg *.P00)
  * MusePack File(*.mpc)
  * WavPack File(*.wv)
- * Ogg Vorbis File(*.ogg)
+ * Ogg Vorbis File(*.ogg *.ogv)
  * Ogg Opus File(*.opus)
  * ADTS AAC File(*.aac)
  * MIDI File(*.mid)

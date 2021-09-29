@@ -4,7 +4,6 @@
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 #include "musicrightareawidget.h"
-#include "musictopareawidget.h"
 #include "musicwidgetutils.h"
 
 #include <QWidgetAction>
@@ -19,23 +18,15 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("Lock Lrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
 #ifndef Q_OS_UNIX
-    m_loginAction = new QAction(QIcon(":/contextMenu/btn_login"), QString(" "), this);
-    connect(m_loginAction, SIGNAL(triggered()), MusicTopAreaWidget::instance(), SLOT(musicUserContextLogin()));
-
     createPlayWidgetActions();
     addSeparator();
     createVolumeWidgetActions();
-#else
-    m_loginAction = nullptr;
 #endif
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
     addAction(QIcon(":/contextMenu/btn_setting"), tr("Settings"), parent, SLOT(musicSetting()));
     addSeparator();
-#ifndef Q_OS_UNIX
-    addAction(m_loginAction);
-#endif
     addAction(tr("Quit"), parent, SLOT(quitWindowClose()));
 }
 
@@ -49,7 +40,6 @@ MusicSystemTrayMenu::~MusicSystemTrayMenu()
 #endif
     delete m_showLrcAction;
     delete m_lockLrcAction;
-    delete m_loginAction;
 }
 
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
@@ -123,15 +113,6 @@ void MusicSystemTrayMenu::showDesktopLrc()
     m_showLrcAction->setText(show ? tr("Hide Desktop Lrc") : tr("Show Desktop Lrc"));
     m_lockLrcAction->setEnabled(show);
     MusicRightAreaWidget::instance()->setDestopLrcVisible(show);
-}
-
-void MusicSystemTrayMenu::showEvent(QShowEvent *event)
-{
-    QMenu::showEvent(event);
-#ifndef Q_OS_UNIX
-    const bool state = MusicTopAreaWidget::instance()->getUserLoginState();
-    m_loginAction->setText(state ? tr("Logout") : tr("Login"));
-#endif
 }
 
 void MusicSystemTrayMenu::createPlayWidgetActions()

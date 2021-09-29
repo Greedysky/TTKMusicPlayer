@@ -115,7 +115,6 @@
 #define CACHE_DIR               "MCached/"
 #define SCREEN_DIR              "MScreen/"
 //
-#define AVATAR_DIR              "avatar/"
 #define USER_THEME_DIR          "theme/"
 
 
@@ -138,8 +137,6 @@
 #define CLOUDDOWNPATH           "musiccloud.ttk"
 #define CLOUDUPPATH             "musiccloudp.ttk"
 #define MUSICSEARCH             "musichistory.ttk"
-#define DARABASEPATH            "musicuser.dll"
-#define USERPATH                "musicuser.ttk"
 #define BARRAGEPATH             "musicbarrage.ttk"
 
 
@@ -166,10 +163,7 @@
 #define CLOUDDOWNPATH_FULL      APPDATA_DIR_FULL + CLOUDDOWNPATH
 #define CLOUDUPPATH_FULL        APPDATA_DIR_FULL + CLOUDUPPATH
 #define MUSICSEARCH_FULL        APPDATA_DIR_FULL + MUSICSEARCH
-#define DARABASEPATH_FULL       APPDATA_DIR_FULL + DARABASEPATH
-#define USERPATH_FULL           APPDATA_DIR_FULL + USERPATH
 #define BARRAGEPATH_FULL        APPDATA_DIR_FULL + BARRAGEPATH
-#define AVATAR_DIR_FULL         APPDATA_DIR_FULL + AVATAR_DIR
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 

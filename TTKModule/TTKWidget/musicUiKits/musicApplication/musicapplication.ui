@@ -107,23 +107,34 @@
            <property name="styleSheet">
             <string notr="true"/>
            </property>
-           <widget class="QWidget" name="horizontalLayoutWidget">
+           <widget class="QLabel" name="userIcon">
             <property name="geometry">
              <rect>
               <x>10</x>
               <y>10</y>
-              <width>101</width>
-              <height>31</height>
+              <width>30</width>
+              <height>30</height>
              </rect>
             </property>
-            <layout class="QHBoxLayout" name="userWindow">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-            </layout>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="userName">
+            <property name="geometry">
+             <rect>
+              <x>46</x>
+              <y>10</y>
+              <width>100</width>
+              <height>30</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size:12px; color:#FFFFFF;</string>
+            </property>
+            <property name="text">
+             <string>Greedysky</string>
+            </property>
            </widget>
           </widget>
          </item>

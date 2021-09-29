@@ -9,17 +9,27 @@
     </qresource>
     <qresource prefix="/image">
         <file alias="lb_logo">../TTKResource/logo_pic.png</file>
-        <file alias="lb_warning">../TTKResource/lb_warning.png</file>
-        <file alias="lb_defaultArt">../TTKResource/lb_default_art.jpg</file>
-        <file alias="lb_noAlbum">../TTKResource/lb_no_album_found.png</file>
-        <file alias="lb_noArtist">../TTKResource/lb_no_artist_found.png</file>
-        <file alias="lb_noSimilar">../TTKResource/lb_no_similar_found.png</file>
         <file alias="lb_app_logo">../TTKResource/lb_app_logo.ico</file>
-        <file alias="lb_slider">../TTKResource/lb_slider.png</file>
-        <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
-        <file alias="lb_recmd_daily">../TTKResource/lb_recmd_daily.jpg</file>
-        <file alias="lb_album_cover">../TTKResource/lb_album_cover.png</file>
-        <file alias="lb_playlist_cover">../TTKResource/lb_playlist_cover.png</file>
+        <file alias="lb_warning">../TTKResource/image/lb_warning.png</file>
+        <file alias="lb_defaultArt">../TTKResource/image/lb_default_art.jpg</file>
+        <file alias="lb_noAlbum">../TTKResource/image/lb_no_album_found.png</file>
+        <file alias="lb_noArtist">../TTKResource/image/lb_no_artist_found.png</file>
+        <file alias="lb_noSimilar">../TTKResource/image/lb_no_similar_found.png</file>
+        <file alias="lb_slider">../TTKResource/image/lb_slider.png</file>
+        <file alias="lb_noneImage">../TTKResource/image/lb_noneImage.png</file>
+        <file alias="lb_recmd_daily">../TTKResource/image/lb_recmd_daily.jpg</file>
+        <file alias="lb_album_cover">../TTKResource/image/lb_album_cover.png</file>
+        <file alias="lb_playlist_cover">../TTKResource/image/lb_playlist_cover.png</file>
+        <file alias="lb_qq">../TTKResource/image/lb_qq.png</file>
+        <file alias="lb_weixing">../TTKResource/image/lb_weixing.png</file>
+        <file alias="lb_xinlang">../TTKResource/image/lb_xinlang.png</file>
+        <file alias="lb_qq_space">../TTKResource/image/lb_qq_space.png</file>
+        <file alias="btn_down_arrow">../TTKResource/image/btn_down_arrow.png</file>
+        <file alias="btn_up_arrow">../TTKResource/image/btn_up_arrow.png</file>
+        <file alias="lb_mask_30">../TTKResource/image/lb_mask_30.png</file>
+        <file alias="lb_mask_40">../TTKResource/image/lb_mask_40.png</file>
+        <file alias="lb_mask_50">../TTKResource/image/lb_mask_50.png</file>
+        <file alias="lb_mask_60">../TTKResource/image/lb_mask_60.png</file>
     </qresource>
     <qresource prefix="/quality">
         <file alias="lb_sd_quality">../TTKResource/quality/lb_sd_quality.png</file>
@@ -141,7 +151,6 @@
         <file alias="btn_about">../TTKResource/contextMenu/btn_about.png</file>
         <file alias="btn_delete">../TTKResource/contextMenu/btn_delete.png</file>
         <file alias="btn_lock">../TTKResource/contextMenu/btn_lock.png</file>
-        <file alias="btn_login">../TTKResource/contextMenu/btn_login.png</file>
         <file alias="btn_play">../TTKResource/contextMenu/btn_play.png</file>
         <file alias="btn_play_white">../TTKResource/contextMenu/btn_play_white.png</file>
         <file alias="btn_setting">../TTKResource/contextMenu/btn_setting.png</file>
@@ -695,20 +704,6 @@
         <file alias="btn_mv">../TTKResource/video/btn_mv.png</file>
         <file alias="btn_audition">../TTKResource/video/btn_audition.png</file>
         <file alias="btn_download">../TTKResource/video/btn_download.png</file>
-    </qresource>
-    <qresource prefix="/usermanager">
-        <file alias="lb_qq">../TTKResource/usermanager/lb_qq.png</file>
-        <file alias="lb_weixing">../TTKResource/usermanager/lb_weixing.png</file>
-        <file alias="lb_xinlang">../TTKResource/usermanager/lb_xinlang.png</file>
-        <file alias="lb_qq_space">../TTKResource/usermanager/lb_qq_space.png</file>
-        <file alias="lb_top_arrow">../TTKResource/usermanager/lb_top_arrow.png</file>
-        <file alias="btn_down_arrow">../TTKResource/usermanager/btn_down_arrow.png</file>
-        <file alias="btn_up_arrow">../TTKResource/usermanager/btn_up_arrow.png</file>
-        <file alias="btn_setting">../TTKResource/usermanager/btn_setting.png</file>
-        <file alias="lb_mask_30">../TTKResource/usermanager/lb_mask_30.png</file>
-        <file alias="lb_mask_40">../TTKResource/usermanager/lb_mask_40.png</file>
-        <file alias="lb_mask_50">../TTKResource/usermanager/lb_mask_50.png</file>
-        <file alias="lb_mask_60">../TTKResource/usermanager/lb_mask_60.png</file>
     </qresource>
     <qresource prefix="/emoji">
         <file alias="db">../TTKResource/emoji/db</file>

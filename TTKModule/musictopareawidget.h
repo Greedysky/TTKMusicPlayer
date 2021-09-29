@@ -23,7 +23,6 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicBackgroundSkinDialog;
 
@@ -80,11 +79,6 @@ public:
     QPixmap getRendererPixmap() const;
 
     /*!
-     * Check if the user is login now.
-     */
-    bool getUserLoginState() const;
-
-    /*!
      * Stop background skin change timer.
      */
     void setBackgroundAnimation(bool state);
@@ -116,10 +110,6 @@ public Q_SLOTS:
      * Show change background skin dailog.
      */
     void musicShowSkinChangedWindow();
-    /*!
-     * Send user to login.
-     */
-    void musicUserContextLogin();
     /*!
      * Set background as artist big picture.
      */
@@ -236,7 +226,6 @@ protected:
     void drawWindowBackgroundRectString(const QString &path);
 
     Ui::MusicApplication *m_ui;
-    MusicUserWindow *m_musicUserWindow;
     MusicBackgroundSkinDialog *m_musicBackgroundWidget;
     MusicRemoteWidget *m_musicRemoteWidget;
 

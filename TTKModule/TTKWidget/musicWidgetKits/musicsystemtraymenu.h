@@ -71,11 +71,6 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Override the widget event.
-     */
-    virtual void showEvent(QShowEvent *event) override;
-
-    /*!
      * Create play widget actions.
      */
     void createPlayWidgetActions();
@@ -87,7 +82,7 @@ protected:
     QLabel *m_showText;
     QToolButton *m_playButton, *m_volumeButton;
     MusicClickedSlider *m_volumeSlider;
-    QAction *m_showLrcAction, *m_lockLrcAction, *m_loginAction;
+    QAction *m_showLrcAction, *m_lockLrcAction;
 
 };
 

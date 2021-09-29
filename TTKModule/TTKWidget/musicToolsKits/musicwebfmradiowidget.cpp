@@ -128,7 +128,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
         setItem(index, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setIcon(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_defaultArt"), QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+        item->setIcon(MusicUtils::Image::pixmapToRound(QPixmap(":/image/lb_defaultArt"), QPixmap(":/image/lb_mask_50"), iconSize()));
         setItem(index, 1, item);
 
                           item = new QTableWidgetItem;
@@ -183,7 +183,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
     {
         QPixmap pix;
         pix.loadFromData(bytes);
-        it->setIcon(MusicUtils::Image::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+        it->setIcon(MusicUtils::Image::pixmapToRound(pix, QPixmap(":/image/lb_mask_50"), iconSize()));
     }
 }
 

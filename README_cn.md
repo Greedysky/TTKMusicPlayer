@@ -42,11 +42,13 @@ API 文档
 ---
 OSChina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
-Qmmp原版下载地址: **<u>http://qmmp.ylsoftware.com</u>**
+Qmmp原版下载地址: **<u>https://qmmp.ylsoftware.com</u>**
 
-Qmmp原版镜像下载下载地址: **<u>https://github.com/Greedysky/qmmp</u>**
+Qmmp原版镜像下载地址: **<u>https://github.com/Greedysky/qmmp</u>**
 
-Qmmp修改版下载下载地址: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+Qmmp修改版下载地址: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+
+Qmmp更多插件下载地址: **<u>https://github.com/TTK-qmmp</u>**
 
 Qmmp修改版二进制库下载地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
@@ -54,11 +56,7 @@ Qmmp修改版二进制库下载地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 播放器皮肤下载地址: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
-播放器二进制下载地址: **<u>http://download.csdn.net/album/detail/3094</u>**
-
-播放器二进制备选下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
-
-播放器移动版地址: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/mobile</u>**
+播放器二进制下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
 酷狗破解皮肤资源地址: **<u>https://github.com/Greedysky/KugouResource</u>**
 
@@ -69,7 +67,7 @@ TTKMusicPlayer的一些特性
  * SID File(*.sid *.mus *.str *.prg *.P00)
  * MusePack File(*.mpc)
  * WavPack File(*.wv)
- * Ogg Vorbis File(*.ogg)
+ * Ogg Vorbis File(*.ogg *.ogv)
  * Ogg Opus File(*.opus)
  * ADTS AAC File(*.aac)
  * MIDI File(*.mid)

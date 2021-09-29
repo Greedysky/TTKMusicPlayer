@@ -42,10 +42,6 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musicconnecttransferwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musicwebfmradioplaywidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musictoolsetswidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicUserKits/musicuserdialog.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicUserKits/musicusermanagerdialog.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicUserKits/musicuserrecordwidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicUserKits/musicuserwindow.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicbackgroundskindialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicbackgroundpalettewidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicdownloadresetwidget.ui

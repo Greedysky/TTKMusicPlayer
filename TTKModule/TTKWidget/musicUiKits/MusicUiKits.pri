@@ -61,10 +61,6 @@ FORMS    += \
     $$PWD/musicToolsKits/musicconnecttransferwidget.ui \
     $$PWD/musicToolsKits/musiccloudfileinformationwidget.ui \
     $$PWD/musicToolsKits/musictoolsetswidget.ui \
-    $$PWD/musicUserKits/musicuserdialog.ui \
-    $$PWD/musicUserKits/musicusermanagerdialog.ui \
-    $$PWD/musicUserKits/musicuserrecordwidget.ui \
-    $$PWD/musicUserKits/musicuserwindow.ui \
     $$PWD/musicWidgetKits/musicbackgroundskindialog.ui \
     $$PWD/musicWidgetKits/musicbackgroundpalettewidget.ui \
     $$PWD/musicWidgetKits/musicdownloadwidget.ui \

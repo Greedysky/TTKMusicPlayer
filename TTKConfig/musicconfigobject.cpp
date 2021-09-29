@@ -30,8 +30,6 @@ void MusicConfigObject::initialize()
     copyFileOverwrite(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
     copyFileOverwrite(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
     copyFileOverwrite(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
-    copyFileOverwrite(":/data/musicuser.dll", TTK_DARABASEPATH_FULL);
-    copyFileOverwrite(":/data/musicuser.ttk", TTK_USERPATH_FULL);
     copyFileOverwrite(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 }
 
@@ -61,7 +59,6 @@ void MusicConfigObject::checkTheDirectoryExist()
     directoryExist(TTK_BACKGROUND_DIR_FULL);
     directoryExist(TTK_SCREEN_DIR_FULL);
 
-    directoryExist(TTK_AVATAR_DIR_FULL);
     directoryExist(TTK_USER_THEME_DIR_FULL);
 
     directoryExist(TTK_THEME_DIR_FULL);
@@ -77,8 +74,6 @@ void MusicConfigObject::checkTheFileNeededExist()
     copyFile(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
     copyFile(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
     copyFile(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
-    copyFile(":/data/musicuser.dll", TTK_DARABASEPATH_FULL);
-    copyFile(":/data/musicuser.ttk", TTK_USERPATH_FULL);
     copyFile(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 
 #ifdef Q_OS_UNIX

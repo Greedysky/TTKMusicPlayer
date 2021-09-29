@@ -16,7 +16,7 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-QT       += core gui xml sql
+QT       += core gui xml
 
 equals(QT_MAJOR_VERSION, 4){
 QT       += network

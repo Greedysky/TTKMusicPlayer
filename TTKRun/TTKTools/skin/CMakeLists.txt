@@ -30,11 +30,11 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
   
   add_executable(${TARGET_NAME} ${MUSIC_UIS_H} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Gui Qt5::Widgets TTKCore)
+  target_link_libraries(${TARGET_NAME} Qt5::Core Qt5::Gui Qt5::Widgets TTKCore TTKDumper)
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
   QT4_WRAP_UI(MUSIC_UIS_H ${MUSIC_UIS})
   
   add_executable(${TARGET_NAME} ${MUSIC_UIS_H} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  target_link_libraries(${TARGET_NAME} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} TTKCore)
+  target_link_libraries(${TARGET_NAME} ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} TTKCore TTKDumper)
 endif()

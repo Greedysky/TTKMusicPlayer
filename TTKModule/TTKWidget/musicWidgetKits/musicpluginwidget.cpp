@@ -113,7 +113,7 @@ public:
 
         if(setting)
         {
-            setIcon(3, QIcon(":/usermanager/btn_setting"));
+            setIcon(3, QIcon(":/contextMenu/btn_setting"));
         }
 
         const QColor &color = enable ? (state ? "#E67300" : "#000000") : "#BBBBBB";

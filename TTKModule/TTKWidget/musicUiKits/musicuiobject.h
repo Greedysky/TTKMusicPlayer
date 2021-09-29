@@ -498,7 +498,7 @@ namespace MusicUIObject
             QComboBox::hover{ border: 1px solid rgb(22, 154, 243); } \
             QComboBox::drop-down{ subcontrol-origin:padding; \
             subcontrol-position:top right; width:20px; border-left:none; } \
-            QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow); } \
+            QComboBox::down-arrow{ image:url(:/image/btn_down_arrow); } \
             QComboBox::disabled{ border: 1px solid #BBBBBB; }";
 
     const QString MQSSComboBoxStyle02 = MQSSComboBoxStyle01 + " \
@@ -549,8 +549,8 @@ namespace MusicUIObject
     const QString MQSSDateEditStyle01 = " \
             QDateEdit{ font-size:12px; color:#666666; font-weight:normal; border: 1px solid gray; } \
             QDateEdit::hover{ border:1px solid rgb(22, 154, 243); } \
-            QDateEdit::up-button{ image:url(:/usermanager/btn_up_arrow); } \
-            QDateEdit::down-button{ image:url(:/usermanager/btn_down_arrow); } \
+            QDateEdit::up-button{ image:url(:/image/btn_up_arrow); } \
+            QDateEdit::down-button{ image:url(:/image/btn_down_arrow); } \
             QDateEdit::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
 
@@ -558,8 +558,8 @@ namespace MusicUIObject
     const QString MQSSSpinBoxStyle01 = " \
             QSpinBox{ font-size:12px; color:#666666; font-weight:normal; border: 1px solid gray; } \
             QSpinBoxt::hover{ border:1px solid rgb(22, 154, 243); } \
-            QSpinBox::up-button{ image:url(:/usermanager/btn_up_arrow); } \
-            QSpinBox::down-button{ image:url(:/usermanager/btn_down_arrow); } \
+            QSpinBox::up-button{ image:url(:/image/btn_up_arrow); } \
+            QSpinBox::down-button{ image:url(:/image/btn_down_arrow); } \
             QSpinBox::disabled{ color:#BBBBBB; border: 1px solid #BBBBBB; }";
 
 
