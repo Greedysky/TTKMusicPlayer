@@ -405,7 +405,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case kugouLiveWidget: //insert kugou live widget
             {
-                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KugouMv, this);
+                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KugouMovie, this);
                 m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(4);

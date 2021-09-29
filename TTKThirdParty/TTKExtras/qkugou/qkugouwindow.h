@@ -36,7 +36,7 @@ public:
         KuGouSong,      /*!< KuGou Song*/
         KuGouRadio,     /*!< KuGou Radio*/
         KuGouList,      /*!< KuGou List*/
-        KugouMv,        /*!< Kugou Mv*/
+        KugouMovie,     /*!< Kugou Mv*/
         KuGouLive,      /*!< KuGou Live*/
         KuGouLrc,       /*!< KuGou Lrc*/
         KuGouSingle     /*!< KuGou Single*/
@@ -88,9 +88,9 @@ protected:
      */
     void createKugouListWidget();
     /*!
-     * Create kugou mv widget.
+     * Create kugou movie widget.
      */
-    void createKugouMVWidget();
+    void createKugouMovieWidget();
     /*!
      * Create kugou single widget.
      */

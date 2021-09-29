@@ -83,8 +83,8 @@ QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
         case KuGouList:
                 createKugouListWidget();
                 break;
-        case KugouMv:
-                createKugouMVWidget();
+        case KugouMovie:
+                createKugouMovieWidget();
                 break;
         case KuGouSingle:
                 createKugouSingleWidget();
@@ -434,7 +434,7 @@ void QKugouWindow::createKugouListWidget()
     setLayout(layout);
 }
 
-void QKugouWindow::createKugouMVWidget()
+void QKugouWindow::createKugouMovieWidget()
 {
     TTK_D(QKugouWindow);
     QVBoxLayout *layout = new QVBoxLayout(this);
