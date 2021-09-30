@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/image">
-        <file alias="lb_no_webkit_song">../TTKResource/image/lb_no_webkit_song.png</file>
-        <file alias="lb_no_webkit_list">../TTKResource/image/lb_no_webkit_list.png</file>
-        <file alias="lb_no_webkit_radio">../TTKResource/image/lb_no_webkit_radio.png</file>
-        <file alias="lb_no_webkit_mv">../TTKResource/image/lb_no_webkit_mv.png</file>
+        <file alias="lb_no_module">../TTKResource/image/lb_no_module.png</file>
     </qresource>
 </RCC>

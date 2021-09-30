@@ -267,7 +267,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
     QPixmap pix(ART_DIR_FULL + info.m_singerName + SKN_FILE);
     if(pix.isNull())
     {
-        pix.load(":/image/lb_defaultArt");
+        pix.load(":/image/lb_default_art");
     }
 
     pix = MusicUtils::Image::pixmapToRound(pix, QSize(150, 150), 100, 100);

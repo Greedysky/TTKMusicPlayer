@@ -84,7 +84,7 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
     m_ui->sharedName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
     QString path = ART_DIR_FULL + MusicUtils::String::artistName(name) + SKN_FILE;
-    m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path) ? path : ":/image/lb_defaultArt").scaled(50, 50));
+    m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path) ? path : ":/image/lb_default_art").scaled(50, 50));
     m_ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) + tr("and recommend it to you! (From #TTKMusicPlayer#)"));
 }
 

@@ -430,7 +430,7 @@ void MusicArtistQueryWidget::queryAllFinished()
     const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
-        m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
+        m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
     }
     else
     {
@@ -447,7 +447,7 @@ void MusicArtistQueryWidget::queryAllFinished()
 
         if(!hasItem)
         {
-            m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
+            m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
         }
     }
 }
@@ -463,7 +463,7 @@ void MusicArtistQueryWidget::queryArtistFinished()
     const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
-        m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
+        m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
     }
     else
     {

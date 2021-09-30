@@ -92,7 +92,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     //
     m_iconLabel = new QLabel(centerWidget);
     m_iconLabel->setFixedSize(40, 40);
-    m_iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(m_iconLabel->size()));
+    m_iconLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(m_iconLabel->size()));
     centerWidgetLayout->addWidget(m_iconLabel);
     centerWidgetLayout->addWidget(textWidget);
     centerWidget->setLayout(centerWidgetLayout);

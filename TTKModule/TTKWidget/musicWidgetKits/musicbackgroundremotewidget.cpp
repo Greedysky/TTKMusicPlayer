@@ -48,7 +48,7 @@ void MusicBackgroundRemoteWidget::downLoadFinished(const QString &bytes)
     outputRemoteSkin(image, bytes);
     if(!image.isValid())
     {
-        image.m_pix = QPixmap(":/image/lb_noneImage");
+        image.m_pix = QPixmap(":/image/lb_none_image");
     }
     m_backgroundList->updateItem(image, bytes);
 }
@@ -73,7 +73,7 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
     MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
     for(int i=0; i<items->count(); i++)
     {
-        m_backgroundList->createItem(":/image/lb_noneImage", false);
+        m_backgroundList->createItem(":/image/lb_none_image", false);
         MusicDownloadQueueData data;
         data.m_url = (*items)[i].m_url;
         data.m_savePath = QString("%1/%2%3").arg(path).arg(i).arg(prefix);

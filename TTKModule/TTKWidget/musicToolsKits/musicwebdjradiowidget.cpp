@@ -91,7 +91,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QPixmap(":/image/lb_defaultArt"));
+    item->setIcon(QPixmap(":/image/lb_default_art"));
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;

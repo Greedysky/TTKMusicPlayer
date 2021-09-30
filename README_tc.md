@@ -36,7 +36,7 @@ TTKMusicPlayer是基於[license GPL v3](https://github.com/Greedysky/TTKMusicpla
 
 API 文檔
 ---
-文檔請看這裏: **<u>https://greedysky.github.io/ttkdocs/html/index.html</u>**
+文檔請看這裏: **<u>https://greedysky.github.io/ttkdocs</u>**
 
 下載
 ---

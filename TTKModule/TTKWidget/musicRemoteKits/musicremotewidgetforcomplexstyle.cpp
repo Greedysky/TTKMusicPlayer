@@ -63,7 +63,7 @@ void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 
     if(!showArtPicture(m_songArtist->text()) && !showArtPicture(m_songName->text()))
     {
-        m_iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(80, 80));
+        m_iconLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(80, 80));
     }
 }
 

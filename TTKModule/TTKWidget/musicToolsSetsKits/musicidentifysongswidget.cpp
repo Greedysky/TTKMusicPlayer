@@ -314,7 +314,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     }
     else
     {
-        iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(iconLabel->size()));
+        iconLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(iconLabel->size()));
     }
 
     QPushButton *playButton = new QPushButton(infoFuncWidget);

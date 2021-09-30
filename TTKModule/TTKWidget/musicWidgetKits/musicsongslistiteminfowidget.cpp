@@ -62,6 +62,6 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song
 
     if(!showArtistPicture(musicArtist) && !showArtistPicture(song.getMusicArtistBack()))
     {
-        m_ui->artPicture->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
+        m_ui->artPicture->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }
 }

@@ -133,7 +133,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
         QPixmap pix(ART_DIR_FULL + it.key() + SKN_FILE);
         if(pix.isNull())
         {
-            pix.load(":/image/lb_defaultArt");
+            pix.load(":/image/lb_default_art");
         }
         item->setIcon(QIcon(pix));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);

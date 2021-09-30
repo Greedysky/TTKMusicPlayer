@@ -36,7 +36,7 @@ TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](http
 
 API Document
 ---
-You Can See Here: **<u>https://greedysky.github.io/ttkdocs/html/index.html</u>**
+You Can See Here: **<u>https://greedysky.github.io/ttkdocs</u>**
 
 Download
 ---

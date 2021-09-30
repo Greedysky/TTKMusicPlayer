@@ -135,7 +135,7 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     const QString &name = m_songNameLabel->toolTip().trimmed();
     if(!showArtistPicture(MusicUtils::String::artistName(name)) && !showArtistPicture(MusicUtils::String::songName(name)))
     {
-        m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
+        m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }
 }
 
@@ -170,7 +170,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
     if(!showArtistPicture(MusicUtils::String::artistName(name)) && !showArtistPicture(MusicUtils::String::songName(name)))
     {
-        m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
+        m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_default_art").scaled(60, 60));
     }
 }
 
