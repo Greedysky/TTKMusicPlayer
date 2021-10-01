@@ -138,10 +138,6 @@ public Q_SLOTS:
      * Link current lrc state changed.
      */
     void linkLrcStateChanged();
-    /*!
-     * Show making error lrcs widget.
-     */
-    void showLrcErrorWidget();
 
 protected:
     /*!

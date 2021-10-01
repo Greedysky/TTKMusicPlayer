@@ -40,7 +40,6 @@ FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcKits/musiclrcartphotouploadwidget.ui \
     $$PWD/musicLrcKits/musiclrcmakerwidget.ui \
-    $$PWD/musicLrcKits/musiclrcerrorwidget.ui \
     $$PWD/musicLrcKits/musiclrcsearchwidget.ui \
     $$PWD/musicLrcKits/musiclrclocallinkwidget.ui \
     $$PWD/musicLrcKits/musiclrccolorwidget.ui \

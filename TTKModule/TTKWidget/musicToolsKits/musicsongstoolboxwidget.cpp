@@ -17,12 +17,6 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_musicSort = nullptr;
     m_renameLine = nullptr;
 
-    QPushButton *enhanceButton = new QPushButton(this);
-    enhanceButton->setToolTip(tr("Enhance Lossless"));
-    enhanceButton->setStyleSheet(MusicUIObject::MQSSTinyBtnEnhanceLossless);
-    enhanceButton->setCursor(QCursor(Qt::PointingHandCursor));
-    enhanceButton->setGeometry(240, 12, 16, 16);
-
     QPushButton *shareListButton = new QPushButton(this);
     shareListButton->setToolTip(tr("Share Playlist"));
     shareListButton->setStyleSheet(MusicUIObject::MQSSTinyBtnShare);

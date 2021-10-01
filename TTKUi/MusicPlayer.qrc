@@ -93,8 +93,6 @@
         <file alias="btn_style_hover">../TTKResource/desktopTool/btn_style_hover.png</file>
         <file alias="btn_lock_normal">../TTKResource/desktopTool/btn_lock_normal.png</file>
         <file alias="btn_lock_hover">../TTKResource/desktopTool/btn_lock_hover.png</file>
-        <file alias="btn_herror_normal">../TTKResource/desktopTool/btn_herror_normal.png</file>
-        <file alias="btn_herror_hover">../TTKResource/desktopTool/btn_herror_hover.png</file>
         <file alias="btn_hmake_normal">../TTKResource/desktopTool/btn_hmake_normal.png</file>
         <file alias="btn_hmake_hover">../TTKResource/desktopTool/btn_hmake_hover.png</file>
         <file alias="btn_hsearch_normal">../TTKResource/desktopTool/btn_hsearch_normal.png</file>
@@ -103,8 +101,6 @@
         <file alias="btn_hupdate_hover">../TTKResource/desktopTool/btn_hupdate_hover.png</file>
         <file alias="btn_vertical_normal">../TTKResource/desktopTool/btn_vertical_normal.png</file>
         <file alias="btn_vertical_hover">../TTKResource/desktopTool/btn_vertical_hover.png</file>
-        <file alias="btn_verror_normal">../TTKResource/desktopTool/btn_verror_normal.png</file>
-        <file alias="btn_verror_hover">../TTKResource/desktopTool/btn_verror_hover.png</file>
         <file alias="btn_vmake_normal">../TTKResource/desktopTool/btn_vmake_normal.png</file>
         <file alias="btn_vmake_hover">../TTKResource/desktopTool/btn_vmake_hover.png</file>
         <file alias="btn_vsearch_normal">../TTKResource/desktopTool/btn_vsearch_normal.png</file>
@@ -517,8 +513,6 @@
         <file alias="lb_question">../TTKResource/tiny/lb_question.png</file>
         <file alias="lb_function_hover">../TTKResource/tiny/lb_function_hover.png</file>
         <file alias="lb_function_normal">../TTKResource/tiny/lb_function_normal.png</file>
-        <file alias="btn_enhance_lossless_normal">../TTKResource/tiny/btn_enhance_lossless_normal.png</file>
-        <file alias="btn_enhance_lossless_hover">../TTKResource/tiny/btn_enhance_lossless_hover.png</file>
         <file alias="lb_selected">../TTKResource/tiny/lb_selected.png</file>
         <file alias="lb_sort_asc">../TTKResource/tiny/lb_sort_asc.png</file>
         <file alias="lb_sort_desc">../TTKResource/tiny/lb_sort_desc.png</file>

@@ -1,7 +1,6 @@
 #include "musiclrccontainer.h"
 #include "musiclrcsearchwidget.h"
 #include "musiclrcmakerwidget.h"
-#include "musiclrcerrorwidget.h"
 
 #include <QActionGroup>
 
@@ -110,11 +109,6 @@ void MusicLrcContainer::linkLrcStateChanged()
     {
         w->setVisible(m_linkLocalLrc);
     }
-}
-
-void MusicLrcContainer::showLrcErrorWidget()
-{
-    MusicLrcErrorWidget(this).exec();
 }
 
 void MusicLrcContainer::clearAllMusicLRCManager()

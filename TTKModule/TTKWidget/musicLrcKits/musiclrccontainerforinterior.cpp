@@ -399,7 +399,6 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("Lrc Search"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("Lrc Update"), this, SIGNAL(currentLrcUpdated()));
     menu.addAction(tr("Lrc Make"), this, SLOT(showLrcMakedWidget()));
-    menu.addAction(tr("Lrc Error Report"), this, SLOT(showLrcErrorWidget()));
     menu.addAction(tr("Lrc Poster"), this, SLOT(showLrcPosterWidget()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
     menu.addAction(MusicBottomAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("Show Normal Mode") : tr("Show Fullscreen Mode"),

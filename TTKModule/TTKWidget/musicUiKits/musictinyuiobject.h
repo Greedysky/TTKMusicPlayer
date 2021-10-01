@@ -184,11 +184,6 @@ namespace MusicUIObject
             background-image: url(:/tiny/btn_share_normal); } \
             QPushButton:hover{ background-image: url(:/tiny/btn_share_hover); }";
             
-    const QString MQSSTinyBtnEnhanceLossless = " \
-            QPushButton{ border:none; \
-            background-image: url(:/tiny/btn_enhance_lossless_normal); } \
-            QPushButton:hover{ background-image: url(:/tiny/btn_enhance_lossless_hover); }";
-            
     const QString MQSSTinyBtnListMenu = " \
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_list_menu_normal); } \

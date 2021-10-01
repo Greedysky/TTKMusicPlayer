@@ -263,11 +263,6 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     m_toolBarLayout->addWidget(toolUpdateLrcTextButton, 0, Qt::AlignCenter);
     connect(toolUpdateLrcTextButton, SIGNAL(clicked()), SIGNAL(currentLrcUpdated()));
 
-    QToolButton *toolErrorLrcTextButton = new QToolButton(m_toolBarWidget);
-    toolErrorLrcTextButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_TEXT_LENGTH, m_verticalWindow ? TOOLBAR_TEXT_LENGTH : TOOLBAR_HEIGHT);
-    m_toolBarLayout->addWidget(toolErrorLrcTextButton, 0, Qt::AlignCenter);
-    connect(toolErrorLrcTextButton, SIGNAL(clicked()), SLOT(showLrcErrorWidget()));
-
     QToolButton *toolWindowLockedButton = new QToolButton(m_toolBarWidget);
     toolWindowLockedButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolWindowLockedButton, 0, Qt::AlignCenter);
@@ -288,7 +283,6 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolMakeLrcTextButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolSearchLrcTextButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolUpdateLrcTextButton->setCursor(QCursor(Qt::PointingHandCursor));
-    toolErrorLrcTextButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolWindowLockedButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolLrcBigerButton->setCursor(QCursor(Qt::PointingHandCursor));
     toolLrcSmallerButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -312,7 +306,6 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolMakeLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVMakeLrc : MusicUIObject::MQSSDeskTopHMakeLrc);
     toolSearchLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVSearchLrc : MusicUIObject::MQSSDeskTopHSearchLrc);
     toolUpdateLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVUpdateLrc : MusicUIObject::MQSSDeskTopHUpdateLrc);
-    toolErrorLrcTextButton->setStyleSheet(m_verticalWindow ? MusicUIObject::MQSSDeskTopVErrorLrc : MusicUIObject::MQSSDeskTopHErrorLrc);
 
     showMainWindow->setToolTip(tr("Show MainWindow"));
     toolCloseButton->setToolTip(tr("Hide"));

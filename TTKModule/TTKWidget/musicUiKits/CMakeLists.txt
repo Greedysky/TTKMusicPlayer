@@ -22,7 +22,6 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcartphotouploadwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcmakerwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcsearchwidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcerrorwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrclocallinkwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrccolorwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcposterwidget.ui

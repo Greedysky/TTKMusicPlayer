@@ -71,11 +71,6 @@ namespace MusicUIObject
             background-image: url(:/desktopTool/btn_style_normal); } \
             QToolButton:hover{ background-image: url(:/desktopTool/btn_style_hover); }";
 
-    const QString MQSSDeskTopHErrorLrc = " \
-            QToolButton{ border:none; \
-            background-image: url(:/desktopTool/btn_herror_normal); } \
-            QToolButton:hover{ background-image: url(:/desktopTool/btn_herror_hover); }";
-
     const QString MQSSDeskTopHMakeLrc = " \
             QToolButton{ border:none; \
             background-image: url(:/desktopTool/btn_hmake_normal); } \
@@ -90,11 +85,6 @@ namespace MusicUIObject
             QToolButton{ border:none; \
             background-image: url(:/desktopTool/btn_hupdate_normal); } \
             QToolButton:hover{ background-image: url(:/desktopTool/btn_hupdate_hover); }";
-
-    const QString MQSSDeskTopVErrorLrc = " \
-            QToolButton{ border:none; \
-            background-image: url(:/desktopTool/btn_verror_normal); } \
-            QToolButton:hover{ background-image: url(:/desktopTool/btn_verror_hover); }";
 
     const QString MQSSDeskTopVMakeLrc = " \
             QToolButton{ border:none; \
