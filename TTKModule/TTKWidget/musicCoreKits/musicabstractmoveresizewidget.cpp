@@ -10,6 +10,7 @@ MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_struct.m_mouseLeftPress = false;
+    m_struct.m_isPressBorder = false;
     m_direction = Direction_No;
 
     setWindowFlags(Qt::FramelessWindowHint);
@@ -21,7 +22,6 @@ MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
 bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 {
     QWidget::eventFilter(object, event);
-
     if(QEvent::MouseMove == event->type())
     {
         QMouseEvent *mouseEvent = TTKStatic_cast(QMouseEvent*, event);
@@ -30,20 +30,29 @@ bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
     return false;
 }
 
+void MusicAbstractMoveResizeWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    if(m_struct.m_isPressBorder || m_direction == Direction_No)
+    {
+        return;
+    }
+
+    const QPoint &point = mapFromGlobal(QCursor::pos());
+    if(point.y() > DISTANCE && point.y() < height() - DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
+    {
+        setCursor(Qt::ArrowCursor);
+        m_direction = Direction_No;
+    }
+}
+
 void MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     QWidget::mouseDoubleClickEvent(event);
 
     if(event->buttons() == Qt::LeftButton)
     {
-        if(isMaximized())
-        {
-            showNormal();
-        }
-        else
-        {
-            showMaximized();
-        }
+        isMaximized() ? showNormal() : showMaximized();
     }
 }
 
@@ -78,6 +87,7 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
     !m_struct.m_isPressBorder ? sizeDirection() : moveDirection();
+
     if(m_struct.m_mouseLeftPress)
     {
 #if TTK_QT_VERSION_CHECK(6,0,0)
@@ -94,6 +104,7 @@ void MusicAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
     m_struct.m_isPressBorder = false;
     m_struct.m_mouseLeftPress = false;
     setCursor(QCursor(Qt::ArrowCursor));
+    m_direction = Direction_No;
 }
 
 void MusicAbstractMoveResizeWidget::sizeDirection()
@@ -196,6 +207,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
                 yValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height() - height();
                 hValue = maximumHeight();
             }
+
             if(hValue <= minimumHeight())
             {
                 yValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height() - height();
@@ -220,16 +232,19 @@ void MusicAbstractMoveResizeWidget::moveDirection()
                 xValue = twValue - maximumWidth();
                 wValue = maximumWidth();
             }
+
             if(twValue - xValue <= minimumWidth())
             {
                 xValue = twValue - minimumWidth();
                 wValue = minimumWidth();
             }
+
             if(thValue - yValue >= maximumHeight())
             {
                 yValue = thValue - maximumHeight();
                 hValue = maximumHeight();
             }
+
             if(thValue - yValue <= minimumHeight())
             {
                 yValue = thValue - minimumHeight();
@@ -257,6 +272,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
                 xValue = twValue - maximumWidth();
                 wValue = maximumWidth();
             }
+
             if(twValue - xValue <= minimumWidth())
             {
                 xValue = twValue - minimumWidth();
@@ -267,18 +283,4 @@ void MusicAbstractMoveResizeWidget::moveDirection()
         }
         default: break;
     }
-}
-
-QObjectList MusicAbstractMoveResizeWidget::foreachWidget(QObject *object)
-{
-    QObjectList result;
-    for(QObject *obj : object->children())
-    {
-        if("QWidget" == QString(obj->metaObject()->className()))
-        {
-            result.append(obj);
-        }
-        result += foreachWidget(obj);
-    }
-    return result;
 }

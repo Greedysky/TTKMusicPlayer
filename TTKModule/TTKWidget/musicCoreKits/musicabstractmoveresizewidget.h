@@ -66,6 +66,7 @@ protected:
      * Override the widget event.
      */
     virtual bool eventFilter(QObject *object, QEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
@@ -79,10 +80,6 @@ protected:
      * Move direction to be.
      */
     void moveDirection();
-    /*!
-     * Get all inside widgets.
-     */
-    QObjectList foreachWidget(QObject *object);
 
     MoveResizeData m_struct;
     Direction m_direction;
