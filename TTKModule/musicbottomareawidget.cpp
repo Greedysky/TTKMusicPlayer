@@ -204,9 +204,16 @@ void MusicBottomAreaWidget::applySettingParameter()
     setSystemCloseConfig(config);
          config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     setDestopLrcVisible(config);
-         config = G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool();
 
-    m_musicRippleObject->update(config);
+    if(G_SETTING_PTR->value(MusicSettingManager::RippleSpectrumEnable).toBool())
+    {
+        config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
+        m_musicRippleObject->update(!config);
+    }
+    else
+    {
+        m_musicRippleObject->update(false);
+    }
 }
 
 bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const

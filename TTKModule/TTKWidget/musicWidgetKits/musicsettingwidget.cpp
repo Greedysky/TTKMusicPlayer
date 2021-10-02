@@ -382,8 +382,7 @@ void MusicSettingWidget::rippleSpectrumOpacityEnableClicked(bool state)
 void MusicSettingWidget::rippleLowPowerEnableBoxClicked(bool state)
 {
     m_ui->rippleSpectrumEnableBox->setEnabled(!state);
-    m_ui->rippleSpectrumEnableBox->setChecked(false);
-    rippleSpectrumOpacityEnableClicked(false);
+    rippleSpectrumOpacityEnableClicked(m_ui->rippleSpectrumEnableBox->isEnabled() && m_ui->rippleSpectrumEnableBox->isChecked());
 }
 
 void MusicSettingWidget::otherPluginManagerChanged()
