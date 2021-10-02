@@ -38,6 +38,8 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_instance = this;
+    m_lowPowerMode = false;
+    m_funcIndex = KugGouSongWidget;
     m_stackedFuncWidget = nullptr;
     m_stackedAutoWidget = nullptr;
     m_musicLrcForInterior = nullptr;
@@ -93,11 +95,11 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     buttonGroup->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
     buttonGroup->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
 #if TTK_QT_VERSION_CHECK(5,15,0)
-    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(musicFunctionClicked(int)));
+    connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(functionClicked(int)));
 #else
-    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
+    connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
 #endif
-    connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
+    connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
     //
     connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
     connect(m_musicLrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
@@ -325,7 +327,7 @@ void MusicRightAreaWidget::resizeWindow()
     }
 }
 
-void MusicRightAreaWidget::applySettingParameter() const
+void MusicRightAreaWidget::applySettingParameter()
 {
     m_musicLrcForDesktop->applySettingParameter();
     m_musicLrcForInterior->applySettingParameter();
@@ -334,53 +336,51 @@ void MusicRightAreaWidget::applySettingParameter() const
         m_musicLrcForWallpaper->applySettingParameter();
     }
 
-    //
     bool config = G_SETTING_PTR->value(MusicSettingManager::ShowInteriorLrc).toBool();
     m_musicLrcForInterior->setVisible(config);
          config = G_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrc).toBool();
     m_musicLrcForDesktop->setVisible(config);
     m_ui->musicDesktopLrc->setChecked(config);
-    //
+
+    config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
+    if(config != m_lowPowerMode && (m_funcIndex == KugGouSongWidget || m_funcIndex == KugGouRadioWidget ||
+       m_funcIndex == kugouListWidget || m_funcIndex == kugouLiveWidget || m_funcIndex == KuiSheWidget))
+    {
+        m_lowPowerMode = config;
+        functionClicked(m_funcIndex);
+    }
+
     if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
     {
         TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget)->applySettingParameter();
     }
 }
 
-void MusicRightAreaWidget::musicFunctionClicked(int index)
+void MusicRightAreaWidget::functionClicked(int index)
 {
-    const MusicFunction key = TTKStatic_cast(MusicFunction, index);
-    musicFunctionParameterInit(key);
+    m_funcIndex = TTKStatic_cast(MusicFunction, index);
+    functionParameterInit();
 
-    switch(key)
+    switch(m_funcIndex)
     {
         case KugGouSongWidget: //insert kugou song widget
             {
-                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KuGouSong, this);
-                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
-                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
+                createkWindow(QKugouWindow::KuGouSong);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(0);
-                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
         case KugGouRadioWidget: //insert kugou radio widget
             {
-                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KuGouRadio, this);
-                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
-                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
+                createkWindow(QKugouWindow::KuGouRadio);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(1);
-                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
         case kugouListWidget: //insert kugou list widget
             {
-                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KuGouList, this);
-                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
-                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
+                createkWindow(QKugouWindow::KuGouList);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(2);
-                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
@@ -405,11 +405,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case kugouLiveWidget: //insert kugou live widget
             {
-                m_stackedFuncWidget = new QKugouWindow(QKugouWindow::KugouMovie, this);
-                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
-                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
+                createkWindow(QKugouWindow::KugouMovie);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(4);
-                connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
@@ -434,7 +431,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 }
                 else
                 {
-                    musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
+                    functionClicked(MusicRightAreaWidget::KugGouSongWidget);
                     MusicToastLabel::popup(tr("Please enter input search text first!"));
                     break;
                 }
@@ -524,11 +521,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case KuiSheWidget: //insert kugou kuishe widget
             {
-                QKugouWindow *widget = new QKugouWindow(QKugouWindow::KuGouSingle, this);
-                m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
-                m_ui->functionsContainer->setCurrentWidget(widget);
-                widget->setUrl(QKugouUrl::getKuiSheUrl());
-                connect(m_ui->musicBackButton, SIGNAL(clicked()), widget, SLOT(goBack()));
+                createkWindow(QKugouWindow::KuGouSingle);
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
@@ -562,10 +555,10 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     }
 }
 
-void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
+void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
-    const MusicFunction key = TTKStatic_cast(MusicFunction, index);
-    musicFunctionParameterInit(key);
+    m_funcIndex = TTKStatic_cast(MusicFunction, index);
+    functionParameterInit();
 
     m_stackedAutoWidget = widget;
     m_ui->functionsContainer->addWidget(m_stackedAutoWidget);
@@ -581,7 +574,7 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
     }
     if(m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1)
     {
-        musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
+        functionClicked(MusicRightAreaWidget::LrcWidget);
     }
 
     m_musicLrcForInterior->showSongCommentsWidget();
@@ -589,20 +582,20 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
 
 void MusicRightAreaWidget::musicSimilarFound(const QString &text)
 {
-    musicFunctionClicked(MusicRightAreaWidget::SimilarWidget);
+    functionClicked(MusicRightAreaWidget::SimilarWidget);
     TTKStatic_cast(MusicSimilarQueryWidget*, m_stackedFuncWidget)->setSongName(text);
 }
 
 void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &id)
 {
-    musicFunctionClicked(MusicRightAreaWidget::AlbumWidget);
+    functionClicked(MusicRightAreaWidget::AlbumWidget);
     MusicAlbumQueryWidget *w = TTKStatic_cast(MusicAlbumQueryWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicArtistCategoryFound()
 {
-    musicFunctionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
+    functionClicked(MusicRightAreaWidget::ArtistCategoryWidget);
     TTKStatic_cast(MusicArtistListQueryWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
@@ -629,7 +622,7 @@ void MusicRightAreaWidget::musicMovieSearchRadioFound()
     }
     else
     {
-        musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
+        functionClicked(MusicRightAreaWidget::VideoWidget);
     }
 
     m_videoPlayerWidget->videoResearchButtonSearched(m_rawData);
@@ -637,44 +630,44 @@ void MusicRightAreaWidget::musicMovieSearchRadioFound()
 
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)
 {
-    musicFunctionClicked(MusicRightAreaWidget::ArtistWidget);
+    functionClicked(MusicRightAreaWidget::ArtistWidget);
     MusicArtistQueryWidget *w = TTKStatic_cast(MusicArtistQueryWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicToplistFound()
 {
-    musicFunctionClicked(MusicRightAreaWidget::ToplistWidget);
+    functionClicked(MusicRightAreaWidget::ToplistWidget);
     TTKStatic_cast(MusicToplistQueryWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
 {
-    musicFunctionClicked(MusicRightAreaWidget::PlaylistWidget);
+    functionClicked(MusicRightAreaWidget::PlaylistWidget);
     MusicPlaylistQueryWidget *w = TTKStatic_cast(MusicPlaylistQueryWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(QString()) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicRecommendFound()
 {
-    musicFunctionClicked(MusicRightAreaWidget::RecommendWidget);
+    functionClicked(MusicRightAreaWidget::RecommendWidget);
     TTKStatic_cast(MusicRecommendQueryWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicAdvancedSearch()
 {
-    musicFunctionClicked(MusicRightAreaWidget::AdvancedSearchWidget);
+    functionClicked(MusicRightAreaWidget::AdvancedSearchWidget);
 }
 
 void MusicRightAreaWidget::musicSongSearchedFound(const QString &text)
 {
     m_ui->musicSongSearchEdit->setText(text.trimmed());
-    musicFunctionClicked(MusicRightAreaWidget::SearchWidget);
+    functionClicked(MusicRightAreaWidget::SearchWidget);
 }
 
 void MusicRightAreaWidget::musicSingleSearchedFound(const QString &id)
 {
-    musicFunctionClicked(MusicRightAreaWidget::SearchSingleWidget);
+    functionClicked(MusicRightAreaWidget::SearchSingleWidget);
     m_ui->songSearchWidget->startSearchSingleQuery(id);
 }
 
@@ -683,7 +676,7 @@ void MusicRightAreaWidget::musicLoadSongIndexWidget()
     ///To prevent concise state changed while function musicWindowConciseChanged first called
     const bool pre = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, false);
-    musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
+    functionClicked(MusicRightAreaWidget::KugGouSongWidget);
     G_SETTING_PTR->setValue(MusicSettingManager::WindowConciseMode, pre);
 }
 
@@ -747,7 +740,9 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
         return;
     }
 
-    musicFunctionParameterInit(MusicRightAreaWidget::SearchWidget);
+    m_funcIndex = MusicRightAreaWidget::SearchWidget;
+    functionParameterInit();
+
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
     m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
     Q_EMIT updateBackgroundTheme();
@@ -761,7 +756,7 @@ void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name, const Q
     }
     else
     {
-        musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
+        functionClicked(MusicRightAreaWidget::VideoWidget);
     }
 
     id.isEmpty() ? m_videoPlayerWidget->videoResearchButtonSearched(name) : m_videoPlayerWidget->startSearchSingleQuery(id);
@@ -787,7 +782,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     }
     else
     {
-        musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
+        functionClicked(MusicRightAreaWidget::VideoWidget);
     }
 }
 
@@ -804,7 +799,7 @@ void MusicRightAreaWidget::musicVideoClosed()
 {
     delete m_videoPlayerWidget;
     m_videoPlayerWidget = nullptr;
-    musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
+    functionClicked(MusicRightAreaWidget::LrcWidget);
 }
 
 void MusicRightAreaWidget::musicVideoFullscreen(bool full)
@@ -873,14 +868,14 @@ void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
     showSettingWidget();
 }
 
-void MusicRightAreaWidget::musicFunctionParameterInit(MusicFunction func)
+void MusicRightAreaWidget::functionParameterInit()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool())
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
 
-    if(func == LrcWidget) ///lrc option
+    if(m_funcIndex == LrcWidget) ///lrc option
     {
         m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(false);
         m_ui->stackedFunctionWidget->transparent(true);
@@ -895,8 +890,29 @@ void MusicRightAreaWidget::musicFunctionParameterInit(MusicFunction func)
     m_stackedAutoWidget = nullptr;
 
     m_ui->lrcDisplayAllButton->setVisible(false);
-    if(m_musicLrcForInterior->lrcDisplayExpand() && func != LrcWidget)
+    if(m_musicLrcForInterior->lrcDisplayExpand() && m_funcIndex != LrcWidget)
     {
         musicLrcDisplayAllButtonClicked();
     }
+}
+
+void MusicRightAreaWidget::createkWindow(int type)
+{
+    QWidget *widget = nullptr;
+    if(G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool())
+    {
+        QLabel *label = new QLabel(this);
+        label->setAlignment(Qt::AlignCenter);
+        label->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
+        label->setPixmap(QPixmap(":/image/lb_no_power_mode"));
+        widget = label;
+    }
+    else
+    {
+        widget = new QKugouWindow(TTKStatic_cast(QKugouWindow::KuGouType, type), this);
+        connect(m_ui->musicBackButton, SIGNAL(clicked()), widget, SLOT(goBack()));
+    }
+
+    m_ui->functionsContainer->addWidget(m_stackedFuncWidget = widget);
+    m_ui->functionsContainer->setCurrentWidget(widget);
 }

@@ -111,7 +111,7 @@ public:
     /*!
      * Apply settings parameters.
      */
-    void applySettingParameter() const;
+    void applySettingParameter();
     /*!
      * Check the setting has open interior or desktop lrc on or not.
      */
@@ -170,13 +170,13 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Music function button clicked.
+     * Function button clicked.
      */
-    void musicFunctionClicked(int index);
+    void functionClicked(int index);
     /*!
-     * Music function button clicked by extra widget.
+     * Function button clicked by extra widget.
      */
-    void musicFunctionClicked(int index, QWidget *widget);
+    void functionClicked(int index, QWidget *widget);
     /*!
      * Music song comments widget.
      */
@@ -300,11 +300,17 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Music function parameter init.
+     * Function parameter init.
      */
-    void musicFunctionParameterInit(MusicFunction func);
+    void functionParameterInit();
+    /*!
+     * Create kugou window.
+     */
+    void createkWindow(int type);
 
     QVariant m_rawData;
+    bool m_lowPowerMode;
+    MusicFunction m_funcIndex;
     QWidget *m_stackedFuncWidget, *m_stackedAutoWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_settingWidget;

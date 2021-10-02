@@ -62,10 +62,10 @@ void MusicWebRadioView::init(int index)
 
 void MusicWebRadioView::openDJRadioWindow()
 {
-    MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::WebDJRadioWidget);
+    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebDJRadioWidget);
 }
 
 void MusicWebRadioView::openMVRadioWindow()
 {
-    MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::WebMVRadioWidget);
+    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::WebMVRadioWidget);
 }

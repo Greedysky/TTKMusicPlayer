@@ -41,9 +41,9 @@ public:
 
 private Q_SLOTS:
     /*!
-     * Music function button clicked.
+     *  Function button clicked.
      */
-    void musicFunctionClicked(QAction *index);
+    void functionClicked(QAction *index);
 
 protected:
     /*!

@@ -89,8 +89,6 @@ QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
         case KuGouSingle:
                 createKugouSingleWidget();
                 break;
-        case KuGouLive: break;
-        case KuGouLrc: break;
     }
 }
 
@@ -145,7 +143,6 @@ void QKugouWindow::goBack()
 
 void QKugouWindow::kugouSongIndexChanged(int index)
 {
-    TTK_D(QKugouWindow);
     changeClickedButtonStyle(index);
     QString url = QKugouUrl::getSongRecommendUrl();
     switch(index)
@@ -156,35 +153,11 @@ void QKugouWindow::kugouSongIndexChanged(int index)
         case 3: url = QKugouUrl::getSongCategoryUrl(); break;
     }
 
-#ifdef Q_OS_WIN
-    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
-    if(w)
-    {
-        w->dynamicCall("Navigate(const QString&)", url);
-    }
-#else
- #ifdef MUSIC_WEBKIT
-    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
-    if(w)
-    {
-        w->setUrl(url);
-    }
- #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
-    if(w)
-    {
-        w->setUrl(url);
-    }
- #else
-    Q_UNUSED(url);
-    Q_UNUSED(d);
- #endif
-#endif
+    setUrl(url);
 }
 
 void QKugouWindow::kugouRadioIndexChanged(int index)
 {
-    TTK_D(QKugouWindow);
     changeClickedButtonStyle(index);
     QString url = QKugouUrl::getRadioPublicUrl();
     switch(index)
@@ -194,35 +167,11 @@ void QKugouWindow::kugouRadioIndexChanged(int index)
         case 2: url = QKugouUrl::getRadioFxUrl(); break;
     }
 
-#ifdef Q_OS_WIN
-    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
-    if(w)
-    {
-        w->dynamicCall("Navigate(const QString&)", url);
-    }
-#else
- #ifdef MUSIC_WEBKIT
-    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
-    if(w)
-    {
-        w->setUrl(url);
-    }
- #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
-    if(w)
-    {
-        w->setUrl(url);
-    }
- #else
-   Q_UNUSED(url);
-   Q_UNUSED(d);
- #endif
-#endif
+    setUrl(url);
 }
 
 void QKugouWindow::kugouMVIndexChanged(int index)
 {
-    TTK_D(QKugouWindow);
     changeClickedButtonStyle(index);
     QString url = QKugouUrl::getMVRadioUrl();
     switch(index)
@@ -232,30 +181,7 @@ void QKugouWindow::kugouMVIndexChanged(int index)
         case 2: url = QKugouUrl::getMVFanxingUrl(); break;
     }
 
-#ifdef Q_OS_WIN
-    QAxWidget *w = TTKObject_cast(QAxWidget*, d->m_webView);
-    if(w)
-    {
-        w->dynamicCall("Navigate(const QString&)", url);
-    }
-#else
- #ifdef MUSIC_WEBKIT
-    QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
-    if(w)
-    {
-        w->setUrl(url);
-    }
- #elif defined MUSIC_WEBENGINE
-    QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
-    if(w)
-    {
-        w->setUrl(url);
-    }
- #else
-    Q_UNUSED(url);
-    Q_UNUSED(d);
- #endif
-#endif
+    setUrl(url);
 }
 
 void QKugouWindow::createWebViewer()
@@ -499,6 +425,7 @@ void QKugouWindow::createKugouSingleWidget()
 #if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
+    setUrl(QKugouUrl::getKuiSheUrl());
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);

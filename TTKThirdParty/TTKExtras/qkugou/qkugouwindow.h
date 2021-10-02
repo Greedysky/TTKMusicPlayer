@@ -37,8 +37,6 @@ public:
         KuGouRadio,     /*!< KuGou Radio*/
         KuGouList,      /*!< KuGou List*/
         KugouMovie,     /*!< Kugou Mv*/
-        KuGouLive,      /*!< KuGou Live*/
-        KuGouLrc,       /*!< KuGou Lrc*/
         KuGouSingle     /*!< KuGou Single*/
     };
 

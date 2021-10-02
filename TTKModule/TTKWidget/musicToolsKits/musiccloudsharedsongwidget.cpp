@@ -25,5 +25,5 @@ MusicCloudSharedSongWidget::~MusicCloudSharedSongWidget()
 
 void MusicCloudSharedSongWidget::showMainWindow()
 {
-    MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::CloudManagerWidget, m_managerWidget);
+    MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::CloudManagerWidget, m_managerWidget);
 }

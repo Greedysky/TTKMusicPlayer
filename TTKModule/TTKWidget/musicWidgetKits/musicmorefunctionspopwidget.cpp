@@ -13,7 +13,7 @@ void MusicMoreFunctionsPopWidget::setCurrentSongName(const QString &name)
     m_currentSongName = name;
 }
 
-void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
+void MusicMoreFunctionsPopWidget::functionClicked(QAction *index)
 {
     switch(index->data().toInt())
     {
@@ -82,5 +82,5 @@ void MusicMoreFunctionsPopWidget::initWidget()
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_recommend_hover"), tr("Recommend")))->setData(6);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("Advance")))->setData(7);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("Artists")))->setData(8);
-    connect(group, SIGNAL(triggered(QAction*)), SLOT(musicFunctionClicked(QAction*)));
+    connect(group, SIGNAL(triggered(QAction*)), SLOT(functionClicked(QAction*)));
 }
