@@ -389,7 +389,7 @@ void MusicRightAreaWidget::functionClicked(int index)
                 if(!m_videoPlayerWidget)
                 {
                     m_videoPlayerWidget = new MusicVideoPlayWidget(this);
-                    connect(m_videoPlayerWidget, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
+                    connect(m_videoPlayerWidget, SIGNAL(popupButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
                     connect(m_videoPlayerWidget, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
                 }
                 m_videoPlayerWidget->popup(false);

@@ -31,15 +31,6 @@ class TTK_MODULE_EXPORT MusicVideoFloatWidget : public MusicAbstractFloatWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicVideoFloatWidget)
 public:
-    enum Type
-    {
-        SearchType,     /*!< search text type*/
-        FreshType,      /*!< fresh text type*/
-        FullscreenType, /*!< fullscreen text type*/
-        DownloadType ,  /*!< download text type*/
-        ShareType       /*!< share text type*/
-    };
-
     /*!
      * Object contsructor.
      */
@@ -52,13 +43,21 @@ public:
     virtual void resizeWindow(int width, int height) override;
 
     /*!
-     * Set tool button text by type.
+     * Set the window is popup or not.
      */
-    void setText(Type type, const QString &text);
+    bool isPopupMode() const;
     /*!
-     * Get tool button text by type.
+     * Get the window is popup or not.
      */
-    QString getText(Type type) const;
+    void popupMode(bool popup);
+    /*!
+     * Set the window is fullscreen or not.
+     */
+    bool isFullscreenMode() const;
+    /*!
+     * Set the window is fullscreen or not.
+     */
+    void fullscreenMode(bool full);
 
 Q_SIGNALS:
     /*!
@@ -66,9 +65,9 @@ Q_SIGNALS:
      */
     void searchButtonClicked();
     /*!
-     * Fresh button clicked.
+     * Popup button clicked.
      */
-    void freshButtonClicked();
+    void popupButtonClicked();
     /*!
      * Fullscreen button clicked.
      */
@@ -83,7 +82,7 @@ Q_SIGNALS:
     void shareButtonClicked();
 
 protected:
-    QPushButton *m_search, *m_fresh, *m_fullscreen;
+    QPushButton *m_search, *m_popup, *m_fullscreen;
     QPushButton *m_download, *m_share;
 
 };

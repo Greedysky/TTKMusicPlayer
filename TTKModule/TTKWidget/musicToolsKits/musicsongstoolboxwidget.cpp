@@ -31,7 +31,6 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     connect(menuButton, SIGNAL(clicked()), SLOT(showMenu()));
 
 #ifdef Q_OS_UNIX
-    enhanceButton->setFocusPolicy(Qt::NoFocus);
     shareListButton->setFocusPolicy(Qt::NoFocus);
     menuButton->setFocusPolicy(Qt::NoFocus);
 #endif

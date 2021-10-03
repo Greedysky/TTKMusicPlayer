@@ -72,9 +72,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Fresh button state changed.
+     * Popup button state changed.
      */
-    void freshButtonClicked(bool popup);
+    void popupButtonClicked(bool popup);
     /*!
      * Fullscreen button clicked.
      */
@@ -115,9 +115,9 @@ public Q_SLOTS:
     void mediaUrlPathChanged(const MusicVideoItem &item);
 
     /*!
-     * Fresh button clicked.
+     * Popup button clicked.
      */
-    void freshButtonClicked();
+    void popupButtonClicked();
     /*!
      * Fullscreen button clicked.
      */

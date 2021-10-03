@@ -49,10 +49,6 @@ Q_SIGNALS:
      * Widget clicked.
      */
     void setClick();
-    /*!
-     * Current media is playing.
-     */
-    void mediaIsPlaying(bool &play);
 
 protected:
     /*!
@@ -90,9 +86,27 @@ public:
      */
     void resizeWindow(int width, int height);
     /*!
+     * Create right menu.
+     */
+    void createRightMenu();
+    /*!
      * Get control bar widget.
      */
-    MusicVideoControlWidget *controlBarWidget() const { return m_videoControl; }
+    inline MusicVideoControlWidget *controlBarWidget() const { return m_videoControl; }
+
+Q_SIGNALS:
+    /*!
+     * Search button clicked.
+     */
+    void searchButtonClicked();
+    /*!
+     * Download button clicked.
+     */
+    void downloadButtonClicked();
+    /*!
+     * Share button clicked.
+     */
+    void shareButtonClicked();
 
 public Q_SLOTS:
     /*!
@@ -129,10 +143,6 @@ private Q_SLOTS:
      * Media aution play error.
      */
     void mediaAutionPlayError(int code);
-    /*!
-     * Current media is playing.
-     */
-    void mediaIsPlaying(bool &play);
 
     /*!
      * Add barrage text to mv.

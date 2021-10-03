@@ -93,10 +93,10 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_videoFloatWidget = new MusicVideoFloatWidget(this);
     m_videoTable = new MusicVideoSearchTableWidget(this);
     m_videoView = new MusicVideoView(this);
+
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);
     m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, tr("Popup"));
 
     m_leaverAnimation = new QParallelAnimationGroup(this);
     QPropertyAnimation *topAnimation = new QPropertyAnimation(m_topWidget, "pos", m_leaverAnimation);
@@ -112,10 +112,14 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
     connect(m_videoFloatWidget, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
-    connect(m_videoFloatWidget, SIGNAL(freshButtonClicked()), SLOT(freshButtonClicked()));
+    connect(m_videoFloatWidget, SIGNAL(popupButtonClicked()), SLOT(popupButtonClicked()));
     connect(m_videoFloatWidget, SIGNAL(fullscreenButtonClicked()), SLOT(fullscreenButtonClicked()));
     connect(m_videoFloatWidget, SIGNAL(downloadButtonClicked()), SLOT(downloadButtonClicked()));
     connect(m_videoFloatWidget, SIGNAL(shareButtonClicked()), SLOT(shareButtonClicked()));
+
+    connect(m_videoView, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
+    connect(m_videoView, SIGNAL(downloadButtonClicked()), SLOT(downloadButtonClicked()));
+    connect(m_videoView, SIGNAL(shareButtonClicked()), SLOT(shareButtonClicked()));
 }
 
 MusicVideoPlayWidget::~MusicVideoPlayWidget()
@@ -133,7 +137,7 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
 
 void MusicVideoPlayWidget::popup(bool popup)
 {
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, popup ? tr("Inline") : tr("Popup"));
+    m_videoFloatWidget->popupMode(popup);
     blockMoveOption(!popup);
 
     if(popup)
@@ -152,7 +156,7 @@ void MusicVideoPlayWidget::popup(bool popup)
             showNormal();
         }
 #endif
-        m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + tr("Fullscreen"));
+        m_videoFloatWidget->fullscreenMode(false);
     }
 }
 
@@ -308,22 +312,21 @@ void MusicVideoPlayWidget::mediaUrlPathChanged(const MusicVideoItem &item)
     mediaUrlChanged(item.m_url);
 }
 
-void MusicVideoPlayWidget::freshButtonClicked()
+void MusicVideoPlayWidget::popupButtonClicked()
 {
-    const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType);
-    Q_EMIT freshButtonClicked(text == tr("Popup"));
+    Q_EMIT popupButtonClicked(!m_videoFloatWidget->isPopupMode());
 }
 
 void MusicVideoPlayWidget::fullscreenButtonClicked()
 {
-    if(m_videoFloatWidget->getText(MusicVideoFloatWidget::FreshType) == tr("Popup"))
+    if(!m_videoFloatWidget->isPopupMode())
     {
         return;
     }
 
-    const QString &text = m_videoFloatWidget->getText(MusicVideoFloatWidget::FullscreenType) == tr("Normal") ? tr("Fullscreen") : tr("Normal");
-    m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + text);
-    Q_EMIT fullscreenButtonClicked(text == tr("Normal"));
+    const bool full = !m_videoFloatWidget->isFullscreenMode();
+    m_videoFloatWidget->fullscreenMode(full);
+    Q_EMIT fullscreenButtonClicked(full);
 }
 
 void MusicVideoPlayWidget::downloadButtonClicked()

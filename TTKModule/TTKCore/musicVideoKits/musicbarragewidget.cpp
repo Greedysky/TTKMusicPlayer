@@ -8,8 +8,8 @@ MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)
     initialize();
 }
 
-MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent)
-    : QPropertyAnimation(target, propertyName, parent)
+MusicBarrageAnimation::MusicBarrageAnimation(QObject *target, const QByteArray &name, QObject *parent)
+    : QPropertyAnimation(target, name, parent)
 {
     initialize();
 }
@@ -24,9 +24,9 @@ void MusicBarrageAnimation::animationFinished()
 void MusicBarrageAnimation::setSize(const QSize &size)
 {
     m_parentSize = size;
-    const int randHeight = MusicTime::random(size.height());
-    setStartValue(QPoint(0, randHeight));
-    setEndValue(QPoint(size.width(), randHeight));
+    const int height = MusicTime::random(size.height());
+    setStartValue(QPoint(0, height));
+    setEndValue(QPoint(size.width(), height));
 }
 
 void MusicBarrageAnimation::initialize()
