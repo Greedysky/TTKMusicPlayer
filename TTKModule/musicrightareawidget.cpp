@@ -361,26 +361,28 @@ void MusicRightAreaWidget::functionClicked(int index)
     m_funcIndex = TTKStatic_cast(MusicFunction, index);
     functionParameterInit();
 
+    if(0 <= index && index < LrcWidget)
+    {
+        m_ui->stackedWidgetFunctionOption->musicButtonStyle(index);
+    }
+
     switch(m_funcIndex)
     {
         case KugGouSongWidget: //insert kugou song widget
             {
                 createkWindow(QKugouWindow::KuGouSong);
-                m_ui->stackedWidgetFunctionOption->musicButtonStyle(0);
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
         case KugGouRadioWidget: //insert kugou radio widget
             {
                 createkWindow(QKugouWindow::KuGouRadio);
-                m_ui->stackedWidgetFunctionOption->musicButtonStyle(1);
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
         case kugouListWidget: //insert kugou list widget
             {
                 createkWindow(QKugouWindow::KuGouList);
-                m_ui->stackedWidgetFunctionOption->musicButtonStyle(2);
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
@@ -399,20 +401,17 @@ void MusicRightAreaWidget::functionClicked(int index)
                 m_stackedFuncWidget = widget;
                 m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
                 m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
-                m_ui->stackedWidgetFunctionOption->musicButtonStyle(3);
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
         case kugouLiveWidget: //insert kugou live widget
             {
                 createkWindow(QKugouWindow::KugouMovie);
-                m_ui->stackedWidgetFunctionOption->musicButtonStyle(4);
                 Q_EMIT updateBackgroundTheme();
                 break;
             }
         case LrcWidget: //insert lrc display widget
             {
-                m_ui->stackedWidgetFunctionOption->musicButtonStyle(5);
                 m_ui->functionsContainer->setCurrentIndex(1);
                 m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLrcCollapse);
                 m_ui->lrcDisplayAllButton->setVisible(true);
@@ -572,6 +571,7 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
+
     if(m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1)
     {
         functionClicked(MusicRightAreaWidget::LrcWidget);
@@ -799,7 +799,9 @@ void MusicRightAreaWidget::musicVideoClosed()
 {
     delete m_videoPlayerWidget;
     m_videoPlayerWidget = nullptr;
-    functionClicked(MusicRightAreaWidget::VideoWidget);
+
+    functionClicked(MusicRightAreaWidget::KugGouSongWidget);
+    m_ui->stackedWidgetFunctionOption->switchToSelectedItemStyle(MusicRightAreaWidget::KugGouSongWidget);
 }
 
 void MusicRightAreaWidget::musicVideoFullscreen(bool full)
