@@ -64,7 +64,7 @@ bool SoundCore::play(const QString &source, bool queue, qint64 offset)
         m_sources.removeAll(s);
         s->deleteLater();
         if(m_handler->state() == Qmmp::Stopped || m_handler->state() == Qmmp::Buffering)
-                m_handler->dispatch(Qmmp::NormalError);
+            m_handler->dispatch(Qmmp::NormalError);
         return false;
     }
     if(m_handler->state() == Qmmp::Stopped)
@@ -298,6 +298,8 @@ void SoundCore::startNextEngine()
     {
         if(m_sources.isEmpty())
             m_nextState = NO_ENGINE;
+        else if(!m_sources.first()->isReady() && state() == Qmmp::Stopped)
+            m_handler->dispatch(Qmmp::Buffering);
         break;
     }
     case ANOTHER_ENGINE:
@@ -351,7 +353,5 @@ bool SoundCore::event(QEvent *e)
         emit nextTrackRequest();
     else if(e->type() == EVENT_FINISHED)
         emit finished();
-    else
-        return QObject::event(e);
-    return true;
+    return QObject::event(e);
 }
