@@ -44,11 +44,11 @@ Q_SIGNALS:
     /*!
      * Widget double clicked.
      */
-    void setFullScreen();
+    void fullScreenMode();
     /*!
-     * Widget clicked.
+     * Widget time to play.
      */
-    void setClick();
+    void timeToPlay();
 
 protected:
     /*!
@@ -99,6 +99,14 @@ Q_SIGNALS:
      * Search button clicked.
      */
     void searchButtonClicked();
+    /*!
+     * Popup button clicked.
+     */
+    void popupButtonClicked();
+    /*!
+     * Fullscreen button clicked.
+     */
+    void fullscreenButtonClicked();
     /*!
      * Download button clicked.
      */
@@ -152,6 +160,11 @@ private Q_SLOTS:
      * Open barrage on or not.
      */
     void pushBarrageChanged(bool on);
+
+    /*!
+     * Fullscreen action trigger.
+     */
+    void fullscreenButtonTrigger();
 
 protected:
     /*!

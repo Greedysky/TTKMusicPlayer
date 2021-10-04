@@ -118,6 +118,8 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     connect(m_videoFloatWidget, SIGNAL(shareButtonClicked()), SLOT(shareButtonClicked()));
 
     connect(m_videoView, SIGNAL(searchButtonClicked()), SLOT(switchToSearchTable()));
+    connect(m_videoView, SIGNAL(popupButtonClicked()), SLOT(popupButtonClicked()));
+    connect(m_videoView, SIGNAL(fullscreenButtonClicked()), SLOT(fullscreenButtonClicked()));
     connect(m_videoView, SIGNAL(downloadButtonClicked()), SLOT(downloadButtonClicked()));
     connect(m_videoView, SIGNAL(shareButtonClicked()), SLOT(shareButtonClicked()));
 }
@@ -135,7 +137,7 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_stackedWidget;
 }
 
-void MusicVideoPlayWidget::popup(bool popup)
+void MusicVideoPlayWidget::popupMode(bool popup)
 {
     m_videoFloatWidget->popupMode(popup);
     blockMoveOption(!popup);
@@ -160,7 +162,7 @@ void MusicVideoPlayWidget::popup(bool popup)
     }
 }
 
-bool MusicVideoPlayWidget::isPopup() const
+bool MusicVideoPlayWidget::isPopupMode() const
 {
     return !m_moveOption;
 }
@@ -174,7 +176,7 @@ void MusicVideoPlayWidget::resizeWindow()
     {
         resizeWindow(w - WINDOW_WIDTH_MIN, h - WINDOW_HEIGHT_MIN);
 #ifdef Q_OS_UNIX
-        if(isPopup())
+        if(isPopupMode())
         {
             resizeWindow(width() - 680, height() - 508);
         }

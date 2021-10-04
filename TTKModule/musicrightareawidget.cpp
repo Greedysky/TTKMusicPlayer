@@ -321,7 +321,7 @@ void MusicRightAreaWidget::resizeWindow()
         TTKObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget)->resizeWindow();
     }
 
-    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
+    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopupMode())
     {
         m_videoPlayerWidget->resizeWindow();
     }
@@ -392,7 +392,7 @@ void MusicRightAreaWidget::functionClicked(int index)
                     connect(m_videoPlayerWidget, SIGNAL(popupButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
                     connect(m_videoPlayerWidget, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
                 }
-                m_videoPlayerWidget->popup(false);
+                m_videoPlayerWidget->popupMode(false);
 
                 QWidget *widget = new QWidget(this);
                 widget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle17);
@@ -616,7 +616,7 @@ void MusicRightAreaWidget::musicMovieSearchFound()
 
 void MusicRightAreaWidget::musicMovieSearchRadioFound()
 {
-    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopup())
+    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopupMode())
     {
         m_videoPlayerWidget->raise();
     }
@@ -750,7 +750,7 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name, const QString &id)
 {
-    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopup())
+    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopupMode())
     {
         m_videoPlayerWidget->raise();
     }
@@ -769,7 +769,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         return;
     }
 
-    m_videoPlayerWidget->popup(popup);
+    m_videoPlayerWidget->popupMode(popup);
     if(popup)
     {
         m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
@@ -799,7 +799,7 @@ void MusicRightAreaWidget::musicVideoClosed()
 {
     delete m_videoPlayerWidget;
     m_videoPlayerWidget = nullptr;
-    functionClicked(MusicRightAreaWidget::LrcWidget);
+    functionClicked(MusicRightAreaWidget::VideoWidget);
 }
 
 void MusicRightAreaWidget::musicVideoFullscreen(bool full)

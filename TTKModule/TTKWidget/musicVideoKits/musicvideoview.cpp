@@ -14,7 +14,7 @@ MusicViewWidget::MusicViewWidget(QWidget *parent)
     m_clickedTimer->setSingleShot(true);
     m_leftPressed = false;
 
-    connect(m_clickedTimer, SIGNAL(timeout()), SIGNAL(setClick()));
+    connect(m_clickedTimer, SIGNAL(timeout()), SIGNAL(timeToPlay()));
 }
 
 MusicViewWidget::~MusicViewWidget()
@@ -54,7 +54,7 @@ void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
         {
             m_clickedTimer->stop();
         }
-        Q_EMIT setFullScreen();
+        Q_EMIT fullScreenMode();
     }
 }
 
@@ -75,8 +75,8 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     m_videoWidget = new MusicViewWidget(this);
     m_barrageCore = new MusicBarrageWidget(this);
 
-    connect(m_videoWidget, SIGNAL(setClick()), SLOT(play()));
-    connect(m_videoWidget, SIGNAL(setFullScreen()), parent, SLOT(fullscreenButtonClicked()));
+    connect(m_videoWidget, SIGNAL(timeToPlay()), SLOT(play()));
+    connect(m_videoWidget, SIGNAL(fullScreenMode()), this, SIGNAL(fullscreenButtonClicked()));
 
     m_videoControl = new MusicVideoControlWidget(this);
     connect(m_videoControl, SIGNAL(mediaUrlChanged(QString)), parent, SLOT(mediaUrlChanged(QString)));
@@ -127,9 +127,11 @@ void MusicVideoView::createRightMenu()
     menu.addAction(QString(), this, SLOT(play()))->setText(m_mediaPlayer->isPlaying() ? tr("Video Pause") : tr("Video Play"));
     menu.addAction(tr("Video Stop"), this, SLOT(stop()));
     menu.addSeparator();
-    menu.addAction(tr(" Search"), this, SIGNAL(searchButtonClicked()));
-    menu.addAction(tr(" Download"), this, SIGNAL(downloadButtonClicked()));
-    menu.addAction(tr(" Share"), this, SIGNAL(shareButtonClicked()));
+    menu.addAction(tr("Search"), this, SIGNAL(searchButtonClicked()));
+    menu.addAction(tr("Popup"), this, SIGNAL(popupButtonClicked()));
+    menu.addAction(tr("Fullscreen"), this, SLOT(fullscreenButtonTrigger()));
+    menu.addAction(tr("Download"), this, SIGNAL(downloadButtonClicked()));
+    menu.addAction(tr("Share"), this, SIGNAL(shareButtonClicked()));
     MusicUtils::Widget::adjustMenuPosition(&menu);
 
     menu.exec(QCursor::pos());
@@ -201,4 +203,9 @@ void MusicVideoView::addBarrageChanged(const MusicBarrageRecord &record)
 void MusicVideoView::pushBarrageChanged(bool on)
 {
     m_barrageCore->barrageStateChanged(on);
+}
+
+void MusicVideoView::fullscreenButtonTrigger()
+{
+    QTimer::singleShot(MT_MS * 100, this, SIGNAL(fullscreenButtonClicked()));
 }

@@ -48,11 +48,11 @@ public:
     /*!
      * Set the window is popup or not.
      */
-    void popup(bool popup);
+    void popupMode(bool popup);
     /*!
      * Get the window is popup or not.
      */
-    bool isPopup() const;
+    bool isPopupMode() const;
     /*!
      * Resize window bound by widget resize called.
      */

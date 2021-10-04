@@ -7074,7 +7074,7 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoplaywidget.cpp" line="231"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoplaywidget.cpp" line="233"/>
         <source>Back</source>
         <translation>返回</translation>
     </message>
@@ -7129,21 +7129,31 @@ Copyright© 2015-2021 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="130"/>
-        <source> Search</source>
+        <source>Search</source>
         <translation>搜索視頻</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="131"/>
-        <source> Download</source>
-        <translation>下載視頻</translation>
+        <source>Popup</source>
+        <translation>彈出模式</translation>
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="132"/>
-        <source> Share</source>
+        <source>Fullscreen</source>
+        <translation>全屏顯示</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="133"/>
+        <source>Download</source>
+        <translation>下載視頻</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="134"/>
+        <source>Share</source>
         <translation>分享視頻</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="192"/>
+        <location filename="../TTKModule/TTKWidget/musicVideoKits/musicvideoview.cpp" line="194"/>
         <source>Audio play time out!</source>
         <translation>連接超時，請重試！</translation>
     </message>

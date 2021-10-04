@@ -55,8 +55,8 @@ void MusicWYQueryMovieRequest::startToSingleSearch(const QString &text)
 {
     TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
-    m_queryText = text.trimmed();
     deleteAll();
+    m_queryText = text.trimmed();
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
