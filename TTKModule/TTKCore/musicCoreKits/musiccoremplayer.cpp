@@ -70,7 +70,7 @@ void MusicCoreMPlayer::closeModule()
 void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 {
     QStringList arguments;
-    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-wid";
+    arguments << "-cache" << "5000" << "-softvol" << "-slave" << "-quiet" << "-zoom" << "-wid";
     arguments << QString::number(winId);
 #ifdef Q_OS_WIN
     arguments << "-vo" << "direct3d" << data;
@@ -81,7 +81,6 @@ void MusicCoreMPlayer::setVideoMedia(const QString &data, int winId)
 
     m_process->setProcessChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(durationRecieve()));
-    m_process->write("get_time_length\n");
     m_process->start(MAKE_PLAYER_FULL, arguments);
 }
 
@@ -205,12 +204,12 @@ void MusicCoreMPlayer::durationRecieve()
 {
     while(m_process->canReadLine())
     {
-        QByteArray data = m_process->readLine();
-        if(data.startsWith("ANS_LENGTH"))
+        QString message(m_process->readLine());
+        if(message.startsWith("ANS_LENGTH"))
         {
-            data.replace(QByteArray("\r\n"), QByteArray(""));
+            message.replace("\r\n", "");
             disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(durationRecieve()));
-            Q_EMIT durationChanged(QString(data).mid(11).toFloat());
+            Q_EMIT durationChanged(message.mid(11).toFloat());
             return;
         }
     }
@@ -232,11 +231,11 @@ void MusicCoreMPlayer::positionRecieve()
     m_timer.start();
     while(m_process->canReadLine())
     {
-        QByteArray data = m_process->readLine();
-        if(data.startsWith("ANS_TIME_POSITION"))
+        QString message(m_process->readLine());
+        if(message.startsWith("ANS_TIME_POSITION"))
         {
-            data.replace(QByteArray("\r\n"), QByteArray(""));
-            Q_EMIT positionChanged(QString(data).mid(18).toFloat());
+            message.replace("\r\n", "");
+            Q_EMIT positionChanged(message.mid(18).toFloat());
         }
     }
 }
@@ -248,13 +247,13 @@ void MusicCoreMPlayer::musicStandardRecieve()
         QString message(m_process->readLine());
         if(message.startsWith("ANS_LENGTH"))
         {
-            message.replace(QByteArray("\r\n"), QByteArray(""));
-            Q_EMIT durationChanged(QString(message).mid(11).toFloat());
+            message.replace("\r\n", "");
+            Q_EMIT durationChanged(message.mid(11).toFloat());
         }
         if(message.startsWith("ANS_TIME_POSITION"))
         {
-            message.replace(QByteArray("\r\n"), QByteArray(""));
-            Q_EMIT positionChanged(QString(message).mid(18).toFloat());
+            message.replace("\r\n", "");
+            Q_EMIT positionChanged(message.mid(18).toFloat());
         }
     }
 }

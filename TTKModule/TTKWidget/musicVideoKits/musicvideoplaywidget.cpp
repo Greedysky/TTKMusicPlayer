@@ -195,6 +195,7 @@ void MusicVideoPlayWidget::resizeWindow(bool resize)
         showNormal();
         setGeometry(250, 150, WINDOW_WIDTH, WINDOW_HEIGHT);
     }
+
     QSize s = size();
 #ifdef Q_OS_UNIX
     const QRect &rect = TTKDesktopWrapper::screenGeometry();

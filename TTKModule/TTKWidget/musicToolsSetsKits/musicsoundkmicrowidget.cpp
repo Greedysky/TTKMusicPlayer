@@ -87,12 +87,12 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     connect(m_ui->winTipsButton, SIGNAL(clicked()), SLOT(tipsButtonChanged()));
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playButtonChanged()));
-    connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(playFinished()));
-    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_ui->timeSlider, SIGNAL(sliderReleasedAt(int)), SLOT(setPosition(int)));
     connect(m_ui->volumeButton, SIGNAL(musicVolumeChanged(int)), SLOT(volumeChanged(int)));
     connect(m_ui->recordButton, SIGNAL(clicked()), SLOT(recordButtonClicked()));
+    connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(playFinished()));
+    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
 }
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
