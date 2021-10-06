@@ -174,12 +174,11 @@ void MusicVideoPlayWidget::resizeWindow()
 
     if(!isFullScreen())
     {
-        resizeWindow(w - WINDOW_WIDTH_MIN, h - WINDOW_HEIGHT_MIN);
 #ifdef Q_OS_UNIX
-        if(isPopupMode())
-        {
-            resizeWindow(width() - 680, height() - 508);
-        }
+        const bool v = isPopupMode();
+        resizeWindow(v ? (width() - 680) : (w - WINDOW_WIDTH_MIN), v ? (height() - 508) : (h - WINDOW_HEIGHT_MIN));
+#else
+        resizeWindow(w - WINDOW_WIDTH_MIN, h - WINDOW_HEIGHT_MIN);
 #endif
     }
 }

@@ -99,17 +99,9 @@ Q_SIGNALS:
      */
     void durationChanged(qint64 duration);
     /*!
-     * Current volume changed.
-     */
-    void volumeChanged(int volume);
-    /*!
      * Current media data path changed.
      */
     void mediaChanged(const QString &data);
-    /*!
-     * Current state changed.
-     */
-    void stateChanged(MusicObject::PlayState state);
     /*!
      * Current media is finished.
      */
@@ -117,7 +109,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Player to play.
+     * Player to play or pause.
      */
     void play();
     /*!

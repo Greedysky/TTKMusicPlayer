@@ -75,7 +75,7 @@ int MusicPlatformManager::getLocalIEVersion() const
 }
 #endif
 
-QSize generateDPIValue()
+static QSize generateDPIValue()
 {
     const QSize defaultSize(DEFAULT_DPI, DEFAULT_DPI);
 #ifdef Q_OS_WIN
@@ -143,11 +143,11 @@ MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() con
 
     if(major == 6 && minor == 3)	//win 8.1
     {
-        return Windows_8_1;
+        return System_Win8_1;
     }
     if(major == 10 && minor == 0)	//win 10
     {
-        return Windows_10;
+        return System_Win10;
     }
 
     SYSTEM_INFO info;
@@ -165,38 +165,38 @@ MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() con
             case 0:
                 if(os.dwPlatformId == VER_PLATFORM_WIN32_NT)
                 {
-                    return Windows_NT_4_0;
+                    return System_WinNT_4_0;
                 }
                 else if(os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
                 {
-                    return Windows_95;
+                    return System_Win95;
                 }
                 break;
             case 10:
-                return Windows_98;
+                return System_Win98;
             case 90:
-                return Windows_Me;
+                return System_WinMe;
             }
             break;
         case 5:
             switch(os.dwMinorVersion)
             {
             case 0:
-                return Windows_2000;
+                return System_Win2000;
             case 1:
-                return Windows_XP;
+                return System_WinXP;
             case 2:
                 if(os.wProductType == VER_NT_WORKSTATION && info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
                 {
-                    return Windows_XP_Professional_x64_Edition;
+                    return System_WinXP_Professional_x64_Edition;
                 }
                 else if(GetSystemMetrics(SM_SERVERR2) == 0)
                 {
-                    return Windows_Server_2003;
+                    return System_WinServer_2003;
                 }
                 else if(GetSystemMetrics(SM_SERVERR2) != 0)
                 {
-                    return Windows_Server_2003_R2;
+                    return System_WinServer_2003_R2;
                 }
             }
             break;
@@ -204,23 +204,23 @@ MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() con
             switch(os.dwMinorVersion)
             {
             case 0:
-                return os.wProductType == VER_NT_WORKSTATION ? Windows_Vista : Windows_Server_2008;
+                return os.wProductType == VER_NT_WORKSTATION ? System_WinVista : System_WinServer_2008;
             case 1:
-                return os.wProductType == VER_NT_WORKSTATION ? Windows_7 : Windows_Server_2008_R2;
+                return os.wProductType == VER_NT_WORKSTATION ? System_Win7 : System_WinServer_2008_R2;
             case 2:
-                return os.wProductType == VER_NT_WORKSTATION ? Windows_8 : Windows_Server_2012;
+                return os.wProductType == VER_NT_WORKSTATION ? System_Win8 : System_WinServer_2012;
             }
             break;
-        default: return Windows_Unkown;
+        default: return System_WinUnkown;
         }
     }
     FreeLibrary(instance);
 #elif defined Q_OS_UNIX
-    return Windows_Unix;
+    return System_Unix;
 #else
-    return Windows_Mac;
+    return System_Mac;
 #endif
-    return Windows_Unkown;
+    return System_Unkown;
 }
 
 void MusicPlatformManager::setFileLink(const QString &src, const QString &des, const QString &ico, const QString &args, const QString &description)

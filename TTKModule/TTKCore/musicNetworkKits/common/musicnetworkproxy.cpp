@@ -4,7 +4,7 @@
 #include <QNetworkProxy>
 
 MusicNetworkProxy::MusicNetworkProxy(QObject *parent)
-    : QObject(parent), m_testSocket(nullptr)
+    : QObject(parent), m_socket(nullptr)
 {
     m_port = -1;
     m_type = 2; ///no proxy
@@ -12,7 +12,7 @@ MusicNetworkProxy::MusicNetworkProxy(QObject *parent)
 
 MusicNetworkProxy::~MusicNetworkProxy()
 {
-    delete m_testSocket;
+    delete m_socket;
 }
 
 void MusicNetworkProxy::setHostName(const QString &name)
@@ -67,14 +67,14 @@ QString MusicNetworkProxy::password() const
 
 void MusicNetworkProxy::testProxy()
 {
-    if(!m_testSocket)
+    if(!m_socket)
     {
-        m_testSocket = new QTcpSocket(this);
-        connect(m_testSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)),
-                              SLOT(testProxyChanged(QAbstractSocket::SocketState)));
+        m_socket = new QTcpSocket(this);
+        connect(m_socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), SLOT(testProxyChanged(QAbstractSocket::SocketState)));
     }
-    m_testSocket->abort();
-    m_testSocket->connectToHost(m_hostName, m_port);
+
+    m_socket->abort();
+    m_socket->connectToHost(m_hostName, m_port);
 }
 
 void MusicNetworkProxy::applyProxy()
@@ -109,6 +109,7 @@ void MusicNetworkProxy::testProxyChanged(QAbstractSocket::SocketState state)
     {
         Q_EMIT testProxyStateChanged(false);
     }
+
     if(state == QAbstractSocket::ConnectedState)
     {
         Q_EMIT testProxyStateChanged(true);

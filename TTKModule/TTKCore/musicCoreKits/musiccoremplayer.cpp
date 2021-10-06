@@ -151,7 +151,6 @@ void MusicCoreMPlayer::setVolume(int value)
         return;
     }
 
-    Q_EMIT volumeChanged(value);
     m_process->write(QString("volume %1 1\n").arg(value).toUtf8());
 }
 
@@ -182,8 +181,6 @@ void MusicCoreMPlayer::play()
         m_playState = MusicObject::PS_PausedState;
         disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
     }
-
-    Q_EMIT stateChanged(m_playState);
 }
 
 void MusicCoreMPlayer::stop()

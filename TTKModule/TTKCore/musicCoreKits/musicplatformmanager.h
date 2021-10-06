@@ -31,26 +31,26 @@ class TTK_MODULE_EXPORT MusicPlatformManager
 public:
     enum SystemType
     {
-        Windows_10,
-        Windows_8_1,
-        Windows_8,
-        Windows_7,
-        Windows_Vista,
-        Windows_XP,
-        Windows_XP_Professional_x64_Edition,
-        Windows_2000,
-        Windows_NT_4_0,
-        Windows_95,
-        Windows_98,
-        Windows_Me,
-        Windows_Server_2003,
-        Windows_Server_2003_R2,
-        Windows_Server_2008,
-        Windows_Server_2008_R2,
-        Windows_Server_2012,
-        Windows_Unix,
-        Windows_Mac,
-        Windows_Unkown
+        System_Win10,
+        System_Win8_1,
+        System_Win8,
+        System_Win7,
+        System_WinVista,
+        System_WinXP,
+        System_WinXP_Professional_x64_Edition,
+        System_Win2000,
+        System_WinNT_4_0,
+        System_Win95,
+        System_Win98,
+        System_WinMe,
+        System_WinServer_2003,
+        System_WinServer_2003_R2,
+        System_WinServer_2008,
+        System_WinServer_2008_R2,
+        System_WinServer_2012,
+        System_Unix,
+        System_Mac,
+        System_Unkown
     };
 
 #ifdef Q_OS_WIN

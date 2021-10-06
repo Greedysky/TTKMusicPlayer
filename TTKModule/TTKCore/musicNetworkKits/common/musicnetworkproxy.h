@@ -105,7 +105,7 @@ private Q_SLOTS:
 protected:
     int m_port, m_type;
     QString m_hostName, m_user, m_pwd;
-    QTcpSocket *m_testSocket;
+    QTcpSocket *m_socket;
 
 };
 
