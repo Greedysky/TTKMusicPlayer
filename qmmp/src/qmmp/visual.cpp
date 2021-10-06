@@ -264,29 +264,31 @@ void Visual::changeFullScreen(bool state)
 
 void Visual::checkFactories()
 {
-    if(!m_factories)
+    if(m_factories)
     {
-        m_factories = new QList<VisualFactory *>;
-        m_files = new QHash<const VisualFactory*, QString>;
+        return;
+    }
 
-        for(const QString &filePath : Qmmp::findPlugins("Visual"))
+    m_factories = new QList<VisualFactory *>;
+    m_files = new QHash<const VisualFactory*, QString>;
+
+    for(const QString &filePath : Qmmp::findPlugins("Visual"))
+    {
+        QPluginLoader loader(filePath);
+        QObject *plugin = loader.instance();
+        if(loader.isLoaded())
+            qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
+        else
+            qWarning("Visual: %s", qPrintable(loader.errorString()));
+
+        VisualFactory *factory = nullptr;
+        if(plugin)
+            factory = qobject_cast<VisualFactory *>(plugin);
+
+        if(factory)
         {
-            QPluginLoader loader(filePath);
-            QObject *plugin = loader.instance();
-            if(loader.isLoaded())
-                qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
-            else
-                qWarning("Visual: %s", qPrintable(loader.errorString()));
-
-            VisualFactory *factory = nullptr;
-            if(plugin)
-                factory = qobject_cast<VisualFactory *>(plugin);
-
-            if(factory)
-            {
-                m_factories->append(factory);
-                m_files->insert(factory, filePath);
-            }
+            m_factories->append(factory);
+            m_files->insert(factory, filePath);
         }
     }
 }
