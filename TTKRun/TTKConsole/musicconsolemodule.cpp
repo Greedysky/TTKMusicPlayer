@@ -55,7 +55,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     connect(G_HOTKEY_PTR->getHotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
     connect(G_HOTKEY_PTR->getHotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
     connect(G_HOTKEY_PTR->getHotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
-    connect(G_HOTKEY_PTR->getHotKey(9), SIGNAL(activated()), SLOT(musicPlayItemOnce()));
+    connect(G_HOTKEY_PTR->getHotKey(9), SIGNAL(activated()), SLOT(musicPlayOnce()));
 
     connect(G_HOTKEY_PTR->getHotKey(10), SIGNAL(activated()), SLOT(musicEnhancedOff()));
     connect(G_HOTKEY_PTR->getHotKey(11), SIGNAL(activated()), SLOT(musicEnhanced3D()));
@@ -317,7 +317,7 @@ void MusicConsoleModule::musicPlayOneLoop()
     m_playbackMode = "OneLoop";
 }
 
-void MusicConsoleModule::musicPlayItemOnce()
+void MusicConsoleModule::musicPlayOnce()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOnce);
     m_playbackMode = "Once";

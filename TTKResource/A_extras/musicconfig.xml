@@ -3,7 +3,7 @@
     <musicSetting>
         <playMode value="1"/>
         <playVolume value="100"/>
-        <lastPlayIndex value="1">-1,-1</lastPlayIndex>
+        <lastPlayIndex value="1,-1,-1"/>
     </musicSetting>
     <plusSetting>
         <geometry value="242,84,1000,665"/>

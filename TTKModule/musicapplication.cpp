@@ -76,7 +76,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(stateChanged()));
-    connect(m_musicPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
+    connect(m_musicPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong()));
 
     connect(m_ui->musicDesktopLrc, SIGNAL(clicked(bool)), m_rightAreaWidget, SLOT(setDestopLrcVisible(bool)));
 
@@ -177,9 +177,9 @@ void MusicApplication::radioExecuteOuter(const QString &path)
     m_leftAreaWidget->radioExecuteOuter(path);
 }
 
-void MusicApplication::musicImportSongsPathOuter(const QStringList &path, bool play)
+void MusicApplication::musicImportSongsPathOuter(const QStringList &files, bool play)
 {
-    musicImportSongsPath(path);
+    musicImportSongsPath(files);
 
     if(play)
     {
@@ -187,14 +187,14 @@ void MusicApplication::musicImportSongsPathOuter(const QStringList &path, bool p
     }
 }
 
-void MusicApplication::musicImportSongsPath(const QStringList &items)
+void MusicApplication::musicImportSongsPath(const QStringList &files)
 {
-    if(items.isEmpty())
+    if(files.isEmpty())
     {
         return;
     }
 
-    m_musicSongTreeWidget->importMusicSongsByPath(items);
+    m_musicSongTreeWidget->importMusicSongsByPath(files);
 }
 
 QString MusicApplication::musicDownloadContains(bool &contains) const
@@ -308,11 +308,11 @@ void MusicApplication::stateChanged()
     m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
 }
 
-void MusicApplication::showCurrentSong(int index)
+void MusicApplication::showCurrentSong()
 {
     QString name;
     const MusicPlayItem &item = m_musicPlaylist->currentItem();
-    index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
+    const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
     m_currentMusicSongTreeIndex = item.m_toolIndex;
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(item.m_toolIndex);
 
@@ -460,7 +460,7 @@ void MusicApplication::musicPlayOneLoop()
     m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOneLoop);
 }
 
-void MusicApplication::musicPlayItemOnce()
+void MusicApplication::musicPlayOnce()
 {
     m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOnce);
     m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOnce);
@@ -513,16 +513,16 @@ void MusicApplication::musicImportSongsOnlyDir()
     const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
     if(!path.isEmpty())
     {
-        QStringList fileList;
+        QStringList files;
         for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, true))
         {
             if(MusicFormats::supportMusicFormats().contains(info.suffix().toLower()))
             {
-               fileList << info.absoluteFilePath();
+               files << info.absoluteFilePath();
             }
         }
 
-        musicImportSongsPath(fileList);
+        musicImportSongsPath(files);
     }
 }
 
@@ -744,7 +744,7 @@ void MusicApplication::musicCreateRightMenu()
     actions << musicPlaybackMode.addAction(tr("Random Play"), this, SLOT(musicPlayRandom()));
     actions << musicPlaybackMode.addAction(tr("List Cycle"), this, SLOT(musicPlaylistLoop()));
     actions << musicPlaybackMode.addAction(tr("Single Cycle"), this, SLOT(musicPlayOneLoop()));
-    actions << musicPlaybackMode.addAction(tr("Play Once"), this, SLOT(musicPlayItemOnce()));
+    actions << musicPlaybackMode.addAction(tr("Play Once"), this, SLOT(musicPlayOnce()));
 
     int index = DEFAULT_LOWER_LEVEL;
     switch(mode)
@@ -1010,14 +1010,14 @@ void MusicApplication::dropEvent(QDropEvent *event)
 {
     MusicAbstractMoveResizeWidget::dropEvent(event);
     const QMimeData *data = event->mimeData();
-    QStringList fileList;
+    QStringList files;
 
     for(const QUrl &url : data->urls())
     {
-        fileList << url.toLocalFile();
+        files << url.toLocalFile();
     }
 
-    musicImportSongsPath(fileList);
+    musicImportSongsPath(files);
 }
 
 void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
@@ -1110,7 +1110,7 @@ void MusicApplication::readSystemConfigFromFile()
         case MusicObject::PM_PlayOneLoop:
             musicPlayOneLoop();break;
         case MusicObject::PM_PlayOnce:
-            musicPlayItemOnce();break;
+            musicPlayOnce();break;
         default:break;
     }
     //
@@ -1165,21 +1165,19 @@ void MusicApplication::readSystemConfigFromFile()
                                          G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt());
 
     //Configuration from next time also stopped at the last record.
-    QStringList keyList;
-    xml.readSystemLastPlayIndexConfig(keyList);
-    G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, keyList);
+    const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     //add new music file to playlist
-    value = keyList[1].toInt();
+    value = lastPlayIndex[1].toInt();
     m_musicPlaylist->addMedia(value, m_musicSongTreeWidget->getMusicSongsFilePath(value));
     if(DEFAULT_LOWER_LEVEL < value && value < songs.count())
     {
         m_ui->musicPlayedList->append(songs[value].m_songs);
     }
 
-    if(success && keyList[0] == "1")
+    if(success && lastPlayIndex[0] == "1")
     {
         QTimer::singleShot(MT_MS, m_musicSongTreeWidget, SLOT(setCurrentIndex()));
-        const int index = keyList[2].toInt();
+        const int index = lastPlayIndex[2].toInt();
         m_currentMusicSongTreeIndex = (index == DEFAULT_LOWER_LEVEL) ? DEFAULT_LOWER_LEVEL : value;
         m_musicPlaylist->blockSignals(true);
         m_musicPlaylist->setCurrentIndex(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->mapFilePathBySongIndex(m_currentMusicSongTreeIndex, index));
@@ -1237,7 +1235,7 @@ void MusicApplication::writeSystemConfigToFile()
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     if(lastPlayIndex.isEmpty())
     {
-        lastPlayIndex << "0" << "0" << "-1";
+        lastPlayIndex << "1" << "-1" << "-1";
     }
     else
     {

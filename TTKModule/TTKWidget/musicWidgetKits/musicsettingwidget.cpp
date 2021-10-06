@@ -540,9 +540,9 @@ void MusicSettingWidget::saveResults()
 {
     G_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, m_ui->languageComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, m_ui->autoPlayCheckBox->isChecked());
-    QStringList list = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
-    list[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, list);
+    QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
+    lastPlayIndex[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
+    G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, m_ui->quitRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
     G_NETWORK_PTR->setBlockNetWork(m_ui->closeNetWorkCheckBox->isChecked());

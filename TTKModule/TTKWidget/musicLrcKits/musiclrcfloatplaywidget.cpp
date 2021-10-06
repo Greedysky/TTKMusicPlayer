@@ -66,8 +66,7 @@ void MusicLrcFloatPlayWidget::resizeWindow(int width, int height)
 
 void MusicLrcFloatPlayWidget::musicStatePlay()
 {
-    MusicApplication *w = MusicApplication::instance();
-    w->musicStatePlay();
+    MusicApplication::instance()->musicStatePlay();
     setCurrentPlayState();
 }
 
@@ -83,6 +82,5 @@ void MusicLrcFloatPlayWidget::enterEvent(QEvent *event)
 
 void MusicLrcFloatPlayWidget::setCurrentPlayState()
 {
-    MusicApplication *w = MusicApplication::instance();
-    m_musicKey->setStyleSheet(w->isPlaying() ? MusicUIObject::MQSSBtnPause : MusicUIObject::MQSSBtnPlay);
+    m_musicKey->setStyleSheet(MusicApplication::instance()->isPlaying() ? MusicUIObject::MQSSBtnPause : MusicUIObject::MQSSBtnPlay);
 }

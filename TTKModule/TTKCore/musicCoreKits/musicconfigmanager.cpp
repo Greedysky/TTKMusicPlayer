@@ -21,6 +21,24 @@ void MusicConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("playMode").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::Volume,
                      readXmlAttributeByTagNameValue("playVolume").toInt());
+    QString value = readXmlAttributeByTagNameValue("lastPlayIndex");
+    {
+        QStringList lastPlayIndex;
+        if(value.isEmpty())
+        {
+            lastPlayIndex << "1" << "-1" << "-1";
+        }
+        else
+        {
+            lastPlayIndex << value.split(",");
+            if(lastPlayIndex.count() != 3)
+            {
+                lastPlayIndex.clear();
+                lastPlayIndex << "1" << "-1" << "-1";
+            }
+        }
+        G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
+    }
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex,
@@ -181,12 +199,12 @@ void MusicConfigManager::readSysConfigData() const
                      readXmlAttributeByTagNameValue("timeAutoShutdownRepeat").toInt());
 
 
-    QString path = readXmlAttributeByTagNameValue("downloadMusicPath");
+    value = readXmlAttributeByTagNameValue("downloadMusicPath");
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath,
-                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::String::musicPrefix() : path);
-    path = readXmlAttributeByTagNameValue("downloadLrcPath");
+                           (value.isEmpty() || !QFile::exists(value)) ? MusicUtils::String::musicPrefix() : value);
+    value = readXmlAttributeByTagNameValue("downloadLrcPath");
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcDirPath,
-                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::String::lrcPrefix() : path);
+                           (value.isEmpty() || !QFile::exists(value)) ? MusicUtils::String::lrcPrefix() : value);
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheEnable,
@@ -323,7 +341,7 @@ void MusicConfigManager::writeSysConfigData()
     writeDomElement(musicSettingDom, "configVersion", MusicXmlAttribute("value", TTKCONFIG_VERSION_STR));
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playMode));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volume));
-    writeDomElementText(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndex[0]), QString("%1,%2").arg(lastPlayIndex[1]).arg(lastPlayIndex[2]));
+    writeDomElement(musicSettingDom, "lastPlayIndex", MusicXmlAttribute("value", QString("%1,%2,%3").arg(lastPlayIndex[0]).arg(lastPlayIndex[1]).arg(lastPlayIndex[2])));
     //
     writeDomElement(plusSettingDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPosition.x()).arg(widgetPosition.y()).arg(widgetSize.width()).arg(widgetSize.height())));
     writeDomElement(plusSettingDom, "language", MusicXmlAttribute("value", languageIndex));
@@ -418,24 +436,6 @@ void MusicConfigManager::writeSysConfigData()
 
     QTextStream out(m_file);
     m_document->save(out, 4);
-}
-
-void MusicConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
-{
-    const QDomNodeList &nodeList = m_document->elementsByTagName("lastPlayIndex");
-    if(nodeList.isEmpty())
-    {
-        key << "0" << "0" << "-1";
-        return;
-    }
-
-    const QDomElement &element = nodeList.at(0).toElement();
-    key << element.attribute("value") << element.text().split(",");
-    if(key.count() != 3)
-    {
-        key.clear();
-        key << "0" << "0" << "-1";
-    }
 }
 
 QRect MusicConfigManager::readWindowGeometry() const

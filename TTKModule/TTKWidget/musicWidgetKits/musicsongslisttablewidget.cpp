@@ -728,7 +728,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     actions << musicPlaybackMode.addAction(tr("Random Play"), MusicApplication::instance(), SLOT(musicPlayRandom()));
     actions << musicPlaybackMode.addAction(tr("List Cycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
     actions << musicPlaybackMode.addAction(tr("Single Cycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
-    actions << musicPlaybackMode.addAction(tr("Play Once"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
+    actions << musicPlaybackMode.addAction(tr("Play Once"), MusicApplication::instance(), SLOT(musicPlayOnce()));
 
     const MusicObject::PlayMode mode = MusicApplication::instance()->getPlayMode();
     int index = -1;

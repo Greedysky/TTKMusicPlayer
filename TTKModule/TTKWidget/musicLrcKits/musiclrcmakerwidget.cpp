@@ -730,7 +730,7 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
         case MusicObject::PM_PlayOneLoop:
             w->musicPlayOneLoop(); break;
         case MusicObject::PM_PlayOnce:
-            w->musicPlayItemOnce(); break;
+            w->musicPlayOnce(); break;
         default: break;
     }
 }

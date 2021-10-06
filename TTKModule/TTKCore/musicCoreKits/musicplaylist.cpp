@@ -17,6 +17,7 @@ MusicObject::PlayMode MusicPlaylist::playbackMode() const
 void MusicPlaylist::setPlaybackMode(MusicObject::PlayMode mode)
 {
     m_playbackMode = mode;
+    Q_EMIT playbackModeChanged(m_playbackMode);
 }
 
 int MusicPlaylist::mapItemIndex(const MusicPlayItem &item) const
@@ -198,7 +199,7 @@ void MusicPlaylist::setCurrentIndex(int index)
                 }
                 break;
             case MusicObject::PM_PlayRandom:
-                m_currentIndex = rand() % m_mediaList.count();
+                m_currentIndex = MusicTime::random() % m_mediaList.count();
                 break;
             case MusicObject::PM_PlayOnce :
                 break;

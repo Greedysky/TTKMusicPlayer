@@ -30,6 +30,8 @@ class MusicRightAreaWidget;
 class MusicLeftAreaWidget;
 class MusicApplicationModule;
 
+class MusicApplicationMPRISPlayer;
+
 namespace Ui {
 class MusicApplication;
 }
@@ -78,12 +80,12 @@ public:
     /*!
      * Import outer music datas into container.
      */
-    void musicImportSongsPathOuter(const QStringList &path, bool play);
+    void musicImportSongsPathOuter(const QStringList &files, bool play);
 
     /*!
      * Import music datas into container.
      */
-    void musicImportSongsPath(const QStringList &path);
+    void musicImportSongsPath(const QStringList &files);
     /*!
      * Get music current song download contains.
      */
@@ -134,7 +136,7 @@ public Q_SLOTS:
     /*!
      * Show current song some information.
      */
-    void showCurrentSong(int index);
+    void showCurrentSong();
     /*!
      * Set current player to play or not.
      */
@@ -166,7 +168,7 @@ public Q_SLOTS:
     /*!
      * Set current play mdoe to just once.
      */
-    void musicPlayItemOnce();
+    void musicPlayOnce();
     /*!
      * Set current play volume to 0.
      */
@@ -340,6 +342,7 @@ private:
     MusicLeftAreaWidget *m_leftAreaWidget;
     MusicApplicationModule *m_applicationObject;
 
+    friend class MusicApplicationMPRISPlayer;
     static MusicApplication *m_instance;
 
 };

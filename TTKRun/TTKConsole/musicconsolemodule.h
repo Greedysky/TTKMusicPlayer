@@ -103,7 +103,7 @@ private Q_SLOTS:
     /*!
      * Set current play mdoe to just once.
      */
-    void musicPlayItemOnce();
+    void musicPlayOnce();
 
     /*!
      * Set current music enhanced off, no any effect.

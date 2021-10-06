@@ -567,17 +567,17 @@ void MusicSongsSummariziedWidget::musicLrcBatchDownload()
 
 void MusicSongsSummariziedWidget::setCurrentIndex()
 {
-    const QStringList &keyList = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
-    if(keyList.count() != 3)
+    const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
+    if(lastPlayIndex.count() != 3)
     {
         return;
     }
 
-    m_currentPlayToolIndex = keyList[1].toInt();
-    const int index = keyList[2].toInt();
+    m_currentPlayToolIndex = lastPlayIndex[1].toInt();
+    const int index = lastPlayIndex[2].toInt();
     MusicSongsToolBoxWidget::setCurrentIndex(index);
     setMusicPlayCount(index);
-    MusicApplication::instance()->showCurrentSong(index);
+    MusicApplication::instance()->showCurrentSong();
 }
 
 void MusicSongsSummariziedWidget::musicListSongToLovestListAt(bool oper, int row)

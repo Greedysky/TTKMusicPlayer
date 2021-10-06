@@ -38,6 +38,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CONFIG_DIR}/musicconfigdefine.h
     ${MUSIC_HEADERS}
   )
+
 set(MUSIC_SOURCES
     ${MUSIC_CONFIG_DIR}/musicconfigobject.cpp
     ${MUSIC_SOURCES}

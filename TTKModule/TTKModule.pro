@@ -22,7 +22,6 @@ include($$PWD/TTKModule.pri)
 include($$PWD/../TTKMusicPlayer.pri)
 CONFIG += plugin lib
 
-
 ##qmmp lib check
 win32{
     QMMP_DEPANDS = $$DESTDIR/TTKqmmp.dll
@@ -40,19 +39,31 @@ INCLUDEPATH += \
 
 SOURCES += \
     musicapplication.cpp \
+    musicapplicationmodule.cpp \
     musicleftareawidget.cpp \
     musictopareawidget.cpp \
     musicrightareawidget.cpp \
-    musicbottomareawidget.cpp \
-    musicapplicationmodule.cpp
+    musicbottomareawidget.cpp
 
 
 HEADERS  += \
     musicapplication.h \
+    musicapplicationmodule.h \
     musicleftareawidget.h \
     musictopareawidget.h \
     musicrightareawidget.h \
-    musicbottomareawidget.h \
-    musicapplicationmodule.h
-    
+    musicbottomareawidget.h
+
+#dbus mpris support for linux
+unix:!mac{
+    QT  += dbus
+    SOURCES += \
+        musicapplicationmpris.cpp \
+        musicapplicationmprismodule.cpp
+
+    HEADERS += \
+        musicapplicationmpris.h \
+        musicapplicationmprismodule.h
+}
+
 win32:RC_FILE = TTKCore.rc

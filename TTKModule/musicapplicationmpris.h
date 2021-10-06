@@ -1,5 +1,5 @@
-#ifndef MUSICCONFIGMANAGER_H
-#define MUSICCONFIGMANAGER_H
+#ifndef MUSICAPPLICATIONMPRIS_H
+#define MUSICAPPLICATIONMPRIS_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,45 +19,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QColor>
-#include "musicabstractxml.h"
+#include "musicglobaldefine.h"
 
-/*! @brief The class of the xml config manager.
+class MusicApplicationMPRISRoot;
+class MusicApplicationMPRISPlayer;
+
+/*! @brief The class of the app mpris main widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicApplicationMPRIS : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicConfigManager)
+    TTK_DECLARE_MODULE(MusicApplicationMPRIS)
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicConfigManager(QObject *parent = nullptr);
+    MusicApplicationMPRIS(QObject *parent = nullptr);
+    ~MusicApplicationMPRIS();
 
     /*!
-     * Read config datas from xml file by given name.
+     * Run.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(COFIGPATH_FULL); }
+    void run();
 
-    /*!
-     * Read datas from config file.
-     */
-    void readSysConfigData() const;
-    /*!
-     * Write datas into config file.
-     */
-    void writeSysConfigData();
-
-    /*!
-     * Read window widget Geometry Config.
-     */
-    QRect readWindowGeometry() const;
-    /*!
-     * Read Show Desktop Lrc Geometry Config.
-     */
-    QPoint readShowDLrcGeometry() const;
+private:
+    MusicApplicationMPRISRoot *m_root;
+    MusicApplicationMPRISPlayer *m_player;
 
 };
 
-#endif // MUSICCONFIGMANAGER_H
+#endif // MUSICAPPLICATIONMPRIS_H

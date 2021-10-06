@@ -9,13 +9,13 @@ execpath="$PWD/../TTKMusicPlayer"
 echo -n "[Desktop Entry]
 Type=Application
 Version=2.15.3.0
-Name=天天酷音
+Name=TTKMusicPlayer
 Comment=天天酷音
 Icon=$iconpath
 Exec=$execpath
 Terminal=false
 Categories=Development;
-Name[zh_CN]=TTKMusicPlayer\n" > $packpath
+Name[zh_CN]=天天酷音\n" > $packpath
 
 cp -rv $packpath $userpath
 chmod +x $userpath

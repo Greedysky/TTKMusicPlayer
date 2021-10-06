@@ -3,6 +3,9 @@
 #include "musicconfigobject.h"
 #include "musicplatformmanager.h"
 #include "ttkdumper.h"
+#ifdef Q_OS_UNIX
+#include "musicapplicationmpris.h"
+#endif
 
 #include <QTranslator>
 #include <QApplication>
@@ -73,15 +76,22 @@ int main(int argc, char *argv[])
         {
             w.musicImportSongsPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), true);
         }
+
         if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_LIST)
         {
             w.musicImportSongsPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), false);
         }
+
         if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_RADIO)
         {
             w.radioExecuteOuter(argv[3]);
         }
     }
+
+#ifdef Q_OS_UNIX
+    MusicApplicationMPRIS mpris;
+    mpris.run();
+#endif
 
     return a.exec();
 }
