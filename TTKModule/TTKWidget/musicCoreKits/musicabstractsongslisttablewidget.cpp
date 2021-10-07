@@ -219,11 +219,6 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedKMicroWidget()
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-
-    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("Add To List"));
-    addMenu->addAction(tr("Cloud"));
-    MusicUtils::Widget::adjustMenuPosition(addMenu);
-
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("Similar"), this, SLOT(musicSimilarQueryWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(musicSongSharedWidget()));
 }

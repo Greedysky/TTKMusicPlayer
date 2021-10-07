@@ -125,7 +125,6 @@ void MusicSongsToolBoxTopWidget::showMenu()
     }
     menu.addMenu(&musicSortFiles);
 
-    menu.addAction(tr("Collect All"));
     menu.addAction(tr("Export List"), this, SLOT(exportSongsItemList()));
     menu.addSeparator();
 

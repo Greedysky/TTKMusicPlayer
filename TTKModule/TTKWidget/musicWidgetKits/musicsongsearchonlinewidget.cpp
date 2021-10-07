@@ -258,7 +258,6 @@ void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 {
-//    MusicItemSearchTableWidget::actionGroupClick(action);
     const int row = currentRow();
     if(!m_networkRequest || row < 0 || (row >= rowCount() - 1))
     {
