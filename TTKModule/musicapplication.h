@@ -290,10 +290,6 @@ public Q_SLOTS:
      */
     void setPlaySongChanged(int index);
     /*!
-     * Set current song to stop in play list.
-     */
-    void setStopSongChanged();
-    /*!
      * Get current play list.
      */
     void getCurrentPlaylist(QStringList &list);
@@ -330,7 +326,7 @@ protected:
 
 private:
     Ui::MusicApplication *m_ui;
-    bool m_playControl, m_quitWindowClose;
+    bool m_quitWindowClose;
     int m_currentMusicSongTreeIndex;
 
     MusicPlayer* m_musicPlayer;

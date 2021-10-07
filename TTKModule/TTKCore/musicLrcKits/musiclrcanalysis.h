@@ -35,8 +35,8 @@ class TTK_MODULE_EXPORT MusicLrcAnalysis : public QObject
 public:
     enum State
     {
-        OpenFileSuccess,    /*!< open file success*/
-        OpenFileFail        /*!< open file failed*/
+        Success,    /*!< open file success*/
+        Failed      /*!< open file failed*/
     };
 
     enum LrcFormat

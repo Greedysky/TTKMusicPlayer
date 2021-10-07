@@ -166,10 +166,11 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
     QString currentLrc, laterLrc;
     qint64 intervalTime;
     if(m_lrcAnalysis->findText(current, total, currentLrc, laterLrc, intervalTime))
-    {   //If this is a new line of the lyrics, then restart lyrics display mask
+    {
+        //If this is a new line of the lyrics, then restart lyrics display mask
         if(currentLrc != m_musicLrcForInterior->text())
         {
-            if(!playStatus)
+            if(playStatus)
             {
                 m_musicLrcForInterior->updateCurrentLrc(intervalTime);
             }
@@ -211,7 +212,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
         m_musicLrcForDesktop->stopDrawLrc();
         m_musicLrcForDesktop->setCurrentSongName(name);
 
-        if(!state)
+        if(state == MusicLrcAnalysis::Failed)
         {
             m_musicLrcForDesktop->updateCurrentLrc(tr("No lrc data file found"), QString(), 0);
         }
@@ -222,7 +223,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
             m_musicLrcForWallpaper->setCurrentSongName(name);
             m_musicLrcForWallpaper->start(true);
 
-            if(!state)
+            if(state == MusicLrcAnalysis::Failed)
             {
                 m_musicLrcForWallpaper->updateCurrentLrc(tr("No lrc data file found"));
             }

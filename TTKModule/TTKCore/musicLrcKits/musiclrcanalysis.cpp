@@ -42,7 +42,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 
     if(m_lrcContainer.isEmpty())
     {
-        return OpenFileFail;
+        return Failed;
     }
 
     for(int i=0; i<getMiddle(); ++i)
@@ -67,7 +67,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         m_currentShowLrcContainer << QString();
     }
 
-    return OpenFileSuccess;
+    return Success;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data)
@@ -75,7 +75,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
     clear();
     if(data.isEmpty())
     {
-        return OpenFileFail;
+        return Failed;
     }
 
     m_lrcContainer = data;
@@ -102,7 +102,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         m_currentShowLrcContainer << QString();
     }
 
-    return OpenFileSuccess;
+    return Success;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
@@ -112,7 +112,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromLrcFile(const QString &path)
     clear();
     if(!file.open(QIODevice::ReadOnly))
     {
-        return OpenFileFail;
+        return Failed;
     }
 
     const State state = setLrcData(file.readAll());
@@ -129,7 +129,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
     MusicLrcFromKrc krc;
     if(!krc.decode(path))
     {
-        return OpenFileFail;
+        return Failed;
     }
 
     const QString &getAllText = QString(krc.getDecodeString());
@@ -142,7 +142,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
     //If the lrcContainer is empty
     if(m_lrcContainer.isEmpty())
     {
-        return OpenFileFail;
+        return Failed;
     }
 
     for(int i=0; i<getMiddle(); ++i)
@@ -166,7 +166,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         m_currentShowLrcContainer << QString();
     }
 
-    return OpenFileSuccess;
+    return Success;
 }
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)

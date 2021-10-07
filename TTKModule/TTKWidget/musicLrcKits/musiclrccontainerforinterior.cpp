@@ -128,7 +128,7 @@ void MusicLrcContainerForInterior::updateCurrentLrc(int state)
         m_musicLrcContainer[i]->setText(QString());
     }
 
-    if(state == MusicLrcAnalysis::OpenFileFail)
+    if(state == MusicLrcAnalysis::Failed)
     {
         m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setText(tr("No lrc data file found"));
         showNoLrcCurrentInfo();

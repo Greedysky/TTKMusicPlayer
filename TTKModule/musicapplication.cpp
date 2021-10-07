@@ -69,7 +69,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_musicPlayer->setPlaylist(m_musicPlaylist);
     m_musicPlayer->setVolume(100);  //The default Volume is 100
 
-    m_playControl = true;   //The default in the suspended state
     m_quitWindowClose = false;
     m_currentMusicSongTreeIndex = DEFAULT_LOWER_LEVEL;
 
@@ -167,7 +166,6 @@ void MusicApplication::musicLoadCurrentSongLrc()
     const QString &fileName = getCurrentFileName();
     const QString &path = MusicUtils::String::lrcPrefix() + fileName + LRC_FILE;
     m_rightAreaWidget->loadCurrentSongLrc(fileName, path);
-
     //reset current song lrc index.
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
@@ -277,7 +275,7 @@ void MusicApplication::quitWindowClose()
 
 void MusicApplication::positionChanged(qint64 position)
 {
-    m_rightAreaWidget->updateCurrentLrc(position, m_musicPlayer->duration(), m_playControl);
+    m_rightAreaWidget->updateCurrentLrc(position, m_musicPlayer->duration(), isPlaying());
     m_ui->musicTimeWidget->setValue(position);
 
     if(m_musicPlaylist->isEmpty())
@@ -303,7 +301,6 @@ void MusicApplication::durationChanged(qint64 duration)
 
 void MusicApplication::stateChanged()
 {
-    m_playControl = true;
     const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
     m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
 }
@@ -335,14 +332,13 @@ void MusicApplication::showCurrentSong()
         m_ui->musicBestLove->setStyleSheet(MusicUIObject::MQSSBtnUnLove);
         m_ui->musicDownload->setStyleSheet(MusicUIObject::MQSSBtnUnDownload);
         m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
-        m_playControl = true;
         m_musicPlayer->stop();
         m_rightAreaWidget->stopDrawLrc();
 
-        m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
-        m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
-        m_topAreaWidget->setCurrentPlayStatus(m_playControl);
-        m_ui->musicTimeWidget->setPlayState(m_playControl);
+        m_bottomAreaWidget->setCurrentPlayStatus(!isPlaying());
+        m_rightAreaWidget->setCurrentPlayStatus(!isPlaying());
+        m_topAreaWidget->setCurrentPlayStatus(!isPlaying());
+        m_ui->musicTimeWidget->setPlayState(!isPlaying());
 
         durationChanged(0);
         positionChanged(0);
@@ -372,26 +368,25 @@ void MusicApplication::musicStatePlay()
     }
 
     const bool concise = G_SETTING_PTR->value(MusicSettingManager::WindowConciseMode).toBool();
-    if(m_playControl)
-    {
-        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPause : MusicUIObject::MQSSBtnPause);
-        m_playControl = false;
-        m_musicPlayer->play();
-        m_topAreaWidget->musicBackgroundThemeDownloadFinished();
-        m_rightAreaWidget->startDrawLrc();
-    }
-    else
+    if(isPlaying())
     {
         m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSBtnPlay);
-        m_playControl = true;
         m_musicPlayer->pause();
         m_topAreaWidget->setBackgroundAnimation(false);
         m_rightAreaWidget->stopDrawLrc();
     }
-    m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
-    m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
-    m_topAreaWidget->setCurrentPlayStatus(m_playControl);
-    m_ui->musicTimeWidget->setPlayState(m_playControl);
+    else
+    {
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MQSSTinyBtnPause : MusicUIObject::MQSSBtnPause);
+        m_musicPlayer->play();
+        m_topAreaWidget->musicBackgroundThemeDownloadFinished();
+        m_rightAreaWidget->startDrawLrc();
+    }
+
+    m_bottomAreaWidget->setCurrentPlayStatus(!isPlaying());
+    m_rightAreaWidget->setCurrentPlayStatus(!isPlaying());
+    m_topAreaWidget->setCurrentPlayStatus(!isPlaying());
+    m_ui->musicTimeWidget->setPlayState(!isPlaying());
 }
 
 void MusicApplication::musicPlayPrevious()
@@ -410,9 +405,8 @@ void MusicApplication::musicPlayPrevious()
         m_musicPlayer->playPrevious();
     }
 
-    m_playControl = true;
+    m_musicPlayer->stop();
     musicStatePlay();
-    m_playControl = false;
 }
 
 void MusicApplication::musicPlayNext()
@@ -431,9 +425,8 @@ void MusicApplication::musicPlayNext()
         m_musicPlayer->playNext();
     }
 
-    m_playControl = true;
+    m_musicPlayer->stop();
     musicStatePlay();
-    m_playControl = false;
 }
 
 void MusicApplication::musicPlayOrder()
@@ -563,10 +556,8 @@ void MusicApplication::musicPlaySort(int row)
 void MusicApplication::musicPlayedIndex(int row)
 {
     m_musicPlaylist->setCurrentIndex(row);
-
-    m_playControl = true;
+    m_musicPlayer->stop();
     musicStatePlay();
-    m_playControl = false;
 }
 
 void MusicApplication::musicPlayIndex(int row)
@@ -589,7 +580,6 @@ void MusicApplication::musicPlayIndex(int row)
 void MusicApplication::musicPlayIndex(int row, int)
 {
     m_musicPlayer->stop();
-
     if(m_currentMusicSongTreeIndex != m_musicSongTreeWidget->currentIndex() || m_musicPlaylist->mediaCount() == 0)
     {
         setMusicPlayIndex();
@@ -607,10 +597,7 @@ void MusicApplication::musicPlayIndex(int row, int)
     }
 
     m_musicPlaylist->setCurrentIndex(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->mapFilePathBySongIndex(m_currentMusicSongTreeIndex, row));
-
-    m_playControl = true;
     musicStatePlay();
-    m_playControl = false;
 }
 
 void MusicApplication::musicPlayIndexClicked(int row, int col)
@@ -890,9 +877,8 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
         if(contains)
         {
             //The corresponding item is deleted from the Playlist
-            m_playControl = true;
+            m_musicPlayer->stop();
             musicStatePlay();
-            m_playControl = false;
 
             if(remove && !QFile::remove(item.m_path))
             {
@@ -932,7 +918,7 @@ void MusicApplication::resetCurrentSongLrcIndex()
 
 void MusicApplication::updateCurrentTime(qint64 pos)
 {
-    if(!m_playControl) ///When pause just resume it
+    if(isPlaying())
     {
         m_musicPlayer->setPosition(pos);
     }
@@ -945,13 +931,6 @@ void MusicApplication::setPlaySongChanged(int index)
         return;
     }
     musicPlayIndex(index, 0);
-}
-
-
-void MusicApplication::setStopSongChanged()
-{
-    m_playControl = false;
-    musicStatePlay();
 }
 
 void MusicApplication::getCurrentPlaylist(QStringList &list)
@@ -1188,12 +1167,11 @@ void MusicApplication::readSystemConfigFromFile()
     //Configure automatic playback
     if(G_SETTING_PTR->value(MusicSettingManager::AutoPlayMode).toInt() == 1)
     {
-        m_playControl = true;
         musicStatePlay();
     }
-    m_bottomAreaWidget->setCurrentPlayStatus(m_playControl);
-    m_rightAreaWidget->setCurrentPlayStatus(m_playControl);
-    m_topAreaWidget->setCurrentPlayStatus(m_playControl);
+    m_bottomAreaWidget->setCurrentPlayStatus(!isPlaying());
+    m_rightAreaWidget->setCurrentPlayStatus(!isPlaying());
+    m_topAreaWidget->setCurrentPlayStatus(!isPlaying());
 
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt());
