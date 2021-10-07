@@ -337,7 +337,7 @@ void MusicApplicationMPRISPlayer::syncProperties()
 
 void MusicApplicationMPRISPlayer::sendProperties()
 {
-    QMap<QString, QVariant> prevProps = m_properties;
+    TTKVariantMap prevProps = m_properties;
     syncProperties();
 
     QVariantMap map;

@@ -222,7 +222,6 @@ QString MusicSongsSummariziedWidget::mapFilePathBySongIndex(int toolIndex, int i
 
 void MusicSongsSummariziedWidget::searchFileListCache(int index)
 {
-    TTKIntList searchResult;
     const QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
     QString text;
     if(m_musicSongSearchWidget)
@@ -230,6 +229,7 @@ void MusicSongsSummariziedWidget::searchFileListCache(int index)
         text = m_musicSongSearchWidget->getSearchedText();
     }
 
+    TTKIntList searchResult;
     for(int j=0; j<searchedSongs.count(); ++j)
     {
         if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
@@ -237,6 +237,7 @@ void MusicSongsSummariziedWidget::searchFileListCache(int index)
             searchResult << j;
         }
     }
+
     m_searchFileListIndex = text.count();
     m_searchfileListCache.insert(index, searchResult);
 
@@ -249,6 +250,8 @@ void MusicSongsSummariziedWidget::searchFileListCache(int index)
         {
             songItem->m_itemObject->updateSongsFileName(songItem->m_songs);
         }
+
+        m_searchFileListIndex = 0;
         m_searchfileListCache.clear();
     }
 }

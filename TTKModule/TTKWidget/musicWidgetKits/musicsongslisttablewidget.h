@@ -53,7 +53,7 @@ public:
     /*!
      * Set current searched file indexs.
      */
-    void setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &fileIndexs);
+    void setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &searchResult);
 
     /*!
      * Select the current play row.
@@ -205,8 +205,9 @@ protected:
     MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
-    bool m_leftButtonPressed, m_listHasSearched;
+    bool m_leftButtonPressed;
     bool m_renameActived, m_deleteItemWithFile;
+    MusicSongs m_searchedSongs;
     QTableWidgetItem *m_renameItem;
     MusicRenameLineEditDelegate *m_renameLineEditDelegate;
     MusicSongSort *m_musicSort;

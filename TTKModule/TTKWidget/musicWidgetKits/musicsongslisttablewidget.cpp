@@ -42,7 +42,6 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_renameItem = nullptr;
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
-    m_listHasSearched = false;
     m_mouseMoved = false;
     m_parentToolIndex = index;
     m_renameLineEditDelegate = nullptr;
@@ -70,12 +69,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
 
 MusicSongsListTableWidget::~MusicSongsListTableWidget()
 {
-    if(m_listHasSearched)
-    {
-        delete m_musicSongs;
-    }
     clearAllItems();
-
     delete m_openFileWidget;
     delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
@@ -130,10 +124,10 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
 
 void MusicSongsListTableWidget::clearAllItems()
 {
-    if(m_playRowIndex < 0)
-    {
-        return;
-    }
+//    if(m_playRowIndex < 0)
+//    {
+//        return;
+//    }
 
     //Remove play widget
     setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
@@ -148,28 +142,17 @@ void MusicSongsListTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &fileIndexs)
+void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &searchResult)
 {
-    if(songs->count() == fileIndexs.count())
+    m_searchedSongs.clear();
+    if(songs->count() == searchResult.count())
     {
-        if(m_listHasSearched)
-        {
-            delete m_musicSongs;
-        }
-        m_listHasSearched = false;
         m_musicSongs = songs;
     }
     else
     {
-        if(m_listHasSearched)
-        {
-            delete m_musicSongs;
-        }
-
-        m_listHasSearched = true;
-        m_musicSongs = new MusicSongs;
-
-        for(int index : qAsConst(fileIndexs))
+        m_musicSongs = &m_searchedSongs;
+        for(int index : qAsConst(searchResult))
         {
             m_musicSongs->append((*songs)[index]);
         }
@@ -353,19 +336,23 @@ void MusicSongsListTableWidget::itemCellEntered(int row, int column)
     {
         it->setIcon(QIcon(":/tiny/btn_play_later_normal"));
     }
+
     if((it = item(row, 2)))
     {
         it->setIcon(QIcon(":/tiny/btn_mv_normal"));
     }
+
     if((it = item(row, 3)))
     {
         const bool contains = MusicApplication::instance()->musicListLovestContains(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
+
     if((it = item(row, 4)))
     {
         it->setIcon(QIcon(":/tiny/btn_delete_normal"));
     }
+
     if((it = item(row, 5)))
     {
         it->setText(QString());

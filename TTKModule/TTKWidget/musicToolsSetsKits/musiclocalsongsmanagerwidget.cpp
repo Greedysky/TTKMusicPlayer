@@ -244,6 +244,7 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
             searchResult << j;
         }
     }
+
     m_searchfileListCache.insert(index, searchResult);
     clearAllItems();
 

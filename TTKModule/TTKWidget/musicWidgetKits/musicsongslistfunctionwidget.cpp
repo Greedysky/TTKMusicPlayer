@@ -31,6 +31,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     searchButton->setStyleSheet(MusicUIObject::MQSSTinyBtnLocalSearch);
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(29, 1, 24, 24);
+
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
     connect(searchButton, SIGNAL(clicked()), parent, SLOT(musicSearchWidget()));
 

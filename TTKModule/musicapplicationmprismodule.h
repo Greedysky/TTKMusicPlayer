@@ -154,7 +154,7 @@ private:
     SoundCore *m_music;
     MusicApplication *m_player;
     QDBusObjectPath m_trackID;
-    QMap<QString, QVariant> m_properties;
+    TTKVariantMap m_properties;
 
 };
 
