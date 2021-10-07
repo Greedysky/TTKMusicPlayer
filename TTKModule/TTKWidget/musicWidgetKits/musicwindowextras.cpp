@@ -45,7 +45,7 @@ void MusicWindowExtras::disableBlurBehindWindow(bool enable)
 void MusicWindowExtras::setCurrentPlayStatus(bool status) const
 {
 #if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)
-    const QStyle::StandardPixmap pix = status ? QStyle::SP_MediaPlay : QStyle::SP_MediaPause;
+    const QStyle::StandardPixmap pix = status ? QStyle::SP_MediaPause : QStyle::SP_MediaPlay;
     m_playToolButton->setIcon(m_parentClass->style()->standardIcon(pix));
 #else
     Q_UNUSED(status);

@@ -211,7 +211,7 @@ MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() con
                 return os.wProductType == VER_NT_WORKSTATION ? System_Win8 : System_WinServer_2012;
             }
             break;
-        default: return System_WinUnkown;
+        default: return System_Unkown;
         }
     }
     FreeLibrary(instance);

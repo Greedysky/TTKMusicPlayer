@@ -428,8 +428,9 @@ void MusicTopAreaWidget::createRemoteWidget()
         return;
     }
 
-    m_musicRemoteWidget->setCurrentPlayStatus(!MusicApplication::instance()->isPlaying());
+    m_musicRemoteWidget->setCurrentPlayStatus(MusicApplication::instance()->isPlaying());
     m_musicRemoteWidget->setVolumeValue(m_ui->musicSound->value());
+
     connect(m_musicRemoteWidget, SIGNAL(musicWindowChanged()), MusicApplication::instance(), SLOT(showNormal()));
     connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousChanged()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
     connect(m_musicRemoteWidget, SIGNAL(musicPlayNextChanged()), MusicApplication::instance(), SLOT(musicPlayNext()));

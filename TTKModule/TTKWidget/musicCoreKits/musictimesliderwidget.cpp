@@ -35,7 +35,7 @@ MusicTimeSliderWidget::~MusicTimeSliderWidget()
 
 void MusicTimeSliderWidget::setPlayState(bool state)
 {
-    if(!state)
+    if(state)
     {
         m_label->show();
         m_label->raise();

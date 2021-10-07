@@ -75,7 +75,7 @@ void MusicLrcContainerForDesktop::initCurrentLrc() const
 
 void MusicLrcContainerForDesktop::setCurrentPlayStatus(bool status) const
 {
-    m_toolPlayButton->setStyleSheet(status ? MusicUIObject::MQSSDeskTopPlay : MusicUIObject::MQSSDeskTopPause);
+    m_toolPlayButton->setStyleSheet(status ? MusicUIObject::MQSSDeskTopPause : MusicUIObject::MQSSDeskTopPlay);
 }
 
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)

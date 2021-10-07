@@ -142,6 +142,10 @@ public Q_SLOTS:
      */
     void musicStatePlay();
     /*!
+     * Set current player to stop.
+     */
+    void musicStateStop();
+    /*!
      * Set current player to play previous.
      */
     void musicPlayPrevious();

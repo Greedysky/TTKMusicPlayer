@@ -71,7 +71,7 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
 void MusicSystemTrayMenu::setCurrentPlayStatus(bool status) const
 {
 #ifndef Q_OS_UNIX
-    m_playButton->setStyleSheet(status ? MusicUIObject::MQSSContextPlay : MusicUIObject::MQSSContextPause);
+    m_playButton->setStyleSheet(status ? MusicUIObject::MQSSContextPause : MusicUIObject::MQSSContextPlay);
 #else
     Q_UNUSED(status);
 #endif

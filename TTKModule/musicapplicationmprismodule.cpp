@@ -249,12 +249,12 @@ void MusicApplicationMPRISPlayer::Play()
 
 void MusicApplicationMPRISPlayer::PlayPause()
 {
-    m_player->musicPlayPrevious();
+    m_player->musicStatePlay();
 }
 
 void MusicApplicationMPRISPlayer::Stop()
 {
-    m_player->m_musicPlaylist->setCurrentIndex(DEFAULT_LOWER_LEVEL);
+    m_player->musicStateStop();
 }
 
 void MusicApplicationMPRISPlayer::Seek(qlonglong offset)

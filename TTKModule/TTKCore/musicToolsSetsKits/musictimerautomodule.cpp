@@ -91,7 +91,7 @@ void MusicTimerAutoModule::timeout()
                             pair->m_state = false;
                             G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopMode, 1);
                         }
-                        MusicApplication::instance()->musicStatePlay();
+                        MusicApplication::instance()->musicStateStop();
                         break;
                     }
                 case 2:

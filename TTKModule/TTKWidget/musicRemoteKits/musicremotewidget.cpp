@@ -105,7 +105,7 @@ MusicRemoteWidget::~MusicRemoteWidget()
 
 void MusicRemoteWidget::setCurrentPlayStatus(bool status) const
 {
-    m_playButton->setStyleSheet(status ? MusicUIObject::MQSSTinyBtnPlay : MusicUIObject::MQSSTinyBtnPause);
+    m_playButton->setStyleSheet(status ? MusicUIObject::MQSSTinyBtnPause : MusicUIObject::MQSSTinyBtnPlay);
 }
 
 void MusicRemoteWidget::setVolumeValue(int index)

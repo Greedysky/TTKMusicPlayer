@@ -335,10 +335,10 @@ void MusicApplication::showCurrentSong()
         m_musicPlayer->stop();
         m_rightAreaWidget->stopDrawLrc();
 
-        m_bottomAreaWidget->setCurrentPlayStatus(!isPlaying());
-        m_rightAreaWidget->setCurrentPlayStatus(!isPlaying());
-        m_topAreaWidget->setCurrentPlayStatus(!isPlaying());
-        m_ui->musicTimeWidget->setPlayState(!isPlaying());
+        m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
+        m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
+        m_topAreaWidget->setCurrentPlayStatus(isPlaying());
+        m_ui->musicTimeWidget->setPlayState(isPlaying());
 
         durationChanged(0);
         positionChanged(0);
@@ -383,10 +383,20 @@ void MusicApplication::musicStatePlay()
         m_rightAreaWidget->startDrawLrc();
     }
 
-    m_bottomAreaWidget->setCurrentPlayStatus(!isPlaying());
-    m_rightAreaWidget->setCurrentPlayStatus(!isPlaying());
-    m_topAreaWidget->setCurrentPlayStatus(!isPlaying());
-    m_ui->musicTimeWidget->setPlayState(!isPlaying());
+    m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
+    m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
+    m_topAreaWidget->setCurrentPlayStatus(isPlaying());
+    m_ui->musicTimeWidget->setPlayState(isPlaying());
+}
+
+void MusicApplication::musicStateStop()
+{
+    if(!isPlaying())
+    {
+        return;
+    }
+
+    m_musicPlaylist->setCurrentIndex(DEFAULT_LOWER_LEVEL);
 }
 
 void MusicApplication::musicPlayPrevious()
@@ -1169,9 +1179,9 @@ void MusicApplication::readSystemConfigFromFile()
     {
         musicStatePlay();
     }
-    m_bottomAreaWidget->setCurrentPlayStatus(!isPlaying());
-    m_rightAreaWidget->setCurrentPlayStatus(!isPlaying());
-    m_topAreaWidget->setCurrentPlayStatus(!isPlaying());
+    m_bottomAreaWidget->setCurrentPlayStatus(isPlaying());
+    m_rightAreaWidget->setCurrentPlayStatus(isPlaying());
+    m_topAreaWidget->setCurrentPlayStatus(isPlaying());
 
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(G_SETTING_PTR->value(MusicSettingManager::DLrcLockedMode).toInt());
