@@ -344,11 +344,13 @@ void MusicRightAreaWidget::applySettingParameter()
     m_ui->musicDesktopLrc->setChecked(config);
 
     config = G_SETTING_PTR->value(MusicSettingManager::RippleLowPowerMode).toBool();
-    if(config != m_lowPowerMode && (m_funcIndex == KugGouSongWidget || m_funcIndex == KugGouRadioWidget ||
-       m_funcIndex == kugouListWidget || m_funcIndex == kugouLiveWidget || m_funcIndex == KuiSheWidget))
+    if(config != m_lowPowerMode)
     {
         m_lowPowerMode = config;
-        functionClicked(m_funcIndex);
+        if(m_funcIndex == KugGouSongWidget || m_funcIndex == KugGouRadioWidget || m_funcIndex == kugouListWidget || m_funcIndex == kugouLiveWidget || m_funcIndex == KuiSheWidget)
+        {
+            functionClicked(m_funcIndex);
+        }
     }
 
     if(TTKObject_cast(MusicScreenSaverWidget*, m_stackedFuncWidget))
