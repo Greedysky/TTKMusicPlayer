@@ -23,7 +23,7 @@ QT       += network
 CONFIG   += gcc
 }
 equals(QT_MAJOR_VERSION, 5){
-QT       += widgets multimediawidgets
+QT       += widgets multimedia
 }
 
 include($$PWD/TTKVersion.pri)

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 add_definitions(-DTTK_LIBRARY)
 add_definitions(-DQMMP_LIBRARY)
 
-set(TTK_MAJOR_VERSION "2.15.3")
+set(TTK_MAJOR_VERSION "2.15.4")
 set(TTK_VERSION ${TTK_MAJOR_VERSION}.0)
 
 # Find includes in the build directories
@@ -135,7 +135,6 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   find_package(Qt5Gui REQUIRED)
   find_package(Qt5Widgets REQUIRED)
   find_package(Qt5Multimedia REQUIRED)
-  find_package(Qt5MultimediaWidgets REQUIRED)
   find_package(Qt5Network REQUIRED)
   find_package(Qt5Xml REQUIRED)
   find_package(Qt5OpenGL REQUIRED)
