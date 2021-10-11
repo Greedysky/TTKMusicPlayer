@@ -92,7 +92,7 @@ void MusicPlayer::play()
     }
 
     m_state = PlayingState;
-    Qmmp::State state = m_music->state(); ///Get the current state of play
+    Qmmp::State state = m_music->state();
     if(m_currentMedia == m_playlist->currentMediaString() && state == Qmmp::Paused)
     {
         m_music->pause(); ///When the pause time for recovery
@@ -166,7 +166,7 @@ void MusicPlayer::setTimeOut()
     emit positionChanged(position());
 
     Qmmp::State state = m_music->state();
-    if(state != Qmmp::Playing && state != Qmmp::Paused)
+    if(!(state == Qmmp::Playing || state == Qmmp::Paused || state == Qmmp::Buffering))
     {
         m_timer.stop();
         if(m_playlist->playbackMode() == MC_PlayOnce)

@@ -1,11 +1,32 @@
 include($$PWD/../plugins.pri)
 
 TEMPLATE = subdirs
+SUBDIRS += crossfade mono monotostereo stereo
 
-SUBDIRS += crossfade crystalizer echo mono monotostereo stereo voiceremoval
+contains(CONFIG, CRYSTALIZER_PLUGIN){
+    SUBDIRS += crystalizer
+}
 
-contains(CONFIG, BS2B_PLUGIN):SUBDIRS += bs2b
-contains(CONFIG, SOXR_PLUGIN):SUBDIRS += soxr
-contains(CONFIG, SRC_PLUGIN):SUBDIRS += srconverter
+contains(CONFIG, ECHO_PLUGIN){
+    SUBDIRS += echo
+}
 
-unix:contains(CONFIG, LADSPA_PLUGIN):SUBDIRS += ladspa
+contains(CONFIG, VOICEREMOVAL_PLUGIN){
+    SUBDIRS += voiceremoval
+}
+
+contains(CONFIG, BS2B_PLUGIN){
+    SUBDIRS += bs2b
+}
+
+contains(CONFIG, SOXR_PLUGIN){
+    SUBDIRS += soxr
+}
+
+contains(CONFIG, SRC_PLUGIN){
+    SUBDIRS += srconverter
+}
+
+unix:contains(CONFIG, LADSPA_PLUGIN){
+    SUBDIRS += ladspa
+}

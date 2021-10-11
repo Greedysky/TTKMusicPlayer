@@ -61,11 +61,13 @@ bool LightEnvelopeScanner::scan(const QString &path)
         source->deleteLater();
         return false;
     }
+
     qDebug("LightEnvelopeScanner: selected decoder: %s", qPrintable(factory->properties().shortName));
     if(factory->properties().noInput && source->ioDevice())
     {
         source->ioDevice()->close();
     }
+
     Decoder *decoder = factory->create(source->path(), source->ioDevice());
     if(!decoder->initialize())
     {
@@ -123,7 +125,7 @@ const AudioParameters &LightEnvelopeScanner::audioParameters() const
 void LightEnvelopeScanner::run()
 {
     m_ap = m_decoder->audioParameters();
-    unsigned char tmp[QMMP_BLOCK_FRAMES * m_ap.frameSize() * 4];
+    unsigned char in[QMMP_BLOCK_FRAMES * m_ap.frameSize() * 4];
     float out[QMMP_BLOCK_FRAMES * m_ap.channels() * sizeof(float)];
     AudioConverter converter;
     converter.configure(m_ap.format());
@@ -144,11 +146,11 @@ void LightEnvelopeScanner::run()
     while(!m_user_stop)
     {
         m_mutex.unlock();
-        const qint64 len = m_decoder->read(tmp, sizeof(tmp));
+        const qint64 len = m_decoder->read(in, sizeof(in));
         if(len > 0)
         {
             const qint64 samples = len / m_ap.sampleSize();
-            converter.toFloat(tmp, out, samples);
+            converter.toFloat(in, out, samples);
 
             for(uint sample = 0; sample < samples - channels; sample += channels)
             {
@@ -407,6 +409,7 @@ void LightEnvelope::drawWaveform()
         const float x2 = step * (i / m_channels / 3 + 1);
         bool draw = false;
         float zeroPos = 0, ratio = 0;
+
         if(ch == 0 && (m_channels == 1 || !showTwoChannels))
         {
             zeroPos = height() / 2;
@@ -433,7 +436,6 @@ void LightEnvelope::drawWaveform()
                 { x2, y4 },
                 { x2, y3 }
             };
-
             painter.drawPolygon(points, 4);
         }
     }

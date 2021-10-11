@@ -114,7 +114,6 @@ InputSource *InputSource::create(const QString &url, QObject *parent)
     }
 
     InputSourceFactory *factory = findByUrl(url);
-
     if(factory)
     {
         qDebug("InputSource: using %s transport", qPrintable(url.section("://", 0, 0)));

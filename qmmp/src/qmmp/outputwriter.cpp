@@ -80,7 +80,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
 void OutputWriter::pause()
 {
     m_pause = !m_pause;
-    Qmmp::State state = m_pause ? Qmmp::Paused: Qmmp::Playing;
+    Qmmp::State state = m_pause ? Qmmp::Paused : Qmmp::Playing;
     dispatch(state);
 }
 

@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     MusicPlaylist *list = new MusicPlaylist(this);
 #ifdef Q_OS_UNIX
-    list->appendMedia("/home/greedysky/qmmp_all/files/v2m/1.v2m");
+    list->appendMedia("/home/greedysky/qmmp_all/files/mpeg/1.mp3");
 #else
     list->appendMedia("D:/Workspace/qmmp_all/files/mpeg/1.mp3");
 #endif

@@ -3,17 +3,15 @@ include($$PWD/../../plugins.pri)
 DESTDIR = $$PLUGINS_PREFIX/Light
 TARGET = $${TARGET}
 
-HEADERS += \
-        replaygainfactory.h \
-        replaygainwidget.h \
-        gain_analysis.h \
-        replaygainner.h
+HEADERS += replaygainfactory.h \
+           replaygainwidget.h \
+           gain_analysis.h \
+           replaygainner.h
 
-SOURCES += \
-        replaygainfactory.cpp \
-        replaygainwidget.cpp \
-        gain_analysis.c \
-        replaygainner.cpp
+SOURCES += replaygainfactory.cpp \
+           replaygainwidget.cpp \
+           gain_analysis.c \
+           replaygainner.cpp
 
 FORMS += replaygainwidget.ui
 
