@@ -122,6 +122,5 @@ void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
     settings.setValue("colors", colors.remove(";"));
     const double opacity = 1.0;
     settings.setValue("opacity", opacity);
-
     settings.endGroup();
 }

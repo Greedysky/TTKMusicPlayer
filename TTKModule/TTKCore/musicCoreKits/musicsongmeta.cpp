@@ -334,8 +334,8 @@ QString MusicSongMeta::findLegalDataString(TagWrapper::Type type)
 bool MusicSongMeta::readInformation()
 {
     clearSongMeta();
-    DecoderFactory *factory = Decoder::findByFilePath(m_path);
 
+    DecoderFactory *factory = Decoder::findByFilePath(m_path);
     if(factory)
     {
         QPixmap cover;

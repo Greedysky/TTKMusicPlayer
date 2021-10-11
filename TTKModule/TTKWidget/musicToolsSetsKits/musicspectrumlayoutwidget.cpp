@@ -34,7 +34,6 @@ bool MusicSpectrumLayoutItem::isChecked() const
 void MusicSpectrumLayoutItem::paintEvent(QPaintEvent *event)
 {
     MusicClickedLabel::paintEvent(event);
-
     if(m_isSelected)
     {
         QPainter painter(this);

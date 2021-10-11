@@ -72,7 +72,6 @@ void MusicRippleSpecturmModule::update(bool up)
     up ? show() : close();
 
     MusicUtils::QMMP::updateRippleSpectrumConfigFile();
-
     if(m_visualWidget)
     {
         Visual *widget = TTKStatic_cast(Visual*, m_visualWidget);
