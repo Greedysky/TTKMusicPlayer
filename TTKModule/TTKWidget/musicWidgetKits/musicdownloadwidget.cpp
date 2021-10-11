@@ -240,7 +240,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
                 break;
             }
         }
-        std::sort(musicSongInfo.m_songAttrs.begin(), musicSongInfo.m_songAttrs.end());
+        std::sort(musicSongInfo.m_songAttrs.begin(), musicSongInfo.m_songAttrs.end()); //to find out the min bitrate
         return musicSongInfo;
     }
     return MusicObject::MusicSongInformation();

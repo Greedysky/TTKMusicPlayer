@@ -52,7 +52,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     m_songInfo = info;
 
     MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
-    std::sort(attrs.begin(), attrs.end());
+    std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(attrs))
     {

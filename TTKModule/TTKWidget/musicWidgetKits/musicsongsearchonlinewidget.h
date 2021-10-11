@@ -22,30 +22,6 @@
 #include "musicitemsearchtablewidget.h"
 #include "musicabstractqueryrequest.h"
 
-/*! @brief The class of the data download item.
- * @author Greedysky <greedysky@163.com>
- */
-typedef struct TTK_MODULE_EXPORT MusicDownloadData
-{
-    QString m_songName;
-    QString m_timestamp;
-    QString m_format;
-
-    void clear()
-    {
-        m_songName.clear();
-        m_timestamp.clear();
-        m_format.clear();
-    }
-
-    bool isValid() const
-    {
-        return !(m_songName.isEmpty() && m_timestamp.isEmpty() && m_format.isEmpty());
-    }
-
-}MusicDownloadData;
-TTK_DECLARE_LIST(MusicDownloadData)
-
 class QLabel;
 class QPushButton;
 class MusicCoreMPlayer;
@@ -117,10 +93,6 @@ public Q_SLOTS:
      */
     virtual void actionGroupClick(QAction *action) override;
     /*!
-     * Search data dwonload finished.
-     */
-    void searchDataDwonloadFinished();
-    /*!
      * Open music song download widget.
      */
     void musicSongDownload(int row);
@@ -134,11 +106,10 @@ protected:
     /*!
      * Add search music to play list by index.
      */
-    void addSearchMusicToPlaylist(int row);
+    void addSearchMusicToPlaylist(int row, bool play);
 
     bool m_queryAllRecords;
-    MusicDownloadData m_downloadData;
-
+    friend class MusicSongSearchOnlineWidget;
 };
 
 

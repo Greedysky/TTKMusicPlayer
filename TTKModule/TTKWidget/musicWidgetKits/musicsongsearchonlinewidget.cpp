@@ -161,7 +161,7 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 7:
-            addSearchMusicToPlaylist(row);
+            addSearchMusicToPlaylist(row, true);
             break;
         case 8:
             musicDownloadLocal(row);
@@ -253,7 +253,7 @@ void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
-    addSearchMusicToPlaylist(row);
+    addSearchMusicToPlaylist(row, true);
 }
 
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
@@ -273,20 +273,11 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
         case 1: Q_EMIT restartSearchQuery(info.m_songName); break;
         case 2: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
         case 3: Q_EMIT restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
-        case 4: addSearchMusicToPlaylist(row); break;
+        case 4: addSearchMusicToPlaylist(row, true); break;
         case 5: musicSongDownload(row); break;
         case 6: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
     }
-}
-
-void MusicSongSearchTableWidget::searchDataDwonloadFinished()
-{
-    if(m_downloadData.isValid())
-    {
-        Q_EMIT musicSongToPlaylistChanged(m_downloadData.m_songName, m_downloadData.m_timestamp, m_downloadData.m_format, true);
-    }
-    m_downloadData.clear();
 }
 
 void MusicSongSearchTableWidget::musicSongDownload(int row)
@@ -329,7 +320,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
+void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
     if(!G_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -344,25 +335,23 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 
     const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];
-    const MusicObject::MusicSongAttribute &musicSongAttr = musicSongInfo.m_songAttrs.first();
+    MusicObject::MusicSongAttributes attrs(musicSongInfo.m_songAttrs);
+    std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
 
-    const QString &musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-    const QString &musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_ARC_KEY, true);
-    const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
+    if(!attrs.isEmpty())
+    {
+        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const QString &musicEnSong = MusicUtils::Algorithm::mdII(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), ALG_ARC_KEY, true);
+        const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(musicSongAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
-    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
-    download->startToDownload();
+        MusicSemaphoreLoop loop(this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(attr.m_url, downloadName, MusicObject::DownloadMusic, this);
+        connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        download->startToDownload();
+        loop.exec();
 
-    G_DOWNLOAD_QUERY_PTR->getDownloadSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
-                                                    MusicObject::DownloadSmallBackground, this)->startToDownload();
-    ///download big picture
-    G_DOWNLOAD_QUERY_PTR->getDownloadBigPictureRequest(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
-
-    m_downloadData.clear();
-    m_downloadData.m_songName = musicEnSong;
-    m_downloadData.m_timestamp = item(row, 4)->text();
-    m_downloadData.m_format = musicSongAttr.m_format;
+        Q_EMIT musicSongToPlaylistChanged(musicEnSong, musicSongInfo.m_duration, attr.m_format, play);
+    }
 }
 
 
@@ -442,15 +431,21 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         return;
     }
 
-    for(int row : qAsConst(list))
+    if(index == 0)
     {
-        if(index == 0 || index == 1)
+        for(int i=0; i<list.count(); ++i)
         {
-            m_searchTableWidget->itemCellClicked(row, 7);
+            m_searchTableWidget->addSearchMusicToPlaylist(list[i], true && (i == 0));
         }
     }
-
-    if(index == 2)
+    else if(index == 1)
+    {
+        for(int row : qAsConst(list))
+        {
+            m_searchTableWidget->addSearchMusicToPlaylist(row, false);
+        }
+    }
+    else if(index == 2)
     {
         MusicAbstractQueryRequest *d = m_searchTableWidget->getQueryInput();
         if(!d)
