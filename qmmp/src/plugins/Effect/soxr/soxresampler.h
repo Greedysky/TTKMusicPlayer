@@ -27,7 +27,6 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-
 class SoXResampler : public Effect
 {
 public:

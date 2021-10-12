@@ -31,10 +31,6 @@ public:
     virtual ~VoiceRemovalPlugin();
 
     virtual void applyEffect(Buffer *b) override;
-    virtual void configure(quint32 freq, ChannelMap map) override;
-
-private:
-    int m_chan = 0;
 
 };
 

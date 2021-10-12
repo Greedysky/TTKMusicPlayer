@@ -38,7 +38,6 @@ public:
     virtual ~CrossfadePlugin();
 
     virtual void applyEffect(Buffer *b) override;
-    virtual void configure(quint32 freq, ChannelMap map) override;
 
 private:
     enum State

@@ -26,7 +26,7 @@ void CrystalizerPlugin::applyEffect(Buffer *b)
     float *data = b->data;
     for(size_t i = 0; i < b->samples; )
     {
-        for(int c = 0; c < m_chan; c++, i++)
+        for(int c = 0; c < channels(); c++, i++)
         {
             const float v = data[i];
             data[i] = v + (v - m_buffer[c]) * (m_intensity * 1.0f / DEFAULT_INTENSITY);
@@ -38,13 +38,17 @@ void CrystalizerPlugin::applyEffect(Buffer *b)
 
 void CrystalizerPlugin::configure(quint32 freq, ChannelMap map)
 {
-    m_chan = map.count();
-    if(m_buffer)
+    if(channels() != map.count() || sampleRate() != freq)
     {
-        delete[] m_buffer;
+        Effect::configure(freq, map);
+        if(m_buffer)
+        {
+            delete[] m_buffer;
+        }
+        m_buffer = new float[channels()]{0};
     }
-    m_buffer = new float[m_chan]{0};
-    Effect::configure(freq, map);
+
+    memset(m_buffer, 0, sizeof(float));
 }
 
 void CrystalizerPlugin::setIntensity(int intensity)

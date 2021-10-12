@@ -19,8 +19,10 @@ StereoPlugin::~StereoPlugin()
 
 void StereoPlugin::applyEffect(Buffer *b)
 {
-    if(m_chan != 2)
+    if(channels() != 2)
+    {
         return;
+    }
 
     m_mutex.lock();
     float *data = b->data;
@@ -36,12 +38,6 @@ void StereoPlugin::applyEffect(Buffer *b)
         data[i + 1] = qBound(-1.0, m_offset, 1.0);
     }
     m_mutex.unlock();
-}
-
-void StereoPlugin::configure(quint32 freq, ChannelMap map)
-{
-    m_chan = map.count();
-    Effect::configure(freq, map);
 }
 
 void StereoPlugin::setIntensity(double level)

@@ -40,12 +40,10 @@ public:
     static EchoPlugin* instance();
 
 private:
-    int m_chan = 0;
     int m_offset = 0;
     int m_delay = 0;
     int m_feedback = 0;
     int m_volume = 0;
-    quint32 m_freq = 0;
     QMutex m_mutex;
     float *m_buffer = nullptr;
     int m_size = 0;

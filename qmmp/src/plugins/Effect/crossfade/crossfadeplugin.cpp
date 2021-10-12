@@ -15,7 +15,9 @@ CrossfadePlugin::CrossfadePlugin()
 CrossfadePlugin::~CrossfadePlugin()
 {
     if(m_buffer)
+    {
         free(m_buffer);
+    }
 }
 
 void CrossfadePlugin::applyEffect(Buffer *b)
@@ -32,7 +34,9 @@ void CrossfadePlugin::applyEffect(Buffer *b)
     case CHECKING:
         //next source has been received and current engine will be used to play it
         if(SoundCore::instance()->nextTrackAccepted())
+        {
             m_state = PREPARING;
+        }
         break;
     case PREPARING:
         if(m_core->duration() && (m_core->duration() - m_handler->elapsed() <  m_overlap))
@@ -47,7 +51,9 @@ void CrossfadePlugin::applyEffect(Buffer *b)
                     qWarning("CrossfadePlugin: unable to allocate  %zu bytes", m_buffer_size);
                     m_buffer_size = 0;
                     if(buffer)
+                    {
                         free(buffer);
+                    }
                 }
             }
 
@@ -59,7 +65,9 @@ void CrossfadePlugin::applyEffect(Buffer *b)
             }
         }
         else if(m_buffer_at > 0)
+        {
             m_state = PROCESSING;
+        }
         break;
     case PROCESSING:
         if(m_buffer_at > 0)
@@ -71,17 +79,14 @@ void CrossfadePlugin::applyEffect(Buffer *b)
             memmove(m_buffer, m_buffer + samples, m_buffer_at * sizeof(float));
         }
         else
+        {
             m_state = WAITING;
+        }
         break;
     default:
         ;
     }
     return;
-}
-
-void CrossfadePlugin::configure(quint32 freq, ChannelMap map)
-{
-    Effect::configure(freq, map);
 }
 
 void CrossfadePlugin::mix(float *cur_buf, float *prev_buf, uint samples, double volume)

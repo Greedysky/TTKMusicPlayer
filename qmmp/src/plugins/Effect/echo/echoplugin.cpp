@@ -36,7 +36,7 @@ void EchoPlugin::applyEffect(Buffer *b)
     m_mutex.lock();
     const float feedback = m_feedback / 100.0f;
     const float volume = m_volume / 100.0f;
-    int interval = rescale(m_delay, 1000, m_freq) * m_chan;
+    int interval = rescale(m_delay, 1000, sampleRate()) * channels();
     interval = std::min(std::max(interval, 0), m_size);  // sanity check
 
     int offset = m_offset - interval;
@@ -62,21 +62,19 @@ void EchoPlugin::applyEffect(Buffer *b)
 
 void EchoPlugin::configure(quint32 freq, ChannelMap map)
 {
-    if(m_chan != map.count() || m_freq != freq)
+    if(channels() != map.count() || sampleRate() != freq)
     {
-        m_chan = map.count();
-        m_freq = freq;
-        m_offset = 0;
-
+        Effect::configure(freq, map);
         if(m_buffer)
         {
             delete[] m_buffer;
         }
-
-        m_size = rescale(1000, 1000, m_freq) * m_chan;
+        m_size = rescale(1000, 1000, sampleRate()) * channels();
         m_buffer = new float[m_size]{0};
     }
-    Effect::configure(freq, map);
+
+    m_offset = 0;
+    memset(m_buffer, 0, sizeof(float));
 }
 
 void EchoPlugin::setDelay(int delay)

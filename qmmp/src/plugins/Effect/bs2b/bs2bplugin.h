@@ -42,7 +42,6 @@ public:
 
 private:
     t_bs2bdp m_bs2b_handler;
-    int m_chan = 0;
     QMutex m_mutex;
     static Bs2bPlugin *m_instance;
 

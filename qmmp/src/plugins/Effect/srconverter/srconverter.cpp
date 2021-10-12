@@ -65,7 +65,9 @@ void SRConverter::configure(quint32 freq, ChannelMap map)
             src_set_ratio(m_src_state, m_src_data.src_ratio);
         }
         else
+        {
             qDebug("SRConverter: src_new(): %s", src_strerror(m_srcError));
+        }
 
         m_src_data.data_out = new float[int(m_src_data.src_ratio * QMMP_BLOCK_FRAMES * map.count() * 2 + 2)];
     }

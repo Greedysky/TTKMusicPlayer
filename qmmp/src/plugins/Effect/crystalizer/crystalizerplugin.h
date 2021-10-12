@@ -40,7 +40,6 @@ public:
     static CrystalizerPlugin* instance();
 
 private:
-    int m_chan = 0;
     int m_intensity = 0;
     QMutex m_mutex;
     float *m_buffer = nullptr;

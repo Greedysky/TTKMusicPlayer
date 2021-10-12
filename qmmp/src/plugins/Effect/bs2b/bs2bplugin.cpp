@@ -21,8 +21,10 @@ Bs2bPlugin::~Bs2bPlugin()
 
 void Bs2bPlugin::applyEffect(Buffer *b)
 {
-    if(m_chan != 2)
+    if(channels() != 2)
+    {
         return;
+    }
 
     m_mutex.lock();
     bs2b_cross_feed_f(m_bs2b_handler, b->data, b->samples/2);
@@ -31,9 +33,8 @@ void Bs2bPlugin::applyEffect(Buffer *b)
 
 void Bs2bPlugin::configure(quint32 freq, ChannelMap map)
 {
-    m_chan = map.count();
     Effect::configure(freq, map);
-    bs2b_set_srate(m_bs2b_handler,freq);
+    bs2b_set_srate(m_bs2b_handler, freq);
 }
 
 void Bs2bPlugin::setCrossfeedLevel(uint32_t level)
