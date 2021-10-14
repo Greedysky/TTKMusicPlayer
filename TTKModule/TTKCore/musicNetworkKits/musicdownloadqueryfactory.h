@@ -27,7 +27,7 @@ class MusicSongSuggestRequest;
 class MusicCommentsRequest;
 class MusicDiscoverListRequest;
 class MusicAbstractQueryRequest;
-class MusicDownloadBackgroundRequest;
+class MusicDownloadImageRequest;
 class MusicTranslationRequest;
 
 /*! @brief The class of produce the download query class by type.
@@ -110,7 +110,7 @@ public:
     /*!
      * Get download big picture object by type.
      */
-    MusicDownloadBackgroundRequest *getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicDownloadImageRequest *getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADBACKGROUNDSKINREQUEST_H
-#define MUSICDOWNLOADBACKGROUNDSKINREQUEST_H
+#ifndef MUSICABSTRACTDOWNLOADSKINREQUEST_H
+#define MUSICABSTRACTDOWNLOADSKINREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -44,6 +44,7 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
 }MusicSkinRemoteItem;
 TTK_DECLARE_LIST(MusicSkinRemoteItem)
 
+
 /*! @brief The class of the remote skin item group.
  * @author Greedysky <greedysky@163.com>
  */
@@ -61,39 +62,18 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 TTK_DECLARE_LIST(MusicSkinRemoteGroup)
 
 
-/*! @brief The class of the thunder skin XML Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicSkinThunderConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSkinThunderConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicSkinThunderConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read datas from config file.
-     */
-    void readSkinRemoteData(MusicSkinRemoteGroups &items);
-
-};
-
-
 /*! @brief The class of download skin remote background.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadBackgroundRemoteRequest : public QObject
+class TTK_MODULE_EXPORT MusicAbstractDownloadSkinRequest : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBackgroundRemoteRequest)
+    TTK_DECLARE_MODULE(MusicAbstractDownloadSkinRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundRemoteRequest(QObject *parent = nullptr);
+    explicit MusicAbstractDownloadSkinRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
@@ -114,59 +94,4 @@ public Q_SLOTS:
 
 };
 
-
-/*! @brief The class of download thunder skin background.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicDownloadBackgroundThunderRequest : public MusicDownloadBackgroundRemoteRequest
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBackgroundThunderRequest)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicDownloadBackgroundThunderRequest(QObject *parent = nullptr);
-
-    /*!
-     * Start to download data from net.
-     */
-    virtual void startToDownload() override;
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished(const QByteArray &bytes) override;
-
-};
-
-
-/*! @brief The class of download bing daily skin background.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicDownloadBackgroundBingRequest : public MusicDownloadBackgroundRemoteRequest
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBackgroundBingRequest)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicDownloadBackgroundBingRequest(QObject *parent = nullptr);
-
-    /*!
-     * Start to download data from net.
-     */
-    virtual void startToDownload() override;
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished(const QByteArray &bytes) override;
-
-};
-
-
-#endif // MUSICDOWNLOADBACKGROUNDSKINREQUEST_H
+#endif // MUSICABSTRACTDOWNLOADSKINREQUEST_H

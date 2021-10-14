@@ -51,6 +51,7 @@ include_directories(
     ${MUSIC_CORE_LRCMANAGER_DIR}
     ${MUSIC_CORE_NETWORK_DIR}
     ${MUSIC_CORE_NETWORK_DIR}/common
+    ${MUSIC_CORE_NETWORK_DIR}/image
     ${MUSIC_CORE_NETWORK_DIR}/music/bd
     ${MUSIC_CORE_NETWORK_DIR}/music/kg
     ${MUSIC_CORE_NETWORK_DIR}/music/kw

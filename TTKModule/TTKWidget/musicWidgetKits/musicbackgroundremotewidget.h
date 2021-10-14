@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include "musicbackgroundlistwidget.h"
-#include "musicdownloadbackgroundskinrequest.h"
+#include "musicabstractdownloadskinrequest.h"
 
 class QPushButton;
 class QListWidgetItem;
@@ -71,7 +71,7 @@ protected:
     MusicSkinRemoteGroups m_groups;
     MusicBackgroundListWidget *m_backgroundList;
     MusicDownloadQueueRequest *m_downloadQueue;
-    MusicDownloadBackgroundRemoteRequest *m_downloadRequest;
+    MusicAbstractDownloadSkinRequest *m_downloadRequest;
 
 };
 

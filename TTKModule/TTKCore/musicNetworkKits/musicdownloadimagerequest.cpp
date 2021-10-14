@@ -1,8 +1,8 @@
-#include "musicdownloadbackgroundrequest.h"
+#include "musicdownloadimagerequest.h"
 #include "musicbackgroundmanager.h"
 #include "musictopareawidget.h"
 
-MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
+MusicDownloadImageRequest::MusicDownloadImageRequest(const QString &name, const QString &save, QObject *parent)
     : MusicAbstractNetwork(parent),
       m_index(0),
       m_counter(0),
@@ -12,7 +12,7 @@ MusicDownloadBackgroundRequest::MusicDownloadBackgroundRequest(const QString &na
 
 }
 
-void MusicDownloadBackgroundRequest::downLoadFinished()
+void MusicDownloadImageRequest::downLoadFinished()
 {
     MusicAbstractNetwork::downLoadFinished();
     if(++m_index >= m_counter)

@@ -1,5 +1,5 @@
-#ifndef MUSICKWDOWNLOADBACKGROUNDREQUEST_H
-#define MUSICKWDOWNLOADBACKGROUNDREQUEST_H
+#ifndef MUSICDOWNLOADBINGSKINREQUEST_H
+#define MUSICDOWNLOADBINGSKINREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,32 +19,32 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadbackgroundrequest.h"
+#include "musicabstractdownloadskinrequest.h"
 
-/*! @brief The class of kuwo download art background image.
+/*! @brief The class of download bing daily skin background.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicKWDownloadBackgroundRequest : public MusicDownloadBackgroundRequest
+class TTK_MODULE_EXPORT MusicDownloadBingSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKWDownloadBackgroundRequest)
+    TTK_DECLARE_MODULE(MusicDownloadBingSkinRequest)
 public:
     /*!
-     * Object contsructor provide artist name and save local path.
+     * Object contsructor.
      */
-    MusicKWDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    explicit MusicDownloadBingSkinRequest(QObject *parent = nullptr);
 
     /*!
-     * Start to download artist picture from net.
+     * Start to download data from net.
      */
     virtual void startToDownload() override;
 
 public Q_SLOTS:
     /*!
-     * Download data from kuwo net finished.
+     * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &bytes);
+    virtual void downLoadFinished(const QByteArray &bytes) override;
 
 };
 
-#endif // MUSICKWDOWNLOADBACKGROUNDREQUEST_H
+#endif // MUSICDOWNLOADBINGSKINREQUEST_H

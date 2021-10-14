@@ -1,17 +1,17 @@
-#include "musicqqdownloadbackgroundrequest.h"
+#include "musicqqdownloadimagerequest.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicdownloaddatarequest.h"
 #include "musicqqqueryinterface.h"
 
 const QString BIG_ART_URL = "dGJmTlZOK1QvMDJENUxjMDk5UVhBWHVCb001eWtnQ1hKSnhsRWxLczNvRm9FV0kwbHhocTk4aml5SCs1Ym5mQU44SU05c1VZYVFzR2hLTEpGQ0hCNmM1ZUlZVnhnMm92QXNGMFN3PT0=";
 
-MusicQQDownloadBackgroundRequest::MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
-    : MusicDownloadBackgroundRequest(name, save, parent)
+MusicQQDownloadImageRequest::MusicQQDownloadImageRequest(const QString &name, const QString &save, QObject *parent)
+    : MusicDownloadImageRequest(name, save, parent)
 {
 
 }
 
-void MusicQQDownloadBackgroundRequest::startToDownload()
+void MusicQQDownloadImageRequest::startToDownload()
 {
     TTK_LOGGER_INFO(QString("%1 startToDownload").arg(getClassName()));
 
@@ -30,7 +30,7 @@ void MusicQQDownloadBackgroundRequest::startToDownload()
 #endif
 }
 
-void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
+void MusicQQDownloadImageRequest::downLoadDataFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(getClassName()));
 
@@ -70,7 +70,7 @@ void MusicQQDownloadBackgroundRequest::downLoadDataFinished()
     downLoadUrl(songId);
 }
 
-void MusicQQDownloadBackgroundRequest::downLoadUrlFinished()
+void MusicQQDownloadImageRequest::downLoadUrlFinished()
 {
     TTK_LOGGER_INFO(QString("%1 downLoadUrlFinished").arg(getClassName()));
 
@@ -108,7 +108,7 @@ void MusicQQDownloadBackgroundRequest::downLoadUrlFinished()
     }
 }
 
-void MusicQQDownloadBackgroundRequest::downLoadUrl(const QString &id)
+void MusicQQDownloadImageRequest::downLoadUrl(const QString &id)
 {
     TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(getClassName()).arg(id));
 

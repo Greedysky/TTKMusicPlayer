@@ -5,7 +5,7 @@
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicdownloadbackgroundrequest.h"
+#include "musicdownloadimagerequest.h"
 
 MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     : QObject(parent)

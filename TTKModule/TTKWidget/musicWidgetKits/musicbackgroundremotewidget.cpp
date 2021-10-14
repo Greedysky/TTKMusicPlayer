@@ -1,5 +1,6 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicdownloadqueuerequest.h"
+#include "musicdownloadskin.h"
 #include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 
@@ -102,7 +103,7 @@ void MusicBackgroundThunderWidget::initialize()
 {
     if(!m_downloadRequest)
     {
-        m_downloadRequest = new MusicDownloadBackgroundThunderRequest(this);
+        m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
         m_downloadRequest->startToDownload();
     }
@@ -268,7 +269,7 @@ void MusicBackgroundDailyWidget::initialize()
 {
     if(!m_downloadRequest)
     {
-        m_downloadRequest = new MusicDownloadBackgroundBingRequest(this);
+        m_downloadRequest = new MusicDownloadBingSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
         m_downloadRequest->startToDownload();
     }

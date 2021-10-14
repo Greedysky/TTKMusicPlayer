@@ -71,7 +71,7 @@
 #include "musickwdownloadtextrequest.h"
 #include "musicqqdownloadtextrequest.h"
 //
-#include "musicdownloadbackgroundphotorequest.h"
+#include "musicdownloadbackgroundrequest.h"
 //
 
 MusicAbstractQueryRequest *MusicDownLoadQueryFactory::getQueryRequest(QObject *parent)
@@ -322,7 +322,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::getDownloadLrcRequest(c
     return (new MusicDownLoadTextRequest(url, save, type, parent));
 }
 
-MusicDownloadBackgroundRequest *MusicDownLoadQueryFactory::getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent)
+MusicDownloadImageRequest *MusicDownLoadQueryFactory::getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent)
 {
-    return (new MusicDownloadBackgroundPhotoRequest(name, save, parent));
+    return (new MusicDownloadBackgroundRequest(name, save, parent));
 }

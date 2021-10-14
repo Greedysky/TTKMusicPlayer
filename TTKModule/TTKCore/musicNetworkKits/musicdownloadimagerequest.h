@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADBACKGROUNDPHOTOREQUEST_H
-#define MUSICDOWNLOADBACKGROUNDPHOTOREQUEST_H
+#ifndef MUSICDOWNLOADIMAGEREQUEST_H
+#define MUSICDOWNLOADIMAGEREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,32 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadbackgroundrequest.h"
+#include "musicobject.h"
+#include "musicabstractnetwork.h"
 
-/*! @brief The class of download art photo image.
+/*! @brief The class of download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadBackgroundPhotoRequest : public MusicDownloadBackgroundRequest
+class TTK_MODULE_EXPORT MusicDownloadImageRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadBackgroundPhotoRequest)
+    TTK_DECLARE_MODULE(MusicDownloadImageRequest)
 public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicDownloadBackgroundPhotoRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicDownloadImageRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
     /*!
      * Start to download artist picture from net.
+     * Subclass should implement this function.
      */
-    virtual void startToDownload() override;
+    virtual void startToDownload() = 0;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QString &bytes);
+    virtual void downLoadFinished() override;
+
+protected:
+    int m_index, m_counter;
+    QString m_artName, m_savePath;
 
 };
 
-#endif // MUSICDOWNLOADBACKGROUNDPHOTOREQUEST_H
+#endif // MUSICDOWNLOADIMAGEREQUEST_H

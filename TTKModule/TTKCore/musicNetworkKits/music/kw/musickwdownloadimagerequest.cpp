@@ -1,16 +1,16 @@
-#include "musickwdownloadbackgroundrequest.h"
+#include "musickwdownloadimagerequest.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicdownloaddatarequest.h"
 
 const QString BIG_ART_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
 
-MusicKWDownloadBackgroundRequest::MusicKWDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent)
-    : MusicDownloadBackgroundRequest(name, save, parent)
+MusicKWDownloadImageRequest::MusicKWDownloadImageRequest(const QString &name, const QString &save, QObject *parent)
+    : MusicDownloadImageRequest(name, save, parent)
 {
 
 }
 
-void MusicKWDownloadBackgroundRequest::startToDownload()
+void MusicKWDownloadImageRequest::startToDownload()
 {
     deleteAll();
 
@@ -20,7 +20,7 @@ void MusicKWDownloadBackgroundRequest::startToDownload()
     download->startToDownload(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(m_artName));
 }
 
-void MusicKWDownloadBackgroundRequest::downLoadFinished(const QByteArray &bytes)
+void MusicKWDownloadImageRequest::downLoadFinished(const QByteArray &bytes)
 {
     MusicAbstractNetwork::downLoadFinished();
     if(bytes != "NO_PIC")

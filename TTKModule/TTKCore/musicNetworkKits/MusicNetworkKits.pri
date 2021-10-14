@@ -18,6 +18,7 @@
 
 INCLUDEPATH += $$PWD \
                $$PWD/common \
+               $$PWD/image \
                $$PWD/music/wy \
                $$PWD/music/kg \
                $$PWD/music/kw \
@@ -39,8 +40,11 @@ HEADERS  += \
     $$PWD/common/musicidentifysongsrequest.h \
     $$PWD/common/musicsourceupdaterequest.h \
     $$PWD/common/musicdownloadcounterpvrequest.h \
-    $$PWD/common/musicdownloadbackgroundphotorequest.h \
-    $$PWD/common/musicdownloadbackgroundskinrequest.h \
+    $$PWD/image/musicdownloadbackgroundrequest.h \
+    $$PWD/image/musicdownloadskin.h \
+    $$PWD/image/musicabstractdownloadskinrequest.h \
+    $$PWD/image/musicdownloadbingskinrequest.h \
+    $$PWD/image/musicdownloadthunderskinrequest.h \
     $$PWD/music/wy/musicwyqueryinterface.h \
     $$PWD/music/wy/musicwyqueryrequest.h \
     $$PWD/music/wy/musicwyqueryalbumrequest.h \
@@ -79,7 +83,7 @@ HEADERS  += \
     $$PWD/music/kw/musickwqueryrecommendrequest.h \
     $$PWD/music/kw/musickwqueryartistlistrequest.h \
     $$PWD/music/kw/musickwdownloadtextrequest.h \
-    $$PWD/music/kw/musickwdownloadbackgroundrequest.h \
+    $$PWD/music/kw/musickwdownloadimagerequest.h \
     $$PWD/music/kw/musickwdiscoverlistrequest.h \
     $$PWD/music/kw/musickwcommentsrequest.h \
     $$PWD/music/kw/musickwsongsuggestrequest.h \
@@ -97,7 +101,7 @@ HEADERS  += \
     $$PWD/music/qq/musicqqqueryrecommendrequest.h \
     $$PWD/music/qq/musicqqqueryartistlistrequest.h \
     $$PWD/music/qq/musicqqdownloadtextrequest.h \
-    $$PWD/music/qq/musicqqdownloadbackgroundrequest.h \
+    $$PWD/music/qq/musicqqdownloadimagerequest.h \
     $$PWD/music/qq/musicqqdiscoverlistrequest.h \
     $$PWD/music/qq/musicqqcommentsrequest.h \
     $$PWD/music/qq/musicqqsongsuggestrequest.h \
@@ -119,7 +123,7 @@ HEADERS  += \
     $$PWD/musicabstractdownloadrequest.h \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadmanager.h \
-    $$PWD/musicdownloadbackgroundrequest.h \
+    $$PWD/musicdownloadimagerequest.h \
     $$PWD/musicpagingrequest.h \
     $$PWD/musicqueryalbumrequest.h \
     $$PWD/musicqueryartistrequest.h \
@@ -147,8 +151,10 @@ SOURCES += \
     $$PWD/common/musicidentifysongsrequest.cpp \
     $$PWD/common/musicsourceupdaterequest.cpp \
     $$PWD/common/musicdownloadcounterpvrequest.cpp \
-    $$PWD/common/musicdownloadbackgroundphotorequest.cpp \
-    $$PWD/common/musicdownloadbackgroundskinrequest.cpp \
+    $$PWD/image/musicdownloadbackgroundrequest.cpp \
+    $$PWD/image/musicabstractdownloadskinrequest.cpp \
+    $$PWD/image/musicdownloadbingskinrequest.cpp \
+    $$PWD/image/musicdownloadthunderskinrequest.cpp \
     $$PWD/music/wy/musicwyqueryinterface.cpp \
     $$PWD/music/wy/musicwyqueryrequest.cpp \
     $$PWD/music/wy/musicwyqueryalbumrequest.cpp \
@@ -187,7 +193,7 @@ SOURCES += \
     $$PWD/music/kw/musickwqueryrecommendrequest.cpp \
     $$PWD/music/kw/musickwqueryartistlistrequest.cpp \
     $$PWD/music/kw/musickwdownloadtextrequest.cpp \
-    $$PWD/music/kw/musickwdownloadbackgroundrequest.cpp \
+    $$PWD/music/kw/musickwdownloadimagerequest.cpp \
     $$PWD/music/kw/musickwdiscoverlistrequest.cpp \
     $$PWD/music/kw/musickwcommentsrequest.cpp \
     $$PWD/music/kw/musickwsongsuggestrequest.cpp \
@@ -204,7 +210,7 @@ SOURCES += \
     $$PWD/music/qq/musicqqqueryrecommendrequest.cpp \
     $$PWD/music/qq/musicqqqueryartistlistrequest.cpp \
     $$PWD/music/qq/musicqqdownloadtextrequest.cpp \
-    $$PWD/music/qq/musicqqdownloadbackgroundrequest.cpp \
+    $$PWD/music/qq/musicqqdownloadimagerequest.cpp \
     $$PWD/music/qq/musicqqdiscoverlistrequest.cpp \
     $$PWD/music/qq/musicqqcommentsrequest.cpp \
     $$PWD/music/qq/musicqqsongsuggestrequest.cpp \
@@ -225,7 +231,7 @@ SOURCES += \
     $$PWD/musicabstractdownloadrequest.cpp \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadmanager.cpp \
-    $$PWD/musicdownloadbackgroundrequest.cpp \
+    $$PWD/musicdownloadimagerequest.cpp \
     $$PWD/musicpagingrequest.cpp \
     $$PWD/musicqueryalbumrequest.cpp \
     $$PWD/musicqueryartistrequest.cpp \

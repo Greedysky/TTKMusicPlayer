@@ -1,5 +1,5 @@
-#ifndef MUSICQQDOWNLOADBACKGROUNDREQUEST_H
-#define MUSICQQDOWNLOADBACKGROUNDREQUEST_H
+#ifndef MUSICKWDOWNLOADIMAGEREQUEST_H
+#define MUSICKWDOWNLOADIMAGEREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,20 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadbackgroundrequest.h"
+#include "musicdownloadimagerequest.h"
 
-/*! @brief The class of qq download art background image.
+/*! @brief The class of kuwo download art background image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicQQDownloadBackgroundRequest : public MusicDownloadBackgroundRequest
+class TTK_MODULE_EXPORT MusicKWDownloadImageRequest : public MusicDownloadImageRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicQQDownloadBackgroundRequest)
+    TTK_DECLARE_MODULE(MusicKWDownloadImageRequest)
 public:
     /*!
      * Object contsructor provide artist name and save local path.
      */
-    MusicQQDownloadBackgroundRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicKWDownloadImageRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
     /*!
      * Start to download artist picture from net.
@@ -41,20 +41,10 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Download data from net finished.
+     * Download data from kuwo net finished.
      */
-    void downLoadDataFinished();
-    /*!
-     * Download data from net finished.
-     */
-    void downLoadUrlFinished();
-
-protected:
-    /*!
-     * Download data from net.
-     */
-    void downLoadUrl(const QString &id);
+    void downLoadFinished(const QByteArray &bytes);
 
 };
 
-#endif // MUSICQQDOWNLOADBACKGROUNDREQUEST_H
+#endif // MUSICKWDOWNLOADIMAGEREQUEST_H

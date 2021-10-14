@@ -19,13 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
-#include "musicabstractnetwork.h"
+#include "musicdownloadimagerequest.h"
 
-/*! @brief The class of download art background image.
+/*! @brief The class of download art photo image.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDownloadBackgroundRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicDownloadBackgroundRequest : public MusicDownloadImageRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadBackgroundRequest)
@@ -37,19 +36,14 @@ public:
 
     /*!
      * Start to download artist picture from net.
-     * Subclass should implement this function.
      */
-    virtual void startToDownload() = 0;
+    virtual void startToDownload() override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    virtual void downLoadFinished() override;
-
-protected:
-    int m_index, m_counter;
-    QString m_artName, m_savePath;
+    void downLoadFinished(const QString &bytes);
 
 };
 
