@@ -36,7 +36,7 @@ public:
     virtual void applyEffect(Buffer *b) override;
 
 private:
-    double m_avg = 0;
+    double m_average = 0;
 
 };
 

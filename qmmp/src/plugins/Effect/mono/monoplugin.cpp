@@ -21,8 +21,8 @@ void MonoPlugin::applyEffect(Buffer *b)
     float *data = b->data;
     for(size_t i = 0; i < b->samples; i += 2)
     {
-        m_avg = (data[i] + data[i + 1]) / 2;
-        m_avg = qBound(-1.0, m_avg, 1.0);
-        data[i] = data[i + 1] = m_avg;
+        m_average = (data[i] + data[i + 1]) / 2;
+        m_average = qBound(-1.0, m_average, 1.0);
+        data[i] = data[i + 1] = m_average;
     }
 }
