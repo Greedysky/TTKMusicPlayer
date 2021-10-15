@@ -71,13 +71,12 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
 
     m_backgroundList->clearAllItems();
     MusicDownloadQueueDatas datas;
-    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
-    for(int i=0; i<items->count(); i++)
+    for(const MusicSkinRemoteItem &item : qAsConst(m_groups[m_currentIndex].m_items))
     {
         m_backgroundList->createItem(":/image/lb_none_image", false);
         MusicDownloadQueueData data;
-        data.m_url = (*items)[i].m_url;
-        data.m_savePath = QString("%1/%2%3").arg(path).arg(i).arg(prefix);
+        data.m_url = item.m_url;
+        data.m_savePath = QString("%1/%2%3").arg(path).arg(item.m_index).arg(prefix);
         datas << data;
     }
 
@@ -221,8 +220,8 @@ void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups 
 
     for(int i=0; i<m_groups.count(); ++i)
     {
-        MusicSkinRemoteGroup *item = &m_groups[i];
-        m_functionsItems[i]->setText(item->m_group);
+        QString title(m_groups[i].m_group);
+        m_functionsItems[i]->setText(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, "/")));
     }
 
     //Hide left items if the number just not enough
@@ -286,14 +285,15 @@ void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, c
         return;
     }
 
-    const int index = QFileInfo(data).baseName().toInt();
-    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
-    if(index >= 0 || index < items->count())
+    for(const MusicSkinRemoteItem &item : qAsConst(m_groups[m_currentIndex].m_items))
     {
-        MusicSkinRemoteItem *item = &(*items)[index];
-        image.m_item.m_name = item->m_name;
-        image.m_item.m_useCount = item->m_useCount;
-        image.m_pix = QPixmap(data);
+        if(QFileInfo(data).baseName().toInt() == item.m_index)
+        {
+            image.m_item.m_name = item.m_name;
+            image.m_item.m_useCount = item.m_useCount;
+            image.m_pix = QPixmap(data);
+            break;
+        }
     }
 }
 

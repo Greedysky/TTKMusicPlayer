@@ -1,8 +1,8 @@
 #include "musicdownloadbingskinrequest.h"
 #include "musicdownloadsourcerequest.h"
 
-#define PREFIX_URL      "UEQvb1lxVXFnV0dqRmxzNkY0alFJUHZUSUhyZUVNY0Y2OGZ1L255cS9CMklCakk4Q1dNQkF3PT0="
-#define DOWNLOAD_URL    "bkRaMGo0WEhveVlwbEV6a0FDbEsrNmNGVHVrZTh1VmFDZTBmdElkZ0ZCYXk2dDJMaXF3MUlrV2JndmlpUWVudkF5UVVaMklvSXQydGI3cFhaTFRtaUV2VUZBcz0="
+#define PREFIX_URL  "UEQvb1lxVXFnV0dqRmxzNkY0alFJUHZUSUhyZUVNY0Y2OGZ1L255cS9CMklCakk4Q1dNQkF3PT0="
+#define QUERY_URL   "bkRaMGo0WEhveVlwbEV6a0FDbEsrNmNGVHVrZTh1VmFDZTBmdElkZ0ZCYXk2dDJMaXF3MUlrV2JndmlpUWVudkF5UVVaMklvSXQydGI3cFhaTFRtaUV2VUZBcz0="
 
 MusicDownloadBingSkinRequest::MusicDownloadBingSkinRequest(QObject *parent)
     : MusicAbstractDownloadSkinRequest(parent)
@@ -14,7 +14,7 @@ void MusicDownloadBingSkinRequest::startToDownload()
 {
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false));
+    download->startToDownload(MusicUtils::Algorithm::mdII(QUERY_URL, false));
 }
 
 void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
@@ -30,7 +30,7 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
         if(value.contains("images"))
         {
             MusicSkinRemoteGroup group;
-            group.m_group = MUSIC_DAILY_DIR;
+            group.m_group = MUSIC_BING_DIR;
             const QVariantList &datas = value["images"].toList();
             for(const QVariant &var : qAsConst(datas))
             {
@@ -42,7 +42,8 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
                 value = var.toMap();
                 MusicSkinRemoteItem item;
                 item.m_name = value["copyright"].toString();
-                item.m_useCount = value["startdate"].toInt();
+                item.m_index = value["startdate"].toInt();
+                item.m_useCount = item.m_index;
                 item.m_url = MusicUtils::Algorithm::mdII(PREFIX_URL, false).arg(value["urlbase"].toString());
 
                 if(item.isValid())

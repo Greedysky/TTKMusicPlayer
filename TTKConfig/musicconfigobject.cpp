@@ -57,7 +57,6 @@ void MusicConfigObject::checkTheDirectoryExist()
     directoryExist(TTK_CACHE_DIR_FULL);
     directoryExist(TTK_ART_DIR_FULL);
     directoryExist(TTK_BACKGROUND_DIR_FULL);
-    directoryExist(TTK_SCREEN_DIR_FULL);
 
     directoryExist(TTK_USER_THEME_DIR_FULL);
 

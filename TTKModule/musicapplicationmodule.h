@@ -156,10 +156,6 @@ protected:
      * Close current equalizer.
      */
     bool closeCurrentEqualizer();
-    /*!
-     * Something temp clean up.
-     */
-    void cleanUp();
 
     bool m_setWindowToTop;
     bool m_leftSideByOn, m_rightSideByOn;

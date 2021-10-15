@@ -23,6 +23,7 @@
 #define OS_WALLPAPER_NAME   "wallpaper.png"
 #define OS_WALLBAR_NAME     "wallbar.png"
 #define OS_WALLNAIL_NAME    "thumbnail.png"
+#define OS_SCREEN_DIR       "Screen"
 
 MusicScreenSaverHoverItem::MusicScreenSaverHoverItem(QLabel *parent)
     : QLabel(parent)
@@ -352,7 +353,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
     QVector<bool> statusVector(parseSettingParameter());
     if(bytes.contains(OS_WALLNAIL_NAME))
     {
-        const int index = MusicUtils::String::stringSplitToken(bytes, SCREEN_DIR, "/").toInt();
+        const int index = MusicUtils::String::stringSplitToken(bytes, OS_SCREEN_DIR, "/").toInt();
         if(index < 0 || index >= statusVector.count())
         {
             return;
@@ -384,7 +385,7 @@ void MusicScreenSaverWidget::initialize()
     for(int i=0; i<OS_COUNT; i++)
     {
         const QString &url = QSyncUtils::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
-        const QString &path = QString("%1%2/").arg(SCREEN_DIR_FULL).arg(i);
+        const QString &path = QString("%1%2/%3/").arg(CACHE_DIR_FULL).arg(OS_SCREEN_DIR).arg(i);
         QDir().mkpath(path);
 
         MusicDownloadQueueData wallData;
@@ -489,8 +490,9 @@ void MusicScreenSaverBackgroundWidget::backgroundTimeout()
     if(!intVector.isEmpty())
     {
         const int index = intVector[MusicTime::random(intVector.count())];
-        QPixmap background(QString("%1%2/").arg(SCREEN_DIR_FULL).arg(index) + OS_WALLPAPER_NAME);
-        QPixmap bar(QString("%1%2/").arg(SCREEN_DIR_FULL).arg(index) + OS_WALLBAR_NAME);
+        const QString &prefix = QString("%1%2/%3/").arg(CACHE_DIR_FULL).arg(OS_SCREEN_DIR).arg(index);
+        QPixmap background(prefix + OS_WALLPAPER_NAME);
+        const QPixmap bar(prefix + OS_WALLBAR_NAME);
         MusicUtils::Image::fusionPixmap(background, bar, QPoint(100, 900));
         setPixmap(QPixmap(background.scaled(size())));
     }

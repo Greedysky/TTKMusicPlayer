@@ -84,6 +84,7 @@ protected:
     MusicObject::DownloadType m_downloadType;
     qint64 m_hasReceived, m_currentReceived, m_totalSize;
     QTimer m_speedTimer;
+
 };
 
 #endif // MUSICABSTRACTDOWNLOADREQUEST_H

@@ -44,6 +44,7 @@ void MusicDownloadQueueRequest::startToDownload()
 
 void MusicDownloadQueueRequest::abort()
 {
+    clear();
     if(m_isDownload && m_reply)
     {
         m_isAbort = true;

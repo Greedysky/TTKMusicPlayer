@@ -31,6 +31,7 @@ typedef struct TTK_MODULE_EXPORT MusicDownloadQueueData
 }MusicDownloadQueueData;
 TTK_DECLARE_LIST(MusicDownloadQueueData)
 
+
 /*! @brief The class of download data from queue request.
  * @author Greedysky <greedysky@163.com>
  */
@@ -47,13 +48,11 @@ public:
     /*!
      * Object contsructor.
      */
-    MusicDownloadQueueRequest(const MusicDownloadQueueData &data,
-                              MusicObject::DownloadType  type, QObject *parent = nullptr);
+    MusicDownloadQueueRequest(const MusicDownloadQueueData &data, MusicObject::DownloadType  type, QObject *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    MusicDownloadQueueRequest(const MusicDownloadQueueDatas &datas,
-                              MusicObject::DownloadType  type, QObject *parent = nullptr);
+    MusicDownloadQueueRequest(const MusicDownloadQueueDatas &datas, MusicObject::DownloadType  type, QObject *parent = nullptr);
     ~MusicDownloadQueueRequest();
 
     /*!

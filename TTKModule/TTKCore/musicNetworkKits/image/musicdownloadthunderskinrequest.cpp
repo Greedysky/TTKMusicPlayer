@@ -1,7 +1,7 @@
 #include "musicdownloadthunderskinrequest.h"
 #include "musicdownloadsourcerequest.h"
 
-#define DOWNLOAD_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
+#define QUERY_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
 
 MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -16,7 +16,7 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &it
     {
         MusicSkinRemoteGroup group;
         QDomNode node = nodeList.at(i);
-        group.m_group = node.toElement().attribute("name");
+        group.m_group = QString("%1/%2").arg(MUSIC_THUNDER_DIR, node.toElement().attribute("name"));
 
         const QDomNodeList &grouplist = node.childNodes();
         for(int j=0; j<grouplist.count(); ++j)
@@ -24,6 +24,7 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &it
             node = grouplist.at(j);
 
             MusicSkinRemoteItem item;
+            item.m_index = j;
             const QDomNodeList &packageList = node.childNodes();
             for(int k=0; k<packageList.count(); ++k)
             {
@@ -66,7 +67,7 @@ void MusicDownloadThunderSkinRequest::startToDownload()
 {
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false));
+    download->startToDownload(MusicUtils::Algorithm::mdII(QUERY_URL, false));
 }
 
 void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)

@@ -22,7 +22,8 @@
 #include <QObject>
 
 #define MUSIC_AUTHOR_NAME           "Greedysky"
-#define MUSIC_DAILY_DIR             "Bing"
+#define MUSIC_BING_DIR              "Bing"
+#define MUSIC_THUNDER_DIR           "Thunder"
 #define MUSIC_TIME_INIT             "00:00"
 #define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
 

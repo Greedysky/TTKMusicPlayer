@@ -68,7 +68,6 @@ MusicApplicationModule::MusicApplicationModule(QObject *parent)
 
 MusicApplicationModule::~MusicApplicationModule()
 {
-    cleanUp();
     Q_CLEANUP_RESOURCE(MusicPlayer);
 
     delete m_MusicTimerAutoModule;
@@ -411,11 +410,4 @@ bool MusicApplicationModule::closeCurrentEqualizer()
         Q_EMIT enhancedMusicChanged(0);
     }
     return true;
-}
-
-void MusicApplicationModule::cleanUp()
-{
-    ///remove daily pic theme
-    MusicUtils::File::removeRecursively(TTK_STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
-    ///other remove in ttkdumper
 }

@@ -29,16 +29,18 @@ typedef struct TTK_MODULE_EXPORT MusicSkinRemoteItem
     QString m_name;
     QString m_url;
     int m_useCount;
+    int m_index;
 
     MusicSkinRemoteItem()
     {
         m_name = MUSIC_AUTHOR_NAME;
         m_useCount = 8888;
+        m_index = 0;
     }
 
     bool isValid() const
     {
-        return !(m_name.isEmpty() && m_useCount == 0);
+        return !m_name.isEmpty();
     }
 
 }MusicSkinRemoteItem;

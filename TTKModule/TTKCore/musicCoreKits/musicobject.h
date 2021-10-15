@@ -113,7 +113,6 @@
 #define ART_DIR                 "MArt/"
 #define BACKGROUND_DIR          "MBackground/"
 #define CACHE_DIR               "MCached/"
-#define SCREEN_DIR              "MScreen/"
 //
 #define USER_THEME_DIR          "theme/"
 
@@ -154,7 +153,6 @@
 #define CACHE_DIR_FULL          APPCACHE_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            APPCACHE_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     APPCACHE_DIR_FULL + BACKGROUND_DIR
-#define SCREEN_DIR_FULL         APPCACHE_DIR_FULL + SCREEN_DIR
 
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
