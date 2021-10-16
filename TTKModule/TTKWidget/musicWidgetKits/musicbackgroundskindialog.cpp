@@ -217,6 +217,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     //
     m_dailyBackgroundList->abort();
     m_thunderBackgroundList->abort();
+    //
     if(index == 2)
     {
         m_dailyBackgroundList->initialize();

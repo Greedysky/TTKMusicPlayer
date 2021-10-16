@@ -100,6 +100,7 @@ MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
 
 void MusicBackgroundThunderWidget::initialize()
 {
+    m_backgroundList->clearAllItems();
     if(!m_downloadRequest)
     {
         m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
