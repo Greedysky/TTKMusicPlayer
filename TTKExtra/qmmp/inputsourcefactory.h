@@ -21,8 +21,7 @@
 #ifndef INPUTSOURCEFACTORY_H
 #define INPUTSOURCEFACTORY_H
 
-#include <QObject>
-#include <QList>
+#include <QStringList>
 #include "qmmp_export.h"
 #include "regularwrapper.h"
 
@@ -63,15 +62,6 @@ public:
      * @param parent Parent widget.
      */
     virtual void showSettings(QWidget *parent) = 0;
-    /*!
-     * Shows about dialog.
-     * @param parent Parent widget.
-     */
-    virtual void showAbout(QWidget *parent) = 0;
-    /*!
-     * Returns translation file path without locale code and extension
-     */
-    virtual QString translation() const = 0;
 
 };
 
