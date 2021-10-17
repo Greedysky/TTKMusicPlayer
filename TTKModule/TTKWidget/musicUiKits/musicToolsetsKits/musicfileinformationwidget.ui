@@ -61,9 +61,9 @@
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
-     <x>74</x>
+     <x>79</x>
      <y>54</y>
-     <width>380</width>
+     <width>375</width>
      <height>5</height>
     </rect>
    </property>
@@ -74,10 +74,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>24</x>
-     <y>49</y>
+     <x>20</x>
+     <y>44</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -88,9 +88,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>79</y>
+     <y>74</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -120,9 +120,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>109</y>
+     <y>104</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -181,9 +181,9 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>109</y>
+     <y>104</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -194,9 +194,9 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>139</y>
+     <y>134</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -239,9 +239,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>139</y>
+     <y>134</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -252,9 +252,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>169</y>
+     <y>164</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -281,9 +281,9 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>169</y>
+     <y>164</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -310,9 +310,9 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>199</y>
+     <y>194</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -339,9 +339,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>264</y>
+     <y>259</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -352,9 +352,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>299</y>
+     <y>294</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -381,9 +381,9 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>299</y>
+     <y>294</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -442,9 +442,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>199</y>
+     <y>194</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -455,9 +455,9 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>264</y>
+     <y>259</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -483,10 +483,10 @@
   <widget class="QLabel" name="label_15">
    <property name="geometry">
     <rect>
-     <x>24</x>
-     <y>232</y>
+     <x>20</x>
+     <y>227</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -496,9 +496,9 @@
   <widget class="Line" name="line_3">
    <property name="geometry">
     <rect>
-     <x>74</x>
+     <x>79</x>
      <y>237</y>
-     <width>380</width>
+     <width>375</width>
      <height>5</height>
     </rect>
    </property>
@@ -557,7 +557,7 @@
      <x>29</x>
      <y>530</y>
      <width>50</width>
-     <height>20</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="cursor">
@@ -589,7 +589,7 @@
      <x>180</x>
      <y>410</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -618,7 +618,7 @@
      <x>180</x>
      <y>445</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
@@ -628,10 +628,10 @@
   <widget class="QLabel" name="pixmapSizeLabel">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>245</x>
      <y>445</y>
      <width>120</width>
-     <height>16</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">
@@ -641,10 +641,10 @@
   <widget class="QLabel" name="decoderLabel">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>245</x>
      <y>410</y>
      <width>120</width>
-     <height>16</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">
@@ -655,9 +655,9 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>333</y>
+     <y>328</y>
      <width>54</width>
-     <height>12</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
