@@ -7,8 +7,6 @@
 #include "musicwidgetheaders.h"
 #include "musicqmmputils.h"
 
-#include <QStyledItemDelegate>
-
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(const QString &name, QWidget *parent)
     : QWidget(parent)
 {
@@ -136,9 +134,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->stateComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->stateComboBox));
-    m_ui->stateComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->stateComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->stateComboBox);
     m_ui->stateComboBox->addItems(QStringList() << tr("OperatorAll") << tr("All Off"));
     connect(m_ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 

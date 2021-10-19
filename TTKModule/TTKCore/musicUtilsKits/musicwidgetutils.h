@@ -76,20 +76,24 @@ namespace MusicUtils
         /*!
          * Set ComboBox text.
          */
-        TTK_MODULE_EXPORT void setComboBoxText(QComboBox *object, const QString &text);
+        TTK_MODULE_EXPORT void setComboBoxText(QComboBox *widget, const QString &text);
         /*!
          * Set widget to round by ratioX and ratioY.
          */
-        TTK_MODULE_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT void widgetToRound(QWidget *widget, int ratioX, int ratioY);
 
         /*!
          * Generate vertical scrollArea format style.
          */
-        TTK_MODULE_EXPORT void generateVScrollAreaFormat(QWidget *w, QWidget *parent, bool background = true);
+        TTK_MODULE_EXPORT void generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background = true);
         /*!
          * Generate horizontal scrollArea format style.
          */
-        TTK_MODULE_EXPORT void generateHScrollAreaFormat(QWidget *w, QWidget *parent, bool background = true);
+        TTK_MODULE_EXPORT void generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bool background = true);
+        /*!
+         * Generate combobox format style.
+         */
+        TTK_MODULE_EXPORT void generateComboBoxFormat(QComboBox *widget, const QString &style = QString());
 
     }
 }

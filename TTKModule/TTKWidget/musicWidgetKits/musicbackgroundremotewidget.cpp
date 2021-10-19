@@ -3,10 +3,9 @@
 #include "musicdownloadskin.h"
 #include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
+#include "musicwidgetutils.h"
 
 #include <QDir>
-#include <QAbstractItemView>
-#include <QStyledItemDelegate>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent)
@@ -123,9 +122,7 @@ QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidge
         hbox->addStretch(1);
 
         m_typeBox = new QComboBox(m_functionsWidget);
-        m_typeBox->setItemDelegate(new QStyledItemDelegate(m_typeBox));
-        m_typeBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-        m_typeBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+        MusicUtils::Widget::generateComboBoxFormat(m_typeBox);
         m_typeBox->setFixedSize(100, 20);
         m_typeBox->hide();
 

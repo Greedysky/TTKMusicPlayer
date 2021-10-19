@@ -6,7 +6,6 @@
 #include "musicdownloadtagdatarequest.h"
 
 #include <QTimer>
-#include <QStyledItemDelegate>
 
 Q_DECLARE_METATYPE(MusicObject::MusicSongAttribute)
 
@@ -18,10 +17,9 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_singer = new QLabel(this);
     m_information = new QLabel(this);
     m_information->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
     m_qulity = new QComboBox(this);
-    m_qulity->setItemDelegate(new QStyledItemDelegate(m_qulity));
-    m_qulity->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
-    m_qulity->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_qulity, MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
 
     m_songName->setGeometry(0, 0, 190, ITEM_ROW_HEIGHT_S);
     m_singer->setGeometry(180, 0, 120, ITEM_ROW_HEIGHT_S);
@@ -362,9 +360,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
-    m_ui->qualityBox->setItemDelegate(new QStyledItemDelegate(m_ui->qualityBox));
-    m_ui->qualityBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
-    m_ui->qualityBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->qualityBox, MusicUIObject::MQSSComboBoxStyle02 + MusicUIObject::MQSSItemView01);
     m_ui->qualityBox->addItems(QStringList() << tr("Null") << tr("SD") << tr("HQ") << tr("SQ") << tr("CD"));
     connect(m_ui->qualityBox, SIGNAL(currentIndexChanged(int)), m_ui->tableWidget, SLOT(currentQualityChanged(int)));
 

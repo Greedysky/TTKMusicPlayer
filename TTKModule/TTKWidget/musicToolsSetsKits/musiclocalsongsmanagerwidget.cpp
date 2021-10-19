@@ -9,7 +9,6 @@
 #include "musicfileutils.h"
 
 #include <QButtonGroup>
-#include <QStyledItemDelegate>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -49,9 +48,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->scanCustButton->setIcon(QIcon(":/toolSets/btn_search"));
     m_ui->scanCustButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle10);
 
-    m_ui->filterComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->filterComboBox));
-    m_ui->filterComboBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->filterComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->filterComboBox);
 
     m_ui->showlistButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->showlistButton->setCursor(QCursor(Qt::PointingHandCursor));

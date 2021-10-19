@@ -9,8 +9,6 @@
 #include "musictime.h"
 
 #include <QProcess>
-#include <QAbstractItemView>
-#include <QStyledItemDelegate>
 
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -29,19 +27,11 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->playSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->playRingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
     m_ui->saveSongButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);
-    m_ui->formatCombo->setItemDelegate(new QStyledItemDelegate(m_ui->formatCombo));
-    m_ui->formatCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->formatCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    m_ui->kbpsCombo->setItemDelegate(new QStyledItemDelegate(m_ui->kbpsCombo));
-    m_ui->kbpsCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->kbpsCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    m_ui->hzCombo->setItemDelegate(new QStyledItemDelegate(m_ui->hzCombo));
-    m_ui->hzCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->hzCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
-    m_ui->msCombo->setItemDelegate(new QStyledItemDelegate(m_ui->msCombo));
-    m_ui->msCombo->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->msCombo->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->formatCombo);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->kbpsCombo);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->hzCombo);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->msCombo);
 #ifdef Q_OS_UNIX
     m_ui->addSongButton->setFocusPolicy(Qt::NoFocus);
     m_ui->playSongButton->setFocusPolicy(Qt::NoFocus);

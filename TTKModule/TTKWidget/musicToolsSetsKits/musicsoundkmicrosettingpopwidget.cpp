@@ -2,10 +2,9 @@
 #include "musicaudiorecordermodule.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
+#include "musicwidgetutils.h"
 
 #include <QAudioDeviceInfo>
-#include <QAbstractItemView>
-#include <QStyledItemDelegate>
 
 MusicSoundKMicroSettingPopWidget::MusicSoundKMicroSettingPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
@@ -57,9 +56,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
 
     m_inputComboBox = new QComboBox(m_containWidget);
     m_inputComboBox->setGeometry(60, 120, 230, 25);
-    m_inputComboBox->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
-    m_inputComboBox->setItemDelegate(new QStyledItemDelegate(m_inputComboBox));
-    m_inputComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_inputComboBox, MusicUIObject::MQSSBorderStyle04);
 
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioInput))
     {
@@ -80,9 +77,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
 
     m_outputComboBox = new QComboBox(m_containWidget);
     m_outputComboBox->setGeometry(60, 150, 230, 25);
-    m_outputComboBox->setStyleSheet(MusicUIObject::MQSSBorderStyle04);
-    m_outputComboBox->setItemDelegate(new QStyledItemDelegate(m_outputComboBox));
-    m_outputComboBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_inputComboBox, MusicUIObject::MQSSBorderStyle04);
 
     for(const QAudioDeviceInfo &info : QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {

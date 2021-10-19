@@ -8,9 +8,6 @@
 #include "musicplayer.h"
 #include "musicclickedgroup.h"
 
-#include <QAbstractItemView>
-#include <QStyledItemDelegate>
-
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicEqualizerDialog)
@@ -29,9 +26,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
     initialize();
 
-    m_ui->eqChoice->setItemDelegate(new QStyledItemDelegate(m_ui->eqChoice));
-    m_ui->eqChoice->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
-    m_ui->eqChoice->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+    MusicUtils::Widget::generateComboBoxFormat(m_ui->eqChoice);
     m_ui->eqChoice->addItems(QStringList() << tr("Custom") << tr("Default") << tr("Classical")
                                            << tr("Club") << tr("Dance") << tr("Bass") << tr("Soprano") << tr("BassSoprano")
                                            << tr("Headset") << tr("Hall") << tr("Scene") << tr("Pop") << tr("Repaglinide")

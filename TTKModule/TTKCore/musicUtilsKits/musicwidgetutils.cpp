@@ -7,6 +7,7 @@
 #include <QBitmap>
 #include <QPainter>
 #include <QScrollArea>
+#include <QStyledItemDelegate>
 
 #define WIDTH  4
 #define HEIGHT 4
@@ -117,14 +118,14 @@ void MusicUtils::Widget::setComboBoxText(QComboBox *object, const QString &text)
     }
 }
 
-void MusicUtils::Widget::widgetToRound(QWidget *w, int ratioX, int ratioY)
+void MusicUtils::Widget::widgetToRound(QWidget *widget, int ratioX, int ratioY)
 {
-    w->setMask(MusicUtils::Image::GenerateMask(w->rect(), ratioX, ratioY));
+    widget->setMask(MusicUtils::Image::GenerateMask(widget->rect(), ratioX, ratioY));
 }
 
-void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *w, QWidget *parent, bool background)
+void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
 {
-    QScrollArea *area = TTKStatic_cast(QScrollArea*, w);
+    QScrollArea *area = TTKStatic_cast(QScrollArea*, widget);
     if(area)
     {
         const QString &style = background ? MusicUIObject::MQSSScrollBarStyle01 : MusicUIObject::MQSSScrollBarStyle03;
@@ -139,9 +140,9 @@ void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *w, QWidget *parent, 
     }
 }
 
-void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *w, QWidget *parent, bool background)
+void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)
 {
-    QScrollArea *area = TTKStatic_cast(QScrollArea*, w);
+    QScrollArea *area = TTKStatic_cast(QScrollArea*, widget);
     if(area)
     {
         const QString &style = background ? MusicUIObject::MQSSScrollBarStyle02 : MusicUIObject::MQSSScrollBarStyle04;
@@ -154,4 +155,11 @@ void MusicUtils::Widget::generateHScrollAreaFormat(QWidget *w, QWidget *parent, 
         area->setStyleSheet(style);
         area->horizontalScrollBar()->setStyleSheet(style);
     }
+}
+
+void MusicUtils::Widget::generateComboBoxFormat(QComboBox *widget, const QString &style)
+{
+    widget->setItemDelegate(new QStyledItemDelegate(widget));
+    widget->setStyleSheet(style.isEmpty() ? MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01 : style);
+    widget->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
 }
