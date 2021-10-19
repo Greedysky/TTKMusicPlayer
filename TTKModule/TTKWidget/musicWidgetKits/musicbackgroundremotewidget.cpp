@@ -5,7 +5,8 @@
 #include "musicwidgetheaders.h"
 
 #include <QDir>
-#include <QButtonGroup>
+#include <QAbstractItemView>
+#include <QStyledItemDelegate>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent)
@@ -114,66 +115,47 @@ QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidge
     if(!m_functionsWidget)
     {
         m_functionsWidget = new QWidget(object);
-        m_functionsWidget->setGeometry(24, 70, 585, 20);
+        m_functionsWidget->setGeometry(24, 70, 585, 25);
         m_functionsWidget->hide();
 
         QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
         hbox->setContentsMargins(9, 0, 0, 9);
-        QButtonGroup *buttonGroup = new QButtonGroup(m_functionsWidget);
-#if TTK_QT_VERSION_CHECK(5,15,0)
-        connect(buttonGroup, SIGNAL(idClicked(int)), SLOT(buttonClicked(int)));
-#else
-        connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
-#endif
-
-        QStringList names;
-        for(int i=1; i<=9; ++i)
-        {
-            names << QString::number(i);
-        }
-        for(int i=0; i<names.count(); ++i)
-        {
-            buttonGroup->addButton(createButton(names[i]), i);
-        }
-
         hbox->addStretch(1);
-        QPushButton *p = createButton(tr("All"));
-        p->setStyleSheet(p->styleSheet() + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
+
+        m_typeBox = new QComboBox(m_functionsWidget);
+        m_typeBox->setItemDelegate(new QStyledItemDelegate(m_typeBox));
+        m_typeBox->setStyleSheet(MusicUIObject::MQSSComboBoxStyle01 + MusicUIObject::MQSSItemView01);
+        m_typeBox->view()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle01);
+        m_typeBox->setFixedSize(100, 20);
+        m_typeBox->hide();
+
+        m_allButton = new QPushButton(tr("All"), m_functionsWidget);
+        m_allButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
+        m_allButton->setCursor(QCursor(Qt::PointingHandCursor));
+        m_allButton->setFixedSize(35, 20);
+#ifdef Q_OS_UNIX
+        m_allButton->setFocusPolicy(Qt::NoFocus);
+#endif
+        m_allButton->hide();
 
         m_functionsWidget->setLayout(hbox);
+        connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
     }
 
-    QHBoxLayout *ly = TTKStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
-    int count = ly->count();
+    QHBoxLayout *layout = TTKStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
     if(revert)
     {
-        while(count > 0)
-        {
-            --count;
-            ly->removeWidget(m_functionsItems[count]);
-            ly->removeItem(ly->itemAt(count));
-            m_functionsItems[count]->hide();
-        }
-        ly->addStretch(1);
-
-        m_functionsItems[m_functionsItems.count() - 1]->show();
-        ly->addWidget(m_functionsItems[m_functionsItems.count() - 1]);
+        layout->removeWidget(m_typeBox);
+        layout->addWidget(m_allButton);
+        m_allButton->show();
+        m_typeBox->hide();
     }
     else
     {
-        while(count > 0)
-        {
-            --count;
-            ly->removeItem(ly->itemAt(count));
-        }
-        m_functionsItems[m_functionsItems.count() - 1]->hide();
-
-        for(int i=0; i<m_functionsItems.count() - 1; ++i)
-        {
-            m_functionsItems[i]->show();
-            ly->addWidget(m_functionsItems[i]);
-        }
-        ly->addStretch(1);
+        layout->removeWidget(m_allButton);
+        layout->addWidget(m_typeBox);
+        m_allButton->hide();
+        m_typeBox->show();
     }
 
     return m_functionsWidget;
@@ -197,7 +179,7 @@ void MusicBackgroundThunderWidget::outputRemoteSkin(MusicBackgroundImage &image,
     }
 }
 
-void MusicBackgroundThunderWidget::buttonClicked(int index)
+void MusicBackgroundThunderWidget::currentTypeChanged(int index)
 {
     if(index < 0 || index >= m_groups.count())
     {
@@ -210,50 +192,20 @@ void MusicBackgroundThunderWidget::buttonClicked(int index)
     }
 
     m_currentIndex = index;
-    buttonStyleChanged();
-
     startToDownload(TTS_FILE);
 }
 
 void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
-
+    m_typeBox->blockSignals(true);
     for(int i=0; i<m_groups.count(); ++i)
     {
         QString title(m_groups[i].m_group);
-        m_functionsItems[i]->setText(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, "/")));
+        m_typeBox->addItem(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, "/")));
     }
-
-    //Hide left items if the number just not enough
-    for(int i=m_groups.count(); i<m_functionsItems.count(); ++i)
-    {
-        m_functionsItems[i]->hide();
-    }
-}
-
-QPushButton* MusicBackgroundThunderWidget::createButton(const QString &name)
-{
-    QPushButton *btn = new QPushButton(name, m_functionsWidget);
-    btn->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
-    btn->setCursor(QCursor(Qt::PointingHandCursor));
-    btn->setFixedSize(35, 20);
-    btn->hide();
-#ifdef Q_OS_UNIX
-    btn->setFocusPolicy(Qt::NoFocus);
-#endif
-    m_functionsItems << btn;
-
-    return btn;
-}
-
-void MusicBackgroundThunderWidget::buttonStyleChanged()
-{
-    for(int i=0; i<m_functionsItems.count() - 1; ++i)
-    {
-        m_functionsItems[i]->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02);
-    }
-    m_functionsItems[m_currentIndex]->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
+    m_typeBox->setCurrentIndex(-1);
+    m_typeBox->blockSignals(false);
 }
 
 

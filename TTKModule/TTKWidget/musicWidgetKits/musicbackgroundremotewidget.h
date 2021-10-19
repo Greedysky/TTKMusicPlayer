@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
+#include <QComboBox>
 #include "musicbackgroundlistwidget.h"
 #include "musicabstractdownloadskinrequest.h"
 
@@ -108,24 +108,16 @@ public Q_SLOTS:
     /*!
      * Remote background type selected by index.
      */
-    void buttonClicked(int index);
+    void currentTypeChanged(int index);
     /*!
      * Send download data from net.
      */
     virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override;
 
 protected:
-    /*!
-     * Create button.
-     */
-    QPushButton *createButton(const QString &name);
-    /*!
-     * Button style changed.
-     */
-    void buttonStyleChanged();
-
     QWidget *m_functionsWidget;
-    QList<QPushButton*> m_functionsItems;
+    QPushButton *m_allButton;
+    QComboBox *m_typeBox;
 
 };
 

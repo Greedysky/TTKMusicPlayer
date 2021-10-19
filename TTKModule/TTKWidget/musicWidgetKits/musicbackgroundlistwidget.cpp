@@ -151,7 +151,7 @@ MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
 {
     m_gridLayout = new QGridLayout(this);
     m_gridLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    m_gridLayout->setContentsMargins(7, 7, 7, 7);
+    m_gridLayout->setContentsMargins(7, 0, 7, 0);
     setLayout(m_gridLayout);
     m_currentItem = nullptr;
 }
