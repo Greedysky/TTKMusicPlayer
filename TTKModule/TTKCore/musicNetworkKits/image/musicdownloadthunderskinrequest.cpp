@@ -18,10 +18,10 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &it
         QDomNode node = nodeList.at(i);
         group.m_group = QString("%1/%2").arg(MUSIC_THUNDER_DIR, node.toElement().attribute("name"));
 
-        const QDomNodeList &grouplist = node.childNodes();
-        for(int j=0; j<grouplist.count(); ++j)
+        const QDomNodeList &groupList = node.childNodes();
+        for(int j=0; j<groupList.count(); ++j)
         {
-            node = grouplist.at(j);
+            node = groupList.at(j);
 
             MusicSkinRemoteItem item;
             item.m_index = j;

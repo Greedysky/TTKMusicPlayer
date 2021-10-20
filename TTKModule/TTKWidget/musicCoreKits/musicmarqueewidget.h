@@ -46,7 +46,7 @@ public:
     /*!
      * Get marquee text.
      */
-    inline QString text() const { return m_myText.trimmed(); }
+    inline QString text() const { return m_text.trimmed(); }
     /*!
      * Override size hint.
      */
@@ -63,8 +63,8 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
 
 private:
-    QString m_myText;
-    int m_offset,m_myTimerId;
+    QString m_text;
+    int m_offset,m_timerId;
     bool m_effectOnResize;
 
 };

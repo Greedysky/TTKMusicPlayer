@@ -107,13 +107,13 @@ public Q_SLOTS:
      */
     void backgroundListWidgetChanged(int index);
     /*!
-     * Background list widget item has clicked.
+     * Cache background list widget item has clicked.
      */
-    void backgroundListWidgetItemClicked(const QString &name);
+    void cacheBackgroundListWidgetItemClicked(const QString &name);
     /*!
-     * My background list widget item has clicked.
+     * Stack background list widget item has clicked.
      */
-    void myBackgroundListWidgetItemClicked(const QString &name);
+    void stackBackgroundListWidgetItemClicked(const QString &name);
     /*!
      * Daily background list widget item has clicked.
      */
@@ -165,12 +165,12 @@ protected:
      */
     static int cpoyFileToLocal(const QString &path);
 
-    int m_myThemeIndex;
+    int m_stackThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;
-    MusicBackgroundListWidget *m_backgroundList;
-    MusicBackgroundListWidget *m_myBackgroundList;
-    MusicBackgroundThunderWidget *m_thunderBackgroundList;
+    MusicBackgroundListWidget *m_cacheBackgroundList;
+    MusicBackgroundListWidget *m_stackBackgroundList;
     MusicBackgroundDailyWidget *m_dailyBackgroundList;
+    MusicBackgroundThunderWidget *m_thunderBackgroundList;
 
 };
 

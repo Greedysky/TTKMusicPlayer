@@ -201,6 +201,7 @@ void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups 
         QString title(m_groups[i].m_group);
         m_typeBox->addItem(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, "/")));
     }
+
     m_typeBox->setCurrentIndex(-1);
     m_typeBox->blockSignals(false);
 }

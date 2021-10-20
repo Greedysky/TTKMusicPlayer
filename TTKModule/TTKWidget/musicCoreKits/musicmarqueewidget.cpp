@@ -8,7 +8,7 @@ MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_offset = 0;
-    m_myTimerId = 0;
+    m_timerId = 0;
     m_effectOnResize = false;
 }
 
@@ -23,7 +23,7 @@ void MusicMarqueeWidget::setText(const QString &newText)
 
     int length = MusicUtils::Widget::fontTextWidth(font(), newText);
         length = (length >= width()) ? (45 + w) : (25 + w);
-    m_myText = newText.leftJustified(length, ' ');
+    m_text = newText.leftJustified(length, ' ');
 
     update();
     updateGeometry();
@@ -31,7 +31,7 @@ void MusicMarqueeWidget::setText(const QString &newText)
 
 QSize MusicMarqueeWidget::sizeHint() const
 {
-    return fontMetrics().size(0, m_myText);
+    return fontMetrics().size(0, m_text);
 }
 
 void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
@@ -43,7 +43,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
     f.setBold(false);
     painter.setFont(f);
 
-    const int textWidth = MusicUtils::Widget::fontTextWidth(font(), m_myText);
+    const int textWidth = MusicUtils::Widget::fontTextWidth(font(), m_text);
     if(textWidth < 1)
     {
         return;
@@ -52,7 +52,7 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
     int x = -m_offset;
     while(x < width())
     {
-        painter.drawText(x, 0, textWidth, height(), Qt::AlignLeft | Qt::AlignVCenter, m_myText);
+        painter.drawText(x, 0, textWidth, height(), Qt::AlignLeft | Qt::AlignVCenter, m_text);
         x += textWidth;
     }
 }
@@ -60,15 +60,15 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
 void MusicMarqueeWidget::showEvent(QShowEvent *event)
 {
     QWidget::showEvent(event);
-    m_myTimerId = startTimer(30);
+    m_timerId = startTimer(30);
 }
 
 void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
 {
-    if(event->timerId() == m_myTimerId)
+    if(event->timerId() == m_timerId)
     {
         ++m_offset;
-        if(m_offset >= MusicUtils::Widget::fontTextWidth(font(), m_myText))
+        if(m_offset >= MusicUtils::Widget::fontTextWidth(font(), m_text))
         {
             m_offset = 0;
         }
@@ -83,8 +83,8 @@ void MusicMarqueeWidget::timerEvent(QTimerEvent *event)
 void MusicMarqueeWidget::hideEvent(QHideEvent *event)
 {
     QWidget::hideEvent(event);
-    killTimer(m_myTimerId);
-    m_myTimerId = 0;
+    killTimer(m_timerId);
+    m_timerId = 0;
 }
 
 void MusicMarqueeWidget::resizeEvent(QResizeEvent *event)

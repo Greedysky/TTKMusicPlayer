@@ -111,7 +111,6 @@ bool MusicAbstractXml::readConfig(const QString &name)
         m_file = nullptr;
         return false;
     }
-
     return true;
 }
 
@@ -121,12 +120,7 @@ bool MusicAbstractXml::writeConfig(const QString &name)
     delete m_document;
     m_file = new QFile(name);
     m_document = new QDomDocument;
-
-    if(!m_file->open(QFile::WriteOnly | QFile::Text))
-    {
-        return false;
-    }
-    return true;
+    return m_file->open(QFile::WriteOnly | QFile::Text);
 }
 
 bool MusicAbstractXml::fromString(const QString &data)
@@ -135,13 +129,7 @@ bool MusicAbstractXml::fromString(const QString &data)
     delete m_document;
     m_file = nullptr;
     m_document = new QDomDocument;
-
-    if(!m_document->setContent(data))
-    {
-        return false;
-    }
-
-    return true;
+    return m_document->setContent(data);
 }
 
 bool MusicAbstractXml::fromByteArray(const QByteArray &data)
@@ -150,31 +138,17 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
     delete m_document;
     m_file = nullptr;
     m_document = new QDomDocument;
-
-    if(!m_document->setContent(data))
-    {
-        return false;
-    }
-
-    return true;
+    return m_document->setContent(data);
 }
 
 QString MusicAbstractXml::toString() const
 {
-    if(!m_document)
-    {
-        return QString();
-    }
-    return m_document->toString();
+    return m_document? m_document->toString() : QString();
 }
 
 QByteArray MusicAbstractXml::toByteArray() const
 {
-    if(!m_document)
-    {
-        return QByteArray();
-    }
-    return m_document->toByteArray();
+    return m_document ? m_document->toByteArray() : QByteArray();
 }
 
 QString MusicAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName) const
