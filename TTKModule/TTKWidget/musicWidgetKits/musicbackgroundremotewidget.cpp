@@ -23,6 +23,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
 
     m_downloadQueue = new MusicDownloadQueueRequest(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished(QString)));
+    connect(m_backgroundList, SIGNAL(itemClicked(int,QString)), parent, SLOT(remoteListWidgetItemClicked(int,QString)));
 }
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
@@ -86,133 +87,11 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
 
 
 
-MusicBackgroundThunderWidget::MusicBackgroundThunderWidget(QWidget *parent)
-    : MusicBackgroundRemoteWidget(parent)
-{
-    m_functionsWidget = nullptr;
-    connect(m_backgroundList, SIGNAL(itemClicked(QString)), parent, SLOT(remoteBackgroundListWidgetItemClicked(QString)));
-}
-
-MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
-{
-    delete m_functionsWidget;
-}
-
-void MusicBackgroundThunderWidget::initialize()
-{
-    m_backgroundList->clearAllItems();
-    if(!m_downloadRequest)
-    {
-        m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
-        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
-        m_downloadRequest->startToDownload();
-    }
-}
-
-QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidget *object)
-{
-    if(!m_functionsWidget)
-    {
-        m_functionsWidget = new QWidget(object);
-        m_functionsWidget->setGeometry(24, 70, 585, 25);
-        m_functionsWidget->hide();
-
-        QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
-        hbox->setContentsMargins(9, 0, 0, 9);
-        hbox->addStretch(1);
-
-        m_typeBox = new QComboBox(m_functionsWidget);
-        MusicUtils::Widget::generateComboBoxFormat(m_typeBox);
-        m_typeBox->setFixedSize(100, 20);
-        m_typeBox->hide();
-
-        m_allButton = new QPushButton(tr("All"), m_functionsWidget);
-        m_allButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
-        m_allButton->setCursor(QCursor(Qt::PointingHandCursor));
-        m_allButton->setFixedSize(35, 20);
-#ifdef Q_OS_UNIX
-        m_allButton->setFocusPolicy(Qt::NoFocus);
-#endif
-        m_allButton->hide();
-
-        m_functionsWidget->setLayout(hbox);
-        connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
-    }
-
-    QHBoxLayout *layout = TTKStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
-    if(revert)
-    {
-        layout->removeWidget(m_typeBox);
-        layout->addWidget(m_allButton);
-        m_allButton->show();
-        m_typeBox->hide();
-    }
-    else
-    {
-        layout->removeWidget(m_allButton);
-        layout->addWidget(m_typeBox);
-        m_allButton->hide();
-        m_typeBox->show();
-    }
-
-    return m_functionsWidget;
-}
-
-void MusicBackgroundThunderWidget::outputRemoteSkin(MusicBackgroundImage &image, const QString &data)
-{
-    if(m_groups.isEmpty() || m_currentIndex < 0)
-    {
-        return;
-    }
-
-    const int index = QFileInfo(data).baseName().toInt();
-    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
-    if(index >= 0 || index < items->count())
-    {
-        MusicSkinRemoteItem *item = &(*items)[index];
-        image.m_item.m_name = item->m_name;
-        image.m_item.m_useCount = item->m_useCount;
-        MusicExtractWrapper::outputThunderSkin(image.m_pix, data);
-    }
-}
-
-void MusicBackgroundThunderWidget::currentTypeChanged(int index)
-{
-    if(index < 0 || index >= m_groups.count())
-    {
-        return;
-    }
-
-    if(m_currentIndex != index)
-    {
-        m_downloadQueue->abort();
-    }
-
-    m_currentIndex = index;
-    startToDownload(TTS_FILE);
-}
-
-void MusicBackgroundThunderWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
-{
-    MusicBackgroundRemoteWidget::downLoadFinished(bytes);
-    m_typeBox->blockSignals(true);
-    for(int i=0; i<m_groups.count(); ++i)
-    {
-        QString title(m_groups[i].m_group);
-        m_typeBox->addItem(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, "/")));
-    }
-
-    m_typeBox->setCurrentIndex(-1);
-    m_typeBox->blockSignals(false);
-}
-
-
-
 MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
     : MusicBackgroundRemoteWidget(parent)
 {
     m_currentIndex = 0;
-    connect(m_backgroundList, SIGNAL(itemClicked(QString)), parent, SLOT(dailyBackgroundListWidgetItemClicked(QString)));
+    m_backgroundList->setType(MusicBackgroundListWidget::Third);
 }
 
 void MusicBackgroundDailyWidget::initialize()
@@ -252,4 +131,132 @@ void MusicBackgroundDailyWidget::downLoadFinished(const MusicSkinRemoteGroups &b
 {
     MusicBackgroundRemoteWidget::downLoadFinished(bytes);
     startToDownload(TTS_FILE);
+}
+
+
+
+MusicBackgroundOnlineWidget::MusicBackgroundOnlineWidget(QWidget *parent)
+    : MusicBackgroundRemoteWidget(parent)
+{
+    m_functionsWidget = nullptr;
+    m_backgroundList->setType(MusicBackgroundListWidget::Four);
+}
+
+MusicBackgroundOnlineWidget::~MusicBackgroundOnlineWidget()
+{
+    delete m_functionsWidget;
+}
+
+void MusicBackgroundOnlineWidget::initialize()
+{
+    m_backgroundList->clearAllItems();
+    if(m_typeBox->count() != 0)
+    {
+        m_typeBox->setCurrentIndex(0);
+    }
+
+    if(!m_downloadRequest)
+    {
+        m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
+        connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
+        m_downloadRequest->startToDownload();
+    }
+}
+
+QWidget* MusicBackgroundOnlineWidget::createFunctionsWidget(bool revert, QWidget *object)
+{
+    if(!m_functionsWidget)
+    {
+        m_functionsWidget = new QWidget(object);
+        m_functionsWidget->setGeometry(24, 70, 585, 25);
+        m_functionsWidget->hide();
+
+        QHBoxLayout *hbox = new QHBoxLayout(m_functionsWidget);
+        hbox->setContentsMargins(9, 0, 0, 9);
+        hbox->addStretch(1);
+
+        m_typeBox = new QComboBox(m_functionsWidget);
+        MusicUtils::Widget::generateComboBoxFormat(m_typeBox);
+        m_typeBox->setFixedSize(100, 20);
+        m_typeBox->addItem(tr("Select One"));
+        m_typeBox->hide();
+
+        m_allButton = new QPushButton(tr("All"), m_functionsWidget);
+        m_allButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle02 + QString("QPushButton{%1}").arg(MusicUIObject::MQSSColorStyle08));
+        m_allButton->setCursor(QCursor(Qt::PointingHandCursor));
+        m_allButton->setFixedSize(35, 20);
+#ifdef Q_OS_UNIX
+        m_allButton->setFocusPolicy(Qt::NoFocus);
+#endif
+        m_allButton->hide();
+
+        m_functionsWidget->setLayout(hbox);
+        connect(m_typeBox, SIGNAL(currentIndexChanged(int)), SLOT(currentTypeChanged(int)));
+    }
+
+    QHBoxLayout *layout = TTKStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
+    if(revert)
+    {
+        layout->removeWidget(m_typeBox);
+        layout->addWidget(m_allButton);
+        m_allButton->show();
+        m_typeBox->hide();
+    }
+    else
+    {
+        layout->removeWidget(m_allButton);
+        layout->addWidget(m_typeBox);
+        m_allButton->hide();
+        m_typeBox->show();
+    }
+
+    return m_functionsWidget;
+}
+
+void MusicBackgroundOnlineWidget::outputRemoteSkin(MusicBackgroundImage &image, const QString &data)
+{
+    if(m_groups.isEmpty() || m_currentIndex < 0)
+    {
+        return;
+    }
+
+    const int index = QFileInfo(data).baseName().toInt();
+    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
+    if(index >= 0 || index < items->count())
+    {
+        MusicSkinRemoteItem *item = &(*items)[index];
+        image.m_item.m_name = item->m_name;
+        image.m_item.m_useCount = item->m_useCount;
+        MusicExtractWrapper::outputThunderSkin(image.m_pix, data);
+    }
+}
+
+void MusicBackgroundOnlineWidget::currentTypeChanged(int index)
+{
+    index -= 1; //remove first index because it is tips
+    if(index < 0 || index >= m_groups.count())
+    {
+        return;
+    }
+
+    if(m_currentIndex != index)
+    {
+        m_downloadQueue->abort();
+    }
+
+    m_currentIndex = index;
+    startToDownload(TTS_FILE);
+}
+
+void MusicBackgroundOnlineWidget::downLoadFinished(const MusicSkinRemoteGroups &bytes)
+{
+    MusicBackgroundRemoteWidget::downLoadFinished(bytes);
+    m_typeBox->blockSignals(true);
+    for(int i=0; i<bytes.count(); ++i)
+    {
+        QString title(m_groups[i].m_group);
+        m_typeBox->addItem(title.remove(TTK_STRCAT(MUSIC_THUNDER_DIR, "/")));
+    }
+    m_typeBox->setCurrentIndex(0);
+    m_typeBox->blockSignals(false);
 }

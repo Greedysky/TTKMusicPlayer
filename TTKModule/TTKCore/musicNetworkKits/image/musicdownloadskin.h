@@ -21,5 +21,6 @@
 
 #include "musicdownloadbingskinrequest.h"
 #include "musicdownloadthunderskinrequest.h"
+#include "musicdownloadbirdskinrequest.h"
 
 #endif // MUSICDOWNLOADSKIN_H

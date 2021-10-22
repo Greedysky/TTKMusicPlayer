@@ -26,7 +26,7 @@ class MusicBackgroundSkinDialog;
 }
 
 class MusicBackgroundListWidget;
-class MusicBackgroundThunderWidget;
+class MusicBackgroundOnlineWidget;
 class MusicBackgroundDailyWidget;
 class MusicBackgroundRemoteWidget;
 
@@ -107,21 +107,13 @@ public Q_SLOTS:
      */
     void backgroundListWidgetChanged(int index);
     /*!
-     * Cache background list widget item has clicked.
+     * Classical list widget item has clicked.
      */
-    void cacheBackgroundListWidgetItemClicked(const QString &name);
-    /*!
-     * Stack background list widget item has clicked.
-     */
-    void stackBackgroundListWidgetItemClicked(const QString &name);
-    /*!
-     * Daily background list widget item has clicked.
-     */
-    void dailyBackgroundListWidgetItemClicked(const QString &name);
+    void classicalListWidgetItemClicked(int type, const QString &name);
     /*!
      * Remote background list widget item has clicked.
      */
-    void remoteBackgroundListWidgetItemClicked(const QString &name);
+    void remoteListWidgetItemClicked(int type, const QString &name);
     /*!
      * Update app background when user change the current background emit.
      */
@@ -169,8 +161,9 @@ protected:
     Ui::MusicBackgroundSkinDialog *m_ui;
     MusicBackgroundListWidget *m_cacheBackgroundList;
     MusicBackgroundListWidget *m_stackBackgroundList;
+
     MusicBackgroundDailyWidget *m_dailyBackgroundList;
-    MusicBackgroundThunderWidget *m_thunderBackgroundList;
+    MusicBackgroundOnlineWidget *m_onlineBackgroundList;
 
 };
 

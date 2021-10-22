@@ -65,59 +65,13 @@ protected:
     /*!
      * Start to download data.
      */
-    void startToDownload(const QString &prefix);
+    void startToDownload(const QString &suffix);
 
     int m_currentIndex;
     MusicSkinRemoteGroups m_groups;
     MusicBackgroundListWidget *m_backgroundList;
     MusicDownloadQueueRequest *m_downloadQueue;
     MusicAbstractDownloadSkinRequest *m_downloadRequest;
-
-};
-
-
-/*! @brief The class of the thunder background widget.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicBackgroundThunderWidget : public MusicBackgroundRemoteWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBackgroundThunderWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicBackgroundThunderWidget(QWidget *parent = nullptr);
-    ~MusicBackgroundThunderWidget();
-
-    /*!
-     * Init parameters.
-     */
-    void initialize();
-
-    /*!
-     * Create functions widget.
-     */
-    QWidget* createFunctionsWidget(bool revert, QWidget *object = nullptr);
-    /*!
-     * Output remote skin.
-     */
-    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override;
-
-public Q_SLOTS:
-    /*!
-     * Remote background type selected by index.
-     */
-    void currentTypeChanged(int index);
-    /*!
-     * Send download data from net.
-     */
-    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override;
-
-protected:
-    QWidget *m_functionsWidget;
-    QPushButton *m_allButton;
-    QComboBox *m_typeBox;
 
 };
 
@@ -151,6 +105,53 @@ public Q_SLOTS:
      * Send download data from net.
      */
     virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override;
+
+};
+
+
+
+/*! @brief The class of the online background widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicBackgroundOnlineWidget : public MusicBackgroundRemoteWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundOnlineWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicBackgroundOnlineWidget(QWidget *parent = nullptr);
+    ~MusicBackgroundOnlineWidget();
+
+    /*!
+     * Init parameters.
+     */
+    void initialize();
+
+    /*!
+     * Create functions widget.
+     */
+    QWidget* createFunctionsWidget(bool revert, QWidget *object = nullptr);
+    /*!
+     * Output remote skin.
+     */
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override;
+
+public Q_SLOTS:
+    /*!
+     * Remote background type selected by index.
+     */
+    void currentTypeChanged(int index);
+    /*!
+     * Send download data from net.
+     */
+    virtual void downLoadFinished(const MusicSkinRemoteGroups &bytes) override;
+
+protected:
+    QWidget *m_functionsWidget;
+    QPushButton *m_allButton;
+    QComboBox *m_typeBox;
 
 };
 

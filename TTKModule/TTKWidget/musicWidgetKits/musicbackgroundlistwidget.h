@@ -142,6 +142,14 @@ class TTK_MODULE_EXPORT MusicBackgroundListWidget : public QWidget
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicBackgroundListWidget)
 public:
+    enum Type
+    {
+        First,
+        Second,
+        Third,
+        Four
+    };
+
     /*!
      * Object contsructor.
      */
@@ -152,6 +160,15 @@ public:
      * Select current item by name when the widget show.
      */
     void setCurrentItemName(const QString &name);
+
+    /*!
+     * Set background list rtpe.
+     */
+    inline void setType(Type type) { m_type = type; }
+    /*!
+     * Get background list rtpe.
+     */
+    inline Type getType() const { return m_type; }
 
     /*!
      * Clear select state.
@@ -212,7 +229,7 @@ Q_SIGNALS:
     /*!
      * Current item clicked.
      */
-    void itemClicked(const QString &name);
+    void itemClicked(int type, const QString &name);
 
 private Q_SLOTS:
     /*!
@@ -225,6 +242,7 @@ private Q_SLOTS:
     void itemHasClicked(MusicBackgroundListItem *item);
 
 protected:
+    Type m_type;
     QGridLayout *m_gridLayout;
     MusicBackgroundListItem *m_currentItem;
     QList<MusicBackgroundListItem*> m_items;

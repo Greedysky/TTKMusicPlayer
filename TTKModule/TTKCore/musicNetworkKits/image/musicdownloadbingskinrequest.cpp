@@ -19,7 +19,7 @@ void MusicDownloadBingSkinRequest::startToDownload()
 
 void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
 {
-    MusicSkinRemoteGroups items;
+    MusicSkinRemoteGroups groups;
 
     QJson::Parser json;
     bool ok;
@@ -31,6 +31,8 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
         {
             MusicSkinRemoteGroup group;
             group.m_group = MUSIC_BING_DIR;
+            group.m_id = STRING_NULL;
+
             const QVariantList &datas = value["images"].toList();
             for(const QVariant &var : qAsConst(datas))
             {
@@ -54,10 +56,10 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
 
             if(group.isValid())
             {
-                items << group;
+                groups << group;
             }
         }
     }
 
-    Q_EMIT downLoadDataChanged(items);
+    Q_EMIT downLoadDataChanged(groups);
 }

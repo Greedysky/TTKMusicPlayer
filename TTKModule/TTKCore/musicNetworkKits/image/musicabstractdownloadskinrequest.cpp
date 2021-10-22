@@ -5,3 +5,13 @@ MusicAbstractDownloadSkinRequest::MusicAbstractDownloadSkinRequest(QObject *pare
 {
 
 }
+
+void MusicAbstractDownloadSkinRequest::startToDownload()
+{
+
+}
+
+void MusicAbstractDownloadSkinRequest::startToDownload(const QString &id)
+{
+    Q_UNUSED(id);
+}

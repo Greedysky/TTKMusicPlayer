@@ -37,16 +37,18 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(m_ui->skinAnimationSiwidget, SIGNAL(buttonClicked(int)), SLOT(backgroundListWidgetChanged(int)));
 
     m_cacheBackgroundList = new MusicBackgroundListWidget(this);
+    m_cacheBackgroundList->setType(MusicBackgroundListWidget::First);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->recommandScrollArea, m_cacheBackgroundList);
 
     m_stackBackgroundList = new MusicBackgroundListWidget(this);
+    m_stackBackgroundList->setType(MusicBackgroundListWidget::Second);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->userScrollArea, m_stackBackgroundList);
 
     m_dailyBackgroundList = new MusicBackgroundDailyWidget(this);
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->dailyScrollArea, m_dailyBackgroundList);
 
-    m_thunderBackgroundList = new MusicBackgroundThunderWidget(this);
-    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->remoteScrollArea, m_thunderBackgroundList);
+    m_onlineBackgroundList = new MusicBackgroundOnlineWidget(this);
+    MusicUtils::Widget::generateVScrollAreaFormat(m_ui->remoteScrollArea, m_onlineBackgroundList);
 
     m_stackThemeIndex = CURRENT_ITEMS_COUNT;
     addThemeListWidgetItem();
@@ -68,8 +70,9 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
     connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
     connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationModule::instance(), SLOT(musicResetWindow()));
-    connect(m_cacheBackgroundList, SIGNAL(itemClicked(QString)), SLOT(cacheBackgroundListWidgetItemClicked(QString)));
-    connect(m_stackBackgroundList, SIGNAL(itemClicked(QString)), SLOT(stackBackgroundListWidgetItemClicked(QString)));
+
+    connect(m_cacheBackgroundList, SIGNAL(itemClicked(int,QString)), SLOT(classicalListWidgetItemClicked(int,QString)));
+    connect(m_stackBackgroundList, SIGNAL(itemClicked(int,QString)), SLOT(classicalListWidgetItemClicked(int,QString)));
 }
 
 MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
@@ -78,7 +81,7 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
     delete m_cacheBackgroundList;
     delete m_stackBackgroundList;
     delete m_dailyBackgroundList;
-    delete m_thunderBackgroundList;
+    delete m_onlineBackgroundList;
 }
 
 QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
@@ -201,7 +204,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
 
 void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
 {
-    QWidget *toolWidget = m_thunderBackgroundList->createFunctionsWidget(index != 3, this);
+    QWidget *toolWidget = m_onlineBackgroundList->createFunctionsWidget(index != 3, this);
     if(!toolWidget->isVisible())
     {
         toolWidget->show();
@@ -215,7 +218,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     }
     //
     m_dailyBackgroundList->abort();
-    m_thunderBackgroundList->abort();
+    m_onlineBackgroundList->abort();
     //
     if(index == 2)
     {
@@ -223,37 +226,44 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     }
     else if(index == 3)
     {
-        m_thunderBackgroundList->initialize();
+        m_onlineBackgroundList->initialize();
     }
     //
     m_ui->stackedWidget->setIndex(0, 0);
     m_ui->stackedWidget->start(index);
 }
 
-void MusicBackgroundSkinDialog::cacheBackgroundListWidgetItemClicked(const QString &name)
+void MusicBackgroundSkinDialog::classicalListWidgetItemClicked(int type, const QString &name)
 {
-    if(!m_stackBackgroundList->contains(name))
+    if(type == MusicBackgroundListWidget::First)
     {
-        const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(name).arg(TTS_FILE);
-        QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL).arg(name).arg(TTS_FILE), path);
-        m_stackBackgroundList->createItem(name, path, true);
+        if(!m_stackBackgroundList->contains(name))
+        {
+            const QString &path = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(name).arg(TTS_FILE);
+            QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL).arg(name).arg(TTS_FILE), path);
+            m_stackBackgroundList->createItem(name, path, true);
+        }
+        listWidgetItemClicked(m_stackBackgroundList, name);
     }
-    listWidgetItemClicked(m_stackBackgroundList, name);
+    else
+    {
+        listWidgetItemClicked(m_cacheBackgroundList, name);
+    }
 }
 
-void MusicBackgroundSkinDialog::stackBackgroundListWidgetItemClicked(const QString &name)
+void MusicBackgroundSkinDialog::remoteListWidgetItemClicked(int type, const QString &name)
 {
-    listWidgetItemClicked(m_cacheBackgroundList, name);
-}
+    switch(type)
+    {
+    case MusicBackgroundListWidget::Third:
+        listWidgetItemClicked(m_dailyBackgroundList, name);
+        break;
 
-void MusicBackgroundSkinDialog::dailyBackgroundListWidgetItemClicked(const QString &name)
-{
-    listWidgetItemClicked(m_dailyBackgroundList, name);
-}
-
-void MusicBackgroundSkinDialog::remoteBackgroundListWidgetItemClicked(const QString &name)
-{
-    listWidgetItemClicked(m_thunderBackgroundList, name);
+    case MusicBackgroundListWidget::Four:
+        listWidgetItemClicked(m_onlineBackgroundList, name);
+        break;
+    default: break;
+    }
 }
 
 void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)

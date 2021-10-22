@@ -148,6 +148,7 @@ void MusicDownloadQueueRequest::handleError(QNetworkReply::NetworkError code)
     {
         return;
     }
+
 #ifndef TTK_DEBUG
     Q_UNUSED(code);
 #endif

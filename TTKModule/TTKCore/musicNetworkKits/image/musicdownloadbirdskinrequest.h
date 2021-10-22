@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADTHUNDERSKINREQUEST_H
-#define MUSICDOWNLOADTHUNDERSKINREQUEST_H
+#ifndef MUSICDOWNLOADBIRDSKINREQUEST_H
+#define MUSICDOWNLOADBIRDSKINREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,51 +21,44 @@
 
 #include "musicabstractdownloadskinrequest.h"
 
-/*! @brief The class of the thunder skin XML Config Manager.
+/*! @brief The class of download bird skin background.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSkinThunderConfigManager : public MusicAbstractXml
+class TTK_MODULE_EXPORT MusicDownloadBirdSkinRequest : public MusicAbstractDownloadSkinRequest
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSkinThunderConfigManager)
+    TTK_DECLARE_MODULE(MusicDownloadBirdSkinRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinThunderConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read datas from config file.
-     */
-    void readSkinRemoteData(MusicSkinRemoteGroups &groups);
-
-};
-
-
-/*! @brief The class of download thunder skin background.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicDownloadThunderSkinRequest : public MusicAbstractDownloadSkinRequest
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadThunderSkinRequest)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicDownloadThunderSkinRequest(QObject *parent = nullptr);
+    explicit MusicDownloadBirdSkinRequest(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
      */
     virtual void startToDownload() override;
+    /*!
+     * Start to download data from net.
+     */
+    virtual void startToDownload(const QString &id) override;
+
+Q_SIGNALS:
+    /*!
+     * Send download data from net.
+     */
+    void downLoadItemsChanged(const MusicSkinRemoteGroup &bytes);
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished(const QByteArray &bytes) override;
+    /*!
+     * Download item data from net finished.
+     */
+    void downLoadItemsFinished(const QByteArray &bytes);
 
 };
 
-#endif // MUSICDOWNLOADTHUNDERSKINREQUEST_H
+#endif // MUSICDOWNLOADBIRDSKINREQUEST_H

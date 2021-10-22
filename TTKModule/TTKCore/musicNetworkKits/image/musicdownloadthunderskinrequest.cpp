@@ -1,6 +1,7 @@
 #include "musicdownloadthunderskinrequest.h"
 #include "musicdownloadsourcerequest.h"
 
+#define MAX_SIZE    30
 #define QUERY_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
 
 MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
@@ -9,7 +10,7 @@ MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
 
 }
 
-void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &items)
+void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &groups)
 {
     const QDomNodeList &nodeList = m_document->elementsByTagName("group");
     for(int i=0; i<nodeList.count(); ++i)
@@ -17,10 +18,16 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &it
         MusicSkinRemoteGroup group;
         QDomNode node = nodeList.at(i);
         group.m_group = QString("%1/%2").arg(MUSIC_THUNDER_DIR, node.toElement().attribute("name"));
+        group.m_id = STRING_NULL;
 
         const QDomNodeList &groupList = node.childNodes();
         for(int j=0; j<groupList.count(); ++j)
         {
+            if(j > MAX_SIZE)
+            {
+                break;
+            }
+
             node = groupList.at(j);
 
             MusicSkinRemoteItem item;
@@ -51,7 +58,7 @@ void MusicSkinThunderConfigManager::readSkinRemoteData(MusicSkinRemoteGroups &it
 
         if(group.isValid())
         {
-            items << group;
+            groups << group;
         }
     }
 }
@@ -72,12 +79,12 @@ void MusicDownloadThunderSkinRequest::startToDownload()
 
 void MusicDownloadThunderSkinRequest::downLoadFinished(const QByteArray &bytes)
 {
-    MusicSkinRemoteGroups items;
+    MusicSkinRemoteGroups groups;
     MusicSkinThunderConfigManager manager;
     if(manager.fromByteArray(bytes))
     {
-        manager.readSkinRemoteData(items);
+        manager.readSkinRemoteData(groups);
     }
 
-    Q_EMIT downLoadDataChanged(items);
+    Q_EMIT downLoadDataChanged(groups);
 }

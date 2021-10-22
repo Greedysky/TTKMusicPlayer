@@ -45,6 +45,7 @@ HEADERS  += \
     $$PWD/image/musicabstractdownloadskinrequest.h \
     $$PWD/image/musicdownloadbingskinrequest.h \
     $$PWD/image/musicdownloadthunderskinrequest.h \
+    $$PWD/image/musicdownloadbirdskinrequest.h \
     $$PWD/music/wy/musicwyqueryinterface.h \
     $$PWD/music/wy/musicwyqueryrequest.h \
     $$PWD/music/wy/musicwyqueryalbumrequest.h \
@@ -155,6 +156,7 @@ SOURCES += \
     $$PWD/image/musicabstractdownloadskinrequest.cpp \
     $$PWD/image/musicdownloadbingskinrequest.cpp \
     $$PWD/image/musicdownloadthunderskinrequest.cpp \
+    $$PWD/image/musicdownloadbirdskinrequest.cpp \
     $$PWD/music/wy/musicwyqueryinterface.cpp \
     $$PWD/music/wy/musicwyqueryrequest.cpp \
     $$PWD/music/wy/musicwyqueryalbumrequest.cpp \

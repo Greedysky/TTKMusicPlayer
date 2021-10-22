@@ -17,6 +17,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/image/musicabstractdownloadskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbingskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadthunderskinrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbirdskinrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.h
@@ -127,6 +128,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/image/musicabstractdownloadskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbingskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadthunderskinrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/image/musicdownloadbirdskinrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryinterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/music/wy/musicwyqueryalbumrequest.cpp

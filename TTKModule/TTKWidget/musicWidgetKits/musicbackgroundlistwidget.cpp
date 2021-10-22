@@ -149,6 +149,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_type = First;
     m_gridLayout = new QGridLayout(this);
     m_gridLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_gridLayout->setContentsMargins(7, 0, 7, 0);
@@ -340,5 +341,5 @@ void MusicBackgroundListWidget::itemHasClicked(MusicBackgroundListItem *item)
 
     m_currentItem = item;
     m_currentItem->setSelect(true);
-    Q_EMIT itemClicked(item->getFileName());
+    Q_EMIT itemClicked(m_type, item->getFileName());
 }

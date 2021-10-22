@@ -53,11 +53,12 @@ TTK_DECLARE_LIST(MusicSkinRemoteItem)
 typedef struct TTK_MODULE_EXPORT MusicSkinRemoteGroup
 {
     QString m_group;
+    QString m_id;
     MusicSkinRemoteItems m_items;
 
     bool isValid() const
     {
-        return !(m_group.isEmpty() && m_items.isEmpty());
+        return !(m_group.isEmpty() && m_id.isEmpty() && m_items.isEmpty());
     }
 
 }MusicSkinRemoteGroup;
@@ -80,7 +81,11 @@ public:
     /*!
      * Start to download data from net.
      */
-    virtual void startToDownload() = 0;
+    virtual void startToDownload();
+    /*!
+     * Start to download data from net.
+     */
+    virtual void startToDownload(const QString &id);
 
 Q_SIGNALS:
     /*!
