@@ -70,7 +70,6 @@ void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
     const QString &path = QString("%1%2").arg(CACHE_DIR_FULL).arg(m_groups[m_currentIndex].m_group);
     QDir().mkpath(path);
 
-    m_backgroundList->clearAllItems();
     MusicDownloadQueueDatas datas;
     for(const MusicSkinRemoteItem &item : qAsConst(m_groups[m_currentIndex].m_items))
     {
@@ -104,6 +103,7 @@ void MusicBackgroundDailyWidget::initialize()
     }
     else
     {
+        m_backgroundList->clearAllItems();
         startToDownload(TTS_FILE);
     }
 }
@@ -149,7 +149,6 @@ MusicBackgroundOnlineWidget::~MusicBackgroundOnlineWidget()
 
 void MusicBackgroundOnlineWidget::initialize()
 {
-    m_backgroundList->clearAllItems();
     if(m_typeBox->count() != 0)
     {
         m_typeBox->setCurrentIndex(0);
@@ -160,6 +159,10 @@ void MusicBackgroundOnlineWidget::initialize()
         m_downloadRequest = new MusicDownloadThunderSkinRequest(this);
         connect(m_downloadRequest, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadFinished(MusicSkinRemoteGroups)));
         m_downloadRequest->startToDownload();
+    }
+    else
+    {
+        m_backgroundList->clearAllItems();
     }
 }
 
