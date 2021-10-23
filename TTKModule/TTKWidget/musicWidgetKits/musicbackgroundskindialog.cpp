@@ -320,6 +320,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
         return;
     }
 
+    m_cacheBackgroundList->clearSelectState();
     if(!m_stackBackgroundList->contains(image))
     {
         const int index = cpoyFileToLocalIndex();

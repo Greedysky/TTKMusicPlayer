@@ -2712,7 +2712,7 @@ font-weight:bold;</string>
      <string notr="true">background-color:transparent;
 font-size:12px;
 color:rgb(80,80,80);
-font-weight:bold;;</string>
+font-weight:bold;</string>
     </property>
     <property name="text">
      <string>基本设置</string>
@@ -2731,7 +2731,7 @@ font-weight:bold;;</string>
      <string notr="true">background-color:transparent;
 font-size:12px;
 color:rgb(80,80,80);
-font-weight:bold;;</string>
+font-weight:bold;</string>
     </property>
     <property name="text">
      <string>歌词设置</string>
@@ -2770,7 +2770,7 @@ font-weight:bold;;</string>
      <string notr="true">background-color:transparent;
 font-size:12px;
 color:rgb(80,80,80);
-font-weight:bold;;</string>
+font-weight:bold;</string>
     </property>
     <property name="text">
      <string>高级设置</string>

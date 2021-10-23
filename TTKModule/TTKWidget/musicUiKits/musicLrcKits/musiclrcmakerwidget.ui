@@ -331,7 +331,7 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image:url(:/lrc/lb_make_space);;border-style: inset;</string>
+      <string notr="true">background-image:url(:/lrc/lb_make_space);border-style: inset;</string>
      </property>
      <property name="flat">
       <bool>true</bool>
