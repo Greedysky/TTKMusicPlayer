@@ -20,7 +20,7 @@
  ================================================= */
 
 #include "musicwidgetheaders.h"
-#include "musicbarragerecordconfigmanager.h"
+#include "musicbarragerecord.h"
 
 #include <QPropertyAnimation>
 
@@ -123,14 +123,6 @@ protected:
      * Create barrage animation by object.
      */
     void createAnimation(QLabel *label);
-    /*!
-     * Read barrage text from local file.
-     */
-    void readBarrage();
-    /*!
-     * Write barrage text to local file.
-     */
-    void writeBarrage();
 
     bool m_barrageState;
     QSize m_parentSize;

@@ -22,7 +22,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
-#include "musicbarragerecordconfigmanager.h"
+#include "musicbarragerecord.h"
 
 class QPushButton;
 class MusicVolumePopWidget;

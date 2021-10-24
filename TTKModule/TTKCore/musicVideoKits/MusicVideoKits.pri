@@ -19,10 +19,9 @@
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/musicbarragerecordconfigmanager.h \
+    $$PWD/musicbarragerecord.h \
     $$PWD/musicbarragewidget.h
 
 
 SOURCES += \
-    $$PWD/musicbarragerecordconfigmanager.cpp \
     $$PWD/musicbarragewidget.cpp

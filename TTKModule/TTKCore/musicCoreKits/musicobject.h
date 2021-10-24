@@ -136,7 +136,6 @@
 #define CLOUDDOWNPATH           "musiccloud.ttk"
 #define CLOUDUPPATH             "musiccloudp.ttk"
 #define MUSICSEARCH             "musichistory.ttk"
-#define BARRAGEPATH             "musicbarrage.ttk"
 
 
 #define MAIN_DIR_FULL         MusicObject::getAppDir() + "../"

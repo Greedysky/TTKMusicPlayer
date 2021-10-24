@@ -1,5 +1,5 @@
-#ifndef MUSICBARRAGERECORDCONFIGMANAGER_H
-#define MUSICBARRAGERECORDCONFIGMANAGER_H
+#ifndef MUSICBARRAGERECORD_H
+#define MUSICBARRAGERECORD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -32,33 +32,4 @@ typedef struct TTK_MODULE_EXPORT MusicBarrageRecord
 }MusicBarrageRecord;
 TTK_DECLARE_LIST(MusicBarrageRecord)
 
-/*! @brief The class of the barrage record manager.
- * @author Greedysky <greedysky@163.com>
- */
-class TTK_MODULE_EXPORT MusicBarrageRecordConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicBarrageRecordConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicBarrageRecordConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read barrage datas from xml file by given name.
-     */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(BARRAGEPATH_FULL); }
-
-    /*!
-     * Read datas from config file.
-     */
-    void readBarrageData(MusicBarrageRecords &records);
-    /*!
-     * Write datas into config file.
-     */
-    void writeBarrageData(const MusicBarrageRecords &records);
-
-};
-
-#endif // MUSICBARRAGERECORDCONFIGMANAGER_H
+#endif // MUSICBARRAGERECORD_H

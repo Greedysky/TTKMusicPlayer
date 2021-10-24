@@ -43,37 +43,38 @@ MusicBarrageWidget::MusicBarrageWidget(QObject *parent)
 {
     m_parentClass = TTKStatic_cast(QWidget*, parent);
     m_barrageState = false;
-
-    readBarrage();
 }
 
 MusicBarrageWidget::~MusicBarrageWidget()
 {
-    writeBarrage();
     deleteItems();
 }
 
 void MusicBarrageWidget::start()
 {
-    if(m_barrageState)
+    if(!m_barrageState)
     {
-        for(int i=0; i<m_labels.count(); i++)
-        {
-            m_labels[i]->show();
-            m_animations[i]->start();
-        }
+        return;
+    }
+
+    for(int i=0; i<m_labels.count(); i++)
+    {
+        m_labels[i]->show();
+        m_animations[i]->start();
     }
 }
 
 void MusicBarrageWidget::pause()
 {
-    if(m_barrageState)
+    if(!m_barrageState)
     {
-        for(int i=0; i<m_labels.count(); i++)
-        {
-            m_labels[i]->hide();
-            m_animations[i]->pause();
-        }
+        return;
+    }
+
+    for(int i=0; i<m_labels.count(); i++)
+    {
+        m_labels[i]->hide();
+        m_animations[i]->pause();
     }
 }
 
@@ -170,24 +171,4 @@ void MusicBarrageWidget::createAnimation(QLabel *label)
     MusicBarrageAnimation *anim = new MusicBarrageAnimation(label, "pos");
     anim->setSize(m_parentSize);
     m_animations << anim;
-}
-
-void MusicBarrageWidget::readBarrage()
-{
-    MusicBarrageRecordConfigManager manager(this);
-    if(!manager.readConfig())
-    {
-        return;
-    }
-    manager.readBarrageData(m_barrageRecords);
-}
-
-void MusicBarrageWidget::writeBarrage()
-{
-    MusicBarrageRecordConfigManager manager(this);
-    if(!manager.readConfig())
-    {
-        return;
-    }
-    manager.readBarrageData(m_barrageRecords);
 }

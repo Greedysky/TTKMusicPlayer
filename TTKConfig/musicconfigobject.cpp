@@ -30,7 +30,6 @@ void MusicConfigObject::initialize()
     copyFileOverwrite(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
     copyFileOverwrite(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
     copyFileOverwrite(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
-    copyFileOverwrite(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 }
 
 void MusicConfigObject::reset()
@@ -73,7 +72,6 @@ void MusicConfigObject::checkTheFileNeededExist()
     copyFile(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
     copyFile(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
     copyFile(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
-    copyFile(":/data/musicbarrage.ttk", TTK_BARRAGEPATH_FULL);
 
 #ifdef Q_OS_UNIX
     copyLinuxShellFile(":/data/TTKRoutine.sh", TTK_ROUTINE_FULL);
