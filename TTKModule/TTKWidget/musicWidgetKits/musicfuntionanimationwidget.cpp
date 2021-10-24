@@ -291,19 +291,16 @@ void MusicSkinAnimationWidget::paintEvent(QPaintEvent *event)
 
 void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
 {
-    m_container[0]->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
-    m_container[1]->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
-    m_container[2]->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
-    m_container[3]->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
-
-    switch(index)
+    for(QWidget *widget : m_container)
     {
-        case 0: m_container[0]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01); break;
-        case 1: m_container[1]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01); break;
-        case 2: m_container[2]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01); break;
-        case 3: m_container[3]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01); break;
-        default: break;
+        widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSBackgroundStyle01);
     }
 
+    if(index < 0 || index >= m_container.count())
+    {
+        return;
+    }
+
+    m_container[index]->setStyleSheet(MusicUIObject::MQSSColorStyle08 + MusicUIObject::MQSSBackgroundStyle01);
     MusicBaseAnimationWidget::switchToSelectedItemStyle(index);
 }
