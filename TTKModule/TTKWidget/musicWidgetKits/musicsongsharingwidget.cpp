@@ -71,7 +71,7 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
                 const QString &smallUrl = data["smallUrl"].toString();
                 MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
                 connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-                if(!smallUrl.isEmpty() && smallUrl != COVER_URL_NULL)
+                if(!smallUrl.isEmpty() && smallUrl != URL_NULL)
                 {
                     download->startToDownload(smallUrl);
                 }

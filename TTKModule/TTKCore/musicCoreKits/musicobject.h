@@ -175,7 +175,7 @@
 #define CONCISE_WIDTH_MIN       322
 //
 #define STRING_NULL             "-"
-#define COVER_URL_NULL          "null"
+#define URL_NULL                "null"
 
 
 /*! @brief The namespace of the application object.

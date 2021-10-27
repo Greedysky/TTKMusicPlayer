@@ -62,7 +62,7 @@ void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &it
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
+    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
     {
         download->startToDownload(item.m_coverUrl);
     }
@@ -484,7 +484,7 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
 
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
+        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
         {
             download->startToDownload(item.m_coverUrl);
         }

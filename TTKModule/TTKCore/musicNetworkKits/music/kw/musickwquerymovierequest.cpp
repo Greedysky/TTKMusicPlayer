@@ -148,7 +148,7 @@ void MusicKWQueryMovieRequest::pageDownLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["musicid"].toString();
                     info.m_coverUrl = value["pic"].toString();
-                    if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(COVER_URL_NULL))
+                    if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(URL_NULL))
                     {
                         info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_MOVIE_COVER_URL, false) + info.m_coverUrl;
                     }

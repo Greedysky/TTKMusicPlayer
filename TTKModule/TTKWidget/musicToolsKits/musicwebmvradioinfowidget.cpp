@@ -161,7 +161,7 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
     {
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
+        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
         {
             download->startToDownload(item.m_coverUrl);
         }

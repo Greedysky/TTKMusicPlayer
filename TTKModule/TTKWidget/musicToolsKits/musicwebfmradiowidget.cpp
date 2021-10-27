@@ -149,7 +149,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
 
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != COVER_URL_NULL)
+        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != URL_NULL)
         {
             download->setHeader("id", index);
             download->startToDownload(channel.m_coverUrl);
