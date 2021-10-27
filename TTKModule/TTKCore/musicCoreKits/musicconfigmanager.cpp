@@ -318,7 +318,7 @@ void MusicConfigManager::writeSysConfigData()
     const QString &downloadDownloadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadDownloadLimitSize).toString();
     const QString &downloadUploadLimitSize = G_SETTING_PTR->value(MusicSettingManager::DownloadUploadLimitSize).toString();
     //
-    if(!writeConfig(COFIGPATH_FULL))
+    if(!writeConfig(COFIG_PATH_FULL))
     {
         return;
     }

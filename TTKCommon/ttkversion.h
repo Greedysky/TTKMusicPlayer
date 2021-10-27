@@ -152,7 +152,7 @@
 
 #define TTKMUSIC_VERSION 0x02F40
 
-#define TTKCONFIG_VERSION_STR    "1.0.0"
+#define TTKCONFIG_VERSION_STR    "1.0.1"
 
 #define TTK_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 

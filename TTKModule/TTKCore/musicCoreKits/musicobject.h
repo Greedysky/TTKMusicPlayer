@@ -24,12 +24,10 @@
 #include <QCoreApplication>
 
 #define DOT                     "."
-
 //
 #define CFG_FILE_PREFIX         "ttk"
 #define TEX_FILE_PREFIX         "tex"
 #define TTS_FILE_PREFIX         "ttks"
-
 //
 #define SKN_FILE_PREFIX         "skn"
 #define JPG_FILE_PREFIX         "jpg"
@@ -40,7 +38,6 @@
 #define EXE_FILE_PREFIX         "exe"
 #define XML_FILE_PREFIX         "xml"
 #define COM_FILE_PREFIX         "com"
-
 //playlist ext
 #define LST_FILE_PREFIX         "tkpl"
 #define M3U_FILE_PREFIX         "m3u"
@@ -53,7 +50,6 @@
 #define TXT_FILE_PREFIX         "txt"
 #define FPL_FILE_PREFIX         "fpl"
 #define DBPL_FILE_PREFIX        "dbpl"
-
 //file ext
 #define AAC_FILE_PREFIX         "aac"
 #define WMA_FILE_PREFIX         "wma"
@@ -62,6 +58,7 @@
 #define APE_FILE_PREFIX         "ape"
 #define FLAC_FILE_PREFIX        "flac"
 #define ZIP_FILE_PREFIX         "zip"
+
 
 #define TTS_FILE                TTK_STRCAT(DOT, TTS_FILE_PREFIX)
 #define CFG_FILE                TTK_STRCAT(DOT, CFG_FILE_PREFIX)
@@ -78,7 +75,6 @@
 #define EXE_FILE                TTK_STRCAT(DOT, EXE_FILE_PREFIX)
 #define XML_FILE                TTK_STRCAT(DOT, XML_FILE_PREFIX)
 #define COM_FILE                TTK_STRCAT(DOT, COM_FILE_PREFIX)
-
 //file ext
 #define AAC_FILE                TTK_STRCAT(DOT, AAC_FILE_PREFIX)
 #define WMA_FILE                TTK_STRCAT(DOT, WMA_FILE_PREFIX)
@@ -88,18 +84,16 @@
 #define FLAC_FILE               TTK_STRCAT(DOT, FLAC_FILE_PREFIX)
 #define ZIP_FILE                TTK_STRCAT(DOT, ZIP_FILE_PREFIX)
 
-//
+
 #define APP_NAME                "TTKMusicPlayer"
 #define APP_DOT_NAME            TTK_STRCAT(APP_NAME, DOT)
 #define APP_COME_NAME           TTK_STRCAT(APP_NAME, COM_FILE)
 #define APP_EXE_NAME            TTK_STRCAT(APP_NAME, EXE_FILE)
 
 
-//
 #define APPDATA_DIR             "AppData/"
-#define DOWNLOADS_DIR           "Downloads/"
+#define DOWNLOAD_DIR            "Downloads/"
 #define APPCACHE_DIR            "AppCache/"
-
 //
 #define LRC_DIR                 "MLrc/"
 #define MUSIC_DIR               "Music/"
@@ -110,9 +104,9 @@
 #define PLUGINS_DIR             "MPlugins/"
 #define THEME_DIR               "MTheme/"
 //
-#define ART_DIR                 "MArt/"
-#define BACKGROUND_DIR          "MBackground/"
-#define CACHE_DIR               "MCached/"
+#define ART_DIR                 "Art/"
+#define BACKGROUND_DIR          "Background/"
+#define CACHE_DIR               "Cache/"
 //
 #define USER_THEME_DIR          "theme/"
 
@@ -130,37 +124,36 @@
 #define MAKE_GAIN               TTK_STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
 
 
-#define COFIGPATH               "musicconfig.xml"
-#define MUSICPATH               "music.tkpl"
-#define NORMALDOWNPATH          "musicdown.ttk"
-#define CLOUDDOWNPATH           "musiccloud.ttk"
-#define CLOUDUPPATH             "musiccloudp.ttk"
-#define MUSICSEARCH             "musichistory.ttk"
+#define COFIG_PATH              "config.xml"
+#define PLAYLIST_PATH           "playlist.tkpl"
+#define NORMAL_DOWN_PATH        "download.ttk"
+#define CLOUD_DOWN_PATH         "cdownload.ttk"
+#define CLOUD_UP_PATH           "cupload.ttk"
+#define SEARCH_PATH             "search.ttk"
 
 
-#define MAIN_DIR_FULL         MusicObject::getAppDir() + "../"
-#define APPDATA_DIR_FULL      MusicObject::getConfigDir() + APPDATA_DIR
-#define APPCACHE_DIR_FULL     MusicObject::getConfigDir() + APPCACHE_DIR
-#define DOWNLOADS_DIR_FULL    MAIN_DIR_FULL + DOWNLOADS_DIR
+#define MAIN_DIR_FULL           MusicObject::getAppDir() + "../"
+#define APPDATA_DIR_FULL        MusicObject::getConfigDir() + APPDATA_DIR
+#define APPCACHE_DIR_FULL       MusicObject::getConfigDir() + APPCACHE_DIR
+#define DOWNLOAD_DIR_FULL       MAIN_DIR_FULL + DOWNLOAD_DIR
 
 
-#define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
-#define MUSIC_DIR_FULL          DOWNLOADS_DIR_FULL + MUSIC_DIR
-#define MOVIE_DIR_FULL          DOWNLOADS_DIR_FULL + MOVIE_DIR
-#define UPDATE_DIR_FULL         DOWNLOADS_DIR_FULL + UPDATE_DIR
+#define LRC_DIR_FULL            DOWNLOAD_DIR_FULL + LRC_DIR
+#define MUSIC_DIR_FULL          DOWNLOAD_DIR_FULL + MUSIC_DIR
+#define MOVIE_DIR_FULL          DOWNLOAD_DIR_FULL + MOVIE_DIR
+#define UPDATE_DIR_FULL         DOWNLOAD_DIR_FULL + UPDATE_DIR
 //
 #define CACHE_DIR_FULL          APPCACHE_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            APPCACHE_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     APPCACHE_DIR_FULL + BACKGROUND_DIR
 
 
-#define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
-#define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
-#define NORMALDOWNPATH_FULL     APPDATA_DIR_FULL + NORMALDOWNPATH
-#define CLOUDDOWNPATH_FULL      APPDATA_DIR_FULL + CLOUDDOWNPATH
-#define CLOUDUPPATH_FULL        APPDATA_DIR_FULL + CLOUDUPPATH
-#define MUSICSEARCH_FULL        APPDATA_DIR_FULL + MUSICSEARCH
-#define BARRAGEPATH_FULL        APPDATA_DIR_FULL + BARRAGEPATH
+#define COFIG_PATH_FULL         APPDATA_DIR_FULL + COFIG_PATH
+#define PLAYLIST_PATH_FULL      APPDATA_DIR_FULL + PLAYLIST_PATH
+#define NORMAL_DOWN_PATH_FULL   APPDATA_DIR_FULL + NORMAL_DOWN_PATH
+#define CLOUD_DOWN_PATH_FULL    APPDATA_DIR_FULL + CLOUD_DOWN_PATH
+#define CLOUD_UP_PATH_FULL      APPDATA_DIR_FULL + CLOUD_UP_PATH
+#define SEARCH_PATH_FULL        APPDATA_DIR_FULL + SEARCH_PATH
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 
@@ -176,7 +169,6 @@
 #define MAKE_GAIN_FULL          MusicObject::getAppDir() + MAKE_GAIN
 
 
-//
 #define WINDOW_WIDTH_MIN        1000
 #define WINDOW_HEIGHT_MIN       665
 #define LEFT_SIDE_WIDTH_MIN     320
@@ -184,7 +176,6 @@
 //
 #define STRING_NULL             "-"
 #define COVER_URL_NULL          "null"
-//
 
 
 /*! @brief The namespace of the application object.

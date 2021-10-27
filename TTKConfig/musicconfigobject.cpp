@@ -24,17 +24,17 @@ void MusicConfigObject::initialize()
 {
     checkTheFileNeededExist();
 
-    copyFileOverwrite(":/data/musicconfig.xml", TTK_COFIGPATH_FULL);
-    copyFileOverwrite(":/data/music.tkpl", TTK_MUSICPATH_FULL);
-    copyFileOverwrite(":/data/musicdown.ttk", TTK_NORMALDOWNPATH_FULL);
-    copyFileOverwrite(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
-    copyFileOverwrite(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
-    copyFileOverwrite(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
+    copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
+    copyFileOverwrite(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);
+    copyFileOverwrite(":/data/download.ttk", TTK_NORMAL_DOWN_PATH_FULL);
+    copyFileOverwrite(":/data/cdownload.ttk", TTK_CLOUD_DOWN_PATH_FULL);
+    copyFileOverwrite(":/data/cupload.ttk", TTK_CLOUD_UP_PATH_FULL);
+    copyFileOverwrite(":/data/search.ttk", TTK_SEARCH_PATH_FULL);
 }
 
 void MusicConfigObject::reset()
 {
-    copyFileOverwrite(":/data/musicconfig.xml", TTK_COFIGPATH_FULL);
+    copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
 }
 
 void MusicConfigObject::directoryExist(const QString &name)
@@ -66,12 +66,12 @@ void MusicConfigObject::checkTheDirectoryExist()
 
 void MusicConfigObject::checkTheFileNeededExist()
 {
-    copyFile(":/data/musicconfig.xml", TTK_COFIGPATH_FULL);
-    copyFile(":/data/music.tkpl", TTK_MUSICPATH_FULL);
-    copyFile(":/data/musicdown.ttk", TTK_NORMALDOWNPATH_FULL);
-    copyFile(":/data/musiccloud.ttk", TTK_CLOUDDOWNPATH_FULL);
-    copyFile(":/data/musiccloudp.ttk", TTK_CLOUDUPPATH_FULL);
-    copyFile(":/data/musichistory.ttk", TTK_MUSICSEARCH_FULL);
+    copyFile(":/data/config.xml", TTK_COFIG_PATH_FULL);
+    copyFile(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);
+    copyFile(":/data/download.ttk", TTK_NORMAL_DOWN_PATH_FULL);
+    copyFile(":/data/cdownload.ttk", TTK_CLOUD_DOWN_PATH_FULL);
+    copyFile(":/data/cupload.ttk", TTK_CLOUD_UP_PATH_FULL);
+    copyFile(":/data/search.ttk", TTK_SEARCH_PATH_FULL);
 
 #ifdef Q_OS_UNIX
     copyLinuxShellFile(":/data/TTKRoutine.sh", TTK_ROUTINE_FULL);

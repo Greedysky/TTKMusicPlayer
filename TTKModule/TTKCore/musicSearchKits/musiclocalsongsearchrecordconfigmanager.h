@@ -47,7 +47,7 @@ public:
     /*!
      * Read history search datas from xml file by given name.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(MUSICSEARCH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(SEARCH_PATH_FULL); }
 
     /*!
      * Read datas from config file.

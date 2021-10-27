@@ -38,7 +38,7 @@ public:
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readConfig() { return MusicAbstractXml::readConfig(COFIGPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(COFIG_PATH_FULL); }
 
     /*!
      * Read datas from config file.

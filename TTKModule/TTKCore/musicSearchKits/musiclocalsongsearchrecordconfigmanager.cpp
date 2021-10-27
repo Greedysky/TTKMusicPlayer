@@ -20,7 +20,7 @@ void MusicLocalSongSearchRecordConfigManager::readSearchData(MusicSearchRecords 
 
 void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecords &records)
 {
-    if(!writeConfig(MUSICSEARCH_FULL))
+    if(!writeConfig(SEARCH_PATH_FULL))
     {
         return;
     }
@@ -28,7 +28,7 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchR
     //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
-    QDomElement download = writeDomNode(musicPlayer, "searchRecord");
+    QDomElement download = writeDomNode(musicPlayer, "record");
 
     for(const MusicSearchRecord &record : qAsConst(records))
     {

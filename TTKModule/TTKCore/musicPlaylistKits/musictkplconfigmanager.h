@@ -38,7 +38,7 @@ public:
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readConfig(const QString &name = MUSICPATH_FULL) { return MusicAbstractXml::readConfig(name); }
+    inline bool readConfig(const QString &name = PLAYLIST_PATH_FULL) { return MusicAbstractXml::readConfig(name); }
 
     /*!
      * Read datas from config file.

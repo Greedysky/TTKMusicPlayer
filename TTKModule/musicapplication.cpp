@@ -1241,5 +1241,5 @@ void MusicApplication::writeSystemConfigToFile()
     xml.writeSysConfigData();
 
     MusicTKPLConfigManager manager;
-    manager.writePlaylistData(m_musicSongTreeWidget->getMusicItemList(), MUSICPATH_FULL);
+    manager.writePlaylistData(m_musicSongTreeWidget->getMusicItemList(), PLAYLIST_PATH_FULL);
 }

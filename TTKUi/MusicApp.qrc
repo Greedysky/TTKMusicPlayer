@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/data">
-        <file alias="music.tkpl">../TTKResource/A_extras/music.tkpl</file>
-        <file alias="musicconfig.xml">../TTKResource/A_extras/musicconfig.xml</file>
-        <file alias="musicdown.ttk">../TTKResource/A_extras/musicdown.ttk</file>
-        <file alias="musiccloud.ttk">../TTKResource/A_extras/musiccloud.ttk</file>
-        <file alias="musiccloudp.ttk">../TTKResource/A_extras/musiccloudp.ttk</file>
-        <file alias="musichistory.ttk">../TTKResource/A_extras/musichistory.ttk</file>
+        <file alias="playlist.tkpl">../TTKResource/A_extras/playlist.tkpl</file>
+        <file alias="config.xml">../TTKResource/A_extras/config.xml</file>
+        <file alias="download.ttk">../TTKResource/A_extras/download.ttk</file>
+        <file alias="cdownload.ttk">../TTKResource/A_extras/cdownload.ttk</file>
+        <file alias="cupload.ttk">../TTKResource/A_extras/cupload.ttk</file>
+        <file alias="search.ttk">../TTKResource/A_extras/search.ttk</file>
         <file alias="TTKRoutine.sh">../TTKResource/A_extras/TTKRoutine.sh</file>
         <file alias="TTKRoutineCopy.sh">../TTKResource/A_extras/TTKRoutineCopy.sh</file>
         <file alias="TTKConsole.sh">../TTKResource/A_extras/TTKConsole.sh</file>
