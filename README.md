@@ -135,8 +135,8 @@ Screenshots
 ### Lrc Display Expand
 ![Lrc Display Expand](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
 
-### MV
-![MV](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
+### Movie
+![Movie](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
 
 ### Video Barrage
 ![Video Barrage](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)

@@ -135,8 +135,8 @@ TTKMusicPlayer的壹些特性
 ### 歌詞拓展顯示
 ![歌詞拓展顯示](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
 
-### MV
-![MV](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
+### 視頻
+![視頻](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
 
 ### 視頻彈幕
 ![視頻彈幕](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
