@@ -102,10 +102,15 @@ protected:
      */
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
     /*!
      * Transform utc time to local time before.
      */
     QString utcTimeToLocal(const QString &time) const;
+    /*!
+     * Close current widget.
+     */
+    void closeWidget();
 
     QPushButton *m_clearButton;
     MusicLocalSongSearchPopTableWidget *m_popTableWidget;
