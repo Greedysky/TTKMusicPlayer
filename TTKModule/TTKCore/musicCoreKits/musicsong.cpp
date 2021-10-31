@@ -175,3 +175,8 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
 
     return songs;
 }
+
+bool MusicObject::songListIndexIsValid(int index)
+{
+    return index != MUSIC_LOVEST_LIST && index != MUSIC_NETWORK_LIST && index != MUSIC_RECENT_LIST;
+}

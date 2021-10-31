@@ -1,8 +1,8 @@
 #include "musiclocalsongsearchdialog.h"
 #include "musiclocalsongsearchedit.h"
+#include "musicobject.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
-#include "musicapplication.h"
 
 MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     : QDialog(parent)
@@ -40,7 +40,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     setLayout(layout);
 
     connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_searchLine, SIGNAL(cursorPositionChanged(int,int)), MusicApplication::instance(), SLOT(musicSearchIndexChanged(int,int)));
+    connect(m_searchLine, SIGNAL(cursorPositionChanged(int,int)), parent, SLOT(musicSearchIndexChanged(int,int)));
 }
 
 MusicLocalSongSearchDialog::~MusicLocalSongSearchDialog()

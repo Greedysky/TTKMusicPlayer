@@ -34,32 +34,6 @@ MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
     delete m_musicSongsPlayWidget;
 }
 
-void MusicSongsListPlayedTableWidget::clearPlayQueueState()
-{
-    for(int i=0; i<rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 0);
-        if(it)
-        {
-            it->setIcon(QIcon());
-        }
-    }
-}
-
-void MusicSongsListPlayedTableWidget::setPlayQueueState(int row)
-{
-    if(row < 0 || row >= rowCount())
-    {
-        return;
-    }
-
-    QTableWidgetItem *it = item(row, 0);
-    if(it)
-    {
-        it->setIcon(QIcon(":/tiny/lb_playlater"));
-    }
-}
-
 void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &songs)
 {
     const int count = rowCount();
@@ -100,25 +74,6 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
     setFixedHeight(qMax(365, totalHeight()));
 }
 
-void MusicSongsListPlayedTableWidget::clearAllItems()
-{
-    if(m_playRowIndex < 0)
-    {
-        return;
-    }
-
-    //Remove play widget
-    removeCellWidget(m_playRowIndex, 0);
-
-    delete m_musicSongsPlayWidget;
-    m_musicSongsPlayWidget = nullptr;
-
-    m_playRowIndex = -1;
-    //Remove all the original item
-    MusicAbstractSongsListTableWidget::clear();
-    setColumnCount(5);
-}
-
 void MusicSongsListPlayedTableWidget::selectRow(int index)
 {
     if(index < 0 || rowCount() < 0)
@@ -148,6 +103,51 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     {
         m_scrollBar->setSliderPosition(index * 30);
     }
+}
+
+void MusicSongsListPlayedTableWidget::clearPlayQueueState()
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 0);
+        if(it)
+        {
+            it->setIcon(QIcon());
+        }
+    }
+}
+
+void MusicSongsListPlayedTableWidget::setPlayQueueState(int row)
+{
+    if(row < 0 || row >= rowCount())
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        it->setIcon(QIcon(":/tiny/lb_playlater"));
+    }
+}
+
+void MusicSongsListPlayedTableWidget::clearAllItems()
+{
+    if(m_playRowIndex < 0)
+    {
+        return;
+    }
+
+    //Remove play widget
+    removeCellWidget(m_playRowIndex, 0);
+
+    delete m_musicSongsPlayWidget;
+    m_musicSongsPlayWidget = nullptr;
+
+    m_playRowIndex = -1;
+    //Remove all the original item
+    MusicAbstractSongsListTableWidget::clear();
+    setColumnCount(5);
 }
 
 void MusicSongsListPlayedTableWidget::selectPlayedRow()

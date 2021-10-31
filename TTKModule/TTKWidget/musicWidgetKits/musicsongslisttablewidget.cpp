@@ -122,6 +122,45 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
     setFixedHeight(totalHeight());
 }
 
+void MusicSongsListTableWidget::selectRow(int index)
+{
+    if(index < 0)
+    {
+        return;
+    }
+    MusicAbstractSongsListTableWidget::selectRow(index);
+
+    adjustPlayWidgetRow();
+    for(int i=0; i<columnCount(); ++i)
+    {
+        delete takeItem(index, i);
+    }
+
+    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
+    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath() : QString();
+    QString timeLabel;
+
+    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
+    m_musicSongsPlayWidget->setParameter(name, path, timeLabel);
+
+    if(!m_musicSongs->isEmpty())
+    {
+        MusicSong *song = &(*m_musicSongs)[index];
+        if(song->getMusicPlayTime().isEmpty() || song->getMusicPlayTime() == MUSIC_TIME_INIT)
+        {
+            song->setMusicPlayTime(timeLabel);
+        }
+    }
+
+    setSpan(index, 0, 1, 6);
+    setCellWidget(index, 0, m_musicSongsPlayWidget);
+    setRowHeight(index, ITEM_ROW_HEIGHT_XL);
+    m_playRowIndex = index;
+
+    //just fix table widget size hint
+    setFixedHeight(totalHeight());
+}
+
 void MusicSongsListTableWidget::clearAllItems()
 {
 //    if(m_playRowIndex < 0)
@@ -167,45 +206,6 @@ void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs,
     {
         setFixedHeight(totalHeight());
     }
-}
-
-void MusicSongsListTableWidget::selectRow(int index)
-{
-    if(index < 0)
-    {
-        return;
-    }
-    MusicAbstractSongsListTableWidget::selectRow(index);
-
-    adjustPlayWidgetRow();
-    for(int i=0; i<columnCount(); ++i)
-    {
-        delete takeItem(index, i);
-    }
-
-    const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
-    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath() : QString();
-    QString timeLabel;
-
-    m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    m_musicSongsPlayWidget->setParameter(name, path, timeLabel);
-
-    if(!m_musicSongs->isEmpty())
-    {
-        MusicSong *song = &(*m_musicSongs)[index];
-        if(song->getMusicPlayTime().isEmpty() || song->getMusicPlayTime() == MUSIC_TIME_INIT)
-        {
-            song->setMusicPlayTime(timeLabel);
-        }
-    }
-
-    setSpan(index, 0, 1, 6);
-    setCellWidget(index, 0, m_musicSongsPlayWidget);
-    setRowHeight(index, ITEM_ROW_HEIGHT_XL);
-    m_playRowIndex = index;
-
-    //just fix table widget size hint
-    setFixedHeight(totalHeight());
 }
 
 void MusicSongsListTableWidget::updateTimeLabel(const QString &current, const QString &total) const
@@ -275,7 +275,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
 
 bool MusicSongsListTableWidget::createUploadFileModule()
 {
-    if(m_musicSongs->isEmpty() && m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST && m_parentToolIndex != MUSIC_RECENT_LIST)
+    if(m_musicSongs->isEmpty() && MusicObject::songListIndexIsValid(m_parentToolIndex))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr)
@@ -736,7 +736,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicAddNewFiles(tr("Add New Files"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
-    musicAddNewFiles.setEnabled(m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST);
+    musicAddNewFiles.setEnabled(MusicObject::songListIndexIsValid(m_parentToolIndex));
     musicAddNewFiles.addAction(tr("Open Files"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("Open Dir"), this, SIGNAL(musicAddNewDir()));
     MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);

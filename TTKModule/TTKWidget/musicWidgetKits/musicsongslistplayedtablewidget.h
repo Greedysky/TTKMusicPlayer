@@ -38,6 +38,15 @@ public:
     ~MusicSongsListPlayedTableWidget();
 
     /*!
+     * Update songs file names in table.
+     */
+    virtual void updateSongsFileName(const MusicSongs &songs) override;
+    /*!
+     * Select the current play row by given index.
+     */
+    virtual void selectRow(int index) override;
+
+    /*!
      * Clear play queue state.
      */
     void clearPlayQueueState();
@@ -47,18 +56,9 @@ public:
     void setPlayQueueState(int row);
 
     /*!
-     * Update songs file names in table.
-     */
-    virtual void updateSongsFileName(const MusicSongs &songs) override;
-
-    /*!
      * Clear All Items.
      */
     void clearAllItems();
-    /*!
-     * Select the current play row by given index.
-     */
-    virtual void selectRow(int index) override;
     /*!
      * Select the current played row.
      */

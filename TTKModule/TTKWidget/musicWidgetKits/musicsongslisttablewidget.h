@@ -47,6 +47,11 @@ public:
      */
     virtual void updateSongsFileName(const MusicSongs &songs) override;
     /*!
+     * Select the current play row.
+     */
+    virtual void selectRow(int index) override;
+
+    /*!
      * Clear All Items.
      */
     void clearAllItems();
@@ -55,10 +60,6 @@ public:
      */
     void setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &searchResult);
 
-    /*!
-     * Select the current play row.
-     */
-    virtual void selectRow(int index) override;
     /*!
      * Set music sort.
      */

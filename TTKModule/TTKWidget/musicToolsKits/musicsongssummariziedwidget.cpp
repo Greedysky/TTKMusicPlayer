@@ -220,47 +220,6 @@ QString MusicSongsSummariziedWidget::mapFilePathBySongIndex(int toolIndex, int i
     return songs[index].getMusicPath();
 }
 
-void MusicSongsSummariziedWidget::searchFileListCache(int index)
-{
-    const QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
-    QString text;
-    if(m_musicSongSearchWidget)
-    {
-        text = m_musicSongSearchWidget->getSearchedText();
-    }
-
-    TTKIntList searchResult;
-    for(int j=0; j<searchedSongs.count(); ++j)
-    {
-        if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
-        {
-            searchResult << j;
-        }
-    }
-
-    m_searchFileListIndex = text.count();
-    m_searchfileListCache.insert(index, searchResult);
-
-    MusicSongItem *songItem = &m_songItems[m_currentIndex];
-    TTKStatic_cast(MusicSongsListTableWidget*, songItem->m_itemObject)->setMusicSongsSearchedFileName(&songItem->m_songs, searchResult);
-
-    if(index == 0)
-    {
-        if(songItem->m_songs.isEmpty())
-        {
-            songItem->m_itemObject->updateSongsFileName(songItem->m_songs);
-        }
-
-        m_searchFileListIndex = 0;
-        m_searchfileListCache.clear();
-    }
-}
-
-bool MusicSongsSummariziedWidget::searchFileListEmpty() const
-{
-    return m_searchfileListCache.isEmpty();
-}
-
 int MusicSongsSummariziedWidget::getSearchFileListIndex(int row)
 {
     const TTKIntList &list = m_searchfileListCache.value(m_searchFileListIndex);
@@ -275,6 +234,7 @@ int MusicSongsSummariziedWidget::getSearchFileListIndexAndClear(int row)
 {
     row = getSearchFileListIndex(row);
     m_searchfileListCache.clear();
+
     if(m_musicSongSearchWidget)
     {
         m_musicSongSearchWidget->close();
@@ -389,8 +349,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
         return;
     }
 
-    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && m_currentPlayToolIndex != MUSIC_LOVEST_LIST &&
-       m_currentPlayToolIndex != MUSIC_NETWORK_LIST && m_currentPlayToolIndex != MUSIC_RECENT_LIST)
+    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && MusicObject::songListIndexIsValid(m_currentPlayToolIndex))
     {
         MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.first().m_widgetItem->setItemExpand(false);
@@ -566,6 +525,42 @@ void MusicSongsSummariziedWidget::musicSongsCheckTestTools()
 void MusicSongsSummariziedWidget::musicLrcBatchDownload()
 {
     GENERATE_SINGLE_WIDGET_CLASS(MusicLrcDownloadBatchWidget);
+}
+
+void MusicSongsSummariziedWidget::musicSearchIndexChanged(int, int index)
+{
+    const QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
+    QString text;
+    if(m_musicSongSearchWidget)
+    {
+        text = m_musicSongSearchWidget->getSearchedText();
+    }
+
+    TTKIntList searchResult;
+    for(int j=0; j<searchedSongs.count(); ++j)
+    {
+        if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
+        {
+            searchResult << j;
+        }
+    }
+
+    m_searchFileListIndex = text.count();
+    m_searchfileListCache.insert(index, searchResult);
+
+    MusicSongItem *songItem = &m_songItems[m_currentIndex];
+    TTKStatic_cast(MusicSongsListTableWidget*, songItem->m_itemObject)->setMusicSongsSearchedFileName(&songItem->m_songs, searchResult);
+
+    if(index == 0)
+    {
+        if(songItem->m_songs.isEmpty())
+        {
+            songItem->m_itemObject->updateSongsFileName(songItem->m_songs);
+        }
+
+        m_searchFileListIndex = 0;
+        m_searchfileListCache.clear();
+    }
 }
 
 void MusicSongsSummariziedWidget::setCurrentIndex()
@@ -880,7 +875,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
 
     MusicSongsListTableWidget *w = TTKStatic_cast(MusicSongsListTableWidget*, m_songItems[id].m_itemObject);
     MusicSong::Sort sort = MusicSong::SortByFileName;
-    index = m_songItems[id].m_sort.m_index;
+    index = m_songItems[id].m_sort.m_type;
     if(index != -1)
     {
         sort = TTKStatic_cast(MusicSong::Sort, index);
@@ -894,7 +889,7 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
         (*songs)[i].setMusicSort(sort);
     }
 
-    if(m_songItems[id].m_sort.m_sortType == Qt::DescendingOrder)
+    if(m_songItems[id].m_sort.m_order == Qt::DescendingOrder)
     {
         std::sort(songs->begin(), songs->end());
     }
@@ -981,31 +976,32 @@ void MusicSongsSummariziedWidget::addNewRowItem(const QString &name)
 
 void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListTableWidget *w = new MusicSongsListTableWidget(-1, this);
-    w->setMovedScrollBar(m_scrollArea->verticalScrollBar());
-    w->setMusicSongSort(&item->m_sort);
+    MusicSongsListTableWidget *object = new MusicSongsListTableWidget(-1, this);
+    object->setMovedScrollBar(m_scrollArea->verticalScrollBar());
+    object->setMusicSongSort(&item->m_sort);
 
-    item->m_itemObject = w;
+    item->m_itemObject = object;
     item->m_itemIndex = m_itemIndexRaise;
-    addItem(w, item->m_itemName);
-    setMusicSongSort(w, &item->m_sort);
-    w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
-    connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
-    connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
-    connect(w, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
-    connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
-    connect(w, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));
-    connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,MusicSongs&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongs&)));
-    connect(w, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
-    connect(w, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
-    connect(w, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
+    addItem(object, item->m_itemName);
+    setMusicSongSort(object, &item->m_sort);
+    object->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
+
+    connect(object, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
+    connect(object, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
+    connect(object, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
+    connect(object, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
+    connect(object, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));
+    connect(object, SIGNAL(getMusicIndexSwaped(int,int,int,MusicSongs&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongs&)));
+    connect(object, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
+    connect(object, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
+    connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
 
     ///connect to items
     setInputObject(m_itemList.last().m_widgetItem);
 
-    w->setSongsFileName(&item->m_songs);
-    setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    object->setSongsFileName(&item->m_songs);
+    setTitle(object, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicSongsSummariziedWidget::clearAllList()

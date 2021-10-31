@@ -262,10 +262,6 @@ public Q_SLOTS:
      */
     void musicCreateRightMenu();
     /*!
-     * Search file from list.
-     */
-    void musicSearchIndexChanged(int row, int col);
-    /*!
      * Apply settings parameters.
      */
     void applySettingParameter();

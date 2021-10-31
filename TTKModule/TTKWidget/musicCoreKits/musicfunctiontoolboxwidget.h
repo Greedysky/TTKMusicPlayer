@@ -209,6 +209,7 @@ typedef struct TTK_MODULE_EXPORT MusicToolBoxWidgetItem
         m_widgetItem = nullptr;
     }
 }MusicToolBoxWidgetItem;
+TTK_DECLARE_LIST(MusicToolBoxWidgetItem)
 
 
 /*! @brief The class of the function tool box widget.
@@ -292,7 +293,7 @@ protected:
     QVBoxLayout *m_layout;
     QScrollArea *m_scrollArea;
     QWidget *m_contentsWidget;
-    QList<MusicToolBoxWidgetItem> m_itemList;
+    MusicToolBoxWidgetItems m_itemList;
 
 };
 

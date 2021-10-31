@@ -231,6 +231,11 @@ namespace MusicObject
      */
     TTK_MODULE_EXPORT MusicSongs generateMusicSongList(const QString &path);
 
+    /*!
+     * Check current song plyalist is valid or not.
+     */
+    TTK_MODULE_EXPORT bool songListIndexIsValid(int index);
+
 }
 
 #endif // MUSICSONG_H

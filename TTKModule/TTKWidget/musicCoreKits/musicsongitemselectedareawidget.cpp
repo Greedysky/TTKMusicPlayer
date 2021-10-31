@@ -188,7 +188,7 @@ MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
         }
         else
         {
-            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST && item.m_itemIndex != MUSIC_RECENT_LIST)
+            if(MusicObject::songListIndexIsValid(item.m_itemIndex))
             {
                 selectedSongs << item.m_songs;
             }

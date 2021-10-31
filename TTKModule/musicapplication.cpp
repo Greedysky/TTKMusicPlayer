@@ -807,11 +807,6 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicApplication::musicSearchIndexChanged(int, int index)
-{
-    m_musicSongTreeWidget->searchFileListCache(index);
-}
-
 void MusicApplication::applySettingParameter()
 {
     //This attribute is effective immediately.

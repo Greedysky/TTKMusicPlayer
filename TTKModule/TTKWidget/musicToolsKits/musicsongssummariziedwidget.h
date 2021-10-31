@@ -76,13 +76,9 @@ public:
     QString mapFilePathBySongIndex(int toolIndex, int index) const;
 
     /*!
-     * Set current name to searched file names to list.
-     */
-    void searchFileListCache(int index);
-    /*!
      * Check current search file is empty or not.
      */
-    bool searchFileListEmpty() const;
+    inline bool searchFileListEmpty() const { return m_searchfileListCache.isEmpty(); }
     /*!
      * Get search file index from list by given row.
      */
@@ -170,6 +166,10 @@ public Q_SLOTS:
      * Open lrc batch download.
      */
     void musicLrcBatchDownload();
+    /*!
+     * Search file from list.
+     */
+    void musicSearchIndexChanged(int row, int col);
 
     /*!
      * Set current play index from config file.

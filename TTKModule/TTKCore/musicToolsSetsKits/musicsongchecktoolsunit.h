@@ -37,13 +37,13 @@ namespace MusicObject
 typedef struct TTK_MODULE_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
-    QString m_RecommendName;
+    QString m_recommendName;
     QString m_path;
 
     MusicSongCheckToolsRename(const QString &locaName, const QString &recommendName, const QString &path)
     {
         m_locaName = locaName;
-        m_RecommendName = recommendName;
+        m_recommendName = recommendName;
         m_path = path;
     }
 }MusicSongCheckToolsRename;

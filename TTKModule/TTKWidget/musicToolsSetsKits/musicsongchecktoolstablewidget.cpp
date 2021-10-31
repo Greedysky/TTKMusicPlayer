@@ -42,7 +42,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(song.m_RecommendName);
+        item->setToolTip(song.m_recommendName);
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
