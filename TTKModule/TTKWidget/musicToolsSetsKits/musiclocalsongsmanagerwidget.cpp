@@ -233,20 +233,20 @@ void MusicLocalSongsManagerWidget::filterScanChanged(int index)
 
 void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
 {
-    TTKIntList searchResult;
+    TTKIntList result;
     for(int j=0; j<m_fileNames.count(); ++j)
     {
         if(m_fileNames[j].fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
-            searchResult << j;
+            result << j;
         }
     }
 
-    m_searchfileListCache.insert(index, searchResult);
+    m_searchfileListCache.insert(index, result);
     clearAllItems();
 
     QFileInfoList names;
-    for(const int index : qAsConst(searchResult))
+    for(const int index : qAsConst(result))
     {
         names.append(m_fileNames[index]);
     }

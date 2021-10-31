@@ -58,7 +58,7 @@ public:
     /*!
      * Set current searched file indexs.
      */
-    void setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &searchResult);
+    void setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &result);
 
     /*!
      * Set music sort.

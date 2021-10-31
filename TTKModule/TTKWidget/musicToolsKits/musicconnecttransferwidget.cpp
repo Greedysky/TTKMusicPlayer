@@ -200,18 +200,18 @@ void MusicConnectTransferWidget::startToTransferFiles()
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 {
-    TTKIntList searchResult;
+    TTKIntList result;
     for(int j=0; j<m_currentSongs.count(); ++j)
     {
         if(m_currentSongs[j].getMusicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
-            searchResult << j;
+            result << j;
         }
     }
-    m_searchfileListCache.insert(index, searchResult);
+    m_searchfileListCache.insert(index, result);
 
     MusicSongs songs;
-    for(const int index : qAsConst(searchResult))
+    for(const int index : qAsConst(result))
     {
         songs.append(m_currentSongs[index]);
     }

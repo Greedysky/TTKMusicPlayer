@@ -33,7 +33,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     searchButton->setGeometry(29, 1, 24, 24);
 
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
-    connect(searchButton, SIGNAL(clicked()), parent, SLOT(musicSearchWidget()));
+    connect(searchButton, SIGNAL(clicked()), parent, SLOT(showSearchWidget()));
 
     m_currentAnimationValue = 1;
     m_timer.setInterval(3 * MT_S2MS);

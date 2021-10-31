@@ -32,7 +32,6 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
     m_ui->downloadButton->setStyleSheet(MusicUIObject::MQSSBtnUnDownload);
-    m_ui->shareButton->setStyleSheet(MusicUIObject::MQSSBtnMore);
 
     m_ui->playButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_ui->previousButton->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
@@ -52,7 +51,6 @@ MusicWebFMRadioPlayWidget::MusicWebFMRadioPlayWidget(QWidget *parent)
     m_ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->shareButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->volumeSlider->setStyleSheet(MusicUIObject::MQSSSliderStyle10);
     m_ui->volumeSlider->setRange(0, 100);

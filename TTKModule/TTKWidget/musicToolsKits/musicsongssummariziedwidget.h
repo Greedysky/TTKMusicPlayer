@@ -80,13 +80,9 @@ public:
      */
     inline bool searchFileListEmpty() const { return m_searchfileListCache.isEmpty(); }
     /*!
-     * Get search file index from list by given row.
-     */
-    int getSearchFileListIndex(int row);
-    /*!
      * Get search file index from list by given row and clear cache.
      */
-    int getSearchFileListIndexAndClear(int row);
+    int getSearchFileListClear(int row);
 
     /*!
      * Get current played tool index.
@@ -169,7 +165,7 @@ public Q_SLOTS:
     /*!
      * Search file from list.
      */
-    void musicSearchIndexChanged(int row, int col);
+    void musicSearchIndexChanged(int row, int index);
 
     /*!
      * Set current play index from config file.
@@ -236,7 +232,11 @@ private Q_SLOTS:
     /*!
      * Show searched text widget.
      */
-    void musicSearchWidget();
+    void showSearchWidget();
+    /*!
+     * Close searched text widget.
+     */
+    void closeSearchWidget();
     /*!
      * Current vertical slider value chanaged.
      */
@@ -285,8 +285,10 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-    int m_currentPlayToolIndex, m_searchFileListIndex;
-    int m_currentImportIndex, m_currentDeleteIndex;
+    int m_currentPlayToolIndex;
+    int m_searchFileListIndex;
+    int m_currentImportIndex;
+    int m_currentDeleteIndex;
     bool m_toolDeleteChanged;
 
     MusicSongItems m_songItems;

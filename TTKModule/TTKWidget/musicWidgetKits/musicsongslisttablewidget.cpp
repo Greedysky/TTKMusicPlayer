@@ -181,17 +181,17 @@ void MusicSongsListTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &searchResult)
+void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &result)
 {
     m_searchedSongs.clear();
-    if(songs->count() == searchResult.count())
+    if(songs->count() == result.count())
     {
         m_musicSongs = songs;
     }
     else
     {
         m_musicSongs = &m_searchedSongs;
-        for(int index : qAsConst(searchResult))
+        for(int index : qAsConst(result))
         {
             m_musicSongs->append((*songs)[index]);
         }

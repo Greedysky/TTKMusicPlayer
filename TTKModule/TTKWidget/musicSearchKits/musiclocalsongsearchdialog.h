@@ -46,6 +46,10 @@ public:
      * Clear the search text.
      */
     void clearSearchedText() const;
+    /*!
+     * Set line edit input focus.
+     */
+    void setVisible(bool visible);
 
 public Q_SLOTS:
     /*!
