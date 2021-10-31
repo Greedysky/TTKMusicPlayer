@@ -230,7 +230,7 @@ bool MusicApplication::musicLovestContains() const
     return false;
 }
 
-bool MusicApplication::musicListLovestContains(int index) const
+bool MusicApplication::musicLovestContains(int index) const
 {
     if(m_musicSongTreeWidget->currentIndex() != DEFAULT_LOWER_LEVEL && index > DEFAULT_LOWER_LEVEL)
     {
@@ -672,12 +672,12 @@ void MusicApplication::musicCurrentPlayLocation()
     m_musicSongTreeWidget->playLocation(index);
 }
 
-void MusicApplication::musicAddSongToLovestListAt()
+void MusicApplication::musicAddSongToLovestList()
 {
-    musicAddSongToLovestListAt(true);
+    musicAddSongToLovestList(true);
 }
 
-void MusicApplication::musicAddSongToLovestListAt(bool state)
+void MusicApplication::musicAddSongToLovestList(bool state)
 {
     const MusicPlayItem &item = m_musicPlaylist->currentItem();
     const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);

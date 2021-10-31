@@ -447,7 +447,7 @@ void MusicSongsSummariziedWidget::changRowItemName(int index, const QString &nam
     setItemTitle(item);
 }
 
-void MusicSongsSummariziedWidget::addNewFiles(int index)
+void MusicSongsSummariziedWidget::musicAddNewFiles(int index)
 {
     const int id = foundMappingIndex(index);
     if(id == -1)
@@ -460,7 +460,7 @@ void MusicSongsSummariziedWidget::addNewFiles(int index)
     m_currentImportIndex = MUSIC_NORMAL_LIST;
 }
 
-void MusicSongsSummariziedWidget::addNewDir(int index)
+void MusicSongsSummariziedWidget::musicAddNewDir(int index)
 {
     const int id = foundMappingIndex(index);
     if(id == -1)
@@ -583,7 +583,7 @@ void MusicSongsSummariziedWidget::setCurrentIndex()
     MusicApplication::instance()->showCurrentSong();
 }
 
-void MusicSongsSummariziedWidget::musicListSongToLovestListAt(bool oper, int row)
+void MusicSongsSummariziedWidget::addSongToLovestListAt(bool state, int row)
 {
     if(m_currentIndex < 0 || m_currentIndex >= m_songItems.count() || !searchFileListEmpty())
     {
@@ -596,12 +596,12 @@ void MusicSongsSummariziedWidget::musicListSongToLovestListAt(bool oper, int row
     ///if current play list contains, call main add and remove function
     if(MusicSong(MusicApplication::instance()->getCurrentFilePath()) == song)
     {
-        MusicApplication::instance()->musicAddSongToLovestListAt(oper);
+        MusicApplication::instance()->musicAddSongToLovestList(state);
         return;
     }
 
     MusicSongsListTableWidget *w = TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject);
-    if(oper)    ///Add to lovest list
+    if(state)    ///Add to lovest list
     {
         item->m_songs << song;
         w->updateSongsFileName(item->m_songs);
@@ -619,7 +619,7 @@ void MusicSongsSummariziedWidget::musicListSongToLovestListAt(bool oper, int row
     }
 }
 
-void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool oper, int row)
+void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 {
     if(m_currentPlayToolIndex < 0 || m_currentPlayToolIndex >= m_songItems.count())
     {
@@ -629,7 +629,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool oper, int row)
     const MusicSong &song = m_songItems[m_currentPlayToolIndex].m_songs[row];
     MusicSongItem *item = &m_songItems[MUSIC_LOVEST_LIST];
     MusicSongsListTableWidget *w = TTKStatic_cast(MusicSongsListTableWidget*, item->m_itemObject);
-    if(oper)    ///Add to lovest list
+    if(state)    ///Add to lovest list
     {
         item->m_songs << song;
         w->updateSongsFileName(item->m_songs);
@@ -711,7 +711,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const TTKIntList &index, bool 
             {
                 if(songs[playIndex] == song)
                 {
-                    MusicApplication::instance()->musicAddSongToLovestListAt(false);
+                    MusicApplication::instance()->musicAddSongToLovestList(false);
                 }
             }
         }
@@ -997,7 +997,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
     connect(w, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));
     connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,MusicSongs&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongs&)));
-    connect(w, SIGNAL(musicListSongToLovestListAt(bool,int)), SLOT(musicListSongToLovestListAt(bool,int)));
+    connect(w, SIGNAL(addSongToLovestListAt(bool,int)), SLOT(addSongToLovestListAt(bool,int)));
     connect(w, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
     connect(w, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
 
@@ -1033,8 +1033,8 @@ void MusicSongsSummariziedWidget::setInputObject(QObject *object) const
     connect(object, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));
     connect(object, SIGNAL(deleteRowItem(int)), SLOT(deleteRowItem(int)));
     connect(object, SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
-    connect(object, SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
-    connect(object, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
+    connect(object, SIGNAL(musicAddNewFiles(int)), SLOT(musicAddNewFiles(int)));
+    connect(object, SIGNAL(musicAddNewDir(int)), SLOT(musicAddNewDir(int)));
     connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
     connect(object, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
     connect(object, SIGNAL(addToPlayLater(int)), SLOT(addToPlayLater(int)));

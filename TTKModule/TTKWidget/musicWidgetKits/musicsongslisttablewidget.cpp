@@ -344,7 +344,7 @@ void MusicSongsListTableWidget::itemCellEntered(int row, int column)
 
     if((it = item(row, 3)))
     {
-        const bool contains = MusicApplication::instance()->musicListLovestContains(row);
+        const bool contains = MusicApplication::instance()->musicLovestContains(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
 
@@ -410,13 +410,13 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
                     return;
                 }
 
-                const bool contains = !MusicApplication::instance()->musicListLovestContains(row);
+                const bool contains = !MusicApplication::instance()->musicLovestContains(row);
                 QTableWidgetItem *it = item(row, 3);
                 if(it)
                 {
                     it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
                 }
-                Q_EMIT musicListSongToLovestListAt(contains, row);
+                Q_EMIT addSongToLovestListAt(contains, row);
                 break;
             }
         case 4:
@@ -621,25 +621,25 @@ void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
 
 void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
 {
-    const int newIndex = action->data().toInt();
-    if(newIndex < 0 || newIndex > 5)
+    const int newType = action->data().toInt();
+    if(newType < 0 || newType > 5)
     {
         return;
     }
 
     if(m_musicSort)
     {
-        const int bIndex = m_musicSort->m_index;
-        m_musicSort->m_index = newIndex;
+        const int type = m_musicSort->m_type;
+        m_musicSort->m_type = newType;
 
-        if(bIndex == newIndex)
+        if(type == newType)
         {
-            const bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
-            m_musicSort->m_sortType = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
+            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
+            m_musicSort->m_order = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
         }
         else
         {
-            m_musicSort->m_sortType = Qt::AscendingOrder;
+            m_musicSort->m_order = Qt::AscendingOrder;
         }
         Q_EMIT musicListSongSortBy(m_parentToolIndex);
     }
@@ -754,10 +754,10 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     if(m_musicSort)
     {
         const QList<QAction*> actions(musicSortFiles.actions());
-        if(-1 < m_musicSort->m_index && m_musicSort->m_index < actions.count())
+        if(-1 < m_musicSort->m_type && m_musicSort->m_type < actions.count())
         {
-            const bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
-            actions[m_musicSort->m_index]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
+            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
+            actions[m_musicSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
     rightClickMenu.addMenu(&musicSortFiles);

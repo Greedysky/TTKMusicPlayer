@@ -63,11 +63,11 @@ Q_SIGNALS:
     /*!
      * Add new music file or files to list.
      */
-    void addNewFiles(int index);
+    void musicAddNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void addNewDir(int index);
+    void musicAddNewDir(int index);
     /*!
      * Music list songs sort by type.
      */
@@ -101,11 +101,11 @@ public Q_SLOTS:
     /*!
      * Add new music file or files to list.
      */
-    void addNewFiles();
+    void musicAddNewFiles();
     /*!
      * Add new music dir to list.
      */
-    void addNewDir();
+    void musicAddNewDir();
     /*!
      * Export music songs by item list.
      */
@@ -206,11 +206,11 @@ Q_SIGNALS:
     /*!
      * Add new music file or files to list.
      */
-    void addNewFiles(int index);
+    void musicAddNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void addNewDir(int index);
+    void musicAddNewDir(int index);
     /*!
      * Music list songs sort by type.
      */

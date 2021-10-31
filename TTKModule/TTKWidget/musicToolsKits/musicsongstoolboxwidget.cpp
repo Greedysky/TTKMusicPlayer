@@ -72,14 +72,14 @@ void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
     m_renameLine = nullptr;
 }
 
-void MusicSongsToolBoxTopWidget::addNewFiles()
+void MusicSongsToolBoxTopWidget::musicAddNewFiles()
 {
-    Q_EMIT addNewFiles(m_index);
+    Q_EMIT musicAddNewFiles(m_index);
 }
 
-void MusicSongsToolBoxTopWidget::addNewDir()
+void MusicSongsToolBoxTopWidget::musicAddNewDir()
 {
-    Q_EMIT addNewDir(m_index);
+    Q_EMIT musicAddNewDir(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::exportSongsItemList()
@@ -97,8 +97,8 @@ void MusicSongsToolBoxTopWidget::showMenu()
     QMenu musicAddNewFiles(tr("Add New Files"), &menu);
     bool disable = !(m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST || m_index == MUSIC_RECENT_LIST);
     menu.addMenu(&musicAddNewFiles)->setEnabled(disable);
-    musicAddNewFiles.addAction(tr("Open Files"), this, SLOT(addNewFiles()));
-    musicAddNewFiles.addAction(tr("Open Dir"), this, SLOT(addNewDir()));
+    musicAddNewFiles.addAction(tr("Open Files"), this, SLOT(musicAddNewFiles()));
+    musicAddNewFiles.addAction(tr("Open Dir"), this, SLOT(musicAddNewDir()));
     MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
     menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
@@ -117,10 +117,10 @@ void MusicSongsToolBoxTopWidget::showMenu()
     if(m_musicSort)
     {
         const QList<QAction*> actions(musicSortFiles.actions());
-        if(-1 < m_musicSort->m_index && m_musicSort->m_index < actions.count())
+        if(-1 < m_musicSort->m_type && m_musicSort->m_type < actions.count())
         {
-            const bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
-            actions[m_musicSort->m_index]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
+            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
+            actions[m_musicSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
     menu.addMenu(&musicSortFiles);
@@ -140,17 +140,18 @@ void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
 {
     if(m_musicSort)
     {
-        const int bIndex = m_musicSort->m_index;
-        const int newIndex = action->data().toInt();
-        m_musicSort->m_index = newIndex;
-        if(bIndex == newIndex)
+        const int type = m_musicSort->m_type;
+        const int newType = action->data().toInt();
+        m_musicSort->m_type = newType;
+
+        if(type == newType)
         {
-            const bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
-            m_musicSort->m_sortType = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
+            const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
+            m_musicSort->m_order = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
         }
         else
         {
-            m_musicSort->m_sortType = Qt::AscendingOrder;
+            m_musicSort->m_order = Qt::AscendingOrder;
         }
         Q_EMIT musicListSongSortBy(m_index);
     }
@@ -233,8 +234,8 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
     connect(m_topWidget, SIGNAL(deleteRowItemAll(int)), SIGNAL(deleteRowItemAll(int)));
     connect(m_topWidget, SIGNAL(changRowItemName(int,QString)), SIGNAL(changRowItemName(int,QString)));
-    connect(m_topWidget, SIGNAL(addNewFiles(int)), SIGNAL(addNewFiles(int)));
-    connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
+    connect(m_topWidget, SIGNAL(musicAddNewFiles(int)), SIGNAL(musicAddNewFiles(int)));
+    connect(m_topWidget, SIGNAL(musicAddNewDir(int)), SIGNAL(musicAddNewDir(int)));
     connect(m_topWidget, SIGNAL(musicListSongSortBy(int)), SIGNAL(musicListSongSortBy(int)));
     connect(m_topWidget, SIGNAL(addToPlayLater(int)), SIGNAL(addToPlayLater(int)));
     connect(m_topWidget, SIGNAL(addToPlayedList(int)), SIGNAL(addToPlayedList(int)));

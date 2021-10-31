@@ -97,7 +97,7 @@ public:
     /*!
      * Get music list current song lovest contains.
      */
-    bool musicListLovestContains(int index) const;
+    bool musicLovestContains(int index) const;
     /*!
      * Update current artist when it download finished.
      */
@@ -242,13 +242,13 @@ public Q_SLOTS:
      */
     void musicCurrentPlayLocation();
     /*!
-     * Add music song to lovest list by row.
+     * Add music song to lovest list.
      */
-    void musicAddSongToLovestListAt();
+    void musicAddSongToLovestList();
     /*!
-     * Add music song to lovest list by row.
+     * Add music song to lovest list.
      */
-    void musicAddSongToLovestListAt(bool state);
+    void musicAddSongToLovestList(bool state);
     /*!
      * Set window concise.
      */

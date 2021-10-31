@@ -188,13 +188,13 @@ class MusicAbstractSongsListTableWidget;
  */
 typedef struct TTK_MODULE_EXPORT MusicSongSort
 {
-    int m_index;
-    Qt::SortOrder m_sortType;
+    int m_type;
+    Qt::SortOrder m_order;
 
     MusicSongSort()
     {
-        m_index = -1;
-        m_sortType = Qt::AscendingOrder;
+        m_type = -1;
+        m_order = Qt::AscendingOrder;
     }
 }MusicSongSort;
 

@@ -137,11 +137,11 @@ public Q_SLOTS:
     /*!
      * Add new music file or files to list.
      */
-    void addNewFiles(int index);
+    void musicAddNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void addNewDir(int index);
+    void musicAddNewDir(int index);
     /*!
      * Swap the item index by drag adn drop.
      */
@@ -178,11 +178,11 @@ public Q_SLOTS:
     /*!
      * Add or remove music list song to lovest list by row.
      */
-    void musicListSongToLovestListAt(bool oper, int row);
+    void addSongToLovestListAt(bool state, int row);
     /*!
      * Add or remove music song to lovest list by row.
      */
-    void musicSongToLovestListAt(bool oper, int row);
+    void musicSongToLovestListAt(bool state, int row);
     /*!
      * Add current network music to download to local.
      */
