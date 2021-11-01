@@ -708,6 +708,13 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
 
+    QMenu musicAddNewFiles(tr("Add New Files"), &rightClickMenu);
+    rightClickMenu.addMenu(&musicAddNewFiles);
+    musicAddNewFiles.setEnabled(MusicObject::songListIndexIsValid(m_parentToolIndex));
+    musicAddNewFiles.addAction(tr("Open Files"), this, SIGNAL(musicAddNewFiles()));
+    musicAddNewFiles.addAction(tr("Open Dir"), this, SIGNAL(musicAddNewDir()));
+    MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
+
     QMenu musicPlaybackMode(tr("Playback Mode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
     QList<QAction*> actions;
@@ -733,13 +740,6 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     {
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
-
-    QMenu musicAddNewFiles(tr("Add New Files"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicAddNewFiles);
-    musicAddNewFiles.setEnabled(MusicObject::songListIndexIsValid(m_parentToolIndex));
-    musicAddNewFiles.addAction(tr("Open Files"), this, SIGNAL(musicAddNewFiles()));
-    musicAddNewFiles.addAction(tr("Open Dir"), this, SIGNAL(musicAddNewDir()));
-    MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
 
     QMenu musicSortFiles(tr("Sort"), &rightClickMenu);
     musicSortFiles.addAction(tr("Sort By FileName"))->setData(0);

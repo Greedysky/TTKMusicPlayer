@@ -83,10 +83,6 @@ public:
     void musicImportSongsPathOuter(const QStringList &files, bool play);
 
     /*!
-     * Import music datas into container.
-     */
-    void musicImportSongsPath(const QStringList &files);
-    /*!
      * Get music current song download contains.
      */
     QString musicDownloadContains(bool &contains) const;
@@ -311,6 +307,10 @@ protected:
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
     virtual bool eventFilter(QObject *object, QEvent *event) override;
 
+    /*!
+     * Import music datas into container.
+     */
+    void musicImportSongsPath(const QStringList &files);
     /*!
      * Set music current play index.
      */

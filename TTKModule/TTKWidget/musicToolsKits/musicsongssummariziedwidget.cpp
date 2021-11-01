@@ -22,9 +22,9 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     : MusicSongsToolBoxWidget(parent)
 {
     m_currentPlayToolIndex = MUSIC_NORMAL_LIST;
-    m_searchFileListIndex = -1;
+    m_searchFileLevel = 0;
     m_currentImportIndex = MUSIC_NORMAL_LIST;
-    m_currentDeleteIndex = -1;
+    m_currentDeleteIndex = MUSIC_NORMAL_LIST;
     m_toolDeleteChanged = false;
 
     m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
@@ -219,7 +219,7 @@ QString MusicSongsSummariziedWidget::mapFilePathBySongIndex(int toolIndex, int i
 
 int MusicSongsSummariziedWidget::getSearchFileListClear(int row)
 {
-    const TTKIntList &list = m_searchfileListCache.value(m_searchFileListIndex);
+    const TTKIntList &list = m_searchfileListCache.value(m_searchFileLevel);
     if(row >= list.count() || row < 0)
     {
         return -1;
@@ -529,7 +529,7 @@ void MusicSongsSummariziedWidget::musicSearchIndexChanged(int, int index)
         }
     }
 
-    m_searchFileListIndex = text.count();
+    m_searchFileLevel = text.count();
     m_searchfileListCache.insert(index, result);
 
     MusicSongItem *songItem = &m_songItems[m_currentIndex];
@@ -542,7 +542,7 @@ void MusicSongsSummariziedWidget::musicSearchIndexChanged(int, int index)
             songItem->m_itemObject->updateSongsFileName(songItem->m_songs);
         }
 
-        m_searchFileListIndex = 0;
+        m_searchFileLevel = 0;
         m_searchfileListCache.clear();
     }
 }

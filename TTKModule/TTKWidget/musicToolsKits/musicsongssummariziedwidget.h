@@ -286,7 +286,7 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     int m_currentPlayToolIndex;
-    int m_searchFileListIndex;
+    int m_searchFileLevel;
     int m_currentImportIndex;
     int m_currentDeleteIndex;
     bool m_toolDeleteChanged;
