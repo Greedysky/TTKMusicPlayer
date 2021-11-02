@@ -4,7 +4,8 @@
 #  pragma GCC diagnostic ignored "-Wunused-result"
 #endif
 
-typedef struct FPLTrackChunk{
+typedef struct FPLTrackChunk
+{
     uint unk1;		// not sure??
     uint file_ofz;	// filename string offset
     uint subsong;	// subsong index value
@@ -21,7 +22,7 @@ typedef struct FPLTrackChunk{
     uint  key_primary;  // number of primary info keys
     uint  key_second;   // number of secondary info key combos
     uint  key_sec_offset; // index of secondary key start
-} FPLTrackChunk;
+}FPLTrackChunk;
 
 
 MusicFPLConfigManager::MusicFPLConfigManager()

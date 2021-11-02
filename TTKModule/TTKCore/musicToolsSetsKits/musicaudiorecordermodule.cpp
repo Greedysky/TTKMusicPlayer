@@ -6,6 +6,24 @@
 #define WRITE_FILE_ERROR    -3
 #define REWRITE_FILE_ERROR  -4
 
+typedef struct WavHeader
+{
+    char riffName[4];
+    ulong riffLength;
+    char wavName[4];
+    char fmtName[4];
+    ulong fmtLength;
+    ushort audioFormat;
+    ushort channleNumber;
+    ulong sampleRate;
+    ulong bytesPperSecond;
+    ushort bytesPerSample;
+    ushort bitsPerSample;
+    char dataName[4];
+    ulong dataLength;
+}WavHeader;
+
+
 MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
     : QObject(parent)
 {
@@ -55,33 +73,33 @@ MusicAudioRecorderModule::~MusicAudioRecorderModule()
 
 int MusicAudioRecorderModule::addWavHeader(const char *fileName) const
 {
-    WAVHEADER fileHeader;
-    fileHeader.RIFFNAME[0] = 'R';
-    fileHeader.RIFFNAME[1] = 'I';
-    fileHeader.RIFFNAME[2] = 'F';
-    fileHeader.RIFFNAME[3] = 'F';
+    WavHeader fileHeader;
+    fileHeader.riffName[0] = 'R';
+    fileHeader.riffName[1] = 'I';
+    fileHeader.riffName[2] = 'F';
+    fileHeader.riffName[3] = 'F';
 
-    fileHeader.WAVNAME[0] = 'W';
-    fileHeader.WAVNAME[1] = 'A';
-    fileHeader.WAVNAME[2] = 'V';
-    fileHeader.WAVNAME[3] = 'E';
+    fileHeader.wavName[0] = 'W';
+    fileHeader.wavName[1] = 'A';
+    fileHeader.wavName[2] = 'V';
+    fileHeader.wavName[3] = 'E';
 
-    fileHeader.FMTNAME[0] = 'f';
-    fileHeader.FMTNAME[1] = 'm';
-    fileHeader.FMTNAME[2] = 't';
-    fileHeader.FMTNAME[3] = 0x20;
-    fileHeader.FMTLENGTH = 16;
-    fileHeader.AUDIOFORMAT = 1;
+    fileHeader.fmtName[0] = 'f';
+    fileHeader.fmtName[1] = 'm';
+    fileHeader.fmtName[2] = 't';
+    fileHeader.fmtName[3] = 0x20;
+    fileHeader.fmtLength = 16;
+    fileHeader.audioFormat = 1;
 
-    fileHeader.DATANAME[0] = 'd';
-    fileHeader.DATANAME[1] = 'a';
-    fileHeader.DATANAME[2] = 't';
-    fileHeader.DATANAME[3] = 'a';
-    fileHeader.BITSPERSAMPLE = 16;
-    fileHeader.BYTESPERSAMPLE = 2;
-    fileHeader.SAMPLERATE = 8000;
-    fileHeader.BYTESPERSECOND = 16000;
-    fileHeader.CHANNLENUMBER = 1;
+    fileHeader.dataName[0] = 'd';
+    fileHeader.dataName[1] = 'a';
+    fileHeader.dataName[2] = 't';
+    fileHeader.dataName[3] = 'a';
+    fileHeader.bitsPerSample = 16;
+    fileHeader.bytesPerSample = 2;
+    fileHeader.sampleRate = 8000;
+    fileHeader.bytesPperSecond = 16000;
+    fileHeader.channleNumber = 1;
 
     int fileLen = 0;
     const int headerSize = sizeof(fileHeader);
@@ -118,8 +136,8 @@ int MusicAudioRecorderModule::addWavHeader(const char *fileName) const
     }
 
     fseek(output, 0L, SEEK_SET);
-    fileHeader.RIFFLENGTH = fileLen - 8 + headerSize;
-    fileHeader.DATALENGTH = fileLen;
+    fileHeader.riffLength = fileLen - 8 + headerSize;
+    fileHeader.dataLength = fileLen;
 
     if(fwrite(&fileHeader, 1, headerSize, output) != headerSize)
     {

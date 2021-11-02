@@ -33,26 +33,6 @@ class TTK_MODULE_EXPORT MusicAudioRecorderModule : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAudioRecorderModule)
 public:
-    /*! @brief The class of the audio file wav header.
-     * @author Greedysky <greedysky@163.com>
-     */
-    typedef struct TTK_MODULE_EXPORT WAVHEADER
-    {
-        char RIFFNAME[4];
-        ulong RIFFLENGTH;
-        char WAVNAME[4];
-        char FMTNAME[4];
-        ulong FMTLENGTH;
-        ushort AUDIOFORMAT;
-        ushort CHANNLENUMBER;
-        ulong SAMPLERATE;
-        ulong BYTESPERSECOND;
-        ushort BYTESPERSAMPLE;
-        ushort BITSPERSAMPLE;
-        char DATANAME[4];
-        ulong DATALENGTH;
-    }WAVHEADER;
-
     /*!
      * Object contsructor.
      */
