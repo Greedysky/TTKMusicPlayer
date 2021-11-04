@@ -409,22 +409,22 @@ void MusicSettingWidget::changeDownloadWidget()
 
 void MusicSettingWidget::interiorLrcFrontgroundChanged()
 {
-    lcrColorValue(Interior, "LRCFRONTGROUNDGCOLOR", m_ui->playedPushButton);
+    lcrColorValue(LrcInterior, "LRCFRONTGROUNDGCOLOR", m_ui->playedPushButton);
 }
 
 void MusicSettingWidget::interiorLrcBackgroundChanged()
 {
-    lcrColorValue(Interior, "LRCBACKGROUNDCOLOR", m_ui->noPlayedPushButton);
+    lcrColorValue(LrcInterior, "LRCBACKGROUNDCOLOR", m_ui->noPlayedPushButton);
 }
 
 void MusicSettingWidget::defaultLrcColorChanged(int value)
 {
-    lrcColorByDefault(Interior, value);
+    lrcColorByDefault(LrcInterior, value);
 }
 
 void MusicSettingWidget::interiorLrcTransChanged(int value)
 {
-    lrcTransparentValue(Interior, value);
+    lrcTransparentValue(LrcInterior, value);
     m_ui->fontTransValueLabel->setText(QString::number(value) + "%");
 }
 
@@ -451,22 +451,22 @@ void MusicSettingWidget::resetInteriorParameter()
 
 void MusicSettingWidget::desktopFrontgroundChanged()
 {
-    lcrColorValue(Desktop, "DLRCFRONTGROUNDGCOLOR", m_ui->DplayedPushButton);
+    lcrColorValue(LrcDesktop, "DLRCFRONTGROUNDGCOLOR", m_ui->DplayedPushButton);
 }
 
 void MusicSettingWidget::desktopBackgroundChanged()
 {
-    lcrColorValue(Desktop, "DLRCBACKGROUNDCOLOR", m_ui->DnoPlayedPushButton);
+    lcrColorValue(LrcDesktop, "DLRCBACKGROUNDCOLOR", m_ui->DnoPlayedPushButton);
 }
 
 void MusicSettingWidget::defaultDesktopLrcColorChanged(int value)
 {
-    lrcColorByDefault(Desktop, value);
+    lrcColorByDefault(LrcDesktop, value);
 }
 
 void MusicSettingWidget::desktopLrcTransChanged(int value)
 {
-    lrcTransparentValue(Desktop, value);
+    lrcTransparentValue(LrcDesktop, value);
     m_ui->DfontTransValueLabel->setText(QString::number(value) + "%");
 }
 
@@ -503,7 +503,7 @@ void MusicSettingWidget::setNetworkProxyControl(int enable)
 
 void MusicSettingWidget::testNetworkProxy()
 {
-    setNetworkProxyByType(0);
+    setNetworkProxyByType(ProxyTest);
 }
 
 void MusicSettingWidget::testProxyStateChanged(bool state)
@@ -633,7 +633,7 @@ void MusicSettingWidget::saveResults()
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValue, m_ui->fadeOutSpinBox->value());
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnable, m_ui->fadeInAndOutCheckBox->isChecked());
 
-    if(!applyNetworkProxy())
+    if(m_ui->proxyTypeComboBox->currentIndex() != 2 && !setNetworkProxyByType(ProxyApply))
     {
         return;
     }
@@ -1067,9 +1067,9 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->proxyTypeComboBox->setCurrentIndex(2);
 }
 
-void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *obj)
+void MusicSettingWidget::lcrColorValue(LrcType key, const QString &type, QLabel *obj)
 {
-    key == Interior ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
+    key == LrcInterior ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
 
     MusicLrcColorWidget getColor(this);
     if(type == "DLRCFRONTGROUNDGCOLOR") getColor.setColors(m_ui->DplayedPushButton->getColors());
@@ -1082,17 +1082,17 @@ void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *ob
         const QList<QColor> &colors = getColor.getColors();
         TTKStatic_cast(MusicColorPreviewLabel*, obj)->setColors(colors);
     }
-    key == Interior ? showInteriorLrcDemo() : showDesktopLrcDemo();
+    key == LrcInterior ? showInteriorLrcDemo() : showDesktopLrcDemo();
 }
 
-void MusicSettingWidget::lrcColorByDefault(Type key, int index)
+void MusicSettingWidget::lrcColorByDefault(LrcType key, int index)
 {
     if(index == -1)
     {
         return;
     }
 
-    if(key == Interior)
+    if(key == LrcInterior)
     {
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(TTKStatic_cast(MusicLrcColor::LrcColorType, index));
         m_ui->playedPushButton->setColors(cl.m_frontColor);
@@ -1108,10 +1108,10 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     }
 }
 
-void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
+void MusicSettingWidget::lrcTransparentValue(LrcType key, int value) const
 {
     MusicPreviewLabel* label;
-    if(key == Interior)
+    if(key == LrcInterior)
     {
         label = m_ui->showLabel;
         label->setTransparent(2.55 * value);
@@ -1126,16 +1126,7 @@ void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
     label->update();
 }
 
-bool MusicSettingWidget::applyNetworkProxy()
-{
-    if(m_ui->proxyTypeComboBox->currentIndex() != 2)
-    {
-        return setNetworkProxyByType(1);
-    }
-    return true;
-}
-
-bool MusicSettingWidget::setNetworkProxyByType(int type)
+bool MusicSettingWidget::setNetworkProxyByType(ProxyType type)
 {
     MusicNetworkProxy proxy;
     connect(&proxy, SIGNAL(testProxyStateChanged(bool)), SLOT(testProxyStateChanged(bool)));
