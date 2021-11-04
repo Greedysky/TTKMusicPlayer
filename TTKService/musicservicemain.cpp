@@ -74,12 +74,12 @@ int main(int argc, char *argv[])
     {
         if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_OPEN)
         {
-            w.musicImportSongsPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), true);
+            w.musicImportSongsPathOuter({QString::fromLocal8Bit(argv[3])}, true);
         }
 
         if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_LIST)
         {
-            w.musicImportSongsPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), false);
+            w.musicImportSongsPathOuter({QString::fromLocal8Bit(argv[3])}, false);
         }
 
         if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_RADIO)

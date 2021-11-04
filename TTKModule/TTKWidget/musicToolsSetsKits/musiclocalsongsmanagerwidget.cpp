@@ -299,7 +299,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
 
             if(!arts.contains(artString))
             {
-                arts.insert(artString, QFileInfoList() << file);
+                arts.insert(artString, {file});
             }
             else
             {
@@ -342,7 +342,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
 
             if(!albums.contains(albumString))
             {
-                albums.insert(albumString, QFileInfoList() << file);
+                albums.insert(albumString, {file});
             }
             else
             {

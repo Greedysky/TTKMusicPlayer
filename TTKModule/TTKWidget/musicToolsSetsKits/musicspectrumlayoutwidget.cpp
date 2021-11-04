@@ -148,7 +148,7 @@ MusicSpectrumNormalLayoutWidget::MusicSpectrumNormalLayoutWidget(QWidget *parent
 
 QStringList MusicSpectrumNormalLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "normalanalyzer" << "normalewave" << "normalflowwave" << "normalhistogram" << "normalline";
+    return {"normalanalyzer", "normalewave", "normalflowwave", "normalhistogram", "normalline"};
 }
 
 
@@ -166,7 +166,7 @@ MusicSpectrumPlusLayoutWidget::MusicSpectrumPlusLayoutWidget(QWidget *parent)
 
 QStringList MusicSpectrumPlusLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "plusfoldwave" << "plusspacewave" << "plusxrays" << "plusblurxrays";
+    return {"plusfoldwave", "plusspacewave", "plusxrays", "plusblurxrays"};
 }
 
 
@@ -187,7 +187,7 @@ MusicSpectrumFlowLayoutWidget::MusicSpectrumFlowLayoutWidget(QWidget *parent)
 
 QStringList MusicSpectrumFlowLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "flowgoom" << "flowprojectm" << "flowsonique" << "flowmountain" << "flowethereality";
+    return {"flowgoom", "flowprojectm", "flowsonique", "flowmountain", "flowethereality"};
 }
 
 
@@ -205,7 +205,7 @@ MusicSpectrumWaveLayoutWidget::MusicSpectrumWaveLayoutWidget(QWidget *parent)
 
 QStringList MusicSpectrumWaveLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "wavevoice" << "wavecrest" << "wavevolume" << "lightenvelope";
+    return {"wavevoice", "wavecrest", "wavevolume", "lightenvelope"};
 }
 
 
@@ -227,6 +227,5 @@ MusicSpectrumFloridLayoutWidget::MusicSpectrumFloridLayoutWidget(QWidget *parent
 
 QStringList MusicSpectrumFloridLayoutWidget::spectrumTypeList() const
 {
-    return QStringList() << "floridreverb" << "floridautism" << "floridbass" << "floridsurround"
-                         << "floridancient" << "floridelectric";
+    return {"floridreverb", "floridautism", "floridbass", "floridsurround", "floridancient", "floridelectric"};
 }

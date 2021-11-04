@@ -190,12 +190,10 @@ int MusicSongRingtoneMaker::exec()
 
 void MusicSongRingtoneMaker::initControlParameter() const
 {
-    m_ui->formatCombo->addItems(QStringList() << "MP3" << "WAV");
-    m_ui->kbpsCombo->addItems(QStringList() << "32" << "48" << "56" << "64" << "80"
-                            << "96" << "112" << "128" << "192" << "224" << "256" << "320");
-    m_ui->hzCombo->addItems(QStringList() << "8000" << "12050" << "16000" << "22050"
-                            << "24000" << "32000" << "44100" << "48000");
-    m_ui->msCombo->addItems(QStringList() << "Mono" << "Stereo");
+    m_ui->formatCombo->addItems({"MP3", "WAV"});
+    m_ui->kbpsCombo->addItems({"32", "48", "56", "64", "80", "96", "112", "128", "192", "224", "256", "320"});
+    m_ui->hzCombo->addItems({"8000", "12050", "16000", "22050", "24000", "32000", "44100", "48000"});
+    m_ui->msCombo->addItems({"Mono", "Stereo"});
 
     m_ui->kbpsCombo->setCurrentIndex(7);
     m_ui->hzCombo->setCurrentIndex(6);

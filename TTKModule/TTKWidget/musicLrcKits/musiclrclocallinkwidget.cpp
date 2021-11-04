@@ -155,7 +155,7 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
     item.m_name = QFileInfo(path).fileName();
     item.m_path = path;
 
-    m_ui->searchedTable->createAllItems(MusicLocalDataItems() << item);
+    m_ui->searchedTable->createAllItems({item});
 }
 
 void MusicLrcLocalLinkWidget::deleteFoundLrc()

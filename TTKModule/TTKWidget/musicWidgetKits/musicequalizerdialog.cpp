@@ -27,11 +27,9 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     initialize();
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->eqChoice);
-    m_ui->eqChoice->addItems(QStringList() << tr("Custom") << tr("Default") << tr("Classical")
-                                           << tr("Club") << tr("Dance") << tr("Bass") << tr("Soprano") << tr("BassSoprano")
-                                           << tr("Headset") << tr("Hall") << tr("Scene") << tr("Pop") << tr("Repaglinide")
-                                           << tr("Party") << tr("Rock") << tr("Oscar") << tr("Mild") << tr("SoftRock")
-                                           << tr("Electronics"));
+    m_ui->eqChoice->addItems({tr("Custom"), tr("Default"), tr("Classical"), tr("Club"), tr("Dance"), tr("Bass"), tr("Soprano"),
+                              tr("BassSoprano"), tr("Headset"), tr("Hall"), tr("Scene"), tr("Pop"), tr("Repaglinide"),
+                              tr("Party"), tr("Rock"), tr("Oscar"), tr("Mild"), tr("SoftRock"), tr("Electronics")});
     connect(m_ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(eqChoiceIndexChanged(int)));
 
     m_ui->showEqButton->setStyleSheet(MusicUIObject::MQSSEqualizerOff);

@@ -40,15 +40,15 @@ bool MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
     QDomElement headSettingDom = writeDomNode(musicPlayerDom, "head");
     QDomElement bodySettingDom = writeDomNode(musicPlayerDom, "body");
 
-    writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "Generator") <<
-                         MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME).arg(TTKMUSIC_VERSION_STR)));
+    writeDomElementMutil(headSettingDom, "meta", {MusicXmlAttribute("name", "Generator"),
+                         MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME).arg(TTKMUSIC_VERSION_STR))});
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
         QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            writeDomElementMutil(seqDom, "media", MusicXmlAttributes() << MusicXmlAttribute("src", song.getMusicPath()));
+            writeDomElementMutil(seqDom, "media", {MusicXmlAttribute("src", song.getMusicPath())});
         }
     }
 

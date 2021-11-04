@@ -369,7 +369,7 @@ void MusicSettingWidget::rippleSpectrumColorChanged()
     if(getColor.exec())
     {
         const QColor &color = getColor.color();
-        m_ui->rippleSpectrumColorButton->setColors(QList<QColor>() << color);
+        m_ui->rippleSpectrumColorButton->setColors({color});
     }
 }
 
@@ -761,7 +761,7 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->quitWindowRadioBox->hide();
 #endif
     MusicUtils::Widget::generateComboBoxFormat(m_ui->languageComboBox);
-    m_ui->languageComboBox->addItems(QStringList() << tr("0") << tr("1") << tr("2"));
+    m_ui->languageComboBox->addItems({tr("0"), tr("1"), tr("2")});
 
     m_ui->globalHotkeyBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
 #ifdef Q_OS_UNIX
@@ -907,8 +907,8 @@ void MusicSettingWidget::initDesktopLrcWidget()
 
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
-    m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("DWhite") << tr("DBlue") << tr("DRed") << tr("DBlack") << tr("DYellow") << tr("DPurple") << tr("DGreen"));
+    m_ui->DfontTypeComboBox->addItems({"1", "2", "3", "4"});
+    m_ui->DfontDefaultColorComboBox->addItems({tr("DWhite"), tr("DBlue"), tr("DRed"), tr("DBlack"), tr("DYellow"), tr("DPurple"), tr("DGreen")});
 
     connect(m_ui->DfontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
@@ -945,8 +945,8 @@ void MusicSettingWidget::initInteriorLrcWidget()
 
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInteriorLrcSize());
-    m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("Yellow") << tr("Blue") << tr("Gray") << tr("Pink") << tr("Green") << tr("Red") << tr("Purple") << tr("Orange") << tr("Indigo"));
+    m_ui->fontTypeComboBox->addItems({"1", "2", "3", "4"});
+    m_ui->fontDefaultColorComboBox->addItems({tr("Yellow"), tr("Blue"), tr("Gray"), tr("Pink"), tr("Green"), tr("Red"), tr("Purple"), tr("Orange"), tr("Indigo")});
 
     connect(m_ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInteriorLrcDemo()));
     connect(m_ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInteriorLrcDemo()));
@@ -1057,7 +1057,7 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->netCheckTypeButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") << tr("NoProxy") << tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
+    m_ui->proxyTypeComboBox->addItems({tr("DefaultProxy"), tr("Socks5Proxy"), tr("NoProxy"), tr("HttpProxy"), tr("HttpCachingProxy"), tr("FtpCachingProxy")});
 
     connect(m_ui->proxyTypeTestButton, SIGNAL(clicked()), SLOT(testNetworkProxy()));
     connect(m_ui->netConnectionTypeButton, SIGNAL(clicked()), SLOT(testNetworkConnection()));

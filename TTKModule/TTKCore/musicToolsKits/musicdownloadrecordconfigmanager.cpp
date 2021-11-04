@@ -33,9 +33,9 @@ void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &recor
 
     for(const MusicSong &record : qAsConst(records))
     {
-        writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("name", record.getMusicName())
-                                                 << MusicXmlAttribute("size", record.getMusicSizeStr())
-                                                 << MusicXmlAttribute("time", record.getMusicAddTimeStr()), record.getMusicPath());
+        writeDomElementMutilText(download, "value", {MusicXmlAttribute("name", record.getMusicName()),
+                                                     MusicXmlAttribute("size", record.getMusicSizeStr()),
+                                                     MusicXmlAttribute("time", record.getMusicAddTimeStr())}, record.getMusicPath());
     }
 
     QTextStream out(m_file);

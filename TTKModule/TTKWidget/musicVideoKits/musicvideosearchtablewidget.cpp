@@ -72,7 +72,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
     setQueryInput(d);
     //
     m_singleRadioMode = true;
-    d->setMusicSongInfos(MusicObject::MusicSongInformations() << data.value<MusicObject::MusicSongInformation>());
+    d->setMusicSongInfos({data.value<MusicObject::MusicSongInformation>()});
 }
 
 void MusicVideoSearchTableWidget::musicDownloadLocal(int row)

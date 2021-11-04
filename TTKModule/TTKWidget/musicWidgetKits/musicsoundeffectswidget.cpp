@@ -135,7 +135,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     MusicUtils::Widget::generateComboBoxFormat(m_ui->stateComboBox);
-    m_ui->stateComboBox->addItems(QStringList() << tr("OperatorAll") << tr("All Off"));
+    m_ui->stateComboBox->addItems({tr("OperatorAll"), tr("All Off")});
     connect(m_ui->stateComboBox, SIGNAL(currentIndexChanged(int)), SLOT(stateComboBoxChanged(int)));
 
     m_ui->eqButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle04);

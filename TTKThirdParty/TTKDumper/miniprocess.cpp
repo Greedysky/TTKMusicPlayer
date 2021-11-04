@@ -110,7 +110,7 @@ static QList<PIDInfo> getProcessList()
 {
     QList<PIDInfo> lprocess;
     QProcess process;
-    process.start("/bin/bash", QStringList() << "-c" << "ps -xu | awk '{print $2\";\"$11}'");
+    process.start("/bin/bash", {"-c", "ps -xu | awk '{print $2\";\"$11}'"});
     if(!process.waitForFinished())
     {
         return lprocess;
@@ -142,7 +142,7 @@ static QList<PIDInfo> getProcessList()
 
 static bool killProcess(int pid)
 {
-    QProcess::execute("kill", QStringList() << "-s" << "9" << QString::number(pid));
+    QProcess::execute("kill", {"-s", "9", QString::number(pid)});
     return true;
 }
 

@@ -143,7 +143,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->header()->setMovable(false);
     m_ui->treeWidget->header()->setResizeMode(0, QHeaderView::Fixed);
 #endif
-    m_ui->treeWidget->setHeaderLabels(QStringList() << QString() << tr("Description") << tr("Name") << QString());
+    m_ui->treeWidget->setHeaderLabels({QString(), tr("Description"), tr("Name"), QString()});
 
     MusicCheckBoxDelegate *checkDelegate = new MusicCheckBoxDelegate(this);
     checkDelegate->showTextMode(true);
@@ -242,7 +242,7 @@ void MusicPluginWidget::loadPluginsInfo()
     m_ui->treeWidget->blockSignals(true);
 
     QTreeWidgetItem *item = nullptr;
-    item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Decoders"));
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Decoders")});
     item->setFirstColumnSpanned(true);
     for(DecoderFactory *factory : Decoder::factories())
     {
@@ -251,7 +251,7 @@ void MusicPluginWidget::loadPluginsInfo()
     m_ui->treeWidget->addTopLevelItem(item);
     item->setExpanded(true);
 
-    item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Effects"));
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Effects")});
     item->setFirstColumnSpanned(true);
     for(EffectFactory *factory : Effect::factories())
     {
@@ -260,7 +260,7 @@ void MusicPluginWidget::loadPluginsInfo()
     m_ui->treeWidget->addTopLevelItem(item);
     item->setExpanded(true);
 
-    item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Visualization"));
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Visualization")});
     item->setFirstColumnSpanned(true);
     for(VisualFactory *factory : Visual::factories())
     {
@@ -269,7 +269,7 @@ void MusicPluginWidget::loadPluginsInfo()
     m_ui->treeWidget->addTopLevelItem(item);
     item->setExpanded(true);
 
-    item = new QTreeWidgetItem(m_ui->treeWidget, QStringList() << tr("Output"));
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Output")});
     item->setFirstColumnSpanned(true);
     for(OutputFactory *factory : Output::factories())
     {
