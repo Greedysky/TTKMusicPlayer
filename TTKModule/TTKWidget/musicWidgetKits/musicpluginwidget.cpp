@@ -219,7 +219,8 @@ void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
         item->setData(2, Qt::TextColorRole, color);
     }
 
-    m_ui->settingButton->setEnabled(TTKDynamic_cast(MusicPluginItem*, item)->hasSettings());
+    MusicPluginItem *it = TTKDynamic_cast(MusicPluginItem*, item);
+    m_ui->settingButton->setEnabled(it ? it->hasSettings() : false);
 }
 
 void MusicPluginWidget::pluginButtonClicked()
