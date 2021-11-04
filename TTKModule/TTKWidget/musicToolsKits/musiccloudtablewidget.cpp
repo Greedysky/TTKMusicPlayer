@@ -124,7 +124,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
     const QString data(it->data(MUSIC_DATA_ROLE).toString());
     if(!data.isEmpty())
     {
-        Q_EMIT reuploadFilesToServer(QStringList() << data);
+        Q_EMIT reuploadFilesToServer({data});
     }
 }
 

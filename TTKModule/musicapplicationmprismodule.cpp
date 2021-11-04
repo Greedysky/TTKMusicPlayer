@@ -62,9 +62,9 @@ QString MusicApplicationMPRISPlayer::loopStatus() const
 {
     switch(m_player->getPlayMode())
     {
-    case MusicObject::PM_PlayOneLoop: return "Track";
-    case MusicObject::PM_PlaylistLoop: return "Playlist";
-    default: return "None";
+        case MusicObject::PM_PlayOneLoop: return "Track";
+        case MusicObject::PM_PlaylistLoop: return "Playlist";
+        default: return "None";
     }
 }
 

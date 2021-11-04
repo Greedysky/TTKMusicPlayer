@@ -41,12 +41,24 @@ void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
 
     switch(index)
     {
-        case 0: m_barrageSize = 15;
-                buttons[0]->setStyleSheet(MusicUIObject::MQSSVideoBtnSmallOn); break;
-        case 1: m_barrageSize = 20;
-                buttons[1]->setStyleSheet(MusicUIObject::MQSSVideoBtnMiddleOn); break;
-        case 2: m_barrageSize = 30;
-                buttons[2]->setStyleSheet(MusicUIObject::MQSSVideoBtnBigOn); break;
+        case 0:
+        {
+            m_barrageSize = 15;
+            buttons[0]->setStyleSheet(MusicUIObject::MQSSVideoBtnSmallOn);
+            break;
+        }
+        case 1:
+        {
+            m_barrageSize = 20;
+            buttons[1]->setStyleSheet(MusicUIObject::MQSSVideoBtnMiddleOn);
+            break;
+        }
+        case 2:
+        {
+            m_barrageSize = 30;
+            buttons[2]->setStyleSheet(MusicUIObject::MQSSVideoBtnBigOn);
+            break;
+        }
         default: break;
     }
 }
@@ -67,20 +79,48 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
 
     switch(index)
     {
-        case 0: m_barrageColor = QColor(255, 255, 255);
-                buttons[0]->setStyleSheet(MusicUIObject::MQSSVideoBtnWhiteOn); break;
-        case 1: m_barrageColor = QColor(255, 0, 0);
-                buttons[1]->setStyleSheet(MusicUIObject::MQSSVideoBtnRedOn); break;
-        case 2: m_barrageColor = QColor(255, 165, 0);
-                buttons[2]->setStyleSheet(MusicUIObject::MQSSVideoBtnOrangeOn); break;
-        case 3: m_barrageColor = QColor(255, 255, 0);
-                buttons[3]->setStyleSheet(MusicUIObject::MQSSVideoBtnYellowOn); break;
-        case 4: m_barrageColor = QColor(0, 255, 0);
-                buttons[4]->setStyleSheet(MusicUIObject::MQSSVideoBtnGreenOn); break;
-        case 5: m_barrageColor = QColor(0, 0, 255);
-                buttons[5]->setStyleSheet(MusicUIObject::MQSSVideoBtnBlueOn); break;
-        case 6: m_barrageColor = QColor(160, 32, 240);
-                buttons[6]->setStyleSheet(MusicUIObject::MQSSVideoBtnPurpleOn); break;
+        case 0:
+        {
+            m_barrageColor = QColor(255, 255, 255);
+            buttons[0]->setStyleSheet(MusicUIObject::MQSSVideoBtnWhiteOn);
+            break;
+        }
+        case 1:
+        {
+            m_barrageColor = QColor(255, 0, 0);
+            buttons[1]->setStyleSheet(MusicUIObject::MQSSVideoBtnRedOn);
+            break;
+        }
+        case 2:
+        {
+            m_barrageColor = QColor(255, 165, 0);
+            buttons[2]->setStyleSheet(MusicUIObject::MQSSVideoBtnOrangeOn);
+            break;
+        }
+        case 3:
+        {
+            m_barrageColor = QColor(255, 255, 0);
+            buttons[3]->setStyleSheet(MusicUIObject::MQSSVideoBtnYellowOn);
+            break;
+        }
+        case 4:
+        {
+            m_barrageColor = QColor(0, 255, 0);
+            buttons[4]->setStyleSheet(MusicUIObject::MQSSVideoBtnGreenOn);
+            break;
+        }
+        case 5:
+        {
+            m_barrageColor = QColor(0, 0, 255);
+            buttons[5]->setStyleSheet(MusicUIObject::MQSSVideoBtnBlueOn);
+            break;
+        }
+        case 6:
+        {
+            m_barrageColor = QColor(160, 32, 240);
+            buttons[6]->setStyleSheet(MusicUIObject::MQSSVideoBtnPurpleOn);
+            break;
+        }
         default: break;
     }
 }

@@ -420,6 +420,7 @@ void MusicLrcContainerForInterior::contextMenuEvent(QContextMenuEvent *event)
     group->addAction(changeLrcSize.addAction(tr("Middle")))->setData(2);
     group->addAction(changeLrcSize.addAction(tr("Big")))->setData(3);
     group->addAction(changeLrcSize.addAction(tr("Bigger")))->setData(4);
+
     int index = -1, size = G_SETTING_PTR->value(MusicSettingManager::LrcSize).toInt();
     switch(size)
     {

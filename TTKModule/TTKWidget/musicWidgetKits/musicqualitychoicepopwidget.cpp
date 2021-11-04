@@ -180,29 +180,29 @@ void MusicQualityChoicePopWidget::itemCellClicked(int row)
     switch(row)
     {
         case 0:
-            {
-                style = "QToolButton{ margin-left:-0px; }";
-                m_currentQuality = tr("SD");
-                break;
-            }
+        {
+            style = "QToolButton{ margin-left:-0px; }";
+            m_currentQuality = tr("SD");
+            break;
+        }
         case 1:
-            {
-                style = "QToolButton{ margin-left:-48px; }";
-                m_currentQuality = tr("HQ");
-                break;
-            }
+        {
+            style = "QToolButton{ margin-left:-48px; }";
+            m_currentQuality = tr("HQ");
+            break;
+        }
         case 2:
-            {
-                style = "QToolButton{ margin-left:-96px; }";
-                m_currentQuality = tr("SQ");
-                break;
-            }
+        {
+            style = "QToolButton{ margin-left:-96px; }";
+            m_currentQuality = tr("SQ");
+            break;
+        }
         case 3:
-            {
-                style = "QToolButton{ margin-left:-144px; }";
-                m_currentQuality = tr("CD");
-                break;
-            }
+        {
+            style = "QToolButton{ margin-left:-144px; }";
+            m_currentQuality = tr("CD");
+            break;
+        }
         default: break;
     }
     setStyleSheet(styleSheet() + style);

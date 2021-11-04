@@ -189,7 +189,7 @@ void MusicPlayer::setEnabledEffect(bool enable)
 {
     if(!enable)
     {
-        setEqEffect(TTKIntList()<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0);
+        setEqEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
     }
 }
 
@@ -275,19 +275,10 @@ void MusicPlayer::setMusicEnhancedCase()
 {
     switch(m_musicEnhanced)
     {
-        case EnhancedOff:
-            setEqEffect(TTKIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
-            break;
-        case EnhancedVocal:
-            setEqEffect(TTKIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
-            break;
-        case EnhancedNICAM:
-            setEqEffect(TTKIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
-            break;
-        case EnhancedSubwoofer:
-            setEqEffect(TTKIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
-            break;
-        default:
-            break;
+        case EnhancedOff: setEqEffect({0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}); break;
+        case EnhancedVocal: setEqEffect({0, 0, 4, 1, -5, -1, 2, -2, -4, -4, 0}); break;
+        case EnhancedNICAM: setEqEffect({6, -12, -12, -9, -6, -3, -12, -9, -6, -3, -12}); break;
+        case EnhancedSubwoofer: setEqEffect({6, 6, -10, -10, 0, 0, -3, -5, -7, -9, -11}); break;
+        default: break;
     }
 }

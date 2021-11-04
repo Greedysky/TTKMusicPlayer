@@ -171,17 +171,17 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row, int col)
     {
         case 3:
         case 4:
-           {
-              if(!m_searchfileListCache.isEmpty())
-              {
-                  const int count = m_ui->searchLineEdit->text().trimmed().count();
-                  row = m_searchfileListCache.value(count)[row];
-                  m_ui->searchLineEdit->clear();
-                  m_searchfileListCache.clear();
-              }
-              Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row].absoluteFilePath()));
-              break;
-           }
+        {
+            if(!m_searchfileListCache.isEmpty())
+            {
+                const int count = m_ui->searchLineEdit->text().trimmed().count();
+                row = m_searchfileListCache.value(count)[row];
+                m_ui->searchLineEdit->clear();
+                m_searchfileListCache.clear();
+            }
+            Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row].absoluteFilePath()));
+            break;
+        }
         default: break;
     }
 }

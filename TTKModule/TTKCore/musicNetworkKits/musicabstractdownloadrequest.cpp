@@ -95,7 +95,7 @@ QString MusicAbstractDownLoadRequest::mapCurrentQueryData() const
     switch(m_downloadType)
     {
         case MusicObject::DownloadMusic: return "DownloadMusic";
-        case MusicObject::DownloadLrc:   return "DownloadLrc";
+        case MusicObject::DownloadLrc: return "DownloadLrc";
         case MusicObject::DownloadSmallBackground: return "DownloadSmallBackground";
         case MusicObject::DownloadBigBackground: return "DownloadBigBackground";
         case MusicObject::DownloadVideo: return "DownloadVideo";

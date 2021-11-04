@@ -392,54 +392,53 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 0:
-            {
-                musicAddToPlayLater();
-                break;
-            }
-        case 2:
-            {
-                musicSongMovieFound();
-                break;
-            }
-        case 3:
-            {
-                bool empty;
-                Q_EMIT isSearchFileListEmpty(empty);
-                if(!empty)
-                {
-                    return;
-                }
-
-                const bool contains = !MusicApplication::instance()->musicLovestContains(row);
-                QTableWidgetItem *it = item(row, 3);
-                if(it)
-                {
-                    it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
-                }
-                Q_EMIT addSongToLovestListAt(contains, row);
-                break;
-            }
-        case 4:
-            {
-                bool empty;
-                Q_EMIT isSearchFileListEmpty(empty);
-                if(!empty)
-                {
-                    return;
-                }
-
-                setDeleteItemAt();
-                break;
-            }
-        case 5:
-            {
-                QMenu menu(this);
-                createMoreMenu(&menu);
-                menu.exec(QCursor::pos());
-                break;
-            }
-        default:
+        {
+            musicAddToPlayLater();
             break;
+        }
+        case 2:
+        {
+            musicSongMovieFound();
+            break;
+        }
+        case 3:
+        {
+            bool empty;
+            Q_EMIT isSearchFileListEmpty(empty);
+            if(!empty)
+            {
+                return;
+            }
+
+            const bool contains = !MusicApplication::instance()->musicLovestContains(row);
+            QTableWidgetItem *it = item(row, 3);
+            if(it)
+            {
+                it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
+            }
+            Q_EMIT addSongToLovestListAt(contains, row);
+            break;
+        }
+        case 4:
+        {
+            bool empty;
+            Q_EMIT isSearchFileListEmpty(empty);
+            if(!empty)
+            {
+                return;
+            }
+
+            setDeleteItemAt();
+            break;
+        }
+        case 5:
+        {
+            QMenu menu(this);
+            createMoreMenu(&menu);
+            menu.exec(QCursor::pos());
+            break;
+        }
+        default: break;
     }
 }
 

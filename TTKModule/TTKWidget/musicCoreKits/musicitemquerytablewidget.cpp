@@ -207,17 +207,10 @@ void MusicItemQueryTableWidget::itemCellClicked(int row, int column)
     MusicQueryTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 5:
-            addSearchMusicToPlaylist(row, true);
-            break;
-        case 6:
-            addSearchMusicToPlaylist(row, false);
-            break;
-        case 7:
-            musicDownloadLocal(row);
-            break;
-        default:
-            break;
+        case 5: addSearchMusicToPlaylist(row, true); break;
+        case 6: addSearchMusicToPlaylist(row, false); break;
+        case 7: musicDownloadLocal(row); break;
+        default: break;
     }
 }
 

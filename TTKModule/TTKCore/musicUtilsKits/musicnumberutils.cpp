@@ -94,21 +94,29 @@ void MusicUtils::Number::transfromBitrateToQuality(int level, QString &bitrate, 
     switch(level)
     {
         case 0:
+        {
             bitrate = QObject::tr("Low");
             color = QColor(211, 0, 70);
             break;
+        }
         case 1:
+        {
             bitrate = QObject::tr("Normal");
             color = QColor(0, 134, 211);
             break;
+        }
         case 2:
+        {
             bitrate = QObject::tr("High");
             color = QColor(236, 138, 48);
             break;
+        }
         case 3:
+        {
             bitrate = QObject::tr("LLess");
             color = QColor(117, 0, 206);
             break;
+        }
         default: break;
     }
 }

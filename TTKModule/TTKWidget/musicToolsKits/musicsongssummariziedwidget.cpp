@@ -67,29 +67,29 @@ bool MusicSongsSummariziedWidget::addMusicItemList(const MusicSongItems &names)
             switch(item)
             {
                 case MUSIC_NORMAL_LIST:
-                    {
-                        songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("Default Item");
-                        break;
-                    }
+                {
+                    songItem.m_itemIndex = item;
+                    songItem.m_itemName = tr("Default Item");
+                    break;
+                }
                 case MUSIC_LOVEST_LIST:
-                    {
-                        songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("Lovest Item");
-                        break;
-                    }
+                {
+                    songItem.m_itemIndex = item;
+                    songItem.m_itemName = tr("Lovest Item");
+                    break;
+                }
                 case MUSIC_NETWORK_LIST:
-                    {
-                        songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("Net Item");
-                        break;
-                    }
+                {
+                    songItem.m_itemIndex = item;
+                    songItem.m_itemName = tr("Net Item");
+                    break;
+                }
                 case MUSIC_RECENT_LIST:
-                    {
-                        songItem.m_itemIndex = item;
-                        songItem.m_itemName = tr("Recent Item");
-                        break;
-                    }
+                {
+                    songItem.m_itemIndex = item;
+                    songItem.m_itemName = tr("Recent Item");
+                    break;
+                }
                 default: break;
             }
             m_songItems << songItem;

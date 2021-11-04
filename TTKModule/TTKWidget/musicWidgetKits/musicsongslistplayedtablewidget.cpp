@@ -261,21 +261,16 @@ void MusicSongsListPlayedTableWidget::itemCellClicked(int row, int column)
 
     switch(column)
     {
-        case 2:
-            musicSongDownload();
-            break;
-        case 3:
-            setDeleteItemAt();
-            break;
+        case 2: musicSongDownload(); break;
+        case 3: setDeleteItemAt(); break;
         case 4:
-            {
-                QMenu menu(this);
-                createMoreMenu(&menu);
-                menu.exec(QCursor::pos());
-                break;
-            }
-        default:
+        {
+            QMenu menu(this);
+            createMoreMenu(&menu);
+            menu.exec(QCursor::pos());
             break;
+        }
+        default: break;
     }
 }
 

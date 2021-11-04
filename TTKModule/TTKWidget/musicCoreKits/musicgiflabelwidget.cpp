@@ -117,115 +117,115 @@ void MusicGifLabelWidget::timeout()
     switch(m_type)
     {
         case Gif_Ballon_White:
+        {
+            if(m_index == 40 && infinitedModeCheck())
             {
-                if(m_index == 40 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_ballon_white").copy(GIF_BALLON_WHITE*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_ballon_white").copy(GIF_BALLON_WHITE*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Cicle_Blue:
+        {
+            if(m_index == 12 && infinitedModeCheck())
             {
-                if(m_index == 12 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_cicle_blue").copy(GIF_CICLE_BLUE*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_cicle_blue").copy(GIF_CICLE_BLUE*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Rice_Font_White:
+        {
+            if(m_index == 8 && infinitedModeCheck())
             {
-                if(m_index == 8 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_rice_font_white").copy(GIF_RICE_FONT_WHITE*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_rice_font_white").copy(GIF_RICE_FONT_WHITE*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Rice_Font_Black_Big:
+        {
+            if(m_index == 8 && infinitedModeCheck())
             {
-                if(m_index == 8 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_rice_font_black_big").copy(GIF_RICE_FONT_BLACK_BIG*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_rice_font_black_big").copy(GIF_RICE_FONT_BLACK_BIG*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Rice_Font_Black:
+        {
+            if(m_index == 12 && infinitedModeCheck())
             {
-                if(m_index == 12 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_rice_font_black").copy(GIF_RICE_FONT_BLACK*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_rice_font_black").copy(GIF_RICE_FONT_BLACK*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Hourglass_White:
+        {
+            if(m_index == 16 && infinitedModeCheck())
             {
-                if(m_index == 16 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_hourglass_white").copy(GIF_HOURGLASS_WHITE*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_hourglass_white").copy(GIF_HOURGLASS_WHITE*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Radio_Blue:
+        {
+            if(m_index == 10 && infinitedModeCheck())
             {
-                if(m_index == 10 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_radio_blue").copy(GIF_RADIO_BLUE*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_radio_blue").copy(GIF_RADIO_BLUE*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Check_Blue:
+        {
+            if(m_index == 22 && infinitedModeCheck())
             {
-                if(m_index == 22 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_check_blue").copy(GIF_CHECK_BLUE*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_check_blue").copy(GIF_CHECK_BLUE*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Record_red:
+        {
+            if(m_index == 5 && infinitedModeCheck())
             {
-                if(m_index == 5 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_record_red").copy(GIF_RECORD_RED*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_record_red").copy(GIF_RECORD_RED*m_index, 0, width(), height());
+            update();
+            break;
+        }
         case Gif_Close_White:
+        {
+            if(m_index == 12 && infinitedModeCheck())
             {
-                if(m_index == 12 && infinitedModeCheck())
-                {
-                    break;
-                }
-
-                m_renderer = QPixmap(":/gif/lb_close_white").copy(GIF_CLOSE_WHITE_WIDTH*m_index, 0, width(), height());
-                update();
                 break;
             }
+
+            m_renderer = QPixmap(":/gif/lb_close_white").copy(GIF_CLOSE_WHITE_WIDTH*m_index, 0, width(), height());
+            update();
+            break;
+        }
         default: break;
     }
 }

@@ -47,11 +47,13 @@ void MusicLocalSongSearchEdit::keyReleaseEvent(QKeyEvent *event)
     {
         case Qt::Key_Return:
         case Qt::Key_Enter:
+        {
             if(!text().isEmpty())
             {
                 Q_EMIT enterFinished(text());
             }
             break;
+        }
         default: break;
     }
 }

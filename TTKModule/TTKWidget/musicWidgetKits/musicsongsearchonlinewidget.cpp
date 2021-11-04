@@ -160,14 +160,9 @@ void MusicSongSearchTableWidget::itemCellClicked(int row, int column)
     MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 7:
-            addSearchMusicToPlaylist(row, true);
-            break;
-        case 8:
-            musicDownloadLocal(row);
-            break;
-        default:
-            break;
+        case 7: addSearchMusicToPlaylist(row, true); break;
+        case 8: musicDownloadLocal(row); break;
+        default: break;
     }
 }
 

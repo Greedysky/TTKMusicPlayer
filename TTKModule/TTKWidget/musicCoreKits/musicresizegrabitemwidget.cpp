@@ -47,12 +47,14 @@ void MusicResizeGrabItemWidget::onMouseChange(int x, int y)
             case Direction_Right:
 //            case Direction_LeftTop:
 //            case Direction_LeftBottom:
-                rh = rw; break;
+                rh = rw;
+                break;
             case Direction_Top:
             case Direction_Bottom:
 //            case Direction_RightTop:
 //            case Direction_RightBottom:
-                rw = rh; break;
+                rw = rh;
+                break;
             default: break;
         }
     }
@@ -93,23 +95,13 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
         {
             case Direction_No:
             case Direction_Right:
-            case Direction_RightBottom:
-                m_originPoint = pt_lu;
-                break;
-            case Direction_RightTop:
-                m_originPoint = pt_ll;
-                break;
+            case Direction_RightBottom: m_originPoint = pt_lu; break;
+            case Direction_RightTop: m_originPoint = pt_ll; break;
             case Direction_Left:
-            case Direction_LeftBottom:
-                m_originPoint = pt_ru;
-                break;
+            case Direction_LeftBottom: m_originPoint = pt_ru; break;
             case Direction_LeftTop:
-            case Direction_Top:
-                m_originPoint = pt_rl;
-                break;
-            case Direction_Bottom:
-                m_originPoint = pt_lu;
-                break;
+            case Direction_Top: m_originPoint = pt_rl; break;
+            case Direction_Bottom: m_originPoint = pt_lu; break;
             default: break;
         }
     }
@@ -119,26 +111,21 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
         {
             switch(m_direction)
             {
-                case Direction_Left:
-                    return onMouseChange(gloPoint.x(), pt_ll.y() + 1);
-                case Direction_Right:
-                    return onMouseChange(gloPoint.x(), pt_rl.y() + 1);
-                case Direction_Top:
-                    return onMouseChange(pt_lu.x(), gloPoint.y());
-                case Direction_Bottom:
-                    return onMouseChange(pt_rl.x() + 1, gloPoint.y());
+                case Direction_Left: return onMouseChange(gloPoint.x(), pt_ll.y() + 1);
+                case Direction_Right: return onMouseChange(gloPoint.x(), pt_rl.y() + 1);
+                case Direction_Top: return onMouseChange(pt_lu.x(), gloPoint.y());
+                case Direction_Bottom: return onMouseChange(pt_rl.x() + 1, gloPoint.y());
                 case Direction_LeftTop:
                 case Direction_RightTop:
                 case Direction_LeftBottom:
                 case Direction_RightBottom:
+                {
                     if(m_crossStretch)
                     {
                         return onMouseChange(gloPoint.x(), gloPoint.y());
                     }
-                    else
-                    {
-                        break;
-                    }
+                    break;
+                }
                 default: break;
             }
         }

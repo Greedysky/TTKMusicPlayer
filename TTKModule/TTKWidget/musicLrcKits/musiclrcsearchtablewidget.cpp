@@ -72,11 +72,8 @@ void MusicLrcSearchTableWidget::itemCellClicked(int row, int column)
     MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 6:
-            musicDownloadLocal(row);
-            break;
-        default:
-            break;
+        case 6: musicDownloadLocal(row); break;
+        default: break;
     }
 }
 

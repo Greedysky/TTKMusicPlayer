@@ -77,10 +77,30 @@ void MusicTimeSliderWidget::setSliderStyleByType(int type)
     QString rgba1 = "rgb(231, 80, 229)", rgba2 = "rgb(7, 208, 255)";
     switch(type)
     {
-        case 1: rgba1 = "rgb(122, 246, 231)"; rgba2 = "rgb(244, 247, 158)"; break;
-        case 2: rgba1 = "rgb(232, 202, 189)"; rgba2 = "rgb(191, 252, 198)"; break;
-        case 3: rgba1 = "rgb(213, 203, 255)"; rgba2 = "rgb(153, 236, 255)"; break;
-        case 4: rgba1 = "rgb(255, 179, 249)"; rgba2 = "rgb(247, 246, 200)"; break;
+        case 1:
+        {
+            rgba1 = "rgb(122, 246, 231)";
+            rgba2 = "rgb(244, 247, 158)";
+            break;
+        }
+        case 2:
+        {
+            rgba1 = "rgb(232, 202, 189)";
+            rgba2 = "rgb(191, 252, 198)";
+            break;
+        }
+        case 3:
+        {
+            rgba1 = "rgb(213, 203, 255)";
+            rgba2 = "rgb(153, 236, 255)";
+            break;
+        }
+        case 4:
+        {
+            rgba1 = "rgb(255, 179, 249)";
+            rgba2 = "rgb(247, 246, 200)";
+            break;
+        }
         default: break;
     }
     const QString &prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("

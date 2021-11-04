@@ -269,48 +269,20 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
         //The time tag into the time value, in milliseconds
         switch(type)
         {
-            case Type01:
-                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{3}(?=\\])");
-                    break;
-            case Type02:
-                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
-                    break;
-            case Type03:
-                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{1}(?=\\])");
-                    break;
-            case Type04:
-                    matchLrcLine(temp, cap, ":");
-                    break;
-            case Type05:
-                    matchLrcLine(temp, cap, ":");
-                    break;
-            case Type06:
-                    matchLrcLine(temp, cap, ":");
-                    break;
-            case Type07:
-                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\])");
-                    break;
-            case Type08:
-                    matchLrcLine(temp, cap, ".");
-                    break;
-            case Type09:
-                    matchLrcLine(temp, cap, ".");
-                    break;
-            case Type10:
-                    matchLrcLine(temp, cap, ".");
-                    break;
-            case Type11:
-                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{3}(?=\\])");
-                    break;
-            case Type12:
-                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{2}(?=\\])");
-                    break;
-            case Type13:
-                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{1}(?=\\])");
-                    break;
-            case Type14:
-                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
-                    break;
+            case Type01: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{3}(?=\\])"); break;
+            case Type02: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{2}(?=\\])"); break;
+            case Type03: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{1}(?=\\])"); break;
+            case Type04: matchLrcLine(temp, cap, ":"); break;
+            case Type05: matchLrcLine(temp, cap, ":"); break;
+            case Type06: matchLrcLine(temp, cap, ":"); break;
+            case Type07: matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\])"); break;
+            case Type08: matchLrcLine(temp, cap, "."); break;
+            case Type09: matchLrcLine(temp, cap, "."); break;
+            case Type10: matchLrcLine(temp, cap, "."); break;
+            case Type11: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{3}(?=\\])"); break;
+            case Type12: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{2}(?=\\])"); break;
+            case Type13: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{1}(?=\\])"); break;
+            case Type14: matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])"); break;
             default: break;
         }
         pos += regx.matchedLength();

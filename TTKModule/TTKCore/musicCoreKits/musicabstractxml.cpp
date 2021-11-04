@@ -259,18 +259,12 @@ void MusicAbstractXml::writeAttribute(QDomElement &element, const MusicXmlAttrib
 {
     switch(attr.m_value.type())
     {
-        case QVariant::Int :
-            element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
-        case QVariant::String :
-            element.setAttribute(attr.m_key, attr.m_value.toString()); break;
-        case QVariant::LongLong :
-            element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
-        case QVariant::ULongLong :
-            element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
-        case QVariant::Double :
-            element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
-        case QVariant::UInt :
-            element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
+        case QVariant::Int: element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
+        case QVariant::String: element.setAttribute(attr.m_key, attr.m_value.toString()); break;
+        case QVariant::LongLong: element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
+        case QVariant::ULongLong: element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
+        case QVariant::Double: element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
+        case QVariant::UInt: element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
         default: break;
     }
 }

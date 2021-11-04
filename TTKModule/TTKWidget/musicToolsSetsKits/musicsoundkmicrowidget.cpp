@@ -179,12 +179,8 @@ void MusicSoundKMicroWidget::playButtonChanged()
     m_mediaPlayer->play();
     switch(m_mediaPlayer->state())
     {
-        case MusicObject::PS_PlayingState:
-            setButtonStyle(false);
-            break;
-        case MusicObject::PS_PausedState:
-            setButtonStyle(true);
-            break;
+        case MusicObject::PS_PlayingState: setButtonStyle(false); break;
+        case MusicObject::PS_PausedState: setButtonStyle(true); break;
         default: break;
     }
 

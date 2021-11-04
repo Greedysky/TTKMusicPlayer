@@ -75,35 +75,35 @@ void MusicTimerAutoModule::timeout()
             switch(pair->m_index)
             {
                 case 0:
+                {
+                    if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayRepeat).toInt() == 0)
                     {
-                        if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoPlayRepeat).toInt() == 0)
-                        {
-                            pair->m_state = false;
-                            G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayMode, 1);
-                        }
-                        MusicApplication::instance()->setPlaySongChanged(G_SETTING_PTR->value(MusicSettingManager::TimerAutoPlaySongIndex).toInt());
-                        break;
+                        pair->m_state = false;
+                        G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayMode, 1);
                     }
+                    MusicApplication::instance()->setPlaySongChanged(G_SETTING_PTR->value(MusicSettingManager::TimerAutoPlaySongIndex).toInt());
+                    break;
+                }
                 case 1:
+                {
+                    if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoStopRepeat).toInt() == 0)
                     {
-                        if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoStopRepeat).toInt() == 0)
-                        {
-                            pair->m_state = false;
-                            G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopMode, 1);
-                        }
-                        MusicApplication::instance()->musicStateStop();
-                        break;
+                        pair->m_state = false;
+                        G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopMode, 1);
                     }
+                    MusicApplication::instance()->musicStateStop();
+                    break;
+                }
                 case 2:
+                {
+                    if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownRepeat).toInt() == 0)
                     {
-                        if(G_SETTING_PTR->value(MusicSettingManager::TimerAutoShutdownRepeat).toInt() == 0)
-                        {
-                            pair->m_state = false;
-                            G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownMode, 1);
-                        }
-                        setShutdown();
-                        break;
+                        pair->m_state = false;
+                        G_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownMode, 1);
                     }
+                    setShutdown();
+                    break;
+                }
                 default: break;
             }
         }

@@ -62,16 +62,16 @@ void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 {
     switch(action->data().toInt())
     {
-        case 0:  setLinearGradientColor(MusicLrcColor::IYellow); break;
-        case 1:  setLinearGradientColor(MusicLrcColor::IBlue); break;
-        case 2:  setLinearGradientColor(MusicLrcColor::IGray); break;
-        case 3:  setLinearGradientColor(MusicLrcColor::IPink); break;
-        case 4:  setLinearGradientColor(MusicLrcColor::IGreen); break;
-        case 5:  setLinearGradientColor(MusicLrcColor::IRed); break;
-        case 6:  setLinearGradientColor(MusicLrcColor::IPurple); break;
-        case 7:  setLinearGradientColor(MusicLrcColor::IOrange); break;
-        case 8:  setLinearGradientColor(MusicLrcColor::IIndigo); break;
-        case 9:  setLinearGradientColor(MusicLrcColor::DWhite); break;
+        case 0: setLinearGradientColor(MusicLrcColor::IYellow); break;
+        case 1: setLinearGradientColor(MusicLrcColor::IBlue); break;
+        case 2: setLinearGradientColor(MusicLrcColor::IGray); break;
+        case 3: setLinearGradientColor(MusicLrcColor::IPink); break;
+        case 4: setLinearGradientColor(MusicLrcColor::IGreen); break;
+        case 5: setLinearGradientColor(MusicLrcColor::IRed); break;
+        case 6: setLinearGradientColor(MusicLrcColor::IPurple); break;
+        case 7: setLinearGradientColor(MusicLrcColor::IOrange); break;
+        case 8: setLinearGradientColor(MusicLrcColor::IIndigo); break;
+        case 9: setLinearGradientColor(MusicLrcColor::DWhite); break;
         case 10: setLinearGradientColor(MusicLrcColor::DBlue); break;
         case 11: setLinearGradientColor(MusicLrcColor::DRed); break;
         case 12: setLinearGradientColor(MusicLrcColor::DBlack); break;

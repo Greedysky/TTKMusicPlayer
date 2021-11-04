@@ -93,61 +93,60 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     switch(m_ui->listItemWidget->row(item))
     {
         case 0:
-            {
-                GENERATE_SINGLE_WIDGET_CLASS(MusicLocalSongsManagerWidget);
-                break;
-            }
-        case 1:
-            {
-                MusicSongRingtoneMaker(this).exec();
-                break;
-            }
-        case 2:
-            {
-                MusicTimerWidget timer(this);
-                QStringList songlist;
-                MusicApplication::instance()->getCurrentPlaylist(songlist);
-                timer.setSongStringList(songlist);
-                timer.exec();
-                break;
-            }
-        case 3:
-            {
-                MusicTransformWidget(this).exec();
-                break;
-            }
-        case 4:
-            {
-                GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
-                break;
-            }
-        case 5:
-            {
-                GENERATE_SINGLE_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
-                break;
-            }
-        case 6:
-            {
-                GENERATE_SINGLE_WIDGET_CLASS(MusicReplayGainWidget);
-                break;
-            }
-        case 7:
-            {
-                GENERATE_SINGLE_WIDGET_CLASS(MusicSongDlnaTransferWidget);
-                break;
-            }
-        case 8:
-            {
-                MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::IndentifyWidget);
-                break;
-            }
-        case 9:
-            {
-                MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::ScreenSaverWidget);
-                break;
-            }
-        default:
+        {
+            GENERATE_SINGLE_WIDGET_CLASS(MusicLocalSongsManagerWidget);
             break;
+        }
+        case 1:
+        {
+            MusicSongRingtoneMaker(this).exec();
+            break;
+        }
+        case 2:
+        {
+            MusicTimerWidget timer(this);
+            QStringList songlist;
+            MusicApplication::instance()->getCurrentPlaylist(songlist);
+            timer.setSongStringList(songlist);
+            timer.exec();
+            break;
+        }
+        case 3:
+        {
+            MusicTransformWidget(this).exec();
+            break;
+        }
+        case 4:
+        {
+            GENERATE_SINGLE_WIDGET_CLASS(MusicSpectrumWidget);
+            break;
+        }
+        case 5:
+        {
+            GENERATE_SINGLE_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
+            break;
+        }
+        case 6:
+        {
+            GENERATE_SINGLE_WIDGET_CLASS(MusicReplayGainWidget);
+            break;
+        }
+        case 7:
+        {
+            GENERATE_SINGLE_WIDGET_CLASS(MusicSongDlnaTransferWidget);
+            break;
+        }
+        case 8:
+        {
+            MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::IndentifyWidget);
+            break;
+        }
+        case 9:
+        {
+            MusicRightAreaWidget::instance()->functionClicked(MusicRightAreaWidget::ScreenSaverWidget);
+            break;
+        }
+        default: break;
     }
 }
 

@@ -14,27 +14,36 @@ void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
     switch(mode)
     {
         case MusicObject::PM_PlayOrder:
-                setStyleSheet(MusicUIObject::MQSSBtnOrder);
-                setToolTip(tr("Order Play"));
-                break;
+        {
+            setStyleSheet(MusicUIObject::MQSSBtnOrder);
+            setToolTip(tr("Order Play"));
+            break;
+        }
         case MusicObject::PM_PlayRandom:
-                setStyleSheet(MusicUIObject::MQSSBtnRandom);
-                setToolTip(tr("Random Play"));
-                break;
+        {
+            setStyleSheet(MusicUIObject::MQSSBtnRandom);
+            setToolTip(tr("Random Play"));
+            break;
+        }
         case MusicObject::PM_PlaylistLoop:
-                setStyleSheet(MusicUIObject::MQSSBtnListLoop);
-                setToolTip(tr("List Cycle"));
-                break;
+        {
+            setStyleSheet(MusicUIObject::MQSSBtnListLoop);
+            setToolTip(tr("List Cycle"));
+            break;
+        }
         case MusicObject::PM_PlayOneLoop:
-                setStyleSheet(MusicUIObject::MQSSBtnOneLoop);
-                setToolTip(tr("Single Cycle"));
-                break;
+        {
+            setStyleSheet(MusicUIObject::MQSSBtnOneLoop);
+            setToolTip(tr("Single Cycle"));
+            break;
+        }
         case MusicObject::PM_PlayOnce:
-                setStyleSheet(MusicUIObject::MQSSBtnOnce);
-                setToolTip(tr("Play Once"));
-                break;
-        default:
-                break;
+        {
+            setStyleSheet(MusicUIObject::MQSSBtnOnce);
+            setToolTip(tr("Play Once"));
+            break;
+        }
+        default: break;
     }
 }
 

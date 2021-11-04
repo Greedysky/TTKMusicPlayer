@@ -22,7 +22,7 @@ QStringList MusicFormats::supportMusicFormats()
 TTKStringListMap MusicFormats::supportMusicMapFormats()
 {
     TTKStringListMap formats(Format::supportMusicMapFormats());
-    formats.insert("zip", QStringList() << "zip");
+    formats.insert("zip", {"zip"});
     return formats;
 }
 

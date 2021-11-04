@@ -151,11 +151,8 @@ void MusicSoundKMicroSearchTableWidget::itemCellClicked(int row, int column)
     MusicItemSearchTableWidget::itemCellClicked(row, column);
     switch(column)
     {
-        case 4:
-            dataDownloadPlay(row);
-            break;
-        default:
-            break;
+        case 4: dataDownloadPlay(row); break;
+        default: break;
     }
 }
 

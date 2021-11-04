@@ -162,12 +162,10 @@ void MusicEqualizerDialog::verticalSliderChanged(int)
 
 void MusicEqualizerDialog::parameterSubmit()
 {
-    Q_EMIT setEqEffect(TTKIntList() << m_ui->bwVerticalSlider->value() << m_ui->verticalSlider1->value()
-                                  << m_ui->verticalSlider2->value() << m_ui->verticalSlider3->value()
-                                  << m_ui->verticalSlider4->value() << m_ui->verticalSlider5->value()
-                                  << m_ui->verticalSlider6->value() << m_ui->verticalSlider7->value()
-                                  << m_ui->verticalSlider8->value() << m_ui->verticalSlider9->value()
-                                  << m_ui->verticalSlider10->value());
+    Q_EMIT setEqEffect({m_ui->bwVerticalSlider->value(), m_ui->verticalSlider1->value(), m_ui->verticalSlider2->value(),
+                        m_ui->verticalSlider3->value(), m_ui->verticalSlider4->value(), m_ui->verticalSlider5->value(),
+                        m_ui->verticalSlider6->value(), m_ui->verticalSlider7->value(), m_ui->verticalSlider8->value(),
+                        m_ui->verticalSlider9->value(), m_ui->verticalSlider10->value()});
 }
 
 void MusicEqualizerDialog::setEqEnable()

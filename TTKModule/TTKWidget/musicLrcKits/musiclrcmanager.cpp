@@ -21,102 +21,102 @@ MusicLrcColor MusicLrcColor::mapIndexToColor(MusicLrcColor::LrcColorType index)
     QList<QColor> front, back;
     switch(index)
     {
-        case MusicLrcColor::IYellow :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(250, 218, 131) << QColor(250, 218, 131) << QColor(250, 218, 131);
-                break;
-            }
-        case MusicLrcColor::IBlue :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(93, 177, 240)  << QColor(93, 177, 240)  << QColor(93, 177, 240);
-                break;
-            }
-        case MusicLrcColor::IGray :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(139, 135, 150) << QColor(139, 135, 150) << QColor(139, 135, 150);
-                break;
-            }
-        case MusicLrcColor::IPink :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(225, 125, 179) << QColor(225, 125, 179) << QColor(225, 125, 179);
-                break;
-            }
-        case MusicLrcColor::IGreen :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(157, 196, 0)   << QColor(157, 196, 0)   << QColor(157, 196, 0);
-                break;
-            }
-        case MusicLrcColor::IRed :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(255, 42, 45)   << QColor(255, 42, 45)   << QColor(255, 42, 45);
-                break;
-            }
-        case MusicLrcColor::IPurple :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(138, 0, 226)   << QColor(138, 0, 226)   << QColor(138, 0, 226);
-                break;
-            }
-        case MusicLrcColor::IOrange :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(228, 157, 0)   << QColor(228, 157, 0)   << QColor(228, 157, 0);
-                break;
-            }
-        case MusicLrcColor::IIndigo :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(23, 211, 190)  << QColor(23, 211, 190)  << QColor(23, 211, 190);
-                break;
-            }
-        case MusicLrcColor::DWhite :
-            {
-                back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
-                front << QColor(255, 255, 0)   << QColor(255, 255, 0)   << QColor(255, 255, 0);
-                break;
-            }
-        case MusicLrcColor::DBlue :
-            {
-                back  << QColor(0, 52, 138)    << QColor(0, 128, 192)   << QColor(3, 202, 252);
-                front << QColor(130, 247, 253) << QColor(255, 255, 255) << QColor(3, 233, 252);
-                break;
-            }
-        case MusicLrcColor::DRed :
-            {
-                back  << QColor(255, 172, 0)   << QColor(255, 0, 0)     << QColor(170, 0, 0);
-                front << QColor(255, 255, 164) << QColor(255, 255, 0)   << QColor(255, 100, 26);
-                break;
-            }
-        case MusicLrcColor::DBlack :
-            {
-                back  << QColor(225, 225, 225) << QColor(106, 106, 106) << QColor(0, 0, 0);
-                front << QColor(255, 255, 255) << QColor(222, 222, 222) << QColor(128, 255, 255);
-                break;
-            }
-        case MusicLrcColor::DYellow :
-            {
-                back  << QColor(2, 166, 174)   << QColor(128, 255, 255) << QColor(2, 166, 174);
-                front << QColor(255, 128, 0)   << QColor(255, 255, 0)   << QColor(255, 128, 0);
-                break;
-            }
-        case MusicLrcColor::DPurple :
-            {
-                back  << QColor(64, 0, 128)    << QColor(255, 128, 255) << QColor(64, 0, 128);
-                front << QColor(255, 55, 146)  << QColor(255, 243, 134) << QColor(255, 55, 146);
-                break;
-            }
-        case MusicLrcColor::DGreen :
-            {
-                back  << QColor(147, 255, 38)  << QColor(70, 176, 0)    << QColor(0, 85, 0);
-                front << QColor(255, 255, 255) << QColor(154, 255, 17)  << QColor(255, 255, 0);
-                break;
-            }
+        case MusicLrcColor::IYellow:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(250, 218, 131) << QColor(250, 218, 131) << QColor(250, 218, 131);
+            break;
+        }
+        case MusicLrcColor::IBlue:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(93, 177, 240)  << QColor(93, 177, 240)  << QColor(93, 177, 240);
+            break;
+        }
+        case MusicLrcColor::IGray:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(139, 135, 150) << QColor(139, 135, 150) << QColor(139, 135, 150);
+            break;
+        }
+        case MusicLrcColor::IPink:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(225, 125, 179) << QColor(225, 125, 179) << QColor(225, 125, 179);
+            break;
+        }
+        case MusicLrcColor::IGreen:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(157, 196, 0)   << QColor(157, 196, 0)   << QColor(157, 196, 0);
+            break;
+        }
+        case MusicLrcColor::IRed:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(255, 42, 45)   << QColor(255, 42, 45)   << QColor(255, 42, 45);
+            break;
+        }
+        case MusicLrcColor::IPurple:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(138, 0, 226)   << QColor(138, 0, 226)   << QColor(138, 0, 226);
+            break;
+        }
+        case MusicLrcColor::IOrange:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(228, 157, 0)   << QColor(228, 157, 0)   << QColor(228, 157, 0);
+            break;
+        }
+        case MusicLrcColor::IIndigo:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(23, 211, 190)  << QColor(23, 211, 190)  << QColor(23, 211, 190);
+            break;
+        }
+        case MusicLrcColor::DWhite:
+        {
+            back  << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+            front << QColor(255, 255, 0)   << QColor(255, 255, 0)   << QColor(255, 255, 0);
+            break;
+        }
+        case MusicLrcColor::DBlue:
+        {
+            back  << QColor(0, 52, 138)    << QColor(0, 128, 192)   << QColor(3, 202, 252);
+            front << QColor(130, 247, 253) << QColor(255, 255, 255) << QColor(3, 233, 252);
+            break;
+        }
+        case MusicLrcColor::DRed:
+        {
+            back  << QColor(255, 172, 0)   << QColor(255, 0, 0)     << QColor(170, 0, 0);
+            front << QColor(255, 255, 164) << QColor(255, 255, 0)   << QColor(255, 100, 26);
+            break;
+        }
+        case MusicLrcColor::DBlack:
+        {
+            back  << QColor(225, 225, 225) << QColor(106, 106, 106) << QColor(0, 0, 0);
+            front << QColor(255, 255, 255) << QColor(222, 222, 222) << QColor(128, 255, 255);
+            break;
+        }
+        case MusicLrcColor::DYellow:
+        {
+            back  << QColor(2, 166, 174)   << QColor(128, 255, 255) << QColor(2, 166, 174);
+            front << QColor(255, 128, 0)   << QColor(255, 255, 0)   << QColor(255, 128, 0);
+            break;
+        }
+        case MusicLrcColor::DPurple:
+        {
+            back  << QColor(64, 0, 128)    << QColor(255, 128, 255) << QColor(64, 0, 128);
+            front << QColor(255, 55, 146)  << QColor(255, 243, 134) << QColor(255, 55, 146);
+            break;
+        }
+        case MusicLrcColor::DGreen:
+        {
+            back  << QColor(147, 255, 38)  << QColor(70, 176, 0)    << QColor(0, 85, 0);
+            front << QColor(255, 255, 255) << QColor(154, 255, 17)  << QColor(255, 255, 0);
+            break;
+        }
         default: break;
     };
 

@@ -1085,16 +1085,11 @@ void MusicApplication::readSystemConfigFromFile()
     //
     switch(G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt())
     {
-        case MusicObject::PM_PlayOrder:
-            musicPlayOrder();break;
-        case MusicObject::PM_PlayRandom:
-            musicPlayRandom();break;
-        case MusicObject::PM_PlaylistLoop:
-            musicPlaylistLoop();break;
-        case MusicObject::PM_PlayOneLoop:
-            musicPlayOneLoop();break;
-        case MusicObject::PM_PlayOnce:
-            musicPlayOnce();break;
+        case MusicObject::PM_PlayOrder: musicPlayOrder();break;
+        case MusicObject::PM_PlayRandom: musicPlayRandom();break;
+        case MusicObject::PM_PlaylistLoop: musicPlaylistLoop();break;
+        case MusicObject::PM_PlayOneLoop: musicPlayOneLoop();break;
+        case MusicObject::PM_PlayOnce: musicPlayOnce();break;
         default:break;
     }
     //

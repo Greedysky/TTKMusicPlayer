@@ -143,13 +143,17 @@ void MusicVideoView::play()
     switch(m_mediaPlayer->state())
     {
         case MusicObject::PS_PlayingState:
+        {
             m_videoControl->setButtonStyle(false);
             m_barrageCore->start();
             break;
+        }
         case MusicObject::PS_PausedState:
+        {
             m_videoControl->setButtonStyle(true);
             m_barrageCore->pause();
             break;
+        }
         default: break;
     }
 }

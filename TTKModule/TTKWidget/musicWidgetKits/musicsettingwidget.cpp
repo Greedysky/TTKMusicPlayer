@@ -675,12 +675,9 @@ void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
     clearFunctionTableSelection();
     switch(row)
     {
-        case 0:
-            m_ui->normalFunTableWidget->selectRow(col); break;
-        case 1:
-            m_ui->lrcFunTableWidget->selectRow(col); break;
-        case 2:
-            m_ui->supperFunTableWidget->selectRow(col); break;
+        case 0: m_ui->normalFunTableWidget->selectRow(col); break;
+        case 1: m_ui->lrcFunTableWidget->selectRow(col); break;
+        case 2: m_ui->supperFunTableWidget->selectRow(col); break;
         default: break;
     }
 }

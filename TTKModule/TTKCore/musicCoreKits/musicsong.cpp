@@ -79,12 +79,12 @@ bool MusicSong::operator< (const MusicSong &other) const
 {
     switch(m_sortType)
     {
-        case SortByFileName : return m_musicName < other.m_musicName;
-        case SortBySinger : return getMusicArtistFront() < other.getMusicArtistFront();
-        case SortByFileSize : return m_musicSize < other.m_musicSize;
-        case SortByAddTime : return m_musicAddTime < other.m_musicAddTime;
-        case SortByPlayTime : return m_musicPlayTime < other.m_musicPlayTime;
-        case SortByPlayCount : return m_musicPlayCount < other.m_musicPlayCount;
+        case SortByFileName: return m_musicName < other.m_musicName;
+        case SortBySinger: return getMusicArtistFront() < other.getMusicArtistFront();
+        case SortByFileSize: return m_musicSize < other.m_musicSize;
+        case SortByAddTime: return m_musicAddTime < other.m_musicAddTime;
+        case SortByPlayTime: return m_musicPlayTime < other.m_musicPlayTime;
+        case SortByPlayCount: return m_musicPlayCount < other.m_musicPlayCount;
         default: break;
     }
     return false;
@@ -94,12 +94,12 @@ bool MusicSong::operator> (const MusicSong &other) const
 {
     switch(m_sortType)
     {
-        case SortByFileName : return m_musicName > other.m_musicName;
-        case SortBySinger : return getMusicArtistFront() > other.getMusicArtistFront();
-        case SortByFileSize : return m_musicSize > other.m_musicSize;
-        case SortByAddTime : return m_musicAddTime > other.m_musicAddTime;
-        case SortByPlayTime : return m_musicPlayTime > other.m_musicPlayTime;
-        case SortByPlayCount : return m_musicPlayCount > other.m_musicPlayCount;
+        case SortByFileName: return m_musicName > other.m_musicName;
+        case SortBySinger: return getMusicArtistFront() > other.getMusicArtistFront();
+        case SortByFileSize: return m_musicSize > other.m_musicSize;
+        case SortByAddTime: return m_musicAddTime > other.m_musicAddTime;
+        case SortByPlayTime: return m_musicPlayTime > other.m_musicPlayTime;
+        case SortByPlayCount: return m_musicPlayCount > other.m_musicPlayCount;
         default: break;
     }
     return false;

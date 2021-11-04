@@ -61,12 +61,10 @@ public:
     {
         switch(type())
         {
-            case MusicPluginItem::DECODER:
-                return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
+            case MusicPluginItem::DECODER: return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
             case MusicPluginItem::EFFECT: return false;
             case MusicPluginItem::VISUAL: return false;
-            case MusicPluginItem::OUTPUT:
-                return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
+            case MusicPluginItem::OUTPUT: return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
             default: return false;
         }
     }
@@ -75,12 +73,10 @@ public:
     {
         switch(type())
         {
-            case MusicPluginItem::DECODER:
-                TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
+            case MusicPluginItem::DECODER: TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
             case MusicPluginItem::EFFECT: break;
             case MusicPluginItem::VISUAL: break;
-            case MusicPluginItem::OUTPUT:
-                TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
+            case MusicPluginItem::OUTPUT: TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
             default: break;
         }
     }
@@ -89,17 +85,17 @@ public:
     {
         switch(type())
         {
-            case MusicPluginItem::DECODER:
-                Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled);
-                break;
+            case MusicPluginItem::DECODER: Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled); break;
             case MusicPluginItem::EFFECT: break;
             case MusicPluginItem::VISUAL: break;
             case MusicPluginItem::OUTPUT:
+            {
                 if(enabled)
                 {
                     Output::setCurrentFactory(TTKStatic_cast(OutputFactory*, m_factory));
                 }
                 break;
+            }
             default: break;
         }
     }

@@ -81,26 +81,13 @@ void MusicSpectrumWidget::tabIndexChanged(int index)
 {
     switch(index)
     {
-        case 0:
-            adjustWidgetLayout(m_ui->spectrumNormalAreaLayout->count() - ITEM_DEFAULT_COUNT);
-            break;
-        case 1:
-            adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
-            break;
-        case 2:
-            adjustWidgetLayout(m_ui->spectrumWaveAreaLayout->count() - ITEM_DEFAULT_COUNT);
-            break;
-        case 3:
-            adjustWidgetLayout(m_ui->spectrumFlowAreaLayout->count() - ITEM_DEFAULT_COUNT);
-            break;
-        case 4:
-            adjustWidgetLayout(m_ui->spectrumFloridAreaLayout->count() - ITEM_DEFAULT_COUNT);
-            break;
-        case 5:
-            adjustWidgetLayout(m_ui->spectrumLightAreaLayout->count() - ITEM_DEFAULT_COUNT);
-            break;
-        default:
-            break;
+        case 0: adjustWidgetLayout(m_ui->spectrumNormalAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
+        case 1: adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
+        case 2: adjustWidgetLayout(m_ui->spectrumWaveAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
+        case 3: adjustWidgetLayout(m_ui->spectrumFlowAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
+        case 4: adjustWidgetLayout(m_ui->spectrumFloridAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
+        case 5: adjustWidgetLayout(m_ui->spectrumLightAreaLayout->count() - ITEM_DEFAULT_COUNT); break;
+        default: break;
     }
 }
 

@@ -138,62 +138,63 @@ void MusicPagingWidgetModule::paging(int index, int total)
         case 7:
         case 8:
         case 9:
+        {
             m_currentPage = index;
             break;
+        }
         case 10:
+        {
+            page -= PAGE_SIZE;
+            MusicClickedLabel *w = m_pagingItems[PAGE_SIZE];
+
+            if(total <= PAGE_SIZE)
             {
-                page -= PAGE_SIZE;
-                MusicClickedLabel *w = m_pagingItems[PAGE_SIZE];
-
-                if(total <= PAGE_SIZE)
-                {
-                    w->hide();
-                }
-                else
-                {
-                    for(int i=0; i<PAGE_SIZE; ++i)
-                    {
-                        m_pagingItems[i]->setText(QString::number(page + i));
-                        m_pagingItems[i]->show();
-                    }
-                    (m_pagingItems[0]->text().toInt() < PAGE_SIZE) ? w->hide() : w->show();
-                }
-
-                m_currentPage = 0;
-                m_pagingItems[PAGE_SIZE + 1]->show();
-                break;
+                w->hide();
             }
-        case 11:
+            else
             {
-                page += PAGE_SIZE;
-                MusicClickedLabel *w = m_pagingItems[PAGE_SIZE + 1];
-                int boundary = total - page + 1;
-                    boundary = boundary < PAGE_SIZE ? boundary : PAGE_SIZE;
-
-                for(int i=0; i<boundary; ++i)
+                for(int i=0; i<PAGE_SIZE; ++i)
                 {
                     m_pagingItems[i]->setText(QString::number(page + i));
+                    m_pagingItems[i]->show();
                 }
-
-                if(total - page >= PAGE_SIZE)
-                {
-                    w->show();
-                }
-                else
-                {
-                    w->hide();
-                    for(int i=PAGE_SIZE - 1; i>(total - page); --i)
-                    {
-                        m_pagingItems[i]->hide();
-                    }
-                }
-
-                m_currentPage = 0;
-                m_pagingItems[PAGE_SIZE]->show();
-                break;
+                (m_pagingItems[0]->text().toInt() < PAGE_SIZE) ? w->hide() : w->show();
             }
-        default:
+
+            m_currentPage = 0;
+            m_pagingItems[PAGE_SIZE + 1]->show();
             break;
+        }
+        case 11:
+        {
+            page += PAGE_SIZE;
+            MusicClickedLabel *w = m_pagingItems[PAGE_SIZE + 1];
+            int boundary = total - page + 1;
+                boundary = boundary < PAGE_SIZE ? boundary : PAGE_SIZE;
+
+            for(int i=0; i<boundary; ++i)
+            {
+                m_pagingItems[i]->setText(QString::number(page + i));
+            }
+
+            if(total - page >= PAGE_SIZE)
+            {
+                w->show();
+            }
+            else
+            {
+                w->hide();
+                for(int i=PAGE_SIZE - 1; i>(total - page); --i)
+                {
+                    m_pagingItems[i]->hide();
+                }
+            }
+
+            m_currentPage = 0;
+            m_pagingItems[PAGE_SIZE]->show();
+            break;
+        }
+        default: break;
     }
 
     for(int i=0; i<m_pagingItems.count() - 2; ++i)

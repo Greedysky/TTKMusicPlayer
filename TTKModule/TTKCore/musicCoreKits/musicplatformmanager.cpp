@@ -159,59 +159,55 @@ MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() con
     {
         switch(os.dwMajorVersion)
         {
-        case 4:
-            switch(os.dwMinorVersion)
-            {
-            case 0:
-                if(os.dwPlatformId == VER_PLATFORM_WIN32_NT)
+            case 4:
+                switch(os.dwMinorVersion)
                 {
-                    return System_WinNT_4_0;
-                }
-                else if(os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
-                {
-                    return System_Win95;
+                    case 0:
+                        if(os.dwPlatformId == VER_PLATFORM_WIN32_NT)
+                        {
+                            return System_WinNT_4_0;
+                        }
+                        else if(os.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+                        {
+                            return System_Win95;
+                        }
+                        break;
+                    case 10: return System_Win98;
+                    case 90: return System_WinMe;
+                    default: break;
                 }
                 break;
-            case 10:
-                return System_Win98;
-            case 90:
-                return System_WinMe;
-            }
-            break;
-        case 5:
-            switch(os.dwMinorVersion)
-            {
-            case 0:
-                return System_Win2000;
-            case 1:
-                return System_WinXP;
-            case 2:
-                if(os.wProductType == VER_NT_WORKSTATION && info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
+            case 5:
+                switch(os.dwMinorVersion)
                 {
-                    return System_WinXP_Professional_x64_Edition;
+                    case 0: return System_Win2000;
+                    case 1: return System_WinXP;
+                    case 2:
+                        if(os.wProductType == VER_NT_WORKSTATION && info.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64)
+                        {
+                            return System_WinXP_Professional_x64_Edition;
+                        }
+                        else if(GetSystemMetrics(SM_SERVERR2) == 0)
+                        {
+                            return System_WinServer_2003;
+                        }
+                        else if(GetSystemMetrics(SM_SERVERR2) != 0)
+                        {
+                            return System_WinServer_2003_R2;
+                        }
+                    default: break;
                 }
-                else if(GetSystemMetrics(SM_SERVERR2) == 0)
+                break;
+            case 6:
+                switch(os.dwMinorVersion)
                 {
-                    return System_WinServer_2003;
+                    case 0: return os.wProductType == VER_NT_WORKSTATION ? System_WinVista : System_WinServer_2008;
+                    case 1: return os.wProductType == VER_NT_WORKSTATION ? System_Win7 : System_WinServer_2008_R2;
+                    case 2: return os.wProductType == VER_NT_WORKSTATION ? System_Win8 : System_WinServer_2012;
+                    default: break;
                 }
-                else if(GetSystemMetrics(SM_SERVERR2) != 0)
-                {
-                    return System_WinServer_2003_R2;
-                }
-            }
-            break;
-        case 6:
-            switch(os.dwMinorVersion)
-            {
-            case 0:
-                return os.wProductType == VER_NT_WORKSTATION ? System_WinVista : System_WinServer_2008;
-            case 1:
-                return os.wProductType == VER_NT_WORKSTATION ? System_Win7 : System_WinServer_2008_R2;
-            case 2:
-                return os.wProductType == VER_NT_WORKSTATION ? System_Win8 : System_WinServer_2012;
-            }
-            break;
-        default: return System_Unkown;
+                break;
+            default: return System_Unkown;
         }
     }
     FreeLibrary(instance);

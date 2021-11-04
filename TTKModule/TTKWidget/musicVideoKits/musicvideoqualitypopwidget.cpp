@@ -39,10 +39,10 @@ void MusicVideoQualityPopWidget::setQualityText(const QString &url)
     QString style = MusicUIObject::MQSSVideoBtnSDMode;
     switch(findMVBitrateByUrl(url))
     {
-        case MB_250:   style = MusicUIObject::MQSSVideoBtnSTMode; break;
-        case MB_500:   style = MusicUIObject::MQSSVideoBtnSDMode; break;
-        case MB_750:   style = MusicUIObject::MQSSVideoBtnHDMode; break;
-        case MB_1000:  style = MusicUIObject::MQSSVideoBtnSQMode; break;
+        case MB_250: style = MusicUIObject::MQSSVideoBtnSTMode; break;
+        case MB_500: style = MusicUIObject::MQSSVideoBtnSDMode; break;
+        case MB_750: style = MusicUIObject::MQSSVideoBtnHDMode; break;
+        case MB_1000: style = MusicUIObject::MQSSVideoBtnSQMode; break;
         default: break;
     }
     setStyleSheet(style);

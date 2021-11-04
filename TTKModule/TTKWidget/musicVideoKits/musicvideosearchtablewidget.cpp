@@ -135,12 +135,8 @@ void MusicVideoSearchTableWidget::itemCellClicked(int row, int column)
     switch(column)
     {
         case 6:
-        case 7:
-            itemDoubleClicked(row, DEFAULT_HIGH_LEVEL);
-            break;
-        case 8:
-            musicDownloadLocal(row);
-            break;
+        case 7: itemDoubleClicked(row, DEFAULT_HIGH_LEVEL); break;
+        case 8: musicDownloadLocal(row); break;
         default:break;
     }
 }

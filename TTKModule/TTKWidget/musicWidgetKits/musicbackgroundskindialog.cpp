@@ -255,14 +255,9 @@ void MusicBackgroundSkinDialog::remoteListWidgetItemClicked(int type, const QStr
 {
     switch(type)
     {
-    case MusicBackgroundListWidget::Third:
-        listWidgetItemClicked(m_dailyBackgroundList, name);
-        break;
-
-    case MusicBackgroundListWidget::Four:
-        listWidgetItemClicked(m_onlineBackgroundList, name);
-        break;
-    default: break;
+        case MusicBackgroundListWidget::Third: listWidgetItemClicked(m_dailyBackgroundList, name); break;
+        case MusicBackgroundListWidget::Four: listWidgetItemClicked(m_onlineBackgroundList, name); break;
+        default: break;
     }
 }
 

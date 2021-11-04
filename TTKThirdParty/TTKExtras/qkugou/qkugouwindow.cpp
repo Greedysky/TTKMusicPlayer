@@ -74,21 +74,12 @@ QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
 
     switch(type)
     {
-        case KuGouSong:
-                createKugouSongWidget();
-                break;
-        case KuGouRadio:
-                createKugouRadioWidget();
-                break;
-        case KuGouList:
-                createKugouListWidget();
-                break;
-        case KugouMovie:
-                createKugouMovieWidget();
-                break;
-        case KuGouSingle:
-                createKugouSingleWidget();
-                break;
+        case KuGouSong: createKugouSongWidget(); break;
+        case KuGouRadio: createKugouRadioWidget(); break;
+        case KuGouList: createKugouListWidget(); break;
+        case KugouMovie: createKugouMovieWidget(); break;
+        case KuGouSingle: createKugouSingleWidget(); break;
+        default: break;
     }
 }
 
@@ -151,6 +142,7 @@ void QKugouWindow::kugouSongIndexChanged(int index)
         case 1: url = QKugouUrl::getSongRankUrl(); break;
         case 2: url = QKugouUrl::getSongSingerUrl(); break;
         case 3: url = QKugouUrl::getSongCategoryUrl(); break;
+        default: break;
     }
 
     setUrl(url);
@@ -165,6 +157,7 @@ void QKugouWindow::kugouRadioIndexChanged(int index)
         case 0: url = QKugouUrl::getRadioPublicUrl(); break;
         case 1: url = QKugouUrl::getRadioHighFmUrl(); break;
         case 2: url = QKugouUrl::getRadioFxUrl(); break;
+        default: break;
     }
 
     setUrl(url);
@@ -179,6 +172,7 @@ void QKugouWindow::kugouMVIndexChanged(int index)
         case 0: url = QKugouUrl::getMVRadioUrl(); break;
         case 1: url = QKugouUrl::getMVRecommendUrl(); break;
         case 2: url = QKugouUrl::getMVFanxingUrl(); break;
+        default: break;
     }
 
     setUrl(url);

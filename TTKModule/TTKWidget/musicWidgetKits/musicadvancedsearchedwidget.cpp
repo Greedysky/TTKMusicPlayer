@@ -121,40 +121,40 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
     switch(m_tabWidget->currentIndex())
     {
         case 0:
-            {
-                QString key = !m_songEdit->text().isEmpty() ? m_songEdit->text() : m_songEdit->placeholderText();
-                        key = getSearchedKeyWork(0, key);
-                MusicRightAreaWidget::instance()->musicSingleSearchedFound(key);
-                break;
-            }
+        {
+            QString key = !m_songEdit->text().isEmpty() ? m_songEdit->text() : m_songEdit->placeholderText();
+                    key = getSearchedKeyWork(0, key);
+            MusicRightAreaWidget::instance()->musicSingleSearchedFound(key);
+            break;
+        }
         case 1:
-            {
-                QString key = !m_artistEdit->text().isEmpty() ? m_artistEdit->text() : m_artistEdit->placeholderText();
-                        key = getSearchedKeyWork(1, key);
-                MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
-                break;
-            }
+        {
+            QString key = !m_artistEdit->text().isEmpty() ? m_artistEdit->text() : m_artistEdit->placeholderText();
+                    key = getSearchedKeyWork(1, key);
+            MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
+            break;
+        }
         case 2:
-            {
-                QString key = !m_albumEdit->text().isEmpty() ? m_albumEdit->text() : m_albumEdit->placeholderText();
-                        key = getSearchedKeyWork(2, key);
-                MusicRightAreaWidget::instance()->musicAlbumFound(QString(), key);
-                break;
-            }
+        {
+            QString key = !m_albumEdit->text().isEmpty() ? m_albumEdit->text() : m_albumEdit->placeholderText();
+                    key = getSearchedKeyWork(2, key);
+            MusicRightAreaWidget::instance()->musicAlbumFound(QString(), key);
+            break;
+        }
         case 3:
-            {
-                QString key = !m_playlistEdit->text().isEmpty() ? m_playlistEdit->text() : m_playlistEdit->placeholderText();
-                        key = getSearchedKeyWork(3, key);
-                MusicRightAreaWidget::instance()->musicPlaylistFound(key);
-                break;
-            }
+        {
+            QString key = !m_playlistEdit->text().isEmpty() ? m_playlistEdit->text() : m_playlistEdit->placeholderText();
+                    key = getSearchedKeyWork(3, key);
+            MusicRightAreaWidget::instance()->musicPlaylistFound(key);
+            break;
+        }
         case 4:
-            {
-                QString key = !m_movieEdit->text().isEmpty() ? m_movieEdit->text() : m_movieEdit->placeholderText();
-                        key = getSearchedKeyWork(4, key);
-                MusicRightAreaWidget::instance()->musicVideoButtonSearched(QString(), key);
-                break;
-            }
+        {
+            QString key = !m_movieEdit->text().isEmpty() ? m_movieEdit->text() : m_movieEdit->placeholderText();
+                    key = getSearchedKeyWork(4, key);
+            MusicRightAreaWidget::instance()->musicVideoButtonSearched(QString(), key);
+            break;
+        }
         default: break;
     }
 }
@@ -182,41 +182,41 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
     switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
         case WYQueryServer:
-            {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg("28830412"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg("964486"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_UNIMP_KEY, false).arg("2901140"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_UNIMP_KEY, false).arg("988604820"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487"));
-                break;
-            }
+        {
+            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_UNIMP_KEY, false).arg("28830412"));
+            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_UNIMP_KEY, false).arg("964486"));
+            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_UNIMP_KEY, false).arg("2901140"));
+            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_UNIMP_KEY, false).arg("988604820"));
+            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_UNIMP_KEY, false).arg("5343487"));
+            break;
+        }
         case QQQueryServer:
-            {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg("004TXEXY2G2c7C"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg("003fk65m1ZaCG2"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg("889413740"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
-                break;
-            }
+        {
+            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_UNIMP_KEY, false).arg("004TXEXY2G2c7C"));
+            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_UNIMP_KEY, false).arg("0029gk1t3wpGWU"));
+            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_UNIMP_KEY, false).arg("003fk65m1ZaCG2"));
+            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_UNIMP_KEY, false).arg("889413740"));
+            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_UNIMP_KEY, false).arg("o0032ayz7c2"));
+            break;
+        }
         case KWQueryServer:
-            {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_UNIMP_KEY, false).arg("23983067"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_UNIMP_KEY, false).arg("2698608"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_UNIMP_KEY, false).arg("236350390"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
-                break;
-            }
+        {
+            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_UNIMP_KEY, false).arg("23983067"));
+            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_UNIMP_KEY, false).arg("373"));
+            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_UNIMP_KEY, false).arg("2698608"));
+            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_UNIMP_KEY, false).arg("236350390"));
+            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_UNIMP_KEY, false).arg("9812716"));
+            break;
+        }
         case KGQueryServer:
-            {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("41169925"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg("155318"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
-                break;
-            }
+        {
+            m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_UNIMP_KEY, false).arg("b2bc0eb8553b0eb70b66b950fc3ad287"));
+            m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_UNIMP_KEY, false).arg("832532"));
+            m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_UNIMP_KEY, false).arg("41169925"));
+            m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_UNIMP_KEY, false).arg("155318"));
+            m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_UNIMP_KEY, false).arg("630600"));
+            break;
+        }
         default: break;
     }
 }
@@ -227,55 +227,54 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
     switch(TTKStatic_cast(DownloadQueryServer, G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt()))
     {
         case WYQueryServer:
-            {
-                QRegExp regx("id=(\\d+)");
-                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
-                break;
-            }
+        {
+            QRegExp regx("id=(\\d+)");
+            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            break;
+        }
         case QQQueryServer:
-            {
-                QRegExp regx("/(\\w+).html");
-                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
-                break;
-            }
+        {
+            QRegExp regx("/(\\w+).html");
+            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            break;
+        }
         case KWQueryServer:
+        {
+            QRegExp regx;
+            if(type == 1)
             {
-                QRegExp regx;
-                if(type == 1)
-                {
-                    regx.setPattern("id=(\\d+)");
-                }
-                else if(type == 3)
-                {
-                    regx.setPattern("pid=(\\d+)");
-                }
-                else
-                {
-                    regx.setPattern("/(\\d+)");
-                }
-                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
-                break;
+                regx.setPattern("id=(\\d+)");
             }
+            else if(type == 3)
+            {
+                regx.setPattern("pid=(\\d+)");
+            }
+            else
+            {
+                regx.setPattern("/(\\d+)");
+            }
+            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            break;
+        }
         case KGQueryServer:
+        {
+            QRegExp regx;
+            if(type == 0)
             {
-                QRegExp regx;
-                if(type == 0)
-                {
-                    regx.setPattern("hash=(\\w+)");
-                }
-                else if(type == 4)
-                {
-                    regx.setPattern("/mv_(\\d+)");
-                }
-                else
-                {
-                    regx.setPattern("/(\\d+)");
-                }
-                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
-                break;
+                regx.setPattern("hash=(\\w+)");
             }
+            else if(type == 4)
+            {
+                regx.setPattern("/mv_(\\d+)");
+            }
+            else
+            {
+                regx.setPattern("/(\\d+)");
+            }
+            key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
+            break;
+        }
         default: break;
     }
-
     return key;
 }

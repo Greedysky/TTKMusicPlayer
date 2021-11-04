@@ -444,53 +444,53 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
         switch(key)
         {
             case Qt::Key_Left:
-                {
-                    MusicApplication::instance()->musicPlayAnyTimeAt(m_ui->timeSlider_F->value() - 2222);
-                    m_lineItem->moveLeft(); break;
-                }
+            {
+                MusicApplication::instance()->musicPlayAnyTimeAt(m_ui->timeSlider_F->value() - 2222);
+                m_lineItem->moveLeft(); break;
+            }
             case Qt::Key_Up:
+            {
+                cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor);
+                m_lineItem->setText(cursor.block().text());
+
+                if(--m_currentLine < 0)
                 {
-                    cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor);
-                    m_lineItem->setText(cursor.block().text());
-
-                    if(--m_currentLine < 0)
-                    {
-                        m_currentLine = 0;
-                    }
-                    m_lineItem->moveUp();
-
-                    m_times[m_currentLine] = m_ui->timeSlider_S->value();
-                    break;
+                    m_currentLine = 0;
                 }
+                m_lineItem->moveUp();
+
+                m_times[m_currentLine] = m_ui->timeSlider_S->value();
+                break;
+            }
             case Qt::Key_Right:
-                {
-                    m_lineItem->moveRight();
-                    break;
-                }
+            {
+                m_lineItem->moveRight();
+                break;
+            }
             case Qt::Key_Down:
+            {
+                if(!m_lineItem->done())
                 {
-                    if(!m_lineItem->done())
-                    {
-                        return;
-                    }
-                    cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
-                    m_lineItem->setText(cursor.block().text());
+                    return;
+                }
+                cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor);
+                m_lineItem->setText(cursor.block().text());
 
-                    if(++m_currentLine >= m_plainText.count())
-                    {
-                        m_currentLine = m_currentLine - 1;
-                        if(!m_lineItem->biggerThan(m_currentLine))
-                        {
-                            m_lineItem->moveDown();
-                        }
-                    }
-                    else
+                if(++m_currentLine >= m_plainText.count())
+                {
+                    m_currentLine = m_currentLine - 1;
+                    if(!m_lineItem->biggerThan(m_currentLine))
                     {
                         m_lineItem->moveDown();
-                        m_times[m_currentLine] = m_ui->timeSlider_S->value();
                     }
-                    break;
                 }
+                else
+                {
+                    m_lineItem->moveDown();
+                    m_times[m_currentLine] = m_ui->timeSlider_S->value();
+                }
+                break;
+            }
             default: break;
         }
     }
@@ -721,16 +721,11 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
     MusicApplication *w = MusicApplication::instance();
     switch(m_playMode)
     {
-        case MusicObject::PM_PlayOrder:
-            w->musicPlayOrder(); break;
-        case MusicObject::PM_PlayRandom:
-            w->musicPlayRandom(); break;
-        case MusicObject::PM_PlaylistLoop:
-            w->musicPlaylistLoop(); break;
-        case MusicObject::PM_PlayOneLoop:
-            w->musicPlayOneLoop(); break;
-        case MusicObject::PM_PlayOnce:
-            w->musicPlayOnce(); break;
+        case MusicObject::PM_PlayOrder: w->musicPlayOrder(); break;
+        case MusicObject::PM_PlayRandom: w->musicPlayRandom(); break;
+        case MusicObject::PM_PlaylistLoop: w->musicPlaylistLoop(); break;
+        case MusicObject::PM_PlayOneLoop: w->musicPlayOneLoop(); break;
+        case MusicObject::PM_PlayOnce: w->musicPlayOnce(); break;
         default: break;
     }
 }

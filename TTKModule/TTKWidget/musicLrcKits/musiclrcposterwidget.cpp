@@ -88,6 +88,7 @@ void MusicLrcPosterItemWidget::paintEvent(QPaintEvent *event)
         case Type_15: drawTheme15(&painter); break;
         case Type_16: drawTheme16(&painter); break;
         case Type_17: drawTheme17(&painter); break;
+        default: break;
     }
 }
 
