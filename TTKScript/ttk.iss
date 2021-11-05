@@ -6,13 +6,17 @@
 #define MyAppPublisher "Greedysky Studio"
 #define MyAppCopyright "Copyright (c) 2015 - 2021 Greedysky Studio"
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
-#define MyAppExeName "TTKMusicPlayer.exe"
-#define OutputPath "D:\Qt"
-#define SourceMain "D:\Qt\TTKMusicPlayer\" + MyAppVersion + "\TTKMusicPlayer.exe"
-#define SourceFolder "D:\Qt\TTKMusicPlayer\*"
+#define MyAppExeName MyAppNameEN + ".exe"
+
+#define OutputPath "D:\Qt\"
+#define SourceBase OutputPath + MyAppNameEN + "\"
+#define SourceMain SourceBase + MyAppVersion + "\" + MyAppExeName
+#define SourceFolder SourceBase + "*"
+
 #define ResourcesIcon "qicon.dll"
-#define SetupIconFilePath "resource\" + ResourcesIcon
-#define ResourcesPath "resource\*"
+#define ResourcesBase "resource\"
+#define SetupIconFilePath ResourcesBase + ResourcesIcon
+#define ResourcesPath ResourcesBase + "*"
 
 [setup]
 AppId={{B246DC4A-B67B-4D3D-901E-8CA1D829BF55}
@@ -58,9 +62,6 @@ Name: "{group}\卸载{#MyAppNameZh}"; Filename: "{uninstallexe}"
 ; 中文汉化语言包
 ; [Languages]
 ; Name: "chinese"; MessagesFile: "_resourcesPath_\ChineseSimp.isl"
-
-[PostCompile]
-Name: "make_cert.bat";Parameters:"D:\Qt\v{#MyAppVersion}.exe" ;Flags: cmdprompt redirectoutput
 
 [Code]
 // for dll
