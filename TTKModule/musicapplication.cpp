@@ -1030,6 +1030,7 @@ void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 {
     MusicAbstractMoveResizeWidget::mouseReleaseEvent(event);
     m_applicationObject->sideAnimationByOn();
+    m_ui->musicSongSearchEdit->closePopWidget();
 }
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)

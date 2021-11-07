@@ -44,6 +44,11 @@ public:
      */
     void initWidget(QWidget *parent);
 
+    /*!
+     * Close pop widget possible.
+     */
+    void closePopWidget();
+
 public Q_SLOTS:
     /*!
      * Input changed text changed.

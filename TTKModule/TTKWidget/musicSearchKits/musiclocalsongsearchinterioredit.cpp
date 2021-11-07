@@ -32,6 +32,14 @@ void MusicLocalSongSearchInteriorEdit::initWidget(QWidget *parent)
     m_popWidget->hide();
 }
 
+void MusicLocalSongSearchInteriorEdit::closePopWidget()
+{
+    if(m_popWidget && m_popWidget->isVisible())
+    {
+        m_popWidget->close();
+    }
+}
+
 void MusicLocalSongSearchInteriorEdit::textChanged(const QString &text)
 {
     delete m_suggestRequest;

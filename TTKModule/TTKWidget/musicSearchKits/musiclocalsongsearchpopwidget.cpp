@@ -101,8 +101,6 @@ MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
 
 void MusicLocalSongSearchPopWidget::createItems()
 {
-    setFocus();
-
     m_clearButton->show();
     m_popTableWidget->clearAllItems();
 
@@ -146,13 +144,6 @@ QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
     return MusicTime::normalTime2Label(t);
 }
 
-void MusicLocalSongSearchPopWidget::closeWidget()
-{
-    lower();
-    hide();
-    clearFocus();
-}
-
 void MusicLocalSongSearchPopWidget::clearButtonClicked()
 {
     MusicLocalSongSearchRecordConfigManager search(this);
@@ -176,11 +167,6 @@ void MusicLocalSongSearchPopWidget::paintEvent(QPaintEvent *event)
 void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)
 {
     QWidget::leaveEvent(event);
-    closeWidget();
-}
-
-void MusicLocalSongSearchPopWidget::focusOutEvent(QFocusEvent *event)
-{
-    QWidget::focusOutEvent(event);
-    closeWidget();
+    lower();
+    hide();
 }
