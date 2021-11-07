@@ -303,6 +303,7 @@ protected:
     virtual void enterEvent(QEvent *event) override;
 #endif
     virtual void leaveEvent(QEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
     virtual bool eventFilter(QObject *object, QEvent *event) override;

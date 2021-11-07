@@ -537,10 +537,12 @@ void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
 
 void MusicSettingWidget::saveResults()
 {
-    G_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, m_ui->languageComboBox->currentIndex());
-    G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, m_ui->autoPlayCheckBox->isChecked());
+    const bool languageChanged = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt() != m_ui->languageComboBox->currentIndex();
     QStringList lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();
     lastPlayIndex[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
+
+    G_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndex, m_ui->languageComboBox->currentIndex());
+    G_SETTING_PTR->setValue(MusicSettingManager::AutoPlayMode, m_ui->autoPlayCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndex, lastPlayIndex);
     G_SETTING_PTR->setValue(MusicSettingManager::CloseEventMode, m_ui->quitRadioBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::WindowQuitMode, m_ui->quitWindowRadioBox->isChecked());
@@ -640,6 +642,16 @@ void MusicSettingWidget::saveResults()
 
     Q_EMIT parameterSettingChanged();
     close();
+
+    if(languageChanged)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Language changed, are you to restart now?"));
+        if(message.exec())
+        {
+            TTK_LOGGER_INFO(MusicObject::getAppDir());
+        }
+    }
 }
 
 int MusicSettingWidget::exec()

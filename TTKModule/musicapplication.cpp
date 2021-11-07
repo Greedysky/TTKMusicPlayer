@@ -1026,11 +1026,16 @@ void MusicApplication::leaveEvent(QEvent *event)
     m_applicationObject->sideAnimationByOn();
 }
 
+void MusicApplication::mousePressEvent(QMouseEvent *event)
+{
+    MusicAbstractMoveResizeWidget::mousePressEvent(event);
+    m_ui->musicSongSearchEdit->closePopWidget();
+}
+
 void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 {
     MusicAbstractMoveResizeWidget::mouseReleaseEvent(event);
     m_applicationObject->sideAnimationByOn();
-    m_ui->musicSongSearchEdit->closePopWidget();
 }
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)

@@ -23,12 +23,12 @@
 #include "ttkversion.h"
 
 #ifdef CONFIG_OUT_BUILD
-#define CONFIG_DLL_DIR              MusicObject::getAppDir() + "/" + TTKMUSIC_VERSION_STR + "/"
+#define APP_PATH_DIR                MusicObject::getAppDir() + "/" + TTKMUSIC_VERSION_STR + "/"
 #else
-#define CONFIG_DLL_DIR              MusicObject::getAppDir() + "/"
+#define APP_PATH_DIR                MusicObject::getAppDir() + "/"
 #endif
 //
-#define TTK_DOWNLOAD_DIR_FULL       CONFIG_DLL_DIR + "../" + DOWNLOAD_DIR
+#define TTK_DOWNLOAD_DIR_FULL       APP_PATH_DIR + "../" + DOWNLOAD_DIR
 #define TTK_LRC_DIR_FULL            TTK_DOWNLOAD_DIR_FULL + LRC_DIR
 #define TTK_MUSIC_DIR_FULL          TTK_DOWNLOAD_DIR_FULL + MUSIC_DIR
 #define TTK_MOVIE_DIR_FULL          TTK_DOWNLOAD_DIR_FULL + MOVIE_DIR
@@ -46,20 +46,20 @@
 #define TTK_SEARCH_PATH_FULL        SEARCH_PATH_FULL
 #define TTK_USER_THEME_DIR_FULL     USER_THEME_DIR_FULL
 //
-#define TTK_THEME_DIR_FULL          CONFIG_DLL_DIR + THEME_DIR
-#define TTK_PLUGINS_DIR_FULL        CONFIG_DLL_DIR + PLUGINS_DIR
-#define TTK_LANGUAGE_DIR_FULL       CONFIG_DLL_DIR + LANGUAGE_DIR
+#define TTK_THEME_DIR_FULL          APP_PATH_DIR + THEME_DIR
+#define TTK_PLUGINS_DIR_FULL        APP_PATH_DIR + PLUGINS_DIR
+#define TTK_LANGUAGE_DIR_FULL       APP_PATH_DIR + LANGUAGE_DIR
 
 
 #ifdef Q_OS_WIN
-#define TTK_SERVICE_FULL            CONFIG_DLL_DIR + "TTKService.exe"
+#define TTK_SERVICE_FULL            APP_PATH_DIR + "TTKService.exe"
 #else
-#define TTK_ROUTINE_FULL            CONFIG_DLL_DIR + "../TTKRoutine.sh"
-#define TTK_MUSICPLAYER_FULL        CONFIG_DLL_DIR + "../TTKMusicPlayer.sh"
-#define TTK_INIT_FULL               CONFIG_DLL_DIR + "TTKInit.sh"
-#define TTK_CONSOLE_FULL            CONFIG_DLL_DIR + "TTKConsole.sh"
-#define TTK_SERVICE_FULL            CONFIG_DLL_DIR + "TTKService.sh"
-#define TTK_ROUTINECOPY_FULL        CONFIG_DLL_DIR + "TTKRoutineCopy.sh"
+#define TTK_ROUTINE_FULL            APP_PATH_DIR + "../TTKRoutine.sh"
+#define TTK_MUSICPLAYER_FULL        APP_PATH_DIR + "../TTKMusicPlayer.sh"
+#define TTK_INIT_FULL               APP_PATH_DIR + "TTKInit.sh"
+#define TTK_CONSOLE_FULL            APP_PATH_DIR + "TTKConsole.sh"
+#define TTK_SERVICE_FULL            APP_PATH_DIR + "TTKService.sh"
+#define TTK_ROUTINECOPY_FULL        APP_PATH_DIR + "TTKRoutineCopy.sh"
 #endif
 
 #endif
