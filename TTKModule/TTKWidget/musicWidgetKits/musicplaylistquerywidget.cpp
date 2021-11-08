@@ -5,7 +5,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
 #include "musicplaylistquerycategorypopwidget.h"
-#include "musicpagingwidgetmodule.h"
+#include "musicpagequerywidget.h"
 
 #include <qmath.h>
 #include <QGridLayout>
@@ -132,7 +132,7 @@ MusicPlaylistQueryWidget::MusicPlaylistQueryWidget(QWidget *parent)
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
-    m_pagingWidgetObject = nullptr;
+    m_pageQueryWidget = nullptr;
     m_networkRequest = G_DOWNLOAD_QUERY_PTR->getPlaylistRequest(this);
     connect(m_networkRequest, SIGNAL(createPlaylistItem(MusicResultsItem)), SLOT(createPlaylistItem(MusicResultsItem)));
 }
@@ -143,7 +143,7 @@ MusicPlaylistQueryWidget::~MusicPlaylistQueryWidget()
     delete m_gridLayout;
     delete m_categoryButton;
     delete m_networkRequest;
-    delete m_pagingWidgetObject;
+    delete m_pageQueryWidget;
 }
 
 void MusicPlaylistQueryWidget::setSongName(const QString &name)
@@ -231,19 +231,19 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
         mainlayout->addWidget(line);
         mainlayout->addWidget(containWidget);
 
-        m_pagingWidgetObject = new MusicPagingWidgetModule(m_mainWindow);
-        connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
+        m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
+        connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-        mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, pageTotal));
+        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
         mainlayout->addStretch(1);
     }
 
-    if(m_categoryChanged && m_pagingWidgetObject)
+    if(m_categoryChanged && m_pageQueryWidget)
     {
         m_categoryChanged = false;
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-        m_pagingWidgetObject->reset(pageTotal);
+        m_pageQueryWidget->reset(pageTotal);
     }
 
     MusicPlaylistQueryItemWidget *label = new MusicPlaylistQueryItemWidget(this);
@@ -307,6 +307,6 @@ void MusicPlaylistQueryWidget::buttonClicked(int index)
     }
 
     const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, pageTotal);
-    m_networkRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_pageQueryWidget->page(index, pageTotal);
+    m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

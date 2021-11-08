@@ -23,7 +23,7 @@
 #include "musiccommentsrequest.h"
 
 class QTextEdit;
-class MusicPagingWidgetModule;
+class MusicPageQueryWidget;
 
 /*! @brief The class of the song comment item.
  * @author Greedysky <greedysky@163.com>
@@ -86,7 +86,7 @@ public Q_SLOTS:
      */
     void createSearchedItem(const MusicResultsItem &comments);
     /*!
-     * Paging widget button has changed.
+     * Page widget button has changed.
      */
     void buttonClicked(int index);
     /*!
@@ -114,9 +114,9 @@ protected:
      */
     void deleteCommentsItems();
     /*!
-     * Create paging items.
+     * Create page items.
      */
-    void createPagingWidget();
+    void createPageWidget();
 
     bool m_isPain;
     QTextEdit *m_messageEdit;
@@ -124,7 +124,7 @@ protected:
     QWidget *m_messageComments;
     MusicCommentsRequest *m_networkRequest;
     QList<MusicCommentsItem*> m_commentsItems;
-    MusicPagingWidgetModule *m_pagingWidgetObject;
+    MusicPageQueryWidget *m_pageQueryWidget;
 
 };
 

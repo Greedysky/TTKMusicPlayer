@@ -1,7 +1,7 @@
 #include "musicwebdjradioquerywidget.h"
 #include "musicdjradioprogramcategoryrequest.h"
 #include "musictinyuiobject.h"
-#include "musicpagingwidgetmodule.h"
+#include "musicpagequerywidget.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadsourcerequest.h"
@@ -102,7 +102,7 @@ MusicWebDJRadioQueryWidget::MusicWebDJRadioQueryWidget(QWidget *parent)
     m_initialized = false;
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
-    m_pagingWidgetObject = nullptr;
+    m_pageQueryWidget = nullptr;
     m_networkRequest = new MusicDJRadioProgramCategoryRequest(this);
     connect(m_networkRequest, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));
 }
@@ -112,7 +112,7 @@ MusicWebDJRadioQueryWidget::~MusicWebDJRadioQueryWidget()
     delete m_infoWidget;
     delete m_gridLayout;
     delete m_networkRequest;
-    delete m_pagingWidgetObject;
+    delete m_pageQueryWidget;
 }
 
 void MusicWebDJRadioQueryWidget::setSongName(const QString &name)
@@ -192,18 +192,18 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
         mainlayout->addWidget(line);
         mainlayout->addWidget(containWidget);
 
-        m_pagingWidgetObject = new MusicPagingWidgetModule(m_mainWindow);
-        connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
+        m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
+        connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-        mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, pageTotal));
+        mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
         mainlayout->addStretch(1);
     }
 
-    if(m_pagingWidgetObject)
+    if(m_pageQueryWidget)
     {
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-        m_pagingWidgetObject->reset(pageTotal);
+        m_pageQueryWidget->reset(pageTotal);
     }
 
     MusicWebDJRadioQueryItemWidget *label = new MusicWebDJRadioQueryItemWidget(this);
@@ -247,6 +247,6 @@ void MusicWebDJRadioQueryWidget::buttonClicked(int index)
     }
 
     const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, pageTotal);
-    m_networkRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_pageQueryWidget->page(index, pageTotal);
+    m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

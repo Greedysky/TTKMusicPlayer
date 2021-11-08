@@ -40,7 +40,7 @@ public:
      */
     virtual void startToSearch(const QString &name) override;
     /*!
-     * Start to search data from name and type bt paging.
+     * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override;
 
@@ -71,7 +71,7 @@ public:
      */
     virtual void startToSearch(const QString &name) override;
     /*!
-     * Start to search data from name and type bt paging.
+     * Start to search data from name and type bt page.
      */
     virtual void startToPage(int offset) override;
 

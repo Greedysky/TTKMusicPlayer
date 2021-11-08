@@ -1,4 +1,4 @@
-#include "musicpagingwidgetmodule.h"
+#include "musicpagequerywidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
@@ -7,69 +7,69 @@
 
 #define PAGE_SIZE   10
 
-MusicPagingWidgetModule::MusicPagingWidgetModule(QObject *parent)
+MusicPageQueryWidget::MusicPageQueryWidget(QObject *parent)
     : QObject(parent)
 {
     m_currentPage = 0;
-    m_pagingWidget = nullptr;
+    m_pageWidget = nullptr;
 }
 
-MusicPagingWidgetModule::~MusicPagingWidgetModule()
+MusicPageQueryWidget::~MusicPageQueryWidget()
 {
-    qDeleteAll(m_pagingItems);
-    delete m_pagingWidget;
+    qDeleteAll(m_pageItems);
+    delete m_pageWidget;
 }
 
-QWidget* MusicPagingWidgetModule::createPagingWidget(QWidget *parent, int total)
+QWidget* MusicPageQueryWidget::createPageWidget(QWidget *parent, int total)
 {
-    m_pagingWidget = new QWidget(parent);
-    QHBoxLayout *layout = new QHBoxLayout(m_pagingWidget);
+    m_pageWidget = new QWidget(parent);
+    QHBoxLayout *layout = new QHBoxLayout(m_pageWidget);
     layout->setContentsMargins(0, 20, 0, 20);
     layout->setSpacing(12);
 
     for(int i=1; i<=PAGE_SIZE; ++i)
     {
-        m_pagingItems << (new MusicClickedLabel(QString::number(i), m_pagingWidget));
+        m_pageItems << (new MusicClickedLabel(QString::number(i), m_pageWidget));
     }
-    m_pagingItems << (new MusicClickedLabel("<<", m_pagingWidget)) << (new MusicClickedLabel(">>", m_pagingWidget));
+    m_pageItems << (new MusicClickedLabel("<<", m_pageWidget)) << (new MusicClickedLabel(">>", m_pageWidget));
 
-    MusicClickedGroup *clickedGroup = new MusicClickedGroup(this);
-    connect(clickedGroup, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
+    MusicClickedGroup *group = new MusicClickedGroup(this);
+    connect(group, SIGNAL(clicked(int)), SIGNAL(clicked(int)));
 
-    for(MusicClickedLabel *w : qAsConst(m_pagingItems))
+    for(MusicClickedLabel *w : qAsConst(m_pageItems))
     {
         QFont font(w->font());
         font.setPixelSize(14);
         w->setFont(font);
         w->setStyleSheet(MusicUIObject::MQSSColorStyle04);
         w->setFixedWidth(MusicUtils::Widget::fontTextWidth(font, w->text()));
-        clickedGroup->mapped(w);
+        group->mapped(w);
     }
 
-    m_pagingItems[PAGE_SIZE]->hide();
+    m_pageItems[PAGE_SIZE]->hide();
     if(total <= PAGE_SIZE)
     {
-        m_pagingItems[PAGE_SIZE + 1]->hide();
+        m_pageItems[PAGE_SIZE + 1]->hide();
         for(int i=PAGE_SIZE - 1; i>=total; --i)
         {
-            m_pagingItems[i]->hide();
+            m_pageItems[i]->hide();
         }
     }
-    m_pagingItems[0]->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle01);
+    m_pageItems[0]->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle01);
 
     layout->addStretch(1);
     if(total != 0)
     {
-        layout->addWidget(m_pagingItems[PAGE_SIZE]);
+        layout->addWidget(m_pageItems[PAGE_SIZE]);
         for(int i=0; i<PAGE_SIZE; ++i)
         {
-            layout->addWidget(m_pagingItems[i]);
+            layout->addWidget(m_pageItems[i]);
         }
-        layout->addWidget(m_pagingItems[PAGE_SIZE + 1]);
+        layout->addWidget(m_pageItems[PAGE_SIZE + 1]);
     }
     else
     {
-        QWidget *func = new QWidget(m_pagingWidget);
+        QWidget *func = new QWidget(m_pageWidget);
         QVBoxLayout *funcLayout = new QVBoxLayout(func);
         QLabel *icon = new QLabel(func);
         icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
@@ -83,18 +83,18 @@ QWidget* MusicPagingWidgetModule::createPagingWidget(QWidget *parent, int total)
     }
     layout->addStretch(1);
 
-    m_pagingWidget->setLayout(layout);
-    return m_pagingWidget;
+    m_pageWidget->setLayout(layout);
+    return m_pageWidget;
 }
 
-void MusicPagingWidgetModule::reset(int total)
+void MusicPageQueryWidget::reset(int total)
 {
-    if(m_pagingItems.isEmpty())
+    if(m_pageItems.isEmpty())
     {
         return;
     }
 
-    for(MusicClickedLabel *label : qAsConst(m_pagingItems))
+    for(MusicClickedLabel *label : qAsConst(m_pageItems))
     {
         label->hide();
     }
@@ -103,27 +103,27 @@ void MusicPagingWidgetModule::reset(int total)
     if(total > PAGE_SIZE)
     {
         total = PAGE_SIZE;
-        m_pagingItems[PAGE_SIZE + 1]->show();
+        m_pageItems[PAGE_SIZE + 1]->show();
     }
 
     for(int i=0; i<total; ++i)
     {
-        m_pagingItems[i]->setText(QString::number(i + 1));
-        m_pagingItems[i]->show();
+        m_pageItems[i]->setText(QString::number(i + 1));
+        m_pageItems[i]->show();
     }
 }
 
-void MusicPagingWidgetModule::paging(int index, int total)
+void MusicPageQueryWidget::page(int index, int total)
 {
     if(total <= 0)
     {
         return;
     }
 
-    int page = m_pagingItems[0]->text().toInt();
-    for(int i=0; i<m_pagingItems.count() - 2; ++i)
+    int page = m_pageItems[0]->text().toInt();
+    for(int i=0; i<m_pageItems.count() - 2; ++i)
     {
-        m_pagingItems[i]->setStyleSheet(MusicUIObject::MQSSColorStyle04);
+        m_pageItems[i]->setStyleSheet(MusicUIObject::MQSSColorStyle04);
     }
 
     switch(index)
@@ -145,7 +145,7 @@ void MusicPagingWidgetModule::paging(int index, int total)
         case 10:
         {
             page -= PAGE_SIZE;
-            MusicClickedLabel *w = m_pagingItems[PAGE_SIZE];
+            MusicClickedLabel *w = m_pageItems[PAGE_SIZE];
 
             if(total <= PAGE_SIZE)
             {
@@ -155,26 +155,26 @@ void MusicPagingWidgetModule::paging(int index, int total)
             {
                 for(int i=0; i<PAGE_SIZE; ++i)
                 {
-                    m_pagingItems[i]->setText(QString::number(page + i));
-                    m_pagingItems[i]->show();
+                    m_pageItems[i]->setText(QString::number(page + i));
+                    m_pageItems[i]->show();
                 }
-                (m_pagingItems[0]->text().toInt() < PAGE_SIZE) ? w->hide() : w->show();
+                (m_pageItems[0]->text().toInt() < PAGE_SIZE) ? w->hide() : w->show();
             }
 
             m_currentPage = 0;
-            m_pagingItems[PAGE_SIZE + 1]->show();
+            m_pageItems[PAGE_SIZE + 1]->show();
             break;
         }
         case 11:
         {
             page += PAGE_SIZE;
-            MusicClickedLabel *w = m_pagingItems[PAGE_SIZE + 1];
+            MusicClickedLabel *w = m_pageItems[PAGE_SIZE + 1];
             int boundary = total - page + 1;
                 boundary = boundary < PAGE_SIZE ? boundary : PAGE_SIZE;
 
             for(int i=0; i<boundary; ++i)
             {
-                m_pagingItems[i]->setText(QString::number(page + i));
+                m_pageItems[i]->setText(QString::number(page + i));
             }
 
             if(total - page >= PAGE_SIZE)
@@ -186,29 +186,29 @@ void MusicPagingWidgetModule::paging(int index, int total)
                 w->hide();
                 for(int i=PAGE_SIZE - 1; i>(total - page); --i)
                 {
-                    m_pagingItems[i]->hide();
+                    m_pageItems[i]->hide();
                 }
             }
 
             m_currentPage = 0;
-            m_pagingItems[PAGE_SIZE]->show();
+            m_pageItems[PAGE_SIZE]->show();
             break;
         }
         default: break;
     }
 
-    for(int i=0; i<m_pagingItems.count() - 2; ++i)
+    for(int i=0; i<m_pageItems.count() - 2; ++i)
     {
-        MusicClickedLabel *w = m_pagingItems[i];
+        MusicClickedLabel *w = m_pageItems[i];
         w->setFixedWidth(MusicUtils::Widget::fontTextWidth(w->font(), w->text()));
     }
 
-    MusicClickedLabel *w = m_pagingItems[m_currentPage];
+    MusicClickedLabel *w = m_pageItems[m_currentPage];
     w->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle01);
     w->setFixedWidth(w->width() + 5);
 }
 
-int MusicPagingWidgetModule::currentIndex() const
+int MusicPageQueryWidget::currentIndex() const
 {
-    return m_pagingItems[m_currentPage]->text().toInt();
+    return m_pageItems[m_currentPage]->text().toInt();
 }

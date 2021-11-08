@@ -275,7 +275,7 @@ void MusicSongsListTableWidget::adjustPlayWidgetRow()
 
 bool MusicSongsListTableWidget::createUploadFileModule()
 {
-    if(m_musicSongs->isEmpty() && MusicObject::songListIndexIsValid(m_parentToolIndex))
+    if(m_musicSongs->isEmpty() && MusicObject::playlistRowValid(m_parentToolIndex))
     {
         setFixedSize(LEFT_SIDE_WIDTH_MIN, 100);
         if(m_openFileWidget == nullptr)
@@ -709,36 +709,10 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     QMenu musicAddNewFiles(tr("Add New Files"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
-    musicAddNewFiles.setEnabled(MusicObject::songListIndexIsValid(m_parentToolIndex));
+    musicAddNewFiles.setEnabled(MusicObject::playlistRowValid(m_parentToolIndex));
     musicAddNewFiles.addAction(tr("Open Files"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("Open Dir"), this, SIGNAL(musicAddNewDir()));
     MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
-
-    QMenu musicPlaybackMode(tr("Playback Mode"), &rightClickMenu);
-    rightClickMenu.addMenu(&musicPlaybackMode);
-    QList<QAction*> actions;
-    actions << musicPlaybackMode.addAction(tr("Order Play"), MusicApplication::instance(), SLOT(musicPlayOrder()));
-    actions << musicPlaybackMode.addAction(tr("Random Play"), MusicApplication::instance(), SLOT(musicPlayRandom()));
-    actions << musicPlaybackMode.addAction(tr("List Cycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
-    actions << musicPlaybackMode.addAction(tr("Single Cycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
-    actions << musicPlaybackMode.addAction(tr("Play Once"), MusicApplication::instance(), SLOT(musicPlayOnce()));
-
-    const MusicObject::PlayMode mode = MusicApplication::instance()->getPlayMode();
-    int index = -1;
-    switch(mode)
-    {
-        case MusicObject::PM_PlayOrder: index = 0; break;
-        case MusicObject::PM_PlayRandom: index = 1; break;
-        case MusicObject::PM_PlaylistLoop: index = 2; break;
-        case MusicObject::PM_PlayOneLoop: index = 3; break;
-        case MusicObject::PM_PlayOnce: index = 4; break;
-        default: break;
-    }
-
-    if(index > -1 && index < actions.count())
-    {
-        actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
-    }
 
     QMenu musicSortFiles(tr("Sort"), &rightClickMenu);
     musicSortFiles.addAction(tr("Sort By FileName"))->setData(0);

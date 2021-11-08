@@ -181,8 +181,6 @@ protected:
 TTK_DECLARE_LIST(MusicSong)
 
 
-class MusicAbstractSongsListTableWidget;
-
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>
  */
@@ -198,6 +196,8 @@ typedef struct TTK_MODULE_EXPORT MusicSongSort
     }
 }MusicSongSort;
 
+
+class MusicAbstractSongsListTableWidget;
 
 /*! @brief The class of the music song item.
  * @author Greedysky <greedysky@163.com>
@@ -232,9 +232,9 @@ namespace MusicObject
     TTK_MODULE_EXPORT MusicSongs generateMusicSongList(const QString &path);
 
     /*!
-     * Check current song plyalist is valid or not.
+     * Check current song plyalist row is valid or not.
      */
-    TTK_MODULE_EXPORT bool songListIndexIsValid(int index);
+    TTK_MODULE_EXPORT bool playlistRowValid(int index);
 
 }
 

@@ -61,7 +61,7 @@ HEADERS  += \
     $$PWD/musicfunctiontoolboxwidget.h \
     $$PWD/musicsongitemselectedareawidget.h \
     $$PWD/musictimesliderwidget.h \
-    $$PWD/musicpagingwidgetmodule.h \
+    $$PWD/musicpagequerywidget.h \
     $$PWD/musicimagerenderer.h
 
 
@@ -108,5 +108,5 @@ SOURCES += \
     $$PWD/musicfunctiontoolboxwidget.cpp \
     $$PWD/musicsongitemselectedareawidget.cpp \
     $$PWD/musictimesliderwidget.cpp \
-    $$PWD/musicpagingwidgetmodule.cpp \
+    $$PWD/musicpagequerywidget.cpp \
     $$PWD/musicimagerenderer.cpp

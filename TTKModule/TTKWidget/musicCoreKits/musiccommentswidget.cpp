@@ -5,7 +5,7 @@
 #include "musicinteriorlrcuiobject.h"
 #include "musicuiobject.h"
 #include "musicclickedlabel.h"
-#include "musicpagingwidgetmodule.h"
+#include "musicpagequerywidget.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 
@@ -151,10 +151,9 @@ MusicCommentsWidget::MusicCommentsWidget(QWidget *parent)
     m_topLabel = nullptr;
     m_commentsLabel = nullptr;
     m_messageEdit = nullptr;
-    m_pagingWidgetObject = nullptr;
     m_messageComments = nullptr;
     m_networkRequest = nullptr;
-    m_pagingWidgetObject = nullptr;
+    m_pageQueryWidget = nullptr;
 }
 
 MusicCommentsWidget::~MusicCommentsWidget()
@@ -163,9 +162,9 @@ MusicCommentsWidget::~MusicCommentsWidget()
     delete m_topLabel;
     delete m_commentsLabel;
     delete m_messageEdit;
-    delete m_pagingWidgetObject;
     delete m_messageComments;
     delete m_networkRequest;
+    delete m_pageQueryWidget;
 }
 
 void MusicCommentsWidget::initWidget(bool isPain)
@@ -298,7 +297,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     loop.exec();
 
     TTKStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
-    createPagingWidget();
+    createPageWidget();
 
     initLabel(name, m_networkRequest->getTotalSize());
 }
@@ -323,8 +322,8 @@ void MusicCommentsWidget::buttonClicked(int index)
     deleteCommentsItems();
 
     const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, pageTotal);
-    m_networkRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_pageQueryWidget->page(index, pageTotal);
+    m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 
 void MusicCommentsWidget::createEMOJILabelWidget()
@@ -374,12 +373,12 @@ void MusicCommentsWidget::deleteCommentsItems()
     }
 }
 
-void MusicCommentsWidget::createPagingWidget()
+void MusicCommentsWidget::createPageWidget()
 {
-    m_pagingWidgetObject = new MusicPagingWidgetModule(this);
-    connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
+    m_pageQueryWidget = new MusicPageQueryWidget(this);
+    connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
     const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-    QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, pageTotal);
+    QWidget *w = m_pageQueryWidget->createPageWidget(m_messageComments, pageTotal);
     m_messageComments->layout()->addWidget(w);
 }

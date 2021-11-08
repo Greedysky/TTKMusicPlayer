@@ -21,7 +21,6 @@
 
 #include "ttksingleton.h"
 #include "musicnetworkdefines.h"
-#include "musicglobaldefine.h"
 
 /*! @brief The class of the download manager pair.
  * @author Greedysky <greedysky@163.com>

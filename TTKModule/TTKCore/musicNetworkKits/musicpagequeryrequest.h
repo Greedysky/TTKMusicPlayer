@@ -1,5 +1,5 @@
-#ifndef MUSICPAGINGWIDGETMODULE_H
-#define MUSICPAGINGWIDGETMODULE_H
+#ifndef MUSICPAGEQUERYREQUEST_H
+#define MUSICPAGEQUERYREQUEST_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,52 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicglobaldefine.h"
+#include "musicabstractnetwork.h"
 
-class MusicClickedLabel;
-
-/*! @brief The class of the paging widget object.
+/*! @brief The class of abstract download page query request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPagingWidgetModule : public QObject
+class TTK_MODULE_EXPORT MusicPageQueryRequest : public MusicAbstractNetwork
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPagingWidgetModule)
+    TTK_DECLARE_MODULE(MusicPageQueryRequest)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPagingWidgetModule(QObject *parent = nullptr);
-    ~MusicPagingWidgetModule();
+    explicit MusicPageQueryRequest(QObject *parent = nullptr);
 
     /*!
-     * Create paging items.
+     * Start to search data from name and type bt page.
      */
-    QWidget* createPagingWidget(QWidget *parent, int total);
-    /*!
-     * Reset page to origin.
-     */
-    void reset(int total);
-    /*!
-     * Start to page by given index and total.
-     */
-    void paging(int index, int total);
-    /*!
-     * Get current page index.
-     */
-    int currentIndex() const;
+    virtual void startToPage(int offset);
 
-Q_SIGNALS:
     /*!
-     * Mapped the clicked page index.
+     * Return the each page max size.
      */
-    void clicked(int index);
+    inline int getPageSize() const { return m_pageSize; }
+    /*!
+     * Return the total number.
+     */
+    inline int getTotalSize() const { return m_totalSize; }
+    /*!
+     * Return the page index number.
+     */
+    inline int getPageIndex() const { return m_pageIndex; }
 
 protected:
-    int m_currentPage;
-    QWidget *m_pagingWidget;
-    QList<MusicClickedLabel*> m_pagingItems;
+    int m_pageSize, m_totalSize, m_pageIndex;
 
 };
 
-#endif // MUSICPAGINGWIDGETMODULE_H
+#endif // MUSICPAGEQUERYREQUEST_H

@@ -1,7 +1,7 @@
 #include "musicabstractqueryrequest.h"
 
 MusicAbstractQueryRequest::MusicAbstractQueryRequest(QObject *parent)
-    : MusicPagingRequest(parent)
+    : MusicPageQueryRequest(parent)
 {
     m_queryAllRecords = false;
     m_querySimplify = false;
@@ -71,7 +71,7 @@ void MusicAbstractQueryRequest::downLoadFinished()
 {
     Q_EMIT clearAllItems();
     m_musicSongInfos.clear();
-    MusicPagingRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
 }
 
 bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)

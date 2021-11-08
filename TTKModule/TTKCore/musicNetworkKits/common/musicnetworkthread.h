@@ -21,7 +21,6 @@
 
 #include <QTimer>
 #include "ttksingleton.h"
-#include "musicglobaldefine.h"
 
 /*! @brief The class of thread to check current network.
  * @author Greedysky <greedysky@163.com>

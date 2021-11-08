@@ -43,7 +43,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselectedareawidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicpagingwidgetmodule.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicpagequerywidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicimagerenderer.h
   )
 
@@ -90,7 +90,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselectedareawidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicpagingwidgetmodule.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicpagequerywidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicimagerenderer.cpp
   )
   

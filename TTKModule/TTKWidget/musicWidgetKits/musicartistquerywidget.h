@@ -67,7 +67,7 @@ protected:
 
 };
 
-class MusicPagingWidgetModule;
+class MusicPageQueryWidget;
 
 /*! @brief The class of the artist mvs query widget.
  * @author Greedysky <greedysky@163.com>
@@ -106,14 +106,14 @@ public Q_SLOTS:
      */
     void currentItemClicked(const QString &id);
     /*!
-     * Paging widget button has changed.
+     * Page widget button has changed.
      */
     void buttonClicked(int index);
 
 protected:
     QGridLayout *m_gridLayout;
     bool m_initialized;
-    MusicPagingWidgetModule *m_pagingWidgetObject;
+    MusicPageQueryWidget *m_pageQueryWidget;
 
 };
 

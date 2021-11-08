@@ -28,6 +28,7 @@
 #include "musicnetworkdefines.h"
 #include "musicnumberutils.h"
 #include "musicalgorithmutils.h"
+
 #include "qjson/parser.h"
 
 /*! @brief The class of abstract downloading data.

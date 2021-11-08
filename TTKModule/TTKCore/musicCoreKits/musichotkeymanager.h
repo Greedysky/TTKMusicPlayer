@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "ttksingleton.h"
-#include "musicglobaldefine.h"
 
 class QGlobalShortcut;
 

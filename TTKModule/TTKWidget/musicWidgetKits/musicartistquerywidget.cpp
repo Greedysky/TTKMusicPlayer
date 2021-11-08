@@ -4,7 +4,7 @@
 #include "musicquerymovierequest.h"
 #include "musicsimilarrequest.h"
 #include "musicrightareawidget.h"
-#include "musicpagingwidgetmodule.h"
+#include "musicpagequerywidget.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
@@ -100,7 +100,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
-    m_pagingWidgetObject = nullptr;
+    m_pageQueryWidget = nullptr;
     m_initialized = false;
 
     QWidget *function = new QWidget(m_mainWindow);
@@ -153,11 +153,11 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
     if(!m_initialized)
     {
         m_initialized = true;
-        m_pagingWidgetObject = new MusicPagingWidgetModule(m_mainWindow);
-        connect(m_pagingWidgetObject, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
+        m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
+        connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
         const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-        m_mainWindow->layout()->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, pageTotal));
+        m_mainWindow->layout()->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
     }
 
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
@@ -185,8 +185,8 @@ void MusicArtistMvsQueryWidget::buttonClicked(int index)
     }
 
     const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
-    m_pagingWidgetObject->paging(index, pageTotal);
-    m_networkRequest->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+    m_pageQueryWidget->page(index, pageTotal);
+    m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
 
 

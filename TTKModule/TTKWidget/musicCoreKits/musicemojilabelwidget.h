@@ -46,7 +46,7 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     /*!
-     * Paging button changed.
+     * Page button changed.
      */
     void buttonClicked(int index);
     /*!

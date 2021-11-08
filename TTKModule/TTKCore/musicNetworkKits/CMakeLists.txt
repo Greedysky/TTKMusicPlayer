@@ -97,7 +97,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadimagerequest.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicpagingrequest.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicpagequeryrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryalbumrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistrequest.h
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistlistrequest.h
@@ -206,7 +206,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadimagerequest.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicpagingrequest.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicpagequeryrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryalbumrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistrequest.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicqueryartistlistrequest.cpp

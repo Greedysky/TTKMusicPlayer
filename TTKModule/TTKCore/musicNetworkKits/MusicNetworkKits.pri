@@ -125,7 +125,7 @@ HEADERS  += \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadmanager.h \
     $$PWD/musicdownloadimagerequest.h \
-    $$PWD/musicpagingrequest.h \
+    $$PWD/musicpagequeryrequest.h \
     $$PWD/musicqueryalbumrequest.h \
     $$PWD/musicqueryartistrequest.h \
     $$PWD/musicqueryartistlistrequest.h \
@@ -234,7 +234,7 @@ SOURCES += \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadmanager.cpp \
     $$PWD/musicdownloadimagerequest.cpp \
-    $$PWD/musicpagingrequest.cpp \
+    $$PWD/musicpagequeryrequest.cpp \
     $$PWD/musicqueryalbumrequest.cpp \
     $$PWD/musicqueryartistrequest.cpp \
     $$PWD/musicqueryartistlistrequest.cpp \

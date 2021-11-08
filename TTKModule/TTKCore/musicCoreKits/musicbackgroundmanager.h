@@ -21,7 +21,6 @@
 
 #include "musicobject.h"
 #include "ttksingleton.h"
-#include "musicglobaldefine.h"
 
 /*! @brief The class of the manager of dealing with artist pictures.
  * @author Greedysky <greedysky@163.com>

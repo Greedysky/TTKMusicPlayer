@@ -65,7 +65,7 @@ void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 {
     TTK_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
 
-    MusicPagingRequest::downLoadFinished();
+    MusicPageQueryRequest::downLoadFinished();
 
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

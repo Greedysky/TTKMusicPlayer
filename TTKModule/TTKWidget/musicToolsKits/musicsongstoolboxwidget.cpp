@@ -95,7 +95,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addSeparator();
 
     QMenu musicAddNewFiles(tr("Add New Files"), &menu);
-    bool disable = MusicObject::songListIndexIsValid(m_index);
+    bool disable = MusicObject::playlistRowValid(m_index);
     menu.addMenu(&musicAddNewFiles)->setEnabled(disable);
     musicAddNewFiles.addAction(tr("Open Files"), this, SLOT(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("Open Dir"), this, SLOT(musicAddNewDir()));
@@ -169,7 +169,7 @@ void MusicSongsToolBoxTopWidget::addToPlayedList()
 
 bool MusicSongsToolBoxTopWidget::isItemEnabled() const
 {
-    return m_index != MUSIC_NORMAL_LIST && MusicObject::songListIndexIsValid(m_index);
+    return m_index != MUSIC_NORMAL_LIST && MusicObject::playlistRowValid(m_index);
 }
 
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)

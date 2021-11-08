@@ -24,7 +24,7 @@
 /*! @brief The class of query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicCommentsRequest : public MusicPagingRequest
+class TTK_MODULE_EXPORT MusicCommentsRequest : public MusicPageQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicCommentsRequest)

@@ -143,6 +143,7 @@ void MusicSongsSummariziedWidget::importMusicSongsByPath(const QStringList &file
         item->m_songs << MusicObject::generateMusicSongList(path);
         progress.setValue(++i);
     }
+
     item->m_itemObject->updateSongsFileName(item->m_songs);
     setItemTitle(item);
 
@@ -336,7 +337,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
         return;
     }
 
-    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && MusicObject::songListIndexIsValid(m_currentPlayToolIndex))
+    if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && MusicObject::playlistRowValid(m_currentPlayToolIndex))
     {
         MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.first().m_widgetItem->setItemExpand(false);

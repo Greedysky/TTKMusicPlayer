@@ -21,7 +21,6 @@
 
 #include <QMutex>
 #include "ttksingleton.h"
-#include "musicglobaldefine.h"
 
 class QTimer;
 

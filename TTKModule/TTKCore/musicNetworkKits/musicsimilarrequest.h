@@ -24,7 +24,7 @@
 /*! @brief The class of query similar download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicSimilarRequest : public MusicPagingRequest
+class TTK_MODULE_EXPORT MusicSimilarRequest : public MusicPageQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicSimilarRequest)

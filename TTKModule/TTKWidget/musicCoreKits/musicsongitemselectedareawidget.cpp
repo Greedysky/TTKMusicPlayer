@@ -188,7 +188,7 @@ MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
         }
         else
         {
-            if(MusicObject::songListIndexIsValid(item.m_itemIndex))
+            if(MusicObject::playlistRowValid(item.m_itemIndex))
             {
                 selectedSongs << item.m_songs;
             }

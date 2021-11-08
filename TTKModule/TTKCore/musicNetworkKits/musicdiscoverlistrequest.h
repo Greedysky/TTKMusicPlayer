@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicpagingrequest.h"
+#include "musicpagequeryrequest.h"
 
 /*! @brief The class of download discover toplist request.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicDiscoverListRequest : public MusicPagingRequest
+class TTK_MODULE_EXPORT MusicDiscoverListRequest : public MusicPageQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDiscoverListRequest)

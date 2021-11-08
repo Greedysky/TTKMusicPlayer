@@ -1,5 +1,5 @@
-#ifndef MUSICPAGINGREQUEST_H
-#define MUSICPAGINGREQUEST_H
+#ifndef MUSICPAGEQUERYWIDGET_H
+#define MUSICPAGEQUERYWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,42 +19,52 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractnetwork.h"
+#include "musicglobaldefine.h"
 
-/*! @brief The class of abstract download paing request.
+class MusicClickedLabel;
+
+/*! @brief The class of the page query widget.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicPagingRequest : public MusicAbstractNetwork
+class TTK_MODULE_EXPORT MusicPageQueryWidget : public QObject
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicPagingRequest)
+    TTK_DECLARE_MODULE(MusicPageQueryWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPagingRequest(QObject *parent = nullptr);
+    explicit MusicPageQueryWidget(QObject *parent = nullptr);
+    ~MusicPageQueryWidget();
 
     /*!
-     * Start to search data from name and type bt paging.
+     * Create page items.
      */
-    virtual void startToPage(int offset);
+    QWidget* createPageWidget(QWidget *parent, int total);
+    /*!
+     * Reset page to origin.
+     */
+    void reset(int total);
+    /*!
+     * Start to page by given index and total.
+     */
+    void page(int index, int total);
+    /*!
+     * Get current page index.
+     */
+    int currentIndex() const;
 
+Q_SIGNALS:
     /*!
-     * Return the each page max size.
+     * Mapped the clicked page index.
      */
-    inline int getPageSize() const { return m_pageSize; }
-    /*!
-     * Return the total number.
-     */
-    inline int getTotalSize() const { return m_totalSize; }
-    /*!
-     * Return the page index number.
-     */
-    inline int getPageIndex() const { return m_pageIndex; }
+    void clicked(int index);
 
 protected:
-    int m_pageSize, m_totalSize, m_pageIndex;
+    int m_currentPage;
+    QWidget *m_pageWidget;
+    QList<MusicClickedLabel*> m_pageItems;
 
 };
 
-#endif // MUSICPAGINGREQUEST_H
+#endif // MUSICPAGEQUERYWIDGET_H

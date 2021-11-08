@@ -21,7 +21,7 @@
 
 #include "musicobject.h"
 #include "musicstringutils.h"
-#include "musicpagingrequest.h"
+#include "musicpagequeryrequest.h"
 
 /*! @brief The class of the searched data item.
  * @author Greedysky <greedysky@163.com>
@@ -95,7 +95,7 @@ enum DownloadQueryServer
 /*! @brief The class of abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPagingRequest
+class TTK_MODULE_EXPORT MusicAbstractQueryRequest : public MusicPageQueryRequest
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractQueryRequest)
