@@ -52,9 +52,9 @@ public Q_SLOTS:
      */
     void changeWidgetIndex(int index);
     /*!
-     * Save the change results.
+     * Save the parameter setting results.
      */
-    void saveResults();
+    void saveParameterSettings();
     /*!
      * Widget interface control enable or not.
      */

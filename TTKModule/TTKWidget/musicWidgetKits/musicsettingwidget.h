@@ -271,9 +271,9 @@ public Q_SLOTS:
     void musicFadeInAndOutClicked(bool state);
 
     /*!
-     * Save the change results.
+     * Save the parameter setting results.
      */
-    void saveResults();
+    void saveParameterSettings();
     /*!
      * Override exec function.
      */

@@ -270,7 +270,7 @@ void MusicApplicationMPRISPlayer::SetPosition(const QDBusObjectPath &trackId, ql
     }
     else
     {
-        qWarning("MusicApplicationMPRISPlayer: SetPosition() called with a invalid trackId");
+        TTK_LOGGER_WARN("SetPosition called with a invalid trackId");
     }
 }
 

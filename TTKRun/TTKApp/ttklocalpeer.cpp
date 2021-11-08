@@ -126,7 +126,7 @@ bool TTKLocalPeer::isClient()
 #endif
     if(!res)
     {
-        qWarning("Application: listen on local socket failed, %s", qPrintable(d->m_server->errorString()));
+        TTK_LOGGER_WARN("Application: listen on local socket failed, " << qPrintable(d->m_server->errorString()));
     }
 
     connect(d->m_server, SIGNAL(newConnection()), SLOT(receiveConnection()));
@@ -200,7 +200,7 @@ void TTKLocalPeer::receiveConnection()
     {
         if(socket->state() == QLocalSocket::UnconnectedState)
         {
-            qWarning("QtLocalPeer: Peer disconnected");
+            TTK_LOGGER_WARN("QtLocalPeer: Peer disconnected");
             delete socket;
             return;
         }
@@ -229,7 +229,7 @@ void TTKLocalPeer::receiveConnection()
 
     if(got < 0)
     {
-        qWarning("TTKLocalPeer: Message reception failed %s", socket->errorString().toLatin1().constData());
+        TTK_LOGGER_WARN("TTKLocalPeer: Message reception failed " << socket->errorString().toLatin1().constData());
         delete socket;
         return;
     }

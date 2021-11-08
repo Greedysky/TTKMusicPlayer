@@ -31,7 +31,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     m_ui->confirm->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancel->setCursor(QCursor(Qt::PointingHandCursor));
 
-    connect(m_ui->confirm, SIGNAL(clicked()), SLOT(saveResults()));
+    connect(m_ui->confirm, SIGNAL(clicked()), SLOT(saveParameterSettings()));
     connect(m_ui->cancel, SIGNAL(clicked()), SLOT(close()));
 
 #ifdef Q_OS_UNIX
@@ -245,7 +245,7 @@ void MusicTimerWidget::initThreeWidget()
 #endif
 }
 
-void MusicTimerWidget::saveResults()
+void MusicTimerWidget::saveParameterSettings()
 {
     writeParemeter();
     MusicApplicationModule::instance()->musicToolSetsParameter();
