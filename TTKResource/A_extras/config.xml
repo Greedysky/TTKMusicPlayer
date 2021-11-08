@@ -18,7 +18,6 @@
     </plusSetting>
     <otherSetting>
         <otherCheckUpdateEnable value="0"/>
-        <otherSearchOptimized value="0"/>
         <otherUseAlbumCover value="1"/>
         <otherUseFileInfo value="1"/>
         <otherWriteAlbumCover value="1"/>

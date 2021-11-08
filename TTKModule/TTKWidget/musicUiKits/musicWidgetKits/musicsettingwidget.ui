@@ -119,7 +119,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>185</x>
-       <y>105</y>
+       <y>109</y>
        <width>260</width>
        <height>20</height>
       </rect>
@@ -132,7 +132,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>105</y>
+       <y>109</y>
        <width>155</width>
        <height>20</height>
       </rect>
@@ -145,7 +145,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>255</y>
+       <y>261</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -163,7 +163,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>88</x>
-       <y>280</y>
+       <y>288</y>
        <width>251</width>
        <height>22</height>
       </rect>
@@ -173,7 +173,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>280</y>
+       <y>288</y>
        <width>61</width>
        <height>21</height>
       </rect>
@@ -189,7 +189,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>310</y>
+       <y>318</y>
        <width>280</width>
        <height>24</height>
       </rect>
@@ -205,7 +205,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>195</y>
+       <y>199</y>
        <width>330</width>
        <height>20</height>
       </rect>
@@ -218,7 +218,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>225</y>
+       <y>229</y>
        <width>330</width>
        <height>20</height>
       </rect>
@@ -231,7 +231,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>165</y>
+       <y>171</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -249,7 +249,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>80</y>
+       <y>82</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -267,7 +267,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>135</y>
+       <y>139</y>
        <width>155</width>
        <height>20</height>
       </rect>
@@ -280,7 +280,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>185</x>
-       <y>135</y>
+       <y>139</y>
        <width>260</width>
        <height>20</height>
       </rect>
@@ -1183,7 +1183,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>160</y>
+       <y>165</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1196,7 +1196,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>195</y>
+       <y>200</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1222,7 +1222,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>80</y>
+       <y>85</y>
        <width>210</width>
        <height>20</height>
       </rect>
@@ -1235,7 +1235,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>125</y>
+       <y>130</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1249,24 +1249,11 @@ font-weight:bold;</string>
       <string>其他设置</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherSearchCheckBox">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>160</y>
-       <width>200</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>开启搜索词优化</string>
-     </property>
-    </widget>
     <widget class="QCheckBox" name="otherLrcKTVCheckBox">
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>195</y>
+       <y>165</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1292,7 +1279,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>80</y>
+       <y>85</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1304,8 +1291,8 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherScreenSaverCheckBox">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>230</y>
+       <x>240</x>
+       <y>200</y>
        <width>200</width>
        <height>20</height>
       </rect>
@@ -1318,7 +1305,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>270</y>
+       <y>245</y>
        <width>415</width>
        <height>20</height>
       </rect>
@@ -1336,7 +1323,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>300</y>
+       <y>275</y>
        <width>100</width>
        <height>25</height>
       </rect>

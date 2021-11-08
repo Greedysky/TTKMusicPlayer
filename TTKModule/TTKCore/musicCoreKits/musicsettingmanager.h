@@ -61,7 +61,6 @@ public:
         BackgroundTransparentEnable,     /*!< Background Transparent Enable Parameter*/
         //
         OtherCheckUpdateEnable,          /*!< Other Check Update Parameter*/
-        OtherSearchOptimized,            /*!< Other Search Optimzied Parameter*/
         OtherUseAlbumCover,              /*!< Other Use File Album Parameter*/
         OtherUseFileInfo,                /*!< Other Use File Info Parameter*/
         OtherWriteAlbumCover,            /*!< Other Write File Album Parameter*/

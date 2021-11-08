@@ -197,7 +197,6 @@ void MusicSettingWidget::initControllerParameter()
 
     //
     m_ui->otherCheckUpdateBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toBool());
-    m_ui->otherSearchCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherSearchOptimized).toBool());
     m_ui->otherUseAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool());
     m_ui->otherUseInfoCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool());
     m_ui->otherWriteAlbumCoverCheckBox->setChecked(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool());
@@ -576,7 +575,6 @@ void MusicSettingWidget::saveResults()
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherSearchOptimized, m_ui->otherSearchCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover, m_ui->otherUseAlbumCoverCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherUseFileInfo, m_ui->otherUseInfoCheckBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCover, m_ui->otherWriteAlbumCoverCheckBox->isChecked());
@@ -646,7 +644,7 @@ void MusicSettingWidget::saveResults()
     if(languageChanged)
     {
         MusicMessageBox message;
-        message.setText(tr("Language changed, are you to restart now?"));
+        message.setText(tr("Language changed, do you want to restart now?"));
         if(message.exec())
         {
             TTK_LOGGER_INFO(MusicObject::getAppDir());
@@ -805,7 +803,6 @@ void MusicSettingWidget::initSpectrumSettingWidget()
 void MusicSettingWidget::initOtherSettingWidget()
 {
     m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
-    m_ui->otherSearchCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherUseAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherUseInfoCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
     m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MQSSCheckBoxStyle01);
@@ -819,7 +816,6 @@ void MusicSettingWidget::initOtherSettingWidget()
     connect(m_ui->otherPluginManagerButton, SIGNAL(clicked()), SLOT(otherPluginManagerChanged()));
 #ifdef Q_OS_UNIX
     m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherSearchCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherUseAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherUseInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherWriteAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);

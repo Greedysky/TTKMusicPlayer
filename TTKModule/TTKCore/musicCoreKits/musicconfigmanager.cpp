@@ -61,8 +61,6 @@ void MusicConfigManager::readSysConfigData() const
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable,
                      readXmlAttributeByTagNameValue("otherCheckUpdateEnable").toInt());
-    G_SETTING_PTR->setValue(MusicSettingManager::OtherSearchOptimized,
-                     readXmlAttributeByTagNameValue("otherSearchOptimized").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCover,
                      readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
     G_SETTING_PTR->setValue(MusicSettingManager::OtherUseFileInfo,
@@ -239,7 +237,6 @@ void MusicConfigManager::writeSysConfigData()
     const int windowQuitMode = G_SETTING_PTR->value(MusicSettingManager::WindowQuitMode).toInt();
     //
     const int otherCheckUpdateEnable = G_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateEnable).toInt();
-    const int otherSearchOptimized = G_SETTING_PTR->value(MusicSettingManager::OtherSearchOptimized).toInt();
     const int otherUseAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toInt();
     const int otherUseFileInfo = G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toInt();
     const int otherWriteAlbumCover = G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toInt();
@@ -355,7 +352,6 @@ void MusicConfigManager::writeSysConfigData()
 
     //
     writeDomElement(otherSettingDom, "otherCheckUpdateEnable", MusicXmlAttribute("value", otherCheckUpdateEnable));
-    writeDomElement(otherSettingDom, "otherSearchOptimized", MusicXmlAttribute("value", otherSearchOptimized));
     writeDomElement(otherSettingDom, "otherUseAlbumCover", MusicXmlAttribute("value", otherUseAlbumCover));
     writeDomElement(otherSettingDom, "otherUseFileInfo", MusicXmlAttribute("value", otherUseFileInfo));
     writeDomElement(otherSettingDom, "otherWriteAlbumCover", MusicXmlAttribute("value", otherWriteAlbumCover));
