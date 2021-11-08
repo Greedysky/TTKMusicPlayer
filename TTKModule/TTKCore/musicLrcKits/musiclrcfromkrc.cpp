@@ -34,13 +34,13 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
 
     if((fp = fopen(qPrintable(input), "rb")) == nullptr)
     {
-        TTK_LOGGER_ERROR("open file error");
+        TTK_LOGGER_ERROR("Open file error");
         return false;
     }
 
     if(fstat(fileno(fp), &st))
     {
-        TTK_LOGGER_ERROR("fstat file error");
+        TTK_LOGGER_ERROR("Fstat file error");
         fclose(fp);
         return false;
     }
@@ -48,7 +48,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     uchar *src = new uchar[st.st_size];
     if(fread(src, sizeof(uchar), st.st_size, fp) != st.st_size)
     {
-        TTK_LOGGER_ERROR("fread file error");
+        TTK_LOGGER_ERROR("Fread file error");
         delete[] src;
         fclose(fp);
         return false;
@@ -56,7 +56,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
 
     if(memcmp(src, "krc1", 4) != 0)
     {
-        TTK_LOGGER_ERROR("error file format");
+        TTK_LOGGER_ERROR("Error file format");
         delete[] src;
         fclose(fp);
         return false;

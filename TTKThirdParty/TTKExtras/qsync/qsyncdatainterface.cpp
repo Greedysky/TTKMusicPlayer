@@ -17,7 +17,7 @@ QSyncDataInterface::QSyncDataInterface(QSyncDataInterfacePrivate &pvt, QNetworkA
 
 void QSyncDataInterface::replyError(QNetworkReply::NetworkError error)
 {
-    TTK_LOGGER_ERROR("error" << error);
+    TTK_LOGGER_ERROR("Sync network error" << error);
 }
 
 QString QSyncDataInterface::pathEncode(const QString &data) const

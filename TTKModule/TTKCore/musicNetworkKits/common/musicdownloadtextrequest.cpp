@@ -54,11 +54,11 @@ void MusicDownLoadTextRequest::downLoadFinished()
             outstream << endl;
 #endif
             m_file->close();
-            TTK_LOGGER_INFO("text download has finished");
+            TTK_LOGGER_INFO("Text download has finished");
         }
         else
         {
-            TTK_LOGGER_ERROR("text download file error");
+            TTK_LOGGER_ERROR("Text download file error");
             m_file->remove();
             m_file->close();
         }

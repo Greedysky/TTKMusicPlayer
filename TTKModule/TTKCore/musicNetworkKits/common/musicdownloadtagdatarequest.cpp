@@ -55,7 +55,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
     }
 
     Q_EMIT downLoadDataChanged(mapCurrentQueryData());
-    TTK_LOGGER_INFO("data download has finished");
+    TTK_LOGGER_INFO("Data download has finished");
 }
 
 void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
@@ -84,7 +84,7 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
             }
         }
         meta.save();
-        TTK_LOGGER_INFO("write tag has finished");
+        TTK_LOGGER_INFO("Write tag has finished");
     }
 
     Q_EMIT finished();

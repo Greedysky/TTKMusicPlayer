@@ -90,7 +90,7 @@ void MusicDownloadDataRequest::downLoadFinished()
         if(m_needUpdate)
         {
             Q_EMIT downLoadDataChanged(mapCurrentQueryData());
-            TTK_LOGGER_INFO("data download has finished");
+            TTK_LOGGER_INFO("Data download has finished");
         }
     }
     deleteAll();

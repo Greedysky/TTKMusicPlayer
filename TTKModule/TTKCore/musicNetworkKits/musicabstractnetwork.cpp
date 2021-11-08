@@ -61,7 +61,7 @@ void MusicAbstractNetwork::sslErrorsString(QNetworkReply *reply, const QList<QSs
         errorString += error.errorString();
     }
 
-    TTK_LOGGER_ERROR(QString("sslErrors: %1").arg(errorString));
+    TTK_LOGGER_ERROR(QString("SslErrors: %1").arg(errorString));
     reply->ignoreSslErrors();
 }
 #endif
