@@ -289,7 +289,8 @@ protected:
      */
     int foundMappingIndex(int index);
 
-    int m_currentIndex, m_itemIndexRaise;
+    int m_currentIndex;
+    int m_itemIndexRaise;
     QVBoxLayout *m_layout;
     QScrollArea *m_scrollArea;
     QWidget *m_contentsWidget;

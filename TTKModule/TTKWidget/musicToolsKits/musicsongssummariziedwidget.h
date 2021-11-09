@@ -85,9 +85,9 @@ public:
     int getSearchFileListClear(int row);
 
     /*!
-     * Get current played tool index.
+     * Get play tool index.
      */
-    inline int getCurrentPlayToolIndex() const { return m_currentPlayToolIndex; }
+    inline int getPlayToolIndex() const { return m_playToolIndex; }
     /*!
      * Set current music song tree index.
      */
@@ -168,9 +168,9 @@ public Q_SLOTS:
     void musicSearchIndexChanged(int row, int index);
 
     /*!
-     * Set current play index from config file.
+     * Update current play index from config file.
      */
-    void setCurrentIndex();
+    void updateCurrentIndex();
     /*!
      * Add or remove music list song to lovest list by row.
      */
@@ -285,10 +285,10 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-    int m_currentPlayToolIndex;
+    int m_playToolIndex;
     int m_searchFileLevel;
-    int m_currentImportIndex;
-    int m_currentDeleteIndex;
+    int m_selectImportIndex;
+    int m_selectDeleteIndex;
     bool m_toolDeleteChanged;
 
     MusicSongItems m_songItems;

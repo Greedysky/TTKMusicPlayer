@@ -199,7 +199,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
 {
     contains = false;
     QString path;
-    if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_LOWER_LEVEL)
+    if(m_musicSongTreeWidget->getPlayToolIndex() != DEFAULT_LOWER_LEVEL)
     {
         const MusicPlayItem &item = m_musicPlaylist->currentItem();
         if(item.isValid())
@@ -215,7 +215,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
 
 bool MusicApplication::musicLovestContains() const
 {
-    if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_LOWER_LEVEL)
+    if(m_musicSongTreeWidget->getPlayToolIndex() != DEFAULT_LOWER_LEVEL)
     {
         const MusicPlayItem &item = m_musicPlaylist->currentItem();
         const MusicSongItems items(m_musicSongTreeWidget->getMusicItemList());
@@ -1161,7 +1161,7 @@ void MusicApplication::readSystemConfigFromFile()
 
     if(success && lastPlayIndex[0] == "1")
     {
-        QTimer::singleShot(MT_MS, m_musicSongTreeWidget, SLOT(setCurrentIndex()));
+        QTimer::singleShot(MT_MS, m_musicSongTreeWidget, SLOT(updateCurrentIndex()));
         const int index = lastPlayIndex[2].toInt();
         m_currentMusicSongTreeIndex = (index == DEFAULT_LOWER_LEVEL) ? DEFAULT_LOWER_LEVEL : value;
         m_musicPlaylist->blockSignals(true);
