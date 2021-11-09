@@ -141,23 +141,12 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #define TTK_NAN_STR                 "NaN"
 #define TTK_STR_SPLITER             "*|||*"
 
-///
-#define TTK_DECLARE_PTR(Class)              \
-public:                                     \
-    using Class##Ptr = Class *;             \
-    using Class##CPtr = const Class *;
-
-#define TTK_DECLARE_GCN(Class)              \
+#define TTK_DECLARE_MODULE(Class)           \
 public:                                     \
     inline static QString getClassName()    \
     {                                       \
         return #Class;                      \
     }
-
-#define TTK_DECLARE_MODULE(Class)           \
-public:                                     \
-    TTK_DECLARE_PTR(Class)                  \
-    TTK_DECLARE_GCN(Class)
 
 ///
 #ifndef _MSC_VER
@@ -176,6 +165,7 @@ public:                                     \
 
 #define TTK_DECLARE_FLAG(Flags, Enum)      \
     typedef QFlags<Enum> Flags;
+
 
 ///
 typedef signed char                        TTKInt8;         /* 8 bit signed */
