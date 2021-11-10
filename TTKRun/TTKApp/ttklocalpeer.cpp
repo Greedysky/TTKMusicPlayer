@@ -102,7 +102,7 @@ TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
     d->m_lockFile.open(QIODevice::ReadWrite);
 }
 
-bool TTKLocalPeer::isClient()
+bool TTKLocalPeer::isClient() const
 {
     TTK_D(TTKLocalPeer);
     if(d->m_lockFile.isLocked())
@@ -133,7 +133,7 @@ bool TTKLocalPeer::isClient()
     return false;
 }
 
-bool TTKLocalPeer::sendMessage(const QString &message, int timeout)
+bool TTKLocalPeer::sendMessage(const QString &message, int timeout) const
 {
     TTK_D(TTKLocalPeer);
     if(!isClient())

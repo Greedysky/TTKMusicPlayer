@@ -39,12 +39,12 @@ public:
     /*!
      * Current client is running or not.
     */
-    bool isClient();
+    bool isClient() const;
 
     /*!
      * Send current message when the client in.
     */
-    bool sendMessage(const QString &message, int timeout);
+    bool sendMessage(const QString &message, int timeout) const;
 
     /*!
      * Get current server id.

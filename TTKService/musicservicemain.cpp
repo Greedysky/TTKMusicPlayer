@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName(APP_NAME);
 
     MusicConfigObject config;
-    config.checkValid();
+    config.valid();
 
     TTKDumper dumper;
     dumper.run();

@@ -9,10 +9,10 @@ MusicConfigObject::MusicConfigObject(QObject *parent)
 
 }
 
-void MusicConfigObject::checkValid()
+void MusicConfigObject::valid() const
 {
-    checkTheDirectoryExist();
-    checkTheFileNeededExist();
+    checkDirectoryExist();
+    checkFileNeededExist();
 }
 
 QString MusicConfigObject::getAppPath() const
@@ -20,9 +20,9 @@ QString MusicConfigObject::getAppPath() const
     return TTK_SERVICE_FULL;
 }
 
-void MusicConfigObject::initialize()
+void MusicConfigObject::initialize() const
 {
-    checkTheFileNeededExist();
+    checkFileNeededExist();
 
     copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
     copyFileOverwrite(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);
@@ -32,12 +32,12 @@ void MusicConfigObject::initialize()
     copyFileOverwrite(":/data/search.ttk", TTK_SEARCH_PATH_FULL);
 }
 
-void MusicConfigObject::reset()
+void MusicConfigObject::reset() const
 {
     copyFileOverwrite(":/data/config.xml", TTK_COFIG_PATH_FULL);
 }
 
-void MusicConfigObject::directoryExist(const QString &name)
+void MusicConfigObject::directoryExist(const QString &name) const
 {
     QDir dir;
     if(!dir.exists(name))
@@ -46,7 +46,7 @@ void MusicConfigObject::directoryExist(const QString &name)
     }
 }
 
-void MusicConfigObject::checkTheDirectoryExist()
+void MusicConfigObject::checkDirectoryExist() const
 {
     directoryExist(TTK_LRC_DIR_FULL);
     directoryExist(TTK_MUSIC_DIR_FULL);
@@ -64,7 +64,7 @@ void MusicConfigObject::checkTheDirectoryExist()
     directoryExist(TTK_LANGUAGE_DIR_FULL);
 }
 
-void MusicConfigObject::checkTheFileNeededExist()
+void MusicConfigObject::checkFileNeededExist() const
 {
     copyFile(":/data/config.xml", TTK_COFIG_PATH_FULL);
     copyFile(":/data/playlist.tkpl", TTK_PLAYLIST_PATH_FULL);
@@ -83,17 +83,18 @@ void MusicConfigObject::checkTheFileNeededExist()
 #endif
 }
 
-void MusicConfigObject::copyFileOverwrite(const QString &origin, const QString &des)
+void MusicConfigObject::copyFileOverwrite(const QString &origin, const QString &des) const
 {
     if(QFile::exists(des))
     {
         QFile::remove(des);
     }
+
     QFile::copy(origin, des);
     QFile::setPermissions(des, QFile::ReadOwner | QFile::WriteOwner);
 }
 
-void MusicConfigObject::copyFile(const QString &origin, const QString &des)
+void MusicConfigObject::copyFile(const QString &origin, const QString &des) const
 {
     if(!QFile::exists(des))
     {
@@ -102,7 +103,7 @@ void MusicConfigObject::copyFile(const QString &origin, const QString &des)
     }
 }
 
-void MusicConfigObject::copyLinuxShellFile(const QString &name, const QString &path)
+void MusicConfigObject::copyLinuxShellFile(const QString &name, const QString &path) const
 {
     copyFileOverwrite(name, path);
     QProcess::execute("chmod", {"+x", path});

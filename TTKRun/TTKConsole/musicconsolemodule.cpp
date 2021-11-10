@@ -353,7 +353,7 @@ void MusicConsoleModule::musicEnhancedVocal()
     m_enhanced = "Vocal";
 }
 
-void MusicConsoleModule::print(qint64 position, qint64 duration)
+void MusicConsoleModule::print(qint64 position, qint64 duration) const
 {
     TTK_LOGGER_INFO(QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6"))
                 .arg(m_musicPlaylist->currentMediaPath())

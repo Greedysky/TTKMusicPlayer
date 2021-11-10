@@ -38,11 +38,11 @@ public:
     /*!
      * Check current setting file's validation.
      */
-    void checkValid();
+    void valid() const;
     /*!
      * To run main window.
      */
-    void run(int argc, char **argv);
+    void run(int argc, char **argv) const;
 
 private Q_SLOTS:
     /*!

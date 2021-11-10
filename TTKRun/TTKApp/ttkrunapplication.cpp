@@ -55,7 +55,7 @@ QString TTKRunApplication::id() const
     return d->m_peer->applicationId();
 }
 
-void TTKRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessage)
+void TTKRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessage) const
 {
     TTK_D(TTKRunApplication);
     d->m_activeWindow = aw;

@@ -130,7 +130,7 @@ protected:
     /*!
      * Print debug info.
      */
-    void print(qint64 position, qint64 duration);
+    void print(qint64 position, qint64 duration) const;
 
     MusicPlayer* m_musicPlayer;
     MusicPlaylist* m_musicPlaylist;
