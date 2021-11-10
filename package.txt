@@ -12,11 +12,11 @@ libcdio-release-2.1.0	http://ftp.gnu.org/gnu/libcdio
 libmad-0.15.1b	https://sourceforge.net/projects/mad
 libmpcdec_r475	https://files.musepack.net/source/musepack_src_r475.tar.gz
 libogg-1.3.5	https://xiph.org/downloads
-libopenmpt-0.3.32	https://lib.openmpt.org/libopenmpt
-libprojectm-2.2.1	https://github.com/projectM-visualizer/projectm
-libsamplerate-0.2.1	http://libsndfile.github.io/libsamplerate/download.html
-libsidplayfp-2.2.2	https://sourceforge.net/projects/sidplay-residfp
-libsndfile-1.0.31	https://github.com/libsndfile/libsndfile
+libopenmpt-0.3.33		https://lib.openmpt.org/libopenmpt
+libprojectm-2.2.1		https://github.com/projectM-visualizer/projectm
+libsamplerate-0.2.1		http://libsndfile.github.io/libsamplerate/download.html
+libsidplayfp-2.3.0.patch	https://sourceforge.net/projects/sidplay-residfp
+libsndfile-1.0.31		https://github.com/libsndfile/libsndfile
 libvorbis-1.3.7	https://xiph.org/downloads
 mp3gain-1_5_2	http://mp3gain.sourceforge.net/download.php
 MPlayer-1.2.1	http://mplayerhq.hu/design7/dload.html
