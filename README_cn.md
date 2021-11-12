@@ -58,8 +58,6 @@ Qmmp修改版二进制库下载地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 播放器二进制下载地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
-酷狗破解皮肤资源地址: **<u>https://github.com/Greedysky/KugouResource</u>**
-
 特性
 -------
 TTKMusicPlayer的一些特性

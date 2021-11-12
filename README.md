@@ -58,8 +58,6 @@ Skin Download URL: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
 
 Executable Download URL: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
-KuGou Resource Download URL: **<u>https://github.com/Greedysky/KugouResource</u>**
-
 Features
 -------
 TTKMusicPlayer can meet your most demands

@@ -58,8 +58,6 @@ Qmmp修改版二進制庫下載地址: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 播放器二進制下載地址: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
-酷狗破解皮膚資源地址: **<u>https://github.com/Greedysky/KugouResource</u>**
-
 特性
 -------
 TTKMusicPlayer的壹些特性
