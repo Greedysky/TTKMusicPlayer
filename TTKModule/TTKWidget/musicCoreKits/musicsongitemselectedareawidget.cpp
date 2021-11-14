@@ -38,7 +38,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItems *items)
     QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items->count(); ++i)
     {
-        const MusicSongItem &song = (*items)[i];
+        const MusicSongItem &song = items->at(i);
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, Qt::Unchecked);
         item->setData(MUSIC_DATA_ROLE, song.m_itemIndex);

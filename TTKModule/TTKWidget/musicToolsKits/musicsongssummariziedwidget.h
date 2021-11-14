@@ -53,7 +53,7 @@ public:
     /*!
      * Get music datas from container.
      */
-    inline const MusicSongItems& getMusicItemList() const  { return m_songItems; }
+    inline const MusicSongItems& getMusicItemList() const { return m_songItems; }
     /*!
      * Input imported music datas into container.
      */
@@ -82,7 +82,7 @@ public:
     /*!
      * Get search file index from list by given row and clear cache.
      */
-    int getSearchFileListClear(int row);
+    int cleanSearchFileLis(int row);
 
     /*!
      * Get play tool index.
@@ -234,10 +234,6 @@ private Q_SLOTS:
      */
     void showSearchWidget();
     /*!
-     * Close searched text widget.
-     */
-    void closeSearchWidget();
-    /*!
      * Current vertical slider value chanaged.
      */
     void sliderValueChanaged(int value);
@@ -247,6 +243,14 @@ private Q_SLOTS:
     void deleteFloatWidget();
 
 protected:
+    /*!
+     * Close searched text widget.
+     */
+    void closeSearchWidget();
+    /*!
+     * Close searched text widget needed.
+     */
+    void closeSearchWidgetNeeded();
     /*!
      * Check current name exist.
      */
@@ -295,7 +299,7 @@ protected:
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     TTKIntListMap m_searchfileListCache;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
-    MusicLocalSongSearchDialog *m_musicSongSearchWidget;
+    MusicLocalSongSearchDialog *m_songSearchWidget;
 
 };
 

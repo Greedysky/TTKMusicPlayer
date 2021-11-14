@@ -69,7 +69,7 @@ Q_SIGNALS:
     /*!
      * Current top widget is pressed.
      */
-    void mousePressAt(int index);
+    void itemIndexChanged(int index);
     /*!
      * Swap the item index by drag adn drop.
      */
@@ -121,24 +121,16 @@ public:
     /*!
      * Get widget item.
      */
-    QWidget *item(int index);
+    QWidget *item() const;
     /*!
      * Add widget item.
      */
     void addItem(QWidget *item);
-    /*!
-     * Remove widget item.
-     */
-    void removeItem(QWidget *item);
 
     /*!
      * Set title text.
      */
     void setTitle(const QString &text);
-    /*!
-     * Get title text.
-     */
-    QString getTitle() const;
 
     /*!
      * Set item widget to hide or not.
@@ -148,11 +140,6 @@ public:
      * Get item widget expand state.
      */
     bool itemExpand() const;
-
-    /*!
-     * Get item's count.
-     */
-    int count() const;
 
 Q_SIGNALS:
     /*!
@@ -171,7 +158,7 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
 
     QVBoxLayout *m_layout;
-    QList<QWidget*> m_itemList;
+    QWidget* m_item;
     MusicFunctionToolBoxTopWidget *m_topWidget;
 
 };
@@ -243,10 +230,6 @@ public:
      * Set title text.
      */
     void setTitle(QWidget *item, const QString &text);
-    /*!
-     * Get title text.
-     */
-    QString getTitle(QWidget *item) const;
 
     /*!
      * Reset scroll index by given position.
@@ -269,7 +252,7 @@ public Q_SLOTS:
     /*!
      * Current top widget is pressed.
      */
-    void mousePressAt(int index);
+    void itemIndexChanged(int index);
     /*!
      * Set background transparent.
      */

@@ -130,7 +130,7 @@ void MusicFunctionToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
     QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        Q_EMIT mousePressAt(m_index);
+        Q_EMIT itemIndexChanged(m_index);
         m_pressPosAt = event->pos();
     }
 }
@@ -143,7 +143,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
     {
         if(!m_isBlockMoveExpand && isItemExpand())
         {
-            Q_EMIT mousePressAt(m_index);
+            Q_EMIT itemIndexChanged(m_index);
         }
 
         QMimeData *mimeData = new QMimeData;
@@ -189,8 +189,9 @@ void MusicFunctionToolBoxTopWidget::paintEvent(QPaintEvent *event)
 MusicFunctionToolBoxWidgetItem::MusicFunctionToolBoxWidgetItem(QWidget *parent)
     : QWidget(parent)
 {
-    m_topWidget = nullptr;
     m_layout = nullptr;
+    m_item = nullptr;
+    m_topWidget = nullptr;
 }
 
 MusicFunctionToolBoxWidgetItem::MusicFunctionToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
@@ -206,25 +207,15 @@ MusicFunctionToolBoxWidgetItem::~MusicFunctionToolBoxWidgetItem()
     delete m_layout;
 }
 
-QWidget *MusicFunctionToolBoxWidgetItem::item(int index)
+QWidget *MusicFunctionToolBoxWidgetItem::item() const
 {
-    if(index < 0 || index >= m_itemList.count())
-    {
-        return nullptr;
-    }
-    return m_itemList[index];
+    return m_item;
 }
 
 void MusicFunctionToolBoxWidgetItem::addItem(QWidget *item)
 {
-    m_itemList.append(item);
+    m_item = item;
     m_layout->addWidget(item);
-}
-
-void MusicFunctionToolBoxWidgetItem::removeItem(QWidget *item)
-{
-    m_itemList.removeOne(item);
-    m_layout->removeWidget(item);
 }
 
 void MusicFunctionToolBoxWidgetItem::setTitle(const QString &text)
@@ -232,37 +223,27 @@ void MusicFunctionToolBoxWidgetItem::setTitle(const QString &text)
     m_topWidget->setTitle(text);
 }
 
-QString MusicFunctionToolBoxWidgetItem::getTitle() const
-{
-    return m_topWidget->getTitle();
-}
-
 void MusicFunctionToolBoxWidgetItem::setItemExpand(bool expand)
 {
     m_topWidget->setItemExpand(expand);
-    for(QWidget *w : qAsConst(m_itemList))
+    if(m_item)
     {
-        w->setVisible(expand);
+        m_item->setVisible(expand);
     }
 }
 
 bool MusicFunctionToolBoxWidgetItem::itemExpand() const
 {
-    if(!m_itemList.isEmpty())
+    if(m_item)
     {
-        return m_itemList.first()->isVisible();
+        return m_item->isVisible();
     }
     return false;
 }
 
-int MusicFunctionToolBoxWidgetItem::count() const
-{
-    return m_itemList.count();
-}
-
 void MusicFunctionToolBoxWidgetItem::initialize()
 {
-    connect(m_topWidget, SIGNAL(mousePressAt(int)), parent(), SLOT(mousePressAt(int)));
+    connect(m_topWidget, SIGNAL(itemIndexChanged(int)), parent(), SLOT(itemIndexChanged(int)));
     connect(m_topWidget, SIGNAL(swapDragItemIndex(int,int)), SIGNAL(swapDragItemIndex(int,int)));
 
     m_layout = new QVBoxLayout(this);
@@ -359,15 +340,12 @@ void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
     for(int i=0; i<m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
+        if(it->item() == item)
         {
-            if(it->item(j) == item)
-            {
-                m_layout->removeWidget(item);
-                m_itemList.takeAt(i).m_widgetItem->deleteLater();
-                m_currentIndex = 0;
-                return;
-            }
+            m_layout->removeWidget(item);
+            m_itemList.takeAt(i).m_widgetItem->deleteLater();
+            m_currentIndex = 0;
+            return;
         }
     }
 }
@@ -392,31 +370,12 @@ void MusicFunctionToolBoxWidget::setTitle(QWidget *item, const QString &text)
     for(int i=0; i<m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
+        if(it->item() == item)
         {
-            if(it->item(j) == item)
-            {
-                it->setTitle(text);
-                return;
-            }
+            it->setTitle(text);
+            return;
         }
     }
-}
-
-QString MusicFunctionToolBoxWidget::getTitle(QWidget *item) const
-{
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
-        {
-            if(it->item(j) == item)
-            {
-                return it->getTitle();
-            }
-        }
-    }
-    return QString();
 }
 
 void MusicFunctionToolBoxWidget::resizeScrollIndex(int index) const
@@ -447,7 +406,7 @@ void MusicFunctionToolBoxWidget::setCurrentIndex(int index)
     }
 }
 
-void MusicFunctionToolBoxWidget::mousePressAt(int index)
+void MusicFunctionToolBoxWidget::itemIndexChanged(int index)
 {
     m_currentIndex = foundMappingIndex(index);
     for(int i=0; i<m_itemList.count(); ++i)

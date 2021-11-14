@@ -603,7 +603,7 @@ void MusicApplication::musicPlayIndex(int row, int)
 
     if(!m_musicSongTreeWidget->searchFileListEmpty())
     {
-        row = m_musicSongTreeWidget->getSearchFileListClear(row);
+        row = m_musicSongTreeWidget->cleanSearchFileLis(row);
     }
 
     m_musicPlaylist->setCurrentIndex(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->mapFilePathBySongIndex(m_currentMusicSongTreeIndex, row));

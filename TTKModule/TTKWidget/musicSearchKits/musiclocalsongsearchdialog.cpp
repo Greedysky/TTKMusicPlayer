@@ -51,16 +51,16 @@ MusicLocalSongSearchDialog::~MusicLocalSongSearchDialog()
 
 bool MusicLocalSongSearchDialog::close()
 {
-    clearSearchedText();
+    clear();
     return QDialog::close();
 }
 
-QString MusicLocalSongSearchDialog::getSearchedText() const
+QString MusicLocalSongSearchDialog::getText() const
 {
     return m_searchLine->text();
 }
 
-void MusicLocalSongSearchDialog::clearSearchedText() const
+void MusicLocalSongSearchDialog::clear() const
 {
     m_searchLine->clear();
 }

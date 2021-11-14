@@ -152,9 +152,6 @@ void MusicSongDlnaTransferWidget::musicPlay()
     QDlnaClient *client = m_dlnaFinder->client(index);
     m_dlnaFileServer->setPrefixPath(info.path());
     client->tryToPlayFile(m_dlnaFileServer->getLocalAddress(client->server()) + info.fileName());
-
-//    m_isPlaying = !m_isPlaying;
-//    m_ui->playButton->setIcon(QIcon(m_isPlaying ? ":/functions/btn_pause_hover" : ":/functions/btn_play_hover"));
 }
 
 void MusicSongDlnaTransferWidget::musicPrevious()

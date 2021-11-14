@@ -41,7 +41,7 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongs &son
 
     for(int i=0; i<m_musicSongs->count(); ++i)
     {
-        MusicSong *song = &((*m_musicSongs)[i]);
+        MusicSong *song = &(*m_musicSongs)[i];
         createItem(i, *song);
         G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->getMusicAddTimeStr().toULongLong(), this, m_type));
     }
@@ -54,7 +54,7 @@ void MusicAbstractDownloadTableWidget::musicPlay()
         return;
     }
 
-    const QString &path = (*m_musicSongs)[currentRow()].getMusicPath();
+    const QString &path = m_musicSongs->at(currentRow()).getMusicPath();
     Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 

@@ -41,15 +41,15 @@ public:
     /*!
      * Get the search text that the user searched.
      */
-    QString getSearchedText() const;
+    QString getText() const;
     /*!
      * Clear the search text.
      */
-    void clearSearchedText() const;
+    void clear() const;
     /*!
      * Set line edit input focus.
      */
-    void setVisible(bool visible);
+    virtual void setVisible(bool visible) override;
 
 public Q_SLOTS:
     /*!

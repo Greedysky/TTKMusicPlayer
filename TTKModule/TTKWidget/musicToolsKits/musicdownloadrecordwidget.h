@@ -68,7 +68,7 @@ protected:
     /*!
      * Create widget item.
      */
-    void createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index);
+    void createWidgetItem(MusicAbstractDownloadTableWidget *widget, const QString &text, int index);
     /*!
      * Create item.
      */

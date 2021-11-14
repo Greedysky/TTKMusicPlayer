@@ -261,13 +261,10 @@ void MusicSongsToolBoxWidget::setMusicSongSort(QWidget *item, MusicSongSort *sor
     for(int i=0; i<m_itemList.count(); ++i)
     {
         MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
+        if(it->item() == item)
         {
-            if(it->item(j) == item)
-            {
-                TTKStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setMusicSongSort(sort);
-                return;
-            }
+            TTKStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setMusicSongSort(sort);
+            return;
         }
     }
 }

@@ -93,18 +93,18 @@ void MusicDownloadToolBoxWidget::updateItemTitle(int index)
     }
 }
 
-void MusicDownloadToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *w, const QString &text, int index)
+void MusicDownloadToolBoxWidget::createWidgetItem(MusicAbstractDownloadTableWidget *widget, const QString &text, int index)
 {
     MusicSongItem *item = &m_songItems.last();
     item->m_itemName = text;
     item->m_itemIndex = index;
-    item->m_itemObject = w;
-    addItem(w, item->m_itemName);
+    item->m_itemObject = widget;
+    addItem(widget, item->m_itemName);
 
-    w->setParentToolIndex(item->m_itemIndex);
-    w->setSongsFileName(&item->m_songs);
+    widget->setParentToolIndex(item->m_itemIndex);
+    widget->setSongsFileName(&item->m_songs);
 
-    setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    setTitle(widget, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 MusicFunctionToolBoxWidgetItem *MusicDownloadToolBoxWidget::createItem(QWidget *item, const QString &text)
