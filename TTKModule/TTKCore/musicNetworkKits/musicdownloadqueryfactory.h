@@ -38,79 +38,79 @@ class TTK_MODULE_EXPORT MusicDownLoadQueryFactory
     TTK_DECLARE_MODULE(MusicDownLoadQueryFactory)
 public:
     /*!
-     * Get query request object by type.
+     * Generate query request object by type.
      */
-    MusicAbstractQueryRequest *getQueryRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateQueryRequest(QObject *parent = nullptr);
     /*!
-     * Get movie request object by type.
+     * Generate movie request object by type.
      */
-    MusicAbstractQueryRequest *getMovieRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateMovieRequest(QObject *parent = nullptr);
     /*!
-     * Get album request object by type.
+     * Generate album request object by type.
      */
-    MusicAbstractQueryRequest *getAlbumRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateAlbumRequest(QObject *parent = nullptr);
     /*!
-     * Get artist request object by type.
+     * Generate artist request object by type.
      */
-    MusicAbstractQueryRequest *getArtistRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateArtistRequest(QObject *parent = nullptr);
     /*!
-     * Get artist category request object by type.
+     * Generate artist category request object by type.
      */
-    MusicAbstractQueryRequest *getArtistListRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateArtistListRequest(QObject *parent = nullptr);
     /*!
-     * Get toplist request object by type.
+     * Generate toplist request object by type.
      */
-    MusicAbstractQueryRequest *getToplistRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateToplistRequest(QObject *parent = nullptr);
     /*!
-     * Get playlist request object by type.
+     * Generate playlist request object by type.
      */
-    MusicAbstractQueryRequest *getPlaylistRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generatePlaylistRequest(QObject *parent = nullptr);
     /*!
-     * Get recommend request object by type.
+     * Generate recommend request object by type.
      */
-    MusicAbstractQueryRequest *getRecommendRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateRecommendRequest(QObject *parent = nullptr);
     /*!
-     * Get similar song query request object by type.
+     * Generate similar song query request object by type.
      */
-    MusicAbstractQueryRequest *getSimilarSongRequest(QObject *parent = nullptr);
+    MusicAbstractQueryRequest *generateSimilarSongRequest(QObject *parent = nullptr);
 
     /*!
-     * Get similar query request object by type.
+     * Generate similar query request object by type.
      */
-    MusicSimilarRequest *getSimilarArtistRequest(QObject *parent = nullptr);
+    MusicSimilarRequest *generateSimilarArtistRequest(QObject *parent = nullptr);
     /*!
-     * Get suggest request object by type.
+     * Generate suggest request object by type.
      */
-    MusicSongSuggestRequest *getSuggestRequest(QObject *parent = nullptr);
+    MusicSongSuggestRequest *generateSuggestRequest(QObject *parent = nullptr);
     /*!
-     * Get song comment request object by type.
+     * Generate song comment request object by type.
      */
-    MusicCommentsRequest *getSongCommentRequest(QObject *parent = nullptr);
+    MusicCommentsRequest *generateSongCommentRequest(QObject *parent = nullptr);
     /*!
-     * Get playlist comment request object by type.
+     * Generate playlist comment request object by type.
      */
-    MusicCommentsRequest *getPlaylistCommentRequest(QObject *parent = nullptr);
+    MusicCommentsRequest *generatePlaylistCommentRequest(QObject *parent = nullptr);
     /*!
-     * Get discover list request object by type.
+     * Generate discover list request object by type.
      */
-    MusicDiscoverListRequest *getDiscoverListRequest(QObject *parent = nullptr);
+    MusicDiscoverListRequest *generateDiscoverListRequest(QObject *parent = nullptr);
     /*!
-     * Get translation object by type.
+     * Generate translation object by type.
      */
-    MusicTranslationRequest *getTranslationRequest(QObject *parent = nullptr);
+    MusicTranslationRequest *generateTranslationRequest(QObject *parent = nullptr);
 
     /*!
-     * Get download small picture object by type.
+     * Generate download small picture object by type.
      */
-    MusicAbstractDownLoadRequest *getDownloadSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *generateSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
     /*!
-     * Get download lrc object by type.
+     * Generate download lrc object by type.
      */
-    MusicAbstractDownLoadRequest *getDownloadLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
+    MusicAbstractDownLoadRequest *generateLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent = nullptr);
     /*!
-     * Get download big picture object by type.
+     * Generate download big picture object by type.
      */
-    MusicDownloadImageRequest *getDownloadBigPictureRequest(const QString &name, const QString &save, QObject *parent = nullptr);
+    MusicDownloadImageRequest *generateBigPictureRequest(const QString &name, const QString &save, QObject *parent = nullptr);
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

@@ -11,7 +11,7 @@ void MusicLrcCommentsWidget::initWidget(bool isPain)
 {
     MusicCommentsWidget::initWidget(isPain);
 
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getSongCommentRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateSongCommentRequest(this);
     connect(m_networkRequest, SIGNAL(createSearchedItem(MusicResultsItem)), SLOT(createSearchedItem(MusicResultsItem)));
 }
 

@@ -378,7 +378,7 @@ void MusicApplicationModule::musicSetSoundEffect()
     }
 
     MusicSoundEffectsWidget sound;
-    sound.setInputObject(this);
+    sound.setInputModule(this);
     sound.exec();
 }
 

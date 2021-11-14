@@ -246,7 +246,7 @@ protected:
     /*!
      * Current index is searched or not.
      */
-    bool isSearchPlayIndex() const;
+    inline bool isSearchPlayIndex() const { return m_lastSearchIndex == m_currentIndex; }
     /*!
      * Close searched text widget.
      */
@@ -268,17 +268,13 @@ protected:
      */
     void createWidgetItem(MusicSongItem *item);
     /*!
-     * Delete all objects.
-     */
-    void clearAllList();
-    /*!
      * Set item title.
      */
     void setItemTitle(MusicSongItem *item);
     /*!
      * Set input connection.
      */
-    void setInputObject(QObject *object) const;
+    void setInputModule(QObject *object) const;
     /*!
      * Resize window bound by widget resize called.
      */

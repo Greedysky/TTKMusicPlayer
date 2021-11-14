@@ -162,7 +162,7 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
     delete m_ui;
 }
 
-void MusicSoundEffectsWidget::setInputObject(QObject *object)
+void MusicSoundEffectsWidget::setInputModule(QObject *object)
 {
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {

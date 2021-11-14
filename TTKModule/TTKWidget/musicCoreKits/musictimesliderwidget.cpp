@@ -21,7 +21,7 @@ MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void MusicTimeSliderWidget::setInputObject(QObject *object) const
+void MusicTimeSliderWidget::setInputModule(QObject *object) const
 {
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
     connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(musicPlayAnyTimeAt(int)));

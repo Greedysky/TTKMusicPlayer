@@ -93,7 +93,7 @@ public:
     /*!
      * Set input connection.
      */
-    void setInputObject(QObject *object);
+    void setInputModule(QObject *object);
 
 Q_SIGNALS:
     /*!

@@ -29,7 +29,8 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     m_toolDeleteChanged = false;
 
     m_listMaskWidget = new MusicSongsToolBoxMaskWidget(this);
-    setInputObject(m_listMaskWidget);
+    setInputModule(m_listMaskWidget);
+
     connect(m_listMaskWidget, SIGNAL(itemIndexChanged(int)), SLOT(itemIndexChanged(int)));
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
@@ -46,7 +47,11 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
     delete m_listMaskWidget;
     delete m_listFunctionWidget;
     delete m_songSearchWidget;
-    clearAllList();
+
+    while(!m_songItems.isEmpty())
+    {
+        delete m_songItems.takeLast().m_itemObject;
+    }
 }
 
 bool MusicSongsSummariziedWidget::addMusicItemList(const MusicSongItems &names)
@@ -953,11 +958,6 @@ void MusicSongsSummariziedWidget::deleteFloatWidget()
     m_listFunctionWidget = nullptr;
 }
 
-bool MusicSongsSummariziedWidget::isSearchPlayIndex() const
-{
-    return m_lastSearchIndex == m_currentIndex;
-}
-
 void MusicSongsSummariziedWidget::closeSearchWidget()
 {
     if(m_songSearchWidget)
@@ -1030,18 +1030,10 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
 
     ///connect to items
-    setInputObject(m_itemList.last().m_widgetItem);
+    setInputModule(m_itemList.last().m_widgetItem);
 
     object->setSongsFileName(&item->m_songs);
     setTitle(object, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
-}
-
-void MusicSongsSummariziedWidget::clearAllList()
-{
-    while(!m_songItems.isEmpty())
-    {
-        delete m_songItems.takeLast().m_itemObject;
-    }
 }
 
 void MusicSongsSummariziedWidget::setItemTitle(MusicSongItem *item)
@@ -1055,7 +1047,7 @@ void MusicSongsSummariziedWidget::setItemTitle(MusicSongItem *item)
     }
 }
 
-void MusicSongsSummariziedWidget::setInputObject(QObject *object) const
+void MusicSongsSummariziedWidget::setInputModule(QObject *object) const
 {
     connect(object, SIGNAL(addNewRowItem()), SLOT(addNewRowItem()));
     connect(object, SIGNAL(deleteRowItemAll(int)), SLOT(deleteRowItemAll(int)));

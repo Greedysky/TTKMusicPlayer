@@ -376,7 +376,7 @@ void MusicLrcContainerForInterior::updateAnimationLrc()
 
 void MusicLrcContainerForInterior::getTranslatedLrc()
 {
-    MusicTranslationRequest *request = G_DOWNLOAD_QUERY_PTR->getTranslationRequest(this);
+    MusicTranslationRequest *request = G_DOWNLOAD_QUERY_PTR->generateTranslationRequest(this);
     connect(request, SIGNAL(downLoadDataChanged(QString)), SLOT(queryTranslatedLrcFinished(QString)));
 
     request->setHeader("name", m_lrcAnalysis->getCurrentFilePath());

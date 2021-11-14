@@ -34,7 +34,7 @@ public:
     /*!
      * Set input connection.
      */
-    void setInputObject(QObject *object);
+    void setInputModule(QObject *object);
     /*!
      * Set hotKey by given string list keys.
      */

@@ -157,7 +157,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         }
 
         MusicSemaphoreLoop loop;
-        MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->getQueryRequest(this);
+        MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->getMusicName().trimmed());
         loop.exec();
@@ -165,7 +165,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         if(!d->isEmpty())
         {
             const MusicObject::MusicSongInformation info(d->getMusicSongInfos().first());
-            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->getDownloadLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
+            MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->generateLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
             d->startToDownload();
             loop.exec();
 #if TTK_QT_VERSION_CHECK(5,13,0)

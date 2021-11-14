@@ -52,7 +52,8 @@ private Q_SLOTS:
 
 protected:
     QTextEdit *m_userCommit;
-    QLabel *m_userName, *m_timerLabel, *m_iconLabel, *m_starLabel;
+    QLabel *m_userName, *m_timerLabel;
+    QLabel *m_iconLabel, *m_starLabel;
 
 };
 
@@ -122,9 +123,9 @@ protected:
     QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;
     QWidget *m_messageComments;
-    MusicCommentsRequest *m_networkRequest;
-    QList<MusicCommentsItem*> m_commentsItems;
     MusicPageQueryWidget *m_pageQueryWidget;
+    QList<MusicCommentsItem*> m_commentsItems;
+    MusicCommentsRequest *m_networkRequest;
 
 };
 

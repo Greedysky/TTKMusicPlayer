@@ -151,9 +151,9 @@ MusicCommentsWidget::MusicCommentsWidget(QWidget *parent)
     m_topLabel = nullptr;
     m_commentsLabel = nullptr;
     m_messageEdit = nullptr;
+    m_pageQueryWidget = nullptr;
     m_messageComments = nullptr;
     m_networkRequest = nullptr;
-    m_pageQueryWidget = nullptr;
 }
 
 MusicCommentsWidget::~MusicCommentsWidget()
@@ -162,9 +162,9 @@ MusicCommentsWidget::~MusicCommentsWidget()
     delete m_topLabel;
     delete m_commentsLabel;
     delete m_messageEdit;
+    delete m_pageQueryWidget;
     delete m_messageComments;
     delete m_networkRequest;
-    delete m_pageQueryWidget;
 }
 
 void MusicCommentsWidget::initWidget(bool isPain)

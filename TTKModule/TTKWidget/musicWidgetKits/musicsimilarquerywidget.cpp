@@ -44,7 +44,7 @@ MusicSimilarQueryWidget::MusicSimilarQueryWidget(QWidget *parent)
 void MusicSimilarQueryWidget::setSongName(const QString &name)
 {
     MusicAbstractItemQueryWidget::setSongName(name);
-    m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->getSimilarSongRequest(this));
+    m_queryTableWidget->setQueryInput(G_DOWNLOAD_QUERY_PTR->generateSimilarSongRequest(this));
     m_queryTableWidget->startSearchQuery(MusicUtils::String::songName(name));
 
     createLabels();

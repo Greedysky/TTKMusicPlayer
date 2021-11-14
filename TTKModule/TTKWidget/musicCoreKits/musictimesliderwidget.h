@@ -56,7 +56,7 @@ public:
     /*!
      * Set input connection.
      */
-    void setInputObject(QObject *object) const;
+    void setInputModule(QObject *object) const;
 
 public Q_SLOTS:
     /*!

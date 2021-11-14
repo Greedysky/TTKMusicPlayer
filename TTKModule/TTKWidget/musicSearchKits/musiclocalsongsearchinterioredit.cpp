@@ -11,7 +11,7 @@ MusicLocalSongSearchInteriorEdit::MusicLocalSongSearchInteriorEdit(QWidget *pare
     m_suggestRequest = nullptr;
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
 
-    m_discoverRequest = G_DOWNLOAD_QUERY_PTR->getDiscoverListRequest(this);
+    m_discoverRequest = G_DOWNLOAD_QUERY_PTR->generateDiscoverListRequest(this);
     connect(m_discoverRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(searchToplistInfoFinished(QString)));
     m_discoverRequest->startToSearch();
 }
@@ -43,7 +43,7 @@ void MusicLocalSongSearchInteriorEdit::closePopWidget()
 void MusicLocalSongSearchInteriorEdit::textChanged(const QString &text)
 {
     delete m_suggestRequest;
-    m_suggestRequest = G_DOWNLOAD_QUERY_PTR->getSuggestRequest(this);
+    m_suggestRequest = G_DOWNLOAD_QUERY_PTR->generateSuggestRequest(this);
     connect(m_suggestRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
     m_suggestRequest->startToSearch(text);
 

@@ -83,8 +83,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->musicKey->setFocus();
     m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
 
-    m_ui->musicTimeWidget->setInputObject(this);
-    G_HOTKEY_PTR->setInputObject(this);
+    m_ui->musicTimeWidget->setInputModule(this);
+    G_HOTKEY_PTR->setInputModule(this);
 
     /////////// Mouse tracking
     m_ui->background->installEventFilter(this);

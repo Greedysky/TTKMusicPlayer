@@ -35,7 +35,7 @@ MusicToplistQueryWidget::MusicToplistQueryWidget(QWidget *parent)
     m_queryTableWidget = new MusicToplistQueryTableWidget(this);
     m_queryTableWidget->hide();
 
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->getToplistRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateToplistRequest(this);
     m_queryTableWidget->setQueryInput(m_networkRequest);
 
     connect(m_networkRequest, SIGNAL(createToplistInfoItem(MusicResultsItem)), SLOT(createToplistInfoItem(MusicResultsItem)));

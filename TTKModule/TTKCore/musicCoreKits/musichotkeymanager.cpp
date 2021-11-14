@@ -3,7 +3,7 @@
 
 #include <QStringList>
 
-void MusicHotKeyManager::setInputObject(QObject *object)
+void MusicHotKeyManager::setInputModule(QObject *object)
 {
     for(int i=0; i<8; ++i)
     {
