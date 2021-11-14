@@ -119,11 +119,11 @@ QString MusicHotKeyManager::toString(int key, int modifiers)
     const quint32 modList[] = {Qt::ControlModifier, Qt::ShiftModifier, Qt::AltModifier};
 
     QString keyStr;
-    for(int j=0; j<3; j++)
+    for(int i=0; i<3; i++)
     {
-        if(modifiers & modList[j])
+        if(modifiers & modList[i])
         {
-            keyStr.append(strModList[j] + "+");
+            keyStr.append(strModList[i] + "+");
         }
     }
 

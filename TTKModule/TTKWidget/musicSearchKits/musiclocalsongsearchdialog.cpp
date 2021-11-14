@@ -41,7 +41,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     setLayout(layout);
 
     connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-    connect(m_searchLine, SIGNAL(cursorPositionChanged(int,int)), parent, SLOT(musicSearchIndexChanged(int,int)));
+    connect(m_searchLine, SIGNAL(cursorPositionChanged(int,int)), parent, SLOT(musicSearchResultChanged(int,int)));
 }
 
 MusicLocalSongSearchDialog::~MusicLocalSongSearchDialog()

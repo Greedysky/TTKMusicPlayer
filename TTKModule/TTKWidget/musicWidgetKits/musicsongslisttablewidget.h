@@ -56,9 +56,9 @@ public:
      */
     void clearAllItems();
     /*!
-     * Set current searched file indexs.
+     * Set current search result indexs.
      */
-    void setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &result);
+    void updateSearchFileName(MusicSongs *songs, const TTKIntList &result);
 
     /*!
      * Set music sort.
@@ -94,7 +94,7 @@ Q_SIGNALS:
     /*!
      * Check current list is searched or not.
      */
-    void isSearchFileListEmpty(bool &empty);
+    void isSearchResultEmpty(bool &empty);
     /*!
      * Delete items from indexs and check remove file or not.
      */

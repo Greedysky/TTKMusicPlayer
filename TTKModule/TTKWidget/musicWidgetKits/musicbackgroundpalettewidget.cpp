@@ -139,6 +139,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     QGridLayout *layout = new QGridLayout(m_ui->mutliWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     for(int i=0; i<COLOR_ROW; ++i)
+    {
         for(int j=0; j<COLOR_COL; ++j)
         {
             MusicBackgroundPalette *label = new MusicBackgroundPalette(this);
@@ -151,6 +152,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
             connect(label, SIGNAL(currentColorToFileChanged(QColor)), SLOT(currentColorToFile(QColor)));
             connect(label, SIGNAL(currentColorToMemoryChanged(QString)), SLOT(currentColorToMemory(QString)));
         }
+    }
     m_ui->mutliWidget->setLayout(layout);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));

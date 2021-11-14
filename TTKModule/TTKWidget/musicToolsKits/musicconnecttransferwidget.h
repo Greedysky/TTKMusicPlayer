@@ -73,9 +73,9 @@ public Q_SLOTS:
      */
     void startToTransferFiles();
     /*!
-     * Search file from list.
+     * Search result from list.
      */
-    void musicSearchIndexChanged(int row, int col);
+    void musicSearchResultChanged(int row, int col);
     /*!
      * Create the left button column
      */
@@ -100,7 +100,7 @@ protected:
     int m_currentIndex;
     MusicSongs m_currentSongs;
     QButtonGroup *m_buttonGroup;
-    TTKIntListMap m_searchfileListCache;
+    TTKIntListMap m_searchResultCache;
     MusicDeviceInfoItem *m_currentDeviceItem;
     QString m_songCountLabel, m_selectCountLabel;
     MusicConnectTransferThread *m_transferThread;

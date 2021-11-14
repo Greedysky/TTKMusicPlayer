@@ -181,7 +181,7 @@ void MusicSongsListTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const TTKIntList &result)
+void MusicSongsListTableWidget::updateSearchFileName(MusicSongs *songs, const TTKIntList &result)
 {
     m_searchedSongs.clear();
     if(songs->count() == result.count())
@@ -404,7 +404,7 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
         case 3:
         {
             bool empty;
-            Q_EMIT isSearchFileListEmpty(empty);
+            Q_EMIT isSearchResultEmpty(empty);
             if(!empty)
             {
                 return;
@@ -422,7 +422,7 @@ void MusicSongsListTableWidget::itemCellClicked(int row, int column)
         case 4:
         {
             bool empty;
-            Q_EMIT isSearchFileListEmpty(empty);
+            Q_EMIT isSearchResultEmpty(empty);
             if(!empty)
             {
                 return;
@@ -752,7 +752,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
 
     bool empty;
-    Q_EMIT isSearchFileListEmpty(empty);
+    Q_EMIT isSearchResultEmpty(empty);
     rightClickMenu.addAction(tr("Rename"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
     rightClickMenu.addAction(tr("Delete With File"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);
@@ -796,7 +796,7 @@ void MusicSongsListTableWidget::closeRenameItem()
 void MusicSongsListTableWidget::startToDrag()
 {
     bool empty;
-    Q_EMIT isSearchFileListEmpty(empty);
+    Q_EMIT isSearchResultEmpty(empty);
     if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
         MusicSongs songs;

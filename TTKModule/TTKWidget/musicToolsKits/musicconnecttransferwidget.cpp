@@ -43,7 +43,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     connect(m_ui->transferUSBButton, SIGNAL(clicked()), SLOT(startToTransferFiles()));
 
     m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MQSSLineEditStyle05);
-    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
+    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
 
     m_transferThread = new MusicConnectTransferThread(this);
     connect(m_transferThread, SIGNAL(transferFileFinished(QString)), m_ui->completeTableWidget, SLOT(createItem(QString)));
@@ -139,10 +139,10 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
 
     for(int index : list)
     {
-        if(!m_searchfileListCache.value(0).isEmpty())
+        if(!m_searchResultCache.value(0).isEmpty())
         {
             const int count = m_ui->searchLineEdit->text().trimmed().count();
-            index = m_searchfileListCache.value(count)[index];
+            index = m_searchResultCache.value(count)[index];
         }
         paths << m_currentSongs[index].getMusicPath();
     }
@@ -174,7 +174,7 @@ void MusicConnectTransferWidget::currentPlaylistSelected(int index)
         return;
     }
 
-    m_searchfileListCache.clear();
+    m_searchResultCache.clear();
     m_ui->searchLineEdit->clear();
     m_currentSongs = songs[m_currentIndex = index].m_songs;
     createAllItems(m_currentSongs);
@@ -198,17 +198,17 @@ void MusicConnectTransferWidget::startToTransferFiles()
     m_transferThread->start();
 }
 
-void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
+void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
 {
     TTKIntList result;
-    for(int j=0; j<m_currentSongs.count(); ++j)
+    for(int i=0; i<m_currentSongs.count(); ++i)
     {
-        if(m_currentSongs[j].getMusicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_currentSongs[i].getMusicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
-            result << j;
+            result << i;
         }
     }
-    m_searchfileListCache.insert(index, result);
+    m_searchResultCache.insert(index, result);
 
     MusicSongs songs;
     for(const int index : qAsConst(result))

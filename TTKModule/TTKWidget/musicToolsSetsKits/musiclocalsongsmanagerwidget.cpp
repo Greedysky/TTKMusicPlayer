@@ -70,7 +70,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
     connect(m_ui->auditionButton, SIGNAL(clicked()), SLOT(auditionButtonClick()));
     connect(m_ui->addButton, SIGNAL(clicked()), SLOT(addButtonClick()));
-    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
+    connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchResultChanged(int,int)));
 
     connect(m_ui->songlistTable, SIGNAL(cellClicked(int,int)), SLOT(itemCellOnClick(int,int)));
     connect(m_ui->songlistTable, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
@@ -172,12 +172,12 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row, int col)
         case 3:
         case 4:
         {
-            if(!m_searchfileListCache.isEmpty())
+            if(!m_searchResultCache.isEmpty())
             {
                 const int count = m_ui->searchLineEdit->text().trimmed().count();
-                row = m_searchfileListCache.value(count)[row];
+                row = m_searchResultCache.value(count)[row];
                 m_ui->searchLineEdit->clear();
-                m_searchfileListCache.clear();
+                m_searchResultCache.clear();
             }
             Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row].absoluteFilePath()));
             break;
@@ -188,19 +188,19 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row, int col)
 
 void MusicLocalSongsManagerWidget::itemDoubleClicked(int row, int)
 {
-    if(!m_searchfileListCache.isEmpty())
+    if(!m_searchResultCache.isEmpty())
     {
         const int count = m_ui->searchLineEdit->text().trimmed().count();
-        row = m_searchfileListCache.value(count)[row];
+        row = m_searchResultCache.value(count)[row];
         m_ui->searchLineEdit->clear();
-        m_searchfileListCache.clear();
+        m_searchResultCache.clear();
     }
     Q_EMIT addSongToPlaylist(QStringList(m_fileNames[row].absoluteFilePath()));
 }
 
 void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 {
-    TTK_LOGGER_INFO("Stop fetch");
+    TTK_LOGGER_INFO("Stop fetch result");
     loadingLabelState(false);
 
     m_ui->songlistTable->setFiles(name);
@@ -209,7 +209,7 @@ void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
 
 void MusicLocalSongsManagerWidget::filterScanChanged(int index)
 {
-    TTK_LOGGER_INFO("Start fetch");
+    TTK_LOGGER_INFO("Start fetch result");
     m_thread->stopAndQuitThread();
 
     if(index == 0)
@@ -231,18 +231,18 @@ void MusicLocalSongsManagerWidget::filterScanChanged(int index)
     m_thread->start();
 }
 
-void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
+void MusicLocalSongsManagerWidget::musicSearchResultChanged(int, int index)
 {
     TTKIntList result;
-    for(int j=0; j<m_fileNames.count(); ++j)
+    for(int i=0; i<m_fileNames.count(); ++i)
     {
-        if(m_fileNames[j].fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_fileNames[i].fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
-            result << j;
+            result << i;
         }
     }
 
-    m_searchfileListCache.insert(index, result);
+    m_searchResultCache.insert(index, result);
     clearAllItems();
 
     QFileInfoList names;
@@ -404,10 +404,10 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     TTKIntSet auditionRow; //if selected multi rows
     for(QTableWidgetItem *item : m_ui->songlistTable->selectedItems())
     {
-        if(!m_searchfileListCache.isEmpty())
+        if(!m_searchResultCache.isEmpty())
         {
             const int count = m_ui->searchLineEdit->text().trimmed().count();
-            auditionRow.insert(m_searchfileListCache.value(count)[item->row()]);
+            auditionRow.insert(m_searchResultCache.value(count)[item->row()]);
         }
         else
         {
@@ -415,7 +415,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
         }
     }
     m_ui->searchLineEdit->clear();
-    m_searchfileListCache.clear();
+    m_searchResultCache.clear();
 
     TTKIntList auditionList = auditionRow.values();
     std::sort(auditionList.begin(), auditionList.end());
@@ -474,7 +474,7 @@ void MusicLocalSongsManagerWidget::controlEnabled(bool state)
 {
     clearAllItems();
     m_ui->searchLineEdit->clear();
-    m_searchfileListCache.clear();
+    m_searchResultCache.clear();
 
     m_ui->allSelectedcheckBox->setEnabled(state);
     m_ui->auditionButton->setEnabled(state);

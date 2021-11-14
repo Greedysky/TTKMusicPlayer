@@ -14,10 +14,11 @@ MusicRemoteWidgetForSquare::MusicRemoteWidgetForSquare(QWidget *parent)
         grid->setRowMinimumHeight(i, 30);
         grid->setRowStretch(i, 1);
     }
-    for(int j=0; j<3; j++)
+
+    for(int i=0; i<3; i++)
     {
-        grid->setColumnMinimumWidth(j, 30);
-        grid->setColumnStretch(j, 1);
+        grid->setColumnMinimumWidth(i, 30);
+        grid->setColumnStretch(i, 1);
     }
     m_mainWidget->setFixedSize(70, 70);
 

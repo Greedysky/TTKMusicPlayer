@@ -87,9 +87,9 @@ public Q_SLOTS:
      */
     void filterScanChanged(int index);
     /*!
-     * Search file from list.
+     * Search result from list.
      */
-    void musicSearchIndexChanged(int row, int col);
+    void musicSearchResultChanged(int row, int col);
     /*!
      * Update file list.
      */
@@ -150,7 +150,7 @@ protected:
     Ui::MusicLocalSongsManagerWidget *m_ui;
     QFileInfoList m_fileNames;
     MusicLocalSongsManagerThread *m_thread;
-    TTKIntListMap m_searchfileListCache;
+    TTKIntListMap m_searchResultCache;
 
 };
 

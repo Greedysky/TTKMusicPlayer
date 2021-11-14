@@ -76,13 +76,9 @@ public:
     QString mapFilePathBySongIndex(int toolIndex, int index) const;
 
     /*!
-     * Check current search file is empty or not.
+     * Get search result index from list by given row and clear cache.
      */
-    inline bool searchFileListEmpty() const { return m_searchfileListCache.isEmpty(); }
-    /*!
-     * Get search file index from list by given row and clear cache.
-     */
-    int cleanSearchFileLis(int row);
+    int cleanSearchResult(int row);
 
     /*!
      * Get play tool index.
@@ -163,9 +159,9 @@ public Q_SLOTS:
      */
     void musicLrcBatchDownload();
     /*!
-     * Search file from list.
+     * Search result from list.
      */
-    void musicSearchIndexChanged(int row, int index);
+    void musicSearchResultChanged(int row, int index);
 
     /*!
      * Update current play index from config file.
@@ -202,7 +198,7 @@ public Q_SLOTS:
     /*!
      * Check current list is searched or not.
      */
-    void isSearchFileListEmpty(bool &empty);
+    void isSearchResultEmpty(bool &empty);
     /*!
      * Set current music song play count by given song index.
      */
@@ -243,6 +239,14 @@ private Q_SLOTS:
     void deleteFloatWidget();
 
 protected:
+    /*!
+     * Check current search result is empty or not.
+     */
+    inline bool hasSearchResult() const { return !m_searchResultCache.isEmpty(); }
+    /*!
+     * Current index is searched or not.
+     */
+    bool isSearchPlayIndex() const;
     /*!
      * Close searched text widget.
      */
@@ -290,14 +294,15 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     int m_playToolIndex;
-    int m_searchFileLevel;
+    int m_searchResultLevel;
+    int m_lastSearchIndex;
     int m_selectImportIndex;
     int m_selectDeleteIndex;
     bool m_toolDeleteChanged;
 
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    TTKIntListMap m_searchfileListCache;
+    TTKIntListMap m_searchResultCache;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_songSearchWidget;
 
