@@ -71,7 +71,7 @@ void MusicDownloadStatusModule::checkLrcValid()
        }
 
        ///Start the request query
-       MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateQueryRequest(this);
+       MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, fileName);
        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(currentLrcDataDownload()));
     }
@@ -104,11 +104,11 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         }
 
         ///download lrc
-        G_DOWNLOAD_QUERY_PTR->generateLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeLrcRequest(musicSongInfo.m_lrcUrl, MusicUtils::String::lrcPrefix() + fileName + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        G_DOWNLOAD_QUERY_PTR->generateSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeSmallPictureRequest(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture
-        G_DOWNLOAD_QUERY_PTR->generateBigPictureRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
+        G_DOWNLOAD_QUERY_PTR->makeBigPictureRequest(count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }
     else
     {

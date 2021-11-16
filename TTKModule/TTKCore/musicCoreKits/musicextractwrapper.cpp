@@ -255,7 +255,7 @@ bool MusicExtractWrapper::inputSkin(MusicBackgroundImage *image, const QString &
     memset(&fileInfo, 0, sizeof(fileInfo));
 
     zipOpenNewFileInZip(zFile, qPrintable(nPrefix + SKN_FILE), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);
-    QByteArray data = MusicUtils::Image::GeneratePixmapData(image->m_pix);
+    QByteArray data = MusicUtils::Image::generatePixmapData(image->m_pix);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
 

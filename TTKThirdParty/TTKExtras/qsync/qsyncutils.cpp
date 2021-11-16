@@ -94,7 +94,7 @@ QString QSyncUtils::getGMT()
     return local.toString(QDateTime::currentDateTime().toUTC(), "ddd, dd MMM yyyy hh:mm:ss") + " GMT";
 }
 
-QString QSyncUtils::generateDataBucketUrl()
+QString QSyncUtils::makeDataBucketUrl()
 {
     return QString("http://%1.%2/").arg(DATA_BUCKET).arg(QSyncConf::HOST);
 }

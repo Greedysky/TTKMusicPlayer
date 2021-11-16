@@ -43,9 +43,9 @@ public:
     static QString getGMT();
     
     /*!
-     * Generate data bucket url.
+     * Make data bucket url.
      */
-    static QString generateDataBucketUrl();
+    static QString makeDataBucketUrl();
 
 };
 

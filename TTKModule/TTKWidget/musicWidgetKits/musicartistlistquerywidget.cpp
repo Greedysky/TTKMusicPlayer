@@ -50,7 +50,7 @@ MusicArtistListQueryWidget::MusicArtistListQueryWidget(QWidget *parent)
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
     m_pageQueryWidget = nullptr;
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateArtistListRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeArtistListRequest(this);
     connect(m_networkRequest, SIGNAL(createArtistListItem(MusicResultsItem)), SLOT(createArtistListItem(MusicResultsItem)));
 }
 

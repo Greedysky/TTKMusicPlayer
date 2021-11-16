@@ -47,7 +47,7 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 
     const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
     ///download lrc
-    MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->generateLrcRequest(musicSongInfos[row].m_lrcUrl,
+    MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(musicSongInfos[row].m_lrcUrl,
                                      MusicUtils::String::lrcPrefix() + m_networkRequest->getQueryText() + LRC_FILE,
                                      MusicObject::DownloadLrc, this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SIGNAL(lrcDownloadStateChanged(QString)));

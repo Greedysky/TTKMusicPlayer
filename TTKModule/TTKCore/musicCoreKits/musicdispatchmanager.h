@@ -38,12 +38,12 @@ typedef struct TTK_MODULE_EXPORT MusicDispatchItem
         m_type = -1;
     }
 
-    bool isEmpty() const
+    inline bool isEmpty() const
     {
         return m_args.isEmpty();
     }
 
-    bool isValid() const
+    inline bool isValid() const
     {
         return m_times <= 5;
     }
@@ -63,12 +63,17 @@ public:
      * Set dispatch.
      */
     void dispatch(int type);
+    void dispatch(int type, void *funcs);
+    void dispatch(int type, const TTKVariantList &args);
+
+public:
+    /*!
+     * Set dispatch.
+     */
     void dispatch(int type, const QVariant &arg1);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4);
-    void dispatch(int type, const TTKVariantList &args);
-    void dispatch(int type, void *funcs);
 
 private Q_SLOTS:
     /*!

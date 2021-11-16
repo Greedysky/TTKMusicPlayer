@@ -36,7 +36,7 @@ MusicAlbumQueryWidget::MusicAlbumQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Album;
     m_queryTableWidget = new MusicAlbumQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateQueryRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
@@ -50,7 +50,7 @@ void MusicAlbumQueryWidget::setSongName(const QString &name)
 
 void MusicAlbumQueryWidget::setSongNameById(const QString &id)
 {
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateAlbumRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startSearchQuery(id);
     connect(d, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createAlbumInfoItem(MusicResultsItem)));

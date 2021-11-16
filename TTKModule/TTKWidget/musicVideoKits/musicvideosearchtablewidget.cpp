@@ -32,7 +32,7 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
     //
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateMovieRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
     //
@@ -49,7 +49,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         return;
     }
     //
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateMovieRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
     //
@@ -67,7 +67,7 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
         return;
     }
     //
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateMovieRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput(d);
     //

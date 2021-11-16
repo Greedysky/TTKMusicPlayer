@@ -74,7 +74,7 @@
 #include "musicdownloadbackgroundrequest.h"
 //
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateQueryRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeQueryRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -90,7 +90,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateQueryRequest(QObje
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateMovieRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeMovieRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -106,7 +106,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateMovieRequest(QObje
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateAlbumRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeAlbumRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -122,7 +122,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateAlbumRequest(QObje
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateArtistRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -138,7 +138,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateArtistRequest(QObj
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateArtistListRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistListRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -154,7 +154,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateArtistListRequest(
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateToplistRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeToplistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -170,7 +170,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateToplistRequest(QOb
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generatePlaylistRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makePlaylistRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -186,7 +186,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generatePlaylistRequest(QO
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateRecommendRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObject *parent)
 {
     MusicAbstractQueryRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -202,12 +202,12 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateRecommendRequest(Q
     return request;
 }
 
-MusicAbstractQueryRequest *MusicDownLoadQueryFactory::generateSimilarSongRequest(QObject *parent)
+MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeSimilarSongRequest(QObject *parent)
 {
-    return generateQueryRequest(parent);
+    return makeQueryRequest(parent);
 }
 
-MusicSimilarRequest *MusicDownLoadQueryFactory::generateSimilarArtistRequest(QObject *parent)
+MusicSimilarRequest *MusicDownLoadQueryFactory::makeSimilarArtistRequest(QObject *parent)
 {
     MusicSimilarRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -222,7 +222,7 @@ MusicSimilarRequest *MusicDownLoadQueryFactory::generateSimilarArtistRequest(QOb
     return request;
 }
 
-MusicSongSuggestRequest *MusicDownLoadQueryFactory::generateSuggestRequest(QObject *parent)
+MusicSongSuggestRequest *MusicDownLoadQueryFactory::makeSuggestRequest(QObject *parent)
 {
     MusicSongSuggestRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -237,7 +237,7 @@ MusicSongSuggestRequest *MusicDownLoadQueryFactory::generateSuggestRequest(QObje
     return request;
 }
 
-MusicCommentsRequest *MusicDownLoadQueryFactory::generateSongCommentRequest(QObject *parent)
+MusicCommentsRequest *MusicDownLoadQueryFactory::makeSongCommentRequest(QObject *parent)
 {
     MusicCommentsRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -252,7 +252,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::generateSongCommentRequest(QObj
     return request;
 }
 
-MusicCommentsRequest *MusicDownLoadQueryFactory::generatePlaylistCommentRequest(QObject *parent)
+MusicCommentsRequest *MusicDownLoadQueryFactory::makePlaylistCommentRequest(QObject *parent)
 {
     MusicCommentsRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -267,7 +267,7 @@ MusicCommentsRequest *MusicDownLoadQueryFactory::generatePlaylistCommentRequest(
     return request;
 }
 
-MusicDiscoverListRequest *MusicDownLoadQueryFactory::generateDiscoverListRequest(QObject *parent)
+MusicDiscoverListRequest *MusicDownLoadQueryFactory::makeDiscoverListRequest(QObject *parent)
 {
     MusicDiscoverListRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -282,7 +282,7 @@ MusicDiscoverListRequest *MusicDownLoadQueryFactory::generateDiscoverListRequest
     return request;
 }
 
-MusicTranslationRequest *MusicDownLoadQueryFactory::generateTranslationRequest(QObject *parent)
+MusicTranslationRequest *MusicDownLoadQueryFactory::makeTranslationRequest(QObject *parent)
 {
     MusicTranslationRequest *request = nullptr;
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
@@ -294,7 +294,7 @@ MusicTranslationRequest *MusicDownLoadQueryFactory::generateTranslationRequest(Q
     return request;
 }
 
-MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::generateSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeSmallPictureRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
@@ -308,7 +308,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::generateSmallPictureReq
     return (new MusicDownloadDataRequest(url, save, type, parent));
 }
 
-MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::generateLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
+MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::makeLrcRequest(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::DownloadServerIndex).toInt();
     switch(TTKStatic_cast(DownloadQueryServer, index))
@@ -322,7 +322,7 @@ MusicAbstractDownLoadRequest *MusicDownLoadQueryFactory::generateLrcRequest(cons
     return (new MusicDownLoadTextRequest(url, save, type, parent));
 }
 
-MusicDownloadImageRequest *MusicDownLoadQueryFactory::generateBigPictureRequest(const QString &name, const QString &save, QObject *parent)
+MusicDownloadImageRequest *MusicDownLoadQueryFactory::makeBigPictureRequest(const QString &name, const QString &save, QObject *parent)
 {
     return (new MusicDownloadBackgroundRequest(name, save, parent));
 }

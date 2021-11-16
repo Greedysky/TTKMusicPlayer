@@ -23,7 +23,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QRect &rect
     }
 
     QPixmap image = input.scaled(rect.size());
-    image.setMask(GenerateMask(rect, ratioX, ratioY));
+    image.setMask(generateMask(rect, ratioX, ratioY));
     return image;
 }
 
@@ -43,7 +43,7 @@ QPixmap MusicUtils::Image::pixmapToRound(const QPixmap &input, const QPixmap &ma
     return image;
 }
 
-QBitmap MusicUtils::Image::GenerateMask(const QRect &rect, int ratioX, int ratioY)
+QBitmap MusicUtils::Image::generateMask(const QRect &rect, int ratioX, int ratioY)
 {
     QBitmap mask(rect.size());
     QPainter painter(&mask);
@@ -54,7 +54,7 @@ QBitmap MusicUtils::Image::GenerateMask(const QRect &rect, int ratioX, int ratio
     return mask;
 }
 
-QByteArray MusicUtils::Image::GeneratePixmapData(const QPixmap &input)
+QByteArray MusicUtils::Image::generatePixmapData(const QPixmap &input)
 {
     if(input.isNull())
     {

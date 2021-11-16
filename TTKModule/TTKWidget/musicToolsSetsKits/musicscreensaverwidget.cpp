@@ -384,7 +384,7 @@ void MusicScreenSaverWidget::initialize()
     MusicDownloadQueueDatas datas;
     for(int i=0; i<OS_COUNT; i++)
     {
-        const QString &url = QSyncUtils::generateDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
+        const QString &url = QSyncUtils::makeDataBucketUrl() + QString("%1/%2/").arg(OS_SCREENSAVER_URL).arg(i);
         const QString &path = QString("%1%2/%3/").arg(CACHE_DIR_FULL).arg(OS_SCREEN_DIR).arg(i);
         QDir().mkpath(path);
 

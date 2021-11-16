@@ -110,7 +110,7 @@ MusicArtistMvsQueryWidget::MusicArtistMvsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateMovieRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeMovieRequest(this);
     connect(m_networkRequest, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
 }
 
@@ -203,7 +203,7 @@ MusicArtistSimilarQueryWidget::MusicArtistSimilarQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateSimilarArtistRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeSimilarArtistRequest(this);
     connect(m_networkRequest, SIGNAL(createSimilarItem(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
 }
 
@@ -272,7 +272,7 @@ MusicArtistAlbumsQueryWidget::MusicArtistAlbumsQueryWidget(QWidget *parent)
     m_container->show();
 
     m_shareType = MusicSongSharingWidget::Artist;
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateAlbumRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeAlbumRequest(this);
     connect(m_networkRequest, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
 }
 
@@ -360,7 +360,7 @@ MusicArtistQueryWidget::MusicArtistQueryWidget(QWidget *parent)
     m_shareType = MusicSongSharingWidget::Artist;
     m_queryTableWidget = new MusicArtistQueryTableWidget(this);
     m_queryTableWidget->hide();
-    m_networkRequest = G_DOWNLOAD_QUERY_PTR->generateQueryRequest(this);
+    m_networkRequest = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
     connect(m_networkRequest, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
 
@@ -382,7 +382,7 @@ void MusicArtistQueryWidget::setSongName(const QString &name)
 void MusicArtistQueryWidget::setSongNameById(const QString &id)
 {
     MusicAbstractItemQueryWidget::setSongName(id);
-    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->generateArtistRequest(this);
+    MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeArtistRequest(this);
     m_queryTableWidget->setQueryInput(d);
     m_queryTableWidget->startSearchQuery(id);
     connect(d, SIGNAL(createArtistInfoItem(MusicResultsItem)), SLOT(createArtistInfoItem(MusicResultsItem)));

@@ -16,7 +16,7 @@ void MusicSourceUpdateRequest::startToDownload()
 {
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_VERSION_URL);
+    download->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_VERSION_URL);
 }
 
 QString MusicSourceUpdateRequest::getVersion() const

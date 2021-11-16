@@ -120,7 +120,7 @@ void MusicUtils::Widget::setComboBoxText(QComboBox *object, const QString &text)
 
 void MusicUtils::Widget::widgetToRound(QWidget *widget, int ratioX, int ratioY)
 {
-    widget->setMask(MusicUtils::Image::GenerateMask(widget->rect(), ratioX, ratioY));
+    widget->setMask(MusicUtils::Image::generateMask(widget->rect(), ratioX, ratioY));
 }
 
 void MusicUtils::Widget::generateVScrollAreaFormat(QWidget *widget, QWidget *parent, bool background)

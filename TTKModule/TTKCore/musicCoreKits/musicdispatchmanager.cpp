@@ -26,6 +26,22 @@ void MusicDispatchManager::dispatch(int type)
     m_observer << item;
 }
 
+void MusicDispatchManager::dispatch(int type, const TTKVariantList &args)
+{
+    MusicDispatchItem *item = new MusicDispatchItem;
+    item->m_type = type;
+    item->m_args << args;
+    m_observer << item;
+}
+
+void MusicDispatchManager::dispatch(int type, void *funcs)
+{
+    MusicDispatchItem *item = new MusicDispatchItem;
+    item->m_type = type;
+    item->m_args << QVariant::fromValue<void*>(funcs);
+    m_observer << item;
+}
+
 void MusicDispatchManager::dispatch(int type, const QVariant &arg1)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
@@ -55,22 +71,6 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVaria
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
     item->m_args << arg1 << arg2 << arg3 << arg4;
-    m_observer << item;
-}
-
-void MusicDispatchManager::dispatch(int type, const TTKVariantList &args)
-{
-    MusicDispatchItem *item = new MusicDispatchItem;
-    item->m_type = type;
-    item->m_args << args;
-    m_observer << item;
-}
-
-void MusicDispatchManager::dispatch(int type, void *funcs)
-{
-    MusicDispatchItem *item = new MusicDispatchItem;
-    item->m_type = type;
-    item->m_args << QVariant::fromValue<void*>(funcs);
     m_observer << item;
 }
 

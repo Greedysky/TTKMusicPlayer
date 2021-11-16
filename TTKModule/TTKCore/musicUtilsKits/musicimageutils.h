@@ -47,12 +47,12 @@ namespace MusicUtils
         /*!
          * Get bitmap mask from rect.
          */
-        TTK_MODULE_EXPORT QBitmap GenerateMask(const QRect &rect, int ratioX, int ratioY);
+        TTK_MODULE_EXPORT QBitmap generateMask(const QRect &rect, int ratioX, int ratioY);
 
         /*!
          * Get pximap data.
          */
-        TTK_MODULE_EXPORT QByteArray GeneratePixmapData(const QPixmap &input);
+        TTK_MODULE_EXPORT QByteArray generatePixmapData(const QPixmap &input);
 
         /*!
          * Set fusion two pixmap.

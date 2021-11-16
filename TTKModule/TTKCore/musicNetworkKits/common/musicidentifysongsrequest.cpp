@@ -22,7 +22,7 @@ bool MusicIdentifySongsRequest::queryIdentifyKey()
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(QSyncUtils::generateDataBucketUrl() + OS_ACRUA_URL);
+    download->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_ACRUA_URL);
     loop.exec();
 
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();

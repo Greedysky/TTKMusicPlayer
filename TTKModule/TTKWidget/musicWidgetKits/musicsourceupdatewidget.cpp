@@ -137,7 +137,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 #ifdef Q_OS_WIN
     m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
     const QString &localDwonload = "v" + m_newVersionStr + EXE_FILE;
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(QString("%1%2").arg(QSyncUtils::generateDataBucketUrl()).arg(localDwonload),
+    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(QString("%1%2").arg(QSyncUtils::makeDataBucketUrl()).arg(localDwonload),
                                                                     UPDATE_DIR_FULL + localDwonload, MusicObject::DownloadOther, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));
