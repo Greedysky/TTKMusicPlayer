@@ -1,7 +1,5 @@
 #include "musicabstractmovedialog.h"
 #include "musicbackgroundmanager.h"
-#include "musicbackgroundconfigmanager.h"
-#include "musicextractwrapper.h"
 
 #include <QPainter>
 #include <QMouseEvent>
@@ -14,15 +12,14 @@ MusicAbstractMoveDialog::MusicAbstractMoveDialog(QWidget *parent)
 
 MusicAbstractMoveDialog::MusicAbstractMoveDialog(bool transparent, QWidget *parent)
     : QDialog(parent)
+    , MusicWidgetRenderer()
 {
-    ///Remove the title bar
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
 
     m_moveOption = false;
     m_leftButtonPress = false;
     m_showShadow = true;
-    m_background = nullptr;
 
     G_BACKGROUND_PTR->addObserver(this);
 }
@@ -94,24 +91,4 @@ void MusicAbstractMoveDialog::mouseReleaseEvent(QMouseEvent *event)
     m_pressAt = event->globalPos();
 #endif
     m_leftButtonPress = false;
-}
-
-void MusicAbstractMoveDialog::setBackgroundPixmap(QLabel *label, const QSize &size)
-{
-    m_background = label;
-    setBackgroundPixmap(size);
-}
-
-void MusicAbstractMoveDialog::setBackgroundPixmap(const QSize &size)
-{
-    QLabel *label = TTKStatic_cast(QLabel*, m_background);
-    MusicBackgroundImage image;
-    if(MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl()))
-    {
-        label->setPixmap(image.m_pix.scaled(size));
-    }
-    else
-    {
-        label->setPixmap(QPixmap(G_BACKGROUND_PTR->getBackgroundUrl()).scaled(size));
-    }
 }

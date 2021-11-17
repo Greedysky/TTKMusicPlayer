@@ -19,15 +19,13 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
 #include <QMouseEvent>
-#include "musicglobaldefine.h"
-#include "musicsinglemanager.h"
+#include "musicwidgetrenderer.h"
 
 /*! @brief The class of the moving widget base.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicAbstractMoveWidget : public QWidget
+class TTK_MODULE_EXPORT MusicAbstractMoveWidget : public QWidget, protected MusicWidgetRenderer
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicAbstractMoveWidget)
@@ -65,19 +63,10 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    /*!
-     * Set background pixmap.
-     */
-    void setBackgroundPixmap(QLabel *label, const QSize &size);
-    /*!
-     * Set background pixmap.
-     */
-    void setBackgroundPixmap(const QSize &size);
 
     QPoint m_pressAt;
     bool m_moveOption, m_showShadow;
     bool m_leftButtonPress;
-    QWidget *m_background;
 
 };
 

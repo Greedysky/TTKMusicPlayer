@@ -27,6 +27,7 @@ HEADERS  += \
     $$PWD/musicabstractfloatwidget.h \
     $$PWD/musicabstractitemquerywidget.h \
     $$PWD/musicabstractsongslisttablewidget.h \
+    $$PWD/musicwidgetrenderer.h \
     $$PWD/musicfillitemtablewidget.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicitemsearchtablewidget.h \
@@ -61,8 +62,7 @@ HEADERS  += \
     $$PWD/musicfunctiontoolboxwidget.h \
     $$PWD/musicsongitemselectedareawidget.h \
     $$PWD/musictimesliderwidget.h \
-    $$PWD/musicpagequerywidget.h \
-    $$PWD/musicimagerenderer.h
+    $$PWD/musicpagequerywidget.h
 
 
 SOURCES += \
@@ -74,6 +74,7 @@ SOURCES += \
     $$PWD/musicabstractfloatwidget.cpp \
     $$PWD/musicabstractitemquerywidget.cpp \
     $$PWD/musicabstractsongslisttablewidget.cpp \
+    $$PWD/musicwidgetrenderer.cpp \
     $$PWD/musicfillitemtablewidget.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicitemsearchtablewidget.cpp \
@@ -108,5 +109,4 @@ SOURCES += \
     $$PWD/musicfunctiontoolboxwidget.cpp \
     $$PWD/musicsongitemselectedareawidget.cpp \
     $$PWD/musictimesliderwidget.cpp \
-    $$PWD/musicpagequerywidget.cpp \
-    $$PWD/musicimagerenderer.cpp
+    $$PWD/musicpagequerywidget.cpp

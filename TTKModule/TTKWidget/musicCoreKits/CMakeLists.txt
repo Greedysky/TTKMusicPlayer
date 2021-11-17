@@ -9,6 +9,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractsongslisttablewidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicwidgetrenderer.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicitemsearchtablewidget.h
@@ -44,7 +45,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselectedareawidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicpagequerywidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicimagerenderer.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
@@ -56,6 +56,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractfloatwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractitemquerywidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicabstractsongslisttablewidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicwidgetrenderer.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicitemsearchtablewidget.cpp
@@ -91,6 +92,5 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselectedareawidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicpagequerywidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicimagerenderer.cpp
   )
   

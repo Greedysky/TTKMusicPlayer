@@ -1,7 +1,5 @@
 #include "musicabstractmovewidget.h"
 #include "musicbackgroundmanager.h"
-#include "musicbackgroundconfigmanager.h"
-#include "musicextractwrapper.h"
 #include "musicwidgetheaders.h"
 
 #include <QPainter>
@@ -14,6 +12,7 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
 
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(bool transparent, QWidget *parent)
     : QWidget(parent)
+    , MusicWidgetRenderer()
 {
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, transparent);
@@ -21,7 +20,6 @@ MusicAbstractMoveWidget::MusicAbstractMoveWidget(bool transparent, QWidget *pare
     m_moveOption = false;
     m_leftButtonPress = false;
     m_showShadow = true;
-    m_background = nullptr;
 
     G_BACKGROUND_PTR->addObserver(this);
 }
@@ -95,25 +93,6 @@ void MusicAbstractMoveWidget::mouseReleaseEvent(QMouseEvent *event)
     m_leftButtonPress = false;
 }
 
-void MusicAbstractMoveWidget::setBackgroundPixmap(QLabel *label, const QSize &size)
-{
-    m_background = label;
-    setBackgroundPixmap(size);
-}
-
-void MusicAbstractMoveWidget::setBackgroundPixmap(const QSize &size)
-{
-    QLabel *label = TTKStatic_cast(QLabel*, m_background);
-    MusicBackgroundImage image;
-    if(MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl()))
-    {
-        label->setPixmap(image.m_pix.scaled(size));
-    }
-    else
-    {
-        label->setPixmap(QPixmap(G_BACKGROUND_PTR->getBackgroundUrl()).scaled(size));
-    }
-}
 
 
 MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(QWidget *parent)
