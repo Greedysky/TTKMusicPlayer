@@ -203,16 +203,16 @@ bool MusicTransformWidget::processTransform(const QString &para)
         TTK_LOGGER_INFO(QString("%1%2%3%4").arg(m_ui->formatCombo->currentText()).arg(m_ui->kbpsCombo->currentText())
                                            .arg(m_ui->hzCombo->currentText()).arg(m_ui->msCombo->currentIndex() + 1));
 
-        m_process->start(para, {"-i", in, "-y",
-                                "-ab", m_ui->kbpsCombo->currentText() + "k",
-                                "-ar", m_ui->hzCombo->currentText(),
-                                "-ac", QString::number(m_ui->msCombo->currentIndex() + 1),
-                                QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName()).arg(m_ui->formatCombo->currentText().toLower())});
+        m_process->start(para, QStringList() << "-i" << in << "-y"
+                                << "-ab" << m_ui->kbpsCombo->currentText() + "k"
+                                << "-ar" << m_ui->hzCombo->currentText()
+                                << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
+                                << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName()).arg(m_ui->formatCombo->currentText().toLower()));
     }
     else
     {
         TTK_LOGGER_INFO(QString("%1%2%3").arg(para).arg(in).arg(out));
-        m_process->start(para, {in, QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE)});
+        m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE));
     }
 
     return true;

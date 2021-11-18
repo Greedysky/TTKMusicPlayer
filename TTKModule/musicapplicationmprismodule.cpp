@@ -111,22 +111,22 @@ QVariantMap MusicApplicationMPRISPlayer::metadata() const
 
     if(!info.value(Qmmp::ARTIST).isEmpty())
     {
-        map["xesam:artist"] = {info.value(Qmmp::ARTIST)};
+        map["xesam:artist"] = QStringList() << info.value(Qmmp::ARTIST);
     }
 
     if(!info.value(Qmmp::ALBUMARTIST).isEmpty())
     {
-        map["xesam:albumArtist"] = {info.value(Qmmp::ALBUMARTIST)};
+        map["xesam:albumArtist"] = QStringList() << info.value(Qmmp::ALBUMARTIST);
     }
 
     if(!info.value(Qmmp::COMMENT).isEmpty())
     {
-        map["xesam:comment"] = {info.value(Qmmp::COMMENT)};
+        map["xesam:comment"] = QStringList() << info.value(Qmmp::COMMENT);
     }
 
     if(!info.value(Qmmp::COMPOSER).isEmpty())
     {
-        map["xesam:composer"] = {info.value(Qmmp::COMPOSER)};
+        map["xesam:composer"] = QStringList() << info.value(Qmmp::COMPOSER);
     }
 
     if(!info.value(Qmmp::DISCNUMBER).isEmpty())
@@ -136,7 +136,7 @@ QVariantMap MusicApplicationMPRISPlayer::metadata() const
 
     if(!info.value(Qmmp::GENRE).isEmpty())
     {
-        map["xesam:genre"] = {info.value(Qmmp::GENRE)};
+        map["xesam:genre"] = QStringList() << info.value(Qmmp::GENRE);
     }
 
     if(!info.value(Qmmp::TITLE).isEmpty())
