@@ -643,12 +643,12 @@ void MusicSettingWidget::saveParameterSettings()
 
     if(languageChanged)
     {
-        MusicMessageBox message;
-        message.setText(tr("Language changed, do you want to restart now?"));
-        if(message.exec())
-        {
-            TTK_LOGGER_INFO(MusicObject::getAppDir());
-        }
+//        MusicMessageBox message;
+//        message.setText(tr("Language changed, do you want to restart now?"));
+//        if(message.exec())
+//        {
+//            TTK_LOGGER_INFO(MusicObject::getAppDir());
+//        }
     }
 }
 
