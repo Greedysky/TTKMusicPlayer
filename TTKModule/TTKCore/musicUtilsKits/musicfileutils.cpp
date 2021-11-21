@@ -3,49 +3,6 @@
 
 #include <QDirIterator>
 
-static quint64 directorySize(const QString &dirName)
-{
-    quint64 size = 0;
-    if(QFileInfo(dirName).isDir())
-    {
-        QDir dir(dirName);
-        const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
-        for(const QFileInfo &fileInfo : qAsConst(fileList))
-        {
-            if(fileInfo.isDir())
-            {
-                size += directorySize(fileInfo.absoluteFilePath());
-            }
-            else
-            {
-                size += fileInfo.size();
-            }
-        }
-    }
-    return size;
-}
-
-void MusicUtils::File::checkCacheSize(quint64 cacheSize, bool disabled, const QString &path)
-{
-    if(disabled)
-    {
-        quint64 size = directorySize(path);
-        if(size > cacheSize)
-        {
-            const QFileInfoList &fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-            for(const QFileInfo &fileInfo : qAsConst(fileList))
-            {
-                size -= fileInfo.size();
-                QFile::remove(fileInfo.absoluteFilePath());
-                if(size <= cacheSize)
-                {
-                    break;
-                }
-            }
-        }
-    }
-}
-
 QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, bool recursively)
 {
     return getFileListByDir(dpath, QStringList(), recursively);

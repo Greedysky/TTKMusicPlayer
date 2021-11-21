@@ -21,11 +21,12 @@
 
 #include "musicobject.h"
 #include "ttkversion.h"
+#include "ttkglobaldefine.h"
 
 #ifdef CONFIG_OUT_BUILD
-#define APP_PATH_DIR                MusicObject::getAppDir() + "/" + TTKMUSIC_VERSION_STR + "/"
+#define APP_PATH_DIR                MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/"
 #else
-#define APP_PATH_DIR                MusicObject::getAppDir() + "/"
+#define APP_PATH_DIR                MusicObject::getAppDir()
 #endif
 //
 #define TTK_DOWNLOAD_DIR_FULL       APP_PATH_DIR + "../" + DOWNLOAD_DIR

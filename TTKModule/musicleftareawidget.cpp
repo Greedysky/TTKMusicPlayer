@@ -87,7 +87,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicPlayMode->setToolTip(tr("Play Mode"));
 }
 
-void MusicLeftAreaWidget::radioExecuteOuter(const QString &path)
+void MusicLeftAreaWidget::radioExecuteOutside(const QString &path)
 {
     musicStackedRadioWidgetChanged();
     MusicWebRadioView *w = TTKStatic_cast(MusicWebRadioView*, m_stackedWidget);

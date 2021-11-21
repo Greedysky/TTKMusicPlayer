@@ -11,6 +11,69 @@
 #include <QFont>
 #include <QApplication>
 
+namespace File {
+static quint64 directorySize(const QString &dirName)
+{
+    quint64 size = 0;
+    if(QFileInfo(dirName).isDir())
+    {
+        QDir dir(dirName);
+        const QFileInfoList &fileList = dir.entryInfoList(QDir::Files | QDir::Dirs |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+        for(const QFileInfo &fileInfo : qAsConst(fileList))
+        {
+            if(fileInfo.isDir())
+            {
+                size += directorySize(fileInfo.absoluteFilePath());
+            }
+            else
+            {
+                size += fileInfo.size();
+            }
+        }
+    }
+    return size;
+}
+
+static void checkCacheSize()
+{
+    const bool disabled = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt();
+    if(!disabled)
+    {
+        return;
+    }
+
+    const quint64 cacheSize = G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B;
+    const QString &path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
+    quint64 size = directorySize(path);
+    if(size > cacheSize)
+    {
+        const QFileInfoList &fileList = QDir(path).entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+        for(const QFileInfo &fileInfo : qAsConst(fileList))
+        {
+            size -= fileInfo.size();
+            QFile::remove(fileInfo.absoluteFilePath());
+            if(size <= cacheSize)
+            {
+                break;
+            }
+        }
+    }
+}
+
+QString getLanguageName(int index)
+{
+    QString lan(LANGUAGE_DIR_FULL);
+    switch(index)
+    {
+        case 0: return lan.append("cn.ln");
+        case 1: return lan.append("tc.ln");
+        case 2: return lan.append("en.ln");
+        default: return QString();
+    }
+}
+}
+
+
 void MusicRunTimeManager::run() const
 {
     TTK_LOGGER_INFO("MusicApplication Run");
@@ -32,16 +95,14 @@ void MusicRunTimeManager::run() const
     xml.readConfig();
     xml.readSysConfigData();
 
-    MusicUtils::File::checkCacheSize(G_SETTING_PTR->value(MusicSettingManager::DownloadCacheSize).toInt() * MH_MB2B,
-                                     G_SETTING_PTR->value(MusicSettingManager::DownloadCacheEnable).toInt(),
-                                     G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString());
+    File::checkCacheSize();
     G_NETWORK_PTR->setBlockNetWork(G_SETTING_PTR->value(MusicSettingManager::CloseNetWorkMode).toInt());
 }
 
 QString MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
-    return MusicUtils::Core::getLanguageName(index);
+    return File::getLanguageName(index);
 }
 
 bool MusicRunTimeManager::configVersionCheck() const

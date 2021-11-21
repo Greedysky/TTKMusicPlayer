@@ -5,25 +5,13 @@
 # include <unistd.h>
 #endif
 
-void MusicUtils::Core::sleep(int msecond)
+void MusicUtils::Core::sleep(int ms)
 {
 #if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,0,0)
-    QThread::msleep(msecond);
+    QThread::msleep(ms);
 #else
-    usleep(msecond * 1000);
+    usleep(ms * 1000);
 #endif
-}
-
-QString MusicUtils::Core::getLanguageName(int index)
-{
-    QString lan(LANGUAGE_DIR_FULL);
-    switch(index)
-    {
-        case 0: return lan.append("cn.ln");
-        case 1: return lan.append("tc.ln");
-        case 2: return lan.append("en.ln");
-        default: return QString();
-    }
 }
 
 bool MusicUtils::Core::appVersionCheck(const QStringList &ol, const QStringList &dl, int depth)

@@ -170,12 +170,12 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
 
-void MusicApplication::radioExecuteOuter(const QString &path)
+void MusicApplication::radioExecuteOutside(const QString &path)
 {
-    m_leftAreaWidget->radioExecuteOuter(path);
+    m_leftAreaWidget->radioExecuteOutside(path);
 }
 
-void MusicApplication::musicImportSongsPathOuter(const QStringList &files, bool play)
+void MusicApplication::musicImportSongsPathOutside(const QStringList &files, bool play)
 {
     musicImportSongsPath(files);
 
@@ -1138,12 +1138,10 @@ void MusicApplication::readSystemConfigFromFile()
 
     //Set the desktop lrc should be shown
     m_rightAreaWidget->setWindowLrcTypeChanged();
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, xml.readShowDLrcGeometry());
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometry, xml.readShowDesktopLrcGeometry());
 
     //Set the current background color and alpha value
-    m_topAreaWidget->setBackgroundParams(G_SETTING_PTR->value(MusicSettingManager::BackgroundThemeValue).toString(),
-                                         G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt(),
-                                         G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt());
+    m_topAreaWidget->setBackgroundParameter();
 
     //Configuration from next time also stopped at the last record.
     const QStringList &lastPlayIndex = G_SETTING_PTR->value(MusicSettingManager::LastPlayIndex).toStringList();

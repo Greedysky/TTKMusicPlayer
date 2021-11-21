@@ -1,5 +1,4 @@
 #include "musicconfigobject.h"
-#include "musicconfigdefine.h"
 
 #include <QProcess>
 

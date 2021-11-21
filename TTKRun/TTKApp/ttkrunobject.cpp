@@ -36,7 +36,7 @@ TTKRunObject::TTKRunObject(QObject *parent)
     TTK_D(TTKRunObject);
 
     d->m_process = new QProcess(this);
-    connect(d->m_process, SIGNAL(finished(int)),SLOT(finished(int)));
+    connect(d->m_process, SIGNAL(finished(int)), SLOT(finished(int)));
 }
 
 void TTKRunObject::valid() const

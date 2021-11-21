@@ -234,7 +234,7 @@ void MusicApplicationMPRISPlayer::OpenUri(const QString &uri)
         }
     }
 
-    m_player->musicImportSongsPathOuter({path}, true);
+    m_player->musicImportSongsPathOutside({path}, true);
 }
 
 void MusicApplicationMPRISPlayer::Pause()

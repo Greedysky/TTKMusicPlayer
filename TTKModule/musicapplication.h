@@ -74,13 +74,13 @@ public:
     void musicLoadCurrentSongLrc();
 
     /*!
-     * Execute outer radio by type.
+     * Execute outside radio by type.
      */
-    void radioExecuteOuter(const QString &path);
+    void radioExecuteOutside(const QString &path);
     /*!
-     * Import outer music datas into container.
+     * Import outside music datas into container.
      */
-    void musicImportSongsPathOuter(const QStringList &files, bool play);
+    void musicImportSongsPathOutside(const QStringList &files, bool play);
 
     /*!
      * Get music current song download contains.

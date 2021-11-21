@@ -56,7 +56,7 @@ public:
     /*!
      * Read Show Desktop Lrc Geometry Config.
      */
-    QPoint readShowDLrcGeometry() const;
+    QPoint readShowDesktopLrcGeometry() const;
 
 };
 

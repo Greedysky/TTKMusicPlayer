@@ -30,10 +30,6 @@ namespace MusicUtils
     namespace File
     {
         /*!
-         * Check given dir size is bigger than given size.
-         */
-        TTK_MODULE_EXPORT void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
-        /*!
          * Get all files in given dir.
          */
         TTK_MODULE_EXPORT QFileInfoList getFileListByDir(const QString &dpath, bool recursively);

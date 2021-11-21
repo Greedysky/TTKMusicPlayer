@@ -19,8 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
-#include "ttkglobaldefine.h"
+#include "musicconfigdefine.h"
 
 /*! @brief The class of the music init object.
  * @author Greedysky <greedysky@163.com>

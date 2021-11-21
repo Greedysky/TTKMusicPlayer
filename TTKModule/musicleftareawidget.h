@@ -53,9 +53,9 @@ public:
     void setupUi(Ui::MusicApplication* ui);
 
     /*!
-     * Execute outer radio by type.
+     * Execute outside radio by type.
      */
-    void radioExecuteOuter(const QString &path);
+    void radioExecuteOutside(const QString &path);
     /*!
      * Reset current music love icon state.
      */

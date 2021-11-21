@@ -32,11 +32,7 @@ namespace MusicUtils
         /*!
          * Sleep by millisecond.
          */
-        TTK_MODULE_EXPORT void sleep(int msecond);
-        /*!
-         * Get Language Name by given index.
-         */
-        TTK_MODULE_EXPORT QString getLanguageName(int index);
+        TTK_MODULE_EXPORT void sleep(int ms);
         /*!
          * App version check.
          */

@@ -100,11 +100,11 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->windowClose, SIGNAL(clicked()), MusicApplication::instance(), SLOT(close()));
 }
 
-void MusicTopAreaWidget::setBackgroundParams(const QString &path, int skin, int list)
+void MusicTopAreaWidget::setBackgroundParameter()
 {
-    m_backgroundImagePath = path;
-    m_backgroundListAlpha = list;
-    m_backgroundAlpha = skin;
+    m_backgroundImagePath = G_SETTING_PTR->value(MusicSettingManager::BackgroundThemeValue).toString();
+    m_backgroundListAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparent).toInt();
+    m_backgroundAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
 }
 
 int MusicTopAreaWidget::getBackgroundListAlpha()

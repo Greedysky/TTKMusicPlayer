@@ -70,25 +70,24 @@ int main(int argc, char *argv[])
     MusicApplication w;
     w.show();
 
+#ifdef Q_OS_WIN
     if(argc == 4)
     {
-        if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_OPEN)
+        const QString &data = QString::fromLocal8Bit(argv[3]);
+        if(data == MUSIC_OUTER_OPEN)
         {
-            w.musicImportSongsPathOuter({QString::fromLocal8Bit(argv[3])}, true);
+            w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, true);
         }
-
-        if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_LIST)
+        else if(data == MUSIC_OUTER_LIST)
         {
-            w.musicImportSongsPathOuter({QString::fromLocal8Bit(argv[3])}, false);
+            w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, false);
         }
-
-        if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_RADIO)
+        else if(data == MUSIC_OUTER_RADIO)
         {
-            w.radioExecuteOuter(argv[3]);
+            w.radioExecuteOutside(argv[4]);
         }
     }
-
-#ifdef Q_OS_UNIX
+#elif defined Q_OS_UNIX
     MusicApplicationMPRIS mpris;
     mpris.run();
 #endif
