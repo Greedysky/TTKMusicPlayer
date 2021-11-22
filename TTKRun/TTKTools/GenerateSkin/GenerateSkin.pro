@@ -29,7 +29,7 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-TARGET = toolsskin
+TARGET = GenerateSkin
 
 TEMPLATE = app
 DEFINES += TTK_LIBRARY

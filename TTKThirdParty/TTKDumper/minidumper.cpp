@@ -8,8 +8,7 @@ void cleanAppicationCache()
     QFile::remove(MUSIC_COLOR_FILE);
     QFile::remove(MUSIC_IMAGE_FILE);
     QFile::remove(MUSIC_RECORD_FILE);
-    QFile::remove(MUSIC_RECORD_IN_FILE);
-    QFile::remove(MUSIC_RECORD_OUT_FILE);
+    QFile::remove(MUSIC_RECORD_DATA_FILE);
 
     ///clean thirdparty process
     QStringList process;

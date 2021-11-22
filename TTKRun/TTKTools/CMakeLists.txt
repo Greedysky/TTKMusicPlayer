@@ -9,5 +9,5 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
-add_subdirectory(skin)
-add_subdirectory(url)
+add_subdirectory(BuildUrl)
+add_subdirectory(GenerateSkin)

@@ -314,7 +314,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
     const QString &openComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
     openComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
-                                     + QString(" %1 ").arg(MUSIC_OUTER_OPEN) + QString("\"%1\""));
+                                     + QString(" %1 ").arg(MUSIC_OUTSIDE_OPEN) + QString("\"%1\""));
 
     const QString &playListString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\PlayList";
     QSettings playListSetting(playListString, QSettings::NativeFormat);
@@ -323,7 +323,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
     const QString &playListComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
     playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
-                                         + QString(" %1 ").arg(MUSIC_OUTER_LIST) + QString("\"%1\""));
+                                         + QString(" %1 ").arg(MUSIC_OUTSIDE_LIST) + QString("\"%1\""));
     //
     const QString &fileExtsString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key;
     QSettings fileExtsSetting(fileExtsString, QSettings::NativeFormat);

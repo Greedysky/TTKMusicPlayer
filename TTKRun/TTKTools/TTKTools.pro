@@ -18,4 +18,4 @@
 
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS = url skin
+SUBDIRS = BuildUrl GenerateSkin

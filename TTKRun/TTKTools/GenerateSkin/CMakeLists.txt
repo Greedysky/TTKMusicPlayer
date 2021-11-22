@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME skin)
+set(TARGET_NAME GenerateSkin)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)

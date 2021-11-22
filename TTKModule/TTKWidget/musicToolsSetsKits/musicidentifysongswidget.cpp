@@ -110,10 +110,10 @@ void MusicIdentifySongsWidget::reDetectButtonClicked()
 
 void MusicIdentifySongsWidget::detectedTimeOut()
 {
-    m_recordCore->addWavHeader(MUSIC_RECORD_IN_FILE);
+    m_recordCore->addWavHeader(MUSIC_RECORD_DATA_FILE);
 
     MusicSemaphoreLoop loop;
-    m_detectedThread->startToDownload(MUSIC_RECORD_IN_FILE);
+    m_detectedThread->startToDownload(MUSIC_RECORD_DATA_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 

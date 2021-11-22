@@ -32,16 +32,16 @@
 #define MUSIC_IMAGE_FILE            "image_cache"
 
 #define MUSIC_RECORD_FILE           "record.raw"
-#define MUSIC_RECORD_IN_FILE        "record_input.wav"
-#define MUSIC_RECORD_OUT_FILE       "record_output.wav"
+#define MUSIC_RECORD_DATA_FILE      "record_data.wav"
 
-#define MUSIC_OUTER_OPEN            "-Open"
-#define MUSIC_OUTER_LIST            "-List"
-#define MUSIC_OUTER_RADIO           "-Radio"
+#ifdef Q_OS_WIN
+#define MUSIC_OUTSIDE_OPEN          "-Open"
+#define MUSIC_OUTSIDE_LIST          "-List"
+#endif
+#define MUSIC_OUTSIDE_RADIO         "-Radio"
 
 #define MUSIC_TIME_FORMAT           "hh:mm"
 #define MUSIC_STIME_FORMAT          "hh:mm:ss"
-#define MUSIC_ZTIME_FORMAT          "hh:mm:ss:zzz"
 #define MUSIC_YEAR_FORMAT           "yyyy-MM-dd"
 #define MUSIC_YEAR_TIME_FORMAT      "yyyy-MM-dd hh:mm"
 #define MUSIC_YEAR_STIME_FORMAT     "yyyy-MM-dd hh:mm:ss"

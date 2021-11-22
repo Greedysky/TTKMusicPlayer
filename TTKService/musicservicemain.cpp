@@ -24,7 +24,7 @@ void loadAppScaledFactor(int argc, char *argv[])
       const float dpi = platform.getLogicalDotsPerInch() / 96.0;
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
    #else
-//      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
    #endif
 #endif
     Q_UNUSED(argc);
@@ -74,15 +74,15 @@ int main(int argc, char *argv[])
     if(argc == 4)
     {
         const QString &data = QString::fromLocal8Bit(argv[3]);
-        if(data == MUSIC_OUTER_OPEN)
+        if(data == MUSIC_OUTSIDE_OPEN)
         {
             w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, true);
         }
-        else if(data == MUSIC_OUTER_LIST)
+        else if(data == MUSIC_OUTSIDE_LIST)
         {
             w.musicImportSongsPathOutside({QString::fromLocal8Bit(argv[4])}, false);
         }
-        else if(data == MUSIC_OUTER_RADIO)
+        else if(data == MUSIC_OUTSIDE_RADIO)
         {
             w.radioExecuteOutside(argv[4]);
         }

@@ -63,8 +63,7 @@ MusicAudioRecorderModule::MusicAudioRecorderModule(QObject *parent)
 MusicAudioRecorderModule::~MusicAudioRecorderModule()
 {
     QFile::remove(MUSIC_RECORD_FILE);
-    QFile::remove(MUSIC_RECORD_IN_FILE);
-    QFile::remove(MUSIC_RECORD_OUT_FILE);
+    QFile::remove(MUSIC_RECORD_DATA_FILE);
 
     delete m_outputFile;
     delete m_audioInputFile;

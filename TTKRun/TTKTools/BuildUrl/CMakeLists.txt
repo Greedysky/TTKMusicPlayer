@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME url)
+set(TARGET_NAME BuildUrl)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)

@@ -60,7 +60,7 @@ static void checkCacheSize()
     }
 }
 
-QString getLanguageName(int index)
+static QString getLanguageName(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);
     switch(index)

@@ -219,9 +219,9 @@ void MusicWebFMRadioWidget::sendToDesktopLink()
 
     MusicPlatformManager platform;
 #ifdef Q_OS_WIN
-    platform.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + "/" + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTER_RADIO).arg(row), tr("TTK Radio Link"));
+    platform.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + "/" + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), tr("TTK Radio Link"));
 #else
-    platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTER_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::getAppDir(), fileName);
+    platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::getAppDir(), fileName);
 #endif
 }
 

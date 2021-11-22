@@ -66,7 +66,6 @@ public:
     {
         Playlist,        /*!< Playlist Category*/
         Toplist,         /*!< Toplist Category*/
-        ToplistResource, /*!< Toplist resource Category*/
         ArtistList,      /*!< ArtistList Category*/
         MovieList,       /*!< MovieList Category*/
     };
