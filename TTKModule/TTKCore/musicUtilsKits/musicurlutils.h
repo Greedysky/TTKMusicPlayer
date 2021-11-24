@@ -29,12 +29,12 @@ namespace MusicUtils
     namespace Url
     {
         /*!
-         * Open file from local by path or net url.
+         * Execute file from local by path or other url.
          */
-        TTK_MODULE_EXPORT bool openUrl(const QString &exe, const QString &path);
+        TTK_MODULE_EXPORT bool execute(const QString &path);
 
         /*!
-         * Open file from local by path or net url.
+         * Open file from local by path or other url.
          */
         TTK_MODULE_EXPORT bool openUrl(const QString &path, bool local = true);
 

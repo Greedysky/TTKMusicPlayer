@@ -41,7 +41,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 
     setControlEnabled(false);
     initEqualizeValue();
-    readEqInformation();
+    readInformation();
 
     G_CONNECTION_PTR->setValue(getClassName(), this);
     G_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
@@ -51,7 +51,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
     G_CONNECTION_PTR->removeValue(getClassName());
-    writeEqInformation();
+    writeInformation();
     delete m_ui;
 }
 
@@ -100,7 +100,7 @@ void MusicEqualizerDialog::initialize()
 #endif
 }
 
-void MusicEqualizerDialog::readEqInformation()
+void MusicEqualizerDialog::readInformation()
 {
     if(G_SETTING_PTR->value(MusicSettingManager::EqualizerEnable).toInt())
     {
@@ -135,7 +135,7 @@ void MusicEqualizerDialog::readEqInformation()
     }
 }
 
-void MusicEqualizerDialog::writeEqInformation() const
+void MusicEqualizerDialog::writeInformation() const
 {
     G_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnable, m_eable ? 1 : 0);
     G_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndex, m_ui->eqChoice->currentIndex());

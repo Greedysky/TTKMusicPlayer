@@ -8,13 +8,12 @@
 #include <shellapi.h>
 #endif
 
-bool MusicUtils::Url::openUrl(const QString &exe, const QString &path)
+bool MusicUtils::Url::execute(const QString &path)
 {
 #ifdef Q_OS_WIN
-    const HINSTANCE value = ShellExecuteW(0, exe.toStdWString().c_str(), path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+    const HINSTANCE value = ShellExecuteW(0, L"open", path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
     return value->unused >= 32;
 #else
-    Q_UNUSED(exe);
     return QProcess::startDetached(path, QStringList());
 #endif
 }

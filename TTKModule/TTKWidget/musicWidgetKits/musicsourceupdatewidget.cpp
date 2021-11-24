@@ -192,7 +192,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     message.setText(tr("Download finished, to be installed or not?"));
     if(message.exec())
     {
-        MusicUtils::Url::openUrl("open", UPDATE_DIR_FULL+ localDwonload);
+        MusicUtils::Url::execute(UPDATE_DIR_FULL+ localDwonload);
         TTKStatic_cast(QWidget*, parent())->close();
     }
 }

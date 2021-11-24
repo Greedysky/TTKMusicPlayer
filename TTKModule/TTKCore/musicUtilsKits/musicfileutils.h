@@ -20,7 +20,7 @@
  ================================================= */
 
 #include "musicobject.h"
-#include "musicglobaldefine.h"
+#include "musicurlutils.h"
 
 /*! @brief The namespace of the utils file.
  * @author Greedysky <greedysky@163.com>

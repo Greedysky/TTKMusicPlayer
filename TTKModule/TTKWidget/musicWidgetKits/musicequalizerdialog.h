@@ -86,11 +86,11 @@ protected:
     /*!
      * Read equalizer info from config.
      */
-    void readEqInformation();
+    void readInformation();
     /*!
      * Write equalizer info from config.
      */
-    void writeEqInformation() const;
+    void writeInformation() const;
     /*!
      * Init equalizer parameters value.
      */
