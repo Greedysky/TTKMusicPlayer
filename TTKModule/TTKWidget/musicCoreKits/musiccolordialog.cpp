@@ -1,6 +1,5 @@
 #include "musiccolordialog.h"
 #include "ui_musiccolordialog.h"
-#include "musicuiobject.h"
 
 #include <QPainter>
 #include <QToolTip>

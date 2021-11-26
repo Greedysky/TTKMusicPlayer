@@ -1,8 +1,6 @@
 #include "musiclrccolorwidget.h"
 #include "ui_musiclrccolorwidget.h"
 #include "musiccolordialog.h"
-#include "musicuiobject.h"
-
 MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicLrcColorWidget)

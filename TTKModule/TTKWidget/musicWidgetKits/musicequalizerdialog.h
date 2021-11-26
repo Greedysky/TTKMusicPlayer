@@ -21,7 +21,6 @@
 
 #include <QDialog>
 #include <QMouseEvent>
-#include "musicobject.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {

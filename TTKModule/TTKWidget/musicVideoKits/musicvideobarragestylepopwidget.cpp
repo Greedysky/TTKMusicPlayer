@@ -1,6 +1,5 @@
 #include "musicvideobarragestylepopwidget.h"
 #include "musicvideouiobject.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
 #include <QButtonGroup>

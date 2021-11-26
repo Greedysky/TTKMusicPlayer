@@ -1,6 +1,5 @@
 #include "musiclrccontainerfordesktop.h"
 #include "musiclrcmanagerfordesktop.h"
-#include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicdesktoplrcuiobject.h"
 #include "musicsettingmanager.h"

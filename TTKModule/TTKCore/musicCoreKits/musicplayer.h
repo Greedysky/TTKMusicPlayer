@@ -20,7 +20,6 @@
  ================================================= */
 
 #include <QTimer>
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 #ifdef Q_CC_GNU

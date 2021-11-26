@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicitemsearchtablewidget.h"
 #include "musicabstractqueryrequest.h"
+#include "musicitemsearchtablewidget.h"
 
 class QLabel;
 class QPushButton;

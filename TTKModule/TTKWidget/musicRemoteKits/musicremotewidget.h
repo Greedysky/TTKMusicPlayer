@@ -20,8 +20,6 @@
  ================================================= */
 
 #include <QTimer>
-#include "musicobject.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicabstractmovewidget.h"
 

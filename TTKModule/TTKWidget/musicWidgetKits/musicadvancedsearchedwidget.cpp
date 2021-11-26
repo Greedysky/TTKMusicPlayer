@@ -2,7 +2,6 @@
 #include "musicabstractqueryrequest.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
 #include "musictoastlabel.h"

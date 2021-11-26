@@ -1,5 +1,4 @@
 #include "musictoastlabel.h"
-#include "musicuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicapplication.h"
 #include "musicsettingmanager.h"

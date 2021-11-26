@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "musictime.h"
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the music song info.

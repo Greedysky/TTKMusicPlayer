@@ -1,5 +1,4 @@
 #include "musicbackgroundpopwidget.h"
-#include "musicuiobject.h"
 #include "musicclickedslider.h"
 #include "musicwidgetheaders.h"
 

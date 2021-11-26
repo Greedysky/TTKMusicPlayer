@@ -37,4 +37,6 @@
 #include <QProgressBar>
 #include <QRadioButton>
 
+#include "musicuiobject.h"
+
 #endif // MUSICWIDGETHEADERS_H

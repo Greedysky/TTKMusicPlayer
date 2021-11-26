@@ -1,7 +1,6 @@
 #include "musicplaybackmodepopwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicapplication.h"
-#include "musicuiobject.h"
 
 MusicPlayBackModePopWidget::MusicPlayBackModePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)

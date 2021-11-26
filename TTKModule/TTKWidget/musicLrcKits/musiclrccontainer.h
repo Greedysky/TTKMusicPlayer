@@ -20,8 +20,6 @@
  ================================================= */
 
 #include "musiclrcmanager.h"
-#include "musicobject.h"
-#include "musicuiobject.h"
 #include "musiclrcanalysis.h"
 #include "musicsettingmanager.h"
 

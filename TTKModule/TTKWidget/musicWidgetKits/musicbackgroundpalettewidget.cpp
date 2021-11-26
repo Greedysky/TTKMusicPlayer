@@ -4,7 +4,6 @@
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrapper.h"
 #include "musiccolordialog.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
 #include <QMouseEvent>

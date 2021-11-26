@@ -1,7 +1,7 @@
 #include "musicdownloadstatusmodule.h"
+#include "musicsongsearchonlinewidget.h"
 #include "musicapplication.h"
 #include "musicbottomareawidget.h"
-#include "musicsongsearchonlinewidget.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadqueryfactory.h"

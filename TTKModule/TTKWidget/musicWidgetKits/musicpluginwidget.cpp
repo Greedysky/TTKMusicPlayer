@@ -1,6 +1,5 @@
 #include "musicpluginwidget.h"
 #include "ui_musicpluginwidget.h"
-#include "musicuiobject.h"
 #include "musicitemdelegate.h"
 
 #include <qmmp/decoderfactory.h>

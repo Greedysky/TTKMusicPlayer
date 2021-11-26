@@ -334,17 +334,23 @@ bool MusicItemQueryTableWidget::downloadDataFrom(const MusicObject::MusicSongInf
 
     if(!attrs.isEmpty())
     {
+        MusicSearchedItem result;
+        result.m_songName = downloadInfo.m_singerName + " - " + downloadInfo.m_songName;
+        result.m_albumName = downloadInfo.m_songId;
+
         const MusicObject::MusicSongAttribute &attr = attrs.first();
-        const QString &musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_ARC_KEY, true);
-        const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
+        const QString &encodeSong = MusicUtils::Algorithm::mdII(result.m_songName + result.m_albumName, ALG_ARC_KEY, true);
+        result.m_albumName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(encodeSong).arg(attr.m_format);
 
         MusicSemaphoreLoop loop(this);
-        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(attr.m_url, downloadName, MusicObject::DownloadMusic, this);
+        MusicDownloadDataRequest *download = new MusicDownloadDataRequest(attr.m_url, result.m_albumName, MusicObject::DownloadMusic, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         download->startToDownload();
         loop.exec();
 
-        Q_EMIT musicSongToPlaylistChanged(musicEnSong, downloadInfo.m_duration, attr.m_format, play);
+        result.m_duration = downloadInfo.m_duration;
+        result.m_type = play ? "true" : "false";
+        Q_EMIT musicSongToPlaylistChanged(result);
     }
 
     return true;

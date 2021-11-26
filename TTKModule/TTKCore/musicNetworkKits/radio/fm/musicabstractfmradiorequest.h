@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
 #include "musicstringutils.h"
 #include "musicabstractnetwork.h"
 

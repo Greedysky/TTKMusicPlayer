@@ -19,9 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsong.h"
-#include "musicobject.h"
 #include "musicsongstoolboxwidget.h"
+#include "musicsongsearchonlinewidget.h"
 
 class QTableWidgetItem;
 class MusicSongsListWidget;
@@ -178,7 +177,7 @@ public Q_SLOTS:
     /*!
      * Add current network music to download to local.
      */
-    void addNetMusicSongToList(const QString &name, const QString &time, const QString &format, bool play);
+    void addNetMusicSongToPlaylist(const MusicSearchedItem &songItem);
     /*!
      * Add current selected song to play list.
      */

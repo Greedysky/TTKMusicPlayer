@@ -1,5 +1,4 @@
 #include "musiclrcfloatplaywidget.h"
-#include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicapplication.h"
 #include "musicwidgetheaders.h"

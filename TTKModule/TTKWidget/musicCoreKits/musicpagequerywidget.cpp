@@ -1,6 +1,5 @@
 #include "musicpagequerywidget.h"
 #include "musicclickedlabel.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 #include "musicclickedgroup.h"

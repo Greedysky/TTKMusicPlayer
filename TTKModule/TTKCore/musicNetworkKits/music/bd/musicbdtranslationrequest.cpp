@@ -1,6 +1,5 @@
 #include "musicbdtranslationrequest.h"
 #include "musicbdqueryinterface.h"
-#include "musicobject.h"
 
 MusicBDTranslationRequest::MusicBDTranslationRequest(QObject *parent)
     : MusicTranslationRequest(parent)

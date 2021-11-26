@@ -21,8 +21,7 @@
 
 #include <QLabel>
 #include <QPropertyAnimation>
-#include "musicobject.h"
-#include "musicuiobject.h"
+
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the float widget base.

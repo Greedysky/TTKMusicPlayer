@@ -1,7 +1,6 @@
 #include "musicsongstoolboxwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicsong.h"
 #include "musicimageutils.h"

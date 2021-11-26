@@ -21,6 +21,8 @@
 
 #include <QMenu>
 #include <QToolButton>
+
+#include "musicuiobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the tool menu.

@@ -3,7 +3,6 @@
 #include "musiccutsliderwidget.h"
 #include "musiccoremplayer.h"
 #include "musictoastlabel.h"
-#include "musicuiobject.h"
 #include "musicsongmeta.h"
 #include "musicfileutils.h"
 #include "musictime.h"

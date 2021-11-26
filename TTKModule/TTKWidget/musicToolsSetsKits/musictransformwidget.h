@@ -19,8 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
-#include "musicuiobject.h"
 #include "musicabstractmovedialog.h"
 
 #define LINE_WIDTH 380

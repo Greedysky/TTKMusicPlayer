@@ -3,7 +3,6 @@
 #include "musicsongslistplayedtablewidget.h"
 #include "musicsettingmanager.h"
 #include "musictinyuiobject.h"
-#include "musicuiobject.h"
 #include "musicapplication.h"
 #include "musicplaylist.h"
 #include "musicwidgetheaders.h"

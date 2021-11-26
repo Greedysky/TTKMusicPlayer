@@ -1,5 +1,4 @@
 #include "musicwebdjradiowidget.h"
-#include "musicuiobject.h"
 #include "musicwebdjradiocategorywidget.h"
 #include "musicwebdjradioquerywidget.h"
 #include "musicdownloadsourcerequest.h"

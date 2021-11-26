@@ -1,7 +1,6 @@
 #include "musicwebmvradioquerycategorypopwidget.h"
 #include "musicwidgetutils.h"
 #include "musicclickedlabel.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicclickedgroup.h"
 

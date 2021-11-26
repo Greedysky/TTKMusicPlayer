@@ -1,5 +1,4 @@
 #include "musicmovinglabelslider.h"
-#include "musicuiobject.h"
 #include "musictime.h"
 
 MusicMovingLabelSlider::MusicMovingLabelSlider(QWidget *parent)

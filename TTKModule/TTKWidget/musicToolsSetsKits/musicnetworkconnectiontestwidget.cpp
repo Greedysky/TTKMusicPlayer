@@ -1,7 +1,6 @@
 #include "musicnetworkconnectiontestwidget.h"
 #include "ui_musicnetworkconnectiontestwidget.h"
 #include "musicnetworktestthread.h"
-#include "musicuiobject.h"
 #include "musicalgorithmutils.h"
 
 #define CHECK_WWW_VISIT       "dm81Smp4VzI3eHFVNzV4aHgyU2RYN2paNDhJPQ=="

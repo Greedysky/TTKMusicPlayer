@@ -1,7 +1,5 @@
 #include "musiclocalsongsearchdialog.h"
 #include "musiclocalsongsearchedit.h"
-#include "musicobject.h"
-#include "musicuiobject.h"
 #include "musictinyuiobject.h"
 
 MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)

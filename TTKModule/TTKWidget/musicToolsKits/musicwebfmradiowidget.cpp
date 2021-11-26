@@ -1,7 +1,6 @@
 #include "musicwebfmradiowidget.h"
 #include "musicfmradiochannelrequest.h"
 #include "musicwebfmradioplaywidget.h"
-#include "musicuiobject.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicplatformmanager.h"
 #include "musicwidgetheaders.h"

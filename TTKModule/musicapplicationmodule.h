@@ -19,9 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
-#include "musicglobaldefine.h"
 #include <QPropertyAnimation>
+#include "musicglobaldefine.h"
 
 class QDeviceWatcher;
 class MusicTimerAutoModule;

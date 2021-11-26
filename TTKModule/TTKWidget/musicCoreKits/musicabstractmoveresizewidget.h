@@ -20,7 +20,6 @@
  ================================================= */
 
 #include <QWidget>
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the moving resize struct.

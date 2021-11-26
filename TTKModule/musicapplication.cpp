@@ -1,6 +1,5 @@
 #include "musicapplication.h"
 #include "ui_musicapplication.h"
-#include "musicsongsearchonlinewidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicconfigmanager.h"
 #include "musicplayer.h"

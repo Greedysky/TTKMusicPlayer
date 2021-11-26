@@ -1,6 +1,5 @@
 #include "musicmorefunctionspopwidget.h"
 #include "musicrightareawidget.h"
-#include "musicuiobject.h"
 
 MusicMoreFunctionsPopWidget::MusicMoreFunctionsPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)

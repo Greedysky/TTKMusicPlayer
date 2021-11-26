@@ -20,6 +20,7 @@
  ================================================= */
 
 #include <QWidget>
+
 #include "musicglobaldefine.h"
 
 class QButtonGroup;

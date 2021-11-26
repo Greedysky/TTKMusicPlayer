@@ -1,5 +1,4 @@
 #include "musiccodecutils.h"
-#include "musicobject.h"
 
 #include <QTextCodec>
 

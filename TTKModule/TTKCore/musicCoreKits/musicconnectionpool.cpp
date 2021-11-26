@@ -1,13 +1,10 @@
 #include "musicconnectionpool.h"
-#include "musicobject.h"
-#include "musicsong.h"
 #include "musicdownloadstatusmodule.h"
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musiclocalsongsmanagerwidget.h"
 #include "musicequalizerdialog.h"
-#include "musicsongsearchonlinewidget.h"
 #include "musiclrclocallinkwidget.h"
 #include "musicsongslistplaywidget.h"
 #include "musicvideoqualitypopwidget.h"
@@ -69,7 +66,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     else if((from == MusicSongSearchTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicItemQueryTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
-        QObject::connect(first, SIGNAL(musicSongToPlaylistChanged(QString,QString,QString,bool)), second, SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
+        QObject::connect(first, SIGNAL(musicSongToPlaylistChanged(MusicSearchedItem)), second, SLOT(addNetMusicSongToPlaylist(MusicSearchedItem)));
     }
     else if(from == MusicLrcLocalLinkWidget::getClassName() && to == MusicDownloadStatusModule::getClassName())
     {

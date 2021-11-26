@@ -1,6 +1,5 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicwidgetutils.h"
-#include "musicuiobject.h"
 
 #include <QKeyEvent>
 

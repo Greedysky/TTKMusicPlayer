@@ -1,5 +1,4 @@
 #include "musiccoremplayer.h"
-#include "musicobject.h"
 #include "musicabstractnetwork.h"
 #include "miniprocess.h"
 

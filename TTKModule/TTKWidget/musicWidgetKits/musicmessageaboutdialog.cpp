@@ -1,8 +1,7 @@
 #include "musicmessageaboutdialog.h"
 #include "ui_musicmessageaboutdialog.h"
-#include "ttkversion.h"
-#include "musicuiobject.h"
 #include "musicdownloadcounterpvrequest.h"
+#include "ttkversion.h"
 
 MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

@@ -3,7 +3,6 @@
 #include "ui_musiclrcdownloadbatchwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloaddatarequest.h"
-#include "musicuiobject.h"
 
 MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)

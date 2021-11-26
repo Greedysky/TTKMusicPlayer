@@ -1,7 +1,6 @@
 #include "musictimerwidget.h"
 #include "ui_musictimerwidget.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musicapplicationmodule.h"
 #include "musictoolsetsuiobject.h"
 

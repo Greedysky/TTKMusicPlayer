@@ -9,7 +9,6 @@
 #include "musicdownloadsourcerequest.h"
 #include "musicvideouiobject.h"
 #include "musictinyuiobject.h"
-#include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"

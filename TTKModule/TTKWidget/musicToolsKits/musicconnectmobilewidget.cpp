@@ -4,7 +4,6 @@
 #include "musictextsliderwidget.h"
 #include "musicclickedlabel.h"
 #include "musictoolsetsuiobject.h"
-#include "musicuiobject.h"
 
 #include "qrencode/qrcodewidget.h"
 

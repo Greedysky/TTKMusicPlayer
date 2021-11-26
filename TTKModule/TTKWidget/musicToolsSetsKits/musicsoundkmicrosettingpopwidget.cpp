@@ -1,6 +1,5 @@
 #include "musicsoundkmicrosettingpopwidget.h"
 #include "musicaudiorecordermodule.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 

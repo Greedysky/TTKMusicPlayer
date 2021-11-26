@@ -4,7 +4,6 @@
 #include "musicdownloaddatarequest.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"
-#include "musicuiobject.h"
 #include "musiccoreutils.h"
 #include "musicurlutils.h"
 #include "musicsettingmanager.h"

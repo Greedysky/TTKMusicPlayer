@@ -3,11 +3,9 @@
 #include "musicsongslisttablewidget.h"
 #include "musiclocalsongsearchdialog.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicprogresswidget.h"
-#include "musicsongsearchonlinewidget.h"
 #include "musicsongchecktoolswidget.h"
 #include "musicplayedlistpopwidget.h"
 #include "musiclrcdownloadbatchwidget.h"
@@ -659,17 +657,14 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
     }
 }
 
-void MusicSongsSummariziedWidget::addNetMusicSongToList(const QString &name, const QString &time, const QString &format, bool play)
+void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicSearchedItem &songItem)
 {
-    const QString &musicSong = MusicUtils::Algorithm::mdII(name, ALG_ARC_KEY, false);
-    const QString &path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);
-
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    item->m_songs << MusicSong(path, 0, time, musicSong);
+    item->m_songs << MusicSong(songItem.m_albumName, 0, songItem.m_duration, songItem.m_songName);
     item->m_itemObject->updateSongsFileName(item->m_songs);
     setItemTitle(item);
 
-    if(play)
+    if(songItem.m_type == "true")
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);

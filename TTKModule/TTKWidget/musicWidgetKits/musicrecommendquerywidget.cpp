@@ -1,6 +1,5 @@
 #include "musicrecommendquerywidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicuiobject.h"
 
 MusicRecommendQueryTableWidget::MusicRecommendQueryTableWidget(QWidget *parent)
     : MusicItemQueryTableWidget(parent)

@@ -20,7 +20,6 @@
  ================================================= */
 
 #include <QObject>
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 #if defined Q_OS_WIN && TTK_QT_VERSION_CHECK(5,2,0)

@@ -1,6 +1,5 @@
 #include "musicspectrumwidget.h"
 #include "ui_musicspectrumwidget.h"
-#include "musicuiobject.h"
 #include "musicqmmputils.h"
 #include "musicformats.h"
 #include "musictoastlabel.h"

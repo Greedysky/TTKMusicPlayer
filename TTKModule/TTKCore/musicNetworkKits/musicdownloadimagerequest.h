@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
 #include "musicabstractnetwork.h"
 
 /*! @brief The class of download art background image.

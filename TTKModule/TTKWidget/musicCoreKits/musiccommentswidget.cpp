@@ -3,7 +3,6 @@
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinteriorlrcuiobject.h"
-#include "musicuiobject.h"
 #include "musicclickedlabel.h"
 #include "musicpagequerywidget.h"
 #include "musicwidgetheaders.h"

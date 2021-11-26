@@ -1,5 +1,4 @@
 #include "musicfunctiontoolboxwidget.h"
-#include "musicuiobject.h"
 #include "musicwidgetutils.h"
 
 #include <QPainter>

@@ -9,7 +9,6 @@
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
 #include "musicremotewidgetforripple.h"
-#include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musictoolsetswidget.h"

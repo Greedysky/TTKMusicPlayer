@@ -4,7 +4,6 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musictoastlabel.h"
-#include "musicuiobject.h"
 #include "musicitemdelegate.h"
 #include "musicdownloadwidget.h"
 

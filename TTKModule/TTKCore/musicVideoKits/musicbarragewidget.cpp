@@ -1,5 +1,4 @@
 #include "musicbarragewidget.h"
-#include "musicobject.h"
 #include "musicwidgetutils.h"
 
 MusicBarrageAnimation::MusicBarrageAnimation(QObject *parent)

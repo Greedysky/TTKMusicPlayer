@@ -3,7 +3,6 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicvideofloatwidget.h"
 #include "musicsongsharingwidget.h"
-#include "musicobject.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicsettingmanager.h"

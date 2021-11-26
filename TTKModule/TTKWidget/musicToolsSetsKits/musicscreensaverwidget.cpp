@@ -1,7 +1,6 @@
 #include "musicscreensaverwidget.h"
 #include "musicapplicationmodule.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
 #include "musicdownloadqueuerequest.h"
 #include "musicimageutils.h"

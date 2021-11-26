@@ -2,7 +2,6 @@
 #include "musicwidgetheaders.h"
 #include "musicimageutils.h"
 #include "ttkdesktopwrapper.h"
-#include "musicuiobject.h"
 
 #include <QBitmap>
 #include <QPainter>

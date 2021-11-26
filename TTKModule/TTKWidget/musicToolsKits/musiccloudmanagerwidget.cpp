@@ -1,5 +1,4 @@
 #include "musiccloudmanagerwidget.h"
-#include "musicuiobject.h"
 #include "musicdownloadsourcerequest.h"
 #include "musicitemdelegate.h"
 #include "musicopenfilewidget.h"

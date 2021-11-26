@@ -21,7 +21,6 @@
 
 #include <QLabel>
 #include <QGridLayout>
-#include "musicuiobject.h"
 #include "musicbackgroundconfigmanager.h"
 
 /*! @brief The class of the background list item.

@@ -1,6 +1,5 @@
 #include "musicspectrumlayoutwidget.h"
 #include "musicwidgetutils.h"
-#include "musicuiobject.h"
 #include "musicimageutils.h"
 #include "musicclickedgroup.h"
 

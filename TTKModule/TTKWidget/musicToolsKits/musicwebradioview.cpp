@@ -1,6 +1,5 @@
 #include "musicwebradioview.h"
 #include "musicwebfmradiowidget.h"
-#include "musicuiobject.h"
 #include "musicrightareawidget.h"
 #include "musicwidgetheaders.h"
 

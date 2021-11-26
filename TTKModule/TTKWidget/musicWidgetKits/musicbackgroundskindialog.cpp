@@ -4,7 +4,6 @@
 #include "musicbackgroundpalettewidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicbackgroundremotewidget.h"
-#include "musicobject.h"
 #include "musictopareawidget.h"
 #include "musicapplicationmodule.h"
 #include "musicfileutils.h"

@@ -1,5 +1,4 @@
 #include "musictimesliderwidget.h"
-#include "musicuiobject.h"
 #include "musicmovinglabelslider.h"
 #include "musicgiflabelwidget.h"
 

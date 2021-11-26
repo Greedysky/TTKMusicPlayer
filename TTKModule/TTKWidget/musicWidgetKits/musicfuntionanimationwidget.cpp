@@ -2,7 +2,6 @@
 #include "musicleftitemlistuiobject.h"
 #include "musicfunctionlistuiobject.h"
 #include "musicimageutils.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
 #include "qmath.h"

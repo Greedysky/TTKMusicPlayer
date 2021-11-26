@@ -1,6 +1,5 @@
 #include "musiclrcsearchwidget.h"
 #include "ui_musiclrcsearchwidget.h"
-#include "musicuiobject.h"
 #include "musiclrcsearchtablewidget.h"
 #include "musictoastlabel.h"
 

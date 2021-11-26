@@ -1,7 +1,5 @@
 #include "musiclrcmakerwidget.h"
 #include "ui_musiclrcmakerwidget.h"
-#include "musicobject.h"
-#include "musicuiobject.h"
 #include "musicinteriorlrcuiobject.h"
 #include "musicmessagebox.h"
 #include "musictoastlabel.h"

@@ -6,7 +6,6 @@
 #include "musiclrclocallinkwidget.h"
 #include "musictranslationrequest.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicuiobject.h"
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"

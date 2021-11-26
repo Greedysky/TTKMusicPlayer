@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsong.h"
 #include "musicfillitemtablewidget.h"
 
 /*! @brief The class of the transfer file list table widget.

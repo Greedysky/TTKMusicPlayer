@@ -1,6 +1,5 @@
 #include "musicsongslistplayedwidget.h"
 #include "musictinyuiobject.h"
-#include "musicuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicleftareawidget.h"

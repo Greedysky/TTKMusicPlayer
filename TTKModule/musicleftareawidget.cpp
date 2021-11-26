@@ -1,7 +1,6 @@
 #include "musicleftareawidget.h"
 #include "ui_musicapplication.h"
 #include "musicapplication.h"
-#include "musicuiobject.h"
 #include "musicleftitemlistuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicdownloadmgmtwidget.h"

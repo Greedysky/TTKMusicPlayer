@@ -1,5 +1,4 @@
 #include "musicimageutils.h"
-#include "musicobject.h"
 
 #include <QBitmap>
 #include <QBuffer>

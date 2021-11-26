@@ -2,7 +2,6 @@
 #include "ui_musiclrclocallinkwidget.h"
 #include "musicconnectionpool.h"
 #include "musictoastlabel.h"
-#include "musicuiobject.h"
 #include "musicfileutils.h"
 #include "musicdownloadstatusmodule.h"
 

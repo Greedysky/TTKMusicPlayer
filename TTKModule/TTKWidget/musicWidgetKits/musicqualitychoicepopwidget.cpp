@@ -1,5 +1,4 @@
 #include "musicqualitychoicepopwidget.h"
-#include "musicuiobject.h"
 #include "musicqualitywidgetuiobject.h"
 #include "musicitemdelegate.h"
 #include "musicrightareawidget.h"

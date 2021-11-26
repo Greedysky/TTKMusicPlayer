@@ -22,7 +22,6 @@
 #include <QObject>
 #include <QTimer>
 
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the time check object.

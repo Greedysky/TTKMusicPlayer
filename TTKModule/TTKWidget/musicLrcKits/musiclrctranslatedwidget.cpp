@@ -1,7 +1,6 @@
 #include "musiclrctranslatedwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicwidgetutils.h"
-#include "musicuiobject.h"
 
 MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     : QLabel(parent)

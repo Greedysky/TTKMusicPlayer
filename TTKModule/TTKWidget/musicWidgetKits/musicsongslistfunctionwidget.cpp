@@ -1,7 +1,6 @@
 #include "musicsongslistfunctionwidget.h"
 #include "musicapplication.h"
 #include "musictinyuiobject.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
 #include <QPropertyAnimation>

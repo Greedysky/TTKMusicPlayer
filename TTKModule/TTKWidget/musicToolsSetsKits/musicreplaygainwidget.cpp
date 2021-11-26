@@ -1,6 +1,5 @@
 #include "musicreplaygainwidget.h"
 #include "ui_musicreplaygainwidget.h"
-#include "musicuiobject.h"
 #include "musicsemaphoreloop.h"
 #include "musicfileutils.h"
 #include "musicwidgetheaders.h"

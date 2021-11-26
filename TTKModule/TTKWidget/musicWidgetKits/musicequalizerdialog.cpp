@@ -1,7 +1,6 @@
 #include "musicequalizerdialog.h"
 #include "ui_musicequalizerdialog.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musicmagicwidgetuiobject.h"
 #include "musicconnectionpool.h"
 #include "musicsoundeffectswidget.h"

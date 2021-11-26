@@ -41,6 +41,7 @@ INCLUDEPATH += \
     $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
     $$PWD/../../../TTKModule/TTKCore/musicUtilsKits \
     $$PWD/../../../TTKModule/TTKWidget/musicCoreKits \
+    $$PWD/../../../TTKModule/TTKWidget/musicUiKits
 
 LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKCore
 unix:LIBS += -L$$OUT_PWD/../../../bin/$$TTKMusicPlayer -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip

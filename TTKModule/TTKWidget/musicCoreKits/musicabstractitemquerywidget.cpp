@@ -1,5 +1,4 @@
 #include "musicabstractitemquerywidget.h"
-#include "musicuiobject.h"
 #include "musicimageutils.h"
 
 MusicAbstractItemQueryWidget::MusicAbstractItemQueryWidget(QWidget *parent)

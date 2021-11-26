@@ -1,7 +1,6 @@
 #include "musicemojilabelwidget.h"
 #include "musictinyuiobject.h"
 #include "musicclickedlabel.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicstringutils.h"
 #include "musicclickedgroup.h"

@@ -2,7 +2,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrapper.h"
-#include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 #include "musicwidgetutils.h"
 

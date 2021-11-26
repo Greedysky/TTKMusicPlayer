@@ -20,6 +20,7 @@
  ================================================= */
 
 #include "ttkglobaldefine.h"
+#include "musicobject.h"
 #include "musicotherdefine.h"
 #include "musicnumberdefine.h"
 

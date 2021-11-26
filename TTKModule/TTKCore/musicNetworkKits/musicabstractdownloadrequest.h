@@ -21,7 +21,6 @@
 
 #include <QFile>
 #include <QTimer>
-#include "musicobject.h"
 #include "musicabstractnetwork.h"
 
 /*! @brief The class of abstract downloading data.

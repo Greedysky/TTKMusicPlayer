@@ -1,6 +1,4 @@
 #include "musicitemdelegate.h"
-#include "musicuiobject.h"
-#include "musicobject.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicwidgetheaders.h"
 

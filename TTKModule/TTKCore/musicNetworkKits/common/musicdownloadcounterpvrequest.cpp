@@ -1,5 +1,4 @@
 #include "musicdownloadcounterpvrequest.h"
-#include "musicobject.h"
 
 MusicDownloadCounterPVRequest::MusicDownloadCounterPVRequest(QObject *parent)
     : MusicAbstractNetwork(parent)

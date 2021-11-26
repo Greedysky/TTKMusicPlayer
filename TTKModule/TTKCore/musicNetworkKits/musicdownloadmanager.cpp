@@ -1,5 +1,4 @@
 #include "musicdownloadmanager.h"
-#include "musicobject.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadstatusmodule.h"
 #include "musicdownloadrecordwidget.h"

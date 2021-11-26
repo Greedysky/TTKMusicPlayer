@@ -23,8 +23,6 @@
 #include <QHeaderView>
 #include <QTableWidget>
 
-#include "musicobject.h"
-#include "musicuiobject.h"
 #include "musicwidgetutils.h"
 
 #define ITEM_ROW_HEIGHT_S   25

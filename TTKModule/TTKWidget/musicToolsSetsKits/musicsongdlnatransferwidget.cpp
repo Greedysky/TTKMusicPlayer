@@ -1,7 +1,6 @@
 #include "musicsongdlnatransferwidget.h"
 #include "ui_musicsongdlnatransferwidget.h"
 #include "musicconnectionpool.h"
-#include "musicuiobject.h"
 #include "musicsongssummariziedwidget.h"
 
 #include "qdlna/qdlnafinder.h"

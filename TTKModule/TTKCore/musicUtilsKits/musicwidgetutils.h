@@ -23,7 +23,7 @@ class QMenu;
 class QPainter;
 class QComboBox;
 
-#include "musicobject.h"
+#include "musicuiobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The namespace of the utils widget.

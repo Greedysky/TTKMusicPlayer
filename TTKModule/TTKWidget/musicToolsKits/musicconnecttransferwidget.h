@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "musicsong.h"
-#include "musicobject.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {

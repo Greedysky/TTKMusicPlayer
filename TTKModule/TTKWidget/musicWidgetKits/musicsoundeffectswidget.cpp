@@ -2,7 +2,6 @@
 #include "ui_musicsoundeffectswidget.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
-#include "musicuiobject.h"
 #include "musicplayer.h"
 #include "musicwidgetheaders.h"
 #include "musicqmmputils.h"

@@ -1,7 +1,5 @@
 #include "musiclrcartphotouploadwidget.h"
 #include "ui_musiclrcartphotouploadwidget.h"
-#include "musicuiobject.h"
-#include "musicobject.h"
 #include "musictoastlabel.h"
 #include "musicfileutils.h"
 

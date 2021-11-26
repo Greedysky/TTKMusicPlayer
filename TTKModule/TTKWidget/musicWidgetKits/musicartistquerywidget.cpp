@@ -6,7 +6,6 @@
 #include "musicrightareawidget.h"
 #include "musicpagequerywidget.h"
 #include "musictinyuiobject.h"
-#include "musicuiobject.h"
 #include "musicsettingmanager.h"
 
 #include "qrencode/qrcodewidget.h"

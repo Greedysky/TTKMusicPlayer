@@ -1,6 +1,5 @@
 #include "musiccloudfileinformationwidget.h"
 #include "ui_musiccloudfileinformationwidget.h"
-#include "musicuiobject.h"
 #include "musicnumberutils.h"
 
 #include "qsync/qsyncdataitem.h"

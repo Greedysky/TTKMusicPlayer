@@ -1,6 +1,5 @@
 #include "musicdownloadbatchwidget.h"
 #include "ui_musicdownloadbatchwidget.h"
-#include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadrecordconfigmanager.h"
 #include "musicdownloadtagdatarequest.h"

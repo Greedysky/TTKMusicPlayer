@@ -6,7 +6,6 @@
 #include "musicvideoqualitypopwidget.h"
 #include "musicvideobarragestylepopwidget.h"
 #include "musiclocalsongsearchedit.h"
-#include "musicuiobject.h"
 
 MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     : QWidget(parent)

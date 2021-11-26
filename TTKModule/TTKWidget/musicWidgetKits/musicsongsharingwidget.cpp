@@ -3,8 +3,6 @@
 #include "musicabstractqueryrequest.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictoastlabel.h"
-#include "musicuiobject.h"
-#include "musicobject.h"
 #include "musicurlutils.h"
 #include "musicdownloadsourcerequest.h"
 

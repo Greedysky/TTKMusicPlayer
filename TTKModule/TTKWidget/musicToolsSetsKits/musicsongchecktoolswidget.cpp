@@ -1,7 +1,6 @@
 #include "musicsongchecktoolswidget.h"
 #include "ui_musicsongchecktoolswidget.h"
 #include "musictoolsetsuiobject.h"
-#include "musicuiobject.h"
 #include "musicsongchecktoolsthread.h"
 #include "musictoastlabel.h"
 

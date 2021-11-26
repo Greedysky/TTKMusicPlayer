@@ -1,6 +1,5 @@
 #include "musicenhancedpopwidget.h"
 #include "musicsettingmanager.h"
-#include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicmagicwidgetuiobject.h"
 #include "musicapplicationmodule.h"

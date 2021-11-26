@@ -3,7 +3,6 @@
 #include "musicitemdelegate.h"
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
-#include "musicuiobject.h"
 #include "musicfileutils.h"
 #include "musicimageutils.h"
 #include "musicextractwrapper.h"

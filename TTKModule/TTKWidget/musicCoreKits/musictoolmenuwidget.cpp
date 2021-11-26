@@ -1,5 +1,4 @@
 #include "musictoolmenuwidget.h"
-#include "musicuiobject.h"
 
 #include <QWidgetAction>
 

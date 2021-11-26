@@ -1,6 +1,5 @@
 #include "musicfileinformationwidget.h"
 #include "ui_musicfileinformationwidget.h"
-#include "musicuiobject.h"
 #include "musicnumberutils.h"
 #include "musicsongmeta.h"
 #include "musictoastlabel.h"

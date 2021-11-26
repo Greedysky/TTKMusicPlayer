@@ -1,6 +1,5 @@
 #include "musicripplespecturmmodule.h"
 #include "musicqmmputils.h"
-#include "musicobject.h"
 
 #include <qmmp/visual.h>
 

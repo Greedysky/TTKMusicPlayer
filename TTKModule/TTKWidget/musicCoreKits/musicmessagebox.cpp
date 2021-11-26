@@ -1,6 +1,5 @@
 #include "musicmessagebox.h"
 #include "ui_musicmessagebox.h"
-#include "musicuiobject.h"
 
 #include <QPainter>
 #include <QButtonGroup>
