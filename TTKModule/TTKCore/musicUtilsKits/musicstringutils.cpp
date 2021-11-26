@@ -4,38 +4,34 @@
 #include <QColor>
 #include <QTextDocument>
 
-QString MusicUtils::String::lrcPrefix()
+static QString makeFilePrefix(MusicSettingManager::ConfigType type, const QString &path)
 {
-    QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadLrcDirPath).toString();
-    if(path.isEmpty())
+    QString dir = G_SETTING_PTR->value(type).toString();
+    if(dir.isEmpty())
     {
-        path = QDir(LRC_DIR_FULL).canonicalPath();
-    }
-    else
-    {
-        if(!QDir(path).exists())
+        dir = QDir(path).canonicalPath();
+        if(!dir.endsWith("/"))
         {
-            QDir().mkpath(path);
+            dir.append("/");
         }
     }
-    return path;
+
+    if(!QDir(dir).exists())
+    {
+        QDir().mkpath(dir);
+    }
+
+    return dir;
+}
+
+QString MusicUtils::String::lrcPrefix()
+{
+    return makeFilePrefix(MusicSettingManager::DownloadLrcDirPath, LRC_DIR_FULL);
 }
 
 QString MusicUtils::String::musicPrefix()
 {
-    QString path = G_SETTING_PTR->value(MusicSettingManager::DownloadMusicDirPath).toString();
-    if(path.isEmpty())
-    {
-        path = QDir(MUSIC_DIR_FULL).canonicalPath();
-    }
-    else
-    {
-        if(!QDir(path).exists())
-        {
-            QDir().mkpath(path);
-        }
-    }
-    return path;
+    return makeFilePrefix(MusicSettingManager::DownloadMusicDirPath, MUSIC_DIR_FULL);
 }
 
 QString MusicUtils::String::stringPrefix(const QString &name)

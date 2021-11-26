@@ -86,7 +86,7 @@
  *
  *  Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  *
- *  Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
+ *  Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function.
  *
  *  Perfect music. It supports local playback, compatible with all audio files, super perfect sound, music and more appealing.
  *

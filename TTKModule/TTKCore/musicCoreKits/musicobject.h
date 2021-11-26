@@ -95,14 +95,14 @@
 #define DOWNLOAD_DIR            "Downloads/"
 #define APPCACHE_DIR            "AppCache/"
 //
-#define LRC_DIR                 "MLrc/"
+#define LRC_DIR                 "Lyric/"
 #define MUSIC_DIR               "Music/"
 #define MOVIE_DIR               "Movie/"
-#define UPDATE_DIR              "MUpdate/"
+#define UPDATE_DIR              "Update/"
 //
-#define LANGUAGE_DIR            "MLanguage/"
-#define PLUGINS_DIR             "MPlugins/"
-#define THEME_DIR               "MTheme/"
+#define LANGUAGE_DIR            "GLanguage/"
+#define PLUGINS_DIR             "GPlugins/"
+#define THEME_DIR               "GTheme/"
 //
 #define ART_DIR                 "Art/"
 #define BACKGROUND_DIR          "Background/"

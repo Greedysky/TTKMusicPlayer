@@ -3,7 +3,7 @@ PUSHD %~dp0
 
 cd /D ../TTKLanguage
 set LCEXE="%1"
-set OUTPUT="%2/MLanguage"
+set OUTPUT="%2/GLanguage"
 md %OUTPUT%
 ::make
 for /F %%f in ('dir /A:A /s /b *.ts') do (

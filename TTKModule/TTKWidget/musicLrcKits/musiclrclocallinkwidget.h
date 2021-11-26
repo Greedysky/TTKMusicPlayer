@@ -116,9 +116,9 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Search local lrc in MLrc dir.
+     * Search local lrc in dir.
      */
-    void searchInLocalMLrc();
+    void searchInLocalLrc();
 
     QString m_currentName;
     Ui::MusicLrcLocalLinkWidget *m_ui;

@@ -143,7 +143,7 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         it->setText("...");
 
         MusicSong *song = &m_localSongs[i];
-        const QString &prefix = lrcDir ? MusicUtils::String::lrcPrefix() : QFileInfo(song->getMusicPath()).path() + QDir::separator();
+        const QString &prefix = lrcDir ? MusicUtils::String::lrcPrefix() : QFileInfo(song->getMusicPath()).path() + "/";
         const QString &path = QString("%1/%2%3").arg(prefix).arg(song->getMusicName()).arg(LRC_FILE);
         if(skip && QFile::exists(path))
         {

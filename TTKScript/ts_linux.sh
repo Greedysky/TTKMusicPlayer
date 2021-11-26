@@ -1,7 +1,7 @@
 #!/bin/bash
 
 LCEXE="$1"
-OUTPUT="$2/MLanguage"
+OUTPUT="$2/GLanguage"
 SOURCE="$3/TTKLanguage"
 
 #make output dir

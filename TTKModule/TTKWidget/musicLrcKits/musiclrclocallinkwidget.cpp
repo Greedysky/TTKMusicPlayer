@@ -109,10 +109,10 @@ void MusicLrcLocalLinkWidget::setCurrentSongName(const QString &name)
 {
     m_currentName = name;
     m_ui->titleEdit->setText(name);
-    searchInLocalMLrc();
+    searchInLocalLrc();
 }
 
-void MusicLrcLocalLinkWidget::searchInLocalMLrc()
+void MusicLrcLocalLinkWidget::searchInLocalLrc()
 {
     const QString &title = m_ui->titleEdit->text().trimmed();
     if(title.isEmpty())
@@ -140,7 +140,7 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
 void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 {
     m_ui->searchedTable->clear();
-    searchInLocalMLrc();
+    searchInLocalLrc();
 }
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
