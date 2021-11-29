@@ -4,7 +4,7 @@
 #include "musicplatformmanager.h"
 #include "ttkdumper.h"
 #ifdef Q_OS_UNIX
-#include "musicapplicationmpris.h"
+#  include "musicapplicationmpris.h"
 #endif
 
 #include <QTranslator>
@@ -15,17 +15,17 @@
 void loadAppScaledFactor(int argc, char *argv[])
 {
 #if TTK_QT_VERSION_CHECK(5,4,0)
-   #if TTK_QT_VERSION_CHECK(6,0,0)
-      // do nothing
-   #elif TTK_QT_VERSION_CHECK(5,12,0)
-      QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-   #elif TTK_QT_VERSION_CHECK(5,6,0)
-      MusicPlatformManager platform;
-      const float dpi = platform.getLogicalDotsPerInch() / 96.0;
-      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
-   #else
-      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
-   #endif
+#  if TTK_QT_VERSION_CHECK(6,0,0)
+     // do nothing
+#  elif TTK_QT_VERSION_CHECK(5,12,0)
+     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#  elif TTK_QT_VERSION_CHECK(5,6,0)
+     MusicPlatformManager platform;
+     const float dpi = platform.getLogicalDotsPerInch() / 96.0;
+     qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
+#  else
+     qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+#  endif
 #endif
     Q_UNUSED(argc);
     Q_UNUSED(argv);
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 {
     loadAppScaledFactor(argc, argv);
     //
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 #if !defined TTK_DEBUG && !defined Q_OS_UNIX
     if(argc <= 1 || QString(argv[1]) != APP_NAME)
     {
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     {
         TTK_LOGGER_ERROR("Load translation error");
     }
-    a.installTranslator(&translator);
+    app.installTranslator(&translator);
 
     MusicApplication w;
     w.show();
@@ -92,5 +92,5 @@ int main(int argc, char *argv[])
     mpris.run();
 #endif
 
-    return a.exec();
+    return app.exec();
 }

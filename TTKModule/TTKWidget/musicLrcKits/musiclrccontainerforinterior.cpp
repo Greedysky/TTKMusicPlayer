@@ -688,7 +688,7 @@ void MusicLrcContainerForInterior::createNoLrcCurrentInfo()
 {
     m_noLrcCurrentInfo = new MusicClickedLabel(this);
     MusicUtils::Widget::setLabelFontSize(m_noLrcCurrentInfo, 15);
-    MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::FT_Underline);
+    MusicUtils::Widget::setLabelFontStyle(m_noLrcCurrentInfo, MusicObject::Underline);
     m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MQSSColorStyle06);
     m_noLrcCurrentInfo->setText(tr("Lrc Make"));
 

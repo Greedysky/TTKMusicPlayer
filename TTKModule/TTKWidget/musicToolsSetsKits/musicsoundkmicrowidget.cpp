@@ -16,7 +16,7 @@
 #include "musicfileutils.h"
 
 #ifdef Q_CC_GNU
-    #pragma GCC diagnostic ignored "-Wparentheses"
+#  pragma GCC diagnostic ignored "-Wparentheses"
 #endif
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
@@ -178,14 +178,14 @@ void MusicSoundKMicroWidget::playButtonChanged()
     m_mediaPlayer->play();
     switch(m_mediaPlayer->state())
     {
-        case MusicObject::PS_PlayingState: setButtonStyle(false); break;
-        case MusicObject::PS_PausedState: setButtonStyle(true); break;
+        case MusicObject::PlayingState: setButtonStyle(false); break;
+        case MusicObject::PausedState: setButtonStyle(true); break;
         default: break;
     }
 
     if(!m_queryMovieMode)
     {
-        if(m_mediaPlayer->state() == MusicObject::PS_PlayingState)
+        if(m_mediaPlayer->state() == MusicObject::PlayingState)
         {
             m_musicLrcContainer[m_analysis->getMiddle()]->startDrawLrcMask(m_intervalTime);
         }
@@ -364,7 +364,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
 void MusicSoundKMicroWidget::recordStateChanged(bool state)
 {
-    if(state && m_mediaPlayer->state() != MusicObject::PS_StoppedState)
+    if(state && m_mediaPlayer->state() != MusicObject::StoppedState)
     {
         m_ui->gifLabel->start();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MQSSRerecord);

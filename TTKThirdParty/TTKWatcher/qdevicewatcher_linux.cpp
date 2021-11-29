@@ -1,17 +1,11 @@
 #include "qdevicewatcher.h"
 #include "qdevicewatcher_p.h"
-#ifdef Q_OS_LINUX
 
+#ifdef Q_OS_LINUX
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-#include <linux/version.h>
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 0)
-#else
-
-#endif
 
 #include <sys/un.h>
 #include <sys/ioctl.h>
@@ -24,9 +18,9 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/qregexp.h>
 #if CONFIG_SOCKETNOTIFIER
-#include <QtCore/QSocketNotifier>
+#  include <QtCore/QSocketNotifier>
 #elif CONFIG_TCPSOCKET
-#include <QtNetwork/QTcpSocket>
+#  include <QtNetwork/QTcpSocket>
 #endif
 
 

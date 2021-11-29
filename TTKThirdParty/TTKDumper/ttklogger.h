@@ -26,9 +26,9 @@
 #define CURRENT_DATE QDate::currentDate().toString("yyyy-MM-dd")
 
 #if QT_VERSION < QT_VERSION_CHECK(5,4,0)
-#define TTK_LOGGER_OUTPUT qDebug()
+#  define TTK_LOGGER_OUTPUT qDebug()
 #else
-#define TTK_LOGGER_OUTPUT qDebug().noquote()
+#  define TTK_LOGGER_OUTPUT qDebug().noquote()
 #endif
 
 #define TTK_LOGGER_INFO(str)  TTK_LOGGER_OUTPUT << QString("[%1 %2][I][%3(%4)] ").arg(CURRENT_DATE, CURRENT_TIME).arg(__FILE__).arg(__LINE__) << str

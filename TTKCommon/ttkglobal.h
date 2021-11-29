@@ -32,39 +32,39 @@
 #define TTK_QT_VERSION_CHECK(major, minor, patch) (QT_VERSION >= QT_VERSION_CHECK(major, minor, patch))
 
 #ifndef qPrintable
-#define qPrintable(s) QString(s).toLocal8Bit().constData()
+#  define qPrintable(s) QString(s).toLocal8Bit().constData()
 #endif
 
 #ifndef qUtf8Printable
-#define qUtf8Printable(s) QString(s).toUtf8().constData()
+#  define qUtf8Printable(s) QString(s).toUtf8().constData()
 #endif
 
 #if !TTK_QT_VERSION_CHECK(5,7,0)
-#define TTK_AS_CONST
+#  define TTK_AS_CONST
 // this adds const to non-const objects (like std::as_const)
-#ifndef Q_CC_MSVC
+#  ifndef Q_CC_MSVC
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
 // prevent rvalue arguments:
 template <typename T>
 void qAsConst(const T &&) = delete;
-#else
+#  else
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
-#endif
+#  endif
 #endif
 
 //
 #ifdef QT_DEBUG
-#   define TTK_DEBUG
+#  define TTK_DEBUG
 #endif
 
-///
-#ifdef __cplusplus
+//
+#if __cplusplus >= 201103L
 #  define TTK_CAST
 #endif
 
-///cast
+// cast
 #ifdef TTK_CAST
 #  define TTKConst_cast(x,y) (const_cast< x >(y))
 #else
@@ -95,20 +95,19 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #  define TTKObject_cast(x,y) (qobject_cast< x >(y))
 #endif
 
-///
-#define TTK_IN const &
-#define TTK_OT &
-#define TTK_RT const
-#define TTK_RD &
-#define TTK_RR const &
-#define TTK_CT const
-#define TTK_CR const &
+//
+#if !TTK_QT_VERSION_CHECK(5,0,0) && defined(Q_CC_GNU)
+#  if defined(__GXX_EXPERIMENTAL_CXX0X__) || __cplusplus >= 201103L
+#    define Q_COMPILER_DEFAULT_MEMBERS
+#    define Q_COMPILER_DELETE_MEMBERS
+#    define Q_COMPILER_NULLPTR
+#    define Q_COMPILER_EXPLICIT_OVERRIDES
+#  endif
+#endif
 
-/*
- * C++11 keywords and expressions
- */
+// C++11 keywords and expressions
 #ifdef Q_COMPILER_NULLPTR
-# define TTK_NULLPTR  nullptr
+#  define TTK_NULLPTR  nullptr
 #else
 # define TTK_NULLPTR  NULL
 #endif
@@ -137,10 +136,7 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 # endif
 #endif
 
-///
-#define TTK_NAN_STR                 "NaN"
-#define TTK_STR_SPLITER             "*|||*"
-
+//
 #define TTK_DECLARE_MODULE(Class)           \
 public:                                     \
     inline static QString getClassName()    \
@@ -148,55 +144,59 @@ public:                                     \
         return #Class;                      \
     }
 
-///
+//
 #ifndef _MSC_VER
-  //gcc version less than 3.4.0
-  #if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
-    #define TTK_STRCAT(a, b)    a##b
-  #else
-    #define TTK_STRCAT(a, b)    a b
-  #endif
+// gcc version less than 3.4.0
+#  if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
+#    define TTK_STRCAT(a, b)    a##b
+#  else
+#    define TTK_STRCAT(a, b)    a b
+#  endif
 #else
-  #define TTK_STRCAT(a, b)      a b
+#  define TTK_STRCAT(a, b)      a b
 #endif
 
-#define TTK_DECLARE_LIST(Class)            \
-    typedef QList<Class> Class##s;
+#define TTK_DECLARE_LIST(Class)        typedef QList<Class> Class##s;
+#define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags;
 
-#define TTK_DECLARE_FLAG(Flags, Enum)      \
-    typedef QFlags<Enum> Flags;
+#define TTK_DOT             "."
+#define TTK_DOTS            ".."
+#define TTK_SEPARATOR       "/"
+#define TTK_PDIR            TTK_STRCAT(TTK_DOTS, TTK_SEPARATOR)
 
+#define TTK_SPLITER         "*|||*"
+#define TTK_DEFAULT_STR     "-"
+#define TTK_NAN_STR         "NaN"
+#define TTK_NULL_STR        "null"
 
-///
-typedef signed char                        TTKInt8;         /* 8 bit signed */
-typedef unsigned char                      TTKUInt8;        /* 8 bit unsigned */
-typedef short                              TTKInt16;        /* 16 bit signed */
-typedef unsigned short                     TTKUInt16;       /* 16 bit unsigned */
-typedef int                                TTKInt32;        /* 32 bit signed */
-typedef unsigned int                       TTKUInt32;       /* 32 bit unsigned */
-typedef long long                          TTKInt64;        /* 64 bit signed */
-typedef unsigned long long                 TTKUInt64;       /* 64 bit unsigned */
+// C style
+typedef signed char                      TTKInt8;         /* 8 bit signed */
+typedef unsigned char                    TTKUInt8;        /* 8 bit unsigned */
+typedef short                            TTKInt16;        /* 16 bit signed */
+typedef unsigned short                   TTKUInt16;       /* 16 bit unsigned */
+typedef int                              TTKInt32;        /* 32 bit signed */
+typedef unsigned int                     TTKUInt32;       /* 32 bit unsigned */
+typedef long long                        TTKInt64;        /* 64 bit signed */
+typedef unsigned long long               TTKUInt64;       /* 64 bit unsigned */
 
-typedef double                             TTKDouble;       /* double */
-typedef float                              TTKFloat;        /* float */
-typedef bool                               TTKBool;         /* bool */
+typedef double                           TTKDouble;       /* double */
+typedef float                            TTKFloat;        /* float */
+typedef bool                             TTKBool;         /* bool */
 
-typedef std::string                        TTKString;       /* string */
+// C++ style
+typedef std::string                      TTKString;       /* string */
+typedef std::wstring                     TTKWString;      /* wstring */
 
-///
-typedef QList<QVariant>                    TTKVariantList;            /* variantlist */
-typedef QList<int>                         TTKIntList;                /* intlist */
-typedef QSet<QVariant>                     TTKVariantSet;             /* variantset */
-typedef QSet<int>                          TTKIntSet;                 /* intset */
-typedef QMap<QString, QVariant>            TTKVariantMap;             /* stringVariantMap */
-typedef QMap<QString, QString>             TTKStringMap;              /* stringsMap */
-typedef QMap<QString, QStringList>         TTKStringListMap;          /* stringStrlistsMap */
-typedef QMap<int, TTKIntList>              TTKIntListMap;             /* intIntlistMap */
-typedef QMap<qint64, QString>              TTKIntStringMap;           /* intStrMap */
-typedef QMapIterator<QString, QVariant>    TTKVariantMapIterator;     /* stringVariantMapIterator */
-typedef QMapIterator<QString, QString>     TTKStringMapterator;       /* stringsMapIterator */
-typedef QMapIterator<QString, QStringList> TTKStringListMapIterator;  /* stringStrlistsMapIterator */
-typedef QMapIterator<int, TTKIntList>      TTKIntListMapIterator;     /* intIntlistMapIterator */
-typedef QMapIterator<qint64, QString>      TTKIntStringMapIterator;   /* intStrMapIterator */
+// Qt style
+typedef QList<int>                       TTKIntList;                /* intlist */
+typedef QList<QVariant>                  TTKVariantList;            /* variantlist */
+typedef QSet<int>                        TTKIntSet;                 /* intset */
+typedef QMap<QString, QVariant>          TTKVariantMap;             /* stringVariantMap */
+typedef QMap<QString, QString>           TTKStringMap;              /* stringsMap */
+typedef QMap<QString, QStringList>       TTKStringListMap;          /* stringStrlistsMap */
+typedef QMap<int, TTKIntList>            TTKIntListMap;             /* intIntlistMap */
+typedef QMap<qint64, QString>            TTKIntStringMap;           /* intStrMap */
+typedef QMapIterator<QString, QString>   TTKStringMapterator;       /* stringsMapIterator */
+typedef QMapIterator<qint64, QString>    TTKIntStringMapIterator;   /* intStrMapIterator */
 
 #endif // TTKGLOBAL_H

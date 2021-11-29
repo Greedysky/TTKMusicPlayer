@@ -2,7 +2,7 @@
 
 #include <QThread>
 #if defined Q_OS_UNIX || defined Q_CC_MINGW
-# include <unistd.h>
+#  include <unistd.h>
 #endif
 
 void MusicUtils::Core::sleep(int ms)
@@ -40,8 +40,8 @@ bool MusicUtils::Core::appVersionCheck(const QStringList &ol, const QStringList 
 
 bool MusicUtils::Core::appVersionCheck(const QString &o, const QString &d)
 {
-    const QStringList &ol = o.split(".");
-    const QStringList &dl = d.split(".");
+    const QStringList &ol = o.split(TTK_DOT);
+    const QStringList &dl = d.split(TTK_DOT);
 
     if(ol.isEmpty() || dl.isEmpty() || ol.count() != dl.count())
     {

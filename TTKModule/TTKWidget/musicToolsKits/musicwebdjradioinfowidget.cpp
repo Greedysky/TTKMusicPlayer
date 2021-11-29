@@ -89,7 +89,7 @@ void MusicWebDJRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
     {
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
+        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
             download->startToDownload(item.m_coverUrl);
         }
@@ -155,15 +155,15 @@ void MusicWebDJRadioInfoWidget::createLabels()
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
     nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    nameLabel->setText(STRING_NULL);
+    nameLabel->setText(TTK_DEFAULT_STR);
     QLabel *singerLabel = new QLabel(topLineWidget);
     singerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    singerLabel->setText(STRING_NULL);
+    singerLabel->setText(TTK_DEFAULT_STR);
     QLabel *playCountLabel = new QLabel(topLineWidget);
     playCountLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
     QLabel *updateTimeLabel = new QLabel(topLineWidget);
     updateTimeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    updateTimeLabel->setText(STRING_NULL);
+    updateTimeLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(nameLabel);
     topLineLayout->addWidget(singerLabel);

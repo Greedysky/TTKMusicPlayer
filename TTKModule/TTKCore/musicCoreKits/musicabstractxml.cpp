@@ -1,7 +1,7 @@
 #include "musicabstractxml.h"
 
 #ifdef Q_CC_GNU
-#   pragma GCC diagnostic ignored "-Wswitch"
+#  pragma GCC diagnostic ignored "-Wswitch"
 #endif
 
 MusicXmlNodeHelper::MusicXmlNodeHelper(const QDomNode& root)

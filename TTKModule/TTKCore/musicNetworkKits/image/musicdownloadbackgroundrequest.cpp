@@ -18,7 +18,7 @@ void MusicDownloadBackgroundRequest::startToDownload()
 
 void MusicDownloadBackgroundRequest::downLoadFinished(const QString &bytes)
 {
-    if(bytes == STRING_NULL)
+    if(bytes == TTK_DEFAULT_STR)
     {
         deleteLater();
         return;

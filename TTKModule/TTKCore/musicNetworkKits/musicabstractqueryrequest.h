@@ -35,11 +35,11 @@ typedef struct TTK_MODULE_EXPORT MusicSearchedItem
 
     MusicSearchedItem()
     {
-        m_songName = STRING_NULL;
-        m_singerName = STRING_NULL;
-        m_albumName = STRING_NULL;
-        m_duration = STRING_NULL;
-        m_type = STRING_NULL;
+        m_songName = TTK_DEFAULT_STR;
+        m_singerName = TTK_DEFAULT_STR;
+        m_albumName = TTK_DEFAULT_STR;
+        m_duration = TTK_DEFAULT_STR;
+        m_type = TTK_DEFAULT_STR;
     }
 }MusicSearchedItem;
 TTK_DECLARE_LIST(MusicSearchedItem)
@@ -60,19 +60,19 @@ typedef struct TTK_MODULE_EXPORT MusicResultsItem
 
     MusicResultsItem()
     {
-        m_id = STRING_NULL;
-        m_name = STRING_NULL;
-        m_nickName = STRING_NULL;
-        m_coverUrl = STRING_NULL;
-        m_playCount = STRING_NULL;
-        m_description = STRING_NULL;
-        m_updateTime = STRING_NULL;
-        m_tags = STRING_NULL;
+        m_id = TTK_DEFAULT_STR;
+        m_name = TTK_DEFAULT_STR;
+        m_nickName = TTK_DEFAULT_STR;
+        m_coverUrl = TTK_DEFAULT_STR;
+        m_playCount = TTK_DEFAULT_STR;
+        m_description = TTK_DEFAULT_STR;
+        m_updateTime = TTK_DEFAULT_STR;
+        m_tags = TTK_DEFAULT_STR;
     }
 
     bool isEmpty() const
     {
-        return m_name == STRING_NULL || m_nickName == STRING_NULL || m_coverUrl == STRING_NULL || m_description == STRING_NULL || m_tags == STRING_NULL;
+        return m_name == TTK_DEFAULT_STR || m_nickName == TTK_DEFAULT_STR || m_coverUrl == TTK_DEFAULT_STR || m_description == TTK_DEFAULT_STR || m_tags == TTK_DEFAULT_STR;
     }
 }MusicResultsItem;
 TTK_DECLARE_LIST(MusicResultsItem)

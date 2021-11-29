@@ -10,9 +10,9 @@ static QString makeFilePrefix(MusicSettingManager::ConfigType type, const QStrin
     if(dir.isEmpty())
     {
         dir = QDir(path).canonicalPath();
-        if(!dir.endsWith("/"))
+        if(!dir.endsWith(TTK_SEPARATOR))
         {
-            dir.append("/");
+            dir.append(TTK_SEPARATOR);
         }
     }
 
@@ -36,7 +36,7 @@ QString MusicUtils::String::musicPrefix()
 
 QString MusicUtils::String::stringPrefix(const QString &name)
 {
-    return stringPrefix(name, ".");
+    return stringPrefix(name, TTK_DOT);
 }
 
 QString MusicUtils::String::stringPrefix(const QString &name, const QString &prefix)
@@ -46,7 +46,7 @@ QString MusicUtils::String::stringPrefix(const QString &name, const QString &pre
 
 QString MusicUtils::String::stringSuffix(const QString &name)
 {
-    return stringSuffix(name, ".");
+    return stringSuffix(name, TTK_DOT);
 }
 
 QString MusicUtils::String::stringSuffix(const QString &name, const QString &suffix)
@@ -56,7 +56,7 @@ QString MusicUtils::String::stringSuffix(const QString &name, const QString &suf
 
 QString MusicUtils::String::stringSplitToken(const QString &name)
 {
-    return stringSplitToken(name, ".", "?");
+    return stringSplitToken(name, TTK_DOT, "?");
 }
 
 QString MusicUtils::String::stringSplitToken(const QString &name, const QString &prefix, const QString &suffix, bool revert)

@@ -352,7 +352,7 @@ void MusicScreenSaverWidget::downLoadFinished(const QString &bytes)
     QVector<bool> statusVector(parseSettingParameter());
     if(bytes.contains(OS_WALLNAIL_NAME))
     {
-        const int index = MusicUtils::String::stringSplitToken(bytes, OS_SCREEN_DIR, "/").toInt();
+        const int index = MusicUtils::String::stringSplitToken(bytes, OS_SCREEN_DIR, TTK_SEPARATOR).toInt();
         if(index < 0 || index >= statusVector.count())
         {
             return;

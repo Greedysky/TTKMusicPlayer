@@ -9,23 +9,23 @@
 #include <QDir>
 
 #if defined(Q_OS_WIN)
-#include <QLibrary>
-#include <qt_windows.h>
+#  include <QLibrary>
+#  include <qt_windows.h>
 typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
 static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #endif
 #if defined(Q_OS_UNIX)
-#include <sys/types.h>
-#include <time.h>
-#include <unistd.h>
+#  include <sys/types.h>
+#  include <time.h>
+#  include <unistd.h>
 #endif
 
 namespace TTKLockedPrivate {
 #include "ttklockedfile.cpp"
 #if defined(Q_OS_WIN)
-#include "ttklockedfile_win.cpp"
+#  include "ttklockedfile_win.cpp"
 #else
-#include "ttklockedfile_unix.cpp"
+#  include "ttklockedfile_unix.cpp"
 #endif
 }
 

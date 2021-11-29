@@ -13,7 +13,7 @@ void MusicKWQueryArtistListRequest::startToPage(int offset)
 
     deleteAll();
     QString catId = "0", initial;
-    const QStringList &dds = m_queryText.split(TTK_STR_SPLITER);
+    const QStringList &dds = m_queryText.split(TTK_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];

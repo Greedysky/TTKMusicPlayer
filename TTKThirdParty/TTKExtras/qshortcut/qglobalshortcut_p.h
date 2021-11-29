@@ -23,7 +23,7 @@
 #include <QAbstractEventDispatcher>
 #include <QHash>
 #if TTK_QT_VERSION_CHECK(5,0,0)
-#include <QAbstractNativeEventFilter>
+#  include <QAbstractNativeEventFilter>
 #endif
 
 /*! @brief The class of the qglobal shortcut private.

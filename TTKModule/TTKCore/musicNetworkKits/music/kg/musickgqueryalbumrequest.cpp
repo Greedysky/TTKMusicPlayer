@@ -79,9 +79,9 @@ void MusicKGQueryAlbumRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
                     musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    if(musicInfo.m_songName.contains(STRING_NULL))
+                    if(musicInfo.m_songName.contains(TTK_DEFAULT_STR))
                     {
-                        const QStringList &ll = musicInfo.m_songName.split(STRING_NULL);
+                        const QStringList &ll = musicInfo.m_songName.split(TTK_DEFAULT_STR);
                         musicInfo.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
                         musicInfo.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
                     }
@@ -165,7 +165,7 @@ void MusicKGQueryAlbumRequest::singleDownLoadFinished()
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     info.m_name = value["albumname"].toString();
-                    info.m_updateTime = MusicUtils::String::stringSplit(value["publishtime"].toString().replace(STRING_NULL, "."), " ").first();
+                    info.m_updateTime = MusicUtils::String::stringSplit(value["publishtime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT), " ").first();
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

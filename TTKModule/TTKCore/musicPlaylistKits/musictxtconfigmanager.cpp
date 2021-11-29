@@ -24,7 +24,7 @@ bool MusicTXTConfigManager::readPlaylistData(MusicSongItems &items)
         if(index != -1)
         {
             const QString &part = line.mid(index + 1).trimmed();
-            index = part.lastIndexOf(STRING_NULL);
+            index = part.lastIndexOf(TTK_DEFAULT_STR);
             if(index != -1)
             {
                 MusicSong song(part.left(index).trimmed());

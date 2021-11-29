@@ -24,20 +24,20 @@
 #define CONFIG_TCPSOCKET 0  //QtNetwork
 
 #if defined(Q_OS_WINCE)
-#define CONFIG_THREAD 1
+#  define CONFIG_THREAD 1
 #elif defined(Q_OS_LINUX)
-#define CONFIG_THREAD (!CONFIG_SOCKETNOTIFIER && !CONFIG_TCPSOCKET)
+#  define CONFIG_THREAD (!CONFIG_SOCKETNOTIFIER && !CONFIG_TCPSOCKET)
 #elif defined Q_OS_MAC //OSX or MACX
-#define CONFIG_THREAD 1
-#include <DiskArbitration/DiskArbitration.h>
+#  define CONFIG_THREAD 1
+#  include <DiskArbitration/DiskArbitration.h>
 #else
-#define CONFIG_THREAD 0
+#  define CONFIG_THREAD 0
 #endif
 
 #ifdef Q_OS_WIN
-#include <qt_windows.h>
+#  include <qt_windows.h>
 #else
-#include <QtCore/QBuffer>
+#  include <QtCore/QBuffer>
 #endif //Q_OS_WIN
 #include <QtCore/QList>
 #include <QtCore/QThread>
@@ -93,11 +93,11 @@ private:
 #if defined(Q_OS_LINUX)
 	QBuffer buffer;
 	void parseLine(const QByteArray &line);
-# if CONFIG_TCPSOCKET
+#  if CONFIG_TCPSOCKET
 	class QTcpSocket *tcp_socket;
-# elif CONFIG_SOCKETNOTIFIER
+#  elif CONFIG_SOCKETNOTIFIER
 	class QSocketNotifier *socket_notifier;
-# endif
+#  endif
 
 	QString bus_name;
 	int netlink_socket;

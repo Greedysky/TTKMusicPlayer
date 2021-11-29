@@ -64,7 +64,7 @@ namespace MusicUtils
         /*!
          * Get split string value.
          */
-        TTK_MODULE_EXPORT QStringList stringSplit(const QString &value, const QString &key = "-");
+        TTK_MODULE_EXPORT QStringList stringSplit(const QString &value, const QString &key = TTK_DEFAULT_STR);
         /*!
          * Remove given key in string, default is space.
          */
@@ -83,11 +83,11 @@ namespace MusicUtils
         /*!
          * Get song artist name.
          */
-        TTK_MODULE_EXPORT QString artistName(const QString &value, const QString &key = "-");
+        TTK_MODULE_EXPORT QString artistName(const QString &value, const QString &key = TTK_DEFAULT_STR);
         /*!
          * Get song name.
          */
-        TTK_MODULE_EXPORT QString songName(const QString &value, const QString &key = "-");
+        TTK_MODULE_EXPORT QString songName(const QString &value, const QString &key = TTK_DEFAULT_STR);
 
         /*!
          * Html string to plain.

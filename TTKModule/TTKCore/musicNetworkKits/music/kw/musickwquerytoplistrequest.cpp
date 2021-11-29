@@ -55,7 +55,7 @@ void MusicKWQueryToplistRequest::downLoadFinished()
                 MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["pic"].toString();
-                info.m_playCount = STRING_NULL;
+                info.m_playCount = TTK_DEFAULT_STR;
                 info.m_description = value["info"].toString();
                 info.m_updateTime = value["pub"].toString();
                 Q_EMIT createToplistInfoItem(info);

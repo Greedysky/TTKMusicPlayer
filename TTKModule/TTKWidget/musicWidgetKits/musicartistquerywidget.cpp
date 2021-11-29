@@ -61,7 +61,7 @@ void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &it
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
+    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
     {
         download->startToDownload(item.m_coverUrl);
     }
@@ -483,7 +483,7 @@ void MusicArtistQueryWidget::createArtistInfoItem(const MusicResultsItem &item)
 
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
+        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
             download->startToDownload(item.m_coverUrl);
         }
@@ -588,16 +588,16 @@ void MusicArtistQueryWidget::createLabels()
     artistFont.setPixelSize(20);
     artistLabel->setFont(artistFont);
     artistLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    artistLabel->setText(STRING_NULL);
+    artistLabel->setText(TTK_DEFAULT_STR);
     QLabel *nickNameLabel = new QLabel(topLineWidget);
     nickNameLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    nickNameLabel->setText(STRING_NULL);
+    nickNameLabel->setText(TTK_DEFAULT_STR);
     QLabel *countryLabel = new QLabel(topLineWidget);
     countryLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    countryLabel->setText(STRING_NULL);
+    countryLabel->setText(TTK_DEFAULT_STR);
     QLabel *birthLabel = new QLabel(topLineWidget);
     birthLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    birthLabel->setText(STRING_NULL);
+    birthLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(artistLabel);
     topLineLayout->addWidget(nickNameLabel);

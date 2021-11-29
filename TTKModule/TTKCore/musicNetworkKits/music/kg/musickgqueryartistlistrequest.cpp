@@ -14,7 +14,7 @@ void MusicKGQueryArtistListRequest::startToPage(int offset)
     deleteAll();
     QString catId = "type=1&sextype=1";
     m_rawData["initial"] = "%E7%83%AD%E9%97%A8";
-    const QStringList &dds = m_queryText.split(TTK_STR_SPLITER);
+    const QStringList &dds = m_queryText.split(TTK_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];

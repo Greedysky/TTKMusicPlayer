@@ -6,7 +6,7 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
 {
     MusicTime::initRandom();
     m_currentIndex = -1;
-    m_playbackMode = MusicObject::PM_PlayOrder;
+    m_playbackMode = MusicObject::PlayOrder;
 }
 
 MusicObject::PlayMode MusicPlaylist::playbackMode() const
@@ -185,8 +185,8 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         switch(m_playbackMode)
         {
-            case MusicObject::PM_PlayOneLoop: break;
-            case MusicObject::PM_PlayOrder:
+            case MusicObject::PlayOneLoop: break;
+            case MusicObject::PlayOrder:
             {
                 if(++m_currentIndex >= m_mediaList.count())
                 {
@@ -194,7 +194,7 @@ void MusicPlaylist::setCurrentIndex(int index)
                 }
                 break;
             }
-            case MusicObject::PM_PlaylistLoop:
+            case MusicObject::PlaylistLoop:
             {
                 if(++m_currentIndex >= m_mediaList.count())
                 {
@@ -202,12 +202,12 @@ void MusicPlaylist::setCurrentIndex(int index)
                 }
                 break;
             }
-            case MusicObject::PM_PlayRandom:
+            case MusicObject::PlayRandom:
             {
                 m_currentIndex = MusicTime::random() % m_mediaList.count();
                 break;
             }
-            case MusicObject::PM_PlayOnce: break;
+            case MusicObject::PlayOnce: break;
             default: break;
         }
     }

@@ -22,7 +22,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_noCover = false;
     m_currentPlayIndex = index;
-    m_totalTimeLabel = QString("/") + MUSIC_TIME_INIT;
+    m_totalTimeLabel = QString(TTK_SEPARATOR) + MUSIC_TIME_INIT;
 
     QPushButton *addButton = new QPushButton(this);
     addButton->setGeometry(2, 25, 16, 16);
@@ -147,7 +147,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     if(state)
     {
         time = meta.getLengthString();
-        m_totalTimeLabel = "/" + time;
+        m_totalTimeLabel = TTK_SEPARATOR + time;
     }
     m_timeLabel->setText(MUSIC_TIME_INIT + m_totalTimeLabel);
 

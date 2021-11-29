@@ -31,9 +31,9 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
     d->m_uploadTime = time;
 
     const QString &method = "PUT";
-    const QString &url = "/" + fileName;
-    const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QSyncConf::HOST;
+    const QString &url = TTK_SEPARATOR + fileName;
+    const QString &resource = TTK_SEPARATOR + bucket + url;
+    const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
 
     TTKStringMap headers;
     headers.insert("Date", QSyncUtils::getGMT());

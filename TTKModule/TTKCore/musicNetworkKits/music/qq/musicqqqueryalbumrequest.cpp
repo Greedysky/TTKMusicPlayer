@@ -64,9 +64,9 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
                 //
                 MusicResultsItem info;
                 value = value["data"].toMap();
-                info.m_description = TTK_STR_SPLITER +
-                                     value["lan"].toString() + TTK_STR_SPLITER +
-                                     value["company_new"].toMap()["name"].toString() + TTK_STR_SPLITER +
+                info.m_description = TTK_SPLITER +
+                                     value["lan"].toString() + TTK_SPLITER +
+                                     value["company_new"].toMap()["name"].toString() + TTK_SPLITER +
                                      value["aDate"].toString();
                 //
                 const QVariantList &datas = value["list"].toList();
@@ -173,7 +173,7 @@ void MusicQQQueryAlbumRequest::singleDownLoadFinished()
                     info.m_id = value["albumMID"].toString();
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false).arg(info.m_id);
                     info.m_name = value["albumName"].toString();
-                    info.m_updateTime = value["pubTime"].toString().replace(STRING_NULL, ".");
+                    info.m_updateTime = value["pubTime"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

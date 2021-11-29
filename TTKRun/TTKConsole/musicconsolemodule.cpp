@@ -7,8 +7,8 @@
 #include "musicfileutils.h"
 
 #if TTK_QT_VERSION_CHECK(5,2,0)
-#include <QCommandLineOption>
-#include <QCommandLineParser>
+#  include <QCommandLineOption>
+#  include <QCommandLineParser>
 #endif
 
 MusicConsoleModule::MusicConsoleModule(QObject *parent)
@@ -21,7 +21,7 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     m_playbackMode = "Order";
     m_enhanced = "Off";
 
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOrder);
     m_musicPlayer->setPlaylist(m_musicPlaylist);
 
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
@@ -77,9 +77,9 @@ MusicConsoleModule::~MusicConsoleModule()
 bool MusicConsoleModule::init(const QCoreApplication &app)
 {
 #if TTK_QT_VERSION_CHECK(5,2,0)
-    QCommandLineOption op1("u", "", ".");
-    QCommandLineOption op2("d", "", ".");
-    QCommandLineOption op3("l", "", ".");
+    QCommandLineOption op1("u", "", TTK_DOT);
+    QCommandLineOption op2("d", "", TTK_DOT);
+    QCommandLineOption op3("l", "", TTK_DOT);
 
     QCommandLineParser parser;
     parser.addOption(op1);
@@ -231,7 +231,7 @@ void MusicConsoleModule::musicPlayPrevious()
         return;
     }
 
-    if(m_musicPlaylist->playbackMode() == MusicObject::PM_PlayRandom)
+    if(m_musicPlaylist->playbackMode() == MusicObject::PlayRandom)
     {
         m_musicPlaylist->setCurrentIndex();
     }
@@ -251,7 +251,7 @@ void MusicConsoleModule::musicPlayNext()
         return;
     }
 
-    if(m_musicPlaylist->playbackMode() == MusicObject::PM_PlayRandom)
+    if(m_musicPlaylist->playbackMode() == MusicObject::PlayRandom)
     {
         m_musicPlaylist->setCurrentIndex();
     }
@@ -295,31 +295,31 @@ void MusicConsoleModule::musicActionVolumePlus()
 
 void MusicConsoleModule::musicPlayOrder()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOrder);
     m_playbackMode = "Order";
 }
 
 void MusicConsoleModule::musicPlayRandom()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayRandom);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayRandom);
     m_playbackMode = "Random";
 }
 
 void MusicConsoleModule::musicPlaylistLoop()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlaylistLoop);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlaylistLoop);
     m_playbackMode = "ListLoop";
 }
 
 void MusicConsoleModule::musicPlayOneLoop()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOneLoop);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOneLoop);
     m_playbackMode = "OneLoop";
 }
 
 void MusicConsoleModule::musicPlayOnce()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOnce);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOnce);
     m_playbackMode = "Once";
 }
 

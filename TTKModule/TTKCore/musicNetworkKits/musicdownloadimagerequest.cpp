@@ -19,7 +19,7 @@ void MusicDownloadImageRequest::downLoadFinished()
     {
         G_BACKGROUND_PTR->setArtistName(m_artName);
         MusicTopAreaWidget::instance()->musicBackgroundThemeDownloadFinished();
-        emit downLoadDataChanged(STRING_NULL);
+        emit downLoadDataChanged(TTK_DEFAULT_STR);
         deleteAll();
         deleteLater();
     }

@@ -133,7 +133,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
 
     MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
     connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != URL_NULL)
+    if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != TTK_NULL_STR)
     {
         download->setHeader("id", index);
         download->startToDownload(data.m_coverUrl);

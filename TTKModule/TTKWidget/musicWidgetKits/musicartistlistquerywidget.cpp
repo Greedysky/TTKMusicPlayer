@@ -222,6 +222,6 @@ void MusicArtistListQueryWidget::numberButtonClicked(int index)
     }
     m_categoryChanged = true;
 
-    const QString &v = QString("%1%2%3").arg(m_categoryId).arg(TTK_STR_SPLITER).arg(index);
+    const QString &v = QString("%1%2%3").arg(m_categoryId).arg(TTK_SPLITER).arg(index);
     m_networkRequest->startToSearch(MusicAbstractQueryRequest::OtherQuery, v);
 }

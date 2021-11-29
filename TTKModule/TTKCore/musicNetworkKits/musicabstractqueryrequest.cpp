@@ -77,7 +77,7 @@ void MusicAbstractQueryRequest::downLoadFinished()
 bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
 {
     TTK_NETWORK_QUERY_CHECK(false);
-    if(attr->m_size.isEmpty() || attr->m_size == STRING_NULL)
+    if(attr->m_size.isEmpty() || attr->m_size == TTK_DEFAULT_STR)
     {
         attr->m_size = MusicUtils::Number::sizeByte2Label(getUrlFileSize(attr->m_url));
     }

@@ -76,7 +76,7 @@ bool MusicExtractWrapper::outputThunderSkin(QPixmap &image, const QString &input
 
 bool MusicExtractWrapper::outputBinary(const QString &input)
 {
-    return outputBinary(input, QFileInfo(input).absolutePath() + "/" + QFileInfo(input).baseName() + "/");
+    return outputBinary(input, QFileInfo(input).absolutePath() + TTK_SEPARATOR + QFileInfo(input).baseName() + TTK_SEPARATOR);
 }
 
 bool MusicExtractWrapper::outputBinary(const QString &input, const QString &output)
@@ -116,7 +116,7 @@ bool MusicExtractWrapper::outputBinary(const QString &input, const QString &outp
             break;
         }
 
-        if(QString(file).contains("/"))
+        if(QString(file).contains(TTK_SEPARATOR))
         {
             dir.mkpath(QFileInfo(file).path());
         }

@@ -31,7 +31,7 @@ void MusicDownloadBingSkinRequest::downLoadFinished(const QByteArray &bytes)
         {
             MusicSkinRemoteGroup group;
             group.m_group = MUSIC_BING_DIR;
-            group.m_id = STRING_NULL;
+            group.m_id = TTK_DEFAULT_STR;
 
             const QVariantList &datas = value["images"].toList();
             for(const QVariant &var : qAsConst(datas))

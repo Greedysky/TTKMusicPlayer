@@ -14,9 +14,9 @@ void QSyncListData::listDataOperator(const QString &bucket)
 {
     TTK_D(QSyncDataInterface);
     const QString &method = "GET";
-    const QString &url = "/";
-    const QString &resource = "/" + bucket + "/";
-    const QString &host = bucket + "." + QSyncConf::HOST;
+    const QString &url = TTK_SEPARATOR;
+    const QString &resource = TTK_SEPARATOR + bucket + url;
+    const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
 
     TTKStringMap headers;
     headers.insert("Date", QSyncUtils::getGMT());

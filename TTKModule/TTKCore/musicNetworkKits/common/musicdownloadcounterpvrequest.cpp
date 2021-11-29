@@ -38,13 +38,13 @@ void MusicDownloadCounterPVRequest::downLoadFinished()
         }
         else
         {
-            Q_EMIT downLoadDataChanged(STRING_NULL);
+            Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
         }
     }
     else
     {
         TTK_LOGGER_ERROR("Counter PV data error");
-        Q_EMIT downLoadDataChanged(STRING_NULL);
+        Q_EMIT downLoadDataChanged(TTK_DEFAULT_STR);
     }
 
     deleteAll();

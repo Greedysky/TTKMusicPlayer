@@ -166,7 +166,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->languageComboBox->setCurrentIndex(G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt());
 
     //
-    QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_STR_SPLITER);
+    QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_SPLITER);
     if(hotkeys.count() != G_HOTKEY_PTR->count())
     {
         hotkeys = G_HOTKEY_PTR->getDefaultKeys();
@@ -353,7 +353,7 @@ void MusicSettingWidget::downloadDirSelected(int index)
     const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
     if(!path.isEmpty())
     {
-        index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
+        index == 0 ? m_ui->downloadDirEdit->setText(path + TTK_SEPARATOR) : m_ui->downloadLrcDirEdit->setText(path + TTK_SEPARATOR);
     }
 }
 
@@ -563,7 +563,7 @@ void MusicSettingWidget::saveParameterSettings()
         G_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
         G_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
         G_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
-        G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, G_HOTKEY_PTR->getKeys().join(TTK_STR_SPLITER));
+        G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, G_HOTKEY_PTR->getKeys().join(TTK_SPLITER));
     }
     G_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());

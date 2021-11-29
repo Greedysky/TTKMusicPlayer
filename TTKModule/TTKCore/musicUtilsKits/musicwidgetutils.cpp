@@ -13,9 +13,9 @@
 
 void MusicUtils::Widget::setBorderShadow(QWidget *widget, QPainter *painter)
 {
-    painter->drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_top"));
+    painter->drawPixmap(0, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_letop"));
     painter->drawPixmap(widget->width() - WIDTH, 0, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_top"));
-    painter->drawPixmap(0, widget->height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_bottom"));
+    painter->drawPixmap(0, widget->height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_lebottom"));
     painter->drawPixmap(widget->width() - WIDTH, widget->height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_bottom"));
 
     painter->drawPixmap(0, WIDTH, HEIGHT, widget->height() - 2 * WIDTH, QPixmap(":/shadow/lb_left").scaled(WIDTH, widget->height() - 2 * HEIGHT));
@@ -37,13 +37,13 @@ void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontSty
     QFont font = widget->font();
     switch(type)
     {
-        case MusicObject::FT_Bold: font.setBold(true); break;
-        case MusicObject::FT_Italic: font.setItalic(true); break;
-        case MusicObject::FT_Underline: font.setUnderline(true); break;
-        case MusicObject::FT_Overline: font.setOverline(true); break;
-        case MusicObject::FT_StrikeOut: font.setStrikeOut(true); break;
-        case MusicObject::FT_FixedPitch: font.setFixedPitch(true); break;
-        case MusicObject::FT_Kerningt: font.setKerning(true); break;
+        case MusicObject::Bold: font.setBold(true); break;
+        case MusicObject::Italic: font.setItalic(true); break;
+        case MusicObject::Underline: font.setUnderline(true); break;
+        case MusicObject::Overline: font.setOverline(true); break;
+        case MusicObject::StrikeOut: font.setStrikeOut(true); break;
+        case MusicObject::FixedPitch: font.setFixedPitch(true); break;
+        case MusicObject::Kerningt: font.setKerning(true); break;
         default: break;
     }
     widget->setFont(font);

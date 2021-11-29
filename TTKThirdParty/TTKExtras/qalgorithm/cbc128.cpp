@@ -2,7 +2,7 @@
 #include <string.h>
 
 #if !defined(STRICT_ALIGNMENT) && !defined(PEDANTIC)
-# define STRICT_ALIGNMENT 0
+#  define STRICT_ALIGNMENT 0
 #endif
 
 void CRYPTO_cbc128_encrypt(const unsigned char *in, unsigned char *out,

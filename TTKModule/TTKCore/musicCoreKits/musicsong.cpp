@@ -21,7 +21,7 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicPath = musicPath;
     m_musicName = musicName;
 
-    m_musicPath.replace("\\", "/");
+    m_musicPath.replace("\\", TTK_SEPARATOR);
 
     const QFileInfo info(m_musicPath);
     if(m_musicName.isEmpty())
@@ -164,7 +164,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
 
     MusicSongMeta meta;
     const bool state = meta.read(path);
-    const QString &time = state ? meta.getLengthString() : STRING_NULL;
+    const QString &time = state ? meta.getLengthString() : TTK_DEFAULT_STR;
 
     QString name;
     if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !meta.getTitle().isEmpty() && !meta.getArtist().isEmpty())

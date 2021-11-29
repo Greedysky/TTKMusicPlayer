@@ -24,12 +24,12 @@
 #include "ttkglobaldefine.h"
 
 #ifdef CONFIG_OUT_BUILD
-#define APP_PATH_DIR                MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/"
+#  define APP_PATH_DIR                MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + TTK_SEPARATOR
 #else
-#define APP_PATH_DIR                MusicObject::getAppDir()
+#  define APP_PATH_DIR                MusicObject::getAppDir()
 #endif
 //
-#define TTK_DOWNLOAD_DIR_FULL       APP_PATH_DIR + "../" + DOWNLOAD_DIR
+#define TTK_DOWNLOAD_DIR_FULL       APP_PATH_DIR + TTK_PDIR + DOWNLOAD_DIR
 #define TTK_LRC_DIR_FULL            TTK_DOWNLOAD_DIR_FULL + LRC_DIR
 #define TTK_MUSIC_DIR_FULL          TTK_DOWNLOAD_DIR_FULL + MUSIC_DIR
 #define TTK_MOVIE_DIR_FULL          TTK_DOWNLOAD_DIR_FULL + MOVIE_DIR
@@ -53,14 +53,14 @@
 
 
 #ifdef Q_OS_WIN
-#define TTK_SERVICE_FULL            APP_PATH_DIR + "TTKService.exe"
+#  define TTK_SERVICE_FULL            APP_PATH_DIR + "TTKService.exe"
 #else
-#define TTK_ROUTINE_FULL            APP_PATH_DIR + "../TTKRoutine.sh"
-#define TTK_MUSICPLAYER_FULL        APP_PATH_DIR + "../TTKMusicPlayer.sh"
-#define TTK_INIT_FULL               APP_PATH_DIR + "TTKInit.sh"
-#define TTK_CONSOLE_FULL            APP_PATH_DIR + "TTKConsole.sh"
-#define TTK_SERVICE_FULL            APP_PATH_DIR + "TTKService.sh"
-#define TTK_ROUTINECOPY_FULL        APP_PATH_DIR + "TTKRoutineCopy.sh"
+#  define TTK_ROUTINE_FULL            APP_PATH_DIR + TTK_PDIR + "TTKRoutine.sh"
+#  define TTK_MUSICPLAYER_FULL        APP_PATH_DIR + TTK_PDIR + "TTKMusicPlayer.sh"
+#  define TTK_INIT_FULL               APP_PATH_DIR + "TTKInit.sh"
+#  define TTK_CONSOLE_FULL            APP_PATH_DIR + "TTKConsole.sh"
+#  define TTK_SERVICE_FULL            APP_PATH_DIR + "TTKService.sh"
+#  define TTK_ROUTINECOPY_FULL        APP_PATH_DIR + "TTKRoutineCopy.sh"
 #endif
 
 #endif

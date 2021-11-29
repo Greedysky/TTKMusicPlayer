@@ -158,7 +158,7 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
     {
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
+        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
             download->startToDownload(item.m_coverUrl);
         }
@@ -221,10 +221,10 @@ void MusicWebMVRadioInfoWidget::createLabels()
     nameFont.setPixelSize(20);
     nameLabel->setFont(nameFont);
     nameLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    nameLabel->setText(STRING_NULL);
+    nameLabel->setText(TTK_DEFAULT_STR);
     QLabel *typeLabel = new QLabel(topLineWidget);
     typeLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    typeLabel->setText(STRING_NULL);
+    typeLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(nameLabel);
     topLineLayout->addStretch(1);

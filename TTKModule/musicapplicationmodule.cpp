@@ -25,7 +25,7 @@
 #include "qsync/qsyncconf.h"
 
 #ifdef Q_CC_GNU
-#   pragma GCC diagnostic ignored "-Wunused-variable"
+#  pragma GCC diagnostic ignored "-Wunused-variable"
 #endif
 
 #define MARGIN_SIDE     5

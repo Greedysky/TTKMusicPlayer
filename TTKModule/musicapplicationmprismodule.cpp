@@ -62,8 +62,8 @@ QString MusicApplicationMPRISPlayer::loopStatus() const
 {
     switch(m_player->getPlayMode())
     {
-        case MusicObject::PM_PlayOneLoop: return "Track";
-        case MusicObject::PM_PlaylistLoop: return "Playlist";
+        case MusicObject::PlayOneLoop: return "Track";
+        case MusicObject::PlaylistLoop: return "Playlist";
         default: return "None";
     }
 }
@@ -155,7 +155,7 @@ QVariantMap MusicApplicationMPRISPlayer::metadata() const
     }
 
     map["mpris:trackid"] = QVariant::fromValue<QDBusObjectPath>(m_trackID);
-    map["xesam:url"] = info.path().startsWith("/") ? QUrl::fromLocalFile(info.path()).toString() : info.path();
+    map["xesam:url"] = info.path().startsWith(TTK_SEPARATOR) ? QUrl::fromLocalFile(info.path()).toString() : info.path();
     return map;
 }
 
@@ -194,12 +194,12 @@ void MusicApplicationMPRISPlayer::setRate(double value)
 
 bool MusicApplicationMPRISPlayer::shuffle() const
 {
-    return m_player->getPlayMode() == MusicObject::PM_PlayRandom;
+    return m_player->getPlayMode() == MusicObject::PlayRandom;
 }
 
 void MusicApplicationMPRISPlayer::setShuffle(bool value)
 {
-    m_player->m_musicPlaylist->setPlaybackMode(value ? MusicObject::PM_PlayRandom : MusicObject::PM_PlayOrder);
+    m_player->m_musicPlaylist->setPlaybackMode(value ? MusicObject::PlayRandom : MusicObject::PlayOrder);
 }
 
 double MusicApplicationMPRISPlayer::volume() const

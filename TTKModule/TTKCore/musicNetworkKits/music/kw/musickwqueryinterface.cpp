@@ -41,7 +41,7 @@ void MusicKWQueryInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfor
             attr.m_url = regx.cap(1);
             attr.m_bitrate = bitrate;
             attr.m_format = suffix;
-            attr.m_size = STRING_NULL;
+            attr.m_size = TTK_DEFAULT_STR;
             if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
             {
                 return;
@@ -59,7 +59,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = STRING_NULL;
+        attr.m_size = TTK_DEFAULT_STR;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -68,7 +68,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = STRING_NULL;
+        attr.m_size = TTK_DEFAULT_STR;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -77,7 +77,7 @@ void MusicKWQueryInterface::readFromMusicSongAttribute(MusicObject::MusicSongInf
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = STRING_NULL;
+        attr.m_size = TTK_DEFAULT_STR;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -98,7 +98,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = STRING_NULL;
+        attr.m_size = TTK_DEFAULT_STR;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -107,7 +107,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = STRING_NULL;
+        attr.m_size = TTK_DEFAULT_STR;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -116,7 +116,7 @@ void MusicKWQueryInterface::readFromMusicSongAttributeNew(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
-        attr.m_size = STRING_NULL;
+        attr.m_size = TTK_DEFAULT_STR;
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_DETAIL_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
@@ -226,7 +226,7 @@ void MusicKWQueryInterface::readFromMusicSongPicture(MusicObject::MusicSongInfor
             value = value["data"].toMap();
             value = value["songinfo"].toMap();
             info->m_smallPicUrl = value["pic"].toString();
-            if(!info->m_smallPicUrl.contains(TTK_HTTP) && !info->m_smallPicUrl.contains(URL_NULL))
+            if(!info->m_smallPicUrl.contains(TTK_HTTP) && !info->m_smallPicUrl.contains(TTK_NULL_STR))
             {
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
             }

@@ -66,13 +66,13 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                 const QString &albumName = value["name"].toString();
                 info.m_nickName = value["albumid"].toString();
                 info.m_coverUrl = value["pic"].toString();
-                if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(URL_NULL))
+                if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(TTK_NULL_STR))
                 {
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                 }
-                info.m_description = albumName + TTK_STR_SPLITER +
-                                     value["lang"].toString() + TTK_STR_SPLITER +
-                                     value["company"].toString() + TTK_STR_SPLITER +
+                info.m_description = albumName + TTK_SPLITER +
+                                     value["lang"].toString() + TTK_SPLITER +
+                                     value["company"].toString() + TTK_SPLITER +
                                      value["pub"].toString();
                 //
                 const QVariantList &datas = value["musiclist"].toList();
@@ -89,7 +89,7 @@ void MusicKWQueryAlbumRequest::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = MusicUtils::String::charactersReplaced(value["artist"].toString());
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["name"].toString());
-                    musicInfo.m_duration = STRING_NULL;
+                    musicInfo.m_duration = TTK_DEFAULT_STR;
 
                     musicInfo.m_songId = value["id"].toString();
                     musicInfo.m_artistId = value["artistid"].toString();
@@ -169,12 +169,12 @@ void MusicKWQueryAlbumRequest::singleDownLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["pic"].toString();
-                    if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(URL_NULL))
+                    if(!info.m_coverUrl.contains(TTK_HTTP) && !info.m_coverUrl.contains(TTK_NULL_STR))
                     {
                         info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                     }
                     info.m_name = value["name"].toString();
-                    info.m_updateTime = value["pub"].toString().replace(STRING_NULL, ".");
+                    info.m_updateTime = value["pub"].toString().replace(TTK_DEFAULT_STR, TTK_DOT);
                     Q_EMIT createAlbumInfoItem(info);
                 }
             }

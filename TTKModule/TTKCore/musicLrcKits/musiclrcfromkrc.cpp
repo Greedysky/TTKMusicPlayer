@@ -1,8 +1,8 @@
 #include "musiclrcfromkrc.h"
 
 #ifdef Q_CC_GNU
-#   pragma GCC diagnostic ignored "-Wwrite-strings"
-#   pragma GCC diagnostic ignored "-Wsign-compare"
+#  pragma GCC diagnostic ignored "-Wwrite-strings"
+#  pragma GCC diagnostic ignored "-Wsign-compare"
 #endif
 
 #include <QFile>

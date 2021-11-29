@@ -320,9 +320,9 @@ void MusicDownloadWidget::downloadDirSelected()
     {
         if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
         {
-            G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, path + "/");
+            G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, path + TTK_SEPARATOR);
         }
-        m_ui->downloadPathEdit->setText(path + "/");
+        m_ui->downloadPathEdit->setText(path + TTK_SEPARATOR);
     }
 }
 

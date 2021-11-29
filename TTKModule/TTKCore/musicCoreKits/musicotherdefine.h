@@ -35,8 +35,8 @@
 #define MUSIC_RECORD_DATA_FILE      "record_data.wav"
 
 #ifdef Q_OS_WIN
-#define MUSIC_OUTSIDE_OPEN          "-Open"
-#define MUSIC_OUTSIDE_LIST          "-List"
+#  define MUSIC_OUTSIDE_OPEN        "-Open"
+#  define MUSIC_OUTSIDE_LIST        "-List"
 #endif
 #define MUSIC_OUTSIDE_RADIO         "-Radio"
 

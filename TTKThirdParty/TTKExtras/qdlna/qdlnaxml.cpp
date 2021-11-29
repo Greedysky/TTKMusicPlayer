@@ -104,7 +104,7 @@ QDlnaService QDlnaXml::readServiceTag(const QString &type, const QString &tagNam
             if(text.contains(type, Qt::CaseInsensitive))
             {
                 const QString &nodeName = paramNode.nodeName();
-                if(text.startsWith("/"))
+                if(text.startsWith(TTK_SEPARATOR))
                 {
                     text.remove(0, 1);
                 }

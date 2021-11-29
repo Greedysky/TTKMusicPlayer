@@ -57,7 +57,7 @@ void QDlnaFileServer::setPrefixPath(const QString &path)
 
 QString QDlnaFileServer::getLocalAddress(const QString &prefix) const
 {
-    const QString &value = prefix.left(prefix.lastIndexOf("."));
+    const QString &value = prefix.left(prefix.lastIndexOf(TTK_DOT));
     for(const QHostAddress &address : QNetworkInterface::allAddresses())
     {
       if(address.toString().contains(value))
@@ -77,7 +77,7 @@ void QDlnaFileServer::handleRequest(QHttpRequest *request, QHttpResponse *respon
         response->setHeader("Content-Type", "audio/mp3");
 
         const QString &name = regx.cap(1);
-        QFile file(d->m_prefix + "/" + name);
+        QFile file(d->m_prefix + TTK_SEPARATOR + name);
         if(file.open(QFile::ReadOnly))
         {
             response->writeHead(200);

@@ -8,9 +8,9 @@
 #include "musicimageutils.h"
 
 #if TTK_QT_VERSION_CHECK(5,0,0)
-#include <QStandardPaths>
+#  include <QStandardPaths>
 #else
-#include <QDesktopServices>
+#  include <QDesktopServices>
 #endif
 
 #define ICON_SIZE       50
@@ -148,7 +148,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
 
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != URL_NULL)
+        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != TTK_NULL_STR)
         {
             download->setHeader("id", index);
             download->startToDownload(channel.m_coverUrl);
@@ -218,7 +218,7 @@ void MusicWebFMRadioWidget::sendToDesktopLink()
 
     MusicPlatformManager platform;
 #ifdef Q_OS_WIN
-    platform.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + "/" + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), tr("TTK Radio Link"));
+    platform.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + TTK_SEPARATOR + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), tr("TTK Radio Link"));
 #else
     platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::getAppDir(), fileName);
 #endif

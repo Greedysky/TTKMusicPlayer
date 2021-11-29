@@ -63,7 +63,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     setAcceptDrops(true);
 
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder); //The default is the order of play
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOrder); //The default is the order of play
     m_ui->musicPlayedList->setPlaylist(m_musicPlaylist);
     m_musicPlayer->setPlaylist(m_musicPlaylist);
     m_musicPlayer->setVolume(100);  //The default Volume is 100
@@ -293,7 +293,7 @@ void MusicApplication::durationChanged(qint64 duration)
 {
     //Show the current play total time
     m_ui->musicTimeWidget->setRange(0, duration);
-    m_ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
+    m_ui->playTotalTime->setText(TTK_SEPARATOR + MusicTime::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
 }
@@ -405,7 +405,7 @@ void MusicApplication::musicPlayPrevious()
         return;//The playlist is not performing space-time
     }
 
-    if(m_musicPlaylist->playbackMode() == MusicObject::PM_PlayRandom)
+    if(m_musicPlaylist->playbackMode() == MusicObject::PlayRandom)
     {
         m_musicPlaylist->setCurrentIndex();
     }
@@ -425,7 +425,7 @@ void MusicApplication::musicPlayNext()
         return;//The playlist is not performing space-time
     }
 
-    if(m_musicPlaylist->playbackMode() == MusicObject::PM_PlayRandom)
+    if(m_musicPlaylist->playbackMode() == MusicObject::PlayRandom)
     {
         m_musicPlaylist->setCurrentIndex();
     }
@@ -440,32 +440,32 @@ void MusicApplication::musicPlayNext()
 
 void MusicApplication::musicPlayOrder()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOrder);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOrder);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayOrder);
 }
 
 void MusicApplication::musicPlayRandom()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayRandom);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayRandom);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayRandom);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayRandom);
 }
 
 void MusicApplication::musicPlaylistLoop()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlaylistLoop);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlaylistLoop);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlaylistLoop);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlaylistLoop);
 }
 
 void MusicApplication::musicPlayOneLoop()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOneLoop);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOneLoop);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOneLoop);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayOneLoop);
 }
 
 void MusicApplication::musicPlayOnce()
 {
-    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOnce);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOnce);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PlayOnce);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PlayOnce);
 }
 
 void MusicApplication::musicVolumeMute()
@@ -741,11 +741,11 @@ void MusicApplication::musicCreateRightMenu()
     int index = DEFAULT_LOWER_LEVEL;
     switch(mode)
     {
-        case MusicObject::PM_PlayOrder: index = 0; break;
-        case MusicObject::PM_PlayRandom: index = 1; break;
-        case MusicObject::PM_PlaylistLoop: index = 2; break;
-        case MusicObject::PM_PlayOneLoop: index = 3; break;
-        case MusicObject::PM_PlayOnce: index = 4; break;
+        case MusicObject::PlayOrder: index = 0; break;
+        case MusicObject::PlayRandom: index = 1; break;
+        case MusicObject::PlaylistLoop: index = 2; break;
+        case MusicObject::PlayOneLoop: index = 3; break;
+        case MusicObject::PlayOnce: index = 4; break;
         default: break;
     }
 
@@ -1086,11 +1086,11 @@ void MusicApplication::readSystemConfigFromFile()
     //
     switch(G_SETTING_PTR->value(MusicSettingManager::PlayMode).toInt())
     {
-        case MusicObject::PM_PlayOrder: musicPlayOrder();break;
-        case MusicObject::PM_PlayRandom: musicPlayRandom();break;
-        case MusicObject::PM_PlaylistLoop: musicPlaylistLoop();break;
-        case MusicObject::PM_PlayOneLoop: musicPlayOneLoop();break;
-        case MusicObject::PM_PlayOnce: musicPlayOnce();break;
+        case MusicObject::PlayOrder: musicPlayOrder();break;
+        case MusicObject::PlayRandom: musicPlayRandom();break;
+        case MusicObject::PlaylistLoop: musicPlaylistLoop();break;
+        case MusicObject::PlayOneLoop: musicPlayOneLoop();break;
+        case MusicObject::PlayOnce: musicPlayOnce();break;
         default:break;
     }
     //
@@ -1114,7 +1114,7 @@ void MusicApplication::readSystemConfigFromFile()
     //music hotkey
     if(G_SETTING_PTR->value(MusicSettingManager::HotkeyEnable).toBool())
     {
-        QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_STR_SPLITER);
+        QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_SPLITER);
         if(hotkeys.count() != G_HOTKEY_PTR->count())
         {
             hotkeys = G_HOTKEY_PTR->getDefaultKeys();

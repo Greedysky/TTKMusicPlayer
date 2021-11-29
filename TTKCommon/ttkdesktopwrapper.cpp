@@ -3,7 +3,7 @@
 #include <QScreen>
 #include <QApplication>
 #if !TTK_QT_VERSION_CHECK(5,0,0)
-#include <QDesktopWidget>
+#  include <QDesktopWidget>
 #endif
 
 QRect TTKDesktopWrapper::screenGeometry(int index)

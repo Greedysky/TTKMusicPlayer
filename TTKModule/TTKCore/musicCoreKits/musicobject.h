@@ -20,10 +20,10 @@
  ================================================= */
 
 #include <QDir>
-#include "ttkglobal.h"
 #include <QCoreApplication>
 
-#define DOT                     "."
+#include "ttkglobal.h"
+
 //
 #define CFG_FILE_PREFIX         "ttk"
 #define TEX_FILE_PREFIX         "tex"
@@ -38,7 +38,7 @@
 #define EXE_FILE_PREFIX         "exe"
 #define XML_FILE_PREFIX         "xml"
 #define COM_FILE_PREFIX         "com"
-//playlist ext
+// playlist ext
 #define LST_FILE_PREFIX         "tkpl"
 #define M3U_FILE_PREFIX         "m3u"
 #define M3U8_FILE_PREFIX        "m3u8"
@@ -50,7 +50,7 @@
 #define TXT_FILE_PREFIX         "txt"
 #define FPL_FILE_PREFIX         "fpl"
 #define DBPL_FILE_PREFIX        "dbpl"
-//file ext
+// file ext
 #define AAC_FILE_PREFIX         "aac"
 #define WMA_FILE_PREFIX         "wma"
 #define MP3_FILE_PREFIX         "mp3"
@@ -60,55 +60,55 @@
 #define ZIP_FILE_PREFIX         "zip"
 
 
-#define TTS_FILE                TTK_STRCAT(DOT, TTS_FILE_PREFIX)
-#define CFG_FILE                TTK_STRCAT(DOT, CFG_FILE_PREFIX)
-#define TEX_FILE                TTK_STRCAT(DOT, TEX_FILE_PREFIX)
+#define TTS_FILE                TTK_STRCAT(TTK_DOT, TTS_FILE_PREFIX)
+#define CFG_FILE                TTK_STRCAT(TTK_DOT, CFG_FILE_PREFIX)
+#define TEX_FILE                TTK_STRCAT(TTK_DOT, TEX_FILE_PREFIX)
 //
-#define SKN_FILE                TTK_STRCAT(DOT, SKN_FILE_PREFIX)
-#define JPG_FILE                TTK_STRCAT(DOT, JPG_FILE_PREFIX)
-#define BMP_FILE                TTK_STRCAT(DOT, BMP_FILE_PREFIX)
-#define PNG_FILE                TTK_STRCAT(DOT, PNG_FILE_PREFIX)
-#define LRC_FILE                TTK_STRCAT(DOT, LRC_FILE_PREFIX)
-#define KRC_FILE                TTK_STRCAT(DOT, KRC_FILE_PREFIX)
-#define MP3_FILE                TTK_STRCAT(DOT, MP3_FILE_PREFIX)
-#define LST_FILE                TTK_STRCAT(DOT, LST_FILE_PREFIX)
-#define EXE_FILE                TTK_STRCAT(DOT, EXE_FILE_PREFIX)
-#define XML_FILE                TTK_STRCAT(DOT, XML_FILE_PREFIX)
-#define COM_FILE                TTK_STRCAT(DOT, COM_FILE_PREFIX)
-//file ext
-#define AAC_FILE                TTK_STRCAT(DOT, AAC_FILE_PREFIX)
-#define WMA_FILE                TTK_STRCAT(DOT, WMA_FILE_PREFIX)
-#define MP3_FILE                TTK_STRCAT(DOT, MP3_FILE_PREFIX)
-#define OGG_FILE                TTK_STRCAT(DOT, OGG_FILE_PREFIX)
-#define APE_FILE                TTK_STRCAT(DOT, APE_FILE_PREFIX)
-#define FLAC_FILE               TTK_STRCAT(DOT, FLAC_FILE_PREFIX)
-#define ZIP_FILE                TTK_STRCAT(DOT, ZIP_FILE_PREFIX)
+#define SKN_FILE                TTK_STRCAT(TTK_DOT, SKN_FILE_PREFIX)
+#define JPG_FILE                TTK_STRCAT(TTK_DOT, JPG_FILE_PREFIX)
+#define BMP_FILE                TTK_STRCAT(TTK_DOT, BMP_FILE_PREFIX)
+#define PNG_FILE                TTK_STRCAT(TTK_DOT, PNG_FILE_PREFIX)
+#define LRC_FILE                TTK_STRCAT(TTK_DOT, LRC_FILE_PREFIX)
+#define KRC_FILE                TTK_STRCAT(TTK_DOT, KRC_FILE_PREFIX)
+#define MP3_FILE                TTK_STRCAT(TTK_DOT, MP3_FILE_PREFIX)
+#define LST_FILE                TTK_STRCAT(TTK_DOT, LST_FILE_PREFIX)
+#define EXE_FILE                TTK_STRCAT(TTK_DOT, EXE_FILE_PREFIX)
+#define XML_FILE                TTK_STRCAT(TTK_DOT, XML_FILE_PREFIX)
+#define COM_FILE                TTK_STRCAT(TTK_DOT, COM_FILE_PREFIX)
+// file ext
+#define AAC_FILE                TTK_STRCAT(TTK_DOT, AAC_FILE_PREFIX)
+#define WMA_FILE                TTK_STRCAT(TTK_DOT, WMA_FILE_PREFIX)
+#define MP3_FILE                TTK_STRCAT(TTK_DOT, MP3_FILE_PREFIX)
+#define OGG_FILE                TTK_STRCAT(TTK_DOT, OGG_FILE_PREFIX)
+#define APE_FILE                TTK_STRCAT(TTK_DOT, APE_FILE_PREFIX)
+#define FLAC_FILE               TTK_STRCAT(TTK_DOT, FLAC_FILE_PREFIX)
+#define ZIP_FILE                TTK_STRCAT(TTK_DOT, ZIP_FILE_PREFIX)
 
 
 #define APP_NAME                "TTKMusicPlayer"
-#define APP_DOT_NAME            TTK_STRCAT(APP_NAME, DOT)
+#define APP_DOT_NAME            TTK_STRCAT(APP_NAME, TTK_DOT)
 #define APP_COME_NAME           TTK_STRCAT(APP_NAME, COM_FILE)
 #define APP_EXE_NAME            TTK_STRCAT(APP_NAME, EXE_FILE)
 
 
-#define APPDATA_DIR             "AppData/"
-#define DOWNLOAD_DIR            "Downloads/"
-#define APPCACHE_DIR            "AppCache/"
+#define APPDATA_DIR             TTK_STRCAT("AppData", TTK_SEPARATOR)
+#define DOWNLOAD_DIR            TTK_STRCAT("Downloads", TTK_SEPARATOR)
+#define APPCACHE_DIR            TTK_STRCAT("AppCache", TTK_SEPARATOR)
 //
-#define LRC_DIR                 "Lyric/"
-#define MUSIC_DIR               "Music/"
-#define MOVIE_DIR               "Movie/"
-#define UPDATE_DIR              "Update/"
+#define LRC_DIR                 TTK_STRCAT("Lyric", TTK_SEPARATOR)
+#define MUSIC_DIR               TTK_STRCAT("Music", TTK_SEPARATOR)
+#define MOVIE_DIR               TTK_STRCAT("Movie", TTK_SEPARATOR)
+#define UPDATE_DIR              TTK_STRCAT("Update", TTK_SEPARATOR)
 //
-#define LANGUAGE_DIR            "GLanguage/"
-#define PLUGINS_DIR             "GPlugins/"
-#define THEME_DIR               "GTheme/"
+#define LANGUAGE_DIR            TTK_STRCAT("GLanguage", TTK_SEPARATOR)
+#define PLUGINS_DIR             TTK_STRCAT("GPlugins", TTK_SEPARATOR)
+#define THEME_DIR               TTK_STRCAT("GTheme", TTK_SEPARATOR)
 //
-#define ART_DIR                 "Art/"
-#define BACKGROUND_DIR          "Background/"
-#define CACHE_DIR               "Cache/"
+#define ART_DIR                 TTK_STRCAT("Art", TTK_SEPARATOR)
+#define BACKGROUND_DIR          TTK_STRCAT("Background", TTK_SEPARATOR)
+#define CACHE_DIR               TTK_STRCAT("Cache", TTK_SEPARATOR)
 //
-#define USER_THEME_DIR          "theme/"
+#define USER_THEME_DIR          TTK_STRCAT("theme", TTK_SEPARATOR)
 
 
 #define MAKE_TRANSFORM_PREFIX   TTK_STRCAT("avconv", TEX_FILE)
@@ -117,7 +117,7 @@
 #define MAKE_GAIN_PREFIX        TTK_STRCAT("avgain", TEX_FILE)
 
 
-#define MAKE_CONFIG_DIR         TTK_STRCAT(PLUGINS_DIR, "config/")
+#define MAKE_CONFIG_DIR         TTK_STRCAT(PLUGINS_DIR, TTK_STRCAT("config", TTK_SEPARATOR))
 #define MAKE_TRANSFORM          TTK_STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
 #define MAKE_KRC2LRC            TTK_STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
 #define MAKE_PLAYER             TTK_STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
@@ -132,12 +132,12 @@
 #define SEARCH_PATH             "search.ttk"
 
 
-#define MAIN_DIR_FULL           MusicObject::getAppDir() + "../"
+#define MAIN_DIR_FULL           MusicObject::getAppDir() + TTK_PDIR
+//
+#define DOWNLOAD_DIR_FULL       MAIN_DIR_FULL + DOWNLOAD_DIR
 #define APPDATA_DIR_FULL        MusicObject::getConfigDir() + APPDATA_DIR
 #define APPCACHE_DIR_FULL       MusicObject::getConfigDir() + APPCACHE_DIR
-#define DOWNLOAD_DIR_FULL       MAIN_DIR_FULL + DOWNLOAD_DIR
-
-
+//
 #define LRC_DIR_FULL            DOWNLOAD_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOAD_DIR_FULL + MUSIC_DIR
 #define MOVIE_DIR_FULL          DOWNLOAD_DIR_FULL + MOVIE_DIR
@@ -146,8 +146,7 @@
 #define CACHE_DIR_FULL          APPCACHE_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            APPCACHE_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     APPCACHE_DIR_FULL + BACKGROUND_DIR
-
-
+//
 #define COFIG_PATH_FULL         APPDATA_DIR_FULL + COFIG_PATH
 #define PLAYLIST_PATH_FULL      APPDATA_DIR_FULL + PLAYLIST_PATH
 #define NORMAL_DOWN_PATH_FULL   APPDATA_DIR_FULL + NORMAL_DOWN_PATH
@@ -173,9 +172,6 @@
 #define WINDOW_HEIGHT_MIN       665
 #define LEFT_SIDE_WIDTH_MIN     320
 #define CONCISE_WIDTH_MIN       322
-//
-#define STRING_NULL             "-"
-#define URL_NULL                "null"
 
 
 /*! @brief The namespace of the application object.
@@ -235,48 +231,50 @@ namespace MusicObject
 
     enum PlayState
     {
-        PS_StoppedState,               /*!< stop state*/
-        PS_PlayingState,               /*!< play state*/
-        PS_PausedState                 /*!< pause state*/
+        StoppedState,           /*!< stop state*/
+        PlayingState,           /*!< play state*/
+        PausedState             /*!< pause state*/
     };
 
     enum PlayMode
     {
-        PM_PlayOrder,                  /*!< play order*/
-        PM_PlayRandom,                 /*!< play random*/
-        PM_PlaylistLoop,               /*!< play list loop*/
-        PM_PlayOneLoop,                /*!< play single loop*/
-        PM_PlayOnce                    /*!< play just once*/
+        PlayOrder,              /*!< play order*/
+        PlayRandom,             /*!< play random*/
+        PlaylistLoop,           /*!< play list loop*/
+        PlayOneLoop,            /*!< play single loop*/
+        PlayOnce                /*!< play just once*/
     };
 
     enum FontStyleMode
     {
-        FT_Bold =           0x00001,   /*!< font bold*/
-        FT_Italic =         0x00002,   /*!< font italic*/
-        FT_Underline =      0x00004,   /*!< font underline*/
-        FT_Overline =       0x00008,   /*!< font overline*/
-        FT_StrikeOut =      0x00010,   /*!< font strikeOut*/
-        FT_FixedPitch =     0x00020,   /*!< font fixedPitch*/
-        FT_Kerningt =       0x00040    /*!< font kerningt*/
+        Bold =       0x00001,   /*!< font bold*/
+        Italic =     0x00002,   /*!< font italic*/
+        Underline =  0x00004,   /*!< font underline*/
+        Overline =   0x00008,   /*!< font overline*/
+        StrikeOut =  0x00010,   /*!< font strikeOut*/
+        FixedPitch = 0x00020,   /*!< font fixedPitch*/
+        Kerningt =   0x00040    /*!< font kerningt*/
     };
 
+
     /*!
-     * Get application dir.
+     * Get application work dir.
      */
     static QString getAppDir()
     {
-        return QCoreApplication::applicationDirPath() + "/";
+        return QCoreApplication::applicationDirPath() + TTK_SEPARATOR;
     }
 
     /*!
-     * Get config dir.
+     * Get application config dir.
      */
     static QString getConfigDir()
     {
+        const bool portable = QFile::exists(MAIN_DIR_FULL + "ttk_portable");
 #ifdef Q_OS_WIN
-        return QString::fromLocal8Bit(getenv("APPDATA")) + "/ttkmp/";
+        return (portable ? MAIN_DIR_FULL : QString::fromLocal8Bit(getenv("APPDATA")) + TTK_SEPARATOR) + "ttkmp/";
 #else
-        return QDir::homePath() + "/.config/ttkmp/";
+        return (portable ? MAIN_DIR_FULL : QDir::homePath() + TTK_SEPARATOR) + ".config/ttkmp/";
 #endif
     }
 }

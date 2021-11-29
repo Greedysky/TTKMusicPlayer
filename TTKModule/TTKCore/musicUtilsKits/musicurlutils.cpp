@@ -4,8 +4,8 @@
 #include <QProcess>
 #include <QDesktopServices>
 #ifdef Q_OS_WIN
-#include <qt_windows.h>
-#include <shellapi.h>
+#  include <qt_windows.h>
+#  include <shellapi.h>
 #endif
 
 bool MusicUtils::Url::execute(const QString &path)
@@ -29,7 +29,7 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
     if(local)
     {
         QString p = path;
-        p.replace("/", "\\");
+        p.replace(TTK_SEPARATOR, "\\");
         p = "/select," + p;
         const HINSTANCE value = ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return value->unused >= 32;

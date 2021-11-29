@@ -69,9 +69,9 @@ void MusicWYQueryAlbumRequest::downLoadFinished()
                 MusicResultsItem info;
                 const QVariantMap &albumValue = value["album"].toMap();
                 info.m_coverUrl = albumValue["picUrl"].toString();
-                info.m_description = albumValue["name"].toString() + TTK_STR_SPLITER +
-                                     albumValue["language"].toString() + TTK_STR_SPLITER +
-                                     albumValue["company"].toString() + TTK_STR_SPLITER +
+                info.m_description = albumValue["name"].toString() + TTK_SPLITER +
+                                     albumValue["language"].toString() + TTK_SPLITER +
+                                     albumValue["company"].toString() + TTK_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString(MUSIC_YEAR_FORMAT);
                 //
                 const QVariantList &datas = value["songs"].toList();

@@ -10,7 +10,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
     m_playlist = nullptr;
-    m_state = MusicObject::PS_StoppedState;
+    m_state = MusicObject::StoppedState;
     m_musicEnhanced = EnhancedOff;
     m_music = new SoundCore(this);
     m_posOnCircle = 0;
@@ -31,7 +31,7 @@ MusicPlayer::~MusicPlayer()
 
 bool MusicPlayer::isPlaying() const
 {
-    return m_state == MusicObject::PS_PlayingState;
+    return m_state == MusicObject::PlayingState;
 }
 
 MusicObject::PlayState MusicPlayer::state() const
@@ -124,11 +124,11 @@ void MusicPlayer::play()
 {
     if(m_playlist->isEmpty())
     {
-        m_state = MusicObject::PS_StoppedState;
+        m_state = MusicObject::StoppedState;
         return;
     }
 
-    m_state = MusicObject::PS_PlayingState;
+    m_state = MusicObject::PlayingState;
     const Qmmp::State state = m_music->state(); ///Get the current state of play
 
     if(m_currentMedia == m_playlist->currentMediaPath() && state == Qmmp::Paused)
@@ -142,7 +142,7 @@ void MusicPlayer::play()
     ///The current playback path
     if(!m_music->play(m_currentMedia))
     {
-        m_state = MusicObject::PS_StoppedState;
+        m_state = MusicObject::StoppedState;
         return;
     }
 
@@ -158,14 +158,14 @@ void MusicPlayer::pause()
 {
     m_music->pause();
     m_timer.stop();
-    m_state = MusicObject::PS_PausedState;
+    m_state = MusicObject::PausedState;
 }
 
 void MusicPlayer::stop()
 {
     m_music->stop();
     m_timer.stop();
-    m_state = MusicObject::PS_StoppedState;
+    m_state = MusicObject::StoppedState;
 }
 
 void MusicPlayer::setEqEffect(const TTKIntList &hz)
@@ -235,20 +235,20 @@ void MusicPlayer::update()
     if(!(state == Qmmp::Playing || state == Qmmp::Paused || state == Qmmp::Buffering))
     {
         m_timer.stop();
-        if(m_playlist->playbackMode() == MusicObject::PM_PlayOnce)
+        if(m_playlist->playbackMode() == MusicObject::PlayOnce)
         {
             m_music->stop();
             Q_EMIT positionChanged(0);
-            Q_EMIT stateChanged(MusicObject::PS_StoppedState);
+            Q_EMIT stateChanged(MusicObject::StoppedState);
             return;
         }
 
         m_playlist->setCurrentIndex();
-        if(m_playlist->playbackMode() == MusicObject::PM_PlayOrder && m_playlist->currentIndex() == -1)
+        if(m_playlist->playbackMode() == MusicObject::PlayOrder && m_playlist->currentIndex() == -1)
         {
             m_music->stop();
             Q_EMIT positionChanged(0);
-            Q_EMIT stateChanged(MusicObject::PS_StoppedState);
+            Q_EMIT stateChanged(MusicObject::StoppedState);
             return;
         }
         play();

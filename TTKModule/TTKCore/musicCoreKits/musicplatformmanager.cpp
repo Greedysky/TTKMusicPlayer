@@ -8,12 +8,12 @@
 #include <QApplication>
 
 #ifdef Q_OS_WIN
-#include <qt_windows.h>
-#include <ole2.h>
-#include <shobjidl.h>
-#include <shlobj.h>
+#  include <qt_windows.h>
+#  include <ole2.h>
+#  include <shobjidl.h>
+#  include <shlobj.h>
 #elif defined Q_OS_UNIX
-#include <X11/Xlib.h>
+#  include <X11/Xlib.h>
 #endif
 #define DEFAULT_DPI 96
 
@@ -305,7 +305,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
 
     const QString &iconString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\DefaultIcon";
     QSettings iconSetting(iconString, QSettings::NativeFormat);
-    iconSetting.setValue("Default", QString("%1,%2").arg(QApplication::applicationFilePath().replace("/", "\\")).arg(1));
+    iconSetting.setValue("Default", QString("%1,%2").arg(QApplication::applicationFilePath().replace(TTK_SEPARATOR, "\\")).arg(1));
 
     const QString &openString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\Open";
     QSettings openSetting(openString, QSettings::NativeFormat);
@@ -313,7 +313,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
 
     const QString &openComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
-    openComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
+    openComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace(TTK_SEPARATOR, "\\"))
                                      + QString(" %1 ").arg(MUSIC_OUTSIDE_OPEN) + QString("\"%1\""));
 
     const QString &playListString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\PlayList";
@@ -322,7 +322,7 @@ void MusicPlatformManager::createMusicRegedit(const QString &key)
 
     const QString &playListComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
-    playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
+    playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace(TTK_SEPARATOR, "\\"))
                                          + QString(" %1 ").arg(MUSIC_OUTSIDE_LIST) + QString("\"%1\""));
     //
     const QString &fileExtsString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key;

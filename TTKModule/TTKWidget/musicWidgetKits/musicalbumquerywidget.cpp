@@ -134,7 +134,7 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        QStringList list = item.m_description.split(TTK_STR_SPLITER);
+        QStringList list = item.m_description.split(TTK_SPLITER);
         if(list.count() < 4)
         {
             return;
@@ -142,7 +142,7 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
 
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != URL_NULL)
+        if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != TTK_NULL_STR)
         {
             download->startToDownload(item.m_coverUrl);
         }
@@ -151,7 +151,7 @@ void MusicAlbumQueryWidget::createAlbumInfoItem(const MusicResultsItem &item)
         {
             if(list[i].isEmpty())
             {
-                list[i] = STRING_NULL;
+                list[i] = TTK_DEFAULT_STR;
             }
         }
 
@@ -216,19 +216,19 @@ void MusicAlbumQueryWidget::createLabels()
     albumFont.setPixelSize(20);
     albumLabel->setFont(albumFont);
     albumLabel->setStyleSheet(MusicUIObject::MQSSFontStyle01);
-    albumLabel->setText(STRING_NULL);
+    albumLabel->setText(TTK_DEFAULT_STR);
     QLabel *singerLabel = new QLabel(topLineWidget);
     singerLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    singerLabel->setText(STRING_NULL);
+    singerLabel->setText(TTK_DEFAULT_STR);
     QLabel *languageLabel = new QLabel(topLineWidget);
     languageLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    languageLabel->setText(STRING_NULL);
+    languageLabel->setText(TTK_DEFAULT_STR);
     QLabel *companyLabel = new QLabel(topLineWidget);
     companyLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    companyLabel->setText(STRING_NULL);
+    companyLabel->setText(TTK_DEFAULT_STR);
     QLabel *yearLabel = new QLabel(topLineWidget);
     yearLabel->setStyleSheet(MusicUIObject::MQSSColorStyle04 + MusicUIObject::MQSSFontStyle03);
-    yearLabel->setText(STRING_NULL);
+    yearLabel->setText(TTK_DEFAULT_STR);
 
     topLineLayout->addWidget(albumLabel);
     topLineLayout->addWidget(singerLabel);

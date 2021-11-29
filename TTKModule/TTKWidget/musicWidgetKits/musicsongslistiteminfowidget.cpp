@@ -38,10 +38,10 @@ bool MusicSongsListItemInfoWidget::showArtistPicture(const QString &name)
 void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &song)
 {
     const QString &musicArtist = song.getMusicArtistFront();
-    m_ui->songNameValue->setText(song.getMusicName().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, m_ui->songNameValue->width()));
-    m_ui->artlistValue->setText(musicArtist.isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
+    m_ui->songNameValue->setText(song.getMusicName().isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, m_ui->songNameValue->width()));
+    m_ui->artlistValue->setText(musicArtist.isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), musicArtist, Qt::ElideRight, m_ui->artlistValue->width()));
     m_ui->sizeValue->setText(MusicUtils::Widget::elidedText(font(), song.getMusicSizeStr(), Qt::ElideRight, m_ui->sizeValue->width()));
-    m_ui->typeValue->setText(song.getMusicType().isEmpty() ? STRING_NULL : MusicUtils::Widget::elidedText(font(), song.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()));
+    m_ui->typeValue->setText(song.getMusicType().isEmpty() ? TTK_DEFAULT_STR : MusicUtils::Widget::elidedText(font(), song.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()));
     m_ui->timeValue->setText(MusicUtils::Widget::elidedText(font(), QString::number(song.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()));
 
     if(G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())

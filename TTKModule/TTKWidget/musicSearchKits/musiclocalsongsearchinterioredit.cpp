@@ -56,7 +56,7 @@ void MusicLocalSongSearchInteriorEdit::suggestDataChanged()
     for(const MusicResultsItem &item : m_suggestRequest->getSearchedItems())
     {
         QString value = item.m_name;
-        if(!item.m_nickName.isEmpty() && item.m_nickName != STRING_NULL)
+        if(!item.m_nickName.isEmpty() && item.m_nickName != TTK_DEFAULT_STR)
         {
             value = QString("%1 - %2").arg(item.m_nickName).arg(value);
         }

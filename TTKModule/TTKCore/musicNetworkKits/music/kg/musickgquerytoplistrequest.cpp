@@ -56,7 +56,7 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                 QVariantMap topInfo = value["info"].toMap();
                 info.m_name = topInfo["rankname"].toString();
                 info.m_coverUrl = topInfo["imgurl"].toString().replace("{size}", "400");
-                info.m_playCount = STRING_NULL;
+                info.m_playCount = TTK_DEFAULT_STR;
                 info.m_description = topInfo["intro"].toString();
 
                 value = value["songs"].toMap();
@@ -78,9 +78,9 @@ void MusicKGQueryToplistRequest::downLoadFinished()
                     musicInfo.m_songName = MusicUtils::String::charactersReplaced(value["filename"].toString());
                     musicInfo.m_duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt() * 1000);
 
-                    if(musicInfo.m_songName.contains(STRING_NULL))
+                    if(musicInfo.m_songName.contains(TTK_DEFAULT_STR))
                     {
-                        const QStringList &ll = musicInfo.m_songName.split(STRING_NULL);
+                        const QStringList &ll = musicInfo.m_songName.split(TTK_DEFAULT_STR);
                         musicInfo.m_singerName = MusicUtils::String::charactersReplaced(ll.front().trimmed());
                         musicInfo.m_songName = MusicUtils::String::charactersReplaced(ll.back().trimmed());
                     }

@@ -127,9 +127,9 @@ QString MusicSongMeta::getTrackNum()
     bool ok = true;
     if(v.toInt(&ok) > 0)
     {
-        return !ok ? STRING_NULL : v;
+        return !ok ? TTK_DEFAULT_STR : v;
     }
-    return STRING_NULL;
+    return TTK_DEFAULT_STR;
 }
 
 QString MusicSongMeta::getGenre()
@@ -224,7 +224,7 @@ QString MusicSongMeta::getSampleRate()
 QString MusicSongMeta::getBitrate()
 {
     const QString &bitrate = getSongMeta()->m_metaData[TagWrapper::TAG_BITRATE];
-    return bitrate.isEmpty() ? STRING_NULL : bitrate + " kbps";
+    return bitrate.isEmpty() ? TTK_DEFAULT_STR : bitrate + " kbps";
 }
 
 QString MusicSongMeta::getLengthString()

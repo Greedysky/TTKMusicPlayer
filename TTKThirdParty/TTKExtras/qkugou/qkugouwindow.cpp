@@ -2,20 +2,20 @@
 #include "qkugouuiobject.h"
 
 #ifdef Q_OS_WIN
- #include <ActiveQt/QAxWidget>
+#  include <ActiveQt/QAxWidget>
 #else
-# ifdef MUSIC_WEBKIT
-#   if TTK_QT_VERSION_CHECK(5,0,0)
-#    include <QtWebKitWidgets/QWebView>
-#    include <QtWebKitWidgets/QWebFrame>
-#   else
-#    include <QtWebKit/QWebView>
-#    include <QtWebKit/QWebFrame>
-#   endif
-# elif defined MUSIC_WEBENGINE
-#   include <QtWebEngineWidgets/QWebEngineView>
-#   include <QtWebEngineWidgets/QWebEngineSettings>
-# endif
+#  ifdef MUSIC_WEBKIT
+#    if TTK_QT_VERSION_CHECK(5,0,0)
+#      include <QtWebKitWidgets/QWebView>
+#      include <QtWebKitWidgets/QWebFrame>
+#    else
+#      include <QtWebKit/QWebView>
+#      include <QtWebKit/QWebFrame>
+#    endif
+#  elif defined MUSIC_WEBENGINE
+#    include <QtWebEngineWidgets/QWebEngineView>
+#    include <QtWebEngineWidgets/QWebEngineSettings>
+#  endif
 #endif
 
 #include <QLabel>
@@ -58,18 +58,18 @@ QKugouWindow::QKugouWindow(KuGouType type, QWidget *parent)
     TTK_INIT_PRIVATE(QKugouWindow);
 
 #ifdef Q_OS_UNIX
- #ifdef MUSIC_WEBKIT
+#  ifdef MUSIC_WEBKIT
     QWebSettings *settings = QWebSettings::globalSettings();
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
- #elif defined MUSIC_WEBENGINE
+#  elif defined MUSIC_WEBENGINE
     QWebEngineSettings *settings = QWebEngineSettings::defaultSettings();
     settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
- #endif
+#  endif
 #endif
 
     switch(type)
@@ -93,22 +93,22 @@ void QKugouWindow::setUrl(const QString &url)
         w->dynamicCall("Navigate(const QString&)", url);
     }
 #else
- #ifdef MUSIC_WEBKIT
+#  ifdef MUSIC_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
- #elif defined MUSIC_WEBENGINE
+#  elif defined MUSIC_WEBENGINE
     QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
- #else
+#  else
     Q_UNUSED(url);
     Q_UNUSED(d);
- #endif
+#  endif
 #endif
 }
 
@@ -116,19 +116,19 @@ void QKugouWindow::goBack()
 {
 #ifdef Q_OS_UNIX
     TTK_D(QKugouWindow);
- #ifdef MUSIC_WEBKIT
+#  ifdef MUSIC_WEBKIT
     QWebView *w = TTKObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->back();
     }
- #elif defined MUSIC_WEBENGINE
+#  elif defined MUSIC_WEBENGINE
     QWebEngineView *w = TTKObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->back();
     }
- #endif
+#  endif
 #endif
 }
 
@@ -197,15 +197,15 @@ void QKugouWindow::createWebViewer()
     view->setProperty("Silent", true);
     d->m_webView = view;
 #else
- #ifdef MUSIC_WEBKIT
+#  ifdef MUSIC_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     d->m_webView = view;
- #elif defined MUSIC_WEBENGINE
+#  elif defined MUSIC_WEBENGINE
     QWebEngineView *view = new QWebEngineView(this);
     d->m_webView = view;
- #endif
+#  endif
 #endif
 }
 
@@ -335,15 +335,15 @@ void QKugouWindow::createKugouListWidget()
 #if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
- #ifdef Q_OS_WIN
+#  ifdef Q_OS_WIN
     TTKObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::getListUrl());
- #else
-  #ifdef MUSIC_WEBENGINE
+#  else
+#    ifdef MUSIC_WEBENGINE
     TTKObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
-  #else
+#    else
     TTKObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
-  #endif
- #endif
+#    endif
+#  endif
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);

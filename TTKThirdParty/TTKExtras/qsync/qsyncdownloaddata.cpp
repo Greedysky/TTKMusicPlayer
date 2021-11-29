@@ -34,9 +34,9 @@ void QSyncDownloadData::downloadDataOperator(const QString &time, const QString 
     d->m_downloadPath = filePath;
 
     const QString &method = "GET";
-    const QString &url = "/" + fileName;
-    const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QSyncConf::HOST;
+    const QString &url = TTK_SEPARATOR + fileName;
+    const QString &resource = TTK_SEPARATOR + bucket + url;
+    const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
 
     TTKStringMap headers;
     headers.insert("Date", QSyncUtils::getGMT());
@@ -81,8 +81,8 @@ QString QSyncDownloadData::getDownloadUrl(const QString &bucket, const QString &
 
     const QString &encodeKey = pathEncode(fileName);
     const QString &method = "GET";
-    const QString &resource = "/" + bucket + "/" + fileName;
-    const QString &host = bucket + "." + QSyncConf::HOST;
+    const QString &resource = TTK_SEPARATOR + bucket + TTK_SEPARATOR + fileName;
+    const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
 
     TTKStringMap headers;
     headers.insert("Date", QString::number(deadline));
