@@ -15,7 +15,7 @@
 #include "tagextractor.h"
 #include "mpegmetadatamodel.h"
 #ifdef WITH_MAD
-#include "decoder_mad.h"
+#  include "decoder_mad.h"
 #endif
 #include "decodermpegfactory.h"
 #include "settingsdialog.h"

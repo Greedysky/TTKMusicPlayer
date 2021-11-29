@@ -16,7 +16,10 @@ WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
     char err[80] = {0};
     int flags = OPEN_WVC | OPEN_TAGS;
     if(!readOnly)
+    {
         flags |= OPEN_EDIT_TAGS;
+    }
+
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
     m_ctx = WavpackOpenFileInput(qUtf8Printable(m_path), err, flags | OPEN_FILE_UTF8, 0);
 #else

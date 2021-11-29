@@ -23,7 +23,7 @@
 #include <QFile>
 #include <OptimFROG/OptimFROG.h>
 #if defined Q_OS_WIN && defined __GNUC__
-#include <qt_windows.h>
+#  include <qt_windows.h>
 #endif
 
 class OptimFROGHelper

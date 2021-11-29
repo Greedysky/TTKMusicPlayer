@@ -34,30 +34,30 @@
  * Converts a \b QString to a \b TagLib::FileName
  */
 #ifdef Q_OS_WIN
-#define QStringToFileName(s) TagLib::FileName(reinterpret_cast<const wchar_t *>(s.utf16()))
+#  define QStringToFileName(s) TagLib::FileName(reinterpret_cast<const wchar_t *>(s.utf16()))
 #else
-#define QStringToFileName(s) s.toLocal8Bit().constData()
+#  define QStringToFileName(s) s.toLocal8Bit().constData()
 #endif
 
 #ifndef qPrintable
-#define qPrintable(s) QString(s).toLocal8Bit().constData()
+#  define qPrintable(s) QString(s).toLocal8Bit().constData()
 #endif
 
 #ifndef qUtf8Printable
-#define qUtf8Printable(s) QString(s).toUtf8().constData()
+#  define qUtf8Printable(s) QString(s).toUtf8().constData()
 #endif
 
 #define CSTR_TO_QSTR(codec, str, utf) codec->toUnicode(str.toCString(utf)).trimmed()
 
 #ifndef TTK_AS_CONST
-#if (QT_VERSION < QT_VERSION_CHECK(5,7,0))
+#  if (QT_VERSION < QT_VERSION_CHECK(5,7,0))
 // this adds const to non-const objects (like std::as_const)
 template <typename T>
 Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) noexcept { return t; }
 // prevent rvalue arguments:
 template <typename T>
 void qAsConst(const T &&) = delete;
-#endif
+#  endif
 #endif
 
 /*! @brief The Qmmp class stores global settings and enums.

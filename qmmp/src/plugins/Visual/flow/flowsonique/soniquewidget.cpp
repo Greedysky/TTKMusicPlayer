@@ -6,9 +6,9 @@
 #include <QDateTime>
 
 #ifdef Q_OS_UNIX
-#include <dlfcn.h>
+#  include <dlfcn.h>
 #else
-#include <qt_windows.h>
+#  include <qt_windows.h>
 #endif
 
 typedef VisInfo* (*SoniqueModule)();
@@ -247,7 +247,7 @@ void SoniqueWidget::randomPreset()
 
 void SoniqueWidget::initialize()
 {
-    const QString &dir = Qmmp::pluginPath() + "/../MPlugins/config/sonique";
+    const QString &dir = Qmmp::pluginPath() + "/../GPlugins/config/sonique";
     const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp"));
     for(const QFileInfo &info : folderList)
     {

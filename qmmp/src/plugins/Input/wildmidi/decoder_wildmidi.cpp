@@ -70,5 +70,4 @@ qint64 DecoderWildMidi::read(unsigned char *data, qint64 maxSize)
 #else
     return WildMidi_GetOutput(midi_ptr, (char *)data, maxSize);
 #endif
-
 }

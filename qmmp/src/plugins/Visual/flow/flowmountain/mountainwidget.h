@@ -21,10 +21,10 @@
 
 #include <QGLWidget>
 #if QT_VERSION >= 0x050400
-#ifdef Q_OS_UNIX
-  #include <QOpenGLWidget>
-  #define QT_OPENGL_WIDGET
-#endif
+#  ifdef Q_OS_UNIX
+#    include <QOpenGLWidget>
+#    define QT_OPENGL_WIDGET
+#  endif
 #endif
 
 #define NUM_BANDS 32

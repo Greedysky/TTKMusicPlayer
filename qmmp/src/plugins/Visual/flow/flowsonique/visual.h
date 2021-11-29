@@ -43,11 +43,11 @@
 // files should be renamed from .DLL to .SVP
 #define BOOL    bool
 #ifdef _WIN32
-#ifndef DLLEXPORT
-#define DLLEXPORT    __declspec( dllexport )
+#  ifndef DLLEXPORT
+#  define DLLEXPORT    __declspec( dllexport )
 #endif
 #else
-#define DLLEXPORT
+#  define DLLEXPORT
 #endif
 
 #define VI_WAVEFORM			0x0001		// set if you need the waveform

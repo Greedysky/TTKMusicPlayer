@@ -52,9 +52,9 @@ struct GainHandle
 // [6] 24 kHz, [7] 22050 Hz, [8] 16 kHz, [9] 12 kHz, [10] is 11025 Hz, [11] 8 kHz
 
 #ifdef WIN32
-#ifndef __GNUC__
-#pragma warning ( disable : 4305 )
-#endif
+#  ifndef __GNUC__
+#    pragma warning ( disable : 4305 )
+#  endif
 #endif
 
 static const Float_t ABYule[12][2 * YULE_ORDER + 1] = {

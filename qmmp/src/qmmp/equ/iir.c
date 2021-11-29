@@ -70,9 +70,6 @@ void eq_set_option(eq_option_t option, int enabled)
 void eq_init_iir(unsigned int srate, int band_num)
 {
   calc_coeffs();
-#if 0
-  band_count = cfg.band_num;
-#endif
 
   if(srate == rate && band_num == band_count)
       return;

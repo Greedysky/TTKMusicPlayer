@@ -24,13 +24,13 @@
 #include <QtGlobal>
 
 #ifdef QMMP_LIBRARY
-#    define QMMP_EXPORT Q_DECL_EXPORT
+#  define QMMP_EXPORT Q_DECL_EXPORT
 #else
-#    define QMMP_EXPORT Q_DECL_IMPORT
+#  define QMMP_EXPORT Q_DECL_IMPORT
 #endif
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)
-#define Q_PLUGIN_METADATA(x)
+#  define Q_PLUGIN_METADATA(x)
 #endif
 
 #endif

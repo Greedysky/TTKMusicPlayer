@@ -4,7 +4,7 @@
 #include <qmmp/qmmp.h>
 #include <qmmp/regularwrapper.h>
 #ifdef WITH_ENCA
-#include <enca.h>
+#  include <enca.h>
 #endif
 #include "settingsdialog.h"
 

@@ -148,15 +148,15 @@ OutputFactory *Output::currentFactory()
 #ifdef QMMP_DEFAULT_OUTPUT
     QString name = settings.value("Output/current_plugin", QMMP_DEFAULT_OUTPUT).toString();
 #else
-#ifdef Q_OS_LINUX
+#  ifdef Q_OS_LINUX
     QString name = settings.value("Output/current_plugin", "alsa").toString();
-#elif defined Q_WS_WIN
+#  elif defined Q_WS_WIN
     QString name = settings.value("Output/current_plugin", "directsound").toString();
-#elif defined Q_OS_MAC
+#  elif defined Q_OS_MAC
     QString name = settings.value("Output/current_plugin", "qtmultimedia").toString();
-#else
+#  else
     QString name = settings.value("Output/current_plugin", "oss4").toString();
-#endif
+#  endif
 #endif
     for(QmmpPluginCache *item : qAsConst(*m_cache))
     {

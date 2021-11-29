@@ -3,7 +3,7 @@
 #include <qmmp/decoder.h>
 #include <qmmp/metadatamanager.h>
 #ifdef WITH_ENCA
-#include <enca.h>
+#  include <enca.h>
 #endif
 #include "cuefile.h"
 

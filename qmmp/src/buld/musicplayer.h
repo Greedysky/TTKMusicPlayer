@@ -22,10 +22,10 @@
 #include <QTimer>
 
 #ifdef Q_OS_WIN
-#   include <Windows.h>
-#   ifdef Q_CC_GNU
-#     pragma GCC diagnostic ignored "-Wswitch"
-#   endif
+#  include <Windows.h>
+#  ifdef Q_CC_GNU
+#    pragma GCC diagnostic ignored "-Wswitch"
+#  endif
 #endif
 
 class SoundCore;

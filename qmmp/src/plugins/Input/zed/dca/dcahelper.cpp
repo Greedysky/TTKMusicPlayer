@@ -3,19 +3,19 @@
 #include <qmmp/qmmp.h>
 
 #ifdef WORDS_BIGENDIAN
-#define s16_LE(s16,channels) s16_swap (s16, channels)
-#define s16_BE(s16,channels) do {} while(0)
-#define s32_LE(s32,channels) s32_swap (s32, channels)
-#define s32_BE(s32,channels) do {} while(0)
-#define u32_LE(u32) ((((u32)&0xff000000)>>24)|(((u32)&0x00ff0000)>>8)|(((u32)&0x0000ff00)<<8)|(((u32)&0x000000ff)<<24))
-#define u16_LE(u16) ((((u16)&0xff00)>>8)|(((u16)&0x00ff)<<8))
+#  define s16_LE(s16,channels) s16_swap (s16, channels)
+#  define s16_BE(s16,channels) do {} while(0)
+#  define s32_LE(s32,channels) s32_swap (s32, channels)
+#  define s32_BE(s32,channels) do {} while(0)
+#  define u32_LE(u32) ((((u32)&0xff000000)>>24)|(((u32)&0x00ff0000)>>8)|(((u32)&0x0000ff00)<<8)|(((u32)&0x000000ff)<<24))
+#  define u16_LE(u16) ((((u16)&0xff00)>>8)|(((u16)&0x00ff)<<8))
 #else
-#define s16_LE(s16,channels) do {} while(0)
-#define s16_BE(s16,channels) s16_swap(s16, channels)
-#define s32_LE(s32,channels) do {} while(0)
-#define s32_BE(s32,channels) s32_swap(s32, channels)
-#define u32_LE(u32) (u32)
-#define u16_LE(u16) (u16)
+#  define s16_LE(s16,channels) do {} while(0)
+#  define s16_BE(s16,channels) s16_swap(s16, channels)
+#  define s32_LE(s32,channels) do {} while(0)
+#  define s32_BE(s32,channels) s32_swap(s32, channels)
+#  define u32_LE(u32) (u32)
+#  define u16_LE(u16) (u16)
 #endif
 
 int channel_remap[][7] = {

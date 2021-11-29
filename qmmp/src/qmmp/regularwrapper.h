@@ -21,9 +21,9 @@
 
 #include "qmmp_export.h"
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#include <QRegularExpression>
+#  include <QRegularExpression>
 #else
-#include <QRegExp>
+#  include <QRegExp>
 #endif
 
 /*! @brief The class of the regular wrapper.

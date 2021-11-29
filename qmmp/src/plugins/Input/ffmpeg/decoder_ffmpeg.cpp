@@ -7,13 +7,14 @@ extern "C"{
 }
 
 // callbacks
-
 static int ffmpeg_read(void *data, uint8_t *buf, int size)
 {
     DecoderFFmpeg *d = static_cast<DecoderFFmpeg*>(data);
 #if (LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(57,84,101))
     if(d->input()->atEnd())
+    {
         return AVERROR_EOF;
+    }
 #endif
     return static_cast<int>(d->input()->read((char*)buf, size));
 }
