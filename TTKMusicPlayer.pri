@@ -76,6 +76,7 @@ unix:!mac{
         LIBS += -lQtMultimediaKit
     }
 
+    QT += dbus
     QMAKE_CXXFLAGS += -std=c++11 -Wunused-function -Wunused-result -Wswitch
     LIBS += -L$$DESTDIR -lTTKqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lTTKDumper -lzlib -lTTKZip
 }

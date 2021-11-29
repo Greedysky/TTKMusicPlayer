@@ -54,7 +54,7 @@ void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musicDownload, SIGNAL(clicked()), this, SLOT(musicDownloadSongToLocal()));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), MusicApplication::instance(), SLOT(musicEnhancedMusicChanged(int)));
     connect(ui->musicEnhancedButton, SIGNAL(enhancedMusicChanged(int)), ui->musicTimeWidget, SLOT(setSliderStyleByType(int)));
-    connect(ui->functionAnimationWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
+    connect(ui->userOptionWidget, SIGNAL(buttonClicked(int)), SLOT(switchToSelectedItemStyle(int)));
 
     ui->musicPrevious->setStyleSheet(MusicUIObject::MQSSBtnPrevious);
     ui->musicNext->setStyleSheet(MusicUIObject::MQSSBtnNext);
@@ -198,6 +198,7 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
         m_cloudSharedSongWidget = new MusicCloudSharedSongWidget(this);
         m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
     }
+
     m_cloudSharedSongWidget->showMainWindow();
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);

@@ -76,3 +76,9 @@ SOURCES += \
     $$PWD/musicconfigmanager.cpp \
     $$PWD/musicsinglemanager.cpp \
     $$PWD/musicimagerenderer.cpp
+
+#dbus mpris support for linux
+unix:!mac{
+    SOURCES += $$PWD/musicmprisplayer.cpp
+    HEADERS += $$PWD/musicmprisplayer.h
+}

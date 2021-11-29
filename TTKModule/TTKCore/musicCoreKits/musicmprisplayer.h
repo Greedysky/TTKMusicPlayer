@@ -1,5 +1,5 @@
-#ifndef MUSICAPPLICATIONMPRISMODULE_H
-#define MUSICAPPLICATIONMPRISMODULE_H
+#ifndef MUSICMPRISPLAYER_H
+#define MUSICMPRISPLAYER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -27,11 +27,36 @@
 
 class SoundCore;
 class MusicApplication;
+class MusicMPRISPlayerRoot;
+class MusicMPRISPlayerBase;
+
+/*! @brief The class of the app mpris main widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class TTK_MODULE_EXPORT MusicMPRISPlayer : public QObject
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMPRISPlayer)
+public:
+    MusicMPRISPlayer(QObject *parent = nullptr);
+    ~MusicMPRISPlayer();
+
+    /*!
+     * Run.
+     */
+    void run();
+
+private:
+    MusicMPRISPlayerRoot *m_root;
+    MusicMPRISPlayerBase *m_player;
+
+};
+
 
 /*! @brief The class of the app mpris root object.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicApplicationMPRISRoot : public QDBusAbstractAdaptor
+class TTK_MODULE_EXPORT MusicMPRISPlayerRoot : public QDBusAbstractAdaptor
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2")
@@ -44,7 +69,7 @@ class TTK_MODULE_EXPORT MusicApplicationMPRISRoot : public QDBusAbstractAdaptor
     Q_PROPERTY(QStringList SupportedUriSchemes READ supportedUriSchemes)
 
 public:
-    MusicApplicationMPRISRoot(QObject *parent = nullptr);
+    MusicMPRISPlayerRoot(QObject *parent = nullptr);
 
     bool canQuit() const;
     bool canRaise() const;
@@ -64,7 +89,7 @@ public Q_SLOTS:
 /*! @brief The class of the app mpris player object.
  * @author Greedysky <greedysky@163.com>
  */
-class TTK_MODULE_EXPORT MusicApplicationMPRISPlayer : public QDBusAbstractAdaptor
+class TTK_MODULE_EXPORT MusicMPRISPlayerBase : public QDBusAbstractAdaptor
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.Player")
@@ -85,7 +110,7 @@ class TTK_MODULE_EXPORT MusicApplicationMPRISPlayer : public QDBusAbstractAdapto
     Q_PROPERTY(double Volume READ volume WRITE setVolume)
 
 public:
-    MusicApplicationMPRISPlayer(QObject *parent = nullptr);
+    MusicMPRISPlayerBase(QObject *parent = nullptr);
 
     bool canControl() const;
     bool canGoNext() const;
@@ -157,4 +182,4 @@ private:
 
 };
 
-#endif // MUSICAPPLICATIONMPRISMODULE_H
+#endif // MUSICMPRISPLAYER_H

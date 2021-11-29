@@ -4,7 +4,7 @@
 #include "musicplatformmanager.h"
 #include "ttkdumper.h"
 #ifdef Q_OS_UNIX
-#  include "musicapplicationmpris.h"
+#  include "musicmprisplayer.h"
 #endif
 
 #include <QTranslator>
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
         }
     }
 #elif defined Q_OS_UNIX
-    MusicApplicationMPRIS mpris;
+    MusicMPRISPlayer mpris;
     mpris.run();
 #endif
 

@@ -556,7 +556,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="MusicFuntionAnimationWidget" name="functionAnimationWidget" native="true">
+             <widget class="MusicFuntionAnimationWidget" name="userOptionWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>320</width>
@@ -655,7 +655,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="MusicOptionAnimationWidget" name="stackedWidgetFunctionOption" native="true">
+                <widget class="MusicOptionAnimationWidget" name="functionOptionWidget" native="true">
                  <property name="minimumSize">
                   <size>
                    <width>470</width>

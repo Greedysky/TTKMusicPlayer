@@ -58,3 +58,8 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicimagerenderer.cpp
   )
   
+if(UNIX)
+set_property(GLOBAL APPEND PROPERTY MUSIC_CORE_KITS_HEADERS ${MUSIC_CORE_DIR}/musicmprisplayer.h)
+set_property(GLOBAL APPEND PROPERTY MUSIC_CORE_KITS_SOURCES ${MUSIC_CORE_DIR}/musicmprisplayer.cpp)
+endif()
+

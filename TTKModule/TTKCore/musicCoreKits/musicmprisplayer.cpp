@@ -1,4 +1,4 @@
-#include "musicapplicationmprismodule.h"
+#include "musicmprisplayer.h"
 #include "musicapplication.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
@@ -9,7 +9,95 @@
 #include <qmmp/metadatamanager.h>
 #include <qmmp/abstractengine.h>
 
-MusicApplicationMPRISPlayer::MusicApplicationMPRISPlayer(QObject *parent)
+MusicMPRISPlayer::MusicMPRISPlayer(QObject *parent)
+    : QObject(parent)
+{
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    //MPRISv2.0
+    m_root = new MusicMPRISPlayerRoot(this);
+    m_player = new MusicMPRISPlayerBase(this);
+    //
+    connection.registerService("org.mpris.MediaPlayer2." APP_NAME);
+    connection.registerObject("/org/mpris/MediaPlayer2", this);
+}
+
+MusicMPRISPlayer::~MusicMPRISPlayer()
+{
+    QDBusConnection::sessionBus().unregisterService("org.mpris.MediaPlayer2." APP_NAME);
+    delete m_root;
+    delete m_player;
+}
+
+void MusicMPRISPlayer::run()
+{
+    ///do nothing
+}
+
+
+
+MusicMPRISPlayerRoot::MusicMPRISPlayerRoot(QObject *parent)
+    : QDBusAbstractAdaptor(parent)
+{
+
+}
+
+bool MusicMPRISPlayerRoot::canQuit() const
+{
+    return true;
+}
+
+bool MusicMPRISPlayerRoot::canRaise() const
+{
+    return true;
+}
+
+QString MusicMPRISPlayerRoot::desktopEntry() const
+{
+    return APP_NAME;
+}
+
+bool MusicMPRISPlayerRoot::hasTrackList() const
+{
+    return false;
+}
+
+QString MusicMPRISPlayerRoot::identity() const
+{
+    return APP_NAME;
+}
+
+QStringList MusicMPRISPlayerRoot::supportedMimeTypes() const
+{
+    QStringList mimeTypes;
+    mimeTypes << Decoder::contentTypes();
+    mimeTypes << AbstractEngine::contentTypes();
+    mimeTypes.removeDuplicates();
+    return mimeTypes;
+}
+
+QStringList MusicMPRISPlayerRoot::supportedUriSchemes() const
+{
+    QStringList protocols = MetaDataManager::instance()->protocols();
+    if(!protocols.contains("file")) //append file if needed
+    {
+        protocols.append("file");
+    }
+    return protocols;
+}
+
+void MusicMPRISPlayerRoot::Quit()
+{
+    MusicApplication::instance()->quitWindowClose();
+}
+
+void MusicMPRISPlayerRoot::Raise()
+{
+    MusicApplication::instance()->show();
+}
+
+
+
+MusicMPRISPlayerBase::MusicMPRISPlayerBase(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
     MusicTime::initRandom();
@@ -29,36 +117,36 @@ MusicApplicationMPRISPlayer::MusicApplicationMPRISPlayer(QObject *parent)
     syncProperties();
 }
 
-bool MusicApplicationMPRISPlayer::canControl() const
+bool MusicMPRISPlayerBase::canControl() const
 {
     return true;
 }
 
-bool MusicApplicationMPRISPlayer::canGoNext() const
+bool MusicMPRISPlayerBase::canGoNext() const
 {
     return !m_player->m_musicPlaylist->isEmpty();
 }
 
-bool MusicApplicationMPRISPlayer::canGoPrevious() const
+bool MusicMPRISPlayerBase::canGoPrevious() const
 {
     return !m_player->m_musicPlaylist->isEmpty();
 }
 
-bool MusicApplicationMPRISPlayer::canPause() const
+bool MusicMPRISPlayerBase::canPause() const
 {
     return !m_player->m_musicPlaylist->isEmpty();
 }
-bool MusicApplicationMPRISPlayer::canPlay() const
+bool MusicMPRISPlayerBase::canPlay() const
 {
     return !m_player->m_musicPlaylist->isEmpty();
 }
 
-bool MusicApplicationMPRISPlayer::canSeek() const
+bool MusicMPRISPlayerBase::canSeek() const
 {
     return m_music->duration() > 0;
 }
 
-QString MusicApplicationMPRISPlayer::loopStatus() const
+QString MusicMPRISPlayerBase::loopStatus() const
 {
     switch(m_player->getPlayMode())
     {
@@ -68,7 +156,7 @@ QString MusicApplicationMPRISPlayer::loopStatus() const
     }
 }
 
-void MusicApplicationMPRISPlayer::setLoopStatus(const QString &value)
+void MusicMPRISPlayerBase::setLoopStatus(const QString &value)
 {
     if(value == "Track")
     {
@@ -84,12 +172,12 @@ void MusicApplicationMPRISPlayer::setLoopStatus(const QString &value)
     }
 }
 
-double MusicApplicationMPRISPlayer::maximumRate() const
+double MusicMPRISPlayerBase::maximumRate() const
 {
     return 1.0;
 }
 
-QVariantMap MusicApplicationMPRISPlayer::metadata() const
+QVariantMap MusicMPRISPlayerBase::metadata() const
 {
     if(m_music->path().isEmpty())
     {
@@ -159,12 +247,12 @@ QVariantMap MusicApplicationMPRISPlayer::metadata() const
     return map;
 }
 
-double MusicApplicationMPRISPlayer::minimumRate() const
+double MusicMPRISPlayerBase::minimumRate() const
 {
     return 1.0;
 }
 
-QString MusicApplicationMPRISPlayer::playbackStatus() const
+QString MusicMPRISPlayerBase::playbackStatus() const
 {
     if(m_music->state() == Qmmp::Playing)
     {
@@ -177,52 +265,52 @@ QString MusicApplicationMPRISPlayer::playbackStatus() const
     return "Stopped";
 }
 
-qlonglong MusicApplicationMPRISPlayer::position() const
+qlonglong MusicMPRISPlayerBase::position() const
 {
     return qMax(m_music->elapsed() * 1000, qint64(0));
 }
 
-double MusicApplicationMPRISPlayer::rate() const
+double MusicMPRISPlayerBase::rate() const
 {
     return 1.0;
 }
 
-void MusicApplicationMPRISPlayer::setRate(double value)
+void MusicMPRISPlayerBase::setRate(double value)
 {
     Q_UNUSED(value)
 }
 
-bool MusicApplicationMPRISPlayer::shuffle() const
+bool MusicMPRISPlayerBase::shuffle() const
 {
     return m_player->getPlayMode() == MusicObject::PlayRandom;
 }
 
-void MusicApplicationMPRISPlayer::setShuffle(bool value)
+void MusicMPRISPlayerBase::setShuffle(bool value)
 {
     m_player->m_musicPlaylist->setPlaybackMode(value ? MusicObject::PlayRandom : MusicObject::PlayOrder);
 }
 
-double MusicApplicationMPRISPlayer::volume() const
+double MusicMPRISPlayerBase::volume() const
 {
     return m_player->m_musicPlayer->volume();
 }
 
-void MusicApplicationMPRISPlayer::setVolume(double value)
+void MusicMPRISPlayerBase::setVolume(double value)
 {
     m_player->m_musicPlayer->setVolume(value);
 }
 
-void MusicApplicationMPRISPlayer::Previous()
+void MusicMPRISPlayerBase::Previous()
 {
     m_player->musicPlayPrevious();
 }
 
-void MusicApplicationMPRISPlayer::Next()
+void MusicMPRISPlayerBase::Next()
 {
     m_player->musicPlayNext();
 }
 
-void MusicApplicationMPRISPlayer::OpenUri(const QString &uri)
+void MusicMPRISPlayerBase::OpenUri(const QString &uri)
 {
     QString path = uri;
     if(uri.startsWith("file://"))
@@ -237,32 +325,32 @@ void MusicApplicationMPRISPlayer::OpenUri(const QString &uri)
     m_player->musicImportSongsPathOutside({path}, true);
 }
 
-void MusicApplicationMPRISPlayer::Pause()
+void MusicMPRISPlayerBase::Pause()
 {
     m_player->musicStatePlay();
 }
 
-void MusicApplicationMPRISPlayer::Play()
+void MusicMPRISPlayerBase::Play()
 {
     m_player->musicStatePlay();
 }
 
-void MusicApplicationMPRISPlayer::PlayPause()
+void MusicMPRISPlayerBase::PlayPause()
 {
     m_player->musicStatePlay();
 }
 
-void MusicApplicationMPRISPlayer::Stop()
+void MusicMPRISPlayerBase::Stop()
 {
     m_player->musicStateStop();
 }
 
-void MusicApplicationMPRISPlayer::Seek(qlonglong offset)
+void MusicMPRISPlayerBase::Seek(qlonglong offset)
 {
     m_music->seek(qMax(qint64(0), m_music->elapsed() +  offset / 1000));
 }
 
-void MusicApplicationMPRISPlayer::SetPosition(const QDBusObjectPath &trackId, qlonglong position)
+void MusicMPRISPlayerBase::SetPosition(const QDBusObjectPath &trackId, qlonglong position)
 {
     if(m_trackID == trackId)
     {
@@ -274,13 +362,13 @@ void MusicApplicationMPRISPlayer::SetPosition(const QDBusObjectPath &trackId, ql
     }
 }
 
-void MusicApplicationMPRISPlayer::trackInfoChanged()
+void MusicMPRISPlayerBase::trackInfoChanged()
 {
     updateTrackID();
     sendProperties();
 }
 
-void MusicApplicationMPRISPlayer::stateChanged()
+void MusicMPRISPlayerBase::stateChanged()
 {
     if(m_music->state() == Qmmp::Playing)
     {
@@ -290,12 +378,12 @@ void MusicApplicationMPRISPlayer::stateChanged()
     sendProperties();
 }
 
-void MusicApplicationMPRISPlayer::volumeChanged()
+void MusicMPRISPlayerBase::volumeChanged()
 {
     sendProperties();
 }
 
-void MusicApplicationMPRISPlayer::elapsedChanged(qint64 elapsed)
+void MusicMPRISPlayerBase::elapsedChanged(qint64 elapsed)
 {
     if(std::abs(elapsed - m_prev_pos) > 2000)
     {
@@ -304,12 +392,12 @@ void MusicApplicationMPRISPlayer::elapsedChanged(qint64 elapsed)
     m_prev_pos = elapsed;
 }
 
-void MusicApplicationMPRISPlayer::playbackModeChanged()
+void MusicMPRISPlayerBase::playbackModeChanged()
 {
     sendProperties();
 }
 
-void MusicApplicationMPRISPlayer::updateTrackID()
+void MusicMPRISPlayerBase::updateTrackID()
 {
     if(m_prev_track != m_player->m_musicPlaylist->currentIndex())
     {
@@ -318,7 +406,7 @@ void MusicApplicationMPRISPlayer::updateTrackID()
     }
 }
 
-void MusicApplicationMPRISPlayer::syncProperties()
+void MusicMPRISPlayerBase::syncProperties()
 {
     m_properties["CanGoNext"] = canGoNext();
     m_properties["CanGoPrevious"] = canGoPrevious();
@@ -335,7 +423,7 @@ void MusicApplicationMPRISPlayer::syncProperties()
     m_properties["Metadata"] = metadata();
 }
 
-void MusicApplicationMPRISPlayer::sendProperties()
+void MusicMPRISPlayerBase::sendProperties()
 {
     TTKVariantMap prevProps = m_properties;
     syncProperties();
@@ -360,66 +448,4 @@ void MusicApplicationMPRISPlayer::sendProperties()
     msg << map;
     msg << QStringList();
     QDBusConnection::sessionBus().send(msg);
-}
-
-
-
-MusicApplicationMPRISRoot::MusicApplicationMPRISRoot(QObject *parent)
-    : QDBusAbstractAdaptor(parent)
-{
-
-}
-
-bool MusicApplicationMPRISRoot::canQuit() const
-{
-    return true;
-}
-
-bool MusicApplicationMPRISRoot::canRaise() const
-{
-    return true;
-}
-
-QString MusicApplicationMPRISRoot::desktopEntry() const
-{
-    return APP_NAME;
-}
-
-bool MusicApplicationMPRISRoot::hasTrackList() const
-{
-    return false;
-}
-
-QString MusicApplicationMPRISRoot::identity() const
-{
-    return APP_NAME;
-}
-
-QStringList MusicApplicationMPRISRoot::supportedMimeTypes() const
-{
-    QStringList mimeTypes;
-    mimeTypes << Decoder::contentTypes();
-    mimeTypes << AbstractEngine::contentTypes();
-    mimeTypes.removeDuplicates();
-    return mimeTypes;
-}
-
-QStringList MusicApplicationMPRISRoot::supportedUriSchemes() const
-{
-    QStringList protocols = MetaDataManager::instance()->protocols();
-    if(!protocols.contains("file")) //append file if needed
-    {
-        protocols.append("file");
-    }
-    return protocols;
-}
-
-void MusicApplicationMPRISRoot::Quit()
-{
-    MusicApplication::instance()->quitWindowClose();
-}
-
-void MusicApplicationMPRISRoot::Raise()
-{
-    MusicApplication::instance()->show();
 }

@@ -30,7 +30,7 @@ class MusicRightAreaWidget;
 class MusicLeftAreaWidget;
 class MusicApplicationModule;
 
-class MusicApplicationMPRISPlayer;
+class MusicMPRISPlayerBase;
 
 namespace Ui {
 class MusicApplication;
@@ -339,7 +339,7 @@ private:
     MusicLeftAreaWidget *m_leftAreaWidget;
     MusicApplicationModule *m_applicationObject;
 
-    friend class MusicApplicationMPRISPlayer;
+    friend class MusicMPRISPlayerBase;
     static MusicApplication *m_instance;
 
 };

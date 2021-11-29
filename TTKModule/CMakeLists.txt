@@ -109,9 +109,6 @@ get_property(MUSIC_UIS GLOBAL PROPERTY "MUSIC_UIS")
 
 if(WIN32)
     list(APPEND MUSIC_SOURCES ${PROJECT_NAME}.rc)
-else(UNIX)
-    list(APPEND MUSIC_HEADERS musicapplicationmpris.h musicapplicationmprismodule.h)
-    list(APPEND MUSIC_SOURCES musicapplicationmpris.cpp musicapplicationmprismodule.cpp)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

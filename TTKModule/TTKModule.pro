@@ -54,16 +54,4 @@ HEADERS  += \
     musicrightareawidget.h \
     musicbottomareawidget.h
 
-#dbus mpris support for linux
-unix:!mac{
-    QT  += dbus
-    SOURCES += \
-        musicapplicationmpris.cpp \
-        musicapplicationmprismodule.cpp
-
-    HEADERS += \
-        musicapplicationmpris.h \
-        musicapplicationmprismodule.h
-}
-
 win32:RC_FILE = TTKCore.rc

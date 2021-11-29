@@ -97,7 +97,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 #else
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
 #endif
-    connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
+    connect(ui->functionOptionWidget, SIGNAL(buttonClicked(int)), SLOT(functionClicked(int)));
     //
     connect(m_musicLrcForInterior, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInteriorLrcWidget()));
     connect(m_musicLrcForInterior, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
@@ -357,14 +357,23 @@ void MusicRightAreaWidget::applySettingParameter()
     }
 }
 
-void MusicRightAreaWidget::functionClicked(int index)
+void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
 {
     m_funcIndex = TTKStatic_cast(MusicFunction, index);
     functionParameterInit();
 
+    if(widget)
+    {
+        m_stackedAutoWidget = widget;
+        m_ui->functionsContainer->addWidget(m_stackedAutoWidget);
+        m_ui->functionsContainer->setCurrentWidget(m_stackedAutoWidget);
+        Q_EMIT updateBackgroundTheme();
+        return;
+    }
+
     if(0 <= index && index < LrcWidget)
     {
-        m_ui->stackedWidgetFunctionOption->musicButtonStyle(index);
+        m_ui->functionOptionWidget->musicButtonStyle(index);
     }
 
     switch(m_funcIndex)
@@ -553,17 +562,6 @@ void MusicRightAreaWidget::functionClicked(int index)
         }
         default: break;
     }
-}
-
-void MusicRightAreaWidget::functionClicked(int index, QWidget *widget)
-{
-    m_funcIndex = TTKStatic_cast(MusicFunction, index);
-    functionParameterInit();
-
-    m_stackedAutoWidget = widget;
-    m_ui->functionsContainer->addWidget(m_stackedAutoWidget);
-    m_ui->functionsContainer->setCurrentWidget(m_stackedAutoWidget);
-    Q_EMIT updateBackgroundTheme();
 }
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
@@ -802,7 +800,7 @@ void MusicRightAreaWidget::musicVideoClosed()
     m_videoPlayerWidget = nullptr;
 
     functionClicked(MusicRightAreaWidget::KugGouSongWidget);
-    m_ui->stackedWidgetFunctionOption->switchToSelectedItemStyle(MusicRightAreaWidget::KugGouSongWidget);
+    m_ui->functionOptionWidget->switchToSelectedItemStyle(MusicRightAreaWidget::KugGouSongWidget);
 }
 
 void MusicRightAreaWidget::musicVideoFullscreen(bool full)
@@ -880,12 +878,12 @@ void MusicRightAreaWidget::functionParameterInit()
 
     if(m_funcIndex == LrcWidget) ///lrc option
     {
-        m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(false);
+        m_ui->functionOptionWidget->musicButtonStyleClear(false);
         m_ui->stackedFunctionWidget->transparent(true);
     }
     else
     {
-        m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(true);
+        m_ui->functionOptionWidget->musicButtonStyleClear(true);
         m_ui->stackedFunctionWidget->transparent(false);
     }
 

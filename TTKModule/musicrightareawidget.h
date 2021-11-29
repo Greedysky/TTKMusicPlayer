@@ -172,11 +172,7 @@ public Q_SLOTS:
     /*!
      * Function button clicked.
      */
-    void functionClicked(int index);
-    /*!
-     * Function button clicked by extra widget.
-     */
-    void functionClicked(int index, QWidget *widget);
+    void functionClicked(int index, QWidget *widget = nullptr);
     /*!
      * Music song comments widget.
      */
