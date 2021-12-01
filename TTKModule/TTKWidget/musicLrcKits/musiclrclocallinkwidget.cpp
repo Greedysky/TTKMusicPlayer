@@ -120,7 +120,7 @@ void MusicLrcLocalLinkWidget::searchInLocalLrc()
     }
 
     m_ui->fuzzyButton->isChecked();
-    const QStringList &list = QDir(MusicUtils::String::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+    const QStringList &list = QDir(MusicUtils::String::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoDotAndDotDot);
 
     MusicLocalDataItems items;
     for(const QString &var : list)

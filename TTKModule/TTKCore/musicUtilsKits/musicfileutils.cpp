@@ -16,7 +16,7 @@ QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, const QSt
         return QFileInfoList();
     }
 
-    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
     if(recursively)
     {
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
