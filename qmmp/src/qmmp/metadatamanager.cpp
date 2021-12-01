@@ -220,7 +220,7 @@ QString MetaDataManager::findCoverFile(const QString &fileName) const
 
 QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
 {
-    dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    dir.setFilter(QDir::Files | QDir::Hidden);
     dir.setSorting(QDir::Name);
     QFileInfoList file_list = dir.entryInfoList(m_settings->coverNameFilters());
 

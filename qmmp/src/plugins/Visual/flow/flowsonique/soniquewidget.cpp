@@ -76,7 +76,7 @@ static QFileInfoList getFileListByDir(const QString &dpath, const QStringList &f
         return QFileInfoList();
     }
 
-    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden);
     const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
     for(const QFileInfo &file : folderList)
     {
