@@ -12,8 +12,8 @@
 bool MusicUtils::Url::execute(const QString &path)
 {
 #ifdef Q_OS_WIN
-    const HINSTANCE value = ShellExecuteW(0, L"open", path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
-    return value->unused >= 32;
+    ShellExecuteW(0, L"open", path.toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+    return true;
 #else
     return QProcess::startDetached(path, QStringList());
 #endif
@@ -32,8 +32,8 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
         QString p = path;
         p.replace(TTK_SEPARATOR, "\\");
         p = "/select," + p;
-        const HINSTANCE value = ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
-        return value->unused >= 32;
+        ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
+        return true;
     }
 #elif defined Q_OS_LINUX
     MusicPlatformManager platform;
