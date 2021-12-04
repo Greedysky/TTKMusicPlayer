@@ -1,14 +1,14 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = $${TARGET}
+
 HEADERS += monoplugin.h \
            effectmonofactory.h
 
 SOURCES += monoplugin.cpp \
            effectmonofactory.cpp
 
-DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = $${TARGET}
-
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 }

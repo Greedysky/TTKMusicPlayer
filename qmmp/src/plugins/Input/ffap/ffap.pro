@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = $${TARGET}
+
 HEADERS += decoderffapfactory.h \
            ffap.h \
            decoder_ffap.h \
@@ -12,16 +15,13 @@ SOURCES += decoderffapfactory.cpp \
            ffapmetadatamodel.cpp \
            decoder_ffapcue.cpp
 
-DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
-
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX -lgcc
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }

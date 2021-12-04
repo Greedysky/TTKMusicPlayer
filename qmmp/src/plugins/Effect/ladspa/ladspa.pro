@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = $${TARGET}
+
 HEADERS += ladspahost.h \
            effectladspafactory.h \
            settingsdialog.h \
@@ -16,9 +19,6 @@ SOURCES += ladspahost.cpp \
            ladspabutton.cpp
 
 FORMS += settingsdialog.ui
-
-DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = $${TARGET}
 
 LIBS += -L/usr/lib \
         -I/usr/include

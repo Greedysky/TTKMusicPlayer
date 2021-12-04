@@ -20,7 +20,7 @@ HEADERS += spek-audio.h \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include
 
-win32:{
+win32{
     LIBS += -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec.dll -lavformat.dll -lavutil.dll
 }
 

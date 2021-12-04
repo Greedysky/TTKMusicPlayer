@@ -11,11 +11,11 @@ SOURCES += goomwidget.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libgoom/include
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libgoom/lib -lgoom$$STATIC_LIBRARY_SUFFIX
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libgoom/lib -lgoom
 }

@@ -100,10 +100,10 @@ TEMPLATE = lib
 
 INCLUDEPATH += $$PWD/ $$PWD/../../../extra/gcc/libtaglib/include
 
-win32:{
+win32{
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag
 }
 
-unix {
+unix{
     LIBS += -L$$PWD/../../../extra/gcc/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }

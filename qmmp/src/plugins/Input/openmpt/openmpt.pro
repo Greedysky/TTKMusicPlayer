@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = $${TARGET}
+
 HEADERS += decoderopenmptfactory.h \
            decoder_openmpt.h \
            openmptmetadatamodel.h \
@@ -16,16 +19,13 @@ SOURCES += decoderopenmptfactory.cpp \
 
 FORMS   += settingsdialog.ui
 
-DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
-
 INCLUDEPATH += $$EXTRA_PREFIX/libopenmpt/include
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt$$STATIC_LIBRARY_SUFFIX
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libopenmpt/lib -lopenmpt
 }

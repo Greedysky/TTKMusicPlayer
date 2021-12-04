@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = $${TARGET}
+
 HEADERS += decodermpegfactory.h \
 	   tagextractor.h \
 	   mpegmetadatamodel.h \
@@ -12,9 +15,6 @@ SOURCES += decodermpegfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
-
 contains(CONFIG, WITH_MAD){
     INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include \
                    $$EXTRA_PREFIX/libmad/include
@@ -23,7 +23,7 @@ contains(CONFIG, WITH_MAD){
     DEFINES += WITH_MAD
 }
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     contains(CONFIG, WITH_MAD):{
         LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
@@ -31,7 +31,7 @@ unix {
     }
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
             -L$$EXTRA_PREFIX/libmad/lib -lmad
 }

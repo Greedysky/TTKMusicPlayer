@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = $${TARGET}
+
 HEADERS += soxresampler.h \
            effectsoxrfactory.h \
            settingsdialog.h
@@ -10,16 +13,13 @@ SOURCES += soxresampler.cpp \
 
 FORMS += settingsdialog.ui
 
-DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = $${TARGET}
-
 INCLUDEPATH += $$EXTRA_PREFIX/libsoxr/include
 
-win32:{
+win32{
     LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr
 }
 
-unix:{
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L/usr/lib -I/usr/include
     LIBS += -L$$EXTRA_PREFIX/libsoxr/lib -lsoxr$$STATIC_LIBRARY_SUFFIX

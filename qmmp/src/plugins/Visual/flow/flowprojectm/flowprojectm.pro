@@ -14,7 +14,7 @@ SOURCES += projectmplugin.cpp \
 
 INCLUDEPATH += $$EXTRA_PREFIX/libprojectm/include
 
-win32:{
+win32{
     LIBS += -L$$EXTRA_PREFIX/libprojectm/lib -lprojectM.dll -lglu32 -lopengl32
 }
 

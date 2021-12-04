@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = $${TARGET}
+
 HEADERS += decodercuefactory.h \
            decoder_cue.h \
            cuefile.h \
@@ -13,9 +16,6 @@ SOURCES += decodercuefactory.cpp \
            settingsdialog.cpp
 
 FORMS += settingsdialog.ui
-
-DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
 
 INCLUDEPATH += $$EXTRA_PREFIX/libenca/include
 

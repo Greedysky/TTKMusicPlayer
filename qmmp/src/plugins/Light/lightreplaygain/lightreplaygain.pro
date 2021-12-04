@@ -17,11 +17,11 @@ FORMS += replaygainwidget.ui
 
 INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }

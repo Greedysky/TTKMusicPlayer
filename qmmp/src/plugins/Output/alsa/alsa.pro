@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Output
+TARGET = $${TARGET}
+
 HEADERS += outputalsa.h \
            outputalsafactory.h \
            settingsdialog.h
@@ -9,9 +12,6 @@ SOURCES += outputalsa.cpp \
            settingsdialog.cpp
 
 FORMS += settingsdialog.ui
-
-DESTDIR = $$PLUGINS_PREFIX/Output
-TARGET = $${TARGET}
 
 QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
 

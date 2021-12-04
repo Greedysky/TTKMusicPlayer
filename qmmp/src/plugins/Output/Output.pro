@@ -3,7 +3,7 @@ include($$PWD/../plugins.pri)
 TEMPLATE = subdirs
 SUBDIRS += null
 
-win32:{
+win32{
     SUBDIRS += waveout directsound wasapi
 }
 

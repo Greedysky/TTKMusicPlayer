@@ -1,5 +1,8 @@
 include($$PWD/../zed.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = $${TARGET}
+
 HEADERS += decoderpsffactory.h \
            decoder_psf.h \
            psfhelper.h \
@@ -10,16 +13,13 @@ SOURCES += decoderpsffactory.cpp \
            psfhelper.cpp \
            psfmetadatamodel.cpp
 
-DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
-
 INCLUDEPATH += $$EXTRA_PREFIX/libpsf/include
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libpsf/lib -lpsf$$STATIC_LIBRARY_SUFFIX
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libpsf/lib -lpsf
 }

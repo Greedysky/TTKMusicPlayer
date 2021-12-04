@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Effect
+TARGET = $${TARGET}
+
 HEADERS += srconverter.h \
            effectsrconverterfactory.h \
            settingsdialog.h
@@ -10,16 +13,13 @@ SOURCES += srconverter.cpp \
 
 FORMS += settingsdialog.ui
 
-DESTDIR = $$PLUGINS_PREFIX/Effect
-TARGET = $${TARGET}
-
 INCLUDEPATH += $$EXTRA_PREFIX/libsamplerate/include
 
-win32:{
+win32{
     LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate
 }
 
-unix:{
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libsamplerate/lib -lsamplerate$$STATIC_LIBRARY_SUFFIX
 }

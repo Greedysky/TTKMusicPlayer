@@ -1,5 +1,8 @@
 include($$PWD/../../plugins.pri)
 
+DESTDIR = $$PLUGINS_PREFIX/Input
+TARGET = $${TARGET}
+
 HEADERS += decoderffmpegfactory.h \
            decoder_ffmpeg.h \
            ffmpegmetadatamodel.h \
@@ -18,19 +21,16 @@ SOURCES += decoderffmpegfactory.cpp \
 
 FORMS += settingsdialog.ui
 
-DESTDIR = $$PLUGINS_PREFIX/Input
-TARGET = $${TARGET}
-
 INCLUDEPATH += $$EXTRA_PREFIX/libffmpeg/include \
                $$EXTRA_PREFIX/libtaglib/include
 
-unix {
+unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag$$STATIC_LIBRARY_SUFFIX \
             -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec -lavformat -lavutil -lswresample
 }
 
-win32 {
+win32{
     LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag \
             -L$$EXTRA_PREFIX/libffmpeg/lib -lavcodec.dll -lavformat.dll -lavutil.dll -lswresample.dll
 }
