@@ -4,7 +4,7 @@
 /**
  * C
  *
- * opyright (c) 2015 - 2021 Greedysky Studio <greedysky@163.com>
+ * opyright (c) 2015 - 2022 Greedysky Studio <greedysky@163.com>
  *
  * TTKMusicPlayer that imitation Kugou music, the music player use
  * of qmmp core library based on Qt for windows and linux
@@ -122,9 +122,9 @@
  *
  */
  
-/* =================================================
+/***************************************************************************
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2021 Greedysky Studio
+ * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -138,7 +138,7 @@
 
  * You should have received a copy of the GNU General Public License along
  * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
+ ***************************************************************************/
 
 //update time 2021.11.19
 #define TTKMUSIC_VERSION_STR    "2.15.5.0"
