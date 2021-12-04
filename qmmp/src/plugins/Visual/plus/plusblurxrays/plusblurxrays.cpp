@@ -49,7 +49,7 @@ void PlusBlurXRays::changeColor()
     c.setColor(m_color);
     if(c.exec())
     {
-        m_color = c.getColor();
+        m_color = c.color();
     }
 }
 

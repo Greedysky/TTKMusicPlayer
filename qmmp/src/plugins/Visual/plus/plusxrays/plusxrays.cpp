@@ -50,7 +50,7 @@ void PlusXRays::changeColor()
     c.setColors(m_colors);
     if(c.exec())
     {
-        m_colors = c.getColors();
+        m_colors = c.colors();
     }
 }
 

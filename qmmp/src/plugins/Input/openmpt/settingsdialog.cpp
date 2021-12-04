@@ -18,7 +18,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         button->setFocusPolicy(Qt::NoFocus);
     }
 #endif
-    const QMap<QString, int> interpolators(OpenMPTHelper::getInterpolators());
+    const QMap<QString, int> interpolators(OpenMPTHelper::interpolators());
     for(auto itr = interpolators.begin(); itr != interpolators.end(); ++itr)
     {
         m_ui.interpolate_combo->addItem(itr.key(), itr.value());

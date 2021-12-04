@@ -141,7 +141,7 @@ void ReplayGainWidget::scanFinished(const QString &url)
             item->info[Qmmp::REPLAYGAIN_TRACK_PEAK] = scanner->peak();
             item->url = scanner->url();
             item->handle = scanner->handle();
-            QString album = getAlbumName(item->url);
+            QString album = albumName(item->url);
             itemGroupMap.insert(album, item);
         }
         //calculate album peak and gain
@@ -276,7 +276,7 @@ ReplayGainner *ReplayGainWidget::findScannerByUrl(const QString &url)
     return nullptr;
 }
 
-QString ReplayGainWidget::getAlbumName(const QString &url)
+QString ReplayGainWidget::albumName(const QString &url)
 {
     QList<TrackInfo*> infoList = MetaDataManager::instance()->createPlayList(url);
     if(infoList.isEmpty())

@@ -38,7 +38,7 @@ public:
 
     bool initialize();
 
-    static QMap<QString, int> getInterpolators();
+    static QMap<QString, int> interpolators();
     bool isValidInterpolator(int value);
     void setInterpolator(int value);
     bool isValidStereoSeparation(int separation);

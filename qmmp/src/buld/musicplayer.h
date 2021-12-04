@@ -70,13 +70,6 @@ public:
     void setMuted(bool muted);
     void setPosition(qint64 position);
 
-    void setMusicEnhanced(Enhanced type);
-    Enhanced getMusicEnhanced() const;
-
-    static QStringList supportFormatsString();
-    static QStringList supportFormatsFilterString();
-    static QStringList supportFormatsFilterDialogString();
-
 Q_SIGNALS:
     void stateChanged(MusicPlayer::State newState);
 

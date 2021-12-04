@@ -140,7 +140,7 @@ void ColorWidget::setColors(const QList<QColor> &colors)
     }
 }
 
-QList<QColor> ColorWidget::getColors() const
+QList<QColor> ColorWidget::colors() const
 {
     QList<QColor> colors;
     for(int i=0; i<m_ui->listWidget->count(); ++i)
@@ -169,7 +169,7 @@ void ColorWidget::setColor(const QColor &color)
     }
 }
 
-QColor ColorWidget::getColor() const
+QColor ColorWidget::color() const
 {
     if(m_ui->listWidget->count() < 1)
     {
@@ -181,12 +181,11 @@ QColor ColorWidget::getColor() const
 
 void ColorWidget::addButtonClicked()
 {
-    QColorDialog getColor(Qt::white, this);
-    if(getColor.exec())
+    QColorDialog dialog(Qt::white, this);
+    if(dialog.exec())
     {
-        QColor color = getColor.selectedColor();
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
-        it->setBackgroundColor(color);
+        it->setBackgroundColor(dialog.selectedColor());
         m_ui->listWidget->addItem(it);
     }
 
@@ -211,14 +210,13 @@ void ColorWidget::deleteButtonClicked()
 
 void ColorWidget::modifyButtonClicked()
 {
-    QColorDialog getColor(Qt::white, this);
-    if(getColor.exec())
+    QColorDialog dialog(Qt::white, this);
+    if(dialog.exec())
     {
-        QColor color = getColor.selectedColor();
         QListWidgetItem *it = m_ui->listWidget->currentItem();
         if(it)
         {
-            it->setBackgroundColor(color);
+            it->setBackgroundColor(dialog.selectedColor());
         }
     }
 }

@@ -100,7 +100,7 @@ QString OpenMPTHelper::toString(const char *input)
     }
 }
 
-QMap<QString, int> OpenMPTHelper::getInterpolators()
+QMap<QString, int> OpenMPTHelper::interpolators()
 {
     QMap<QString, int> interpolators;
     interpolators.insert(QObject::tr("None"), INTERP_NONE);
@@ -112,7 +112,7 @@ QMap<QString, int> OpenMPTHelper::getInterpolators()
 
 bool OpenMPTHelper::isValidInterpolator(int value)
 {
-    return getInterpolators().values().contains(value);
+    return interpolators().values().contains(value);
 }
 
 void OpenMPTHelper::setInterpolator(int value)

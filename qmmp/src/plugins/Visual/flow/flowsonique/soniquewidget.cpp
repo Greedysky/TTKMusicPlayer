@@ -68,7 +68,7 @@ static void customZoomAndBlur(unsigned int *v, unsigned int *vt, int xs, int ys)
     }
 }
 
-static QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter)
+static QFileInfoList fileListByDir(const QString &dpath, const QStringList &filter)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -80,7 +80,7 @@ static QFileInfoList getFileListByDir(const QString &dpath, const QStringList &f
     const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
     for(const QFileInfo &file : folderList)
     {
-        fileList.append(getFileListByDir(file.absoluteFilePath(), filter));
+        fileList.append(fileListByDir(file.absoluteFilePath(), filter));
     }
 
     return fileList;
@@ -248,7 +248,7 @@ void SoniqueWidget::randomPreset()
 void SoniqueWidget::initialize()
 {
     const QString &dir = Qmmp::pluginPath() + "/../GPlugins/config/sonique";
-    const QFileInfoList folderList(getFileListByDir(dir, QStringList() << "*.svp"));
+    const QFileInfoList folderList(fileListByDir(dir, QStringList() << "*.svp"));
     for(const QFileInfo &info : folderList)
     {
         m_presetList << info.absoluteFilePath();
@@ -306,7 +306,7 @@ void SoniqueWidget::generatePreset()
     m_sonique = module();
 
     const QString &dir = QFileInfo(m_presetList[m_currentIndex]).absolutePath();
-    const QFileInfoList iniList(getFileListByDir(dir, QStringList() << "*.ini"));
+    const QFileInfoList iniList(fileListByDir(dir, QStringList() << "*.ini"));
     if(!iniList.isEmpty())
     {
         char *init_path = iniList.first().absoluteFilePath().toLocal8Bit().data();

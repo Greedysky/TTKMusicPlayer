@@ -89,7 +89,7 @@ bool OptimFROGHelper::initialize()
         m_info.bitspersample = 16;
     }
 
-#if defined Q_OS_LINUX
+#if defined Q_OS_UNIX
     if(strncmp(m_info.sampleType, "SINT", 4) != 0 && strncmp(m_info.sampleType, "UINT", 4) != 0)
     {
         qWarning("OptimFROGHelper: sampleType failed");

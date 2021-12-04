@@ -71,7 +71,7 @@ private:
     virtual void stop() override;
 
     ReplayGainner *findScannerByUrl(const QString &url);
-    QString getAlbumName(const QString &url);
+    QString albumName(const QString &url);
 
     TagLib::String gainToString(double value);
     TagLib::String peakToString(double value);

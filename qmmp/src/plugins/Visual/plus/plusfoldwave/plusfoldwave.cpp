@@ -91,7 +91,7 @@ void PlusFoldWave::changeColor()
     c.setColors(m_colors);
     if(c.exec())
     {
-        m_colors = c.getColors();
+        m_colors = c.colors();
     }
 }
 
@@ -108,7 +108,7 @@ void PlusFoldWave::changeStarColor()
     c.setColor(m_starColor);
     if(c.exec())
     {
-        m_starColor = c.getColor();
+        m_starColor = c.color();
         update();
     }
 }

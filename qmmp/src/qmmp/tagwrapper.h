@@ -59,7 +59,7 @@ public:
     bool readFile(const QString &path);
 
     bool writeMusicTag(Type tag, const QString &value, int id3v2Version);
-    inline QMap<Type, QString> getMusicTags() const { return m_parameters; }
+    inline QMap<Type, QString> musicTags() const { return m_parameters; }
 
 protected:
     QString m_path;

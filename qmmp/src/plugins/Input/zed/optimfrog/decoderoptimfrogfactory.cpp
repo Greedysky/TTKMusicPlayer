@@ -60,21 +60,21 @@ QList<TrackInfo*> DecoderOptimFROGFactory::createPlayList(const QString &path, T
     if((parts & TrackInfo::MetaData) && helper.hasTags())
     {
         QString value;
-        value = helper.getTag("title");
+        value = helper.tag("title");
         info->setValue(Qmmp::TITLE, value.replace('\n', "<br>"));
-        value = helper.getTag("artist");
+        value = helper.tag("artist");
         info->setValue(Qmmp::ARTIST, value.replace('\n', "<br>"));
-        value = helper.getTag("album");
+        value = helper.tag("album");
         info->setValue(Qmmp::ALBUM, value.replace('\n', "<br>"));
-        value = helper.getTag("comment");
+        value = helper.tag("comment");
         info->setValue(Qmmp::COMMENT, value.replace('\n', "<br>"));
-        value = helper.getTag("genre");
+        value = helper.tag("genre");
         info->setValue(Qmmp::GENRE, value.replace('\n', "<br>"));
-        value = helper.getTag("composer");
+        value = helper.tag("composer");
         info->setValue(Qmmp::COMPOSER, value.replace('\n', "<br>"));
-        value = helper.getTag("year");
+        value = helper.tag("year");
         info->setValue(Qmmp::YEAR, value.replace('\n', "<br>"));
-        value = helper.getTag("track");
+        value = helper.tag("track");
         info->setValue(Qmmp::TRACK, value.replace('\n', "<br>"));
     }
 

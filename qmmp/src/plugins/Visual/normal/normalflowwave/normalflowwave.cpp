@@ -96,7 +96,7 @@ void NormalFlowWave::changeStarColor()
     c.setColor(m_starColor);
     if(c.exec())
     {
-        m_starColor = c.getColor();
+        m_starColor = c.color();
         update();
     }
 }

@@ -79,7 +79,7 @@ public:
     /*!
      * Get selected colors.
      */
-    QList<QColor> getColors() const;
+    QList<QColor> colors() const;
 
     /*!
      * Set current color.
@@ -88,7 +88,7 @@ public:
     /*!
      * Get selected color.
      */
-    QColor getColor() const;
+    QColor color() const;
 
 public slots:
     /*!
