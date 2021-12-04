@@ -45,26 +45,25 @@ MusicConsoleModule::MusicConsoleModule(QObject *parent)
     G_HOTKEY_PTR->addHotKey("Alt+5");
     G_HOTKEY_PTR->addHotKey("Ctrl+Q");
 
-    connect(G_HOTKEY_PTR->getHotKey(0), SIGNAL(activated()), SLOT(musicStatePlay()));
-    connect(G_HOTKEY_PTR->getHotKey(1), SIGNAL(activated()), SLOT(musicPlayPrevious()));
-    connect(G_HOTKEY_PTR->getHotKey(2), SIGNAL(activated()), SLOT(musicPlayNext()));
-    connect(G_HOTKEY_PTR->getHotKey(3), SIGNAL(activated()), SLOT(musicActionVolumePlus()));
-    connect(G_HOTKEY_PTR->getHotKey(4), SIGNAL(activated()), SLOT(musicActionVolumeSub()));
+    connect(G_HOTKEY_PTR->hotKey(0), SIGNAL(activated()), SLOT(musicStatePlay()));
+    connect(G_HOTKEY_PTR->hotKey(1), SIGNAL(activated()), SLOT(musicPlayPrevious()));
+    connect(G_HOTKEY_PTR->hotKey(2), SIGNAL(activated()), SLOT(musicPlayNext()));
+    connect(G_HOTKEY_PTR->hotKey(3), SIGNAL(activated()), SLOT(musicActionVolumePlus()));
+    connect(G_HOTKEY_PTR->hotKey(4), SIGNAL(activated()), SLOT(musicActionVolumeSub()));
 
-    connect(G_HOTKEY_PTR->getHotKey(5), SIGNAL(activated()), SLOT(musicPlayOrder()));
-    connect(G_HOTKEY_PTR->getHotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
-    connect(G_HOTKEY_PTR->getHotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
-    connect(G_HOTKEY_PTR->getHotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
-    connect(G_HOTKEY_PTR->getHotKey(9), SIGNAL(activated()), SLOT(musicPlayOnce()));
+    connect(G_HOTKEY_PTR->hotKey(5), SIGNAL(activated()), SLOT(musicPlayOrder()));
+    connect(G_HOTKEY_PTR->hotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
+    connect(G_HOTKEY_PTR->hotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
+    connect(G_HOTKEY_PTR->hotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
+    connect(G_HOTKEY_PTR->hotKey(9), SIGNAL(activated()), SLOT(musicPlayOnce()));
 
-    connect(G_HOTKEY_PTR->getHotKey(10), SIGNAL(activated()), SLOT(musicEnhancedOff()));
-    connect(G_HOTKEY_PTR->getHotKey(11), SIGNAL(activated()), SLOT(musicEnhanced3D()));
-    connect(G_HOTKEY_PTR->getHotKey(12), SIGNAL(activated()), SLOT(musicEnhancedNICAM()));
-    connect(G_HOTKEY_PTR->getHotKey(13), SIGNAL(activated()), SLOT(musicEnhancedSubwoofer()));
-    connect(G_HOTKEY_PTR->getHotKey(14), SIGNAL(activated()), SLOT(musicEnhancedVocal()));
+    connect(G_HOTKEY_PTR->hotKey(10), SIGNAL(activated()), SLOT(musicEnhancedOff()));
+    connect(G_HOTKEY_PTR->hotKey(11), SIGNAL(activated()), SLOT(musicEnhanced3D()));
+    connect(G_HOTKEY_PTR->hotKey(12), SIGNAL(activated()), SLOT(musicEnhancedNICAM()));
+    connect(G_HOTKEY_PTR->hotKey(13), SIGNAL(activated()), SLOT(musicEnhancedSubwoofer()));
+    connect(G_HOTKEY_PTR->hotKey(14), SIGNAL(activated()), SLOT(musicEnhancedVocal()));
 
-    connect(G_HOTKEY_PTR->getHotKey(15), SIGNAL(activated()), qApp, SLOT(quit()));
-
+    connect(G_HOTKEY_PTR->hotKey(15), SIGNAL(activated()), qApp, SLOT(quit()));
 }
 
 MusicConsoleModule::~MusicConsoleModule()
@@ -121,7 +120,7 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
         }
         else
         {
-            for(const QFileInfo &file : MusicUtils::File::getFileListByDir(url, MusicFormats::supportMusicInputFilterFormats(), true))
+            for(const QFileInfo &file : MusicUtils::File::fileListByDir(url, MusicFormats::supportMusicInputFilterFormats(), true))
             {
                 TTK_LOGGER_INFO("Add play url path: " << file.absoluteFilePath());
                 m_musicPlaylist->appendMedia(0, file.absoluteFilePath());
@@ -162,8 +161,8 @@ bool MusicConsoleModule::init(const QCoreApplication &app)
             {
                 for(const MusicSong &song : qAsConst(item.m_songs))
                 {
-                    TTK_LOGGER_INFO("Add play url path: " << song.getMusicPath());
-                    m_musicPlaylist->appendMedia(0, song.getMusicPath());
+                    TTK_LOGGER_INFO("Add play url path: " << song.musicPath());
+                    m_musicPlaylist->appendMedia(0, song.musicPath());
                 }
             }
 

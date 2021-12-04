@@ -44,7 +44,7 @@ public:
     /*!
      * Get qr margin.
      */
-    int getMargin() const;
+    int margin() const;
 
     /*!
      * Set qr icon.
@@ -53,7 +53,7 @@ public:
     /*!
      * Get qr icon.
      */
-    QString getIcon() const;
+    QString icon() const;
 
     /*!
      * Set qr icon percent.
@@ -62,7 +62,7 @@ public:
     /*!
      * Get qr icon percent.
      */
-    float getIconPercent() const;
+    float iconPercent() const;
 
     /*!
      * Set case sensitive.
@@ -80,7 +80,7 @@ public:
     /*!
      * Get qr text.
      */
-    QByteArray getText() const;
+    QByteArray text() const;
 
     /*!
      * Set qr foreground color.
@@ -89,7 +89,7 @@ public:
     /*!
      * Get qr foreground color.
      */
-    QColor getForegroundColor() const;
+    QColor foregroundColor() const;
 
     /*!
      * Set qr background color.
@@ -98,7 +98,7 @@ public:
     /*!
      * Get qr background color.
      */
-    QColor getBackgroundColor() const;
+    QColor backgroundColor() const;
 
     /*!
      * Set qr mode.
@@ -107,7 +107,7 @@ public:
     /*!
      * Get qr mode.
      */
-    QRencodeMode getMode() const;
+    QRencodeMode mode() const;
 
     /*!
      * Set qr level.
@@ -116,7 +116,7 @@ public:
     /*!
      * Get qr level.
      */
-    QRecLevel getLevel() const;
+    QRecLevel level() const;
 
 protected:
     /*!

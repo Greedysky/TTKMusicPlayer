@@ -9,7 +9,7 @@ MusicQQQueryMovieRequest::MusicQQQueryMovieRequest(QObject *parent)
 
 void MusicQQQueryMovieRequest::startToSearch(QueryType type, const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -30,7 +30,7 @@ void MusicQQQueryMovieRequest::startToSearch(QueryType type, const QString &text
 
 void MusicQQQueryMovieRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -51,7 +51,7 @@ void MusicQQQueryMovieRequest::startToPage(int offset)
 
 void MusicQQQueryMovieRequest::startToSingleSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(text));
 
     deleteAll();
     m_queryText = text.trimmed();
@@ -61,7 +61,7 @@ void MusicQQQueryMovieRequest::startToSingleSearch(const QString &text)
 
 void MusicQQQueryMovieRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryMovieRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -129,7 +129,7 @@ void MusicQQQueryMovieRequest::downLoadFinished()
 
 void MusicQQQueryMovieRequest::pageDownLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(className()));
 
     MusicPageQueryRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -172,7 +172,7 @@ void MusicQQQueryMovieRequest::pageDownLoadFinished()
 
 void MusicQQQueryMovieRequest::singleDownLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(className()));
 
     MusicQueryMovieRequest::downLoadFinished();
 
@@ -273,7 +273,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
 
                 bitrate = flValue["id"].toULongLong();
                 TTK_NETWORK_QUERY_CHECK();
-                const QString &key = getMovieKey(bitrate, info->m_songId);
+                const QString &key = generateMovieKey(bitrate, info->m_songId);
                 TTK_NETWORK_QUERY_CHECK();
 
                 if(!key.isEmpty())
@@ -287,7 +287,7 @@ void MusicQQQueryMovieRequest::readFromMusicMVAttribute(MusicObject::MusicSongIn
     }
 }
 
-QString MusicQQQueryMovieRequest::getMovieKey(int id, const QString &videoId)
+QString MusicQQQueryMovieRequest::generateMovieKey(int id, const QString &videoId)
 {
     if(videoId.isEmpty())
     {

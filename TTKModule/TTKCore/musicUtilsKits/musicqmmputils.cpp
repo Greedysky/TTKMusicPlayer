@@ -10,7 +10,7 @@
 
 QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &format)
 {
-    QString path = MusicObject::getAppDir();
+    QString path = MusicObject::applicationPath();
 #ifdef Q_OS_WIN
     path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
 #elif defined Q_OS_UNIX

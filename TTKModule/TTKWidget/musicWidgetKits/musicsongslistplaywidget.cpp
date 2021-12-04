@@ -146,14 +146,14 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
     if(state)
     {
-        time = meta.getLengthString();
+        time = meta.lengthString();
         m_totalTimeLabel = TTK_SEPARATOR + time;
     }
     m_timeLabel->setText(MUSIC_TIME_INIT + m_totalTimeLabel);
 
     if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCover).toBool())
     {
-        QPixmap pix = meta.getCover();
+        QPixmap pix = meta.cover();
         if(pix.isNull())
         {
             m_noCover = true;

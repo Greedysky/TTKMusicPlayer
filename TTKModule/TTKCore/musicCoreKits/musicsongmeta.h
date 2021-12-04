@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <qmmp/tagwrapper.h>
 #include "musicglobaldefine.h"
+#include <qmmp/tagwrapper.h>
 
 struct MusicMeta;
 
@@ -49,52 +49,52 @@ public:
     /*!
      * Read music decoder name.
      */
-    QString getDecoder() const;
+    QString decoder() const;
     /*!
      * Read music file path.
      */
-    QString getFilePath() const;
+    QString filePath() const;
     /*!
      * Get file url.
      */
-    QString getFileBasePath();
+    QString fileBasePath();
     /*!
      * Get file related path.
      */
-    QString getFileRelatedPath();
+    QString fileRelatedPath();
 
     /*!
      * Get artist name.
      */
-    QString getArtist();
+    QString artist();
     /*!
      * Get song title.
      */
-    QString getTitle();
+    QString title();
     /*!
      * Get song album.
      */
-    QString getAlbum();
+    QString album();
     /*!
      * Get song comment.
      */
-    QString getComment();
+    QString comment();
     /*!
      * Get song year.
      */
-    QString getYear();
+    QString year();
     /*!
      * Get song track number.
      */
-    QString getTrackNum();
+    QString trackNum();
     /*!
      * Get song genre.
      */
-    QString getGenre();
+    QString genre();
     /*!
      * Get song channel.
      */
-    QString getChannel();
+    QString channel();
 
     /*!
      * Set artist name.
@@ -137,19 +137,19 @@ public:
     /*!
      * Get song image cover artist.
      */
-    QPixmap getCover();
+    QPixmap cover();
     /*!
      * Get song sample rate.
      */
-    QString getSampleRate();
+    QString sampleRate();
     /*!
      * Get song bitrate.
      */
-    QString getBitrate();
+    QString bitrate();
     /*!
      * Get song time length.
      */
-    QString getLengthString();
+    QString lengthString();
 
 public:
     MusicSongMeta(const MusicSongMeta &other);
@@ -166,7 +166,7 @@ public:
     /*!
      * Get music song meta size.
      */
-    int getSongMetaSize() const;
+    int songMetaSize() const;
 
 protected:
     /*!
@@ -176,7 +176,7 @@ protected:
     /*!
      * Get music song meta pointer.
      */
-    MusicMeta *getSongMeta();
+    MusicMeta *songMeta();
     /*!
      * Find legal data string.
      */

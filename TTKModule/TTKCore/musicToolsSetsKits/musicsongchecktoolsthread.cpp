@@ -31,16 +31,16 @@ void MusicSongCheckToolsRenameThread::run()
                     return;
                 }
 
-                if(!meta.read(song.getMusicPath()))
+                if(!meta.read(song.musicPath()))
                 {
                     continue;
                 }
 
-                if((!meta.getArtist().isEmpty() && !meta.getTitle().isEmpty()) &&
-                    (meta.getArtist() != song.getMusicArtistFront() ||
-                     meta.getTitle() != song.getMusicArtistBack()))
+                if((!meta.artist().isEmpty() && !meta.title().isEmpty()) &&
+                    (meta.artist() != song.musicArtistFront() ||
+                     meta.title() != song.musicArtistBack()))
                 {
-                    m_datas << MusicSongCheckToolsRename(song.getMusicName(), meta.getArtist() + " - " + meta.getTitle(), song.getMusicPath());
+                    m_datas << MusicSongCheckToolsRename(song.musicName(), meta.artist() + " - " + meta.title(), song.musicPath());
                 }
             }
         }
@@ -94,12 +94,12 @@ void MusicSongCheckToolsDuplicateThread::run()
                     return;
                 }
 
-                if(!meta.read(song.getMusicPath()))
+                if(!meta.read(song.musicPath()))
                 {
                     continue;
                 }
 
-                m_datas << MusicSongCheckToolsDuplicate(song, meta.getBitrate());
+                m_datas << MusicSongCheckToolsDuplicate(song, meta.bitrate());
             }
         }
         else
@@ -113,7 +113,7 @@ void MusicSongCheckToolsDuplicateThread::run()
                 }
 
                 const MusicSongCheckToolsDuplicate &song = m_datas[index];
-                QFile::remove(song.m_song.getMusicPath());
+                QFile::remove(song.m_song.musicPath());
             }
         }
     }
@@ -149,12 +149,12 @@ void MusicSongCheckToolsQualityThread::run()
                 return;
             }
 
-            if(!meta.read(song.getMusicPath()))
+            if(!meta.read(song.musicPath()))
             {
                 continue;
             }
 
-            items << MusicSongCheckToolsQuality(song, meta.getBitrate());
+            items << MusicSongCheckToolsQuality(song, meta.bitrate());
         }
     }
     Q_EMIT finished(items);

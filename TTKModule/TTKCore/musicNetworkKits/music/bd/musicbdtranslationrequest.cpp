@@ -14,7 +14,7 @@ void MusicBDTranslationRequest::startToDownload(const QString &data)
 
 void MusicBDTranslationRequest::startToDownload(TranslationType from, TranslationType to, const QString &data)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
     deleteAll();
 

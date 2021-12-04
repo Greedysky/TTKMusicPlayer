@@ -41,7 +41,7 @@ public:
     /*!
      * Get the search text that the user searched.
      */
-    QString getText() const;
+    QString text() const;
     /*!
      * Clear the search text.
      */

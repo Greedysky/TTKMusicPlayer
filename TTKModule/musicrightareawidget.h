@@ -99,7 +99,7 @@ public:
     /*!
      * Get destop lrc visible state.
      */
-    bool getDestopLrcVisible() const;
+    bool destopLrcVisible() const;
     /*!
      * Set interior lrc visible by string.
      */
@@ -107,7 +107,7 @@ public:
     /*!
      * Get interior lrc visible state.
      */
-    bool getInteriorLrcVisible() const;
+    bool interiorLrcVisible() const;
     /*!
      * Apply settings parameters.
      */

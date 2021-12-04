@@ -48,7 +48,8 @@ public:
         System_WinServer_2008,
         System_WinServer_2008_R2,
         System_WinServer_2012,
-        System_Unix,
+        System_Linux,
+        System_Linux_Ubuntu,
         System_Mac,
         System_Unkown
     };
@@ -66,30 +67,30 @@ public:
     /*!
      * Set left win key enable.
      */
-    void setLeftWinEnabled();
+    void enabledLeftWinMode();
     /*!
      * Get local IE version.
      */
-    int getLocalIEVersion() const;
+    int windowsIEVersion() const;
 #endif
 
     /*!
      * Get local DPI x.
      */
-    int getLogicalDotsPerInchX() const;
+    int logicalDotsPerInchX() const;
     /*!
      * Get local DPI y.
      */
-    int getLogicalDotsPerInchY() const;
+    int logicalDotsPerInchY() const;
     /*!
      * Get local DPI.
      */
-    int getLogicalDotsPerInch() const;
+    int logicalDotsPerInch() const;
 
     /*!
      * Get local system name.
      */
-    SystemType getWindowSystemName() const;
+    SystemType windowSystemName() const;
     /*!
      * Set file link.
      */
@@ -100,7 +101,7 @@ protected:
     /*!
      * Check current regedit item has exist.
      */
-    bool currentNodeHasExist(const QString &key);
+    bool currentNodeExist(const QString &key);
     /*!
      * Create music regedit item.
      */

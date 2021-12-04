@@ -213,7 +213,7 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
 
 void MusicBackgroundPaletteWidget::showPaletteDialog()
 {
-    const QColor &paletteColor = MusicColorDialog::getColor(this);
+    const QColor &paletteColor = MusicColorDialog::popup(this);
     if(!paletteColor.isValid())
     {
         return;
@@ -243,7 +243,7 @@ void MusicBackgroundPaletteWidget::currentColorToMemory(const QString &path)
 
 int MusicBackgroundPaletteWidget::exec()
 {
-    m_previousBackground = G_BACKGROUND_PTR->getBackgroundUrl();
+    m_previousBackground = G_BACKGROUND_PTR->backgroundUrl();
     updateBackground(m_previousBackground);
     return MusicAbstractMoveDialog::exec();
 }

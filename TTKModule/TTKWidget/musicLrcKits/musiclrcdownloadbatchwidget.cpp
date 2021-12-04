@@ -30,31 +30,31 @@ void MusicLrcDownloadBatchTableWidget::createAllItems(const MusicSongs &items)
         const MusicSong &song = items[i];
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPath());
+        item->setToolTip(song.musicPath());
         item->setText(QString::number(i + 1));
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPath());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicArtistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+        item->setToolTip(song.musicPath());
+        item->setText(MusicUtils::Widget::elidedText(font(), song.musicArtistBack(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPath());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicArtistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
+        item->setToolTip(song.musicPath());
+        item->setText(MusicUtils::Widget::elidedText(font(), song.musicArtistFront(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPath());
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, headerview->sectionSize(3) - 10));
+        item->setToolTip(song.musicPath());
+        item->setText(MusicUtils::Widget::elidedText(font(), song.musicName(), Qt::ElideRight, headerview->sectionSize(3) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 3, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPath());
+        item->setToolTip(song.musicPath());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
@@ -104,13 +104,13 @@ MusicLrcDownloadBatchWidget::MusicLrcDownloadBatchWidget(QWidget *parent)
 
 MusicLrcDownloadBatchWidget::~MusicLrcDownloadBatchWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     delete m_ui;
 }
 
 void MusicLrcDownloadBatchWidget::addButtonClicked()
 {
-    m_localSongs = m_ui->selectedAreaWidget->getSelectedSongItems();
+    m_localSongs = m_ui->selectedAreaWidget->selectedSongItems();
     m_ui->tableWidget->createAllItems(m_localSongs);
 }
 
@@ -142,8 +142,8 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         it->setText("...");
 
         MusicSong *song = &m_localSongs[i];
-        const QString &prefix = lrcDir ? MusicUtils::String::lrcPrefix() : QFileInfo(song->getMusicPath()).path() + TTK_SEPARATOR;
-        const QString &path = QString("%1/%2%3").arg(prefix).arg(song->getMusicName()).arg(LRC_FILE);
+        const QString &prefix = lrcDir ? MusicUtils::String::lrcPrefix() : QFileInfo(song->musicPath()).path() + TTK_SEPARATOR;
+        const QString &path = QString("%1/%2%3").arg(prefix).arg(song->musicName()).arg(LRC_FILE);
         if(skip && QFile::exists(path))
         {
 #if TTK_QT_VERSION_CHECK(5,13,0)
@@ -158,12 +158,12 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         MusicSemaphoreLoop loop;
         MusicAbstractQueryRequest *d = G_DOWNLOAD_QUERY_PTR->makeQueryRequest(this);
         connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->getMusicName().trimmed());
+        d->startToSearch(MusicAbstractQueryRequest::MusicQuery, song->musicName().trimmed());
         loop.exec();
 
         if(!d->isEmpty())
         {
-            const MusicObject::MusicSongInformation info(d->getMusicSongInfos().first());
+            const MusicObject::MusicSongInformation info(d->musicSongInfos().first());
             MusicAbstractDownLoadRequest *d = G_DOWNLOAD_QUERY_PTR->makeLrcRequest(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
             d->startToDownload();
             loop.exec();

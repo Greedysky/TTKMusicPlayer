@@ -31,7 +31,7 @@ QString MusicAbstractQueryRequest::mapQueryServerString() const
         return QString();
 }
 
-qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
+qint64 MusicAbstractQueryRequest::urlFileSize(const QString &url)
 {
     qint64 size = -1;
 
@@ -59,7 +59,7 @@ qint64 MusicAbstractQueryRequest::getUrlFileSize(const QString &url)
     const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(!redirection.isNull())
     {
-        size = getUrlFileSize(redirection.toString());
+        size = urlFileSize(redirection.toString());
     }
 
     reply->deleteLater();
@@ -79,7 +79,7 @@ bool MusicAbstractQueryRequest::findUrlFileSize(MusicObject::MusicSongAttribute 
     TTK_NETWORK_QUERY_CHECK(false);
     if(attr->m_size.isEmpty() || attr->m_size == TTK_DEFAULT_STR)
     {
-        attr->m_size = MusicUtils::Number::sizeByte2Label(getUrlFileSize(attr->m_url));
+        attr->m_size = MusicUtils::Number::sizeByte2Label(urlFileSize(attr->m_url));
     }
     TTK_NETWORK_QUERY_CHECK(false);
 

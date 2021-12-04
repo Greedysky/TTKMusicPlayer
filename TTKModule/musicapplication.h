@@ -58,11 +58,11 @@ public:
     /*!
      * Get current file name.
      */
-    QString getCurrentFileName() const;
+    QString currentFileName() const;
     /*!
      * Get current file path.
      */
-    QString getCurrentFilePath() const;
+    QString currentFilePath() const;
 
     /*!
      * Check current list index is -1 or not.
@@ -110,7 +110,7 @@ public:
     /*!
      * Get current play mode.
      */
-    MusicObject::PlayMode getPlayMode() const;
+    MusicObject::PlayMode playMode() const;
 
 public Q_SLOTS:
     /*!
@@ -288,7 +288,7 @@ public Q_SLOTS:
     /*!
      * Get current play list.
      */
-    void getCurrentPlaylist(QStringList &list);
+    void currentPlaylist(QStringList &list);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;

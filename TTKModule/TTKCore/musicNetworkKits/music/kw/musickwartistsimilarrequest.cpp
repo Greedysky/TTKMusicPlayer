@@ -9,12 +9,12 @@ MusicKWArtistSimilarRequest::MusicKWArtistSimilarRequest(QObject *parent)
 
 void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
 
     deleteAll();
 
     QNetworkRequest request;
-    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_SIMILAR_URL, false).arg(getArtistNameById(text)));
+    request.setUrl(MusicUtils::Algorithm::mdII(KW_ARTIST_SIMILAR_URL, false).arg(artistNameById(text)));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     m_reply = m_manager.get(request);
@@ -28,7 +28,7 @@ void MusicKWArtistSimilarRequest::startToSearch(const QString &text)
 
 void MusicKWArtistSimilarRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicSimilarRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -44,7 +44,7 @@ void MusicKWArtistSimilarRequest::downLoadFinished()
 
             MusicResultsItem info;
             TTK_NETWORK_QUERY_CHECK();
-            info.m_id = getArtistIdName(regx.cap(2));
+            info.m_id = artistIdName(regx.cap(2));
             TTK_NETWORK_QUERY_CHECK();
 
             info.m_coverUrl = regx.cap(1);
@@ -61,7 +61,7 @@ void MusicKWArtistSimilarRequest::downLoadFinished()
     deleteAll();
 }
 
-QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
+QString MusicKWArtistSimilarRequest::artistNameById(const QString &id)
 {
     QString name;
     if(id.isEmpty())
@@ -91,7 +91,7 @@ QString MusicKWArtistSimilarRequest::getArtistNameById(const QString &id)
     return name;
 }
 
-QString MusicKWArtistSimilarRequest::getArtistIdName(const QString &name)
+QString MusicKWArtistSimilarRequest::artistIdName(const QString &name)
 {
     if(name.isEmpty())
     {

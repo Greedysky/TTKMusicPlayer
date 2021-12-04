@@ -135,13 +135,13 @@ void QKugouWindow::goBack()
 void QKugouWindow::kugouSongIndexChanged(int index)
 {
     changeClickedButtonStyle(index);
-    QString url = QKugouUrl::getSongRecommendUrl();
+    QString url = QKugouUrl::makeSongRecommendUrl();
     switch(index)
     {
-        case 0: url = QKugouUrl::getSongRecommendUrl(); break;
-        case 1: url = QKugouUrl::getSongRankUrl(); break;
-        case 2: url = QKugouUrl::getSongSingerUrl(); break;
-        case 3: url = QKugouUrl::getSongCategoryUrl(); break;
+        case 0: url = QKugouUrl::makeSongRecommendUrl(); break;
+        case 1: url = QKugouUrl::makeSongRankUrl(); break;
+        case 2: url = QKugouUrl::makeSongSingerUrl(); break;
+        case 3: url = QKugouUrl::makeSongCategoryUrl(); break;
         default: break;
     }
 
@@ -151,12 +151,12 @@ void QKugouWindow::kugouSongIndexChanged(int index)
 void QKugouWindow::kugouRadioIndexChanged(int index)
 {
     changeClickedButtonStyle(index);
-    QString url = QKugouUrl::getRadioPublicUrl();
+    QString url = QKugouUrl::makeRadioPublicUrl();
     switch(index)
     {
-        case 0: url = QKugouUrl::getRadioPublicUrl(); break;
-        case 1: url = QKugouUrl::getRadioHighFmUrl(); break;
-        case 2: url = QKugouUrl::getRadioFxUrl(); break;
+        case 0: url = QKugouUrl::makeRadioPublicUrl(); break;
+        case 1: url = QKugouUrl::makeRadioHighFmUrl(); break;
+        case 2: url = QKugouUrl::makeRadioFxUrl(); break;
         default: break;
     }
 
@@ -166,12 +166,12 @@ void QKugouWindow::kugouRadioIndexChanged(int index)
 void QKugouWindow::kugouMVIndexChanged(int index)
 {
     changeClickedButtonStyle(index);
-    QString url = QKugouUrl::getMVRadioUrl();
+    QString url = QKugouUrl::makeMVRadioUrl();
     switch(index)
     {
-        case 0: url = QKugouUrl::getMVRadioUrl(); break;
-        case 1: url = QKugouUrl::getMVRecommendUrl(); break;
-        case 2: url = QKugouUrl::getMVFanxingUrl(); break;
+        case 0: url = QKugouUrl::makeMVRadioUrl(); break;
+        case 1: url = QKugouUrl::makeMVRecommendUrl(); break;
+        case 2: url = QKugouUrl::makeMVFanxingUrl(); break;
         default: break;
     }
 
@@ -336,12 +336,12 @@ void QKugouWindow::createKugouListWidget()
     createWebViewer();
     layout->addWidget(d->m_webView);
 #  ifdef Q_OS_WIN
-    TTKObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::getListUrl());
+    TTKObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", QKugouUrl::makeListUrl());
 #  else
 #    ifdef MUSIC_WEBENGINE
-    TTKObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
+    TTKObject_cast(QWebEngineView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
 #    else
-    TTKObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::getListUrl());
+    TTKObject_cast(QWebView*, d->m_webView)->setUrl(QKugouUrl::makeListUrl());
 #    endif
 #  endif
 #else
@@ -419,7 +419,7 @@ void QKugouWindow::createKugouSingleWidget()
 #if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
-    setUrl(QKugouUrl::getKuiSheUrl());
+    setUrl(QKugouUrl::makeKuiSheUrl());
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);

@@ -30,8 +30,8 @@ public:
     /*!
      * Get authorization code.
      */
-    static QString getAuthorizationCode(const QString &key, const QString &method,
-                                        const TTKStringMap &headers, const QString &resource);
+    static QString authorizationCode(const QString &key, const QString &method,
+                                     const TTKStringMap &headers, const QString &resource);
     /*!
      * Create sign for normal auth.
      */
@@ -40,7 +40,7 @@ public:
     /*!
      * Get GMT.
      */
-    static QString getGMT();
+    static QString GMT();
     
     /*!
      * Make data bucket url.

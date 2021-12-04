@@ -29,7 +29,7 @@ ToolsSkin::~ToolsSkin()
 
 void ToolsSkin::imageClicked()
 {
-    QString path = MusicUtils::File::getOpenFileDialog(this);
+    const QString &path = MusicUtils::File::openFileDialog(this);
     if(path.isEmpty())
     {
         return;
@@ -41,20 +41,20 @@ void ToolsSkin::imageClicked()
 
 void ToolsSkin::paletteClicked()
 {
-    QColor paletteColor = MusicColorDialog::getColor(this);
-    if(!paletteColor.isValid())
+    const QColor &color = MusicColorDialog::popup(this);
+    if(!color.isValid())
     {
         return;
     }
 
     m_pixmap = QPixmap(1, 1);
-    m_pixmap.fill(paletteColor);
+    m_pixmap.fill(color);
     m_ui->pixLabel->setPixmap(m_pixmap.scaled(m_ui->pixLabel->size()));
 }
 
 void ToolsSkin::readClicked()
 {
-    QString path = MusicUtils::File::getOpenFileDialog(this, "TTKS Files (*.ttks)");
+    const QString &path = MusicUtils::File::openFileDialog(this, "TTKS Files (*.ttks)");
     if(path.isEmpty())
     {
         return;
@@ -72,7 +72,7 @@ void ToolsSkin::readClicked()
 
 void ToolsSkin::writeClicked()
 {
-    const QString &path = MusicUtils::File::getSaveFileDialog(this, "TTKS Files (*.ttks)");
+    const QString &path = MusicUtils::File::saveFileDialog(this, "TTKS Files (*.ttks)");
     if(path.isEmpty())
     {
         return;

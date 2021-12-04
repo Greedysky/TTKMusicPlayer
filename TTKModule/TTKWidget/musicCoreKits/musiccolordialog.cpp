@@ -280,7 +280,7 @@ MusicColorDialog::~MusicColorDialog()
     delete m_ui;
 }
 
-QColor MusicColorDialog::getColor(QWidget *parent)
+QColor MusicColorDialog::popup(QWidget *parent)
 {
     MusicColorDialog dialog(parent);
     return dialog.exec() ? dialog.color() : QColor();

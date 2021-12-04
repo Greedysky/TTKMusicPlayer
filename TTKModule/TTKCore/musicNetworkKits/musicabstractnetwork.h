@@ -57,7 +57,7 @@ public:
     /*!
      * Get the current raw data.
      */
-    inline const QVariant getHeader(const QString &key) const { return m_rawData[key]; }
+    inline const QVariant header(const QString &key) const { return m_rawData[key]; }
 
 Q_SIGNALS:
     /*!

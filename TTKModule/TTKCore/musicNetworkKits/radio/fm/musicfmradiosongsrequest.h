@@ -41,7 +41,7 @@ public:
     /*!
      * Get music song information.
      */
-    inline const MusicObject::MusicSongInformation& getMusicSongInfo() const { return m_songInfo; }
+    inline const MusicObject::MusicSongInformation& musicSongInfo() const { return m_songInfo; }
 
 public Q_SLOTS:
     /*!

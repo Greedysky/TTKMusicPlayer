@@ -20,7 +20,7 @@
 #ifdef Q_OS_WIN
 bool MusicPlatformManager::isFileAssociate()
 {
-    return currentNodeHasExist(MP3_FILE_PREFIX);
+    return currentNodeExist(MP3_FILE_PREFIX);
 }
 
 void MusicPlatformManager::setMusicRegeditAssociateFileIcon()
@@ -29,14 +29,14 @@ void MusicPlatformManager::setMusicRegeditAssociateFileIcon()
     for(int i=0; i<types.count(); ++i)
     {
         const QString &type = types[i];
-        if(!currentNodeHasExist(type))
+        if(!currentNodeExist(type))
         {
             createMusicRegedit(type);
         }
     }
 }
 
-void MusicPlatformManager::setLeftWinEnabled()
+void MusicPlatformManager::enabledLeftWinMode()
 {
     INPUT input[4];
     memset(input, 0, sizeof(input));
@@ -47,7 +47,7 @@ void MusicPlatformManager::setLeftWinEnabled()
     SendInput(4, input, sizeof(INPUT));
 }
 
-int MusicPlatformManager::getLocalIEVersion() const
+int MusicPlatformManager::windowsIEVersion() const
 {
     const DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", nullptr);
     if(versionInfoSize == 0)
@@ -114,25 +114,25 @@ static QSize generateDPIValue()
     return defaultSize;
 }
 
-int MusicPlatformManager::getLogicalDotsPerInchX() const
+int MusicPlatformManager::logicalDotsPerInchX() const
 {
     const QSize dpi(generateDPIValue());
     return dpi.width();
 }
 
-int MusicPlatformManager::getLogicalDotsPerInchY() const
+int MusicPlatformManager::logicalDotsPerInchY() const
 {
     const QSize dpi(generateDPIValue());
     return dpi.height();
 }
 
-int MusicPlatformManager::getLogicalDotsPerInch() const
+int MusicPlatformManager::logicalDotsPerInch() const
 {
     const QSize dpi(generateDPIValue());
     return (dpi.width() + dpi.height()) / 2;
 }
 
-MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() const
+MusicPlatformManager::SystemType MusicPlatformManager::windowSystemName() const
 {
 #ifdef Q_OS_WIN
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
@@ -212,7 +212,7 @@ MusicPlatformManager::SystemType MusicPlatformManager::getWindowSystemName() con
     }
     FreeLibrary(instance);
 #elif defined Q_OS_UNIX
-    return System_Unix;
+    return System_Linux;
 #else
     return System_Mac;
 #endif
@@ -270,7 +270,7 @@ void MusicPlatformManager::setFileLink(const QString &src, const QString &des, c
 }
 
 #ifdef Q_OS_WIN
-bool MusicPlatformManager::currentNodeHasExist(const QString &key)
+bool MusicPlatformManager::currentNodeExist(const QString &key)
 {
     bool state = false;
     const QString &keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;

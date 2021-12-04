@@ -171,7 +171,7 @@ void MusicAudioRecorderModule::setFileName(const QString &name)
     m_outputFile->setFileName(name);
 }
 
-QString MusicAudioRecorderModule::getFileName() const
+QString MusicAudioRecorderModule::fileName() const
 {
     return m_outputFile->fileName();
 }

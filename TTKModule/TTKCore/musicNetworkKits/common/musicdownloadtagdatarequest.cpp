@@ -49,7 +49,7 @@ void MusicDownloadTagDataRequest::downLoadFinished()
         MusicSemaphoreLoop loop;
         MusicDownloadSourceRequest *download = new MusicDownloadSourceRequest(this);
         connect(download, SIGNAL(downLoadRawDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(m_musicMeta.getComment());
+        download->startToDownload(m_musicMeta.comment());
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
         loop.exec();
     }
@@ -65,11 +65,11 @@ void MusicDownloadTagDataRequest::downLoadFinished(const QByteArray &bytes)
     {
         if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteFileInfo).toBool())
         {
-            meta.setTitle(m_musicMeta.getTitle());
-            meta.setArtist(m_musicMeta.getArtist());
-            meta.setAlbum(m_musicMeta.getAlbum());
-            meta.setTrackNum(m_musicMeta.getTrackNum());
-            meta.setYear(m_musicMeta.getYear());
+            meta.setTitle(m_musicMeta.title());
+            meta.setArtist(m_musicMeta.artist());
+            meta.setAlbum(m_musicMeta.album());
+            meta.setTrackNum(m_musicMeta.trackNum());
+            meta.setYear(m_musicMeta.year());
         }
 
         if(G_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCover).toBool())

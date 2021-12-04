@@ -27,13 +27,13 @@ MusicItemQueryTableWidget::MusicItemQueryTableWidget(QWidget *parent)
 
     m_labelDelegate = new MusicLabelDelegate(this);
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicItemQueryTableWidget::~MusicItemQueryTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     delete m_labelDelegate;
     clearAllItems();
 }
@@ -58,7 +58,7 @@ void MusicItemQueryTableWidget::startSearchQuery(const QString &text)
 
 void MusicItemQueryTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -71,8 +71,8 @@ void MusicItemQueryTableWidget::musicDownloadLocal(int row)
 
 void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
-    const TTKIntList &list = getSelectedItems();
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const TTKIntList &list = selectedItems();
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
@@ -90,15 +90,15 @@ void MusicItemQueryTableWidget::downloadDataFrom(bool play)
 
 void MusicItemQueryTableWidget::downloadBatchData(bool music)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
-    const TTKIntList &list = getSelectedItems();
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
+    const TTKIntList &list = selectedItems();
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
     }
 
-    MusicObject::MusicSongInformations selectedItems;
+    MusicObject::MusicSongInformations items;
     for(int index : list)
     {
         if(index < 0 || index >= musicSongInfos.count())
@@ -106,11 +106,11 @@ void MusicItemQueryTableWidget::downloadBatchData(bool music)
             continue;
         }
 
-        selectedItems << musicSongInfos[index];
+        items << musicSongInfos[index];
     }
 
     MusicDownloadBatchWidget *w = GENERATE_SINGLE_WIDGET_PARENT(MusicDownloadBatchWidget, this);
-    w->setSongName(selectedItems, music ? MusicAbstractQueryRequest::MusicQuery : MusicAbstractQueryRequest::MovieQuery);
+    w->setSongName(items, music ? MusicAbstractQueryRequest::MusicQuery : MusicAbstractQueryRequest::MovieQuery);
 }
 
 void MusicItemQueryTableWidget::resizeWindow()
@@ -133,7 +133,7 @@ void MusicItemQueryTableWidget::resizeWindow()
 void MusicItemQueryTableWidget::menuActionChanged(QAction *action)
 {
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -167,7 +167,7 @@ void MusicItemQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -313,7 +313,7 @@ void MusicItemQueryTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row >= musicSongInfos.count())
     {
         return;

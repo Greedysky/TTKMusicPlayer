@@ -77,7 +77,7 @@ public:
     /*!
      * Get system close config state.
      */
-    bool getSystemCloseConfig() { return m_systemCloseConfig; }
+    bool systemCloseConfig() { return m_systemCloseConfig; }
     /*!
      * Get system tray visible state.
      */

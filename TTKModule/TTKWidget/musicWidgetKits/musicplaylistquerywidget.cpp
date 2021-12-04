@@ -201,7 +201,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
         m_categoryButton = new MusicPlaylistFoundCategoryPopWidget(m_mainWindow);
-        m_categoryButton->setCategory(m_networkRequest->getQueryServer(), this);
+        m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);
 
@@ -234,7 +234,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
         mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
         mainlayout->addStretch(1);
     }
@@ -242,7 +242,7 @@ void MusicPlaylistQueryWidget::createPlaylistItem(const MusicResultsItem &item)
     if(m_categoryChanged && m_pageQueryWidget)
     {
         m_categoryChanged = false;
-        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
         m_pageQueryWidget->reset(pageTotal);
     }
 
@@ -264,7 +264,7 @@ void MusicPlaylistQueryWidget::currentPlaylistClicked(const MusicResultsItem &it
     MusicResultsItem it(item);
     if(it.isEmpty())
     {
-        d->getPlaylistInfo(it);
+        d->queryPlaylistInfo(it);
     }
 
     m_infoWidget->setQueryInput(d);
@@ -306,7 +306,7 @@ void MusicPlaylistQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
     m_pageQueryWidget->page(index, pageTotal);
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

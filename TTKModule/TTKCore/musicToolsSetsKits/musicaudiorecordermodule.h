@@ -60,7 +60,7 @@ public:
     /*!
      * Get output file name.
      */
-    QString getFileName() const;
+    QString fileName() const;
     /*!
      * Current input device error or not.
      */

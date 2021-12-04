@@ -65,7 +65,7 @@ public:
     /*!
      * Get the current play row.
      */
-    inline int getPlayRowIndex() const { return m_playRowIndex; }
+    inline int playRowIndex() const { return m_playRowIndex; }
 
 Q_SIGNALS:
     /*!
@@ -139,19 +139,19 @@ protected:
     /*!
      * Get current song path.
      */
-    QString getCurrentSongPath() const;
+    QString currentSongPath() const;
     /*!
      * Get song path.
      */
-    QString getSongPath(int index) const;
+    QString songPath(int index) const;
     /*!
      * Get current song name.
      */
-    QString getCurrentSongName() const;
+    QString currentSongName() const;
     /*!
      * Get song name.
      */
-    QString getSongName(int index) const;
+    QString songName(int index) const;
 
     int m_playRowIndex, m_parentToolIndex;
     MusicSongs *m_musicSongs;

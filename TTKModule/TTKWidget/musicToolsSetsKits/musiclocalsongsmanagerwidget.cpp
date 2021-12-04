@@ -97,15 +97,15 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_thread = new MusicLocalSongsManagerThread(this);
     connect(m_thread, SIGNAL(setSongNamePath(QFileInfoList)), SLOT(setSongNamePath(QFileInfoList)));
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
     m_runTypeChanged = false;
-    G_CONNECTION_PTR->removeValue(getClassName());
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     clearAllItems();
     m_thread->stopAndQuitThread();
     delete m_thread;
@@ -291,7 +291,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
         qApp->processEvents();
         if(meta.read(file.absoluteFilePath()))
         {
-            QString artString = meta.getArtist().trimmed();
+            QString artString = meta.artist().trimmed();
             if(artString.isEmpty())
             {
                 artString = "Various Artists";
@@ -334,7 +334,7 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
         qApp->processEvents();
         if(meta.read(file.absoluteFilePath()))
         {
-            QString albumString = meta.getAlbum().trimmed();
+            QString albumString = meta.album().trimmed();
             if(albumString.isEmpty())
             {
                 albumString = "Various Album";
@@ -457,7 +457,7 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
 
 bool MusicLocalSongsManagerWidget::filterIndexCustChanged()
 {
-    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    const QString &path = MusicUtils::File::openDirectoryDialog(this);
     if(!path.isEmpty())
     {
         m_thread->setFindFilePath(path);

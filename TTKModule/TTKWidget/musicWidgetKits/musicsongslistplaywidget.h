@@ -61,7 +61,7 @@ public:
     /*!
      * Get rename item artist label state.
      */
-    inline bool getItemRenameState() { return m_renameLine != nullptr; }
+    inline bool itemRenameState() { return m_renameLine != nullptr; }
     /*!
      * Set current play index.
      */
@@ -69,7 +69,7 @@ public:
     /*!
      * Get current play index.
      */
-    inline int getCurrentPlayIndex() const { return m_currentPlayIndex; }
+    inline int currentPlayIndex() const { return m_currentPlayIndex; }
 
 Q_SIGNALS:
     /*!

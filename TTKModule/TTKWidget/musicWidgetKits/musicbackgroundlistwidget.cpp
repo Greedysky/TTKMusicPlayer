@@ -166,7 +166,7 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
 {
     for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
-        if(item->getFileName() == name)
+        if(item->fileName() == name)
         {
             item->setSelect(true);
             m_currentItem = item;
@@ -220,7 +220,7 @@ void MusicBackgroundListWidget::updateItem(const MusicBackgroundImage &image, co
 {
     for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
-        if(item->getFileName().isEmpty())
+        if(item->fileName().isEmpty())
         {
             item->setShowNameEnabled(false);
             item->setSelectEnabled(false);
@@ -235,7 +235,7 @@ bool MusicBackgroundListWidget::contains(const QString &name) const
 {
     for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
-        if(item->getFileName() == name)
+        if(item->fileName() == name)
         {
             return true;
         }
@@ -274,7 +274,7 @@ MusicBackgroundListItem* MusicBackgroundListWidget::find(const QString &name) co
 {
     for(MusicBackgroundListItem *item : qAsConst(m_items))
     {
-        if(item->getFileName() == name)
+        if(item->fileName() == name)
         {
             return item;
         }
@@ -315,7 +315,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
     m_gridLayout->removeWidget(item);
     const int index = find(item);
     const int cIndex = find(m_currentItem);
-    QFile::remove(item->getFilePath());
+    QFile::remove(item->filePath());
     m_items.takeAt(index)->deleteLater();
 
     if(index == cIndex)
@@ -342,5 +342,5 @@ void MusicBackgroundListWidget::itemHasClicked(MusicBackgroundListItem *item)
 
     m_currentItem = item;
     m_currentItem->setSelect(true);
-    Q_EMIT itemClicked(m_type, item->getFileName());
+    Q_EMIT itemClicked(m_type, item->fileName());
 }

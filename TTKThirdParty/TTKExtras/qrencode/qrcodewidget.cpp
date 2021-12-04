@@ -52,7 +52,7 @@ void QRCodeQWidget::setMargin(const int margin)
     update();
 }
 
-int QRCodeQWidget::getMargin() const
+int QRCodeQWidget::margin() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_margin;
@@ -66,7 +66,7 @@ void QRCodeQWidget::setIcon(const QString &path, float percent)
     update();
 }
 
-QString QRCodeQWidget::getIcon() const
+QString QRCodeQWidget::icon() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_iconPath;
@@ -78,7 +78,7 @@ void QRCodeQWidget::setIconPercent(float percent)
     d->m_percent = percent < 0.5 ? percent : 0.3;
 }
 
-float QRCodeQWidget::getIconPercent() const
+float QRCodeQWidget::iconPercent() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_percent;
@@ -103,7 +103,7 @@ void QRCodeQWidget::setText(const QByteArray &text)
     d->m_text = text;
 }
 
-QByteArray QRCodeQWidget::getText() const
+QByteArray QRCodeQWidget::text() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_text;
@@ -115,7 +115,7 @@ void QRCodeQWidget::setForegroundColor(const QColor &color)
     d->m_foreground = color;
 }
 
-QColor QRCodeQWidget::getForegroundColor() const
+QColor QRCodeQWidget::foregroundColor() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_foreground;
@@ -127,7 +127,7 @@ void QRCodeQWidget::setBackgroundColor(const QColor &color)
     d->m_background = color;
 }
 
-QColor QRCodeQWidget::getBackgroundColor() const
+QColor QRCodeQWidget::backgroundColor() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_background;
@@ -139,7 +139,7 @@ void QRCodeQWidget::setMode(QRencodeMode mode)
     d->m_mode = mode;
 }
 
-QRencodeMode QRCodeQWidget::getMode() const
+QRencodeMode QRCodeQWidget::mode() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_mode;
@@ -151,7 +151,7 @@ void QRCodeQWidget::setLevel(QRecLevel level)
     d->m_level = level;
 }
 
-QRecLevel QRCodeQWidget::getLevel() const
+QRecLevel QRCodeQWidget::level() const
 {
     TTK_D(QRCodeQWidget);
     return d->m_level;

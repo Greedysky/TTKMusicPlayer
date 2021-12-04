@@ -246,7 +246,7 @@ void MusicConnectMobileWidget::updateDeviceInfo()
         m_popMenu.removeAction(action);
     }
 
-    for(const MusicDeviceInfoItem &item : m_deviceInfo->getRemovableDrive())
+    for(const MusicDeviceInfoItem &item : m_deviceInfo->removableDrive())
     {
         m_popMenu.addAction(item.m_name + "(" + item.m_path + ")")->setData(QVariant::fromValue<MusicDeviceInfoItem>(item));
     }

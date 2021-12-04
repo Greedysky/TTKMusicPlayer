@@ -82,7 +82,7 @@ void MusicAlbumQueryWidget::resizeWindow()
 
 void MusicAlbumQueryWidget::queryAllFinished()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_album_found"));
@@ -115,7 +115,7 @@ void MusicAlbumQueryWidget::queryAlbumFinished()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_album_found"));

@@ -1,6 +1,6 @@
-/* =================================================
+/***************************************************************************
  * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2021 Greedysky Studio
+ * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,14 +14,13 @@
 
  * You should have received a copy of the GNU General Public License along
  * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
+ ***************************************************************************/
 
 #ifndef TAGWRAPPER_H
 #define TAGWRAPPER_H
 
 #include <QMap>
-#include <QString>
-#include "qmmp_export.h"
+#include "qmmp.h"
 
 /*! @brief The class of the file tag wrapper.
  * @author Greedysky <greedysky@163.com>
@@ -60,7 +59,7 @@ public:
     bool readFile(const QString &path);
 
     bool writeMusicTag(Type tag, const QString &value, int id3v2Version);
-    inline QMap<Type, QString> getMusicTags() const { return m_parameters; }
+    inline QMap<Type, QString> musicTags() const { return m_parameters; }
 
 protected:
     QString m_path;

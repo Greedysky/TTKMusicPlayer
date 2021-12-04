@@ -71,7 +71,7 @@ MusicQQQueryArtistRequest::MusicQQQueryArtistRequest(QObject *parent)
 
 void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(artist));
 
     deleteAll();
     m_queryText = artist;
@@ -91,7 +91,7 @@ void MusicQQQueryArtistRequest::startToSearch(const QString &artist)
 
 void MusicQQQueryArtistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryArtistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -160,7 +160,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
                         artistFound = true;
                         MusicResultsItem info;
                         TTK_NETWORK_QUERY_CHECK();
-                        getDownLoadIntro(&info);
+                        downLoadIntro(&info);
                         TTK_NETWORK_QUERY_CHECK();
                         info.m_id = musicInfo.m_artistId;
                         info.m_name = musicInfo.m_singerName;
@@ -185,7 +185,7 @@ void MusicQQQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicQQQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
+void MusicQQQueryArtistRequest::downLoadIntro(MusicResultsItem *item)
 {
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_queryText));

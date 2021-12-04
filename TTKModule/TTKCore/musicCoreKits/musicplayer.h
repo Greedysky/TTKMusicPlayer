@@ -115,7 +115,7 @@ public:
     /*!
      * Get current music enhanced effect.
      */
-    Enhanced getMusicEnhanced() const;
+    Enhanced musicEnhanced() const;
 
 Q_SIGNALS:
     /*!

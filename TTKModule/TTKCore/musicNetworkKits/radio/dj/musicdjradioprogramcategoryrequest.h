@@ -48,9 +48,9 @@ public:
      */
     void startToSearch(const QString &category);
     /*!
-     * Get category info.
+     * Query category info.
      */
-    void getProgramInfo(MusicResultsItem &item);
+    void queryProgramInfo(MusicResultsItem &item);
 
 Q_SIGNALS:
     /*!
@@ -70,7 +70,7 @@ public Q_SLOTS:
     /*!
      * Download details data from net finished.
      */
-    void getDetailsFinished();
+    void queryDetailsFinished();
 
 };
 

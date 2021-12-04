@@ -131,8 +131,8 @@ void MusicVideoControlWidget::sendBarrageClicked()
 
     MusicBarrageRecord record;
     record.m_value = m_lineEditBarrage->text();
-    record.m_size = m_menuBarrage->getBarrageSize();
-    record.m_color = m_menuBarrage->getBarrageColor().name();
+    record.m_size = m_menuBarrage->barrageSize();
+    record.m_color = m_menuBarrage->barrageColor().name();
     Q_EMIT addBarrageChanged(record);
 }
 

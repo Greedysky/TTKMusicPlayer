@@ -75,9 +75,9 @@ public Q_SLOTS:
      */
     void radioResourceDownload();
     /*!
-     * Get song information finished.
+     * Query song information finished.
      */
-    void getSongInfoFinished();
+    void querySongInfoFinished();
     /*!
      * Lrc download state changed.
      */

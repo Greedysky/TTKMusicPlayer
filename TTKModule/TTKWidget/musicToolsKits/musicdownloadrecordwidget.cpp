@@ -6,7 +6,7 @@
 MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     : MusicAbstractDownloadTableWidget(parent)
 {
-    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(className(), this);
 
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
@@ -25,7 +25,7 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
 
 MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
 }
 
 void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &record)
@@ -35,7 +35,7 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(record.getMusicName());
+    item->setToolTip(record.musicName());
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
@@ -49,14 +49,14 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     item->setData(MUSIC_PROGRESS_ROLE, 100);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem(record.getMusicSizeStr());
+                      item = new QTableWidgetItem(record.musicSizeStr());
 #if TTK_QT_VERSION_CHECK(5,13,0)
     item->setForeground(QColor(MusicUIObject::MQSSColor01));
 #else
     item->setTextColor(QColor(MusicUIObject::MQSSColor01));
 #endif
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIME_ROLE, record.getMusicAddTimeStr());
+    item->setData(MUSIC_TIME_ROLE, record.musicAddTimeStr());
     setItem(index, 3, item);
 
     //just fix table widget size hint

@@ -83,9 +83,9 @@ bool MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const
     int count = 1;
     for(const MusicSong &song : qAsConst(item.m_songs))
     {
-        data << QString("File%1=%2").arg(count).arg(song.getMusicPath());
-        data << QString("Title%1=%2").arg(count).arg(song.getMusicName());
-        data << QString("Length%1=%2").arg(count).arg(MusicTime::MusicTime::labelJustified2MsecTime(song.getMusicPlayTime()) / 1000);
+        data << QString("File%1=%2").arg(count).arg(song.musicPath());
+        data << QString("Title%1=%2").arg(count).arg(song.musicName());
+        data << QString("Length%1=%2").arg(count).arg(MusicTime::MusicTime::labelJustified2MsecTime(song.musicPlayTime()) / 1000);
         ++count;
     }
     data << "NumberOfEntries=" + QString::number(item.m_songs.count());

@@ -137,11 +137,11 @@ Q_DECL_CONSTEXPR typename std::add_const<T>::type &qAsConst(T &t) { return t; }
 #endif
 
 //
-#define TTK_DECLARE_MODULE(Class)           \
-public:                                     \
-    inline static QString getClassName()    \
-    {                                       \
-        return #Class;                      \
+#define TTK_DECLARE_MODULE(Class)        \
+public:                                  \
+    inline static QString className()    \
+    {                                    \
+        return #Class;                   \
     }
 
 //
@@ -160,9 +160,9 @@ public:                                     \
 #define TTK_DECLARE_FLAG(Flags, Enum)  typedef QFlags<Enum> Flags;
 
 #define TTK_DOT             "."
-#define TTK_DOTS            ".."
+#define TTK_DOTDOT          ".."
 #define TTK_SEPARATOR       "/"
-#define TTK_PDIR            TTK_STRCAT(TTK_DOTS, TTK_SEPARATOR)
+#define TTK_PDIR            TTK_STRCAT(TTK_DOTDOT, TTK_SEPARATOR)
 
 #define TTK_SPLITER         "*|||*"
 #define TTK_DEFAULT_STR     "-"

@@ -26,8 +26,8 @@ Q_DECLARE_METATYPE(MusicCloudDataItem)
 MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicCloudUploadTableWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicCloudUploadTableWidget::className());
 
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -62,7 +62,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     delete m_syncListData;
     delete m_syncDeleteData;
     delete m_syncUploadData;
@@ -231,7 +231,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    const TTKIntList deleteList(getMultiSelectedIndex());
+    const TTKIntList deleteList(multiSelectedIndex());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
@@ -266,7 +266,7 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     }
 
     const MusicCloudDataItem &data = it->data(MUSIC_DATA_ROLE).value<MusicCloudDataItem>();
-    const QString &url = m_syncDownloadData->getDownloadUrl(MUSIC_BUCKET, data.m_dataItem.m_name);
+    const QString &url = m_syncDownloadData->downloadUrl(MUSIC_BUCKET, data.m_dataItem.m_name);
 
     MusicDownloadDataRequest *download = new MusicDownloadDataRequest(url, MusicUtils::String::musicPrefix() + data.m_dataItem.m_name, MusicObject::DownloadMusic, this);
     download->setRecordType(MusicObject::RecordCloudDownload);
@@ -280,19 +280,19 @@ void MusicCloudManagerTableWidget::cancelUploadFilesToServer()
 
 void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
-    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, MusicFormats::supportMusicInputFormats());
+    const QStringList &files = MusicUtils::File::openFilesDialog(this, MusicFormats::supportMusicInputFormats());
     uploadFilesToServer(files);
 }
 
 void MusicCloudManagerTableWidget::uploadFileDirToServer()
 {
-    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    const QString &path = MusicUtils::File::openDirectoryDialog(this);
     if(!path.isEmpty())
     {
         delete m_openFileWidget;
         m_openFileWidget = nullptr;
 
-        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, MusicFormats::supportMusicInputFilterFormats(), true))
+        for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, MusicFormats::supportMusicInputFilterFormats(), true))
         {
             MusicCloudDataItem item;
             item.m_id = QString::number(MusicTime::timestamp());

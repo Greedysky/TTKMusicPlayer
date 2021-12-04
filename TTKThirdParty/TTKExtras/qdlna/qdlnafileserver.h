@@ -38,7 +38,7 @@ public:
     void start();
 
     void setPrefixPath(const QString &path);
-    QString getLocalAddress(const QString &prefix) const;
+    QString localAddress(const QString &prefix) const;
 
 private Q_SLOTS:
     void handleRequest(QHttpRequest *request, QHttpResponse *response);

@@ -146,7 +146,7 @@ public:
     /*!
      * Get color static function.
      */
-    static QColor getColor(QWidget *parent = nullptr);
+    static QColor popup(QWidget *parent = nullptr);
     /*!
      * Get color.
      */

@@ -80,7 +80,7 @@ protected:
 
 };
 
-#define G_SINGLE_MANAGER_PTR GetMusicSingleManager()
-TTK_MODULE_EXPORT MusicSingleManager* GetMusicSingleManager();
+#define G_SINGLE_MANAGER_PTR makeMusicSingleManager()
+TTK_MODULE_EXPORT MusicSingleManager* makeMusicSingleManager();
 
 #endif // MUSICSINGLEMANAGER_H

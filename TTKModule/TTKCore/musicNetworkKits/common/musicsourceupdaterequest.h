@@ -44,11 +44,11 @@ public:
     /*!
      * Get lasted version.
      */
-    QString getVersion() const;
+    QString version() const;
     /*!
      * Get lasted version description.
      */
-    QString getVersionDescription() const;
+    QString versionDescription() const;
     /*!
      * Is lasted version.
      */

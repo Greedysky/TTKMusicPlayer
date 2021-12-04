@@ -47,15 +47,11 @@ public:
      * Set hotKey by given index and virtual key.
      */
     void setHotKey(int index, int key);
-    /*!
-     * Get the string key by given hotKey index.
-     */
-    QString hotKey(int index);
 
     /*!
      * Get the object key by given hotKey index.
      */
-    QObject* getHotKey(int index);
+    QObject* hotKey(int index);
     /*!
      * Add hotKey by given index and string key.
      */
@@ -90,11 +86,11 @@ public:
     /*!
      * Get default key string.
      */
-    QStringList getDefaultKeys() const;
+    QStringList defaultKeys() const;
     /*!
      * Get key string.
      */
-    QStringList getKeys() const;
+    QStringList keys() const;
 
 protected:
     /*!
@@ -107,7 +103,7 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 };
 
-#define G_HOTKEY_PTR GetMusicHotKeyManager()
-TTK_MODULE_EXPORT MusicHotKeyManager* GetMusicHotKeyManager();
+#define G_HOTKEY_PTR makeMusicHotKeyManager()
+TTK_MODULE_EXPORT MusicHotKeyManager* makeMusicHotKeyManager();
 
 #endif // MUSICHOTKEYMANAGER_H

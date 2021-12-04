@@ -39,6 +39,6 @@ void MusicNetworkOperator::downLoadFinished(const QByteArray &bytes)
         }
     }
 
-    Q_EMIT getNetworkOperatorFinished(line);
+    Q_EMIT queryNetworkOperatorFinished(line);
     deleteLater();
 }

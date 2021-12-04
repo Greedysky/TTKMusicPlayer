@@ -169,8 +169,9 @@ void MusicSettingWidget::initControllerParameter()
     QStringList hotkeys = G_SETTING_PTR->value(MusicSettingManager::HotkeyValue).toString().split(TTK_SPLITER);
     if(hotkeys.count() != G_HOTKEY_PTR->count())
     {
-        hotkeys = G_HOTKEY_PTR->getDefaultKeys();
+        hotkeys = G_HOTKEY_PTR->defaultKeys();
     }
+
     m_ui->item_S02->setText(hotkeys[0]);
     m_ui->item_S04->setText(hotkeys[1]);
     m_ui->item_S06->setText(hotkeys[2]);
@@ -350,7 +351,7 @@ void MusicSettingWidget::downloadGroupSpeedLimit(int index)
 
 void MusicSettingWidget::downloadDirSelected(int index)
 {
-    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    const QString &path = MusicUtils::File::openDirectoryDialog(this);
     if(!path.isEmpty())
     {
         index == 0 ? m_ui->downloadDirEdit->setText(path + TTK_SEPARATOR) : m_ui->downloadLrcDirEdit->setText(path + TTK_SEPARATOR);
@@ -364,10 +365,10 @@ void MusicSettingWidget::rippleVersionUpdateChanged()
 
 void MusicSettingWidget::rippleSpectrumColorChanged()
 {
-    MusicColorDialog getColor(this);
-    if(getColor.exec())
+    MusicColorDialog dialog(this);
+    if(dialog.exec())
     {
-        const QColor &color = getColor.color();
+        const QColor &color = dialog.color();
         m_ui->rippleSpectrumColorButton->setColors({color});
     }
 }
@@ -433,8 +434,8 @@ void MusicSettingWidget::showInteriorLrcDemo()
     item.m_family = m_ui->fontComboBox->currentText();
     item.m_size = m_ui->fontSizeComboBox->currentText().toInt();
     item.m_type = m_ui->fontTypeComboBox->currentIndex();
-    item.m_frontground = m_ui->playedPushButton->getColors();
-    item.m_background = m_ui->noPlayedPushButton->getColors();
+    item.m_frontground = m_ui->playedPushButton->colors();
+    item.m_background = m_ui->noPlayedPushButton->colors();
     m_ui->showLabel->setLinearGradient(item);
     m_ui->showLabel->update();
 }
@@ -475,8 +476,8 @@ void MusicSettingWidget::showDesktopLrcDemo()
     item.m_family = m_ui->DfontComboBox->currentText();
     item.m_size = m_ui->DfontSizeComboBox->currentText().toInt();
     item.m_type = m_ui->DfontTypeComboBox->currentIndex();
-    item.m_frontground = m_ui->DplayedPushButton->getColors();
-    item.m_background = m_ui->DnoPlayedPushButton->getColors();
+    item.m_frontground = m_ui->DplayedPushButton->colors();
+    item.m_background = m_ui->DnoPlayedPushButton->colors();
     m_ui->DshowLabel->setLinearGradient(item);
     m_ui->DshowLabel->update();
 }
@@ -513,7 +514,7 @@ void MusicSettingWidget::testProxyStateChanged(bool state)
 void MusicSettingWidget::testNetworkConnection()
 {
     MusicNetworkOperator *network = new MusicNetworkOperator(this);
-    connect(network, SIGNAL(getNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
+    connect(network, SIGNAL(queryNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
     network->startToDownload();
 }
 
@@ -563,7 +564,7 @@ void MusicSettingWidget::saveParameterSettings()
         G_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
         G_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
         G_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
-        G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, G_HOTKEY_PTR->getKeys().join(TTK_SPLITER));
+        G_SETTING_PTR->setValue(MusicSettingManager::HotkeyValue, G_HOTKEY_PTR->keys().join(TTK_SPLITER));
     }
     G_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnable, m_ui->globalHotkeyBox->isChecked());
@@ -571,7 +572,7 @@ void MusicSettingWidget::saveParameterSettings()
 
     G_SETTING_PTR->setValue(MusicSettingManager::RippleLowPowerMode, m_ui->rippleLowPowerModeBox->isChecked());
     G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumEnable, m_ui->rippleSpectrumEnableBox->isChecked());
-    G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, MusicLrcColor::writeColorConfig(m_ui->rippleSpectrumColorButton->getColors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::RippleSpectrumColor, MusicLrcColor::writeColorConfig(m_ui->rippleSpectrumColorButton->colors()));
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateEnable, m_ui->otherCheckUpdateBox->isChecked());
@@ -590,8 +591,8 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::LrcSize, m_ui->fontSizeComboBox->currentText());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcType, m_ui->fontTypeComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransparent, m_ui->transparentSlider->value());
-    G_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColor, MusicLrcColor::writeColorConfig(m_ui->playedPushButton->getColors()));
-    G_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, MusicLrcColor::writeColorConfig(m_ui->noPlayedPushButton->getColors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColor, MusicLrcColor::writeColorConfig(m_ui->playedPushButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColor, MusicLrcColor::writeColorConfig(m_ui->noPlayedPushButton->colors()));
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrc, m_ui->showDesktopCheckBox->isChecked());
@@ -601,8 +602,8 @@ void MusicSettingWidget::saveParameterSettings()
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcSize, m_ui->DfontSizeComboBox->currentText());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcType, m_ui->DfontTypeComboBox->currentIndex());
     G_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransparent, m_ui->DtransparentSlider->value());
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColor, MusicLrcColor::writeColorConfig(m_ui->DplayedPushButton->getColors()));
-    G_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColor, MusicLrcColor::writeColorConfig(m_ui->DnoPlayedPushButton->getColors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColor, MusicLrcColor::writeColorConfig(m_ui->DplayedPushButton->colors()));
+    G_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColor, MusicLrcColor::writeColorConfig(m_ui->DnoPlayedPushButton->colors()));
 
 
     G_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicDirPath, m_ui->downloadDirEdit->text());
@@ -644,11 +645,8 @@ void MusicSettingWidget::saveParameterSettings()
     if(languageChanged)
     {
         MusicMessageBox message;
-        message.setText(tr("Language changed, do you want to restart now?"));
-        if(message.exec())
-        {
-            TTK_LOGGER_INFO(MusicObject::getAppDir());
-        }
+        message.setText(tr("Language changed, you need to restart to take effect"));
+        message.exec();
     }
 }
 
@@ -914,7 +912,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     MusicUtils::Widget::generateComboBoxFormat(m_ui->DfontDefaultColorComboBox);
 
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
+    m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().desktopLrcSize());
     m_ui->DfontTypeComboBox->addItems({"1", "2", "3", "4"});
     m_ui->DfontDefaultColorComboBox->addItems({tr("DWhite"), tr("DBlue"), tr("DRed"), tr("DBlack"), tr("DYellow"), tr("DPurple"), tr("DGreen")});
 
@@ -952,7 +950,7 @@ void MusicSettingWidget::initInteriorLrcWidget()
     MusicUtils::Widget::generateComboBoxFormat(m_ui->fontDefaultColorComboBox);
 
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInteriorLrcSize());
+    m_ui->fontSizeComboBox->addItems(MusicLrcDefines().interiorLrcSize());
     m_ui->fontTypeComboBox->addItems({"1", "2", "3", "4"});
     m_ui->fontDefaultColorComboBox->addItems({tr("Yellow"), tr("Blue"), tr("Gray"), tr("Pink"), tr("Green"), tr("Red"), tr("Purple"), tr("Orange"), tr("Indigo")});
 
@@ -1079,15 +1077,15 @@ void MusicSettingWidget::lcrColorValue(LrcType key, const QString &type, QLabel 
 {
     key == LrcInterior ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
 
-    MusicLrcColorWidget getColor(this);
-    if(type == "DLRCFRONTGROUNDGCOLOR") getColor.setColors(m_ui->DplayedPushButton->getColors());
-    if(type == "DLRCBACKGROUNDCOLOR") getColor.setColors(m_ui->DnoPlayedPushButton->getColors());
-    if(type == "LRCFRONTGROUNDGCOLOR") getColor.setColors(m_ui->playedPushButton->getColors());
-    if(type == "LRCBACKGROUNDCOLOR") getColor.setColors(m_ui->noPlayedPushButton->getColors());
+    MusicLrcColorWidget dialog(this);
+    if(type == "DLRCFRONTGROUNDGCOLOR") dialog.setColors(m_ui->DplayedPushButton->colors());
+    if(type == "DLRCBACKGROUNDCOLOR") dialog.setColors(m_ui->DnoPlayedPushButton->colors());
+    if(type == "LRCFRONTGROUNDGCOLOR") dialog.setColors(m_ui->playedPushButton->colors());
+    if(type == "LRCBACKGROUNDCOLOR") dialog.setColors(m_ui->noPlayedPushButton->colors());
 
-    if(getColor.exec())
+    if(dialog.exec())
     {
-        const QList<QColor> &colors = getColor.getColors();
+        const QList<QColor> &colors = dialog.colors();
         TTKStatic_cast(MusicColorPreviewLabel*, obj)->setColors(colors);
     }
     key == LrcInterior ? showInteriorLrcDemo() : showDesktopLrcDemo();
@@ -1123,13 +1121,13 @@ void MusicSettingWidget::lrcTransparentValue(LrcType key, int value) const
     {
         label = m_ui->showLabel;
         label->setTransparent(2.55 * value);
-        label->setLinearGradient(m_ui->playedPushButton->getColors(), m_ui->noPlayedPushButton->getColors());
+        label->setLinearGradient(m_ui->playedPushButton->colors(), m_ui->noPlayedPushButton->colors());
     }
     else
     {
         label = m_ui->DshowLabel;
         label->setTransparent(2.55 * value);
-        label->setLinearGradient(m_ui->DplayedPushButton->getColors(), m_ui->DnoPlayedPushButton->getColors());
+        label->setLinearGradient(m_ui->DplayedPushButton->colors(), m_ui->DnoPlayedPushButton->colors());
     }
     label->update();
 }

@@ -41,11 +41,11 @@ public:
     /*!
      * Get download url request.
      */
-    QString getDownloadUrl(const QString &bucket, const QString &fileName);
+    QString downloadUrl(const QString &bucket, const QString &fileName);
     /*!
      * Get download url request by content type.
      */
-    QString getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType);
+    QString downloadUrl(const QString &bucket, const QString &fileName, const QString &contentType);
 
 Q_SIGNALS:
     /*!

@@ -7,47 +7,47 @@
 #include "musicdownloadmanager.h"
 #include "musicdownloadqueryfactory.h"
 
-MusicConnectionPool* GetMusicConnectionPool()
+MusicConnectionPool* makeMusicConnectionPool()
 {
     return TTKSingleton<MusicConnectionPool>::createInstance();
 }
 
-MusicBackgroundManager* GetMusicBackgroundManager()
+MusicBackgroundManager* makeMusicBackgroundManager()
 {
     return TTKSingleton<MusicBackgroundManager>::createInstance();
 }
 
-MusicDispatchManager* GetMusicDispatchManager()
+MusicDispatchManager* makeMusicDispatchManager()
 {
     return TTKSingleton<MusicDispatchManager>::createInstance();
 }
 
-MusicHotKeyManager* GetMusicHotKeyManager()
+MusicHotKeyManager* makeMusicHotKeyManager()
 {
     return TTKSingleton<MusicHotKeyManager>::createInstance();
 }
 
-MusicSettingManager* GetMusicSettingManager()
+MusicSettingManager* makeMusicSettingManager()
 {
     return TTKSingleton<MusicSettingManager>::createInstance();
 }
 
-MusicSingleManager* GetMusicSingleManager()
+MusicSingleManager* makeMusicSingleManager()
 {
     return TTKSingleton<MusicSingleManager>::createInstance();
 }
 
-MusicDownLoadManager* GetMusicDownLoadManager()
+MusicDownLoadManager* makeMusicDownLoadManager()
 {
     return TTKSingleton<MusicDownLoadManager>::createInstance();
 }
 
-MusicDownLoadQueryFactory* GetMusicDownLoadQueryFactory()
+MusicDownLoadQueryFactory* makeMusicDownLoadQueryFactory()
 {
     return TTKSingleton<MusicDownLoadQueryFactory>::createInstance();
 }
 
-MusicNetworkThread* GetMusicNetworkThread()
+MusicNetworkThread* makeMusicNetworkThread()
 {
     return TTKSingleton<MusicNetworkThread>::createInstance();
 }

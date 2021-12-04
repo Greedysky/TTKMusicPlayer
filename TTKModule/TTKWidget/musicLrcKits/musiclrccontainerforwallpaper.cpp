@@ -118,7 +118,7 @@ void MusicLrcContainerForWallpaper::start(bool immediate)
 {
     if(m_wallThread)
     {
-        m_wallThread->setImagePath(G_BACKGROUND_PTR->getArtistPhotoPathList());
+        m_wallThread->setImagePath(G_BACKGROUND_PTR->artistPhotoPathList());
 
         if(!m_wallThread->isRunning())
         {
@@ -146,17 +146,17 @@ void MusicLrcContainerForWallpaper::updateBackground(const QPixmap &pix)
 
 void MusicLrcContainerForWallpaper::updateAnimationLrc()
 {
-    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->getLineMax()) / 2 + 1;
+    const int length = (MUSIC_LRC_INTERIOR_MAX_LINE - m_lrcAnalysis->lineMax()) / 2 + 1;
     for(int i=0; i<MUSIC_LRC_INTERIOR_MAX_LINE; ++i)
     {
-        m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - length));
+        m_musicLrcContainer[i]->setText(m_lrcAnalysis->text(i - length));
     }
     m_musicLrcContainer[MUSIC_LRC_INTERIOR_MAX_LINE / 2]->startDrawLrcMask(m_animationFreshTime);
 }
 
 void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 {
-    for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
+    for(int i=0; i<m_lrcAnalysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }

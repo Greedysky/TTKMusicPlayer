@@ -58,12 +58,12 @@ public:
     /*!
      * Get no animation state.
      */
-    inline bool getNoAnimation() const { return m_noAnimationSet; }
+    inline bool noAnimation() const { return m_noAnimationSet; }
 
     /*!
      * Get renderer pixmap image.
      */
-    QPixmap getRendererPixmap() const;
+    QPixmap rendererPixmap() const;
 
     /*!
      * Stop renderer pixmap animation.

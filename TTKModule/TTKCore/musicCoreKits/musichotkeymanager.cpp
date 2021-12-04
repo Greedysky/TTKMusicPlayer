@@ -24,7 +24,7 @@ void MusicHotKeyManager::setInputModule(QObject *object)
 
 void MusicHotKeyManager::setDefaultKey()
 {
-    const QStringList &keys = getDefaultKeys();
+    const QStringList &keys = defaultKeys();
     for(int i=0; i<m_hotkeys.count(); ++i)
     {
         setHotKey(i, keys[i]);
@@ -59,16 +59,7 @@ void MusicHotKeyManager::setHotKey(int index, int key)
     m_hotkeys[index]->setShortcut(QKeySequence(key));
 }
 
-QString MusicHotKeyManager::hotKey(int index)
-{
-    if(index >= m_hotkeys.count())
-    {
-        return QString();
-    }
-    return m_hotkeys[index]->shortcut().toString();
-}
-
-QObject* MusicHotKeyManager::getHotKey(int index)
+QObject* MusicHotKeyManager::hotKey(int index)
 {
     if(index >= m_hotkeys.count())
     {
@@ -141,7 +132,7 @@ int MusicHotKeyManager::count() const
     return m_hotkeys.count();
 }
 
-QStringList MusicHotKeyManager::getDefaultKeys() const
+QStringList MusicHotKeyManager::defaultKeys() const
 {
     QStringList keys;
     keys << "Ctrl+B" << "Ctrl+Left" << "Ctrl+Right" << "Ctrl+Up"
@@ -149,7 +140,7 @@ QStringList MusicHotKeyManager::getDefaultKeys() const
     return keys;
 }
 
-QStringList MusicHotKeyManager::getKeys() const
+QStringList MusicHotKeyManager::keys() const
 {
     QStringList keys;
     for(QGlobalShortcut *key : qAsConst(m_hotkeys))

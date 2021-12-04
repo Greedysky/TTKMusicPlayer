@@ -65,7 +65,7 @@ void MusicWebDJRadioProgramTableWidget::itemCellEntered(int row, int column)
 void MusicWebDJRadioProgramTableWidget::itemCellClicked(int row, int column)
 {
     Q_UNUSED(row);
-    MusicResultsItems items(m_programThread->getSearchedItems());
+    MusicResultsItems items(m_programThread->searchedItems());
     if(row < 0 || row >= items.count())
     {
         return;
@@ -154,7 +154,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &bytes
         return;
     }
 
-    QTableWidgetItem *it = item(download->getHeader("id").toInt(), 1);
+    QTableWidgetItem *it = item(download->header("id").toInt(), 1);
     if(it)
     {
         QPixmap pix;

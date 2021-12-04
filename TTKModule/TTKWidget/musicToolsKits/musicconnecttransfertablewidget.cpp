@@ -29,13 +29,13 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongs &songs)
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPath());
+        item->setToolTip(song.musicPath());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicPlayTime());
+        item->setToolTip(song.musicPlayTime());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);

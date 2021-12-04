@@ -1,4 +1,5 @@
 #include "musicurlutils.h"
+#include "musicplatformmanager.h"
 
 #include <QUrl>
 #include <QProcess>
@@ -33,6 +34,12 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
         p = "/select," + p;
         const HINSTANCE value = ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return value->unused >= 32;
+    }
+#elif defined Q_OS_LINUX
+    MusicPlatformManager platform;
+    if(platform.windowSystemName() == MusicPlatformManager::System_Linux_Ubuntu)
+    {
+        return QProcess::startDetached("nautilus", QStringList() << path);
     }
 #endif
     return QDesktopServices::openUrl(local ? QUrl::fromLocalFile(path) : QUrl(path, QUrl::TolerantMode));

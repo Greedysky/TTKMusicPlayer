@@ -106,27 +106,27 @@ void MusicTopAreaWidget::setBackgroundParameter()
     m_backgroundAlpha = G_SETTING_PTR->value(MusicSettingManager::BackgroundTransparent).toInt();
 }
 
-int MusicTopAreaWidget::getBackgroundListAlpha()
+int MusicTopAreaWidget::backgroundListAlpha()
 {
     if(m_musicBackgroundWidget)
     {
-        m_backgroundListAlpha = m_musicBackgroundWidget->getBackgroundListAlpha();
+        m_backgroundListAlpha = m_musicBackgroundWidget->backgroundListAlpha();
     }
     return m_backgroundListAlpha;
 }
 
-bool MusicTopAreaWidget::getBackgroundTransparentEnable() const
+bool MusicTopAreaWidget::backgroundTransparentEnable() const
 {
     if(m_musicBackgroundWidget)
     {
-        return m_musicBackgroundWidget->getBackgroundTransparentEnable();
+        return m_musicBackgroundWidget->backgroundTransparentEnable();
     }
     return false;
 }
 
-QPixmap MusicTopAreaWidget::getRendererPixmap() const
+QPixmap MusicTopAreaWidget::rendererPixmap() const
 {
-    return m_ui->background->getRendererPixmap();
+    return m_ui->background->rendererPixmap();
 }
 
 void MusicTopAreaWidget::setBackgroundAnimation(bool state)
@@ -195,7 +195,7 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(const QString &fileNa
 
 void MusicTopAreaWidget::musicSetAsArtistBackground()
 {
-    QString path = G_BACKGROUND_PTR->getArtistPhotoPathNoIndex();
+    QString path = G_BACKGROUND_PTR->artistPhotoPathNoIndex();
     if(!path.isEmpty())
     {
         path = MusicBackgroundSkinDialog::cpoyArtistFileToLocal(path);
@@ -235,7 +235,7 @@ void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileNam
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    const QString &artistPath = G_BACKGROUND_PTR->getArtistPhotoPath();
+    const QString &artistPath = G_BACKGROUND_PTR->artistPhotoPath();
     if(!artistPath.isEmpty())
     {
         G_BACKGROUND_PTR->indexIncrease();

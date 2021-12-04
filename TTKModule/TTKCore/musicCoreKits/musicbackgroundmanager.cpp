@@ -43,7 +43,7 @@ void MusicBackgroundManager::indexDecrease()
     m_currentIndex--;
 }
 
-QString MusicBackgroundManager::getArtistPhotoPath()
+QString MusicBackgroundManager::artistPhotoPath()
 {
     if(!m_photos.isEmpty())
     {
@@ -55,7 +55,7 @@ QString MusicBackgroundManager::getArtistPhotoPath()
     }
 }
 
-QString MusicBackgroundManager::getArtistPhotoPathNoIndex()
+QString MusicBackgroundManager::artistPhotoPathNoIndex()
 {
     if(m_photos.isEmpty())
     {
@@ -71,7 +71,7 @@ QString MusicBackgroundManager::getArtistPhotoPathNoIndex()
     return QString();
 }
 
-QString MusicBackgroundManager::getArtistPhotoPathByIndex(int index) const
+QString MusicBackgroundManager::artistPhotoPathByIndex(int index) const
 {
     if((0 < index && index != -1) || index > m_photos.count() || m_photos.isEmpty())
     {
@@ -81,7 +81,7 @@ QString MusicBackgroundManager::getArtistPhotoPathByIndex(int index) const
     return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0] : m_photos[index];
 }
 
-QStringList MusicBackgroundManager::getArtistPhotoPathList() const
+QStringList MusicBackgroundManager::artistPhotoPathList() const
 {
     return m_photos;
 }
@@ -114,7 +114,7 @@ void MusicBackgroundManager::setBackgroundUrl(const QString &path)
     m_background = path;
 }
 
-QString MusicBackgroundManager::getBackgroundUrl() const
+QString MusicBackgroundManager::backgroundUrl() const
 {
     return m_background;
 }

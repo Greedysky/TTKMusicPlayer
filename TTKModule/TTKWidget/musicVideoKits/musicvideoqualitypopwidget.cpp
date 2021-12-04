@@ -11,13 +11,13 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     setFixedSize(44, 20);
     setStyleSheet(MusicUIObject::MQSSVideoBtnSDMode);
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicVideoSearchTableWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicVideoSearchTableWidget::className());
 }
 
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     delete m_actionGroup;
 }
 
@@ -81,7 +81,7 @@ void MusicVideoQualityPopWidget::initWidget()
 QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 {
     MusicObject::MusicSongAttributes data;
-    Q_EMIT getMusicMediaInfo(data);
+    Q_EMIT queryMusicMediaInfo(data);
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
     {
@@ -96,7 +96,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 {
     MusicObject::MusicSongAttributes data;
-    Q_EMIT getMusicMediaInfo(data);
+    Q_EMIT queryMusicMediaInfo(data);
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
     {
@@ -112,7 +112,7 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
 {
     MusicObject::MusicSongAttributes data;
-    Q_EMIT getMusicMediaInfo(data);
+    Q_EMIT queryMusicMediaInfo(data);
 
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(data))
     {

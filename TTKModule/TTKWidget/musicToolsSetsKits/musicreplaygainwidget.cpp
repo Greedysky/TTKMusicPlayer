@@ -112,7 +112,7 @@ MusicReplayGainWidget::MusicReplayGainWidget(QWidget *parent)
 
 MusicReplayGainWidget::~MusicReplayGainWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     delete m_process;
     delete m_ui;
 }
@@ -187,7 +187,7 @@ void MusicReplayGainWidget::setControlEnabled(bool enable)
 
 void MusicReplayGainWidget::addFileButtonClicked()
 {
-    const QStringList &files = MusicUtils::File::getOpenFilesDialog(this, "All File(*.*);;MP3 File(*.mp3)");
+    const QStringList &files = MusicUtils::File::openFilesDialog(this, "All File(*.*);;MP3 File(*.mp3)");
     if(!files.isEmpty())
     {
         setControlEnabled(false);
@@ -214,11 +214,11 @@ void MusicReplayGainWidget::addFileButtonClicked()
 
 void MusicReplayGainWidget::addFilesButtonClicked()
 {
-    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    const QString &path = MusicUtils::File::openDirectoryDialog(this);
     if(!path.isEmpty())
     {
         setControlEnabled(false);
-        for(const QFileInfo &info : MusicUtils::File::getFileListByDir(path, true))
+        for(const QFileInfo &info : MusicUtils::File::fileListByDir(path, true))
         {
             if(QString(MP3_FILE_PREFIX).contains(info.suffix().toLower()) && !m_paths.contains(info.absoluteFilePath()))
             {
@@ -348,12 +348,12 @@ void MusicReplayGainWidget::applyOutput()
 
 void MusicReplayGainWidget::confirmDataChanged()
 {
-    const MusicSongs songs(m_ui->selectedAreaWidget->getSelectedSongItems());
+    const MusicSongs songs(m_ui->selectedAreaWidget->selectedSongItems());
     for(const MusicSong &song : qAsConst(songs))
     {
         if(m_replayGainWidget)
         {
-            m_replayGainWidget->open(song.getMusicPath());
+            m_replayGainWidget->open(song.musicPath());
         }
     }
 }

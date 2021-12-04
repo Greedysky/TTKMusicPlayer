@@ -68,7 +68,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     for(const MusicSpectrum &type : qAsConst(m_types))
     {
         MusicUtils::QMMP::enabledVisualPlugin(type.m_module, false);
@@ -139,7 +139,7 @@ void MusicSpectrumWidget::localFileButtonClicked()
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    const QString &path = MusicUtils::File::getOpenFileDialog(this, MusicFormats::supportSpekInputFormats());
+    const QString &path = MusicUtils::File::openFileDialog(this, MusicFormats::supportSpekInputFormats());
     if(!path.isEmpty())
     {
         bool state = true;
@@ -296,7 +296,7 @@ void MusicSpectrumWidget::createModuleWidget(MusicSpectrum::SpectrumType spectru
 
         if(florid)
         {
-            TTKStatic_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->getRendererPixmap());
+            TTKStatic_cast(Florid*, type.m_object)->setPixmap(MusicTopAreaWidget::instance()->rendererPixmap());
             connect(MusicTopAreaWidget::instance(), SIGNAL(backgroundPixmapChanged(QPixmap)), type.m_object, SLOT(setPixmap(QPixmap)));
         }
         connect(type.m_object, SIGNAL(fullscreenByUser(QWidget*,bool)), SLOT(fullscreenByUser(QWidget*,bool)));

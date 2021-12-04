@@ -63,7 +63,7 @@ public:
     /*!
      * Get the gif type.
      */
-    Type getType() const;
+    Type type() const;
 
     /*!
      * Set the gif interval.
@@ -72,7 +72,7 @@ public:
     /*!
      * Get the gif interval.
      */
-    int getInterval() const;
+    int interval() const;
 
     /*!
      * Set the gif infinited mode.
@@ -81,7 +81,7 @@ public:
     /*!
      * Get the gif infinited mode.
      */
-    bool getInfinited() const;
+    bool infinited() const;
 
     /*!
      * Run the gif.
@@ -147,7 +147,7 @@ public:
     /*!
      * Get the gif type.
      */
-    MusicGifLabelWidget::Type getType() const;
+    MusicGifLabelWidget::Type type() const;
 
     /*!
      * Run the gif.

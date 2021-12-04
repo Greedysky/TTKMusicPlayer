@@ -104,8 +104,7 @@ void MusicDesktopWallpaperThread::timeout()
     else
     {
         MusicBackgroundImage image;
-        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
-
+        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl());
         Q_EMIT updateBackground(image.m_pix);
     }
 }

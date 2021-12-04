@@ -131,7 +131,7 @@ public:
     /*!
      * Get query data quality.
      */
-    inline QString getQueryQuality() const { return m_queryQuality; }
+    inline QString queryQuality() const { return m_queryQuality; }
     /*!
      * Set wheather query all quality of records.
      */
@@ -139,7 +139,7 @@ public:
     /*!
      * Get query all records flag.
      */
-    inline bool getQueryAllRecords() const { return m_queryAllRecords; }
+    inline bool queryAllRecords() const { return m_queryAllRecords; }
     /*!
      * Set query simplify mode.
      */
@@ -147,7 +147,7 @@ public:
     /*!
      * Get query simplify flag.
      */
-    inline bool getQuerySimplify() const { return m_querySimplify; }
+    inline bool querySimplify() const { return m_querySimplify; }
     /*!
      * Return the current song query type.
      */
@@ -155,15 +155,15 @@ public:
     /*!
      * Return the current song query type.
      */
-    inline QueryType getQueryType() const { return m_currentType; }
+    inline QueryType queryType() const { return m_currentType; }
     /*!
      * Return the current song query server.
      */
-    inline QString getQueryServer() const { return m_queryServer; }
+    inline QString queryServer() const { return m_queryServer; }
     /*!
      * Return the current song name.
      */
-    inline QString getQueryText() const { return m_queryText; }
+    inline QString queryText() const { return m_queryText; }
     /*!
      * Set the current song container.
      */
@@ -171,7 +171,7 @@ public:
     /*!
      * Get the current song container.
      */
-    inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }
+    inline const MusicObject::MusicSongInformations& musicSongInfos() const { return m_musicSongInfos; }
     /*!
      * Check the current song container is empty.
      */
@@ -185,7 +185,7 @@ public:
     /*!
      * Get download file size.
      */
-    static qint64 getUrlFileSize(const QString &url);
+    static qint64 urlFileSize(const QString &url);
 
 Q_SIGNALS:
     /*!

@@ -35,7 +35,7 @@ public:
     /*!
      * Read music playlist data from file.
      */
-    void getMusicSongItems(const QStringList &paths, MusicSongItems &items);
+    void musicSongItems(const QStringList &paths, MusicSongItems &items);
 
 protected:
     /*!

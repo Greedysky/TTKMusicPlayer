@@ -42,7 +42,7 @@ public:
     /*!
      * Get plugin module name.
      */
-    inline QString getName() const { return m_type; }
+    inline QString name() const { return m_type; }
     /*!
      * Set plugin enable or not.
      */

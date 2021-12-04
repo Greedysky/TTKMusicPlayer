@@ -69,11 +69,11 @@ public:
     /*!
      * Get current line maximum value.
      */
-    inline int getLineMax() const { return m_lineMax; }
+    inline int lineMax() const { return m_lineMax; }
     /*!
      * Get current line middle number.
      */
-    inline int getMiddle() const { return m_lineMax / 2; }
+    inline int lineMiddle() const { return m_lineMax / 2; }
 
     /*!
      * Set lrc container data from other raw data.
@@ -113,7 +113,7 @@ public:
     /*!
      * Get current middle index.
      */
-    int getCurrentIndex() const { return m_currentLrcIndex; }
+    int currentIndex() const { return m_currentLrcIndex; }
     /*!
      * Set current file path.
      */
@@ -121,7 +121,7 @@ public:
     /*!
      * Get current file path.
      */
-    inline QString getCurrentFilePath() const { return m_currentFilePath; }
+    inline QString currentFilePath() const { return m_currentFilePath; }
 
     /*!
      * Clear current lrc cache.
@@ -143,7 +143,7 @@ public:
     /*!
      * Get current lrc text by index.
      */
-    QString getText(int index) const;
+    QString text(int index) const;
     /*!
      * Get current lrc and next lrc in container by current time.
      */
@@ -160,11 +160,11 @@ public:
     /*!
      * Get all lrcs from container.
      */
-    QStringList getAllLrcList() const;
+    QStringList generateLrcList() const;
     /*!
      * Get all lrcs from container.
      */
-    QString getAllLrcString() const;
+    QString generateLrcString() const;
 
 protected:
     /*!

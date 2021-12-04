@@ -47,9 +47,9 @@ bool MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
             writeDomElementMutilText(pathDom, "value", MusicXmlAttributes()
-                                     << MusicXmlAttribute("name", song.getMusicName())
-                                     << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                     << MusicXmlAttribute("time", song.getMusicPlayTime()), song.getMusicPath());
+                                     << MusicXmlAttribute("name", song.musicName())
+                                     << MusicXmlAttribute("playCount", song.musicPlayCount())
+                                     << MusicXmlAttribute("time", song.musicPlayTime()), song.musicPath());
         }
     }
 

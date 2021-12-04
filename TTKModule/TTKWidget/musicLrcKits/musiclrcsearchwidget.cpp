@@ -75,7 +75,7 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
 
 void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 {
-    TTKIntList list = m_ui->tableWidget->getSelectedItems();
+    TTKIntList list = m_ui->tableWidget->selectedItems();
     list.removeOne(m_ui->tableWidget->rowCount() - 1);
     if(list.isEmpty())
     {

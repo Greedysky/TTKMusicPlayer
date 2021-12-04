@@ -68,7 +68,7 @@ public:
     /*!
      * Get search text in search line.
      */
-    QString getSearchText() const;
+    QString searchText() const;
 
 Q_SIGNALS:
     /*!

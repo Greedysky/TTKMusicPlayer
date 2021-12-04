@@ -73,7 +73,7 @@ private:
     DECLARE_SINGLETON_CLASS(MusicNetworkThread)
 };
 
-#define G_NETWORK_PTR GetMusicNetworkThread()
-TTK_MODULE_EXPORT MusicNetworkThread* GetMusicNetworkThread();
+#define G_NETWORK_PTR makeMusicNetworkThread()
+TTK_MODULE_EXPORT MusicNetworkThread* makeMusicNetworkThread();
 
 #endif // MUSICNETWORKTHREAD_H

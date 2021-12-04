@@ -68,11 +68,11 @@ public:
     /*!
      * Get music artist name.
      */
-    QString getMusicArtistFront() const;
+    QString musicArtistFront() const;
     /*!
      * Get music song name.
      */
-    QString getMusicArtistBack() const;
+    QString musicArtistBack() const;
 
     /*!
      * Set music add time string.
@@ -81,7 +81,7 @@ public:
     /*!
      * Get music add time string.
      */
-    inline QString getMusicAddTimeStr() const { return m_musicAddTimeStr; }
+    inline QString musicAddTimeStr() const { return m_musicAddTimeStr; }
     /*!
      * Set music size string.
      */
@@ -89,7 +89,7 @@ public:
     /*!
      * Get music size string.
      */
-    inline QString getMusicSizeStr() const { return m_musicSizeStr; }
+    inline QString musicSizeStr() const { return m_musicSizeStr; }
 
     /*!
      * Set music name.
@@ -98,7 +98,7 @@ public:
     /*!
      * Get music name.
      */
-    inline QString getMusicName() const { return m_musicName; }
+    inline QString musicName() const { return m_musicName; }
     /*!
      * Set music path.
      */
@@ -106,7 +106,7 @@ public:
     /*!
      * Get music path.
      */
-    inline QString getMusicPath() const { return m_musicPath; }
+    inline QString musicPath() const { return m_musicPath; }
     /*!
      * Set music format.
      */
@@ -114,7 +114,7 @@ public:
     /*!
      * Get music format.
      */
-    inline QString getMusicType() const { return m_musicType; }
+    inline QString musicType() const { return m_musicType; }
     /*!
      * Set music time.
      */
@@ -122,7 +122,7 @@ public:
     /*!
      * Get music time.
      */
-    inline QString getMusicPlayTime() const { return m_musicPlayTime; }
+    inline QString musicPlayTime() const { return m_musicPlayTime; }
     /*!
      * Set music add time.
      */
@@ -130,7 +130,7 @@ public:
     /*!
      * Get music add time.
      */
-    inline qint64 getMusicAddTime() const { return m_musicAddTime; }
+    inline qint64 musicAddTime() const { return m_musicAddTime; }
     /*!
      * Set music size.
      */
@@ -138,7 +138,7 @@ public:
     /*!
      * Get music size.
      */
-    inline qint64 getMusicSize() const { return m_musicSize; }
+    inline qint64 musicSize() const { return m_musicSize; }
     /*!
      * Set music play count.
      */
@@ -146,7 +146,7 @@ public:
     /*!
      * Get music play count.
      */
-    inline int getMusicPlayCount() const { return m_musicPlayCount; }
+    inline int musicPlayCount() const { return m_musicPlayCount; }
     /*!
      * Set music sort type.
      */
@@ -154,7 +154,7 @@ public:
     /*!
      * Get music sort type.
      */
-    inline Sort getMusicSort() const { return m_sortType; }
+    inline Sort musicSort() const { return m_sortType; }
 
     /*!
      * Operator == function.

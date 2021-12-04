@@ -79,7 +79,7 @@ protected:
     /*!
      * Get artist mv count.
      */
-    void getArtistMoviesCount(qint64 id);
+    void queryArtistMoviesCount(qint64 id);
 
 };
 

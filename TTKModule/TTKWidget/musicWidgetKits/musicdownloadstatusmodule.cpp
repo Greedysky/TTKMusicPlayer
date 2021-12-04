@@ -13,9 +13,9 @@ MusicDownloadStatusModule::MusicDownloadStatusModule(QObject *parent)
     m_previousState = true;
     m_parentClass = TTKStatic_cast(MusicApplication*, parent);
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
-    G_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::className(), className());
+    G_CONNECTION_PTR->poolConnect(MusicNetworkThread::className(), className());
 }
 
 void MusicDownloadStatusModule::showDownLoadInfoFinished(const QString &bytes)
@@ -63,7 +63,7 @@ void MusicDownloadStatusModule::checkLrcValid()
            return;
        }
 
-       const QString &fileName = m_parentClass->getCurrentFileName();
+       const QString &fileName = m_parentClass->currentFileName();
        ///Check if the file exists
        if(QFile::exists(MusicUtils::String::lrcPrefix() + fileName + LRC_FILE))
        {
@@ -85,10 +85,10 @@ void MusicDownloadStatusModule::currentLrcDataDownload()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &fileName = d->getQueryText();
+        const QString &fileName = d->queryText();
         const int count = MusicUtils::String::stringSplit(fileName).count();
         const QString &artistName = MusicUtils::String::artistName(fileName);
         const QString &songName = MusicUtils::String::songName(fileName);

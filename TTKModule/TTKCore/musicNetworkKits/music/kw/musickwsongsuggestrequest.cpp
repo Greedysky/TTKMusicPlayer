@@ -9,7 +9,7 @@ MusicKWSongSuggestRequest::MusicKWSongSuggestRequest(QObject *parent)
 
 void MusicKWSongSuggestRequest::startToSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
 
     deleteAll();
 
@@ -28,7 +28,7 @@ void MusicKWSongSuggestRequest::startToSearch(const QString &text)
 
 void MusicKWSongSuggestRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     m_items.clear();
     MusicPageQueryRequest::downLoadFinished();

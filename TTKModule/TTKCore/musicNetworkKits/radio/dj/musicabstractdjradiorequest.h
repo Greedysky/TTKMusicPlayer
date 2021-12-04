@@ -50,7 +50,7 @@ public:
     /*!
      * Get suggest list items.
      */
-    inline const MusicResultsItems& getSearchedItems() const { return m_items; }
+    inline const MusicResultsItems& searchedItems() const { return m_items; }
 
 Q_SIGNALS:
     /*!

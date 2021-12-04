@@ -121,7 +121,7 @@ public:
     /*!
      * Get current bitrate from item.
      */
-    MusicDownloadTableItemRole getCurrentItemRole() const;
+    MusicDownloadTableItemRole currentItemRole() const;
 
 public Q_SLOTS:
     /*!
@@ -210,7 +210,7 @@ protected:
     /*!
      * Get match music song infomation.
      */
-    MusicObject::MusicSongInformation getMatchMusicSongInformation();
+    MusicObject::MusicSongInformation matchMusicSongInformation();
     /*!
      * Create current all items.
      */

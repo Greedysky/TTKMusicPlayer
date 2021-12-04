@@ -18,12 +18,12 @@ MusicVideoBarrageStylePopWidget::~MusicVideoBarrageStylePopWidget()
     delete m_colorGroup;
 }
 
-int MusicVideoBarrageStylePopWidget::getBarrageSize() const
+int MusicVideoBarrageStylePopWidget::barrageSize() const
 {
     return m_barrageSize;
 }
 
-QColor MusicVideoBarrageStylePopWidget::getBarrageColor() const
+QColor MusicVideoBarrageStylePopWidget::barrageColor() const
 {
     return m_barrageColor;
 }

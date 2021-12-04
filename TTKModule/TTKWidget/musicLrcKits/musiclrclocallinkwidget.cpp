@@ -94,13 +94,13 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     connect(m_ui->deleteButton, SIGNAL(clicked()), SLOT(deleteFoundLrc()));
     connect(m_ui->commitButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicDownloadStatusModule::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicDownloadStatusModule::className());
 }
 
 MusicLrcLocalLinkWidget::~MusicLrcLocalLinkWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     delete m_ui;
 }
 
@@ -144,7 +144,7 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    const QString &path = MusicUtils::File::getOpenFileDialog(this, "LRC (*.lrc)");
+    const QString &path = MusicUtils::File::openFileDialog(this, "LRC (*.lrc)");
     if(path.isEmpty() || m_ui->searchedTable->contains(path))
     {
         return;

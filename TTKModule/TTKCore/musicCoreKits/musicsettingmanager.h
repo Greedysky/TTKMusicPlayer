@@ -209,8 +209,8 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicSettingManager)
 };
 
-#define G_SETTING_PTR GetMusicSettingManager()
-TTK_MODULE_EXPORT MusicSettingManager* GetMusicSettingManager();
+#define G_SETTING_PTR makeMusicSettingManager()
+TTK_MODULE_EXPORT MusicSettingManager* makeMusicSettingManager();
 
 #endif // MUSICSETTINGMANAGER
 

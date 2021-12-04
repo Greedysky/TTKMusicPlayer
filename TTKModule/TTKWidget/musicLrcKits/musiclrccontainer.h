@@ -78,7 +78,7 @@ public:
     /*!
      * Get current play total time.
      */
-    qint64 getTotalTime() const;
+    qint64 totalTime() const;
 
     /*!
      * Set lrc analysis model.
@@ -87,7 +87,7 @@ public:
     /*!
      * Get lrc analysis model.
      */
-    inline MusicLrcAnalysis* getLrcAnalysisModel() const { return m_lrcAnalysis; }
+    inline MusicLrcAnalysis* lrcAnalysisModel() const { return m_lrcAnalysis; }
 
 Q_SIGNALS:
     /*!

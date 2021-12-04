@@ -78,7 +78,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     filter = filter.trimmed() + ")";
 
-    const QString &path = MusicUtils::File::getOpenFileDialog(this, filter);
+    const QString &path = MusicUtils::File::openFileDialog(this, filter);
     if(path.isEmpty())
     {
         return;
@@ -91,7 +91,7 @@ void MusicSongRingtoneMaker::initInputPath()
         QString name = QFileInfo(m_inputFilePath).fileName();
         m_ui->songLabelValue->setToolTip(name);
         name = MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 220);
-        m_ui->songLabelValue->setText(tr("SongName: %1 (%2, %3, %4)").arg(name).arg(meta.getLengthString()).arg(meta.getSampleRate()).arg(meta.getBitrate()));
+        m_ui->songLabelValue->setText(tr("SongName: %1 (%2, %3, %4)").arg(name).arg(meta.lengthString()).arg(meta.sampleRate()).arg(meta.bitrate()));
     }
     else
     {
@@ -111,7 +111,7 @@ void MusicSongRingtoneMaker::initInputPath()
 void MusicSongRingtoneMaker::initOutputPath()
 {
     QString value = QString("Files (*.%1)").arg(m_ui->formatCombo->currentText().toLower());
-            value = MusicUtils::File::getSaveFileDialog(this, value);
+            value = MusicUtils::File::saveFileDialog(this, value);
     if(value.isEmpty())
     {
         return;

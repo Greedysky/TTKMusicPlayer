@@ -8,7 +8,7 @@ MusicWYQueryArtistRequest::MusicWYQueryArtistRequest(QObject *parent)
 
 void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(artist));
 
     deleteAll();
     m_queryText = artist;
@@ -29,7 +29,7 @@ void MusicWYQueryArtistRequest::startToSearch(const QString &artist)
 
 void MusicWYQueryArtistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryArtistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -101,7 +101,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
                         artistFound = true;
                         MusicResultsItem info;
                         TTK_NETWORK_QUERY_CHECK();
-                        getDownLoadIntro(&info);
+                        downLoadIntro(&info);
                         TTK_NETWORK_QUERY_CHECK();
                         info.m_id = m_queryText;
                         info.m_name = musicInfo.m_singerName;
@@ -127,7 +127,7 @@ void MusicWYQueryArtistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicWYQueryArtistRequest::getDownLoadIntro(MusicResultsItem *item)
+void MusicWYQueryArtistRequest::downLoadIntro(MusicResultsItem *item)
 {
     QNetworkRequest request;
     const QByteArray &parameter = makeTokenQueryUrl(&request,

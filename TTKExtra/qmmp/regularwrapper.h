@@ -1,6 +1,6 @@
-/* =================================================
+/***************************************************************************
  * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2021 Greedysky Studio
+ * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,16 +14,16 @@
 
  * You should have received a copy of the GNU General Public License along
  * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
+ ***************************************************************************/
 
 #ifndef REGULARWRAPPER_H
 #define REGULARWRAPPER_H
 
 #include "qmmp_export.h"
 #if QT_VERSION >= QT_VERSION_CHECK(5,0,0)
-#include <QRegularExpression>
+#  include <QRegularExpression>
 #else
-#include <QRegExp>
+#  include <QRegExp>
 #endif
 
 /*! @brief The class of the regular wrapper.

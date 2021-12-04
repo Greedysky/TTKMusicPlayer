@@ -21,7 +21,7 @@ void loadAppScaledFactor(int argc, char *argv[])
      QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #  elif TTK_QT_VERSION_CHECK(5,6,0)
      MusicPlatformManager platform;
-     const float dpi = platform.getLogicalDotsPerInch() / 96.0;
+     const float dpi = platform.logicalDotsPerInch() / 96.0;
      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi < 1.0 ? 1.0 : dpi));
 #  else
      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");

@@ -17,7 +17,7 @@ MusicFillItemTableWidget::~MusicFillItemTableWidget()
     delete m_checkBoxDelegate;
 }
 
-TTKIntList MusicFillItemTableWidget::getSelectedItems() const
+TTKIntList MusicFillItemTableWidget::selectedItems() const
 {
     TTKIntList list;
     for(int i=0; i<rowCount(); ++i)

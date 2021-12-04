@@ -41,11 +41,11 @@ public:
     /*!
      * Get linear gradient colors.
      */
-    QList<QColor> getColors() const;
+    QList<QColor> colors() const;
     /*!
      * Get linear gradient color.
      */
-    QColor getColor() const;
+    QColor color() const;
 
 protected:
     /*!

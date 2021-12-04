@@ -39,7 +39,7 @@ void QSyncDownloadData::downloadDataOperator(const QString &time, const QString 
     const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QSyncUtils::getGMT());
+    headers.insert("Date", QSyncUtils::GMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
 
@@ -70,12 +70,12 @@ void QSyncDownloadData::downloadDataOperator(const QString &time, const QString 
     }
 }
 
-QString QSyncDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName)
+QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fileName)
 {
-    return getDownloadUrl(bucket, fileName, "application/x-www-form-urlencoded");
+    return downloadUrl(bucket, fileName, "application/x-www-form-urlencoded");
 }
 
-QString QSyncDownloadData::getDownloadUrl(const QString &bucket, const QString &fileName, const QString &contentType)
+QString QSyncDownloadData::downloadUrl(const QString &bucket, const QString &fileName, const QString &contentType)
 {
     const qint64 deadline = QDateTime::currentDateTime().toUTC().addSecs(60 * 30).toMSecsSinceEpoch() / 1000;
 
@@ -89,7 +89,7 @@ QString QSyncDownloadData::getDownloadUrl(const QString &bucket, const QString &
     headers.insert("Content-Type", contentType);
     headers.insert("Host", host);
 
-    const QString &signature = QSyncUtils::getAuthorizationCode(QSyncConf::KEY, method, headers, resource);
+    const QString &signature = QSyncUtils::authorizationCode(QSyncConf::KEY, method, headers, resource);
     return QString("http://%1/%2?OSSAccessKeyId=%3&Expires=%4&Signature=%5").arg(host).arg(encodeKey).arg(QSyncConf::NAME).arg(deadline).arg(signature);
 }
 

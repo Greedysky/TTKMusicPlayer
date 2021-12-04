@@ -38,11 +38,11 @@ public:
     /*!
      * Get barrage size.
      */
-    int getBarrageSize() const;
+    int barrageSize() const;
     /*!
      * Get barrage color.
      */
-    QColor getBarrageColor() const;
+    QColor barrageColor() const;
 
 public Q_SLOTS:
     /*!

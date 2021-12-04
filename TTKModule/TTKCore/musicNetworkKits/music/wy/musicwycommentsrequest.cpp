@@ -9,7 +9,7 @@ MusicWYSongCommentsRequest::MusicWYSongCommentsRequest(QObject *parent)
 
 void MusicWYSongCommentsRequest::startToSearch(const QString &name)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(name));
 
     MusicSemaphoreLoop loop;
     MusicWYQueryRequest *d = new MusicWYQueryRequest(this);
@@ -22,14 +22,14 @@ void MusicWYSongCommentsRequest::startToSearch(const QString &name)
     m_rawData["sid"] = 0;
     if(!d->isEmpty())
     {
-        m_rawData["sid"] = d->getMusicSongInfos().first().m_songId.toInt();
+        m_rawData["sid"] = d->musicSongInfos().first().m_songId.toInt();
         startToPage(0);
     }
 }
 
 void MusicWYSongCommentsRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -50,7 +50,7 @@ void MusicWYSongCommentsRequest::startToPage(int offset)
 
 void MusicWYSongCommentsRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -103,7 +103,7 @@ MusicWYPlaylistCommentsRequest::MusicWYPlaylistCommentsRequest(QObject *parent)
 
 void MusicWYPlaylistCommentsRequest::startToSearch(const QString &name)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(name));
 
     m_rawData["sid"] = name;
     startToPage(0);
@@ -111,7 +111,7 @@ void MusicWYPlaylistCommentsRequest::startToSearch(const QString &name)
 
 void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -132,7 +132,7 @@ void MusicWYPlaylistCommentsRequest::startToPage(int offset)
 
 void MusicWYPlaylistCommentsRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicCommentsRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

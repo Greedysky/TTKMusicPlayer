@@ -43,7 +43,7 @@ public:
     /*!
      * Get item file name.
      */
-    inline QString getFileName() const { return m_name; }
+    inline QString fileName() const { return m_name; }
     /*!
      * Set item file name.
      */
@@ -51,7 +51,7 @@ public:
     /*!
      * Get item file name.
      */
-    inline QString getFilePath() const { return m_path; }
+    inline QString filePath() const { return m_path; }
 
     /*!
      * Update pix image.
@@ -167,7 +167,7 @@ public:
     /*!
      * Get background list rtpe.
      */
-    inline Type getType() const { return m_type; }
+    inline Type type() const { return m_type; }
 
     /*!
      * Clear select state.

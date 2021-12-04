@@ -42,14 +42,14 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     initEqualizeValue();
     readInformation();
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSoundEffectsWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicPlayer::className());
+    G_CONNECTION_PTR->poolConnect(className(), MusicSoundEffectsWidget::className());
 }
 
 MusicEqualizerDialog::~MusicEqualizerDialog()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     writeInformation();
     delete m_ui;
 }

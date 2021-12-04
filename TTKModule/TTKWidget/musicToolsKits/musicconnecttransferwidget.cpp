@@ -55,13 +55,13 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
 
     QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicConnectTransferWidget::~MusicConnectTransferWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     delete m_buttonGroup;
     delete m_ui;
     delete m_transferThread;
@@ -80,7 +80,7 @@ void MusicConnectTransferWidget::setDeviceInfoItem(MusicDeviceInfoItem *item)
 void MusicConnectTransferWidget::initColumns()
 {
     MusicSongItems songs;
-    Q_EMIT getMusicItemList(songs);
+    Q_EMIT queryMusicItemList(songs);
 
     m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MQSSBackgroundStyle01);
     m_buttonGroup = new QButtonGroup(this);
@@ -121,10 +121,10 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
     m_ui->listTableWidget->createAllItems(songs);
 }
 
-QStringList MusicConnectTransferWidget::getSelectedFiles()
+QStringList MusicConnectTransferWidget::selectedFiles() const
 {
     QStringList paths;
-    const TTKIntList list(m_ui->listTableWidget->getSelectedItems());
+    const TTKIntList list(m_ui->listTableWidget->selectedItems());
     if(list.isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
@@ -143,7 +143,7 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
             const int count = m_ui->searchLineEdit->text().trimmed().count();
             index = m_searchResultCache.value(count)[index];
         }
-        paths << m_currentSongs[index].getMusicPath();
+        paths << m_currentSongs[index].musicPath();
     }
 
     return paths;
@@ -151,12 +151,12 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
 
 void MusicConnectTransferWidget::itemSelectedChanged()
 {
-    const TTKIntList list(m_ui->listTableWidget->getSelectedItems());
+    const TTKIntList list(m_ui->listTableWidget->selectedItems());
     qint64 size = 0;
 
     for(int i=0; i<list.count(); ++i)
     {
-        size += m_currentSongs[list[i]].getMusicSize();
+        size += m_currentSongs[list[i]].musicSize();
     }
 
     double dSize = (size * 100 / MH_MB2B) * 1.0 / 100;
@@ -166,7 +166,7 @@ void MusicConnectTransferWidget::itemSelectedChanged()
 void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
     MusicSongItems songs;
-    Q_EMIT getMusicItemList(songs);
+    Q_EMIT queryMusicItemList(songs);
 
     if(index >= songs.count() || index < 0)
     {
@@ -187,7 +187,7 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
 
 void MusicConnectTransferWidget::startToTransferFiles()
 {
-    const QStringList &names = getSelectedFiles();
+    const QStringList &names = selectedFiles();
     if(names.isEmpty())
     {
         return;
@@ -202,7 +202,7 @@ void MusicConnectTransferWidget::musicSearchResultChanged(int, int index)
     TTKIntList result;
     for(int i=0; i<m_currentSongs.count(); ++i)
     {
-        if(m_currentSongs[i].getMusicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
+        if(m_currentSongs[i].musicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
         {
             result << i;
         }

@@ -52,11 +52,11 @@ public:
     /*!
      * Get removable drive property.
      */
-    bool getDisksProperty(const QString &drive) const;
+    bool disksProperty(const QString &drive) const;
     /*!
      * Get removable drive name.
      */
-    MusicDeviceInfoItems getRemovableDrive();
+    MusicDeviceInfoItems removableDrive();
 
 #ifdef Q_OS_UNIX
 private Q_SLOTS:

@@ -49,11 +49,11 @@ protected:
     /*!
      * Get artist name by id.
      */
-    QString getArtistNameById(const QString &id);
+    QString artistNameById(const QString &id);
     /*!
      * Get id by artist name.
      */
-    QString getArtistIdName(const QString &name);
+    QString artistIdName(const QString &name);
 
 };
 

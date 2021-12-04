@@ -49,7 +49,7 @@ void MusicPlaylistManager::setMusicSongItem(const QString &path, const MusicSong
     }
 }
 
-void MusicPlaylistManager::getMusicSongItems(const QStringList& paths, MusicSongItems &items)
+void MusicPlaylistManager::musicSongItems(const QStringList& paths, MusicSongItems &items)
 {
     for(const QString &path : qAsConst(paths))
     {

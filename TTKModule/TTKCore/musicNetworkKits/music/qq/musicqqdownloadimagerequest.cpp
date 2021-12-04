@@ -13,7 +13,7 @@ MusicQQDownloadImageRequest::MusicQQDownloadImageRequest(const QString &name, co
 
 void MusicQQDownloadImageRequest::startToDownload()
 {
-    TTK_LOGGER_INFO(QString("%1 startToDownload").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 startToDownload").arg(className()));
 
     deleteAll();
 
@@ -32,7 +32,7 @@ void MusicQQDownloadImageRequest::startToDownload()
 
 void MusicQQDownloadImageRequest::downLoadDataFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(className()));
 
     MusicAbstractNetwork::downLoadFinished();
 
@@ -72,7 +72,7 @@ void MusicQQDownloadImageRequest::downLoadDataFinished()
 
 void MusicQQDownloadImageRequest::downLoadUrlFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadUrlFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadUrlFinished").arg(className()));
 
     MusicAbstractNetwork::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -110,7 +110,7 @@ void MusicQQDownloadImageRequest::downLoadUrlFinished()
 
 void MusicQQDownloadImageRequest::downLoadUrl(const QString &id)
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(getClassName()).arg(id));
+    TTK_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(className()).arg(id));
 
     deleteAll();
 

@@ -40,7 +40,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     clearAllItems();
     delete m_ui;
 }
@@ -106,7 +106,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         {
             MusicTimerWidget timer(this);
             QStringList songlist;
-            MusicApplication::instance()->getCurrentPlaylist(songlist);
+            MusicApplication::instance()->currentPlaylist(songlist);
             timer.setSongStringList(songlist);
             timer.exec();
             break;

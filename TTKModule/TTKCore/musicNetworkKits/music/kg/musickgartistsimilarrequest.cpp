@@ -9,7 +9,7 @@ MusicKGArtistSimilarRequest::MusicKGArtistSimilarRequest(QObject *parent)
 
 void MusicKGArtistSimilarRequest::startToSearch(const QString &text)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(text));
 
     deleteAll();
 
@@ -28,7 +28,7 @@ void MusicKGArtistSimilarRequest::startToSearch(const QString &text)
 
 void MusicKGArtistSimilarRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicSimilarRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

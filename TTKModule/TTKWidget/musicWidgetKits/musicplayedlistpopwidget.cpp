@@ -134,12 +134,12 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
 
 void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
 {
-    remove(toolIndex, song.getMusicPath());
+    remove(toolIndex, song.musicPath());
 }
 
 void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
 {
-    m_playlist->appendMedia(toolIndex, song.getMusicPath());
+    m_playlist->appendMedia(toolIndex, song.musicPath());
     m_songList << song;
     updateSongsFileName();
 }
@@ -153,7 +153,7 @@ void MusicPlayedListPopWidget::append(const MusicSongs &song)
 
 void MusicPlayedListPopWidget::insert(int toolIndex, const MusicSong &song)
 {
-    insert(toolIndex, m_playedListWidget->getPlayRowIndex() + 1, song);
+    insert(toolIndex, m_playedListWidget->playRowIndex() + 1, song);
 }
 
 void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong &song)
@@ -164,9 +164,9 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     }
 
     (index != m_songList.count()) ? m_songList.insert(index, song) : m_songList.append(song);
-    m_playlist->insertQueueMedia(toolIndex, song.getMusicPath());
+    m_playlist->insertQueueMedia(toolIndex, song.musicPath());
 
-    const int row = m_playedListWidget->getPlayRowIndex();
+    const int row = m_playedListWidget->playRowIndex();
     m_playedListWidget->clearAllItems();
     updateSongsFileName();
 
@@ -187,7 +187,7 @@ void MusicPlayedListPopWidget::setCurrentIndex()
 
 void MusicPlayedListPopWidget::setCurrentIndex(int toolIndex, const MusicSong &song)
 {
-    m_playlist->setCurrentIndex(toolIndex, song.getMusicPath());
+    m_playlist->setCurrentIndex(toolIndex, song.musicPath());
     setCurrentIndex();
 }
 
@@ -209,7 +209,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(const TTKIntList &index)
     }
 
     m_playedListWidget->clearPlayQueueState();
-    const int id = m_playedListWidget->getPlayRowIndex();
+    const int id = m_playedListWidget->playRowIndex();
     bool contains = false;
 
     for(int i=index.count() - 1; i>=0; --i)

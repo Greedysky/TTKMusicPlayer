@@ -50,9 +50,9 @@ public:
      */
     void appendMusicItemList(const MusicSongItems &names);
     /*!
-     * Get music datas from container.
+     * Query music datas from container.
      */
-    inline const MusicSongItems& getMusicItemList() const { return m_songItems; }
+    inline const MusicSongItems& musicItemList() const { return m_songItems; }
     /*!
      * Input imported music datas into container.
      */
@@ -60,11 +60,11 @@ public:
     /*!
      * Get music songs file name by index.
      */
-    QStringList getMusicSongsFileName(int index) const;
+    QStringList musicSongsFileName(int index) const;
     /*!
      * Get music songs file path by index.
      */
-    QStringList getMusicSongsFilePath(int index) const;
+    QStringList musicSongsFilePath(int index) const;
     /*!
      * Map music song index by file path.
      */
@@ -82,7 +82,7 @@ public:
     /*!
      * Get play tool index.
      */
-    inline int getPlayToolIndex() const { return m_playToolIndex; }
+    inline int playToolIndex() const { return m_playToolIndex; }
     /*!
      * Set current music song tree index.
      */
@@ -207,9 +207,9 @@ public Q_SLOTS:
      */
     void setRecentMusicSongs(int index);
     /*!
-     * Get music datas from container.
+     * Query music datas from container.
      */
-    void getMusicItemList(MusicSongItems &songs);
+    void musicItemList(MusicSongItems &songs);
     /*!
      * Update current artist when it download finished.
      */

@@ -141,12 +141,12 @@ void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, 
     m_ui->skinTransparentLabelBox->setChecked(state);
 }
 
-int MusicBackgroundSkinDialog::getBackgroundListAlpha() const
+int MusicBackgroundSkinDialog::backgroundListAlpha() const
 {
     return m_ui->listTransparentButton->value();
 }
 
-bool MusicBackgroundSkinDialog::getBackgroundTransparentEnable() const
+bool MusicBackgroundSkinDialog::backgroundTransparentEnable() const
 {
     return m_ui->skinTransparentLabelBox->isChecked();
 }
@@ -177,7 +177,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    const QString &path = MusicUtils::File::getOpenFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
+    const QString &path = MusicUtils::File::openFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
     if(path.isEmpty())
     {
         return;
@@ -211,7 +211,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
         m_ui->stackedWidget->setGeometry(QRect(rect.x(), rect.y() + toolWidget->height(), rect.width(), rect.height() - toolWidget->height()));
     }
 
-    if(m_ui->stackedWidget->getCurrentIndex() == index)
+    if(m_ui->stackedWidget->currentIndex() == index)
     {
         return;
     }
@@ -330,7 +330,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidge
         const MusicBackgroundListItem *it = m_stackBackgroundList->find(image);
         if(it)
         {
-            listWidgetItemClicked(m_stackBackgroundList, it->getFileName());
+            listWidgetItemClicked(m_stackBackgroundList, it->fileName());
         }
     }
 }

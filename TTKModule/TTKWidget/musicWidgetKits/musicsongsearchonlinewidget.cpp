@@ -33,7 +33,7 @@ MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
 
     m_queryAllRecords = true;
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
@@ -68,7 +68,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     }
     else
     {
-        const QString &quality = m_networkRequest->getQueryQuality();
+        const QString &quality = m_networkRequest->queryQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
         m_networkRequest->setQueryQuality(quality);
     }
@@ -92,7 +92,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     }
     else
     {
-        const QString &quality = m_networkRequest->getQueryQuality();
+        const QString &quality = m_networkRequest->queryQuality();
         MusicItemSearchTableWidget::startSearchQuery(text);
         m_networkRequest->setQueryQuality(quality);
     }
@@ -104,7 +104,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 
 void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
     {
         return;
@@ -259,7 +259,7 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     const MusicObject::MusicSongInformation &info = musicSongInfos[row];
 
     switch(action->data().toInt())
@@ -282,7 +282,7 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(musicSongInfos[row], MusicAbstractQueryRequest::MusicQuery);
     download->show();
@@ -328,7 +328,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];
     MusicObject::MusicSongAttributes attrs(musicSongInfo.m_songAttrs);
     std::sort(attrs.begin(), attrs.end()); //to find out the min bitrate
@@ -424,7 +424,7 @@ void MusicSongSearchOnlineWidget::resizeWindow()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    TTKIntList list = m_searchTableWidget->getSelectedItems();
+    TTKIntList list = m_searchTableWidget->selectedItems();
     list.removeOne(m_searchTableWidget->rowCount() - 1);
     if(list.isEmpty())
     {
@@ -454,7 +454,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             return;
         }
 
-        MusicObject::MusicSongInformations selectedItems, musicSongInfos(d->getMusicSongInfos());
+        MusicObject::MusicSongInformations selectedItems, musicSongInfos(d->musicSongInfos());
         for(int index : qAsConst(list))
         {
             if(index < 0 || index >= musicSongInfos.count())

@@ -107,7 +107,7 @@ void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
     MusicLrcContainerForInterior* line = TTKStatic_cast(MusicLrcContainerForInterior*, parent());
     const MusicLrcDefines lrc;
-    int v = lrc.findInteriorLrcIndex(line->getLrcSize());
+    int v = lrc.findInteriorLrcIndex(line->lrcSize());
         v = lrc.findInteriorNextSize(v);
     line->setLrcSize(v);
 }
@@ -116,7 +116,7 @@ void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
     MusicLrcContainerForInterior* line = TTKStatic_cast(MusicLrcContainerForInterior*, parent());
     const MusicLrcDefines lrc;
-    int v = lrc.findInteriorLrcIndex(line->getLrcSize());
+    int v = lrc.findInteriorLrcIndex(line->lrcSize());
         v = lrc.findInteriorPreSize(v);
     line->setLrcSize(v);
 }

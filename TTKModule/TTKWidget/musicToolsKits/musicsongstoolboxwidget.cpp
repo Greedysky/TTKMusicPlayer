@@ -55,7 +55,7 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
 {
     if(!m_renameLine)
     {
-        m_renameLine = new MusicSongsToolItemRenamedWidget(getTitle(), this);
+        m_renameLine = new MusicSongsToolItemRenamedWidget(title(), this);
         connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
         m_renameLine->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }
@@ -218,7 +218,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     painter.setBrush(gradient);
     painter.drawRect(0, 32, width(), height());
 
-    QPixmap pix(MusicTopAreaWidget::instance()->getRendererPixmap());
+    QPixmap pix(MusicTopAreaWidget::instance()->rendererPixmap());
     painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(1, 91, width(), height() - 3));
     painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(255, 255, 255, alpha));
 }

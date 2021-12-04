@@ -82,7 +82,7 @@ protected:
     /*!
      * Get transform song name.
      */
-    QString getTransformSongName() const;
+    QString transformSongName() const;
     /*!
      * Init control parameter.
      */

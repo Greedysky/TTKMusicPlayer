@@ -377,7 +377,7 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
 
 MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     delete m_ui;
 }
 

@@ -5,72 +5,72 @@ QKugouUrl::QKugouUrl()
 
 }
 
-QString QKugouUrl::getSongYuekuUrl()
+QString QKugouUrl::makeSongYuekuUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/html/default.html?ver=9173";
 }
 
-QString QKugouUrl::getSongRecommendUrl()
+QString QKugouUrl::makeSongRecommendUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/html/home.html?ver=9173";
 }
 
-QString QKugouUrl::getSongRankUrl()
+QString QKugouUrl::makeSongRankUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/rank/home/1-6666.html?ver=9173";
 }
 
-QString QKugouUrl::getSongSingerUrl()
+QString QKugouUrl::makeSongSingerUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/singer/index/1-all-0-0_0.html?ver=9173";
 }
 
-QString QKugouUrl::getSongCategoryUrl()
+QString QKugouUrl::makeSongCategoryUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/categoryv2/index.html?ver=9173";
 }
 
-QString QKugouUrl::getRadioPublicUrl()
+QString QKugouUrl::makeRadioPublicUrl()
 {
     return "http://www2.kugou.kugou.com/fm2/app/public/html/recommend/index.html?ver=9173";
 }
 
-QString QKugouUrl::getRadioHighFmUrl()
+QString QKugouUrl::makeRadioHighFmUrl()
 {
     return "http://www2.kugou.kugou.com/fm2/html/highFm.html?ver=9173";
 }
 
-QString QKugouUrl::getRadioFxUrl()
+QString QKugouUrl::makeRadioFxUrl()
 {
     return "http://fanxing.kugou.com";
 }
 
-QString QKugouUrl::getListUrl()
+QString QKugouUrl::makeListUrl()
 {
     return "http://www2.kugou.kugou.com/yueku/v9/special/index/getData.js?cdn=cdn&t=5&c=&ver=9173";
 }
 
-QString QKugouUrl::getMVRadioUrl()
+QString QKugouUrl::makeMVRadioUrl()
 {
     return "http://www2.kugou.kugou.com/mv/v9/html/mvradio.html?ver=9173";
 }
 
-QString QKugouUrl::getMVRecommendUrl()
+QString QKugouUrl::makeMVRecommendUrl()
 {
     return "http://www2.kugou.kugou.com/mv/v9/mtv/index/getData.js?cdn=cdn&ver=9173";
 }
 
-QString QKugouUrl::getMVFanxingUrl()
+QString QKugouUrl::makeMVFanxingUrl()
 {
     return "http://fanxing.kugou.com/index.php?action=embedPageMv&ver=9173";
 }
 
-QString QKugouUrl::getWebPlayerUrl()
+QString QKugouUrl::makeWebPlayerUrl()
 {
     return "http://web.kugou.com/index.html?ver=9173";
 }
 
-QString QKugouUrl::getKuiSheUrl()
+QString QKugouUrl::makeKuiSheUrl()
 {
     return "http://huodong.kugou.com/2014/html/kuishe.html?ver=9173";
 }

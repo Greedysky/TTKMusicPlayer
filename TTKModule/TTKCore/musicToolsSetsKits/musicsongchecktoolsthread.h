@@ -42,7 +42,7 @@ public:
     /*!
      * Get music song check tool mode.
      */
-    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
+    inline MusicObject::MusicSongCheckToolsMode mode() const { return m_operateMode; }
     /*!
      * Set item list.
      */
@@ -94,7 +94,7 @@ public:
     /*!
      * Get music song check tool mode.
      */
-    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
+    inline MusicObject::MusicSongCheckToolsMode mode() const { return m_operateMode; }
     /*!
      * Set item list.
      */

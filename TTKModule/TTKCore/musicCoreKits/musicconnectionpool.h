@@ -87,7 +87,7 @@ protected:
 
 };
 
-#define G_CONNECTION_PTR GetMusicConnectionPool()
-TTK_MODULE_EXPORT MusicConnectionPool* GetMusicConnectionPool();
+#define G_CONNECTION_PTR makeMusicConnectionPool()
+TTK_MODULE_EXPORT MusicConnectionPool* makeMusicConnectionPool();
 
 #endif // MUSICCONNECTIONPOOL_H

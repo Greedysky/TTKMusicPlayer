@@ -48,9 +48,9 @@ public:
      */
     virtual void startToSearch(const QString &playlist) override;
     /*!
-     * Get playlist info.
+     * Query playlist info.
      */
-    virtual void getPlaylistInfo(MusicResultsItem &item) override;
+    virtual void queryPlaylistInfo(MusicResultsItem &item) override;
 
 public Q_SLOTS:
     /*!
@@ -60,7 +60,7 @@ public Q_SLOTS:
     /*!
      * Download details data from net finished.
      */
-    void getDetailsFinished();
+    void queryDetailsFinished();
 
 };
 

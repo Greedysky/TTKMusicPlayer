@@ -64,7 +64,7 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(musicSongInfos[row], m_queryMovieMode ? MusicAbstractQueryRequest::MovieQuery : MusicAbstractQueryRequest::MusicQuery);
     download->show();
@@ -163,7 +163,7 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     for(const MusicObject::MusicSongAttribute &attr : qAsConst(musicSongInfos[row].m_songAttrs))
     {
         Q_EMIT mediaUrlChanged(m_queryMovieMode, attr.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);

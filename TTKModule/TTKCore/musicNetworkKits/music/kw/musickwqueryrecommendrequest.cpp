@@ -8,7 +8,7 @@ MusicKWQueryRecommendRequest::MusicKWQueryRecommendRequest(QObject *parent)
 
 void MusicKWQueryRecommendRequest::startToSearch(const QString &id)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(id));
 
     deleteAll();
 
@@ -27,7 +27,7 @@ void MusicKWQueryRecommendRequest::startToSearch(const QString &id)
 
 void MusicKWQueryRecommendRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryRecommendRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)

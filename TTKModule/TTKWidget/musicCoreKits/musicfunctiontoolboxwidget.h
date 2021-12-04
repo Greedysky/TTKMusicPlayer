@@ -45,7 +45,7 @@ public:
     /*!
      * Get Item index.
      */
-    inline int getItemIndex() const { return m_index; }
+    inline int itemIndex() const { return m_index; }
 
     /*!
      * Set Item expand.
@@ -63,7 +63,7 @@ public:
     /*!
      * Get top label title.
      */
-    QString getTitle(bool suffix = false);
+    QString title(bool suffix = false);
 
 Q_SIGNALS:
     /*!

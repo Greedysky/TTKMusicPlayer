@@ -48,7 +48,7 @@ bool MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
         QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
         for(const MusicSong &song : qAsConst(item.m_songs))
         {
-            writeDomElementMutil(seqDom, "media", {MusicXmlAttribute("src", song.getMusicPath())});
+            writeDomElementMutil(seqDom, "media", {MusicXmlAttribute("src", song.musicPath())});
         }
     }
 

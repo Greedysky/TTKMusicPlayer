@@ -54,13 +54,13 @@ bool MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
         for(const MusicSong &song : qAsConst(items[i].m_songs))
         {
             QDomElement trackDom = writeDomElementMutil(trackListDom, "track", MusicXmlAttributes()
-                                                        << MusicXmlAttribute("name", song.getMusicName())
-                                                        << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                                        << MusicXmlAttribute("time", song.getMusicPlayTime())
-                                                        << MusicXmlAttribute("src", song.getMusicPath()));
-            writeDomText(trackDom, "location", song.getMusicPath());
-            writeDomText(trackDom, "title", song.getMusicArtistBack());
-            writeDomText(trackDom, "creator", song.getMusicArtistFront());
+                                                        << MusicXmlAttribute("name", song.musicName())
+                                                        << MusicXmlAttribute("playCount", song.musicPlayCount())
+                                                        << MusicXmlAttribute("time", song.musicPlayTime())
+                                                        << MusicXmlAttribute("src", song.musicPath()));
+            writeDomText(trackDom, "location", song.musicPath());
+            writeDomText(trackDom, "title", song.musicArtistBack());
+            writeDomText(trackDom, "creator", song.musicArtistFront());
             writeDomText(trackDom, "annotation", QString());
             writeDomText(trackDom, "album", QString());
             writeDomText(trackDom, "trackNum", QString());

@@ -21,7 +21,7 @@ MusicPlayer::MusicPlayer(QObject *parent)
     setEnabledEffect(false);
 
     connect(&m_timer, SIGNAL(timeout()), SLOT(update()));
-    G_CONNECTION_PTR->setValue(getClassName(), this);
+    G_CONNECTION_PTR->setValue(className(), this);
 }
 
 MusicPlayer::~MusicPlayer()
@@ -115,7 +115,7 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
     }
 }
 
-MusicPlayer::Enhanced MusicPlayer::getMusicEnhanced() const
+MusicPlayer::Enhanced MusicPlayer::musicEnhanced() const
 {
     return m_musicEnhanced;
 }

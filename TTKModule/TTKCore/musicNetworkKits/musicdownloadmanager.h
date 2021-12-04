@@ -105,7 +105,7 @@ protected:
 
 };
 
-#define G_DOWNLOAD_MANAGER_PTR GetMusicDownLoadManager()
-TTK_MODULE_EXPORT MusicDownLoadManager* GetMusicDownLoadManager();
+#define G_DOWNLOAD_MANAGER_PTR makeMusicDownLoadManager()
+TTK_MODULE_EXPORT MusicDownLoadManager* makeMusicDownLoadManager();
 
 #endif // MUSICDOWNLOADMANAGER_H

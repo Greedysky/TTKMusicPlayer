@@ -42,9 +42,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Get network operator is finished.
+     * Query network operator is finished.
      */
-    void getNetworkOperatorFinished(const QString &name);
+    void queryNetworkOperatorFinished(const QString &name);
 
 private Q_SLOTS:
     /*!

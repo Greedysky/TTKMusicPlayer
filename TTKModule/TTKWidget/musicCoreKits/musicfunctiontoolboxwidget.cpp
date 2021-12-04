@@ -65,7 +65,7 @@ void MusicFunctionToolBoxTopWidget::setTitle(const QString &text)
     m_labelText->setToolTip(text);
 }
 
-QString MusicFunctionToolBoxTopWidget::getTitle(bool suffix)
+QString MusicFunctionToolBoxTopWidget::title(bool suffix)
 {
     QString text = m_labelText->toolTip().trimmed();
     if(!suffix)
@@ -147,7 +147,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 
         QMimeData *mimeData = new QMimeData;
         mimeData->setData(DRAG_FORMAT, QByteArray::number(m_index));
-        mimeData->setText(getTitle(true));
+        mimeData->setText(title(true));
 
         QDrag *drag = new QDrag(this);
         drag->setMimeData(mimeData);

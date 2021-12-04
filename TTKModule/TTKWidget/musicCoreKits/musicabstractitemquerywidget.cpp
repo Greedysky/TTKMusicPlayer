@@ -93,7 +93,7 @@ void MusicAbstractItemQueryWidget::shareButtonClicked()
     const MusicAbstractQueryRequest *th = m_queryTableWidget->getQueryInput();
     if(th)
     {
-        data["queryServer"] = th->getQueryServer();
+        data["queryServer"] = th->queryServer();
     }
 
     MusicSongSharingWidget shareWidget(this);
@@ -208,7 +208,7 @@ void MusicAbstractItemQueryWidget::setSongCountText()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
     if(m_songButton)
     {
         m_songButton->setText(tr("SongItems") + QString("(%1)").arg(musicSongInfos.count()));

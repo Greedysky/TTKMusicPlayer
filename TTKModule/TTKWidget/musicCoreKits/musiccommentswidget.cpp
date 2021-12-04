@@ -298,7 +298,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     TTKStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPageWidget();
 
-    initLabel(name, m_networkRequest->getTotalSize());
+    initLabel(name, m_networkRequest->totalSize());
 }
 
 void MusicCommentsWidget::createSearchedItem(const MusicResultsItem &comments)
@@ -320,7 +320,7 @@ void MusicCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
 
-    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
     m_pageQueryWidget->page(index, pageTotal);
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
@@ -377,7 +377,7 @@ void MusicCommentsWidget::createPageWidget()
     m_pageQueryWidget = new MusicPageQueryWidget(this);
     connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
     QWidget *w = m_pageQueryWidget->createPageWidget(m_messageComments, pageTotal);
     m_messageComments->layout()->addWidget(w);
 }

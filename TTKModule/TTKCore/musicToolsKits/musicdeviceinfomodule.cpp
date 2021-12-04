@@ -24,7 +24,7 @@ MusicDeviceInfoModule::~MusicDeviceInfoModule()
 #endif
 }
 
-bool MusicDeviceInfoModule::getDisksProperty(const QString &drive) const
+bool MusicDeviceInfoModule::disksProperty(const QString &drive) const
 {
 #ifdef Q_OS_WIN
     STORAGE_PROPERTY_QUERY query;
@@ -99,7 +99,7 @@ bool MusicDeviceInfoModule::getDisksProperty(const QString &drive) const
 #endif
 }
 
-MusicDeviceInfoItems MusicDeviceInfoModule::getRemovableDrive()
+MusicDeviceInfoItems MusicDeviceInfoModule::removableDrive()
 {
     m_items.clear();
 #ifdef Q_OS_WIN

@@ -228,7 +228,7 @@ QString QDlnaClient::pause(int instance)
     return QHelperDlna::makeSocketGetReply(d->m_serverIP, d->m_serverPort, request);
 }
 
-QString QDlnaClient::getPosition()
+QString QDlnaClient::position()
 {
     TTK_D(QDlnaClient);
     //Returns the current position for the track that is playing on the DLNA server

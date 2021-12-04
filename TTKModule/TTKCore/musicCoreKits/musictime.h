@@ -72,7 +72,7 @@ public:
     /*!
      * Get current time type, see Type.
      */
-    inline Type getType() const { return m_defaultType; }
+    inline Type type() const { return m_defaultType; }
 
     /*!
      * Set current greedy mode.
@@ -81,7 +81,7 @@ public:
     /*!
      * Get current greedy mode.
      */
-    inline bool getGreedy() const { return m_greedyMode; }
+    inline bool greedy() const { return m_greedyMode; }
 
     /*!
      * Set current day.
@@ -103,26 +103,27 @@ public:
      * Set current millionSecond.
      */
     inline void setMillionSecond(int msec) { m_msec = msec; }
+
     /*!
      * Get current day.
      */
-    inline int getDay() const { return m_day; }
+    inline int day() const { return m_day; }
     /*!
      * Get current hour.
      */
-    inline int getHour() const { return m_hour; }
+    inline int hour() const { return m_hour; }
     /*!
      * Get current second.
      */
-    inline int getMinute() const { return m_min; }
+    inline int minute() const { return m_min; }
     /*!
      * Get current second.
      */
-    inline int getSecond() const { return m_sec; }
+    inline int second() const { return m_sec; }
     /*!
      * Get current millionSecond.
      */
-    inline int getMillionSecond() const { return m_msec; }
+    inline int millionSecond() const { return m_msec; }
 
     /*!
      * Transform time from string by time format.
@@ -154,7 +155,7 @@ public:
     /*!
      * Get all time value by type.
      */
-    qint64 getTimestamp(Type type) const;
+    qint64 timestamp(Type type) const;
     //
     /*!
      * Transform ms time from utc since epoch.
@@ -210,8 +211,8 @@ public:
 
     inline friend QDataStream& operator<<(QDataStream &stream, const MusicTime &other)
     {
-        stream << other.getDay() << other.getHour() << other.getMinute()
-               << other.getSecond() << other.getMillionSecond();
+        stream << other.day() << other.hour() << other.minute()
+               << other.second() << other.millionSecond();
         return stream;
     }
 

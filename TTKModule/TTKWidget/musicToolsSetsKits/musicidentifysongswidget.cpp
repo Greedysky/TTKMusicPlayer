@@ -117,7 +117,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     loop.exec();
 
     detectedButtonClicked();
-    if(m_detectedThread->getIdentifySongs().isEmpty())
+    if(m_detectedThread->identifySongs().isEmpty())
     {
         createDetectedFailedWidget();
     }
@@ -177,15 +177,15 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
         return;
     }
 
-    const int index = m_analysis->getCurrentIndex();
+    const int index = m_analysis->currentIndex();
     const qint64 time = m_analysis->findTime(index);
 
     if(time < position * MT_S2MS && time != -1)
     {
         QString lrc;
-        for(int i=0; i<m_analysis->getLineMax(); ++i)
+        for(int i=0; i<m_analysis->lineMax(); ++i)
         {
-            if(i == m_analysis->getMiddle())
+            if(i == m_analysis->lineMiddle())
             {
                 lrc += QString("<p style='font-weight:700;' align='center'>");
             }
@@ -193,7 +193,8 @@ void MusicIdentifySongsWidget::positionChanged(qint64 position)
             {
                 lrc += QString("<p align='center'>");
             }
-            lrc += m_analysis->getText(i);
+
+            lrc += m_analysis->text(i);
             lrc += QString("</p>");
         }
         m_lrcLabel->setText(lrc);
@@ -259,7 +260,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         m_analysis->setLineMax(11);
         connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     }
-    const MusicSongIdentifyData songIdentify(m_detectedThread->getIdentifySongs().first());
+    const MusicSongIdentifyData songIdentify(m_detectedThread->identifySongs().first());
 
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MQSSColorStyle03 + MusicUIObject::MQSSFontStyle05);
@@ -286,7 +287,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
 
     if(!d->isEmpty())
     {
-        for(const MusicObject::MusicSongInformation &info : d->getMusicSongInfos())
+        for(const MusicObject::MusicSongInformation &info : d->musicSongInfos())
         {
             if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive))

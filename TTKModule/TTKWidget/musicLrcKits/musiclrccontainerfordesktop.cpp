@@ -454,7 +454,7 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
 
     setSelfPosition();
-    m_currentLrcFontSize = m_musicLrcContainer[0]->getLrcFontSize();
+    m_currentLrcFontSize = m_musicLrcContainer[0]->lrcFontSize();
 }
 
 void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
@@ -535,7 +535,7 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     desktopWidget->setGeometry(TOOLBAR_MAIN_HEIGHT, 0, 2 * m_geometry.y() + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
 
     setSelfPosition();
-    m_currentLrcFontSize = m_musicLrcContainer[0]->getLrcFontSize();
+    m_currentLrcFontSize = m_musicLrcContainer[0]->lrcFontSize();
 }
 
 void MusicLrcContainerVerticalDesktop::initCurrentLrc() const

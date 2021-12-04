@@ -10,7 +10,7 @@
  * @author Greedysky <greedysky@163.com>
  */
 
-static QStringList getProcessList()
+static QStringList processList()
 {
     QStringList lprocess;
     unsigned long aProcesses[1024], cbNeeded, cProcesses;
@@ -79,7 +79,7 @@ static bool killProcess(LPCWSTR processName)
 
 void killProcessByName(const QString &process)
 {
-    QStringList list(getProcessList());
+    const QStringList list(processList());
     if(list.contains(process) && killProcess(process.toStdWString().c_str()))
     {
         TTK_LOGGER_INFO("Windows Kill Process " << process << " Successed");
@@ -88,7 +88,7 @@ void killProcessByName(const QString &process)
 
 void killProcessByName(const QStringList &processes)
 {
-    QStringList list(getProcessList());
+    const QStringList list(processList());
     for(const QString &process : qAsConst(processes))
     {
         if(list.contains(process) && killProcess(process.toStdWString().c_str()))
@@ -106,7 +106,7 @@ typedef struct PIDInfo
     QString m_path;
 }PIDInfo;
 
-static QList<PIDInfo> getProcessList()
+static QList<PIDInfo> processList()
 {
     QList<PIDInfo> lprocess;
     QProcess process;
@@ -148,7 +148,7 @@ static bool killProcess(int pid)
 
 void killProcessByName(const QString &process)
 {
-    QList<PIDInfo> list(getProcessList());
+    const QList<PIDInfo> list(processList());
     for(const PIDInfo &info : qAsConst(list))
     {
         if(info.m_path.contains(process) && killProcess(info.m_pid))
@@ -161,7 +161,7 @@ void killProcessByName(const QString &process)
 
 void killProcessByName(const QStringList &processes)
 {
-    QList<PIDInfo> list(getProcessList());
+    const QList<PIDInfo> list(processList());
     for(const QString &process : qAsConst(processes))
     {
         for(const PIDInfo &info : qAsConst(list))

@@ -50,9 +50,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Get music datas from container.
+     * Query music datas from container.
      */
-    void getMusicItemList(MusicSongItems &songs);
+    void queryMusicItemList(MusicSongItems &songs);
 
 public Q_SLOTS:
     /*!
@@ -92,7 +92,7 @@ protected:
     /*!
      * Get selected files.
      */
-    QStringList getSelectedFiles();
+    QStringList selectedFiles() const;
 
 
     Ui::MusicConnectTransferWidget *m_ui;

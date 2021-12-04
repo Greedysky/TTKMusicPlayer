@@ -218,7 +218,7 @@ void MusicVideoPlayWidget::resizeWindow(int width, int height)
     m_videoFloatWidget->resizeWindow(width, height);
 }
 
-QString MusicVideoPlayWidget::getSearchText() const
+QString MusicVideoPlayWidget::searchText() const
 {
     return m_searchEdit->text().trimmed();
 }
@@ -254,7 +254,7 @@ void MusicVideoPlayWidget::switchToPlayView()
 
 void MusicVideoPlayWidget::searchButtonClicked()
 {
-    videoResearchButtonSearched(getSearchText());
+    videoResearchButtonSearched(searchText());
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)

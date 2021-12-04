@@ -86,7 +86,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeQueryRequest(QObject *
         case KGQueryServer: request = new MusicKGQueryRequest(parent); break;
         default: request = new MusicWYQueryRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryrequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryrequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -102,7 +102,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeMovieRequest(QObject *
         case KGQueryServer: request = new MusicKGQueryMovieRequest(parent); break;
         default: request = new MusicWYQueryMovieRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryMovieRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryMovieRequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -118,7 +118,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeAlbumRequest(QObject *
         case KGQueryServer: request = new MusicKGQueryAlbumRequest(parent); break;
         default: request = new MusicWYQueryAlbumRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryAlbumRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryAlbumRequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -134,7 +134,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistRequest(QObject 
         case KGQueryServer: request = new MusicKGQueryArtistRequest(parent); break;
         default: request = new MusicWYQueryArtistRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryArtistRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryArtistRequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -150,7 +150,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeArtistListRequest(QObj
         case KGQueryServer: request = new MusicKGQueryArtistListRequest(parent); break;
         default: request = new MusicWYQueryArtistListRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryArtistListRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryArtistListRequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -166,7 +166,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeToplistRequest(QObject
         case KGQueryServer: request = new MusicKGQueryToplistRequest(parent); break;
         default: request = new MusicWYQueryToplistRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryToplistRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryToplistRequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -182,7 +182,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makePlaylistRequest(QObjec
         case KGQueryServer: request = new MusicKGQueryPlaylistRequest(parent); break;
         default: request = new MusicWYQueryPlaylistRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryPlaylistRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryPlaylistRequest server: %1").arg(request->queryServer()));
     return request;
 }
 
@@ -198,7 +198,7 @@ MusicAbstractQueryRequest *MusicDownLoadQueryFactory::makeRecommendRequest(QObje
         case KGQueryServer: request = new MusicKGQueryRecommendRequest(parent); break;
         default: request = new MusicWYQueryRecommendRequest(parent);
     }
-    TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->getQueryServer()));
+    TTK_LOGGER_INFO(QString("MusicQueryRecommendRequest server: %1").arg(request->queryServer()));
     return request;
 }
 

@@ -64,10 +64,10 @@ bool MusicM3UConfigManager::writePlaylistData(const MusicSongItems &items, const
     data << QString("#EXTM3U");
     for(const MusicSong &song : qAsConst(item.m_songs))
     {
-        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.getMusicPlayTime()) / MT_S2MS)
-                                                 .arg(song.getMusicArtistFront())
-                                                 .arg(song.getMusicArtistBack()));
-        data.append(song.getMusicPath());
+        data.append(QString("#EXTINF:%1,%2 - %3").arg(MusicTime::labelJustified2MsecTime(song.musicPlayTime()) / MT_S2MS)
+                                                 .arg(song.musicArtistFront())
+                                                 .arg(song.musicArtistBack()));
+        data.append(song.musicPath());
     }
 
     m_file.setFileName(path);

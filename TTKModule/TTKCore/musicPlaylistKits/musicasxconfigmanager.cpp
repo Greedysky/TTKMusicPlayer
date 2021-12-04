@@ -67,9 +67,9 @@ bool MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
         {
             QDomElement trackDom = writeDomNode(musicPlayerDom, "Entry");
 
-            writeDomText(trackDom, "Title", song.getMusicArtistBack());
-            writeDomElement(trackDom, "Ref", MusicXmlAttribute("href", song.getMusicPath()));
-            writeDomElement(trackDom, "Duration", MusicXmlAttribute("value", "00:" + song.getMusicPlayTime() + ".000"));
+            writeDomText(trackDom, "Title", song.musicArtistBack());
+            writeDomElement(trackDom, "Ref", MusicXmlAttribute("href", song.musicPath()));
+            writeDomElement(trackDom, "Duration", MusicXmlAttribute("value", "00:" + song.musicPlayTime() + ".000"));
             writeDomText(trackDom, "Author", APP_NAME);
         }
     }

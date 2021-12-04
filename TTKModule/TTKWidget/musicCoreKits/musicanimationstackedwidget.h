@@ -61,11 +61,11 @@ public:
     /*!
      * Get previoud index.
      */
-    int getPreviousIndex() const;
+    int previousIndex() const;
     /*!
      * Get current index.
      */
-    int getCurrentIndex() const;
+    int currentIndex() const;
 
     /*!
      * Set animation duration.
@@ -74,7 +74,7 @@ public:
     /*!
      * Get animation duration.
      */
-    int getDuration() const;
+    int duration() const;
 
 private Q_SLOTS:
     /*!

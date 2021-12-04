@@ -24,9 +24,9 @@
 #include "ttkglobaldefine.h"
 
 #ifdef CONFIG_OUT_BUILD
-#  define APP_PATH_DIR                MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + TTK_SEPARATOR
+#  define APP_PATH_DIR                MusicObject::applicationPath() + TTKMUSIC_VERSION_STR + TTK_SEPARATOR
 #else
-#  define APP_PATH_DIR                MusicObject::getAppDir()
+#  define APP_PATH_DIR                MusicObject::applicationPath()
 #endif
 //
 #define TTK_DOWNLOAD_DIR_FULL       APP_PATH_DIR + TTK_PDIR + DOWNLOAD_DIR

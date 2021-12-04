@@ -169,7 +169,7 @@ public:
     /*!
      * Get current font szie.
      */
-    inline int getLrcFontSize() const { return m_font.pointSize(); }
+    inline int lrcFontSize() const { return m_font.pointSize(); }
 
 public Q_SLOTS:
     /*!

@@ -195,14 +195,14 @@ void MusicWebDJRadioQueryWidget::createProgramItem(const MusicResultsItem &item)
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
         mainlayout->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
         mainlayout->addStretch(1);
     }
 
     if(m_pageQueryWidget)
     {
-        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
         m_pageQueryWidget->reset(pageTotal);
     }
 
@@ -246,7 +246,7 @@ void MusicWebDJRadioQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
     m_pageQueryWidget->page(index, pageTotal);
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }

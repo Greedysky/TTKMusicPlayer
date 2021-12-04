@@ -60,12 +60,12 @@ MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &tim
     m_musicPlayTime = time;
 }
 
-QString MusicSong::getMusicArtistFront() const
+QString MusicSong::musicArtistFront() const
 {
     return MusicUtils::String::artistName(m_musicName);
 }
 
-QString MusicSong::getMusicArtistBack() const
+QString MusicSong::musicArtistBack() const
 {
     return MusicUtils::String::songName(m_musicName);
 }
@@ -80,7 +80,7 @@ bool MusicSong::operator< (const MusicSong &other) const
     switch(m_sortType)
     {
         case SortByFileName: return m_musicName < other.m_musicName;
-        case SortBySinger: return getMusicArtistFront() < other.getMusicArtistFront();
+        case SortBySinger: return musicArtistFront() < other.musicArtistFront();
         case SortByFileSize: return m_musicSize < other.m_musicSize;
         case SortByAddTime: return m_musicAddTime < other.m_musicAddTime;
         case SortByPlayTime: return m_musicPlayTime < other.m_musicPlayTime;
@@ -95,7 +95,7 @@ bool MusicSong::operator> (const MusicSong &other) const
     switch(m_sortType)
     {
         case SortByFileName: return m_musicName > other.m_musicName;
-        case SortBySinger: return getMusicArtistFront() > other.getMusicArtistFront();
+        case SortBySinger: return musicArtistFront() > other.musicArtistFront();
         case SortByFileSize: return m_musicSize > other.m_musicSize;
         case SortByAddTime: return m_musicAddTime > other.m_musicAddTime;
         case SortByPlayTime: return m_musicPlayTime > other.m_musicPlayTime;
@@ -138,13 +138,13 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
             return songs;
         }
 
-        const int size = meta.getSongMetaSize();
+        const int size = meta.songMetaSize();
         for(int i=0; i<size; ++i)
         {
             meta.setSongMetaIndex(i);
-            const QString &time = meta.getLengthString();
-            const QString &title = meta.getTitle();
-            const QString &artist = meta.getArtist();
+            const QString &time = meta.lengthString();
+            const QString &title = meta.title();
+            const QString &artist = meta.artist();
 
             QString name;
             if(G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !title.isEmpty() && !artist.isEmpty())
@@ -152,8 +152,8 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
                 name = artist + " - " + title;
             }
 
-            const QFileInfo fin(meta.getFileRelatedPath());
-            MusicSong song(meta.getFileBasePath(), 0, time, name);
+            const QFileInfo fin(meta.fileRelatedPath());
+            MusicSong song(meta.fileBasePath(), 0, time, name);
             song.setMusicType(fin.suffix());
             song.setMusicSize(fin.size());
             songs << song;
@@ -164,12 +164,12 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
 
     MusicSongMeta meta;
     const bool state = meta.read(path);
-    const QString &time = state ? meta.getLengthString() : TTK_DEFAULT_STR;
+    const QString &time = state ? meta.lengthString() : TTK_DEFAULT_STR;
 
     QString name;
-    if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !meta.getTitle().isEmpty() && !meta.getArtist().isEmpty())
+    if(state && G_SETTING_PTR->value(MusicSettingManager::OtherUseFileInfo).toBool() && !meta.title().isEmpty() && !meta.artist().isEmpty())
     {
-        name = meta.getArtist() + " - " + meta.getTitle();
+        name = meta.artist() + " - " + meta.title();
     }
     songs << MusicSong(path, 0, time, name);
 

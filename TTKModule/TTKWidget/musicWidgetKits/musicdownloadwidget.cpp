@@ -87,7 +87,7 @@ void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongAttribute 
     setCellWidget(index, 0, item);
 }
 
-MusicDownloadTableItemRole MusicDownloadTableWidget::getCurrentItemRole() const
+MusicDownloadTableItemRole MusicDownloadTableWidget::currentItemRole() const
 {
    const int row = currentRow();
    if(row == -1)
@@ -209,7 +209,7 @@ void MusicDownloadWidget::downLoadFinished()
     }
 
     m_ui->viewArea->clearAllItems();
-    const MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
+    const MusicObject::MusicSongInformation musicSongInfo(matchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         createAllItems(musicSongInfo.m_songAttrs);
@@ -221,12 +221,12 @@ void MusicDownloadWidget::downLoadFinished()
     }
 }
 
-MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformation()
+MusicObject::MusicSongInformation MusicDownloadWidget::matchMusicSongInformation()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        const QString &fileName = m_networkRequest->getQueryText();
+        const QString &fileName = m_networkRequest->queryText();
         const QString &artistName = MusicUtils::String::artistName(fileName);
         const QString &songName = MusicUtils::String::songName(fileName);
 
@@ -315,7 +315,7 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 
 void MusicDownloadWidget::downloadDirSelected()
 {
-    const QString &path = MusicUtils::File::getOpenDirectoryDialog(nullptr);
+    const QString &path = MusicUtils::File::openDirectoryDialog(nullptr);
     if(!path.isEmpty())
     {
         if(m_queryType == MusicAbstractQueryRequest::MusicQuery)
@@ -328,7 +328,7 @@ void MusicDownloadWidget::downloadDirSelected()
 
 void MusicDownloadWidget::startToDownload()
 {
-    if(m_ui->viewArea->getCurrentItemRole().isEmpty())
+    if(m_ui->viewArea->currentItemRole().isEmpty())
     {
         MusicToastLabel::popup(tr("Please select one item first!"));
         return;
@@ -354,7 +354,7 @@ void MusicDownloadWidget::dataDownloadFinished()
 
 void MusicDownloadWidget::startToDownloadMusic()
 {
-    const MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
+    const MusicObject::MusicSongInformation musicSongInfo(matchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         startToDownloadMusic(musicSongInfo);
@@ -363,7 +363,7 @@ void MusicDownloadWidget::startToDownloadMusic()
 
 void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo)
 {
-    const MusicDownloadTableItemRole &role = m_ui->viewArea->getCurrentItemRole();
+    const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
     const MusicObject::MusicSongAttributes &musicAttrs = musicSongInfo.m_songAttrs;
     for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
     {
@@ -432,7 +432,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
 
 void MusicDownloadWidget::startToDownloadMovie()
 {
-    MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
+    const MusicObject::MusicSongInformation musicSongInfo(matchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         startToDownloadMovie(musicSongInfo);
@@ -441,7 +441,7 @@ void MusicDownloadWidget::startToDownloadMovie()
 
 void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo)
 {
-    const MusicDownloadTableItemRole &role = m_ui->viewArea->getCurrentItemRole();
+    const MusicDownloadTableItemRole &role = m_ui->viewArea->currentItemRole();
     const MusicObject::MusicSongAttributes &musicAttrs = musicSongInfo.m_songAttrs;
     for(const MusicObject::MusicSongAttribute &musicAttr : qAsConst(musicAttrs))
     {

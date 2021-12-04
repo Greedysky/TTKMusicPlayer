@@ -149,13 +149,13 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     MusicUtils::Widget::generateVScrollAreaFormat(m_ui->scrollArea, m_ui->effectContainer);
     readSoundEffect();
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicPlayer::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicPlayer::className());
 }
 
 MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     writeSoundEffect();
     qDeleteAll(m_items);
     delete m_ui;
@@ -245,7 +245,7 @@ void MusicSoundEffectsWidget::writeSoundEffect()
     {
         if(item->pluginEnabled())
         {
-            value.append(item->getName() + ";");
+            value.append(item->name() + ";");
         }
     }
     G_SETTING_PTR->setValue(MusicSettingManager::EnhancedEffectValue, value);

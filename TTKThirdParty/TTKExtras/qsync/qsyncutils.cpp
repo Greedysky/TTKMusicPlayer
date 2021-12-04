@@ -55,7 +55,7 @@ static TTKStringMap formatHeader(const TTKStringMap &headers)
     return value;
 }
 
-QString QSyncUtils::getAuthorizationCode(const QString &key, const QString &method, const TTKStringMap &headers, const QString &resource)
+QString QSyncUtils::authorizationCode(const QString &key, const QString &method, const TTKStringMap &headers, const QString &resource)
 {
     const QString &content_md5 = headers.value("Content-Md5", "");
     const QString &content_type = headers.value("Content-Type", "");
@@ -85,10 +85,10 @@ QString QSyncUtils::getAuthorizationCode(const QString &key, const QString &meth
 QString QSyncUtils::createSignForNormalAuth(const QString &method,  const QString &access, const QString &secret,
                                           const TTKStringMap &headers, const QString &resource)
 {
-    return QString("OSS ") + access + ":" + getAuthorizationCode(secret,  method, headers, resource);
+    return QString("OSS ") + access + ":" + authorizationCode(secret,  method, headers, resource);
 }
 
-QString QSyncUtils::getGMT()
+QString QSyncUtils::GMT()
 {
     QLocale local(QLocale::English, QLocale::UnitedStates);
     return local.toString(QDateTime::currentDateTime().toUTC(), "ddd, dd MMM yyyy hh:mm:ss") + " GMT";

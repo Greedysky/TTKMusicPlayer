@@ -39,9 +39,9 @@ public:
      */
     virtual void startToSearch(const QString &playlist) = 0;
     /*!
-     * Get playlist info.
+     * Query playlist info.
      */
-    virtual void getPlaylistInfo(MusicResultsItem &item) = 0;
+    virtual void queryPlaylistInfo(MusicResultsItem &item) = 0;
 
 Q_SIGNALS:
     /*!

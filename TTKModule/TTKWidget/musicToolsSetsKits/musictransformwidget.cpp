@@ -93,7 +93,7 @@ void MusicTransformWidget::initInputPath()
         }
         filter = filter.trimmed() + ")";
 
-        path = MusicUtils::File::getOpenFileDialog(this, filter);
+        path = MusicUtils::File::openFileDialog(this, filter);
         if(path.isEmpty() || m_path.contains(path))
         {
             return;
@@ -105,10 +105,10 @@ void MusicTransformWidget::initInputPath()
     }
     else
     {
-        path = MusicUtils::File::getOpenDirectoryDialog(this);
+        path = MusicUtils::File::openDirectoryDialog(this);
         if(!path.isEmpty())
         {
-            for(const QFileInfo &var : MusicUtils::File::getFileListByDir(path, true))
+            for(const QFileInfo &var : MusicUtils::File::fileListByDir(path, true))
             {
                 if(!m_path.contains(var.absoluteFilePath()) && supportedFormat.contains(var.suffix()))
                 {
@@ -128,14 +128,14 @@ void MusicTransformWidget::initInputPath()
 
 void MusicTransformWidget::initOutputPath()
 {
-    const QString &path = MusicUtils::File::getOpenDirectoryDialog(this);
+    const QString &path = MusicUtils::File::openDirectoryDialog(this);
     if(!path.isEmpty())
     {
         m_ui->outputLineEdit->setText(path);
     }
 }
 
-QString MusicTransformWidget::getTransformSongName() const
+QString MusicTransformWidget::transformSongName() const
 {
     if(m_path.isEmpty())
     {
@@ -207,12 +207,12 @@ bool MusicTransformWidget::processTransform(const QString &para)
                                 << "-ab" << m_ui->kbpsCombo->currentText() + "k"
                                 << "-ar" << m_ui->hzCombo->currentText()
                                 << "-ac" << QString::number(m_ui->msCombo->currentIndex() + 1)
-                                << QString("%1/%2-Transed.%3").arg(out).arg(getTransformSongName()).arg(m_ui->formatCombo->currentText().toLower()));
+                                << QString("%1/%2-Transed.%3").arg(out).arg(transformSongName()).arg(m_ui->formatCombo->currentText().toLower()));
     }
     else
     {
         TTK_LOGGER_INFO(QString("%1%2%3").arg(para).arg(in).arg(out));
-        m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out).arg(getTransformSongName()).arg(LRC_FILE));
+        m_process->start(para, QStringList() << in << QString("%1/%2%3").arg(out).arg(transformSongName()).arg(LRC_FILE));
     }
 
     return true;

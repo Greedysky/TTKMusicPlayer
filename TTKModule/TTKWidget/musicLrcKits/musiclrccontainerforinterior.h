@@ -96,7 +96,7 @@ public:
     /*!
      * Get current lrc size.
      */
-    int getLrcSize() const;
+    int lrcSize() const;
     /*!
      * Resize window bound by widget resize called.
      */
@@ -187,7 +187,7 @@ private Q_SLOTS:
     /*!
      * Get all lrcs from tr container.
      */
-    void getTranslatedLrc();
+    void translatedLrcData();
 
 protected:
     /*!

@@ -10,7 +10,7 @@ MusicWYTranslationRequest::MusicWYTranslationRequest(QObject *parent)
 
 void MusicWYTranslationRequest::startToDownload(const QString &data)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 startToSearch").arg(className()));
 
     Q_UNUSED(data);
     deleteAll();
@@ -26,7 +26,7 @@ void MusicWYTranslationRequest::startToDownload(const QString &data)
     QUrl url;
     if(!d->isEmpty())
     {
-        url.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->getMusicSongInfos().first().m_songId));
+        url.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_OLD_URL, false).arg(d->musicSongInfos().first().m_songId));
     }
 
     QNetworkRequest request;

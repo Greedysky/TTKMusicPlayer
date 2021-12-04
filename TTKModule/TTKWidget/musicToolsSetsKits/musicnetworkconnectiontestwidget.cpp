@@ -161,7 +161,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
 
 MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     qDeleteAll(m_connectionItems);
     delete m_ui;
 }

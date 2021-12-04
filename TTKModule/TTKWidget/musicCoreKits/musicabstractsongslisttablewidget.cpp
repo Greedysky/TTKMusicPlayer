@@ -89,8 +89,8 @@ void MusicAbstractSongsListTableWidget::musicOpenFileDir()
         return;
     }
 
-    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
-    if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(getCurrentSongName(), ALG_ARC_KEY, true))
+    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).musicPath() : QString();
+    if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(currentSongName(), ALG_ARC_KEY, true))
     {
         //cache song should not allow open url
         return;
@@ -110,7 +110,7 @@ void MusicAbstractSongsListTableWidget::musicFileInformation()
     }
 
     MusicFileInformationWidget file;
-    file.setFileInformation(getCurrentSongPath());
+    file.setFileInformation(currentSongPath());
     file.exec();
 }
 
@@ -121,7 +121,7 @@ void MusicAbstractSongsListTableWidget::musicSongMovieFound()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(getCurrentSongName(), QString());
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(currentSongName(), QString());
 }
 
 void MusicAbstractSongsListTableWidget::musicAlbumQueryWidget()
@@ -131,7 +131,7 @@ void MusicAbstractSongsListTableWidget::musicAlbumQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicAlbumFound(getCurrentSongName(), QString());
+    MusicRightAreaWidget::instance()->musicAlbumFound(currentSongName(), QString());
 }
 
 void MusicAbstractSongsListTableWidget::musicSimilarQueryWidget()
@@ -141,7 +141,7 @@ void MusicAbstractSongsListTableWidget::musicSimilarQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicSimilarFound(getCurrentSongName());
+    MusicRightAreaWidget::instance()->musicSimilarFound(currentSongName());
 }
 
 void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
@@ -152,7 +152,7 @@ void MusicAbstractSongsListTableWidget::musicSongSharedWidget()
     }
 
     QVariantMap data;
-    data["songName"] = getCurrentSongName();
+    data["songName"] = currentSongName();
 
     MusicSongSharingWidget shareWidget;
     shareWidget.setData(MusicSongSharingWidget::Song, data);
@@ -167,7 +167,7 @@ void MusicAbstractSongsListTableWidget::musicSongDownload()
     }
 
     MusicDownloadWidget *download = new MusicDownloadWidget;
-    download->setSongName(getCurrentSongName(), MusicAbstractQueryRequest::MusicQuery);
+    download->setSongName(currentSongName(), MusicAbstractQueryRequest::MusicQuery);
     download->show();
 }
 
@@ -178,7 +178,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedMovieFound()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(getSongName(m_playRowIndex), QString());
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(songName(m_playRowIndex), QString());
 }
 
 void MusicAbstractSongsListTableWidget::musicPlayedSimilarQueryWidget()
@@ -188,7 +188,7 @@ void MusicAbstractSongsListTableWidget::musicPlayedSimilarQueryWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicSimilarFound(getSongName(m_playRowIndex));
+    MusicRightAreaWidget::instance()->musicSimilarFound(songName(m_playRowIndex));
 }
 
 void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
@@ -199,7 +199,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedSharedWidget()
     }
 
     QVariantMap data;
-    data["songName"] = getSongName(m_playRowIndex);
+    data["songName"] = songName(m_playRowIndex);
 
     MusicSongSharingWidget shareWidget;
     shareWidget.setData(MusicSongSharingWidget::Song, data);
@@ -213,7 +213,7 @@ void MusicAbstractSongsListTableWidget::musicSongPlayedKMicroWidget()
         return;
     }
 
-    MusicLeftAreaWidget::instance()->createSoundKMicroWidget(getSongName(m_playRowIndex));
+    MusicLeftAreaWidget::instance()->createSoundKMicroWidget(songName(m_playRowIndex));
 }
 
 void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
@@ -223,37 +223,37 @@ void MusicAbstractSongsListTableWidget::createMoreMenu(QMenu *menu)
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("Share"), this, SLOT(musicSongSharedWidget()));
 }
 
-QString MusicAbstractSongsListTableWidget::getCurrentSongPath() const
+QString MusicAbstractSongsListTableWidget::currentSongPath() const
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
         return QString();
     }
 
-    return getSongPath(currentRow());
+    return songPath(currentRow());
 }
 
-QString MusicAbstractSongsListTableWidget::getSongPath(int index) const
+QString MusicAbstractSongsListTableWidget::songPath(int index) const
 {
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath().trimmed() : QString();
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicPath().trimmed() : QString();
 }
 
-QString MusicAbstractSongsListTableWidget::getCurrentSongName() const
+QString MusicAbstractSongsListTableWidget::currentSongName() const
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
         return QString();
     }
 
-    return getSongName(currentRow());
+    return songName(currentRow());
 }
 
-QString MusicAbstractSongsListTableWidget::getSongName(int index) const
+QString MusicAbstractSongsListTableWidget::songName(int index) const
 {
     if(rowCount() == 0 || index < 0)
     {
         return QString();
     }
 
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName().trimmed() : QString();
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).musicName().trimmed() : QString();
 }

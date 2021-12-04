@@ -3,12 +3,12 @@
 
 #include <QDirIterator>
 
-QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, bool recursively)
+QFileInfoList MusicUtils::File::fileListByDir(const QString &dpath, bool recursively)
 {
-    return getFileListByDir(dpath, QStringList(), recursively);
+    return fileListByDir(dpath, QStringList(), recursively);
 }
 
-QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively)
+QFileInfoList MusicUtils::File::fileListByDir(const QString &dpath, const QStringList &filter, bool recursively)
 {
     QDir dir(dpath);
     if(!dir.exists())
@@ -22,7 +22,7 @@ QFileInfoList MusicUtils::File::getFileListByDir(const QString &dpath, const QSt
         const QFileInfoList& folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         for(const QFileInfo &fileInfo : qAsConst(folderList))
         {
-            fileList.append(getFileListByDir(fileInfo.absoluteFilePath(), filter, recursively));
+            fileList.append(fileListByDir(fileInfo.absoluteFilePath(), filter, recursively));
         }
     }
 
@@ -80,22 +80,22 @@ bool MusicUtils::File::removeRecursively(const QString &dir, bool self)
     return success;
 }
 
-QString MusicUtils::File::getOpenDirectoryDialog(QWidget *obj)
+QString MusicUtils::File::openDirectoryDialog(QWidget *obj)
 {
     return QFileDialog::getExistingDirectory(obj, QString(), "./");
 }
 
-QString MusicUtils::File::getOpenFileDialog(QWidget *obj, const QString &filter)
+QString MusicUtils::File::openFileDialog(QWidget *obj, const QString &filter)
 {
     return QFileDialog::getOpenFileName(obj, QObject::tr("Choose a filename to open under"), QDir::currentPath(), filter);
 }
 
-QStringList MusicUtils::File::getOpenFilesDialog(QWidget *obj, const QString &filter)
+QStringList MusicUtils::File::openFilesDialog(QWidget *obj, const QString &filter)
 {
     return QFileDialog::getOpenFileNames(obj, QObject::tr("Choose a filename to open under"), QDir::currentPath(), filter);
 }
 
-QString MusicUtils::File::getSaveFileDialog(QWidget *obj, const QString &filter)
+QString MusicUtils::File::saveFileDialog(QWidget *obj, const QString &filter)
 {
     return QFileDialog::getSaveFileName(obj,  QObject::tr("Choose a filename to save under"), QDir::currentPath(), filter);
 }

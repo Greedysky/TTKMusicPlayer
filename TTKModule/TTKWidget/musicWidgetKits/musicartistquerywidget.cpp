@@ -155,7 +155,7 @@ void MusicArtistMvsQueryWidget::createArtistMvsItem(const MusicResultsItem &item
         m_pageQueryWidget = new MusicPageQueryWidget(m_mainWindow);
         connect(m_pageQueryWidget, SIGNAL(clicked(int)), SLOT(buttonClicked(int)));
 
-        const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+        const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
         m_mainWindow->layout()->addWidget(m_pageQueryWidget->createPageWidget(m_mainWindow, pageTotal));
     }
 
@@ -183,7 +183,7 @@ void MusicArtistMvsQueryWidget::buttonClicked(int index)
         delete w;
     }
 
-    const int pageTotal = ceil(m_networkRequest->getTotalSize() * 1.0 / m_networkRequest->getPageSize());
+    const int pageTotal = ceil(m_networkRequest->totalSize() * 1.0 / m_networkRequest->pageSize());
     m_pageQueryWidget->page(index, pageTotal);
     m_networkRequest->startToPage(m_pageQueryWidget->currentIndex() - 1);
 }
@@ -426,7 +426,7 @@ void MusicArtistQueryWidget::resizeWindow()
 
 void MusicArtistQueryWidget::queryAllFinished()
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));
@@ -459,7 +459,7 @@ void MusicArtistQueryWidget::queryArtistFinished()
         return;
     }
 
-    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(d->musicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_no_artist_found"));

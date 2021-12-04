@@ -60,23 +60,23 @@ public:
     /*!
      * Get background skin name.
      */
-    inline QString getBackgroundPath() const { return m_backgroundImagePath; }
+    inline QString backgroundPath() const { return m_backgroundImagePath; }
     /*!
      * Get background skin alpha.
      */
-    inline int getBackgroundAlpha() const { return m_backgroundAlpha; }
+    inline int backgroundAlpha() const { return m_backgroundAlpha; }
     /*!
      * Get list background skin alpha.
      */
-    int getBackgroundListAlpha();
+    int backgroundListAlpha();
     /*!
      * Get background window skin enable.
      */
-    bool getBackgroundTransparentEnable() const;
+    bool backgroundTransparentEnable() const;
     /*!
      * Get background skin pixmap.
      */
-    QPixmap getRendererPixmap() const;
+    QPixmap rendererPixmap() const;
 
     /*!
      * Stop background skin change timer.

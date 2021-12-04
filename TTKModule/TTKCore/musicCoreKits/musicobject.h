@@ -132,11 +132,11 @@
 #define SEARCH_PATH             "search.ttk"
 
 
-#define MAIN_DIR_FULL           MusicObject::getAppDir() + TTK_PDIR
+#define MAIN_DIR_FULL           MusicObject::applicationPath() + TTK_PDIR
 //
 #define DOWNLOAD_DIR_FULL       MAIN_DIR_FULL + DOWNLOAD_DIR
-#define APPDATA_DIR_FULL        MusicObject::getConfigDir() + APPDATA_DIR
-#define APPCACHE_DIR_FULL       MusicObject::getConfigDir() + APPCACHE_DIR
+#define APPDATA_DIR_FULL        MusicObject::configPath() + APPDATA_DIR
+#define APPCACHE_DIR_FULL       MusicObject::configPath() + APPCACHE_DIR
 //
 #define LRC_DIR_FULL            DOWNLOAD_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOAD_DIR_FULL + MUSIC_DIR
@@ -156,16 +156,16 @@
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 
-#define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
-#define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
-#define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
+#define THEME_DIR_FULL          MusicObject::applicationPath() + THEME_DIR
+#define PLUGINS_DIR_FULL        MusicObject::applicationPath() + PLUGINS_DIR
+#define LANGUAGE_DIR_FULL       MusicObject::applicationPath() + LANGUAGE_DIR
 
 
-#define MAKE_CONFIG_DIR_FULL    MusicObject::getAppDir() + MAKE_CONFIG_DIR
-#define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
-#define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC
-#define MAKE_PLAYER_FULL        MusicObject::getAppDir() + MAKE_PLAYER
-#define MAKE_GAIN_FULL          MusicObject::getAppDir() + MAKE_GAIN
+#define MAKE_CONFIG_DIR_FULL    MusicObject::applicationPath() + MAKE_CONFIG_DIR
+#define MAKE_TRANSFORM_FULL     MusicObject::applicationPath() + MAKE_TRANSFORM
+#define MAKE_KRC2LRC_FULL       MusicObject::applicationPath() + MAKE_KRC2LRC
+#define MAKE_PLAYER_FULL        MusicObject::applicationPath() + MAKE_PLAYER
+#define MAKE_GAIN_FULL          MusicObject::applicationPath() + MAKE_GAIN
 
 
 #define WINDOW_WIDTH_MIN        1000
@@ -260,7 +260,7 @@ namespace MusicObject
     /*!
      * Get application work dir.
      */
-    static QString getAppDir()
+    static QString applicationPath()
     {
         return QCoreApplication::applicationDirPath() + TTK_SEPARATOR;
     }
@@ -268,7 +268,7 @@ namespace MusicObject
     /*!
      * Get application config dir.
      */
-    static QString getConfigDir()
+    static QString configPath()
     {
         const bool portable = QFile::exists(MAIN_DIR_FULL + "ttk_portable");
 #ifdef Q_OS_WIN

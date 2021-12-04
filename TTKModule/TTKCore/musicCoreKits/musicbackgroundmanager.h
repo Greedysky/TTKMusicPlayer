@@ -42,7 +42,7 @@ public:
     /*!
      * Get artist photo current index.
      */
-    inline int getCurrentIndex() const { return m_currentIndex; }
+    inline int currentIndex() const { return m_currentIndex; }
     /*!
      * Set artist photo current index.
      */
@@ -68,20 +68,20 @@ public:
     /*!
      * Get artist photo path.
      */
-    QString getArtistPhotoPath();
+    QString artistPhotoPath();
     /*!
      * Get artist photo path no index.
      */
-    QString getArtistPhotoPathNoIndex();
+    QString artistPhotoPathNoIndex();
     /*!
      * Get artist photo path by given index.
      */
-    QString getArtistPhotoPathByIndex(int index = -1) const;
+    QString artistPhotoPathByIndex(int index = -1) const;
 
     /*!
      * Get artist photo path list.
      */
-    QStringList getArtistPhotoPathList() const;
+    QStringList artistPhotoPathList() const;
     /*!
      * Set artist photo path by given path list.
      */
@@ -107,7 +107,7 @@ public:
     /*!
      * Get artist background picture path.
      */
-    QString getBackgroundUrl() const;
+    QString backgroundUrl() const;
 
     /*!
      * Get artist background picture path.
@@ -142,7 +142,7 @@ protected:
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 };
 
-#define G_BACKGROUND_PTR GetMusicBackgroundManager()
-TTK_MODULE_EXPORT MusicBackgroundManager* GetMusicBackgroundManager();
+#define G_BACKGROUND_PTR makeMusicBackgroundManager()
+TTK_MODULE_EXPORT MusicBackgroundManager* makeMusicBackgroundManager();
 
 #endif // MUSICBACKGROUNDMANAGER_H

@@ -14,7 +14,7 @@ void MusicConfigObject::valid() const
     checkFileNeededExist();
 }
 
-QString MusicConfigObject::getAppPath() const
+QString MusicConfigObject::appPath() const
 {
     return TTK_SERVICE_FULL;
 }

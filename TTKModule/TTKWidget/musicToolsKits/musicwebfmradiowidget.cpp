@@ -100,7 +100,7 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
         return;
     }
 
-    const MusicFMRadioChannelDatas &channels = m_getChannelThread->getMusicChannel();
+    const MusicFMRadioChannelDatas &channels = m_getChannelThread->musicChannel();
     if(m_musicRadio == nullptr)
     {
         m_musicRadio = new MusicWebFMRadioPlayWidget(this);
@@ -115,7 +115,7 @@ void MusicWebFMRadioWidget::itemCellDoubleClicked(int row, int column)
 
 void MusicWebFMRadioWidget::addListWidgetItem()
 {
-    const MusicFMRadioChannelDatas &channels = m_getChannelThread->getMusicChannel();
+    const MusicFMRadioChannelDatas &channels = m_getChannelThread->musicChannel();
     for(const MusicFMRadioChannelData &channel : qAsConst(channels))
     {
         const int index = rowCount();
@@ -177,7 +177,7 @@ void MusicWebFMRadioWidget::downLoadFinished(const QByteArray &bytes)
         return;
     }
 
-    QTableWidgetItem *it = item(download->getHeader("id").toInt(), 1);
+    QTableWidgetItem *it = item(download->header("id").toInt(), 1);
     if(it)
     {
         QPixmap pix;
@@ -218,9 +218,9 @@ void MusicWebFMRadioWidget::sendToDesktopLink()
 
     MusicPlatformManager platform;
 #ifdef Q_OS_WIN
-    platform.setFileLink(MusicObject::getAppDir() + APP_EXE_NAME, desktop + TTK_SEPARATOR + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), tr("TTK Radio Link"));
+    platform.setFileLink(MusicObject::applicationPath() + APP_EXE_NAME, desktop + TTK_SEPARATOR + fileName + ".lnk", QString(), QString("%1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), tr("TTK Radio Link"));
 #else
-    platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::getAppDir(), fileName);
+    platform.setFileLink(QString(" %1 \"%2\"").arg(MUSIC_OUTSIDE_RADIO).arg(row), desktop, MAIN_DIR_FULL + APP_NAME, MusicObject::applicationPath(), fileName);
 #endif
 }
 

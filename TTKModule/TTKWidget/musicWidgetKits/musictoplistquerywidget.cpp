@@ -112,7 +112,7 @@ void MusicToplistQueryWidget::createLabels()
     QWidget *categoryWidget = new QWidget(function);
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
     m_categoryButton = new MusicToplistQueryCategoryPopWidget(categoryWidget);
-    m_categoryButton->setCategory(m_networkRequest->getQueryServer(), this);
+    m_categoryButton->setCategory(m_networkRequest->queryServer(), this);
     categoryWidgetLayout->addWidget(m_categoryButton);
     categoryWidgetLayout->addStretch(1);
     categoryWidget->setLayout(categoryWidgetLayout);

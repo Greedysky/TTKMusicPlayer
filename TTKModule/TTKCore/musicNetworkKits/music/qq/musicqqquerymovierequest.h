@@ -71,7 +71,7 @@ protected:
     /*!
      * Get movie key.
      */
-    QString getMovieKey(int id, const QString &videoId);
+    QString generateMovieKey(int id, const QString &videoId);
 
 };
 

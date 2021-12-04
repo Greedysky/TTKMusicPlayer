@@ -40,7 +40,7 @@ public:
     /*!
      * Get app path.
      */
-    QString getAppPath() const;
+    QString appPath() const;
     /*!
      * Init parameters.
      */

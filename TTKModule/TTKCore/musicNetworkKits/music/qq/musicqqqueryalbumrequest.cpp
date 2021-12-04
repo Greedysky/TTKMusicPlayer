@@ -8,7 +8,7 @@ MusicQQQueryAlbumRequest::MusicQQQueryAlbumRequest(QObject *parent)
 
 void MusicQQQueryAlbumRequest::startToSearch(const QString &album)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(album));
 
     deleteAll();
     m_queryText = album;
@@ -28,7 +28,7 @@ void MusicQQQueryAlbumRequest::startToSearch(const QString &album)
 
 void MusicQQQueryAlbumRequest::startToSingleSearch(const QString &artist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
+    TTK_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(className()).arg(artist));
 
     deleteAll();
 
@@ -47,7 +47,7 @@ void MusicQQQueryAlbumRequest::startToSingleSearch(const QString &artist)
 
 void MusicQQQueryAlbumRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryAlbumRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -143,7 +143,7 @@ void MusicQQQueryAlbumRequest::downLoadFinished()
 
 void MusicQQQueryAlbumRequest::singleDownLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(className()));
 
     MusicPageQueryRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());

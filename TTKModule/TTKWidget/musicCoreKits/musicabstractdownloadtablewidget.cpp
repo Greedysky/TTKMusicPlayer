@@ -11,15 +11,15 @@ MusicAbstractDownloadTableWidget::MusicAbstractDownloadTableWidget(QWidget *pare
 {
     m_delegate = new MusicProgressBarDelegate(this);
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemCellDoubleClicked(int,int)));
 }
 
 MusicAbstractDownloadTableWidget::~MusicAbstractDownloadTableWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     MusicDownloadRecordConfigManager xml(m_type, this);
     xml.writeDownloadData(*m_musicSongs);
     clear();
@@ -43,7 +43,7 @@ void MusicAbstractDownloadTableWidget::updateSongsFileName(const MusicSongs &son
     {
         MusicSong *song = &(*m_musicSongs)[i];
         createItem(i, *song);
-        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->getMusicAddTimeStr().toULongLong(), this, m_type));
+        G_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPairData(song->musicAddTimeStr().toULongLong(), this, m_type));
     }
 }
 
@@ -54,7 +54,7 @@ void MusicAbstractDownloadTableWidget::musicPlay()
         return;
     }
 
-    const QString &path = m_musicSongs->at(currentRow()).getMusicPath();
+    const QString &path = m_musicSongs->at(currentRow()).musicPath();
     Q_EMIT addSongToPlaylist(QStringList(QFile::exists(path) ? path : QString()));
 }
 
@@ -67,7 +67,7 @@ void MusicAbstractDownloadTableWidget::setDeleteItemAt()
        return;
     }
 
-    const TTKIntList deleteList(getMultiSelectedIndex());
+    const TTKIntList deleteList(multiSelectedIndex());
     if(deleteList.isEmpty())
     {
         return;

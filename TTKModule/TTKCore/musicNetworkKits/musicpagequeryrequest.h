@@ -42,15 +42,15 @@ public:
     /*!
      * Return the each page max size.
      */
-    inline int getPageSize() const { return m_pageSize; }
+    inline int pageSize() const { return m_pageSize; }
     /*!
      * Return the total number.
      */
-    inline int getTotalSize() const { return m_totalSize; }
+    inline int totalSize() const { return m_totalSize; }
     /*!
      * Return the page index number.
      */
-    inline int getPageIndex() const { return m_pageIndex; }
+    inline int pageIndex() const { return m_pageIndex; }
 
 protected:
     int m_pageSize, m_totalSize, m_pageIndex;

@@ -102,7 +102,7 @@ Q_SIGNALS:
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void getMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
+    void queryMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
     /*!
      * Add or remove music list song to lovest list by row.
      */

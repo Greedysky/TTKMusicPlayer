@@ -46,7 +46,7 @@ public:
     /*!
      * Get selected colors.
      */
-    QList<QColor> getColors() const;
+    QList<QColor> colors() const;
 
 public Q_SLOTS:
     /*!

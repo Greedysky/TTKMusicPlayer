@@ -51,7 +51,7 @@ void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItems *items)
     }
 }
 
-TTKIntList MusicSongItemSelectedTableWidget::getSelectedItems() const
+TTKIntList MusicSongItemSelectedTableWidget::selectedItems() const
 {
     TTKIntList list;
     for(int i=0; i<rowCount(); ++i)
@@ -121,7 +121,7 @@ void MusicSongItemSelectedDialog::createAllItems(MusicSongItems *items)
 
 void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
-    Q_EMIT itemListChanged(m_ui->itemTableWidget->getSelectedItems());
+    Q_EMIT itemListChanged(m_ui->itemTableWidget->selectedItems());
     accept();
 }
 
@@ -158,22 +158,22 @@ MusicSongItemSelectedAreaWidget::MusicSongItemSelectedAreaWidget(QWidget *parent
 
     connect(m_modifiedItemButton, SIGNAL(clicked()), SLOT(modifiedItemButtonClicked()));
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicSongItemSelectedAreaWidget::~MusicSongItemSelectedAreaWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
     delete m_label;
     delete m_itemLabel;
     delete m_modifiedItemButton;
 }
 
-MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
+MusicSongs MusicSongItemSelectedAreaWidget::selectedSongItems()
 {
     MusicSongItems songs;
-    Q_EMIT getMusicItemList(songs);
+    Q_EMIT queryMusicItemList(songs);
 
     MusicSongs selectedSongs;
     for(const MusicSongItem &item : qAsConst(songs))
@@ -199,7 +199,7 @@ MusicSongs MusicSongItemSelectedAreaWidget::getSelectedSongItems()
 void MusicSongItemSelectedAreaWidget::modifiedItemButtonClicked()
 {
     MusicSongItems songs;
-    Q_EMIT getMusicItemList(songs);
+    Q_EMIT queryMusicItemList(songs);
 
     m_selected = true;
 

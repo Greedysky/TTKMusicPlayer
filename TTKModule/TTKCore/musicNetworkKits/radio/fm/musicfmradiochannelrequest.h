@@ -52,7 +52,7 @@ public:
     /*!
      * Get music channel.
      */
-    inline const MusicFMRadioChannelDatas& getMusicChannel() const { return m_channels; }
+    inline const MusicFMRadioChannelDatas& musicChannel() const { return m_channels; }
 
 public Q_SLOTS:
     /*!

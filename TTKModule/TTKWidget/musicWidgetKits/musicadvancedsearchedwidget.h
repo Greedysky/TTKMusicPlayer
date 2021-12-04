@@ -56,7 +56,7 @@ protected:
     /*!
      * Get search key.
      */
-    QString getSearchedKeyWork(int type, const QString &url);
+    QString searchedKeyWork(int type, const QString &url);
 
     QTabWidget *m_tabWidget;
     MusicLocalSongSearchEdit *m_songEdit, *m_artistEdit;

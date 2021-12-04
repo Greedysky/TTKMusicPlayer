@@ -60,7 +60,7 @@ static void checkCacheSize()
     }
 }
 
-static QString getLanguageName(int index)
+static QString languageName(int index)
 {
     QString lan(LANGUAGE_DIR_FULL);
     switch(index)
@@ -102,7 +102,7 @@ void MusicRunTimeManager::run() const
 QString MusicRunTimeManager::translator() const
 {
     const int index = G_SETTING_PTR->value(MusicSettingManager::CurrentLanIndex).toInt();
-    return File::getLanguageName(index);
+    return File::languageName(index);
 }
 
 bool MusicRunTimeManager::configVersionCheck() const

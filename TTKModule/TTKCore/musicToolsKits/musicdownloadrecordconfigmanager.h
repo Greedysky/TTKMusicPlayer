@@ -42,7 +42,7 @@ public:
     /*!
      * Get config type.
      */
-    inline MusicObject::RecordType getType() const { return m_type; }
+    inline MusicObject::RecordType type() const { return m_type; }
 
     /*!
      * Read history download datas from xml file by given name.

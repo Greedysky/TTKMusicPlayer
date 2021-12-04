@@ -22,7 +22,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(QueryType type, const QString &p
 
 void MusicKWQueryPlaylistRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -42,7 +42,7 @@ void MusicKWQueryPlaylistRequest::startToPage(int offset)
 
 void MusicKWQueryPlaylistRequest::startToSearch(const QString &playlist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(playlist));
 
     deleteAll();
 
@@ -51,7 +51,7 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &playlist)
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
-    connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(queryDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -59,9 +59,9 @@ void MusicKWQueryPlaylistRequest::startToSearch(const QString &playlist)
 #endif
 }
 
-void MusicKWQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
+void MusicKWQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
+    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className()).arg(item.m_id));
 
     MusicPageQueryRequest::downLoadFinished();
 
@@ -95,7 +95,7 @@ void MusicKWQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicKWQueryPlaylistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -120,7 +120,7 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
 
                     value = var.toMap();
                     TTK_NETWORK_QUERY_CHECK();
-                    getMorePlaylistDetails(value["sourceid"].toString());
+                    morePlaylistDetails(value["sourceid"].toString());
                     TTK_NETWORK_QUERY_CHECK();
                 }
             }
@@ -131,9 +131,9 @@ void MusicKWQueryPlaylistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicKWQueryPlaylistRequest::getDetailsFinished()
+void MusicKWQueryPlaylistRequest::queryDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 queryDetailsFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
@@ -202,9 +202,9 @@ void MusicKWQueryPlaylistRequest::getDetailsFinished()
     Q_EMIT downLoadDataChanged(QString());
 }
 
-void MusicKWQueryPlaylistRequest::getMorePlaylistDetailsFinished()
+void MusicKWQueryPlaylistRequest::queryMorePlaylistDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 getMorePlaylistDetailsFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 queryMorePlaylistDetailsFinished").arg(className()));
 
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
@@ -232,16 +232,16 @@ void MusicKWQueryPlaylistRequest::getMorePlaylistDetailsFinished()
     }
 }
 
-void MusicKWQueryPlaylistRequest::getMorePlaylistDetails(const QString &pid)
+void MusicKWQueryPlaylistRequest::morePlaylistDetails(const QString &pid)
 {
-    TTK_LOGGER_INFO(QString("%1 getMorePlaylistDetails %2").arg(getClassName()).arg(pid));
+    TTK_LOGGER_INFO(QString("%1 morePlaylistDetails %2").arg(className()).arg(pid));
 
     QNetworkRequest request;
     request.setUrl(MusicUtils::Algorithm::mdII(KW_PLAYLIST_INFO_URL, false).arg(pid));
     MusicKWInterface::makeRequestRawHeader(&request);
 
     QNetworkReply *reply = m_manager.get(request);
-    connect(reply, SIGNAL(finished()), SLOT(getMorePlaylistDetailsFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(queryMorePlaylistDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else

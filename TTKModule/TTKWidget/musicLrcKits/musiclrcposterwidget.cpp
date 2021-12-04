@@ -22,11 +22,11 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
 {
     m_type = Type_01;
 
-    m_pixmap.load(G_BACKGROUND_PTR->getArtistPhotoPathNoIndex());
+    m_pixmap.load(G_BACKGROUND_PTR->artistPhotoPathNoIndex());
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;
-        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->getBackgroundUrl());
+        MusicExtractWrapper::outputSkin(&image, G_BACKGROUND_PTR->backgroundUrl());
         m_pixmap = image.m_pix;
     }
 }
@@ -1014,7 +1014,7 @@ void MusicLrcPosterWidget::setCurrentLrcs(const QStringList &lrcs, const QString
 
 void MusicLrcPosterWidget::openButtonClicked()
 {
-    const QString &path = MusicUtils::File::getOpenFileDialog(this);
+    const QString &path = MusicUtils::File::openFileDialog(this);
     if(path.isEmpty())
     {
         return;
@@ -1025,7 +1025,7 @@ void MusicLrcPosterWidget::openButtonClicked()
 
 void MusicLrcPosterWidget::saveButtonClicked()
 {
-    const QString &path = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &path = MusicUtils::File::saveFileDialog(this, "Jpeg(*.jpg)");
     if(!path.isEmpty())
     {
         QRect rect = m_itemWidget->rect();

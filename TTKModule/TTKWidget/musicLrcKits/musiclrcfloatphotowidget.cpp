@@ -86,7 +86,7 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
 
 void MusicLrcFloatPhotoItem::exportArtPixmap()
 {
-    const QString &path = MusicUtils::File::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &path = MusicUtils::File::saveFileDialog(this, "Jpeg(*.jpg)");
     if(!path.isEmpty())
     {
         QPixmap pix(m_pixPath);
@@ -280,7 +280,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     }
 
     m_selectNum.clear();
-    m_artPath = G_BACKGROUND_PTR->getArtistPhotoPathList();
+    m_artPath = G_BACKGROUND_PTR->artistPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;

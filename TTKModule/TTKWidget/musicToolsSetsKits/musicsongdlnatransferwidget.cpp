@@ -72,14 +72,14 @@ MusicSongDlnaTransferWidget::MusicSongDlnaTransferWidget(QWidget *parent)
     connect(m_ui->refreshButton, SIGNAL(clicked()), SLOT(startToScan()));
     connect(m_dlnaFinder, SIGNAL(finished()), SLOT(scanFinished()));
 
-    G_CONNECTION_PTR->setValue(getClassName(), this);
-    G_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+    G_CONNECTION_PTR->setValue(className(), this);
+    G_CONNECTION_PTR->poolConnect(className(), MusicSongsSummariziedWidget::className());
 }
 
 MusicSongDlnaTransferWidget::~MusicSongDlnaTransferWidget()
 {
-    G_CONNECTION_PTR->removeValue(getClassName());
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_CONNECTION_PTR->removeValue(className());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     delete m_dlnaFinder;
     delete m_ui;
 }
@@ -131,7 +131,7 @@ void MusicSongDlnaTransferWidget::musicPlay()
     }
 
     MusicSongItems songs;
-    Q_EMIT getMusicItemList(songs);
+    Q_EMIT queryMusicItemList(songs);
 
     if(songs.empty())
     {
@@ -146,11 +146,11 @@ void MusicSongDlnaTransferWidget::musicPlay()
     }
 
     const MusicSong &song = (*m_musicSongs)[m_currentPlayIndex];
-    QFileInfo info(song.getMusicPath());
+    QFileInfo info(song.musicPath());
 
     QDlnaClient *client = m_dlnaFinder->client(index);
     m_dlnaFileServer->setPrefixPath(info.path());
-    client->tryToPlayFile(m_dlnaFileServer->getLocalAddress(client->server()) + info.fileName());
+    client->tryToPlayFile(m_dlnaFileServer->localAddress(client->server()) + info.fileName());
 }
 
 void MusicSongDlnaTransferWidget::musicPrevious()

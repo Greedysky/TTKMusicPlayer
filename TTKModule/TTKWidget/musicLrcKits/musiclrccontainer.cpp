@@ -47,7 +47,7 @@ void MusicLrcContainer::setCurrentTime(qint64 time, qint64 total)
     m_totalTime = total;
 }
 
-qint64 MusicLrcContainer::getTotalTime() const
+qint64 MusicLrcContainer::totalTime() const
 {
     return m_totalTime;
 }

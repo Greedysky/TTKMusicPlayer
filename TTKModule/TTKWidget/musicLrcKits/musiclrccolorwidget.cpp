@@ -63,7 +63,7 @@ void MusicLrcColorWidget::setColors(const QList<QColor> &colors)
     }
 }
 
-QList<QColor> MusicLrcColorWidget::getColors() const
+QList<QColor> MusicLrcColorWidget::colors() const
 {
     QList<QColor> colors;
     for(int i=0; i<m_ui->listWidget->count(); ++i)
@@ -79,10 +79,10 @@ QList<QColor> MusicLrcColorWidget::getColors() const
 
 void MusicLrcColorWidget::addButtonClicked()
 {
-    MusicColorDialog getColor(this);
-    if(getColor.exec())
+    MusicColorDialog dialog(this);
+    if(dialog.exec())
     {
-        const QColor &color = getColor.color();
+        const QColor &color = dialog.color();
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
 #if TTK_QT_VERSION_CHECK(5,13,0)
         it->setBackground(color);
@@ -104,10 +104,10 @@ void MusicLrcColorWidget::deleteButtonClicked()
 
 void MusicLrcColorWidget::modifyButtonClicked()
 {
-    MusicColorDialog getColor(this);
-    if(getColor.exec())
+    MusicColorDialog dialog(this);
+    if(dialog.exec())
     {
-        const QColor &color = getColor.color();
+        const QColor &color = dialog.color();
         QListWidgetItem *it = m_ui->listWidget->currentItem();
         if(it)
         {

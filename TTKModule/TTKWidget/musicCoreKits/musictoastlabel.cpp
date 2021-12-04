@@ -39,7 +39,7 @@ void MusicToastLabel::setFontMargin(int height, int width)
     m_margin.setY(width);
 }
 
-int MusicToastLabel::getTimerInterval() const
+int MusicToastLabel::timerInterval() const
 {
     return m_timer.interval();
 }

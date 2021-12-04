@@ -22,12 +22,12 @@ void MusicColorPreviewLabel::setColors(const QList<QColor> &colors)
     update();
 }
 
-QList<QColor> MusicColorPreviewLabel::getColors() const
+QList<QColor> MusicColorPreviewLabel::colors() const
 {
     return m_gradientColors;
 }
 
-QColor MusicColorPreviewLabel::getColor() const
+QColor MusicColorPreviewLabel::color() const
 {
     return !m_gradientColors.empty() ? m_gradientColors.first() :  QColor();
 }

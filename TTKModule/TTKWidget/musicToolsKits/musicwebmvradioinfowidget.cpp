@@ -30,7 +30,7 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicAbstractQueryRequest *qu
 
 void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
 {
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -49,7 +49,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
         case 5:
         case 6:
         {
-            const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+            const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
             if(row < 0 || row >= musicSongInfos.count())
             {
                 return;
@@ -65,7 +65,7 @@ void MusicWebMVRadioInfoTableWidget::itemCellClicked(int row, int column)
 void MusicWebMVRadioInfoTableWidget::actionChanged(QAction *action)
 {
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -87,7 +87,7 @@ void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const int row = currentRow();
-    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_networkRequest->musicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

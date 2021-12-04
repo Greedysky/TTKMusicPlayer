@@ -60,7 +60,7 @@ void MusicGifLabelWidget::setType(Type type)
     }
 }
 
-MusicGifLabelWidget::Type MusicGifLabelWidget::getType() const
+MusicGifLabelWidget::Type MusicGifLabelWidget::type() const
 {
     return m_type;
 }
@@ -70,7 +70,7 @@ void MusicGifLabelWidget::setInterval(int value)
     m_timer->setInterval(value);
 }
 
-int MusicGifLabelWidget::getInterval() const
+int MusicGifLabelWidget::interval() const
 {
     return m_timer->interval();
 }
@@ -80,7 +80,7 @@ void MusicGifLabelWidget::setInfinited(bool s)
     m_infinited = s;
 }
 
-bool MusicGifLabelWidget::getInfinited() const
+bool MusicGifLabelWidget::infinited() const
 {
     return m_infinited;
 }
@@ -276,9 +276,9 @@ void MusicGifLabelMaskWidget::setType(MusicGifLabelWidget::Type type)
     m_gifLabel->setType(type);
 }
 
-MusicGifLabelWidget::Type MusicGifLabelMaskWidget::getType() const
+MusicGifLabelWidget::Type MusicGifLabelMaskWidget::type() const
 {
-    return m_gifLabel->getType();
+    return m_gifLabel->type();
 }
 
 void MusicGifLabelMaskWidget::run(bool run)

@@ -56,7 +56,7 @@ void TTKRunObject::run(int argc, char **argv) const
     }
 
     MusicConfigObject object;
-    d->m_process->start(object.getAppPath(), list);
+    d->m_process->start(object.appPath(), list);
 }
 
 void TTKRunObject::finished(int code)

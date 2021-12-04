@@ -44,7 +44,7 @@ public:
     QString stopPlay(int instance);
     QString pause(int instance);
 
-    QString getPosition();
+    QString position();
     int totalSeconds(const QString &value);
 
 private:

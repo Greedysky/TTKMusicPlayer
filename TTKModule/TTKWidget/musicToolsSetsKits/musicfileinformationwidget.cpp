@@ -71,7 +71,7 @@ void MusicFileInformationWidget::openFileDir()
 
 void MusicFileInformationWidget::openImageFileDir()
 {
-    m_imagePath = MusicUtils::File::getOpenFileDialog(this);
+    m_imagePath = MusicUtils::File::openFileDialog(this);
     if(m_imagePath.isEmpty())
     {
         return;
@@ -101,7 +101,7 @@ void MusicFileInformationWidget::advanceClicked()
         MusicSongMeta meta;
         if(meta.read(m_path))
         {
-            pix = meta.getCover();
+            pix = meta.cover();
         }
 
         QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
@@ -144,12 +144,12 @@ void MusicFileInformationWidget::saveAlbumPicture()
     MusicSongMeta meta;
     if(meta.read(m_path))
     {
-        pix = meta.getCover();
+        pix = meta.cover();
     }
 
     if(!pix.isNull())
     {
-        const QString &path = MusicUtils::File::getSaveFileDialog(this);
+        const QString &path = MusicUtils::File::saveFileDialog(this);
         if(!path.isEmpty())
         {
             pix.save(path);
@@ -231,25 +231,25 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
 
     MusicSongMeta meta;
     const bool state = meta.read(m_path = name);
-    const QFileInfo fin(meta.getFileRelatedPath());
+    const QFileInfo fin(meta.fileRelatedPath());
 
     QString check;
     m_ui->filePathEdit->setText((check = fin.filePath()).isEmpty() ? TTK_DEFAULT_STR : check);
     m_ui->fileFormatEdit->setText((check = fin.suffix()).isEmpty() ? TTK_DEFAULT_STR : check);
     m_ui->fileSizeEdit->setText((check = MusicUtils::Number::sizeByte2Label(fin.size())).isEmpty() ? TTK_DEFAULT_STR : check);
 
-    m_ui->fileAlbumEdit->setText(state ? ((check = meta.getAlbum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileArtistEdit->setText(state ? ((check = meta.getArtist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileGenreEdit->setText(state ? ((check = meta.getGenre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileTitleEdit->setText(state ? ((check = meta.getTitle()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileYearEdit->setText(state ? ((check = meta.getYear()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->fileTimeEdit->setText(state ? ((check = meta.getLengthString()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileAlbumEdit->setText(state ? ((check = meta.album()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileArtistEdit->setText(state ? ((check = meta.artist()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileGenreEdit->setText(state ? ((check = meta.genre()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileTitleEdit->setText(state ? ((check = meta.title()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileYearEdit->setText(state ? ((check = meta.year()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->fileTimeEdit->setText(state ? ((check = meta.lengthString()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
 
-    m_ui->BitrateEdit->setText(state ? ((check = (meta.getBitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->ChannelEdit->setText(state ? ((check = meta.getChannel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->SamplingRateEdit->setText(state ? ((check = meta.getSampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->TrackNumEdit->setText(state ? ((check = meta.getTrackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
-    m_ui->decoderLabel->setText(state ? ((check = meta.getDecoder()).isEmpty() ? TTK_DEFAULT_STR : check.toUpper()) : TTK_DEFAULT_STR);
+    m_ui->BitrateEdit->setText(state ? ((check = (meta.bitrate())).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->ChannelEdit->setText(state ? ((check = meta.channel()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->SamplingRateEdit->setText(state ? ((check = meta.sampleRate()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->TrackNumEdit->setText(state ? ((check = meta.trackNum()).isEmpty() ? TTK_DEFAULT_STR : check) : TTK_DEFAULT_STR);
+    m_ui->decoderLabel->setText(state ? ((check = meta.decoder()).isEmpty() ? TTK_DEFAULT_STR : check.toUpper()) : TTK_DEFAULT_STR);
 
     QColor color;
     QString bitrate;

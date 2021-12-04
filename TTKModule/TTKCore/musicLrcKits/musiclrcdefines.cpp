@@ -9,12 +9,12 @@ MusicLrcDefines::MusicLrcDefines()
                     << "31" << "32" << "33" << "34" << "35" << "36";
 }
 
-QStringList MusicLrcDefines::getInteriorLrcSize() const
+QStringList MusicLrcDefines::interiorLrcSize() const
 {
     return m_interiorLrcSize;
 }
 
-QStringList MusicLrcDefines::getDesktopLrcSize() const
+QStringList MusicLrcDefines::desktopLrcSize() const
 {
     return m_desktopLrcSize;
 }

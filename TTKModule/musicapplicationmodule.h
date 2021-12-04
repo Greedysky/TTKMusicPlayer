@@ -50,7 +50,7 @@ public:
     /*!
      * Get current window is to top.
      */
-    inline bool getWindowToTop() const { return m_setWindowToTop; }
+    inline bool windowToTop() const { return m_setWindowToTop; }
 
     /*!
      * Is lasted version.

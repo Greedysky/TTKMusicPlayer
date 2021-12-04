@@ -96,7 +96,7 @@ protected:
 
 };
 
-#define G_DISPATCH_PTR GetMusicDispatchManager()
-TTK_MODULE_EXPORT MusicDispatchManager* GetMusicDispatchManager();
+#define G_DISPATCH_PTR makeMusicDispatchManager()
+TTK_MODULE_EXPORT MusicDispatchManager* makeMusicDispatchManager();
 
 #endif // MUSICDISPATCHMANAGER_H

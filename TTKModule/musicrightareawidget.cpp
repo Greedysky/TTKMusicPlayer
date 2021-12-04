@@ -138,7 +138,7 @@ void MusicRightAreaWidget::setCurrentPlayStatus(bool status) const
     m_musicLrcForDesktop->setCurrentPlayStatus(status);
 }
 
-bool MusicRightAreaWidget::getDestopLrcVisible() const
+bool MusicRightAreaWidget::destopLrcVisible() const
 {
     return m_musicLrcForDesktop->isVisible();
 }
@@ -148,7 +148,7 @@ void MusicRightAreaWidget::setInteriorLrcVisible(bool status) const
     m_musicLrcForInterior->setVisible(status);
 }
 
-bool MusicRightAreaWidget::getInteriorLrcVisible() const
+bool MusicRightAreaWidget::interiorLrcVisible() const
 {
     return m_musicLrcForInterior->isVisible();
 }
@@ -775,7 +775,7 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
         m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
 #ifdef Q_OS_WIN
         MusicPlatformManager platform;
-        platform.setLeftWinEnabled();
+        platform.enabledLeftWinMode();
 #endif
         QTimer::singleShot(10 * MT_MS, this, SLOT(musicVideoActiveWindow()));
     }
@@ -843,7 +843,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
     {
 #ifdef Q_OS_WIN
         MusicPlatformManager platform;
-        platform.setLeftWinEnabled();
+        platform.enabledLeftWinMode();
 #endif
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_lrcAnalysis);

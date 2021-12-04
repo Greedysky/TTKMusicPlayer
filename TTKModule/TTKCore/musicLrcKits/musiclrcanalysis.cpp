@@ -22,19 +22,19 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 {
     clear();
 
-    QStringList getAllText = QString(data).split("\n");
+    QStringList allText = QString(data).split("\n");
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
-        getAllText[0].clear();
-        const int perTime = MusicApplication::instance()->duration() / getAllText.count();
-        for(const QString &oneLine : qAsConst(getAllText))
+        allText[0].clear();
+        const int perTime = MusicApplication::instance()->duration() / allText.count();
+        for(const QString &oneLine : qAsConst(allText))
         {
             m_lrcContainer.insert(perTime * m_lrcContainer.count(), oneLine);
         }
     }
     else
     {
-        for(const QString &oneLine : qAsConst(getAllText))
+        for(const QString &oneLine : qAsConst(allText))
         {
             matchLrcLine(oneLine);
         }
@@ -45,7 +45,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         return Failed;
     }
 
-    for(int i=0; i<getMiddle(); ++i)
+    for(int i=0; i<lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -62,7 +62,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         m_currentShowLrcContainer << it.value();
     }
 
-    for(int i=0; i<getMiddle(); ++i)
+    for(int i=0; i<lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -80,7 +80,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
 
     m_lrcContainer = data;
 
-    for(int i=0; i<getMiddle(); ++i)
+    for(int i=0; i<lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -97,7 +97,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const TTKIntStringMap &data
         m_currentShowLrcContainer << it.value();
     }
 
-    for(int i=0; i<getMiddle(); ++i)
+    for(int i=0; i<lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -132,9 +132,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         return Failed;
     }
 
-    const QString &getAllText = QString(krc.getDecodeString());
+    const QString &allText = QString(krc.decodeString());
     //The lyrics by line into the lyrics list
-    for(const QString &oneLine : getAllText.split(MusicUtils::String::newlines()))
+    for(const QString &oneLine : allText.split(MusicUtils::String::newlines()))
     {
         matchLrcLine(oneLine);
     }
@@ -145,7 +145,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         return Failed;
     }
 
-    for(int i=0; i<getMiddle(); ++i)
+    for(int i=0; i<lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -161,7 +161,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::readFromKrcFile(const QString &path)
         it.next();
         m_currentShowLrcContainer << it.value();
     }
-    for(int i=0; i<getMiddle(); ++i)
+    for(int i=0; i<lineMiddle(); ++i)
     {
         m_currentShowLrcContainer << QString();
     }
@@ -370,18 +370,6 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
     {
         m_currentLrcIndex = 0;
     }
-
-//    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
-//    {
-//        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
-//        {
-//            if((m_currentLrcIndex = i - getMiddle() - 1) < 0)
-//            {
-//                m_currentLrcIndex = 0;
-//            }
-//            break;
-//        }
-//    }
     return time;
 }
 
@@ -448,7 +436,7 @@ int MusicLrcAnalysis::count() const
     return m_lrcContainer.count();
 }
 
-QString MusicLrcAnalysis::getText(int index) const
+QString MusicLrcAnalysis::text(int index) const
 {
     index = m_currentLrcIndex + index;
     if(m_currentShowLrcContainer.count() <= index)
@@ -534,18 +522,18 @@ qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
     {
         if(copy.mid(i, ts.count()) == ts)
         {
-            return findTime(i + getMiddle());
+            return findTime(i + lineMiddle());
         }
     }
     return -1;
 }
 
-QStringList MusicLrcAnalysis::getAllLrcList() const
+QStringList MusicLrcAnalysis::generateLrcList() const
 {
     return m_lrcContainer.values();
 }
 
-QString MusicLrcAnalysis::getAllLrcString() const
+QString MusicLrcAnalysis::generateLrcString() const
 {
     QString clipString;
     for(const QString &s : m_lrcContainer.values())

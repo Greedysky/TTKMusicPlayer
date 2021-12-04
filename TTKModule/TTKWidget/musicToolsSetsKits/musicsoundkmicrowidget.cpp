@@ -66,7 +66,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_analysis->setLineMax(5);
     m_ui->musicPage->connectTo(this);
 
-    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    for(int i=0; i<m_analysis->lineMax(); ++i)
     {
         MusicLrcManagerForInterior *w = new MusicLrcManagerForInterior(this);
         w->setLrcPerWidth(-10);
@@ -96,7 +96,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
 {
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
     delete m_ui;
 }
 
@@ -130,7 +130,7 @@ void MusicSoundKMicroWidget::positionChanged(qint64 position)
         QString currentLrc, laterLrc;
         if(m_analysis->findText(m_ui->timeSlider->value(), m_ui->timeSlider->maximum(), currentLrc, laterLrc, m_intervalTime))
         {
-            if(currentLrc != m_musicLrcContainer[m_analysis->getMiddle()]->text())
+            if(currentLrc != m_musicLrcContainer[m_analysis->lineMiddle()]->text())
             {
                 if(m_analysis->isValid())
                 {
@@ -159,7 +159,7 @@ void MusicSoundKMicroWidget::playFinished()
 
         recordStateChanged(false);
 
-        const QString &path = MusicUtils::File::getSaveFileDialog(this, "Wav(*.wav)");
+        const QString &path = MusicUtils::File::saveFileDialog(this, "Wav(*.wav)");
         if(!path.isEmpty())
         {
             m_recordCore->addWavHeader(qPrintable(path));
@@ -187,11 +187,11 @@ void MusicSoundKMicroWidget::playButtonChanged()
     {
         if(m_mediaPlayer->state() == MusicObject::PlayingState)
         {
-            m_musicLrcContainer[m_analysis->getMiddle()]->startDrawLrcMask(m_intervalTime);
+            m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
         }
         else
         {
-            m_musicLrcContainer[m_analysis->getMiddle()]->stopDrawLrc();
+            m_musicLrcContainer[m_analysis->lineMiddle()]->stopDrawLrc();
             m_ui->musicPage->stop();
         }
     }
@@ -254,7 +254,7 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
     }
 
     m_analysis->setLrcData(bytes);
-    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    for(int i=0; i<m_analysis->lineMax(); ++i)
     {
         m_musicLrcContainer[i]->setText(QString());
     }
@@ -268,12 +268,12 @@ void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &bytes)
 
 void MusicSoundKMicroWidget::updateAnimationLrc()
 {
-    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    for(int i=0; i<m_analysis->lineMax(); ++i)
     {
-        m_musicLrcContainer[i]->setText(m_analysis->getText(i));
+        m_musicLrcContainer[i]->setText(m_analysis->text(i));
     }
-    m_analysis->setCurrentIndex(m_analysis->getCurrentIndex() + 1);
-    m_musicLrcContainer[m_analysis->getMiddle()]->startDrawLrcMask(m_intervalTime);
+    m_analysis->setCurrentIndex(m_analysis->currentIndex() + 1);
+    m_musicLrcContainer[m_analysis->lineMiddle()]->startDrawLrcMask(m_intervalTime);
 }
 
 void MusicSoundKMicroWidget::recordButtonClicked()
@@ -304,7 +304,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
 void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
-    G_SINGLE_MANAGER_PTR->removeObject(getClassName());
+    G_SINGLE_MANAGER_PTR->removeObject(className());
 
     qDeleteAll(m_musicLrcContainer);
     delete m_analysis;

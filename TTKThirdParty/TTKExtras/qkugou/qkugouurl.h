@@ -34,71 +34,71 @@ public:
     QKugouUrl();
 
     /*!
-     * Get Song Yueku Url.
+     Make Song Yueku Url.
      */
-    static QString getSongYuekuUrl();
+    static QString makeSongYuekuUrl();
     /*!
-     * Get Song Recommend Url.
+     Make Song Recommend Url.
      */
-    static QString getSongRecommendUrl();
+    static QString makeSongRecommendUrl();
     /*!
-     * Get Song Rank Url.
+     Make Song Rank Url.
      */
-    static QString getSongRankUrl();
+    static QString makeSongRankUrl();
     /*!
-     * Get Song Singer Url.
+     Make Song Singer Url.
      */
-    static QString getSongSingerUrl();
+    static QString makeSongSingerUrl();
     /*!
-     * Get Song Category Url.
+     Make Song Category Url.
      */
-    static QString getSongCategoryUrl();
+    static QString makeSongCategoryUrl();
 
 
     /*!
-     * Get Radio Public Url.
+     Make Radio Public Url.
      */
-    static QString getRadioPublicUrl();
+    static QString makeRadioPublicUrl();
     /*!
-     * Get Radio High Fm Url.
+     Make Radio High Fm Url.
      */
-    static QString getRadioHighFmUrl();
+    static QString makeRadioHighFmUrl();
     /*!
-     * Get Radio Fx Url.
+     Make Radio Fx Url.
      */
-    static QString getRadioFxUrl();
+    static QString makeRadioFxUrl();
 
 
     /*!
-     * Get List Url.
+     Make List Url.
      */
-    static QString getListUrl();
+    static QString makeListUrl();
 
 
     /*!
-     * Get MV Radio Url.
+     Make MV Radio Url.
      */
-    static QString getMVRadioUrl();
+    static QString makeMVRadioUrl();
     /*!
-     * Get MV Recommend Url.
+     Make MV Recommend Url.
      */
-    static QString getMVRecommendUrl();
+    static QString makeMVRecommendUrl();
     /*!
-     * Get MV Fanxing Url.
+     Make MV Fanxing Url.
      */
-    static QString getMVFanxingUrl();
+    static QString makeMVFanxingUrl();
 
 
     /*!
-     * Get Web Player Url.
+     Make Web Player Url.
      */
-    static QString getWebPlayerUrl();
+    static QString makeWebPlayerUrl();
 
 
     /*!
-     * Get KuiShe Url.
+     Make KuiShe Url.
      */
-    static QString getKuiSheUrl();
+    static QString makeKuiSheUrl();
 
 };
 

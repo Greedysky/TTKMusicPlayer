@@ -53,7 +53,7 @@ bool MusicLocalSongSearchDialog::close()
     return QDialog::close();
 }
 
-QString MusicLocalSongSearchDialog::getText() const
+QString MusicLocalSongSearchDialog::text() const
 {
     return m_searchLine->text();
 }

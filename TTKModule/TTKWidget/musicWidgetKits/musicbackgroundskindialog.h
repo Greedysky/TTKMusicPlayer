@@ -68,11 +68,11 @@ public:
     /*!
      * Get list background skin alpha.
      */
-    int getBackgroundListAlpha() const;
+    int backgroundListAlpha() const;
     /*!
      * Get background window skin enable.
      */
-    bool getBackgroundTransparentEnable() const;
+    bool backgroundTransparentEnable() const;
 
     /*!
      * Set skin transparent tool text.

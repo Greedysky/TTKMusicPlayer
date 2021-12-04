@@ -148,7 +148,7 @@ bool MusicMPRISPlayerBase::canSeek() const
 
 QString MusicMPRISPlayerBase::loopStatus() const
 {
-    switch(m_player->getPlayMode())
+    switch(m_player->playMode())
     {
         case MusicObject::PlayOneLoop: return "Track";
         case MusicObject::PlaylistLoop: return "Playlist";
@@ -282,7 +282,7 @@ void MusicMPRISPlayerBase::setRate(double value)
 
 bool MusicMPRISPlayerBase::shuffle() const
 {
-    return m_player->getPlayMode() == MusicObject::PlayRandom;
+    return m_player->playMode() == MusicObject::PlayRandom;
 }
 
 void MusicMPRISPlayerBase::setShuffle(bool value)

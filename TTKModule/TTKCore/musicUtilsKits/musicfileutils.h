@@ -31,11 +31,11 @@ namespace MusicUtils
         /*!
          * Get all files in given dir.
          */
-        TTK_MODULE_EXPORT QFileInfoList getFileListByDir(const QString &dpath, bool recursively);
+        TTK_MODULE_EXPORT QFileInfoList fileListByDir(const QString &dpath, bool recursively);
         /*!
          * Get all files in given dir.
          */
-        TTK_MODULE_EXPORT QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
+        TTK_MODULE_EXPORT QFileInfoList fileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
         /*!
          * Dir remove recursively.
          */
@@ -44,19 +44,19 @@ namespace MusicUtils
         /*!
          * Get open dir dialog.
          */
-        TTK_MODULE_EXPORT QString getOpenDirectoryDialog(QWidget *obj);
+        TTK_MODULE_EXPORT QString openDirectoryDialog(QWidget *obj);
         /*!
          * Get open file dialog.
          */
-        TTK_MODULE_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
+        TTK_MODULE_EXPORT QString openFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
         /*!
          * Get open files dialog.
          */
-        TTK_MODULE_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
+        TTK_MODULE_EXPORT QStringList openFilesDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
         /*!
          * Get save file dialog.
          */
-        TTK_MODULE_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
+        TTK_MODULE_EXPORT QString saveFileDialog(QWidget *obj, const QString &filter = "Images (*.png *.bmp *.jpg)");
 
     }
 }

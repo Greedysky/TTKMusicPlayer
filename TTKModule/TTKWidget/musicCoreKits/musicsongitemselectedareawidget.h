@@ -42,7 +42,7 @@ public:
     /*!
      * Get selected items.
      */
-    TTKIntList getSelectedItems() const;
+    TTKIntList selectedItems() const;
 
 public Q_SLOTS:
     /*!
@@ -117,13 +117,13 @@ public:
     /*!
      * Get selected song items.
      */
-    MusicSongs getSelectedSongItems();
+    MusicSongs selectedSongItems();
 
 Q_SIGNALS:
     /*!
-     * Get music datas from container.
+     * Query music datas from container.
      */
-    void getMusicItemList(MusicSongItems &songs);
+    void queryMusicItemList(MusicSongItems &songs);
     /*!
      * Confirm changed.
      */

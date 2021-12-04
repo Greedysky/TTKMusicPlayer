@@ -94,7 +94,7 @@ public:
     /*!
      * Get music key.
      */
-    QString getMusicPath(const QString &file, const QString &mid);
+    QString generateMusicPath(const QString &file, const QString &mid);
 
 };
 

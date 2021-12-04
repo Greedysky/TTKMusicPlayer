@@ -7,7 +7,7 @@
 void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
 {
     m_queueList << object;
-    const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusModule::getClassName());
+    const QObject *to = G_CONNECTION_PTR->value(MusicDownloadStatusModule::className());
     if(to)
     {
         QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));
@@ -28,9 +28,9 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPairData &pai
     QString className;
     switch(pair.m_type)
     {
-        case MusicObject::RecordNormalDownload: className = MusicDownloadRecordTableWidget::getClassName(); break;
-        case MusicObject::RecordCloudDownload: className = MusicCloudDownloadTableWidget::getClassName(); break;
-        case MusicObject::RecordCloudUpload: className = MusicCloudUploadTableWidget::getClassName(); break;
+        case MusicObject::RecordNormalDownload: className = MusicDownloadRecordTableWidget::className(); break;
+        case MusicObject::RecordCloudDownload: className = MusicCloudDownloadTableWidget::className(); break;
+        case MusicObject::RecordCloudUpload: className = MusicCloudUploadTableWidget::className(); break;
         default: break;
     }
 

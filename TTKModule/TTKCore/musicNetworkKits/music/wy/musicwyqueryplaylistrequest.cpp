@@ -22,7 +22,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(QueryType type, const QString &p
 
 void MusicWYQueryPlaylistRequest::startToPage(int offset)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(offset));
 
     deleteAll();
     m_totalSize = 0;
@@ -43,7 +43,7 @@ void MusicWYQueryPlaylistRequest::startToPage(int offset)
 
 void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
 {
-    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
+    TTK_LOGGER_INFO(QString("%1 startToSearch %2").arg(className()).arg(playlist));
 
     deleteAll();
 
@@ -53,7 +53,7 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
                       MusicUtils::Algorithm::mdII(WY_PLAYLIST_INFO_DATA_URL, false).arg(playlist));
 
     QNetworkReply *reply = m_manager.post(request, parameter);
-    connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
+    connect(reply, SIGNAL(finished()), SLOT(queryDetailsFinished()));
 #if TTK_QT_VERSION_CHECK(5,15,0)
     connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 #else
@@ -61,9 +61,9 @@ void MusicWYQueryPlaylistRequest::startToSearch(const QString &playlist)
 #endif
 }
 
-void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
+void MusicWYQueryPlaylistRequest::queryPlaylistInfo(MusicResultsItem &item)
 {
-    TTK_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
+    TTK_LOGGER_INFO(QString("%1 queryPlaylistInfo %2").arg(className()).arg(item.m_id));
 
     MusicPageQueryRequest::downLoadFinished();
 
@@ -113,7 +113,7 @@ void MusicWYQueryPlaylistRequest::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicWYQueryPlaylistRequest::downLoadFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 downLoadFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
@@ -169,9 +169,9 @@ void MusicWYQueryPlaylistRequest::downLoadFinished()
     deleteAll();
 }
 
-void MusicWYQueryPlaylistRequest::getDetailsFinished()
+void MusicWYQueryPlaylistRequest::queryDetailsFinished()
 {
-    TTK_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
+    TTK_LOGGER_INFO(QString("%1 queryDetailsFinished").arg(className()));
 
     MusicQueryPlaylistRequest::downLoadFinished();
     QNetworkReply *reply = TTKObject_cast(QNetworkReply*, QObject::sender());

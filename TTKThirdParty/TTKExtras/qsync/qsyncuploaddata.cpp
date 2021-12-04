@@ -36,7 +36,7 @@ void QSyncUploadData::uploadDataOperator(const QString &time, const QString &buc
     const QString &host = bucket + TTK_DOT + QSyncConf::HOST;
 
     TTKStringMap headers;
-    headers.insert("Date", QSyncUtils::getGMT());
+    headers.insert("Date", QSyncUtils::GMT());
     headers.insert("Host", host);
     headers.insert("Content-Type", "charset=utf-8");
 

@@ -48,7 +48,7 @@ public:
     /*!
      * Get timer interval.
      */
-    int getTimerInterval() const;
+    int timerInterval() const;
     /*!
      * Set context font size.
      */

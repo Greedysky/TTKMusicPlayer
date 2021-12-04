@@ -55,7 +55,7 @@ public:
     /*!
      * Get identify songs.
      */
-    inline const MusicSongIdentifyDatas& getIdentifySongs() const { return m_songIdentifys; }
+    inline const MusicSongIdentifyDatas& identifySongs() const { return m_songIdentifys; }
 
 Q_SIGNALS:
     /*!

@@ -142,7 +142,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->getMusicSongInfo();
+        info = m_songThread->musicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -155,7 +155,7 @@ void MusicWebFMRadioPlayWidget::radioResourceDownload()
     download->show();
 }
 
-void MusicWebFMRadioPlayWidget::getSongInfoFinished()
+void MusicWebFMRadioPlayWidget::querySongInfoFinished()
 {
     m_isPlaying = true;
     startToPlay();
@@ -176,7 +176,7 @@ void MusicWebFMRadioPlayWidget::createCoreModule()
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
-    connect(m_songThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
+    connect(m_songThread, SIGNAL(downLoadDataChanged(QString)), SLOT(querySongInfoFinished()));
 }
 
 void MusicWebFMRadioPlayWidget::startToPlay()
@@ -184,7 +184,7 @@ void MusicWebFMRadioPlayWidget::startToPlay()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->getMusicSongInfo();
+        info = m_songThread->musicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -235,7 +235,7 @@ void MusicWebFMRadioPlayWidget::lrcDownloadStateChanged()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->getMusicSongInfo();
+        info = m_songThread->musicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -253,7 +253,7 @@ void MusicWebFMRadioPlayWidget::picDownloadStateChanged()
     MusicObject::MusicSongInformation info;
     if(m_songThread)
     {
-        info = m_songThread->getMusicSongInfo();
+        info = m_songThread->musicSongInfo();
     }
 
     if(info.m_songAttrs.isEmpty())
@@ -288,15 +288,15 @@ void MusicWebFMRadioPlayWidget::positionChanged(qint64 position)
         return;
     }
 
-    const int index = m_analysis->getCurrentIndex();
+    const int index = m_analysis->currentIndex();
     const qint64 time = m_analysis->findTime(index);
 
     if(time < position * MT_S2MS && time != -1)
     {
         QString lrc;
-        for(int i=0; i<m_analysis->getLineMax(); ++i)
+        for(int i=0; i<m_analysis->lineMax(); ++i)
         {
-            if(i == m_analysis->getMiddle())
+            if(i == m_analysis->lineMiddle())
             {
                 lrc += QString("<p style='font-weight:600;' align='center'>");
             }
@@ -304,7 +304,8 @@ void MusicWebFMRadioPlayWidget::positionChanged(qint64 position)
             {
                 lrc += QString("<p align='center'>");
             }
-            lrc += m_analysis->getText(i);
+
+            lrc += m_analysis->text(i);
             lrc += QString("</p>");
         }
         m_ui->lrcLabel->setText(lrc);

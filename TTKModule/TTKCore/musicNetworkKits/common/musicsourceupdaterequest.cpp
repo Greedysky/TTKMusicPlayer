@@ -19,26 +19,26 @@ void MusicSourceUpdateRequest::startToDownload()
     download->startToDownload(QSyncUtils::makeDataBucketUrl() + OS_VERSION_URL);
 }
 
-QString MusicSourceUpdateRequest::getVersion() const
+QString MusicSourceUpdateRequest::version() const
 {
     return m_rawData["version"].toString();
 }
 
-QString MusicSourceUpdateRequest::getVersionDescription() const
+QString MusicSourceUpdateRequest::versionDescription() const
 {
     return m_rawData["data"].toString();
 }
 
 bool MusicSourceUpdateRequest::isLastedVersion() const
 {
-    const QString &version = getVersion();
-    if(version.isEmpty())
+    const QString &v = version();
+    if(v.isEmpty())
     {
         return true;
     }
     else
     {
-        return TTKMUSIC_VERSION_STR == version;
+        return TTKMUSIC_VERSION_STR == v;
     }
 }
 
