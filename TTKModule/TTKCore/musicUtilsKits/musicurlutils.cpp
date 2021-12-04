@@ -35,9 +35,9 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
         ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return true;
     }
-#elif defined Q_OS_LINUX
+#elif defined Q_OS_UNIX
     MusicPlatformManager platform;
-    if(platform.windowSystemName() == MusicPlatformManager::System_Linux_Ubuntu)
+    if(platform.systemName() == MusicPlatformManager::System_Linux_Ubuntu)
     {
         return QProcess::startDetached("nautilus", QStringList() << path);
     }

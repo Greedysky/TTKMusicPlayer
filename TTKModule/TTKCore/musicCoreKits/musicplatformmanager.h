@@ -50,6 +50,9 @@ public:
         System_WinServer_2012,
         System_Linux,
         System_Linux_Ubuntu,
+        System_Linux_Debian,
+        System_Linux_Arch,
+        System_Linux_CentOS,
         System_Mac,
         System_Unkown
     };
@@ -88,9 +91,9 @@ public:
     int logicalDotsPerInch() const;
 
     /*!
-     * Get local system name.
+     * Get system name.
      */
-    SystemType windowSystemName() const;
+    SystemType systemName() const;
     /*!
      * Set file link.
      */

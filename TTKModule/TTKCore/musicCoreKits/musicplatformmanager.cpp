@@ -132,7 +132,7 @@ int MusicPlatformManager::logicalDotsPerInch() const
     return (dpi.width() + dpi.height()) / 2;
 }
 
-MusicPlatformManager::SystemType MusicPlatformManager::windowSystemName() const
+MusicPlatformManager::SystemType MusicPlatformManager::systemName() const
 {
 #ifdef Q_OS_WIN
     typedef void(__stdcall*NTPROC)(DWORD*, DWORD*, DWORD*);
@@ -211,7 +211,32 @@ MusicPlatformManager::SystemType MusicPlatformManager::windowSystemName() const
         }
     }
     FreeLibrary(instance);
-#elif defined Q_OS_UNIX
+#elif defined Q_OS_LINUX
+    QFile lsb("/etc/lsb-release");
+    if(lsb.open(QFile::ReadOnly))
+    {
+        QRegExp regx("DISTRIB_ID=(\\w+)");
+        if(QString(lsb.readAll()).indexOf(regx) != -1)
+        {
+            const QString &system = regx.cap(1).toLower();
+            if(system == "ubuntu")
+            {
+                return System_Linux_Ubuntu;
+            }
+            else if(system == "debian")
+            {
+                return System_Linux_Debian;
+            }
+            else if(system == "arch")
+            {
+                return System_Linux_Arch;
+            }
+            else if(system == "centos")
+            {
+                return System_Linux_CentOS;
+            }
+        }
+    }
     return System_Linux;
 #else
     return System_Mac;
