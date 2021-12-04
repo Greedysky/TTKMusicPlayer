@@ -114,7 +114,7 @@ MusicDeviceInfoItems MusicDeviceInfoModule::removableDrive()
         }
         else if(type == DRIVE_FIXED)
         {
-            if(!getDisksProperty(path))
+            if(!disksProperty(path))
             {
                 continue;
             }
