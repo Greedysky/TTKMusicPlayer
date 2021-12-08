@@ -43,7 +43,7 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
         if(input->isSequential())
         {
             if(header.tagSize() >= dataSize)
-                return false;
+                return true;
 
             dataSize -= header.tagSize();
             memmove(buf, buf + header.tagSize(), dataSize);

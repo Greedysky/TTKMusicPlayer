@@ -45,8 +45,6 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *input) const
 
     if(filters.contains("*.wma") && formats.contains("asf"))
         return true;
-    else if(filters.contains("*.mp3") && formats.contains("mp3"))
-        return true;
     else if(filters.contains("*.aac") && formats.contains("aac"))
         return true;
     else if(filters.contains("*.ac3") && formats.contains("eac3"))
@@ -96,8 +94,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
         filters.removeAll("*.tta");
     if(!avcodec_find_decoder(AV_CODEC_ID_AAC))
         filters.removeAll("*.aac");
-    if(!avcodec_find_decoder(AV_CODEC_ID_MP3))
-        filters.removeAll("*.mp3");
     if(!avcodec_find_decoder(AV_CODEC_ID_AAC) && !avcodec_find_decoder(AV_CODEC_ID_ALAC))
     {
         filters.removeAll("*.m4a");
@@ -135,8 +131,6 @@ DecoderProperties DecoderFFmpegFactory::properties() const
 
     if(filters.contains("*.wma"))
         properties.contentTypes << "audio/x-ms-wma";
-    if(filters.contains("*.mp3"))
-        properties.contentTypes << "audio/mpeg";
     if(filters.contains("*.aac"))
         properties.contentTypes << "audio/aac" << "audio/aacp";
     if(filters.contains("*.shn"))

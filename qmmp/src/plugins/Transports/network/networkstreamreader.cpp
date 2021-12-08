@@ -133,7 +133,6 @@ void NetworkStreamReader::handleReadyRead()
             object->addStreamInfo(info);
         }
 
-        qDebug() <<info << metaData;
         m_stream.content_type = m_reply->header(QNetworkRequest::ContentTypeHeader).toString();
         qDebug("NetworkStreamReader: has ready");
         emit ready();
