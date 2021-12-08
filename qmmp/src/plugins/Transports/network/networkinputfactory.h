@@ -16,45 +16,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef FORMAT_H
-#define FORMAT_H
+#ifndef NETWORKINPUTFACTORY_H
+#define NETWORKINPUTFACTORY_H
 
-#include <QMap>
-#include <QStringList>
-#include "qmmp_export.h"
+#include <qmmp/inputsourcefactory.h>
 
-/*! @brief The input file format support
+/*!
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT Format
+class NetworkInputFactory : public QObject, InputSourceFactory
 {
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.InputSourceFactoryInterface.1.0")
+    Q_INTERFACES(InputSourceFactory)
 public:
-    /*!
-     * Check song track is valid or not.
-     */
-    static bool songTrackValid(const QString &file);
-    /*!
-     * Check song track contains type.
-     */
-    static bool songTrackTpyeContains(const QString &file);
-
-public:
-    /*!
-     * Get player supported formats.
-     */
-    static QStringList supportMusicFormats();
-    /*!
-     * Get player supported map formats.
-     */
-    static QMap<QString, QStringList> supportMusicMapFormats();
-    /*!
-     * Get player supported input filter formats.
-     */
-    static QStringList supportMusicInputFilterFormats();
-    /*!
-     * Get player supported input format .
-     */
-    static QStringList supportMusicInputFormats();
+    virtual InputSourceProperties properties() const override;
+    virtual InputSource *create(const QString &url, QObject *parent = nullptr) override;
+    virtual void showSettings(QWidget *parent) override;
 
 };
 

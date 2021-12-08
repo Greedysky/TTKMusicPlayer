@@ -16,45 +16,30 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ***************************************************************************/
 
-#ifndef FORMAT_H
-#define FORMAT_H
+#ifndef NETWORKINPUTSOURCE_H
+#define NETWORKINPUTSOURCE_H
 
-#include <QMap>
-#include <QStringList>
-#include "qmmp_export.h"
+#include <qmmp/inputsource.h>
 
-/*! @brief The input file format support
+class NetworkStreamReader;
+
+/*!
  * @author Greedysky <greedysky@163.com>
  */
-class QMMP_EXPORT Format
+class NetworkInputSource : public InputSource
 {
+Q_OBJECT
 public:
-    /*!
-     * Check song track is valid or not.
-     */
-    static bool songTrackValid(const QString &file);
-    /*!
-     * Check song track contains type.
-     */
-    static bool songTrackTpyeContains(const QString &file);
+    explicit NetworkInputSource(const QString &path, QObject *parent = nullptr);
 
-public:
-    /*!
-     * Get player supported formats.
-     */
-    static QStringList supportMusicFormats();
-    /*!
-     * Get player supported map formats.
-     */
-    static QMap<QString, QStringList> supportMusicMapFormats();
-    /*!
-     * Get player supported input filter formats.
-     */
-    static QStringList supportMusicInputFilterFormats();
-    /*!
-     * Get player supported input format .
-     */
-    static QStringList supportMusicInputFormats();
+    virtual QIODevice *ioDevice() const override;
+    virtual bool initialize() override;
+    virtual bool isReady() const override;
+    virtual bool isWaiting() const override;
+    virtual QString contentType() const override;
+
+private:
+    NetworkStreamReader *m_reader = nullptr;
 
 };
 
