@@ -32,11 +32,11 @@ public:
     /*!
      * Check song track is valid or not.
      */
-    static bool SongTrackValid(const QString &file);
+    static bool songTrackValid(const QString &file);
     /*!
      * Check song track contains type.
      */
-    static bool SongTrackTpyeContains(const QString &file);
+    static bool songTrackTpyeContains(const QString &file);
 
 public:
     /*!

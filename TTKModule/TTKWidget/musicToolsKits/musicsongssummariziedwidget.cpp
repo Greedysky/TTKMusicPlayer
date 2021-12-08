@@ -660,7 +660,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicSearchedItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    item->m_songs << MusicSong(songItem.m_albumName, 0, songItem.m_duration, songItem.m_songName);
+    item->m_songs << MusicSong(songItem.m_singerName, 0, songItem.m_duration, songItem.m_songName);
     item->m_itemObject->updateSongsFileName(item->m_songs);
     setItemTitle(item);
 

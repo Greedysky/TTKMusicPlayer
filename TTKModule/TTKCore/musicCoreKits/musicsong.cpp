@@ -130,7 +130,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
             songs << generateMusicSongList(path);
         }
     }
-    else if(MusicFormats::SongTrackTpyeContains(suffix))
+    else if(MusicFormats::songTrackTpyeContains(suffix))
     {
         MusicSongMeta meta;
         if(!meta.read(path))

@@ -156,16 +156,22 @@ void MusicPlayer::play()
 
 void MusicPlayer::pause()
 {
-    m_music->pause();
-    m_timer.stop();
-    m_state = MusicObject::PausedState;
+    if(m_state != MusicObject::PausedState)
+    {
+        m_music->pause();
+        m_timer.stop();
+        m_state = MusicObject::PausedState;
+    }
 }
 
 void MusicPlayer::stop()
 {
-    m_music->stop();
-    m_timer.stop();
-    m_state = MusicObject::StoppedState;
+    if(m_state != MusicObject::StoppedState)
+    {
+        m_music->stop();
+        m_timer.stop();
+        m_state = MusicObject::StoppedState;
+    }
 }
 
 void MusicPlayer::setEqEffect(const TTKIntList &hz)

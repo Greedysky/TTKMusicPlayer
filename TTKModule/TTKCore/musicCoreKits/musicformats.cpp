@@ -2,14 +2,14 @@
 
 #include <qmmp/format.h>
 
-bool MusicFormats::SongTrackValid(const QString &file)
+bool MusicFormats::songTrackValid(const QString &file)
 {
-    return Format::SongTrackValid(file);
+    return Format::songTrackValid(file);
 }
 
-bool MusicFormats::SongTrackTpyeContains(const QString &file)
+bool MusicFormats::songTrackTpyeContains(const QString &file)
 {
-    return Format::SongTrackTpyeContains(file);
+    return Format::songTrackTpyeContains(file);
 }
 
 QStringList MusicFormats::supportMusicFormats()
