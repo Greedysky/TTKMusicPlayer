@@ -21,7 +21,6 @@ bool MusicUtils::Url::execute(const QString &path)
 
 bool MusicUtils::Url::openUrl(const QString &path, bool local)
 {
-#ifdef Q_OS_WIN
     if(path.isEmpty())
     {
         return false;
@@ -29,19 +28,20 @@ bool MusicUtils::Url::openUrl(const QString &path, bool local)
 
     if(local)
     {
+#ifdef Q_OS_WIN
         QString p = path;
         p.replace(TTK_SEPARATOR, "\\");
         p = "/select," + p;
         ShellExecuteW(0, L"open", L"explorer.exe", p.toStdWString().c_str(), nullptr, SW_SHOWNORMAL);
         return true;
-    }
 #elif defined Q_OS_UNIX
-    MusicPlatformManager platform;
-    if(platform.systemName() == MusicPlatformManager::System_Linux_Ubuntu)
-    {
-        return QProcess::startDetached("nautilus", QStringList() << path);
-    }
+        MusicPlatformManager platform;
+        if(platform.systemName() == MusicPlatformManager::System_Linux_Ubuntu)
+        {
+            return QProcess::startDetached("nautilus", QStringList() << path);
+        }
 #endif
+    }
     return QDesktopServices::openUrl(local ? QUrl::fromLocalFile(path) : QUrl(path, QUrl::TolerantMode));
 }
 

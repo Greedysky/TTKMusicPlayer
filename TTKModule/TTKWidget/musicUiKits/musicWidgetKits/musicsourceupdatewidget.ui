@@ -29,7 +29,7 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="stackedWidget">
+  <widget class="QWidget" name="container">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -41,10 +41,7 @@
    <property name="styleSheet">
     <string notr="true">background:#FCFCFC;</string>
    </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <widget class="QWidget" name="first">
+   <widget class="QWidget" name="body">
     <widget class="QLabel" name="titleLable">
      <property name="geometry">
       <rect>
@@ -129,75 +126,6 @@
     <zorder>upgradeButton</zorder>
     <zorder>cancelButton</zorder>
    </widget>
-   <widget class="QWidget" name="second">
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <widget class="QLabel" name="timeLabel">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>125</y>
-       <width>201</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color:rgb(100, 100, 100);</string>
-     </property>
-     <property name="text">
-      <string>估计剩余时间: --</string>
-     </property>
-    </widget>
-    <widget class="QProgressBar" name="downProgressBar">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>160</y>
-       <width>415</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="value">
-      <number>0</number>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="fileSizeLabel">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>201</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color:rgb(100, 100, 100);</string>
-     </property>
-     <property name="text">
-      <string>文档大小: --</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="speedLabel">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>95</y>
-       <width>201</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color:rgb(100, 100, 100);</string>
-     </property>
-     <property name="text">
-      <string>传送速率: --</string>
-     </property>
-    </widget>
-   </widget>
   </widget>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -212,7 +140,7 @@
     <pixmap resource="../../../../TTKUi/MusicPlayer.qrc">:/toolSets/lb_upgradeMain</pixmap>
    </property>
   </widget>
-  <zorder>stackedWidget</zorder>
+  <zorder>container</zorder>
   <zorder>background</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>

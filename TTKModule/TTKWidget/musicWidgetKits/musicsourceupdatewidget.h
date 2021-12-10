@@ -22,7 +22,8 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstractmovewidget.h"
 
-#define REPORT_URL      "V0pTNkY2K1pRdVdzVDBrWFZGWnJiWHhVcHNTd2xlSE1FZUlQbytlN0tDK3ZUSVRqQ1ViZTFxQlpCVkR4akVhSk44cnMrVDhzWU5jPQ=="
+#define REPORT_BUG_URL      "V0pTNkY2K1pRdVdzVDBrWFZGWnJiWHhVcHNTd2xlSE1FZUlQbytlN0tDK3ZUSVRqQ1ViZTFxQlpCVkR4akVhSk44cnMrVDhzWU5jPQ=="
+#define RELEASE_DATA_URL    "OGk2YzFYT2NubTYxYkVDZG9aczB5NlNoeHVwRDZDeEttcEMxSGhScUVWcGRJNXdBK3IzZ0p2aWpiVnF4VjV3aEtHNlNERkhmN2pNPQ=="
 
 namespace Ui {
 class MusicSourceUpdateWidget;
@@ -93,25 +94,12 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QVariant &bytes);
     /*!
-     * Update download speed label.
-     */
-    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
-    /*!
-     * Update download percent\ total size progress.
-     */
-    void downloadProgressChanged(float percent, const QString &total);
-    /*!
-     * Update download progress finished.
-     */
-    void downloadProgressFinished();
-    /*!
      * Override exec function.
      */
     virtual int exec();
 
 protected:
     Ui::MusicSourceUpdateWidget *m_ui;
-    QString m_newVersionStr;
 
 };
 

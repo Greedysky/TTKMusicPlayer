@@ -276,7 +276,7 @@ void MusicApplicationModule::musicAboutUs()
 
 void MusicApplicationModule::musicBugReportView()
 {
-    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
+    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(REPORT_BUG_URL, false), false);
 }
 
 void MusicApplicationModule::musicVersionUpdate()

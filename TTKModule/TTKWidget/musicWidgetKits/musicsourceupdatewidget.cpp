@@ -1,13 +1,10 @@
 #include "musicsourceupdatewidget.h"
 #include "ui_musicsourceupdatewidget.h"
 #include "musicsourceupdaterequest.h"
-#include "musicdownloaddatarequest.h"
-#include "musicmessagebox.h"
-#include "musictoastlabel.h"
+#include "musicsettingmanager.h"
+#include "musicalgorithmutils.h"
 #include "musiccoreutils.h"
 #include "musicurlutils.h"
-#include "musicsettingmanager.h"
-#include "musicsourceupdatewidget.h"
 
 #include "qsync/qsyncutils.h"
 
@@ -108,7 +105,6 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
     m_ui->upgradeButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
-    m_ui->downProgressBar->setStyleSheet(MusicUIObject::MQSSProgressBar01);
     m_ui->upgradeButton->setEnabled(false);
 #ifdef Q_OS_UNIX
     m_ui->upgradeButton->setFocusPolicy(Qt::NoFocus);
@@ -133,31 +129,21 @@ void MusicSourceUpdateWidget::start()
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
-#ifdef Q_OS_WIN
-    m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
-    const QString &localDwonload = "v" + m_newVersionStr + EXE_FILE;
-    MusicDownloadDataRequest *download = new MusicDownloadDataRequest(QString("%1%2").arg(QSyncUtils::makeDataBucketUrl()).arg(localDwonload),
-                                                                    UPDATE_DIR_FULL + localDwonload, MusicObject::DownloadOther, this);
-    connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
-    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));
-    connect(download, SIGNAL(downloadSpeedLabelChanged(QString,qint64)), SLOT(downloadSpeedLabelChanged(QString,qint64)));
-    download->startToDownload();
-#else
-    MusicToastLabel::popup(tr("Current platform is not supported!"));
-#endif
+    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(RELEASE_DATA_URL, false), false);
 }
 
 void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
 {
     const QVariantMap &value = bytes.toMap();
-    m_newVersionStr = value["version"].toString();
+    const QString &version = value["version"].toString();
 
     QString text;
-    if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, m_newVersionStr))
+    if(MusicUtils::Core::appVersionCheck(TTKMUSIC_VERSION_STR, version))
     {
-        text.append("v" + m_newVersionStr);
+        text.append("v" + version);
         text.append("\r\n");
         text.append(value["data"].toString());
+
         m_ui->upgradeButton->setEnabled(true);
         m_ui->titleLable->move(50, 0);
         m_ui->titleLable->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
@@ -171,34 +157,8 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &bytes)
     m_ui->titleLable->setText(text);
 }
 
-void MusicSourceUpdateWidget::downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft)
-{
-    m_ui->speedLabel->setText(tr("Speed: %1").arg(speed));
-    m_ui->timeLabel->setText(tr("Left: %1").arg(MusicTime::normalTime2Label(timeLeft)));
-}
-
-void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QString &total)
-{
-    m_ui->fileSizeLabel->setText(tr("FileSize: %1").arg(total));
-    m_ui->downProgressBar->setValue(percent);
-}
-
-void MusicSourceUpdateWidget::downloadProgressFinished()
-{
-    const QString &localDwonload = "v" + m_newVersionStr + EXE_FILE;
-
-    MusicMessageBox message(this);
-    message.setText(tr("Download finished, to be installed or not?"));
-    if(message.exec())
-    {
-        MusicUtils::Url::execute(UPDATE_DIR_FULL+ localDwonload);
-        TTKStatic_cast(QWidget*, parent())->close();
-    }
-}
-
 int MusicSourceUpdateWidget::exec()
 {
     start();
-
     return MusicAbstractMoveDialog::exec();
 }
