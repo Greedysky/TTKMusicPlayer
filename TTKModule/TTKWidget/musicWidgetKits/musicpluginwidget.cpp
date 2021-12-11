@@ -3,13 +3,15 @@
 #include "musicitemdelegate.h"
 
 #include <qmmp/decoderfactory.h>
-#include <qmmp/outputfactory.h>
-#include <qmmp/visualfactory.h>
 #include <qmmp/effectfactory.h>
+#include <qmmp/visualfactory.h>
+#include <qmmp/inputsourcefactory.h>
+#include <qmmp/outputfactory.h>
 #include <qmmp/decoder.h>
 #include <qmmp/effect.h>
-#include <qmmp/output.h>
 #include <qmmp/visual.h>
+#include <qmmp/inputsource.h>
+#include <qmmp/output.h>
 
 #include <QScrollBar>
 
@@ -41,6 +43,13 @@ public:
         m_factory = factory;
     }
 
+    MusicPluginItem(QTreeWidgetItem *parent, InputSourceFactory *factory, const QString &path)
+        : QTreeWidgetItem(parent, TRANSPORTS)
+    {
+        initialize(InputSource::isEnabled(factory), true, factory->properties().name, factory->properties().hasSettings, path);
+        m_factory = factory;
+    }
+
     MusicPluginItem(QTreeWidgetItem *parent, OutputFactory *factory, const QString &path)
         : QTreeWidgetItem(parent, OUTPUT)
     {
@@ -53,6 +62,7 @@ public:
         DECODER = QTreeWidgetItem::UserType,
         EFFECT,
         VISUAL,
+        TRANSPORTS,
         OUTPUT
     };
 
@@ -63,6 +73,7 @@ public:
             case MusicPluginItem::DECODER: return TTKStatic_cast(DecoderFactory*, m_factory)->properties().hasSettings;
             case MusicPluginItem::EFFECT: return false;
             case MusicPluginItem::VISUAL: return false;
+            case MusicPluginItem::TRANSPORTS: return TTKStatic_cast(InputSourceFactory*, m_factory)->properties().hasSettings;
             case MusicPluginItem::OUTPUT: return TTKStatic_cast(OutputFactory*, m_factory)->properties().hasSettings;
             default: return false;
         }
@@ -75,6 +86,7 @@ public:
             case MusicPluginItem::DECODER: TTKStatic_cast(DecoderFactory*, m_factory)->showSettings(treeWidget()); break;
             case MusicPluginItem::EFFECT: break;
             case MusicPluginItem::VISUAL: break;
+            case MusicPluginItem::TRANSPORTS: TTKStatic_cast(InputSourceFactory*, m_factory)->showSettings(treeWidget()); break;
             case MusicPluginItem::OUTPUT: TTKStatic_cast(OutputFactory*, m_factory)->showSettings(treeWidget()); break;
             default: break;
         }
@@ -87,6 +99,7 @@ public:
             case MusicPluginItem::DECODER: Decoder::setEnabled(TTKStatic_cast(DecoderFactory*, m_factory), enabled); break;
             case MusicPluginItem::EFFECT: break;
             case MusicPluginItem::VISUAL: break;
+            case MusicPluginItem::TRANSPORTS: InputSource::setEnabled(TTKStatic_cast(InputSourceFactory*, m_factory), enabled); break;
             case MusicPluginItem::OUTPUT:
             {
                 if(enabled)
@@ -170,12 +183,8 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
     m_ui->treeWidget->setColumnWidth(3, 70);
 
     m_ui->settingButton->setStyleSheet(MusicUIObject::MQSSPushButtonStyle03);
-    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 +
-                                    MusicUIObject::MQSSSpinBoxStyle01 +
-                                    MusicUIObject::MQSSSliderStyle06 +
-                                    MusicUIObject::MQSSRadioButtonStyle01 +
-                                    MusicUIObject::MQSSCheckBoxStyle01 +
-                                    MusicUIObject::MQSSComboBoxStyle01 +
+    m_ui->treeWidget->setStyleSheet(MusicUIObject::MQSSGroupBoxStyle01 + MusicUIObject::MQSSSpinBoxStyle01 + MusicUIObject::MQSSSliderStyle06 +
+                                    MusicUIObject::MQSSRadioButtonStyle01 + MusicUIObject::MQSSCheckBoxStyle01 + MusicUIObject::MQSSComboBoxStyle01 +
                                     MusicUIObject::MQSSPushButtonStyle15);
     m_ui->treeWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->treeWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MQSSScrollBarStyle03);
@@ -190,7 +199,7 @@ MusicPluginWidget::MusicPluginWidget(QWidget *parent)
 
 void MusicPluginWidget::pluginItemChanged(QTreeWidgetItem *item, int column)
 {
-    if(column == 0 && (item->type() == MusicPluginItem::DECODER || item->type() == MusicPluginItem::OUTPUT))
+    if(column == 0 && (item->type() == MusicPluginItem::DECODER || item->type() == MusicPluginItem::TRANSPORTS || item->type() == MusicPluginItem::OUTPUT))
     {
         if(item->type() == MusicPluginItem::OUTPUT)
         {
@@ -242,7 +251,7 @@ void MusicPluginWidget::loadPluginsInfo()
     m_ui->treeWidget->blockSignals(true);
 
     QTreeWidgetItem *item = nullptr;
-    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Decoders")});
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Decoder")});
     item->setFirstColumnSpanned(true);
     for(DecoderFactory *factory : Decoder::factories())
     {
@@ -251,7 +260,7 @@ void MusicPluginWidget::loadPluginsInfo()
     m_ui->treeWidget->addTopLevelItem(item);
     item->setExpanded(true);
 
-    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Effects")});
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Effect")});
     item->setFirstColumnSpanned(true);
     for(EffectFactory *factory : Effect::factories())
     {
@@ -265,6 +274,15 @@ void MusicPluginWidget::loadPluginsInfo()
     for(VisualFactory *factory : Visual::factories())
     {
         new MusicPluginItem(item, factory, Visual::file(factory));
+    }
+    m_ui->treeWidget->addTopLevelItem(item);
+    item->setExpanded(true);
+
+    item = new QTreeWidgetItem(m_ui->treeWidget, {tr("Transport")});
+    item->setFirstColumnSpanned(true);
+    for(InputSourceFactory *factory : InputSource::factories())
+    {
+        new MusicPluginItem(item, factory, InputSource::file(factory));
     }
     m_ui->treeWidget->addTopLevelItem(item);
     item->setExpanded(true);

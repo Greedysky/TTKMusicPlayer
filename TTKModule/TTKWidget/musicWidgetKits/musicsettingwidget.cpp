@@ -1152,8 +1152,8 @@ bool MusicSettingWidget::setNetworkProxyByType(ProxyType type)
         MusicToastLabel::popup(tr("Proxy port is empty"));
         return false;
     }
-    proxy.setPort(value.toInt());
 
+    proxy.setPort(value.toInt());
     proxy.setUser(m_ui->proxyUsernameEdit->text().trimmed());
     proxy.setPassword(m_ui->proxyPwdEdit->text().trimmed());
 
