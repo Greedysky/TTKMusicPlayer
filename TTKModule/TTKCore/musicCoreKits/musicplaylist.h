@@ -180,7 +180,7 @@ public Q_SLOTS:
     /*!
      * Set current play index.
      */
-    void setCurrentIndex(int index = DEFAULT_NORMAL_LEVEL);
+    void setCurrentIndex(int index = DEFAULT_LOW_LEVEL);
     /*!
      * Set current play index.
      */

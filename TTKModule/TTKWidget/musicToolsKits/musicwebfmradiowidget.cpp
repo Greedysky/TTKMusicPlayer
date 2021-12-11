@@ -87,7 +87,7 @@ void MusicWebFMRadioWidget::itemCellClicked(int row, int column)
 
     if(column == 3)
     {
-        itemCellDoubleClicked(row, DEFAULT_LOWER_LEVEL);
+        itemCellDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
     }
 }
 
@@ -159,7 +159,7 @@ void MusicWebFMRadioWidget::addListWidgetItem()
     if(m_outerIndex != -1)
     {
         selectRow(m_outerIndex);
-        itemCellDoubleClicked(m_outerIndex, DEFAULT_LOWER_LEVEL);
+        itemCellDoubleClicked(m_outerIndex, DEFAULT_NORMAL_LEVEL);
     }
 }
 
@@ -191,7 +191,7 @@ void MusicWebFMRadioWidget::musicPlayClicked()
     const int row = currentRow();
     if(row >= 0)
     {
-        itemCellDoubleClicked(row, DEFAULT_LOWER_LEVEL);
+        itemCellDoubleClicked(row, DEFAULT_NORMAL_LEVEL);
     }
 }
 

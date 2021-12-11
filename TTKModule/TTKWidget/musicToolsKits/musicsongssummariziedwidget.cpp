@@ -660,15 +660,21 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicSearchedItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    item->m_songs << MusicSong(songItem.m_singerName, 0, songItem.m_duration, songItem.m_songName);
-    item->m_itemObject->updateSongsFileName(item->m_songs);
-    setItemTitle(item);
+    const MusicSong &song = MusicSong(songItem.m_singerName, 0, songItem.m_duration, songItem.m_songName);
+    int index = item->m_songs.indexOf(song);
+    if(index == -1)
+    {
+        item->m_songs << song;
+        item->m_itemObject->updateSongsFileName(item->m_songs);
+        setItemTitle(item);
+        index = item->m_songs.count() - 1;
+    }
 
     if(songItem.m_type == "true")
     {
         ///when download finished just play it at once
         setCurrentIndex(MUSIC_NETWORK_LIST);
-        MusicApplication::instance()->musicPlayIndexClicked(item->m_songs.count() - 1, 0);
+        MusicApplication::instance()->musicPlayIndexClicked(index, 0);
     }
 }
 
