@@ -1,5 +1,6 @@
 #include "networkinputfactory.h"
 #include "networkinputsource.h"
+#include "settingsdialog.h"
 
 InputSourceProperties NetworkInputFactory::properties() const
 {
@@ -18,7 +19,8 @@ InputSource *NetworkInputFactory::create(const QString &url, QObject *parent)
 
 void NetworkInputFactory::showSettings(QWidget *parent)
 {
-    Q_UNUSED(parent);
+    SettingsDialog *s = new SettingsDialog(parent);
+    s->show();
 }
 
 #if QT_VERSION < QT_VERSION_CHECK(5,0,0)

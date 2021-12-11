@@ -1,7 +1,7 @@
 #include <QVariant>
 #include "replaygainreader.h"
 #include "decoder_ffmpeg.h"
-extern "C"{
+extern "C" {
 #include <libavutil/channel_layout.h>
 #include <libavutil/frame.h>
 }

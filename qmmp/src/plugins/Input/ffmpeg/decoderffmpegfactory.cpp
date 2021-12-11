@@ -1,7 +1,7 @@
 #include <QSettings>
 #include <qmmp/cueparser.h>
 
-extern "C"{
+extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavutil/dict.h>

@@ -6,11 +6,15 @@ TARGET = $${TARGET}
 
 HEADERS += networkinputfactory.h \
            networkinputsource.h \
-           networkstreamreader.h
+           networkstreamreader.h \
+           settingsdialog.h
 
 SOURCES += networkinputfactory.cpp \
            networkinputsource.cpp \
-           networkstreamreader.cpp
+           networkstreamreader.cpp \
+           settingsdialog.cpp
+
+FORMS += settingsdialog.ui
 
 unix{
     QMAKE_CLEAN = $$DESTDIR/lib$${TARGET}.so

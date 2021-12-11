@@ -1,8 +1,7 @@
 #include <QSettings>
 #include <QAbstractButton>
 #include <qmmp/qmmp.h>
-extern "C"
-{
+extern "C" {
 #include <alsa/asoundlib.h>
 }
 #include "settingsdialog.h"

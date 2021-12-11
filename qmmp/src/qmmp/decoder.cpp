@@ -7,8 +7,7 @@
 #include "output.h"
 #include "decoderfactory.h"
 
-extern "C"
-{
+extern "C" {
 #include "equ/iir.h"
 }
 #include "decoder.h"

@@ -23,7 +23,7 @@
 
 #include <QMap>
 
-extern "C"{
+extern "C" {
 #include <libavformat/avformat.h>
 #include <libavutil/dict.h>
 }

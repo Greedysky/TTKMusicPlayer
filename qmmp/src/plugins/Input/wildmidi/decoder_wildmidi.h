@@ -21,7 +21,7 @@
 #ifndef DECODER_WILDMIDI_H
 #define DECODER_WILDMIDI_H
 
-extern "C"{
+extern "C" {
 #include <wildmidi_lib.h>
 }
 #include <qmmp/decoder.h>

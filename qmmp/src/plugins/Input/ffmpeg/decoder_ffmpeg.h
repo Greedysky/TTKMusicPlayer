@@ -21,7 +21,7 @@
 #ifndef DECODER_FFMPEG_H
 #define DECODER_FFMPEG_H
 
-extern "C"{
+extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavutil/mathematics.h>

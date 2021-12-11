@@ -23,8 +23,7 @@
 
 class OutputALSA;
 
-extern "C"
-{
+extern "C" {
 #include <alsa/asoundlib.h>
 }
 

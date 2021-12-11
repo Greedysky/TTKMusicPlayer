@@ -21,7 +21,7 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-extern "C"{
+extern "C" {
 #include <alsa/asoundlib.h> 
 }
 #include "ui_settingsdialog.h"

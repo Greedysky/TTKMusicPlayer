@@ -1,6 +1,6 @@
 #include <QSettings>
 #include <QFile>
-extern "C"{
+extern "C" {
 #include <wildmidi_lib.h>
 }
 #include <qmmp/qmmp.h>

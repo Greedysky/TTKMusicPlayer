@@ -3,7 +3,7 @@
 #include <qmmp/qmmp.h>
 #include "settingsdialog.h"
 
-extern "C"{
+extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 #include <libavutil/dict.h>

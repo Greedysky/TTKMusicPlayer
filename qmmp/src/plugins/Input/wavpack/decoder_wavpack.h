@@ -21,7 +21,7 @@
 #ifndef DECODER_WAVPACK_H
 #define DECODER_WAVPACK_H
 
-extern "C"{
+extern "C" {
 #include <wavpack.h>
 }
 #include <qmmp/decoder.h>
