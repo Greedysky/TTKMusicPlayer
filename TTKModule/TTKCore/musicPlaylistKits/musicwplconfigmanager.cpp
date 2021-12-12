@@ -65,7 +65,7 @@ MusicSongs MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) const
     for(int i=0; i<nodeList.count(); i++)
     {
         const QDomElement &element = nodeList.at(i).toElement();
-        songs << MusicSong(element.attribute("src"), 0, QString(), QString());
+        songs << MusicSong(element.attribute("src"));
     }
     return songs;
 }

@@ -23,11 +23,7 @@ bool MusicCSVConfigManager::readPlaylistData(MusicSongItems &items)
         const QStringList &songInfo = line.split(",");
         if(songInfo.count() > 2)
         {
-            MusicSong song;
-            song.setMusicName(songInfo[0]);
-            song.setMusicPlayTime(songInfo[1]);
-            song.setMusicPath(songInfo[2]);
-            item.m_songs << song;
+            item.m_songs << MusicSong(songInfo[2], songInfo[1], songInfo[0]);
         }
     }
     m_file.close();

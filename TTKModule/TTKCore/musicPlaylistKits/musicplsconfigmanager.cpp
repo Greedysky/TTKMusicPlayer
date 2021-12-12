@@ -35,7 +35,7 @@ bool MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
         {
             if((number = fileRegExp.cap(1).toInt()) > 0)
             {
-                item.m_songs << MusicSong(fileRegExp.cap(2), 0, QString(), QString());
+                item.m_songs << MusicSong(fileRegExp.cap(2));
             }
             else
             {

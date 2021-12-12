@@ -660,7 +660,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool state, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToPlaylist(const MusicSearchedItem &songItem)
 {
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
-    const MusicSong &song = MusicSong(songItem.m_singerName, 0, songItem.m_duration, songItem.m_songName);
+    const MusicSong &song = MusicSong(songItem.m_singerName, songItem.m_duration, songItem.m_songName);
     int index = item->m_songs.indexOf(song);
     if(index == -1)
     {

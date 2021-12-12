@@ -43,27 +43,14 @@ public:
      * Object contsructor.
      */
     MusicSong();
-
     /*!
      * Object contsructor by music path and name.
      */
-    explicit MusicSong(const QString &musicPath, const QString &musicName = QString());
-    /*!
-     * Object contsructor by music path and name and playcout.
-     */
-    MusicSong(const QString &musicPath, int playCount, const QString &musicName = QString());
-    /*!
-     * Object contsructor by music path and name and playcout and format.
-     */
-    MusicSong(const QString &musicPath, const QString &type, int playCount, const QString &musicName = QString());
-    /*!
-     * Object contsructor by music path and name and playcout and format and time.
-     */
-    MusicSong(const QString &musicPath, const QString &type, const QString &playTime, int playCount, const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath);
     /*!
      * Object contsructor by music path and name and playcout and time.
      */
-    MusicSong(const QString &musicPath, int playCount, const QString &playTime, const QString &musicName);
+    MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName = QString());
 
     /*!
      * Get music artist name.

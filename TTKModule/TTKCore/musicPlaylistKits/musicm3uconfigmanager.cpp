@@ -39,7 +39,7 @@ bool MusicM3UConfigManager::readPlaylistData(MusicSongItems &items)
 
         if(valid)
         {
-            item.m_songs << MusicSong(str, 0, MusicTime::msecTime2LabelJustified(length * MT_S2MS), QString());
+            item.m_songs << MusicSong(str, MusicTime::msecTime2LabelJustified(length * MT_S2MS));
         }
     }
 

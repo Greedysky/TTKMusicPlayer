@@ -7,7 +7,8 @@
 #include "musicsettingmanager.h"
 
 MusicSong::MusicSong()
-    : m_musicName(QString()), m_musicPath(QString())
+    : m_musicName(),
+      m_musicPath()
 {
     m_sortType = SortByFileName;
     m_musicSize = 0;
@@ -15,15 +16,20 @@ MusicSong::MusicSong()
     m_musicPlayCount = 0;
 }
 
-MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
+MusicSong::MusicSong(const QString &musicPath)
+    : MusicSong(musicPath, QString())
+{
+
+}
+
+MusicSong::MusicSong(const QString &musicPath, const QString &playTime, const QString &musicName)
     : MusicSong()
 {
     m_musicPath = musicPath;
-    m_musicName = musicName;
-
     m_musicPath.replace("\\", TTK_SEPARATOR);
-
     const QFileInfo info(m_musicPath);
+
+    m_musicName = musicName;
     if(m_musicName.isEmpty())
     {
         m_musicName = info.completeBaseName();
@@ -32,32 +38,9 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicSize = info.size();
     m_musicType = info.suffix();
     m_musicAddTime = info.lastModified().currentMSecsSinceEpoch();
+    m_musicPlayTime = playTime;
     m_musicAddTimeStr = QString::number(m_musicAddTime);
     m_musicSizeStr = MusicUtils::Number::sizeByte2Label(m_musicSize);
-}
-
-MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &musicName)
-    : MusicSong(musicPath, musicName)
-{
-    m_musicPlayCount = playCount;
-}
-
-MusicSong::MusicSong(const QString &musicPath, const QString &type, int playCount, const QString &musicName)
-    : MusicSong(musicPath, playCount, musicName)
-{
-    m_musicType = type;
-}
-
-MusicSong::MusicSong(const QString &musicPath, const QString &type, const QString &playTime, int playCount, const QString &musicName)
-    : MusicSong(musicPath, type, playCount, musicName)
-{
-    m_musicPlayTime = playTime;
-}
-
-MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &time, const QString &musicName)
-    : MusicSong(musicPath, playCount, musicName)
-{
-    m_musicPlayTime = time;
 }
 
 QString MusicSong::musicArtistFront() const
@@ -153,7 +136,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
             }
 
             const QFileInfo fin(meta.fileRelatedPath());
-            MusicSong song(meta.fileBasePath(), 0, time, name);
+            MusicSong song(meta.fileBasePath(), time, name);
             song.setMusicType(fin.suffix());
             song.setMusicSize(fin.size());
             songs << song;
@@ -171,8 +154,7 @@ MusicSongs MusicObject::generateMusicSongList(const QString &path)
     {
         name = meta.artist() + " - " + meta.title();
     }
-    songs << MusicSong(path, 0, time, name);
-
+    songs << MusicSong(path, time, name);
     return songs;
 }
 

@@ -27,9 +27,7 @@ bool MusicTXTConfigManager::readPlaylistData(MusicSongItems &items)
             index = part.lastIndexOf(TTK_DEFAULT_STR);
             if(index != -1)
             {
-                MusicSong song(part.left(index).trimmed());
-                song.setMusicPlayTime(part.mid(index + 1).trimmed());
-                item.m_songs << song;
+                item.m_songs << MusicSong(part.left(index).trimmed(), part.mid(index + 1).trimmed());
             }
         }
     }

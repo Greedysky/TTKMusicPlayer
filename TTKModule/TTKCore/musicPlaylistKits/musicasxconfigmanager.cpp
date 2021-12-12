@@ -38,7 +38,7 @@ bool MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
 
         if(!path.isEmpty())
         {
-            item.m_songs << MusicSong(path, 0, duration, QString());
+            item.m_songs << MusicSong(path, duration);
         }
     }
 
