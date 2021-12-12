@@ -14,15 +14,15 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
 
-    QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
-    QAction *shearM = rightClickMenu.addAction(tr("Shear"), this, SLOT(cut()));
-    QAction *copyM = rightClickMenu.addAction(tr("Copy"), this, SLOT(copy()));
-    rightClickMenu.addAction(tr("Paste"), this, SLOT(paste()));
-    QAction *deleteM = rightClickMenu.addAction(tr("Delete"), this, SLOT(clear()));
-    rightClickMenu.addSeparator();
-    QAction *selectM = rightClickMenu.addAction(tr("Select All"), this, SLOT(selectAll()));
+    QAction *shearM = menu.addAction(tr("Shear"), this, SLOT(cut()));
+    QAction *copyM = menu.addAction(tr("Copy"), this, SLOT(copy()));
+    menu.addAction(tr("Paste"), this, SLOT(paste()));
+    QAction *deleteM = menu.addAction(tr("Delete"), this, SLOT(clear()));
+    menu.addSeparator();
+    QAction *selectM = menu.addAction(tr("Select All"), this, SLOT(selectAll()));
 
     const bool state = hasSelectedText();
     shearM->setEnabled(state);
@@ -30,8 +30,8 @@ void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
     deleteM->setEnabled(state);
     selectM->setEnabled(!text().trimmed().isEmpty());
 
-    MusicUtils::Widget::adjustMenuPosition(&rightClickMenu);
-    rightClickMenu.exec(QCursor::pos());
+    MusicUtils::Widget::adjustMenuPosition(&menu);
+    menu.exec(QCursor::pos());
 }
 
 void MusicLocalSongSearchEdit::keyPressEvent(QKeyEvent *event)

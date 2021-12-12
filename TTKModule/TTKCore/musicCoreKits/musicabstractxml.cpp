@@ -143,7 +143,7 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
 
 QString MusicAbstractXml::toString() const
 {
-    return m_document? m_document->toString() : QString();
+    return m_document ? m_document->toString() : QString();
 }
 
 QByteArray MusicAbstractXml::toByteArray() const

@@ -182,13 +182,13 @@ public Q_SLOTS:
      */
     void musicImportSongs();
     /*!
-     * Import music songs by file.
+     * Import music songs by files.
      */
-    void musicImportSongsOnlyFile();
+    void musicImportSongsByFiles();
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsOnlyDir();
+    void musicImportSongsByDir();
     /*!
      * Import music songs by item list.
      */
@@ -220,7 +220,7 @@ public Q_SLOTS:
     /*!
      * Set song speed and slow by given pos.
      */
-    void musicPlayAnyTimeAt(int posValue);
+    void musicPlayAnyTimeAt(int value);
     /*!
      * Set current player volume down.
      */

@@ -93,36 +93,36 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("Create Item"), this, SIGNAL(addNewRowItem()));
     menu.addSeparator();
 
-    QMenu musicAddNewFiles(tr("Add New Files"), &menu);
+    QMenu addNewFiles(tr("Add New Files"), &menu);
     bool disable = MusicObject::playlistRowValid(m_index);
-    menu.addMenu(&musicAddNewFiles)->setEnabled(disable);
-    musicAddNewFiles.addAction(tr("Open Files"), this, SLOT(musicAddNewFiles()));
-    musicAddNewFiles.addAction(tr("Open Dir"), this, SLOT(musicAddNewDir()));
-    MusicUtils::Widget::adjustMenuPosition(&musicAddNewFiles);
+    menu.addMenu(&addNewFiles)->setEnabled(disable);
+    addNewFiles.addAction(tr("Open Files"), this, SLOT(musicAddNewFiles()));
+    addNewFiles.addAction(tr("Open Dir"), this, SLOT(musicAddNewDir()));
+    MusicUtils::Widget::adjustMenuPosition(&addNewFiles);
 
     menu.addAction(tr("Play Later"), this, SLOT(addToPlayLater()));
     menu.addAction(tr("Add To Playlist"), this, SLOT(addToPlayedList()));
 
-    QMenu musicSortFiles(tr("Sort"), &menu);
-    musicSortFiles.addAction(tr("Sort By FileName"))->setData(0);
-    musicSortFiles.addAction(tr("Sort By Singer"))->setData(1);
-    musicSortFiles.addAction(tr("Sort By FileSize"))->setData(2);
-    musicSortFiles.addAction(tr("Sort By AddTime"))->setData(3);
-    musicSortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
-    musicSortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
-    MusicUtils::Widget::adjustMenuPosition(&musicSortFiles);
-    connect(&musicSortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
+    QMenu sortFiles(tr("Sort"), &menu);
+    sortFiles.addAction(tr("Sort By FileName"))->setData(0);
+    sortFiles.addAction(tr("Sort By Singer"))->setData(1);
+    sortFiles.addAction(tr("Sort By FileSize"))->setData(2);
+    sortFiles.addAction(tr("Sort By AddTime"))->setData(3);
+    sortFiles.addAction(tr("Sort By PlayTime"))->setData(4);
+    sortFiles.addAction(tr("Sort By PlayCount"))->setData(5);
+    MusicUtils::Widget::adjustMenuPosition(&sortFiles);
+    connect(&sortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
 
     if(m_musicSort)
     {
-        const QList<QAction*> actions(musicSortFiles.actions());
+        const QList<QAction*> actions(sortFiles.actions());
         if(-1 < m_musicSort->m_type && m_musicSort->m_type < actions.count())
         {
             const bool asc = m_musicSort->m_order == Qt::AscendingOrder;
             actions[m_musicSort->m_type]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
         }
     }
-    menu.addMenu(&musicSortFiles);
+    menu.addMenu(&sortFiles);
 
     menu.addAction(tr("Export List"), this, SLOT(exportSongsItemList()));
     menu.addSeparator();

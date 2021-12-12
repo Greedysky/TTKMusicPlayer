@@ -78,21 +78,21 @@ void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractSongsListTableWidget::contextMenuEvent(event);
 
-    QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
-    rightClickMenu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
-    rightClickMenu.addSeparator();
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play"), this, SLOT(musicPlayClicked()));
+    menu.addAction(tr("Download More..."), this, SLOT(musicSongDownload()));
+    menu.addSeparator();
 
-    createMoreMenu(&rightClickMenu);
+    createMoreMenu(&menu);
 
     const bool empty = !m_musicSongs->isEmpty();
-    rightClickMenu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
-    rightClickMenu.addSeparator();
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    menu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("Ablum"), this, SLOT(musicAlbumQueryWidget()));
+    menu.addSeparator();
 
-    rightClickMenu.exec(QCursor::pos());
+    menu.exec(QCursor::pos());
 }
 
 

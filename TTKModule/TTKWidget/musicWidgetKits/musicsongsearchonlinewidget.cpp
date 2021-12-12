@@ -297,11 +297,11 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicItemSearchTableWidget::contextMenuEvent(event);
 
-    QMenu rightClickMenu(this);
-    m_actionGroup->addAction(rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);
-    m_actionGroup->addAction(rightClickMenu.addAction(tr("Download More...")))->setData(5);
+    QMenu menu(this);
+    m_actionGroup->addAction(menu.addAction(QIcon(":/contextMenu/btn_play"), tr("Play")))->setData(4);
+    m_actionGroup->addAction(menu.addAction(tr("Download More...")))->setData(5);
 
-    createContextMenu(rightClickMenu);
+    createContextMenu(menu);
 
     if(!m_actionGroup->actions().isEmpty())
     {
@@ -309,9 +309,9 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
         QAction *lastAction = m_actionGroup->actions().last();
         QAction *action = m_actionGroup->addAction(tr("Search '%1'").arg(albumName));
         action->setData(6);
-        rightClickMenu.insertAction(lastAction, action);
+        menu.insertAction(lastAction, action);
     }
-    rightClickMenu.exec(QCursor::pos());
+    menu.exec(QCursor::pos());
 }
 
 void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row, bool play)

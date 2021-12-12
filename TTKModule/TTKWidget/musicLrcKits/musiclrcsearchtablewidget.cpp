@@ -151,7 +151,7 @@ void MusicLrcSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicItemSearchTableWidget::contextMenuEvent(event);
 
-    QMenu rightClickMenu(this);
-    createContextMenu(rightClickMenu);
-    rightClickMenu.exec(QCursor::pos());
+    QMenu menu(this);
+    createContextMenu(menu);
+    menu.exec(QCursor::pos());
 }

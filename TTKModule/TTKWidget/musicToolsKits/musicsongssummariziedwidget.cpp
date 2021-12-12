@@ -408,7 +408,7 @@ void MusicSongsSummariziedWidget::musicAddNewFiles(int index)
     }
 
     m_selectImportIndex = id;
-    MusicApplication::instance()->musicImportSongsOnlyFile();
+    MusicApplication::instance()->musicImportSongsByFiles();
     m_selectImportIndex = MUSIC_NORMAL_LIST;
 }
 
@@ -421,7 +421,7 @@ void MusicSongsSummariziedWidget::musicAddNewDir(int index)
     }
 
     m_selectImportIndex = id;
-    MusicApplication::instance()->musicImportSongsOnlyDir();
+    MusicApplication::instance()->musicImportSongsByDir();
     m_selectImportIndex = MUSIC_NORMAL_LIST;
 }
 
@@ -496,17 +496,17 @@ void MusicSongsSummariziedWidget::addToPlayedList(int index)
     }
 }
 
-void MusicSongsSummariziedWidget::musicImportSongsOnlyFile()
+void MusicSongsSummariziedWidget::musicImportSongsByFiles()
 {
     m_selectImportIndex = m_currentIndex;
-    MusicApplication::instance()->musicImportSongsOnlyFile();
+    MusicApplication::instance()->musicImportSongsByFiles();
     m_selectImportIndex = MUSIC_NORMAL_LIST;
 }
 
-void MusicSongsSummariziedWidget::musicImportSongsOnlyDir()
+void MusicSongsSummariziedWidget::musicImportSongsByDir()
 {
     m_selectImportIndex = m_currentIndex;
-    MusicApplication::instance()->musicImportSongsOnlyDir();
+    MusicApplication::instance()->musicImportSongsByDir();
     m_selectImportIndex = MUSIC_NORMAL_LIST;
 }
 
@@ -1020,8 +1020,6 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     setMusicSongSort(object, &item->m_sort);
     object->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
-    connect(object, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
-    connect(object, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
     connect(object, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
     connect(object, SIGNAL(isSearchResultEmpty(bool&)), SLOT(isSearchResultEmpty(bool&)));
     connect(object, SIGNAL(deleteItemAt(TTKIntList,bool)), SLOT(setDeleteItemAt(TTKIntList,bool)));

@@ -173,10 +173,10 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
 void MusicSoundKMicroSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicItemSearchTableWidget::contextMenuEvent(event);
-    QMenu rightClickMenu(this);
-    createContextMenu(rightClickMenu);
+    QMenu menu(this);
+    createContextMenu(menu);
 
-    rightClickMenu.exec(QCursor::pos());
+    menu.exec(QCursor::pos());
 }
 
 

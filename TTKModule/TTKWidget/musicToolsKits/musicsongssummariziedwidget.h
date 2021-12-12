@@ -142,13 +142,13 @@ public Q_SLOTS:
      */
     void addToPlayedList(int index);
     /*!
-     * Import music songs by file.
+     * Import music songs by files.
      */
-    void musicImportSongsOnlyFile();
+    void musicImportSongsByFiles();
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsOnlyDir();
+    void musicImportSongsByDir();
     /*!
      * Open music songs check test tools.
      */

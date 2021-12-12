@@ -267,10 +267,10 @@ void MusicVideoSearchTableWidget::downloadLocalFromControl()
 void MusicVideoSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicItemSearchTableWidget::contextMenuEvent(event);
-    QMenu rightClickMenu(this);
-    createContextMenu(rightClickMenu);
+    QMenu menu(this);
+    createContextMenu(menu);
 
-    rightClickMenu.exec(QCursor::pos());
+    menu.exec(QCursor::pos());
 }
 
 void MusicVideoSearchTableWidget::downloadLocalMovie(int row)

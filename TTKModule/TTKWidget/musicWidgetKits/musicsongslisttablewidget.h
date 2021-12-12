@@ -83,15 +83,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Add new music file or files to list.
-     */
-    void musicAddNewFiles();
-    /*!
-     * Add new music dir to list.
-     */
-    void musicAddNewDir();
-
-    /*!
      * Check current list is searched or not.
      */
     void isSearchResultEmpty(bool &empty);
@@ -197,6 +188,7 @@ protected:
      */
     void createContextMenu(QMenu &menu);
 
+    QWidget *m_parentClass;
     int m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;

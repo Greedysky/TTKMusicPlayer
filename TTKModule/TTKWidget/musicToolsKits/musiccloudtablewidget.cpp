@@ -193,20 +193,20 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicSong &record)
 void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
-    QMenu rightClickMenu(this);
-    rightClickMenu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
+    QMenu menu(this);
+    menu.setStyleSheet(MusicUIObject::MQSSMenuStyle02);
 
     const bool empty = !m_musicSongs->isEmpty();
-    rightClickMenu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addSeparator();
+    menu.addAction(tr("Song Info..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    menu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("Open File Dir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    menu.addSeparator();
 
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
-    rightClickMenu.addSeparator();
+    menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("Delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    menu.addAction(tr("Delete All"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    menu.addSeparator();
 
-    rightClickMenu.addAction(tr("Reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("Reupload All"), this, SLOT(reuploadFiles()))->setEnabled(empty);
-    rightClickMenu.addSeparator();
-    rightClickMenu.exec(QCursor::pos());
+    menu.addAction(tr("Reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
+    menu.addAction(tr("Reupload All"), this, SLOT(reuploadFiles()))->setEnabled(empty);
+    menu.addSeparator();
+    menu.exec(QCursor::pos());
 }
